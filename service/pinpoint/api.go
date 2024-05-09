@@ -15310,6 +15310,10 @@ type CampaignEmailMessage struct {
 	// the FromAddress specified for the email channel for the application.
 	FromAddress *string `type:"string"`
 
+	// The list of MessageHeaders (https://docs.aws.amazon.com/pinpoint/latest/apireference/apps-application-id-campaigns-campaign-id.html#apps-application-id-campaigns-campaign-id-model-messageheader)
+	// for the email. You can have up to 15 MessageHeaders for each email.
+	Headers []*MessageHeader `type:"list"`
+
 	// The body of the email, in HTML format, for recipients whose email clients
 	// render HTML content.
 	HtmlBody *string `type:"string"`
@@ -15345,6 +15349,12 @@ func (s *CampaignEmailMessage) SetBody(v string) *CampaignEmailMessage {
 // SetFromAddress sets the FromAddress field's value.
 func (s *CampaignEmailMessage) SetFromAddress(v string) *CampaignEmailMessage {
 	s.FromAddress = &v
+	return s
+}
+
+// SetHeaders sets the Headers field's value.
+func (s *CampaignEmailMessage) SetHeaders(v []*MessageHeader) *CampaignEmailMessage {
+	s.Headers = v
 	return s
 }
 
@@ -21109,6 +21119,10 @@ type EmailTemplateRequest struct {
 	// address-specific variables and values.
 	DefaultSubstitutions *string `type:"string"`
 
+	// The list of MessageHeaders (https://docs.aws.amazon.com/pinpoint/latest/apireference/templates-template-name-email.html#templates-template-name-email-model-messageheader)
+	// for the email. You can have up to 15 Headers.
+	Headers []*MessageHeader `type:"list"`
+
 	// The message body, in HTML format, to use in email messages that are based
 	// on the message template. We recommend using HTML format for email clients
 	// that render HTML content. You can include links, formatted text, and more
@@ -21172,6 +21186,12 @@ func (s *EmailTemplateRequest) SetDefaultSubstitutions(v string) *EmailTemplateR
 	return s
 }
 
+// SetHeaders sets the Headers field's value.
+func (s *EmailTemplateRequest) SetHeaders(v []*MessageHeader) *EmailTemplateRequest {
+	s.Headers = v
+	return s
+}
+
 // SetHtmlPart sets the HtmlPart field's value.
 func (s *EmailTemplateRequest) SetHtmlPart(v string) *EmailTemplateRequest {
 	s.HtmlPart = &v
@@ -21226,6 +21246,8 @@ type EmailTemplateResponse struct {
 	// Each key defines a message variable in the template. The corresponding value
 	// defines the default value for that variable.
 	DefaultSubstitutions *string `type:"string"`
+
+	Headers []*MessageHeader `type:"list"`
 
 	// The message body, in HTML format, that's used in email messages that are
 	// based on the message template.
@@ -21306,6 +21328,12 @@ func (s *EmailTemplateResponse) SetCreationDate(v string) *EmailTemplateResponse
 // SetDefaultSubstitutions sets the DefaultSubstitutions field's value.
 func (s *EmailTemplateResponse) SetDefaultSubstitutions(v string) *EmailTemplateResponse {
 	s.DefaultSubstitutions = &v
+	return s
+}
+
+// SetHeaders sets the Headers field's value.
+func (s *EmailTemplateResponse) SetHeaders(v []*MessageHeader) *EmailTemplateResponse {
+	s.Headers = v
 	return s
 }
 
@@ -32549,6 +32577,52 @@ func (s *MessageConfiguration) SetSMSMessage(v *CampaignSmsMessage) *MessageConf
 	return s
 }
 
+// Contains the name and value pair of an email header to add to your email.
+// You can have up to 15 MessageHeaders. A header can contain information such
+// as the sender, receiver, route, or timestamp.
+type MessageHeader struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the message header. The header name can contain up to 126 characters.
+	Name *string `type:"string"`
+
+	// The value of the message header. The header value can contain up to 870 characters,
+	// including the length of any rendered attributes. For example if you add the
+	// {CreationDate} attribute, it renders as YYYY-MM-DDTHH:MM:SS.SSSZ and is 24
+	// characters in length.
+	Value *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MessageHeader) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MessageHeader) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *MessageHeader) SetName(v string) *MessageHeader {
+	s.Name = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *MessageHeader) SetValue(v string) *MessageHeader {
+	s.Value = &v
+	return s
+}
+
 // Specifies the configuration and other settings for a message.
 type MessageRequest struct {
 	_ struct{} `type:"structure"`
@@ -37538,6 +37612,9 @@ func (s *SimpleCondition) SetSegmentDimensions(v *SegmentDimensions) *SimpleCond
 type SimpleEmail struct {
 	_ struct{} `type:"structure"`
 
+	// List of Headers for the email.
+	Headers []*MessageHeader `type:"list"`
+
 	// The body of the email message, in HTML format. We recommend using HTML format
 	// for email clients that render HTML content. You can include links, formatted
 	// text, and more in an HTML message.
@@ -37568,6 +37645,12 @@ func (s SimpleEmail) String() string {
 // value will be replaced with "sensitive".
 func (s SimpleEmail) GoString() string {
 	return s.String()
+}
+
+// SetHeaders sets the Headers field's value.
+func (s *SimpleEmail) SetHeaders(v []*MessageHeader) *SimpleEmail {
+	s.Headers = v
+	return s
 }
 
 // SetHtmlPart sets the HtmlPart field's value.

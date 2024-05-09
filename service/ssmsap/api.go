@@ -1034,6 +1034,148 @@ func (c *SsmSap) ListDatabasesPagesWithContext(ctx aws.Context, input *ListDatab
 	return p.Err()
 }
 
+const opListOperationEvents = "ListOperationEvents"
+
+// ListOperationEventsRequest generates a "aws/request.Request" representing the
+// client's request for the ListOperationEvents operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListOperationEvents for more information on using the ListOperationEvents
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListOperationEventsRequest method.
+//	req, resp := client.ListOperationEventsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-sap-2018-05-10/ListOperationEvents
+func (c *SsmSap) ListOperationEventsRequest(input *ListOperationEventsInput) (req *request.Request, output *ListOperationEventsOutput) {
+	op := &request.Operation{
+		Name:       opListOperationEvents,
+		HTTPMethod: "POST",
+		HTTPPath:   "/list-operation-events",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListOperationEventsInput{}
+	}
+
+	output = &ListOperationEventsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListOperationEvents API operation for AWS Systems Manager for SAP.
+//
+// Returns a list of operations events.
+//
+// Available parameters include OperationID, as well as optional parameters
+// MaxResults, NextToken, and Filters.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Systems Manager for SAP's
+// API operation ListOperationEvents for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an AWS service.
+//
+//   - InternalServerException
+//     An internal error has occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-sap-2018-05-10/ListOperationEvents
+func (c *SsmSap) ListOperationEvents(input *ListOperationEventsInput) (*ListOperationEventsOutput, error) {
+	req, out := c.ListOperationEventsRequest(input)
+	return out, req.Send()
+}
+
+// ListOperationEventsWithContext is the same as ListOperationEvents with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListOperationEvents for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SsmSap) ListOperationEventsWithContext(ctx aws.Context, input *ListOperationEventsInput, opts ...request.Option) (*ListOperationEventsOutput, error) {
+	req, out := c.ListOperationEventsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListOperationEventsPages iterates over the pages of a ListOperationEvents operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListOperationEvents method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListOperationEvents operation.
+//	pageNum := 0
+//	err := client.ListOperationEventsPages(params,
+//	    func(page *ssmsap.ListOperationEventsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *SsmSap) ListOperationEventsPages(input *ListOperationEventsInput, fn func(*ListOperationEventsOutput, bool) bool) error {
+	return c.ListOperationEventsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListOperationEventsPagesWithContext same as ListOperationEventsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SsmSap) ListOperationEventsPagesWithContext(ctx aws.Context, input *ListOperationEventsInput, fn func(*ListOperationEventsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListOperationEventsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListOperationEventsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListOperationEventsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListOperations = "ListOperations"
 
 // ListOperationsRequest generates a "aws/request.Request" representing the
@@ -1442,6 +1584,96 @@ func (c *SsmSap) RegisterApplicationWithContext(ctx aws.Context, input *Register
 	return out, req.Send()
 }
 
+const opStartApplication = "StartApplication"
+
+// StartApplicationRequest generates a "aws/request.Request" representing the
+// client's request for the StartApplication operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartApplication for more information on using the StartApplication
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StartApplicationRequest method.
+//	req, resp := client.StartApplicationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-sap-2018-05-10/StartApplication
+func (c *SsmSap) StartApplicationRequest(input *StartApplicationInput) (req *request.Request, output *StartApplicationOutput) {
+	op := &request.Operation{
+		Name:       opStartApplication,
+		HTTPMethod: "POST",
+		HTTPPath:   "/start-application",
+	}
+
+	if input == nil {
+		input = &StartApplicationInput{}
+	}
+
+	output = &StartApplicationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartApplication API operation for AWS Systems Manager for SAP.
+//
+// Request is an operation which starts an application.
+//
+// Parameter ApplicationId is required.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Systems Manager for SAP's
+// API operation StartApplication for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The resource is not available.
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an AWS service.
+//
+//   - ConflictException
+//     A conflict has occurred.
+//
+//   - InternalServerException
+//     An internal error has occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-sap-2018-05-10/StartApplication
+func (c *SsmSap) StartApplication(input *StartApplicationInput) (*StartApplicationOutput, error) {
+	req, out := c.StartApplicationRequest(input)
+	return out, req.Send()
+}
+
+// StartApplicationWithContext is the same as StartApplication with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartApplication for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SsmSap) StartApplicationWithContext(ctx aws.Context, input *StartApplicationInput, opts ...request.Option) (*StartApplicationOutput, error) {
+	req, out := c.StartApplicationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opStartApplicationRefresh = "StartApplicationRefresh"
 
 // StartApplicationRefreshRequest generates a "aws/request.Request" representing the
@@ -1528,6 +1760,97 @@ func (c *SsmSap) StartApplicationRefresh(input *StartApplicationRefreshInput) (*
 // for more information on using Contexts.
 func (c *SsmSap) StartApplicationRefreshWithContext(ctx aws.Context, input *StartApplicationRefreshInput, opts ...request.Option) (*StartApplicationRefreshOutput, error) {
 	req, out := c.StartApplicationRefreshRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStopApplication = "StopApplication"
+
+// StopApplicationRequest generates a "aws/request.Request" representing the
+// client's request for the StopApplication operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StopApplication for more information on using the StopApplication
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StopApplicationRequest method.
+//	req, resp := client.StopApplicationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-sap-2018-05-10/StopApplication
+func (c *SsmSap) StopApplicationRequest(input *StopApplicationInput) (req *request.Request, output *StopApplicationOutput) {
+	op := &request.Operation{
+		Name:       opStopApplication,
+		HTTPMethod: "POST",
+		HTTPPath:   "/stop-application",
+	}
+
+	if input == nil {
+		input = &StopApplicationInput{}
+	}
+
+	output = &StopApplicationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StopApplication API operation for AWS Systems Manager for SAP.
+//
+// Request is an operation to stop an application.
+//
+// Parameter ApplicationId is required. Parameters StopConnectedEntity and IncludeEc2InstanceShutdown
+// are optional.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Systems Manager for SAP's
+// API operation StopApplication for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The resource is not available.
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an AWS service.
+//
+//   - ConflictException
+//     A conflict has occurred.
+//
+//   - InternalServerException
+//     An internal error has occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-sap-2018-05-10/StopApplication
+func (c *SsmSap) StopApplication(input *StopApplicationInput) (*StopApplicationOutput, error) {
+	req, out := c.StopApplicationRequest(input)
+	return out, req.Send()
+}
+
+// StopApplicationWithContext is the same as StopApplication with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StopApplication for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SsmSap) StopApplicationWithContext(ctx aws.Context, input *StopApplicationInput, opts ...request.Option) (*StopApplicationOutput, error) {
+	req, out := c.StopApplicationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4011,6 +4334,144 @@ func (s *ListDatabasesOutput) SetNextToken(v string) *ListDatabasesOutput {
 	return s
 }
 
+type ListOperationEventsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Optionally specify filters to narrow the returned operation event items.
+	//
+	// Valid filter names include status, resourceID, and resourceType. The valid
+	// operator for all three filters is Equals.
+	Filters []*Filter `min:"1" type:"list"`
+
+	// The maximum number of results to return with a single call. To retrieve the
+	// remaining results, make another call with the returned nextToken value.
+	//
+	// If you do not specify a value for MaxResults, the request returns 50 items
+	// per page by default.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// The token to use to retrieve the next page of results. This value is null
+	// when there are no more results to return.
+	NextToken *string `type:"string"`
+
+	// The ID of the operation.
+	//
+	// OperationId is a required field
+	OperationId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListOperationEventsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListOperationEventsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListOperationEventsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListOperationEventsInput"}
+	if s.Filters != nil && len(s.Filters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Filters", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.OperationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("OperationId"))
+	}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilters sets the Filters field's value.
+func (s *ListOperationEventsInput) SetFilters(v []*Filter) *ListOperationEventsInput {
+	s.Filters = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListOperationEventsInput) SetMaxResults(v int64) *ListOperationEventsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListOperationEventsInput) SetNextToken(v string) *ListOperationEventsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetOperationId sets the OperationId field's value.
+func (s *ListOperationEventsInput) SetOperationId(v string) *ListOperationEventsInput {
+	s.OperationId = &v
+	return s
+}
+
+type ListOperationEventsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The token to use to retrieve the next page of results. This value is null
+	// when there are no more results to return.
+	NextToken *string `type:"string"`
+
+	// A returned list of operation events that meet the filter criteria.
+	OperationEvents []*OperationEvent `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListOperationEventsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListOperationEventsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListOperationEventsOutput) SetNextToken(v string) *ListOperationEventsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetOperationEvents sets the OperationEvents field's value.
+func (s *ListOperationEventsOutput) SetOperationEvents(v []*OperationEvent) *ListOperationEventsOutput {
+	s.OperationEvents = v
+	return s
+}
+
 type ListOperationsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4342,6 +4803,93 @@ func (s *Operation) SetStatusMessage(v string) *Operation {
 // SetType sets the Type field's value.
 func (s *Operation) SetType(v string) *Operation {
 	s.Type = &v
+	return s
+}
+
+// An operation event returns details for an operation, including key milestones
+// which can be used to monitor and track operations in progress.
+//
+// Operation events contain:
+//
+//   - Description string
+//
+//   - Resource, including its ARN and type
+//
+//   - Status
+//
+//   - StatusMessage string
+//
+//   - TimeStamp
+//
+// Operation event examples include StartApplication or StopApplication.
+type OperationEvent struct {
+	_ struct{} `type:"structure"`
+
+	// A description of the operation event. For example, "Stop the EC2 instance
+	// i-abcdefgh987654321".
+	Description *string `type:"string"`
+
+	// The resource involved in the operations event.
+	//
+	// Contains ResourceArn ARN and ResourceType.
+	Resource *Resource `type:"structure"`
+
+	// The status of the operation event. The possible statuses are: IN_PROGRESS,
+	// COMPLETED, and FAILED.
+	Status *string `type:"string" enum:"OperationEventStatus"`
+
+	// The status message relating to a specific operation event.
+	StatusMessage *string `type:"string"`
+
+	// The timestamp of the specified operation event.
+	Timestamp *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OperationEvent) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OperationEvent) GoString() string {
+	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *OperationEvent) SetDescription(v string) *OperationEvent {
+	s.Description = &v
+	return s
+}
+
+// SetResource sets the Resource field's value.
+func (s *OperationEvent) SetResource(v *Resource) *OperationEvent {
+	s.Resource = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *OperationEvent) SetStatus(v string) *OperationEvent {
+	s.Status = &v
+	return s
+}
+
+// SetStatusMessage sets the StatusMessage field's value.
+func (s *OperationEvent) SetStatusMessage(v string) *OperationEvent {
+	s.StatusMessage = &v
+	return s
+}
+
+// SetTimestamp sets the Timestamp field's value.
+func (s *OperationEvent) SetTimestamp(v time.Time) *OperationEvent {
+	s.Timestamp = &v
 	return s
 }
 
@@ -4683,6 +5231,51 @@ func (s *Resilience) SetHsrTier(v string) *Resilience {
 	return s
 }
 
+// The resource contains a ResourceArn and the ResourceType.
+type Resource struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the source resource.
+	//
+	// Example of ResourceArn: "arn:aws:ec2:us-east-1:111111111111:instance/i-abcdefgh987654321"
+	ResourceArn *string `type:"string"`
+
+	// The resource type.
+	//
+	// Example of ResourceType: "AWS::SystemsManagerSAP::Component" or "AWS::EC2::Instance".
+	ResourceType *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Resource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Resource) GoString() string {
+	return s.String()
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *Resource) SetResourceArn(v string) *Resource {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *Resource) SetResourceType(v string) *Resource {
+	s.ResourceType = &v
+	return s
+}
+
 // The resource is not available.
 type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
@@ -4745,6 +5338,83 @@ func (s *ResourceNotFoundException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type StartApplicationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the application.
+	//
+	// ApplicationId is a required field
+	ApplicationId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartApplicationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartApplicationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartApplicationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartApplicationInput"}
+	if s.ApplicationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ApplicationId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetApplicationId sets the ApplicationId field's value.
+func (s *StartApplicationInput) SetApplicationId(v string) *StartApplicationInput {
+	s.ApplicationId = &v
+	return s
+}
+
+type StartApplicationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the operation.
+	OperationId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartApplicationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartApplicationOutput) GoString() string {
+	return s.String()
+}
+
+// SetOperationId sets the OperationId field's value.
+func (s *StartApplicationOutput) SetOperationId(v string) *StartApplicationOutput {
+	s.OperationId = &v
+	return s
 }
 
 type StartApplicationRefreshInput struct {
@@ -4820,6 +5490,105 @@ func (s StartApplicationRefreshOutput) GoString() string {
 
 // SetOperationId sets the OperationId field's value.
 func (s *StartApplicationRefreshOutput) SetOperationId(v string) *StartApplicationRefreshOutput {
+	s.OperationId = &v
+	return s
+}
+
+type StopApplicationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the application.
+	//
+	// ApplicationId is a required field
+	ApplicationId *string `type:"string" required:"true"`
+
+	// Boolean. If included and if set to True, the StopApplication operation will
+	// shut down the associated Amazon EC2 instance in addition to the application.
+	IncludeEc2InstanceShutdown *bool `type:"boolean"`
+
+	// Specify the ConnectedEntityType. Accepted type is DBMS.
+	//
+	// If this parameter is included, the connected DBMS (Database Management System)
+	// will be stopped.
+	StopConnectedEntity *string `type:"string" enum:"ConnectedEntityType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopApplicationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopApplicationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StopApplicationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StopApplicationInput"}
+	if s.ApplicationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ApplicationId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetApplicationId sets the ApplicationId field's value.
+func (s *StopApplicationInput) SetApplicationId(v string) *StopApplicationInput {
+	s.ApplicationId = &v
+	return s
+}
+
+// SetIncludeEc2InstanceShutdown sets the IncludeEc2InstanceShutdown field's value.
+func (s *StopApplicationInput) SetIncludeEc2InstanceShutdown(v bool) *StopApplicationInput {
+	s.IncludeEc2InstanceShutdown = &v
+	return s
+}
+
+// SetStopConnectedEntity sets the StopConnectedEntity field's value.
+func (s *StopApplicationInput) SetStopConnectedEntity(v string) *StopApplicationInput {
+	s.StopConnectedEntity = &v
+	return s
+}
+
+type StopApplicationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the operation.
+	OperationId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopApplicationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopApplicationOutput) GoString() string {
+	return s.String()
+}
+
+// SetOperationId sets the OperationId field's value.
+func (s *StopApplicationOutput) SetOperationId(v string) *StopApplicationOutput {
 	s.OperationId = &v
 	return s
 }
@@ -5496,6 +6265,18 @@ func ComponentType_Values() []string {
 }
 
 const (
+	// ConnectedEntityTypeDbms is a ConnectedEntityType enum value
+	ConnectedEntityTypeDbms = "DBMS"
+)
+
+// ConnectedEntityType_Values returns all elements of the ConnectedEntityType enum
+func ConnectedEntityType_Values() []string {
+	return []string{
+		ConnectedEntityTypeDbms,
+	}
+}
+
+const (
 	// CredentialTypeAdmin is a CredentialType enum value
 	CredentialTypeAdmin = "ADMIN"
 )
@@ -5612,6 +6393,26 @@ func HostRole_Values() []string {
 		HostRoleWorker,
 		HostRoleStandby,
 		HostRoleUnknown,
+	}
+}
+
+const (
+	// OperationEventStatusInProgress is a OperationEventStatus enum value
+	OperationEventStatusInProgress = "IN_PROGRESS"
+
+	// OperationEventStatusCompleted is a OperationEventStatus enum value
+	OperationEventStatusCompleted = "COMPLETED"
+
+	// OperationEventStatusFailed is a OperationEventStatus enum value
+	OperationEventStatusFailed = "FAILED"
+)
+
+// OperationEventStatus_Values returns all elements of the OperationEventStatus enum
+func OperationEventStatus_Values() []string {
+	return []string{
+		OperationEventStatusInProgress,
+		OperationEventStatusCompleted,
+		OperationEventStatusFailed,
 	}
 }
 

@@ -72,10 +72,10 @@ func (c *BedrockAgentRuntime) InvokeAgentRequest(input *InvokeAgentInput) (req *
 
 // InvokeAgent API operation for Agents for Amazon Bedrock Runtime.
 //
-// Sends a prompt for the agent to process and respond to. Use return control
-// event type for function calling.
-//
 // The CLI doesn't support InvokeAgent.
+//
+// Sends a prompt for the agent to process and respond to. Note the following
+// fields for the request:
 //
 //   - To continue the same conversation with an agent, use the same sessionId
 //     value in the request.
@@ -88,9 +88,8 @@ func (c *BedrockAgentRuntime) InvokeAgentRequest(input *InvokeAgentInput) (req *
 //   - End a conversation by setting endSession to true.
 //
 //   - In the sessionState object, you can include attributes for the session
-//     or prompt or parameters returned from the action group.
-//
-//   - Use return control event type for function calling.
+//     or prompt or, if you configured an action group to return control, results
+//     from invocation of the action group.
 //
 // The response is returned in the bytes field of the chunk object.
 //
@@ -98,6 +97,10 @@ func (c *BedrockAgentRuntime) InvokeAgentRequest(input *InvokeAgentInput) (req *
 //
 //   - If you set enableTrace to true in the request, you can trace the agent's
 //     steps and reasoning process that led it to the response.
+//
+//   - If the action predicted was configured to return control, the response
+//     returns parameters for the action, elicited from the user, in the returnControl
+//     field.
 //
 //   - Errors are also surfaced in the response.
 //
@@ -817,7 +820,7 @@ func (s *ActionGroupInvocationOutput_) SetText(v string) *ActionGroupInvocationO
 //
 // This data type is used in the following API operations:
 //
-//   - In the returnControl field of the Retrieve response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Retrieve.html#API_agent-runtime_Retrieve_ResponseSyntax)
+//   - In the returnControl field of the InvokeAgent response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_InvokeAgent.html#API_agent-runtime_InvokeAgent_ResponseSyntax)
 type ApiInvocationInput_ struct {
 	_ struct{} `type:"structure"`
 
@@ -897,7 +900,7 @@ func (s *ApiInvocationInput_) SetRequestBody(v *ApiRequestBody) *ApiInvocationIn
 //
 // This data type is used in the following API operations:
 //
-//   - Retrieve response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Retrieve.html#API_agent-runtime_Retrieve_ResponseSyntax)
+//   - InvokeAgent response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_InvokeAgent.html#API_agent-runtime_InvokeAgent_ResponseSyntax)
 type ApiParameter struct {
 	_ struct{} `type:"structure"`
 
@@ -952,7 +955,7 @@ func (s *ApiParameter) SetValue(v string) *ApiParameter {
 //
 // This data type is used in the following API operations:
 //
-//   - Retrieve response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Retrieve.html#API_agent-runtime_Retrieve_ResponseSyntax)
+//   - InvokeAgent response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_InvokeAgent.html#API_agent-runtime_InvokeAgent_ResponseSyntax)
 type ApiRequestBody struct {
 	_ struct{} `type:"structure"`
 
@@ -990,7 +993,7 @@ func (s *ApiRequestBody) SetContent(v map[string]*PropertyParameters) *ApiReques
 //
 // This data type is used in the following API operations:
 //
-//   - In the returnControlInvocationResults of the Retrieve request (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Retrieve.html#API_agent-runtime_Retrieve_RequestSyntax)
+//   - In the returnControlInvocationResults of the InvokeAgent request (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_InvokeAgent.html#API_agent-runtime_InvokeAgent_RequestSyntax)
 type ApiResult struct {
 	_ struct{} `type:"structure"`
 
@@ -1013,7 +1016,8 @@ type ApiResult struct {
 	HttpStatusCode *int64 `locationName:"httpStatusCode" type:"integer"`
 
 	// The response body from the API operation. The key of the object is the content
-	// type. The response may be returned directly or from the Lambda function.
+	// type (currently, only TEXT is supported). The response may be returned directly
+	// or from the Lambda function.
 	ResponseBody map[string]*ContentBody `locationName:"responseBody" type:"map"`
 
 	// Controls the final response state returned to end user when API/Function
@@ -1315,7 +1319,7 @@ func (s *ByteContentDoc) SetIdentifier(v string) *ByteContentDoc {
 //
 // This data type is used in the following API operations:
 //
-//   - Retrieve response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Retrieve.html#API_agent-runtime_Retrieve_ResponseSyntax)
+//   - InvokeAgent response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_InvokeAgent.html#API_agent-runtime_InvokeAgent_ResponseSyntax)
 //     – in the citations field
 //
 //   - RetrieveAndGenerate response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_RetrieveAndGenerate.html#API_agent-runtime_RetrieveAndGenerate_ResponseSyntax)
@@ -1458,8 +1462,8 @@ func (s *ConflictException) RequestID() string {
 //
 // This data type is used in the following API operations:
 //
-//   - In the returnControlInvocationResults field of the Retrieve request
-//     (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Retrieve.html#API_agent-runtime_Retrieve_RequestSyntax)
+//   - In the returnControlInvocationResults field of the InvokeAgent request
+//     (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_InvokeAgent.html#API_agent-runtime_InvokeAgent_RequestSyntax)
 type ContentBody struct {
 	_ struct{} `type:"structure"`
 
@@ -1668,6 +1672,13 @@ func (s *ExternalSource) SetSourceType(v string) *ExternalSource {
 type ExternalSourcesGenerationConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	// The configuration details for the guardrail.
+	GuardrailConfiguration *GuardrailConfiguration `locationName:"guardrailConfiguration" type:"structure"`
+
+	// Configuration settings for inference when using RetrieveAndGenerate to generate
+	// responses while using an external source.
+	InferenceConfig *InferenceConfig `locationName:"inferenceConfig" type:"structure"`
+
 	// Contain the textPromptTemplate string for the external source wrapper object.
 	PromptTemplate *PromptTemplate `locationName:"promptTemplate" type:"structure"`
 }
@@ -1693,6 +1704,11 @@ func (s ExternalSourcesGenerationConfiguration) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ExternalSourcesGenerationConfiguration) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ExternalSourcesGenerationConfiguration"}
+	if s.GuardrailConfiguration != nil {
+		if err := s.GuardrailConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("GuardrailConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.PromptTemplate != nil {
 		if err := s.PromptTemplate.Validate(); err != nil {
 			invalidParams.AddNested("PromptTemplate", err.(request.ErrInvalidParams))
@@ -1703,6 +1719,18 @@ func (s *ExternalSourcesGenerationConfiguration) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetGuardrailConfiguration sets the GuardrailConfiguration field's value.
+func (s *ExternalSourcesGenerationConfiguration) SetGuardrailConfiguration(v *GuardrailConfiguration) *ExternalSourcesGenerationConfiguration {
+	s.GuardrailConfiguration = v
+	return s
+}
+
+// SetInferenceConfig sets the InferenceConfig field's value.
+func (s *ExternalSourcesGenerationConfiguration) SetInferenceConfig(v *InferenceConfig) *ExternalSourcesGenerationConfiguration {
+	s.InferenceConfig = v
+	return s
 }
 
 // SetPromptTemplate sets the PromptTemplate field's value.
@@ -1892,7 +1920,7 @@ func (s *FinalResponse) SetText(v string) *FinalResponse {
 //
 // This data type is used in the following API operations:
 //
-//   - In the returnControl field of the Retrieve response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Retrieve.html#API_agent-runtime_Retrieve_ResponseSyntax)
+//   - In the returnControl field of the InvokeAgent response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_InvokeAgent.html#API_agent-runtime_InvokeAgent_ResponseSyntax)
 type FunctionInvocationInput_ struct {
 	_ struct{} `type:"structure"`
 
@@ -1948,7 +1976,7 @@ func (s *FunctionInvocationInput_) SetParameters(v []*FunctionParameter) *Functi
 //
 // This data type is used in the following API operations:
 //
-//   - In the returnControl field of the Retrieve response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Retrieve.html#API_agent-runtime_Retrieve_ResponseSyntax)
+//   - In the returnControl field of the InvokeAgent response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_InvokeAgent.html#API_agent-runtime_InvokeAgent_ResponseSyntax)
 type FunctionParameter struct {
 	_ struct{} `type:"structure"`
 
@@ -2003,7 +2031,7 @@ func (s *FunctionParameter) SetValue(v string) *FunctionParameter {
 //
 // This data type is used in the following API operations:
 //
-//   - In the returnControlInvocationResults of the Retrieve request (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Retrieve.html#API_agent-runtime_Retrieve_RequestSyntax)
+//   - In the returnControlInvocationResults of the InvokeAgent request (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_InvokeAgent.html#API_agent-runtime_InvokeAgent_RequestSyntax)
 type FunctionResult struct {
 	_ struct{} `type:"structure"`
 
@@ -2015,8 +2043,9 @@ type FunctionResult struct {
 	// The name of the function that was called.
 	Function *string `locationName:"function" type:"string"`
 
-	// The response from the function call using the parameters. The response may
-	// be returned directly or from the Lambda function.
+	// The response from the function call using the parameters. The key of the
+	// object is the content type (currently, only TEXT is supported). The response
+	// may be returned directly or from the Lambda function.
 	ResponseBody map[string]*ContentBody `locationName:"responseBody" type:"map"`
 
 	// Controls the final response state returned to end user when API/Function
@@ -2086,7 +2115,7 @@ func (s *FunctionResult) SetResponseState(v string) *FunctionResult {
 //
 // This data type is used in the following API operations:
 //
-//   - Retrieve response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Retrieve.html#API_agent-runtime_Retrieve_ResponseSyntax)
+//   - InvokeAgent response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_InvokeAgent.html#API_agent-runtime_InvokeAgent_ResponseSyntax)
 //     – in the generatedResponsePart field
 //
 //   - RetrieveAndGenerate response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_RetrieveAndGenerate.html#API_agent-runtime_RetrieveAndGenerate_ResponseSyntax)
@@ -2136,6 +2165,13 @@ func (s *GeneratedResponsePart) SetTextResponsePart(v *TextResponsePart) *Genera
 type GenerationConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	// The configuration details for the guardrail.
+	GuardrailConfiguration *GuardrailConfiguration `locationName:"guardrailConfiguration" type:"structure"`
+
+	// Configuration settings for inference when using RetrieveAndGenerate to generate
+	// responses while using a knowledge base as a source.
+	InferenceConfig *InferenceConfig `locationName:"inferenceConfig" type:"structure"`
+
 	// Contains the template for the prompt that's sent to the model for response
 	// generation.
 	PromptTemplate *PromptTemplate `locationName:"promptTemplate" type:"structure"`
@@ -2162,6 +2198,11 @@ func (s GenerationConfiguration) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *GenerationConfiguration) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "GenerationConfiguration"}
+	if s.GuardrailConfiguration != nil {
+		if err := s.GuardrailConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("GuardrailConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.PromptTemplate != nil {
 		if err := s.PromptTemplate.Validate(); err != nil {
 			invalidParams.AddNested("PromptTemplate", err.(request.ErrInvalidParams))
@@ -2174,9 +2215,119 @@ func (s *GenerationConfiguration) Validate() error {
 	return nil
 }
 
+// SetGuardrailConfiguration sets the GuardrailConfiguration field's value.
+func (s *GenerationConfiguration) SetGuardrailConfiguration(v *GuardrailConfiguration) *GenerationConfiguration {
+	s.GuardrailConfiguration = v
+	return s
+}
+
+// SetInferenceConfig sets the InferenceConfig field's value.
+func (s *GenerationConfiguration) SetInferenceConfig(v *InferenceConfig) *GenerationConfiguration {
+	s.InferenceConfig = v
+	return s
+}
+
 // SetPromptTemplate sets the PromptTemplate field's value.
 func (s *GenerationConfiguration) SetPromptTemplate(v *PromptTemplate) *GenerationConfiguration {
 	s.PromptTemplate = v
+	return s
+}
+
+// The configuration details for the guardrail.
+type GuardrailConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier for the guardrail.
+	//
+	// GuardrailId is a required field
+	GuardrailId *string `locationName:"guardrailId" type:"string" required:"true"`
+
+	// The version of the guardrail.
+	//
+	// GuardrailVersion is a required field
+	GuardrailVersion *string `locationName:"guardrailVersion" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GuardrailConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GuardrailConfiguration"}
+	if s.GuardrailId == nil {
+		invalidParams.Add(request.NewErrParamRequired("GuardrailId"))
+	}
+	if s.GuardrailVersion == nil {
+		invalidParams.Add(request.NewErrParamRequired("GuardrailVersion"))
+	}
+	if s.GuardrailVersion != nil && len(*s.GuardrailVersion) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GuardrailVersion", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetGuardrailId sets the GuardrailId field's value.
+func (s *GuardrailConfiguration) SetGuardrailId(v string) *GuardrailConfiguration {
+	s.GuardrailId = &v
+	return s
+}
+
+// SetGuardrailVersion sets the GuardrailVersion field's value.
+func (s *GuardrailConfiguration) SetGuardrailVersion(v string) *GuardrailConfiguration {
+	s.GuardrailVersion = &v
+	return s
+}
+
+// The configuration for inference settings when generating responses using
+// RetrieveAndGenerate.
+type InferenceConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Configuration settings specific to text generation while generating responses
+	// using RetrieveAndGenerate.
+	TextInferenceConfig *TextInferenceConfig `locationName:"textInferenceConfig" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InferenceConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InferenceConfig) GoString() string {
+	return s.String()
+}
+
+// SetTextInferenceConfig sets the TextInferenceConfig field's value.
+func (s *InferenceConfig) SetTextInferenceConfig(v *TextInferenceConfig) *InferenceConfig {
+	s.TextInferenceConfig = v
 	return s
 }
 
@@ -2362,7 +2513,7 @@ func (s *InternalServerException) RequestID() string {
 //
 // This data type is used in the following API operations:
 //
-//   - In the returnControl field of the Retrieve response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Retrieve.html#API_agent-runtime_Retrieve_ResponseSyntax)
+//   - In the returnControl field of the InvokeAgent response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_InvokeAgent.html#API_agent-runtime_InvokeAgent_ResponseSyntax)
 type InvocationInputMember struct {
 	_ struct{} `type:"structure"`
 
@@ -2466,11 +2617,13 @@ func (s *InvocationInput_) SetTraceId(v string) *InvocationInput_ {
 	return s
 }
 
-// A result from the action group invocation.
+// A result from the invocation of an action. For more information, see Return
+// control to the agent developer (https://docs.aws.amazon.com/bedrock/latest/userguide/agents-returncontrol.html)
+// and Control session context (https://docs.aws.amazon.com/bedrock/latest/userguide/agents-session-state.html).
 //
 // This data type is used in the following API operations:
 //
-//   - Retrieve request (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Retrieve.html#API_agent-runtime_Retrieve_RequestSyntax)
+//   - InvokeAgent request (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_InvokeAgent.html#API_agent-runtime_InvokeAgent_RequestSyntax)
 type InvocationResultMember struct {
 	_ struct{} `type:"structure"`
 
@@ -2553,6 +2706,9 @@ type InvokeAgentInput struct {
 
 	// The prompt text to send the agent.
 	//
+	// If you include returnControlInvocationResults in the sessionState field,
+	// the inputText field will be ignored.
+	//
 	// InputText is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by InvokeAgentInput's
 	// String and GoString methods.
@@ -2566,6 +2722,9 @@ type InvokeAgentInput struct {
 
 	// Contains parameters that specify various attributes of the session. For more
 	// information, see Control session context (https://docs.aws.amazon.com/bedrock/latest/userguide/agents-session-state.html).
+	//
+	// If you include returnControlInvocationResults in the sessionState field,
+	// the inputText field will be ignored.
 	SessionState *SessionState `locationName:"sessionState" type:"structure"`
 }
 
@@ -4462,7 +4621,7 @@ func (s *RetrievalFilter) SetOrAll(v []*RetrievalFilter) *RetrievalFilter {
 //   - RetrieveAndGenerate response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_RetrieveAndGenerate.html#API_agent-runtime_RetrieveAndGenerate_ResponseSyntax)
 //     – in the content field
 //
-//   - Retrieve response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Retrieve.html#API_agent-runtime_Retrieve_ResponseSyntax)
+//   - InvokeAgent response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_InvokeAgent.html#API_agent-runtime_InvokeAgent_ResponseSyntax)
 //     – in the content field
 type RetrievalResultContent struct {
 	_ struct{} `type:"structure" sensitive:"true"`
@@ -4507,7 +4666,7 @@ func (s *RetrievalResultContent) SetText(v string) *RetrievalResultContent {
 //   - RetrieveAndGenerate response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_RetrieveAndGenerate.html#API_agent-runtime_RetrieveAndGenerate_ResponseSyntax)
 //     – in the location field
 //
-//   - Retrieve response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Retrieve.html#API_agent-runtime_Retrieve_ResponseSyntax)
+//   - InvokeAgent response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_InvokeAgent.html#API_agent-runtime_InvokeAgent_ResponseSyntax)
 //     – in the locatino field
 type RetrievalResultLocation struct {
 	_ struct{} `type:"structure" sensitive:"true"`
@@ -4561,7 +4720,7 @@ func (s *RetrievalResultLocation) SetType(v string) *RetrievalResultLocation {
 //   - RetrieveAndGenerate response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_RetrieveAndGenerate.html#API_agent-runtime_RetrieveAndGenerate_ResponseSyntax)
 //     – in the s3Location field
 //
-//   - Retrieve response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Retrieve.html#API_agent-runtime_Retrieve_ResponseSyntax)
+//   - InvokeAgent response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_InvokeAgent.html#API_agent-runtime_InvokeAgent_ResponseSyntax)
 //     – in the s3Location field
 type RetrievalResultS3Location struct {
 	_ struct{} `type:"structure"`
@@ -4831,6 +4990,9 @@ type RetrieveAndGenerateOutput struct {
 	// the knowledge base, alongside information about the sources.
 	Citations []*Citation `locationName:"citations" type:"list"`
 
+	// Specifies if there is a guardrail intervention in the response.
+	GuardrailAction *string `locationName:"guardrailAction" type:"string" enum:"GuadrailAction"`
+
 	// Contains the response generated from querying the knowledge base.
 	//
 	// Output is a sensitive parameter and its value will be
@@ -4868,6 +5030,12 @@ func (s RetrieveAndGenerateOutput) GoString() string {
 // SetCitations sets the Citations field's value.
 func (s *RetrieveAndGenerateOutput) SetCitations(v []*Citation) *RetrieveAndGenerateOutput {
 	s.Citations = v
+	return s
+}
+
+// SetGuardrailAction sets the GuardrailAction field's value.
+func (s *RetrieveAndGenerateOutput) SetGuardrailAction(v string) *RetrieveAndGenerateOutput {
+	s.GuardrailAction = &v
 	return s
 }
 
@@ -5133,7 +5301,7 @@ func (s *RetrieveOutput) SetRetrievalResults(v []*KnowledgeBaseRetrievalResult) 
 //   - RetrieveAndGenerate response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_RetrieveAndGenerate.html#API_agent-runtime_RetrieveAndGenerate_ResponseSyntax)
 //     – in the retrievedReferences field
 //
-//   - Retrieve response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Retrieve.html#API_agent-runtime_Retrieve_ResponseSyntax)
+//   - InvokeAgent response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_InvokeAgent.html#API_agent-runtime_InvokeAgent_ResponseSyntax)
 //     – in the retrievedReferences field
 type RetrievedReference struct {
 	_ struct{} `type:"structure"`
@@ -5188,7 +5356,7 @@ func (s *RetrievedReference) SetLocation(v *RetrievalResultLocation) *RetrievedR
 //
 // This data type is used in the following API operations:
 //
-//   - Retrieve response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Retrieve.html#API_agent-runtime_Retrieve_ResponseSyntax)
+//   - InvokeAgent response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_InvokeAgent.html#API_agent-runtime_InvokeAgent_ResponseSyntax)
 type ReturnControlPayload struct {
 	_ struct{} `type:"structure" sensitive:"true"`
 
@@ -5413,7 +5581,11 @@ func (s *ServiceQuotaExceededException) RequestID() string {
 type SessionState struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the invocation.
+	// The identifier of the invocation of an action. This value must match the
+	// invocationId returned in the InvokeAgent response for the action whose results
+	// are provided in the returnControlInvocationResults field. For more information,
+	// see Return control to the agent developer (https://docs.aws.amazon.com/bedrock/latest/userguide/agents-returncontrol.html)
+	// and Control session context (https://docs.aws.amazon.com/bedrock/latest/userguide/agents-session-state.html).
 	InvocationId *string `locationName:"invocationId" type:"string"`
 
 	// Contains attributes that persist across a prompt and the values of those
@@ -5423,6 +5595,10 @@ type SessionState struct {
 	PromptSessionAttributes map[string]*string `locationName:"promptSessionAttributes" type:"map"`
 
 	// Contains information about the results from the action group invocation.
+	// For more information, see Return control to the agent developer (https://docs.aws.amazon.com/bedrock/latest/userguide/agents-returncontrol.html)
+	// and Control session context (https://docs.aws.amazon.com/bedrock/latest/userguide/agents-session-state.html).
+	//
+	// If you include this field, the inputText field will be ignored.
 	ReturnControlInvocationResults []*InvocationResultMember `locationName:"returnControlInvocationResults" min:"1" type:"list"`
 
 	// Contains attributes that persist across a session and the values of those
@@ -5503,7 +5679,7 @@ func (s *SessionState) SetSessionAttributes(v map[string]*string) *SessionState 
 //   - RetrieveAndGenerate response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_RetrieveAndGenerate.html#API_agent-runtime_RetrieveAndGenerate_ResponseSyntax)
 //     – in the span field
 //
-//   - Retrieve response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Retrieve.html#API_agent-runtime_Retrieve_ResponseSyntax)
+//   - InvokeAgent response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_InvokeAgent.html#API_agent-runtime_InvokeAgent_ResponseSyntax)
 //     – in the span field
 type Span struct {
 	_ struct{} `type:"structure"`
@@ -5545,6 +5721,83 @@ func (s *Span) SetStart(v int64) *Span {
 	return s
 }
 
+// Configuration settings for text generation using a language model via the
+// RetrieveAndGenerate operation. Includes parameters like temperature, top-p,
+// maximum token count, and stop sequences.
+//
+// The valid range of maxTokens depends on the accepted values for your chosen
+// model's inference parameters. To see the inference parameters for your model,
+// see Inference parameters for foundation models. (https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters.html)
+type TextInferenceConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of tokens to generate in the output text. Do not use the
+	// minimum of 0 or the maximum of 65536. The limit values described here are
+	// arbitary values, for actual values consult the limits defined by your specific
+	// model.
+	MaxTokens *int64 `locationName:"maxTokens" type:"integer"`
+
+	// A list of sequences of characters that, if generated, will cause the model
+	// to stop generating further tokens. Do not use a minimum length of 1 or a
+	// maximum length of 1000. The limit values described here are arbitary values,
+	// for actual values consult the limits defined by your specific model.
+	StopSequences []*string `locationName:"stopSequences" type:"list"`
+
+	// Controls the random-ness of text generated by the language model, influencing
+	// how much the model sticks to the most predictable next words versus exploring
+	// more surprising options. A lower temperature value (e.g. 0.2 or 0.3) makes
+	// model outputs more deterministic or predictable, while a higher temperature
+	// (e.g. 0.8 or 0.9) makes the outputs more creative or unpredictable.
+	Temperature *float64 `locationName:"temperature" type:"float"`
+
+	// A probability distribution threshold which controls what the model considers
+	// for the set of possible next tokens. The model will only consider the top
+	// p% of the probability distribution when generating the next token.
+	TopP *float64 `locationName:"topP" type:"float"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TextInferenceConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TextInferenceConfig) GoString() string {
+	return s.String()
+}
+
+// SetMaxTokens sets the MaxTokens field's value.
+func (s *TextInferenceConfig) SetMaxTokens(v int64) *TextInferenceConfig {
+	s.MaxTokens = &v
+	return s
+}
+
+// SetStopSequences sets the StopSequences field's value.
+func (s *TextInferenceConfig) SetStopSequences(v []*string) *TextInferenceConfig {
+	s.StopSequences = v
+	return s
+}
+
+// SetTemperature sets the Temperature field's value.
+func (s *TextInferenceConfig) SetTemperature(v float64) *TextInferenceConfig {
+	s.Temperature = &v
+	return s
+}
+
+// SetTopP sets the TopP field's value.
+func (s *TextInferenceConfig) SetTopP(v float64) *TextInferenceConfig {
+	s.TopP = &v
+	return s
+}
+
 // Contains the part of the generated text that contains a citation, alongside
 // where it begins and ends.
 //
@@ -5553,7 +5806,7 @@ func (s *Span) SetStart(v int64) *Span {
 //   - RetrieveAndGenerate response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_RetrieveAndGenerate.html#API_agent-runtime_RetrieveAndGenerate_ResponseSyntax)
 //     – in the textResponsePart field
 //
-//   - Retrieve response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Retrieve.html#API_agent-runtime_Retrieve_ResponseSyntax)
+//   - InvokeAgent response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_InvokeAgent.html#API_agent-runtime_InvokeAgent_ResponseSyntax)
 //     – in the textResponsePart field
 type TextResponsePart struct {
 	_ struct{} `type:"structure" sensitive:"true"`
@@ -5999,6 +6252,22 @@ func ExternalSourceType_Values() []string {
 	return []string{
 		ExternalSourceTypeS3,
 		ExternalSourceTypeByteContent,
+	}
+}
+
+const (
+	// GuadrailActionIntervened is a GuadrailAction enum value
+	GuadrailActionIntervened = "INTERVENED"
+
+	// GuadrailActionNone is a GuadrailAction enum value
+	GuadrailActionNone = "NONE"
+)
+
+// GuadrailAction_Values returns all elements of the GuadrailAction enum
+func GuadrailAction_Values() []string {
+	return []string{
+		GuadrailActionIntervened,
+		GuadrailActionNone,
 	}
 }
 

@@ -109,6 +109,13 @@ type SsmSapAPI interface {
 	ListDatabasesPages(*ssmsap.ListDatabasesInput, func(*ssmsap.ListDatabasesOutput, bool) bool) error
 	ListDatabasesPagesWithContext(aws.Context, *ssmsap.ListDatabasesInput, func(*ssmsap.ListDatabasesOutput, bool) bool, ...request.Option) error
 
+	ListOperationEvents(*ssmsap.ListOperationEventsInput) (*ssmsap.ListOperationEventsOutput, error)
+	ListOperationEventsWithContext(aws.Context, *ssmsap.ListOperationEventsInput, ...request.Option) (*ssmsap.ListOperationEventsOutput, error)
+	ListOperationEventsRequest(*ssmsap.ListOperationEventsInput) (*request.Request, *ssmsap.ListOperationEventsOutput)
+
+	ListOperationEventsPages(*ssmsap.ListOperationEventsInput, func(*ssmsap.ListOperationEventsOutput, bool) bool) error
+	ListOperationEventsPagesWithContext(aws.Context, *ssmsap.ListOperationEventsInput, func(*ssmsap.ListOperationEventsOutput, bool) bool, ...request.Option) error
+
 	ListOperations(*ssmsap.ListOperationsInput) (*ssmsap.ListOperationsOutput, error)
 	ListOperationsWithContext(aws.Context, *ssmsap.ListOperationsInput, ...request.Option) (*ssmsap.ListOperationsOutput, error)
 	ListOperationsRequest(*ssmsap.ListOperationsInput) (*request.Request, *ssmsap.ListOperationsOutput)
@@ -128,9 +135,17 @@ type SsmSapAPI interface {
 	RegisterApplicationWithContext(aws.Context, *ssmsap.RegisterApplicationInput, ...request.Option) (*ssmsap.RegisterApplicationOutput, error)
 	RegisterApplicationRequest(*ssmsap.RegisterApplicationInput) (*request.Request, *ssmsap.RegisterApplicationOutput)
 
+	StartApplication(*ssmsap.StartApplicationInput) (*ssmsap.StartApplicationOutput, error)
+	StartApplicationWithContext(aws.Context, *ssmsap.StartApplicationInput, ...request.Option) (*ssmsap.StartApplicationOutput, error)
+	StartApplicationRequest(*ssmsap.StartApplicationInput) (*request.Request, *ssmsap.StartApplicationOutput)
+
 	StartApplicationRefresh(*ssmsap.StartApplicationRefreshInput) (*ssmsap.StartApplicationRefreshOutput, error)
 	StartApplicationRefreshWithContext(aws.Context, *ssmsap.StartApplicationRefreshInput, ...request.Option) (*ssmsap.StartApplicationRefreshOutput, error)
 	StartApplicationRefreshRequest(*ssmsap.StartApplicationRefreshInput) (*request.Request, *ssmsap.StartApplicationRefreshOutput)
+
+	StopApplication(*ssmsap.StopApplicationInput) (*ssmsap.StopApplicationOutput, error)
+	StopApplicationWithContext(aws.Context, *ssmsap.StopApplicationInput, ...request.Option) (*ssmsap.StopApplicationOutput, error)
+	StopApplicationRequest(*ssmsap.StopApplicationInput) (*request.Request, *ssmsap.StopApplicationOutput)
 
 	TagResource(*ssmsap.TagResourceInput) (*ssmsap.TagResourceOutput, error)
 	TagResourceWithContext(aws.Context, *ssmsap.TagResourceInput, ...request.Option) (*ssmsap.TagResourceOutput, error)

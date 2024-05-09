@@ -1,3 +1,14 @@
+Release v1.52.6 (2024-05-09)
+===
+
+### Service Client Updates
+* `service/bedrock-agent-runtime`: Updates service API and documentation
+* `service/pinpoint`: Updates service API and documentation
+  * This release adds support for specifying email message headers for Email Templates, Campaigns, Journeys and Send Messages.
+* `service/route53resolver`: Updates service documentation
+* `service/ssm-sap`: Updates service API, documentation, and paginators
+* `service/verifiedpermissions`: Updates service API and documentation
+
 Release v1.52.5 (2024-05-08)
 ===
 

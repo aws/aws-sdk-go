@@ -8589,15 +8589,15 @@ type CreateFirewallRuleInput struct {
 	FirewallDomainListId *string `min:"1" type:"string" required:"true"`
 
 	// How you want the the rule to evaluate DNS redirection in the DNS redirection
-	// chain, such as CNAME, DNAME, ot ALIAS.
+	// chain, such as CNAME or DNAME.
 	//
 	// Inspect_Redirection_Domain (Default) inspects all domains in the redirection
 	// chain. The individual domains in the redirection chain must be added to the
-	// allow domain list.
+	// domain list.
 	//
 	// Trust_Redirection_Domain inspects only the first domain in the redirection
-	// chain. You don't need to add the subsequent domains in the redirection list
-	// to the domain alloww list.
+	// chain. You don't need to add the subsequent domains in the domain in the
+	// redirection list to the domain list.
 	FirewallDomainRedirectionAction *string `type:"string" enum:"FirewallDomainRedirectionAction"`
 
 	// The unique identifier of the firewall rule group where you want to create
@@ -11127,15 +11127,15 @@ type FirewallRule struct {
 	FirewallDomainListId *string `min:"1" type:"string"`
 
 	// How you want the the rule to evaluate DNS redirection in the DNS redirection
-	// chain, such as CNAME, DNAME, ot ALIAS.
+	// chain, such as CNAME or DNAME.
 	//
 	// Inspect_Redirection_Domain (Default) inspects all domains in the redirection
 	// chain. The individual domains in the redirection chain must be added to the
-	// allow domain list.
+	// domain list.
 	//
 	// Trust_Redirection_Domain inspects only the first domain in the redirection
 	// chain. You don't need to add the subsequent domains in the domain in the
-	// redirection list to the domain alloww list.
+	// redirection list to the domain list.
 	FirewallDomainRedirectionAction *string `type:"string" enum:"FirewallDomainRedirectionAction"`
 
 	// The unique identifier of the firewall rule group of the rule.
@@ -18632,15 +18632,15 @@ type UpdateFirewallRuleInput struct {
 	FirewallDomainListId *string `min:"1" type:"string" required:"true"`
 
 	// How you want the the rule to evaluate DNS redirection in the DNS redirection
-	// chain, such as CNAME, DNAME, ot ALIAS.
+	// chain, such as CNAME or DNAME.
 	//
 	// Inspect_Redirection_Domain (Default) inspects all domains in the redirection
 	// chain. The individual domains in the redirection chain must be added to the
-	// allow domain list.
+	// domain list.
 	//
 	// Trust_Redirection_Domain inspects only the first domain in the redirection
 	// chain. You don't need to add the subsequent domains in the domain in the
-	// redirection list to the domain alloww list.
+	// redirection list to the domain list.
 	FirewallDomainRedirectionAction *string `type:"string" enum:"FirewallDomainRedirectionAction"`
 
 	// The unique identifier of the firewall rule group for the rule.

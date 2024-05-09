@@ -976,6 +976,12 @@
         "WriteTreatmentResource$MessageConfiguration": "<p>The message configuration settings for the treatment.</p>"
       }
     },
+    "MessageHeader" : {
+       "base" : "<p>Contains the name and value pair of an email header to add to your email. You can have up to 15 MessageHeaders. A header can contain information such as the sender, receiver, route, or timestamp.</p>",
+       "refs" : {
+         "ListOfMessageHeader$member" : null
+       }
+     },
     "MessageRequest": {
       "base": "<p>Specifies the configuration and other settings for a message.</p>",
       "refs": {}
@@ -1733,6 +1739,14 @@
         "JourneyRunsResponse$Item": "<p>An array of responses, one for each run of the journey</p>"
       }
     },
+    "ListOfMessageHeader" : {
+       "base" : null,
+       "refs" : {
+         "EmailTemplateRequest$Headers" : "<p>The list of <a href=\"https://docs.aws.amazon.com/pinpoint/latest/apireference/templates-template-name-email.html#templates-template-name-email-model-messageheader\">MessageHeaders</a> for the email. You can have up to 15 Headers.</p>",
+         "SimpleEmail$Headers" : "<p>List of Headers for the email.</p>",
+         "CampaignEmailMessage$Headers" : "<p>The list of <a href=\"https://docs.aws.amazon.com/pinpoint/latest/apireference/apps-application-id-campaigns-campaign-id.html#apps-application-id-campaigns-campaign-id-model-messageheader\">MessageHeaders</a> for the email. You can have up to 15 MessageHeaders for each email.</p>"
+       }
+     },
     "ListOfMultiConditionalBranch": {
       "base": null,
       "refs": {
@@ -2456,6 +2470,8 @@
         "MessageBody$Message": "<p>The message that's returned from the API.</p>",
         "MessageBody$RequestID": "<p>The unique identifier for the request or response.</p>",
         "MessageRequest$TraceId": "<p>The unique identifier for tracing the message. This identifier is visible to message recipients.</p>",
+        "MessageHeader$Name" : "<p>The name of the message header. The header name can contain up to 126 characters.</p>",
+        "MessageHeader$Value" : "<p>The value of the message header. The header value can contain up to 870 characters, including the length of any rendered attributes. For example if you add the {CreationDate} attribute, it renders as YYYY-MM-DDTHH:MM:SS.SSSZ and is 24 characters in length.</p>",
         "MessageResponse$ApplicationId": "<p>The unique identifier for the application that was used to send the message.</p>",
         "MessageResponse$RequestId": "<p>The identifier for the original request that the message was delivered for.</p>",
         "MessageResult$MessageId": "<p>The unique identifier for the message that was sent.</p>",
