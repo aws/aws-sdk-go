@@ -358,8 +358,17 @@ func ExampleSSOOIDC_CreateTokenWithIAM_shared03() {
 func ExampleSSOOIDC_RegisterClient_shared00() {
 	svc := ssooidc.New(session.New())
 	input := &ssooidc.RegisterClientInput{
-		ClientName: aws.String("My IDE Plugin"),
-		ClientType: aws.String("public"),
+		ClientName:             aws.String("My IDE Plugin"),
+		ClientType:             aws.String("public"),
+		EntitledApplicationArn: aws.String("arn:aws:sso::ACCOUNTID:application/ssoins-1111111111111111/apl-1111111111111111"),
+		GrantTypes: []*string{
+			aws.String("authorization_code"),
+			aws.String("refresh_token"),
+		},
+		IssuerUrl: aws.String("https://identitycenter.amazonaws.com/ssoins-1111111111111111"),
+		RedirectUris: []*string{
+			aws.String("127.0.0.1:PORT/oauth/callback"),
+		},
 		Scopes: []*string{
 			aws.String("sso:account:access"),
 			aws.String("codewhisperer:completions"),
@@ -378,6 +387,10 @@ func ExampleSSOOIDC_RegisterClient_shared00() {
 				fmt.Println(ssooidc.ErrCodeInvalidClientMetadataException, aerr.Error())
 			case ssooidc.ErrCodeInternalServerException:
 				fmt.Println(ssooidc.ErrCodeInternalServerException, aerr.Error())
+			case ssooidc.ErrCodeInvalidRedirectUriException:
+				fmt.Println(ssooidc.ErrCodeInvalidRedirectUriException, aerr.Error())
+			case ssooidc.ErrCodeUnsupportedGrantTypeException:
+				fmt.Println(ssooidc.ErrCodeUnsupportedGrantTypeException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}

@@ -1,3 +1,18 @@
+Release v1.53.0 (2024-05-10)
+===
+
+### Service Client Updates
+* `service/discovery`: Updates service API
+  * add v2 smoke tests and smithy smokeTests trait for SDK testing
+* `service/greengrassv2`: Updates service API and documentation
+* `service/sagemaker`: Updates service API
+  * Introduced support for G6 instance types on Sagemaker Notebook Instances and on SageMaker Studio for JupyterLab and CodeEditor applications.
+* `service/sso-oidc`: Updates service API, documentation, and examples
+
+### SDK Features
+* `service/honeycode`: Remove Honeycode
+  * This change removes the Honeycode service, which has been deprecated.
+
 Release v1.52.6 (2024-05-09)
 ===
 
