@@ -181,6 +181,15 @@
         "input": {
           "clientName": "My IDE Plugin",
           "clientType": "public",
+          "entitledApplicationArn": "arn:aws:sso::ACCOUNTID:application/ssoins-1111111111111111/apl-1111111111111111",
+          "grantTypes": [
+            "authorization_code",
+            "refresh_token"
+          ],
+          "issuerUrl": "https://identitycenter.amazonaws.com/ssoins-1111111111111111",
+          "redirectUris": [
+            "127.0.0.1:PORT/oauth/callback"
+          ],
           "scopes": [
             "sso:account:access",
             "codewhisperer:completions"

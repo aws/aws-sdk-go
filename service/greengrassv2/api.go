@@ -468,13 +468,12 @@ func (c *GreengrassV2) CreateComponentVersionRequest(input *CreateComponentVersi
 //     function that runs on IoT Greengrass. This creates a recipe and artifacts
 //     from the Lambda function's deployment package. You can use this operation
 //     to migrate Lambda functions from IoT Greengrass V1 to IoT Greengrass V2.
-//     This function only accepts Lambda functions that use the following runtimes:
-//     Python 2.7 – python2.7 Python 3.7 – python3.7 Python 3.8 – python3.8
-//     Python 3.9 – python3.9 Java 8 – java8 Java 11 – java11 Node.js 10
-//     – nodejs10.x Node.js 12 – nodejs12.x Node.js 14 – nodejs14.x To
-//     create a component from a Lambda function, specify lambdaFunction when
-//     you call this operation. IoT Greengrass currently supports Lambda functions
-//     on only Linux core devices.
+//     This function accepts Lambda functions in all supported versions of Python,
+//     Node.js, and Java runtimes. IoT Greengrass doesn't apply any additional
+//     restrictions on deprecated Lambda runtime versions. To create a component
+//     from a Lambda function, specify lambdaFunction when you call this operation.
+//     IoT Greengrass currently supports Lambda functions on only Linux core
+//     devices.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4203,7 +4202,9 @@ type ComponentDeploymentSpecification struct {
 	_ struct{} `type:"structure"`
 
 	// The version of the component.
-	ComponentVersion *string `locationName:"componentVersion" min:"1" type:"string"`
+	//
+	// ComponentVersion is a required field
+	ComponentVersion *string `locationName:"componentVersion" min:"1" type:"string" required:"true"`
 
 	// The configuration updates to deploy for the component. You can define reset
 	// updates and merge updates. A reset updates the keys that you specify to the
@@ -4244,6 +4245,9 @@ func (s ComponentDeploymentSpecification) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ComponentDeploymentSpecification) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ComponentDeploymentSpecification"}
+	if s.ComponentVersion == nil {
+		invalidParams.Add(request.NewErrParamRequired("ComponentVersion"))
+	}
 	if s.ComponentVersion != nil && len(*s.ComponentVersion) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ComponentVersion", 1))
 	}
@@ -6337,6 +6341,19 @@ type GetComponentVersionArtifactInput struct {
 	//
 	// ArtifactName is a required field
 	ArtifactName *string `location:"uri" locationName:"artifactName" min:"1" type:"string" required:"true"`
+
+	// Determines if the Amazon S3 URL returned is a FIPS pre-signed URL endpoint.
+	// Specify fips if you want the returned Amazon S3 pre-signed URL to point to
+	// an Amazon S3 FIPS endpoint. If you don't specify a value, the default is
+	// standard.
+	IotEndpointType *string `location:"header" locationName:"x-amz-iot-endpoint-type" type:"string" enum:"IotEndpointType"`
+
+	// Specifies the endpoint to use when getting Amazon S3 pre-signed URLs.
+	//
+	// All Amazon Web Services Regions except US East (N. Virginia) use REGIONAL
+	// in all cases. In the US East (N. Virginia) Region the default is GLOBAL,
+	// but you can change it to REGIONAL with this parameter.
+	S3EndpointType *string `location:"querystring" locationName:"s3EndpointType" type:"string" enum:"S3EndpointType"`
 }
 
 // String returns the string representation.
@@ -6388,6 +6405,18 @@ func (s *GetComponentVersionArtifactInput) SetArn(v string) *GetComponentVersion
 // SetArtifactName sets the ArtifactName field's value.
 func (s *GetComponentVersionArtifactInput) SetArtifactName(v string) *GetComponentVersionArtifactInput {
 	s.ArtifactName = &v
+	return s
+}
+
+// SetIotEndpointType sets the IotEndpointType field's value.
+func (s *GetComponentVersionArtifactInput) SetIotEndpointType(v string) *GetComponentVersionArtifactInput {
+	s.IotEndpointType = &v
+	return s
+}
+
+// SetS3EndpointType sets the S3EndpointType field's value.
+func (s *GetComponentVersionArtifactInput) SetS3EndpointType(v string) *GetComponentVersionArtifactInput {
+	s.S3EndpointType = &v
 	return s
 }
 
@@ -6946,8 +6975,8 @@ type InstalledComponent struct {
 
 	// The most recent deployment source that brought the component to the Greengrass
 	// core device. For a thing group deployment or thing deployment, the source
-	// will be the The ID of the deployment. and for local deployments it will be
-	// LOCAL.
+	// will be the ID of the last deployment that contained the component. For local
+	// deployments it will be LOCAL.
 	//
 	// Any deployment will attempt to reinstall currently broken components on the
 	// device, which will update the last installation source.
@@ -8687,6 +8716,8 @@ type ListDeploymentsInput struct {
 	HistoryFilter *string `location:"querystring" locationName:"historyFilter" type:"string" enum:"DeploymentHistoryFilter"`
 
 	// The maximum number of results to be returned per paginated request.
+	//
+	// Default: 50
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
 	// The token to be used for the next set of paginated results.
@@ -10356,6 +10387,22 @@ func IoTJobExecutionFailureType_Values() []string {
 }
 
 const (
+	// IotEndpointTypeFips is a IotEndpointType enum value
+	IotEndpointTypeFips = "fips"
+
+	// IotEndpointTypeStandard is a IotEndpointType enum value
+	IotEndpointTypeStandard = "standard"
+)
+
+// IotEndpointType_Values returns all elements of the IotEndpointType enum
+func IotEndpointType_Values() []string {
+	return []string{
+		IotEndpointTypeFips,
+		IotEndpointTypeStandard,
+	}
+}
+
+const (
 	// LambdaEventSourceTypePubSub is a LambdaEventSourceType enum value
 	LambdaEventSourceTypePubSub = "PUB_SUB"
 
@@ -10432,6 +10479,22 @@ func RecipeOutputFormat_Values() []string {
 	return []string{
 		RecipeOutputFormatJson,
 		RecipeOutputFormatYaml,
+	}
+}
+
+const (
+	// S3EndpointTypeRegional is a S3EndpointType enum value
+	S3EndpointTypeRegional = "REGIONAL"
+
+	// S3EndpointTypeGlobal is a S3EndpointType enum value
+	S3EndpointTypeGlobal = "GLOBAL"
+)
+
+// S3EndpointType_Values returns all elements of the S3EndpointType enum
+func S3EndpointType_Values() []string {
+	return []string{
+		S3EndpointTypeRegional,
+		S3EndpointTypeGlobal,
 	}
 }
 

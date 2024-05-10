@@ -4,6 +4,7 @@
     "apiVersion":"2020-11-30",
     "endpointPrefix":"greengrass",
     "protocol":"rest-json",
+    "protocols":["rest-json"],
     "serviceAbbreviation":"AWS GreengrassV2",
     "serviceFullName":"AWS IoT Greengrass V2",
     "serviceId":"GreengrassV2",
@@ -687,6 +688,7 @@
     },
     "ComponentDeploymentSpecification":{
       "type":"structure",
+      "required":["componentVersion"],
       "members":{
         "componentVersion":{"shape":"ComponentVersionString"},
         "configurationUpdate":{"shape":"ComponentConfigurationUpdate"},
@@ -1212,6 +1214,16 @@
           "shape":"NonEmptyString",
           "location":"uri",
           "locationName":"artifactName"
+        },
+        "s3EndpointType":{
+          "shape":"S3EndpointType",
+          "location":"querystring",
+          "locationName":"s3EndpointType"
+        },
+        "iotEndpointType":{
+          "shape":"IotEndpointType",
+          "location":"header",
+          "locationName":"x-amz-iot-endpoint-type"
         }
       }
     },
@@ -1505,6 +1517,13 @@
       "type":"string",
       "max":128,
       "min":1
+    },
+    "IotEndpointType":{
+      "type":"string",
+      "enum":[
+        "fips",
+        "standard"
+      ]
     },
     "IsLatestForTarget":{"type":"boolean"},
     "IsRoot":{"type":"boolean"},
@@ -2004,6 +2023,13 @@
       "exception":true
     },
     "RetryAfterSeconds":{"type":"integer"},
+    "S3EndpointType":{
+      "type":"string",
+      "enum":[
+        "REGIONAL",
+        "GLOBAL"
+      ]
+    },
     "ServiceQuotaExceededException":{
       "type":"structure",
       "required":[

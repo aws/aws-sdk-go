@@ -5,6 +5,7 @@
     "endpointPrefix":"oidc",
     "jsonVersion":"1.1",
     "protocol":"rest-json",
+    "protocols":["rest-json"],
     "serviceAbbreviation":"SSO OIDC",
     "serviceFullName":"AWS SSO OIDC",
     "serviceId":"SSO OIDC",
@@ -71,7 +72,9 @@
         {"shape":"InvalidRequestException"},
         {"shape":"InvalidScopeException"},
         {"shape":"InvalidClientMetadataException"},
-        {"shape":"InternalServerException"}
+        {"shape":"InternalServerException"},
+        {"shape":"InvalidRedirectUriException"},
+        {"shape":"UnsupportedGrantTypeException"}
       ],
       "authtype":"none"
     },
@@ -107,6 +110,7 @@
       "type":"string",
       "sensitive":true
     },
+    "ArnType":{"type":"string"},
     "Assertion":{
       "type":"string",
       "sensitive":true
@@ -128,6 +132,10 @@
       "sensitive":true
     },
     "ClientType":{"type":"string"},
+    "CodeVerifier":{
+      "type":"string",
+      "sensitive":true
+    },
     "CreateTokenRequest":{
       "type":"structure",
       "required":[
@@ -143,7 +151,8 @@
         "code":{"shape":"AuthCode"},
         "refreshToken":{"shape":"RefreshToken"},
         "scope":{"shape":"Scopes"},
-        "redirectUri":{"shape":"URI"}
+        "redirectUri":{"shape":"URI"},
+        "codeVerifier":{"shape":"CodeVerifier"}
       }
     },
     "CreateTokenResponse":{
@@ -172,7 +181,8 @@
         "redirectUri":{"shape":"URI"},
         "subjectToken":{"shape":"SubjectToken"},
         "subjectTokenType":{"shape":"TokenTypeURI"},
-        "requestedTokenType":{"shape":"TokenTypeURI"}
+        "requestedTokenType":{"shape":"TokenTypeURI"},
+        "codeVerifier":{"shape":"CodeVerifier"}
       }
     },
     "CreateTokenWithIAMResponse":{
@@ -201,6 +211,10 @@
       "exception":true
     },
     "GrantType":{"type":"string"},
+    "GrantTypes":{
+      "type":"list",
+      "member":{"shape":"GrantType"}
+    },
     "IdToken":{
       "type":"string",
       "sensitive":true
@@ -243,6 +257,15 @@
       "error":{"httpStatusCode":400},
       "exception":true
     },
+    "InvalidRedirectUriException":{
+      "type":"structure",
+      "members":{
+        "error":{"shape":"Error"},
+        "error_description":{"shape":"ErrorDescription"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
+    },
     "InvalidRequestException":{
       "type":"structure",
       "members":{
@@ -274,6 +297,10 @@
     },
     "Location":{"type":"string"},
     "LongTimeStampType":{"type":"long"},
+    "RedirectUris":{
+      "type":"list",
+      "member":{"shape":"URI"}
+    },
     "RefreshToken":{
       "type":"string",
       "sensitive":true
@@ -288,7 +315,11 @@
       "members":{
         "clientName":{"shape":"ClientName"},
         "clientType":{"shape":"ClientType"},
-        "scopes":{"shape":"Scopes"}
+        "scopes":{"shape":"Scopes"},
+        "redirectUris":{"shape":"RedirectUris"},
+        "grantTypes":{"shape":"GrantTypes"},
+        "issuerUrl":{"shape":"URI"},
+        "entitledApplicationArn":{"shape":"ArnType"}
       }
     },
     "RegisterClientResponse":{
