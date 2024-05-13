@@ -2,30 +2,30 @@
   "version": "2.0",
   "service": "<p>Amazon VPC Lattice is a fully managed application networking service that you use to connect, secure, and monitor all of your services across multiple accounts and virtual private clouds (VPCs). Amazon VPC Lattice interconnects your microservices and legacy services within a logical boundary, so that you can discover and manage them more efficiently. For more information, see the <a href=\"https://docs.aws.amazon.com/vpc-lattice/latest/ug/\">Amazon VPC Lattice User Guide</a> </p>",
   "operations": {
-    "BatchUpdateRule": "<p>Updates the listener rules in a batch. You can use this operation to change the priority of listener rules. This can be useful when bulk updating or swapping rule priority. </p>",
-    "CreateAccessLogSubscription": "<p>Enables access logs to be sent to Amazon CloudWatch, Amazon S3, and Amazon Kinesis Data Firehose. The service network owner can use the access logs to audit the services in the network. The service network owner will only see access logs from clients and services that are associated with their service network. Access log entries represent traffic originated from VPCs associated with that network. For more information, see <a href=\"https://docs.aws.amazon.com/vpc-lattice/latest/ug/monitoring-access-logs.html\">Access logs</a> in the <i>Amazon VPC Lattice User Guide</i>.</p>",
+    "BatchUpdateRule": "<p>Updates the listener rules in a batch. You can use this operation to change the priority of listener rules. This can be useful when bulk updating or swapping rule priority.</p> <p> <b>Required permissions:</b> <code>vpc-lattice:UpdateRule</code> </p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/vpc-lattice/latest/ug/security_iam_service-with-iam.html\">How Amazon VPC Lattice works with IAM</a> in the <i>Amazon VPC Lattice User Guide</i>.</p>",
+    "CreateAccessLogSubscription": "<p>Enables access logs to be sent to Amazon CloudWatch, Amazon S3, and Amazon Kinesis Data Firehose. The service network owner can use the access logs to audit the services in the network. The service network owner can only see access logs from clients and services that are associated with their service network. Access log entries represent traffic originated from VPCs associated with that network. For more information, see <a href=\"https://docs.aws.amazon.com/vpc-lattice/latest/ug/monitoring-access-logs.html\">Access logs</a> in the <i>Amazon VPC Lattice User Guide</i>.</p>",
     "CreateListener": "<p>Creates a listener for a service. Before you start using your Amazon VPC Lattice service, you must add one or more listeners. A listener is a process that checks for connection requests to your services. For more information, see <a href=\"https://docs.aws.amazon.com/vpc-lattice/latest/ug/listeners.html\">Listeners</a> in the <i>Amazon VPC Lattice User Guide</i>.</p>",
     "CreateRule": "<p>Creates a listener rule. Each listener has a default rule for checking connection requests, but you can define additional rules. Each rule consists of a priority, one or more actions, and one or more conditions. For more information, see <a href=\"https://docs.aws.amazon.com/vpc-lattice/latest/ug/listeners.html#listener-rules\">Listener rules</a> in the <i>Amazon VPC Lattice User Guide</i>.</p>",
     "CreateService": "<p>Creates a service. A service is any software application that can run on instances containers, or serverless functions within an account or virtual private cloud (VPC).</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/vpc-lattice/latest/ug/services.html\">Services</a> in the <i>Amazon VPC Lattice User Guide</i>.</p>",
     "CreateServiceNetwork": "<p>Creates a service network. A service network is a logical boundary for a collection of services. You can associate services and VPCs with a service network.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/vpc-lattice/latest/ug/service-networks.html\">Service networks</a> in the <i>Amazon VPC Lattice User Guide</i>.</p>",
-    "CreateServiceNetworkServiceAssociation": "<p>Associates a service with a service network.</p> <p>You can't use this operation if the service and service network are already associated or if there is a disassociation or deletion in progress. If the association fails, you can retry the operation by deleting the association and recreating it.</p> <p>You cannot associate a service and service network that are shared with a caller. The caller must own either the service or the service network.</p> <p>As a result of this operation, the association is created in the service network account and the association owner account.</p>",
-    "CreateServiceNetworkVpcAssociation": "<p>Associates a VPC with a service network. When you associate a VPC with the service network, it enables all the resources within that VPC to be clients and communicate with other services in the service network. For more information, see <a href=\"https://docs.aws.amazon.com/vpc-lattice/latest/ug/service-network-associations.html#service-network-vpc-associations\">Manage VPC associations</a> in the <i>Amazon VPC Lattice User Guide</i>.</p> <p>You can't use this operation if there is a disassociation in progress. If the association fails, retry by deleting the association and recreating it.</p> <p>As a result of this operation, the association gets created in the service network account and the VPC owner account.</p> <p>Once a security group is added to the VPC association it cannot be removed. You can add or update the security groups being used for the VPC association once a security group is attached. To remove all security groups you must reassociate the VPC.</p>",
+    "CreateServiceNetworkServiceAssociation": "<p>Associates a service with a service network. For more information, see <a href=\"https://docs.aws.amazon.com/vpc-lattice/latest/ug/service-network-associations.html#service-network-service-associations\">Manage service associations</a> in the <i>Amazon VPC Lattice User Guide</i>.</p> <p>You can't use this operation if the service and service network are already associated or if there is a disassociation or deletion in progress. If the association fails, you can retry the operation by deleting the association and recreating it.</p> <p>You cannot associate a service and service network that are shared with a caller. The caller must own either the service or the service network.</p> <p>As a result of this operation, the association is created in the service network account and the association owner account.</p>",
+    "CreateServiceNetworkVpcAssociation": "<p>Associates a VPC with a service network. When you associate a VPC with the service network, it enables all the resources within that VPC to be clients and communicate with other services in the service network. For more information, see <a href=\"https://docs.aws.amazon.com/vpc-lattice/latest/ug/service-network-associations.html#service-network-vpc-associations\">Manage VPC associations</a> in the <i>Amazon VPC Lattice User Guide</i>.</p> <p>You can't use this operation if there is a disassociation in progress. If the association fails, retry by deleting the association and recreating it.</p> <p>As a result of this operation, the association gets created in the service network account and the VPC owner account.</p> <p>If you add a security group to the service network and VPC association, the association must continue to always have at least one security group. You can add or edit security groups at any time. However, to remove all security groups, you must first delete the association and recreate it without security groups.</p>",
     "CreateTargetGroup": "<p>Creates a target group. A target group is a collection of targets, or compute resources, that run your application or service. A target group can only be used by a single service.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/vpc-lattice/latest/ug/target-groups.html\">Target groups</a> in the <i>Amazon VPC Lattice User Guide</i>.</p>",
     "DeleteAccessLogSubscription": "<p>Deletes the specified access log subscription.</p>",
-    "DeleteAuthPolicy": "<p>Deletes the specified auth policy. If an auth is set to <code>Amazon Web Services_IAM</code> and the auth policy is deleted, all requests will be denied by default. If you are trying to remove the auth policy completely, you must set the auth_type to <code>NONE</code>. If auth is enabled on the resource, but no auth policy is set, all requests will be denied.</p>",
+    "DeleteAuthPolicy": "<p>Deletes the specified auth policy. If an auth is set to <code>AWS_IAM</code> and the auth policy is deleted, all requests are denied. If you are trying to remove the auth policy completely, you must set the auth type to <code>NONE</code>. If auth is enabled on the resource, but no auth policy is set, all requests are denied.</p>",
     "DeleteListener": "<p>Deletes the specified listener.</p>",
     "DeleteResourcePolicy": "<p>Deletes the specified resource policy.</p>",
     "DeleteRule": "<p>Deletes a listener rule. Each listener has a default rule for checking connection requests, but you can define additional rules. Each rule consists of a priority, one or more actions, and one or more conditions. You can delete additional listener rules, but you cannot delete the default rule.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/vpc-lattice/latest/ug/listeners.html#listener-rules\">Listener rules</a> in the <i>Amazon VPC Lattice User Guide</i>.</p>",
     "DeleteService": "<p>Deletes a service. A service can't be deleted if it's associated with a service network. If you delete a service, all resources related to the service, such as the resource policy, auth policy, listeners, listener rules, and access log subscriptions, are also deleted. For more information, see <a href=\"https://docs.aws.amazon.com/vpc-lattice/latest/ug/services.html#delete-service\">Delete a service</a> in the <i>Amazon VPC Lattice User Guide</i>.</p>",
     "DeleteServiceNetwork": "<p>Deletes a service network. You can only delete the service network if there is no service or VPC associated with it. If you delete a service network, all resources related to the service network, such as the resource policy, auth policy, and access log subscriptions, are also deleted. For more information, see <a href=\"https://docs.aws.amazon.com/vpc-lattice/latest/ug/service-networks.html#delete-service-network\">Delete a service network</a> in the <i>Amazon VPC Lattice User Guide</i>.</p>",
-    "DeleteServiceNetworkServiceAssociation": "<p>Deletes the association between a specified service and the specific service network. This request will fail if an association is still in progress.</p>",
+    "DeleteServiceNetworkServiceAssociation": "<p>Deletes the association between a specified service and the specific service network. This operation fails if an association is still in progress.</p>",
     "DeleteServiceNetworkVpcAssociation": "<p>Disassociates the VPC from the service network. You can't disassociate the VPC if there is a create or update association in progress.</p>",
     "DeleteTargetGroup": "<p>Deletes a target group. You can't delete a target group if it is used in a listener rule or if the target group creation is in progress.</p>",
     "DeregisterTargets": "<p>Deregisters the specified targets from the specified target group.</p>",
     "GetAccessLogSubscription": "<p>Retrieves information about the specified access log subscription.</p>",
     "GetAuthPolicy": "<p>Retrieves information about the auth policy for the specified service or service network.</p>",
     "GetListener": "<p>Retrieves information about the specified listener for the specified service.</p>",
-    "GetResourcePolicy": "<p>Retrieves information about the resource policy. The resource policy is an IAM policy created by AWS RAM on behalf of the resource owner when they share a resource.</p>",
+    "GetResourcePolicy": "<p>Retrieves information about the resource policy. The resource policy is an IAM policy created on behalf of the resource owner when they share a resource.</p>",
     "GetRule": "<p>Retrieves information about listener rules. You can also retrieve information about the default listener rule. For more information, see <a href=\"https://docs.aws.amazon.com/vpc-lattice/latest/ug/listeners.html#listener-rules\">Listener rules</a> in the <i>Amazon VPC Lattice User Guide</i>.</p>",
     "GetService": "<p>Retrieves information about the specified service.</p>",
     "GetServiceNetwork": "<p>Retrieves information about the specified service network.</p>",
@@ -35,14 +35,14 @@
     "ListAccessLogSubscriptions": "<p>Lists all access log subscriptions for the specified service network or service.</p>",
     "ListListeners": "<p>Lists the listeners for the specified service.</p>",
     "ListRules": "<p>Lists the rules for the listener.</p>",
-    "ListServiceNetworkServiceAssociations": "<p>Lists the associations between the service network and the service. You can filter the list either by service or service network. You must provide either the service network identifier or the service identifier.</p> <p>Every association in Amazon VPC Lattice is given a unique Amazon Resource Name (ARN), such as when a service network is associated with a VPC or when a service is associated with a service network. If the association is for a resource that is shared with another account, the association will include the local account ID as the prefix in the ARN for each account the resource is shared with.</p>",
+    "ListServiceNetworkServiceAssociations": "<p>Lists the associations between the service network and the service. You can filter the list either by service or service network. You must provide either the service network identifier or the service identifier.</p> <p>Every association in Amazon VPC Lattice is given a unique Amazon Resource Name (ARN), such as when a service network is associated with a VPC or when a service is associated with a service network. If the association is for a resource that is shared with another account, the association includes the local account ID as the prefix in the ARN for each account the resource is shared with.</p>",
     "ListServiceNetworkVpcAssociations": "<p>Lists the service network and VPC associations. You can filter the list either by VPC or service network. You must provide either the service network identifier or the VPC identifier.</p>",
     "ListServiceNetworks": "<p>Lists the service networks owned by the caller account or shared with the caller account. Also includes the account ID in the ARN to show which account owns the service network.</p>",
     "ListServices": "<p>Lists the services owned by the caller account or shared with the caller account.</p>",
     "ListTagsForResource": "<p>Lists the tags for the specified resource.</p>",
     "ListTargetGroups": "<p>Lists your target groups. You can narrow your search by using the filters below in your request.</p>",
-    "ListTargets": "<p>Lists the targets for the target group. By default, all targets are included. You can use this API to check the health status of targets. You can also ﬁlter the results by target. </p>",
-    "PutAuthPolicy": "<p>Creates or updates the auth policy.</p>",
+    "ListTargets": "<p>Lists the targets for the target group. By default, all targets are included. You can use this API to check the health status of targets. You can also ﬁlter the results by target.</p>",
+    "PutAuthPolicy": "<p>Creates or updates the auth policy. The policy string in JSON must not contain newlines or blank lines.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/vpc-lattice/latest/ug/auth-policies.html\">Auth policies</a> in the <i>Amazon VPC Lattice User Guide</i>.</p>",
     "PutResourcePolicy": "<p>Attaches a resource-based permission policy to a service or service network. The policy must contain the same actions and condition statements as the Amazon Web Services Resource Access Manager permission for sharing services and service networks.</p>",
     "RegisterTargets": "<p>Registers the targets with the target group. If it's a Lambda target, you can only have one target in a target group.</p>",
     "TagResource": "<p>Adds the specified tags to the specified resource.</p>",
@@ -52,7 +52,7 @@
     "UpdateRule": "<p>Updates a rule for the listener. You can't modify a default listener rule. To modify a default listener rule, use <code>UpdateListener</code>.</p>",
     "UpdateService": "<p>Updates the specified service.</p>",
     "UpdateServiceNetwork": "<p>Updates the specified service network.</p>",
-    "UpdateServiceNetworkVpcAssociation": "<p>Updates the service network and VPC association. Once you add a security group, it cannot be removed.</p>",
+    "UpdateServiceNetworkVpcAssociation": "<p>Updates the service network and VPC association. If you add a security group to the service network and VPC association, the association must continue to always have at least one security group. You can add or edit security groups at any time. However, to remove all security groups, you must first delete the association and recreate it without security groups.</p>",
     "UpdateTargetGroup": "<p>Updates the specified target group.</p>"
   },
   "shapes": {
@@ -101,7 +101,7 @@
     "AccessLogSubscriptionList": {
       "base": null,
       "refs": {
-        "ListAccessLogSubscriptionsResponse$items": "<p>The access log subscriptions.</p>"
+        "ListAccessLogSubscriptionsResponse$items": "<p>Information about the access log subscriptions.</p>"
       }
     },
     "AccessLogSubscriptionSummary": {
@@ -133,16 +133,16 @@
     "AuthPolicyState": {
       "base": null,
       "refs": {
-        "GetAuthPolicyResponse$state": "<p>The state of the auth policy. The auth policy is only active when the auth type is set to <code>Amazon Web Services_IAM</code>. If you provide a policy, then authentication and authorization decisions are made based on this policy and the client's IAM policy. If the auth type is <code>NONE</code>, then any auth policy you provide will remain inactive. For more information, see <a href=\"https://docs.aws.amazon.com/vpc-lattice/latest/ug/service-networks.html#create-service-network\">Create a service network</a> in the <i>Amazon VPC Lattice User Guide</i>.</p>",
-        "PutAuthPolicyResponse$state": "<p>The state of the auth policy. The auth policy is only active when the auth type is set to <code>Amazon Web Services_IAM</code>. If you provide a policy, then authentication and authorization decisions are made based on this policy and the client's IAM policy. If the Auth type is <code>NONE</code>, then, any auth policy you provide will remain inactive. For more information, see <a href=\"https://docs.aws.amazon.com/vpc-lattice/latest/ug/service-networks.html#create-service-network\">Create a service network</a> in the <i>Amazon VPC Lattice User Guide</i>.</p>"
+        "GetAuthPolicyResponse$state": "<p>The state of the auth policy. The auth policy is only active when the auth type is set to <code>AWS_IAM</code>. If you provide a policy, then authentication and authorization decisions are made based on this policy and the client's IAM policy. If the auth type is <code>NONE</code>, then any auth policy that you provide remains inactive. For more information, see <a href=\"https://docs.aws.amazon.com/vpc-lattice/latest/ug/service-networks.html#create-service-network\">Create a service network</a> in the <i>Amazon VPC Lattice User Guide</i>.</p>",
+        "PutAuthPolicyResponse$state": "<p>The state of the auth policy. The auth policy is only active when the auth type is set to <code>AWS_IAM</code>. If you provide a policy, then authentication and authorization decisions are made based on this policy and the client's IAM policy. If the Auth type is <code>NONE</code>, then, any auth policy that you provide remains inactive. For more information, see <a href=\"https://docs.aws.amazon.com/vpc-lattice/latest/ug/service-networks.html#create-service-network\">Create a service network</a> in the <i>Amazon VPC Lattice User Guide</i>.</p>"
       }
     },
     "AuthPolicyString": {
       "base": null,
       "refs": {
         "GetAuthPolicyResponse$policy": "<p>The auth policy.</p>",
-        "PutAuthPolicyRequest$policy": "<p>The auth policy.</p>",
-        "PutAuthPolicyResponse$policy": "<p>The auth policy.</p>"
+        "PutAuthPolicyRequest$policy": "<p>The auth policy. The policy string in JSON must not contain newlines or blank lines.</p>",
+        "PutAuthPolicyResponse$policy": "<p>The auth policy. The policy string in JSON must not contain newlines or blank lines.</p>"
       }
     },
     "AuthType": {
@@ -174,10 +174,10 @@
       "base": null,
       "refs": {
         "GetRuleResponse$isDefault": "<p>Indicates whether this is the default rule.</p>",
-        "HeaderMatch$caseSensitive": "<p>Indicates whether the match is case sensitive. Defaults to false.</p>",
+        "HeaderMatch$caseSensitive": "<p>Indicates whether the match is case sensitive.</p>",
         "HealthCheckConfig$enabled": "<p>Indicates whether health checking is enabled.</p>",
-        "PathMatch$caseSensitive": "<p>Indicates whether the match is case sensitive. Defaults to false.</p>",
-        "RuleSummary$isDefault": "<p>Indicates whether this is the default rule. Listener rules are created when you create a listener. Each listener has a default rule for checking connection requests. </p>",
+        "PathMatch$caseSensitive": "<p>Indicates whether the match is case sensitive.</p>",
+        "RuleSummary$isDefault": "<p>Indicates whether this is the default listener rule.</p>",
         "RuleUpdateSuccess$isDefault": "<p>Indicates whether this is the default rule.</p>",
         "UpdateRuleResponse$isDefault": "<p>Indicates whether this is the default rule.</p>"
       }
@@ -188,8 +188,8 @@
         "CreateServiceRequest$certificateArn": "<p>The Amazon Resource Name (ARN) of the certificate.</p>",
         "CreateServiceResponse$certificateArn": "<p>The Amazon Resource Name (ARN) of the certificate.</p>",
         "GetServiceResponse$certificateArn": "<p>The Amazon Resource Name (ARN) of the certificate.</p>",
-        "UpdateServiceRequest$certificateArn": "<p>The Amazon Resource Name (ARN) of the certificate. </p>",
-        "UpdateServiceResponse$certificateArn": "<p>The Amazon Resource Name (ARN) of the certificate. </p>"
+        "UpdateServiceRequest$certificateArn": "<p>The Amazon Resource Name (ARN) of the certificate.</p>",
+        "UpdateServiceResponse$certificateArn": "<p>The Amazon Resource Name (ARN) of the certificate.</p>"
       }
     },
     "ClientToken": {
@@ -419,8 +419,8 @@
         "CreateServiceResponse$dnsEntry": "<p>The public DNS name of the service.</p>",
         "GetServiceNetworkServiceAssociationResponse$dnsEntry": "<p>The DNS name of the service.</p>",
         "GetServiceResponse$dnsEntry": "<p>The DNS name of the service.</p>",
-        "ServiceNetworkServiceAssociationSummary$dnsEntry": "<p>DNS information about the service.</p>",
-        "ServiceSummary$dnsEntry": "<p>DNS information about the service.</p>"
+        "ServiceNetworkServiceAssociationSummary$dnsEntry": "<p>The DNS information.</p>",
+        "ServiceSummary$dnsEntry": "<p>The DNS information.</p>"
       }
     },
     "FailureCode": {
@@ -438,9 +438,9 @@
       }
     },
     "FixedResponseAction": {
-      "base": "<p>Information about an action that returns a custom HTTP response. </p>",
+      "base": "<p>Describes an action that returns a custom HTTP response.</p>",
       "refs": {
-        "RuleAction$fixedResponse": "<p> Describes the rule action that returns a custom HTTP response. </p>"
+        "RuleAction$fixedResponse": "<p>The fixed response action. The rule returns a custom HTTP response.</p>"
       }
     },
     "ForwardAction": {
@@ -558,13 +558,13 @@
     "HeaderMatchContains": {
       "base": null,
       "refs": {
-        "HeaderMatchType$contains": "<p>Specifies a contains type match.</p>"
+        "HeaderMatchType$contains": "<p>A contains type match.</p>"
       }
     },
     "HeaderMatchExact": {
       "base": null,
       "refs": {
-        "HeaderMatchType$exact": "<p>Specifies an exact type match.</p>"
+        "HeaderMatchType$exact": "<p>An exact type match.</p>"
       }
     },
     "HeaderMatchList": {
@@ -582,19 +582,19 @@
     "HeaderMatchPrefix": {
       "base": null,
       "refs": {
-        "HeaderMatchType$prefix": "<p>Specifies a prefix type match. Matches the value with the prefix.</p>"
+        "HeaderMatchType$prefix": "<p>A prefix type match. Matches the value with the prefix.</p>"
       }
     },
     "HeaderMatchType": {
-      "base": "<p>Describes a header match type. Only one can be provided.</p>",
+      "base": "<p>Describes a header match type.</p>",
       "refs": {
         "HeaderMatch$match": "<p>The header match type.</p>"
       }
     },
     "HealthCheckConfig": {
-      "base": "<p>The health check configuration of a target group. Health check configurations aren't used for <code>LAMBDA</code> and <code>ALB</code> target groups.</p>",
+      "base": "<p>Describes the health check configuration of a target group. Health check configurations aren't used for target groups of type <code>LAMBDA</code> or <code>ALB</code>.</p>",
       "refs": {
-        "TargetGroupConfig$healthCheck": "<p>The health check configuration.</p>",
+        "TargetGroupConfig$healthCheck": "<p>The health check configuration. Not supported if the target group type is <code>LAMBDA</code> or <code>ALB</code>.</p>",
         "UpdateTargetGroupRequest$healthCheck": "<p>The health check configuration.</p>"
       }
     },
@@ -673,15 +673,15 @@
     "IpAddressType": {
       "base": null,
       "refs": {
-        "TargetGroupConfig$ipAddressType": "<p>The type of IP address used for the target group. The possible values are <code>ipv4</code> and <code>ipv6</code>. This is an optional parameter. If not specified, the IP address type defaults to <code>ipv4</code>.</p>",
-        "TargetGroupSummary$ipAddressType": "<p>The type of IP address used for the target group. The possible values are <code>ipv4</code> and <code>ipv6</code>. This is an optional parameter. If not specified, the IP address type defaults to <code>ipv4</code>.</p>"
+        "TargetGroupConfig$ipAddressType": "<p>The type of IP address used for the target group. Supported only if the target group type is <code>IP</code>. The default is <code>IPV4</code>.</p>",
+        "TargetGroupSummary$ipAddressType": "<p>The type of IP address used for the target group. The possible values are <code>IPV4</code> and <code>IPV6</code>. This is an optional parameter. If not specified, the default is <code>IPV4</code>.</p>"
       }
     },
     "LambdaEventStructureVersion": {
       "base": null,
       "refs": {
-        "TargetGroupConfig$lambdaEventStructureVersion": "<p>Lambda event structure version</p>",
-        "TargetGroupSummary$lambdaEventStructureVersion": "<p>Lambda event structure version</p>"
+        "TargetGroupConfig$lambdaEventStructureVersion": "<p>The version of the event structure that your Lambda function receives. Supported only if the target group type is <code>LAMBDA</code>. The default is <code>V1</code>.</p>",
+        "TargetGroupSummary$lambdaEventStructureVersion": "<p>The version of the event structure that your Lambda function receives. Supported only if the target group type is <code>LAMBDA</code>.</p>"
       }
     },
     "ListAccessLogSubscriptionsRequest": {
@@ -782,7 +782,7 @@
     "ListTargetsRequestTargetsList": {
       "base": null,
       "refs": {
-        "ListTargetsRequest$targets": "<p>The targets to list.</p>"
+        "ListTargetsRequest$targets": "<p>The targets.</p>"
       }
     },
     "ListTargetsResponse": {
@@ -835,7 +835,7 @@
     "ListenerProtocol": {
       "base": null,
       "refs": {
-        "CreateListenerRequest$protocol": "<p>The listener protocol HTTP or HTTPS.</p>",
+        "CreateListenerRequest$protocol": "<p>The listener protocol.</p>",
         "CreateListenerResponse$protocol": "<p>The protocol of the listener.</p>",
         "GetListenerResponse$protocol": "<p>The listener protocol.</p>",
         "ListenerSummary$protocol": "<p>The listener protocol.</p>",
@@ -864,9 +864,9 @@
       }
     },
     "Matcher": {
-      "base": "<p>The codes to use when checking for a successful response from a target for health checks.</p>",
+      "base": "<p>Describes the codes to use when checking for a successful response from a target for health checks.</p>",
       "refs": {
-        "HealthCheckConfig$matcher": "<p>The codes to use when checking for a successful response from a target. These are called <i>Success codes</i> in the console.</p>"
+        "HealthCheckConfig$matcher": "<p>The codes to use when checking for a successful response from a target.</p>"
       }
     },
     "MaxResults": {
@@ -933,20 +933,20 @@
     "PolicyString": {
       "base": null,
       "refs": {
-        "GetResourcePolicyResponse$policy": "<p>The Amazon Resource Name (ARN) of the service network or service.</p>",
-        "PutResourcePolicyRequest$policy": "<p>An IAM policy.</p>"
+        "GetResourcePolicyResponse$policy": "<p>An IAM policy.</p>",
+        "PutResourcePolicyRequest$policy": "<p>An IAM policy. The policy string in JSON must not contain newlines or blank lines.</p>"
       }
     },
     "Port": {
       "base": null,
       "refs": {
-        "CreateListenerRequest$port": "<p>The listener port. You can specify a value from <code>1</code> to <code>65535</code>. For HTTP, the default is <code>80</code>. For HTTPS, the default is <code>443</code>.</p>",
+        "CreateListenerRequest$port": "<p>The listener port. You can specify a value from 1 to 65535. For HTTP, the default is 80. For HTTPS, the default is 443.</p>",
         "CreateListenerResponse$port": "<p>The port number of the listener.</p>",
         "GetListenerResponse$port": "<p>The listener port.</p>",
         "ListenerSummary$port": "<p>The listener port.</p>",
-        "Target$port": "<p>The port on which the target is listening. For HTTP, the default is <code>80</code>. For HTTPS, the default is <code>443</code>.</p>",
+        "Target$port": "<p>The port on which the target is listening. For HTTP, the default is 80. For HTTPS, the default is 443.</p>",
         "TargetFailure$port": "<p>The port on which the target is listening. This parameter doesn't apply if the target is a Lambda function.</p>",
-        "TargetGroupConfig$port": "<p>The port on which the targets are listening. For HTTP, the default is <code>80</code>. For HTTPS, the default is <code>443</code> </p>",
+        "TargetGroupConfig$port": "<p>The port on which the targets are listening. For HTTP, the default is 80. For HTTPS, the default is 443. Not supported if the target group type is <code>LAMBDA</code>.</p>",
         "TargetGroupSummary$port": "<p>The port of the target group.</p>",
         "TargetSummary$port": "<p>The port on which the target is listening.</p>",
         "UpdateListenerResponse$port": "<p>The listener port.</p>"
@@ -995,7 +995,7 @@
         "CreateAccessLogSubscriptionResponse$resourceArn": "<p>The Amazon Resource Name (ARN) of the service network or service.</p>",
         "DeleteResourcePolicyRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
         "GetAccessLogSubscriptionResponse$resourceArn": "<p>The Amazon Resource Name (ARN) of the service network or service.</p>",
-        "GetResourcePolicyRequest$resourceArn": "<p>An IAM policy.</p>",
+        "GetResourcePolicyRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the service network or service.</p>",
         "PutResourcePolicyRequest$resourceArn": "<p>The ID or Amazon Resource Name (ARN) of the service network or service for which the policy is created.</p>",
         "UpdateAccessLogSubscriptionResponse$resourceArn": "<p>The Amazon Resource Name (ARN) of the access log subscription.</p>"
       }
@@ -1025,16 +1025,16 @@
       }
     },
     "RuleAction": {
-      "base": "<p>Describes the action for a rule. Each rule must include exactly one of the following types of actions: <code>forward </code>or <code>fixed-response</code>, and it must be the last action to be performed.</p>",
+      "base": "<p>Describes the action for a rule.</p>",
       "refs": {
-        "CreateListenerRequest$defaultAction": "<p>The action for the default rule. Each listener has a default rule. Each rule consists of a priority, one or more actions, and one or more conditions. The default rule is the rule that's used if no other rules match. Each rule must include exactly one of the following types of actions: <code>forward </code>or <code>fixed-response</code>, and it must be the last action to be performed. </p>",
+        "CreateListenerRequest$defaultAction": "<p>The action for the default rule. Each listener has a default rule. The default rule is used if no other rules match.</p>",
         "CreateListenerResponse$defaultAction": "<p>The action for the default rule.</p>",
         "CreateRuleRequest$action": "<p>The action for the default rule.</p>",
-        "CreateRuleResponse$action": "<p>The rule action. Each rule must include exactly one of the following types of actions: <code>forward </code>or <code>fixed-response</code>, and it must be the last action to be performed.</p>",
+        "CreateRuleResponse$action": "<p>The rule action.</p>",
         "GetListenerResponse$defaultAction": "<p>The actions for the default listener rule.</p>",
         "GetRuleResponse$action": "<p>The action for the default rule.</p>",
         "RuleUpdate$action": "<p>The rule action.</p>",
-        "RuleUpdateSuccess$action": "<p>The action for the default rule.</p>",
+        "RuleUpdateSuccess$action": "<p>The action for the rule.</p>",
         "UpdateListenerRequest$defaultAction": "<p>The action for the default rule.</p>",
         "UpdateListenerResponse$defaultAction": "<p>The action for the default rule.</p>",
         "UpdateRuleRequest$action": "<p>Information about the action for the specified listener rule.</p>",
@@ -1100,7 +1100,7 @@
         "CreateRuleRequest$priority": "<p>The priority assigned to the rule. Each rule for a specific listener must have a unique priority. The lower the priority number the higher the priority.</p>",
         "CreateRuleResponse$priority": "<p>The priority assigned to the rule. The lower the priority number the higher the priority.</p>",
         "GetRuleResponse$priority": "<p>The priority level for the specified rule.</p>",
-        "RuleSummary$priority": "<p> The priority of the rule. </p>",
+        "RuleSummary$priority": "<p>The priority of the rule.</p>",
         "RuleUpdate$priority": "<p>The rule priority. A listener can't have multiple rules with the same priority.</p>",
         "RuleUpdateSuccess$priority": "<p>The rule priority.</p>",
         "UpdateRuleRequest$priority": "<p>The rule priority. A listener can't have multiple rules with the same priority.</p>",
@@ -1120,7 +1120,7 @@
       }
     },
     "RuleUpdate": {
-      "base": "<p>Represents an object when updating a rule.</p>",
+      "base": "<p>Describes a rule update.</p>",
       "refs": {
         "RuleUpdateList$member": null
       }
@@ -1191,7 +1191,7 @@
       "base": null,
       "refs": {
         "GetTargetGroupResponse$serviceArns": "<p>The Amazon Resource Names (ARNs) of the service.</p>",
-        "TargetGroupSummary$serviceArns": "<p>The list of Amazon Resource Names (ARNs) of the service.</p>"
+        "TargetGroupSummary$serviceArns": "<p>The Amazon Resource Names (ARNs) of the service.</p>"
       }
     },
     "ServiceCustomDomainName": {
@@ -1200,10 +1200,10 @@
         "CreateServiceNetworkServiceAssociationResponse$customDomainName": "<p>The custom domain name of the service.</p>",
         "CreateServiceRequest$customDomainName": "<p>The custom domain name of the service.</p>",
         "CreateServiceResponse$customDomainName": "<p>The custom domain name of the service.</p>",
-        "GetServiceNetworkServiceAssociationResponse$customDomainName": "<p>The custom domain name of the service. </p>",
+        "GetServiceNetworkServiceAssociationResponse$customDomainName": "<p>The custom domain name of the service.</p>",
         "GetServiceResponse$customDomainName": "<p>The custom domain name of the service.</p>",
-        "ServiceNetworkServiceAssociationSummary$customDomainName": "<p> The custom domain name of the service. </p>",
-        "ServiceSummary$customDomainName": "<p> The custom domain name of the service. </p>",
+        "ServiceNetworkServiceAssociationSummary$customDomainName": "<p>The custom domain name of the service.</p>",
+        "ServiceSummary$customDomainName": "<p>The custom domain name of the service.</p>",
         "UpdateServiceResponse$customDomainName": "<p>The custom domain name of the service.</p>"
       }
     },
@@ -1246,7 +1246,7 @@
     "ServiceList": {
       "base": null,
       "refs": {
-        "ListServicesResponse$items": "<p>The services.</p>"
+        "ListServicesResponse$items": "<p>Information about the services.</p>"
       }
     },
     "ServiceName": {
@@ -1349,8 +1349,8 @@
     "ServiceNetworkServiceAssociationStatus": {
       "base": null,
       "refs": {
-        "CreateServiceNetworkServiceAssociationResponse$status": "<p>The operation's status.</p>",
-        "DeleteServiceNetworkServiceAssociationResponse$status": "<p>The operation's status. You can retry the operation if the status is <code>DELETE_FAILED</code>. However, if you retry it when the status is <code>DELETE_IN_PROGRESS</code>, there is no change in the status.</p>",
+        "CreateServiceNetworkServiceAssociationResponse$status": "<p>The association status.</p>",
+        "DeleteServiceNetworkServiceAssociationResponse$status": "<p>The status. You can retry the operation if the status is <code>DELETE_FAILED</code>. However, if you retry it when the status is <code>DELETE_IN_PROGRESS</code>, there is no change in the status.</p>",
         "GetServiceNetworkServiceAssociationResponse$status": "<p>The status of the association.</p>",
         "ServiceNetworkServiceAssociationSummary$status": "<p>The status. If the deletion fails, try to delete again.</p>"
       }
@@ -1404,8 +1404,8 @@
     "ServiceNetworkVpcAssociationStatus": {
       "base": null,
       "refs": {
-        "CreateServiceNetworkVpcAssociationResponse$status": "<p>The operation's status.</p>",
-        "DeleteServiceNetworkVpcAssociationResponse$status": "<p>The status. You can retry the operation if the status is <code>DELETE_FAILED</code>. However, if you retry it when the status is <code>DELETE_IN_PROGRESS</code>, there is no change in the status.</p>",
+        "CreateServiceNetworkVpcAssociationResponse$status": "<p>The association status.</p>",
+        "DeleteServiceNetworkVpcAssociationResponse$status": "<p>The status. You can retry the operation if the status is <code>DELETE_FAILED</code>. However, if you retry it while the status is <code>DELETE_IN_PROGRESS</code>, there is no change in the status.</p>",
         "GetServiceNetworkVpcAssociationResponse$status": "<p>The status of the association.</p>",
         "ServiceNetworkVpcAssociationSummary$status": "<p>The status.</p>",
         "UpdateServiceNetworkVpcAssociationResponse$status": "<p>The status. You can retry the operation if the status is <code>DELETE_FAILED</code>. However, if you retry it while the status is <code>DELETE_IN_PROGRESS</code>, there is no change in the status.</p>"
@@ -1425,7 +1425,7 @@
     "ServiceStatus": {
       "base": null,
       "refs": {
-        "CreateServiceResponse$status": "<p>The status. If the status is <code>CREATE_FAILED</code>, you will have to delete and recreate the service.</p>",
+        "CreateServiceResponse$status": "<p>The status. If the status is <code>CREATE_FAILED</code>, you must delete and recreate the service.</p>",
         "DeleteServiceResponse$status": "<p>The status. You can retry the operation if the status is <code>DELETE_FAILED</code>. However, if you retry it while the status is <code>DELETE_IN_PROGRESS</code>, the status doesn't change.</p>",
         "GetServiceResponse$status": "<p>The status of the service.</p>",
         "ServiceSummary$status": "<p>The status.</p>"
@@ -1463,14 +1463,14 @@
         "ServiceQuotaExceededException$serviceCode": "<p>The service code.</p>",
         "TargetFailure$failureCode": "<p>The failure code.</p>",
         "TargetFailure$failureMessage": "<p>The failure message.</p>",
-        "TargetFailure$id": "<p>The ID of the target. If the target type of the target group is <code>INSTANCE</code>, this is an instance ID. If the target type is <code>IP</code> , this is an IP address. If the target type is <code>LAMBDA</code>, this is the ARN of the Lambda function. If the target type is <code>ALB</code>, this is the ARN of the Application Load Balancer.</p>",
-        "TargetSummary$id": "<p>The ID of the target. If the target type of the target group is <code>INSTANCE</code>, this is an instance ID. If the target type is <code>IP</code> , this is an IP address. If the target type is <code>LAMBDA</code>, this is the ARN of the Lambda function. If the target type is <code>ALB</code>, this is the ARN of the Application Load Balancer.</p>",
+        "TargetFailure$id": "<p>The ID of the target. If the target group type is <code>INSTANCE</code>, this is an instance ID. If the target group type is <code>IP</code>, this is an IP address. If the target group type is <code>LAMBDA</code>, this is the ARN of a Lambda function. If the target group type is <code>ALB</code>, this is the ARN of an Application Load Balancer.</p>",
+        "TargetSummary$id": "<p>The ID of the target. If the target group type is <code>INSTANCE</code>, this is an instance ID. If the target group type is <code>IP</code>, this is an IP address. If the target group type is <code>LAMBDA</code>, this is the ARN of a Lambda function. If the target type is <code>ALB</code>, this is the ARN of an Application Load Balancer.</p>",
         "TargetSummary$reasonCode": "<p>The code for why the target status is what it is.</p>",
         "ThrottlingException$message": null,
         "ThrottlingException$quotaCode": "<p>The ID of the service quota that was exceeded.</p>",
         "ThrottlingException$serviceCode": "<p>The service code.</p>",
         "ValidationException$message": null,
-        "ValidationExceptionField$message": "<p>Additional details about why the validation failed.</p>",
+        "ValidationExceptionField$message": "<p>Additional information about why the validation failed.</p>",
         "ValidationExceptionField$name": "<p>The name of the validation exception.</p>"
       }
     },
@@ -1498,7 +1498,7 @@
         "CreateServiceNetworkVpcAssociationRequest$tags": "<p>The tags for the association.</p>",
         "CreateServiceRequest$tags": "<p>The tags for the service.</p>",
         "CreateTargetGroupRequest$tags": "<p>The tags for the target group.</p>",
-        "ListTagsForResourceResponse$tags": "<p>The tags.</p>",
+        "ListTagsForResourceResponse$tags": "<p>Information about the tags.</p>",
         "TagResourceRequest$tags": "<p>The tags for the resource.</p>"
       }
     },
@@ -1551,10 +1551,10 @@
       }
     },
     "TargetGroupConfig": {
-      "base": "<p>Describes the configuration of a target group. Lambda functions don't support target group configuration.</p>",
+      "base": "<p>Describes the configuration of a target group.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/vpc-lattice/latest/ug/target-groups.html\">Target groups</a> in the <i>Amazon VPC Lattice User Guide</i>.</p>",
       "refs": {
-        "CreateTargetGroupRequest$config": "<p>The target group configuration. If <code>type</code> is set to <code>LAMBDA</code>, this parameter doesn't apply.</p>",
-        "CreateTargetGroupResponse$config": "<p>The target group configuration. If <code>type</code> is set to <code>LAMBDA</code>, this parameter doesn't apply.</p>",
+        "CreateTargetGroupRequest$config": "<p>The target group configuration.</p>",
+        "CreateTargetGroupResponse$config": "<p>The target group configuration.</p>",
         "GetTargetGroupResponse$config": "<p>The target group configuration.</p>",
         "UpdateTargetGroupResponse$config": "<p>The target group configuration.</p>"
       }
@@ -1601,20 +1601,20 @@
       "base": null,
       "refs": {
         "HealthCheckConfig$protocol": "<p>The protocol used when performing health checks on targets. The possible protocols are <code>HTTP</code> and <code>HTTPS</code>. The default is <code>HTTP</code>.</p>",
-        "TargetGroupConfig$protocol": "<p>The protocol to use for routing traffic to the targets. Default is the protocol of a target group.</p>",
+        "TargetGroupConfig$protocol": "<p>The protocol to use for routing traffic to the targets. The default is the protocol of the target group. Not supported if the target group type is <code>LAMBDA</code>.</p>",
         "TargetGroupSummary$protocol": "<p>The protocol of the target group.</p>"
       }
     },
     "TargetGroupProtocolVersion": {
       "base": null,
       "refs": {
-        "TargetGroupConfig$protocolVersion": "<p>The protocol version. Default value is <code>HTTP1</code>.</p>"
+        "TargetGroupConfig$protocolVersion": "<p>The protocol version. The default is <code>HTTP1</code>. Not supported if the target group type is <code>LAMBDA</code>.</p>"
       }
     },
     "TargetGroupStatus": {
       "base": null,
       "refs": {
-        "CreateTargetGroupResponse$status": "<p>The operation's status. You can retry the operation if the status is <code>CREATE_FAILED</code>. However, if you retry it while the status is <code>CREATE_IN_PROGRESS</code>, there is no change in the status. </p>",
+        "CreateTargetGroupResponse$status": "<p>The status. You can retry the operation if the status is <code>CREATE_FAILED</code>. However, if you retry it while the status is <code>CREATE_IN_PROGRESS</code>, there is no change in the status.</p>",
         "DeleteTargetGroupResponse$status": "<p>The status. You can retry the operation if the status is <code>DELETE_FAILED</code>. However, if you retry it while the status is <code>DELETE_IN_PROGRESS</code>, the status doesn't change.</p>",
         "GetTargetGroupResponse$status": "<p>The status.</p>",
         "TargetGroupSummary$status": "<p>The status.</p>",
@@ -1622,7 +1622,7 @@
       }
     },
     "TargetGroupSummary": {
-      "base": "<p>Summary information about a target group.</p>",
+      "base": "<p>Summary information about a target group.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/vpc-lattice/latest/ug/target-groups.html\">Target groups</a> in the <i>Amazon VPC Lattice User Guide</i>.</p>",
       "refs": {
         "TargetGroupList$member": null
       }
@@ -1641,13 +1641,13 @@
     "TargetGroupWeight": {
       "base": null,
       "refs": {
-        "WeightedTargetGroup$weight": "<p>Only required if you specify multiple target groups for a forward action. The \"weight\" determines how requests are distributed to the target group. For example, if you specify two target groups, each with a weight of 10, each target group receives half the requests. If you specify two target groups, one with a weight of 10 and the other with a weight of 20, the target group with a weight of 20 receives twice as many requests as the other target group. If there's only one target group specified, then the default value is 100.</p>"
+        "WeightedTargetGroup$weight": "<p>Only required if you specify multiple target groups for a forward action. The weight determines how requests are distributed to the target group. For example, if you specify two target groups, each with a weight of 10, each target group receives half the requests. If you specify two target groups, one with a weight of 10 and the other with a weight of 20, the target group with a weight of 20 receives twice as many requests as the other target group. If there's only one target group specified, then the default value is 100.</p>"
       }
     },
     "TargetIdString": {
       "base": null,
       "refs": {
-        "Target$id": "<p>The ID of the target. If the target type of the target group is <code>INSTANCE</code>, this is an instance ID. If the target type is <code>IP</code> , this is an IP address. If the target type is <code>LAMBDA</code>, this is the ARN of the Lambda function. If the target type is <code>ALB</code>, this is the ARN of the Application Load Balancer.</p>"
+        "Target$id": "<p>The ID of the target. If the target group type is <code>INSTANCE</code>, this is an instance ID. If the target group type is <code>IP</code>, this is an IP address. If the target group type is <code>LAMBDA</code>, this is the ARN of a Lambda function. If the target group type is <code>ALB</code>, this is the ARN of an Application Load Balancer.</p>"
       }
     },
     "TargetList": {
@@ -1660,7 +1660,7 @@
     "TargetStatus": {
       "base": null,
       "refs": {
-        "TargetSummary$status": "<p>The status of the target.</p> <ul> <li> <p> <code>Draining</code>: The target is being deregistered. No new connections will be sent to this target while current connections are being drained. Default draining time is 5 minutes.</p> </li> <li> <p> <code>Unavailable</code>: Health checks are unavailable for the target group.</p> </li> <li> <p> <code>Healthy</code>: The target is healthy. </p> </li> <li> <p> <code>Unhealthy</code>: The target is unhealthy.</p> </li> <li> <p> <code>Initial</code>: Initial health checks on the target are being performed.</p> </li> <li> <p> <code>Unused</code>: Target group is not used in a service.</p> </li> </ul>"
+        "TargetSummary$status": "<p>The status of the target.</p> <ul> <li> <p> <code>DRAINING</code>: The target is being deregistered. No new connections are sent to this target while current connections are being drained. The default draining time is 5 minutes.</p> </li> <li> <p> <code>UNAVAILABLE</code>: Health checks are unavailable for the target group.</p> </li> <li> <p> <code>HEALTHY</code>: The target is healthy.</p> </li> <li> <p> <code>UNHEALTHY</code>: The target is unhealthy.</p> </li> <li> <p> <code>INITIAL</code>: Initial health checks on the target are being performed.</p> </li> <li> <p> <code>UNUSED</code>: Target group is not used in a service.</p> </li> </ul>"
       }
     },
     "TargetSummary": {
@@ -1781,7 +1781,7 @@
     "UpdateServiceNetworkVpcAssociationRequestSecurityGroupIdsList": {
       "base": null,
       "refs": {
-        "UpdateServiceNetworkVpcAssociationRequest$securityGroupIds": "<p>The IDs of the security groups. Once you add a security group, it cannot be removed.</p>"
+        "UpdateServiceNetworkVpcAssociationRequest$securityGroupIds": "<p>The IDs of the security groups.</p>"
       }
     },
     "UpdateServiceNetworkVpcAssociationResponse": {
@@ -1838,9 +1838,9 @@
         "CreateServiceNetworkVpcAssociationRequest$vpcIdentifier": "<p>The ID of the VPC.</p>",
         "GetServiceNetworkVpcAssociationResponse$vpcId": "<p>The ID of the VPC.</p>",
         "ListServiceNetworkVpcAssociationsRequest$vpcIdentifier": "<p>The ID or Amazon Resource Name (ARN) of the VPC.</p>",
-        "ListTargetGroupsRequest$vpcIdentifier": "<p>The ID or Amazon Resource Name (ARN) of the service.</p>",
+        "ListTargetGroupsRequest$vpcIdentifier": "<p>The ID or Amazon Resource Name (ARN) of the VPC.</p>",
         "ServiceNetworkVpcAssociationSummary$vpcId": "<p>The ID of the VPC.</p>",
-        "TargetGroupConfig$vpcIdentifier": "<p>The ID of the VPC.</p>",
+        "TargetGroupConfig$vpcIdentifier": "<p>The ID of the VPC. Not supported if the target group type is <code>LAMBDA</code>.</p>",
         "TargetGroupSummary$vpcIdentifier": "<p>The ID of the VPC of the target group.</p>"
       }
     },
@@ -1853,7 +1853,7 @@
     "WeightedTargetGroupList": {
       "base": null,
       "refs": {
-        "ForwardAction$targetGroups": "<p>The target groups. Traffic matching the rule is forwarded to the specified target groups. With forward actions, you can assign a weight that controls the prioritization and selection of each target group. This means that requests are distributed to individual target groups based on their weights. For example, if two target groups have the same weight, each target group receives half of the traffic.</p> <p>The default value is 1. This means that if only one target group is provided, there is no need to set the weight; 100% of traffic will go to that target group.</p>"
+        "ForwardAction$targetGroups": "<p>The target groups. Traffic matching the rule is forwarded to the specified target groups. With forward actions, you can assign a weight that controls the prioritization and selection of each target group. This means that requests are distributed to individual target groups based on their weights. For example, if two target groups have the same weight, each target group receives half of the traffic.</p> <p>The default value is 1. This means that if only one target group is provided, there is no need to set the weight; 100% of the traffic goes to that target group.</p>"
       }
     }
   }

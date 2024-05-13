@@ -341,6 +341,24 @@ func (c *EventBridge) CreateArchiveRequest(input *CreateArchiveInput) (req *requ
 // are sent to the archive except replayed events. Replayed events are not sent
 // to an archive.
 //
+// Archives and schema discovery are not supported for event buses encrypted
+// using a customer managed key. EventBridge returns an error if:
+//
+//   - You call CreateArchive (https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_CreateArchive.html)
+//     on an event bus set to use a customer managed key for encryption.
+//
+//   - You call CreateDiscoverer (https://docs.aws.amazon.com/eventbridge/latest/schema-reference/v1-discoverers.html#CreateDiscoverer)
+//     on an event bus set to use a customer managed key for encryption.
+//
+//   - You call UpdatedEventBus (https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_UpdatedEventBus.html)
+//     to set a customer managed key on an event bus with an archives or schema
+//     discovery enabled.
+//
+// To enable archives or schema discovery on an event bus, choose to use an
+// Amazon Web Services owned key. For more information, see Data encryption
+// in EventBridge (https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-encryption.html)
+// in the Amazon EventBridge User Guide.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1285,7 +1303,7 @@ func (c *EventBridge) DeleteEndpointRequest(input *DeleteEndpointInput) (req *re
 // Delete an existing global endpoint. For more information about global endpoints,
 // see Making applications Regional-fault tolerant with global endpoints and
 // event replication (https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-global-endpoints.html)
-// in the Amazon EventBridge User Guide.
+// in the Amazon EventBridge User Guide .
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1907,7 +1925,7 @@ func (c *EventBridge) DescribeEndpointRequest(input *DescribeEndpointInput) (req
 // Get the information about an existing global endpoint. For more information
 // about global endpoints, see Making applications Regional-fault tolerant with
 // global endpoints and event replication (https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-global-endpoints.html)
-// in the Amazon EventBridge User Guide.
+// in the Amazon EventBridge User Guide .
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2868,7 +2886,7 @@ func (c *EventBridge) ListEndpointsRequest(input *ListEndpointsInput) (req *requ
 // List the global endpoints associated with this account. For more information
 // about global endpoints, see Making applications Regional-fault tolerant with
 // global endpoints and event replication (https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-global-endpoints.html)
-// in the Amazon EventBridge User Guide.
+// in the Amazon EventBridge User Guide .
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4156,7 +4174,7 @@ func (c *EventBridge) PutTargetsRequest(input *PutTargetsInput) (req *request.Re
 //
 // For a list of services you can configure as targets for events, see EventBridge
 // targets (https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-targets.html)
-// in the Amazon EventBridge User Guide.
+// in the Amazon EventBridge User Guide .
 //
 // Creating rules with built-in targets is supported only in the Amazon Web
 // Services Management Console. The built-in targets are:
@@ -4186,7 +4204,7 @@ func (c *EventBridge) PutTargetsRequest(input *PutTargetsInput) (req *request.Re
 //     in the RoleARN argument in PutTargets.
 //
 // For more information, see Authentication and Access Control (https://docs.aws.amazon.com/eventbridge/latest/userguide/auth-and-access-control-eventbridge.html)
-// in the Amazon EventBridge User Guide.
+// in the Amazon EventBridge User Guide .
 //
 // If another Amazon Web Services account is in the same region and has granted
 // you permission (using PutPermission), you can send events to that account.
@@ -5208,7 +5226,7 @@ func (c *EventBridge) UpdateEndpointRequest(input *UpdateEndpointInput) (req *re
 // Update an existing endpoint. For more information about global endpoints,
 // see Making applications Regional-fault tolerant with global endpoints and
 // event replication (https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-global-endpoints.html)
-// in the Amazon EventBridge User Guide.
+// in the Amazon EventBridge User Guide .
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5245,6 +5263,94 @@ func (c *EventBridge) UpdateEndpoint(input *UpdateEndpointInput) (*UpdateEndpoin
 // for more information on using Contexts.
 func (c *EventBridge) UpdateEndpointWithContext(ctx aws.Context, input *UpdateEndpointInput, opts ...request.Option) (*UpdateEndpointOutput, error) {
 	req, out := c.UpdateEndpointRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateEventBus = "UpdateEventBus"
+
+// UpdateEventBusRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateEventBus operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateEventBus for more information on using the UpdateEventBus
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateEventBusRequest method.
+//	req, resp := client.UpdateEventBusRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/eventbridge-2015-10-07/UpdateEventBus
+func (c *EventBridge) UpdateEventBusRequest(input *UpdateEventBusInput) (req *request.Request, output *UpdateEventBusOutput) {
+	op := &request.Operation{
+		Name:       opUpdateEventBus,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateEventBusInput{}
+	}
+
+	output = &UpdateEventBusOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateEventBus API operation for Amazon EventBridge.
+//
+// Updates the specified event bus.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon EventBridge's
+// API operation UpdateEventBus for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     An entity that you specified does not exist.
+//
+//   - InternalException
+//     This exception occurs due to unexpected causes.
+//
+//   - ConcurrentModificationException
+//     There is concurrent modification on a rule, target, archive, or replay.
+//
+//   - OperationDisabledException
+//     The operation you are attempting is not available in this region.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/eventbridge-2015-10-07/UpdateEventBus
+func (c *EventBridge) UpdateEventBus(input *UpdateEventBusInput) (*UpdateEventBusOutput, error) {
+	req, out := c.UpdateEventBusRequest(input)
+	return out, req.Send()
+}
+
+// UpdateEventBusWithContext is the same as UpdateEventBus with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateEventBus for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EventBridge) UpdateEventBusWithContext(ctx aws.Context, input *UpdateEventBusInput, opts ...request.Option) (*UpdateEventBusOutput, error) {
+	req, out := c.UpdateEventBusRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -7758,9 +7864,49 @@ func (s *CreateEndpointOutput) SetState(v string) *CreateEndpointOutput {
 type CreateEventBusInput struct {
 	_ struct{} `type:"structure"`
 
+	// Configuration details of the Amazon SQS queue for EventBridge to use as a
+	// dead-letter queue (DLQ).
+	//
+	// For more information, see Event retry policy and using dead-letter queues
+	// (eventbridge/latest/userguide/eb-rule-dlq.html) in the EventBridge User Guide.
+	DeadLetterConfig *DeadLetterConfig `type:"structure"`
+
+	// The event bus description.
+	Description *string `type:"string"`
+
 	// If you are creating a partner event bus, this specifies the partner event
 	// source that the new event bus will be matched with.
 	EventSourceName *string `min:"1" type:"string"`
+
+	// The identifier of the KMS customer managed key for EventBridge to use, if
+	// you choose to use a customer managed key to encrypt events on this event
+	// bus. The identifier can be the key Amazon Resource Name (ARN), KeyId, key
+	// alias, or key alias ARN.
+	//
+	// If you do not specify a customer managed key identifier, EventBridge uses
+	// an Amazon Web Services owned key to encrypt events on the event bus.
+	//
+	// For more information, see Managing keys (https://docs.aws.amazon.com/kms/latest/developerguide/getting-started.html)
+	// in the Key Management Service Developer Guide.
+	//
+	// Archives and schema discovery are not supported for event buses encrypted
+	// using a customer managed key. EventBridge returns an error if:
+	//
+	//    * You call CreateArchive (https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_CreateArchive.html)
+	//    on an event bus set to use a customer managed key for encryption.
+	//
+	//    * You call CreateDiscoverer (https://docs.aws.amazon.com/eventbridge/latest/schema-reference/v1-discoverers.html#CreateDiscoverer)
+	//    on an event bus set to use a customer managed key for encryption.
+	//
+	//    * You call UpdatedEventBus (https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_UpdatedEventBus.html)
+	//    to set a customer managed key on an event bus with an archives or schema
+	//    discovery enabled.
+	//
+	// To enable archives or schema discovery on an event bus, choose to use an
+	// Amazon Web Services owned key. For more information, see Data encryption
+	// in EventBridge (https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-encryption.html)
+	// in the Amazon EventBridge User Guide.
+	KmsKeyIdentifier *string `type:"string"`
 
 	// The name of the new event bus.
 	//
@@ -7809,6 +7955,11 @@ func (s *CreateEventBusInput) Validate() error {
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
 	}
+	if s.DeadLetterConfig != nil {
+		if err := s.DeadLetterConfig.Validate(); err != nil {
+			invalidParams.AddNested("DeadLetterConfig", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.Tags != nil {
 		for i, v := range s.Tags {
 			if v == nil {
@@ -7826,9 +7977,27 @@ func (s *CreateEventBusInput) Validate() error {
 	return nil
 }
 
+// SetDeadLetterConfig sets the DeadLetterConfig field's value.
+func (s *CreateEventBusInput) SetDeadLetterConfig(v *DeadLetterConfig) *CreateEventBusInput {
+	s.DeadLetterConfig = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateEventBusInput) SetDescription(v string) *CreateEventBusInput {
+	s.Description = &v
+	return s
+}
+
 // SetEventSourceName sets the EventSourceName field's value.
 func (s *CreateEventBusInput) SetEventSourceName(v string) *CreateEventBusInput {
 	s.EventSourceName = &v
+	return s
+}
+
+// SetKmsKeyIdentifier sets the KmsKeyIdentifier field's value.
+func (s *CreateEventBusInput) SetKmsKeyIdentifier(v string) *CreateEventBusInput {
+	s.KmsKeyIdentifier = &v
 	return s
 }
 
@@ -7847,8 +8016,25 @@ func (s *CreateEventBusInput) SetTags(v []*Tag) *CreateEventBusInput {
 type CreateEventBusOutput struct {
 	_ struct{} `type:"structure"`
 
+	// Configuration details of the Amazon SQS queue for EventBridge to use as a
+	// dead-letter queue (DLQ).
+	//
+	// For more information, see Event retry policy and using dead-letter queues
+	// (eventbridge/latest/userguide/eb-rule-dlq.html) in the EventBridge User Guide.
+	DeadLetterConfig *DeadLetterConfig `type:"structure"`
+
+	// The event bus description.
+	Description *string `type:"string"`
+
 	// The ARN of the new event bus.
 	EventBusArn *string `type:"string"`
+
+	// The identifier of the KMS customer managed key for EventBridge to use to
+	// encrypt events on this event bus, if one has been specified.
+	//
+	// For more information, see Data encryption in EventBridge (https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-encryption.html)
+	// in the Amazon EventBridge User Guide.
+	KmsKeyIdentifier *string `type:"string"`
 }
 
 // String returns the string representation.
@@ -7869,9 +8055,27 @@ func (s CreateEventBusOutput) GoString() string {
 	return s.String()
 }
 
+// SetDeadLetterConfig sets the DeadLetterConfig field's value.
+func (s *CreateEventBusOutput) SetDeadLetterConfig(v *DeadLetterConfig) *CreateEventBusOutput {
+	s.DeadLetterConfig = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateEventBusOutput) SetDescription(v string) *CreateEventBusOutput {
+	s.Description = &v
+	return s
+}
+
 // SetEventBusArn sets the EventBusArn field's value.
 func (s *CreateEventBusOutput) SetEventBusArn(v string) *CreateEventBusOutput {
 	s.EventBusArn = &v
+	return s
+}
+
+// SetKmsKeyIdentifier sets the KmsKeyIdentifier field's value.
+func (s *CreateEventBusOutput) SetKmsKeyIdentifier(v string) *CreateEventBusOutput {
+	s.KmsKeyIdentifier = &v
 	return s
 }
 
@@ -8047,8 +8251,11 @@ func (s DeactivateEventSourceOutput) GoString() string {
 	return s.String()
 }
 
-// A DeadLetterConfig object that contains information about a dead-letter queue
-// configuration.
+// Configuration details of the Amazon SQS queue for EventBridge to use as a
+// dead-letter queue (DLQ).
+//
+// For more information, see Event retry policy and using dead-letter queues
+// (eventbridge/latest/userguide/eb-rule-dlq.html) in the EventBridge User Guide.
 type DeadLetterConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -9561,6 +9768,29 @@ type DescribeEventBusOutput struct {
 	// the current account.
 	Arn *string `type:"string"`
 
+	// The time the event bus was created.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// Configuration details of the Amazon SQS queue for EventBridge to use as a
+	// dead-letter queue (DLQ).
+	//
+	// For more information, see Event retry policy and using dead-letter queues
+	// (eventbridge/latest/userguide/eb-rule-dlq.html) in the EventBridge User Guide.
+	DeadLetterConfig *DeadLetterConfig `type:"structure"`
+
+	// The event bus description.
+	Description *string `type:"string"`
+
+	// The identifier of the KMS customer managed key for EventBridge to use to
+	// encrypt events on this event bus, if one has been specified.
+	//
+	// For more information, see Data encryption in EventBridge (https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-encryption.html)
+	// in the Amazon EventBridge User Guide.
+	KmsKeyIdentifier *string `type:"string"`
+
+	// The time the event bus was last modified.
+	LastModifiedTime *time.Time `type:"timestamp"`
+
 	// The name of the event bus. Currently, this is always default.
 	Name *string `type:"string"`
 
@@ -9589,6 +9819,36 @@ func (s DescribeEventBusOutput) GoString() string {
 // SetArn sets the Arn field's value.
 func (s *DescribeEventBusOutput) SetArn(v string) *DescribeEventBusOutput {
 	s.Arn = &v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *DescribeEventBusOutput) SetCreationTime(v time.Time) *DescribeEventBusOutput {
+	s.CreationTime = &v
+	return s
+}
+
+// SetDeadLetterConfig sets the DeadLetterConfig field's value.
+func (s *DescribeEventBusOutput) SetDeadLetterConfig(v *DeadLetterConfig) *DescribeEventBusOutput {
+	s.DeadLetterConfig = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *DescribeEventBusOutput) SetDescription(v string) *DescribeEventBusOutput {
+	s.Description = &v
+	return s
+}
+
+// SetKmsKeyIdentifier sets the KmsKeyIdentifier field's value.
+func (s *DescribeEventBusOutput) SetKmsKeyIdentifier(v string) *DescribeEventBusOutput {
+	s.KmsKeyIdentifier = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *DescribeEventBusOutput) SetLastModifiedTime(v time.Time) *DescribeEventBusOutput {
+	s.LastModifiedTime = &v
 	return s
 }
 
@@ -10084,7 +10344,7 @@ type DescribeRuleOutput struct {
 	EventBusName *string `min:"1" type:"string"`
 
 	// The event pattern. For more information, see Events and Event Patterns (https://docs.aws.amazon.com/eventbridge/latest/userguide/eventbridge-and-event-patterns.html)
-	// in the Amazon EventBridge User Guide.
+	// in the Amazon EventBridge User Guide .
 	EventPattern *string `type:"string"`
 
 	// If this is a managed rule, created by an Amazon Web Services service on your
@@ -10585,7 +10845,7 @@ func (s EnableRuleOutput) GoString() string {
 // it regional-fault tolerant. For more information about global endpoints,
 // see Making applications Regional-fault tolerant with global endpoints and
 // event replication (https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-global-endpoints.html)
-// in the Amazon EventBridge User Guide.
+// in the Amazon EventBridge User Guide .
 type Endpoint struct {
 	_ struct{} `type:"structure"`
 
@@ -10792,6 +11052,15 @@ type EventBus struct {
 	// The ARN of the event bus.
 	Arn *string `type:"string"`
 
+	// The time the event bus was created.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// The event bus description.
+	Description *string `type:"string"`
+
+	// The time the event bus was last modified.
+	LastModifiedTime *time.Time `type:"timestamp"`
+
 	// The name of the event bus.
 	Name *string `type:"string"`
 
@@ -10821,6 +11090,24 @@ func (s EventBus) GoString() string {
 // SetArn sets the Arn field's value.
 func (s *EventBus) SetArn(v string) *EventBus {
 	s.Arn = &v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *EventBus) SetCreationTime(v time.Time) *EventBus {
+	s.CreationTime = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *EventBus) SetDescription(v string) *EventBus {
+	s.Description = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *EventBus) SetLastModifiedTime(v time.Time) *EventBus {
+	s.LastModifiedTime = &v
 	return s
 }
 
@@ -14359,7 +14646,7 @@ type PutRuleInput struct {
 
 	// The event pattern. For more information, see Amazon EventBridge event patterns
 	// (https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-event-patterns.html)
-	// in the Amazon EventBridge User Guide.
+	// in the Amazon EventBridge User Guide .
 	EventPattern *string `type:"string"`
 
 	// The name of the rule that you are creating or updating.
@@ -14378,7 +14665,29 @@ type PutRuleInput struct {
 	// The scheduling expression. For example, "cron(0 20 * * ? *)" or "rate(5 minutes)".
 	ScheduleExpression *string `type:"string"`
 
-	// Indicates whether the rule is enabled or disabled.
+	// The state of the rule.
+	//
+	// Valid values include:
+	//
+	//    * DISABLED: The rule is disabled. EventBridge does not match any events
+	//    against the rule.
+	//
+	//    * ENABLED: The rule is enabled. EventBridge matches events against the
+	//    rule, except for Amazon Web Services management events delivered through
+	//    CloudTrail.
+	//
+	//    * ENABLED_WITH_ALL_CLOUDTRAIL_MANAGEMENT_EVENTS: The rule is enabled for
+	//    all events, including Amazon Web Services management events delivered
+	//    through CloudTrail. Management events provide visibility into management
+	//    operations that are performed on resources in your Amazon Web Services
+	//    account. These are also known as control plane operations. For more information,
+	//    see Logging management events (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-management-events-with-cloudtrail.html#logging-management-events)
+	//    in the CloudTrail User Guide, and Filtering management events from Amazon
+	//    Web Services services (https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-service-event.html#eb-service-event-cloudtrail)
+	//    in the Amazon EventBridge User Guide . This value is only valid for rules
+	//    on the default (https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-what-is-how-it-works-concepts.html#eb-bus-concepts-buses)
+	//    event bus or custom event buses (https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-create-event-bus.html).
+	//    It does not apply to partner event buses (https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-saas.html).
 	State *string `type:"string" enum:"RuleState"`
 
 	// The list of key-value pairs to associate with the rule.
@@ -15552,7 +15861,7 @@ type Rule struct {
 
 	// The event pattern of the rule. For more information, see Events and Event
 	// Patterns (https://docs.aws.amazon.com/eventbridge/latest/userguide/eventbridge-and-event-patterns.html)
-	// in the Amazon EventBridge User Guide.
+	// in the Amazon EventBridge User Guide .
 	EventPattern *string `type:"string"`
 
 	// If the rule was created on behalf of your account by an Amazon Web Services
@@ -15577,6 +15886,28 @@ type Rule struct {
 	ScheduleExpression *string `type:"string"`
 
 	// The state of the rule.
+	//
+	// Valid values include:
+	//
+	//    * DISABLED: The rule is disabled. EventBridge does not match any events
+	//    against the rule.
+	//
+	//    * ENABLED: The rule is enabled. EventBridge matches events against the
+	//    rule, except for Amazon Web Services management events delivered through
+	//    CloudTrail.
+	//
+	//    * ENABLED_WITH_ALL_CLOUDTRAIL_MANAGEMENT_EVENTS: The rule is enabled for
+	//    all events, including Amazon Web Services management events delivered
+	//    through CloudTrail. Management events provide visibility into management
+	//    operations that are performed on resources in your Amazon Web Services
+	//    account. These are also known as control plane operations. For more information,
+	//    see Logging management events (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-management-events-with-cloudtrail.html#logging-management-events)
+	//    in the CloudTrail User Guide, and Filtering management events from Amazon
+	//    Web Services services (https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-service-event.html#eb-service-event-cloudtrail)
+	//    in the Amazon EventBridge User Guide . This value is only valid for rules
+	//    on the default (https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-what-is-how-it-works-concepts.html#eb-bus-concepts-buses)
+	//    event bus or custom event buses (https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-create-event-bus.html).
+	//    It does not apply to partner event buses (https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-saas.html).
 	State *string `type:"string" enum:"RuleState"`
 }
 
@@ -16661,7 +16992,7 @@ type TestEventPatternInput struct {
 	Event *string `type:"string" required:"true"`
 
 	// The event pattern. For more information, see Events and Event Patterns (https://docs.aws.amazon.com/eventbridge/latest/userguide/eventbridge-and-event-patterns.html)
-	// in the Amazon EventBridge User Guide.
+	// in the Amazon EventBridge User Guide .
 	//
 	// EventPattern is a required field
 	EventPattern *string `type:"string" required:"true"`
@@ -17841,6 +18172,188 @@ func (s *UpdateEndpointOutput) SetRoutingConfig(v *RoutingConfig) *UpdateEndpoin
 // SetState sets the State field's value.
 func (s *UpdateEndpointOutput) SetState(v string) *UpdateEndpointOutput {
 	s.State = &v
+	return s
+}
+
+type UpdateEventBusInput struct {
+	_ struct{} `type:"structure"`
+
+	// Configuration details of the Amazon SQS queue for EventBridge to use as a
+	// dead-letter queue (DLQ).
+	//
+	// For more information, see Event retry policy and using dead-letter queues
+	// (eventbridge/latest/userguide/eb-rule-dlq.html) in the EventBridge User Guide.
+	DeadLetterConfig *DeadLetterConfig `type:"structure"`
+
+	// The event bus description.
+	Description *string `type:"string"`
+
+	// The identifier of the KMS customer managed key for EventBridge to use, if
+	// you choose to use a customer managed key to encrypt events on this event
+	// bus. The identifier can be the key Amazon Resource Name (ARN), KeyId, key
+	// alias, or key alias ARN.
+	//
+	// If you do not specify a customer managed key identifier, EventBridge uses
+	// an Amazon Web Services owned key to encrypt events on the event bus.
+	//
+	// For more information, see Managing keys (https://docs.aws.amazon.com/kms/latest/developerguide/getting-started.html)
+	// in the Key Management Service Developer Guide.
+	//
+	// Archives and schema discovery are not supported for event buses encrypted
+	// using a customer managed key. EventBridge returns an error if:
+	//
+	//    * You call CreateArchive (https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_CreateArchive.html)
+	//    on an event bus set to use a customer managed key for encryption.
+	//
+	//    * You call CreateDiscoverer (https://docs.aws.amazon.com/eventbridge/latest/schema-reference/v1-discoverers.html#CreateDiscoverer)
+	//    on an event bus set to use a customer managed key for encryption.
+	//
+	//    * You call UpdatedEventBus (https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_UpdatedEventBus.html)
+	//    to set a customer managed key on an event bus with an archives or schema
+	//    discovery enabled.
+	//
+	// To enable archives or schema discovery on an event bus, choose to use an
+	// Amazon Web Services owned key. For more information, see Data encryption
+	// in EventBridge (https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-encryption.html)
+	// in the Amazon EventBridge User Guide.
+	KmsKeyIdentifier *string `type:"string"`
+
+	// The name of the event bus.
+	Name *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateEventBusInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateEventBusInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateEventBusInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateEventBusInput"}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.DeadLetterConfig != nil {
+		if err := s.DeadLetterConfig.Validate(); err != nil {
+			invalidParams.AddNested("DeadLetterConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDeadLetterConfig sets the DeadLetterConfig field's value.
+func (s *UpdateEventBusInput) SetDeadLetterConfig(v *DeadLetterConfig) *UpdateEventBusInput {
+	s.DeadLetterConfig = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateEventBusInput) SetDescription(v string) *UpdateEventBusInput {
+	s.Description = &v
+	return s
+}
+
+// SetKmsKeyIdentifier sets the KmsKeyIdentifier field's value.
+func (s *UpdateEventBusInput) SetKmsKeyIdentifier(v string) *UpdateEventBusInput {
+	s.KmsKeyIdentifier = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateEventBusInput) SetName(v string) *UpdateEventBusInput {
+	s.Name = &v
+	return s
+}
+
+type UpdateEventBusOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The event bus Amazon Resource Name (ARN).
+	Arn *string `type:"string"`
+
+	// Configuration details of the Amazon SQS queue for EventBridge to use as a
+	// dead-letter queue (DLQ).
+	//
+	// For more information, see Event retry policy and using dead-letter queues
+	// (eventbridge/latest/userguide/eb-rule-dlq.html) in the EventBridge User Guide.
+	DeadLetterConfig *DeadLetterConfig `type:"structure"`
+
+	// The event bus description.
+	Description *string `type:"string"`
+
+	// The identifier of the KMS customer managed key for EventBridge to use to
+	// encrypt events on this event bus, if one has been specified.
+	//
+	// For more information, see Data encryption in EventBridge (https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-encryption.html)
+	// in the Amazon EventBridge User Guide.
+	KmsKeyIdentifier *string `type:"string"`
+
+	// The event bus name.
+	Name *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateEventBusOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateEventBusOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *UpdateEventBusOutput) SetArn(v string) *UpdateEventBusOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetDeadLetterConfig sets the DeadLetterConfig field's value.
+func (s *UpdateEventBusOutput) SetDeadLetterConfig(v *DeadLetterConfig) *UpdateEventBusOutput {
+	s.DeadLetterConfig = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateEventBusOutput) SetDescription(v string) *UpdateEventBusOutput {
+	s.Description = &v
+	return s
+}
+
+// SetKmsKeyIdentifier sets the KmsKeyIdentifier field's value.
+func (s *UpdateEventBusOutput) SetKmsKeyIdentifier(v string) *UpdateEventBusOutput {
+	s.KmsKeyIdentifier = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateEventBusOutput) SetName(v string) *UpdateEventBusOutput {
+	s.Name = &v
 	return s
 }
 
