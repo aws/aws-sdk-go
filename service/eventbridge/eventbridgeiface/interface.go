@@ -283,6 +283,10 @@ type EventBridgeAPI interface {
 	UpdateEndpoint(*eventbridge.UpdateEndpointInput) (*eventbridge.UpdateEndpointOutput, error)
 	UpdateEndpointWithContext(aws.Context, *eventbridge.UpdateEndpointInput, ...request.Option) (*eventbridge.UpdateEndpointOutput, error)
 	UpdateEndpointRequest(*eventbridge.UpdateEndpointInput) (*request.Request, *eventbridge.UpdateEndpointOutput)
+
+	UpdateEventBus(*eventbridge.UpdateEventBusInput) (*eventbridge.UpdateEventBusOutput, error)
+	UpdateEventBusWithContext(aws.Context, *eventbridge.UpdateEventBusInput, ...request.Option) (*eventbridge.UpdateEventBusOutput, error)
+	UpdateEventBusRequest(*eventbridge.UpdateEventBusInput) (*request.Request, *eventbridge.UpdateEventBusOutput)
 }
 
 var _ EventBridgeAPI = (*eventbridge.EventBridge)(nil)

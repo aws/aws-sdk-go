@@ -60,6 +60,11 @@ func (c *VPCLattice) BatchUpdateRuleRequest(input *BatchUpdateRuleInput) (req *r
 // the priority of listener rules. This can be useful when bulk updating or
 // swapping rule priority.
 //
+// Required permissions: vpc-lattice:UpdateRule
+//
+// For more information, see How Amazon VPC Lattice works with IAM (https://docs.aws.amazon.com/vpc-lattice/latest/ug/security_iam_service-with-iam.html)
+// in the Amazon VPC Lattice User Guide.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -156,7 +161,7 @@ func (c *VPCLattice) CreateAccessLogSubscriptionRequest(input *CreateAccessLogSu
 //
 // Enables access logs to be sent to Amazon CloudWatch, Amazon S3, and Amazon
 // Kinesis Data Firehose. The service network owner can use the access logs
-// to audit the services in the network. The service network owner will only
+// to audit the services in the network. The service network owner can only
 // see access logs from clients and services that are associated with their
 // service network. Access log entries represent traffic originated from VPCs
 // associated with that network. For more information, see Access logs (https://docs.aws.amazon.com/vpc-lattice/latest/ug/monitoring-access-logs.html)
@@ -670,7 +675,9 @@ func (c *VPCLattice) CreateServiceNetworkServiceAssociationRequest(input *Create
 
 // CreateServiceNetworkServiceAssociation API operation for Amazon VPC Lattice.
 //
-// Associates a service with a service network.
+// Associates a service with a service network. For more information, see Manage
+// service associations (https://docs.aws.amazon.com/vpc-lattice/latest/ug/service-network-associations.html#service-network-service-associations)
+// in the Amazon VPC Lattice User Guide.
 //
 // You can't use this operation if the service and service network are already
 // associated or if there is a disassociation or deletion in progress. If the
@@ -792,10 +799,11 @@ func (c *VPCLattice) CreateServiceNetworkVpcAssociationRequest(input *CreateServ
 // As a result of this operation, the association gets created in the service
 // network account and the VPC owner account.
 //
-// Once a security group is added to the VPC association it cannot be removed.
-// You can add or update the security groups being used for the VPC association
-// once a security group is attached. To remove all security groups you must
-// reassociate the VPC.
+// If you add a security group to the service network and VPC association, the
+// association must continue to always have at least one security group. You
+// can add or edit security groups at any time. However, to remove all security
+// groups, you must first delete the association and recreate it without security
+// groups.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1092,11 +1100,10 @@ func (c *VPCLattice) DeleteAuthPolicyRequest(input *DeleteAuthPolicyInput) (req 
 
 // DeleteAuthPolicy API operation for Amazon VPC Lattice.
 //
-// Deletes the specified auth policy. If an auth is set to Amazon Web Services_IAM
-// and the auth policy is deleted, all requests will be denied by default. If
-// you are trying to remove the auth policy completely, you must set the auth_type
-// to NONE. If auth is enabled on the resource, but no auth policy is set, all
-// requests will be denied.
+// Deletes the specified auth policy. If an auth is set to AWS_IAM and the auth
+// policy is deleted, all requests are denied. If you are trying to remove the
+// auth policy completely, you must set the auth type to NONE. If auth is enabled
+// on the resource, but no auth policy is set, all requests are denied.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1685,7 +1692,7 @@ func (c *VPCLattice) DeleteServiceNetworkServiceAssociationRequest(input *Delete
 // DeleteServiceNetworkServiceAssociation API operation for Amazon VPC Lattice.
 //
 // Deletes the association between a specified service and the specific service
-// network. This request will fail if an association is still in progress.
+// network. This operation fails if an association is still in progress.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2346,8 +2353,7 @@ func (c *VPCLattice) GetResourcePolicyRequest(input *GetResourcePolicyInput) (re
 // GetResourcePolicy API operation for Amazon VPC Lattice.
 //
 // Retrieves information about the resource policy. The resource policy is an
-// IAM policy created by AWS RAM on behalf of the resource owner when they share
-// a resource.
+// IAM policy created on behalf of the resource owner when they share a resource.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3453,7 +3459,7 @@ func (c *VPCLattice) ListServiceNetworkServiceAssociationsRequest(input *ListSer
 // Every association in Amazon VPC Lattice is given a unique Amazon Resource
 // Name (ARN), such as when a service network is associated with a VPC or when
 // a service is associated with a service network. If the association is for
-// a resource that is shared with another account, the association will include
+// a resource that is shared with another account, the association includes
 // the local account ID as the prefix in the ARN for each account the resource
 // is shared with.
 //
@@ -4425,7 +4431,11 @@ func (c *VPCLattice) PutAuthPolicyRequest(input *PutAuthPolicyInput) (req *reque
 
 // PutAuthPolicy API operation for Amazon VPC Lattice.
 //
-// Creates or updates the auth policy.
+// Creates or updates the auth policy. The policy string in JSON must not contain
+// newlines or blank lines.
+//
+// For more information, see Auth policies (https://docs.aws.amazon.com/vpc-lattice/latest/ug/auth-policies.html)
+// in the Amazon VPC Lattice User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5377,8 +5387,11 @@ func (c *VPCLattice) UpdateServiceNetworkVpcAssociationRequest(input *UpdateServ
 
 // UpdateServiceNetworkVpcAssociation API operation for Amazon VPC Lattice.
 //
-// Updates the service network and VPC association. Once you add a security
-// group, it cannot be removed.
+// Updates the service network and VPC association. If you add a security group
+// to the service network and VPC association, the association must continue
+// to always have at least one security group. You can add or edit security
+// groups at any time. However, to remove all security groups, you must first
+// delete the association and recreate it without security groups.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6079,11 +6092,8 @@ type CreateListenerInput struct {
 	// any actions. If the parameters aren't identical, the retry fails.
 	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
 
-	// The action for the default rule. Each listener has a default rule. Each rule
-	// consists of a priority, one or more actions, and one or more conditions.
-	// The default rule is the rule that's used if no other rules match. Each rule
-	// must include exactly one of the following types of actions: forward or fixed-response,
-	// and it must be the last action to be performed.
+	// The action for the default rule. Each listener has a default rule. The default
+	// rule is used if no other rules match.
 	//
 	// DefaultAction is a required field
 	DefaultAction *RuleAction `locationName:"defaultAction" type:"structure" required:"true"`
@@ -6099,7 +6109,7 @@ type CreateListenerInput struct {
 	// default is 80. For HTTPS, the default is 443.
 	Port *int64 `locationName:"port" min:"1" type:"integer"`
 
-	// The listener protocol HTTP or HTTPS.
+	// The listener protocol.
 	//
 	// Protocol is a required field
 	Protocol *string `locationName:"protocol" type:"string" required:"true" enum:"ListenerProtocol"`
@@ -6474,9 +6484,7 @@ func (s *CreateRuleInput) SetTags(v map[string]*string) *CreateRuleInput {
 type CreateRuleOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The rule action. Each rule must include exactly one of the following types
-	// of actions: forward or fixed-response, and it must be the last action to
-	// be performed.
+	// The rule action.
 	Action *RuleAction `locationName:"action" type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the rule.
@@ -6918,7 +6926,7 @@ type CreateServiceNetworkServiceAssociationOutput struct {
 	// The ID of the association.
 	Id *string `locationName:"id" min:"17" type:"string"`
 
-	// The operation's status.
+	// The association status.
 	Status *string `locationName:"status" type:"string" enum:"ServiceNetworkServiceAssociationStatus"`
 }
 
@@ -7096,7 +7104,7 @@ type CreateServiceNetworkVpcAssociationOutput struct {
 	// The IDs of the security groups.
 	SecurityGroupIds []*string `locationName:"securityGroupIds" type:"list"`
 
-	// The operation's status.
+	// The association status.
 	Status *string `locationName:"status" type:"string" enum:"ServiceNetworkVpcAssociationStatus"`
 }
 
@@ -7172,7 +7180,7 @@ type CreateServiceOutput struct {
 	// The name of the service.
 	Name *string `locationName:"name" min:"3" type:"string"`
 
-	// The status. If the status is CREATE_FAILED, you will have to delete and recreate
+	// The status. If the status is CREATE_FAILED, you must delete and recreate
 	// the service.
 	Status *string `locationName:"status" type:"string" enum:"ServiceStatus"`
 }
@@ -7252,8 +7260,7 @@ type CreateTargetGroupInput struct {
 	// any actions. If the parameters aren't identical, the retry fails.
 	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
 
-	// The target group configuration. If type is set to LAMBDA, this parameter
-	// doesn't apply.
+	// The target group configuration.
 	Config *TargetGroupConfig `locationName:"config" type:"structure"`
 
 	// The name of the target group. The name must be unique within the account.
@@ -7353,8 +7360,7 @@ type CreateTargetGroupOutput struct {
 	// The Amazon Resource Name (ARN) of the target group.
 	Arn *string `locationName:"arn" min:"20" type:"string"`
 
-	// The target group configuration. If type is set to LAMBDA, this parameter
-	// doesn't apply.
+	// The target group configuration.
 	Config *TargetGroupConfig `locationName:"config" type:"structure"`
 
 	// The ID of the target group.
@@ -7363,9 +7369,9 @@ type CreateTargetGroupOutput struct {
 	// The name of the target group.
 	Name *string `locationName:"name" min:"3" type:"string"`
 
-	// The operation's status. You can retry the operation if the status is CREATE_FAILED.
-	// However, if you retry it while the status is CREATE_IN_PROGRESS, there is
-	// no change in the status.
+	// The status. You can retry the operation if the status is CREATE_FAILED. However,
+	// if you retry it while the status is CREATE_IN_PROGRESS, there is no change
+	// in the status.
 	Status *string `locationName:"status" type:"string" enum:"TargetGroupStatus"`
 
 	// The type of target group.
@@ -8010,9 +8016,9 @@ type DeleteServiceNetworkServiceAssociationOutput struct {
 	// The ID of the association.
 	Id *string `locationName:"id" min:"17" type:"string"`
 
-	// The operation's status. You can retry the operation if the status is DELETE_FAILED.
-	// However, if you retry it when the status is DELETE_IN_PROGRESS, there is
-	// no change in the status.
+	// The status. You can retry the operation if the status is DELETE_FAILED. However,
+	// if you retry it when the status is DELETE_IN_PROGRESS, there is no change
+	// in the status.
 	Status *string `locationName:"status" type:"string" enum:"ServiceNetworkServiceAssociationStatus"`
 }
 
@@ -8111,7 +8117,7 @@ type DeleteServiceNetworkVpcAssociationOutput struct {
 	Id *string `locationName:"id" min:"22" type:"string"`
 
 	// The status. You can retry the operation if the status is DELETE_FAILED. However,
-	// if you retry it when the status is DELETE_IN_PROGRESS, there is no change
+	// if you retry it while the status is DELETE_IN_PROGRESS, there is no change
 	// in the status.
 	Status *string `locationName:"status" type:"string" enum:"ServiceNetworkVpcAssociationStatus"`
 }
@@ -8469,7 +8475,7 @@ func (s *DnsEntry) SetHostedZoneId(v string) *DnsEntry {
 	return s
 }
 
-// Information about an action that returns a custom HTTP response.
+// Describes an action that returns a custom HTTP response.
 type FixedResponseAction struct {
 	_ struct{} `type:"structure"`
 
@@ -8532,7 +8538,7 @@ type ForwardAction struct {
 	// of the traffic.
 	//
 	// The default value is 1. This means that if only one target group is provided,
-	// there is no need to set the weight; 100% of traffic will go to that target
+	// there is no need to set the weight; 100% of the traffic goes to that target
 	// group.
 	//
 	// TargetGroups is a required field
@@ -8803,10 +8809,10 @@ type GetAuthPolicyOutput struct {
 	Policy *string `locationName:"policy" type:"string"`
 
 	// The state of the auth policy. The auth policy is only active when the auth
-	// type is set to Amazon Web Services_IAM. If you provide a policy, then authentication
-	// and authorization decisions are made based on this policy and the client's
-	// IAM policy. If the auth type is NONE, then any auth policy you provide will
-	// remain inactive. For more information, see Create a service network (https://docs.aws.amazon.com/vpc-lattice/latest/ug/service-networks.html#create-service-network)
+	// type is set to AWS_IAM. If you provide a policy, then authentication and
+	// authorization decisions are made based on this policy and the client's IAM
+	// policy. If the auth type is NONE, then any auth policy that you provide remains
+	// inactive. For more information, see Create a service network (https://docs.aws.amazon.com/vpc-lattice/latest/ug/service-networks.html#create-service-network)
 	// in the Amazon VPC Lattice User Guide.
 	State *string `locationName:"state" type:"string" enum:"AuthPolicyState"`
 }
@@ -9035,7 +9041,7 @@ func (s *GetListenerOutput) SetServiceId(v string) *GetListenerOutput {
 type GetResourcePolicyInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// An IAM policy.
+	// The Amazon Resource Name (ARN) of the service network or service.
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resourceArn" min:"20" type:"string" required:"true"`
@@ -9084,7 +9090,7 @@ func (s *GetResourcePolicyInput) SetResourceArn(v string) *GetResourcePolicyInpu
 type GetResourcePolicyOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the service network or service.
+	// An IAM policy.
 	Policy *string `locationName:"policy" min:"1" type:"string"`
 }
 
@@ -10198,7 +10204,7 @@ func (s *GetTargetGroupOutput) SetType(v string) *GetTargetGroupOutput {
 type HeaderMatch struct {
 	_ struct{} `type:"structure"`
 
-	// Indicates whether the match is case sensitive. Defaults to false.
+	// Indicates whether the match is case sensitive.
 	CaseSensitive *bool `locationName:"caseSensitive" type:"boolean"`
 
 	// The header match type.
@@ -10272,17 +10278,17 @@ func (s *HeaderMatch) SetName(v string) *HeaderMatch {
 	return s
 }
 
-// Describes a header match type. Only one can be provided.
+// Describes a header match type.
 type HeaderMatchType struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies a contains type match.
+	// A contains type match.
 	Contains *string `locationName:"contains" min:"1" type:"string"`
 
-	// Specifies an exact type match.
+	// An exact type match.
 	Exact *string `locationName:"exact" min:"1" type:"string"`
 
-	// Specifies a prefix type match. Matches the value with the prefix.
+	// A prefix type match. Matches the value with the prefix.
 	Prefix *string `locationName:"prefix" min:"1" type:"string"`
 }
 
@@ -10341,8 +10347,8 @@ func (s *HeaderMatchType) SetPrefix(v string) *HeaderMatchType {
 	return s
 }
 
-// The health check configuration of a target group. Health check configurations
-// aren't used for LAMBDA and ALB target groups.
+// Describes the health check configuration of a target group. Health check
+// configurations aren't used for target groups of type LAMBDA or ALB.
 type HealthCheckConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -10361,8 +10367,7 @@ type HealthCheckConfig struct {
 	// an unhealthy target healthy. The range is 2–10. The default is 5.
 	HealthyThresholdCount *int64 `locationName:"healthyThresholdCount" type:"integer"`
 
-	// The codes to use when checking for a successful response from a target. These
-	// are called Success codes in the console.
+	// The codes to use when checking for a successful response from a target.
 	Matcher *Matcher `locationName:"matcher" type:"structure"`
 
 	// The destination for health checks on the targets. If the protocol version
@@ -10688,7 +10693,7 @@ func (s *ListAccessLogSubscriptionsInput) SetResourceIdentifier(v string) *ListA
 type ListAccessLogSubscriptionsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The access log subscriptions.
+	// Information about the access log subscriptions.
 	//
 	// Items is a required field
 	Items []*AccessLogSubscriptionSummary `locationName:"items" type:"list" required:"true"`
@@ -11380,7 +11385,7 @@ func (s *ListServicesInput) SetNextToken(v string) *ListServicesInput {
 type ListServicesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The services.
+	// Information about the services.
 	Items []*ServiceSummary `locationName:"items" type:"list"`
 
 	// If there are additional results, a pagination token for the next page of
@@ -11470,7 +11475,7 @@ func (s *ListTagsForResourceInput) SetResourceArn(v string) *ListTagsForResource
 type ListTagsForResourceOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The tags.
+	// Information about the tags.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -11510,7 +11515,7 @@ type ListTargetGroupsInput struct {
 	// The target group type.
 	TargetGroupType *string `location:"querystring" locationName:"targetGroupType" type:"string" enum:"TargetGroupType"`
 
-	// The ID or Amazon Resource Name (ARN) of the service.
+	// The ID or Amazon Resource Name (ARN) of the VPC.
 	VpcIdentifier *string `location:"querystring" locationName:"vpcIdentifier" min:"5" type:"string"`
 }
 
@@ -11630,7 +11635,7 @@ type ListTargetsInput struct {
 	// TargetGroupIdentifier is a required field
 	TargetGroupIdentifier *string `location:"uri" locationName:"targetGroupIdentifier" min:"17" type:"string" required:"true"`
 
-	// The targets to list.
+	// The targets.
 	Targets []*Target `locationName:"targets" type:"list"`
 }
 
@@ -11838,8 +11843,8 @@ func (s *ListenerSummary) SetProtocol(v string) *ListenerSummary {
 	return s
 }
 
-// The codes to use when checking for a successful response from a target for
-// health checks.
+// Describes the codes to use when checking for a successful response from a
+// target for health checks.
 type Matcher struct {
 	_ struct{} `type:"structure"`
 
@@ -11876,7 +11881,7 @@ func (s *Matcher) SetHttpCode(v string) *Matcher {
 type PathMatch struct {
 	_ struct{} `type:"structure"`
 
-	// Indicates whether the match is case sensitive. Defaults to false.
+	// Indicates whether the match is case sensitive.
 	CaseSensitive *bool `locationName:"caseSensitive" type:"boolean"`
 
 	// The type of path match.
@@ -11994,7 +11999,8 @@ func (s *PathMatchType) SetPrefix(v string) *PathMatchType {
 type PutAuthPolicyInput struct {
 	_ struct{} `type:"structure"`
 
-	// The auth policy.
+	// The auth policy. The policy string in JSON must not contain newlines or blank
+	// lines.
 	//
 	// Policy is a required field
 	Policy *string `locationName:"policy" type:"string" required:"true"`
@@ -12058,14 +12064,15 @@ func (s *PutAuthPolicyInput) SetResourceIdentifier(v string) *PutAuthPolicyInput
 type PutAuthPolicyOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The auth policy.
+	// The auth policy. The policy string in JSON must not contain newlines or blank
+	// lines.
 	Policy *string `locationName:"policy" type:"string"`
 
 	// The state of the auth policy. The auth policy is only active when the auth
-	// type is set to Amazon Web Services_IAM. If you provide a policy, then authentication
-	// and authorization decisions are made based on this policy and the client's
-	// IAM policy. If the Auth type is NONE, then, any auth policy you provide will
-	// remain inactive. For more information, see Create a service network (https://docs.aws.amazon.com/vpc-lattice/latest/ug/service-networks.html#create-service-network)
+	// type is set to AWS_IAM. If you provide a policy, then authentication and
+	// authorization decisions are made based on this policy and the client's IAM
+	// policy. If the Auth type is NONE, then, any auth policy that you provide
+	// remains inactive. For more information, see Create a service network (https://docs.aws.amazon.com/vpc-lattice/latest/ug/service-networks.html#create-service-network)
 	// in the Amazon VPC Lattice User Guide.
 	State *string `locationName:"state" type:"string" enum:"AuthPolicyState"`
 }
@@ -12103,7 +12110,8 @@ func (s *PutAuthPolicyOutput) SetState(v string) *PutAuthPolicyOutput {
 type PutResourcePolicyInput struct {
 	_ struct{} `type:"structure"`
 
-	// An IAM policy.
+	// An IAM policy. The policy string in JSON must not contain newlines or blank
+	// lines.
 	//
 	// Policy is a required field
 	Policy *string `locationName:"policy" min:"1" type:"string" required:"true"`
@@ -12379,13 +12387,11 @@ func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Describes the action for a rule. Each rule must include exactly one of the
-// following types of actions: forward or fixed-response, and it must be the
-// last action to be performed.
+// Describes the action for a rule.
 type RuleAction struct {
 	_ struct{} `type:"structure"`
 
-	// Describes the rule action that returns a custom HTTP response.
+	// The fixed response action. The rule returns a custom HTTP response.
 	FixedResponse *FixedResponseAction `locationName:"fixedResponse" type:"structure"`
 
 	// The forward action. Traffic that matches the rule is forwarded to the specified
@@ -12504,9 +12510,7 @@ type RuleSummary struct {
 	// The ID of the rule.
 	Id *string `locationName:"id" min:"5" type:"string"`
 
-	// Indicates whether this is the default rule. Listener rules are created when
-	// you create a listener. Each listener has a default rule for checking connection
-	// requests.
+	// Indicates whether this is the default listener rule.
 	IsDefault *bool `locationName:"isDefault" type:"boolean"`
 
 	// The date and time that the listener rule was last updated, specified in ISO-8601
@@ -12580,7 +12584,7 @@ func (s *RuleSummary) SetPriority(v int64) *RuleSummary {
 	return s
 }
 
-// Represents an object when updating a rule.
+// Describes a rule update.
 type RuleUpdate struct {
 	_ struct{} `type:"structure"`
 
@@ -12724,7 +12728,7 @@ func (s *RuleUpdateFailure) SetRuleIdentifier(v string) *RuleUpdateFailure {
 type RuleUpdateSuccess struct {
 	_ struct{} `type:"structure"`
 
-	// The action for the default rule.
+	// The action for the rule.
 	Action *RuleAction `locationName:"action" type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the listener.
@@ -12824,7 +12828,7 @@ type ServiceNetworkServiceAssociationSummary struct {
 	// The custom domain name of the service.
 	CustomDomainName *string `locationName:"customDomainName" min:"3" type:"string"`
 
-	// DNS information about the service.
+	// The DNS information.
 	DnsEntry *DnsEntry `locationName:"dnsEntry" type:"structure"`
 
 	// The ID of the association.
@@ -13247,7 +13251,7 @@ type ServiceSummary struct {
 	// The custom domain name of the service.
 	CustomDomainName *string `locationName:"customDomainName" min:"3" type:"string"`
 
-	// DNS information about the service.
+	// The DNS information.
 	DnsEntry *DnsEntry `locationName:"dnsEntry" type:"structure"`
 
 	// The ID of the service.
@@ -13418,10 +13422,10 @@ func (s TagResourceOutput) GoString() string {
 type Target struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the target. If the target type of the target group is INSTANCE,
-	// this is an instance ID. If the target type is IP , this is an IP address.
-	// If the target type is LAMBDA, this is the ARN of the Lambda function. If
-	// the target type is ALB, this is the ARN of the Application Load Balancer.
+	// The ID of the target. If the target group type is INSTANCE, this is an instance
+	// ID. If the target group type is IP, this is an IP address. If the target
+	// group type is LAMBDA, this is the ARN of a Lambda function. If the target
+	// group type is ALB, this is the ARN of an Application Load Balancer.
 	//
 	// Id is a required field
 	Id *string `locationName:"id" min:"1" type:"string" required:"true"`
@@ -13490,10 +13494,10 @@ type TargetFailure struct {
 	// The failure message.
 	FailureMessage *string `locationName:"failureMessage" type:"string"`
 
-	// The ID of the target. If the target type of the target group is INSTANCE,
-	// this is an instance ID. If the target type is IP , this is an IP address.
-	// If the target type is LAMBDA, this is the ARN of the Lambda function. If
-	// the target type is ALB, this is the ARN of the Application Load Balancer.
+	// The ID of the target. If the target group type is INSTANCE, this is an instance
+	// ID. If the target group type is IP, this is an IP address. If the target
+	// group type is LAMBDA, this is the ARN of a Lambda function. If the target
+	// group type is ALB, this is the ARN of an Application Load Balancer.
 	Id *string `locationName:"id" type:"string"`
 
 	// The port on which the target is listening. This parameter doesn't apply if
@@ -13543,34 +13547,39 @@ func (s *TargetFailure) SetPort(v int64) *TargetFailure {
 	return s
 }
 
-// Describes the configuration of a target group. Lambda functions don't support
-// target group configuration.
+// Describes the configuration of a target group.
+//
+// For more information, see Target groups (https://docs.aws.amazon.com/vpc-lattice/latest/ug/target-groups.html)
+// in the Amazon VPC Lattice User Guide.
 type TargetGroupConfig struct {
 	_ struct{} `type:"structure"`
 
-	// The health check configuration.
+	// The health check configuration. Not supported if the target group type is
+	// LAMBDA or ALB.
 	HealthCheck *HealthCheckConfig `locationName:"healthCheck" type:"structure"`
 
-	// The type of IP address used for the target group. The possible values are
-	// ipv4 and ipv6. This is an optional parameter. If not specified, the IP address
-	// type defaults to ipv4.
+	// The type of IP address used for the target group. Supported only if the target
+	// group type is IP. The default is IPV4.
 	IpAddressType *string `locationName:"ipAddressType" type:"string" enum:"IpAddressType"`
 
-	// Lambda event structure version
+	// The version of the event structure that your Lambda function receives. Supported
+	// only if the target group type is LAMBDA. The default is V1.
 	LambdaEventStructureVersion *string `locationName:"lambdaEventStructureVersion" type:"string" enum:"LambdaEventStructureVersion"`
 
 	// The port on which the targets are listening. For HTTP, the default is 80.
-	// For HTTPS, the default is 443
+	// For HTTPS, the default is 443. Not supported if the target group type is
+	// LAMBDA.
 	Port *int64 `locationName:"port" min:"1" type:"integer"`
 
-	// The protocol to use for routing traffic to the targets. Default is the protocol
-	// of a target group.
+	// The protocol to use for routing traffic to the targets. The default is the
+	// protocol of the target group. Not supported if the target group type is LAMBDA.
 	Protocol *string `locationName:"protocol" type:"string" enum:"TargetGroupProtocol"`
 
-	// The protocol version. Default value is HTTP1.
+	// The protocol version. The default is HTTP1. Not supported if the target group
+	// type is LAMBDA.
 	ProtocolVersion *string `locationName:"protocolVersion" type:"string" enum:"TargetGroupProtocolVersion"`
 
-	// The ID of the VPC.
+	// The ID of the VPC. Not supported if the target group type is LAMBDA.
 	VpcIdentifier *string `locationName:"vpcIdentifier" min:"5" type:"string"`
 }
 
@@ -13651,6 +13660,9 @@ func (s *TargetGroupConfig) SetVpcIdentifier(v string) *TargetGroupConfig {
 }
 
 // Summary information about a target group.
+//
+// For more information, see Target groups (https://docs.aws.amazon.com/vpc-lattice/latest/ug/target-groups.html)
+// in the Amazon VPC Lattice User Guide.
 type TargetGroupSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -13665,11 +13677,12 @@ type TargetGroupSummary struct {
 	Id *string `locationName:"id" min:"20" type:"string"`
 
 	// The type of IP address used for the target group. The possible values are
-	// ipv4 and ipv6. This is an optional parameter. If not specified, the IP address
-	// type defaults to ipv4.
+	// IPV4 and IPV6. This is an optional parameter. If not specified, the default
+	// is IPV4.
 	IpAddressType *string `locationName:"ipAddressType" type:"string" enum:"IpAddressType"`
 
-	// Lambda event structure version
+	// The version of the event structure that your Lambda function receives. Supported
+	// only if the target group type is LAMBDA.
 	LambdaEventStructureVersion *string `locationName:"lambdaEventStructureVersion" type:"string" enum:"LambdaEventStructureVersion"`
 
 	// The date and time that the target group was last updated, specified in ISO-8601
@@ -13685,7 +13698,7 @@ type TargetGroupSummary struct {
 	// The protocol of the target group.
 	Protocol *string `locationName:"protocol" type:"string" enum:"TargetGroupProtocol"`
 
-	// The list of Amazon Resource Names (ARNs) of the service.
+	// The Amazon Resource Names (ARNs) of the service.
 	ServiceArns []*string `locationName:"serviceArns" type:"list"`
 
 	// The status.
@@ -13798,10 +13811,10 @@ func (s *TargetGroupSummary) SetVpcIdentifier(v string) *TargetGroupSummary {
 type TargetSummary struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the target. If the target type of the target group is INSTANCE,
-	// this is an instance ID. If the target type is IP , this is an IP address.
-	// If the target type is LAMBDA, this is the ARN of the Lambda function. If
-	// the target type is ALB, this is the ARN of the Application Load Balancer.
+	// The ID of the target. If the target group type is INSTANCE, this is an instance
+	// ID. If the target group type is IP, this is an IP address. If the target
+	// group type is LAMBDA, this is the ARN of a Lambda function. If the target
+	// type is ALB, this is the ARN of an Application Load Balancer.
 	Id *string `locationName:"id" type:"string"`
 
 	// The port on which the target is listening.
@@ -13812,19 +13825,19 @@ type TargetSummary struct {
 
 	// The status of the target.
 	//
-	//    * Draining: The target is being deregistered. No new connections will
-	//    be sent to this target while current connections are being drained. Default
+	//    * DRAINING: The target is being deregistered. No new connections are sent
+	//    to this target while current connections are being drained. The default
 	//    draining time is 5 minutes.
 	//
-	//    * Unavailable: Health checks are unavailable for the target group.
+	//    * UNAVAILABLE: Health checks are unavailable for the target group.
 	//
-	//    * Healthy: The target is healthy.
+	//    * HEALTHY: The target is healthy.
 	//
-	//    * Unhealthy: The target is unhealthy.
+	//    * UNHEALTHY: The target is unhealthy.
 	//
-	//    * Initial: Initial health checks on the target are being performed.
+	//    * INITIAL: Initial health checks on the target are being performed.
 	//
-	//    * Unused: Target group is not used in a service.
+	//    * UNUSED: Target group is not used in a service.
 	Status *string `locationName:"status" type:"string" enum:"TargetStatus"`
 }
 
@@ -14759,8 +14772,7 @@ func (s *UpdateServiceNetworkOutput) SetName(v string) *UpdateServiceNetworkOutp
 type UpdateServiceNetworkVpcAssociationInput struct {
 	_ struct{} `type:"structure"`
 
-	// The IDs of the security groups. Once you add a security group, it cannot
-	// be removed.
+	// The IDs of the security groups.
 	//
 	// SecurityGroupIds is a required field
 	SecurityGroupIds []*string `locationName:"securityGroupIds" min:"1" type:"list" required:"true"`
@@ -15184,7 +15196,7 @@ func (s *ValidationException) RequestID() string {
 type ValidationExceptionField struct {
 	_ struct{} `type:"structure"`
 
-	// Additional details about why the validation failed.
+	// Additional information about why the validation failed.
 	//
 	// Message is a required field
 	Message *string `locationName:"message" type:"string" required:"true"`
@@ -15235,9 +15247,9 @@ type WeightedTargetGroup struct {
 	TargetGroupIdentifier *string `locationName:"targetGroupIdentifier" min:"17" type:"string" required:"true"`
 
 	// Only required if you specify multiple target groups for a forward action.
-	// The "weight" determines how requests are distributed to the target group.
-	// For example, if you specify two target groups, each with a weight of 10,
-	// each target group receives half the requests. If you specify two target groups,
+	// The weight determines how requests are distributed to the target group. For
+	// example, if you specify two target groups, each with a weight of 10, each
+	// target group receives half the requests. If you specify two target groups,
 	// one with a weight of 10 and the other with a weight of 20, the target group
 	// with a weight of 20 receives twice as many requests as the other target group.
 	// If there's only one target group specified, then the default value is 100.
@@ -15376,6 +15388,9 @@ const (
 
 	// ListenerProtocolHttps is a ListenerProtocol enum value
 	ListenerProtocolHttps = "HTTPS"
+
+	// ListenerProtocolTlsPassthrough is a ListenerProtocol enum value
+	ListenerProtocolTlsPassthrough = "TLS_PASSTHROUGH"
 )
 
 // ListenerProtocol_Values returns all elements of the ListenerProtocol enum
@@ -15383,6 +15398,7 @@ func ListenerProtocol_Values() []string {
 	return []string{
 		ListenerProtocolHttp,
 		ListenerProtocolHttps,
+		ListenerProtocolTlsPassthrough,
 	}
 }
 
@@ -15484,6 +15500,9 @@ const (
 
 	// TargetGroupProtocolHttps is a TargetGroupProtocol enum value
 	TargetGroupProtocolHttps = "HTTPS"
+
+	// TargetGroupProtocolTcp is a TargetGroupProtocol enum value
+	TargetGroupProtocolTcp = "TCP"
 )
 
 // TargetGroupProtocol_Values returns all elements of the TargetGroupProtocol enum
@@ -15491,6 +15510,7 @@ func TargetGroupProtocol_Values() []string {
 	return []string{
 		TargetGroupProtocolHttp,
 		TargetGroupProtocolHttps,
+		TargetGroupProtocolTcp,
 	}
 }
 

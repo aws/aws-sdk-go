@@ -1,3 +1,10 @@
+Release v1.53.1 (2024-05-13)
+===
+
+### Service Client Updates
+* `service/eventbridge`: Updates service API and documentation
+* `service/vpc-lattice`: Updates service API and documentation
+
 Release v1.53.0 (2024-05-10)
 ===
 

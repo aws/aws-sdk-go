@@ -2360,7 +2360,8 @@
       "type":"string",
       "enum":[
         "HTTP",
-        "HTTPS"
+        "HTTPS",
+        "TLS_PASSTHROUGH"
       ]
     },
     "ListenerSummary":{
@@ -2985,7 +2986,8 @@
       "type":"string",
       "enum":[
         "HTTP",
-        "HTTPS"
+        "HTTPS",
+        "TCP"
       ]
     },
     "TargetGroupProtocolVersion":{
@@ -3395,7 +3397,7 @@
     "WeightedTargetGroupList":{
       "type":"list",
       "member":{"shape":"WeightedTargetGroup"},
-      "max":2,
+      "max":10,
       "min":1
     }
   }
