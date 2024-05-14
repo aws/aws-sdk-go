@@ -1,3 +1,11 @@
+Release v1.53.2 (2024-05-14)
+===
+
+### Service Client Updates
+* `service/connect`: Updates service API, documentation, and paginators
+* `service/s3`: Updates service API and examples
+  * Updated a few x-id in the http uri traits
+
 Release v1.53.1 (2024-05-13)
 ===
 

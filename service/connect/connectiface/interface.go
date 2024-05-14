@@ -889,6 +889,20 @@ type ConnectAPI interface {
 	SearchAvailablePhoneNumbersPages(*connect.SearchAvailablePhoneNumbersInput, func(*connect.SearchAvailablePhoneNumbersOutput, bool) bool) error
 	SearchAvailablePhoneNumbersPagesWithContext(aws.Context, *connect.SearchAvailablePhoneNumbersInput, func(*connect.SearchAvailablePhoneNumbersOutput, bool) bool, ...request.Option) error
 
+	SearchContactFlowModules(*connect.SearchContactFlowModulesInput) (*connect.SearchContactFlowModulesOutput, error)
+	SearchContactFlowModulesWithContext(aws.Context, *connect.SearchContactFlowModulesInput, ...request.Option) (*connect.SearchContactFlowModulesOutput, error)
+	SearchContactFlowModulesRequest(*connect.SearchContactFlowModulesInput) (*request.Request, *connect.SearchContactFlowModulesOutput)
+
+	SearchContactFlowModulesPages(*connect.SearchContactFlowModulesInput, func(*connect.SearchContactFlowModulesOutput, bool) bool) error
+	SearchContactFlowModulesPagesWithContext(aws.Context, *connect.SearchContactFlowModulesInput, func(*connect.SearchContactFlowModulesOutput, bool) bool, ...request.Option) error
+
+	SearchContactFlows(*connect.SearchContactFlowsInput) (*connect.SearchContactFlowsOutput, error)
+	SearchContactFlowsWithContext(aws.Context, *connect.SearchContactFlowsInput, ...request.Option) (*connect.SearchContactFlowsOutput, error)
+	SearchContactFlowsRequest(*connect.SearchContactFlowsInput) (*request.Request, *connect.SearchContactFlowsOutput)
+
+	SearchContactFlowsPages(*connect.SearchContactFlowsInput, func(*connect.SearchContactFlowsOutput, bool) bool) error
+	SearchContactFlowsPagesWithContext(aws.Context, *connect.SearchContactFlowsInput, func(*connect.SearchContactFlowsOutput, bool) bool, ...request.Option) error
+
 	SearchContacts(*connect.SearchContactsInput) (*connect.SearchContactsOutput, error)
 	SearchContactsWithContext(aws.Context, *connect.SearchContactsInput, ...request.Option) (*connect.SearchContactsOutput, error)
 	SearchContactsRequest(*connect.SearchContactsInput) (*request.Request, *connect.SearchContactsOutput)

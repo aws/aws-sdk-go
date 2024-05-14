@@ -2815,6 +2815,38 @@
         {"shape":"AccessDeniedException"}
       ]
     },
+    "SearchContactFlowModules":{
+      "name":"SearchContactFlowModules",
+      "http":{
+        "method":"POST",
+        "requestUri":"/search-contact-flow-modules"
+      },
+      "input":{"shape":"SearchContactFlowModulesRequest"},
+      "output":{"shape":"SearchContactFlowModulesResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
+    "SearchContactFlows":{
+      "name":"SearchContactFlows",
+      "http":{
+        "method":"POST",
+        "requestUri":"/search-contact-flows"
+      },
+      "input":{"shape":"SearchContactFlowsRequest"},
+      "output":{"shape":"SearchContactFlowsResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
     "SearchContacts":{
       "name":"SearchContacts",
       "http":{
@@ -5166,6 +5198,7 @@
         "Name":{"shape":"ContactFlowName"},
         "Type":{"shape":"ContactFlowType"},
         "State":{"shape":"ContactFlowState"},
+        "Status":{"shape":"ContactFlowStatus"},
         "Description":{"shape":"ContactFlowDescription"},
         "Content":{"shape":"ContactFlowContent"},
         "Tags":{"shape":"TagMap"}
@@ -5212,6 +5245,28 @@
       "min":1,
       "pattern":".*\\S.*"
     },
+    "ContactFlowModuleSearchConditionList":{
+      "type":"list",
+      "member":{"shape":"ContactFlowModuleSearchCriteria"}
+    },
+    "ContactFlowModuleSearchCriteria":{
+      "type":"structure",
+      "members":{
+        "OrConditions":{"shape":"ContactFlowModuleSearchConditionList"},
+        "AndConditions":{"shape":"ContactFlowModuleSearchConditionList"},
+        "StringCondition":{"shape":"StringCondition"}
+      }
+    },
+    "ContactFlowModuleSearchFilter":{
+      "type":"structure",
+      "members":{
+        "TagFilter":{"shape":"ControlPlaneTagFilter"}
+      }
+    },
+    "ContactFlowModuleSearchSummaryList":{
+      "type":"list",
+      "member":{"shape":"ContactFlowModule"}
+    },
     "ContactFlowModuleState":{
       "type":"string",
       "enum":[
@@ -5251,11 +5306,43 @@
       "error":{"httpStatusCode":404},
       "exception":true
     },
+    "ContactFlowSearchConditionList":{
+      "type":"list",
+      "member":{"shape":"ContactFlowSearchCriteria"}
+    },
+    "ContactFlowSearchCriteria":{
+      "type":"structure",
+      "members":{
+        "OrConditions":{"shape":"ContactFlowSearchConditionList"},
+        "AndConditions":{"shape":"ContactFlowSearchConditionList"},
+        "StringCondition":{"shape":"StringCondition"},
+        "TypeCondition":{"shape":"ContactFlowType"},
+        "StateCondition":{"shape":"ContactFlowState"},
+        "StatusCondition":{"shape":"ContactFlowStatus"}
+      }
+    },
+    "ContactFlowSearchFilter":{
+      "type":"structure",
+      "members":{
+        "TagFilter":{"shape":"ControlPlaneTagFilter"}
+      }
+    },
+    "ContactFlowSearchSummaryList":{
+      "type":"list",
+      "member":{"shape":"ContactFlow"}
+    },
     "ContactFlowState":{
       "type":"string",
       "enum":[
         "ACTIVE",
         "ARCHIVED"
+      ]
+    },
+    "ContactFlowStatus":{
+      "type":"string",
+      "enum":[
+        "PUBLISHED",
+        "SAVED"
       ]
     },
     "ContactFlowSummary":{
@@ -5265,7 +5352,8 @@
         "Arn":{"shape":"ARN"},
         "Name":{"shape":"ContactFlowName"},
         "ContactFlowType":{"shape":"ContactFlowType"},
-        "ContactFlowState":{"shape":"ContactFlowState"}
+        "ContactFlowState":{"shape":"ContactFlowState"},
+        "ContactFlowStatus":{"shape":"ContactFlowStatus"}
       }
     },
     "ContactFlowSummaryList":{
@@ -5515,6 +5603,7 @@
         "Type":{"shape":"ContactFlowType"},
         "Description":{"shape":"ContactFlowDescription"},
         "Content":{"shape":"ContactFlowContent"},
+        "Status":{"shape":"ContactFlowStatus"},
         "Tags":{"shape":"TagMap"}
       }
     },
@@ -13091,6 +13180,50 @@
       "members":{
         "NextToken":{"shape":"LargeNextToken"},
         "AvailableNumbersList":{"shape":"AvailableNumbersList"}
+      }
+    },
+    "SearchContactFlowModulesRequest":{
+      "type":"structure",
+      "required":["InstanceId"],
+      "members":{
+        "InstanceId":{"shape":"InstanceId"},
+        "NextToken":{"shape":"NextToken2500"},
+        "MaxResults":{
+          "shape":"MaxResult100",
+          "box":true
+        },
+        "SearchFilter":{"shape":"ContactFlowModuleSearchFilter"},
+        "SearchCriteria":{"shape":"ContactFlowModuleSearchCriteria"}
+      }
+    },
+    "SearchContactFlowModulesResponse":{
+      "type":"structure",
+      "members":{
+        "ContactFlowModules":{"shape":"ContactFlowModuleSearchSummaryList"},
+        "NextToken":{"shape":"NextToken2500"},
+        "ApproximateTotalCount":{"shape":"ApproximateTotalCount"}
+      }
+    },
+    "SearchContactFlowsRequest":{
+      "type":"structure",
+      "required":["InstanceId"],
+      "members":{
+        "InstanceId":{"shape":"InstanceId"},
+        "NextToken":{"shape":"NextToken2500"},
+        "MaxResults":{
+          "shape":"MaxResult100",
+          "box":true
+        },
+        "SearchFilter":{"shape":"ContactFlowSearchFilter"},
+        "SearchCriteria":{"shape":"ContactFlowSearchCriteria"}
+      }
+    },
+    "SearchContactFlowsResponse":{
+      "type":"structure",
+      "members":{
+        "ContactFlows":{"shape":"ContactFlowSearchSummaryList"},
+        "NextToken":{"shape":"NextToken2500"},
+        "ApproximateTotalCount":{"shape":"ApproximateTotalCount"}
       }
     },
     "SearchContactsMatchType":{
