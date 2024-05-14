@@ -7186,6 +7186,15 @@ func (c *Connect) DescribeContactFlowRequest(input *DescribeContactFlowInput) (r
 // You can also create and update flows using the Amazon Connect Flow language
 // (https://docs.aws.amazon.com/connect/latest/APIReference/flow-language.html).
 //
+// Use the $SAVED alias in the request to describe the SAVED content of a Flow.
+// For example, arn:aws:.../contact-flow/{id}:$SAVED. Once a contact flow is
+// published, $SAVED needs to be supplied to view saved content that has not
+// been published.
+//
+// In the response, Status indicates the flow status as either SAVED or PUBLISHED.
+// The PUBLISHED status will initiate validation on the content. SAVED does
+// not initiate validation of the content. SAVED | PUBLISHED
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -7279,6 +7288,11 @@ func (c *Connect) DescribeContactFlowModuleRequest(input *DescribeContactFlowMod
 // DescribeContactFlowModule API operation for Amazon Connect Service.
 //
 // Describes the specified flow module.
+//
+// Use the $SAVED alias in the request to describe the SAVED content of a Flow.
+// For example, arn:aws:.../contact-flow/{id}:$SAVED. Once a contact flow is
+// published, $SAVED needs to be supplied to view saved content that has not
+// been published.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -19151,6 +19165,302 @@ func (c *Connect) SearchAvailablePhoneNumbersPagesWithContext(ctx aws.Context, i
 	return p.Err()
 }
 
+const opSearchContactFlowModules = "SearchContactFlowModules"
+
+// SearchContactFlowModulesRequest generates a "aws/request.Request" representing the
+// client's request for the SearchContactFlowModules operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See SearchContactFlowModules for more information on using the SearchContactFlowModules
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the SearchContactFlowModulesRequest method.
+//	req, resp := client.SearchContactFlowModulesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/SearchContactFlowModules
+func (c *Connect) SearchContactFlowModulesRequest(input *SearchContactFlowModulesInput) (req *request.Request, output *SearchContactFlowModulesOutput) {
+	op := &request.Operation{
+		Name:       opSearchContactFlowModules,
+		HTTPMethod: "POST",
+		HTTPPath:   "/search-contact-flow-modules",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &SearchContactFlowModulesInput{}
+	}
+
+	output = &SearchContactFlowModulesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// SearchContactFlowModules API operation for Amazon Connect Service.
+//
+// Searches the flow modules in an Amazon Connect instance, with optional filtering.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation SearchContactFlowModules for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/SearchContactFlowModules
+func (c *Connect) SearchContactFlowModules(input *SearchContactFlowModulesInput) (*SearchContactFlowModulesOutput, error) {
+	req, out := c.SearchContactFlowModulesRequest(input)
+	return out, req.Send()
+}
+
+// SearchContactFlowModulesWithContext is the same as SearchContactFlowModules with the addition of
+// the ability to pass a context and additional request options.
+//
+// See SearchContactFlowModules for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) SearchContactFlowModulesWithContext(ctx aws.Context, input *SearchContactFlowModulesInput, opts ...request.Option) (*SearchContactFlowModulesOutput, error) {
+	req, out := c.SearchContactFlowModulesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// SearchContactFlowModulesPages iterates over the pages of a SearchContactFlowModules operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See SearchContactFlowModules method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a SearchContactFlowModules operation.
+//	pageNum := 0
+//	err := client.SearchContactFlowModulesPages(params,
+//	    func(page *connect.SearchContactFlowModulesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Connect) SearchContactFlowModulesPages(input *SearchContactFlowModulesInput, fn func(*SearchContactFlowModulesOutput, bool) bool) error {
+	return c.SearchContactFlowModulesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// SearchContactFlowModulesPagesWithContext same as SearchContactFlowModulesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) SearchContactFlowModulesPagesWithContext(ctx aws.Context, input *SearchContactFlowModulesInput, fn func(*SearchContactFlowModulesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *SearchContactFlowModulesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.SearchContactFlowModulesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*SearchContactFlowModulesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opSearchContactFlows = "SearchContactFlows"
+
+// SearchContactFlowsRequest generates a "aws/request.Request" representing the
+// client's request for the SearchContactFlows operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See SearchContactFlows for more information on using the SearchContactFlows
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the SearchContactFlowsRequest method.
+//	req, resp := client.SearchContactFlowsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/SearchContactFlows
+func (c *Connect) SearchContactFlowsRequest(input *SearchContactFlowsInput) (req *request.Request, output *SearchContactFlowsOutput) {
+	op := &request.Operation{
+		Name:       opSearchContactFlows,
+		HTTPMethod: "POST",
+		HTTPPath:   "/search-contact-flows",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &SearchContactFlowsInput{}
+	}
+
+	output = &SearchContactFlowsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// SearchContactFlows API operation for Amazon Connect Service.
+//
+// Searches the contact flows in an Amazon Connect instance, with optional filtering.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation SearchContactFlows for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/SearchContactFlows
+func (c *Connect) SearchContactFlows(input *SearchContactFlowsInput) (*SearchContactFlowsOutput, error) {
+	req, out := c.SearchContactFlowsRequest(input)
+	return out, req.Send()
+}
+
+// SearchContactFlowsWithContext is the same as SearchContactFlows with the addition of
+// the ability to pass a context and additional request options.
+//
+// See SearchContactFlows for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) SearchContactFlowsWithContext(ctx aws.Context, input *SearchContactFlowsInput, opts ...request.Option) (*SearchContactFlowsOutput, error) {
+	req, out := c.SearchContactFlowsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// SearchContactFlowsPages iterates over the pages of a SearchContactFlows operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See SearchContactFlows method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a SearchContactFlows operation.
+//	pageNum := 0
+//	err := client.SearchContactFlowsPages(params,
+//	    func(page *connect.SearchContactFlowsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Connect) SearchContactFlowsPages(input *SearchContactFlowsInput, fn func(*SearchContactFlowsOutput, bool) bool) error {
+	return c.SearchContactFlowsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// SearchContactFlowsPagesWithContext same as SearchContactFlowsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) SearchContactFlowsPagesWithContext(ctx aws.Context, input *SearchContactFlowsInput, fn func(*SearchContactFlowsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *SearchContactFlowsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.SearchContactFlowsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*SearchContactFlowsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opSearchContacts = "SearchContacts"
 
 // SearchContactsRequest generates a "aws/request.Request" representing the
@@ -23156,6 +23466,11 @@ func (c *Connect) UpdateContactFlowContentRequest(input *UpdateContactFlowConten
 // You can also create and update flows using the Amazon Connect Flow language
 // (https://docs.aws.amazon.com/connect/latest/APIReference/flow-language.html).
 //
+// Use the $SAVED alias in the request to describe the SAVED content of a Flow.
+// For example, arn:aws:.../contact-flow/{id}:$SAVED. Once a contact flow is
+// published, $SAVED needs to be supplied to view saved content that has not
+// been published.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -23345,6 +23660,11 @@ func (c *Connect) UpdateContactFlowModuleContentRequest(input *UpdateContactFlow
 // UpdateContactFlowModuleContent API operation for Amazon Connect Service.
 //
 // Updates specified flow module for the specified Amazon Connect instance.
+//
+// Use the $SAVED alias in the request to describe the SAVED content of a Flow.
+// For example, arn:aws:.../contact-flow/{id}:$SAVED. Once a contact flow is
+// published, $SAVED needs to be supplied to view saved content that has not
+// been published.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -32000,6 +32320,9 @@ type ContactFlow struct {
 	// The type of flow.
 	State *string `type:"string" enum:"ContactFlowState"`
 
+	// The status of the contact flow.
+	Status *string `type:"string" enum:"ContactFlowStatus"`
+
 	// The tags used to organize, track, or control access for this resource. For
 	// example, { "Tags": {"key1":"value1", "key2":"value2"} }.
 	Tags map[string]*string `min:"1" type:"map"`
@@ -32061,6 +32384,12 @@ func (s *ContactFlow) SetName(v string) *ContactFlow {
 // SetState sets the State field's value.
 func (s *ContactFlow) SetState(v string) *ContactFlow {
 	s.State = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ContactFlow) SetStatus(v string) *ContactFlow {
+	s.Status = &v
 	return s
 }
 
@@ -32170,6 +32499,96 @@ func (s *ContactFlowModule) SetStatus(v string) *ContactFlowModule {
 // SetTags sets the Tags field's value.
 func (s *ContactFlowModule) SetTags(v map[string]*string) *ContactFlowModule {
 	s.Tags = v
+	return s
+}
+
+// The search criteria to be used to return flow modules.
+type ContactFlowModuleSearchCriteria struct {
+	_ struct{} `type:"structure"`
+
+	// A list of conditions which would be applied together with an AND condition.
+	AndConditions []*ContactFlowModuleSearchCriteria `type:"list"`
+
+	// A list of conditions which would be applied together with an OR condition.
+	OrConditions []*ContactFlowModuleSearchCriteria `type:"list"`
+
+	// A leaf node condition which can be used to specify a string condition.
+	//
+	// The currently supported values for FieldName are name and description.
+	StringCondition *StringCondition `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContactFlowModuleSearchCriteria) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContactFlowModuleSearchCriteria) GoString() string {
+	return s.String()
+}
+
+// SetAndConditions sets the AndConditions field's value.
+func (s *ContactFlowModuleSearchCriteria) SetAndConditions(v []*ContactFlowModuleSearchCriteria) *ContactFlowModuleSearchCriteria {
+	s.AndConditions = v
+	return s
+}
+
+// SetOrConditions sets the OrConditions field's value.
+func (s *ContactFlowModuleSearchCriteria) SetOrConditions(v []*ContactFlowModuleSearchCriteria) *ContactFlowModuleSearchCriteria {
+	s.OrConditions = v
+	return s
+}
+
+// SetStringCondition sets the StringCondition field's value.
+func (s *ContactFlowModuleSearchCriteria) SetStringCondition(v *StringCondition) *ContactFlowModuleSearchCriteria {
+	s.StringCondition = v
+	return s
+}
+
+// The search criteria to be used to return flow modules.
+type ContactFlowModuleSearchFilter struct {
+	_ struct{} `type:"structure"`
+
+	// An object that can be used to specify Tag conditions inside the SearchFilter.
+	// This accepts an OR of AND (List of List) input where:
+	//
+	//    * Top level list specifies conditions that need to be applied with OR
+	//    operator
+	//
+	//    * Inner list specifies conditions that need to be applied with AND operator.
+	TagFilter *ControlPlaneTagFilter `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContactFlowModuleSearchFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContactFlowModuleSearchFilter) GoString() string {
+	return s.String()
+}
+
+// SetTagFilter sets the TagFilter field's value.
+func (s *ContactFlowModuleSearchFilter) SetTagFilter(v *ControlPlaneTagFilter) *ContactFlowModuleSearchFilter {
+	s.TagFilter = v
 	return s
 }
 
@@ -32296,6 +32715,123 @@ func (s *ContactFlowNotPublishedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The search criteria to be used to return contact flows.
+type ContactFlowSearchCriteria struct {
+	_ struct{} `type:"structure"`
+
+	// A list of conditions which would be applied together with an AND condition.
+	AndConditions []*ContactFlowSearchCriteria `type:"list"`
+
+	// A list of conditions which would be applied together with an OR condition.
+	OrConditions []*ContactFlowSearchCriteria `type:"list"`
+
+	// The state of the flow.
+	StateCondition *string `type:"string" enum:"ContactFlowState"`
+
+	// The status of the flow.
+	StatusCondition *string `type:"string" enum:"ContactFlowStatus"`
+
+	// A leaf node condition which can be used to specify a string condition.
+	//
+	// The currently supported values for FieldName are name and description.
+	StringCondition *StringCondition `type:"structure"`
+
+	// The type of flow.
+	TypeCondition *string `type:"string" enum:"ContactFlowType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContactFlowSearchCriteria) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContactFlowSearchCriteria) GoString() string {
+	return s.String()
+}
+
+// SetAndConditions sets the AndConditions field's value.
+func (s *ContactFlowSearchCriteria) SetAndConditions(v []*ContactFlowSearchCriteria) *ContactFlowSearchCriteria {
+	s.AndConditions = v
+	return s
+}
+
+// SetOrConditions sets the OrConditions field's value.
+func (s *ContactFlowSearchCriteria) SetOrConditions(v []*ContactFlowSearchCriteria) *ContactFlowSearchCriteria {
+	s.OrConditions = v
+	return s
+}
+
+// SetStateCondition sets the StateCondition field's value.
+func (s *ContactFlowSearchCriteria) SetStateCondition(v string) *ContactFlowSearchCriteria {
+	s.StateCondition = &v
+	return s
+}
+
+// SetStatusCondition sets the StatusCondition field's value.
+func (s *ContactFlowSearchCriteria) SetStatusCondition(v string) *ContactFlowSearchCriteria {
+	s.StatusCondition = &v
+	return s
+}
+
+// SetStringCondition sets the StringCondition field's value.
+func (s *ContactFlowSearchCriteria) SetStringCondition(v *StringCondition) *ContactFlowSearchCriteria {
+	s.StringCondition = v
+	return s
+}
+
+// SetTypeCondition sets the TypeCondition field's value.
+func (s *ContactFlowSearchCriteria) SetTypeCondition(v string) *ContactFlowSearchCriteria {
+	s.TypeCondition = &v
+	return s
+}
+
+// Filters to be applied to search results.
+type ContactFlowSearchFilter struct {
+	_ struct{} `type:"structure"`
+
+	// An object that can be used to specify Tag conditions inside the SearchFilter.
+	// This accepts an OR of AND (List of List) input where:
+	//
+	//    * Top level list specifies conditions that need to be applied with OR
+	//    operator
+	//
+	//    * Inner list specifies conditions that need to be applied with AND operator.
+	TagFilter *ControlPlaneTagFilter `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContactFlowSearchFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContactFlowSearchFilter) GoString() string {
+	return s.String()
+}
+
+// SetTagFilter sets the TagFilter field's value.
+func (s *ContactFlowSearchFilter) SetTagFilter(v *ControlPlaneTagFilter) *ContactFlowSearchFilter {
+	s.TagFilter = v
+	return s
+}
+
 // Contains summary information about a flow.
 //
 // You can also create and update flows using the Amazon Connect Flow language
@@ -32308,6 +32844,9 @@ type ContactFlowSummary struct {
 
 	// The type of flow.
 	ContactFlowState *string `type:"string" enum:"ContactFlowState"`
+
+	// The status of the contact flow.
+	ContactFlowStatus *string `type:"string" enum:"ContactFlowStatus"`
 
 	// The type of flow.
 	ContactFlowType *string `type:"string" enum:"ContactFlowType"`
@@ -32346,6 +32885,12 @@ func (s *ContactFlowSummary) SetArn(v string) *ContactFlowSummary {
 // SetContactFlowState sets the ContactFlowState field's value.
 func (s *ContactFlowSummary) SetContactFlowState(v string) *ContactFlowSummary {
 	s.ContactFlowState = &v
+	return s
+}
+
+// SetContactFlowStatus sets the ContactFlowStatus field's value.
+func (s *ContactFlowSummary) SetContactFlowStatus(v string) *ContactFlowSummary {
+	s.ContactFlowStatus = &v
 	return s
 }
 
@@ -33031,6 +33576,11 @@ type CreateContactFlowInput struct {
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
+	// Indicates the flow status as either SAVED or PUBLISHED. The PUBLISHED status
+	// will initiate validation on the content. the SAVED status does not initiate
+	// validation of the content. SAVED | PUBLISHED.
+	Status *string `type:"string" enum:"ContactFlowStatus"`
+
 	// The tags used to organize, track, or control access for this resource. For
 	// example, { "Tags": {"key1":"value1", "key2":"value2"} }.
 	Tags map[string]*string `min:"1" type:"map"`
@@ -33113,6 +33663,12 @@ func (s *CreateContactFlowInput) SetInstanceId(v string) *CreateContactFlowInput
 // SetName sets the Name field's value.
 func (s *CreateContactFlowInput) SetName(v string) *CreateContactFlowInput {
 	s.Name = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *CreateContactFlowInput) SetStatus(v string) *CreateContactFlowInput {
+	s.Status = &v
 	return s
 }
 
@@ -46365,7 +46921,8 @@ type GetAttachedFileInput struct {
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 
-	// Optional override for the expiry of the pre-signed S3 URL in seconds.
+	// Optional override for the expiry of the pre-signed S3 URL in seconds. The
+	// default value is 300.
 	UrlExpiryInSeconds *int64 `location:"querystring" locationName:"urlExpiryInSeconds" min:"5" type:"integer"`
 }
 
@@ -46445,8 +47002,6 @@ type GetAttachedFileOutput struct {
 
 	// The resource to which the attached file is (being) uploaded to. Cases (https://docs.aws.amazon.com/connect/latest/APIReference/API_connect-cases_CreateCase.html)
 	// are the only current supported resource.
-	//
-	// This value must be a valid ARN.
 	AssociatedResourceArn *string `type:"string"`
 
 	// Represents the identity that created the file.
@@ -47813,6 +48368,7 @@ type GetMetricDataV2Input struct {
 	//    | AGENT_HIERARCHY_LEVEL_TWO | AGENT_HIERARCHY_LEVEL_THREE | AGENT_HIERARCHY_LEVEL_FOUR
 	//    | AGENT_HIERARCHY_LEVEL_FIVE | FEATURE | CASE_TEMPLATE_ARN | CASE_STATUS
 	//    | contact/segmentAttributes/connect:Subtype | ROUTING_STEP_EXPRESSION
+	//    | Q_CONNECT_ENABLED
 	//
 	//    * Filter values: A maximum of 100 filter values are supported in a single
 	//    request. VOICE, CHAT, and TASK are valid filterValue for the CHANNEL filter
@@ -47826,7 +48382,12 @@ type GetMetricDataV2Input struct {
 	//    the contact/segmentAttributes/connect:Subtype filter key. ROUTING_STEP_EXPRESSION
 	//    is a valid filter key with a filter value up to 3000 length. This filter
 	//    is case and order sensitive. JSON string fields must be sorted in ascending
-	//    order and JSON array order should be kept as is.
+	//    order and JSON array order should be kept as is. Q_CONNECT_ENABLED. TRUE
+	//    and FALSE are the only valid filterValues for the Q_CONNECT_ENABLED filter
+	//    key. TRUE includes all contacts that had Amazon Q in Connect enabled as
+	//    part of the flow. FALSE includes all contacts that did not have Amazon
+	//    Q in Connect enabled as part of the flow This filter is available only
+	//    for contact record-driven metrics.
 	//
 	// Filters is a required field
 	Filters []*FilterV2 `min:"1" type:"list" required:"true"`
@@ -47841,7 +48402,7 @@ type GetMetricDataV2Input struct {
 	// Valid grouping keys: QUEUE | ROUTING_PROFILE | AGENT | CHANNEL | AGENT_HIERARCHY_LEVEL_ONE
 	// | AGENT_HIERARCHY_LEVEL_TWO | AGENT_HIERARCHY_LEVEL_THREE | AGENT_HIERARCHY_LEVEL_FOUR
 	// | AGENT_HIERARCHY_LEVEL_FIVE | CASE_TEMPLATE_ARN | CASE_STATUS | contact/segmentAttributes/connect:Subtype
-	// | ROUTING_STEP_EXPRESSION
+	// | ROUTING_STEP_EXPRESSION | Q_CONNECT_ENABLED
 	Groupings []*string `type:"list"`
 
 	// The interval period and timezone to apply to returned metrics.
@@ -47877,7 +48438,7 @@ type GetMetricDataV2Input struct {
 	// Unit: Percent
 	//
 	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
-	// Hierarchy, Feature, contact/segmentAttributes/connect:Subtype
+	// Hierarchy, Feature, contact/segmentAttributes/connect:Subtype, Q in Connect
 	//
 	// UI name: Abandonment rate (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#abandonment-rate-historical)
 	//
@@ -47971,7 +48532,7 @@ type GetMetricDataV2Input struct {
 	// Unit: Seconds
 	//
 	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
-	// Hierarchy, Feature, contact/segmentAttributes/connect:Subtype
+	// Hierarchy, Feature, contact/segmentAttributes/connect:Subtype, Q in Connect
 	//
 	// UI name: Average queue abandon time (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#average-queue-abandon-time-historical)
 	//
@@ -47980,7 +48541,7 @@ type GetMetricDataV2Input struct {
 	// Unit: Seconds
 	//
 	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
-	// Hierarchy
+	// Hierarchy, Q in Connect
 	//
 	// UI name: Average active time (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#average-active-time-historical)
 	//
@@ -47991,7 +48552,7 @@ type GetMetricDataV2Input struct {
 	// Valid metric filter key: INITIATION_METHOD
 	//
 	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
-	// Hierarchy, Feature, contact/segmentAttributes/connect:Subtype
+	// Hierarchy, Feature, contact/segmentAttributes/connect:Subtype, Q in Connect
 	//
 	// UI name: Average after contact work time (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#average-acw-time-historical)
 	//
@@ -48016,7 +48577,7 @@ type GetMetricDataV2Input struct {
 	// Unit: Seconds
 	//
 	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
-	// Hierarchy
+	// Hierarchy, Q in Connect
 	//
 	// UI name: Average agent pause time (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#average-agent-pause-time-historical)
 	//
@@ -48045,7 +48606,7 @@ type GetMetricDataV2Input struct {
 	// Unit: Seconds
 	//
 	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
-	// Hierarchy, Feature, contact/segmentAttributes/connect:Subtype
+	// Hierarchy, Feature, contact/segmentAttributes/connect:Subtype, Q in Connect
 	//
 	// UI name: Average contact duration (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#average-contact-duration-historical)
 	//
@@ -48056,7 +48617,7 @@ type GetMetricDataV2Input struct {
 	// Unit: Seconds
 	//
 	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
-	// Hierarchy, Feature, contact/segmentAttributes/connect:Subtype
+	// Hierarchy, Feature, contact/segmentAttributes/connect:Subtype, Q in Connect
 	//
 	// UI name: Average conversation duration (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#average-conversation-duration-historical)
 	//
@@ -48068,7 +48629,7 @@ type GetMetricDataV2Input struct {
 	// Unit: Seconds
 	//
 	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
-	// Hierarchy, contact/segmentAttributes/connect:Subtype
+	// Hierarchy, contact/segmentAttributes/connect:Subtype, Q in Connect
 	//
 	// UI name: Average agent greeting time (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#average-greeting-time-agent-historical)
 	//
@@ -48088,7 +48649,7 @@ type GetMetricDataV2Input struct {
 	// Unit: Seconds
 	//
 	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
-	// Hierarchy, Feature, contact/segmentAttributes/connect:Subtype
+	// Hierarchy, Feature, contact/segmentAttributes/connect:Subtype, Q in Connect
 	//
 	// UI name: Average customer hold time (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#average-customer-hold-time-historical)
 	//
@@ -48099,7 +48660,7 @@ type GetMetricDataV2Input struct {
 	// Unit: Seconds
 	//
 	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
-	// Hierarchy, contact/segmentAttributes/connect:Subtype
+	// Hierarchy, contact/segmentAttributes/connect:Subtype, Q in Connect
 	//
 	// UI name: Average customer hold time all contacts (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#avg-customer-hold-time-all-contacts-historical)
 	//
@@ -48108,7 +48669,7 @@ type GetMetricDataV2Input struct {
 	// Unit: Count
 	//
 	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
-	// Hierarchy, Feature, contact/segmentAttributes/connect:Subtype
+	// Hierarchy, Feature, contact/segmentAttributes/connect:Subtype, Q in Connect
 	//
 	// UI name: Average holds (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#average-holds-historical)
 	//
@@ -48119,7 +48680,7 @@ type GetMetricDataV2Input struct {
 	// Unit: Seconds
 	//
 	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
-	// Hierarchy, contact/segmentAttributes/connect:Subtype
+	// Hierarchy, contact/segmentAttributes/connect:Subtype, Q in Connect
 	//
 	// UI name: Average agent interaction and customer hold time (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#average-agent-interaction-customer-hold-time-historical)
 	//
@@ -48129,7 +48690,8 @@ type GetMetricDataV2Input struct {
 	//
 	// Valid metric filter key: INITIATION_METHOD
 	//
-	// Valid groupings and filters: Queue, Channel, Routing Profile, Feature, contact/segmentAttributes/connect:Subtype
+	// Valid groupings and filters: Queue, Channel, Routing Profile, Feature, contact/segmentAttributes/connect:Subtype,
+	// Q in Connect
 	//
 	// UI name: Average agent interaction time (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#average-agent-interaction-time-historical)
 	//
@@ -48143,7 +48705,7 @@ type GetMetricDataV2Input struct {
 	// Unit: Count
 	//
 	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
-	// Hierarchy, contact/segmentAttributes/connect:Subtype
+	// Hierarchy, contact/segmentAttributes/connect:Subtype, Q in Connect
 	//
 	// UI name: Average agent interruptions (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#average-interruptions-agent-historical)
 	//
@@ -48155,7 +48717,7 @@ type GetMetricDataV2Input struct {
 	// Unit: Seconds
 	//
 	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
-	// Hierarchy, contact/segmentAttributes/connect:Subtype
+	// Hierarchy, contact/segmentAttributes/connect:Subtype, Q in Connect
 	//
 	// UI name: Average agent interruption time (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#average-interruptions-time-agent-historical)
 	//
@@ -48167,7 +48729,7 @@ type GetMetricDataV2Input struct {
 	// Unit: Seconds
 	//
 	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
-	// Hierarchy, contact/segmentAttributes/connect:Subtype
+	// Hierarchy, contact/segmentAttributes/connect:Subtype, Q in Connect
 	//
 	// UI name: Average non-talk time (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html##average-non-talk-time-historical)
 	//
@@ -48175,7 +48737,8 @@ type GetMetricDataV2Input struct {
 	//
 	// Unit: Seconds
 	//
-	// Valid groupings and filters: Queue, Channel, Routing Profile, Feature, contact/segmentAttributes/connect:Subtype
+	// Valid groupings and filters: Queue, Channel, Routing Profile, Feature, contact/segmentAttributes/connect:Subtype,
+	// Q in Connect
 	//
 	// UI name: Average queue answer time (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#average-queue-answer-time-historical)
 	//
@@ -48185,7 +48748,8 @@ type GetMetricDataV2Input struct {
 	//
 	// Unit: Seconds
 	//
-	// Valid groupings and filters: Queue, Channel, Routing Profile, contact/segmentAttributes/connect:Subtype
+	// Valid groupings and filters: Queue, Channel, Routing Profile, contact/segmentAttributes/connect:Subtype,
+	// Q in Connect
 	//
 	// UI name: Average resolution time (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#average-resolution-time-historical)
 	//
@@ -48197,7 +48761,7 @@ type GetMetricDataV2Input struct {
 	// Unit: Seconds
 	//
 	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
-	// Hierarchy, contact/segmentAttributes/connect:Subtype
+	// Hierarchy, contact/segmentAttributes/connect:Subtype, Q in Connect
 	//
 	// UI name: Average talk time (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#average-talk-time-historical)
 	//
@@ -48209,7 +48773,7 @@ type GetMetricDataV2Input struct {
 	// Unit: Seconds
 	//
 	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
-	// Hierarchy, contact/segmentAttributes/connect:Subtype
+	// Hierarchy, contact/segmentAttributes/connect:Subtype, Q in Connect
 	//
 	// UI name: Average agent talk time (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#average-talk-time-agent-historical)
 	//
@@ -48221,7 +48785,7 @@ type GetMetricDataV2Input struct {
 	// Unit: Seconds
 	//
 	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
-	// Hierarchy, contact/segmentAttributes/connect:Subtype
+	// Hierarchy, contact/segmentAttributes/connect:Subtype, Q in Connect
 	//
 	// UI name: Average customer talk time (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#average-talk-time-customer-historical)
 	//
@@ -48240,7 +48804,8 @@ type GetMetricDataV2Input struct {
 	// Unit: Count
 	//
 	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
-	// Hierarchy, contact/segmentAttributes/connect:Subtype, RoutingStepExpression
+	// Hierarchy, contact/segmentAttributes/connect:Subtype, RoutingStepExpression,
+	// Q in Connect
 	//
 	// UI name: Contact abandoned (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#contacts-abandoned-historical)
 	//
@@ -48250,7 +48815,8 @@ type GetMetricDataV2Input struct {
 	//
 	// Valid metric filter key: INITIATION_METHOD
 	//
-	// Valid groupings and filters: Queue, Channel, Routing Profile, Feature, contact/segmentAttributes/connect:Subtype
+	// Valid groupings and filters: Queue, Channel, Routing Profile, Feature, contact/segmentAttributes/connect:Subtype,
+	// Q in Connect
 	//
 	// UI name: Contacts created (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#contacts-created-historical)
 	//
@@ -48263,7 +48829,8 @@ type GetMetricDataV2Input struct {
 	// Valid metric filter key: INITIATION_METHOD, DISCONNECT_REASON
 	//
 	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
-	// Hierarchy, Feature, contact/segmentAttributes/connect:Subtype, RoutingStepExpression
+	// Hierarchy, Feature, contact/segmentAttributes/connect:Subtype, RoutingStepExpression,
+	// Q in Connect
 	//
 	// UI name: API contacts handled (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#api-contacts-handled-historical)
 	//
@@ -48275,7 +48842,8 @@ type GetMetricDataV2Input struct {
 	//
 	// Valid metric filter key: INITIATION_METHOD
 	//
-	// Valid groupings and filters: Queue, Channel, Agent, Agent Hierarchy, contact/segmentAttributes/connect:Subtype
+	// Valid groupings and filters: Queue, Channel, Agent, Agent Hierarchy, contact/segmentAttributes/connect:Subtype,
+	// Q in Connect
 	//
 	// UI name: Contacts handled (connected to agent timestamp) (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#contacts-handled-by-connected-to-agent-historical)
 	//
@@ -48284,7 +48852,7 @@ type GetMetricDataV2Input struct {
 	// Unit: Count
 	//
 	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
-	// Hierarchy, contact/segmentAttributes/connect:Subtype
+	// Hierarchy, contact/segmentAttributes/connect:Subtype, Q in Connect
 	//
 	// UI name: Contacts hold disconnect (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#contacts-handled-by-connected-to-agent-historical)
 	//
@@ -48293,7 +48861,7 @@ type GetMetricDataV2Input struct {
 	// Unit: Count
 	//
 	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
-	// Hierarchy
+	// Hierarchy, Q in Connect
 	//
 	// UI name: Contacts hold agent disconnect (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#contacts-hold-agent-disconnect-historical)
 	//
@@ -48302,7 +48870,7 @@ type GetMetricDataV2Input struct {
 	// Unit: Count
 	//
 	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
-	// Hierarchy
+	// Hierarchy, Q in Connect
 	//
 	// UI name: Contacts hold customer disconnect (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#contacts-hold-customer-disconnect-historical)
 	//
@@ -48311,7 +48879,7 @@ type GetMetricDataV2Input struct {
 	// Unit: Count
 	//
 	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
-	// Hierarchy
+	// Hierarchy, Q in Connect
 	//
 	// UI name: Contacts put on hold (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#contacts-hold-customer-disconnect-historical)
 	//
@@ -48320,7 +48888,7 @@ type GetMetricDataV2Input struct {
 	// Unit: Count
 	//
 	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
-	// Hierarchy
+	// Hierarchy, Q in Connect
 	//
 	// UI name: Contacts transferred out external (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#contacts-transferred-out-external-historical)
 	//
@@ -48329,7 +48897,7 @@ type GetMetricDataV2Input struct {
 	// Unit: Percent
 	//
 	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
-	// Hierarchy
+	// Hierarchy, Q in Connect
 	//
 	// UI name: Contacts transferred out internal (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#contacts-transferred-out-internal-historical)
 	//
@@ -48338,7 +48906,7 @@ type GetMetricDataV2Input struct {
 	// Unit: Count
 	//
 	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
-	// Hierarchy, contact/segmentAttributes/connect:Subtype
+	// Hierarchy, contact/segmentAttributes/connect:Subtype, Q in Connect
 	//
 	// UI name: Contacts queued (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#contacts-queued-historical)
 	//
@@ -48354,7 +48922,8 @@ type GetMetricDataV2Input struct {
 	//
 	// Unit: Count
 	//
-	// Valid groupings and filters: Queue, Channel, Routing Profile, contact/segmentAttributes/connect:Subtype
+	// Valid groupings and filters: Queue, Channel, Routing Profile, contact/segmentAttributes/connect:Subtype,
+	// Q in Connect
 	//
 	// Threshold: For ThresholdValue enter any whole number from 1 to 604800 (inclusive),
 	// in seconds. For Comparison, you must enter LT (for "Less than").
@@ -48366,7 +48935,7 @@ type GetMetricDataV2Input struct {
 	// Unit: Count
 	//
 	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
-	// Hierarchy, Feature, contact/segmentAttributes/connect:Subtype
+	// Hierarchy, Feature, contact/segmentAttributes/connect:Subtype, Q in Connect
 	//
 	// UI name: Contacts transferred out (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#contacts-transferred-out-historical)
 	//
@@ -48377,7 +48946,7 @@ type GetMetricDataV2Input struct {
 	// Unit: Count
 	//
 	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
-	// Hierarchy, contact/segmentAttributes/connect:Subtype
+	// Hierarchy, contact/segmentAttributes/connect:Subtype, Q in Connect
 	//
 	// UI name: Contacts transferred out by agent (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#contacts-transferred-out-by-agent-historical)
 	//
@@ -48386,7 +48955,7 @@ type GetMetricDataV2Input struct {
 	// Unit: Count
 	//
 	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
-	// Hierarchy, contact/segmentAttributes/connect:Subtype
+	// Hierarchy, contact/segmentAttributes/connect:Subtype, Q in Connect
 	//
 	// UI name: Contacts transferred out queue (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#contacts-transferred-out-by-agent-historical)
 	//
@@ -48405,7 +48974,7 @@ type GetMetricDataV2Input struct {
 	// Unit: Seconds
 	//
 	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
-	// Hierarchy, contact/segmentAttributes/connect:Subtype
+	// Hierarchy, contact/segmentAttributes/connect:Subtype, Q in Connect
 	//
 	// UI name: Maximum queued time (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#maximum-queued-time-historical)
 	//
@@ -48443,7 +49012,7 @@ type GetMetricDataV2Input struct {
 	// Unit: Percentage
 	//
 	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
-	// Hierarchy, contact/segmentAttributes/connect:Subtype
+	// Hierarchy, contact/segmentAttributes/connect:Subtype, Q in Connect
 	//
 	// UI name: Non-talk time percent (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#ntt-historical)
 	//
@@ -48455,7 +49024,7 @@ type GetMetricDataV2Input struct {
 	// Unit: Percentage
 	//
 	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
-	// Hierarchy, contact/segmentAttributes/connect:Subtype
+	// Hierarchy, contact/segmentAttributes/connect:Subtype, Q in Connect
 	//
 	// UI name: Talk time percent (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#tt-historical)
 	//
@@ -48467,7 +49036,7 @@ type GetMetricDataV2Input struct {
 	// Unit: Percentage
 	//
 	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
-	// Hierarchy, contact/segmentAttributes/connect:Subtype
+	// Hierarchy, contact/segmentAttributes/connect:Subtype, Q in Connect
 	//
 	// UI name: Agent talk time percent (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#ttagent-historical)
 	//
@@ -48479,7 +49048,7 @@ type GetMetricDataV2Input struct {
 	// Unit: Percentage
 	//
 	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
-	// Hierarchy, contact/segmentAttributes/connect:Subtype
+	// Hierarchy, contact/segmentAttributes/connect:Subtype, Q in Connect
 	//
 	// UI name: Customer talk time percent (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#ttcustomer-historical)
 	//
@@ -48509,7 +49078,7 @@ type GetMetricDataV2Input struct {
 	//
 	// Unit: Percent
 	//
-	// Valid groupings and filters: Queue, Channel, Routing Profile
+	// Valid groupings and filters: Queue, Channel, Routing Profile, Q in Connect
 	//
 	// Threshold: For ThresholdValue, enter any whole number from 1 to 604800 (inclusive),
 	// in seconds. For Comparison, you must enter LT (for "Less than").
@@ -48529,7 +49098,7 @@ type GetMetricDataV2Input struct {
 	// Unit: Seconds
 	//
 	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
-	// Hierarchy
+	// Hierarchy, Q in Connect
 	//
 	// UI name: After contact work time (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#acw-historical)
 	//
@@ -48553,7 +49122,7 @@ type GetMetricDataV2Input struct {
 	// Unit: Seconds
 	//
 	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
-	// Hierarchy
+	// Hierarchy, Q in Connect
 	//
 	// UI name: Contact flow time (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#contact-flow-time-historical)
 	//
@@ -48570,7 +49139,8 @@ type GetMetricDataV2Input struct {
 	//
 	// Unit: Count
 	//
-	// Valid groupings and filters: Queue, Channel, Routing Profile, contact/segmentAttributes/connect:Subtype
+	// Valid groupings and filters: Queue, Channel, Routing Profile, contact/segmentAttributes/connect:Subtype,
+	// Q in Connect
 	//
 	// Threshold: For ThresholdValue, enter any whole number from 1 to 604800 (inclusive),
 	// in seconds. For Comparison, you must enter LT (for "Less than").
@@ -48581,7 +49151,8 @@ type GetMetricDataV2Input struct {
 	//
 	// Unit: Count
 	//
-	// Valid groupings and filters: Queue, Channel, Routing Profile, contact/segmentAttributes/connect:Subtype
+	// Valid groupings and filters: Queue, Channel, Routing Profile, contact/segmentAttributes/connect:Subtype,
+	// Q in Connect
 	//
 	// Threshold: For ThresholdValue, enter any whole number from 1 to 604800 (inclusive),
 	// in seconds. For Comparison, you must enter LT (for "Less than").
@@ -48595,7 +49166,7 @@ type GetMetricDataV2Input struct {
 	// Unit: Count
 	//
 	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
-	// Hierarchy, contact/segmentAttributes/connect:Subtype
+	// Hierarchy, contact/segmentAttributes/connect:Subtype, Q in Connect
 	//
 	// UI name: Contact disconnected (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#contact-disconnected-historical)
 	//
@@ -48613,7 +49184,7 @@ type GetMetricDataV2Input struct {
 	// Unit: Seconds
 	//
 	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
-	// Hierarchy
+	// Hierarchy, Q in Connect
 	//
 	// UI name: Contact handle time (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#contact-handle-time-historical)
 	//
@@ -48622,7 +49193,7 @@ type GetMetricDataV2Input struct {
 	// Unit: Count
 	//
 	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
-	// Hierarchy
+	// Hierarchy, Q in Connect
 	//
 	// UI name: Customer hold time (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#customer-hold-time-historical)
 	//
@@ -48639,7 +49210,7 @@ type GetMetricDataV2Input struct {
 	// Unit: Seconds
 	//
 	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
-	// Hierarchy
+	// Hierarchy, Q in Connect
 	//
 	// UI name: Agent interaction and hold time (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#agent-interaction-hold-time-historical)
 	//
@@ -48672,7 +49243,8 @@ type GetMetricDataV2Input struct {
 	//
 	// Unit: Count
 	//
-	// Valid groupings and filters: Queue, Channel, Routing Profile, contact/segmentAttributes/connect:Subtype
+	// Valid groupings and filters: Queue, Channel, Routing Profile, contact/segmentAttributes/connect:Subtype,
+	// Q in Connect
 	//
 	// UI name: Callback attempts (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#callback-attempts-historical)
 	//
@@ -64267,6 +64839,298 @@ func (s *SearchAvailablePhoneNumbersOutput) SetNextToken(v string) *SearchAvaila
 	return s
 }
 
+type SearchContactFlowModulesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID in the Amazon Resource Name (ARN) of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `min:"1" type:"string" required:"true"`
+
+	// The maximum number of results to return per page.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// The token for the next set of results. Use the value returned in the previous
+	// response in the next request to retrieve the next set of results.
+	NextToken *string `min:"1" type:"string"`
+
+	// The search criteria to be used to return contact flow modules.
+	//
+	// The name and description fields support "contains" queries with a minimum
+	// of 2 characters and a maximum of 25 characters. Any queries with character
+	// lengths outside of this range will result in invalid results.
+	SearchCriteria *ContactFlowModuleSearchCriteria `type:"structure"`
+
+	// Filters to be applied to search results.
+	SearchFilter *ContactFlowModuleSearchFilter `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchContactFlowModulesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchContactFlowModulesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SearchContactFlowModulesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SearchContactFlowModulesInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *SearchContactFlowModulesInput) SetInstanceId(v string) *SearchContactFlowModulesInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *SearchContactFlowModulesInput) SetMaxResults(v int64) *SearchContactFlowModulesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *SearchContactFlowModulesInput) SetNextToken(v string) *SearchContactFlowModulesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSearchCriteria sets the SearchCriteria field's value.
+func (s *SearchContactFlowModulesInput) SetSearchCriteria(v *ContactFlowModuleSearchCriteria) *SearchContactFlowModulesInput {
+	s.SearchCriteria = v
+	return s
+}
+
+// SetSearchFilter sets the SearchFilter field's value.
+func (s *SearchContactFlowModulesInput) SetSearchFilter(v *ContactFlowModuleSearchFilter) *SearchContactFlowModulesInput {
+	s.SearchFilter = v
+	return s
+}
+
+type SearchContactFlowModulesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The total number of contact flows which matched your search query.
+	ApproximateTotalCount *int64 `type:"long"`
+
+	// The search criteria to be used to return contact flow modules.
+	ContactFlowModules []*ContactFlowModule `type:"list"`
+
+	// If there are additional results, this is the token for the next set of results.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchContactFlowModulesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchContactFlowModulesOutput) GoString() string {
+	return s.String()
+}
+
+// SetApproximateTotalCount sets the ApproximateTotalCount field's value.
+func (s *SearchContactFlowModulesOutput) SetApproximateTotalCount(v int64) *SearchContactFlowModulesOutput {
+	s.ApproximateTotalCount = &v
+	return s
+}
+
+// SetContactFlowModules sets the ContactFlowModules field's value.
+func (s *SearchContactFlowModulesOutput) SetContactFlowModules(v []*ContactFlowModule) *SearchContactFlowModulesOutput {
+	s.ContactFlowModules = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *SearchContactFlowModulesOutput) SetNextToken(v string) *SearchContactFlowModulesOutput {
+	s.NextToken = &v
+	return s
+}
+
+type SearchContactFlowsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID in the Amazon Resource Name (ARN) of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `min:"1" type:"string" required:"true"`
+
+	// The maximum number of results to return per page.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// The token for the next set of results. Use the value returned in the previous
+	// response in the next request to retrieve the next set of results.
+	NextToken *string `min:"1" type:"string"`
+
+	// The search criteria to be used to return flows.
+	//
+	// The name and description fields support "contains" queries with a minimum
+	// of 2 characters and a maximum of 25 characters. Any queries with character
+	// lengths outside of this range will result in invalid results.
+	SearchCriteria *ContactFlowSearchCriteria `type:"structure"`
+
+	// Filters to be applied to search results.
+	SearchFilter *ContactFlowSearchFilter `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchContactFlowsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchContactFlowsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SearchContactFlowsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SearchContactFlowsInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *SearchContactFlowsInput) SetInstanceId(v string) *SearchContactFlowsInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *SearchContactFlowsInput) SetMaxResults(v int64) *SearchContactFlowsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *SearchContactFlowsInput) SetNextToken(v string) *SearchContactFlowsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSearchCriteria sets the SearchCriteria field's value.
+func (s *SearchContactFlowsInput) SetSearchCriteria(v *ContactFlowSearchCriteria) *SearchContactFlowsInput {
+	s.SearchCriteria = v
+	return s
+}
+
+// SetSearchFilter sets the SearchFilter field's value.
+func (s *SearchContactFlowsInput) SetSearchFilter(v *ContactFlowSearchFilter) *SearchContactFlowsInput {
+	s.SearchFilter = v
+	return s
+}
+
+type SearchContactFlowsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The total number of contact flows which matched your search query.
+	ApproximateTotalCount *int64 `type:"long"`
+
+	// Information about the contact flows.
+	ContactFlows []*ContactFlow `type:"list"`
+
+	// If there are additional results, this is the token for the next set of results.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchContactFlowsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchContactFlowsOutput) GoString() string {
+	return s.String()
+}
+
+// SetApproximateTotalCount sets the ApproximateTotalCount field's value.
+func (s *SearchContactFlowsOutput) SetApproximateTotalCount(v int64) *SearchContactFlowsOutput {
+	s.ApproximateTotalCount = &v
+	return s
+}
+
+// SetContactFlows sets the ContactFlows field's value.
+func (s *SearchContactFlowsOutput) SetContactFlows(v []*ContactFlow) *SearchContactFlowsOutput {
+	s.ContactFlows = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *SearchContactFlowsOutput) SetNextToken(v string) *SearchContactFlowsOutput {
+	s.NextToken = &v
+	return s
+}
+
 type SearchContactsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -67321,7 +68185,8 @@ type StartAttachedFileUploadInput struct {
 	// example, { "Tags": {"key1":"value1", "key2":"value2"} }.
 	Tags map[string]*string `min:"1" type:"map"`
 
-	// Optional override for the expiry of the pre-signed S3 URL in seconds.
+	// Optional override for the expiry of the pre-signed S3 URL in seconds. The
+	// default value is 300.
 	UrlExpiryInSeconds *int64 `min:"5" type:"integer"`
 }
 
@@ -79613,6 +80478,22 @@ func ContactFlowState_Values() []string {
 	return []string{
 		ContactFlowStateActive,
 		ContactFlowStateArchived,
+	}
+}
+
+const (
+	// ContactFlowStatusPublished is a ContactFlowStatus enum value
+	ContactFlowStatusPublished = "PUBLISHED"
+
+	// ContactFlowStatusSaved is a ContactFlowStatus enum value
+	ContactFlowStatusSaved = "SAVED"
+)
+
+// ContactFlowStatus_Values returns all elements of the ContactFlowStatus enum
+func ContactFlowStatus_Values() []string {
+	return []string{
+		ContactFlowStatusPublished,
+		ContactFlowStatusSaved,
 	}
 }
 
