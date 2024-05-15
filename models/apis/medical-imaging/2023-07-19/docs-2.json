@@ -15,7 +15,7 @@
     "ListDatastores": "<p>List data stores.</p>",
     "ListImageSetVersions": "<p>List image set versions.</p>",
     "ListTagsForResource": "<p>Lists all tags associated with a medical imaging resource.</p>",
-    "SearchImageSets": "<p>Search image sets based on defined input attributes.</p> <note> <p> <code>SearchImageSets</code> accepts a single search query parameter and returns a paginated response of all image sets that have the matching criteria. All range queries must be input as <code>(lowerBound, upperBound)</code>.</p> <p> <code>SearchImageSets</code> uses the <code>updatedAt</code> field for sorting in decreasing order from latest to oldest.</p> </note>",
+    "SearchImageSets": "<p>Search image sets based on defined input attributes.</p> <note> <p> <code>SearchImageSets</code> accepts a single search query parameter and returns a paginated response of all image sets that have the matching criteria. All date range queries must be input as <code>(lowerBound, upperBound)</code>.</p> <p>By default, <code>SearchImageSets</code> uses the <code>updatedAt</code> field for sorting in descending order from newest to oldest.</p> </note>",
     "StartDICOMImportJob": "<p>Start importing bulk data into an <code>ACTIVE</code> data store. The import job imports DICOM P10 files found in the S3 prefix specified by the <code>inputS3Uri</code> parameter. The import job stores processing results in the file specified by the <code>outputS3Uri</code> parameter.</p>",
     "TagResource": "<p>Adds a user-specifed key and value tag to a medical imaging resource.</p>",
     "UntagResource": "<p>Removes tags from a medical imaging resource.</p>",
@@ -38,6 +38,12 @@
         "ListTagsForResourceRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the medical imaging resource to list tags for.</p>",
         "TagResourceRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the medical imaging resource that tags are being added to.</p>",
         "UntagResourceRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the medical imaging resource that tags are being removed from.</p>"
+      }
+    },
+    "AwsAccountId": {
+      "base": null,
+      "refs": {
+        "StartDICOMImportJobRequest$inputOwnerAccountId": "<p>The account ID of the source S3 bucket owner.</p>"
       }
     },
     "ClientToken": {

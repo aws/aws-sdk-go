@@ -5,6 +5,7 @@
     "endpointPrefix":"grafana",
     "jsonVersion":"1.1",
     "protocol":"rest-json",
+    "protocols":["rest-json"],
     "serviceFullName":"Amazon Managed Grafana",
     "serviceId":"grafana",
     "signatureVersion":"v4",
@@ -67,6 +68,44 @@
         {"shape":"ServiceQuotaExceededException"}
       ]
     },
+    "CreateWorkspaceServiceAccount":{
+      "name":"CreateWorkspaceServiceAccount",
+      "http":{
+        "method":"POST",
+        "requestUri":"/workspaces/{workspaceId}/serviceaccounts",
+        "responseCode":200
+      },
+      "input":{"shape":"CreateWorkspaceServiceAccountRequest"},
+      "output":{"shape":"CreateWorkspaceServiceAccountResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ServiceQuotaExceededException"}
+      ]
+    },
+    "CreateWorkspaceServiceAccountToken":{
+      "name":"CreateWorkspaceServiceAccountToken",
+      "http":{
+        "method":"POST",
+        "requestUri":"/workspaces/{workspaceId}/serviceaccounts/{serviceAccountId}/tokens",
+        "responseCode":200
+      },
+      "input":{"shape":"CreateWorkspaceServiceAccountTokenRequest"},
+      "output":{"shape":"CreateWorkspaceServiceAccountTokenResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ServiceQuotaExceededException"}
+      ]
+    },
     "DeleteWorkspace":{
       "name":"DeleteWorkspace",
       "http":{
@@ -95,6 +134,42 @@
       },
       "input":{"shape":"DeleteWorkspaceApiKeyRequest"},
       "output":{"shape":"DeleteWorkspaceApiKeyResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "DeleteWorkspaceServiceAccount":{
+      "name":"DeleteWorkspaceServiceAccount",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/workspaces/{workspaceId}/serviceaccounts/{serviceAccountId}",
+        "responseCode":200
+      },
+      "input":{"shape":"DeleteWorkspaceServiceAccountRequest"},
+      "output":{"shape":"DeleteWorkspaceServiceAccountResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "DeleteWorkspaceServiceAccountToken":{
+      "name":"DeleteWorkspaceServiceAccountToken",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/workspaces/{workspaceId}/serviceaccounts/{serviceAccountId}/tokens/{tokenId}",
+        "responseCode":200
+      },
+      "input":{"shape":"DeleteWorkspaceServiceAccountTokenRequest"},
+      "output":{"shape":"DeleteWorkspaceServiceAccountTokenResponse"},
       "errors":[
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
@@ -133,6 +208,7 @@
       "errors":[
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
+        {"shape":"ConflictException"},
         {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
         {"shape":"InternalServerException"}
@@ -217,6 +293,42 @@
       "errors":[
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "ListWorkspaceServiceAccountTokens":{
+      "name":"ListWorkspaceServiceAccountTokens",
+      "http":{
+        "method":"GET",
+        "requestUri":"/workspaces/{workspaceId}/serviceaccounts/{serviceAccountId}/tokens",
+        "responseCode":200
+      },
+      "input":{"shape":"ListWorkspaceServiceAccountTokensRequest"},
+      "output":{"shape":"ListWorkspaceServiceAccountTokensResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "ListWorkspaceServiceAccounts":{
+      "name":"ListWorkspaceServiceAccounts",
+      "http":{
+        "method":"GET",
+        "requestUri":"/workspaces/{workspaceId}/serviceaccounts",
+        "responseCode":200
+      },
+      "input":{"shape":"ListWorkspaceServiceAccountsRequest"},
+      "output":{"shape":"ListWorkspaceServiceAccountsResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ConflictException"},
         {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
         {"shape":"InternalServerException"}
@@ -567,6 +679,80 @@
         "workspace":{"shape":"WorkspaceDescription"}
       }
     },
+    "CreateWorkspaceServiceAccountRequest":{
+      "type":"structure",
+      "required":[
+        "grafanaRole",
+        "name",
+        "workspaceId"
+      ],
+      "members":{
+        "grafanaRole":{"shape":"Role"},
+        "name":{"shape":"ServiceAccountName"},
+        "workspaceId":{
+          "shape":"WorkspaceId",
+          "location":"uri",
+          "locationName":"workspaceId"
+        }
+      }
+    },
+    "CreateWorkspaceServiceAccountResponse":{
+      "type":"structure",
+      "required":[
+        "grafanaRole",
+        "id",
+        "name",
+        "workspaceId"
+      ],
+      "members":{
+        "grafanaRole":{"shape":"Role"},
+        "id":{"shape":"String"},
+        "name":{"shape":"String"},
+        "workspaceId":{"shape":"WorkspaceId"}
+      }
+    },
+    "CreateWorkspaceServiceAccountTokenRequest":{
+      "type":"structure",
+      "required":[
+        "name",
+        "secondsToLive",
+        "serviceAccountId",
+        "workspaceId"
+      ],
+      "members":{
+        "name":{"shape":"ServiceAccountTokenName"},
+        "secondsToLive":{"shape":"CreateWorkspaceServiceAccountTokenRequestSecondsToLiveInteger"},
+        "serviceAccountId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"serviceAccountId"
+        },
+        "workspaceId":{
+          "shape":"WorkspaceId",
+          "location":"uri",
+          "locationName":"workspaceId"
+        }
+      }
+    },
+    "CreateWorkspaceServiceAccountTokenRequestSecondsToLiveInteger":{
+      "type":"integer",
+      "box":true,
+      "max":2592000,
+      "min":1
+    },
+    "CreateWorkspaceServiceAccountTokenResponse":{
+      "type":"structure",
+      "required":[
+        "serviceAccountId",
+        "serviceAccountToken",
+        "workspaceId"
+      ],
+      "members":{
+        "serviceAccountId":{"shape":"String"},
+        "serviceAccountToken":{"shape":"ServiceAccountTokenSummaryWithKey"},
+        "workspaceId":{"shape":"WorkspaceId"}
+      }
+    },
     "DataSourceType":{
       "type":"string",
       "enum":[
@@ -631,6 +817,74 @@
       "required":["workspace"],
       "members":{
         "workspace":{"shape":"WorkspaceDescription"}
+      }
+    },
+    "DeleteWorkspaceServiceAccountRequest":{
+      "type":"structure",
+      "required":[
+        "serviceAccountId",
+        "workspaceId"
+      ],
+      "members":{
+        "serviceAccountId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"serviceAccountId"
+        },
+        "workspaceId":{
+          "shape":"WorkspaceId",
+          "location":"uri",
+          "locationName":"workspaceId"
+        }
+      }
+    },
+    "DeleteWorkspaceServiceAccountResponse":{
+      "type":"structure",
+      "required":[
+        "serviceAccountId",
+        "workspaceId"
+      ],
+      "members":{
+        "serviceAccountId":{"shape":"String"},
+        "workspaceId":{"shape":"WorkspaceId"}
+      }
+    },
+    "DeleteWorkspaceServiceAccountTokenRequest":{
+      "type":"structure",
+      "required":[
+        "serviceAccountId",
+        "tokenId",
+        "workspaceId"
+      ],
+      "members":{
+        "serviceAccountId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"serviceAccountId"
+        },
+        "tokenId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"tokenId"
+        },
+        "workspaceId":{
+          "shape":"WorkspaceId",
+          "location":"uri",
+          "locationName":"workspaceId"
+        }
+      }
+    },
+    "DeleteWorkspaceServiceAccountTokenResponse":{
+      "type":"structure",
+      "required":[
+        "serviceAccountId",
+        "tokenId",
+        "workspaceId"
+      ],
+      "members":{
+        "serviceAccountId":{"shape":"String"},
+        "tokenId":{"shape":"String"},
+        "workspaceId":{"shape":"WorkspaceId"}
       }
     },
     "DescribeWorkspaceAuthenticationRequest":{
@@ -888,6 +1142,94 @@
         "nextToken":{"shape":"PaginationToken"}
       }
     },
+    "ListWorkspaceServiceAccountTokensRequest":{
+      "type":"structure",
+      "required":[
+        "serviceAccountId",
+        "workspaceId"
+      ],
+      "members":{
+        "maxResults":{
+          "shape":"ListWorkspaceServiceAccountTokensRequestMaxResultsInteger",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "nextToken":{
+          "shape":"PaginationToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "serviceAccountId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"serviceAccountId"
+        },
+        "workspaceId":{
+          "shape":"WorkspaceId",
+          "location":"uri",
+          "locationName":"workspaceId"
+        }
+      }
+    },
+    "ListWorkspaceServiceAccountTokensRequestMaxResultsInteger":{
+      "type":"integer",
+      "box":true,
+      "max":100,
+      "min":1
+    },
+    "ListWorkspaceServiceAccountTokensResponse":{
+      "type":"structure",
+      "required":[
+        "serviceAccountId",
+        "serviceAccountTokens",
+        "workspaceId"
+      ],
+      "members":{
+        "nextToken":{"shape":"PaginationToken"},
+        "serviceAccountId":{"shape":"String"},
+        "serviceAccountTokens":{"shape":"ServiceAccountTokenList"},
+        "workspaceId":{"shape":"WorkspaceId"}
+      }
+    },
+    "ListWorkspaceServiceAccountsRequest":{
+      "type":"structure",
+      "required":["workspaceId"],
+      "members":{
+        "maxResults":{
+          "shape":"ListWorkspaceServiceAccountsRequestMaxResultsInteger",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "nextToken":{
+          "shape":"PaginationToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "workspaceId":{
+          "shape":"WorkspaceId",
+          "location":"uri",
+          "locationName":"workspaceId"
+        }
+      }
+    },
+    "ListWorkspaceServiceAccountsRequestMaxResultsInteger":{
+      "type":"integer",
+      "box":true,
+      "max":100,
+      "min":1
+    },
+    "ListWorkspaceServiceAccountsResponse":{
+      "type":"structure",
+      "required":[
+        "serviceAccounts",
+        "workspaceId"
+      ],
+      "members":{
+        "nextToken":{"shape":"PaginationToken"},
+        "serviceAccounts":{"shape":"ServiceAccountList"},
+        "workspaceId":{"shape":"WorkspaceId"}
+      }
+    },
     "ListWorkspacesRequest":{
       "type":"structure",
       "members":{
@@ -1066,6 +1408,72 @@
       "member":{"shape":"SecurityGroupId"},
       "max":5,
       "min":1
+    },
+    "ServiceAccountList":{
+      "type":"list",
+      "member":{"shape":"ServiceAccountSummary"}
+    },
+    "ServiceAccountName":{
+      "type":"string",
+      "max":128,
+      "min":1
+    },
+    "ServiceAccountSummary":{
+      "type":"structure",
+      "required":[
+        "grafanaRole",
+        "id",
+        "isDisabled",
+        "name"
+      ],
+      "members":{
+        "grafanaRole":{"shape":"Role"},
+        "id":{"shape":"String"},
+        "isDisabled":{"shape":"String"},
+        "name":{"shape":"String"}
+      }
+    },
+    "ServiceAccountTokenKey":{
+      "type":"string",
+      "sensitive":true
+    },
+    "ServiceAccountTokenList":{
+      "type":"list",
+      "member":{"shape":"ServiceAccountTokenSummary"}
+    },
+    "ServiceAccountTokenName":{
+      "type":"string",
+      "max":128,
+      "min":1
+    },
+    "ServiceAccountTokenSummary":{
+      "type":"structure",
+      "required":[
+        "createdAt",
+        "expiresAt",
+        "id",
+        "name"
+      ],
+      "members":{
+        "createdAt":{"shape":"Timestamp"},
+        "expiresAt":{"shape":"Timestamp"},
+        "id":{"shape":"String"},
+        "lastUsedAt":{"shape":"Timestamp"},
+        "name":{"shape":"String"}
+      }
+    },
+    "ServiceAccountTokenSummaryWithKey":{
+      "type":"structure",
+      "required":[
+        "id",
+        "key",
+        "name"
+      ],
+      "members":{
+        "id":{"shape":"String"},
+        "key":{"shape":"ServiceAccountTokenKey"},
+        "name":{"shape":"String"}
+      }
     },
     "ServiceQuotaExceededException":{
       "type":"structure",

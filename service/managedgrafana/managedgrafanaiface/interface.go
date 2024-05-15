@@ -72,6 +72,14 @@ type ManagedGrafanaAPI interface {
 	CreateWorkspaceApiKeyWithContext(aws.Context, *managedgrafana.CreateWorkspaceApiKeyInput, ...request.Option) (*managedgrafana.CreateWorkspaceApiKeyOutput, error)
 	CreateWorkspaceApiKeyRequest(*managedgrafana.CreateWorkspaceApiKeyInput) (*request.Request, *managedgrafana.CreateWorkspaceApiKeyOutput)
 
+	CreateWorkspaceServiceAccount(*managedgrafana.CreateWorkspaceServiceAccountInput) (*managedgrafana.CreateWorkspaceServiceAccountOutput, error)
+	CreateWorkspaceServiceAccountWithContext(aws.Context, *managedgrafana.CreateWorkspaceServiceAccountInput, ...request.Option) (*managedgrafana.CreateWorkspaceServiceAccountOutput, error)
+	CreateWorkspaceServiceAccountRequest(*managedgrafana.CreateWorkspaceServiceAccountInput) (*request.Request, *managedgrafana.CreateWorkspaceServiceAccountOutput)
+
+	CreateWorkspaceServiceAccountToken(*managedgrafana.CreateWorkspaceServiceAccountTokenInput) (*managedgrafana.CreateWorkspaceServiceAccountTokenOutput, error)
+	CreateWorkspaceServiceAccountTokenWithContext(aws.Context, *managedgrafana.CreateWorkspaceServiceAccountTokenInput, ...request.Option) (*managedgrafana.CreateWorkspaceServiceAccountTokenOutput, error)
+	CreateWorkspaceServiceAccountTokenRequest(*managedgrafana.CreateWorkspaceServiceAccountTokenInput) (*request.Request, *managedgrafana.CreateWorkspaceServiceAccountTokenOutput)
+
 	DeleteWorkspace(*managedgrafana.DeleteWorkspaceInput) (*managedgrafana.DeleteWorkspaceOutput, error)
 	DeleteWorkspaceWithContext(aws.Context, *managedgrafana.DeleteWorkspaceInput, ...request.Option) (*managedgrafana.DeleteWorkspaceOutput, error)
 	DeleteWorkspaceRequest(*managedgrafana.DeleteWorkspaceInput) (*request.Request, *managedgrafana.DeleteWorkspaceOutput)
@@ -79,6 +87,14 @@ type ManagedGrafanaAPI interface {
 	DeleteWorkspaceApiKey(*managedgrafana.DeleteWorkspaceApiKeyInput) (*managedgrafana.DeleteWorkspaceApiKeyOutput, error)
 	DeleteWorkspaceApiKeyWithContext(aws.Context, *managedgrafana.DeleteWorkspaceApiKeyInput, ...request.Option) (*managedgrafana.DeleteWorkspaceApiKeyOutput, error)
 	DeleteWorkspaceApiKeyRequest(*managedgrafana.DeleteWorkspaceApiKeyInput) (*request.Request, *managedgrafana.DeleteWorkspaceApiKeyOutput)
+
+	DeleteWorkspaceServiceAccount(*managedgrafana.DeleteWorkspaceServiceAccountInput) (*managedgrafana.DeleteWorkspaceServiceAccountOutput, error)
+	DeleteWorkspaceServiceAccountWithContext(aws.Context, *managedgrafana.DeleteWorkspaceServiceAccountInput, ...request.Option) (*managedgrafana.DeleteWorkspaceServiceAccountOutput, error)
+	DeleteWorkspaceServiceAccountRequest(*managedgrafana.DeleteWorkspaceServiceAccountInput) (*request.Request, *managedgrafana.DeleteWorkspaceServiceAccountOutput)
+
+	DeleteWorkspaceServiceAccountToken(*managedgrafana.DeleteWorkspaceServiceAccountTokenInput) (*managedgrafana.DeleteWorkspaceServiceAccountTokenOutput, error)
+	DeleteWorkspaceServiceAccountTokenWithContext(aws.Context, *managedgrafana.DeleteWorkspaceServiceAccountTokenInput, ...request.Option) (*managedgrafana.DeleteWorkspaceServiceAccountTokenOutput, error)
+	DeleteWorkspaceServiceAccountTokenRequest(*managedgrafana.DeleteWorkspaceServiceAccountTokenInput) (*request.Request, *managedgrafana.DeleteWorkspaceServiceAccountTokenOutput)
 
 	DescribeWorkspace(*managedgrafana.DescribeWorkspaceInput) (*managedgrafana.DescribeWorkspaceOutput, error)
 	DescribeWorkspaceWithContext(aws.Context, *managedgrafana.DescribeWorkspaceInput, ...request.Option) (*managedgrafana.DescribeWorkspaceOutput, error)
@@ -113,6 +129,20 @@ type ManagedGrafanaAPI interface {
 
 	ListVersionsPages(*managedgrafana.ListVersionsInput, func(*managedgrafana.ListVersionsOutput, bool) bool) error
 	ListVersionsPagesWithContext(aws.Context, *managedgrafana.ListVersionsInput, func(*managedgrafana.ListVersionsOutput, bool) bool, ...request.Option) error
+
+	ListWorkspaceServiceAccountTokens(*managedgrafana.ListWorkspaceServiceAccountTokensInput) (*managedgrafana.ListWorkspaceServiceAccountTokensOutput, error)
+	ListWorkspaceServiceAccountTokensWithContext(aws.Context, *managedgrafana.ListWorkspaceServiceAccountTokensInput, ...request.Option) (*managedgrafana.ListWorkspaceServiceAccountTokensOutput, error)
+	ListWorkspaceServiceAccountTokensRequest(*managedgrafana.ListWorkspaceServiceAccountTokensInput) (*request.Request, *managedgrafana.ListWorkspaceServiceAccountTokensOutput)
+
+	ListWorkspaceServiceAccountTokensPages(*managedgrafana.ListWorkspaceServiceAccountTokensInput, func(*managedgrafana.ListWorkspaceServiceAccountTokensOutput, bool) bool) error
+	ListWorkspaceServiceAccountTokensPagesWithContext(aws.Context, *managedgrafana.ListWorkspaceServiceAccountTokensInput, func(*managedgrafana.ListWorkspaceServiceAccountTokensOutput, bool) bool, ...request.Option) error
+
+	ListWorkspaceServiceAccounts(*managedgrafana.ListWorkspaceServiceAccountsInput) (*managedgrafana.ListWorkspaceServiceAccountsOutput, error)
+	ListWorkspaceServiceAccountsWithContext(aws.Context, *managedgrafana.ListWorkspaceServiceAccountsInput, ...request.Option) (*managedgrafana.ListWorkspaceServiceAccountsOutput, error)
+	ListWorkspaceServiceAccountsRequest(*managedgrafana.ListWorkspaceServiceAccountsInput) (*request.Request, *managedgrafana.ListWorkspaceServiceAccountsOutput)
+
+	ListWorkspaceServiceAccountsPages(*managedgrafana.ListWorkspaceServiceAccountsInput, func(*managedgrafana.ListWorkspaceServiceAccountsOutput, bool) bool) error
+	ListWorkspaceServiceAccountsPagesWithContext(aws.Context, *managedgrafana.ListWorkspaceServiceAccountsInput, func(*managedgrafana.ListWorkspaceServiceAccountsOutput, bool) bool, ...request.Option) error
 
 	ListWorkspaces(*managedgrafana.ListWorkspacesInput) (*managedgrafana.ListWorkspacesOutput, error)
 	ListWorkspacesWithContext(aws.Context, *managedgrafana.ListWorkspacesInput, ...request.Option) (*managedgrafana.ListWorkspacesOutput, error)

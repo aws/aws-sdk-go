@@ -1473,11 +1473,11 @@ func (c *MedicalImaging) SearchImageSetsRequest(input *SearchImageSetsInput) (re
 // Search image sets based on defined input attributes.
 //
 // SearchImageSets accepts a single search query parameter and returns a paginated
-// response of all image sets that have the matching criteria. All range queries
-// must be input as (lowerBound, upperBound).
+// response of all image sets that have the matching criteria. All date range
+// queries must be input as (lowerBound, upperBound).
 //
-// SearchImageSets uses the updatedAt field for sorting in decreasing order
-// from latest to oldest.
+// By default, SearchImageSets uses the updatedAt field for sorting in descending
+// order from newest to oldest.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5733,6 +5733,9 @@ type StartDICOMImportJobInput struct {
 	// DatastoreId is a required field
 	DatastoreId *string `location:"uri" locationName:"datastoreId" type:"string" required:"true"`
 
+	// The account ID of the source S3 bucket owner.
+	InputOwnerAccountId *string `locationName:"inputOwnerAccountId" min:"12" type:"string"`
+
 	// The input prefix path for the S3 bucket that contains the DICOM files to
 	// be imported.
 	//
@@ -5785,6 +5788,9 @@ func (s *StartDICOMImportJobInput) Validate() error {
 	if s.DatastoreId != nil && len(*s.DatastoreId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("DatastoreId", 1))
 	}
+	if s.InputOwnerAccountId != nil && len(*s.InputOwnerAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("InputOwnerAccountId", 12))
+	}
 	if s.InputS3Uri == nil {
 		invalidParams.Add(request.NewErrParamRequired("InputS3Uri"))
 	}
@@ -5822,6 +5828,12 @@ func (s *StartDICOMImportJobInput) SetDataAccessRoleArn(v string) *StartDICOMImp
 // SetDatastoreId sets the DatastoreId field's value.
 func (s *StartDICOMImportJobInput) SetDatastoreId(v string) *StartDICOMImportJobInput {
 	s.DatastoreId = &v
+	return s
+}
+
+// SetInputOwnerAccountId sets the InputOwnerAccountId field's value.
+func (s *StartDICOMImportJobInput) SetInputOwnerAccountId(v string) *StartDICOMImportJobInput {
+	s.InputOwnerAccountId = &v
 	return s
 }
 

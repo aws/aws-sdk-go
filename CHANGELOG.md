@@ -1,3 +1,15 @@
+Release v1.53.3 (2024-05-15)
+===
+
+### Service Client Updates
+* `service/bedrock-agent-runtime`: Updates service documentation
+* `service/codebuild`: Updates service API and documentation
+  * CodeBuild Reserved Capacity VPC Support
+* `service/datasync`: Updates service API
+* `service/grafana`: Updates service API, documentation, and paginators
+* `service/medical-imaging`: Updates service API and documentation
+* `service/securityhub`: Updates service API and documentation
+
 Release v1.53.2 (2024-05-14)
 ===
 

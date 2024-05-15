@@ -18808,6 +18808,9 @@ const (
 	// TaskExecutionStatusQueued is a TaskExecutionStatus enum value
 	TaskExecutionStatusQueued = "QUEUED"
 
+	// TaskExecutionStatusCancelling is a TaskExecutionStatus enum value
+	TaskExecutionStatusCancelling = "CANCELLING"
+
 	// TaskExecutionStatusLaunching is a TaskExecutionStatus enum value
 	TaskExecutionStatusLaunching = "LAUNCHING"
 
@@ -18831,6 +18834,7 @@ const (
 func TaskExecutionStatus_Values() []string {
 	return []string{
 		TaskExecutionStatusQueued,
+		TaskExecutionStatusCancelling,
 		TaskExecutionStatusLaunching,
 		TaskExecutionStatusPreparing,
 		TaskExecutionStatusTransferring,

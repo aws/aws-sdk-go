@@ -3055,6 +3055,7 @@
       "type":"string",
       "enum":[
         "QUEUED",
+        "CANCELLING",
         "LAUNCHING",
         "PREPARING",
         "TRANSFERRING",
