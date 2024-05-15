@@ -3,8 +3,8 @@
   "metadata":{
     "apiVersion":"2023-07-19",
     "endpointPrefix":"medical-imaging",
-    "jsonVersion":"1.1",
     "protocol":"rest-json",
+    "protocols":["rest-json"],
     "serviceFullName":"AWS Health Imaging",
     "serviceId":"Medical Imaging",
     "signatureVersion":"v4",
@@ -364,6 +364,12 @@
     "Arn":{
       "type":"string",
       "pattern":"arn:aws((-us-gov)|(-iso)|(-iso-b)|(-cn))?:medical-imaging:[a-z0-9-]+:[0-9]{12}:datastore/[0-9a-z]{32}(/imageset/[0-9a-z]{32})?"
+    },
+    "AwsAccountId":{
+      "type":"string",
+      "max":12,
+      "min":12,
+      "pattern":"\\d+"
     },
     "ClientToken":{
       "type":"string",
@@ -1421,7 +1427,8 @@
           "locationName":"datastoreId"
         },
         "inputS3Uri":{"shape":"S3Uri"},
-        "outputS3Uri":{"shape":"S3Uri"}
+        "outputS3Uri":{"shape":"S3Uri"},
+        "inputOwnerAccountId":{"shape":"AwsAccountId"}
       }
     },
     "StartDICOMImportJobResponse":{

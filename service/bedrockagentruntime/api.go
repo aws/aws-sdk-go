@@ -4525,6 +4525,7 @@ func (e *ResponseStreamUnknownEvent) UnmarshalEvent(
 // Specifies the filters to use on the metadata attributes in the knowledge
 // base data sources before returning results. For more information, see Query
 // configurations (https://docs.aws.amazon.com/bedrock/latest/userguide/kb-test-config.html).
+// See the examples below to see how to use these filters.
 //
 // This data type is used in the following API operations:
 //
@@ -4536,12 +4537,12 @@ func (e *ResponseStreamUnknownEvent) UnmarshalEvent(
 type RetrievalFilter struct {
 	_ struct{} `type:"structure" sensitive:"true"`
 
-	// Knowledge base data sources whose metadata attributes fulfill all the filter
-	// conditions inside this list are returned.
+	// Knowledge base data sources are returned if their metadata attributes fulfill
+	// all the filter conditions inside this list.
 	AndAll []*RetrievalFilter `locationName:"andAll" min:"2" type:"list"`
 
-	// Knowledge base data sources whose metadata attributes fulfill at least one
-	// of the filter conditions inside this list are returned.
+	// Knowledge base data sources are returned if their metadata attributes fulfill
+	// at least one of the filter conditions inside this list.
 	OrAll []*RetrievalFilter `locationName:"orAll" min:"2" type:"list"`
 }
 

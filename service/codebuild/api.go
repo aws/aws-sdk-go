@@ -5755,8 +5755,8 @@ type Build struct {
 	// When the build process started, expressed in Unix time format.
 	StartTime *time.Time `locationName:"startTime" type:"timestamp"`
 
-	// How long, in minutes, for CodeBuild to wait before timing out this build
-	// if it does not get marked as completed.
+	// How long, in minutes, from 5 to 480 (8 hours), for CodeBuild to wait before
+	// timing out this build if it does not get marked as completed.
 	TimeoutInMinutes *int64 `locationName:"timeoutInMinutes" type:"integer"`
 
 	// If your CodeBuild project accesses resources in an Amazon VPC, you provide
@@ -7399,6 +7399,9 @@ type CreateFleetInput struct {
 	// EnvironmentType is a required field
 	EnvironmentType *string `locationName:"environmentType" type:"string" required:"true" enum:"EnvironmentType"`
 
+	// The service role associated with the compute fleet.
+	FleetServiceRole *string `locationName:"fleetServiceRole" min:"1" type:"string"`
+
 	// The name of the compute fleet.
 	//
 	// Name is a required field
@@ -7410,7 +7413,11 @@ type CreateFleetInput struct {
 	//    existing fleet instance to become available.
 	//
 	//    * For overflow behavior ON_DEMAND, your overflow builds run on CodeBuild
-	//    on-demand.
+	//    on-demand. If you choose to set your overflow behavior to on-demand while
+	//    creating a VPC-connected fleet, make sure that you add the required VPC
+	//    permissions to your project service role. For more information, see Example
+	//    policy statement to allow CodeBuild access to Amazon Web Services services
+	//    required to create a VPC network interface (https://docs.aws.amazon.com/codebuild/latest/userguide/auth-and-access-control-iam-identity-based-access-control.html#customer-managed-policies-example-create-vpc-network-interface).
 	OverflowBehavior *string `locationName:"overflowBehavior" type:"string" enum:"FleetOverflowBehavior"`
 
 	// The scaling configuration of the compute fleet.
@@ -7421,6 +7428,9 @@ type CreateFleetInput struct {
 	// These tags are available for use by Amazon Web Services services that support
 	// CodeBuild build project tags.
 	Tags []*Tag `locationName:"tags" type:"list"`
+
+	// Information about the VPC configuration that CodeBuild accesses.
+	VpcConfig *VpcConfig `locationName:"vpcConfig" type:"structure"`
 }
 
 // String returns the string representation.
@@ -7456,6 +7466,9 @@ func (s *CreateFleetInput) Validate() error {
 	if s.EnvironmentType == nil {
 		invalidParams.Add(request.NewErrParamRequired("EnvironmentType"))
 	}
+	if s.FleetServiceRole != nil && len(*s.FleetServiceRole) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FleetServiceRole", 1))
+	}
 	if s.Name == nil {
 		invalidParams.Add(request.NewErrParamRequired("Name"))
 	}
@@ -7475,6 +7488,11 @@ func (s *CreateFleetInput) Validate() error {
 			if err := v.Validate(); err != nil {
 				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
 			}
+		}
+	}
+	if s.VpcConfig != nil {
+		if err := s.VpcConfig.Validate(); err != nil {
+			invalidParams.AddNested("VpcConfig", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -7502,6 +7520,12 @@ func (s *CreateFleetInput) SetEnvironmentType(v string) *CreateFleetInput {
 	return s
 }
 
+// SetFleetServiceRole sets the FleetServiceRole field's value.
+func (s *CreateFleetInput) SetFleetServiceRole(v string) *CreateFleetInput {
+	s.FleetServiceRole = &v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *CreateFleetInput) SetName(v string) *CreateFleetInput {
 	s.Name = &v
@@ -7523,6 +7547,12 @@ func (s *CreateFleetInput) SetScalingConfiguration(v *ScalingConfigurationInput_
 // SetTags sets the Tags field's value.
 func (s *CreateFleetInput) SetTags(v []*Tag) *CreateFleetInput {
 	s.Tags = v
+	return s
+}
+
+// SetVpcConfig sets the VpcConfig field's value.
+func (s *CreateFleetInput) SetVpcConfig(v *VpcConfig) *CreateFleetInput {
+	s.VpcConfig = v
 	return s
 }
 
@@ -7653,6 +7683,8 @@ type CreateProjectInput struct {
 	//    commit ID is used. If not specified, the default branch's HEAD commit
 	//    ID is used.
 	//
+	//    * For GitLab: the commit ID, branch, or Git tag to use.
+	//
 	//    * For Bitbucket: the commit ID, branch name, or tag name that corresponds
 	//    to the version of the source code you want to build. If a branch name
 	//    is specified, the branch's HEAD commit ID is used. If not specified, the
@@ -7680,6 +7712,8 @@ type CreateProjectInput struct {
 	TimeoutInMinutes *int64 `locationName:"timeoutInMinutes" min:"5" type:"integer"`
 
 	// VpcConfig enables CodeBuild to access resources in an Amazon VPC.
+	//
+	// If you're using compute fleets during project creation, do not provide vpcConfig.
 	VpcConfig *VpcConfig `locationName:"vpcConfig" type:"structure"`
 }
 
@@ -9549,6 +9583,9 @@ type Fleet struct {
 	// in the CodeBuild user guide.
 	EnvironmentType *string `locationName:"environmentType" type:"string" enum:"EnvironmentType"`
 
+	// The service role associated with the compute fleet.
+	FleetServiceRole *string `locationName:"fleetServiceRole" min:"1" type:"string"`
+
 	// The ID of the compute fleet.
 	Id *string `locationName:"id" min:"1" type:"string"`
 
@@ -9564,7 +9601,11 @@ type Fleet struct {
 	//    existing fleet instance to become available.
 	//
 	//    * For overflow behavior ON_DEMAND, your overflow builds run on CodeBuild
-	//    on-demand.
+	//    on-demand. If you choose to set your overflow behavior to on-demand while
+	//    creating a VPC-connected fleet, make sure that you add the required VPC
+	//    permissions to your project service role. For more information, see Example
+	//    policy statement to allow CodeBuild access to Amazon Web Services services
+	//    required to create a VPC network interface (https://docs.aws.amazon.com/codebuild/latest/userguide/auth-and-access-control-iam-identity-based-access-control.html#customer-managed-policies-example-create-vpc-network-interface).
 	OverflowBehavior *string `locationName:"overflowBehavior" type:"string" enum:"FleetOverflowBehavior"`
 
 	// The scaling configuration of the compute fleet.
@@ -9578,6 +9619,9 @@ type Fleet struct {
 	// These tags are available for use by Amazon Web Services services that support
 	// CodeBuild build project tags.
 	Tags []*Tag `locationName:"tags" type:"list"`
+
+	// Information about the VPC configuration that CodeBuild accesses.
+	VpcConfig *VpcConfig `locationName:"vpcConfig" type:"structure"`
 }
 
 // String returns the string representation.
@@ -9628,6 +9672,12 @@ func (s *Fleet) SetEnvironmentType(v string) *Fleet {
 	return s
 }
 
+// SetFleetServiceRole sets the FleetServiceRole field's value.
+func (s *Fleet) SetFleetServiceRole(v string) *Fleet {
+	s.FleetServiceRole = &v
+	return s
+}
+
 // SetId sets the Id field's value.
 func (s *Fleet) SetId(v string) *Fleet {
 	s.Id = &v
@@ -9667,6 +9717,12 @@ func (s *Fleet) SetStatus(v *FleetStatus) *Fleet {
 // SetTags sets the Tags field's value.
 func (s *Fleet) SetTags(v []*Tag) *Fleet {
 	s.Tags = v
+	return s
+}
+
+// SetVpcConfig sets the VpcConfig field's value.
+func (s *Fleet) SetVpcConfig(v *VpcConfig) *Fleet {
+	s.VpcConfig = v
 	return s
 }
 
@@ -10031,8 +10087,9 @@ type ImportSourceCredentialsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The type of authentication used to connect to a GitHub, GitHub Enterprise,
-	// or Bitbucket repository. An OAUTH connection is not supported by the API
-	// and must be created using the CodeBuild console.
+	// GitLab, GitLab Self Managed, or Bitbucket repository. An OAUTH connection
+	// is not supported by the API and must be created using the CodeBuild console.
+	// Note that CODECONNECTIONS is only valid for GitLab and GitLab Self Managed.
 	//
 	// AuthType is a required field
 	AuthType *string `locationName:"authType" type:"string" required:"true" enum:"AuthType"`
@@ -10048,7 +10105,8 @@ type ImportSourceCredentialsInput struct {
 	ShouldOverwrite *bool `locationName:"shouldOverwrite" type:"boolean"`
 
 	// For GitHub or GitHub Enterprise, this is the personal access token. For Bitbucket,
-	// this is either the access token or the app password.
+	// this is either the access token or the app password. For the authType CODECONNECTIONS,
+	// this is the connectionArn.
 	//
 	// Token is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by ImportSourceCredentialsInput's
@@ -12257,6 +12315,8 @@ type Project struct {
 	//    commit ID is used. If not specified, the default branch's HEAD commit
 	//    ID is used.
 	//
+	//    * For GitLab: the commit ID, branch, or Git tag to use.
+	//
 	//    * For Bitbucket: the commit ID, branch name, or tag name that corresponds
 	//    to the version of the source code you want to build. If a branch name
 	//    is specified, the branch's HEAD commit ID is used. If not specified, the
@@ -13645,12 +13705,14 @@ type ProjectSourceVersion struct {
 	//
 	//    * For CodeCommit: the commit ID, branch, or Git tag to use.
 	//
-	//    * For GitHub or GitLab: the commit ID, pull request ID, branch name, or
-	//    tag name that corresponds to the version of the source code you want to
-	//    build. If a pull request ID is specified, it must use the format pr/pull-request-ID
+	//    * For GitHub: the commit ID, pull request ID, branch name, or tag name
+	//    that corresponds to the version of the source code you want to build.
+	//    If a pull request ID is specified, it must use the format pr/pull-request-ID
 	//    (for example, pr/25). If a branch name is specified, the branch's HEAD
 	//    commit ID is used. If not specified, the default branch's HEAD commit
 	//    ID is used.
+	//
+	//    * For GitLab: the commit ID, branch, or Git tag to use.
 	//
 	//    * For Bitbucket: the commit ID, branch name, or tag name that corresponds
 	//    to the version of the source code you want to build. If a branch name
@@ -15868,7 +15930,7 @@ type StartBuildInput struct {
 
 	// An authorization type for this build that overrides the one defined in the
 	// build project. This override applies only if the build project's source is
-	// BitBucket or GitHub.
+	// BitBucket, GitHub, GitLab, or GitLab Self Managed.
 	SourceAuthOverride *SourceAuth `locationName:"sourceAuthOverride" type:"structure"`
 
 	// A location that overrides, for this build, the source location for the one
@@ -15894,6 +15956,10 @@ type StartBuildInput struct {
 	// is specified, it must use the format pr/pull-request-ID (for example pr/25).
 	// If a branch name is specified, the branch's HEAD commit ID is used. If not
 	// specified, the default branch's HEAD commit ID is used.
+	//
+	// GitLab
+	//
+	// The commit ID, branch, or Git tag to use.
 	//
 	// Bitbucket
 	//
@@ -16816,13 +16882,20 @@ type UpdateFleetInput struct {
 	// in the CodeBuild user guide.
 	EnvironmentType *string `locationName:"environmentType" type:"string" enum:"EnvironmentType"`
 
+	// The service role associated with the compute fleet.
+	FleetServiceRole *string `locationName:"fleetServiceRole" min:"1" type:"string"`
+
 	// The compute fleet overflow behavior.
 	//
 	//    * For overflow behavior QUEUE, your overflow builds need to wait on the
 	//    existing fleet instance to become available.
 	//
 	//    * For overflow behavior ON_DEMAND, your overflow builds run on CodeBuild
-	//    on-demand.
+	//    on-demand. If you choose to set your overflow behavior to on-demand while
+	//    creating a VPC-connected fleet, make sure that you add the required VPC
+	//    permissions to your project service role. For more information, see Example
+	//    policy statement to allow CodeBuild access to Amazon Web Services services
+	//    required to create a VPC network interface (https://docs.aws.amazon.com/codebuild/latest/userguide/auth-and-access-control-iam-identity-based-access-control.html#customer-managed-policies-example-create-vpc-network-interface).
 	OverflowBehavior *string `locationName:"overflowBehavior" type:"string" enum:"FleetOverflowBehavior"`
 
 	// The scaling configuration of the compute fleet.
@@ -16833,6 +16906,9 @@ type UpdateFleetInput struct {
 	// These tags are available for use by Amazon Web Services services that support
 	// CodeBuild build project tags.
 	Tags []*Tag `locationName:"tags" type:"list"`
+
+	// Information about the VPC configuration that CodeBuild accesses.
+	VpcConfig *VpcConfig `locationName:"vpcConfig" type:"structure"`
 }
 
 // String returns the string representation.
@@ -16865,6 +16941,9 @@ func (s *UpdateFleetInput) Validate() error {
 	if s.BaseCapacity != nil && *s.BaseCapacity < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("BaseCapacity", 1))
 	}
+	if s.FleetServiceRole != nil && len(*s.FleetServiceRole) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FleetServiceRole", 1))
+	}
 	if s.ScalingConfiguration != nil {
 		if err := s.ScalingConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("ScalingConfiguration", err.(request.ErrInvalidParams))
@@ -16878,6 +16957,11 @@ func (s *UpdateFleetInput) Validate() error {
 			if err := v.Validate(); err != nil {
 				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
 			}
+		}
+	}
+	if s.VpcConfig != nil {
+		if err := s.VpcConfig.Validate(); err != nil {
+			invalidParams.AddNested("VpcConfig", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -16911,6 +16995,12 @@ func (s *UpdateFleetInput) SetEnvironmentType(v string) *UpdateFleetInput {
 	return s
 }
 
+// SetFleetServiceRole sets the FleetServiceRole field's value.
+func (s *UpdateFleetInput) SetFleetServiceRole(v string) *UpdateFleetInput {
+	s.FleetServiceRole = &v
+	return s
+}
+
 // SetOverflowBehavior sets the OverflowBehavior field's value.
 func (s *UpdateFleetInput) SetOverflowBehavior(v string) *UpdateFleetInput {
 	s.OverflowBehavior = &v
@@ -16926,6 +17016,12 @@ func (s *UpdateFleetInput) SetScalingConfiguration(v *ScalingConfigurationInput_
 // SetTags sets the Tags field's value.
 func (s *UpdateFleetInput) SetTags(v []*Tag) *UpdateFleetInput {
 	s.Tags = v
+	return s
+}
+
+// SetVpcConfig sets the VpcConfig field's value.
+func (s *UpdateFleetInput) SetVpcConfig(v *VpcConfig) *UpdateFleetInput {
+	s.VpcConfig = v
 	return s
 }
 
@@ -17053,6 +17149,8 @@ type UpdateProjectInput struct {
 	//    (for example pr/25). If a branch name is specified, the branch's HEAD
 	//    commit ID is used. If not specified, the default branch's HEAD commit
 	//    ID is used.
+	//
+	//    * For GitLab: the commit ID, branch, or Git tag to use.
 	//
 	//    * For Bitbucket: the commit ID, branch name, or tag name that corresponds
 	//    to the version of the source code you want to build. If a branch name
@@ -18431,6 +18529,9 @@ const (
 
 	// FleetContextCodeUpdateFailed is a FleetContextCode enum value
 	FleetContextCodeUpdateFailed = "UPDATE_FAILED"
+
+	// FleetContextCodeActionRequired is a FleetContextCode enum value
+	FleetContextCodeActionRequired = "ACTION_REQUIRED"
 )
 
 // FleetContextCode_Values returns all elements of the FleetContextCode enum
@@ -18438,6 +18539,7 @@ func FleetContextCode_Values() []string {
 	return []string{
 		FleetContextCodeCreateFailed,
 		FleetContextCodeUpdateFailed,
+		FleetContextCodeActionRequired,
 	}
 }
 

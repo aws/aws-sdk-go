@@ -2,11 +2,15 @@
   "version": "2.0",
   "service": "<p>Amazon Managed Grafana is a fully managed and secure data visualization service that you can use to instantly query, correlate, and visualize operational metrics, logs, and traces from multiple sources. Amazon Managed Grafana makes it easy to deploy, operate, and scale Grafana, a widely deployed data visualization tool that is popular for its extensible data support.</p> <p>With Amazon Managed Grafana, you create logically isolated Grafana servers called <i>workspaces</i>. In a workspace, you can create Grafana dashboards and visualizations to analyze your metrics, logs, and traces without having to build, package, or deploy any hardware to run Grafana servers. </p>",
   "operations": {
-    "AssociateLicense": "<p>Assigns a Grafana Enterprise license to a workspace. Upgrading to Grafana Enterprise incurs additional fees. For more information, see <a href=\"https://docs.aws.amazon.com/grafana/latest/userguide/upgrade-to-Grafana-Enterprise.html\">Upgrade a workspace to Grafana Enterprise</a>.</p>",
+    "AssociateLicense": "<p>Assigns a Grafana Enterprise license to a workspace. To upgrade, you must use <code>ENTERPRISE</code> for the <code>licenseType</code>, and pass in a valid Grafana Labs token for the <code>grafanaToken</code>. Upgrading to Grafana Enterprise incurs additional fees. For more information, see <a href=\"https://docs.aws.amazon.com/grafana/latest/userguide/upgrade-to-Grafana-Enterprise.html\">Upgrade a workspace to Grafana Enterprise</a>.</p>",
     "CreateWorkspace": "<p>Creates a <i>workspace</i>. In a workspace, you can create Grafana dashboards and visualizations to analyze your metrics, logs, and traces. You don't have to build, package, or deploy any hardware to run the Grafana server.</p> <p>Don't use <code>CreateWorkspace</code> to modify an existing workspace. Instead, use <a href=\"https://docs.aws.amazon.com/grafana/latest/APIReference/API_UpdateWorkspace.html\">UpdateWorkspace</a>.</p>",
-    "CreateWorkspaceApiKey": "<p>Creates a Grafana API key for the workspace. This key can be used to authenticate requests sent to the workspace's HTTP API. See <a href=\"https://docs.aws.amazon.com/grafana/latest/userguide/Using-Grafana-APIs.html\">https://docs.aws.amazon.com/grafana/latest/userguide/Using-Grafana-APIs.html</a> for available APIs and example requests.</p>",
+    "CreateWorkspaceApiKey": "<p>Creates a Grafana API key for the workspace. This key can be used to authenticate requests sent to the workspace's HTTP API. See <a href=\"https://docs.aws.amazon.com/grafana/latest/userguide/Using-Grafana-APIs.html\">https://docs.aws.amazon.com/grafana/latest/userguide/Using-Grafana-APIs.html</a> for available APIs and example requests.</p> <note> <p>In workspaces compatible with Grafana version 9 or above, use workspace service accounts instead of API keys. API keys will be removed in a future release.</p> </note>",
+    "CreateWorkspaceServiceAccount": "<p>Creates a service account for the workspace. A service account can be used to call Grafana HTTP APIs, and run automated workloads. After creating the service account with the correct <code>GrafanaRole</code> for your use case, use <code>CreateWorkspaceServiceAccountToken</code> to create a token that can be used to authenticate and authorize Grafana HTTP API calls.</p> <p>You can only create service accounts for workspaces that are compatible with Grafana version 9 and above.</p> <note> <p>For more information about service accounts, see <a href=\"https://docs.aws.amazon.com/grafana/latest/userguide/service-accounts.html\">Service accounts</a> in the <i>Amazon Managed Grafana User Guide</i>.</p> <p>For more information about the Grafana HTTP APIs, see <a href=\"https://docs.aws.amazon.com/grafana/latest/userguide/Using-Grafana-APIs.html\">Using Grafana HTTP APIs</a> in the <i>Amazon Managed Grafana User Guide</i>.</p> </note>",
+    "CreateWorkspaceServiceAccountToken": "<p>Creates a token that can be used to authenticate and authorize Grafana HTTP API operations for the given <a href=\"https://docs.aws.amazon.com/grafana/latest/userguide/service-accounts.html\">workspace service account</a>. The service account acts as a user for the API operations, and defines the permissions that are used by the API.</p> <important> <p>When you create the service account token, you will receive a key that is used when calling Grafana APIs. Do not lose this key, as it will not be retrievable again.</p> <p>If you do lose the key, you can delete the token and recreate it to receive a new key. This will disable the initial key.</p> </important> <p>Service accounts are only available for workspaces that are compatible with Grafana version 9 and above.</p>",
     "DeleteWorkspace": "<p>Deletes an Amazon Managed Grafana workspace.</p>",
-    "DeleteWorkspaceApiKey": "<p>Deletes a Grafana API key for the workspace.</p>",
+    "DeleteWorkspaceApiKey": "<p>Deletes a Grafana API key for the workspace.</p> <note> <p>In workspaces compatible with Grafana version 9 or above, use workspace service accounts instead of API keys. API keys will be removed in a future release.</p> </note>",
+    "DeleteWorkspaceServiceAccount": "<p>Deletes a workspace service account from the workspace.</p> <p>This will delete any tokens created for the service account, as well. If the tokens are currently in use, the will fail to authenticate / authorize after they are deleted.</p> <p>Service accounts are only available for workspaces that are compatible with Grafana version 9 and above.</p>",
+    "DeleteWorkspaceServiceAccountToken": "<p>Deletes a token for the workspace service account.</p> <p>This will disable the key associated with the token. If any automation is currently using the key, it will no longer be authenticated or authorized to perform actions with the Grafana HTTP APIs.</p> <p>Service accounts are only available for workspaces that are compatible with Grafana version 9 and above.</p>",
     "DescribeWorkspace": "<p>Displays information about one Amazon Managed Grafana workspace.</p>",
     "DescribeWorkspaceAuthentication": "<p>Displays information about the authentication methods used in one Amazon Managed Grafana workspace.</p>",
     "DescribeWorkspaceConfiguration": "<p>Gets the current configuration string for the given workspace.</p>",
@@ -14,6 +18,8 @@
     "ListPermissions": "<p>Lists the users and groups who have the Grafana <code>Admin</code> and <code>Editor</code> roles in this workspace. If you use this operation without specifying <code>userId</code> or <code>groupId</code>, the operation returns the roles of all users and groups. If you specify a <code>userId</code> or a <code>groupId</code>, only the roles for that user or group are returned. If you do this, you can specify only one <code>userId</code> or one <code>groupId</code>.</p>",
     "ListTagsForResource": "<p>The <code>ListTagsForResource</code> operation returns the tags that are associated with the Amazon Managed Service for Grafana resource specified by the <code>resourceArn</code>. Currently, the only resource that can be tagged is a workspace. </p>",
     "ListVersions": "<p>Lists available versions of Grafana. These are available when calling <code>CreateWorkspace</code>. Optionally, include a workspace to list the versions to which it can be upgraded.</p>",
+    "ListWorkspaceServiceAccountTokens": "<p>Returns a list of tokens for a workspace service account.</p> <note> <p>This does not return the key for each token. You cannot access keys after they are created. To create a new key, delete the token and recreate it.</p> </note> <p>Service accounts are only available for workspaces that are compatible with Grafana version 9 and above.</p>",
+    "ListWorkspaceServiceAccounts": "<p>Returns a list of service accounts for a workspace.</p> <p>Service accounts are only available for workspaces that are compatible with Grafana version 9 and above.</p>",
     "ListWorkspaces": "<p>Returns a list of Amazon Managed Grafana workspaces in the account, with some information about each workspace. For more complete information about one workspace, use <a href=\"https://docs.aws.amazon.com/AAMG/latest/APIReference/API_DescribeWorkspace.html\">DescribeWorkspace</a>.</p>",
     "TagResource": "<p>The <code>TagResource</code> operation associates tags with an Amazon Managed Grafana resource. Currently, the only resource that can be tagged is workspaces. </p> <p>If you specify a new tag key for the resource, this tag is appended to the list of tags associated with the resource. If you specify a tag key that is already associated with the resource, the new tag value that you specify replaces the previous value for that tag.</p>",
     "UntagResource": "<p>The <code>UntagResource</code> operation removes the association of the tag with the Amazon Managed Grafana resource. </p>",
@@ -170,6 +176,32 @@
       "refs": {
       }
     },
+    "CreateWorkspaceServiceAccountRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateWorkspaceServiceAccountResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateWorkspaceServiceAccountTokenRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateWorkspaceServiceAccountTokenRequestSecondsToLiveInteger": {
+      "base": null,
+      "refs": {
+        "CreateWorkspaceServiceAccountTokenRequest$secondsToLive": "<p>Sets how long the token will be valid, in seconds. You can set the time up to 30 days in the future.</p>"
+      }
+    },
+    "CreateWorkspaceServiceAccountTokenResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DataSourceType": {
       "base": null,
       "refs": {
@@ -200,6 +232,26 @@
       }
     },
     "DeleteWorkspaceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteWorkspaceServiceAccountRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteWorkspaceServiceAccountResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteWorkspaceServiceAccountTokenRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteWorkspaceServiceAccountTokenResponse": {
       "base": null,
       "refs": {
       }
@@ -263,15 +315,15 @@
     "GrafanaToken": {
       "base": null,
       "refs": {
-        "AssociateLicenseRequest$grafanaToken": "<p>A token from Grafana Labs that ties your Amazon Web Services account with a Grafana Labs account. For more information, see <a href=\"https://docs.aws.amazon.com/grafana/latest/userguide/upgrade-to-Grafana-Enterprise.html#AMG-workspace-register-enterprise\">Register with Grafana Labs</a>.</p>",
-        "WorkspaceDescription$grafanaToken": "<p>The token that ties this workspace to a Grafana Labs account. For more information, see <a href=\"https://docs.aws.amazon.com/grafana/latest/userguide/upgrade-to-Grafana-Enterprise.html#AMG-workspace-register-enterprise\">Register with Grafana Labs</a>.</p>",
-        "WorkspaceSummary$grafanaToken": "<p>The token that ties this workspace to a Grafana Labs account. For more information, see <a href=\"https://docs.aws.amazon.com/grafana/latest/userguide/upgrade-to-Grafana-Enterprise.html#AMG-workspace-register-enterprise\">Register with Grafana Labs</a>.</p>"
+        "AssociateLicenseRequest$grafanaToken": "<p>A token from Grafana Labs that ties your Amazon Web Services account with a Grafana Labs account. For more information, see <a href=\"https://docs.aws.amazon.com/grafana/latest/userguide/upgrade-to-Grafana-Enterprise.html#AMG-workspace-register-enterprise\">Link your account with Grafana Labs</a>.</p>",
+        "WorkspaceDescription$grafanaToken": "<p>The token that ties this workspace to a Grafana Labs account. For more information, see <a href=\"https://docs.aws.amazon.com/grafana/latest/userguide/upgrade-to-Grafana-Enterprise.html#AMG-workspace-register-enterprise\">Link your account with Grafana Labs</a>.</p>",
+        "WorkspaceSummary$grafanaToken": "<p>The token that ties this workspace to a Grafana Labs account. For more information, see <a href=\"https://docs.aws.amazon.com/grafana/latest/userguide/upgrade-to-Grafana-Enterprise.html#AMG-workspace-register-enterprise\">Link your account with Grafana Labs</a>.</p>"
       }
     },
     "GrafanaVersion": {
       "base": null,
       "refs": {
-        "CreateWorkspaceRequest$grafanaVersion": "<p>Specifies the version of Grafana to support in the new workspace. If not specified, defaults to the latest version (for example, 9.4).</p> <p>To get a list of supported versions, use the <code>ListVersions</code> operation.</p>",
+        "CreateWorkspaceRequest$grafanaVersion": "<p>Specifies the version of Grafana to support in the new workspace. If not specified, defaults to the latest version (for example, 10.4).</p> <p>To get a list of supported versions, use the <code>ListVersions</code> operation.</p>",
         "DescribeWorkspaceConfigurationResponse$grafanaVersion": "<p>The supported Grafana version for the workspace.</p>",
         "GrafanaVersionList$member": null,
         "UpdateWorkspaceConfigurationRequest$grafanaVersion": "<p>Specifies the version of Grafana to support in the workspace. If not specified, keeps the current version of the workspace.</p> <p>Can only be used to upgrade (for example, from 8.4 to 9.4), not downgrade (for example, from 9.4 to 8.4).</p> <p>To know what versions are available to upgrade to for a specific workspace, see the <a href=\"https://docs.aws.amazon.com/grafana/latest/APIReference/API_ListVersions.html\">ListVersions</a> operation.</p>",
@@ -368,6 +420,38 @@
       "refs": {
       }
     },
+    "ListWorkspaceServiceAccountTokensRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListWorkspaceServiceAccountTokensRequestMaxResultsInteger": {
+      "base": null,
+      "refs": {
+        "ListWorkspaceServiceAccountTokensRequest$maxResults": "<p>The maximum number of tokens to include in the results.</p>"
+      }
+    },
+    "ListWorkspaceServiceAccountTokensResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListWorkspaceServiceAccountsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListWorkspaceServiceAccountsRequestMaxResultsInteger": {
+      "base": null,
+      "refs": {
+        "ListWorkspaceServiceAccountsRequest$maxResults": "<p>The maximum number of service accounts to include in the results.</p>"
+      }
+    },
+    "ListWorkspaceServiceAccountsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListWorkspacesRequest": {
       "base": null,
       "refs": {
@@ -450,6 +534,10 @@
         "ListPermissionsResponse$nextToken": "<p>The token to use in a subsequent <code>ListPermissions</code> operation to return the next set of results.</p>",
         "ListVersionsRequest$nextToken": "<p>The token to use when requesting the next set of results. You receive this token from a previous <code>ListVersions</code> operation.</p>",
         "ListVersionsResponse$nextToken": "<p>The token to use in a subsequent <code>ListVersions</code> operation to return the next set of results.</p>",
+        "ListWorkspaceServiceAccountTokensRequest$nextToken": "<p>The token for the next set of service accounts to return. (You receive this token from a previous <code>ListWorkspaceServiceAccountTokens</code> operation.)</p>",
+        "ListWorkspaceServiceAccountTokensResponse$nextToken": "<p>The token to use when requesting the next set of service accounts.</p>",
+        "ListWorkspaceServiceAccountsRequest$nextToken": "<p>The token for the next set of service accounts to return. (You receive this token from a previous <code>ListWorkspaceServiceAccounts</code> operation.)</p>",
+        "ListWorkspaceServiceAccountsResponse$nextToken": "<p>The token to use when requesting the next set of service accounts.</p>",
         "ListWorkspacesRequest$nextToken": "<p>The token for the next set of workspaces to return. (You receive this token from a previous <code>ListWorkspaces</code> operation.)</p>",
         "ListWorkspacesResponse$nextToken": "<p>The token to use when requesting the next set of workspaces.</p>"
       }
@@ -494,7 +582,10 @@
     "Role": {
       "base": null,
       "refs": {
+        "CreateWorkspaceServiceAccountRequest$grafanaRole": "<p>The permission level to use for this service account.</p> <note> <p>For more information about the roles and the permissions each has, see <a href=\"https://docs.aws.amazon.com/grafana/latest/userguide/Grafana-user-roles.html\">User roles</a> in the <i>Amazon Managed Grafana User Guide</i>.</p> </note>",
+        "CreateWorkspaceServiceAccountResponse$grafanaRole": "<p>The permission level given to the service account.</p>",
         "PermissionEntry$role": "<p>Specifies whether the user or group has the <code>Admin</code>, <code>Editor</code>, or <code>Viewer</code> role.</p>",
+        "ServiceAccountSummary$grafanaRole": "<p>The role of the service account, which sets the permission level used when calling Grafana APIs.</p>",
         "UpdateInstruction$role": "<p>The role to add or revoke for the user or the group specified in <code>users</code>.</p>"
       }
     },
@@ -555,6 +646,54 @@
         "VpcConfiguration$securityGroupIds": "<p>The list of Amazon EC2 security group IDs attached to the Amazon VPC for your Grafana workspace to connect. Duplicates not allowed.</p>"
       }
     },
+    "ServiceAccountList": {
+      "base": null,
+      "refs": {
+        "ListWorkspaceServiceAccountsResponse$serviceAccounts": "<p>An array of structures containing information about the service accounts.</p>"
+      }
+    },
+    "ServiceAccountName": {
+      "base": null,
+      "refs": {
+        "CreateWorkspaceServiceAccountRequest$name": "<p>A name for the service account. The name must be unique within the workspace, as it determines the ID associated with the service account.</p>"
+      }
+    },
+    "ServiceAccountSummary": {
+      "base": "<p>A structure that contains the information about one service account.</p>",
+      "refs": {
+        "ServiceAccountList$member": null
+      }
+    },
+    "ServiceAccountTokenKey": {
+      "base": null,
+      "refs": {
+        "ServiceAccountTokenSummaryWithKey$key": "<p>The key for the service account token. Used when making calls to the Grafana HTTP APIs to authenticate and authorize the requests.</p>"
+      }
+    },
+    "ServiceAccountTokenList": {
+      "base": null,
+      "refs": {
+        "ListWorkspaceServiceAccountTokensResponse$serviceAccountTokens": "<p>An array of structures containing information about the tokens.</p>"
+      }
+    },
+    "ServiceAccountTokenName": {
+      "base": null,
+      "refs": {
+        "CreateWorkspaceServiceAccountTokenRequest$name": "<p>A name for the token to create.</p>"
+      }
+    },
+    "ServiceAccountTokenSummary": {
+      "base": "<p>A structure that contains the information about a service account token.</p>",
+      "refs": {
+        "ServiceAccountTokenList$member": null
+      }
+    },
+    "ServiceAccountTokenSummaryWithKey": {
+      "base": "<p>A structure that contains the information about a service account token.</p> <p>This structure is returned when creating the token. It is important to store the <code>key</code> that is returned, as it is not retrievable at a later time.</p> <p>If you lose the key, you can delete and recreate the token, which will create a new key.</p>",
+      "refs": {
+        "CreateWorkspaceServiceAccountTokenResponse$serviceAccountToken": "<p>Information about the created token, including the key. Be sure to store the key securely.</p>"
+      }
+    },
     "ServiceQuotaExceededException": {
       "base": "<p>The request would cause a service quota to be exceeded.</p>",
       "refs": {
@@ -583,13 +722,32 @@
         "ConflictException$message": "<p>A description of the error.</p>",
         "ConflictException$resourceId": "<p>The ID of the resource that is associated with the error.</p>",
         "ConflictException$resourceType": "<p>The type of the resource that is associated with the error.</p>",
-        "CreateWorkspaceApiKeyRequest$keyRole": "<p>Specifies the permission level of the key.</p> <p> Valid values: <code>VIEWER</code>|<code>EDITOR</code>|<code>ADMIN</code> </p>",
+        "CreateWorkspaceApiKeyRequest$keyRole": "<p>Specifies the permission level of the key.</p> <p> Valid values: <code>ADMIN</code>|<code>EDITOR</code>|<code>VIEWER</code> </p>",
+        "CreateWorkspaceServiceAccountResponse$id": "<p>The ID of the service account.</p>",
+        "CreateWorkspaceServiceAccountResponse$name": "<p>The name of the service account.</p>",
+        "CreateWorkspaceServiceAccountTokenRequest$serviceAccountId": "<p>The ID of the service account for which to create a token.</p>",
+        "CreateWorkspaceServiceAccountTokenResponse$serviceAccountId": "<p>The ID of the service account where the token was created.</p>",
+        "DeleteWorkspaceServiceAccountRequest$serviceAccountId": "<p>The ID of the service account to delete.</p>",
+        "DeleteWorkspaceServiceAccountResponse$serviceAccountId": "<p>The ID of the service account deleted.</p>",
+        "DeleteWorkspaceServiceAccountTokenRequest$serviceAccountId": "<p>The ID of the service account from which to delete the token.</p>",
+        "DeleteWorkspaceServiceAccountTokenRequest$tokenId": "<p>The ID of the token to delete.</p>",
+        "DeleteWorkspaceServiceAccountTokenResponse$serviceAccountId": "<p>The ID of the service account where the token was deleted.</p>",
+        "DeleteWorkspaceServiceAccountTokenResponse$tokenId": "<p>The ID of the token that was deleted.</p>",
         "IdpMetadata$xml": "<p>The full IdP metadata, in XML format.</p>",
         "InternalServerException$message": "<p>A description of the error.</p>",
         "ListTagsForResourceRequest$resourceArn": "<p>The ARN of the resource the list of tags are associated with.</p>",
+        "ListWorkspaceServiceAccountTokensRequest$serviceAccountId": "<p>The ID of the service account for which to return tokens.</p>",
+        "ListWorkspaceServiceAccountTokensResponse$serviceAccountId": "<p>The ID of the service account where the tokens reside.</p>",
         "ResourceNotFoundException$message": "<p>The value of a parameter in the request caused an error.</p>",
         "ResourceNotFoundException$resourceId": "<p>The ID of the resource that is associated with the error.</p>",
         "ResourceNotFoundException$resourceType": "<p>The type of the resource that is associated with the error.</p>",
+        "ServiceAccountSummary$id": "<p>The unique ID of the service account.</p>",
+        "ServiceAccountSummary$isDisabled": "<p>Returns true if the service account is disabled. Service accounts can be disabled and enabled in the Amazon Managed Grafana console.</p>",
+        "ServiceAccountSummary$name": "<p>The name of the service account.</p>",
+        "ServiceAccountTokenSummary$id": "<p>The unique ID of the service account token.</p>",
+        "ServiceAccountTokenSummary$name": "<p>The name of the service account token.</p>",
+        "ServiceAccountTokenSummaryWithKey$id": "<p>The unique ID of the service account token.</p>",
+        "ServiceAccountTokenSummaryWithKey$name": "<p>The name of the service account token.</p>",
         "ServiceQuotaExceededException$message": "<p>A description of the error.</p>",
         "ServiceQuotaExceededException$quotaCode": "<p>The ID of the service quota that was exceeded.</p>",
         "ServiceQuotaExceededException$resourceId": "<p>The ID of the resource that is associated with the error.</p>",
@@ -665,6 +823,9 @@
     "Timestamp": {
       "base": null,
       "refs": {
+        "ServiceAccountTokenSummary$createdAt": "<p>When the service account token was created.</p>",
+        "ServiceAccountTokenSummary$expiresAt": "<p>When the service account token will expire.</p>",
+        "ServiceAccountTokenSummary$lastUsedAt": "<p>The last time the token was used to authorize a Grafana HTTP API.</p>",
         "WorkspaceDescription$created": "<p>The date that the workspace was created.</p>",
         "WorkspaceDescription$freeTrialExpiration": "<p>If this workspace is currently in the free trial period for Grafana Enterprise, this value specifies when that free trial ends.</p> <note> <p>Amazon Managed Grafana workspaces no longer support Grafana Enterprise free trials.</p> </note>",
         "WorkspaceDescription$licenseExpiration": "<p>If this workspace has a full Grafana Enterprise license purchased through Amazon Web Services Marketplace, this specifies when the license ends and will need to be renewed. Purchasing the Enterprise plugins option through Amazon Managed Grafana does not have an expiration. It is valid until the license is removed.</p>",
@@ -840,15 +1001,27 @@
         "AssociateLicenseRequest$workspaceId": "<p>The ID of the workspace to associate the license with.</p>",
         "CreateWorkspaceApiKeyRequest$workspaceId": "<p>The ID of the workspace to create an API key.</p>",
         "CreateWorkspaceApiKeyResponse$workspaceId": "<p>The ID of the workspace that the key is valid for.</p>",
+        "CreateWorkspaceServiceAccountRequest$workspaceId": "<p>The ID of the workspace within which to create the service account.</p>",
+        "CreateWorkspaceServiceAccountResponse$workspaceId": "<p>The workspace with which the service account is associated.</p>",
+        "CreateWorkspaceServiceAccountTokenRequest$workspaceId": "<p>The ID of the workspace the service account resides within.</p>",
+        "CreateWorkspaceServiceAccountTokenResponse$workspaceId": "<p>The ID of the workspace where the token was created.</p>",
         "DeleteWorkspaceApiKeyRequest$workspaceId": "<p>The ID of the workspace to delete.</p>",
         "DeleteWorkspaceApiKeyResponse$workspaceId": "<p>The ID of the workspace where the key was deleted.</p>",
         "DeleteWorkspaceRequest$workspaceId": "<p>The ID of the workspace to delete.</p>",
+        "DeleteWorkspaceServiceAccountRequest$workspaceId": "<p>The ID of the workspace where the service account resides.</p>",
+        "DeleteWorkspaceServiceAccountResponse$workspaceId": "<p>The ID of the workspace where the service account was deleted.</p>",
+        "DeleteWorkspaceServiceAccountTokenRequest$workspaceId": "<p>The ID of the workspace from which to delete the token.</p>",
+        "DeleteWorkspaceServiceAccountTokenResponse$workspaceId": "<p>The ID of the workspace where the token was deleted.</p>",
         "DescribeWorkspaceAuthenticationRequest$workspaceId": "<p>The ID of the workspace to return authentication information about.</p>",
         "DescribeWorkspaceConfigurationRequest$workspaceId": "<p>The ID of the workspace to get configuration information for.</p>",
         "DescribeWorkspaceRequest$workspaceId": "<p>The ID of the workspace to display information about.</p>",
         "DisassociateLicenseRequest$workspaceId": "<p>The ID of the workspace to remove the Grafana Enterprise license from.</p>",
         "ListPermissionsRequest$workspaceId": "<p>The ID of the workspace to list permissions for. This parameter is required.</p>",
         "ListVersionsRequest$workspaceId": "<p>The ID of the workspace to list the available upgrade versions. If not included, lists all versions of Grafana that are supported for <code>CreateWorkspace</code>.</p>",
+        "ListWorkspaceServiceAccountTokensRequest$workspaceId": "<p>The ID of the workspace for which to return tokens.</p>",
+        "ListWorkspaceServiceAccountTokensResponse$workspaceId": "<p>The ID of the workspace where the tokens reside.</p>",
+        "ListWorkspaceServiceAccountsRequest$workspaceId": "<p>The workspace for which to list service accounts.</p>",
+        "ListWorkspaceServiceAccountsResponse$workspaceId": "<p>The workspace to which the service accounts are associated.</p>",
         "UpdatePermissionsRequest$workspaceId": "<p>The ID of the workspace to update.</p>",
         "UpdateWorkspaceAuthenticationRequest$workspaceId": "<p>The ID of the workspace to update the authentication for.</p>",
         "UpdateWorkspaceConfigurationRequest$workspaceId": "<p>The ID of the workspace to update.</p>",

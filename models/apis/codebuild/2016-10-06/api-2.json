@@ -5,6 +5,7 @@
     "endpointPrefix":"codebuild",
     "jsonVersion":"1.1",
     "protocol":"json",
+    "protocols":["json"],
     "serviceFullName":"AWS CodeBuild",
     "serviceId":"CodeBuild",
     "signatureVersion":"v4",
@@ -1121,6 +1122,8 @@
         "computeType":{"shape":"ComputeType"},
         "scalingConfiguration":{"shape":"ScalingConfigurationInput"},
         "overflowBehavior":{"shape":"FleetOverflowBehavior"},
+        "vpcConfig":{"shape":"VpcConfig"},
+        "fleetServiceRole":{"shape":"NonEmptyString"},
         "tags":{"shape":"TagList"}
       }
     },
@@ -1461,6 +1464,8 @@
         "computeType":{"shape":"ComputeType"},
         "scalingConfiguration":{"shape":"ScalingConfigurationOutput"},
         "overflowBehavior":{"shape":"FleetOverflowBehavior"},
+        "vpcConfig":{"shape":"VpcConfig"},
+        "fleetServiceRole":{"shape":"NonEmptyString"},
         "tags":{"shape":"TagList"}
       }
     },
@@ -1478,7 +1483,8 @@
       "type":"string",
       "enum":[
         "CREATE_FAILED",
-        "UPDATE_FAILED"
+        "UPDATE_FAILED",
+        "ACTION_REQUIRED"
       ]
     },
     "FleetName":{
@@ -2074,9 +2080,9 @@
     },
     "ProjectName":{
       "type":"string",
-      "max":255,
+      "max":150,
       "min":2,
-      "pattern":"[A-Za-z0-9][A-Za-z0-9\\-_]{1,254}"
+      "pattern":"[A-Za-z0-9][A-Za-z0-9\\-_]{1,149}"
     },
     "ProjectNames":{
       "type":"list",
@@ -2716,6 +2722,8 @@
         "computeType":{"shape":"ComputeType"},
         "scalingConfiguration":{"shape":"ScalingConfigurationInput"},
         "overflowBehavior":{"shape":"FleetOverflowBehavior"},
+        "vpcConfig":{"shape":"VpcConfig"},
+        "fleetServiceRole":{"shape":"NonEmptyString"},
         "tags":{"shape":"TagList"}
       }
     },

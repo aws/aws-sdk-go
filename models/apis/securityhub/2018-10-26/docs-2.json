@@ -4757,7 +4757,7 @@
     "ComplianceStatus": {
       "base": null,
       "refs": {
-        "Compliance$Status": "<p>The result of a standards check.</p> <p>The valid values for <code>Status</code> are as follows.</p> <ul> <li> <ul> <li> <p> <code>PASSED</code> - Standards check passed for all evaluated resources.</p> </li> <li> <p> <code>WARNING</code> - Some information is missing or this check is not supported for your configuration.</p> </li> <li> <p> <code>FAILED</code> - Standards check failed for at least one evaluated resource.</p> </li> <li> <p> <code>NOT_AVAILABLE</code> - Check could not be performed due to a service outage, API error, or because the result of the Config evaluation was <code>NOT_APPLICABLE</code>. If the Config evaluation result was <code>NOT_APPLICABLE</code>, then after 3 days, Security Hub automatically archives the finding.</p> </li> </ul> </li> </ul>"
+        "Compliance$Status": "<p>The result of a standards check.</p> <p>The valid values for <code>Status</code> are as follows.</p> <ul> <li> <ul> <li> <p> <code>PASSED</code> - Standards check passed for all evaluated resources.</p> </li> <li> <p> <code>WARNING</code> - Some information is missing or this check is not supported for your configuration.</p> </li> <li> <p> <code>FAILED</code> - Standards check failed for at least one evaluated resource.</p> </li> <li> <p> <code>NOT_AVAILABLE</code> - Check could not be performed due to a service outage, API error, or because the result of the Config evaluation was <code>NOT_APPLICABLE</code>. If the Config evaluation result was <code>NOT_APPLICABLE</code> for a Security Hub control, Security Hub automatically archives the finding after 3 days.</p> </li> </ul> </li> </ul>"
       }
     },
     "ConfigurationOptions": {
@@ -5305,16 +5305,16 @@
         "AwsLambdaFunctionEnvironment$Variables": "<p>Environment variable key-value pairs.</p>",
         "AwsOpenSearchServiceDomainDetails$DomainEndpoints": "<p>The domain endpoints. Used if the OpenSearch domain resides in a VPC.</p> <p>This is a map of key-value pairs. The key is always <code>vpc</code>. The value is the endpoint.</p>",
         "AwsSecurityFinding$ProductFields": "<p>A data type where security findings providers can include additional solution-specific details that aren't part of the defined <code>AwsSecurityFinding</code> format.</p> <p>Can contain up to 50 key-value pairs. For each key-value pair, the key can contain up to 128 characters, and the value can contain up to 2048 characters.</p>",
-        "AwsSecurityFinding$UserDefinedFields": "<p>A list of name/value string pairs associated with the finding. These are custom, user-defined fields added to a finding. </p>",
+        "AwsSecurityFinding$UserDefinedFields": "<p>A list of name/value string pairs associated with the finding. These are custom, user-defined fields added to a finding.</p> <p>Can contain up to 50 key-value pairs. For each key-value pair, the key can contain up to 128 characters, and the value can contain up to 1024 characters.</p>",
         "BatchUpdateFindingsRequest$UserDefinedFields": "<p>A list of name/value string pairs associated with the finding. These are custom, user-defined fields added to a finding.</p>",
-        "Resource$Tags": "<p>A list of Amazon Web Services tags associated with a resource at the time the finding was processed.</p>",
+        "Resource$Tags": "<p>A list of Amazon Web Services tags associated with a resource at the time the finding was processed. Tags must follow <a href=\"https://docs.aws.amazon.com/tag-editor/latest/userguide/tagging.html#tag-conventions\">Amazon Web Services tag naming limits and requirements</a>.</p>",
         "ResourceDetails$Other": "<p>Details about a resource that are not available in a type-specific details object. Use the <code>Other</code> object in the following cases.</p> <ul> <li> <p>The type-specific object does not contain all of the fields that you want to populate. In this case, first use the type-specific object to populate those fields. Use the <code>Other</code> object to populate the fields that are missing from the type-specific object.</p> </li> <li> <p>The resource type does not have a corresponding object. This includes resources for which the type is <code>Other</code>. </p> </li> </ul>"
       }
     },
     "FilePathList": {
       "base": null,
       "refs": {
-        "Threat$FilePaths": "<p>Provides information about the file paths that were affected by the threat. </p>"
+        "Threat$FilePaths": "<p>Provides information about the file paths that were affected by the threat. </p> <p>Array Members: Minimum number of 1 item. Maximum number of 5 items.</p>"
       }
     },
     "FilePaths": {
@@ -5842,12 +5842,12 @@
         "Network$SourcePort": "<p>The source port of network-related information about a finding.</p>",
         "Network$DestinationPort": "<p>The destination port of network-related information about a finding.</p>",
         "ParameterValue$Integer": "<p> A control parameter that is an integer. </p>",
-        "PatchSummary$InstalledCount": "<p>The number of patches from the compliance standard that were installed successfully.</p>",
-        "PatchSummary$MissingCount": "<p>The number of patches that are part of the compliance standard but are not installed. The count includes patches that failed to install.</p>",
-        "PatchSummary$FailedCount": "<p>The number of patches from the compliance standard that failed to install.</p>",
-        "PatchSummary$InstalledOtherCount": "<p>The number of installed patches that are not part of the compliance standard.</p>",
-        "PatchSummary$InstalledRejectedCount": "<p>The number of patches that are installed but are also on a list of patches that the customer rejected.</p>",
-        "PatchSummary$InstalledPendingReboot": "<p>The number of patches that were applied, but that require the instance to be rebooted in order to be marked as installed.</p>",
+        "PatchSummary$InstalledCount": "<p>The number of patches from the compliance standard that were installed successfully.</p> <p>The value can be an integer from <code>0</code> to <code>100000</code>.</p>",
+        "PatchSummary$MissingCount": "<p>The number of patches that are part of the compliance standard but are not installed. The count includes patches that failed to install.</p> <p>The value can be an integer from <code>0</code> to <code>100000</code>.</p>",
+        "PatchSummary$FailedCount": "<p>The number of patches from the compliance standard that failed to install.</p> <p>The value can be an integer from <code>0</code> to <code>100000</code>.</p>",
+        "PatchSummary$InstalledOtherCount": "<p>The number of installed patches that are not part of the compliance standard.</p> <p>The value can be an integer from <code>0</code> to <code>100000</code>.</p>",
+        "PatchSummary$InstalledRejectedCount": "<p>The number of patches that are installed but are also on a list of patches that the customer rejected.</p> <p>The value can be an integer from <code>0</code> to <code>100000</code>.</p>",
+        "PatchSummary$InstalledPendingReboot": "<p>The number of patches that were applied, but that require the instance to be rebooted in order to be marked as installed.</p> <p>The value can be an integer from <code>0</code> to <code>100000</code>.</p>",
         "PortRange$Begin": "<p>The first port in the port range.</p>",
         "PortRange$End": "<p>The last port in the port range.</p>",
         "PortRangeFromTo$From": "<p>The first port in the port range.</p>",
@@ -5860,7 +5860,7 @@
         "RuleGroupSourceStatelessRuleMatchAttributesSourcePorts$FromPort": "<p>The starting port value for the port range.</p>",
         "RuleGroupSourceStatelessRuleMatchAttributesSourcePorts$ToPort": "<p>The ending port value for the port range.</p>",
         "RuleGroupSourceStatelessRulesDetails$Priority": "<p>Indicates the order in which to run this rule relative to all of the rules in the stateless rule group.</p>",
-        "Severity$Normalized": "<p>Deprecated. The normalized severity of a finding. Instead of providing <code>Normalized</code>, provide <code>Label</code>.</p> <p>If you provide <code>Label</code> and do not provide <code>Normalized</code>, then <code>Normalized</code> is set automatically as follows.</p> <ul> <li> <p> <code>INFORMATIONAL</code> - 0</p> </li> <li> <p> <code>LOW</code> - 1</p> </li> <li> <p> <code>MEDIUM</code> - 40</p> </li> <li> <p> <code>HIGH</code> - 70</p> </li> <li> <p> <code>CRITICAL</code> - 90</p> </li> </ul>",
+        "Severity$Normalized": "<p>Deprecated. The normalized severity of a finding. Instead of providing <code>Normalized</code>, provide <code>Label</code>.</p> <p>The value of <code>Normalized</code> can be an integer between <code>0</code> and <code>100</code>.</p> <p>If you provide <code>Label</code> and do not provide <code>Normalized</code>, then <code>Normalized</code> is set automatically as follows.</p> <ul> <li> <p> <code>INFORMATIONAL</code> - 0</p> </li> <li> <p> <code>LOW</code> - 1</p> </li> <li> <p> <code>MEDIUM</code> - 40</p> </li> <li> <p> <code>HIGH</code> - 70</p> </li> <li> <p> <code>CRITICAL</code> - 90</p> </li> </ul>",
         "StringListConfigurationOptions$MaxItems": "<p> The maximum number of list items that a string list control parameter can accept. </p>",
         "Threat$ItemCount": "<p>This total number of items in which the threat has been detected. </p>",
         "UnprocessedAutomationRule$ErrorCode": "<p> The error code associated with the unprocessed automation rule. </p>"
@@ -6154,7 +6154,7 @@
     "MalwareList": {
       "base": null,
       "refs": {
-        "AwsSecurityFinding$Malware": "<p>A list of malware related to a finding.</p>"
+        "AwsSecurityFinding$Malware": "<p>A list of malware related to a finding.</p> <p>Array Members: Maximum number of 5 items.</p>"
       }
     },
     "MalwareState": {
@@ -6323,9 +6323,9 @@
         "AccountIdList$member": null,
         "Action$ActionType": "<p>The type of action that was detected. The possible action types are:</p> <ul> <li> <p> <code>NETWORK_CONNECTION</code> </p> </li> <li> <p> <code>AWS_API_CALL</code> </p> </li> <li> <p> <code>DNS_REQUEST</code> </p> </li> <li> <p> <code>PORT_PROBE</code> </p> </li> </ul>",
         "ActionLocalIpDetails$IpAddressV4": "<p>The IP address.</p>",
-        "ActionLocalPortDetails$PortName": "<p>The port name of the local connection.</p>",
+        "ActionLocalPortDetails$PortName": "<p>The port name of the local connection.</p> <p>Length Constraints: 128.</p>",
         "ActionRemoteIpDetails$IpAddressV4": "<p>The IP address.</p>",
-        "ActionRemotePortDetails$PortName": "<p>The port name of the remote connection.</p>",
+        "ActionRemotePortDetails$PortName": "<p>The port name of the remote connection.</p> <p>Length Constraints: 128.</p>",
         "ActionTarget$ActionTargetArn": "<p>The ARN for the target action.</p>",
         "ActionTarget$Name": "<p>The name of the action target.</p>",
         "ActionTarget$Description": "<p>The description of the target action.</p>",
@@ -6376,12 +6376,12 @@
         "AwsAmazonMqBrokerMaintenanceWindowStartTimeDetails$TimeZone": "<p> The time zone in either the Country/City format or the UTC offset format. UTC is the default format. </p>",
         "AwsAmazonMqBrokerUsersDetails$PendingChange": "<p> The type of change pending for the broker user. </p>",
         "AwsAmazonMqBrokerUsersDetails$Username": "<p> The username of the broker user. </p>",
-        "AwsApiCallAction$Api": "<p>The name of the API method that was issued.</p>",
-        "AwsApiCallAction$ServiceName": "<p>The name of the Amazon Web Services service that the API method belongs to.</p>",
+        "AwsApiCallAction$Api": "<p>The name of the API method that was issued.</p> <p>Length Constraints: 128.</p>",
+        "AwsApiCallAction$ServiceName": "<p>The name of the Amazon Web Services service that the API method belongs to.</p> <p>Length Constraints: 128.</p>",
         "AwsApiCallAction$CallerType": "<p>Indicates whether the API call originated from a remote IP address (<code>remoteip</code>) or from a DNS domain (<code>domain</code>).</p>",
         "AwsApiCallAction$FirstSeen": "<p>A timestamp that indicates when the API call was first observed.</p> <p>This field accepts only the specified formats. Timestamps can end with <code>Z</code> or <code>(\"+\" / \"-\") time-hour [\":\" time-minute]</code>. The time-secfrac after seconds is limited to a maximum of 9 digits. The offset is bounded by +/-18:00. Here are valid timestamp formats with examples:</p> <ul> <li> <p> <code>YYYY-MM-DDTHH:MM:SSZ</code> (for example, <code>2019-01-31T23:00:00Z</code>)</p> </li> <li> <p> <code>YYYY-MM-DDTHH:MM:SS.mmmmmmmmmZ</code> (for example, <code>2019-01-31T23:00:00.123456789Z</code>)</p> </li> <li> <p> <code>YYYY-MM-DDTHH:MM:SS+HH:MM</code> (for example, <code>2024-01-04T15:25:10+17:59</code>)</p> </li> <li> <p> <code>YYYY-MM-DDTHH:MM:SS-HHMM</code> (for example, <code>2024-01-04T15:25:10-1759</code>)</p> </li> <li> <p> <code>YYYY-MM-DDTHH:MM:SS.mmmmmmmmm+HH:MM</code> (for example, <code>2024-01-04T15:25:10.123456789+17:59</code>)</p> </li> </ul>",
         "AwsApiCallAction$LastSeen": "<p>A timestamp that indicates when the API call was most recently observed.</p> <p>This field accepts only the specified formats. Timestamps can end with <code>Z</code> or <code>(\"+\" / \"-\") time-hour [\":\" time-minute]</code>. The time-secfrac after seconds is limited to a maximum of 9 digits. The offset is bounded by +/-18:00. Here are valid timestamp formats with examples:</p> <ul> <li> <p> <code>YYYY-MM-DDTHH:MM:SSZ</code> (for example, <code>2019-01-31T23:00:00Z</code>)</p> </li> <li> <p> <code>YYYY-MM-DDTHH:MM:SS.mmmmmmmmmZ</code> (for example, <code>2019-01-31T23:00:00.123456789Z</code>)</p> </li> <li> <p> <code>YYYY-MM-DDTHH:MM:SS+HH:MM</code> (for example, <code>2024-01-04T15:25:10+17:59</code>)</p> </li> <li> <p> <code>YYYY-MM-DDTHH:MM:SS-HHMM</code> (for example, <code>2024-01-04T15:25:10-1759</code>)</p> </li> <li> <p> <code>YYYY-MM-DDTHH:MM:SS.mmmmmmmmm+HH:MM</code> (for example, <code>2024-01-04T15:25:10.123456789+17:59</code>)</p> </li> </ul>",
-        "AwsApiCallActionDomainDetails$Domain": "<p>The name of the DNS domain that issued the API call.</p>",
+        "AwsApiCallActionDomainDetails$Domain": "<p>The name of the DNS domain that issued the API call.</p> <p>Length Constraints: 128.</p>",
         "AwsApiGatewayAccessLogSettings$Format": "<p>A single-line format of the access logs of data, as specified by selected <code>$context</code> variables. The format must include at least <code>$context.requestId</code>.</p>",
         "AwsApiGatewayAccessLogSettings$DestinationArn": "<p>The ARN of the CloudWatch Logs log group that receives the access logs.</p>",
         "AwsApiGatewayCanarySettings$DeploymentId": "<p>The deployment identifier for the canary deployment.</p>",
@@ -7528,23 +7528,23 @@
         "AwsSecretsManagerSecretDetails$RotationLambdaArn": "<p>The ARN of the Lambda function that rotates the secret.</p>",
         "AwsSecretsManagerSecretDetails$Name": "<p>The name of the secret.</p>",
         "AwsSecretsManagerSecretDetails$Description": "<p>The user-provided description of the secret.</p>",
-        "AwsSecurityFinding$SchemaVersion": "<p>The schema version that a finding is formatted for.</p>",
-        "AwsSecurityFinding$Id": "<p>The security findings provider-specific identifier for a finding.</p>",
-        "AwsSecurityFinding$ProductArn": "<p>The ARN generated by Security Hub that uniquely identifies a product that generates findings. This can be the ARN for a third-party product that is integrated with Security Hub, or the ARN for a custom integration.</p>",
-        "AwsSecurityFinding$ProductName": "<p>The name of the product that generated the finding.</p> <p>Security Hub populates this attribute automatically for each finding. You cannot update this attribute with <code>BatchImportFindings</code> or <code>BatchUpdateFindings</code>. The exception to this is a custom integration.</p> <p>When you use the Security Hub console or API to filter findings by product name, you use this attribute.</p>",
-        "AwsSecurityFinding$CompanyName": "<p>The name of the company for the product that generated the finding.</p> <p>Security Hub populates this attribute automatically for each finding. You cannot update this attribute with <code>BatchImportFindings</code> or <code>BatchUpdateFindings</code>. The exception to this is a custom integration.</p> <p>When you use the Security Hub console or API to filter findings by company name, you use this attribute.</p>",
-        "AwsSecurityFinding$Region": "<p>The Region from which the finding was generated.</p> <p>Security Hub populates this attribute automatically for each finding. You cannot update it using <code>BatchImportFindings</code> or <code>BatchUpdateFindings</code>.</p>",
-        "AwsSecurityFinding$GeneratorId": "<p>The identifier for the solution-specific component (a discrete unit of logic) that generated a finding. In various security findings providers' solutions, this generator can be called a rule, a check, a detector, a plugin, etc. </p>",
-        "AwsSecurityFinding$AwsAccountId": "<p>The Amazon Web Services account ID that a finding is generated in.</p>",
+        "AwsSecurityFinding$SchemaVersion": "<p>The schema version that a finding is formatted for. The value is <code>2018-10-08</code>.</p>",
+        "AwsSecurityFinding$Id": "<p>The security findings provider-specific identifier for a finding.</p> <p>Length Constraints: Minimum length of 1. Maximum length of 512.</p>",
+        "AwsSecurityFinding$ProductArn": "<p>The ARN generated by Security Hub that uniquely identifies a product that generates findings. This can be the ARN for a third-party product that is integrated with Security Hub, or the ARN for a custom integration.</p> <p>Length Constraints: Minimum length of 12. Maximum length of 2048.</p>",
+        "AwsSecurityFinding$ProductName": "<p>The name of the product that generated the finding.</p> <p>Security Hub populates this attribute automatically for each finding. You cannot update this attribute with <code>BatchImportFindings</code> or <code>BatchUpdateFindings</code>. The exception to this is a custom integration.</p> <p>When you use the Security Hub console or API to filter findings by product name, you use this attribute.</p> <p>Length Constraints: Minimum length of 1. Maximum length of 128.</p>",
+        "AwsSecurityFinding$CompanyName": "<p>The name of the company for the product that generated the finding.</p> <p>Security Hub populates this attribute automatically for each finding. You cannot update this attribute with <code>BatchImportFindings</code> or <code>BatchUpdateFindings</code>. The exception to this is a custom integration.</p> <p>When you use the Security Hub console or API to filter findings by company name, you use this attribute.</p> <p>Length Constraints: Minimum length of 1. Maximum length of 128. </p>",
+        "AwsSecurityFinding$Region": "<p>The Region from which the finding was generated.</p> <p>Security Hub populates this attribute automatically for each finding. You cannot update it using <code>BatchImportFindings</code> or <code>BatchUpdateFindings</code>.</p> <p>Length Constraints: Minimum length of 1. Maximum length of 16. </p>",
+        "AwsSecurityFinding$GeneratorId": "<p>The identifier for the solution-specific component (a discrete unit of logic) that generated a finding. In various security findings providers' solutions, this generator can be called a rule, a check, a detector, a plugin, or something else.</p> <p>Length Constraints: Minimum length of 1. Maximum length of 512.</p>",
+        "AwsSecurityFinding$AwsAccountId": "<p>The Amazon Web Services account ID that a finding is generated in.</p> <p>Length Constraints: 12.</p>",
         "AwsSecurityFinding$FirstObservedAt": "<p>Indicates when the security findings provider first observed the potential security issue that a finding captured.</p> <p>This field accepts only the specified formats. Timestamps can end with <code>Z</code> or <code>(\"+\" / \"-\") time-hour [\":\" time-minute]</code>. The time-secfrac after seconds is limited to a maximum of 9 digits. The offset is bounded by +/-18:00. Here are valid timestamp formats with examples:</p> <ul> <li> <p> <code>YYYY-MM-DDTHH:MM:SSZ</code> (for example, <code>2019-01-31T23:00:00Z</code>)</p> </li> <li> <p> <code>YYYY-MM-DDTHH:MM:SS.mmmmmmmmmZ</code> (for example, <code>2019-01-31T23:00:00.123456789Z</code>)</p> </li> <li> <p> <code>YYYY-MM-DDTHH:MM:SS+HH:MM</code> (for example, <code>2024-01-04T15:25:10+17:59</code>)</p> </li> <li> <p> <code>YYYY-MM-DDTHH:MM:SS-HHMM</code> (for example, <code>2024-01-04T15:25:10-1759</code>)</p> </li> <li> <p> <code>YYYY-MM-DDTHH:MM:SS.mmmmmmmmm+HH:MM</code> (for example, <code>2024-01-04T15:25:10.123456789+17:59</code>)</p> </li> </ul>",
         "AwsSecurityFinding$LastObservedAt": "<p>Indicates when the security findings provider most recently observed the potential security issue that a finding captured.</p> <p>This field accepts only the specified formats. Timestamps can end with <code>Z</code> or <code>(\"+\" / \"-\") time-hour [\":\" time-minute]</code>. The time-secfrac after seconds is limited to a maximum of 9 digits. The offset is bounded by +/-18:00. Here are valid timestamp formats with examples:</p> <ul> <li> <p> <code>YYYY-MM-DDTHH:MM:SSZ</code> (for example, <code>2019-01-31T23:00:00Z</code>)</p> </li> <li> <p> <code>YYYY-MM-DDTHH:MM:SS.mmmmmmmmmZ</code> (for example, <code>2019-01-31T23:00:00.123456789Z</code>)</p> </li> <li> <p> <code>YYYY-MM-DDTHH:MM:SS+HH:MM</code> (for example, <code>2024-01-04T15:25:10+17:59</code>)</p> </li> <li> <p> <code>YYYY-MM-DDTHH:MM:SS-HHMM</code> (for example, <code>2024-01-04T15:25:10-1759</code>)</p> </li> <li> <p> <code>YYYY-MM-DDTHH:MM:SS.mmmmmmmmm+HH:MM</code> (for example, <code>2024-01-04T15:25:10.123456789+17:59</code>)</p> </li> </ul>",
         "AwsSecurityFinding$CreatedAt": "<p>Indicates when the security findings provider created the potential security issue that a finding captured.</p> <p>This field accepts only the specified formats. Timestamps can end with <code>Z</code> or <code>(\"+\" / \"-\") time-hour [\":\" time-minute]</code>. The time-secfrac after seconds is limited to a maximum of 9 digits. The offset is bounded by +/-18:00. Here are valid timestamp formats with examples:</p> <ul> <li> <p> <code>YYYY-MM-DDTHH:MM:SSZ</code> (for example, <code>2019-01-31T23:00:00Z</code>)</p> </li> <li> <p> <code>YYYY-MM-DDTHH:MM:SS.mmmmmmmmmZ</code> (for example, <code>2019-01-31T23:00:00.123456789Z</code>)</p> </li> <li> <p> <code>YYYY-MM-DDTHH:MM:SS+HH:MM</code> (for example, <code>2024-01-04T15:25:10+17:59</code>)</p> </li> <li> <p> <code>YYYY-MM-DDTHH:MM:SS-HHMM</code> (for example, <code>2024-01-04T15:25:10-1759</code>)</p> </li> <li> <p> <code>YYYY-MM-DDTHH:MM:SS.mmmmmmmmm+HH:MM</code> (for example, <code>2024-01-04T15:25:10.123456789+17:59</code>)</p> </li> </ul>",
         "AwsSecurityFinding$UpdatedAt": "<p>Indicates when the security findings provider last updated the finding record.</p> <p>This field accepts only the specified formats. Timestamps can end with <code>Z</code> or <code>(\"+\" / \"-\") time-hour [\":\" time-minute]</code>. The time-secfrac after seconds is limited to a maximum of 9 digits. The offset is bounded by +/-18:00. Here are valid timestamp formats with examples:</p> <ul> <li> <p> <code>YYYY-MM-DDTHH:MM:SSZ</code> (for example, <code>2019-01-31T23:00:00Z</code>)</p> </li> <li> <p> <code>YYYY-MM-DDTHH:MM:SS.mmmmmmmmmZ</code> (for example, <code>2019-01-31T23:00:00.123456789Z</code>)</p> </li> <li> <p> <code>YYYY-MM-DDTHH:MM:SS+HH:MM</code> (for example, <code>2024-01-04T15:25:10+17:59</code>)</p> </li> <li> <p> <code>YYYY-MM-DDTHH:MM:SS-HHMM</code> (for example, <code>2024-01-04T15:25:10-1759</code>)</p> </li> <li> <p> <code>YYYY-MM-DDTHH:MM:SS.mmmmmmmmm+HH:MM</code> (for example, <code>2024-01-04T15:25:10.123456789+17:59</code>)</p> </li> </ul>",
-        "AwsSecurityFinding$Title": "<p>A finding's title.</p> <note> <p>In this release, <code>Title</code> is a required property.</p> </note>",
-        "AwsSecurityFinding$Description": "<p>A finding's description.</p> <note> <p>In this release, <code>Description</code> is a required property.</p> </note>",
+        "AwsSecurityFinding$Title": "<p>A finding's title. <code>Title</code> is a required property.</p> <p>Length Constraints: Minimum length of 1. Maximum length of 256.</p>",
+        "AwsSecurityFinding$Description": "<p>A finding's description. <code>Description</code> is a required property.</p> <p>Length Constraints: Minimum length of 1. Maximum length of 1024.</p>",
         "AwsSecurityFinding$SourceUrl": "<p>A URL that links to a page about the current finding in the security findings provider's solution.</p>",
-        "AwsSecurityFinding$ProcessedAt": "<p>A imestamp that indicates when Security Hub received a finding and begins to process it.</p> <p>This field accepts only the specified formats. Timestamps can end with <code>Z</code> or <code>(\"+\" / \"-\") time-hour [\":\" time-minute]</code>. The time-secfrac after seconds is limited to a maximum of 9 digits. The offset is bounded by +/-18:00. Here are valid timestamp formats with examples:</p> <ul> <li> <p> <code>YYYY-MM-DDTHH:MM:SSZ</code> (for example, <code>2019-01-31T23:00:00Z</code>)</p> </li> <li> <p> <code>YYYY-MM-DDTHH:MM:SS.mmmmmmmmmZ</code> (for example, <code>2019-01-31T23:00:00.123456789Z</code>)</p> </li> <li> <p> <code>YYYY-MM-DDTHH:MM:SS+HH:MM</code> (for example, <code>2024-01-04T15:25:10+17:59</code>)</p> </li> <li> <p> <code>YYYY-MM-DDTHH:MM:SS-HHMM</code> (for example, <code>2024-01-04T15:25:10-1759</code>)</p> </li> <li> <p> <code>YYYY-MM-DDTHH:MM:SS.mmmmmmmmm+HH:MM</code> (for example, <code>2024-01-04T15:25:10.123456789+17:59</code>)</p> </li> </ul>",
-        "AwsSecurityFinding$AwsAccountName": "<p>The name of the Amazon Web Services account from which a finding was generated. </p>",
+        "AwsSecurityFinding$ProcessedAt": "<p>A timestamp that indicates when Security Hub received a finding and begins to process it.</p> <p>This field accepts only the specified formats. Timestamps can end with <code>Z</code> or <code>(\"+\" / \"-\") time-hour [\":\" time-minute]</code>. The time-secfrac after seconds is limited to a maximum of 9 digits. The offset is bounded by +/-18:00. Here are valid timestamp formats with examples:</p> <ul> <li> <p> <code>YYYY-MM-DDTHH:MM:SSZ</code> (for example, <code>2019-01-31T23:00:00Z</code>)</p> </li> <li> <p> <code>YYYY-MM-DDTHH:MM:SS.mmmmmmmmmZ</code> (for example, <code>2019-01-31T23:00:00.123456789Z</code>)</p> </li> <li> <p> <code>YYYY-MM-DDTHH:MM:SS+HH:MM</code> (for example, <code>2024-01-04T15:25:10+17:59</code>)</p> </li> <li> <p> <code>YYYY-MM-DDTHH:MM:SS-HHMM</code> (for example, <code>2024-01-04T15:25:10-1759</code>)</p> </li> <li> <p> <code>YYYY-MM-DDTHH:MM:SS.mmmmmmmmm+HH:MM</code> (for example, <code>2024-01-04T15:25:10.123456789+17:59</code>)</p> </li> </ul>",
+        "AwsSecurityFinding$AwsAccountName": "<p>The name of the Amazon Web Services account from which a finding was generated. </p> <p>Length Constraints: Minimum length of 1. Maximum length of 50. </p>",
         "AwsSecurityFindingIdentifier$Id": "<p>The identifier of the finding that was specified by the finding provider.</p>",
         "AwsSecurityFindingIdentifier$ProductArn": "<p>The ARN generated by Security Hub that uniquely identifies a product that generates findings. This can be the ARN for a third-party product that is integrated with Security Hub, or the ARN for a custom integration.</p>",
         "AwsSnsTopicDetails$KmsMasterKeyId": "<p>The ID of an Amazon Web Services managed key for Amazon SNS or a customer managed key.</p>",
@@ -7715,8 +7715,8 @@
         "DisableImportFindingsForProductRequest$ProductSubscriptionArn": "<p>The ARN of the integrated product to disable the integration for.</p>",
         "DisableOrganizationAdminAccountRequest$AdminAccountId": "<p>The Amazon Web Services account identifier of the Security Hub administrator account.</p>",
         "DisabledSecurityControlIdentifierList$member": null,
-        "DnsRequestAction$Domain": "<p>The DNS domain that is associated with the DNS request.</p>",
-        "DnsRequestAction$Protocol": "<p>The protocol that was used for the DNS request.</p>",
+        "DnsRequestAction$Domain": "<p>The DNS domain that is associated with the DNS request.</p> <p>Length Constraints: 128.</p>",
+        "DnsRequestAction$Protocol": "<p>The protocol that was used for the DNS request.</p> <p>Length Constraints: Minimum length of 1. Maximum length of 64.</p>",
         "EnableImportFindingsForProductRequest$ProductArn": "<p>The ARN of the product to enable the integration for.</p>",
         "EnableImportFindingsForProductResponse$ProductSubscriptionArn": "<p>The ARN of your subscription to the product to enable integrations for.</p>",
         "EnableOrganizationAdminAccountRequest$AdminAccountId": "<p>The Amazon Web Services account identifier of the account to designate as the Security Hub administrator account.</p>",
@@ -7725,16 +7725,16 @@
         "EnumConfigurationOptions$DefaultValue": "<p> The Security Hub default value for a control parameter that is an enum. </p>",
         "FieldMap$key": null,
         "FieldMap$value": null,
-        "FilePaths$FilePath": "<p>Path to the infected or suspicious file on the resource it was detected on. </p>",
-        "FilePaths$FileName": "<p>The name of the infected or suspicious file corresponding to the hash. </p>",
-        "FilePaths$ResourceId": "<p>The Amazon Resource Name (ARN) of the resource on which the threat was detected. </p>",
-        "FilePaths$Hash": "<p>The hash value for the infected or suspicious file. </p>",
+        "FilePaths$FilePath": "<p>Path to the infected or suspicious file on the resource it was detected on. </p> <p>Length Constraints: Minimum of 1 length. Maximum of 128 length.</p>",
+        "FilePaths$FileName": "<p>The name of the infected or suspicious file corresponding to the hash. </p> <p>Length Constraints: Minimum of 1 length. Maximum of 128 length.</p>",
+        "FilePaths$ResourceId": "<p>The Amazon Resource Name (ARN) of the resource on which the threat was detected. </p> <p>Length Constraints: Minimum of 1 length. Maximum of 128 length.</p>",
+        "FilePaths$Hash": "<p>The hash value for the infected or suspicious file. </p> <p>Length Constraints: Minimum of 1 length. Maximum of 128 length.</p>",
         "FindingAggregator$FindingAggregatorArn": "<p>The ARN of the finding aggregator. You use the finding aggregator ARN to retrieve details for, update, and delete the finding aggregator.</p>",
         "FindingHistoryUpdate$UpdatedField": "<p> The ASFF field that changed during the finding change event. </p>",
         "FindingHistoryUpdate$OldValue": "<p> The value of the ASFF field before the finding change event. </p>",
         "FindingHistoryUpdate$NewValue": "<p> The value of the ASFF field after the finding change event. To preserve storage and readability, Security Hub omits this value if <a href=\"https://docs.aws.amazon.com/securityhub/1.0/APIReference/API_FindingHistoryRecord.html\"> <code>FindingHistoryRecord</code> </a> exceeds database limits. </p>",
         "FindingHistoryUpdateSource$Identity": "<p> The identity of the source that initiated the finding change event. For example, the Amazon Resource Name (ARN) of a partner that calls BatchImportFindings or of a customer that calls BatchUpdateFindings. </p>",
-        "FindingProviderSeverity$Original": "<p>The finding provider's original value for the severity.</p>",
+        "FindingProviderSeverity$Original": "<p>The finding provider's original value for the severity.</p> <p>Length Constraints: Minimum length of 1. Maximum length of 64.</p>",
         "FirewallPolicyStatefulRuleGroupReferencesDetails$ResourceArn": "<p>The ARN of the stateful rule group.</p>",
         "FirewallPolicyStatelessCustomActionsDetails$ActionName": "<p>The name of the custom action.</p>",
         "FirewallPolicyStatelessRuleGroupReferencesDetails$ResourceArn": "<p>The ARN of the stateless rule group.</p>",
@@ -7787,29 +7787,29 @@
         "ListStandardsControlAssociationsRequest$SecurityControlId": "<p> The identifier of the control (identified with <code>SecurityControlId</code>, <code>SecurityControlArn</code>, or a mix of both parameters) that you want to determine the enablement status of in each enabled standard. </p>",
         "LoadBalancerState$Code": "<p>The state code. The initial state of the load balancer is provisioning.</p> <p>After the load balancer is fully set up and ready to route traffic, its state is active.</p> <p>If the load balancer could not be set up, its state is failed. </p>",
         "LoadBalancerState$Reason": "<p>A description of the state.</p>",
-        "Malware$Name": "<p>The name of the malware that was observed.</p>",
-        "Malware$Path": "<p>The file system path of the malware that was observed.</p>",
+        "Malware$Name": "<p>The name of the malware that was observed.</p> <p>Length Constraints: Minimum of 1. Maximum of 64.</p>",
+        "Malware$Path": "<p>The file system path of the malware that was observed.</p> <p>Length Constraints: Minimum of 1. Maximum of 512.</p>",
         "MapFilter$Key": "<p>The key of the map filter. For example, for <code>ResourceTags</code>, <code>Key</code> identifies the name of the tag. For <code>UserDefinedFields</code>, <code>Key</code> is the name of the field.</p>",
         "MapFilter$Value": "<p>The value for the key in the map filter. Filter values are case sensitive. For example, one of the values for a tag called <code>Department</code> might be <code>Security</code>. If you provide <code>security</code> as the filter value, then there's no match.</p>",
         "Member$Email": "<p>The email address of the member account.</p>",
         "Member$MasterId": "<p>This is replaced by <code>AdministratorID</code>.</p> <p>The Amazon Web Services account ID of the Security Hub administrator account associated with this member account.</p>",
         "Member$AdministratorId": "<p>The Amazon Web Services account ID of the Security Hub administrator account associated with this member account.</p>",
         "Member$MemberStatus": "<p>The status of the relationship between the member account and its administrator account. </p> <p>The status can have one of the following values:</p> <ul> <li> <p> <code>Created</code> - Indicates that the administrator account added the member account, but has not yet invited the member account.</p> </li> <li> <p> <code>Invited</code> - Indicates that the administrator account invited the member account. The member account has not yet responded to the invitation.</p> </li> <li> <p> <code>Enabled</code> - Indicates that the member account is currently active. For manually invited member accounts, indicates that the member account accepted the invitation.</p> </li> <li> <p> <code>Removed</code> - Indicates that the administrator account disassociated the member account.</p> </li> <li> <p> <code>Resigned</code> - Indicates that the member account disassociated themselves from the administrator account.</p> </li> <li> <p> <code>Deleted</code> - Indicates that the administrator account deleted the member account.</p> </li> <li> <p> <code>AccountSuspended</code> - Indicates that an organization account was suspended from Amazon Web Services at the same time that the administrator account tried to enable the organization account as a member account.</p> </li> </ul>",
-        "Network$Protocol": "<p>The protocol of network-related information about a finding.</p>",
+        "Network$Protocol": "<p>The protocol of network-related information about a finding.</p> <p>Length Constraints: Minimum of 1. Maximum of 16.</p>",
         "Network$SourceIpV4": "<p>The source IPv4 address of network-related information about a finding.</p>",
         "Network$SourceIpV6": "<p>The source IPv6 address of network-related information about a finding.</p>",
-        "Network$SourceDomain": "<p>The source domain of network-related information about a finding.</p>",
+        "Network$SourceDomain": "<p>The source domain of network-related information about a finding.</p> <p>Length Constraints: Minimum of 1. Maximum of 128.</p>",
         "Network$SourceMac": "<p>The source media access control (MAC) address of network-related information about a finding.</p>",
         "Network$DestinationIpV4": "<p>The destination IPv4 address of network-related information about a finding.</p>",
         "Network$DestinationIpV6": "<p>The destination IPv6 address of network-related information about a finding.</p>",
-        "Network$DestinationDomain": "<p>The destination domain of network-related information about a finding.</p>",
+        "Network$DestinationDomain": "<p>The destination domain of network-related information about a finding.</p> <p>Length Constraints: Minimum of 1. Maximum of 128.</p>",
         "NetworkConnectionAction$ConnectionDirection": "<p>The direction of the network connection request (<code>IN</code> or <code>OUT</code>).</p>",
-        "NetworkConnectionAction$Protocol": "<p>The protocol used to make the network connection request.</p>",
-        "NetworkHeader$Protocol": "<p>The protocol used for the component.</p>",
-        "NetworkPathComponent$ComponentId": "<p>The identifier of a component in the network path.</p>",
-        "NetworkPathComponent$ComponentType": "<p>The type of component.</p>",
+        "NetworkConnectionAction$Protocol": "<p>The protocol used to make the network connection request.</p> <p>Length Constraints: Minimum length of 1. Maximum length of 64.</p>",
+        "NetworkHeader$Protocol": "<p>The protocol used for the component.</p> <p>Length Constraints: Minimum of 1. Maximum of 16.</p>",
+        "NetworkPathComponent$ComponentId": "<p>The identifier of a component in the network path.</p> <p>Length Constraints: Minimum of 1. Maximum of 32.</p>",
+        "NetworkPathComponent$ComponentType": "<p>The type of component.</p> <p>Length Constraints: Minimum of 1. Maximum of 32.</p>",
         "NonEmptyStringList$member": null,
-        "Note$Text": "<p>The text of a note.</p>",
+        "Note$Text": "<p>The text of a note.</p> <p>Length Constraints: Minimum of 1. Maximum of 512.</p>",
         "Note$UpdatedBy": "<p>The principal that created a note.</p>",
         "Note$UpdatedAt": "<p>A timestamp that indicates when the note was updated.</p> <p>This field accepts only the specified formats. Timestamps can end with <code>Z</code> or <code>(\"+\" / \"-\") time-hour [\":\" time-minute]</code>. The time-secfrac after seconds is limited to a maximum of 9 digits. The offset is bounded by +/-18:00. Here are valid timestamp formats with examples:</p> <ul> <li> <p> <code>YYYY-MM-DDTHH:MM:SSZ</code> (for example, <code>2019-01-31T23:00:00Z</code>)</p> </li> <li> <p> <code>YYYY-MM-DDTHH:MM:SS.mmmmmmmmmZ</code> (for example, <code>2019-01-31T23:00:00.123456789Z</code>)</p> </li> <li> <p> <code>YYYY-MM-DDTHH:MM:SS+HH:MM</code> (for example, <code>2024-01-04T15:25:10+17:59</code>)</p> </li> <li> <p> <code>YYYY-MM-DDTHH:MM:SS-HHMM</code> (for example, <code>2024-01-04T15:25:10-1759</code>)</p> </li> <li> <p> <code>YYYY-MM-DDTHH:MM:SS.mmmmmmmmm+HH:MM</code> (for example, <code>2024-01-04T15:25:10.123456789+17:59</code>)</p> </li> </ul>",
         "NoteUpdate$Text": "<p>The updated note text.</p>",
@@ -7820,13 +7820,13 @@
         "ParameterValue$String": "<p> A control parameter that is a string. </p>",
         "ParameterValue$Enum": "<p> A control parameter that is an enum. </p>",
         "Parameters$key": null,
-        "PatchSummary$Id": "<p>The identifier of the compliance standard that was used to determine the patch compliance status.</p>",
+        "PatchSummary$Id": "<p>The identifier of the compliance standard that was used to determine the patch compliance status.</p> <p>Length Constraints: Minimum length of 1. Maximum length of 256.</p>",
         "PatchSummary$OperationStartTime": "<p>Indicates when the operation started.</p> <p>This field accepts only the specified formats. Timestamps can end with <code>Z</code> or <code>(\"+\" / \"-\") time-hour [\":\" time-minute]</code>. The time-secfrac after seconds is limited to a maximum of 9 digits. The offset is bounded by +/-18:00. Here are valid timestamp formats with examples:</p> <ul> <li> <p> <code>YYYY-MM-DDTHH:MM:SSZ</code> (for example, <code>2019-01-31T23:00:00Z</code>)</p> </li> <li> <p> <code>YYYY-MM-DDTHH:MM:SS.mmmmmmmmmZ</code> (for example, <code>2019-01-31T23:00:00.123456789Z</code>)</p> </li> <li> <p> <code>YYYY-MM-DDTHH:MM:SS+HH:MM</code> (for example, <code>2024-01-04T15:25:10+17:59</code>)</p> </li> <li> <p> <code>YYYY-MM-DDTHH:MM:SS-HHMM</code> (for example, <code>2024-01-04T15:25:10-1759</code>)</p> </li> <li> <p> <code>YYYY-MM-DDTHH:MM:SS.mmmmmmmmm+HH:MM</code> (for example, <code>2024-01-04T15:25:10.123456789+17:59</code>)</p> </li> </ul>",
         "PatchSummary$OperationEndTime": "<p>Indicates when the operation completed.</p> <p>This field accepts only the specified formats. Timestamps can end with <code>Z</code> or <code>(\"+\" / \"-\") time-hour [\":\" time-minute]</code>. The time-secfrac after seconds is limited to a maximum of 9 digits. The offset is bounded by +/-18:00. Here are valid timestamp formats with examples:</p> <ul> <li> <p> <code>YYYY-MM-DDTHH:MM:SSZ</code> (for example, <code>2019-01-31T23:00:00Z</code>)</p> </li> <li> <p> <code>YYYY-MM-DDTHH:MM:SS.mmmmmmmmmZ</code> (for example, <code>2019-01-31T23:00:00.123456789Z</code>)</p> </li> <li> <p> <code>YYYY-MM-DDTHH:MM:SS+HH:MM</code> (for example, <code>2024-01-04T15:25:10+17:59</code>)</p> </li> <li> <p> <code>YYYY-MM-DDTHH:MM:SS-HHMM</code> (for example, <code>2024-01-04T15:25:10-1759</code>)</p> </li> <li> <p> <code>YYYY-MM-DDTHH:MM:SS.mmmmmmmmm+HH:MM</code> (for example, <code>2024-01-04T15:25:10.123456789+17:59</code>)</p> </li> </ul>",
-        "PatchSummary$RebootOption": "<p>The reboot option specified for the instance.</p>",
-        "PatchSummary$Operation": "<p>The type of patch operation performed. For Patch Manager, the values are <code>SCAN</code> and <code>INSTALL</code>. </p>",
-        "ProcessDetails$Name": "<p>The name of the process.</p>",
-        "ProcessDetails$Path": "<p>The path to the process executable.</p>",
+        "PatchSummary$RebootOption": "<p>The reboot option specified for the instance.</p> <p>Length Constraints: Minimum length of 1. Maximum length of 256.</p>",
+        "PatchSummary$Operation": "<p>The type of patch operation performed. For Patch Manager, the values are <code>SCAN</code> and <code>INSTALL</code>.</p> <p>Length Constraints: Minimum length of 1. Maximum length of 256.</p>",
+        "ProcessDetails$Name": "<p>The name of the process.</p> <p>Length Constraints: Minimum of 1. Maximum of 64.</p>",
+        "ProcessDetails$Path": "<p>The path to the process executable.</p> <p>Length Constraints: Minimum of 1. Maximum of 512.</p>",
         "ProcessDetails$LaunchedAt": "<p>Indicates when the process was launched.</p> <p>This field accepts only the specified formats. Timestamps can end with <code>Z</code> or <code>(\"+\" / \"-\") time-hour [\":\" time-minute]</code>. The time-secfrac after seconds is limited to a maximum of 9 digits. The offset is bounded by +/-18:00. Here are valid timestamp formats with examples:</p> <ul> <li> <p> <code>YYYY-MM-DDTHH:MM:SSZ</code> (for example, <code>2019-01-31T23:00:00Z</code>)</p> </li> <li> <p> <code>YYYY-MM-DDTHH:MM:SS.mmmmmmmmmZ</code> (for example, <code>2019-01-31T23:00:00.123456789Z</code>)</p> </li> <li> <p> <code>YYYY-MM-DDTHH:MM:SS+HH:MM</code> (for example, <code>2024-01-04T15:25:10+17:59</code>)</p> </li> <li> <p> <code>YYYY-MM-DDTHH:MM:SS-HHMM</code> (for example, <code>2024-01-04T15:25:10-1759</code>)</p> </li> <li> <p> <code>YYYY-MM-DDTHH:MM:SS.mmmmmmmmm+HH:MM</code> (for example, <code>2024-01-04T15:25:10.123456789+17:59</code>)</p> </li> </ul>",
         "ProcessDetails$TerminatedAt": "<p>Indicates when the process was terminated.</p> <p>This field accepts only the specified formats. Timestamps can end with <code>Z</code> or <code>(\"+\" / \"-\") time-hour [\":\" time-minute]</code>. The time-secfrac after seconds is limited to a maximum of 9 digits. The offset is bounded by +/-18:00. Here are valid timestamp formats with examples:</p> <ul> <li> <p> <code>YYYY-MM-DDTHH:MM:SSZ</code> (for example, <code>2019-01-31T23:00:00Z</code>)</p> </li> <li> <p> <code>YYYY-MM-DDTHH:MM:SS.mmmmmmmmmZ</code> (for example, <code>2019-01-31T23:00:00.123456789Z</code>)</p> </li> <li> <p> <code>YYYY-MM-DDTHH:MM:SS+HH:MM</code> (for example, <code>2024-01-04T15:25:10+17:59</code>)</p> </li> <li> <p> <code>YYYY-MM-DDTHH:MM:SS-HHMM</code> (for example, <code>2024-01-04T15:25:10-1759</code>)</p> </li> <li> <p> <code>YYYY-MM-DDTHH:MM:SS.mmmmmmmmm+HH:MM</code> (for example, <code>2024-01-04T15:25:10.123456789+17:59</code>)</p> </li> </ul>",
         "Product$ProductArn": "<p>The ARN assigned to the product.</p>",
@@ -7838,15 +7838,15 @@
         "Product$ProductSubscriptionResourcePolicy": "<p>The resource policy associated with the product.</p>",
         "ProductSubscriptionArnList$member": null,
         "PropagatingVgwSetDetails$GatewayId": "<p> The ID of the virtual private gateway. </p>",
-        "Recommendation$Text": "<p>Describes the recommended steps to take to remediate an issue identified in a finding.</p>",
+        "Recommendation$Text": "<p>Describes the recommended steps to take to remediate an issue identified in a finding.</p> <p>Length Constraints: Minimum of 1 length. Maximum of 512 length.</p>",
         "Recommendation$Url": "<p>A URL to a page or site that contains information about how to remediate a finding.</p>",
         "Record$JsonPath": "<p>The path, as a JSONPath expression, to the field in the record that contains the data. If the field name is longer than 20 characters, it is truncated. If the path is longer than 250 characters, it is truncated.</p>",
         "RelatedFinding$ProductArn": "<p>The ARN of the product that generated a related finding.</p>",
         "RelatedFinding$Id": "<p>The product-generated identifier for a related finding.</p>",
         "RelatedRequirementsList$member": null,
-        "Resource$Type": "<p>The type of the resource that details are provided for. If possible, set <code>Type</code> to one of the supported resource types. For example, if the resource is an EC2 instance, then set <code>Type</code> to <code>AwsEc2Instance</code>.</p> <p>If the resource does not match any of the provided types, then set <code>Type</code> to <code>Other</code>. </p>",
+        "Resource$Type": "<p>The type of the resource that details are provided for. If possible, set <code>Type</code> to one of the supported resource types. For example, if the resource is an EC2 instance, then set <code>Type</code> to <code>AwsEc2Instance</code>.</p> <p>If the resource does not match any of the provided types, then set <code>Type</code> to <code>Other</code>. </p> <p>Length Constraints: Minimum length of 1. Maximum length of 256.</p>",
         "Resource$Id": "<p>The canonical identifier for the given resource type.</p>",
-        "Resource$Region": "<p>The canonical Amazon Web Services external Region name where this resource is located.</p>",
+        "Resource$Region": "<p>The canonical Amazon Web Services external Region name where this resource is located.</p> <p>Length Constraints: Minimum length of 1. Maximum length of 16.</p>",
         "Resource$ResourceRole": "<p>Identifies the role of the resource in the finding. A resource is either the actor or target of the finding activity,</p>",
         "Resource$ApplicationName": "<p> The name of the application that is related to a finding. </p>",
         "Resource$ApplicationArn": "<p> The Amazon Resource Name (ARN) of the application that is related to a finding. </p>",
@@ -7901,7 +7901,7 @@
         "SecurityGroups$member": null,
         "SensitiveDataDetections$Type": "<p>The type of sensitive data that was detected. For example, the type might indicate that the data is an email address.</p>",
         "SensitiveDataResult$Category": "<p>The category of sensitive data that was detected. For example, the category can indicate that the sensitive data involved credentials, financial information, or personal information.</p>",
-        "Severity$Original": "<p>The native severity from the finding product that generated the finding.</p>",
+        "Severity$Original": "<p>The native severity from the finding product that generated the finding.</p> <p>Length Constraints: Minimum length of 1. Maximum length of 64.</p>",
         "SoftwarePackage$Name": "<p>The name of the software package.</p>",
         "SoftwarePackage$Version": "<p>The version of the software package.</p>",
         "SoftwarePackage$Epoch": "<p>The epoch of the software package.</p>",
@@ -7967,11 +7967,11 @@
         "Target$AccountId": "<p> The Amazon Web Services account ID of the target account. </p>",
         "Target$OrganizationalUnitId": "<p> The organizational unit ID of the target organizational unit. </p>",
         "Target$RootId": "<p> The ID of the organization root. </p>",
-        "Threat$Name": "<p>The name of the threat. </p>",
-        "Threat$Severity": "<p>The severity of the threat. </p>",
-        "ThreatIntelIndicator$Value": "<p>The value of a threat intelligence indicator.</p>",
+        "Threat$Name": "<p>The name of the threat. </p> <p>Length Constraints: Minimum of 1 length. Maximum of 128 length.</p>",
+        "Threat$Severity": "<p>The severity of the threat. </p> <p>Length Constraints: Minimum of 1 length. Maximum of 128 length.</p>",
+        "ThreatIntelIndicator$Value": "<p>The value of a threat intelligence indicator.</p> <p>Length Constraints: Minimum of 1 length. Maximum of 512 length.</p>",
         "ThreatIntelIndicator$LastObservedAt": "<p>Indicates when the most recent instance of a threat intelligence indicator was observed.</p> <p>This field accepts only the specified formats. Timestamps can end with <code>Z</code> or <code>(\"+\" / \"-\") time-hour [\":\" time-minute]</code>. The time-secfrac after seconds is limited to a maximum of 9 digits. The offset is bounded by +/-18:00. Here are valid timestamp formats with examples:</p> <ul> <li> <p> <code>YYYY-MM-DDTHH:MM:SSZ</code> (for example, <code>2019-01-31T23:00:00Z</code>)</p> </li> <li> <p> <code>YYYY-MM-DDTHH:MM:SS.mmmmmmmmmZ</code> (for example, <code>2019-01-31T23:00:00.123456789Z</code>)</p> </li> <li> <p> <code>YYYY-MM-DDTHH:MM:SS+HH:MM</code> (for example, <code>2024-01-04T15:25:10+17:59</code>)</p> </li> <li> <p> <code>YYYY-MM-DDTHH:MM:SS-HHMM</code> (for example, <code>2024-01-04T15:25:10-1759</code>)</p> </li> <li> <p> <code>YYYY-MM-DDTHH:MM:SS.mmmmmmmmm+HH:MM</code> (for example, <code>2024-01-04T15:25:10.123456789+17:59</code>)</p> </li> </ul>",
-        "ThreatIntelIndicator$Source": "<p>The source of the threat intelligence indicator.</p>",
+        "ThreatIntelIndicator$Source": "<p>The source of the threat intelligence indicator.</p> <p>Length Constraints: Minimum of 1 length. Maximum of 64 length.</p>",
         "ThreatIntelIndicator$SourceUrl": "<p>The URL to the page or site where you can get more information about the threat intelligence indicator.</p>",
         "TypeList$member": null,
         "UnprocessedAutomationRule$RuleArn": "<p> The Amazon Resource Name (ARN) for the unprocessed automation rule. </p>",
@@ -8386,7 +8386,7 @@
       "base": null,
       "refs": {
         "AutomationRulesFindingFieldsUpdate$RelatedFindings": "<p> The rule action updates the <code>RelatedFindings</code> field of a finding. </p>",
-        "AwsSecurityFinding$RelatedFindings": "<p>A list of related findings.</p>",
+        "AwsSecurityFinding$RelatedFindings": "<p>A list of related findings.</p> <p>Array Members: Minimum number of 1 item. Maximum number of 10 items.</p>",
         "BatchUpdateFindingsRequest$RelatedFindings": "<p>A list of findings that are related to the updated findings.</p>",
         "FindingProviderFields$RelatedFindings": "<p>A list of findings that are related to the current finding.</p>"
       }
@@ -8394,7 +8394,7 @@
     "RelatedRequirementsList": {
       "base": null,
       "refs": {
-        "Compliance$RelatedRequirements": "<p>For a control, the industry or regulatory framework requirements that are related to the control. The check for that control is aligned with these requirements.</p>",
+        "Compliance$RelatedRequirements": "<p>For a control, the industry or regulatory framework requirements that are related to the control. The check for that control is aligned with these requirements.</p> <p>Array Members: Maximum number of 32 items.</p>",
         "StandardsControl$RelatedRequirements": "<p>The list of requirements that are related to this control.</p>",
         "StandardsControlAssociationDetail$RelatedRequirements": "<p> The requirement that underlies a control in the compliance framework related to the standard. </p>",
         "StandardsControlAssociationSummary$RelatedRequirements": "<p> The requirement that underlies this control in the compliance framework related to the standard. </p>"
@@ -8439,7 +8439,7 @@
     "ResourceList": {
       "base": null,
       "refs": {
-        "AwsSecurityFinding$Resources": "<p>A set of resource data types that describe the resources that the finding refers to.</p>"
+        "AwsSecurityFinding$Resources": "<p>A set of resource data types that describe the resources that the finding refers to.</p> <p>Array Members: Minimum number of 1 item. Maximum number of 32 items.</p>"
       }
     },
     "ResourceNotFoundException": {
@@ -9295,7 +9295,7 @@
     "ThreatIntelIndicatorList": {
       "base": null,
       "refs": {
-        "AwsSecurityFinding$ThreatIntelIndicators": "<p>Threat intelligence details related to a finding.</p>"
+        "AwsSecurityFinding$ThreatIntelIndicators": "<p>Threat intelligence details related to a finding.</p> <p>Array Members: Minimum number of 1 item. Maximum number of 5 items.</p>"
       }
     },
     "ThreatIntelIndicatorType": {
@@ -9307,7 +9307,7 @@
     "ThreatList": {
       "base": null,
       "refs": {
-        "AwsSecurityFinding$Threats": "<p>Details about the threat detected in a security finding and the file paths that were affected by the threat. </p>"
+        "AwsSecurityFinding$Threats": "<p>Details about the threat detected in a security finding and the file paths that were affected by the threat. </p> <p>Array Members: Minimum number of 1 item. Maximum number of 32 items.</p>"
       }
     },
     "Timestamp": {
@@ -9342,10 +9342,10 @@
       "base": null,
       "refs": {
         "AutomationRulesFindingFieldsUpdate$Types": "<p> The rule action updates the <code>Types</code> field of a finding. </p>",
-        "AwsSecurityFinding$Types": "<p>One or more finding types in the format of <code>namespace/category/classifier</code> that classify a finding.</p> <p>Valid namespace values are: Software and Configuration Checks | TTPs | Effects | Unusual Behaviors | Sensitive Data Identifications</p>",
+        "AwsSecurityFinding$Types": "<p>One or more finding types in the format of <code>namespace/category/classifier</code> that classify a finding.</p> <p>Valid namespace values are: Software and Configuration Checks | TTPs | Effects | Unusual Behaviors | Sensitive Data Identifications</p> <p>Array Members: Maximum number of 50 items.</p>",
         "BatchUpdateFindingsRequest$Types": "<p>One or more finding types in the format of namespace/category/classifier that classify a finding.</p> <p>Valid namespace values are as follows.</p> <ul> <li> <p>Software and Configuration Checks</p> </li> <li> <p>TTPs</p> </li> <li> <p>Effects</p> </li> <li> <p>Unusual Behaviors</p> </li> <li> <p>Sensitive Data Identifications </p> </li> </ul>",
         "FindingProviderFields$Types": "<p>One or more finding types in the format of <code>namespace/category/classifier</code> that classify a finding.</p> <p>Valid namespace values are: Software and Configuration Checks | TTPs | Effects | Unusual Behaviors | Sensitive Data Identifications</p>",
-        "GeneratorDetails$Labels": "<p> An array of tags used to identify the detector associated with the finding. </p>",
+        "GeneratorDetails$Labels": "<p> An array of tags used to identify the detector associated with the finding. </p> <p>Array Members: Minimum number of 0 items. Maximum number of 10 items.</p>",
         "SecurityControlParameter$Value": "<p> The current value of a control parameter. </p>",
         "VulnerabilityCodeVulnerabilities$Cwes": "<p> The Common Weakness Enumeration (CWE) item associated with the detected code vulnerability. </p>"
       }
