@@ -4054,7 +4054,8 @@ type DescribeSecretOutput struct {
 	//    * InSync, which indicates that the replica was created.
 	ReplicationStatus []*ReplicationStatusType `type:"list"`
 
-	// Specifies whether automatic rotation is turned on for this secret.
+	// Specifies whether automatic rotation is turned on for this secret. If the
+	// secret has never been configured for rotation, Secrets Manager returns null.
 	//
 	// To turn on rotation, use RotateSecret. To turn off rotation, use CancelRotateSecret.
 	RotationEnabled *bool `type:"boolean"`
@@ -4619,7 +4620,8 @@ func (s *GetResourcePolicyOutput) SetResourcePolicy(v string) *GetResourcePolicy
 type GetSecretValueInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN or name of the secret to retrieve.
+	// The ARN or name of the secret to retrieve. To retrieve a secret from another
+	// account, you must use an ARN.
 	//
 	// For an ARN, we recommend that you specify a complete ARN rather than a partial
 	// ARN. See Finding a secret from a partial ARN (https://docs.aws.amazon.com/secretsmanager/latest/userguide/troubleshoot.html#ARN_secretnamehyphen).
@@ -6598,7 +6600,7 @@ type RotateSecretInput struct {
 	//
 	// For secrets that use a Lambda rotation function to rotate, if you don't immediately
 	// rotate the secret, Secrets Manager tests the rotation configuration by running
-	// the testSecret step (https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotate-secrets_how.html)
+	// the testSecret step (https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotate-secrets_lambda-functions.html#rotate-secrets_lambda-functions-code)
 	// of the Lambda rotation function. The test creates an AWSPENDING version of
 	// the secret and then removes it.
 	//
@@ -7923,7 +7925,8 @@ type ValidateResourcePolicyInput struct {
 	// ResourcePolicy is a required field
 	ResourcePolicy *string `min:"1" type:"string" required:"true"`
 
-	// This field is reserved for internal use.
+	// The ARN or name of the secret with the resource-based policy you want to
+	// validate.
 	SecretId *string `min:"1" type:"string"`
 }
 

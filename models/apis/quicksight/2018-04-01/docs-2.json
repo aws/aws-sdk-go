@@ -77,6 +77,7 @@
     "DescribeIAMPolicyAssignment": "<p>Describes an existing IAM policy assignment, as specified by the assignment name.</p>",
     "DescribeIngestion": "<p>Describes a SPICE ingestion.</p>",
     "DescribeIpRestriction": "<p>Provides a summary and status of IP rules.</p>",
+    "DescribeKeyRegistration": "<p>Describes all customer managed key registrations in a Amazon QuickSight account.</p>",
     "DescribeNamespace": "<p>Describes the current namespace.</p>",
     "DescribeRefreshSchedule": "<p>Provides a summary of a refresh schedule.</p>",
     "DescribeRoleCustomPermission": "<p>Describes all custom permissions that are mapped to a role.</p>",
@@ -159,6 +160,7 @@
     "UpdateIAMPolicyAssignment": "<p>Updates an existing IAM policy assignment. This operation updates only the optional parameter or parameters that are specified in the request. This overwrites all of the users included in <code>Identities</code>. </p>",
     "UpdateIdentityPropagationConfig": "<p>Adds or updates services and authorized targets to configure what the Amazon QuickSight IAM Identity Center application can access.</p> <p>This operation is only supported for Amazon QuickSight accounts using IAM Identity Center</p>",
     "UpdateIpRestriction": "<p>Updates the content and status of IP rules. Traffic from a source is allowed when the source satisfies either the <code>IpRestrictionRule</code>, <code>VpcIdRestrictionRule</code>, or <code>VpcEndpointIdRestrictionRule</code>. To use this operation, you must provide the entire map of rules. You can use the <code>DescribeIpRestriction</code> operation to get the current rule map.</p>",
+    "UpdateKeyRegistration": "<p>Updates a customer managed key in a Amazon QuickSight account.</p>",
     "UpdatePublicSharingSettings": "<p>Use the <code>UpdatePublicSharingSettings</code> operation to turn on or turn off the public sharing settings of an Amazon QuickSight dashboard.</p> <p>To use this operation, turn on session capacity pricing for your Amazon QuickSight account.</p> <p>Before you can turn on public sharing on your account, make sure to give public sharing permissions to an administrative user in the Identity and Access Management (IAM) console. For more information on using IAM with Amazon QuickSight, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/security_iam_service-with-iam.html\">Using Amazon QuickSight with IAM</a> in the <i>Amazon QuickSight User Guide</i>.</p>",
     "UpdateRefreshSchedule": "<p>Updates a refresh schedule for a dataset.</p>",
     "UpdateRoleCustomPermission": "<p>Updates the custom permissions that are associated with a role.</p>",
@@ -1476,6 +1478,8 @@
         "DescribeIngestionRequest$AwsAccountId": "<p>The Amazon Web Services account ID.</p>",
         "DescribeIpRestrictionRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the IP rules.</p>",
         "DescribeIpRestrictionResponse$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the IP rules.</p>",
+        "DescribeKeyRegistrationRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the customer managed key registration that you want to describe.</p>",
+        "DescribeKeyRegistrationResponse$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the customer managed key registration specified in the request.</p>",
         "DescribeNamespaceRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that contains the Amazon QuickSight namespace that you want to describe.</p>",
         "DescribeRefreshScheduleRequest$AwsAccountId": "<p>The Amazon Web Services account ID.</p>",
         "DescribeRoleCustomPermissionRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that you want to create a group in. The Amazon Web Services account ID that you provide must be the same Amazon Web Services account that contains your Amazon QuickSight account.</p>",
@@ -1557,6 +1561,7 @@
         "UpdateIdentityPropagationConfigRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the identity propagation configuration that you want to update.</p>",
         "UpdateIpRestrictionRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the IP rules.</p>",
         "UpdateIpRestrictionResponse$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the IP rules.</p>",
+        "UpdateKeyRegistrationRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the customer managed key registration that you want to update.</p>",
         "UpdatePublicSharingSettingsRequest$AwsAccountId": "<p>The Amazon Web Services account ID associated with your Amazon QuickSight subscription.</p>",
         "UpdateRefreshScheduleRequest$AwsAccountId": "<p>The Amazon Web Services account ID.</p>",
         "UpdateRoleCustomPermissionRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that you want to create a group in. The Amazon Web Services account ID that you provide must be the same Amazon Web Services account that contains your Amazon QuickSight account.</p>",
@@ -1813,8 +1818,10 @@
         "DescribeAssetBundleExportJobResponse$IncludeAllDependencies": "<p>The include dependencies flag.</p>",
         "DescribeAssetBundleExportJobResponse$IncludePermissions": "<p>The include permissions flag.</p>",
         "DescribeAssetBundleExportJobResponse$IncludeTags": "<p>The include tags flag.</p>",
+        "DescribeKeyRegistrationRequest$DefaultKeyOnly": "<p>Determines whether the request returns the default key only.</p>",
         "DisplayFormatOptions$UseBlankCellFormat": "<p>A Boolean value that indicates whether to use blank cell format.</p>",
         "DisplayFormatOptions$UseGrouping": "<p>A Boolean value that indicates whether to use grouping.</p>",
+        "FailedKeyRegistrationEntry$SenderFault": "<p>A boolean that indicates whether a <code>FailedKeyRegistrationEntry</code> resulted from user error. If the value of this property is <code>True</code>, the error was caused by user error. If the value of this property is <code>False</code>, the error occurred on the backend. If your job continues fail and with a <code>False</code> <code>SenderFault</code> value, contact Amazon Web Services Support.</p>",
         "GetDashboardEmbedUrlRequest$UndoRedoDisabled": "<p>Remove the undo/redo button on the embedded dashboard. The default is FALSE, which enables the undo/redo button.</p>",
         "GetDashboardEmbedUrlRequest$ResetDisabled": "<p>Remove the reset button on the embedded dashboard. The default is FALSE, which enables the reset button.</p>",
         "GetDashboardEmbedUrlRequest$StatePersistenceEnabled": "<p>Adds persistence of state for the user session in an embedded dashboard. Persistence applies to the sheet and the parameter settings. These are control settings that the dashboard subscriber (Amazon QuickSight reader) chooses while viewing the dashboard. If this is set to <code>TRUE</code>, the settings are the same when the subscriber reopens the same dashboard URL. The state is stored in Amazon QuickSight, not in a browser cookie. If this is set to FALSE, the state of the user session is not persisted. The default is <code>FALSE</code>.</p>",
@@ -1825,6 +1832,7 @@
         "NumericRangeFilter$IncludeMinimum": "<p>Determines whether the minimum value in the filter value range should be included in the filtered results.</p>",
         "NumericRangeFilter$IncludeMaximum": "<p>Determines whether the maximum value in the filter value range should be included in the filtered results.</p>",
         "RedshiftIAMParameters$AutoCreateDatabaseUser": "<p>Automatically creates a database user. If your database doesn't have a <code>DatabaseUser</code>, set this parameter to <code>True</code>. If there is no <code>DatabaseUser</code>, Amazon QuickSight can't connect to your cluster. The <code>RoleArn</code> that you use for this operation must grant access to <code>redshift:CreateClusterUser</code> to successfully create the user.</p>",
+        "RegisteredCustomerManagedKey$DefaultKey": "<p>Indicates whether a <code>RegisteredCustomerManagedKey</code> is set as the default key for encryption and decryption use.</p>",
         "SignupResponse$IAMUser": "<p>A Boolean that is <code>TRUE</code> if the Amazon QuickSight uses IAM as an authentication method.</p>",
         "SslProperties$DisableSsl": "<p>A Boolean option to control whether SSL should be disabled.</p>",
         "StartAssetBundleExportJobRequest$IncludeAllDependencies": "<p>A Boolean that determines whether all dependencies of each resource ARN are recursively exported with the job. For example, say you provided a Dashboard ARN to the <code>ResourceArns</code> parameter. If you set <code>IncludeAllDependencies</code> to <code>TRUE</code>, any theme, dataset, and data source resource that is a dependency of the dashboard is also exported.</p>",
@@ -4481,6 +4489,16 @@
       "refs": {
       }
     },
+    "DescribeKeyRegistrationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeKeyRegistrationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeNamespaceRequest": {
       "base": null,
       "refs": {
@@ -4935,6 +4953,18 @@
         "RollingDateConfiguration$Expression": "<p>The expression of the rolling date configuration.</p>",
         "SheetElementRenderingRule$Expression": "<p>The expression of the rendering rules of a sheet.</p>",
         "TopicCalculatedField$Expression": "<p>The calculated field expression.</p>"
+      }
+    },
+    "FailedKeyRegistrationEntries": {
+      "base": null,
+      "refs": {
+        "UpdateKeyRegistrationResponse$FailedKeyRegistration": "<p>A list of all customer managed key registrations that failed to update.</p>"
+      }
+    },
+    "FailedKeyRegistrationEntry": {
+      "base": "<p>An entry that appears when a <code>KeyRegistration</code> update to Amazon QuickSight fails.</p>",
+      "refs": {
+        "FailedKeyRegistrationEntries$member": null
       }
     },
     "FieldBasedTooltip": {
@@ -6651,6 +6681,13 @@
         "KPIVisualStandardLayout$Type": "<p>The standard layout type.</p>"
       }
     },
+    "KeyRegistration": {
+      "base": null,
+      "refs": {
+        "DescribeKeyRegistrationResponse$KeyRegistration": "<p>A list of <code>RegisteredCustomerManagedKey</code> objects in a Amazon QuickSight account.</p>",
+        "UpdateKeyRegistrationRequest$KeyRegistration": "<p>A list of <code>RegisteredCustomerManagedKey</code> objects to be updated to the Amazon QuickSight account.</p>"
+      }
+    },
     "LabelOptions": {
       "base": "<p>The share label options for the labels.</p>",
       "refs": {
@@ -7704,7 +7741,9 @@
         "DescribeAssetBundleImportJobResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DescribeDashboardSnapshotJobResponse$RequestId": "<p> The Amazon Web Services request ID for this operation. </p>",
         "DescribeDashboardSnapshotJobResultResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
+        "DescribeKeyRegistrationResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "Entity$Path": "<p>The hierarchical path of the entity within the analysis, template, or dashboard definition tree.</p>",
+        "FailedKeyRegistrationEntry$Message": "<p>A message that provides information about why a <code>FailedKeyRegistrationEntry</code> error occurred.</p>",
         "IntegerParameter$Name": "<p>The name of the integer parameter.</p>",
         "ListAssetBundleExportJobsResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "ListAssetBundleImportJobsResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
@@ -7717,7 +7756,8 @@
         "StartDashboardSnapshotJobResponse$RequestId": "<p> The Amazon Web Services request ID for this operation. </p>",
         "StringParameter$Name": "<p>A display name for a string parameter.</p>",
         "TemplateError$Message": "<p>Description of the error type.</p>",
-        "ThemeError$Message": "<p>The error message.</p>"
+        "ThemeError$Message": "<p>The error message.</p>",
+        "UpdateKeyRegistrationResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>"
       }
     },
     "NullString": {
@@ -8844,6 +8884,12 @@
     "RegisterUserResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "RegisteredCustomerManagedKey": {
+      "base": "<p>A customer managed key structure that contains the information listed below: </p> <ul> <li> <p> <code>KeyArn</code> - The ARN of a KMS key that is registered to a Amazon QuickSight account for encryption and decryption use.</p> </li> <li> <p> <code>DefaultKey</code> - Indicates whether the current key is set as the default key for encryption and decryption use.</p> </li> </ul>",
+      "refs": {
+        "KeyRegistration$member": null
       }
     },
     "RegisteredUserConsoleFeatureConfigurations": {
@@ -10648,6 +10694,7 @@
         "DescribeIAMPolicyAssignmentResponse$Status": "<p>The HTTP status of the request.</p>",
         "DescribeIngestionResponse$Status": "<p>The HTTP status of the request.</p>",
         "DescribeIpRestrictionResponse$Status": "<p>The HTTP status of the request. </p>",
+        "DescribeKeyRegistrationResponse$Status": "<p>The HTTP status of the request.</p>",
         "DescribeNamespaceResponse$Status": "<p>The HTTP status of the request.</p>",
         "DescribeRefreshScheduleResponse$Status": "<p>The HTTP status of the request.</p>",
         "DescribeRoleCustomPermissionResponse$Status": "<p>The HTTP status of the request.</p>",
@@ -10664,6 +10711,7 @@
         "DescribeTopicResponse$Status": "<p>The HTTP status of the request.</p>",
         "DescribeUserResponse$Status": "<p>The HTTP status of the request.</p>",
         "DescribeVPCConnectionResponse$Status": "<p>The HTTP status of the request.</p>",
+        "FailedKeyRegistrationEntry$StatusCode": "<p>The HTTP status of a <code>FailedKeyRegistrationEntry</code> error.</p>",
         "GenerateEmbedUrlForAnonymousUserResponse$Status": "<p>The HTTP status of the request.</p>",
         "GenerateEmbedUrlForRegisteredUserResponse$Status": "<p>The HTTP status of the request.</p>",
         "GetDashboardEmbedUrlResponse$Status": "<p>The HTTP status of the request.</p>",
@@ -10710,6 +10758,7 @@
         "StartAssetBundleExportJobResponse$Status": "<p>The HTTP status of the response.</p>",
         "StartAssetBundleImportJobResponse$Status": "<p>The HTTP status of the response.</p>",
         "StartDashboardSnapshotJobResponse$Status": "<p>The HTTP status of the request</p>",
+        "SuccessfulKeyRegistrationEntry$StatusCode": "<p>The HTTP status of a <code>SuccessfulKeyRegistrationEntry</code> entry.</p>",
         "TagResourceResponse$Status": "<p>The HTTP status of the request.</p>",
         "UntagResourceResponse$Status": "<p>The HTTP status of the request.</p>",
         "UpdateAccountCustomizationResponse$Status": "<p>The HTTP status of the request.</p>",
@@ -10901,6 +10950,7 @@
         "DomainNotWhitelistedException$Message": null,
         "DomainNotWhitelistedException$RequestId": "<p>The Amazon Web Services request ID for this request.</p>",
         "ErrorInfo$Message": "<p>Error message.</p>",
+        "FailedKeyRegistrationEntry$KeyArn": "<p>The ARN of the KMS key that failed to update.</p>",
         "FieldTooltipItem$Label": "<p>The label of the tooltip item.</p>",
         "FolderColumnList$member": null,
         "FolderSearchFilter$Value": "<p>The value of the named item (in this example, <code>PARENT_FOLDER_ARN</code>), that you want to use as a filter. For example, <code>\"Value\": \"arn:aws:quicksight:us-east-1:1:folder/folderId\"</code>.</p>",
@@ -11043,6 +11093,7 @@
         "RegisterUserRequest$ExternalLoginId": "<p>The identity ID for a user in the external login provider.</p>",
         "RegisterUserResponse$UserInvitationUrl": "<p>The URL the user visits to complete registration and provide a password. This is returned only for users with an identity type of <code>QUICKSIGHT</code>.</p>",
         "RegisterUserResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
+        "RegisteredCustomerManagedKey$KeyArn": "<p>The ARN of the KMS key that is registered to a Amazon QuickSight account for encryption and decryption use.</p>",
         "ResourceExistsException$Message": null,
         "ResourceExistsException$RequestId": "<p>The Amazon Web Services request ID for this request.</p>",
         "ResourceNotFoundException$Message": null,
@@ -11080,6 +11131,7 @@
         "SnapshotJobResultErrorInfo$ErrorType": "<p>The error type.</p>",
         "StringList$member": null,
         "SubtotalOptions$CustomLabel": "<p>The custom label string for the subtotal cells.</p>",
+        "SuccessfulKeyRegistrationEntry$KeyArn": "<p>The ARN of the KMS key that is associated with the <code>SuccessfulKeyRegistrationEntry</code> entry.</p>",
         "TableFieldCustomTextContent$Value": "<p>The string value of the custom text content for the table URL link content.</p>",
         "TagResourceResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "ThrottlingException$Message": null,
@@ -11255,6 +11307,18 @@
       "refs": {
         "PivotTableTotalOptions$RowSubtotalOptions": "<p>The row subtotal options.</p>",
         "PivotTableTotalOptions$ColumnSubtotalOptions": "<p>The column subtotal options.</p>"
+      }
+    },
+    "SuccessfulKeyRegistrationEntries": {
+      "base": null,
+      "refs": {
+        "UpdateKeyRegistrationResponse$SuccessfulKeyRegistration": "<p>A list of all customer managed key registrations that were successfully updated.</p>"
+      }
+    },
+    "SuccessfulKeyRegistrationEntry": {
+      "base": "<p>A success entry that occurs when a <code>KeyRegistration</code> job is successfully applied to the Amazon QuickSight account.</p>",
+      "refs": {
+        "SuccessfulKeyRegistrationEntries$member": null
       }
     },
     "Suffix": {
@@ -12689,6 +12753,16 @@
       "refs": {
       }
     },
+    "UpdateKeyRegistrationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateKeyRegistrationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "UpdateLinkPermissionList": {
       "base": null,
       "refs": {
@@ -12897,9 +12971,9 @@
     "UserRole": {
       "base": null,
       "refs": {
-        "RegisterUserRequest$UserRole": "<p>The Amazon QuickSight role for the user. The user role can be one of the following:</p> <ul> <li> <p> <code>READER</code>: A user who has read-only access to dashboards.</p> </li> <li> <p> <code>AUTHOR</code>: A user who can create data sources, datasets, analyses, and dashboards.</p> </li> <li> <p> <code>ADMIN</code>: A user who is an author, who can also manage Amazon QuickSight settings.</p> </li> <li> <p> <code>RESTRICTED_READER</code>: This role isn't currently available for use.</p> </li> <li> <p> <code>RESTRICTED_AUTHOR</code>: This role isn't currently available for use.</p> </li> </ul>",
-        "UpdateUserRequest$Role": "<p>The Amazon QuickSight role of the user. The role can be one of the following default security cohorts:</p> <ul> <li> <p> <code>READER</code>: A user who has read-only access to dashboards.</p> </li> <li> <p> <code>AUTHOR</code>: A user who can create data sources, datasets, analyses, and dashboards.</p> </li> <li> <p> <code>ADMIN</code>: A user who is an author, who can also manage Amazon QuickSight settings.</p> </li> <li> <p> <code>READER_PRO</code>: Reader Pro adds Generative BI capabilities to the Reader role. Reader Pros have access to Amazon Q Business, can build stories with Amazon Q, and can generate executive summaries from dashboards.</p> </li> <li> <p> <code>AUTHOR_PRO</code>: Author Pro adds Generative BI capabilities to the Author role. Author Pros can author dashboards with natural language with Amazon Q, build stories with Amazon Q, create Topics for Q&amp;A, and generate executive summaries from dashboards.</p> </li> <li> <p> <code>ADMIN_PRO</code>: Admin Pros are Author Pros who can also manage Amazon QuickSight administrative settings. Admin Pro users are billed at Author Pro pricing.</p> </li> </ul> <p>The name of the Amazon QuickSight role is invisible to the user except for the console screens dealing with permissions.</p>",
-        "User$Role": "<p>The Amazon QuickSight role for the user. The user role can be one of the following:.</p> <ul> <li> <p> <code>READER</code>: A user who has read-only access to dashboards.</p> </li> <li> <p> <code>AUTHOR</code>: A user who can create data sources, datasets, analyses, and dashboards.</p> </li> <li> <p> <code>ADMIN</code>: A user who is an author, who can also manage Amazon Amazon QuickSight settings.</p> </li> <li> <p> <code>READER_PRO</code>: Reader Pro adds Generative BI capabilities to the Reader role. Reader Pros have access to Amazon Q Business, can build stories with Amazon Q, and can generate executive summaries from dashboards.</p> </li> <li> <p> <code>AUTHOR_PRO</code>: Author Pro adds Generative BI capabilities to the Author role. Author Pros can author dashboards with natural language with Amazon Q, build stories with Amazon Q, create Topics for Q&amp;A, and generate executive summaries from dashboards.</p> </li> <li> <p> <code>ADMIN_PRO</code>: Admin Pros are Author Pros who can also manage Amazon QuickSight administrative settings. Admin Pro users are billed at Author Pro pricing.</p> </li> <li> <p> <code>RESTRICTED_READER</code>: This role isn't currently available for use.</p> </li> <li> <p> <code>RESTRICTED_AUTHOR</code>: This role isn't currently available for use.</p> </li> </ul>"
+        "RegisterUserRequest$UserRole": "<p>The Amazon QuickSight role for the user. The user role can be one of the following:</p> <ul> <li> <p> <code>READER</code>: A user who has read-only access to dashboards.</p> </li> <li> <p> <code>AUTHOR</code>: A user who can create data sources, datasets, analyses, and dashboards.</p> </li> <li> <p> <code>ADMIN</code>: A user who is an author, who can also manage Amazon QuickSight settings.</p> </li> <li> <p> <code>READER_PRO</code>: Reader Pro adds Generative BI capabilities to the Reader role. Reader Pros have access to Amazon Q in Amazon QuickSight, can build stories with Amazon Q, and can generate executive summaries from dashboards.</p> </li> <li> <p> <code>AUTHOR_PRO</code>: Author Pro adds Generative BI capabilities to the Author role. Author Pros can author dashboards with natural language with Amazon Q, build stories with Amazon Q, create Topics for Q&amp;A, and generate executive summaries from dashboards.</p> </li> <li> <p> <code>ADMIN_PRO</code>: Admin Pros are Author Pros who can also manage Amazon QuickSight administrative settings. Admin Pro users are billed at Author Pro pricing.</p> </li> <li> <p> <code>RESTRICTED_READER</code>: This role isn't currently available for use.</p> </li> <li> <p> <code>RESTRICTED_AUTHOR</code>: This role isn't currently available for use.</p> </li> </ul>",
+        "UpdateUserRequest$Role": "<p>The Amazon QuickSight role of the user. The role can be one of the following default security cohorts:</p> <ul> <li> <p> <code>READER</code>: A user who has read-only access to dashboards.</p> </li> <li> <p> <code>AUTHOR</code>: A user who can create data sources, datasets, analyses, and dashboards.</p> </li> <li> <p> <code>ADMIN</code>: A user who is an author, who can also manage Amazon QuickSight settings.</p> </li> <li> <p> <code>READER_PRO</code>: Reader Pro adds Generative BI capabilities to the Reader role. Reader Pros have access to Amazon Q in Amazon QuickSight, can build stories with Amazon Q, and can generate executive summaries from dashboards.</p> </li> <li> <p> <code>AUTHOR_PRO</code>: Author Pro adds Generative BI capabilities to the Author role. Author Pros can author dashboards with natural language with Amazon Q, build stories with Amazon Q, create Topics for Q&amp;A, and generate executive summaries from dashboards.</p> </li> <li> <p> <code>ADMIN_PRO</code>: Admin Pros are Author Pros who can also manage Amazon QuickSight administrative settings. Admin Pro users are billed at Author Pro pricing.</p> </li> </ul> <p>The name of the Amazon QuickSight role is invisible to the user except for the console screens dealing with permissions.</p>",
+        "User$Role": "<p>The Amazon QuickSight role for the user. The user role can be one of the following:.</p> <ul> <li> <p> <code>READER</code>: A user who has read-only access to dashboards.</p> </li> <li> <p> <code>AUTHOR</code>: A user who can create data sources, datasets, analyses, and dashboards.</p> </li> <li> <p> <code>ADMIN</code>: A user who is an author, who can also manage Amazon Amazon QuickSight settings.</p> </li> <li> <p> <code>READER_PRO</code>: Reader Pro adds Generative BI capabilities to the Reader role. Reader Pros have access to Amazon Q in Amazon QuickSight, can build stories with Amazon Q, and can generate executive summaries from dashboards.</p> </li> <li> <p> <code>AUTHOR_PRO</code>: Author Pro adds Generative BI capabilities to the Author role. Author Pros can author dashboards with natural language with Amazon Q, build stories with Amazon Q, create Topics for Q&amp;A, and generate executive summaries from dashboards.</p> </li> <li> <p> <code>ADMIN_PRO</code>: Admin Pros are Author Pros who can also manage Amazon QuickSight administrative settings. Admin Pro users are billed at Author Pro pricing.</p> </li> <li> <p> <code>RESTRICTED_READER</code>: This role isn't currently available for use.</p> </li> <li> <p> <code>RESTRICTED_AUTHOR</code>: This role isn't currently available for use.</p> </li> </ul>"
       }
     },
     "VPCConnection": {

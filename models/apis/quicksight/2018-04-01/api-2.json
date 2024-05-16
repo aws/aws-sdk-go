@@ -1346,6 +1346,21 @@
         {"shape":"InternalFailureException"}
       ]
     },
+    "DescribeKeyRegistration":{
+      "name":"DescribeKeyRegistration",
+      "http":{
+        "method":"GET",
+        "requestUri":"/accounts/{AwsAccountId}/key-registration"
+      },
+      "input":{"shape":"DescribeKeyRegistrationRequest"},
+      "output":{"shape":"DescribeKeyRegistrationResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalFailureException"}
+      ]
+    },
     "DescribeNamespace":{
       "name":"DescribeNamespace",
       "http":{
@@ -2789,6 +2804,21 @@
         {"shape":"InvalidParameterValueException"},
         {"shape":"ThrottlingException"},
         {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalFailureException"}
+      ]
+    },
+    "UpdateKeyRegistration":{
+      "name":"UpdateKeyRegistration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/accounts/{AwsAccountId}/key-registration"
+      },
+      "input":{"shape":"UpdateKeyRegistrationRequest"},
+      "output":{"shape":"UpdateKeyRegistrationResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ThrottlingException"},
         {"shape":"InternalFailureException"}
       ]
     },
@@ -9558,6 +9588,31 @@
         }
       }
     },
+    "DescribeKeyRegistrationRequest":{
+      "type":"structure",
+      "required":["AwsAccountId"],
+      "members":{
+        "AwsAccountId":{
+          "shape":"AwsAccountId",
+          "location":"uri",
+          "locationName":"AwsAccountId"
+        },
+        "DefaultKeyOnly":{
+          "shape":"Boolean",
+          "location":"querystring",
+          "locationName":"default-key-only"
+        }
+      }
+    },
+    "DescribeKeyRegistrationResponse":{
+      "type":"structure",
+      "members":{
+        "AwsAccountId":{"shape":"AwsAccountId"},
+        "KeyRegistration":{"shape":"KeyRegistration"},
+        "RequestId":{"shape":"NonEmptyString"},
+        "Status":{"shape":"StatusCode"}
+      }
+    },
     "DescribeNamespaceRequest":{
       "type":"structure",
       "required":[
@@ -10376,6 +10431,24 @@
       "max":4096,
       "min":1,
       "sensitive":true
+    },
+    "FailedKeyRegistrationEntries":{
+      "type":"list",
+      "member":{"shape":"FailedKeyRegistrationEntry"}
+    },
+    "FailedKeyRegistrationEntry":{
+      "type":"structure",
+      "required":[
+        "Message",
+        "StatusCode",
+        "SenderFault"
+      ],
+      "members":{
+        "KeyArn":{"shape":"String"},
+        "Message":{"shape":"NonEmptyString"},
+        "StatusCode":{"shape":"StatusCode"},
+        "SenderFault":{"shape":"Boolean"}
+      }
     },
     "FieldBasedTooltip":{
       "type":"structure",
@@ -12550,6 +12623,10 @@
         "CLASSIC",
         "VERTICAL"
       ]
+    },
+    "KeyRegistration":{
+      "type":"list",
+      "member":{"shape":"RegisteredCustomerManagedKey"}
     },
     "LabelOptions":{
       "type":"structure",
@@ -15653,10 +15730,7 @@
     },
     "RedshiftIAMParameters":{
       "type":"structure",
-      "required":[
-        "RoleArn",
-        "DatabaseUser"
-      ],
+      "required":["RoleArn"],
       "members":{
         "RoleArn":{"shape":"RoleArn"},
         "DatabaseUser":{"shape":"DatabaseUser"},
@@ -15878,6 +15952,13 @@
           "shape":"StatusCode",
           "location":"statusCode"
         }
+      }
+    },
+    "RegisteredCustomerManagedKey":{
+      "type":"structure",
+      "members":{
+        "KeyArn":{"shape":"String"},
+        "DefaultKey":{"shape":"Boolean"}
       }
     },
     "RegisteredUserConsoleFeatureConfigurations":{
@@ -17794,6 +17875,21 @@
         "ValueCellStyle":{"shape":"TableCellStyle"},
         "MetricHeaderCellStyle":{"shape":"TableCellStyle"},
         "StyleTargets":{"shape":"TableStyleTargetList"}
+      }
+    },
+    "SuccessfulKeyRegistrationEntries":{
+      "type":"list",
+      "member":{"shape":"SuccessfulKeyRegistrationEntry"}
+    },
+    "SuccessfulKeyRegistrationEntry":{
+      "type":"structure",
+      "required":[
+        "KeyArn",
+        "StatusCode"
+      ],
+      "members":{
+        "KeyArn":{"shape":"String"},
+        "StatusCode":{"shape":"StatusCode"}
       }
     },
     "Suffix":{
@@ -19933,6 +20029,29 @@
           "shape":"StatusCode",
           "location":"statusCode"
         }
+      }
+    },
+    "UpdateKeyRegistrationRequest":{
+      "type":"structure",
+      "required":[
+        "AwsAccountId",
+        "KeyRegistration"
+      ],
+      "members":{
+        "AwsAccountId":{
+          "shape":"AwsAccountId",
+          "location":"uri",
+          "locationName":"AwsAccountId"
+        },
+        "KeyRegistration":{"shape":"KeyRegistration"}
+      }
+    },
+    "UpdateKeyRegistrationResponse":{
+      "type":"structure",
+      "members":{
+        "FailedKeyRegistration":{"shape":"FailedKeyRegistrationEntries"},
+        "SuccessfulKeyRegistration":{"shape":"SuccessfulKeyRegistrationEntries"},
+        "RequestId":{"shape":"NonEmptyString"}
       }
     },
     "UpdateLinkPermissionList":{

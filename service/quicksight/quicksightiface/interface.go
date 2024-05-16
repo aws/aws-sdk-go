@@ -366,6 +366,10 @@ type QuickSightAPI interface {
 	DescribeIpRestrictionWithContext(aws.Context, *quicksight.DescribeIpRestrictionInput, ...request.Option) (*quicksight.DescribeIpRestrictionOutput, error)
 	DescribeIpRestrictionRequest(*quicksight.DescribeIpRestrictionInput) (*request.Request, *quicksight.DescribeIpRestrictionOutput)
 
+	DescribeKeyRegistration(*quicksight.DescribeKeyRegistrationInput) (*quicksight.DescribeKeyRegistrationOutput, error)
+	DescribeKeyRegistrationWithContext(aws.Context, *quicksight.DescribeKeyRegistrationInput, ...request.Option) (*quicksight.DescribeKeyRegistrationOutput, error)
+	DescribeKeyRegistrationRequest(*quicksight.DescribeKeyRegistrationInput) (*request.Request, *quicksight.DescribeKeyRegistrationOutput)
+
 	DescribeNamespace(*quicksight.DescribeNamespaceInput) (*quicksight.DescribeNamespaceOutput, error)
 	DescribeNamespaceWithContext(aws.Context, *quicksight.DescribeNamespaceInput, ...request.Option) (*quicksight.DescribeNamespaceOutput, error)
 	DescribeNamespaceRequest(*quicksight.DescribeNamespaceInput) (*request.Request, *quicksight.DescribeNamespaceOutput)
@@ -786,6 +790,10 @@ type QuickSightAPI interface {
 	UpdateIpRestriction(*quicksight.UpdateIpRestrictionInput) (*quicksight.UpdateIpRestrictionOutput, error)
 	UpdateIpRestrictionWithContext(aws.Context, *quicksight.UpdateIpRestrictionInput, ...request.Option) (*quicksight.UpdateIpRestrictionOutput, error)
 	UpdateIpRestrictionRequest(*quicksight.UpdateIpRestrictionInput) (*request.Request, *quicksight.UpdateIpRestrictionOutput)
+
+	UpdateKeyRegistration(*quicksight.UpdateKeyRegistrationInput) (*quicksight.UpdateKeyRegistrationOutput, error)
+	UpdateKeyRegistrationWithContext(aws.Context, *quicksight.UpdateKeyRegistrationInput, ...request.Option) (*quicksight.UpdateKeyRegistrationOutput, error)
+	UpdateKeyRegistrationRequest(*quicksight.UpdateKeyRegistrationInput) (*request.Request, *quicksight.UpdateKeyRegistrationOutput)
 
 	UpdatePublicSharingSettings(*quicksight.UpdatePublicSharingSettingsInput) (*quicksight.UpdatePublicSharingSettingsOutput, error)
 	UpdatePublicSharingSettingsWithContext(aws.Context, *quicksight.UpdatePublicSharingSettingsInput, ...request.Option) (*quicksight.UpdatePublicSharingSettingsOutput, error)

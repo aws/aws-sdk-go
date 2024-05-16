@@ -41,6 +41,11 @@ func (c *ACMPCA) WaitUntilAuditReportCreatedWithContext(ctx aws.Context, input *
 				Matcher: request.PathWaiterMatch, Argument: "AuditReportStatus",
 				Expected: "FAILED",
 			},
+			{
+				State:    request.FailureWaiterState,
+				Matcher:  request.ErrorWaiterMatch,
+				Expected: "AccessDeniedException",
+			},
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
@@ -92,6 +97,11 @@ func (c *ACMPCA) WaitUntilCertificateAuthorityCSRCreatedWithContext(ctx aws.Cont
 				Matcher:  request.ErrorWaiterMatch,
 				Expected: "RequestInProgressException",
 			},
+			{
+				State:    request.FailureWaiterState,
+				Matcher:  request.ErrorWaiterMatch,
+				Expected: "AccessDeniedException",
+			},
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
@@ -142,6 +152,11 @@ func (c *ACMPCA) WaitUntilCertificateIssuedWithContext(ctx aws.Context, input *G
 				State:    request.RetryWaiterState,
 				Matcher:  request.ErrorWaiterMatch,
 				Expected: "RequestInProgressException",
+			},
+			{
+				State:    request.FailureWaiterState,
+				Matcher:  request.ErrorWaiterMatch,
+				Expected: "AccessDeniedException",
 			},
 		},
 		Logger: c.Config.Logger,

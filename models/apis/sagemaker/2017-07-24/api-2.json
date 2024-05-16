@@ -5688,7 +5688,7 @@
     "ClusterInstanceGroupSpecifications":{
       "type":"list",
       "member":{"shape":"ClusterInstanceGroupSpecification"},
-      "max":5,
+      "max":20,
       "min":1
     },
     "ClusterInstanceStatus":{
@@ -7635,6 +7635,7 @@
         "MemberDefinitions":{"shape":"MemberDefinitions"},
         "Description":{"shape":"String200"},
         "NotificationConfiguration":{"shape":"NotificationConfiguration"},
+        "WorkerAccessConfiguration":{"shape":"WorkerAccessConfiguration"},
         "Tags":{"shape":"TagList"}
       }
     },
@@ -7681,12 +7682,12 @@
     "CustomFileSystemConfigs":{
       "type":"list",
       "member":{"shape":"CustomFileSystemConfig"},
-      "max":2
+      "max":10
     },
     "CustomFileSystems":{
       "type":"list",
       "member":{"shape":"CustomFileSystem"},
-      "max":1
+      "max":5
     },
     "CustomImage":{
       "type":"structure",
@@ -11067,6 +11068,13 @@
       }
     },
     "EnableSessionTagChaining":{"type":"boolean"},
+    "EnabledOrDisabled":{
+      "type":"string",
+      "enum":[
+        "Enabled",
+        "Disabled"
+      ]
+    },
     "Endpoint":{
       "type":"structure",
       "required":[
@@ -12790,6 +12798,13 @@
         "Arn":{"shape":"String"},
         "PrincipalId":{"shape":"String"},
         "SourceIdentity":{"shape":"String"}
+      }
+    },
+    "IamPolicyConstraints":{
+      "type":"structure",
+      "members":{
+        "SourceIp":{"shape":"EnabledOrDisabled"},
+        "VpcSourceIp":{"shape":"EnabledOrDisabled"}
       }
     },
     "IdempotencyToken":{
@@ -19977,6 +19992,12 @@
       "max":1024,
       "pattern":"^(https|s3)://([^/]+)/?(.*)$"
     },
+    "S3Presign":{
+      "type":"structure",
+      "members":{
+        "IamPolicyConstraints":{"shape":"IamPolicyConstraints"}
+      }
+    },
     "S3StorageConfig":{
       "type":"structure",
       "required":["S3Uri"],
@@ -22978,7 +22999,8 @@
         "WorkteamName":{"shape":"WorkteamName"},
         "MemberDefinitions":{"shape":"MemberDefinitions"},
         "Description":{"shape":"String200"},
-        "NotificationConfiguration":{"shape":"NotificationConfiguration"}
+        "NotificationConfiguration":{"shape":"NotificationConfiguration"},
+        "WorkerAccessConfiguration":{"shape":"WorkerAccessConfiguration"}
       }
     },
     "UpdateWorkteamResponse":{
@@ -23248,6 +23270,12 @@
         "ReusedByJob":{"shape":"TrainingJobName"}
       }
     },
+    "WorkerAccessConfiguration":{
+      "type":"structure",
+      "members":{
+        "S3Presign":{"shape":"S3Presign"}
+      }
+    },
     "Workforce":{
       "type":"structure",
       "required":[
@@ -23379,7 +23407,8 @@
         "SubDomain":{"shape":"String"},
         "CreateDate":{"shape":"Timestamp"},
         "LastUpdatedDate":{"shape":"Timestamp"},
-        "NotificationConfiguration":{"shape":"NotificationConfiguration"}
+        "NotificationConfiguration":{"shape":"NotificationConfiguration"},
+        "WorkerAccessConfiguration":{"shape":"WorkerAccessConfiguration"}
       }
     },
     "WorkteamArn":{

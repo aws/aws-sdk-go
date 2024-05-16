@@ -3,8 +3,8 @@
   "metadata":{
     "apiVersion":"2020-07-01",
     "endpointPrefix":"airflow",
-    "jsonVersion":"1.1",
     "protocol":"rest-json",
+    "protocols":["rest-json"],
     "serviceFullName":"AmazonMWAA",
     "serviceId":"MWAA",
     "signatureVersion":"v4",
@@ -218,31 +218,31 @@
       "type":"string",
       "max":32,
       "min":1,
-      "pattern":"^[0-9a-z.]+$"
+      "pattern":"[0-9a-z.]+"
     },
     "CeleryExecutorQueue":{
       "type":"string",
       "max":1224,
       "min":1,
-      "pattern":"^arn:aws(-[a-z]+)?:sqs:[a-z0-9\\-]+:\\d{12}:[a-zA-Z_0-9+=,.@\\-_/]+$"
+      "pattern":"arn:aws(-[a-z]+)?:sqs:[a-z0-9\\-]+:\\d{12}:[a-zA-Z_0-9+=,.@\\-_/]+"
     },
     "CloudWatchLogGroupArn":{
       "type":"string",
       "max":1224,
       "min":1,
-      "pattern":"^arn:aws(-[a-z]+)?:logs:[a-z0-9\\-]+:\\d{12}:log-group:\\w+"
+      "pattern":"arn:aws(-[a-z]+)?:logs:[a-z0-9\\-]+:\\d{12}:log-group:\\w+.*"
     },
     "ConfigKey":{
       "type":"string",
       "max":64,
       "min":1,
-      "pattern":"^[a-z]+([a-z0-9._]*[a-z0-9_]+)?$"
+      "pattern":"[a-z]+([a-z0-9._]*[a-z0-9_]+)?"
     },
     "ConfigValue":{
       "type":"string",
       "max":65536,
       "min":1,
-      "pattern":"^[ -~]+$",
+      "pattern":"[ -~]+",
       "sensitive":true
     },
     "CreateCliTokenRequest":{
@@ -266,40 +266,42 @@
     "CreateEnvironmentInput":{
       "type":"structure",
       "required":[
-        "DagS3Path",
-        "ExecutionRoleArn",
         "Name",
-        "NetworkConfiguration",
-        "SourceBucketArn"
+        "ExecutionRoleArn",
+        "SourceBucketArn",
+        "DagS3Path",
+        "NetworkConfiguration"
       ],
       "members":{
-        "AirflowConfigurationOptions":{"shape":"AirflowConfigurationOptions"},
-        "AirflowVersion":{"shape":"AirflowVersion"},
-        "DagS3Path":{"shape":"RelativePath"},
-        "EndpointManagement":{"shape":"EndpointManagement"},
-        "EnvironmentClass":{"shape":"EnvironmentClass"},
-        "ExecutionRoleArn":{"shape":"IamRoleArn"},
-        "KmsKey":{"shape":"KmsKey"},
-        "LoggingConfiguration":{"shape":"LoggingConfigurationInput"},
-        "MaxWorkers":{"shape":"MaxWorkers"},
-        "MinWorkers":{"shape":"MinWorkers"},
         "Name":{
           "shape":"EnvironmentName",
           "location":"uri",
           "locationName":"Name"
         },
-        "NetworkConfiguration":{"shape":"NetworkConfiguration"},
-        "PluginsS3ObjectVersion":{"shape":"S3ObjectVersion"},
-        "PluginsS3Path":{"shape":"RelativePath"},
-        "RequirementsS3ObjectVersion":{"shape":"S3ObjectVersion"},
-        "RequirementsS3Path":{"shape":"RelativePath"},
-        "Schedulers":{"shape":"Schedulers"},
+        "ExecutionRoleArn":{"shape":"IamRoleArn"},
         "SourceBucketArn":{"shape":"S3BucketArn"},
-        "StartupScriptS3ObjectVersion":{"shape":"S3ObjectVersion"},
+        "DagS3Path":{"shape":"RelativePath"},
+        "NetworkConfiguration":{"shape":"NetworkConfiguration"},
+        "PluginsS3Path":{"shape":"RelativePath"},
+        "PluginsS3ObjectVersion":{"shape":"S3ObjectVersion"},
+        "RequirementsS3Path":{"shape":"RelativePath"},
+        "RequirementsS3ObjectVersion":{"shape":"S3ObjectVersion"},
         "StartupScriptS3Path":{"shape":"RelativePath"},
+        "StartupScriptS3ObjectVersion":{"shape":"S3ObjectVersion"},
+        "AirflowConfigurationOptions":{"shape":"AirflowConfigurationOptions"},
+        "EnvironmentClass":{"shape":"EnvironmentClass"},
+        "MaxWorkers":{"shape":"MaxWorkers"},
+        "KmsKey":{"shape":"KmsKey"},
+        "AirflowVersion":{"shape":"AirflowVersion"},
+        "LoggingConfiguration":{"shape":"LoggingConfigurationInput"},
+        "WeeklyMaintenanceWindowStart":{"shape":"WeeklyMaintenanceWindowStart"},
         "Tags":{"shape":"TagMap"},
         "WebserverAccessMode":{"shape":"WebserverAccessMode"},
-        "WeeklyMaintenanceWindowStart":{"shape":"WeeklyMaintenanceWindowStart"}
+        "MinWorkers":{"shape":"MinWorkers"},
+        "Schedulers":{"shape":"Schedulers"},
+        "EndpointManagement":{"shape":"EndpointManagement"},
+        "MinWebservers":{"shape":"MinWebservers"},
+        "MaxWebservers":{"shape":"MaxWebservers"}
       }
     },
     "CreateEnvironmentOutput":{
@@ -322,10 +324,10 @@
     "CreateWebLoginTokenResponse":{
       "type":"structure",
       "members":{
-        "AirflowIdentity":{"shape":"AirflowIdentity"},
-        "IamIdentity":{"shape":"IamIdentity"},
+        "WebToken":{"shape":"Token"},
         "WebServerHostname":{"shape":"Hostname"},
-        "WebToken":{"shape":"Token"}
+        "IamIdentity":{"shape":"IamIdentity"},
+        "AirflowIdentity":{"shape":"AirflowIdentity"}
       }
     },
     "CreatedAt":{"type":"timestamp"},
@@ -378,45 +380,47 @@
     "Environment":{
       "type":"structure",
       "members":{
-        "AirflowConfigurationOptions":{"shape":"AirflowConfigurationOptions"},
-        "AirflowVersion":{"shape":"AirflowVersion"},
-        "Arn":{"shape":"EnvironmentArn"},
-        "CeleryExecutorQueue":{"shape":"CeleryExecutorQueue"},
-        "CreatedAt":{"shape":"CreatedAt"},
-        "DagS3Path":{"shape":"RelativePath"},
-        "DatabaseVpcEndpointService":{"shape":"VpcEndpointServiceName"},
-        "EndpointManagement":{"shape":"EndpointManagement"},
-        "EnvironmentClass":{"shape":"EnvironmentClass"},
-        "ExecutionRoleArn":{"shape":"IamRoleArn"},
-        "KmsKey":{"shape":"KmsKey"},
-        "LastUpdate":{"shape":"LastUpdate"},
-        "LoggingConfiguration":{"shape":"LoggingConfiguration"},
-        "MaxWorkers":{"shape":"MaxWorkers"},
-        "MinWorkers":{"shape":"MinWorkers"},
         "Name":{"shape":"EnvironmentName"},
-        "NetworkConfiguration":{"shape":"NetworkConfiguration"},
-        "PluginsS3ObjectVersion":{"shape":"S3ObjectVersion"},
-        "PluginsS3Path":{"shape":"RelativePath"},
-        "RequirementsS3ObjectVersion":{"shape":"S3ObjectVersion"},
-        "RequirementsS3Path":{"shape":"RelativePath"},
-        "Schedulers":{"shape":"Schedulers"},
-        "ServiceRoleArn":{"shape":"IamRoleArn"},
-        "SourceBucketArn":{"shape":"S3BucketArn"},
-        "StartupScriptS3ObjectVersion":{"shape":"String"},
-        "StartupScriptS3Path":{"shape":"String"},
         "Status":{"shape":"EnvironmentStatus"},
+        "Arn":{"shape":"EnvironmentArn"},
+        "CreatedAt":{"shape":"CreatedAt"},
+        "WebserverUrl":{"shape":"WebserverUrl"},
+        "ExecutionRoleArn":{"shape":"IamRoleArn"},
+        "ServiceRoleArn":{"shape":"IamRoleArn"},
+        "KmsKey":{"shape":"KmsKey"},
+        "AirflowVersion":{"shape":"AirflowVersion"},
+        "SourceBucketArn":{"shape":"S3BucketArn"},
+        "DagS3Path":{"shape":"RelativePath"},
+        "PluginsS3Path":{"shape":"RelativePath"},
+        "PluginsS3ObjectVersion":{"shape":"S3ObjectVersion"},
+        "RequirementsS3Path":{"shape":"RelativePath"},
+        "RequirementsS3ObjectVersion":{"shape":"S3ObjectVersion"},
+        "StartupScriptS3Path":{"shape":"String"},
+        "StartupScriptS3ObjectVersion":{"shape":"String"},
+        "AirflowConfigurationOptions":{"shape":"AirflowConfigurationOptions"},
+        "EnvironmentClass":{"shape":"EnvironmentClass"},
+        "MaxWorkers":{"shape":"MaxWorkers"},
+        "NetworkConfiguration":{"shape":"NetworkConfiguration"},
+        "LoggingConfiguration":{"shape":"LoggingConfiguration"},
+        "LastUpdate":{"shape":"LastUpdate"},
+        "WeeklyMaintenanceWindowStart":{"shape":"WeeklyMaintenanceWindowStart"},
         "Tags":{"shape":"TagMap"},
         "WebserverAccessMode":{"shape":"WebserverAccessMode"},
-        "WebserverUrl":{"shape":"WebserverUrl"},
+        "MinWorkers":{"shape":"MinWorkers"},
+        "Schedulers":{"shape":"Schedulers"},
         "WebserverVpcEndpointService":{"shape":"VpcEndpointServiceName"},
-        "WeeklyMaintenanceWindowStart":{"shape":"WeeklyMaintenanceWindowStart"}
+        "DatabaseVpcEndpointService":{"shape":"VpcEndpointServiceName"},
+        "CeleryExecutorQueue":{"shape":"CeleryExecutorQueue"},
+        "EndpointManagement":{"shape":"EndpointManagement"},
+        "MinWebservers":{"shape":"MinWebservers"},
+        "MaxWebservers":{"shape":"MaxWebservers"}
       }
     },
     "EnvironmentArn":{
       "type":"string",
       "max":1224,
       "min":1,
-      "pattern":"^arn:aws(-[a-z]+)?:airflow:[a-z0-9\\-]+:\\d{12}:environment/\\w+"
+      "pattern":"arn:aws(-[a-z]+)?:airflow:[a-z0-9\\-]+:\\d{12}:environment/\\w+.*"
     },
     "EnvironmentClass":{
       "type":"string",
@@ -431,7 +435,7 @@
       "type":"string",
       "max":80,
       "min":1,
-      "pattern":"^[a-zA-Z][0-9a-zA-Z-_]*$"
+      "pattern":"[a-zA-Z][0-9a-zA-Z-_]*"
     },
     "EnvironmentStatus":{
       "type":"string",
@@ -455,7 +459,7 @@
       "type":"string",
       "max":1024,
       "min":1,
-      "pattern":"^.+$"
+      "pattern":".+"
     },
     "GetEnvironmentInput":{
       "type":"structure",
@@ -478,14 +482,14 @@
       "type":"string",
       "max":255,
       "min":1,
-      "pattern":"^(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\\-]*[A-Za-z0-9])$"
+      "pattern":"(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\\-]*[A-Za-z0-9])"
     },
     "IamIdentity":{"type":"string"},
     "IamRoleArn":{
       "type":"string",
       "max":1224,
       "min":1,
-      "pattern":"^arn:aws(-[a-z]+)?:iam::\\d{12}:role/?[a-zA-Z_0-9+=,.@\\-_/]+$"
+      "pattern":"arn:aws(-[a-z]+)?:iam::\\d{12}:role/?[a-zA-Z_0-9+=,.@\\-_/]+"
     },
     "Integer":{
       "type":"integer",
@@ -504,29 +508,29 @@
       "type":"string",
       "max":1224,
       "min":1,
-      "pattern":"^(((arn:aws(-[a-z]+)?:kms:[a-z]{2}-[a-z]+-\\d:\\d+:)?key\\/)?[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}|(arn:aws(-[a-z]+)?:kms:[a-z]{2}-[a-z]+-\\d:\\d+:)?alias/.+)$"
+      "pattern":"(((arn:aws(-[a-z]+)?:kms:[a-z]{2}-[a-z]+-\\d:\\d+:)?key\\/)?[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}|(arn:aws(-[a-z]+)?:kms:[a-z]{2}-[a-z]+-\\d:\\d+:)?alias/.+)"
     },
     "LastUpdate":{
       "type":"structure",
       "members":{
+        "Status":{"shape":"UpdateStatus"},
         "CreatedAt":{"shape":"UpdateCreatedAt"},
         "Error":{"shape":"UpdateError"},
-        "Source":{"shape":"UpdateSource"},
-        "Status":{"shape":"UpdateStatus"}
+        "Source":{"shape":"UpdateSource"}
       }
     },
     "ListEnvironmentsInput":{
       "type":"structure",
       "members":{
-        "MaxResults":{
-          "shape":"ListEnvironmentsInputMaxResultsInteger",
-          "location":"querystring",
-          "locationName":"MaxResults"
-        },
         "NextToken":{
           "shape":"NextToken",
           "location":"querystring",
           "locationName":"NextToken"
+        },
+        "MaxResults":{
+          "shape":"ListEnvironmentsInputMaxResultsInteger",
+          "location":"querystring",
+          "locationName":"MaxResults"
         }
       }
     },
@@ -566,9 +570,9 @@
       "members":{
         "DagProcessingLogs":{"shape":"ModuleLoggingConfiguration"},
         "SchedulerLogs":{"shape":"ModuleLoggingConfiguration"},
-        "TaskLogs":{"shape":"ModuleLoggingConfiguration"},
         "WebserverLogs":{"shape":"ModuleLoggingConfiguration"},
-        "WorkerLogs":{"shape":"ModuleLoggingConfiguration"}
+        "WorkerLogs":{"shape":"ModuleLoggingConfiguration"},
+        "TaskLogs":{"shape":"ModuleLoggingConfiguration"}
       }
     },
     "LoggingConfigurationInput":{
@@ -576,9 +580,9 @@
       "members":{
         "DagProcessingLogs":{"shape":"ModuleLoggingConfigurationInput"},
         "SchedulerLogs":{"shape":"ModuleLoggingConfigurationInput"},
-        "TaskLogs":{"shape":"ModuleLoggingConfigurationInput"},
         "WebserverLogs":{"shape":"ModuleLoggingConfigurationInput"},
-        "WorkerLogs":{"shape":"ModuleLoggingConfigurationInput"}
+        "WorkerLogs":{"shape":"ModuleLoggingConfigurationInput"},
+        "TaskLogs":{"shape":"ModuleLoggingConfigurationInput"}
       }
     },
     "LoggingEnabled":{
@@ -594,6 +598,11 @@
         "INFO",
         "DEBUG"
       ]
+    },
+    "MaxWebservers":{
+      "type":"integer",
+      "box":true,
+      "min":2
     },
     "MaxWorkers":{
       "type":"integer",
@@ -613,15 +622,20 @@
         "Timestamp"
       ],
       "members":{
-        "Dimensions":{"shape":"Dimensions"},
         "MetricName":{"shape":"String"},
-        "StatisticValues":{"shape":"StatisticSet"},
         "Timestamp":{"shape":"Timestamp"},
+        "Dimensions":{"shape":"Dimensions"},
+        "Value":{"shape":"Double"},
         "Unit":{"shape":"Unit"},
-        "Value":{"shape":"Double"}
+        "StatisticValues":{"shape":"StatisticSet"}
       },
       "deprecated":true,
       "deprecatedMessage":"This type is for internal use and not meant for public use. Data set for this type will be ignored."
+    },
+    "MinWebservers":{
+      "type":"integer",
+      "box":true,
+      "min":2
     },
     "MinWorkers":{
       "type":"integer",
@@ -631,9 +645,9 @@
     "ModuleLoggingConfiguration":{
       "type":"structure",
       "members":{
-        "CloudWatchLogGroupArn":{"shape":"CloudWatchLogGroupArn"},
         "Enabled":{"shape":"LoggingEnabled"},
-        "LogLevel":{"shape":"LoggingLevel"}
+        "LogLevel":{"shape":"LoggingLevel"},
+        "CloudWatchLogGroupArn":{"shape":"CloudWatchLogGroupArn"}
       }
     },
     "ModuleLoggingConfigurationInput":{
@@ -650,8 +664,8 @@
     "NetworkConfiguration":{
       "type":"structure",
       "members":{
-        "SecurityGroupIds":{"shape":"SecurityGroupList"},
-        "SubnetIds":{"shape":"SubnetList"}
+        "SubnetIds":{"shape":"SubnetList"},
+        "SecurityGroupIds":{"shape":"SecurityGroupList"}
       }
     },
     "NextToken":{
@@ -704,7 +718,7 @@
       "type":"string",
       "max":1224,
       "min":1,
-      "pattern":"^arn:aws(-[a-z]+)?:s3:::[a-z0-9.\\-]+$"
+      "pattern":"arn:aws(-[a-z]+)?:s3:::[a-z0-9.\\-]+"
     },
     "S3ObjectVersion":{
       "type":"string",
@@ -720,7 +734,7 @@
       "type":"string",
       "max":1024,
       "min":1,
-      "pattern":"^sg-[a-zA-Z0-9\\-._]+$"
+      "pattern":"sg-[a-zA-Z0-9\\-._]+"
     },
     "SecurityGroupList":{
       "type":"list",
@@ -731,10 +745,10 @@
     "StatisticSet":{
       "type":"structure",
       "members":{
-        "Maximum":{"shape":"Double"},
-        "Minimum":{"shape":"Double"},
         "SampleCount":{"shape":"Integer"},
-        "Sum":{"shape":"Double"}
+        "Sum":{"shape":"Double"},
+        "Minimum":{"shape":"Double"},
+        "Maximum":{"shape":"Double"}
       },
       "deprecated":true,
       "deprecatedMessage":"This type is for internal use and not meant for public use. Data set for this type will be ignored."
@@ -744,7 +758,7 @@
       "type":"string",
       "max":1024,
       "min":1,
-      "pattern":"^subnet-[a-zA-Z0-9\\-._]+$"
+      "pattern":"subnet-[a-zA-Z0-9\\-._]+"
     },
     "SubnetList":{
       "type":"list",
@@ -756,7 +770,7 @@
       "type":"string",
       "max":128,
       "min":1,
-      "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$"
+      "pattern":"([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)"
     },
     "TagKeyList":{
       "type":"list",
@@ -795,7 +809,7 @@
       "type":"string",
       "max":256,
       "min":1,
-      "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$"
+      "pattern":"([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)"
     },
     "Timestamp":{"type":"timestamp"},
     "Token":{
@@ -863,30 +877,32 @@
       "type":"structure",
       "required":["Name"],
       "members":{
-        "AirflowConfigurationOptions":{"shape":"AirflowConfigurationOptions"},
-        "AirflowVersion":{"shape":"AirflowVersion"},
-        "DagS3Path":{"shape":"RelativePath"},
-        "EnvironmentClass":{"shape":"EnvironmentClass"},
-        "ExecutionRoleArn":{"shape":"IamRoleArn"},
-        "LoggingConfiguration":{"shape":"LoggingConfigurationInput"},
-        "MaxWorkers":{"shape":"MaxWorkers"},
-        "MinWorkers":{"shape":"MinWorkers"},
         "Name":{
           "shape":"EnvironmentName",
           "location":"uri",
           "locationName":"Name"
         },
-        "NetworkConfiguration":{"shape":"UpdateNetworkConfigurationInput"},
-        "PluginsS3ObjectVersion":{"shape":"S3ObjectVersion"},
-        "PluginsS3Path":{"shape":"RelativePath"},
-        "RequirementsS3ObjectVersion":{"shape":"S3ObjectVersion"},
-        "RequirementsS3Path":{"shape":"RelativePath"},
-        "Schedulers":{"shape":"Schedulers"},
+        "ExecutionRoleArn":{"shape":"IamRoleArn"},
+        "AirflowVersion":{"shape":"AirflowVersion"},
         "SourceBucketArn":{"shape":"S3BucketArn"},
-        "StartupScriptS3ObjectVersion":{"shape":"S3ObjectVersion"},
+        "DagS3Path":{"shape":"RelativePath"},
+        "PluginsS3Path":{"shape":"RelativePath"},
+        "PluginsS3ObjectVersion":{"shape":"S3ObjectVersion"},
+        "RequirementsS3Path":{"shape":"RelativePath"},
+        "RequirementsS3ObjectVersion":{"shape":"S3ObjectVersion"},
         "StartupScriptS3Path":{"shape":"RelativePath"},
+        "StartupScriptS3ObjectVersion":{"shape":"S3ObjectVersion"},
+        "AirflowConfigurationOptions":{"shape":"AirflowConfigurationOptions"},
+        "EnvironmentClass":{"shape":"EnvironmentClass"},
+        "MaxWorkers":{"shape":"MaxWorkers"},
+        "NetworkConfiguration":{"shape":"UpdateNetworkConfigurationInput"},
+        "LoggingConfiguration":{"shape":"LoggingConfigurationInput"},
+        "WeeklyMaintenanceWindowStart":{"shape":"WeeklyMaintenanceWindowStart"},
         "WebserverAccessMode":{"shape":"WebserverAccessMode"},
-        "WeeklyMaintenanceWindowStart":{"shape":"WeeklyMaintenanceWindowStart"}
+        "MinWorkers":{"shape":"MinWorkers"},
+        "Schedulers":{"shape":"Schedulers"},
+        "MinWebservers":{"shape":"MinWebservers"},
+        "MaxWebservers":{"shape":"MaxWebservers"}
       }
     },
     "UpdateEnvironmentOutput":{
@@ -913,7 +929,7 @@
       "type":"string",
       "max":256,
       "min":1,
-      "pattern":"^.+$"
+      "pattern":".+"
     },
     "UpdateStatus":{
       "type":"string",
@@ -938,7 +954,7 @@
       "type":"string",
       "max":1224,
       "min":1,
-      "pattern":"^([a-z.-]+)?com\\.amazonaws\\.vpce\\.[a-z0-9\\-]+\\.[a-zA-Z_0-9+=,.@\\-_/]+$"
+      "pattern":"([a-z.-]+)?com\\.amazonaws\\.vpce\\.[a-z0-9\\-]+\\.[a-zA-Z_0-9+=,.@\\-_/]+"
     },
     "WebserverAccessMode":{
       "type":"string",
@@ -951,13 +967,13 @@
       "type":"string",
       "max":256,
       "min":1,
-      "pattern":"^https://.+$"
+      "pattern":"https://.+"
     },
     "WeeklyMaintenanceWindowStart":{
       "type":"string",
       "max":9,
       "min":1,
-      "pattern":"(MON|TUE|WED|THU|FRI|SAT|SUN):([01]\\d|2[0-3]):(00|30)"
+      "pattern":".*(MON|TUE|WED|THU|FRI|SAT|SUN):([01]\\d|2[0-3]):(00|30).*"
     }
   }
 }

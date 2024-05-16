@@ -7925,6 +7925,98 @@ func (c *QuickSight) DescribeIpRestrictionWithContext(ctx aws.Context, input *De
 	return out, req.Send()
 }
 
+const opDescribeKeyRegistration = "DescribeKeyRegistration"
+
+// DescribeKeyRegistrationRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeKeyRegistration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeKeyRegistration for more information on using the DescribeKeyRegistration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeKeyRegistrationRequest method.
+//	req, resp := client.DescribeKeyRegistrationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DescribeKeyRegistration
+func (c *QuickSight) DescribeKeyRegistrationRequest(input *DescribeKeyRegistrationInput) (req *request.Request, output *DescribeKeyRegistrationOutput) {
+	op := &request.Operation{
+		Name:       opDescribeKeyRegistration,
+		HTTPMethod: "GET",
+		HTTPPath:   "/accounts/{AwsAccountId}/key-registration",
+	}
+
+	if input == nil {
+		input = &DescribeKeyRegistrationInput{}
+	}
+
+	output = &DescribeKeyRegistrationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeKeyRegistration API operation for Amazon QuickSight.
+//
+// Describes all customer managed key registrations in a Amazon QuickSight account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation DescribeKeyRegistration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You don't have access to this item. The provided credentials couldn't be
+//     validated. You might not be authorized to carry out the request. Make sure
+//     that your account is authorized to use the Amazon QuickSight service, that
+//     your policies have the correct permissions, and that you are using the correct
+//     credentials.
+//
+//   - InvalidParameterValueException
+//     One or more parameters has a value that isn't valid.
+//
+//   - ThrottlingException
+//     Access is throttled.
+//
+//   - InternalFailureException
+//     An internal failure occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DescribeKeyRegistration
+func (c *QuickSight) DescribeKeyRegistration(input *DescribeKeyRegistrationInput) (*DescribeKeyRegistrationOutput, error) {
+	req, out := c.DescribeKeyRegistrationRequest(input)
+	return out, req.Send()
+}
+
+// DescribeKeyRegistrationWithContext is the same as DescribeKeyRegistration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeKeyRegistration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) DescribeKeyRegistrationWithContext(ctx aws.Context, input *DescribeKeyRegistrationInput, opts ...request.Option) (*DescribeKeyRegistrationOutput, error) {
+	req, out := c.DescribeKeyRegistrationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeNamespace = "DescribeNamespace"
 
 // DescribeNamespaceRequest generates a "aws/request.Request" representing the
@@ -18254,6 +18346,98 @@ func (c *QuickSight) UpdateIpRestriction(input *UpdateIpRestrictionInput) (*Upda
 // for more information on using Contexts.
 func (c *QuickSight) UpdateIpRestrictionWithContext(ctx aws.Context, input *UpdateIpRestrictionInput, opts ...request.Option) (*UpdateIpRestrictionOutput, error) {
 	req, out := c.UpdateIpRestrictionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateKeyRegistration = "UpdateKeyRegistration"
+
+// UpdateKeyRegistrationRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateKeyRegistration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateKeyRegistration for more information on using the UpdateKeyRegistration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateKeyRegistrationRequest method.
+//	req, resp := client.UpdateKeyRegistrationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/UpdateKeyRegistration
+func (c *QuickSight) UpdateKeyRegistrationRequest(input *UpdateKeyRegistrationInput) (req *request.Request, output *UpdateKeyRegistrationOutput) {
+	op := &request.Operation{
+		Name:       opUpdateKeyRegistration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/accounts/{AwsAccountId}/key-registration",
+	}
+
+	if input == nil {
+		input = &UpdateKeyRegistrationInput{}
+	}
+
+	output = &UpdateKeyRegistrationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateKeyRegistration API operation for Amazon QuickSight.
+//
+// Updates a customer managed key in a Amazon QuickSight account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation UpdateKeyRegistration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You don't have access to this item. The provided credentials couldn't be
+//     validated. You might not be authorized to carry out the request. Make sure
+//     that your account is authorized to use the Amazon QuickSight service, that
+//     your policies have the correct permissions, and that you are using the correct
+//     credentials.
+//
+//   - InvalidParameterValueException
+//     One or more parameters has a value that isn't valid.
+//
+//   - ThrottlingException
+//     Access is throttled.
+//
+//   - InternalFailureException
+//     An internal failure occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/UpdateKeyRegistration
+func (c *QuickSight) UpdateKeyRegistration(input *UpdateKeyRegistrationInput) (*UpdateKeyRegistrationOutput, error) {
+	req, out := c.UpdateKeyRegistrationRequest(input)
+	return out, req.Send()
+}
+
+// UpdateKeyRegistrationWithContext is the same as UpdateKeyRegistration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateKeyRegistration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) UpdateKeyRegistrationWithContext(ctx aws.Context, input *UpdateKeyRegistrationInput, opts ...request.Option) (*UpdateKeyRegistrationOutput, error) {
+	req, out := c.UpdateKeyRegistrationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -51354,6 +51538,124 @@ func (s *DescribeIpRestrictionOutput) SetVpcIdRestrictionRuleMap(v map[string]*s
 	return s
 }
 
+type DescribeKeyRegistrationInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID of the Amazon Web Services account that contains the customer managed
+	// key registration that you want to describe.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// Determines whether the request returns the default key only.
+	DefaultKeyOnly *bool `location:"querystring" locationName:"default-key-only" type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeKeyRegistrationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeKeyRegistrationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeKeyRegistrationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeKeyRegistrationInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *DescribeKeyRegistrationInput) SetAwsAccountId(v string) *DescribeKeyRegistrationInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetDefaultKeyOnly sets the DefaultKeyOnly field's value.
+func (s *DescribeKeyRegistrationInput) SetDefaultKeyOnly(v bool) *DescribeKeyRegistrationInput {
+	s.DefaultKeyOnly = &v
+	return s
+}
+
+type DescribeKeyRegistrationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the Amazon Web Services account that contains the customer managed
+	// key registration specified in the request.
+	AwsAccountId *string `min:"12" type:"string"`
+
+	// A list of RegisteredCustomerManagedKey objects in a Amazon QuickSight account.
+	KeyRegistration []*RegisteredCustomerManagedKey `type:"list"`
+
+	// The Amazon Web Services request ID for this operation.
+	RequestId *string `type:"string"`
+
+	// The HTTP status of the request.
+	Status *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeKeyRegistrationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeKeyRegistrationOutput) GoString() string {
+	return s.String()
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *DescribeKeyRegistrationOutput) SetAwsAccountId(v string) *DescribeKeyRegistrationOutput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetKeyRegistration sets the KeyRegistration field's value.
+func (s *DescribeKeyRegistrationOutput) SetKeyRegistration(v []*RegisteredCustomerManagedKey) *DescribeKeyRegistrationOutput {
+	s.KeyRegistration = v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *DescribeKeyRegistrationOutput) SetRequestId(v string) *DescribeKeyRegistrationOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DescribeKeyRegistrationOutput) SetStatus(v int64) *DescribeKeyRegistrationOutput {
+	s.Status = &v
+	return s
+}
+
 type DescribeNamespaceInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -54775,6 +55077,77 @@ func (s ExportWithHiddenFieldsOption) GoString() string {
 // SetAvailabilityStatus sets the AvailabilityStatus field's value.
 func (s *ExportWithHiddenFieldsOption) SetAvailabilityStatus(v string) *ExportWithHiddenFieldsOption {
 	s.AvailabilityStatus = &v
+	return s
+}
+
+// An entry that appears when a KeyRegistration update to Amazon QuickSight
+// fails.
+type FailedKeyRegistrationEntry struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the KMS key that failed to update.
+	KeyArn *string `type:"string"`
+
+	// A message that provides information about why a FailedKeyRegistrationEntry
+	// error occurred.
+	//
+	// Message is a required field
+	Message *string `type:"string" required:"true"`
+
+	// A boolean that indicates whether a FailedKeyRegistrationEntry resulted from
+	// user error. If the value of this property is True, the error was caused by
+	// user error. If the value of this property is False, the error occurred on
+	// the backend. If your job continues fail and with a False SenderFault value,
+	// contact Amazon Web Services Support.
+	//
+	// SenderFault is a required field
+	SenderFault *bool `type:"boolean" required:"true"`
+
+	// The HTTP status of a FailedKeyRegistrationEntry error.
+	//
+	// StatusCode is a required field
+	StatusCode *int64 `type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FailedKeyRegistrationEntry) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FailedKeyRegistrationEntry) GoString() string {
+	return s.String()
+}
+
+// SetKeyArn sets the KeyArn field's value.
+func (s *FailedKeyRegistrationEntry) SetKeyArn(v string) *FailedKeyRegistrationEntry {
+	s.KeyArn = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *FailedKeyRegistrationEntry) SetMessage(v string) *FailedKeyRegistrationEntry {
+	s.Message = &v
+	return s
+}
+
+// SetSenderFault sets the SenderFault field's value.
+func (s *FailedKeyRegistrationEntry) SetSenderFault(v bool) *FailedKeyRegistrationEntry {
+	s.SenderFault = &v
+	return s
+}
+
+// SetStatusCode sets the StatusCode field's value.
+func (s *FailedKeyRegistrationEntry) SetStatusCode(v int64) *FailedKeyRegistrationEntry {
+	s.StatusCode = &v
 	return s
 }
 
@@ -80309,9 +80682,7 @@ type RedshiftIAMParameters struct {
 	// QuickSight is granted the same permissions that the user has. If the user
 	// doesn't exist, set the value of AutoCreateDatabaseUser to True to create
 	// a new user with PUBLIC permissions.
-	//
-	// DatabaseUser is a required field
-	DatabaseUser *string `min:"1" type:"string" required:"true"`
+	DatabaseUser *string `min:"1" type:"string"`
 
 	// Use the RoleArn structure to allow Amazon QuickSight to call redshift:GetClusterCredentials
 	// on your cluster. The calling principal must have iam:PassRole access to pass
@@ -80345,9 +80716,6 @@ func (s *RedshiftIAMParameters) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "RedshiftIAMParameters"}
 	if s.DatabaseGroups != nil && len(s.DatabaseGroups) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("DatabaseGroups", 1))
-	}
-	if s.DatabaseUser == nil {
-		invalidParams.Add(request.NewErrParamRequired("DatabaseUser"))
 	}
 	if s.DatabaseUser != nil && len(*s.DatabaseUser) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("DatabaseUser", 1))
@@ -81435,6 +81803,18 @@ type RegisterUserInput struct {
 	//    * ADMIN: A user who is an author, who can also manage Amazon QuickSight
 	//    settings.
 	//
+	//    * READER_PRO: Reader Pro adds Generative BI capabilities to the Reader
+	//    role. Reader Pros have access to Amazon Q in Amazon QuickSight, can build
+	//    stories with Amazon Q, and can generate executive summaries from dashboards.
+	//
+	//    * AUTHOR_PRO: Author Pro adds Generative BI capabilities to the Author
+	//    role. Author Pros can author dashboards with natural language with Amazon
+	//    Q, build stories with Amazon Q, create Topics for Q&A, and generate executive
+	//    summaries from dashboards.
+	//
+	//    * ADMIN_PRO: Admin Pros are Author Pros who can also manage Amazon QuickSight
+	//    administrative settings. Admin Pro users are billed at Author Pro pricing.
+	//
 	//    * RESTRICTED_READER: This role isn't currently available for use.
 	//
 	//    * RESTRICTED_AUTHOR: This role isn't currently available for use.
@@ -81648,6 +82028,55 @@ func (s *RegisterUserOutput) SetUser(v *User) *RegisterUserOutput {
 // SetUserInvitationUrl sets the UserInvitationUrl field's value.
 func (s *RegisterUserOutput) SetUserInvitationUrl(v string) *RegisterUserOutput {
 	s.UserInvitationUrl = &v
+	return s
+}
+
+// A customer managed key structure that contains the information listed below:
+//
+//   - KeyArn - The ARN of a KMS key that is registered to a Amazon QuickSight
+//     account for encryption and decryption use.
+//
+//   - DefaultKey - Indicates whether the current key is set as the default
+//     key for encryption and decryption use.
+type RegisteredCustomerManagedKey struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether a RegisteredCustomerManagedKey is set as the default key
+	// for encryption and decryption use.
+	DefaultKey *bool `type:"boolean"`
+
+	// The ARN of the KMS key that is registered to a Amazon QuickSight account
+	// for encryption and decryption use.
+	KeyArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RegisteredCustomerManagedKey) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RegisteredCustomerManagedKey) GoString() string {
+	return s.String()
+}
+
+// SetDefaultKey sets the DefaultKey field's value.
+func (s *RegisteredCustomerManagedKey) SetDefaultKey(v bool) *RegisteredCustomerManagedKey {
+	s.DefaultKey = &v
+	return s
+}
+
+// SetKeyArn sets the KeyArn field's value.
+func (s *RegisteredCustomerManagedKey) SetKeyArn(v string) *RegisteredCustomerManagedKey {
+	s.KeyArn = &v
 	return s
 }
 
@@ -90637,6 +91066,53 @@ func (s *SubtotalOptions) SetTotalsVisibility(v string) *SubtotalOptions {
 // SetValueCellStyle sets the ValueCellStyle field's value.
 func (s *SubtotalOptions) SetValueCellStyle(v *TableCellStyle) *SubtotalOptions {
 	s.ValueCellStyle = v
+	return s
+}
+
+// A success entry that occurs when a KeyRegistration job is successfully applied
+// to the Amazon QuickSight account.
+type SuccessfulKeyRegistrationEntry struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the KMS key that is associated with the SuccessfulKeyRegistrationEntry
+	// entry.
+	//
+	// KeyArn is a required field
+	KeyArn *string `type:"string" required:"true"`
+
+	// The HTTP status of a SuccessfulKeyRegistrationEntry entry.
+	//
+	// StatusCode is a required field
+	StatusCode *int64 `type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SuccessfulKeyRegistrationEntry) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SuccessfulKeyRegistrationEntry) GoString() string {
+	return s.String()
+}
+
+// SetKeyArn sets the KeyArn field's value.
+func (s *SuccessfulKeyRegistrationEntry) SetKeyArn(v string) *SuccessfulKeyRegistrationEntry {
+	s.KeyArn = &v
+	return s
+}
+
+// SetStatusCode sets the StatusCode field's value.
+func (s *SuccessfulKeyRegistrationEntry) SetStatusCode(v int64) *SuccessfulKeyRegistrationEntry {
+	s.StatusCode = &v
 	return s
 }
 
@@ -102093,6 +102569,120 @@ func (s *UpdateIpRestrictionOutput) SetStatus(v int64) *UpdateIpRestrictionOutpu
 	return s
 }
 
+type UpdateKeyRegistrationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the Amazon Web Services account that contains the customer managed
+	// key registration that you want to update.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// A list of RegisteredCustomerManagedKey objects to be updated to the Amazon
+	// QuickSight account.
+	//
+	// KeyRegistration is a required field
+	KeyRegistration []*RegisteredCustomerManagedKey `type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateKeyRegistrationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateKeyRegistrationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateKeyRegistrationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateKeyRegistrationInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.KeyRegistration == nil {
+		invalidParams.Add(request.NewErrParamRequired("KeyRegistration"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *UpdateKeyRegistrationInput) SetAwsAccountId(v string) *UpdateKeyRegistrationInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetKeyRegistration sets the KeyRegistration field's value.
+func (s *UpdateKeyRegistrationInput) SetKeyRegistration(v []*RegisteredCustomerManagedKey) *UpdateKeyRegistrationInput {
+	s.KeyRegistration = v
+	return s
+}
+
+type UpdateKeyRegistrationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of all customer managed key registrations that failed to update.
+	FailedKeyRegistration []*FailedKeyRegistrationEntry `type:"list"`
+
+	// The Amazon Web Services request ID for this operation.
+	RequestId *string `type:"string"`
+
+	// A list of all customer managed key registrations that were successfully updated.
+	SuccessfulKeyRegistration []*SuccessfulKeyRegistrationEntry `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateKeyRegistrationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateKeyRegistrationOutput) GoString() string {
+	return s.String()
+}
+
+// SetFailedKeyRegistration sets the FailedKeyRegistration field's value.
+func (s *UpdateKeyRegistrationOutput) SetFailedKeyRegistration(v []*FailedKeyRegistrationEntry) *UpdateKeyRegistrationOutput {
+	s.FailedKeyRegistration = v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *UpdateKeyRegistrationOutput) SetRequestId(v string) *UpdateKeyRegistrationOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetSuccessfulKeyRegistration sets the SuccessfulKeyRegistration field's value.
+func (s *UpdateKeyRegistrationOutput) SetSuccessfulKeyRegistration(v []*SuccessfulKeyRegistrationEntry) *UpdateKeyRegistrationOutput {
+	s.SuccessfulKeyRegistration = v
+	return s
+}
+
 type UpdatePublicSharingSettingsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -104242,8 +104832,8 @@ type UpdateUserInput struct {
 	//    settings.
 	//
 	//    * READER_PRO: Reader Pro adds Generative BI capabilities to the Reader
-	//    role. Reader Pros have access to Amazon Q Business, can build stories
-	//    with Amazon Q, and can generate executive summaries from dashboards.
+	//    role. Reader Pros have access to Amazon Q in Amazon QuickSight, can build
+	//    stories with Amazon Q, and can generate executive summaries from dashboards.
 	//
 	//    * AUTHOR_PRO: Author Pro adds Generative BI capabilities to the Author
 	//    role. Author Pros can author dashboards with natural language with Amazon
@@ -104792,8 +105382,8 @@ type User struct {
 	//    settings.
 	//
 	//    * READER_PRO: Reader Pro adds Generative BI capabilities to the Reader
-	//    role. Reader Pros have access to Amazon Q Business, can build stories
-	//    with Amazon Q, and can generate executive summaries from dashboards.
+	//    role. Reader Pros have access to Amazon Q in Amazon QuickSight, can build
+	//    stories with Amazon Q, and can generate executive summaries from dashboards.
 	//
 	//    * AUTHOR_PRO: Author Pro adds Generative BI capabilities to the Author
 	//    role. Author Pros can author dashboards with natural language with Amazon

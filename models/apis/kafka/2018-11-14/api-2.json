@@ -2362,6 +2362,19 @@
         }
       }
     },
+    "BrokerCountUpdateInfo" : {
+      "type" : "structure",
+      "members" : {
+        "CreatedBrokerIds" : {
+          "shape" : "__listOf__double",
+          "locationName" : "createdBrokerIds"
+        },
+        "DeletedBrokerIds" : {
+          "shape" : "__listOf__double",
+          "locationName" : "deletedBrokerIds"
+        }
+      }
+    },
     "ConsumerGroupReplication": {
       "type": "structure",
       "members": {
@@ -4306,6 +4319,10 @@
         "StorageMode" : {
           "shape" : "StorageMode",
           "locationName" : "storageMode"
+        },
+        "BrokerCountUpdateInfo" : {
+          "shape": "BrokerCountUpdateInfo",
+          "locationName" : "brokerCountUpdateInfo"
         }
       }
     },
@@ -5607,6 +5624,12 @@
       "type" : "list",
       "member" : {
         "shape" : "UnprocessedScramSecret"
+      }
+    },
+    "__listOf__double" : {
+      "type" : "list",
+      "member" : {
+        "shape" : "__double"
       }
     },
     "__listOf__string": {

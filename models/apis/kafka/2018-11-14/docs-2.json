@@ -294,6 +294,12 @@
         "UpdateConnectivityRequest$ConnectivityInfo" : "<p>Information about the broker access configuration.</p>"
       }
     },
+    "BrokerCountUpdateInfo" : {
+      "base" : "<p>Describes brokers being changed during a broker count update.</p>",
+      "refs" : {
+        "MutableClusterInfo$BrokerCountUpdateInfo" : "<p>Describes brokers being changed during a broker count update.</p>"
+      }
+    },
     "ConsumerGroupReplication" : {
       "base" : "<p>Details about consumer group replication.</p>",
       "refs" : {
@@ -1195,6 +1201,13 @@
       "refs" : {
         "BatchAssociateScramSecretResponse$UnprocessedScramSecrets" : "<p>List of errors when associating secrets to cluster.</p>",
         "BatchDisassociateScramSecretResponse$UnprocessedScramSecrets" : "<p>List of errors when disassociating secrets to cluster.</p>"
+      }
+    },
+    "__listOf__double" : {
+      "base" : null,
+      "refs" : {
+        "BrokerCountUpdateInfo$CreatedBrokerIds" : "<p>List of Broker Ids when creating new Brokers in a cluster.</p>",
+        "BrokerCountUpdateInfo$DeletedBrokerIds" : "<p>List of Broker Ids when deleting existing Brokers in a cluster.</p>"
       }
     },
     "__listOf__string" : {
