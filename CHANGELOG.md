@@ -1,3 +1,18 @@
+Release v1.53.4 (2024-05-16)
+===
+
+### Service Client Updates
+* `service/acm-pca`: Updates service API and waiters
+* `service/connect`: Updates service documentation
+* `service/kafka`: Updates service API and documentation
+* `service/mwaa`: Updates service API and documentation
+* `service/quicksight`: Updates service API and documentation
+  * This release adds DescribeKeyRegistration and UpdateKeyRegistration APIs to manage QuickSight Customer Managed Keys (CMK).
+* `service/sagemaker`: Updates service API and documentation
+  * Introduced WorkerAccessConfiguration to SageMaker Workteam. This allows customers to configure resource access for workers in a workteam.
+* `service/secretsmanager`: Updates service API and documentation
+  * Documentation updates for AWS Secrets Manager
+
 Release v1.53.3 (2024-05-15)
 ===
 
