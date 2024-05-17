@@ -4,6 +4,7 @@
     "apiVersion":"2015-12-01",
     "endpointPrefix":"elasticloadbalancing",
     "protocol":"query",
+    "protocols":["query"],
     "serviceAbbreviation":"Elastic Load Balancing v2",
     "serviceFullName":"Elastic Load Balancing",
     "serviceId":"Elastic Load Balancing v2",
@@ -1808,7 +1809,8 @@
       "type":"string",
       "enum":[
         "ipv4",
-        "dualstack"
+        "dualstack",
+        "dualstack-without-public-ipv4"
       ]
     },
     "IsDefault":{"type":"boolean"},

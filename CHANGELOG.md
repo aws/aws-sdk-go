@@ -1,3 +1,15 @@
+Release v1.53.5 (2024-05-17)
+===
+
+### Service Client Updates
+* `service/application-autoscaling`: Updates service API
+* `service/codebuild`: Updates service API and documentation
+  * Aws CodeBuild now supports 36 hours build timeout
+* `service/elasticloadbalancingv2`: Updates service API and documentation
+* `service/lakeformation`: Updates service API and documentation
+* `service/transfer`: Updates service API and documentation
+  * Enable use of CloudFormation traits in Smithy model to improve generated CloudFormation schema from the Smithy API model.
+
 Release v1.53.4 (2024-05-16)
 ===
 

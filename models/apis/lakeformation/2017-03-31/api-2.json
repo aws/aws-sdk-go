@@ -5,6 +5,7 @@
     "endpointPrefix":"lakeformation",
     "jsonVersion":"1.1",
     "protocol":"rest-json",
+    "protocols":["rest-json"],
     "serviceFullName":"AWS Lake Formation",
     "serviceId":"LakeFormation",
     "signatureVersion":"v4",
@@ -352,6 +353,20 @@
         {"shape":"InvalidInputException"},
         {"shape":"OperationTimeoutException"},
         {"shape":"InternalServiceException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "GetDataLakePrincipal":{
+      "name":"GetDataLakePrincipal",
+      "http":{
+        "method":"POST",
+        "requestUri":"/GetDataLakePrincipal"
+      },
+      "input":{"shape":"GetDataLakePrincipalRequest"},
+      "output":{"shape":"GetDataLakePrincipalResponse"},
+      "errors":[
+        {"shape":"InternalServiceException"},
+        {"shape":"OperationTimeoutException"},
         {"shape":"AccessDeniedException"}
       ]
     },
@@ -1575,6 +1590,17 @@
         "DataCellsFilter":{"shape":"DataCellsFilter"}
       }
     },
+    "GetDataLakePrincipalRequest":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "GetDataLakePrincipalResponse":{
+      "type":"structure",
+      "members":{
+        "Identity":{"shape":"IdentityString"}
+      }
+    },
     "GetDataLakeSettingsRequest":{
       "type":"structure",
       "members":{
@@ -1850,6 +1876,7 @@
       "min":1
     },
     "IdentityCenterInstanceArn":{"type":"string"},
+    "IdentityString":{"type":"string"},
     "Integer":{
       "type":"integer",
       "box":true

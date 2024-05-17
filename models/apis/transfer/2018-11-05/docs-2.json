@@ -249,9 +249,9 @@
     "CertificateUsageType": {
       "base": null,
       "refs": {
-        "DescribedCertificate$Usage": "<p>Specifies whether this certificate is used for signing or encryption.</p>",
-        "ImportCertificateRequest$Usage": "<p>Specifies whether this certificate is used for signing or encryption.</p>",
-        "ListedCertificate$Usage": "<p>Specifies whether this certificate is used for signing or encryption.</p>"
+        "DescribedCertificate$Usage": "<p>Specifies how this certificate is used. It can be used in the following ways:</p> <ul> <li> <p> <code>SIGNING</code>: For signing AS2 messages</p> </li> <li> <p> <code>ENCRYPTION</code>: For encrypting AS2 messages</p> </li> <li> <p> <code>TLS</code>: For securing AS2 communications sent over HTTPS</p> </li> </ul>",
+        "ImportCertificateRequest$Usage": "<p>Specifies how this certificate is used. It can be used in the following ways:</p> <ul> <li> <p> <code>SIGNING</code>: For signing AS2 messages</p> </li> <li> <p> <code>ENCRYPTION</code>: For encrypting AS2 messages</p> </li> <li> <p> <code>TLS</code>: For securing AS2 communications sent over HTTPS</p> </li> </ul>",
+        "ListedCertificate$Usage": "<p>Specifies how this certificate is used. It can be used in the following ways:</p> <ul> <li> <p> <code>SIGNING</code>: For signing AS2 messages</p> </li> <li> <p> <code>ENCRYPTION</code>: For encrypting AS2 messages</p> </li> <li> <p> <code>TLS</code>: For securing AS2 communications sent over HTTPS</p> </li> </ul>"
       }
     },
     "CompressionEnum": {
@@ -664,8 +664,8 @@
       "base": null,
       "refs": {
         "CreateServerRequest$Domain": "<p>The domain of the storage system that is used for file transfers. There are two domains available: Amazon Simple Storage Service (Amazon S3) and Amazon Elastic File System (Amazon EFS). The default value is S3.</p> <note> <p>After the server is created, the domain cannot be changed.</p> </note>",
-        "DescribedServer$Domain": "<p>Specifies the domain of the storage system that is used for file transfers.</p>",
-        "ListedServer$Domain": "<p>Specifies the domain of the storage system that is used for file transfers.</p>"
+        "DescribedServer$Domain": "<p>Specifies the domain of the storage system that is used for file transfers. There are two domains available: Amazon Simple Storage Service (Amazon S3) and Amazon Elastic File System (Amazon EFS). The default value is S3.</p>",
+        "ListedServer$Domain": "<p>Specifies the domain of the storage system that is used for file transfers. There are two domains available: Amazon Simple Storage Service (Amazon S3) and Amazon Elastic File System (Amazon EFS). The default value is S3.</p>"
       }
     },
     "EfsFileLocation": {
@@ -1765,7 +1765,7 @@
       }
     },
     "ServiceManagedEgressIpAddresses": {
-      "base": null,
+      "base": "<p>The list of egress IP addresses of this server. These IP addresses are only relevant for servers that use the AS2 protocol. They are used for sending asynchronous MDNs. These IP addresses are assigned automatically when you create an AS2 server. Additionally, if you update an existing server and add the AS2 protocol, static IP addresses are assigned as well.</p>",
       "refs": {
         "DescribedConnector$ServiceManagedEgressIpAddresses": "<p>The list of egress IP addresses of this connector. These IP addresses are assigned automatically when you create the connector.</p>",
         "DescribedServer$As2ServiceManagedEgressIpAddresses": "<p>The list of egress IP addresses of this server. These IP addresses are only relevant for servers that use the AS2 protocol. They are used for sending asynchronous MDNs.</p> <p>These IP addresses are assigned automatically when you create an AS2 server. Additionally, if you update an existing server and add the AS2 protocol, static IP addresses are assigned as well.</p>"
