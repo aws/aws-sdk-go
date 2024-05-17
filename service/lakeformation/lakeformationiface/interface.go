@@ -144,6 +144,10 @@ type LakeFormationAPI interface {
 	GetDataCellsFilterWithContext(aws.Context, *lakeformation.GetDataCellsFilterInput, ...request.Option) (*lakeformation.GetDataCellsFilterOutput, error)
 	GetDataCellsFilterRequest(*lakeformation.GetDataCellsFilterInput) (*request.Request, *lakeformation.GetDataCellsFilterOutput)
 
+	GetDataLakePrincipal(*lakeformation.GetDataLakePrincipalInput) (*lakeformation.GetDataLakePrincipalOutput, error)
+	GetDataLakePrincipalWithContext(aws.Context, *lakeformation.GetDataLakePrincipalInput, ...request.Option) (*lakeformation.GetDataLakePrincipalOutput, error)
+	GetDataLakePrincipalRequest(*lakeformation.GetDataLakePrincipalInput) (*request.Request, *lakeformation.GetDataLakePrincipalOutput)
+
 	GetDataLakeSettings(*lakeformation.GetDataLakeSettingsInput) (*lakeformation.GetDataLakeSettingsOutput, error)
 	GetDataLakeSettingsWithContext(aws.Context, *lakeformation.GetDataLakeSettingsInput, ...request.Option) (*lakeformation.GetDataLakeSettingsOutput, error)
 	GetDataLakeSettingsRequest(*lakeformation.GetDataLakeSettingsInput) (*request.Request, *lakeformation.GetDataLakeSettingsOutput)

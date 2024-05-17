@@ -5755,7 +5755,7 @@ type Build struct {
 	// When the build process started, expressed in Unix time format.
 	StartTime *time.Time `locationName:"startTime" type:"timestamp"`
 
-	// How long, in minutes, from 5 to 480 (8 hours), for CodeBuild to wait before
+	// How long, in minutes, from 5 to 2160 (36 hours), for CodeBuild to wait before
 	// timing out this build if it does not get marked as completed.
 	TimeoutInMinutes *int64 `locationName:"timeoutInMinutes" type:"integer"`
 
@@ -7706,7 +7706,7 @@ type CreateProjectInput struct {
 	// CodeBuild build project tags.
 	Tags []*Tag `locationName:"tags" type:"list"`
 
-	// How long, in minutes, from 5 to 480 (8 hours), for CodeBuild to wait before
+	// How long, in minutes, from 5 to 2160 (36 hours), for CodeBuild to wait before
 	// it times out any build that has not been marked as completed. The default
 	// is 60 minutes.
 	TimeoutInMinutes *int64 `locationName:"timeoutInMinutes" min:"5" type:"integer"`
@@ -12338,7 +12338,7 @@ type Project struct {
 	// CodeBuild build project tags.
 	Tags []*Tag `locationName:"tags" type:"list"`
 
-	// How long, in minutes, from 5 to 480 (8 hours), for CodeBuild to wait before
+	// How long, in minutes, from 5 to 2160 (36 hours), for CodeBuild to wait before
 	// timing out any related build that did not get marked as completed. The default
 	// is 60 minutes.
 	TimeoutInMinutes *int64 `locationName:"timeoutInMinutes" min:"5" type:"integer"`
@@ -15980,7 +15980,7 @@ type StartBuildInput struct {
 	// in the CodeBuild User Guide.
 	SourceVersion *string `locationName:"sourceVersion" type:"string"`
 
-	// The number of build timeout minutes, from 5 to 480 (8 hours), that overrides,
+	// The number of build timeout minutes, from 5 to 2160 (36 hours), that overrides,
 	// for this build only, the latest setting already defined in the build project.
 	TimeoutInMinutesOverride *int64 `locationName:"timeoutInMinutesOverride" min:"5" type:"integer"`
 }
@@ -17173,7 +17173,7 @@ type UpdateProjectInput struct {
 	// CodeBuild build project tags.
 	Tags []*Tag `locationName:"tags" type:"list"`
 
-	// The replacement value in minutes, from 5 to 480 (8 hours), for CodeBuild
+	// The replacement value in minutes, from 5 to 2160 (36 hours), for CodeBuild
 	// to wait before timing out any related build that did not get marked as completed.
 	TimeoutInMinutes *int64 `locationName:"timeoutInMinutes" min:"5" type:"integer"`
 

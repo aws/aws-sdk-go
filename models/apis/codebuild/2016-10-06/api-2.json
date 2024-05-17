@@ -1025,6 +1025,11 @@
         "secondaryArtifacts":{"shape":"ResolvedSecondaryArtifacts"}
       }
     },
+    "BuildTimeOut":{
+      "type":"integer",
+      "max":2160,
+      "min":5
+    },
     "Builds":{
       "type":"list",
       "member":{"shape":"Build"}
@@ -1154,7 +1159,7 @@
         "cache":{"shape":"ProjectCache"},
         "environment":{"shape":"ProjectEnvironment"},
         "serviceRole":{"shape":"NonEmptyString"},
-        "timeoutInMinutes":{"shape":"TimeOut"},
+        "timeoutInMinutes":{"shape":"BuildTimeOut"},
         "queuedTimeoutInMinutes":{"shape":"TimeOut"},
         "encryptionKey":{"shape":"NonEmptyString"},
         "tags":{"shape":"TagList"},
@@ -1958,7 +1963,7 @@
         "cache":{"shape":"ProjectCache"},
         "environment":{"shape":"ProjectEnvironment"},
         "serviceRole":{"shape":"NonEmptyString"},
-        "timeoutInMinutes":{"shape":"TimeOut"},
+        "timeoutInMinutes":{"shape":"BuildTimeOut"},
         "queuedTimeoutInMinutes":{"shape":"TimeOut"},
         "encryptionKey":{"shape":"NonEmptyString"},
         "tags":{"shape":"TagList"},
@@ -2541,7 +2546,7 @@
         "cacheOverride":{"shape":"ProjectCache"},
         "serviceRoleOverride":{"shape":"NonEmptyString"},
         "privilegedModeOverride":{"shape":"WrapperBoolean"},
-        "buildTimeoutInMinutesOverride":{"shape":"TimeOut"},
+        "buildTimeoutInMinutesOverride":{"shape":"BuildTimeOut"},
         "queuedTimeoutInMinutesOverride":{"shape":"TimeOut"},
         "encryptionKeyOverride":{"shape":"NonEmptyString"},
         "idempotencyToken":{"shape":"String"},
@@ -2585,7 +2590,7 @@
         "cacheOverride":{"shape":"ProjectCache"},
         "serviceRoleOverride":{"shape":"NonEmptyString"},
         "privilegedModeOverride":{"shape":"WrapperBoolean"},
-        "timeoutInMinutesOverride":{"shape":"TimeOut"},
+        "timeoutInMinutesOverride":{"shape":"BuildTimeOut"},
         "queuedTimeoutInMinutesOverride":{"shape":"TimeOut"},
         "encryptionKeyOverride":{"shape":"NonEmptyString"},
         "idempotencyToken":{"shape":"String"},
@@ -2748,7 +2753,7 @@
         "cache":{"shape":"ProjectCache"},
         "environment":{"shape":"ProjectEnvironment"},
         "serviceRole":{"shape":"NonEmptyString"},
-        "timeoutInMinutes":{"shape":"TimeOut"},
+        "timeoutInMinutes":{"shape":"BuildTimeOut"},
         "queuedTimeoutInMinutes":{"shape":"TimeOut"},
         "encryptionKey":{"shape":"NonEmptyString"},
         "tags":{"shape":"TagList"},

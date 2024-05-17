@@ -333,6 +333,16 @@
         "BuildSummaries$member": null
       }
     },
+    "BuildTimeOut": {
+      "base": null,
+      "refs": {
+        "CreateProjectInput$timeoutInMinutes": "<p>How long, in minutes, from 5 to 2160 (36 hours), for CodeBuild to wait before it times out any build that has not been marked as completed. The default is 60 minutes.</p>",
+        "Project$timeoutInMinutes": "<p>How long, in minutes, from 5 to 2160 (36 hours), for CodeBuild to wait before timing out any related build that did not get marked as completed. The default is 60 minutes.</p>",
+        "StartBuildBatchInput$buildTimeoutInMinutesOverride": "<p>Overrides the build timeout specified in the batch build project.</p>",
+        "StartBuildInput$timeoutInMinutesOverride": "<p>The number of build timeout minutes, from 5 to 2160 (36 hours), that overrides, for this build only, the latest setting already defined in the build project.</p>",
+        "UpdateProjectInput$timeoutInMinutes": "<p>The replacement value in minutes, from 5 to 2160 (36 hours), for CodeBuild to wait before timing out any related build that did not get marked as completed.</p>"
+      }
+    },
     "Builds": {
       "base": null,
       "refs": {
@@ -1911,15 +1921,10 @@
     "TimeOut": {
       "base": null,
       "refs": {
-        "CreateProjectInput$timeoutInMinutes": "<p>How long, in minutes, from 5 to 480 (8 hours), for CodeBuild to wait before it times out any build that has not been marked as completed. The default is 60 minutes.</p>",
         "CreateProjectInput$queuedTimeoutInMinutes": "<p>The number of minutes a build is allowed to be queued before it times out. </p>",
-        "Project$timeoutInMinutes": "<p>How long, in minutes, from 5 to 480 (8 hours), for CodeBuild to wait before timing out any related build that did not get marked as completed. The default is 60 minutes.</p>",
         "Project$queuedTimeoutInMinutes": "<p>The number of minutes a build is allowed to be queued before it times out. </p>",
-        "StartBuildBatchInput$buildTimeoutInMinutesOverride": "<p>Overrides the build timeout specified in the batch build project.</p>",
         "StartBuildBatchInput$queuedTimeoutInMinutesOverride": "<p>The number of minutes a batch build is allowed to be queued before it times out.</p>",
-        "StartBuildInput$timeoutInMinutesOverride": "<p>The number of build timeout minutes, from 5 to 480 (8 hours), that overrides, for this build only, the latest setting already defined in the build project.</p>",
         "StartBuildInput$queuedTimeoutInMinutesOverride": "<p> The number of minutes a build is allowed to be queued before it times out. </p>",
-        "UpdateProjectInput$timeoutInMinutes": "<p>The replacement value in minutes, from 5 to 480 (8 hours), for CodeBuild to wait before timing out any related build that did not get marked as completed.</p>",
         "UpdateProjectInput$queuedTimeoutInMinutes": "<p> The number of minutes a build is allowed to be queued before it times out. </p>"
       }
     },
@@ -2086,7 +2091,7 @@
       "base": null,
       "refs": {
         "BatchRestrictions$maximumBuildsAllowed": "<p>Specifies the maximum number of builds allowed.</p>",
-        "Build$timeoutInMinutes": "<p>How long, in minutes, from 5 to 480 (8 hours), for CodeBuild to wait before timing out this build if it does not get marked as completed.</p>",
+        "Build$timeoutInMinutes": "<p>How long, in minutes, from 5 to 2160 (36 hours), for CodeBuild to wait before timing out this build if it does not get marked as completed.</p>",
         "Build$queuedTimeoutInMinutes": "<p> The number of minutes a build is allowed to be queued before it times out. </p>",
         "BuildBatch$buildTimeoutInMinutes": "<p>Specifies the maximum amount of time, in minutes, that the build in a batch must be completed in.</p>",
         "BuildBatch$queuedTimeoutInMinutes": "<p>Specifies the amount of time, in minutes, that the batch build is allowed to be queued before it times out.</p>",

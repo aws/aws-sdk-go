@@ -23,6 +23,7 @@
     "DescribeTransaction": "<p>Returns the details of a single transaction.</p>",
     "ExtendTransaction": "<p>Indicates to the service that the specified transaction is still active and should not be treated as idle and aborted.</p> <p>Write transactions that remain idle for a long period are automatically aborted unless explicitly extended.</p>",
     "GetDataCellsFilter": "<p>Returns a data cells filter.</p>",
+    "GetDataLakePrincipal": "<p>Returns the identity of the invoking principal.</p>",
     "GetDataLakeSettings": "<p>Retrieves the list of the data lake administrators of a Lake Formation-managed data lake. </p>",
     "GetEffectivePermissionsForPath": "<p>Returns the Lake Formation permissions for a specified table or database resource located at a path in Amazon S3. <code>GetEffectivePermissionsForPath</code> will not return databases and tables if the catalog is encrypted.</p>",
     "GetLFTag": "<p>Returns an LF-tag definition.</p>",
@@ -678,6 +679,16 @@
       "refs": {
       }
     },
+    "GetDataLakePrincipalRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetDataLakePrincipalResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetDataLakeSettingsRequest": {
       "base": null,
       "refs": {
@@ -866,6 +877,12 @@
       "refs": {
         "CreateLakeFormationIdentityCenterConfigurationRequest$InstanceArn": "<p>The ARN of the IAM Identity Center instance for which the operation will be executed. For more information about ARNs, see Amazon Resource Names (ARNs) and Amazon Web Services Service Namespaces in the Amazon Web Services General Reference.</p>",
         "DescribeLakeFormationIdentityCenterConfigurationResponse$InstanceArn": "<p>The Amazon Resource Name (ARN) of the connection.</p>"
+      }
+    },
+    "IdentityString": {
+      "base": null,
+      "refs": {
+        "GetDataLakePrincipalResponse$Identity": "<p>A unique identifier of the invoking principal.</p>"
       }
     },
     "Integer": {

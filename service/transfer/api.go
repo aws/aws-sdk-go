@@ -11043,7 +11043,13 @@ type DescribedCertificate struct {
 	// If there is no private key, the type is CERTIFICATE.
 	Type *string `type:"string" enum:"CertificateType"`
 
-	// Specifies whether this certificate is used for signing or encryption.
+	// Specifies how this certificate is used. It can be used in the following ways:
+	//
+	//    * SIGNING: For signing AS2 messages
+	//
+	//    * ENCRYPTION: For encrypting AS2 messages
+	//
+	//    * TLS: For securing AS2 communications sent over HTTPS
 	Usage *string `type:"string" enum:"CertificateUsageType"`
 }
 
@@ -11730,6 +11736,8 @@ type DescribedServer struct {
 	Certificate *string `type:"string"`
 
 	// Specifies the domain of the storage system that is used for file transfers.
+	// There are two domains available: Amazon Simple Storage Service (Amazon S3)
+	// and Amazon Elastic File System (Amazon EFS). The default value is S3.
 	Domain *string `type:"string" enum:"Domain"`
 
 	// The virtual private cloud (VPC) endpoint settings that are configured for
@@ -12948,7 +12956,13 @@ type ImportCertificateInput struct {
 	// Key-value pairs that can be used to group and search for certificates.
 	Tags []*Tag `min:"1" type:"list"`
 
-	// Specifies whether this certificate is used for signing or encryption.
+	// Specifies how this certificate is used. It can be used in the following ways:
+	//
+	//    * SIGNING: For signing AS2 messages
+	//
+	//    * ENCRYPTION: For encrypting AS2 messages
+	//
+	//    * TLS: For securing AS2 communications sent over HTTPS
 	//
 	// Usage is a required field
 	Usage *string `type:"string" required:"true" enum:"CertificateUsageType"`
@@ -15257,7 +15271,13 @@ type ListedCertificate struct {
 	// key, the type is CERTIFICATE.
 	Type *string `type:"string" enum:"CertificateType"`
 
-	// Specifies whether this certificate is used for signing or encryption.
+	// Specifies how this certificate is used. It can be used in the following ways:
+	//
+	//    * SIGNING: For signing AS2 messages
+	//
+	//    * ENCRYPTION: For encrypting AS2 messages
+	//
+	//    * TLS: For securing AS2 communications sent over HTTPS
 	Usage *string `type:"string" enum:"CertificateUsageType"`
 }
 
@@ -15605,6 +15625,8 @@ type ListedServer struct {
 	Arn *string `min:"20" type:"string" required:"true"`
 
 	// Specifies the domain of the storage system that is used for file transfers.
+	// There are two domains available: Amazon Simple Storage Service (Amazon S3)
+	// and Amazon Elastic File System (Amazon EFS). The default value is S3.
 	Domain *string `type:"string" enum:"Domain"`
 
 	// Specifies the type of VPC endpoint that your server is connected to. If your

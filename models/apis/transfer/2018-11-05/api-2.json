@@ -5,6 +5,7 @@
     "endpointPrefix":"transfer",
     "jsonVersion":"1.1",
     "protocol":"json",
+    "protocols":["json"],
     "serviceAbbreviation":"AWS Transfer",
     "serviceFullName":"AWS Transfer Family",
     "serviceId":"Transfer",
@@ -112,7 +113,8 @@
         {"shape":"InternalServiceError"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ResourceExistsException"}
-      ]
+      ],
+      "idempotent":true
     },
     "CreateWorkflow":{
       "name":"CreateWorkflow",
@@ -157,7 +159,8 @@
         {"shape":"InvalidRequestException"},
         {"shape":"InternalServiceError"},
         {"shape":"ServiceUnavailableException"}
-      ]
+      ],
+      "idempotent":true
     },
     "DeleteCertificate":{
       "name":"DeleteCertificate",
@@ -171,7 +174,8 @@
         {"shape":"InvalidRequestException"},
         {"shape":"InternalServiceError"},
         {"shape":"ServiceUnavailableException"}
-      ]
+      ],
+      "idempotent":true
     },
     "DeleteConnector":{
       "name":"DeleteConnector",
@@ -185,7 +189,8 @@
         {"shape":"InvalidRequestException"},
         {"shape":"InternalServiceError"},
         {"shape":"ServiceUnavailableException"}
-      ]
+      ],
+      "idempotent":true
     },
     "DeleteHostKey":{
       "name":"DeleteHostKey",
@@ -214,7 +219,8 @@
         {"shape":"InvalidRequestException"},
         {"shape":"InternalServiceError"},
         {"shape":"ServiceUnavailableException"}
-      ]
+      ],
+      "idempotent":true
     },
     "DeleteServer":{
       "name":"DeleteServer",
@@ -229,7 +235,8 @@
         {"shape":"InternalServiceError"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"AccessDeniedException"}
-      ]
+      ],
+      "idempotent":true
     },
     "DeleteSshPublicKey":{
       "name":"DeleteSshPublicKey",
@@ -258,7 +265,8 @@
         {"shape":"InvalidRequestException"},
         {"shape":"InternalServiceError"},
         {"shape":"ServiceUnavailableException"}
-      ]
+      ],
+      "idempotent":true
     },
     "DeleteWorkflow":{
       "name":"DeleteWorkflow",
@@ -273,7 +281,8 @@
         {"shape":"InternalServiceError"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"AccessDeniedException"}
-      ]
+      ],
+      "idempotent":true
     },
     "DescribeAccess":{
       "name":"DescribeAccess",
@@ -2994,7 +3003,8 @@
     "SshPublicKeyBody":{
       "type":"string",
       "max":2048,
-      "min":0
+      "min":0,
+      "pattern":"\\s*(ssh|ecdsa)-[a-z0-9-]+[ \\t]+(([A-Za-z0-9+/]{4})*([A-Za-z0-9+/]{1,3})?(={0,3})?)(\\s*|[ \\t]+[\\S \\t]*\\s*)"
     },
     "SshPublicKeyCount":{
       "type":"integer",

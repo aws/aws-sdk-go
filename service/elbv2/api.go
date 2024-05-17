@@ -5615,9 +5615,19 @@ type CreateLoadBalancerInput struct {
 	// pool (CoIP pool).
 	CustomerOwnedIpv4Pool *string `type:"string"`
 
-	// The type of IP addresses used by the subnets for your load balancer. The
-	// possible values are ipv4 (for IPv4 addresses) and dualstack (for IPv4 and
-	// IPv6 addresses).
+	// Note: Internal load balancers must use the ipv4 IP address type.
+	//
+	// [Application Load Balancers] The IP address type. The possible values are
+	// ipv4 (for only IPv4 addresses), dualstack (for IPv4 and IPv6 addresses),
+	// and dualstack-without-public-ipv4 (for IPv6 only public addresses, with private
+	// IPv4 and IPv6 addresses).
+	//
+	// [Network Load Balancers] The IP address type. The possible values are ipv4
+	// (for only IPv4 addresses) and dualstack (for IPv4 and IPv6 addresses). You
+	// can’t specify dualstack for a load balancer with a UDP or TCP_UDP listener.
+	//
+	// [Gateway Load Balancers] The IP address type. The possible values are ipv4
+	// (for only IPv4 addresses) and dualstack (for IPv4 and IPv6 addresses).
 	IpAddressType *string `type:"string" enum:"IpAddressType"`
 
 	// The name of the load balancer.
@@ -9022,9 +9032,16 @@ type LoadBalancer struct {
 	// to a Network Load Balancer through Amazon Web Services PrivateLink.
 	EnforceSecurityGroupInboundRulesOnPrivateLinkTraffic *string `type:"string"`
 
-	// The type of IP addresses used by the subnets for your load balancer. The
-	// possible values are ipv4 (for IPv4 addresses) and dualstack (for IPv4 and
-	// IPv6 addresses).
+	// [Application Load Balancers] The type of IP addresses used for public or
+	// private connections by the subnets attached to your load balancer. The possible
+	// values are ipv4 (for only IPv4 addresses), dualstack (for IPv4 and IPv6 addresses),
+	// and dualstack-without-public-ipv4 (for IPv6 only public addresses, with private
+	// IPv4 and IPv6 addresses).
+	//
+	// [Network Load Balancers and Gateway Load Balancers] The type of IP addresses
+	// used for public or private connections by the subnets attached to your load
+	// balancer. The possible values are ipv4 (for only IPv4 addresses) and dualstack
+	// (for IPv4 and IPv6 addresses).
 	IpAddressType *string `type:"string" enum:"IpAddressType"`
 
 	// The Amazon Resource Name (ARN) of the load balancer.
@@ -11215,9 +11232,19 @@ func (s *RulePriorityPair) SetRuleArn(v string) *RulePriorityPair {
 type SetIpAddressTypeInput struct {
 	_ struct{} `type:"structure"`
 
-	// The IP address type. The possible values are ipv4 (for IPv4 addresses) and
-	// dualstack (for IPv4 and IPv6 addresses). You can’t specify dualstack for
-	// a load balancer with a UDP or TCP_UDP listener.
+	// Note: Internal load balancers must use the ipv4 IP address type.
+	//
+	// [Application Load Balancers] The IP address type. The possible values are
+	// ipv4 (for only IPv4 addresses), dualstack (for IPv4 and IPv6 addresses),
+	// and dualstack-without-public-ipv4 (for IPv6 only public addresses, with private
+	// IPv4 and IPv6 addresses).
+	//
+	// [Network Load Balancers] The IP address type. The possible values are ipv4
+	// (for only IPv4 addresses) and dualstack (for IPv4 and IPv6 addresses). You
+	// can’t specify dualstack for a load balancer with a UDP or TCP_UDP listener.
+	//
+	// [Gateway Load Balancers] The IP address type. The possible values are ipv4
+	// (for only IPv4 addresses) and dualstack (for IPv4 and IPv6 addresses).
 	//
 	// IpAddressType is a required field
 	IpAddressType *string `type:"string" required:"true" enum:"IpAddressType"`
@@ -11507,6 +11534,11 @@ func (s *SetSecurityGroupsOutput) SetSecurityGroupIds(v []*string) *SetSecurityG
 type SetSubnetsInput struct {
 	_ struct{} `type:"structure"`
 
+	// [Application Load Balancers] The IP address type. The possible values are
+	// ipv4 (for only IPv4 addresses), dualstack (for IPv4 and IPv6 addresses),
+	// and dualstack-without-public-ipv4 (for IPv6 only public addresses, with private
+	// IPv4 and IPv6 addresses).
+	//
 	// [Network Load Balancers] The type of IP addresses used by the subnets for
 	// your load balancer. The possible values are ipv4 (for IPv4 addresses) and
 	// dualstack (for IPv4 and IPv6 addresses). You can’t specify dualstack for
@@ -11624,6 +11656,8 @@ type SetSubnetsOutput struct {
 	// Information about the subnets.
 	AvailabilityZones []*AvailabilityZone `type:"list"`
 
+	// [Application Load Balancers] The IP address type.
+	//
 	// [Network Load Balancers] The IP address type.
 	//
 	// [Gateway Load Balancers] The IP address type.
@@ -12932,6 +12966,9 @@ const (
 
 	// IpAddressTypeDualstack is a IpAddressType enum value
 	IpAddressTypeDualstack = "dualstack"
+
+	// IpAddressTypeDualstackWithoutPublicIpv4 is a IpAddressType enum value
+	IpAddressTypeDualstackWithoutPublicIpv4 = "dualstack-without-public-ipv4"
 )
 
 // IpAddressType_Values returns all elements of the IpAddressType enum
@@ -12939,6 +12976,7 @@ func IpAddressType_Values() []string {
 	return []string{
 		IpAddressTypeIpv4,
 		IpAddressTypeDualstack,
+		IpAddressTypeDualstackWithoutPublicIpv4,
 	}
 }
 

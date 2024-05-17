@@ -2000,6 +2000,91 @@ func (c *LakeFormation) GetDataCellsFilterWithContext(ctx aws.Context, input *Ge
 	return out, req.Send()
 }
 
+const opGetDataLakePrincipal = "GetDataLakePrincipal"
+
+// GetDataLakePrincipalRequest generates a "aws/request.Request" representing the
+// client's request for the GetDataLakePrincipal operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetDataLakePrincipal for more information on using the GetDataLakePrincipal
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetDataLakePrincipalRequest method.
+//	req, resp := client.GetDataLakePrincipalRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/GetDataLakePrincipal
+func (c *LakeFormation) GetDataLakePrincipalRequest(input *GetDataLakePrincipalInput) (req *request.Request, output *GetDataLakePrincipalOutput) {
+	op := &request.Operation{
+		Name:       opGetDataLakePrincipal,
+		HTTPMethod: "POST",
+		HTTPPath:   "/GetDataLakePrincipal",
+	}
+
+	if input == nil {
+		input = &GetDataLakePrincipalInput{}
+	}
+
+	output = &GetDataLakePrincipalOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetDataLakePrincipal API operation for AWS Lake Formation.
+//
+// Returns the identity of the invoking principal.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Lake Formation's
+// API operation GetDataLakePrincipal for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServiceException
+//     An internal service error occurred.
+//
+//   - OperationTimeoutException
+//     The operation timed out.
+//
+//   - AccessDeniedException
+//     Access to a resource was denied.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/GetDataLakePrincipal
+func (c *LakeFormation) GetDataLakePrincipal(input *GetDataLakePrincipalInput) (*GetDataLakePrincipalOutput, error) {
+	req, out := c.GetDataLakePrincipalRequest(input)
+	return out, req.Send()
+}
+
+// GetDataLakePrincipalWithContext is the same as GetDataLakePrincipal with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetDataLakePrincipal for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LakeFormation) GetDataLakePrincipalWithContext(ctx aws.Context, input *GetDataLakePrincipalInput, opts ...request.Option) (*GetDataLakePrincipalOutput, error) {
+	req, out := c.GetDataLakePrincipalRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetDataLakeSettings = "GetDataLakeSettings"
 
 // GetDataLakeSettingsRequest generates a "aws/request.Request" representing the
@@ -9508,6 +9593,59 @@ func (s GetDataCellsFilterOutput) GoString() string {
 // SetDataCellsFilter sets the DataCellsFilter field's value.
 func (s *GetDataCellsFilterOutput) SetDataCellsFilter(v *DataCellsFilter) *GetDataCellsFilterOutput {
 	s.DataCellsFilter = v
+	return s
+}
+
+type GetDataLakePrincipalInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDataLakePrincipalInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDataLakePrincipalInput) GoString() string {
+	return s.String()
+}
+
+type GetDataLakePrincipalOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier of the invoking principal.
+	Identity *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDataLakePrincipalOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDataLakePrincipalOutput) GoString() string {
+	return s.String()
+}
+
+// SetIdentity sets the Identity field's value.
+func (s *GetDataLakePrincipalOutput) SetIdentity(v string) *GetDataLakePrincipalOutput {
+	s.Identity = &v
 	return s
 }
 
