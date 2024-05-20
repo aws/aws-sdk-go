@@ -4644,6 +4644,9 @@ type Agent struct {
 	// The foundation model used for orchestration by the agent.
 	FoundationModel *string `locationName:"foundationModel" min:"1" type:"string"`
 
+	// The guardrails configuration assigned to the agent.
+	GuardrailConfiguration *GuardrailConfiguration `locationName:"guardrailConfiguration" type:"structure"`
+
 	// The number of seconds for which Amazon Bedrock keeps information about a
 	// user's conversation with the agent.
 	//
@@ -4770,6 +4773,12 @@ func (s *Agent) SetFailureReasons(v []*string) *Agent {
 // SetFoundationModel sets the FoundationModel field's value.
 func (s *Agent) SetFoundationModel(v string) *Agent {
 	s.FoundationModel = &v
+	return s
+}
+
+// SetGuardrailConfiguration sets the GuardrailConfiguration field's value.
+func (s *Agent) SetGuardrailConfiguration(v *GuardrailConfiguration) *Agent {
+	s.GuardrailConfiguration = v
 	return s
 }
 
@@ -5543,6 +5552,9 @@ type AgentSummary struct {
 	// The description of the agent.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
+	// The details of the guardrails configuration in the agent summary.
+	GuardrailConfiguration *GuardrailConfiguration `locationName:"guardrailConfiguration" type:"structure"`
+
 	// The latest version of the agent.
 	LatestAgentVersion *string `locationName:"latestAgentVersion" min:"1" type:"string"`
 
@@ -5591,6 +5603,12 @@ func (s *AgentSummary) SetAgentStatus(v string) *AgentSummary {
 // SetDescription sets the Description field's value.
 func (s *AgentSummary) SetDescription(v string) *AgentSummary {
 	s.Description = &v
+	return s
+}
+
+// SetGuardrailConfiguration sets the GuardrailConfiguration field's value.
+func (s *AgentSummary) SetGuardrailConfiguration(v *GuardrailConfiguration) *AgentSummary {
+	s.GuardrailConfiguration = v
 	return s
 }
 
@@ -5652,6 +5670,9 @@ type AgentVersion struct {
 
 	// The foundation model that the version invokes.
 	FoundationModel *string `locationName:"foundationModel" min:"1" type:"string"`
+
+	// The guardrails configuration assigned to the agent version.
+	GuardrailConfiguration *GuardrailConfiguration `locationName:"guardrailConfiguration" type:"structure"`
 
 	// The number of seconds for which Amazon Bedrock keeps information about a
 	// user's conversation with the agent.
@@ -5771,6 +5792,12 @@ func (s *AgentVersion) SetFoundationModel(v string) *AgentVersion {
 	return s
 }
 
+// SetGuardrailConfiguration sets the GuardrailConfiguration field's value.
+func (s *AgentVersion) SetGuardrailConfiguration(v *GuardrailConfiguration) *AgentVersion {
+	s.GuardrailConfiguration = v
+	return s
+}
+
 // SetIdleSessionTTLInSeconds sets the IdleSessionTTLInSeconds field's value.
 func (s *AgentVersion) SetIdleSessionTTLInSeconds(v int64) *AgentVersion {
 	s.IdleSessionTTLInSeconds = &v
@@ -5834,6 +5861,9 @@ type AgentVersionSummary struct {
 	// The description of the version of the agent.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
+	// The details of the guardrails configuration in the agent version summary.
+	GuardrailConfiguration *GuardrailConfiguration `locationName:"guardrailConfiguration" type:"structure"`
+
 	// The time at which the version was last updated.
 	//
 	// UpdatedAt is a required field
@@ -5885,6 +5915,12 @@ func (s *AgentVersionSummary) SetCreatedAt(v time.Time) *AgentVersionSummary {
 // SetDescription sets the Description field's value.
 func (s *AgentVersionSummary) SetDescription(v string) *AgentVersionSummary {
 	s.Description = &v
+	return s
+}
+
+// SetGuardrailConfiguration sets the GuardrailConfiguration field's value.
+func (s *AgentVersionSummary) SetGuardrailConfiguration(v *GuardrailConfiguration) *AgentVersionSummary {
+	s.GuardrailConfiguration = v
 	return s
 }
 
@@ -6565,6 +6601,9 @@ type CreateAgentInput struct {
 	// The foundation model to be used for orchestration by the agent you create.
 	FoundationModel *string `locationName:"foundationModel" min:"1" type:"string"`
 
+	// The unique Guardrail configuration assigned to the agent when it is created.
+	GuardrailConfiguration *GuardrailConfiguration `locationName:"guardrailConfiguration" type:"structure"`
+
 	// The number of seconds for which Amazon Bedrock keeps information about a
 	// user's conversation with the agent.
 	//
@@ -6680,6 +6719,12 @@ func (s *CreateAgentInput) SetDescription(v string) *CreateAgentInput {
 // SetFoundationModel sets the FoundationModel field's value.
 func (s *CreateAgentInput) SetFoundationModel(v string) *CreateAgentInput {
 	s.FoundationModel = &v
+	return s
+}
+
+// SetGuardrailConfiguration sets the GuardrailConfiguration field's value.
+func (s *CreateAgentInput) SetGuardrailConfiguration(v *GuardrailConfiguration) *CreateAgentInput {
+	s.GuardrailConfiguration = v
 	return s
 }
 
@@ -9215,6 +9260,47 @@ func (s GetKnowledgeBaseOutput) GoString() string {
 // SetKnowledgeBase sets the KnowledgeBase field's value.
 func (s *GetKnowledgeBaseOutput) SetKnowledgeBase(v *KnowledgeBase) *GetKnowledgeBaseOutput {
 	s.KnowledgeBase = v
+	return s
+}
+
+// The details of the guardrails configuration.
+type GuardrailConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The guardrails identifier assigned to the guardrails configuration.
+	GuardrailIdentifier *string `locationName:"guardrailIdentifier" type:"string"`
+
+	// The guardrails version assigned to the guardrails configuration.
+	GuardrailVersion *string `locationName:"guardrailVersion" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetGuardrailIdentifier sets the GuardrailIdentifier field's value.
+func (s *GuardrailConfiguration) SetGuardrailIdentifier(v string) *GuardrailConfiguration {
+	s.GuardrailIdentifier = &v
+	return s
+}
+
+// SetGuardrailVersion sets the GuardrailVersion field's value.
+func (s *GuardrailConfiguration) SetGuardrailVersion(v string) *GuardrailConfiguration {
+	s.GuardrailVersion = &v
 	return s
 }
 
@@ -11972,6 +12058,7 @@ type PromptConfiguration struct {
 	// You can use placeholder variables in the base prompt template to customize
 	// the prompt. For more information, see Prompt template placeholder variables
 	// (https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-placeholders.html).
+	// For more information, see Configure the prompt templates (https://docs.aws.amazon.com/bedrock/latest/userguide/advanced-prompts-configure.html).
 	BasePromptTemplate *string `locationName:"basePromptTemplate" min:"1" type:"string"`
 
 	// Contains inference parameters to use when the agent invokes a foundation
@@ -12083,7 +12170,8 @@ type PromptOverrideConfiguration struct {
 	// The ARN of the Lambda function to use when parsing the raw foundation model
 	// output in parts of the agent sequence. If you specify this field, at least
 	// one of the promptConfigurations must contain a parserMode value that is set
-	// to OVERRIDDEN.
+	// to OVERRIDDEN. For more information, see Parser Lambda function in Agents
+	// for Amazon Bedrock (https://docs.aws.amazon.com/bedrock/latest/userguide/lambda-parser.html).
 	OverrideLambda *string `locationName:"overrideLambda" type:"string"`
 
 	// Contains configurations to override a prompt template in one part of an agent
@@ -13703,6 +13791,9 @@ type UpdateAgentInput struct {
 	// FoundationModel is a required field
 	FoundationModel *string `locationName:"foundationModel" min:"1" type:"string" required:"true"`
 
+	// The unique Guardrail configuration assigned to the agent when it is updated.
+	GuardrailConfiguration *GuardrailConfiguration `locationName:"guardrailConfiguration" type:"structure"`
+
 	// The number of seconds for which Amazon Bedrock keeps information about a
 	// user's conversation with the agent.
 	//
@@ -13824,6 +13915,12 @@ func (s *UpdateAgentInput) SetDescription(v string) *UpdateAgentInput {
 // SetFoundationModel sets the FoundationModel field's value.
 func (s *UpdateAgentInput) SetFoundationModel(v string) *UpdateAgentInput {
 	s.FoundationModel = &v
+	return s
+}
+
+// SetGuardrailConfiguration sets the GuardrailConfiguration field's value.
+func (s *UpdateAgentInput) SetGuardrailConfiguration(v *GuardrailConfiguration) *UpdateAgentInput {
+	s.GuardrailConfiguration = v
 	return s
 }
 

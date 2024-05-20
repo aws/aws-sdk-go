@@ -631,6 +631,37 @@
       ],
       "type": "string"
     },
+    "GuardrailAction": {
+      "enum": [
+        "INTERVENED",
+        "NONE"
+      ],
+      "type": "string"
+    },
+    "GuardrailAssessment": {
+      "members": {
+        "contentPolicy": {
+          "shape": "GuardrailContentPolicyAssessment"
+        },
+        "sensitiveInformationPolicy": {
+          "shape": "GuardrailSensitiveInformationPolicyAssessment"
+        },
+        "topicPolicy": {
+          "shape": "GuardrailTopicPolicyAssessment"
+        },
+        "wordPolicy": {
+          "shape": "GuardrailWordPolicyAssessment"
+        }
+      },
+      "sensitive": true,
+      "type": "structure"
+    },
+    "GuardrailAssessmentList": {
+      "member": {
+        "shape": "GuardrailAssessment"
+      },
+      "type": "list"
+    },
     "GuardrailConfiguration": {
       "members": {
         "guardrailId": {
@@ -657,6 +688,291 @@
       "min": 1,
       "pattern": "^(([1-9][0-9]{0,7})|(DRAFT))$",
       "type": "string"
+    },
+    "GuardrailContentFilter": {
+      "members": {
+        "action": {
+          "shape": "GuardrailContentPolicyAction"
+        },
+        "confidence": {
+          "shape": "GuardrailContentFilterConfidence"
+        },
+        "type": {
+          "shape": "GuardrailContentFilterType"
+        }
+      },
+      "sensitive": true,
+      "type": "structure"
+    },
+    "GuardrailContentFilterConfidence": {
+      "enum": [
+        "NONE",
+        "LOW",
+        "MEDIUM",
+        "HIGH"
+      ],
+      "type": "string"
+    },
+    "GuardrailContentFilterList": {
+      "member": {
+        "shape": "GuardrailContentFilter"
+      },
+      "sensitive": true,
+      "type": "list"
+    },
+    "GuardrailContentFilterType": {
+      "enum": [
+        "INSULTS",
+        "HATE",
+        "SEXUAL",
+        "VIOLENCE",
+        "MISCONDUCT",
+        "PROMPT_ATTACK"
+      ],
+      "type": "string"
+    },
+    "GuardrailContentPolicyAction": {
+      "enum": [
+        "BLOCKED"
+      ],
+      "type": "string"
+    },
+    "GuardrailContentPolicyAssessment": {
+      "members": {
+        "filters": {
+          "shape": "GuardrailContentFilterList"
+        }
+      },
+      "sensitive": true,
+      "type": "structure"
+    },
+    "GuardrailCustomWord": {
+      "members": {
+        "action": {
+          "shape": "GuardrailWordPolicyAction"
+        },
+        "match": {
+          "shape": "String"
+        }
+      },
+      "sensitive": true,
+      "type": "structure"
+    },
+    "GuardrailCustomWordList": {
+      "member": {
+        "shape": "GuardrailCustomWord"
+      },
+      "sensitive": true,
+      "type": "list"
+    },
+    "GuardrailManagedWord": {
+      "members": {
+        "action": {
+          "shape": "GuardrailWordPolicyAction"
+        },
+        "match": {
+          "shape": "String"
+        },
+        "type": {
+          "shape": "GuardrailManagedWordType"
+        }
+      },
+      "sensitive": true,
+      "type": "structure"
+    },
+    "GuardrailManagedWordList": {
+      "member": {
+        "shape": "GuardrailManagedWord"
+      },
+      "sensitive": true,
+      "type": "list"
+    },
+    "GuardrailManagedWordType": {
+      "enum": [
+        "PROFANITY"
+      ],
+      "type": "string"
+    },
+    "GuardrailPiiEntityFilter": {
+      "members": {
+        "action": {
+          "shape": "GuardrailSensitiveInformationPolicyAction"
+        },
+        "match": {
+          "shape": "String"
+        },
+        "type": {
+          "shape": "GuardrailPiiEntityType"
+        }
+      },
+      "sensitive": true,
+      "type": "structure"
+    },
+    "GuardrailPiiEntityFilterList": {
+      "member": {
+        "shape": "GuardrailPiiEntityFilter"
+      },
+      "sensitive": true,
+      "type": "list"
+    },
+    "GuardrailPiiEntityType": {
+      "enum": [
+        "ADDRESS",
+        "AGE",
+        "AWS_ACCESS_KEY",
+        "AWS_SECRET_KEY",
+        "CA_HEALTH_NUMBER",
+        "CA_SOCIAL_INSURANCE_NUMBER",
+        "CREDIT_DEBIT_CARD_CVV",
+        "CREDIT_DEBIT_CARD_EXPIRY",
+        "CREDIT_DEBIT_CARD_NUMBER",
+        "DRIVER_ID",
+        "EMAIL",
+        "INTERNATIONAL_BANK_ACCOUNT_NUMBER",
+        "IP_ADDRESS",
+        "LICENSE_PLATE",
+        "MAC_ADDRESS",
+        "NAME",
+        "PASSWORD",
+        "PHONE",
+        "PIN",
+        "SWIFT_CODE",
+        "UK_NATIONAL_HEALTH_SERVICE_NUMBER",
+        "UK_NATIONAL_INSURANCE_NUMBER",
+        "UK_UNIQUE_TAXPAYER_REFERENCE_NUMBER",
+        "URL",
+        "USERNAME",
+        "US_BANK_ACCOUNT_NUMBER",
+        "US_BANK_ROUTING_NUMBER",
+        "US_INDIVIDUAL_TAX_IDENTIFICATION_NUMBER",
+        "US_PASSPORT_NUMBER",
+        "US_SOCIAL_SECURITY_NUMBER",
+        "VEHICLE_IDENTIFICATION_NUMBER"
+      ],
+      "type": "string"
+    },
+    "GuardrailRegexFilter": {
+      "members": {
+        "action": {
+          "shape": "GuardrailSensitiveInformationPolicyAction"
+        },
+        "match": {
+          "shape": "String"
+        },
+        "name": {
+          "shape": "String"
+        },
+        "regex": {
+          "shape": "String"
+        }
+      },
+      "sensitive": true,
+      "type": "structure"
+    },
+    "GuardrailRegexFilterList": {
+      "member": {
+        "shape": "GuardrailRegexFilter"
+      },
+      "sensitive": true,
+      "type": "list"
+    },
+    "GuardrailSensitiveInformationPolicyAction": {
+      "enum": [
+        "BLOCKED",
+        "ANONYMIZED"
+      ],
+      "type": "string"
+    },
+    "GuardrailSensitiveInformationPolicyAssessment": {
+      "members": {
+        "piiEntities": {
+          "shape": "GuardrailPiiEntityFilterList"
+        },
+        "regexes": {
+          "shape": "GuardrailRegexFilterList"
+        }
+      },
+      "sensitive": true,
+      "type": "structure"
+    },
+    "GuardrailTopic": {
+      "members": {
+        "action": {
+          "shape": "GuardrailTopicPolicyAction"
+        },
+        "name": {
+          "shape": "String"
+        },
+        "type": {
+          "shape": "GuardrailTopicType"
+        }
+      },
+      "sensitive": true,
+      "type": "structure"
+    },
+    "GuardrailTopicList": {
+      "member": {
+        "shape": "GuardrailTopic"
+      },
+      "sensitive": true,
+      "type": "list"
+    },
+    "GuardrailTopicPolicyAction": {
+      "enum": [
+        "BLOCKED"
+      ],
+      "type": "string"
+    },
+    "GuardrailTopicPolicyAssessment": {
+      "members": {
+        "topics": {
+          "shape": "GuardrailTopicList"
+        }
+      },
+      "sensitive": true,
+      "type": "structure"
+    },
+    "GuardrailTopicType": {
+      "enum": [
+        "DENY"
+      ],
+      "type": "string"
+    },
+    "GuardrailTrace": {
+      "members": {
+        "action": {
+          "shape": "GuardrailAction"
+        },
+        "inputAssessments": {
+          "shape": "GuardrailAssessmentList"
+        },
+        "outputAssessments": {
+          "shape": "GuardrailAssessmentList"
+        },
+        "traceId": {
+          "shape": "TraceId"
+        }
+      },
+      "sensitive": true,
+      "type": "structure"
+    },
+    "GuardrailWordPolicyAction": {
+      "enum": [
+        "BLOCKED"
+      ],
+      "type": "string"
+    },
+    "GuardrailWordPolicyAssessment": {
+      "members": {
+        "customWords": {
+          "shape": "GuardrailCustomWordList"
+        },
+        "managedWordLists": {
+          "shape": "GuardrailManagedWordList"
+        }
+      },
+      "sensitive": true,
+      "type": "structure"
     },
     "Identifier": {
       "max": 1024,
@@ -1766,6 +2082,9 @@
       "members": {
         "failureTrace": {
           "shape": "FailureTrace"
+        },
+        "guardrailTrace": {
+          "shape": "GuardrailTrace"
         },
         "orchestrationTrace": {
           "shape": "OrchestrationTrace"

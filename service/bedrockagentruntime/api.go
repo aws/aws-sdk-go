@@ -2233,6 +2233,81 @@ func (s *GenerationConfiguration) SetPromptTemplate(v *PromptTemplate) *Generati
 	return s
 }
 
+// Assessment details of the content analyzed by Guardrails.
+type GuardrailAssessment struct {
+	_ struct{} `type:"structure" sensitive:"true"`
+
+	// Content policy details of the Guardrail.
+	//
+	// ContentPolicy is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GuardrailAssessment's
+	// String and GoString methods.
+	ContentPolicy *GuardrailContentPolicyAssessment `locationName:"contentPolicy" type:"structure" sensitive:"true"`
+
+	// Sensitive Information policy details of Guardrail.
+	//
+	// SensitiveInformationPolicy is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GuardrailAssessment's
+	// String and GoString methods.
+	SensitiveInformationPolicy *GuardrailSensitiveInformationPolicyAssessment `locationName:"sensitiveInformationPolicy" type:"structure" sensitive:"true"`
+
+	// Topic policy details of the Guardrail.
+	//
+	// TopicPolicy is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GuardrailAssessment's
+	// String and GoString methods.
+	TopicPolicy *GuardrailTopicPolicyAssessment `locationName:"topicPolicy" type:"structure" sensitive:"true"`
+
+	// Word policy details of the Guardrail.
+	//
+	// WordPolicy is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GuardrailAssessment's
+	// String and GoString methods.
+	WordPolicy *GuardrailWordPolicyAssessment `locationName:"wordPolicy" type:"structure" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailAssessment) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailAssessment) GoString() string {
+	return s.String()
+}
+
+// SetContentPolicy sets the ContentPolicy field's value.
+func (s *GuardrailAssessment) SetContentPolicy(v *GuardrailContentPolicyAssessment) *GuardrailAssessment {
+	s.ContentPolicy = v
+	return s
+}
+
+// SetSensitiveInformationPolicy sets the SensitiveInformationPolicy field's value.
+func (s *GuardrailAssessment) SetSensitiveInformationPolicy(v *GuardrailSensitiveInformationPolicyAssessment) *GuardrailAssessment {
+	s.SensitiveInformationPolicy = v
+	return s
+}
+
+// SetTopicPolicy sets the TopicPolicy field's value.
+func (s *GuardrailAssessment) SetTopicPolicy(v *GuardrailTopicPolicyAssessment) *GuardrailAssessment {
+	s.TopicPolicy = v
+	return s
+}
+
+// SetWordPolicy sets the WordPolicy field's value.
+func (s *GuardrailAssessment) SetWordPolicy(v *GuardrailWordPolicyAssessment) *GuardrailAssessment {
+	s.WordPolicy = v
+	return s
+}
+
 // The configuration details for the guardrail.
 type GuardrailConfiguration struct {
 	_ struct{} `type:"structure"`
@@ -2294,6 +2369,539 @@ func (s *GuardrailConfiguration) SetGuardrailId(v string) *GuardrailConfiguratio
 // SetGuardrailVersion sets the GuardrailVersion field's value.
 func (s *GuardrailConfiguration) SetGuardrailVersion(v string) *GuardrailConfiguration {
 	s.GuardrailVersion = &v
+	return s
+}
+
+// Details of the content filter used in the Guardrail.
+type GuardrailContentFilter struct {
+	_ struct{} `type:"structure" sensitive:"true"`
+
+	// The action placed on the content by the Guardrail filter.
+	Action *string `locationName:"action" type:"string" enum:"GuardrailContentPolicyAction"`
+
+	// The confidence level regarding the content detected in the filter by the
+	// Guardrail.
+	Confidence *string `locationName:"confidence" type:"string" enum:"GuardrailContentFilterConfidence"`
+
+	// The type of content detected in the filter by the Guardrail.
+	Type *string `locationName:"type" type:"string" enum:"GuardrailContentFilterType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailContentFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailContentFilter) GoString() string {
+	return s.String()
+}
+
+// SetAction sets the Action field's value.
+func (s *GuardrailContentFilter) SetAction(v string) *GuardrailContentFilter {
+	s.Action = &v
+	return s
+}
+
+// SetConfidence sets the Confidence field's value.
+func (s *GuardrailContentFilter) SetConfidence(v string) *GuardrailContentFilter {
+	s.Confidence = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *GuardrailContentFilter) SetType(v string) *GuardrailContentFilter {
+	s.Type = &v
+	return s
+}
+
+// The details of the policy assessment in the Guardrails filter.
+type GuardrailContentPolicyAssessment struct {
+	_ struct{} `type:"structure" sensitive:"true"`
+
+	// The filter details of the policy assessment used in the Guardrails filter.
+	//
+	// Filters is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GuardrailContentPolicyAssessment's
+	// String and GoString methods.
+	Filters []*GuardrailContentFilter `locationName:"filters" type:"list" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailContentPolicyAssessment) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailContentPolicyAssessment) GoString() string {
+	return s.String()
+}
+
+// SetFilters sets the Filters field's value.
+func (s *GuardrailContentPolicyAssessment) SetFilters(v []*GuardrailContentFilter) *GuardrailContentPolicyAssessment {
+	s.Filters = v
+	return s
+}
+
+// The custom word details for the filter in the Guardrail.
+type GuardrailCustomWord struct {
+	_ struct{} `type:"structure" sensitive:"true"`
+
+	// The action details for the custom word filter in the Guardrail.
+	Action *string `locationName:"action" type:"string" enum:"GuardrailWordPolicyAction"`
+
+	// The match details for the custom word filter in the Guardrail.
+	Match *string `locationName:"match" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailCustomWord) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailCustomWord) GoString() string {
+	return s.String()
+}
+
+// SetAction sets the Action field's value.
+func (s *GuardrailCustomWord) SetAction(v string) *GuardrailCustomWord {
+	s.Action = &v
+	return s
+}
+
+// SetMatch sets the Match field's value.
+func (s *GuardrailCustomWord) SetMatch(v string) *GuardrailCustomWord {
+	s.Match = &v
+	return s
+}
+
+// The managed word details for the filter in the Guardrail.
+type GuardrailManagedWord struct {
+	_ struct{} `type:"structure" sensitive:"true"`
+
+	// The action details for the managed word filter in the Guardrail.
+	Action *string `locationName:"action" type:"string" enum:"GuardrailWordPolicyAction"`
+
+	// The match details for the managed word filter in the Guardrail.
+	Match *string `locationName:"match" type:"string"`
+
+	// The type details for the managed word filter in the Guardrail.
+	Type *string `locationName:"type" type:"string" enum:"GuardrailManagedWordType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailManagedWord) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailManagedWord) GoString() string {
+	return s.String()
+}
+
+// SetAction sets the Action field's value.
+func (s *GuardrailManagedWord) SetAction(v string) *GuardrailManagedWord {
+	s.Action = &v
+	return s
+}
+
+// SetMatch sets the Match field's value.
+func (s *GuardrailManagedWord) SetMatch(v string) *GuardrailManagedWord {
+	s.Match = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *GuardrailManagedWord) SetType(v string) *GuardrailManagedWord {
+	s.Type = &v
+	return s
+}
+
+// The Guardrail filter to identify and remove personally identifiable information
+// (PII).
+type GuardrailPiiEntityFilter struct {
+	_ struct{} `type:"structure" sensitive:"true"`
+
+	// The action of the Guardrail filter to identify and remove PII.
+	Action *string `locationName:"action" type:"string" enum:"GuardrailSensitiveInformationPolicyAction"`
+
+	// The match to settings in the Guardrail filter to identify and remove PII.
+	Match *string `locationName:"match" type:"string"`
+
+	// The type of PII the Guardrail filter has identified and removed.
+	Type *string `locationName:"type" type:"string" enum:"GuardrailPiiEntityType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailPiiEntityFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailPiiEntityFilter) GoString() string {
+	return s.String()
+}
+
+// SetAction sets the Action field's value.
+func (s *GuardrailPiiEntityFilter) SetAction(v string) *GuardrailPiiEntityFilter {
+	s.Action = &v
+	return s
+}
+
+// SetMatch sets the Match field's value.
+func (s *GuardrailPiiEntityFilter) SetMatch(v string) *GuardrailPiiEntityFilter {
+	s.Match = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *GuardrailPiiEntityFilter) SetType(v string) *GuardrailPiiEntityFilter {
+	s.Type = &v
+	return s
+}
+
+// The details for the regex filter used in the Guardrail.
+type GuardrailRegexFilter struct {
+	_ struct{} `type:"structure" sensitive:"true"`
+
+	// The action details for the regex filter used in the Guardrail.
+	Action *string `locationName:"action" type:"string" enum:"GuardrailSensitiveInformationPolicyAction"`
+
+	// The match details for the regex filter used in the Guardrail.
+	Match *string `locationName:"match" type:"string"`
+
+	// The name details for the regex filter used in the Guardrail.
+	Name *string `locationName:"name" type:"string"`
+
+	// The regex details for the regex filter used in the Guardrail.
+	Regex *string `locationName:"regex" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailRegexFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailRegexFilter) GoString() string {
+	return s.String()
+}
+
+// SetAction sets the Action field's value.
+func (s *GuardrailRegexFilter) SetAction(v string) *GuardrailRegexFilter {
+	s.Action = &v
+	return s
+}
+
+// SetMatch sets the Match field's value.
+func (s *GuardrailRegexFilter) SetMatch(v string) *GuardrailRegexFilter {
+	s.Match = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *GuardrailRegexFilter) SetName(v string) *GuardrailRegexFilter {
+	s.Name = &v
+	return s
+}
+
+// SetRegex sets the Regex field's value.
+func (s *GuardrailRegexFilter) SetRegex(v string) *GuardrailRegexFilter {
+	s.Regex = &v
+	return s
+}
+
+// The details of the sensitive policy assessment used in the Guardrail.
+type GuardrailSensitiveInformationPolicyAssessment struct {
+	_ struct{} `type:"structure" sensitive:"true"`
+
+	// The details of the PII entities used in the sensitive policy assessment for
+	// the Guardrail.
+	//
+	// PiiEntities is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GuardrailSensitiveInformationPolicyAssessment's
+	// String and GoString methods.
+	PiiEntities []*GuardrailPiiEntityFilter `locationName:"piiEntities" type:"list" sensitive:"true"`
+
+	// The details of the regexes used in the sensitive policy assessment for the
+	// Guardrail.
+	//
+	// Regexes is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GuardrailSensitiveInformationPolicyAssessment's
+	// String and GoString methods.
+	Regexes []*GuardrailRegexFilter `locationName:"regexes" type:"list" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailSensitiveInformationPolicyAssessment) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailSensitiveInformationPolicyAssessment) GoString() string {
+	return s.String()
+}
+
+// SetPiiEntities sets the PiiEntities field's value.
+func (s *GuardrailSensitiveInformationPolicyAssessment) SetPiiEntities(v []*GuardrailPiiEntityFilter) *GuardrailSensitiveInformationPolicyAssessment {
+	s.PiiEntities = v
+	return s
+}
+
+// SetRegexes sets the Regexes field's value.
+func (s *GuardrailSensitiveInformationPolicyAssessment) SetRegexes(v []*GuardrailRegexFilter) *GuardrailSensitiveInformationPolicyAssessment {
+	s.Regexes = v
+	return s
+}
+
+// The details for a specific topic defined in the Guardrail.
+type GuardrailTopic struct {
+	_ struct{} `type:"structure" sensitive:"true"`
+
+	// The action details on a specific topic in the Guardrail.
+	Action *string `locationName:"action" type:"string" enum:"GuardrailTopicPolicyAction"`
+
+	// The name details on a specific topic in the Guardrail.
+	Name *string `locationName:"name" type:"string"`
+
+	// The type details on a specific topic in the Guardrail.
+	Type *string `locationName:"type" type:"string" enum:"GuardrailTopicType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailTopic) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailTopic) GoString() string {
+	return s.String()
+}
+
+// SetAction sets the Action field's value.
+func (s *GuardrailTopic) SetAction(v string) *GuardrailTopic {
+	s.Action = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *GuardrailTopic) SetName(v string) *GuardrailTopic {
+	s.Name = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *GuardrailTopic) SetType(v string) *GuardrailTopic {
+	s.Type = &v
+	return s
+}
+
+// The details of the policy assessment used in the Guardrail.
+type GuardrailTopicPolicyAssessment struct {
+	_ struct{} `type:"structure" sensitive:"true"`
+
+	// The topic details of the policy assessment used in the Guardrail.
+	//
+	// Topics is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GuardrailTopicPolicyAssessment's
+	// String and GoString methods.
+	Topics []*GuardrailTopic `locationName:"topics" type:"list" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailTopicPolicyAssessment) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailTopicPolicyAssessment) GoString() string {
+	return s.String()
+}
+
+// SetTopics sets the Topics field's value.
+func (s *GuardrailTopicPolicyAssessment) SetTopics(v []*GuardrailTopic) *GuardrailTopicPolicyAssessment {
+	s.Topics = v
+	return s
+}
+
+// The trace details used in the Guardrail.
+type GuardrailTrace struct {
+	_ struct{} `type:"structure" sensitive:"true"`
+
+	// The trace action details used with the Guardrail.
+	Action *string `locationName:"action" type:"string" enum:"GuardrailAction"`
+
+	// The details of the input assessments used in the Guardrail Trace.
+	InputAssessments []*GuardrailAssessment `locationName:"inputAssessments" type:"list"`
+
+	// The details of the output assessments used in the Guardrail Trace.
+	OutputAssessments []*GuardrailAssessment `locationName:"outputAssessments" type:"list"`
+
+	// The details of the trace Id used in the Guardrail Trace.
+	TraceId *string `locationName:"traceId" min:"2" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailTrace) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailTrace) GoString() string {
+	return s.String()
+}
+
+// SetAction sets the Action field's value.
+func (s *GuardrailTrace) SetAction(v string) *GuardrailTrace {
+	s.Action = &v
+	return s
+}
+
+// SetInputAssessments sets the InputAssessments field's value.
+func (s *GuardrailTrace) SetInputAssessments(v []*GuardrailAssessment) *GuardrailTrace {
+	s.InputAssessments = v
+	return s
+}
+
+// SetOutputAssessments sets the OutputAssessments field's value.
+func (s *GuardrailTrace) SetOutputAssessments(v []*GuardrailAssessment) *GuardrailTrace {
+	s.OutputAssessments = v
+	return s
+}
+
+// SetTraceId sets the TraceId field's value.
+func (s *GuardrailTrace) SetTraceId(v string) *GuardrailTrace {
+	s.TraceId = &v
+	return s
+}
+
+// The assessment details for words defined in the Guardrail filter.
+type GuardrailWordPolicyAssessment struct {
+	_ struct{} `type:"structure" sensitive:"true"`
+
+	// The custom word details for words defined in the Guardrail filter.
+	//
+	// CustomWords is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GuardrailWordPolicyAssessment's
+	// String and GoString methods.
+	CustomWords []*GuardrailCustomWord `locationName:"customWords" type:"list" sensitive:"true"`
+
+	// The managed word lists for words defined in the Guardrail filter.
+	//
+	// ManagedWordLists is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GuardrailWordPolicyAssessment's
+	// String and GoString methods.
+	ManagedWordLists []*GuardrailManagedWord `locationName:"managedWordLists" type:"list" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailWordPolicyAssessment) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailWordPolicyAssessment) GoString() string {
+	return s.String()
+}
+
+// SetCustomWords sets the CustomWords field's value.
+func (s *GuardrailWordPolicyAssessment) SetCustomWords(v []*GuardrailCustomWord) *GuardrailWordPolicyAssessment {
+	s.CustomWords = v
+	return s
+}
+
+// SetManagedWordLists sets the ManagedWordLists field's value.
+func (s *GuardrailWordPolicyAssessment) SetManagedWordLists(v []*GuardrailManagedWord) *GuardrailWordPolicyAssessment {
+	s.ManagedWordLists = v
 	return s
 }
 
@@ -5957,6 +6565,13 @@ type Trace struct {
 	// String and GoString methods.
 	FailureTrace *FailureTrace `locationName:"failureTrace" type:"structure" sensitive:"true"`
 
+	// The trace details for a trace defined in the Guardrail filter.
+	//
+	// GuardrailTrace is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Trace's
+	// String and GoString methods.
+	GuardrailTrace *GuardrailTrace `locationName:"guardrailTrace" type:"structure" sensitive:"true"`
+
 	// Details about the orchestration step, in which the agent determines the order
 	// in which actions are executed and which knowledge bases are retrieved.
 	//
@@ -6002,6 +6617,12 @@ func (s Trace) GoString() string {
 // SetFailureTrace sets the FailureTrace field's value.
 func (s *Trace) SetFailureTrace(v *FailureTrace) *Trace {
 	s.FailureTrace = v
+	return s
+}
+
+// SetGuardrailTrace sets the GuardrailTrace field's value.
+func (s *Trace) SetGuardrailTrace(v *GuardrailTrace) *Trace {
+	s.GuardrailTrace = v
 	return s
 }
 
@@ -6269,6 +6890,286 @@ func GuadrailAction_Values() []string {
 	return []string{
 		GuadrailActionIntervened,
 		GuadrailActionNone,
+	}
+}
+
+const (
+	// GuardrailActionIntervened is a GuardrailAction enum value
+	GuardrailActionIntervened = "INTERVENED"
+
+	// GuardrailActionNone is a GuardrailAction enum value
+	GuardrailActionNone = "NONE"
+)
+
+// GuardrailAction_Values returns all elements of the GuardrailAction enum
+func GuardrailAction_Values() []string {
+	return []string{
+		GuardrailActionIntervened,
+		GuardrailActionNone,
+	}
+}
+
+const (
+	// GuardrailContentFilterConfidenceNone is a GuardrailContentFilterConfidence enum value
+	GuardrailContentFilterConfidenceNone = "NONE"
+
+	// GuardrailContentFilterConfidenceLow is a GuardrailContentFilterConfidence enum value
+	GuardrailContentFilterConfidenceLow = "LOW"
+
+	// GuardrailContentFilterConfidenceMedium is a GuardrailContentFilterConfidence enum value
+	GuardrailContentFilterConfidenceMedium = "MEDIUM"
+
+	// GuardrailContentFilterConfidenceHigh is a GuardrailContentFilterConfidence enum value
+	GuardrailContentFilterConfidenceHigh = "HIGH"
+)
+
+// GuardrailContentFilterConfidence_Values returns all elements of the GuardrailContentFilterConfidence enum
+func GuardrailContentFilterConfidence_Values() []string {
+	return []string{
+		GuardrailContentFilterConfidenceNone,
+		GuardrailContentFilterConfidenceLow,
+		GuardrailContentFilterConfidenceMedium,
+		GuardrailContentFilterConfidenceHigh,
+	}
+}
+
+const (
+	// GuardrailContentFilterTypeInsults is a GuardrailContentFilterType enum value
+	GuardrailContentFilterTypeInsults = "INSULTS"
+
+	// GuardrailContentFilterTypeHate is a GuardrailContentFilterType enum value
+	GuardrailContentFilterTypeHate = "HATE"
+
+	// GuardrailContentFilterTypeSexual is a GuardrailContentFilterType enum value
+	GuardrailContentFilterTypeSexual = "SEXUAL"
+
+	// GuardrailContentFilterTypeViolence is a GuardrailContentFilterType enum value
+	GuardrailContentFilterTypeViolence = "VIOLENCE"
+
+	// GuardrailContentFilterTypeMisconduct is a GuardrailContentFilterType enum value
+	GuardrailContentFilterTypeMisconduct = "MISCONDUCT"
+
+	// GuardrailContentFilterTypePromptAttack is a GuardrailContentFilterType enum value
+	GuardrailContentFilterTypePromptAttack = "PROMPT_ATTACK"
+)
+
+// GuardrailContentFilterType_Values returns all elements of the GuardrailContentFilterType enum
+func GuardrailContentFilterType_Values() []string {
+	return []string{
+		GuardrailContentFilterTypeInsults,
+		GuardrailContentFilterTypeHate,
+		GuardrailContentFilterTypeSexual,
+		GuardrailContentFilterTypeViolence,
+		GuardrailContentFilterTypeMisconduct,
+		GuardrailContentFilterTypePromptAttack,
+	}
+}
+
+const (
+	// GuardrailContentPolicyActionBlocked is a GuardrailContentPolicyAction enum value
+	GuardrailContentPolicyActionBlocked = "BLOCKED"
+)
+
+// GuardrailContentPolicyAction_Values returns all elements of the GuardrailContentPolicyAction enum
+func GuardrailContentPolicyAction_Values() []string {
+	return []string{
+		GuardrailContentPolicyActionBlocked,
+	}
+}
+
+const (
+	// GuardrailManagedWordTypeProfanity is a GuardrailManagedWordType enum value
+	GuardrailManagedWordTypeProfanity = "PROFANITY"
+)
+
+// GuardrailManagedWordType_Values returns all elements of the GuardrailManagedWordType enum
+func GuardrailManagedWordType_Values() []string {
+	return []string{
+		GuardrailManagedWordTypeProfanity,
+	}
+}
+
+const (
+	// GuardrailPiiEntityTypeAddress is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeAddress = "ADDRESS"
+
+	// GuardrailPiiEntityTypeAge is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeAge = "AGE"
+
+	// GuardrailPiiEntityTypeAwsAccessKey is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeAwsAccessKey = "AWS_ACCESS_KEY"
+
+	// GuardrailPiiEntityTypeAwsSecretKey is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeAwsSecretKey = "AWS_SECRET_KEY"
+
+	// GuardrailPiiEntityTypeCaHealthNumber is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeCaHealthNumber = "CA_HEALTH_NUMBER"
+
+	// GuardrailPiiEntityTypeCaSocialInsuranceNumber is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeCaSocialInsuranceNumber = "CA_SOCIAL_INSURANCE_NUMBER"
+
+	// GuardrailPiiEntityTypeCreditDebitCardCvv is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeCreditDebitCardCvv = "CREDIT_DEBIT_CARD_CVV"
+
+	// GuardrailPiiEntityTypeCreditDebitCardExpiry is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeCreditDebitCardExpiry = "CREDIT_DEBIT_CARD_EXPIRY"
+
+	// GuardrailPiiEntityTypeCreditDebitCardNumber is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeCreditDebitCardNumber = "CREDIT_DEBIT_CARD_NUMBER"
+
+	// GuardrailPiiEntityTypeDriverId is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeDriverId = "DRIVER_ID"
+
+	// GuardrailPiiEntityTypeEmail is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeEmail = "EMAIL"
+
+	// GuardrailPiiEntityTypeInternationalBankAccountNumber is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeInternationalBankAccountNumber = "INTERNATIONAL_BANK_ACCOUNT_NUMBER"
+
+	// GuardrailPiiEntityTypeIpAddress is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeIpAddress = "IP_ADDRESS"
+
+	// GuardrailPiiEntityTypeLicensePlate is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeLicensePlate = "LICENSE_PLATE"
+
+	// GuardrailPiiEntityTypeMacAddress is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeMacAddress = "MAC_ADDRESS"
+
+	// GuardrailPiiEntityTypeName is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeName = "NAME"
+
+	// GuardrailPiiEntityTypePassword is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypePassword = "PASSWORD"
+
+	// GuardrailPiiEntityTypePhone is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypePhone = "PHONE"
+
+	// GuardrailPiiEntityTypePin is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypePin = "PIN"
+
+	// GuardrailPiiEntityTypeSwiftCode is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeSwiftCode = "SWIFT_CODE"
+
+	// GuardrailPiiEntityTypeUkNationalHealthServiceNumber is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeUkNationalHealthServiceNumber = "UK_NATIONAL_HEALTH_SERVICE_NUMBER"
+
+	// GuardrailPiiEntityTypeUkNationalInsuranceNumber is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeUkNationalInsuranceNumber = "UK_NATIONAL_INSURANCE_NUMBER"
+
+	// GuardrailPiiEntityTypeUkUniqueTaxpayerReferenceNumber is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeUkUniqueTaxpayerReferenceNumber = "UK_UNIQUE_TAXPAYER_REFERENCE_NUMBER"
+
+	// GuardrailPiiEntityTypeUrl is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeUrl = "URL"
+
+	// GuardrailPiiEntityTypeUsername is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeUsername = "USERNAME"
+
+	// GuardrailPiiEntityTypeUsBankAccountNumber is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeUsBankAccountNumber = "US_BANK_ACCOUNT_NUMBER"
+
+	// GuardrailPiiEntityTypeUsBankRoutingNumber is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeUsBankRoutingNumber = "US_BANK_ROUTING_NUMBER"
+
+	// GuardrailPiiEntityTypeUsIndividualTaxIdentificationNumber is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeUsIndividualTaxIdentificationNumber = "US_INDIVIDUAL_TAX_IDENTIFICATION_NUMBER"
+
+	// GuardrailPiiEntityTypeUsPassportNumber is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeUsPassportNumber = "US_PASSPORT_NUMBER"
+
+	// GuardrailPiiEntityTypeUsSocialSecurityNumber is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeUsSocialSecurityNumber = "US_SOCIAL_SECURITY_NUMBER"
+
+	// GuardrailPiiEntityTypeVehicleIdentificationNumber is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeVehicleIdentificationNumber = "VEHICLE_IDENTIFICATION_NUMBER"
+)
+
+// GuardrailPiiEntityType_Values returns all elements of the GuardrailPiiEntityType enum
+func GuardrailPiiEntityType_Values() []string {
+	return []string{
+		GuardrailPiiEntityTypeAddress,
+		GuardrailPiiEntityTypeAge,
+		GuardrailPiiEntityTypeAwsAccessKey,
+		GuardrailPiiEntityTypeAwsSecretKey,
+		GuardrailPiiEntityTypeCaHealthNumber,
+		GuardrailPiiEntityTypeCaSocialInsuranceNumber,
+		GuardrailPiiEntityTypeCreditDebitCardCvv,
+		GuardrailPiiEntityTypeCreditDebitCardExpiry,
+		GuardrailPiiEntityTypeCreditDebitCardNumber,
+		GuardrailPiiEntityTypeDriverId,
+		GuardrailPiiEntityTypeEmail,
+		GuardrailPiiEntityTypeInternationalBankAccountNumber,
+		GuardrailPiiEntityTypeIpAddress,
+		GuardrailPiiEntityTypeLicensePlate,
+		GuardrailPiiEntityTypeMacAddress,
+		GuardrailPiiEntityTypeName,
+		GuardrailPiiEntityTypePassword,
+		GuardrailPiiEntityTypePhone,
+		GuardrailPiiEntityTypePin,
+		GuardrailPiiEntityTypeSwiftCode,
+		GuardrailPiiEntityTypeUkNationalHealthServiceNumber,
+		GuardrailPiiEntityTypeUkNationalInsuranceNumber,
+		GuardrailPiiEntityTypeUkUniqueTaxpayerReferenceNumber,
+		GuardrailPiiEntityTypeUrl,
+		GuardrailPiiEntityTypeUsername,
+		GuardrailPiiEntityTypeUsBankAccountNumber,
+		GuardrailPiiEntityTypeUsBankRoutingNumber,
+		GuardrailPiiEntityTypeUsIndividualTaxIdentificationNumber,
+		GuardrailPiiEntityTypeUsPassportNumber,
+		GuardrailPiiEntityTypeUsSocialSecurityNumber,
+		GuardrailPiiEntityTypeVehicleIdentificationNumber,
+	}
+}
+
+const (
+	// GuardrailSensitiveInformationPolicyActionBlocked is a GuardrailSensitiveInformationPolicyAction enum value
+	GuardrailSensitiveInformationPolicyActionBlocked = "BLOCKED"
+
+	// GuardrailSensitiveInformationPolicyActionAnonymized is a GuardrailSensitiveInformationPolicyAction enum value
+	GuardrailSensitiveInformationPolicyActionAnonymized = "ANONYMIZED"
+)
+
+// GuardrailSensitiveInformationPolicyAction_Values returns all elements of the GuardrailSensitiveInformationPolicyAction enum
+func GuardrailSensitiveInformationPolicyAction_Values() []string {
+	return []string{
+		GuardrailSensitiveInformationPolicyActionBlocked,
+		GuardrailSensitiveInformationPolicyActionAnonymized,
+	}
+}
+
+const (
+	// GuardrailTopicPolicyActionBlocked is a GuardrailTopicPolicyAction enum value
+	GuardrailTopicPolicyActionBlocked = "BLOCKED"
+)
+
+// GuardrailTopicPolicyAction_Values returns all elements of the GuardrailTopicPolicyAction enum
+func GuardrailTopicPolicyAction_Values() []string {
+	return []string{
+		GuardrailTopicPolicyActionBlocked,
+	}
+}
+
+const (
+	// GuardrailTopicTypeDeny is a GuardrailTopicType enum value
+	GuardrailTopicTypeDeny = "DENY"
+)
+
+// GuardrailTopicType_Values returns all elements of the GuardrailTopicType enum
+func GuardrailTopicType_Values() []string {
+	return []string{
+		GuardrailTopicTypeDeny,
+	}
+}
+
+const (
+	// GuardrailWordPolicyActionBlocked is a GuardrailWordPolicyAction enum value
+	GuardrailWordPolicyActionBlocked = "BLOCKED"
+)
+
+// GuardrailWordPolicyAction_Values returns all elements of the GuardrailWordPolicyAction enum
+func GuardrailWordPolicyAction_Values() []string {
+	return []string{
+		GuardrailWordPolicyActionBlocked,
 	}
 }
 

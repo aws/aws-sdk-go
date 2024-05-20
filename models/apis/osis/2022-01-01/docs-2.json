@@ -23,16 +23,23 @@
       "refs": {
       }
     },
+    "BlueprintFormat": {
+      "base": null,
+      "refs": {
+        "GetPipelineBlueprintRequest$Format": "<p>The format format of the blueprint to retrieve.</p>"
+      }
+    },
     "Boolean": {
       "base": null,
       "refs": {
         "BufferOptions$PersistentBufferEnabled": "<p>Whether persistent buffering should be enabled.</p>",
         "LogPublishingOptions$IsLoggingEnabled": "<p>Whether logs should be published.</p>",
-        "ValidatePipelineResponse$isValid": "<p>A boolean indicating whether or not the pipeline configuration is valid.</p>"
+        "ValidatePipelineResponse$isValid": "<p>A boolean indicating whether or not the pipeline configuration is valid.</p>",
+        "VpcAttachmentOptions$AttachToVpc": "<p>Whether a VPC is attached to the pipeline.</p>"
       }
     },
     "BufferOptions": {
-      "base": "<p>Options that specify the configuration of a persistent buffer. To configure how OpenSearch Ingestion encrypts this data, set the EncryptionAtRestOptions.</p>",
+      "base": "<p>Options that specify the configuration of a persistent buffer. To configure how OpenSearch Ingestion encrypts this data, set the <code>EncryptionAtRestOptions</code>. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/osis-features-overview.html#persistent-buffering\">Persistent buffering</a>.</p>",
       "refs": {
         "CreatePipelineRequest$BufferOptions": "<p>Key-value pairs to configure persistent buffering for the pipeline.</p>",
         "Pipeline$BufferOptions": null,
@@ -75,6 +82,12 @@
         "ChangeProgressStatus$Status": "<p>The overall status of the pipeline configuration change.</p>"
       }
     },
+    "CidrBlock": {
+      "base": null,
+      "refs": {
+        "VpcAttachmentOptions$CidrBlock": "<p>The CIDR block to be reserved for OpenSearch Ingestion to create elastic network interfaces (ENIs).</p>"
+      }
+    },
     "CloudWatchLogDestination": {
       "base": "<p>The destination for OpenSearch Ingestion logs sent to Amazon CloudWatch.</p>",
       "refs": {
@@ -106,8 +119,13 @@
       "refs": {
       }
     },
+    "DisabledOperationException": {
+      "base": "<p>Exception is thrown when an operation has been disabled.</p>",
+      "refs": {
+      }
+    },
     "EncryptionAtRestOptions": {
-      "base": "<p>Options to control how OpenSearch encrypts all data-at-rest.</p>",
+      "base": "<p>Options to control how OpenSearch encrypts buffer data.</p>",
       "refs": {
         "CreatePipelineRequest$EncryptionAtRestOptions": "<p>Key-value pairs to configure encryption for data that is written to a persistent buffer.</p>",
         "Pipeline$EncryptionAtRestOptions": null,
@@ -171,7 +189,7 @@
     "KmsKeyArn": {
       "base": null,
       "refs": {
-        "EncryptionAtRestOptions$KmsKeyArn": "<p>The ARN of the KMS key used to encrypt data-at-rest in OpenSearch Ingestion. By default, data is encrypted using an AWS owned key.</p>"
+        "EncryptionAtRestOptions$KmsKeyArn": "<p>The ARN of the KMS key used to encrypt buffer data. By default, data is encrypted using an Amazon Web Services owned key.</p>"
       }
     },
     "LimitExceededException": {
@@ -212,7 +230,7 @@
     "LogGroup": {
       "base": null,
       "refs": {
-        "CloudWatchLogDestination$LogGroup": "<p>The name of the CloudWatch Logs group to send pipeline logs to. You can specify an existing log group or create a new one. For example, <code>/aws/OpenSearchService/IngestionService/my-pipeline</code>.</p>"
+        "CloudWatchLogDestination$LogGroup": "<p>The name of the CloudWatch Logs group to send pipeline logs to. You can specify an existing log group or create a new one. For example, <code>/aws/vendedlogs/OpenSearchService/pipelines</code>.</p>"
       }
     },
     "LogPublishingOptions": {
@@ -281,13 +299,26 @@
         "ValidatePipelineRequest$PipelineConfigurationBody": "<p>The pipeline configuration in YAML format. The command accepts the pipeline configuration as a string or within a .yaml file. If you provide the configuration as a string, each new line must be escaped with <code>\\n</code>.</p>"
       }
     },
+    "PipelineDestination": {
+      "base": "<p>An object representing the destination of a pipeline.</p>",
+      "refs": {
+        "PipelineDestinationList$member": null
+      }
+    },
+    "PipelineDestinationList": {
+      "base": null,
+      "refs": {
+        "Pipeline$Destinations": "<p>Destinations to which the pipeline writes data.</p>",
+        "PipelineSummary$Destinations": "<p>A list of destinations to which the pipeline writes data.</p>"
+      }
+    },
     "PipelineName": {
       "base": null,
       "refs": {
         "CreatePipelineRequest$PipelineName": "<p>The name of the OpenSearch Ingestion pipeline to create. Pipeline names are unique across the pipelines owned by an account within an Amazon Web Services Region.</p>",
         "DeletePipelineRequest$PipelineName": "<p>The name of the pipeline to delete.</p>",
         "GetPipelineChangeProgressRequest$PipelineName": "<p>The name of the pipeline.</p>",
-        "GetPipelineRequest$PipelineName": "<p>The name of the pipeline to get information about.</p>",
+        "GetPipelineRequest$PipelineName": "<p>The name of the pipeline.</p>",
         "PipelineSummary$PipelineName": "<p>The name of the pipeline.</p>",
         "StartPipelineRequest$PipelineName": "<p>The name of the pipeline to start.</p>",
         "StopPipelineRequest$PipelineName": "<p>The name of the pipeline to stop.</p>",
@@ -362,7 +393,7 @@
     "ServiceVpcEndpointsList": {
       "base": null,
       "refs": {
-        "Pipeline$ServiceVpcEndpoints": "<p>A list of VPC endpoints that OpenSearch Ingestion has created to other AWS services.</p>"
+        "Pipeline$ServiceVpcEndpoints": "<p>A list of VPC endpoints that OpenSearch Ingestion has created to other Amazon Web Services services.</p>"
       }
     },
     "StartPipelineRequest": {
@@ -391,15 +422,26 @@
         "ChangeProgressStage$Name": "<p>The name of the stage.</p>",
         "ChangeProgressStage$Description": "<p>A description of the stage.</p>",
         "GetPipelineBlueprintRequest$BlueprintName": "<p>The name of the blueprint to retrieve.</p>",
+        "GetPipelineBlueprintResponse$Format": "<p>The format of the blueprint.</p>",
         "IngestEndpointUrlsList$member": null,
         "Pipeline$PipelineName": "<p>The name of the pipeline.</p>",
         "Pipeline$PipelineArn": "<p>The Amazon Resource Name (ARN) of the pipeline.</p>",
         "Pipeline$PipelineConfigurationBody": "<p>The Data Prepper pipeline configuration in YAML format.</p>",
         "PipelineBlueprint$BlueprintName": "<p>The name of the blueprint.</p>",
         "PipelineBlueprint$PipelineConfigurationBody": "<p>The YAML configuration of the blueprint.</p>",
+        "PipelineBlueprint$DisplayName": "<p>The display name of the blueprint.</p>",
+        "PipelineBlueprint$DisplayDescription": "<p>A description of the blueprint.</p>",
+        "PipelineBlueprint$Service": "<p>The name of the service that the blueprint is associated with.</p>",
+        "PipelineBlueprint$UseCase": "<p>The use case that the blueprint relates to.</p>",
         "PipelineBlueprintSummary$BlueprintName": "<p>The name of the blueprint.</p>",
+        "PipelineBlueprintSummary$DisplayName": "<p>The display name of the blueprint.</p>",
+        "PipelineBlueprintSummary$DisplayDescription": "<p>A description of the blueprint.</p>",
+        "PipelineBlueprintSummary$Service": "<p>The name of the service that the blueprint is associated with.</p>",
+        "PipelineBlueprintSummary$UseCase": "<p>The use case that the blueprint relates to.</p>",
+        "PipelineDestination$ServiceName": "<p>The name of the service receiving data from the pipeline.</p>",
+        "PipelineDestination$Endpoint": "<p>The endpoint receiving data from the pipeline.</p>",
         "PipelineStatusReason$Description": "<p>A description of why a pipeline has a certain status.</p>",
-        "ServiceVpcEndpoint$VpcEndpointId": "<p>The ID of the VPC endpoint that was created.</p>",
+        "ServiceVpcEndpoint$VpcEndpointId": "<p>The unique identifier of the VPC endpoint that was created.</p>",
         "StringList$member": null,
         "ValidationMessage$Message": "<p>The validation message.</p>",
         "VpcEndpoint$VpcEndpointId": "<p>The unique identifier of the endpoint.</p>",
@@ -518,6 +560,12 @@
       "base": null,
       "refs": {
         "ValidatePipelineResponse$Errors": "<p>A list of errors if the configuration is invalid.</p>"
+      }
+    },
+    "VpcAttachmentOptions": {
+      "base": "<p>Options for attaching a VPC to pipeline.</p>",
+      "refs": {
+        "VpcOptions$VpcAttachmentOptions": "<p>Options for attaching a VPC to a pipeline.</p>"
       }
     },
     "VpcEndpoint": {

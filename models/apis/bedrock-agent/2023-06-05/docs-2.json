@@ -274,7 +274,7 @@
     "BasePromptTemplate": {
       "base": null,
       "refs": {
-        "PromptConfiguration$basePromptTemplate": "<p>Defines the prompt template with which to replace the default prompt template. You can use placeholder variables in the base prompt template to customize the prompt. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-placeholders.html\">Prompt template placeholder variables</a>.</p>"
+        "PromptConfiguration$basePromptTemplate": "<p>Defines the prompt template with which to replace the default prompt template. You can use placeholder variables in the base prompt template to customize the prompt. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-placeholders.html\">Prompt template placeholder variables</a>. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/advanced-prompts-configure.html\">Configure the prompt templates</a>.</p>"
       }
     },
     "BedrockEmbeddingModelArn": {
@@ -760,6 +760,29 @@
       "refs": {
       }
     },
+    "GuardrailConfiguration": {
+      "base": "<p>The details of the guardrails configuration.</p>",
+      "refs": {
+        "Agent$guardrailConfiguration": "<p>The guardrails configuration assigned to the agent.</p>",
+        "AgentSummary$guardrailConfiguration": "<p>The details of the guardrails configuration in the agent summary.</p>",
+        "AgentVersion$guardrailConfiguration": "<p>The guardrails configuration assigned to the agent version.</p>",
+        "AgentVersionSummary$guardrailConfiguration": "<p>The details of the guardrails configuration in the agent version summary.</p>",
+        "CreateAgentRequest$guardrailConfiguration": "<p>The unique Guardrail configuration assigned to the agent when it is created.</p>",
+        "UpdateAgentRequest$guardrailConfiguration": "<p>The unique Guardrail configuration assigned to the agent when it is updated.</p>"
+      }
+    },
+    "GuardrailIdentifier": {
+      "base": null,
+      "refs": {
+        "GuardrailConfiguration$guardrailIdentifier": "<p>The guardrails identifier assigned to the guardrails configuration.</p>"
+      }
+    },
+    "GuardrailVersion": {
+      "base": null,
+      "refs": {
+        "GuardrailConfiguration$guardrailVersion": "<p>The guardrails version assigned to the guardrails configuration.</p>"
+      }
+    },
     "Id": {
       "base": null,
       "refs": {
@@ -1027,7 +1050,7 @@
       "base": null,
       "refs": {
         "ActionGroupExecutor$lambda": "<p>The Amazon Resource Name (ARN) of the Lambda function containing the business logic that is carried out upon invoking the action.</p>",
-        "PromptOverrideConfiguration$overrideLambda": "<p>The ARN of the Lambda function to use when parsing the raw foundation model output in parts of the agent sequence. If you specify this field, at least one of the <code>promptConfigurations</code> must contain a <code>parserMode</code> value that is set to <code>OVERRIDDEN</code>.</p>"
+        "PromptOverrideConfiguration$overrideLambda": "<p>The ARN of the Lambda function to use when parsing the raw foundation model output in parts of the agent sequence. If you specify this field, at least one of the <code>promptConfigurations</code> must contain a <code>parserMode</code> value that is set to <code>OVERRIDDEN</code>. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/lambda-parser.html\">Parser Lambda function in Agents for Amazon Bedrock</a>.</p>"
       }
     },
     "ListAgentActionGroupsRequest": {

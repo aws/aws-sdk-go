@@ -68,6 +68,9 @@ func (c *OSIS) CreatePipelineRequest(input *CreatePipelineInput) (req *request.R
 //
 // Returned Error Types:
 //
+//   - DisabledOperationException
+//     Exception is thrown when an operation has been disabled.
+//
 //   - LimitExceededException
 //     You attempted to create more than the allowed number of tags.
 //
@@ -165,6 +168,9 @@ func (c *OSIS) DeletePipelineRequest(input *DeletePipelineInput) (req *request.R
 //
 // Returned Error Types:
 //
+//   - DisabledOperationException
+//     Exception is thrown when an operation has been disabled.
+//
 //   - ValidationException
 //     An exception for missing or invalid input fields.
 //
@@ -257,6 +263,9 @@ func (c *OSIS) GetPipelineRequest(input *GetPipelineInput) (req *request.Request
 //
 // Returned Error Types:
 //
+//   - DisabledOperationException
+//     Exception is thrown when an operation has been disabled.
+//
 //   - ValidationException
 //     An exception for missing or invalid input fields.
 //
@@ -348,6 +357,9 @@ func (c *OSIS) GetPipelineBlueprintRequest(input *GetPipelineBlueprintInput) (re
 // API operation GetPipelineBlueprint for usage and error information.
 //
 // Returned Error Types:
+//
+//   - DisabledOperationException
+//     Exception is thrown when an operation has been disabled.
 //
 //   - AccessDeniedException
 //     You don't have permissions to access the resource.
@@ -442,6 +454,9 @@ func (c *OSIS) GetPipelineChangeProgressRequest(input *GetPipelineChangeProgress
 //
 // Returned Error Types:
 //
+//   - DisabledOperationException
+//     Exception is thrown when an operation has been disabled.
+//
 //   - ValidationException
 //     An exception for missing or invalid input fields.
 //
@@ -531,6 +546,9 @@ func (c *OSIS) ListPipelineBlueprintsRequest(input *ListPipelineBlueprintsInput)
 // API operation ListPipelineBlueprints for usage and error information.
 //
 // Returned Error Types:
+//
+//   - DisabledOperationException
+//     Exception is thrown when an operation has been disabled.
 //
 //   - ValidationException
 //     An exception for missing or invalid input fields.
@@ -628,6 +646,9 @@ func (c *OSIS) ListPipelinesRequest(input *ListPipelinesInput) (req *request.Req
 // API operation ListPipelines for usage and error information.
 //
 // Returned Error Types:
+//
+//   - DisabledOperationException
+//     Exception is thrown when an operation has been disabled.
 //
 //   - ValidationException
 //     An exception for missing or invalid input fields.
@@ -770,6 +791,9 @@ func (c *OSIS) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req 
 //
 // Returned Error Types:
 //
+//   - DisabledOperationException
+//     Exception is thrown when an operation has been disabled.
+//
 //   - ValidationException
 //     An exception for missing or invalid input fields.
 //
@@ -859,6 +883,9 @@ func (c *OSIS) StartPipelineRequest(input *StartPipelineInput) (req *request.Req
 // API operation StartPipeline for usage and error information.
 //
 // Returned Error Types:
+//
+//   - DisabledOperationException
+//     Exception is thrown when an operation has been disabled.
 //
 //   - AccessDeniedException
 //     You don't have permissions to access the resource.
@@ -952,6 +979,9 @@ func (c *OSIS) StopPipelineRequest(input *StopPipelineInput) (req *request.Reque
 // API operation StopPipeline for usage and error information.
 //
 // Returned Error Types:
+//
+//   - DisabledOperationException
+//     Exception is thrown when an operation has been disabled.
 //
 //   - AccessDeniedException
 //     You don't have permissions to access the resource.
@@ -1047,6 +1077,9 @@ func (c *OSIS) TagResourceRequest(input *TagResourceInput) (req *request.Request
 //
 // Returned Error Types:
 //
+//   - DisabledOperationException
+//     Exception is thrown when an operation has been disabled.
+//
 //   - LimitExceededException
 //     You attempted to create more than the allowed number of tags.
 //
@@ -1141,6 +1174,9 @@ func (c *OSIS) UntagResourceRequest(input *UntagResourceInput) (req *request.Req
 //
 // Returned Error Types:
 //
+//   - DisabledOperationException
+//     Exception is thrown when an operation has been disabled.
+//
 //   - ValidationException
 //     An exception for missing or invalid input fields.
 //
@@ -1230,6 +1266,9 @@ func (c *OSIS) UpdatePipelineRequest(input *UpdatePipelineInput) (req *request.R
 // API operation UpdatePipeline for usage and error information.
 //
 // Returned Error Types:
+//
+//   - DisabledOperationException
+//     Exception is thrown when an operation has been disabled.
 //
 //   - ValidationException
 //     An exception for missing or invalid input fields.
@@ -1324,6 +1363,9 @@ func (c *OSIS) ValidatePipelineRequest(input *ValidatePipelineInput) (req *reque
 // API operation ValidatePipeline for usage and error information.
 //
 // Returned Error Types:
+//
+//   - DisabledOperationException
+//     Exception is thrown when an operation has been disabled.
 //
 //   - AccessDeniedException
 //     You don't have permissions to access the resource.
@@ -1423,6 +1465,7 @@ func (s *AccessDeniedException) RequestID() string {
 
 // Options that specify the configuration of a persistent buffer. To configure
 // how OpenSearch Ingestion encrypts this data, set the EncryptionAtRestOptions.
+// For more information, see Persistent buffering (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/osis-features-overview.html#persistent-buffering).
 type BufferOptions struct {
 	_ struct{} `type:"structure"`
 
@@ -1593,7 +1636,7 @@ type CloudWatchLogDestination struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the CloudWatch Logs group to send pipeline logs to. You can specify
-	// an existing log group or create a new one. For example, /aws/OpenSearchService/IngestionService/my-pipeline.
+	// an existing log group or create a new one. For example, /aws/vendedlogs/OpenSearchService/pipelines.
 	//
 	// LogGroup is a required field
 	LogGroup *string `min:"1" type:"string" required:"true"`
@@ -1987,12 +2030,76 @@ func (s DeletePipelineOutput) GoString() string {
 	return s.String()
 }
 
-// Options to control how OpenSearch encrypts all data-at-rest.
+// Exception is thrown when an operation has been disabled.
+type DisabledOperationException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisabledOperationException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisabledOperationException) GoString() string {
+	return s.String()
+}
+
+func newErrorDisabledOperationException(v protocol.ResponseMetadata) error {
+	return &DisabledOperationException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *DisabledOperationException) Code() string {
+	return "DisabledOperationException"
+}
+
+// Message returns the exception's message.
+func (s *DisabledOperationException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *DisabledOperationException) OrigErr() error {
+	return nil
+}
+
+func (s *DisabledOperationException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *DisabledOperationException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *DisabledOperationException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// Options to control how OpenSearch encrypts buffer data.
 type EncryptionAtRestOptions struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the KMS key used to encrypt data-at-rest in OpenSearch Ingestion.
-	// By default, data is encrypted using an AWS owned key.
+	// The ARN of the KMS key used to encrypt buffer data. By default, data is encrypted
+	// using an Amazon Web Services owned key.
 	//
 	// KmsKeyArn is a required field
 	KmsKeyArn *string `min:"7" type:"string" required:"true"`
@@ -2045,6 +2152,9 @@ type GetPipelineBlueprintInput struct {
 	//
 	// BlueprintName is a required field
 	BlueprintName *string `location:"uri" locationName:"BlueprintName" type:"string" required:"true"`
+
+	// The format format of the blueprint to retrieve.
+	Format *string `location:"querystring" locationName:"format" type:"string"`
 }
 
 // String returns the string representation.
@@ -2087,11 +2197,20 @@ func (s *GetPipelineBlueprintInput) SetBlueprintName(v string) *GetPipelineBluep
 	return s
 }
 
+// SetFormat sets the Format field's value.
+func (s *GetPipelineBlueprintInput) SetFormat(v string) *GetPipelineBlueprintInput {
+	s.Format = &v
+	return s
+}
+
 type GetPipelineBlueprintOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The requested blueprint in YAML format.
 	Blueprint *PipelineBlueprint `type:"structure"`
+
+	// The format of the blueprint.
+	Format *string `type:"string"`
 }
 
 // String returns the string representation.
@@ -2115,6 +2234,12 @@ func (s GetPipelineBlueprintOutput) GoString() string {
 // SetBlueprint sets the Blueprint field's value.
 func (s *GetPipelineBlueprintOutput) SetBlueprint(v *PipelineBlueprint) *GetPipelineBlueprintOutput {
 	s.Blueprint = v
+	return s
+}
+
+// SetFormat sets the Format field's value.
+func (s *GetPipelineBlueprintOutput) SetFormat(v string) *GetPipelineBlueprintOutput {
+	s.Format = &v
 	return s
 }
 
@@ -2201,7 +2326,7 @@ func (s *GetPipelineChangeProgressOutput) SetChangeProgressStatuses(v []*ChangeP
 type GetPipelineInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The name of the pipeline to get information about.
+	// The name of the pipeline.
 	//
 	// PipelineName is a required field
 	PipelineName *string `location:"uri" locationName:"PipelineName" min:"3" type:"string" required:"true"`
@@ -2767,12 +2892,16 @@ type Pipeline struct {
 
 	// Options that specify the configuration of a persistent buffer. To configure
 	// how OpenSearch Ingestion encrypts this data, set the EncryptionAtRestOptions.
+	// For more information, see Persistent buffering (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/osis-features-overview.html#persistent-buffering).
 	BufferOptions *BufferOptions `type:"structure"`
 
 	// The date and time when the pipeline was created.
 	CreatedAt *time.Time `type:"timestamp"`
 
-	// Options to control how OpenSearch encrypts all data-at-rest.
+	// Destinations to which the pipeline writes data.
+	Destinations []*PipelineDestination `type:"list"`
+
+	// Options to control how OpenSearch encrypts buffer data.
 	EncryptionAtRestOptions *EncryptionAtRestOptions `type:"structure"`
 
 	// The ingestion endpoints for the pipeline, which you can send data to.
@@ -2799,8 +2928,8 @@ type Pipeline struct {
 	// The name of the pipeline.
 	PipelineName *string `type:"string"`
 
-	// A list of VPC endpoints that OpenSearch Ingestion has created to other AWS
-	// services.
+	// A list of VPC endpoints that OpenSearch Ingestion has created to other Amazon
+	// Web Services services.
 	ServiceVpcEndpoints []*ServiceVpcEndpoint `type:"list"`
 
 	// The current status of the pipeline.
@@ -2843,6 +2972,12 @@ func (s *Pipeline) SetBufferOptions(v *BufferOptions) *Pipeline {
 // SetCreatedAt sets the CreatedAt field's value.
 func (s *Pipeline) SetCreatedAt(v time.Time) *Pipeline {
 	s.CreatedAt = &v
+	return s
+}
+
+// SetDestinations sets the Destinations field's value.
+func (s *Pipeline) SetDestinations(v []*PipelineDestination) *Pipeline {
+	s.Destinations = v
 	return s
 }
 
@@ -2937,8 +3072,20 @@ type PipelineBlueprint struct {
 	// The name of the blueprint.
 	BlueprintName *string `type:"string"`
 
+	// A description of the blueprint.
+	DisplayDescription *string `type:"string"`
+
+	// The display name of the blueprint.
+	DisplayName *string `type:"string"`
+
 	// The YAML configuration of the blueprint.
 	PipelineConfigurationBody *string `type:"string"`
+
+	// The name of the service that the blueprint is associated with.
+	Service *string `type:"string"`
+
+	// The use case that the blueprint relates to.
+	UseCase *string `type:"string"`
 }
 
 // String returns the string representation.
@@ -2965,9 +3112,33 @@ func (s *PipelineBlueprint) SetBlueprintName(v string) *PipelineBlueprint {
 	return s
 }
 
+// SetDisplayDescription sets the DisplayDescription field's value.
+func (s *PipelineBlueprint) SetDisplayDescription(v string) *PipelineBlueprint {
+	s.DisplayDescription = &v
+	return s
+}
+
+// SetDisplayName sets the DisplayName field's value.
+func (s *PipelineBlueprint) SetDisplayName(v string) *PipelineBlueprint {
+	s.DisplayName = &v
+	return s
+}
+
 // SetPipelineConfigurationBody sets the PipelineConfigurationBody field's value.
 func (s *PipelineBlueprint) SetPipelineConfigurationBody(v string) *PipelineBlueprint {
 	s.PipelineConfigurationBody = &v
+	return s
+}
+
+// SetService sets the Service field's value.
+func (s *PipelineBlueprint) SetService(v string) *PipelineBlueprint {
+	s.Service = &v
+	return s
+}
+
+// SetUseCase sets the UseCase field's value.
+func (s *PipelineBlueprint) SetUseCase(v string) *PipelineBlueprint {
+	s.UseCase = &v
 	return s
 }
 
@@ -2977,6 +3148,18 @@ type PipelineBlueprintSummary struct {
 
 	// The name of the blueprint.
 	BlueprintName *string `type:"string"`
+
+	// A description of the blueprint.
+	DisplayDescription *string `type:"string"`
+
+	// The display name of the blueprint.
+	DisplayName *string `type:"string"`
+
+	// The name of the service that the blueprint is associated with.
+	Service *string `type:"string"`
+
+	// The use case that the blueprint relates to.
+	UseCase *string `type:"string"`
 }
 
 // String returns the string representation.
@@ -3000,6 +3183,71 @@ func (s PipelineBlueprintSummary) GoString() string {
 // SetBlueprintName sets the BlueprintName field's value.
 func (s *PipelineBlueprintSummary) SetBlueprintName(v string) *PipelineBlueprintSummary {
 	s.BlueprintName = &v
+	return s
+}
+
+// SetDisplayDescription sets the DisplayDescription field's value.
+func (s *PipelineBlueprintSummary) SetDisplayDescription(v string) *PipelineBlueprintSummary {
+	s.DisplayDescription = &v
+	return s
+}
+
+// SetDisplayName sets the DisplayName field's value.
+func (s *PipelineBlueprintSummary) SetDisplayName(v string) *PipelineBlueprintSummary {
+	s.DisplayName = &v
+	return s
+}
+
+// SetService sets the Service field's value.
+func (s *PipelineBlueprintSummary) SetService(v string) *PipelineBlueprintSummary {
+	s.Service = &v
+	return s
+}
+
+// SetUseCase sets the UseCase field's value.
+func (s *PipelineBlueprintSummary) SetUseCase(v string) *PipelineBlueprintSummary {
+	s.UseCase = &v
+	return s
+}
+
+// An object representing the destination of a pipeline.
+type PipelineDestination struct {
+	_ struct{} `type:"structure"`
+
+	// The endpoint receiving data from the pipeline.
+	Endpoint *string `type:"string"`
+
+	// The name of the service receiving data from the pipeline.
+	ServiceName *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PipelineDestination) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PipelineDestination) GoString() string {
+	return s.String()
+}
+
+// SetEndpoint sets the Endpoint field's value.
+func (s *PipelineDestination) SetEndpoint(v string) *PipelineDestination {
+	s.Endpoint = &v
+	return s
+}
+
+// SetServiceName sets the ServiceName field's value.
+func (s *PipelineDestination) SetServiceName(v string) *PipelineDestination {
+	s.ServiceName = &v
 	return s
 }
 
@@ -3041,6 +3289,9 @@ type PipelineSummary struct {
 
 	// The date and time when the pipeline was created.
 	CreatedAt *time.Time `type:"timestamp"`
+
+	// A list of destinations to which the pipeline writes data.
+	Destinations []*PipelineDestination `type:"list"`
 
 	// The date and time when the pipeline was last updated.
 	LastUpdatedAt *time.Time `type:"timestamp"`
@@ -3088,6 +3339,12 @@ func (s PipelineSummary) GoString() string {
 // SetCreatedAt sets the CreatedAt field's value.
 func (s *PipelineSummary) SetCreatedAt(v time.Time) *PipelineSummary {
 	s.CreatedAt = &v
+	return s
+}
+
+// SetDestinations sets the Destinations field's value.
+func (s *PipelineSummary) SetDestinations(v []*PipelineDestination) *PipelineSummary {
+	s.Destinations = v
 	return s
 }
 
@@ -3275,7 +3532,7 @@ type ServiceVpcEndpoint struct {
 	// The name of the service for which a VPC endpoint was created.
 	ServiceName *string `type:"string" enum:"VpcEndpointServiceName"`
 
-	// The ID of the VPC endpoint that was created.
+	// The unique identifier of the VPC endpoint that was created.
 	VpcEndpointId *string `type:"string"`
 }
 
@@ -4064,6 +4321,63 @@ func (s *ValidationMessage) SetMessage(v string) *ValidationMessage {
 	return s
 }
 
+// Options for attaching a VPC to pipeline.
+type VpcAttachmentOptions struct {
+	_ struct{} `type:"structure"`
+
+	// Whether a VPC is attached to the pipeline.
+	//
+	// AttachToVpc is a required field
+	AttachToVpc *bool `type:"boolean" required:"true"`
+
+	// The CIDR block to be reserved for OpenSearch Ingestion to create elastic
+	// network interfaces (ENIs).
+	CidrBlock *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VpcAttachmentOptions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VpcAttachmentOptions) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *VpcAttachmentOptions) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "VpcAttachmentOptions"}
+	if s.AttachToVpc == nil {
+		invalidParams.Add(request.NewErrParamRequired("AttachToVpc"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAttachToVpc sets the AttachToVpc field's value.
+func (s *VpcAttachmentOptions) SetAttachToVpc(v bool) *VpcAttachmentOptions {
+	s.AttachToVpc = &v
+	return s
+}
+
+// SetCidrBlock sets the CidrBlock field's value.
+func (s *VpcAttachmentOptions) SetCidrBlock(v string) *VpcAttachmentOptions {
+	s.CidrBlock = &v
+	return s
+}
+
 // An OpenSearch Ingestion-managed VPC endpoint that will access one or more
 // pipelines.
 type VpcEndpoint struct {
@@ -4128,6 +4442,9 @@ type VpcOptions struct {
 	//
 	// SubnetIds is a required field
 	SubnetIds []*string `min:"1" type:"list" required:"true"`
+
+	// Options for attaching a VPC to a pipeline.
+	VpcAttachmentOptions *VpcAttachmentOptions `type:"structure"`
 }
 
 // String returns the string representation.
@@ -4160,6 +4477,11 @@ func (s *VpcOptions) Validate() error {
 	if s.SubnetIds != nil && len(s.SubnetIds) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("SubnetIds", 1))
 	}
+	if s.VpcAttachmentOptions != nil {
+		if err := s.VpcAttachmentOptions.Validate(); err != nil {
+			invalidParams.AddNested("VpcAttachmentOptions", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -4176,6 +4498,12 @@ func (s *VpcOptions) SetSecurityGroupIds(v []*string) *VpcOptions {
 // SetSubnetIds sets the SubnetIds field's value.
 func (s *VpcOptions) SetSubnetIds(v []*string) *VpcOptions {
 	s.SubnetIds = v
+	return s
+}
+
+// SetVpcAttachmentOptions sets the VpcAttachmentOptions field's value.
+func (s *VpcOptions) SetVpcAttachmentOptions(v *VpcAttachmentOptions) *VpcOptions {
+	s.VpcAttachmentOptions = v
 	return s
 }
 

@@ -4,6 +4,7 @@
     "apiVersion":"2022-01-01",
     "endpointPrefix":"osis",
     "protocol":"rest-json",
+    "protocols":["rest-json"],
     "serviceFullName":"Amazon OpenSearch Ingestion",
     "serviceId":"OSIS",
     "signatureVersion":"v4",
@@ -19,6 +20,7 @@
       "input":{"shape":"CreatePipelineRequest"},
       "output":{"shape":"CreatePipelineResponse"},
       "errors":[
+        {"shape":"DisabledOperationException"},
         {"shape":"LimitExceededException"},
         {"shape":"ValidationException"},
         {"shape":"InternalException"},
@@ -36,6 +38,7 @@
       "input":{"shape":"DeletePipelineRequest"},
       "output":{"shape":"DeletePipelineResponse"},
       "errors":[
+        {"shape":"DisabledOperationException"},
         {"shape":"ValidationException"},
         {"shape":"InternalException"},
         {"shape":"AccessDeniedException"},
@@ -52,6 +55,7 @@
       "input":{"shape":"GetPipelineRequest"},
       "output":{"shape":"GetPipelineResponse"},
       "errors":[
+        {"shape":"DisabledOperationException"},
         {"shape":"ValidationException"},
         {"shape":"InternalException"},
         {"shape":"AccessDeniedException"},
@@ -67,6 +71,7 @@
       "input":{"shape":"GetPipelineBlueprintRequest"},
       "output":{"shape":"GetPipelineBlueprintResponse"},
       "errors":[
+        {"shape":"DisabledOperationException"},
         {"shape":"AccessDeniedException"},
         {"shape":"InternalException"},
         {"shape":"ValidationException"},
@@ -82,6 +87,7 @@
       "input":{"shape":"GetPipelineChangeProgressRequest"},
       "output":{"shape":"GetPipelineChangeProgressResponse"},
       "errors":[
+        {"shape":"DisabledOperationException"},
         {"shape":"ValidationException"},
         {"shape":"InternalException"},
         {"shape":"AccessDeniedException"},
@@ -97,6 +103,7 @@
       "input":{"shape":"ListPipelineBlueprintsRequest"},
       "output":{"shape":"ListPipelineBlueprintsResponse"},
       "errors":[
+        {"shape":"DisabledOperationException"},
         {"shape":"ValidationException"},
         {"shape":"InternalException"},
         {"shape":"AccessDeniedException"},
@@ -112,6 +119,7 @@
       "input":{"shape":"ListPipelinesRequest"},
       "output":{"shape":"ListPipelinesResponse"},
       "errors":[
+        {"shape":"DisabledOperationException"},
         {"shape":"ValidationException"},
         {"shape":"InternalException"},
         {"shape":"AccessDeniedException"},
@@ -127,6 +135,7 @@
       "input":{"shape":"ListTagsForResourceRequest"},
       "output":{"shape":"ListTagsForResourceResponse"},
       "errors":[
+        {"shape":"DisabledOperationException"},
         {"shape":"ValidationException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalException"},
@@ -142,6 +151,7 @@
       "input":{"shape":"StartPipelineRequest"},
       "output":{"shape":"StartPipelineResponse"},
       "errors":[
+        {"shape":"DisabledOperationException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ConflictException"},
         {"shape":"InternalException"},
@@ -158,6 +168,7 @@
       "input":{"shape":"StopPipelineRequest"},
       "output":{"shape":"StopPipelineResponse"},
       "errors":[
+        {"shape":"DisabledOperationException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ConflictException"},
         {"shape":"InternalException"},
@@ -174,6 +185,7 @@
       "input":{"shape":"TagResourceRequest"},
       "output":{"shape":"TagResourceResponse"},
       "errors":[
+        {"shape":"DisabledOperationException"},
         {"shape":"LimitExceededException"},
         {"shape":"ValidationException"},
         {"shape":"InternalException"},
@@ -190,6 +202,7 @@
       "input":{"shape":"UntagResourceRequest"},
       "output":{"shape":"UntagResourceResponse"},
       "errors":[
+        {"shape":"DisabledOperationException"},
         {"shape":"ValidationException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalException"},
@@ -205,6 +218,7 @@
       "input":{"shape":"UpdatePipelineRequest"},
       "output":{"shape":"UpdatePipelineResponse"},
       "errors":[
+        {"shape":"DisabledOperationException"},
         {"shape":"ValidationException"},
         {"shape":"InternalException"},
         {"shape":"AccessDeniedException"},
@@ -221,6 +235,7 @@
       "input":{"shape":"ValidatePipelineRequest"},
       "output":{"shape":"ValidatePipelineResponse"},
       "errors":[
+        {"shape":"DisabledOperationException"},
         {"shape":"AccessDeniedException"},
         {"shape":"InternalException"},
         {"shape":"ValidationException"}
@@ -234,6 +249,10 @@
       },
       "error":{"httpStatusCode":403},
       "exception":true
+    },
+    "BlueprintFormat":{
+      "type":"string",
+      "pattern":"(YAML|JSON)"
     },
     "Boolean":{"type":"boolean"},
     "BufferOptions":{
@@ -286,6 +305,10 @@
         "COMPLETED",
         "FAILED"
       ]
+    },
+    "CidrBlock":{
+      "type":"string",
+      "pattern":"^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)/(3[0-2]|[12]?[0-9])$"
     },
     "CloudWatchLogDestination":{
       "type":"structure",
@@ -343,6 +366,13 @@
       "members":{
       }
     },
+    "DisabledOperationException":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{"httpStatusCode":409},
+      "exception":true
+    },
     "EncryptionAtRestOptions":{
       "type":"structure",
       "required":["KmsKeyArn"],
@@ -358,13 +388,19 @@
           "shape":"String",
           "location":"uri",
           "locationName":"BlueprintName"
+        },
+        "Format":{
+          "shape":"BlueprintFormat",
+          "location":"querystring",
+          "locationName":"format"
         }
       }
     },
     "GetPipelineBlueprintResponse":{
       "type":"structure",
       "members":{
-        "Blueprint":{"shape":"PipelineBlueprint"}
+        "Blueprint":{"shape":"PipelineBlueprint"},
+        "Format":{"shape":"String"}
       }
     },
     "GetPipelineChangeProgressRequest":{
@@ -524,6 +560,7 @@
         "BufferOptions":{"shape":"BufferOptions"},
         "EncryptionAtRestOptions":{"shape":"EncryptionAtRestOptions"},
         "ServiceVpcEndpoints":{"shape":"ServiceVpcEndpointsList"},
+        "Destinations":{"shape":"PipelineDestinationList"},
         "Tags":{"shape":"TagList"}
       }
     },
@@ -537,13 +574,21 @@
       "type":"structure",
       "members":{
         "BlueprintName":{"shape":"String"},
-        "PipelineConfigurationBody":{"shape":"String"}
+        "PipelineConfigurationBody":{"shape":"String"},
+        "DisplayName":{"shape":"String"},
+        "DisplayDescription":{"shape":"String"},
+        "Service":{"shape":"String"},
+        "UseCase":{"shape":"String"}
       }
     },
     "PipelineBlueprintSummary":{
       "type":"structure",
       "members":{
-        "BlueprintName":{"shape":"String"}
+        "BlueprintName":{"shape":"String"},
+        "DisplayName":{"shape":"String"},
+        "DisplayDescription":{"shape":"String"},
+        "Service":{"shape":"String"},
+        "UseCase":{"shape":"String"}
       }
     },
     "PipelineBlueprintsSummaryList":{
@@ -554,6 +599,17 @@
       "type":"string",
       "max":24000,
       "min":1
+    },
+    "PipelineDestination":{
+      "type":"structure",
+      "members":{
+        "ServiceName":{"shape":"String"},
+        "Endpoint":{"shape":"String"}
+      }
+    },
+    "PipelineDestinationList":{
+      "type":"list",
+      "member":{"shape":"PipelineDestination"}
     },
     "PipelineName":{
       "type":"string",
@@ -593,6 +649,7 @@
         "MaxUnits":{"shape":"PipelineUnits"},
         "CreatedAt":{"shape":"Timestamp"},
         "LastUpdatedAt":{"shape":"Timestamp"},
+        "Destinations":{"shape":"PipelineDestinationList"},
         "Tags":{"shape":"TagList"}
       }
     },
@@ -814,6 +871,14 @@
       "type":"list",
       "member":{"shape":"ValidationMessage"}
     },
+    "VpcAttachmentOptions":{
+      "type":"structure",
+      "required":["AttachToVpc"],
+      "members":{
+        "AttachToVpc":{"shape":"Boolean"},
+        "CidrBlock":{"shape":"CidrBlock"}
+      }
+    },
     "VpcEndpoint":{
       "type":"structure",
       "members":{
@@ -835,7 +900,8 @@
       "required":["SubnetIds"],
       "members":{
         "SubnetIds":{"shape":"SubnetIds"},
-        "SecurityGroupIds":{"shape":"SecurityGroupIds"}
+        "SecurityGroupIds":{"shape":"SecurityGroupIds"},
+        "VpcAttachmentOptions":{"shape":"VpcAttachmentOptions"}
       }
     }
   }

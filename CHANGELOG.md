@@ -1,3 +1,16 @@
+Release v1.53.6 (2024-05-20)
+===
+
+### Service Client Updates
+* `service/bedrock-agent`: Updates service API and documentation
+* `service/bedrock-agent-runtime`: Updates service API and documentation
+* `service/controltower`: Updates service API, documentation, and paginators
+* `service/osis`: Updates service API and documentation
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * This release adds support for EngineLifecycleSupport on DBInstances, DBClusters, and GlobalClusters.
+* `service/secretsmanager`: Updates service documentation
+  * add v2 smoke tests and smithy smokeTests trait for SDK testing
+
 Release v1.53.5 (2024-05-17)
 ===
 
