@@ -20,6 +20,12 @@ const (
 	// The client attempted to remove a resource that is currently in use.
 	ErrCodeConflictException = "ConflictException"
 
+	// ErrCodeDisabledOperationException for service response error code
+	// "DisabledOperationException".
+	//
+	// Exception is thrown when an operation has been disabled.
+	ErrCodeDisabledOperationException = "DisabledOperationException"
+
 	// ErrCodeInternalException for service response error code
 	// "InternalException".
 	//
@@ -61,6 +67,7 @@ const (
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"AccessDeniedException":           newErrorAccessDeniedException,
 	"ConflictException":               newErrorConflictException,
+	"DisabledOperationException":      newErrorDisabledOperationException,
 	"InternalException":               newErrorInternalException,
 	"InvalidPaginationTokenException": newErrorInvalidPaginationTokenException,
 	"LimitExceededException":          newErrorLimitExceededException,

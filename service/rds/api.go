@@ -22005,14 +22005,17 @@ type CreateDBClusterInput struct {
 	// Valid for Cluster Type: Multi-AZ DB clusters only
 	AutoMinorVersionUpgrade *bool `type:"boolean"`
 
-	// A list of Availability Zones (AZs) where DB instances in the DB cluster can
-	// be created.
+	// A list of Availability Zones (AZs) where you specifically want to create
+	// DB instances in the DB cluster.
 	//
-	// For information on Amazon Web Services Regions and Availability Zones, see
-	// Choosing the Regions and Availability Zones (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.RegionsAndAvailabilityZones.html)
+	// For information on AZs, see Availability Zones (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.RegionsAndAvailabilityZones.html#Concepts.RegionsAndAvailabilityZones.AvailabilityZones)
 	// in the Amazon Aurora User Guide.
 	//
 	// Valid for Cluster Type: Aurora DB clusters only
+	//
+	// Constraints:
+	//
+	//    * Can't specify more than three AZs.
 	AvailabilityZones []*string `locationNameList:"AvailabilityZone" type:"list"`
 
 	// The target backtrack window, in seconds. To disable backtracking, set this
@@ -22248,10 +22251,49 @@ type CreateDBClusterInput struct {
 	//
 	// Valid for Cluster Type: Aurora DB clusters and Multi-AZ DB clusters
 	//
-	// Valid Values: aurora-mysql | aurora-postgresql | mysql | postgres
+	// Valid Values:
+	//
+	//    * aurora-mysql
+	//
+	//    * aurora-postgresql
+	//
+	//    * mysql
+	//
+	//    * postgres
+	//
+	//    * neptune - For information about using Amazon Neptune, see the Amazon
+	//    Neptune User Guide (https://docs.aws.amazon.com/neptune/latest/userguide/intro.html).
 	//
 	// Engine is a required field
 	Engine *string `type:"string" required:"true"`
+
+	// The life cycle type for this DB cluster.
+	//
+	// By default, this value is set to open-source-rds-extended-support, which
+	// enrolls your DB cluster into Amazon RDS Extended Support. At the end of standard
+	// support, you can avoid charges for Extended Support by setting the value
+	// to open-source-rds-extended-support-disabled. In this case, creating the
+	// DB cluster will fail if the DB major version is past its end of standard
+	// support date.
+	//
+	// You can use this setting to enroll your DB cluster into Amazon RDS Extended
+	// Support. With RDS Extended Support, you can run the selected major engine
+	// version on your DB cluster past the end of standard support for that engine
+	// version. For more information, see the following sections:
+	//
+	//    * Amazon Aurora (PostgreSQL only) - Using Amazon RDS Extended Support
+	//    (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/extended-support.html)
+	//    in the Amazon Aurora User Guide
+	//
+	//    * Amazon RDS - Using Amazon RDS Extended Support (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/extended-support.html)
+	//    in the Amazon RDS User Guide
+	//
+	// Valid for Cluster Type: Aurora DB clusters and Multi-AZ DB clusters
+	//
+	// Valid Values: open-source-rds-extended-support | open-source-rds-extended-support-disabled
+	//
+	// Default: open-source-rds-extended-support
+	EngineLifecycleSupport *string `type:"string"`
 
 	// The DB engine mode of the DB cluster, either provisioned or serverless.
 	//
@@ -22897,6 +22939,12 @@ func (s *CreateDBClusterInput) SetEnablePerformanceInsights(v bool) *CreateDBClu
 // SetEngine sets the Engine field's value.
 func (s *CreateDBClusterInput) SetEngine(v string) *CreateDBClusterInput {
 	s.Engine = &v
+	return s
+}
+
+// SetEngineLifecycleSupport sets the EngineLifecycleSupport field's value.
+func (s *CreateDBClusterInput) SetEngineLifecycleSupport(v string) *CreateDBClusterInput {
+	s.EngineLifecycleSupport = &v
 	return s
 }
 
@@ -24008,6 +24056,29 @@ type CreateDBInstanceInput struct {
 	// Engine is a required field
 	Engine *string `type:"string" required:"true"`
 
+	// The life cycle type for this DB instance.
+	//
+	// By default, this value is set to open-source-rds-extended-support, which
+	// enrolls your DB instance into Amazon RDS Extended Support. At the end of
+	// standard support, you can avoid charges for Extended Support by setting the
+	// value to open-source-rds-extended-support-disabled. In this case, creating
+	// the DB instance will fail if the DB major version is past its end of standard
+	// support date.
+	//
+	// This setting applies only to RDS for MySQL and RDS for PostgreSQL. For Amazon
+	// Aurora DB instances, the life cycle type is managed by the DB cluster.
+	//
+	// You can use this setting to enroll your DB instance into Amazon RDS Extended
+	// Support. With RDS Extended Support, you can run the selected major engine
+	// version on your DB instance past the end of standard support for that engine
+	// version. For more information, see Using Amazon RDS Extended Support (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/extended-support.html)
+	// in the Amazon RDS User Guide.
+	//
+	// Valid Values: open-source-rds-extended-support | open-source-rds-extended-support-disabled
+	//
+	// Default: open-source-rds-extended-support
+	EngineLifecycleSupport *string `type:"string"`
+
 	// The version number of the database engine to use.
 	//
 	// This setting doesn't apply to Amazon Aurora DB instances. The version number
@@ -24715,6 +24786,12 @@ func (s *CreateDBInstanceInput) SetEnablePerformanceInsights(v bool) *CreateDBIn
 // SetEngine sets the Engine field's value.
 func (s *CreateDBInstanceInput) SetEngine(v string) *CreateDBInstanceInput {
 	s.Engine = &v
+	return s
+}
+
+// SetEngineLifecycleSupport sets the EngineLifecycleSupport field's value.
+func (s *CreateDBInstanceInput) SetEngineLifecycleSupport(v string) *CreateDBInstanceInput {
+	s.EngineLifecycleSupport = &v
 	return s
 }
 
@@ -27050,8 +27127,9 @@ type CreateEventSubscriptionInput struct {
 	// to db-instance. For RDS Proxy events, specify db-proxy. If this value isn't
 	// specified, all events are returned.
 	//
-	// Valid Values: db-instance | db-cluster | db-parameter-group | db-security-group
-	// | db-snapshot | db-cluster-snapshot | db-proxy
+	// Valid Values:db-instance | db-cluster | db-parameter-group | db-security-group
+	// | db-snapshot | db-cluster-snapshot | db-proxy | zero-etl | custom-engine-version
+	// | blue-green-deployment
 	SourceType *string `type:"string"`
 
 	// The name of the subscription.
@@ -27202,6 +27280,29 @@ type CreateGlobalClusterInput struct {
 	//    case, Amazon Aurora uses the engine of the source DB cluster.
 	Engine *string `type:"string"`
 
+	// The life cycle type for this global database cluster.
+	//
+	// By default, this value is set to open-source-rds-extended-support, which
+	// enrolls your global cluster into Amazon RDS Extended Support. At the end
+	// of standard support, you can avoid charges for Extended Support by setting
+	// the value to open-source-rds-extended-support-disabled. In this case, creating
+	// the global cluster will fail if the DB major version is past its end of standard
+	// support date.
+	//
+	// This setting only applies to Aurora PostgreSQL-based global databases.
+	//
+	// You can use this setting to enroll your global cluster into Amazon RDS Extended
+	// Support. With RDS Extended Support, you can run the selected major engine
+	// version on your global cluster past the end of standard support for that
+	// engine version. For more information, see Using Amazon RDS Extended Support
+	// (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/extended-support.html)
+	// in the Amazon Aurora User Guide.
+	//
+	// Valid Values: open-source-rds-extended-support | open-source-rds-extended-support-disabled
+	//
+	// Default: open-source-rds-extended-support
+	EngineLifecycleSupport *string `type:"string"`
+
 	// The engine version to use for this global database cluster.
 	//
 	// Constraints:
@@ -27273,6 +27374,12 @@ func (s *CreateGlobalClusterInput) SetDeletionProtection(v bool) *CreateGlobalCl
 // SetEngine sets the Engine field's value.
 func (s *CreateGlobalClusterInput) SetEngine(v string) *CreateGlobalClusterInput {
 	s.Engine = &v
+	return s
+}
+
+// SetEngineLifecycleSupport sets the EngineLifecycleSupport field's value.
+func (s *CreateGlobalClusterInput) SetEngineLifecycleSupport(v string) *CreateGlobalClusterInput {
+	s.EngineLifecycleSupport = &v
 	return s
 }
 
@@ -28171,6 +28278,11 @@ type DBCluster struct {
 	// The database engine used for this DB cluster.
 	Engine *string `type:"string"`
 
+	// The life cycle type for the DB cluster.
+	//
+	// For more information, see CreateDBCluster.
+	EngineLifecycleSupport *string `type:"string"`
+
 	// The DB engine mode of the DB cluster, either provisioned or serverless.
 	//
 	// For more information, see CreateDBCluster (https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_CreateDBCluster.html).
@@ -28647,6 +28759,12 @@ func (s *DBCluster) SetEndpoint(v string) *DBCluster {
 // SetEngine sets the Engine field's value.
 func (s *DBCluster) SetEngine(v string) *DBCluster {
 	s.Engine = &v
+	return s
+}
+
+// SetEngineLifecycleSupport sets the EngineLifecycleSupport field's value.
+func (s *DBCluster) SetEngineLifecycleSupport(v string) *DBCluster {
+	s.EngineLifecycleSupport = &v
 	return s
 }
 
@@ -30601,6 +30719,11 @@ type DBInstance struct {
 	// The database engine used for this DB instance.
 	Engine *string `type:"string"`
 
+	// The life cycle type for the DB instance.
+	//
+	// For more information, see CreateDBInstance.
+	EngineLifecycleSupport *string `type:"string"`
+
 	// The version of the database engine.
 	EngineVersion *string `type:"string"`
 
@@ -31086,6 +31209,12 @@ func (s *DBInstance) SetEndpoint(v *Endpoint) *DBInstance {
 // SetEngine sets the Engine field's value.
 func (s *DBInstance) SetEngine(v string) *DBInstance {
 	s.Engine = &v
+	return s
+}
+
+// SetEngineLifecycleSupport sets the EngineLifecycleSupport field's value.
+func (s *DBInstance) SetEngineLifecycleSupport(v string) *DBInstance {
+	s.EngineLifecycleSupport = &v
 	return s
 }
 
@@ -45050,6 +45179,11 @@ type GlobalCluster struct {
 	// The Aurora database engine used by the global database cluster.
 	Engine *string `type:"string"`
 
+	// The life cycle type for the global cluster.
+	//
+	// For more information, see CreateGlobalCluster.
+	EngineLifecycleSupport *string `type:"string"`
+
 	// Indicates the database engine version.
 	EngineVersion *string `type:"string"`
 
@@ -45115,6 +45249,12 @@ func (s *GlobalCluster) SetDeletionProtection(v bool) *GlobalCluster {
 // SetEngine sets the Engine field's value.
 func (s *GlobalCluster) SetEngine(v string) *GlobalCluster {
 	s.Engine = &v
+	return s
+}
+
+// SetEngineLifecycleSupport sets the EngineLifecycleSupport field's value.
+func (s *GlobalCluster) SetEngineLifecycleSupport(v string) *GlobalCluster {
+	s.EngineLifecycleSupport = &v
 	return s
 }
 
@@ -50598,8 +50738,9 @@ type ModifyEventSubscriptionInput struct {
 	// to db-instance. For RDS Proxy events, specify db-proxy. If this value isn't
 	// specified, all events are returned.
 	//
-	// Valid Values: db-instance | db-cluster | db-parameter-group | db-security-group
-	// | db-snapshot | db-cluster-snapshot | db-proxy
+	// Valid Values:db-instance | db-cluster | db-parameter-group | db-security-group
+	// | db-snapshot | db-cluster-snapshot | db-proxy | zero-etl | custom-engine-version
+	// | blue-green-deployment
 	SourceType *string `type:"string"`
 
 	// The name of the RDS event notification subscription.
@@ -52708,7 +52849,11 @@ type PendingMaintenanceAction struct {
 	_ struct{} `type:"structure"`
 
 	// The type of pending maintenance action that is available for the resource.
-	// Valid actions are system-update, db-upgrade, hardware-maintenance, and ca-certificate-rotation.
+	//
+	// For more information about maintenance actions, see Maintaining a DB instance
+	// (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_UpgradeDBInstance.Maintenance.html).
+	//
+	// Valid Values:system-update | db-upgrade | hardware-maintenance | ca-certificate-rotation
 	Action *string `type:"string"`
 
 	// The date of the maintenance window when the action is applied. The maintenance
@@ -55584,6 +55729,34 @@ type RestoreDBClusterFromS3Input struct {
 	// Engine is a required field
 	Engine *string `type:"string" required:"true"`
 
+	// The life cycle type for this DB cluster.
+	//
+	// By default, this value is set to open-source-rds-extended-support, which
+	// enrolls your DB cluster into Amazon RDS Extended Support. At the end of standard
+	// support, you can avoid charges for Extended Support by setting the value
+	// to open-source-rds-extended-support-disabled. In this case, RDS automatically
+	// upgrades your restored DB cluster to a higher engine version, if the major
+	// engine version is past its end of standard support date.
+	//
+	// You can use this setting to enroll your DB cluster into Amazon RDS Extended
+	// Support. With RDS Extended Support, you can run the selected major engine
+	// version on your DB cluster past the end of standard support for that engine
+	// version. For more information, see the following sections:
+	//
+	//    * Amazon Aurora (PostgreSQL only) - Using Amazon RDS Extended Support
+	//    (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/extended-support.html)
+	//    in the Amazon Aurora User Guide
+	//
+	//    * Amazon RDS - Using Amazon RDS Extended Support (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/extended-support.html)
+	//    in the Amazon RDS User Guide
+	//
+	// Valid for Cluster Type: Aurora DB clusters and Multi-AZ DB clusters
+	//
+	// Valid Values: open-source-rds-extended-support | open-source-rds-extended-support-disabled
+	//
+	// Default: open-source-rds-extended-support
+	EngineLifecycleSupport *string `type:"string"`
+
 	// The version number of the database engine to use.
 	//
 	// To list all of the available engine versions for aurora-mysql (Aurora MySQL),
@@ -55932,6 +56105,12 @@ func (s *RestoreDBClusterFromS3Input) SetEngine(v string) *RestoreDBClusterFromS
 	return s
 }
 
+// SetEngineLifecycleSupport sets the EngineLifecycleSupport field's value.
+func (s *RestoreDBClusterFromS3Input) SetEngineLifecycleSupport(v string) *RestoreDBClusterFromS3Input {
+	s.EngineLifecycleSupport = &v
+	return s
+}
+
 // SetEngineVersion sets the EngineVersion field's value.
 func (s *RestoreDBClusterFromS3Input) SetEngineVersion(v string) *RestoreDBClusterFromS3Input {
 	s.EngineVersion = &v
@@ -56272,6 +56451,34 @@ type RestoreDBClusterFromSnapshotInput struct {
 	// Engine is a required field
 	Engine *string `type:"string" required:"true"`
 
+	// The life cycle type for this DB cluster.
+	//
+	// By default, this value is set to open-source-rds-extended-support, which
+	// enrolls your DB cluster into Amazon RDS Extended Support. At the end of standard
+	// support, you can avoid charges for Extended Support by setting the value
+	// to open-source-rds-extended-support-disabled. In this case, RDS automatically
+	// upgrades your restored DB cluster to a higher engine version, if the major
+	// engine version is past its end of standard support date.
+	//
+	// You can use this setting to enroll your DB cluster into Amazon RDS Extended
+	// Support. With RDS Extended Support, you can run the selected major engine
+	// version on your DB cluster past the end of standard support for that engine
+	// version. For more information, see the following sections:
+	//
+	//    * Amazon Aurora (PostgreSQL only) - Using Amazon RDS Extended Support
+	//    (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/extended-support.html)
+	//    in the Amazon Aurora User Guide
+	//
+	//    * Amazon RDS - Using Amazon RDS Extended Support (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/extended-support.html)
+	//    in the Amazon RDS User Guide
+	//
+	// Valid for Cluster Type: Aurora DB clusters and Multi-AZ DB clusters
+	//
+	// Valid Values: open-source-rds-extended-support | open-source-rds-extended-support-disabled
+	//
+	// Default: open-source-rds-extended-support
+	EngineLifecycleSupport *string `type:"string"`
+
 	// The DB engine mode of the DB cluster, either provisioned or serverless.
 	//
 	// For more information, see CreateDBCluster (https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_CreateDBCluster.html).
@@ -56602,6 +56809,12 @@ func (s *RestoreDBClusterFromSnapshotInput) SetEngine(v string) *RestoreDBCluste
 	return s
 }
 
+// SetEngineLifecycleSupport sets the EngineLifecycleSupport field's value.
+func (s *RestoreDBClusterFromSnapshotInput) SetEngineLifecycleSupport(v string) *RestoreDBClusterFromSnapshotInput {
+	s.EngineLifecycleSupport = &v
+	return s
+}
+
 // SetEngineMode sets the EngineMode field's value.
 func (s *RestoreDBClusterFromSnapshotInput) SetEngineMode(v string) *RestoreDBClusterFromSnapshotInput {
 	s.EngineMode = &v
@@ -56880,6 +57093,34 @@ type RestoreDBClusterToPointInTimeInput struct {
 	//
 	// Valid for: Aurora DB clusters only
 	EnableIAMDatabaseAuthentication *bool `type:"boolean"`
+
+	// The life cycle type for this DB cluster.
+	//
+	// By default, this value is set to open-source-rds-extended-support, which
+	// enrolls your DB cluster into Amazon RDS Extended Support. At the end of standard
+	// support, you can avoid charges for Extended Support by setting the value
+	// to open-source-rds-extended-support-disabled. In this case, RDS automatically
+	// upgrades your restored DB cluster to a higher engine version, if the major
+	// engine version is past its end of standard support date.
+	//
+	// You can use this setting to enroll your DB cluster into Amazon RDS Extended
+	// Support. With RDS Extended Support, you can run the selected major engine
+	// version on your DB cluster past the end of standard support for that engine
+	// version. For more information, see the following sections:
+	//
+	//    * Amazon Aurora (PostgreSQL only) - Using Amazon RDS Extended Support
+	//    (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/extended-support.html)
+	//    in the Amazon Aurora User Guide
+	//
+	//    * Amazon RDS - Using Amazon RDS Extended Support (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/extended-support.html)
+	//    in the Amazon RDS User Guide
+	//
+	// Valid for Cluster Type: Aurora DB clusters and Multi-AZ DB clusters
+	//
+	// Valid Values: open-source-rds-extended-support | open-source-rds-extended-support-disabled
+	//
+	// Default: open-source-rds-extended-support
+	EngineLifecycleSupport *string `type:"string"`
 
 	// The engine mode of the new cluster. Specify provisioned or serverless, depending
 	// on the type of the cluster you are creating. You can create an Aurora Serverless
@@ -57186,6 +57427,12 @@ func (s *RestoreDBClusterToPointInTimeInput) SetEnableCloudwatchLogsExports(v []
 // SetEnableIAMDatabaseAuthentication sets the EnableIAMDatabaseAuthentication field's value.
 func (s *RestoreDBClusterToPointInTimeInput) SetEnableIAMDatabaseAuthentication(v bool) *RestoreDBClusterToPointInTimeInput {
 	s.EnableIAMDatabaseAuthentication = &v
+	return s
+}
+
+// SetEngineLifecycleSupport sets the EngineLifecycleSupport field's value.
+func (s *RestoreDBClusterToPointInTimeInput) SetEngineLifecycleSupport(v string) *RestoreDBClusterToPointInTimeInput {
+	s.EngineLifecycleSupport = &v
 	return s
 }
 
@@ -57658,6 +57905,29 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	//    * sqlserver-web
 	Engine *string `type:"string"`
 
+	// The life cycle type for this DB instance.
+	//
+	// By default, this value is set to open-source-rds-extended-support, which
+	// enrolls your DB instance into Amazon RDS Extended Support. At the end of
+	// standard support, you can avoid charges for Extended Support by setting the
+	// value to open-source-rds-extended-support-disabled. In this case, RDS automatically
+	// upgrades your restored DB instance to a higher engine version, if the major
+	// engine version is past its end of standard support date.
+	//
+	// You can use this setting to enroll your DB instance into Amazon RDS Extended
+	// Support. With RDS Extended Support, you can run the selected major engine
+	// version on your DB instance past the end of standard support for that engine
+	// version. For more information, see Using Amazon RDS Extended Support (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/extended-support.html)
+	// in the Amazon RDS User Guide.
+	//
+	// This setting applies only to RDS for MySQL and RDS for PostgreSQL. For Amazon
+	// Aurora DB instances, the life cycle type is managed by the DB cluster.
+	//
+	// Valid Values: open-source-rds-extended-support | open-source-rds-extended-support-disabled
+	//
+	// Default: open-source-rds-extended-support
+	EngineLifecycleSupport *string `type:"string"`
+
 	// Specifies the amount of provisioned IOPS for the DB instance, expressed in
 	// I/O operations per second. If this parameter isn't specified, the IOPS value
 	// is taken from the backup. If this parameter is set to 0, the new instance
@@ -57971,6 +58241,12 @@ func (s *RestoreDBInstanceFromDBSnapshotInput) SetEngine(v string) *RestoreDBIns
 	return s
 }
 
+// SetEngineLifecycleSupport sets the EngineLifecycleSupport field's value.
+func (s *RestoreDBInstanceFromDBSnapshotInput) SetEngineLifecycleSupport(v string) *RestoreDBInstanceFromDBSnapshotInput {
+	s.EngineLifecycleSupport = &v
+	return s
+}
+
 // SetIops sets the Iops field's value.
 func (s *RestoreDBInstanceFromDBSnapshotInput) SetIops(v int64) *RestoreDBInstanceFromDBSnapshotInput {
 	s.Iops = &v
@@ -58232,6 +58508,29 @@ type RestoreDBInstanceFromS3Input struct {
 	//
 	// Engine is a required field
 	Engine *string `type:"string" required:"true"`
+
+	// The life cycle type for this DB instance.
+	//
+	// By default, this value is set to open-source-rds-extended-support, which
+	// enrolls your DB instance into Amazon RDS Extended Support. At the end of
+	// standard support, you can avoid charges for Extended Support by setting the
+	// value to open-source-rds-extended-support-disabled. In this case, RDS automatically
+	// upgrades your restored DB instance to a higher engine version, if the major
+	// engine version is past its end of standard support date.
+	//
+	// You can use this setting to enroll your DB instance into Amazon RDS Extended
+	// Support. With RDS Extended Support, you can run the selected major engine
+	// version on your DB instance past the end of standard support for that engine
+	// version. For more information, see Using Amazon RDS Extended Support (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/extended-support.html)
+	// in the Amazon RDS User Guide.
+	//
+	// This setting applies only to RDS for MySQL and RDS for PostgreSQL. For Amazon
+	// Aurora DB instances, the life cycle type is managed by the DB cluster.
+	//
+	// Valid Values: open-source-rds-extended-support | open-source-rds-extended-support-disabled
+	//
+	// Default: open-source-rds-extended-support
+	EngineLifecycleSupport *string `type:"string"`
 
 	// The version number of the database engine to use. Choose the latest minor
 	// version of your database engine. For information about engine versions, see
@@ -58696,6 +58995,12 @@ func (s *RestoreDBInstanceFromS3Input) SetEnablePerformanceInsights(v bool) *Res
 // SetEngine sets the Engine field's value.
 func (s *RestoreDBInstanceFromS3Input) SetEngine(v string) *RestoreDBInstanceFromS3Input {
 	s.Engine = &v
+	return s
+}
+
+// SetEngineLifecycleSupport sets the EngineLifecycleSupport field's value.
+func (s *RestoreDBInstanceFromS3Input) SetEngineLifecycleSupport(v string) *RestoreDBInstanceFromS3Input {
+	s.EngineLifecycleSupport = &v
 	return s
 }
 
@@ -59197,6 +59502,29 @@ type RestoreDBInstanceToPointInTimeInput struct {
 	//    * Must be compatible with the engine of the source.
 	Engine *string `type:"string"`
 
+	// The life cycle type for this DB instance.
+	//
+	// By default, this value is set to open-source-rds-extended-support, which
+	// enrolls your DB instance into Amazon RDS Extended Support. At the end of
+	// standard support, you can avoid charges for Extended Support by setting the
+	// value to open-source-rds-extended-support-disabled. In this case, RDS automatically
+	// upgrades your restored DB instance to a higher engine version, if the major
+	// engine version is past its end of standard support date.
+	//
+	// You can use this setting to enroll your DB instance into Amazon RDS Extended
+	// Support. With RDS Extended Support, you can run the selected major engine
+	// version on your DB instance past the end of standard support for that engine
+	// version. For more information, see Using Amazon RDS Extended Support (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/extended-support.html)
+	// in the Amazon RDS User Guide.
+	//
+	// This setting applies only to RDS for MySQL and RDS for PostgreSQL. For Amazon
+	// Aurora DB instances, the life cycle type is managed by the DB cluster.
+	//
+	// Valid Values: open-source-rds-extended-support | open-source-rds-extended-support-disabled
+	//
+	// Default: open-source-rds-extended-support
+	EngineLifecycleSupport *string `type:"string"`
+
 	// The amount of Provisioned IOPS (input/output operations per second) to initially
 	// allocate for the DB instance.
 	//
@@ -59552,6 +59880,12 @@ func (s *RestoreDBInstanceToPointInTimeInput) SetEnableIAMDatabaseAuthentication
 // SetEngine sets the Engine field's value.
 func (s *RestoreDBInstanceToPointInTimeInput) SetEngine(v string) *RestoreDBInstanceToPointInTimeInput {
 	s.Engine = &v
+	return s
+}
+
+// SetEngineLifecycleSupport sets the EngineLifecycleSupport field's value.
+func (s *RestoreDBInstanceToPointInTimeInput) SetEngineLifecycleSupport(v string) *RestoreDBInstanceToPointInTimeInput {
+	s.EngineLifecycleSupport = &v
 	return s
 }
 
@@ -62339,6 +62673,8 @@ type UpgradeTarget struct {
 
 	// Indicates whether the target version is applied to any source DB instances
 	// that have AutoMinorVersionUpgrade set to true.
+	//
+	// This parameter is dynamic, and is set by RDS.
 	AutoUpgrade *bool `type:"boolean"`
 
 	// The version of the database engine that a DB instance can be upgraded to.

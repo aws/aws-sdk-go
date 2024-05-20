@@ -111,6 +111,13 @@ type ControlTowerAPI interface {
 	ListBaselinesPages(*controltower.ListBaselinesInput, func(*controltower.ListBaselinesOutput, bool) bool) error
 	ListBaselinesPagesWithContext(aws.Context, *controltower.ListBaselinesInput, func(*controltower.ListBaselinesOutput, bool) bool, ...request.Option) error
 
+	ListControlOperations(*controltower.ListControlOperationsInput) (*controltower.ListControlOperationsOutput, error)
+	ListControlOperationsWithContext(aws.Context, *controltower.ListControlOperationsInput, ...request.Option) (*controltower.ListControlOperationsOutput, error)
+	ListControlOperationsRequest(*controltower.ListControlOperationsInput) (*request.Request, *controltower.ListControlOperationsOutput)
+
+	ListControlOperationsPages(*controltower.ListControlOperationsInput, func(*controltower.ListControlOperationsOutput, bool) bool) error
+	ListControlOperationsPagesWithContext(aws.Context, *controltower.ListControlOperationsInput, func(*controltower.ListControlOperationsOutput, bool) bool, ...request.Option) error
+
 	ListEnabledBaselines(*controltower.ListEnabledBaselinesInput) (*controltower.ListEnabledBaselinesOutput, error)
 	ListEnabledBaselinesWithContext(aws.Context, *controltower.ListEnabledBaselinesInput, ...request.Option) (*controltower.ListEnabledBaselinesOutput, error)
 	ListEnabledBaselinesRequest(*controltower.ListEnabledBaselinesInput) (*request.Request, *controltower.ListEnabledBaselinesOutput)

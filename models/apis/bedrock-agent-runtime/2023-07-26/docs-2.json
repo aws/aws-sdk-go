@@ -345,6 +345,25 @@
         "RetrieveAndGenerateResponse$guardrailAction": "<p>Specifies if there is a guardrail intervention in the response.</p>"
       }
     },
+    "GuardrailAction": {
+      "base": null,
+      "refs": {
+        "GuardrailTrace$action": "<p>The trace action details used with the Guardrail.</p>"
+      }
+    },
+    "GuardrailAssessment": {
+      "base": "<p>Assessment details of the content analyzed by Guardrails.</p>",
+      "refs": {
+        "GuardrailAssessmentList$member": null
+      }
+    },
+    "GuardrailAssessmentList": {
+      "base": null,
+      "refs": {
+        "GuardrailTrace$inputAssessments": "<p>The details of the input assessments used in the Guardrail Trace.</p>",
+        "GuardrailTrace$outputAssessments": "<p>The details of the output assessments used in the Guardrail Trace.</p>"
+      }
+    },
     "GuardrailConfiguration": {
       "base": "<p>The configuration details for the guardrail.</p>",
       "refs": {
@@ -362,6 +381,164 @@
       "base": null,
       "refs": {
         "GuardrailConfiguration$guardrailVersion": "<p>The version of the guardrail.</p>"
+      }
+    },
+    "GuardrailContentFilter": {
+      "base": "<p>Details of the content filter used in the Guardrail.</p>",
+      "refs": {
+        "GuardrailContentFilterList$member": null
+      }
+    },
+    "GuardrailContentFilterConfidence": {
+      "base": null,
+      "refs": {
+        "GuardrailContentFilter$confidence": "<p>The confidence level regarding the content detected in the filter by the Guardrail.</p>"
+      }
+    },
+    "GuardrailContentFilterList": {
+      "base": null,
+      "refs": {
+        "GuardrailContentPolicyAssessment$filters": "<p>The filter details of the policy assessment used in the Guardrails filter.</p>"
+      }
+    },
+    "GuardrailContentFilterType": {
+      "base": null,
+      "refs": {
+        "GuardrailContentFilter$type": "<p>The type of content detected in the filter by the Guardrail.</p>"
+      }
+    },
+    "GuardrailContentPolicyAction": {
+      "base": null,
+      "refs": {
+        "GuardrailContentFilter$action": "<p>The action placed on the content by the Guardrail filter.</p>"
+      }
+    },
+    "GuardrailContentPolicyAssessment": {
+      "base": "<p>The details of the policy assessment in the Guardrails filter.</p>",
+      "refs": {
+        "GuardrailAssessment$contentPolicy": "<p>Content policy details of the Guardrail.</p>"
+      }
+    },
+    "GuardrailCustomWord": {
+      "base": "<p>The custom word details for the filter in the Guardrail.</p>",
+      "refs": {
+        "GuardrailCustomWordList$member": null
+      }
+    },
+    "GuardrailCustomWordList": {
+      "base": null,
+      "refs": {
+        "GuardrailWordPolicyAssessment$customWords": "<p>The custom word details for words defined in the Guardrail filter.</p>"
+      }
+    },
+    "GuardrailManagedWord": {
+      "base": "<p>The managed word details for the filter in the Guardrail.</p>",
+      "refs": {
+        "GuardrailManagedWordList$member": null
+      }
+    },
+    "GuardrailManagedWordList": {
+      "base": null,
+      "refs": {
+        "GuardrailWordPolicyAssessment$managedWordLists": "<p>The managed word lists for words defined in the Guardrail filter.</p>"
+      }
+    },
+    "GuardrailManagedWordType": {
+      "base": null,
+      "refs": {
+        "GuardrailManagedWord$type": "<p>The type details for the managed word filter in the Guardrail.</p>"
+      }
+    },
+    "GuardrailPiiEntityFilter": {
+      "base": "<p>The Guardrail filter to identify and remove personally identifiable information (PII).</p>",
+      "refs": {
+        "GuardrailPiiEntityFilterList$member": null
+      }
+    },
+    "GuardrailPiiEntityFilterList": {
+      "base": null,
+      "refs": {
+        "GuardrailSensitiveInformationPolicyAssessment$piiEntities": "<p>The details of the PII entities used in the sensitive policy assessment for the Guardrail.</p>"
+      }
+    },
+    "GuardrailPiiEntityType": {
+      "base": null,
+      "refs": {
+        "GuardrailPiiEntityFilter$type": "<p>The type of PII the Guardrail filter has identified and removed.</p>"
+      }
+    },
+    "GuardrailRegexFilter": {
+      "base": "<p>The details for the regex filter used in the Guardrail.</p>",
+      "refs": {
+        "GuardrailRegexFilterList$member": null
+      }
+    },
+    "GuardrailRegexFilterList": {
+      "base": null,
+      "refs": {
+        "GuardrailSensitiveInformationPolicyAssessment$regexes": "<p>The details of the regexes used in the sensitive policy assessment for the Guardrail.</p>"
+      }
+    },
+    "GuardrailSensitiveInformationPolicyAction": {
+      "base": null,
+      "refs": {
+        "GuardrailPiiEntityFilter$action": "<p>The action of the Guardrail filter to identify and remove PII.</p>",
+        "GuardrailRegexFilter$action": "<p>The action details for the regex filter used in the Guardrail.</p>"
+      }
+    },
+    "GuardrailSensitiveInformationPolicyAssessment": {
+      "base": "<p>The details of the sensitive policy assessment used in the Guardrail.</p>",
+      "refs": {
+        "GuardrailAssessment$sensitiveInformationPolicy": "<p>Sensitive Information policy details of Guardrail.</p>"
+      }
+    },
+    "GuardrailTopic": {
+      "base": "<p>The details for a specific topic defined in the Guardrail.</p>",
+      "refs": {
+        "GuardrailTopicList$member": null
+      }
+    },
+    "GuardrailTopicList": {
+      "base": null,
+      "refs": {
+        "GuardrailTopicPolicyAssessment$topics": "<p>The topic details of the policy assessment used in the Guardrail.</p>"
+      }
+    },
+    "GuardrailTopicPolicyAction": {
+      "base": null,
+      "refs": {
+        "GuardrailTopic$action": "<p>The action details on a specific topic in the Guardrail.</p>"
+      }
+    },
+    "GuardrailTopicPolicyAssessment": {
+      "base": "<p>The details of the policy assessment used in the Guardrail.</p>",
+      "refs": {
+        "GuardrailAssessment$topicPolicy": "<p>Topic policy details of the Guardrail.</p>"
+      }
+    },
+    "GuardrailTopicType": {
+      "base": null,
+      "refs": {
+        "GuardrailTopic$type": "<p>The type details on a specific topic in the Guardrail.</p>"
+      }
+    },
+    "GuardrailTrace": {
+      "base": "<p>The trace details used in the Guardrail.</p>",
+      "refs": {
+        "Trace$guardrailTrace": "<p>The trace details for a trace defined in the Guardrail filter.</p>"
+      }
+    },
+    "GuardrailWordPolicyAction": {
+      "base": null,
+      "refs": {
+        "GuardrailCustomWord$action": "<p>The action details for the custom word filter in the Guardrail.</p>",
+        "GuardrailManagedWord$action": "<p>The action details for the managed word filter in the Guardrail.</p>"
+      }
+    },
+    "GuardrailWordPolicyAssessment": {
+      "base": "<p>The assessment details for words defined in the Guardrail filter.</p>",
+      "refs": {
+        "GuardrailAssessment$wordPolicy": "<p>Word policy details of the Guardrail.</p>"
       }
     },
     "Identifier": {
@@ -992,6 +1169,13 @@
         "FunctionParameter$value": "<p>The value of the parameter.</p>",
         "FunctionResult$actionGroup": "<p>The action group that the function belongs to.</p>",
         "FunctionResult$function": "<p>The name of the function that was called.</p>",
+        "GuardrailCustomWord$match": "<p>The match details for the custom word filter in the Guardrail.</p>",
+        "GuardrailManagedWord$match": "<p>The match details for the managed word filter in the Guardrail.</p>",
+        "GuardrailPiiEntityFilter$match": "<p>The match to settings in the Guardrail filter to identify and remove PII.</p>",
+        "GuardrailRegexFilter$match": "<p>The match details for the regex filter used in the Guardrail.</p>",
+        "GuardrailRegexFilter$name": "<p>The name details for the regex filter used in the Guardrail.</p>",
+        "GuardrailRegexFilter$regex": "<p>The regex details for the regex filter used in the Guardrail.</p>",
+        "GuardrailTopic$name": "<p>The name details on a specific topic in the Guardrail.</p>",
         "Parameter$name": "<p>The name of the parameter.</p>",
         "Parameter$type": "<p>The type of the parameter.</p>",
         "Parameter$value": "<p>The value of the parameter.</p>",
@@ -1064,6 +1248,7 @@
       "base": null,
       "refs": {
         "FailureTrace$traceId": "<p>The unique identifier of the trace.</p>",
+        "GuardrailTrace$traceId": "<p>The details of the trace Id used in the Guardrail Trace.</p>",
         "InvocationInput$traceId": "<p>The unique identifier of the trace.</p>",
         "ModelInvocationInput$traceId": "<p>The unique identifier of the trace.</p>",
         "Observation$traceId": "<p>The unique identifier of the trace.</p>",
