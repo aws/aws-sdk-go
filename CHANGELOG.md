@@ -1,3 +1,20 @@
+Release v1.53.7 (2024-05-21)
+===
+
+### Service Client Updates
+* `service/cloudfront`: Updates service API
+  * Model update; no change to SDK functionality.
+* `service/glue`: Updates service API and documentation
+  * Add Maintenance window to CreateJob and UpdateJob APIs and JobRun response. Add a new Job Run State for EXPIRED.
+* `service/lightsail`: Updates service API and documentation
+  * This release adds support for Amazon Lightsail instances to switch between dual-stack or IPv4 only and IPv6-only public IP address types.
+* `service/mailmanager`: Adds new service
+* `service/pi`: Updates service API and documentation
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * Updates Amazon RDS documentation for Db2 license through AWS Marketplace.
+* `service/storagegateway`: Updates service API and documentation
+  * Added new SMBSecurityStrategy enum named MandatoryEncryptionNoAes128, new mode enforces encryption and disables AES 128-bit algorithums.
+
 Release v1.53.6 (2024-05-20)
 ===
 

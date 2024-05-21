@@ -18889,7 +18889,7 @@ type Blueprint struct {
 	// This parameter only applies to Lightsail for Research resources.
 	AppCategory *string `locationName:"appCategory" type:"string" enum:"AppCategory"`
 
-	// The ID for the virtual private server image (app_wordpress_4_4 or app_lamp_7_0).
+	// The ID for the virtual private server image (app_wordpress_x_x or app_lamp_x_x).
 	BlueprintId *string `locationName:"blueprintId" type:"string"`
 
 	// The description of the blueprint.
@@ -19452,7 +19452,7 @@ func (s *BucketState) SetMessage(v string) *BucketState {
 type Bundle struct {
 	_ struct{} `type:"structure"`
 
-	// The bundle ID (micro_1_0).
+	// The bundle ID (micro_x_x).
 	BundleId *string `locationName:"bundleId" type:"string"`
 
 	// The number of vCPUs included in the bundle (2).
@@ -19461,7 +19461,7 @@ type Bundle struct {
 	// The size of the SSD (30).
 	DiskSizeInGb *int64 `locationName:"diskSizeInGb" type:"integer"`
 
-	// The Amazon EC2 instance type (t2.micro).
+	// The instance type (micro).
 	InstanceType *string `locationName:"instanceType" type:"string"`
 
 	// A Boolean value indicating whether the bundle is active.
@@ -23902,7 +23902,7 @@ type CreateInstancesFromSnapshotInput struct {
 	AvailabilityZone *string `locationName:"availabilityZone" type:"string" required:"true"`
 
 	// The bundle of specification information for your virtual private server (or
-	// instance), including the pricing plan (micro_1_0).
+	// instance), including the pricing plan (micro_x_x).
 	//
 	// BundleId is a required field
 	BundleId *string `locationName:"bundleId" type:"string" required:"true"`
@@ -23925,7 +23925,8 @@ type CreateInstancesFromSnapshotInput struct {
 
 	// The IP address type for the instance.
 	//
-	// The possible values are ipv4 for IPv4 only, and dualstack for IPv4 and IPv6.
+	// The possible values are ipv4 for IPv4 only, ipv6 for IPv6 only, and dualstack
+	// for IPv4 and IPv6.
 	//
 	// The default value is dualstack.
 	IpAddressType *string `locationName:"ipAddressType" type:"string" enum:"IpAddressType"`
@@ -24166,7 +24167,7 @@ type CreateInstancesInput struct {
 	// AvailabilityZone is a required field
 	AvailabilityZone *string `locationName:"availabilityZone" type:"string" required:"true"`
 
-	// The ID for a virtual private server image (app_wordpress_4_4 or app_lamp_7_0).
+	// The ID for a virtual private server image (app_wordpress_x_x or app_lamp_x_x).
 	// Use the get blueprints operation to return a list of available images (or
 	// blueprints).
 	//
@@ -24179,7 +24180,7 @@ type CreateInstancesInput struct {
 	BlueprintId *string `locationName:"blueprintId" type:"string" required:"true"`
 
 	// The bundle of specification information for your virtual private server (or
-	// instance), including the pricing plan (micro_1_0).
+	// instance), including the pricing plan (medium_x_x).
 	//
 	// BundleId is a required field
 	BundleId *string `locationName:"bundleId" type:"string" required:"true"`
@@ -24200,7 +24201,8 @@ type CreateInstancesInput struct {
 
 	// The IP address type for the instance.
 	//
-	// The possible values are ipv4 for IPv4 only, and dualstack for IPv4 and IPv6.
+	// The possible values are ipv4 for IPv4 only, ipv6 for IPv6 only, and dualstack
+	// for IPv4 and IPv6.
 	//
 	// The default value is dualstack.
 	IpAddressType *string `locationName:"ipAddressType" type:"string" enum:"IpAddressType"`
@@ -24519,7 +24521,8 @@ type CreateLoadBalancerInput struct {
 
 	// The IP address type for the load balancer.
 	//
-	// The possible values are ipv4 for IPv4 only, and dualstack for IPv4 and IPv6.
+	// The possible values are ipv4 for IPv4 only, ipv6 for IPv6 only, and dualstack
+	// for IPv4 and IPv6.
 	//
 	// The default value is dualstack.
 	IpAddressType *string `locationName:"ipAddressType" type:"string" enum:"IpAddressType"`
@@ -36212,13 +36215,13 @@ type Instance struct {
 	// The Amazon Resource Name (ARN) of the instance (arn:aws:lightsail:us-east-2:123456789101:Instance/244ad76f-8aad-4741-809f-12345EXAMPLE).
 	Arn *string `locationName:"arn" type:"string"`
 
-	// The blueprint ID (os_amlinux_2016_03).
+	// The blueprint ID (amazon_linux_2023).
 	BlueprintId *string `locationName:"blueprintId" type:"string"`
 
-	// The friendly name of the blueprint (Amazon Linux).
+	// The friendly name of the blueprint (Amazon Linux 2023).
 	BlueprintName *string `locationName:"blueprintName" type:"string"`
 
-	// The bundle for the instance (micro_1_0).
+	// The bundle for the instance (micro_x_x).
 	BundleId *string `locationName:"bundleId" type:"string"`
 
 	// The timestamp when the instance was created (1479734909.17) in Unix time
@@ -36230,7 +36233,8 @@ type Instance struct {
 
 	// The IP address type of the instance.
 	//
-	// The possible values are ipv4 for IPv4 only, and dualstack for IPv4 and IPv6.
+	// The possible values are ipv4 for IPv4 only, ipv6 for IPv6 only, and dualstack
+	// for IPv4 and IPv6.
 	IpAddressType *string `locationName:"ipAddressType" type:"string" enum:"IpAddressType"`
 
 	// The IPv6 addresses of the instance.
@@ -36246,7 +36250,7 @@ type Instance struct {
 	// The metadata options for the Amazon Lightsail instance.
 	MetadataOptions *InstanceMetadataOptions `locationName:"metadataOptions" type:"structure"`
 
-	// The name the user gave the instance (Amazon_Linux-1GB-Ohio-1).
+	// The name the user gave the instance (Amazon_Linux_2023-1).
 	Name *string `locationName:"name" type:"string"`
 
 	// Information about the public ports and monthly data transfer rates for the
@@ -37085,6 +37089,10 @@ type InstancePortInfo struct {
 	//    an instance could not be reached. When you specify icmp as the protocol,
 	//    you must specify the ICMP type using the fromPort parameter, and ICMP
 	//    code using the toPort parameter.
+	//
+	//    * icmp6 - Internet Control Message Protocol (ICMP) for IPv6. When you
+	//    specify icmp6 as the protocol, you must specify the ICMP type using the
+	//    fromPort parameter, and ICMP code using the toPort parameter.
 	Protocol *string `locationName:"protocol" type:"string" enum:"NetworkProtocol"`
 
 	// The last port in a range of open ports on an instance.
@@ -37261,6 +37269,10 @@ type InstancePortState struct {
 	//    an instance could not be reached. When you specify icmp as the protocol,
 	//    you must specify the ICMP type using the fromPort parameter, and ICMP
 	//    code using the toPort parameter.
+	//
+	//    * icmp6 - Internet Control Message Protocol (ICMP) for IPv6. When you
+	//    specify icmp6 as the protocol, you must specify the ICMP type using the
+	//    fromPort parameter, and ICMP code using the toPort parameter.
 	Protocol *string `locationName:"protocol" type:"string" enum:"NetworkProtocol"`
 
 	// Specifies whether the instance port is open or closed.
@@ -37358,12 +37370,12 @@ type InstanceSnapshot struct {
 	// An array of disk objects containing information about all block storage disks.
 	FromAttachedDisks []*Disk `locationName:"fromAttachedDisks" type:"list"`
 
-	// The blueprint ID from which you created the snapshot (os_debian_8_3). A blueprint
-	// is a virtual private server (or instance) image used to create instances
-	// quickly.
+	// The blueprint ID from which you created the snapshot (amazon_linux_2023).
+	// A blueprint is a virtual private server (or instance) image used to create
+	// instances quickly.
 	FromBlueprintId *string `locationName:"fromBlueprintId" type:"string"`
 
-	// The bundle ID from which you created the snapshot (micro_1_0).
+	// The bundle ID from which you created the snapshot (micro_x_x).
 	FromBundleId *string `locationName:"fromBundleId" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the instance from which the snapshot was
@@ -37525,10 +37537,10 @@ func (s *InstanceSnapshot) SetTags(v []*Tag) *InstanceSnapshot {
 type InstanceSnapshotInfo struct {
 	_ struct{} `type:"structure"`
 
-	// The blueprint ID from which the source instance (os_debian_8_3).
+	// The blueprint ID from which the source instance (amazon_linux_2023).
 	FromBlueprintId *string `locationName:"fromBlueprintId" type:"string"`
 
-	// The bundle ID from which the source instance was created (micro_1_0).
+	// The bundle ID from which the source instance was created (micro_x_x).
 	FromBundleId *string `locationName:"fromBundleId" type:"string"`
 
 	// A list of objects describing the disks that were attached to the source instance.
@@ -38103,7 +38115,8 @@ type LoadBalancer struct {
 
 	// The IP address type of the load balancer.
 	//
-	// The possible values are ipv4 for IPv4 only, and dualstack for IPv4 and IPv6.
+	// The possible values are ipv4 for IPv4 only, ipv6 for IPv6 only, and dualstack
+	// for IPv4 and IPv6.
 	IpAddressType *string `locationName:"ipAddressType" type:"string" enum:"IpAddressType"`
 
 	// The AWS Region where your load balancer was created (us-east-2a). Lightsail
@@ -39987,6 +40000,10 @@ type PortInfo struct {
 	//    an instance could not be reached. When you specify icmp as the protocol,
 	//    you must specify the ICMP type using the fromPort parameter, and ICMP
 	//    code using the toPort parameter.
+	//
+	//    * icmp6 - Internet Control Message Protocol (ICMP) for IPv6. When you
+	//    specify icmp6 as the protocol, you must specify the ICMP type using the
+	//    fromPort parameter, and ICMP code using the toPort parameter.
 	Protocol *string `locationName:"protocol" type:"string" enum:"NetworkProtocol"`
 
 	// The last port in a range of open ports on an instance.
@@ -42604,9 +42621,21 @@ func (s *Session) SetUrl(v string) *Session {
 type SetIpAddressTypeInput struct {
 	_ struct{} `type:"structure"`
 
+	// Required parameter to accept the instance bundle update when changing to,
+	// and from, IPv6-only.
+	//
+	// An instance bundle will change when switching from dual-stack or ipv4, to
+	// ipv6. It also changes when switching from ipv6, to dual-stack or ipv4.
+	//
+	// You must include this parameter in the command to update the bundle. For
+	// example, if you switch from dual-stack to ipv6, the bundle will be updated,
+	// and billing for the IPv6-only instance bundle begins immediately.
+	AcceptBundleUpdate *bool `locationName:"acceptBundleUpdate" type:"boolean"`
+
 	// The IP address type to set for the specified resource.
 	//
-	// The possible values are ipv4 for IPv4 only, and dualstack for IPv4 and IPv6.
+	// The possible values are ipv4 for IPv4 only, ipv6 for IPv6 only, and dualstack
+	// for IPv4 and IPv6.
 	//
 	// IpAddressType is a required field
 	IpAddressType *string `locationName:"ipAddressType" type:"string" required:"true" enum:"IpAddressType"`
@@ -42663,6 +42692,12 @@ func (s *SetIpAddressTypeInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAcceptBundleUpdate sets the AcceptBundleUpdate field's value.
+func (s *SetIpAddressTypeInput) SetAcceptBundleUpdate(v bool) *SetIpAddressTypeInput {
+	s.AcceptBundleUpdate = &v
+	return s
 }
 
 // SetIpAddressType sets the IpAddressType field's value.
@@ -46783,6 +46818,9 @@ const (
 
 	// IpAddressTypeIpv4 is a IpAddressType enum value
 	IpAddressTypeIpv4 = "ipv4"
+
+	// IpAddressTypeIpv6 is a IpAddressType enum value
+	IpAddressTypeIpv6 = "ipv6"
 )
 
 // IpAddressType_Values returns all elements of the IpAddressType enum
@@ -46790,6 +46828,7 @@ func IpAddressType_Values() []string {
 	return []string{
 		IpAddressTypeDualstack,
 		IpAddressTypeIpv4,
+		IpAddressTypeIpv6,
 	}
 }
 
@@ -47389,6 +47428,9 @@ const (
 
 	// NetworkProtocolIcmp is a NetworkProtocol enum value
 	NetworkProtocolIcmp = "icmp"
+
+	// NetworkProtocolIcmpv6 is a NetworkProtocol enum value
+	NetworkProtocolIcmpv6 = "icmpv6"
 )
 
 // NetworkProtocol_Values returns all elements of the NetworkProtocol enum
@@ -47398,6 +47440,7 @@ func NetworkProtocol_Values() []string {
 		NetworkProtocolAll,
 		NetworkProtocolUdp,
 		NetworkProtocolIcmp,
+		NetworkProtocolIcmpv6,
 	}
 }
 

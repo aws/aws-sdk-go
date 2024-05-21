@@ -5,6 +5,7 @@
     "endpointPrefix":"glue",
     "jsonVersion":"1.1",
     "protocol":"json",
+    "protocols":["json"],
     "serviceFullName":"AWS Glue",
     "serviceId":"Glue",
     "signatureVersion":"v4",
@@ -5428,7 +5429,8 @@
         "WorkerType":{"shape":"WorkerType"},
         "CodeGenConfigurationNodes":{"shape":"CodeGenConfigurationNodes"},
         "ExecutionClass":{"shape":"ExecutionClass"},
-        "SourceControlDetails":{"shape":"SourceControlDetails"}
+        "SourceControlDetails":{"shape":"SourceControlDetails"},
+        "MaintenanceWindow":{"shape":"MaintenanceWindow"}
       }
     },
     "CreateJobResponse":{
@@ -9015,7 +9017,8 @@
         "GlueVersion":{"shape":"GlueVersionString"},
         "CodeGenConfigurationNodes":{"shape":"CodeGenConfigurationNodes"},
         "ExecutionClass":{"shape":"ExecutionClass"},
-        "SourceControlDetails":{"shape":"SourceControlDetails"}
+        "SourceControlDetails":{"shape":"SourceControlDetails"},
+        "MaintenanceWindow":{"shape":"MaintenanceWindow"}
       }
     },
     "JobBookmarkEntry":{
@@ -9098,7 +9101,8 @@
         "NotificationProperty":{"shape":"NotificationProperty"},
         "GlueVersion":{"shape":"GlueVersionString"},
         "DPUSeconds":{"shape":"NullableDouble"},
-        "ExecutionClass":{"shape":"ExecutionClass"}
+        "ExecutionClass":{"shape":"ExecutionClass"},
+        "MaintenanceWindow":{"shape":"MaintenanceWindow"}
       }
     },
     "JobRunList":{
@@ -9116,7 +9120,8 @@
         "FAILED",
         "TIMEOUT",
         "ERROR",
-        "WAITING"
+        "WAITING",
+        "EXPIRED"
       ]
     },
     "JobUpdate":{
@@ -9145,7 +9150,8 @@
         "GlueVersion":{"shape":"GlueVersionString"},
         "CodeGenConfigurationNodes":{"shape":"CodeGenConfigurationNodes"},
         "ExecutionClass":{"shape":"ExecutionClass"},
-        "SourceControlDetails":{"shape":"SourceControlDetails"}
+        "SourceControlDetails":{"shape":"SourceControlDetails"},
+        "MaintenanceWindow":{"shape":"MaintenanceWindow"}
       }
     },
     "Join":{
@@ -9780,6 +9786,10 @@
         "DISABLED",
         "SSE-KMS"
       ]
+    },
+    "MaintenanceWindow":{
+      "type":"string",
+      "pattern":"^(Sun|Mon|Tue|Wed|Thu|Fri|Sat):([01]?[0-9]|2[0-3])$"
     },
     "ManyInputs":{
       "type":"list",

@@ -3656,6 +3656,15 @@ func (s *InvalidArgumentException) RequestID() string {
 type ListAvailableResourceDimensionsInput struct {
 	_ struct{} `type:"structure"`
 
+	// The actions to discover the dimensions you are authorized to access. If you
+	// specify multiple actions, then the response will contain the dimensions common
+	// for all the actions.
+	//
+	// When you don't specify this request parameter or provide an empty list, the
+	// response contains all the available dimensions for the target database engine
+	// whether or not you are authorized to access them.
+	AuthorizedActions []*string `type:"list" enum:"FineGrainedAction"`
+
 	// An immutable identifier for a data source that is unique within an Amazon
 	// Web Services Region. Performance Insights gathers metrics from this data
 	// source. To use an Amazon RDS DB instance as a data source, specify its DbiResourceId
@@ -3727,6 +3736,12 @@ func (s *ListAvailableResourceDimensionsInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAuthorizedActions sets the AuthorizedActions field's value.
+func (s *ListAvailableResourceDimensionsInput) SetAuthorizedActions(v []*string) *ListAvailableResourceDimensionsInput {
+	s.AuthorizedActions = v
+	return s
 }
 
 // SetIdentifier sets the Identifier field's value.
@@ -5097,6 +5112,26 @@ func FeatureStatus_Values() []string {
 		FeatureStatusEnabledPendingReboot,
 		FeatureStatusDisabledPendingReboot,
 		FeatureStatusUnknown,
+	}
+}
+
+const (
+	// FineGrainedActionDescribeDimensionKeys is a FineGrainedAction enum value
+	FineGrainedActionDescribeDimensionKeys = "DescribeDimensionKeys"
+
+	// FineGrainedActionGetDimensionKeyDetails is a FineGrainedAction enum value
+	FineGrainedActionGetDimensionKeyDetails = "GetDimensionKeyDetails"
+
+	// FineGrainedActionGetResourceMetrics is a FineGrainedAction enum value
+	FineGrainedActionGetResourceMetrics = "GetResourceMetrics"
+)
+
+// FineGrainedAction_Values returns all elements of the FineGrainedAction enum
+func FineGrainedAction_Values() []string {
+	return []string{
+		FineGrainedActionDescribeDimensionKeys,
+		FineGrainedActionGetDimensionKeyDetails,
+		FineGrainedActionGetResourceMetrics,
 	}
 }
 
