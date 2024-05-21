@@ -24174,11 +24174,20 @@ type CreateDBInstanceInput struct {
 
 	// The license model information for this DB instance.
 	//
+	// License models for RDS for Db2 require additional configuration. The Bring
+	// Your Own License (BYOL) model requires a custom parameter group. The Db2
+	// license through Amazon Web Services Marketplace model requires an Amazon
+	// Web Services Marketplace subscription. For more information, see RDS for
+	// Db2 licensing options (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/db2-licensing.html)
+	// in the Amazon RDS User Guide.
+	//
+	// The default for RDS for Db2 is bring-your-own-license.
+	//
 	// This setting doesn't apply to Amazon Aurora or RDS Custom DB instances.
 	//
 	// Valid Values:
 	//
-	//    * RDS for Db2 - bring-your-own-license
+	//    * RDS for Db2 - bring-your-own-license | marketplace-license
 	//
 	//    * RDS for MariaDB - general-public-license
 	//
@@ -30765,7 +30774,7 @@ type DBInstance struct {
 	LatestRestorableTime *time.Time `type:"timestamp"`
 
 	// The license model information for this DB instance. This setting doesn't
-	// apply to RDS Custom DB instances.
+	// apply to Amazon Aurora or RDS Custom DB instances.
 	LicenseModel *string `type:"string"`
 
 	// The listener connection endpoint for SQL Server Always On.
@@ -57944,11 +57953,30 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 
 	// License model information for the restored DB instance.
 	//
-	// This setting doesn't apply to RDS Custom.
+	// License models for RDS for Db2 require additional configuration. The Bring
+	// Your Own License (BYOL) model requires a custom parameter group. The Db2
+	// license through Amazon Web Services Marketplace model requires an Amazon
+	// Web Services Marketplace subscription. For more information, see RDS for
+	// Db2 licensing options (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/db2-licensing.html)
+	// in the Amazon RDS User Guide.
 	//
-	// Default: Same as source.
+	// This setting doesn't apply to Amazon Aurora or RDS Custom DB instances.
 	//
-	// Valid Values: license-included | bring-your-own-license | general-public-license
+	// Valid Values:
+	//
+	//    * RDS for Db2 - bring-your-own-license | marketplace-license
+	//
+	//    * RDS for MariaDB - general-public-license
+	//
+	//    * RDS for Microsoft SQL Server - license-included
+	//
+	//    * RDS for MySQL - general-public-license
+	//
+	//    * RDS for Oracle - bring-your-own-license | license-included
+	//
+	//    * RDS for PostgreSQL - postgresql-license
+	//
+	// Default: Same as the source.
 	LicenseModel *string `type:"string"`
 
 	// Specifies whether the DB instance is a Multi-AZ deployment.
@@ -59537,9 +59565,28 @@ type RestoreDBInstanceToPointInTimeInput struct {
 
 	// The license model information for the restored DB instance.
 	//
-	// This setting doesn't apply to RDS Custom.
+	// License models for RDS for Db2 require additional configuration. The Bring
+	// Your Own License (BYOL) model requires a custom parameter group. The Db2
+	// license through Amazon Web Services Marketplace model requires an Amazon
+	// Web Services Marketplace subscription. For more information, see RDS for
+	// Db2 licensing options (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/db2-licensing.html)
+	// in the Amazon RDS User Guide.
 	//
-	// Valid Values: license-included | bring-your-own-license | general-public-license
+	// This setting doesn't apply to Amazon Aurora or RDS Custom DB instances.
+	//
+	// Valid Values:
+	//
+	//    * RDS for Db2 - bring-your-own-license | marketplace-license
+	//
+	//    * RDS for MariaDB - general-public-license
+	//
+	//    * RDS for Microsoft SQL Server - license-included
+	//
+	//    * RDS for MySQL - general-public-license
+	//
+	//    * RDS for Oracle - bring-your-own-license | license-included
+	//
+	//    * RDS for PostgreSQL - postgresql-license
 	//
 	// Default: Same as the source.
 	LicenseModel *string `type:"string"`
