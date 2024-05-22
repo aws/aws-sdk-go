@@ -1,3 +1,19 @@
+Release v1.53.8 (2024-05-22)
+===
+
+### Service Client Updates
+* `service/chatbot`: Updates service API and documentation
+* `service/cloudformation`: Updates service API and documentation
+  * Added DeletionMode FORCE_DELETE_STACK for deleting a stack that is stuck in DELETE_FAILED state due to resource deletion failure.
+* `service/kms`: Updates service API and documentation
+  * This release includes feature to import customer's asymmetric (RSA, ECC and SM2) and HMAC keys into KMS in China.
+* `service/opensearch`: Updates service API and documentation
+* `service/wafv2`: Updates service API and documentation
+
+### SDK Bugs
+* `service/ec2`: Correct empty list serialization behavior.
+  * Empty, non-nil lists should NOT be serialized for this service.
+
 Release v1.53.7 (2024-05-21)
 ===
 

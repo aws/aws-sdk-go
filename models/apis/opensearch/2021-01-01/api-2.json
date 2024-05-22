@@ -4,6 +4,7 @@
     "apiVersion":"2021-01-01",
     "endpointPrefix":"es",
     "protocol":"rest-json",
+    "protocols":["rest-json"],
     "serviceFullName":"Amazon OpenSearch Service",
     "serviceId":"OpenSearch",
     "signatureVersion":"v4",
@@ -1707,7 +1708,8 @@
       "members":{
         "DataSourceType":{"shape":"DataSourceType"},
         "Name":{"shape":"DataSourceName"},
-        "Description":{"shape":"DataSourceDescription"}
+        "Description":{"shape":"DataSourceDescription"},
+        "Status":{"shape":"DataSourceStatus"}
       }
     },
     "DataSourceList":{
@@ -1719,6 +1721,13 @@
       "max":80,
       "min":3,
       "pattern":"[a-z][a-z0-9_]+"
+    },
+    "DataSourceStatus":{
+      "type":"string",
+      "enum":[
+        "ACTIVE",
+        "DISABLED"
+      ]
     },
     "DataSourceType":{
       "type":"structure",
@@ -2649,7 +2658,8 @@
       "members":{
         "DataSourceType":{"shape":"DataSourceType"},
         "Name":{"shape":"DataSourceName"},
-        "Description":{"shape":"DataSourceDescription"}
+        "Description":{"shape":"DataSourceDescription"},
+        "Status":{"shape":"DataSourceStatus"}
       }
     },
     "GetDomainMaintenanceStatusRequest":{
@@ -4232,7 +4242,8 @@
           "locationName":"DataSourceName"
         },
         "DataSourceType":{"shape":"DataSourceType"},
-        "Description":{"shape":"DataSourceDescription"}
+        "Description":{"shape":"DataSourceDescription"},
+        "Status":{"shape":"DataSourceStatus"}
       }
     },
     "UpdateDataSourceResponse":{

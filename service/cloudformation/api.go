@@ -11327,6 +11327,15 @@ type DeleteStackInput struct {
 	// stack event would be assigned the same token in the following format: Console-CreateStack-7f59c3cf-00d2-40c7-b2ff-e75db0987002.
 	ClientRequestToken *string `min:"1" type:"string"`
 
+	// Specifies the deletion mode for the stack. Possible values are:
+	//
+	//    * STANDARD - Use the standard behavior. Specifying this value is the same
+	//    as not specifying this parameter.
+	//
+	//    * FORCE_DELETE_STACK - Delete the stack if it's stuck in a DELETE_FAILED
+	//    state due to resource deletion failure.
+	DeletionMode *string `type:"string" enum:"DeletionMode"`
+
 	// For stacks in the DELETE_FAILED state, a list of resource logical IDs that
 	// are associated with the resources you want to retain. During deletion, CloudFormation
 	// deletes the stack but doesn't delete the retained resources.
@@ -11390,6 +11399,12 @@ func (s *DeleteStackInput) Validate() error {
 // SetClientRequestToken sets the ClientRequestToken field's value.
 func (s *DeleteStackInput) SetClientRequestToken(v string) *DeleteStackInput {
 	s.ClientRequestToken = &v
+	return s
+}
+
+// SetDeletionMode sets the DeletionMode field's value.
+func (s *DeleteStackInput) SetDeletionMode(v string) *DeleteStackInput {
+	s.DeletionMode = &v
 	return s
 }
 
@@ -17147,7 +17162,7 @@ type ListStackInstanceResourceDriftsOutput struct {
 	// the previous response object's NextToken parameter is set to null.
 	NextToken *string `min:"1" type:"string"`
 
-	// A list of StackInstanceResourceDriftSummary structures that contain information
+	// A list of StackInstanceResourceDriftsSummary structures that contain information
 	// about the specified stack instances.
 	Summaries []*StackInstanceResourceDriftsSummary `type:"list"`
 }
@@ -21643,6 +21658,15 @@ type Stack struct {
 	// CreationTime is a required field
 	CreationTime *time.Time `type:"timestamp" required:"true"`
 
+	// Specifies the deletion mode for the stack. Possible values are:
+	//
+	//    * STANDARD - Use the standard behavior. Specifying this value is the same
+	//    as not specifying this parameter.
+	//
+	//    * FORCE_DELETE_STACK - Delete the stack if it's stuck in a DELETE_FAILED
+	//    state due to resource deletion failure.
+	DeletionMode *string `type:"string" enum:"DeletionMode"`
+
 	// The time the stack was deleted.
 	DeletionTime *time.Time `type:"timestamp"`
 
@@ -21780,6 +21804,12 @@ func (s *Stack) SetChangeSetId(v string) *Stack {
 // SetCreationTime sets the CreationTime field's value.
 func (s *Stack) SetCreationTime(v time.Time) *Stack {
 	s.CreationTime = &v
+	return s
+}
+
+// SetDeletionMode sets the DeletionMode field's value.
+func (s *Stack) SetDeletionMode(v string) *Stack {
+	s.DeletionMode = &v
 	return s
 }
 
@@ -24125,7 +24155,7 @@ type StackSetOperationPreferences struct {
 	//    level to ensure the number of failed accounts never exceeds the value
 	//    of FailureToleranceCount +1. The initial actual concurrency is set to
 	//    the lower of either the value of the MaxConcurrentCount, or the value
-	//    of MaxConcurrentCount +1. The actual concurrency is then reduced proportionally
+	//    of FailureToleranceCount +1. The actual concurrency is then reduced proportionally
 	//    by the number of failures. This is the default behavior. If failure tolerance
 	//    or Maximum concurrent accounts are set to percentages, the behavior is
 	//    similar.
@@ -28025,6 +28055,22 @@ func ConcurrencyMode_Values() []string {
 	return []string{
 		ConcurrencyModeStrictFailureTolerance,
 		ConcurrencyModeSoftFailureTolerance,
+	}
+}
+
+const (
+	// DeletionModeStandard is a DeletionMode enum value
+	DeletionModeStandard = "STANDARD"
+
+	// DeletionModeForceDeleteStack is a DeletionMode enum value
+	DeletionModeForceDeleteStack = "FORCE_DELETE_STACK"
+)
+
+// DeletionMode_Values returns all elements of the DeletionMode enum
+func DeletionMode_Values() []string {
+	return []string{
+		DeletionModeStandard,
+		DeletionModeForceDeleteStack,
 	}
 }
 

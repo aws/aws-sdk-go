@@ -539,7 +539,7 @@
     "ConcurrencyMode": {
       "base": null,
       "refs": {
-        "StackSetOperationPreferences$ConcurrencyMode": "<p>Specifies how the concurrency level behaves during the operation execution.</p> <ul> <li> <p> <code>STRICT_FAILURE_TOLERANCE</code>: This option dynamically lowers the concurrency level to ensure the number of failed accounts never exceeds the value of <code>FailureToleranceCount</code> +1. The initial actual concurrency is set to the lower of either the value of the <code>MaxConcurrentCount</code>, or the value of <code>MaxConcurrentCount</code> +1. The actual concurrency is then reduced proportionally by the number of failures. This is the default behavior.</p> <p>If failure tolerance or Maximum concurrent accounts are set to percentages, the behavior is similar.</p> </li> <li> <p> <code>SOFT_FAILURE_TOLERANCE</code>: This option decouples <code>FailureToleranceCount</code> from the actual concurrency. This allows stack set operations to run at the concurrency level set by the <code>MaxConcurrentCount</code> value, or <code>MaxConcurrentPercentage</code>, regardless of the number of failures.</p> </li> </ul>"
+        "StackSetOperationPreferences$ConcurrencyMode": "<p>Specifies how the concurrency level behaves during the operation execution.</p> <ul> <li> <p> <code>STRICT_FAILURE_TOLERANCE</code>: This option dynamically lowers the concurrency level to ensure the number of failed accounts never exceeds the value of <code>FailureToleranceCount</code> +1. The initial actual concurrency is set to the lower of either the value of the <code>MaxConcurrentCount</code>, or the value of <code>FailureToleranceCount</code> +1. The actual concurrency is then reduced proportionally by the number of failures. This is the default behavior.</p> <p>If failure tolerance or Maximum concurrent accounts are set to percentages, the behavior is similar.</p> </li> <li> <p> <code>SOFT_FAILURE_TOLERANCE</code>: This option decouples <code>FailureToleranceCount</code> from the actual concurrency. This allows stack set operations to run at the concurrency level set by the <code>MaxConcurrentCount</code> value, or <code>MaxConcurrentPercentage</code>, regardless of the number of failures.</p> </li> </ul>"
       }
     },
     "ConcurrentResourcesLimitExceededException": {
@@ -693,6 +693,13 @@
     "DeleteStackSetOutput": {
       "base": null,
       "refs": {
+      }
+    },
+    "DeletionMode": {
+      "base": null,
+      "refs": {
+        "DeleteStackInput$DeletionMode": "<p>Specifies the deletion mode for the stack. Possible values are:</p> <ul> <li> <p> <code>STANDARD</code> - Use the standard behavior. Specifying this value is the same as not specifying this parameter.</p> </li> <li> <p> <code>FORCE_DELETE_STACK</code> - Delete the stack if it's stuck in a <code>DELETE_FAILED</code> state due to resource deletion failure.</p> </li> </ul>",
+        "Stack$DeletionMode": "<p>Specifies the deletion mode for the stack. Possible values are:</p> <ul> <li> <p> <code>STANDARD</code> - Use the standard behavior. Specifying this value is the same as not specifying this parameter.</p> </li> <li> <p> <code>FORCE_DELETE_STACK</code> - Delete the stack if it's stuck in a <code>DELETE_FAILED</code> state due to resource deletion failure.</p> </li> </ul>"
       }
     },
     "DeletionTime": {
@@ -2947,7 +2954,7 @@
     "StackInstanceResourceDriftsSummaries": {
       "base": null,
       "refs": {
-        "ListStackInstanceResourceDriftsOutput$Summaries": "<p>A list of <code>StackInstanceResourceDriftSummary</code> structures that contain information about the specified stack instances.</p>"
+        "ListStackInstanceResourceDriftsOutput$Summaries": "<p>A list of <code>StackInstanceResourceDriftsSummary</code> structures that contain information about the specified stack instances.</p>"
       }
     },
     "StackInstanceResourceDriftsSummary": {

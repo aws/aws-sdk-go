@@ -157,6 +157,18 @@ type ChatbotAPI interface {
 	ListMicrosoftTeamsUserIdentitiesPages(*chatbot.ListMicrosoftTeamsUserIdentitiesInput, func(*chatbot.ListMicrosoftTeamsUserIdentitiesOutput, bool) bool) error
 	ListMicrosoftTeamsUserIdentitiesPagesWithContext(aws.Context, *chatbot.ListMicrosoftTeamsUserIdentitiesInput, func(*chatbot.ListMicrosoftTeamsUserIdentitiesOutput, bool) bool, ...request.Option) error
 
+	ListTagsForResource(*chatbot.ListTagsForResourceInput) (*chatbot.ListTagsForResourceOutput, error)
+	ListTagsForResourceWithContext(aws.Context, *chatbot.ListTagsForResourceInput, ...request.Option) (*chatbot.ListTagsForResourceOutput, error)
+	ListTagsForResourceRequest(*chatbot.ListTagsForResourceInput) (*request.Request, *chatbot.ListTagsForResourceOutput)
+
+	TagResource(*chatbot.TagResourceInput) (*chatbot.TagResourceOutput, error)
+	TagResourceWithContext(aws.Context, *chatbot.TagResourceInput, ...request.Option) (*chatbot.TagResourceOutput, error)
+	TagResourceRequest(*chatbot.TagResourceInput) (*request.Request, *chatbot.TagResourceOutput)
+
+	UntagResource(*chatbot.UntagResourceInput) (*chatbot.UntagResourceOutput, error)
+	UntagResourceWithContext(aws.Context, *chatbot.UntagResourceInput, ...request.Option) (*chatbot.UntagResourceOutput, error)
+	UntagResourceRequest(*chatbot.UntagResourceInput) (*request.Request, *chatbot.UntagResourceOutput)
+
 	UpdateAccountPreferences(*chatbot.UpdateAccountPreferencesInput) (*chatbot.UpdateAccountPreferencesOutput, error)
 	UpdateAccountPreferencesWithContext(aws.Context, *chatbot.UpdateAccountPreferencesInput, ...request.Option) (*chatbot.UpdateAccountPreferencesOutput, error)
 	UpdateAccountPreferencesRequest(*chatbot.UpdateAccountPreferencesInput) (*request.Request, *chatbot.UpdateAccountPreferencesOutput)

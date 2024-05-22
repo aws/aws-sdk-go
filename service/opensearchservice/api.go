@@ -10194,6 +10194,9 @@ type DataSourceDetails struct {
 
 	// The name of the data source.
 	Name *string `min:"3" type:"string"`
+
+	// The status of the data source.
+	Status *string `type:"string" enum:"DataSourceStatus"`
 }
 
 // String returns the string representation.
@@ -10229,6 +10232,12 @@ func (s *DataSourceDetails) SetDescription(v string) *DataSourceDetails {
 // SetName sets the Name field's value.
 func (s *DataSourceDetails) SetName(v string) *DataSourceDetails {
 	s.Name = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DataSourceDetails) SetStatus(v string) *DataSourceDetails {
+	s.Status = &v
 	return s
 }
 
@@ -13514,7 +13523,7 @@ type DomainStatus struct {
 	// for all traffic.
 	DomainEndpointOptions *DomainEndpointOptions `type:"structure"`
 
-	// The DualStack Hosted Zone Id for the domain.
+	// The dual stack hosted zone ID for the domain.
 	DomainEndpointV2HostedZoneId *string `type:"string"`
 
 	// Unique identifier for the domain.
@@ -14502,6 +14511,9 @@ type GetDataSourceOutput struct {
 
 	// The name of the data source.
 	Name *string `min:"3" type:"string"`
+
+	// The status of the data source response.
+	Status *string `type:"string" enum:"DataSourceStatus"`
 }
 
 // String returns the string representation.
@@ -14537,6 +14549,12 @@ func (s *GetDataSourceOutput) SetDescription(v string) *GetDataSourceOutput {
 // SetName sets the Name field's value.
 func (s *GetDataSourceOutput) SetName(v string) *GetDataSourceOutput {
 	s.Name = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *GetDataSourceOutput) SetStatus(v string) *GetDataSourceOutput {
+	s.Status = &v
 	return s
 }
 
@@ -19948,6 +19966,9 @@ type UpdateDataSourceInput struct {
 	//
 	// Name is a required field
 	Name *string `location:"uri" locationName:"DataSourceName" min:"3" type:"string" required:"true"`
+
+	// The status of the data source update request.
+	Status *string `type:"string" enum:"DataSourceStatus"`
 }
 
 // String returns the string representation.
@@ -20019,6 +20040,12 @@ func (s *UpdateDataSourceInput) SetDomainName(v string) *UpdateDataSourceInput {
 // SetName sets the Name field's value.
 func (s *UpdateDataSourceInput) SetName(v string) *UpdateDataSourceInput {
 	s.Name = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *UpdateDataSourceInput) SetStatus(v string) *UpdateDataSourceInput {
+	s.Status = &v
 	return s
 }
 
@@ -21872,6 +21899,22 @@ func ConnectionMode_Values() []string {
 	return []string{
 		ConnectionModeDirect,
 		ConnectionModeVpcEndpoint,
+	}
+}
+
+const (
+	// DataSourceStatusActive is a DataSourceStatus enum value
+	DataSourceStatusActive = "ACTIVE"
+
+	// DataSourceStatusDisabled is a DataSourceStatus enum value
+	DataSourceStatusDisabled = "DISABLED"
+)
+
+// DataSourceStatus_Values returns all elements of the DataSourceStatus enum
+func DataSourceStatus_Values() []string {
+	return []string{
+		DataSourceStatusActive,
+		DataSourceStatusDisabled,
 	}
 }
 

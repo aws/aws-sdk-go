@@ -21,6 +21,9 @@
     "ListMicrosoftTeamsChannelConfigurations": "Lists MS Teams Channel Configurations optionally filtered by TeamId",
     "ListMicrosoftTeamsConfiguredTeams": "Lists all authorized MS teams for AWS Account",
     "ListMicrosoftTeamsUserIdentities": "Lists all Microsoft Teams user identities with a mapped role.",
+    "ListTagsForResource": "Retrieves the list of tags applied to a configuration.",
+    "TagResource": "Applies the supplied tags to a configuration.",
+    "UntagResource": "Removes the supplied tags from a configuration",
     "UpdateAccountPreferences": "Update Chatbot account level preferences",
     "UpdateChimeWebhookConfiguration": "Updates a Chime Webhook Configuration",
     "UpdateMicrosoftTeamsChannelConfiguration": "Updates MS Teams Channel Configuration",
@@ -32,6 +35,14 @@
       "refs": {
         "GetAccountPreferencesResult$AccountPreferences": "Preferences which apply for AWS Chatbot usage in the calling AWS account.",
         "UpdateAccountPreferencesResult$AccountPreferences": "Preferences which apply for AWS Chatbot usage in the calling AWS account."
+      }
+    },
+    "AmazonResourceName": {
+      "base": null,
+      "refs": {
+        "ListTagsForResourceRequest$ResourceARN": "The ARN of the configuration.",
+        "TagResourceRequest$ResourceARN": "The ARN of the configuration.",
+        "UntagResourceRequest$ResourceARN": "The ARN of the configuration."
       }
     },
     "Arn": {
@@ -424,6 +435,11 @@
         "UpdateTeamsChannelConfigurationRequest$GuardrailPolicyArns": "The list of IAM policy ARNs that are applied as channel guardrails. The AWS managed 'AdministratorAccess' policy is applied by default if this is not set."
       }
     },
+    "InternalServiceError": {
+      "base": "Customer/consumer-facing internal service exception. https://w.amazon.com/index.php/AWS/API_Standards/Exceptions#InternalServiceError",
+      "refs": {
+      }
+    },
     "InvalidParameterException": {
       "base": "Your request input doesn't meet the constraints that AWS Chatbot requires.",
       "refs": {
@@ -465,6 +481,16 @@
       }
     },
     "ListMicrosoftTeamsUserIdentitiesResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTagsForResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTagsForResourceResponse": {
       "base": null,
       "refs": {
       }
@@ -517,6 +543,11 @@
     },
     "ResourceNotFoundException": {
       "base": "We were not able to find the resource for your request.",
+      "refs": {
+      }
+    },
+    "ServiceUnavailableException": {
+      "base": "We can’t process your request right now because of a server issue. Try again later.",
       "refs": {
       }
     },
@@ -619,6 +650,60 @@
         "TeamsChannelConfiguration$TeamName": "The name of the Microsoft Teams Team."
       }
     },
+    "Tag": {
+      "base": "A tag applied to the configuration.",
+      "refs": {
+        "TagList$member": null,
+        "Tags$member": null
+      }
+    },
+    "TagKey": {
+      "base": null,
+      "refs": {
+        "Tag$TagKey": "The tag key.",
+        "TagKeyList$member": null
+      }
+    },
+    "TagKeyList": {
+      "base": null,
+      "refs": {
+        "UntagResourceRequest$TagKeys": "A list of tag keys to remove from the configuration."
+      }
+    },
+    "TagList": {
+      "base": null,
+      "refs": {
+        "ListTagsForResourceResponse$Tags": "A list of tags applied to the configuration.",
+        "TagResourceRequest$Tags": "A list of tags to apply to the configuration."
+      }
+    },
+    "TagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagValue": {
+      "base": null,
+      "refs": {
+        "Tag$TagValue": "The tag value."
+      }
+    },
+    "Tags": {
+      "base": null,
+      "refs": {
+        "ChimeWebhookConfiguration$Tags": "A list of tags applied to the configuration.",
+        "CreateChimeWebhookConfigurationRequest$Tags": "A list of tags to apply to the configuration.",
+        "CreateSlackChannelConfigurationRequest$Tags": "A list of tags to apply to the configuration.",
+        "CreateTeamsChannelConfigurationRequest$Tags": "A list of tags to apply to the configuration.",
+        "SlackChannelConfiguration$Tags": "A list of tags applied to the configuration.",
+        "TeamsChannelConfiguration$Tags": "A list of tags applied to the configuration."
+      }
+    },
     "TeamChannelConfigurationsList": {
       "base": null,
       "refs": {
@@ -669,6 +754,11 @@
         "TeamsUserIdentitiesList$member": null
       }
     },
+    "TooManyTagsException": {
+      "base": "The supplied list of tags contains too many tags.",
+      "refs": {
+      }
+    },
     "UUID": {
       "base": null,
       "refs": {
@@ -685,6 +775,16 @@
         "TeamsUserIdentity$TeamId": "The ID of the Microsoft Team authorized with AWS Chatbot. To get the team ID, you must perform the initial authorization flow with Microsoft Teams in the AWS Chatbot console. Then you can copy and paste the team ID from the console. For more details, see steps 1-4 in Get started with Microsoft Teams in the AWS Chatbot Administrator Guide.",
         "TeamsUserIdentity$UserId": "Id from Microsoft Teams for user.",
         "TeamsUserIdentity$TeamsTenantId": "The ID of the Microsoft Teams tenant."
+      }
+    },
+    "UntagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UntagResourceResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "UpdateAccountPreferencesException": {

@@ -4,6 +4,7 @@
     "apiVersion":"2010-05-15",
     "endpointPrefix":"cloudformation",
     "protocol":"query",
+    "protocols":["query"],
     "serviceFullName":"AWS CloudFormation",
     "serviceId":"CloudFormation",
     "signatureVersion":"v4",
@@ -1844,7 +1845,8 @@
         "StackName":{"shape":"StackName"},
         "RetainResources":{"shape":"RetainResources"},
         "RoleARN":{"shape":"RoleARN"},
-        "ClientRequestToken":{"shape":"ClientRequestToken"}
+        "ClientRequestToken":{"shape":"ClientRequestToken"},
+        "DeletionMode":{"shape":"DeletionMode"}
       }
     },
     "DeleteStackInstancesInput":{
@@ -1886,6 +1888,13 @@
       "type":"structure",
       "members":{
       }
+    },
+    "DeletionMode":{
+      "type":"string",
+      "enum":[
+        "STANDARD",
+        "FORCE_DELETE_STACK"
+      ]
     },
     "DeletionTime":{"type":"timestamp"},
     "DeploymentTargets":{
@@ -4072,6 +4081,7 @@
         "RootId":{"shape":"StackId"},
         "DriftInformation":{"shape":"StackDriftInformation"},
         "RetainExceptOnCreate":{"shape":"RetainExceptOnCreate"},
+        "DeletionMode":{"shape":"DeletionMode"},
         "DetailedStatus":{"shape":"DetailedStatus"}
       }
     },

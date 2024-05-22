@@ -7557,14 +7557,16 @@ type ByteMatchStatement struct {
 	//    * UriPath: The value that you want WAF to search for in the URI path,
 	//    for example, /images/daily-ad.jpg.
 	//
-	//    * JA3Fingerprint: Match against the request's JA3 fingerprint. The JA3
-	//    fingerprint is a 32-character hash derived from the TLS Client Hello of
-	//    an incoming request. This fingerprint serves as a unique identifier for
-	//    the client's TLS configuration. You can use this choice only with a string
-	//    match ByteMatchStatement with the PositionalConstraint set to EXACTLY.
-	//    You can obtain the JA3 fingerprint for client requests from the web ACL
-	//    logs. If WAF is able to calculate the fingerprint, it includes it in the
-	//    logs. For information about the logging fields, see Log fields (https://docs.aws.amazon.com/waf/latest/developerguide/logging-fields.html)
+	//    * JA3Fingerprint: Available for use with Amazon CloudFront distributions
+	//    and Application Load Balancers. Match against the request's JA3 fingerprint.
+	//    The JA3 fingerprint is a 32-character hash derived from the TLS Client
+	//    Hello of an incoming request. This fingerprint serves as a unique identifier
+	//    for the client's TLS configuration. You can use this choice only with
+	//    a string match ByteMatchStatement with the PositionalConstraint set to
+	//    EXACTLY. You can obtain the JA3 fingerprint for client requests from the
+	//    web ACL logs. If WAF is able to calculate the fingerprint, it includes
+	//    it in the logs. For information about the logging fields, see Log fields
+	//    (https://docs.aws.amazon.com/waf/latest/developerguide/logging-fields.html)
 	//    in the WAF Developer Guide.
 	//
 	//    * HeaderOrder: The list of header names to match for. WAF creates a string
@@ -10241,6 +10243,24 @@ func (s DeleteIPSetOutput) GoString() string {
 type DeleteLoggingConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
+	// The owner of the logging configuration, which must be set to CUSTOMER for
+	// the configurations that you manage.
+	//
+	// The log scope SECURITY_LAKE indicates a configuration that is managed through
+	// Amazon Security Lake. You can use Security Lake to collect log and event
+	// data from various sources for normalization, analysis, and management. For
+	// information, see Collecting data from Amazon Web Services services (https://docs.aws.amazon.com/security-lake/latest/userguide/internal-sources.html)
+	// in the Amazon Security Lake user guide.
+	//
+	// Default: CUSTOMER
+	LogScope *string `type:"string" enum:"LogScope"`
+
+	// Used to distinguish between various logging options. Currently, there is
+	// one option.
+	//
+	// Default: WAF_LOGS
+	LogType *string `type:"string" enum:"LogType"`
+
 	// The Amazon Resource Name (ARN) of the web ACL from which you want to delete
 	// the LoggingConfiguration.
 	//
@@ -10280,6 +10300,18 @@ func (s *DeleteLoggingConfigurationInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetLogScope sets the LogScope field's value.
+func (s *DeleteLoggingConfigurationInput) SetLogScope(v string) *DeleteLoggingConfigurationInput {
+	s.LogScope = &v
+	return s
+}
+
+// SetLogType sets the LogType field's value.
+func (s *DeleteLoggingConfigurationInput) SetLogType(v string) *DeleteLoggingConfigurationInput {
+	s.LogType = &v
+	return s
 }
 
 // SetResourceArn sets the ResourceArn field's value.
@@ -11448,7 +11480,10 @@ func (s *ExcludedRule) SetName(v string) *ExcludedRule {
 //     SingleHeader, and Method. In this documentation, the descriptions of the
 //     individual fields talk about specifying the web request component to inspect,
 //     but for field redaction, you are specifying the component type to redact
-//     from the logs.
+//     from the logs. If you have request sampling enabled, the redacted fields
+//     configuration for logging has no impact on sampling. The only way to exclude
+//     fields from request sampling is by disabling sampling in the web ACL visibility
+//     configuration.
 type FieldToMatch struct {
 	_ struct{} `type:"structure"`
 
@@ -11506,11 +11541,13 @@ type FieldToMatch struct {
 	// from the underlying host service.
 	Headers *Headers `type:"structure"`
 
-	// Match against the request's JA3 fingerprint. The JA3 fingerprint is a 32-character
-	// hash derived from the TLS Client Hello of an incoming request. This fingerprint
-	// serves as a unique identifier for the client's TLS configuration. WAF calculates
-	// and logs this fingerprint for each request that has enough TLS Client Hello
-	// information for the calculation. Almost all web requests include this information.
+	// Available for use with Amazon CloudFront distributions and Application Load
+	// Balancers. Match against the request's JA3 fingerprint. The JA3 fingerprint
+	// is a 32-character hash derived from the TLS Client Hello of an incoming request.
+	// This fingerprint serves as a unique identifier for the client's TLS configuration.
+	// WAF calculates and logs this fingerprint for each request that has enough
+	// TLS Client Hello information for the calculation. Almost all web requests
+	// include this information.
 	//
 	// You can use this choice only with a string match ByteMatchStatement with
 	// the PositionalConstraint set to EXACTLY.
@@ -12489,6 +12526,24 @@ func (s *GetIPSetOutput) SetLockToken(v string) *GetIPSetOutput {
 type GetLoggingConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
+	// The owner of the logging configuration, which must be set to CUSTOMER for
+	// the configurations that you manage.
+	//
+	// The log scope SECURITY_LAKE indicates a configuration that is managed through
+	// Amazon Security Lake. You can use Security Lake to collect log and event
+	// data from various sources for normalization, analysis, and management. For
+	// information, see Collecting data from Amazon Web Services services (https://docs.aws.amazon.com/security-lake/latest/userguide/internal-sources.html)
+	// in the Amazon Security Lake user guide.
+	//
+	// Default: CUSTOMER
+	LogScope *string `type:"string" enum:"LogScope"`
+
+	// Used to distinguish between various logging options. Currently, there is
+	// one option.
+	//
+	// Default: WAF_LOGS
+	LogType *string `type:"string" enum:"LogType"`
+
 	// The Amazon Resource Name (ARN) of the web ACL for which you want to get the
 	// LoggingConfiguration.
 	//
@@ -12528,6 +12583,18 @@ func (s *GetLoggingConfigurationInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetLogScope sets the LogScope field's value.
+func (s *GetLoggingConfigurationInput) SetLogScope(v string) *GetLoggingConfigurationInput {
+	s.LogScope = &v
+	return s
+}
+
+// SetLogType sets the LogType field's value.
+func (s *GetLoggingConfigurationInput) SetLogType(v string) *GetLoggingConfigurationInput {
+	s.LogType = &v
+	return s
 }
 
 // SetResourceArn sets the ResourceArn field's value.
@@ -14634,11 +14701,13 @@ func (s *ImmunityTimeProperty) SetImmunityTime(v int64) *ImmunityTimeProperty {
 	return s
 }
 
-// Match against the request's JA3 fingerprint. The JA3 fingerprint is a 32-character
-// hash derived from the TLS Client Hello of an incoming request. This fingerprint
-// serves as a unique identifier for the client's TLS configuration. WAF calculates
-// and logs this fingerprint for each request that has enough TLS Client Hello
-// information for the calculation. Almost all web requests include this information.
+// Available for use with Amazon CloudFront distributions and Application Load
+// Balancers. Match against the request's JA3 fingerprint. The JA3 fingerprint
+// is a 32-character hash derived from the TLS Client Hello of an incoming request.
+// This fingerprint serves as a unique identifier for the client's TLS configuration.
+// WAF calculates and logs this fingerprint for each request that has enough
+// TLS Client Hello information for the calculation. Almost all web requests
+// include this information.
 //
 // You can use this choice only with a string match ByteMatchStatement with
 // the PositionalConstraint set to EXACTLY.
@@ -15748,6 +15817,18 @@ type ListLoggingConfigurationsInput struct {
 	// value that you can use in a subsequent call to get the next batch of objects.
 	Limit *int64 `min:"1" type:"integer"`
 
+	// The owner of the logging configuration, which must be set to CUSTOMER for
+	// the configurations that you manage.
+	//
+	// The log scope SECURITY_LAKE indicates a configuration that is managed through
+	// Amazon Security Lake. You can use Security Lake to collect log and event
+	// data from various sources for normalization, analysis, and management. For
+	// information, see Collecting data from Amazon Web Services services (https://docs.aws.amazon.com/security-lake/latest/userguide/internal-sources.html)
+	// in the Amazon Security Lake user guide.
+	//
+	// Default: CUSTOMER
+	LogScope *string `type:"string" enum:"LogScope"`
+
 	// When you request a list of objects with a Limit setting, if the number of
 	// objects that are still available for retrieval exceeds the limit, WAF returns
 	// a NextMarker value in the response. To retrieve the next batch of objects,
@@ -15812,6 +15893,12 @@ func (s *ListLoggingConfigurationsInput) Validate() error {
 // SetLimit sets the Limit field's value.
 func (s *ListLoggingConfigurationsInput) SetLimit(v int64) *ListLoggingConfigurationsInput {
 	s.Limit = &v
+	return s
+}
+
+// SetLogScope sets the LogScope field's value.
+func (s *ListLoggingConfigurationsInput) SetLogScope(v string) *ListLoggingConfigurationsInput {
+	s.LogScope = &v
 	return s
 }
 
@@ -16778,6 +16865,24 @@ type LoggingConfiguration struct {
 	// LogDestinationConfigs is a required field
 	LogDestinationConfigs []*string `min:"1" type:"list" required:"true"`
 
+	// The owner of the logging configuration, which must be set to CUSTOMER for
+	// the configurations that you manage.
+	//
+	// The log scope SECURITY_LAKE indicates a configuration that is managed through
+	// Amazon Security Lake. You can use Security Lake to collect log and event
+	// data from various sources for normalization, analysis, and management. For
+	// information, see Collecting data from Amazon Web Services services (https://docs.aws.amazon.com/security-lake/latest/userguide/internal-sources.html)
+	// in the Amazon Security Lake user guide.
+	//
+	// Default: CUSTOMER
+	LogScope *string `type:"string" enum:"LogScope"`
+
+	// Used to distinguish between various logging options. Currently, there is
+	// one option.
+	//
+	// Default: WAF_LOGS
+	LogType *string `type:"string" enum:"LogType"`
+
 	// Filtering that specifies which web requests are kept in the logs and which
 	// are dropped. You can filter on the rule action and on the web request labels
 	// that were applied by matching rules during web ACL evaluation.
@@ -16800,6 +16905,10 @@ type LoggingConfiguration struct {
 	//
 	// You can specify only the following fields for redaction: UriPath, QueryString,
 	// SingleHeader, and Method.
+	//
+	// This setting has no impact on request sampling. With request sampling, the
+	// only way to exclude fields is by disabling sampling in the web ACL visibility
+	// configuration.
 	RedactedFields []*FieldToMatch `type:"list"`
 
 	// The Amazon Resource Name (ARN) of the web ACL that you want to associate
@@ -16867,6 +16976,18 @@ func (s *LoggingConfiguration) Validate() error {
 // SetLogDestinationConfigs sets the LogDestinationConfigs field's value.
 func (s *LoggingConfiguration) SetLogDestinationConfigs(v []*string) *LoggingConfiguration {
 	s.LogDestinationConfigs = v
+	return s
+}
+
+// SetLogScope sets the LogScope field's value.
+func (s *LoggingConfiguration) SetLogScope(v string) *LoggingConfiguration {
+	s.LogScope = &v
+	return s
+}
+
+// SetLogType sets the LogType field's value.
+func (s *LoggingConfiguration) SetLogType(v string) *LoggingConfiguration {
+	s.LogType = &v
 	return s
 }
 
@@ -24834,6 +24955,11 @@ type VisibilityConfig struct {
 	// Indicates whether WAF should store a sampling of the web requests that match
 	// the rules. You can view the sampled requests through the WAF console.
 	//
+	// Request sampling doesn't provide a field redaction option, and any field
+	// redaction that you specify in your logging configuration doesn't affect sampling.
+	// The only way to exclude fields from request sampling is by disabling sampling
+	// in the web ACL visibility configuration.
+	//
 	// SampledRequestsEnabled is a required field
 	SampledRequestsEnabled *bool `type:"boolean" required:"true"`
 }
@@ -27913,6 +28039,34 @@ func LabelMatchScope_Values() []string {
 	return []string{
 		LabelMatchScopeLabel,
 		LabelMatchScopeNamespace,
+	}
+}
+
+const (
+	// LogScopeCustomer is a LogScope enum value
+	LogScopeCustomer = "CUSTOMER"
+
+	// LogScopeSecurityLake is a LogScope enum value
+	LogScopeSecurityLake = "SECURITY_LAKE"
+)
+
+// LogScope_Values returns all elements of the LogScope enum
+func LogScope_Values() []string {
+	return []string{
+		LogScopeCustomer,
+		LogScopeSecurityLake,
+	}
+}
+
+const (
+	// LogTypeWafLogs is a LogType enum value
+	LogTypeWafLogs = "WAF_LOGS"
+)
+
+// LogType_Values returns all elements of the LogType enum
+func LogType_Values() []string {
+	return []string{
+		LogTypeWafLogs,
 	}
 }
 

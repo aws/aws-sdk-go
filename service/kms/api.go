@@ -4911,9 +4911,9 @@ func (c *KMS) GetParametersForImportRequest(input *GetParametersForImportInput) 
 // GetParametersForImport returns the items that you need to import your key
 // material.
 //
-//   - The public key (or "wrapping key") of an RSA key pair that KMS generates.
-//     You will use this public key to encrypt ("wrap") your key material while
-//     it's in transit to KMS.
+//   - The public key (or "wrapping key") of an asymmetric key pair that KMS
+//     generates. You will use this public key to encrypt ("wrap") your key material
+//     while it's in transit to KMS.
 //
 //   - A import token that ensures that KMS can decrypt your key material and
 //     associate it with the correct KMS key.
@@ -15199,19 +15199,25 @@ type GetParametersForImportInput struct {
 	// KeyId is a required field
 	KeyId *string `min:"1" type:"string" required:"true"`
 
-	// The algorithm you will use with the RSA public key (PublicKey) in the response
-	// to protect your key material during import. For more information, see Select
-	// a wrapping algorithm (kms/latest/developerguide/importing-keys-get-public-key-and-token.html#select-wrapping-algorithm)
+	// The algorithm you will use with the asymmetric public key (PublicKey) in
+	// the response to protect your key material during import. For more information,
+	// see Select a wrapping algorithm (kms/latest/developerguide/importing-keys-get-public-key-and-token.html#select-wrapping-algorithm)
 	// in the Key Management Service Developer Guide.
 	//
 	// For RSA_AES wrapping algorithms, you encrypt your key material with an AES
 	// key that you generate, then encrypt your AES key with the RSA public key
 	// from KMS. For RSAES wrapping algorithms, you encrypt your key material directly
-	// with the RSA public key from KMS.
+	// with the RSA public key from KMS. For SM2PKE wrapping algorithms, you encrypt
+	// your key material directly with the SM2 public key from KMS.
 	//
 	// The wrapping algorithms that you can use depend on the type of key material
 	// that you are importing. To import an RSA private key, you must use an RSA_AES
-	// wrapping algorithm.
+	// wrapping algorithm, except in China Regions, where you must use the SM2PKE
+	// wrapping algorithm to import an RSA private key.
+	//
+	// The SM2PKE wrapping algorithm is available only in China Regions. The RSA_AES_KEY_WRAP_SHA_256
+	// and RSA_AES_KEY_WRAP_SHA_1 wrapping algorithms are not supported in China
+	// Regions.
 	//
 	//    * RSA_AES_KEY_WRAP_SHA_256 — Supported for wrapping RSA and ECC key
 	//    material.
@@ -15231,18 +15237,23 @@ type GetParametersForImportInput struct {
 	//    * RSAES_PKCS1_V1_5 (Deprecated) — As of October 10, 2023, KMS does not
 	//    support the RSAES_PKCS1_V1_5 wrapping algorithm.
 	//
+	//    * SM2PKE (China Regions only) — supported for wrapping RSA, ECC, and
+	//    SM2 key material.
+	//
 	// WrappingAlgorithm is a required field
 	WrappingAlgorithm *string `type:"string" required:"true" enum:"AlgorithmSpec"`
 
-	// The type of RSA public key to return in the response. You will use this wrapping
+	// The type of public key to return in the response. You will use this wrapping
 	// key with the specified wrapping algorithm to protect your key material during
 	// import.
 	//
-	// Use the longest RSA wrapping key that is practical.
+	// Use the longest wrapping key that is practical.
 	//
 	// You cannot use an RSA_2048 public key to directly wrap an ECC_NIST_P521 private
 	// key. Instead, use an RSA_AES wrapping algorithm or choose a longer RSA public
 	// key.
+	//
+	// The SM2 wrapping key spec is available only in China Regions.
 	//
 	// WrappingKeySpec is a required field
 	WrappingKeySpec *string `type:"string" required:"true" enum:"WrappingKeySpec"`
@@ -22678,6 +22689,9 @@ const (
 
 	// AlgorithmSpecRsaAesKeyWrapSha256 is a AlgorithmSpec enum value
 	AlgorithmSpecRsaAesKeyWrapSha256 = "RSA_AES_KEY_WRAP_SHA_256"
+
+	// AlgorithmSpecSm2pke is a AlgorithmSpec enum value
+	AlgorithmSpecSm2pke = "SM2PKE"
 )
 
 // AlgorithmSpec_Values returns all elements of the AlgorithmSpec enum
@@ -22688,6 +22702,7 @@ func AlgorithmSpec_Values() []string {
 		AlgorithmSpecRsaesOaepSha256,
 		AlgorithmSpecRsaAesKeyWrapSha1,
 		AlgorithmSpecRsaAesKeyWrapSha256,
+		AlgorithmSpecSm2pke,
 	}
 }
 
@@ -23344,6 +23359,9 @@ const (
 
 	// WrappingKeySpecRsa4096 is a WrappingKeySpec enum value
 	WrappingKeySpecRsa4096 = "RSA_4096"
+
+	// WrappingKeySpecSm2 is a WrappingKeySpec enum value
+	WrappingKeySpecSm2 = "SM2"
 )
 
 // WrappingKeySpec_Values returns all elements of the WrappingKeySpec enum
@@ -23352,6 +23370,7 @@ func WrappingKeySpec_Values() []string {
 		WrappingKeySpecRsa2048,
 		WrappingKeySpecRsa3072,
 		WrappingKeySpecRsa4096,
+		WrappingKeySpecSm2,
 	}
 }
 

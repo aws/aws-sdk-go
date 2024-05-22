@@ -5,6 +5,7 @@
     "endpointPrefix":"chatbot",
     "jsonVersion":"1.1",
     "protocol":"rest-json",
+    "protocols":["rest-json"],
     "serviceFullName":"AWS Chatbot",
     "serviceId":"chatbot",
     "signatureVersion":"v4",
@@ -302,6 +303,52 @@
         {"shape":"InvalidParameterException"}
       ]
     },
+    "ListTagsForResource":{
+      "name":"ListTagsForResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/list-tags-for-resource",
+        "responseCode":200
+      },
+      "input":{"shape":"ListTagsForResourceRequest"},
+      "output":{"shape":"ListTagsForResourceResponse"},
+      "errors":[
+        {"shape":"InternalServiceError"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "TagResource":{
+      "name":"TagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/tag-resource",
+        "responseCode":200
+      },
+      "input":{"shape":"TagResourceRequest"},
+      "output":{"shape":"TagResourceResponse"},
+      "errors":[
+        {"shape":"InternalServiceError"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"TooManyTagsException"}
+      ]
+    },
+    "UntagResource":{
+      "name":"UntagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/untag-resource",
+        "responseCode":200
+      },
+      "input":{"shape":"UntagResourceRequest"},
+      "output":{"shape":"UntagResourceResponse"},
+      "errors":[
+        {"shape":"InternalServiceError"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "UpdateAccountPreferences":{
       "name":"UpdateAccountPreferences",
       "http":{
@@ -374,6 +421,12 @@
         "TrainingDataCollectionEnabled":{"shape":"BooleanAccountPreference"}
       }
     },
+    "AmazonResourceName":{
+      "type":"string",
+      "max":1011,
+      "min":1,
+      "pattern":"^arn:aws:(wheatley|chatbot):[A-Za-z0-9_/.-]{0,63}:[A-Za-z0-9_/.-]{0,63}:[A-Za-z0-9][A-Za-z0-9:_/+=,@.-]{0,1023}$"
+    },
     "Arn":{
       "type":"string",
       "max":1224,
@@ -407,7 +460,8 @@
         "IamRoleArn":{"shape":"Arn"},
         "SnsTopicArns":{"shape":"SnsTopicArnList"},
         "ConfigurationName":{"shape":"ConfigurationName"},
-        "LoggingLevel":{"shape":"CustomerCwLogLevel"}
+        "LoggingLevel":{"shape":"CustomerCwLogLevel"},
+        "Tags":{"shape":"Tags"}
       }
     },
     "ChimeWebhookConfigurationList":{
@@ -480,7 +534,8 @@
         "SnsTopicArns":{"shape":"SnsTopicArnList"},
         "IamRoleArn":{"shape":"Arn"},
         "ConfigurationName":{"shape":"ConfigurationName"},
-        "LoggingLevel":{"shape":"CustomerCwLogLevel"}
+        "LoggingLevel":{"shape":"CustomerCwLogLevel"},
+        "Tags":{"shape":"Tags"}
       }
     },
     "CreateChimeWebhookConfigurationResult":{
@@ -514,7 +569,8 @@
         "ConfigurationName":{"shape":"ConfigurationName"},
         "LoggingLevel":{"shape":"CustomerCwLogLevel"},
         "GuardrailPolicyArns":{"shape":"GuardrailPolicyArnList"},
-        "UserAuthorizationRequired":{"shape":"BooleanAccountPreference"}
+        "UserAuthorizationRequired":{"shape":"BooleanAccountPreference"},
+        "Tags":{"shape":"Tags"}
       }
     },
     "CreateSlackChannelConfigurationResult":{
@@ -551,7 +607,8 @@
         "ConfigurationName":{"shape":"ConfigurationName"},
         "LoggingLevel":{"shape":"CustomerCwLogLevel"},
         "GuardrailPolicyArns":{"shape":"GuardrailPolicyArnList"},
-        "UserAuthorizationRequired":{"shape":"BooleanAccountPreference"}
+        "UserAuthorizationRequired":{"shape":"BooleanAccountPreference"},
+        "Tags":{"shape":"Tags"}
       }
     },
     "CreateTeamsChannelConfigurationResult":{
@@ -875,6 +932,13 @@
       "type":"list",
       "member":{"shape":"GuardrailPolicyArn"}
     },
+    "InternalServiceError":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{"httpStatusCode":500},
+      "exception":true
+    },
     "InvalidParameterException":{
       "type":"structure",
       "members":{
@@ -941,6 +1005,19 @@
         "NextToken":{"shape":"PaginationToken"}
       }
     },
+    "ListTagsForResourceRequest":{
+      "type":"structure",
+      "required":["ResourceARN"],
+      "members":{
+        "ResourceARN":{"shape":"AmazonResourceName"}
+      }
+    },
+    "ListTagsForResourceResponse":{
+      "type":"structure",
+      "members":{
+        "Tags":{"shape":"TagList"}
+      }
+    },
     "ListTeamsChannelConfigurationsException":{
       "type":"structure",
       "members":{
@@ -991,6 +1068,13 @@
       "error":{"httpStatusCode":404},
       "exception":true
     },
+    "ServiceUnavailableException":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{"httpStatusCode":429},
+      "exception":true
+    },
     "SlackChannelConfiguration":{
       "type":"structure",
       "required":[
@@ -1016,7 +1100,8 @@
         "ConfigurationName":{"shape":"ConfigurationName"},
         "LoggingLevel":{"shape":"CustomerCwLogLevel"},
         "GuardrailPolicyArns":{"shape":"GuardrailPolicyArnList"},
-        "UserAuthorizationRequired":{"shape":"BooleanAccountPreference"}
+        "UserAuthorizationRequired":{"shape":"BooleanAccountPreference"},
+        "Tags":{"shape":"Tags"}
       }
     },
     "SlackChannelConfigurationList":{
@@ -1091,6 +1176,59 @@
       "member":{"shape":"Arn"}
     },
     "String":{"type":"string"},
+    "Tag":{
+      "type":"structure",
+      "required":[
+        "TagKey",
+        "TagValue"
+      ],
+      "members":{
+        "TagKey":{"shape":"TagKey"},
+        "TagValue":{"shape":"TagValue"}
+      }
+    },
+    "TagKey":{
+      "type":"string",
+      "max":128,
+      "min":1
+    },
+    "TagKeyList":{
+      "type":"list",
+      "member":{"shape":"TagKey"},
+      "max":200,
+      "min":0
+    },
+    "TagList":{
+      "type":"list",
+      "member":{"shape":"Tag"},
+      "max":200,
+      "min":0
+    },
+    "TagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceARN",
+        "Tags"
+      ],
+      "members":{
+        "ResourceARN":{"shape":"AmazonResourceName"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "TagResourceResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "TagValue":{
+      "type":"string",
+      "max":256,
+      "min":1
+    },
+    "Tags":{
+      "type":"list",
+      "member":{"shape":"Tag"}
+    },
     "TeamChannelConfigurationsList":{
       "type":"list",
       "member":{"shape":"TeamsChannelConfiguration"}
@@ -1126,7 +1264,8 @@
         "ConfigurationName":{"shape":"ConfigurationName"},
         "LoggingLevel":{"shape":"CustomerCwLogLevel"},
         "GuardrailPolicyArns":{"shape":"GuardrailPolicyArnList"},
-        "UserAuthorizationRequired":{"shape":"BooleanAccountPreference"}
+        "UserAuthorizationRequired":{"shape":"BooleanAccountPreference"},
+        "Tags":{"shape":"Tags"}
       }
     },
     "TeamsChannelId":{
@@ -1162,11 +1301,34 @@
         "TeamsTenantId":{"shape":"UUID"}
       }
     },
+    "TooManyTagsException":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
+    },
     "UUID":{
       "type":"string",
       "max":36,
       "min":36,
       "pattern":"^[0-9A-Fa-f]{8}(?:-[0-9A-Fa-f]{4}){3}-[0-9A-Fa-f]{12}$"
+    },
+    "UntagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceARN",
+        "TagKeys"
+      ],
+      "members":{
+        "ResourceARN":{"shape":"AmazonResourceName"},
+        "TagKeys":{"shape":"TagKeyList"}
+      }
+    },
+    "UntagResourceResponse":{
+      "type":"structure",
+      "members":{
+      }
     },
     "UpdateAccountPreferencesException":{
       "type":"structure",
