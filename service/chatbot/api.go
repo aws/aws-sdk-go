@@ -2073,6 +2073,269 @@ func (c *Chatbot) ListMicrosoftTeamsUserIdentitiesPagesWithContext(ctx aws.Conte
 	return p.Err()
 }
 
+const opListTagsForResource = "ListTagsForResource"
+
+// ListTagsForResourceRequest generates a "aws/request.Request" representing the
+// client's request for the ListTagsForResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListTagsForResource for more information on using the ListTagsForResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListTagsForResourceRequest method.
+//	req, resp := client.ListTagsForResourceRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chatbot-2017-10-11/ListTagsForResource
+func (c *Chatbot) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
+	op := &request.Operation{
+		Name:       opListTagsForResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/list-tags-for-resource",
+	}
+
+	if input == nil {
+		input = &ListTagsForResourceInput{}
+	}
+
+	output = &ListTagsForResourceOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListTagsForResource API operation for AWS Chatbot.
+//
+// Retrieves the list of tags applied to a configuration.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Chatbot's
+// API operation ListTagsForResource for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServiceError
+//     Customer/consumer-facing internal service exception. https://w.amazon.com/index.php/AWS/API_Standards/Exceptions#InternalServiceError
+//
+//   - ServiceUnavailableException
+//     We can’t process your request right now because of a server issue. Try
+//     again later.
+//
+//   - ResourceNotFoundException
+//     We were not able to find the resource for your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chatbot-2017-10-11/ListTagsForResource
+func (c *Chatbot) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
+	req, out := c.ListTagsForResourceRequest(input)
+	return out, req.Send()
+}
+
+// ListTagsForResourceWithContext is the same as ListTagsForResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListTagsForResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chatbot) ListTagsForResourceWithContext(ctx aws.Context, input *ListTagsForResourceInput, opts ...request.Option) (*ListTagsForResourceOutput, error) {
+	req, out := c.ListTagsForResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opTagResource = "TagResource"
+
+// TagResourceRequest generates a "aws/request.Request" representing the
+// client's request for the TagResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See TagResource for more information on using the TagResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the TagResourceRequest method.
+//	req, resp := client.TagResourceRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chatbot-2017-10-11/TagResource
+func (c *Chatbot) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
+	op := &request.Operation{
+		Name:       opTagResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/tag-resource",
+	}
+
+	if input == nil {
+		input = &TagResourceInput{}
+	}
+
+	output = &TagResourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// TagResource API operation for AWS Chatbot.
+//
+// Applies the supplied tags to a configuration.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Chatbot's
+// API operation TagResource for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServiceError
+//     Customer/consumer-facing internal service exception. https://w.amazon.com/index.php/AWS/API_Standards/Exceptions#InternalServiceError
+//
+//   - ServiceUnavailableException
+//     We can’t process your request right now because of a server issue. Try
+//     again later.
+//
+//   - ResourceNotFoundException
+//     We were not able to find the resource for your request.
+//
+//   - TooManyTagsException
+//     The supplied list of tags contains too many tags.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chatbot-2017-10-11/TagResource
+func (c *Chatbot) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
+	req, out := c.TagResourceRequest(input)
+	return out, req.Send()
+}
+
+// TagResourceWithContext is the same as TagResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See TagResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chatbot) TagResourceWithContext(ctx aws.Context, input *TagResourceInput, opts ...request.Option) (*TagResourceOutput, error) {
+	req, out := c.TagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUntagResource = "UntagResource"
+
+// UntagResourceRequest generates a "aws/request.Request" representing the
+// client's request for the UntagResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UntagResource for more information on using the UntagResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UntagResourceRequest method.
+//	req, resp := client.UntagResourceRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chatbot-2017-10-11/UntagResource
+func (c *Chatbot) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
+	op := &request.Operation{
+		Name:       opUntagResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/untag-resource",
+	}
+
+	if input == nil {
+		input = &UntagResourceInput{}
+	}
+
+	output = &UntagResourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UntagResource API operation for AWS Chatbot.
+//
+// # Removes the supplied tags from a configuration
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Chatbot's
+// API operation UntagResource for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServiceError
+//     Customer/consumer-facing internal service exception. https://w.amazon.com/index.php/AWS/API_Standards/Exceptions#InternalServiceError
+//
+//   - ServiceUnavailableException
+//     We can’t process your request right now because of a server issue. Try
+//     again later.
+//
+//   - ResourceNotFoundException
+//     We were not able to find the resource for your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chatbot-2017-10-11/UntagResource
+func (c *Chatbot) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
+	req, out := c.UntagResourceRequest(input)
+	return out, req.Send()
+}
+
+// UntagResourceWithContext is the same as UntagResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UntagResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chatbot) UntagResourceWithContext(ctx aws.Context, input *UntagResourceInput, opts ...request.Option) (*UntagResourceOutput, error) {
+	req, out := c.UntagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateAccountPreferences = "UpdateAccountPreferences"
 
 // UpdateAccountPreferencesRequest generates a "aws/request.Request" representing the
@@ -2503,6 +2766,9 @@ type ChimeWebhookConfiguration struct {
 	// SnsTopicArns is a required field
 	SnsTopicArns []*string `type:"list" required:"true"`
 
+	// A list of tags applied to the configuration.
+	Tags []*Tag `type:"list"`
+
 	// Description of the webhook. Recommend using the convention `RoomName/WebhookName`.
 	// See Chime setup tutorial for more details: https://docs.aws.amazon.com/chatbot/latest/adminguide/chime-setup.html.
 	//
@@ -2555,6 +2821,12 @@ func (s *ChimeWebhookConfiguration) SetLoggingLevel(v string) *ChimeWebhookConfi
 // SetSnsTopicArns sets the SnsTopicArns field's value.
 func (s *ChimeWebhookConfiguration) SetSnsTopicArns(v []*string) *ChimeWebhookConfiguration {
 	s.SnsTopicArns = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *ChimeWebhookConfiguration) SetTags(v []*Tag) *ChimeWebhookConfiguration {
+	s.Tags = v
 	return s
 }
 
@@ -2773,6 +3045,9 @@ type CreateChimeWebhookConfigurationInput struct {
 	// SnsTopicArns is a required field
 	SnsTopicArns []*string `type:"list" required:"true"`
 
+	// A list of tags to apply to the configuration.
+	Tags []*Tag `type:"list"`
+
 	// Description of the webhook. Recommend using the convention `RoomName/WebhookName`.
 	// See Chime setup tutorial for more details: https://docs.aws.amazon.com/chatbot/latest/adminguide/chime-setup.html.
 	//
@@ -2836,6 +3111,16 @@ func (s *CreateChimeWebhookConfigurationInput) Validate() error {
 	if s.WebhookUrl != nil && len(*s.WebhookUrl) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("WebhookUrl", 1))
 	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -2864,6 +3149,12 @@ func (s *CreateChimeWebhookConfigurationInput) SetLoggingLevel(v string) *Create
 // SetSnsTopicArns sets the SnsTopicArns field's value.
 func (s *CreateChimeWebhookConfigurationInput) SetSnsTopicArns(v []*string) *CreateChimeWebhookConfigurationInput {
 	s.SnsTopicArns = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateChimeWebhookConfigurationInput) SetTags(v []*Tag) *CreateChimeWebhookConfigurationInput {
+	s.Tags = v
 	return s
 }
 
@@ -2943,6 +3234,9 @@ type CreateMicrosoftTeamsChannelConfigurationInput struct {
 
 	// The ARNs of the SNS topics that deliver notifications to AWS Chatbot.
 	SnsTopicArns []*string `type:"list"`
+
+	// A list of tags to apply to the configuration.
+	Tags []*Tag `type:"list"`
 
 	// The ID of the Microsoft Team authorized with AWS Chatbot. To get the team
 	// ID, you must perform the initial authorization flow with Microsoft Teams
@@ -3025,6 +3319,16 @@ func (s *CreateMicrosoftTeamsChannelConfigurationInput) Validate() error {
 	if s.TenantId != nil && len(*s.TenantId) < 36 {
 		invalidParams.Add(request.NewErrParamMinLen("TenantId", 36))
 	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -3071,6 +3375,12 @@ func (s *CreateMicrosoftTeamsChannelConfigurationInput) SetLoggingLevel(v string
 // SetSnsTopicArns sets the SnsTopicArns field's value.
 func (s *CreateMicrosoftTeamsChannelConfigurationInput) SetSnsTopicArns(v []*string) *CreateMicrosoftTeamsChannelConfigurationInput {
 	s.SnsTopicArns = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateMicrosoftTeamsChannelConfigurationInput) SetTags(v []*Tag) *CreateMicrosoftTeamsChannelConfigurationInput {
+	s.Tags = v
 	return s
 }
 
@@ -3235,6 +3545,9 @@ type CreateSlackChannelConfigurationInput struct {
 	// The ARNs of the SNS topics that deliver notifications to AWS Chatbot.
 	SnsTopicArns []*string `type:"list"`
 
+	// A list of tags to apply to the configuration.
+	Tags []*Tag `type:"list"`
+
 	// Enables use of a user role requirement in your chat configuration.
 	UserAuthorizationRequired *bool `type:"boolean"`
 }
@@ -3290,6 +3603,16 @@ func (s *CreateSlackChannelConfigurationInput) Validate() error {
 	if s.SlackTeamId != nil && len(*s.SlackTeamId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("SlackTeamId", 1))
 	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -3342,6 +3665,12 @@ func (s *CreateSlackChannelConfigurationInput) SetSlackTeamId(v string) *CreateS
 // SetSnsTopicArns sets the SnsTopicArns field's value.
 func (s *CreateSlackChannelConfigurationInput) SetSnsTopicArns(v []*string) *CreateSlackChannelConfigurationInput {
 	s.SnsTopicArns = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateSlackChannelConfigurationInput) SetTags(v []*Tag) *CreateSlackChannelConfigurationInput {
+	s.Tags = v
 	return s
 }
 
@@ -5423,6 +5752,70 @@ func (s *GetTeamsChannelConfigurationException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Customer/consumer-facing internal service exception. https://w.amazon.com/index.php/AWS/API_Standards/Exceptions#InternalServiceError
+type InternalServiceError struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InternalServiceError) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InternalServiceError) GoString() string {
+	return s.String()
+}
+
+func newErrorInternalServiceError(v protocol.ResponseMetadata) error {
+	return &InternalServiceError{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *InternalServiceError) Code() string {
+	return "InternalServiceError"
+}
+
+// Message returns the exception's message.
+func (s *InternalServiceError) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *InternalServiceError) OrigErr() error {
+	return nil
+}
+
+func (s *InternalServiceError) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *InternalServiceError) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *InternalServiceError) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // Your request input doesn't meet the constraints that AWS Chatbot requires.
 type InvalidParameterException struct {
 	_            struct{}                  `type:"structure"`
@@ -6080,6 +6473,86 @@ func (s *ListMicrosoftTeamsUserIdentitiesOutput) SetTeamsUserIdentities(v []*Tea
 	return s
 }
 
+type ListTagsForResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the configuration.
+	//
+	// ResourceARN is a required field
+	ResourceARN *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListTagsForResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListTagsForResourceInput"}
+	if s.ResourceARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceARN"))
+	}
+	if s.ResourceARN != nil && len(*s.ResourceARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceARN", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceARN sets the ResourceARN field's value.
+func (s *ListTagsForResourceInput) SetResourceARN(v string) *ListTagsForResourceInput {
+	s.ResourceARN = &v
+	return s
+}
+
+type ListTagsForResourceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of tags applied to the configuration.
+	Tags []*Tag `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceOutput) GoString() string {
+	return s.String()
+}
+
+// SetTags sets the Tags field's value.
+func (s *ListTagsForResourceOutput) SetTags(v []*Tag) *ListTagsForResourceOutput {
+	s.Tags = v
+	return s
+}
+
 // We can’t process your request right now because of a server issue. Try
 // again later.
 type ListTeamsChannelConfigurationsException struct {
@@ -6209,6 +6682,71 @@ func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// We can’t process your request right now because of a server issue. Try
+// again later.
+type ServiceUnavailableException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServiceUnavailableException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServiceUnavailableException) GoString() string {
+	return s.String()
+}
+
+func newErrorServiceUnavailableException(v protocol.ResponseMetadata) error {
+	return &ServiceUnavailableException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ServiceUnavailableException) Code() string {
+	return "ServiceUnavailableException"
+}
+
+// Message returns the exception's message.
+func (s *ServiceUnavailableException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ServiceUnavailableException) OrigErr() error {
+	return nil
+}
+
+func (s *ServiceUnavailableException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ServiceUnavailableException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ServiceUnavailableException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // An AWS Chatbot configuration for Slack.
 type SlackChannelConfiguration struct {
 	_ struct{} `type:"structure"`
@@ -6262,6 +6800,9 @@ type SlackChannelConfiguration struct {
 	//
 	// SnsTopicArns is a required field
 	SnsTopicArns []*string `type:"list" required:"true"`
+
+	// A list of tags applied to the configuration.
+	Tags []*Tag `type:"list"`
 
 	// Enables use of a user role requirement in your chat configuration.
 	UserAuthorizationRequired *bool `type:"boolean"`
@@ -6342,6 +6883,12 @@ func (s *SlackChannelConfiguration) SetSlackTeamName(v string) *SlackChannelConf
 // SetSnsTopicArns sets the SnsTopicArns field's value.
 func (s *SlackChannelConfiguration) SetSnsTopicArns(v []*string) *SlackChannelConfiguration {
 	s.SnsTopicArns = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *SlackChannelConfiguration) SetTags(v []*Tag) *SlackChannelConfiguration {
+	s.Tags = v
 	return s
 }
 
@@ -6475,6 +7022,168 @@ func (s *SlackWorkspace) SetSlackTeamName(v string) *SlackWorkspace {
 	return s
 }
 
+// A tag applied to the configuration.
+type Tag struct {
+	_ struct{} `type:"structure"`
+
+	// The tag key.
+	//
+	// TagKey is a required field
+	TagKey *string `min:"1" type:"string" required:"true"`
+
+	// The tag value.
+	//
+	// TagValue is a required field
+	TagValue *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Tag) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Tag) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Tag) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Tag"}
+	if s.TagKey == nil {
+		invalidParams.Add(request.NewErrParamRequired("TagKey"))
+	}
+	if s.TagKey != nil && len(*s.TagKey) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TagKey", 1))
+	}
+	if s.TagValue == nil {
+		invalidParams.Add(request.NewErrParamRequired("TagValue"))
+	}
+	if s.TagValue != nil && len(*s.TagValue) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TagValue", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetTagKey sets the TagKey field's value.
+func (s *Tag) SetTagKey(v string) *Tag {
+	s.TagKey = &v
+	return s
+}
+
+// SetTagValue sets the TagValue field's value.
+func (s *Tag) SetTagValue(v string) *Tag {
+	s.TagValue = &v
+	return s
+}
+
+type TagResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the configuration.
+	//
+	// ResourceARN is a required field
+	ResourceARN *string `min:"1" type:"string" required:"true"`
+
+	// A list of tags to apply to the configuration.
+	//
+	// Tags is a required field
+	Tags []*Tag `type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TagResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TagResourceInput"}
+	if s.ResourceARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceARN"))
+	}
+	if s.ResourceARN != nil && len(*s.ResourceARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceARN", 1))
+	}
+	if s.Tags == nil {
+		invalidParams.Add(request.NewErrParamRequired("Tags"))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceARN sets the ResourceARN field's value.
+func (s *TagResourceInput) SetResourceARN(v string) *TagResourceInput {
+	s.ResourceARN = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *TagResourceInput) SetTags(v []*Tag) *TagResourceInput {
+	s.Tags = v
+	return s
+}
+
+type TagResourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceOutput) GoString() string {
+	return s.String()
+}
+
 // An AWS Chatbot configuration for Microsoft Teams.
 type TeamsChannelConfiguration struct {
 	_ struct{} `type:"structure"`
@@ -6514,6 +7223,9 @@ type TeamsChannelConfiguration struct {
 	//
 	// SnsTopicArns is a required field
 	SnsTopicArns []*string `type:"list" required:"true"`
+
+	// A list of tags applied to the configuration.
+	Tags []*Tag `type:"list"`
 
 	// The ID of the Microsoft Team authorized with AWS Chatbot. To get the team
 	// ID, you must perform the initial authorization flow with Microsoft Teams
@@ -6599,6 +7311,12 @@ func (s *TeamsChannelConfiguration) SetLoggingLevel(v string) *TeamsChannelConfi
 // SetSnsTopicArns sets the SnsTopicArns field's value.
 func (s *TeamsChannelConfiguration) SetSnsTopicArns(v []*string) *TeamsChannelConfiguration {
 	s.SnsTopicArns = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *TeamsChannelConfiguration) SetTags(v []*Tag) *TeamsChannelConfiguration {
+	s.Tags = v
 	return s
 }
 
@@ -6724,6 +7442,155 @@ func (s *TeamsUserIdentity) SetTeamsTenantId(v string) *TeamsUserIdentity {
 func (s *TeamsUserIdentity) SetUserId(v string) *TeamsUserIdentity {
 	s.UserId = &v
 	return s
+}
+
+// The supplied list of tags contains too many tags.
+type TooManyTagsException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TooManyTagsException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TooManyTagsException) GoString() string {
+	return s.String()
+}
+
+func newErrorTooManyTagsException(v protocol.ResponseMetadata) error {
+	return &TooManyTagsException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *TooManyTagsException) Code() string {
+	return "TooManyTagsException"
+}
+
+// Message returns the exception's message.
+func (s *TooManyTagsException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *TooManyTagsException) OrigErr() error {
+	return nil
+}
+
+func (s *TooManyTagsException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *TooManyTagsException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *TooManyTagsException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+type UntagResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the configuration.
+	//
+	// ResourceARN is a required field
+	ResourceARN *string `min:"1" type:"string" required:"true"`
+
+	// A list of tag keys to remove from the configuration.
+	//
+	// TagKeys is a required field
+	TagKeys []*string `type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UntagResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UntagResourceInput"}
+	if s.ResourceARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceARN"))
+	}
+	if s.ResourceARN != nil && len(*s.ResourceARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceARN", 1))
+	}
+	if s.TagKeys == nil {
+		invalidParams.Add(request.NewErrParamRequired("TagKeys"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceARN sets the ResourceARN field's value.
+func (s *UntagResourceInput) SetResourceARN(v string) *UntagResourceInput {
+	s.ResourceARN = &v
+	return s
+}
+
+// SetTagKeys sets the TagKeys field's value.
+func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
+	s.TagKeys = v
+	return s
+}
+
+type UntagResourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceOutput) GoString() string {
+	return s.String()
 }
 
 // We can’t process your request right now because of a server issue. Try

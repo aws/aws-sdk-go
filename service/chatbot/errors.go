@@ -125,6 +125,12 @@ const (
 	// again later.
 	ErrCodeGetTeamsChannelConfigurationException = "GetTeamsChannelConfigurationException"
 
+	// ErrCodeInternalServiceError for service response error code
+	// "InternalServiceError".
+	//
+	// Customer/consumer-facing internal service exception. https://w.amazon.com/index.php/AWS/API_Standards/Exceptions#InternalServiceError
+	ErrCodeInternalServiceError = "InternalServiceError"
+
 	// ErrCodeInvalidParameterException for service response error code
 	// "InvalidParameterException".
 	//
@@ -169,6 +175,19 @@ const (
 	//
 	// We were not able to find the resource for your request.
 	ErrCodeResourceNotFoundException = "ResourceNotFoundException"
+
+	// ErrCodeServiceUnavailableException for service response error code
+	// "ServiceUnavailableException".
+	//
+	// We can’t process your request right now because of a server issue. Try
+	// again later.
+	ErrCodeServiceUnavailableException = "ServiceUnavailableException"
+
+	// ErrCodeTooManyTagsException for service response error code
+	// "TooManyTagsException".
+	//
+	// The supplied list of tags contains too many tags.
+	ErrCodeTooManyTagsException = "TooManyTagsException"
 
 	// ErrCodeUpdateAccountPreferencesException for service response error code
 	// "UpdateAccountPreferencesException".
@@ -217,6 +236,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"DescribeSlackWorkspacesException":            newErrorDescribeSlackWorkspacesException,
 	"GetAccountPreferencesException":              newErrorGetAccountPreferencesException,
 	"GetTeamsChannelConfigurationException":       newErrorGetTeamsChannelConfigurationException,
+	"InternalServiceError":                        newErrorInternalServiceError,
 	"InvalidParameterException":                   newErrorInvalidParameterException,
 	"InvalidRequestException":                     newErrorInvalidRequestException,
 	"LimitExceededException":                      newErrorLimitExceededException,
@@ -224,6 +244,8 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"ListMicrosoftTeamsUserIdentitiesException":   newErrorListMicrosoftTeamsUserIdentitiesException,
 	"ListTeamsChannelConfigurationsException":     newErrorListTeamsChannelConfigurationsException,
 	"ResourceNotFoundException":                   newErrorResourceNotFoundException,
+	"ServiceUnavailableException":                 newErrorServiceUnavailableException,
+	"TooManyTagsException":                        newErrorTooManyTagsException,
 	"UpdateAccountPreferencesException":           newErrorUpdateAccountPreferencesException,
 	"UpdateChimeWebhookConfigurationException":    newErrorUpdateChimeWebhookConfigurationException,
 	"UpdateSlackChannelConfigurationException":    newErrorUpdateSlackChannelConfigurationException,

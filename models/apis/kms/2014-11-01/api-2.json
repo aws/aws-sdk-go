@@ -5,6 +5,7 @@
     "endpointPrefix":"kms",
     "jsonVersion":"1.1",
     "protocol":"json",
+    "protocols":["json"],
     "serviceAbbreviation":"KMS",
     "serviceFullName":"AWS Key Management Service",
     "serviceId":"KMS",
@@ -958,7 +959,8 @@
         "RSAES_OAEP_SHA_1",
         "RSAES_OAEP_SHA_256",
         "RSA_AES_KEY_WRAP_SHA_1",
-        "RSA_AES_KEY_WRAP_SHA_256"
+        "RSA_AES_KEY_WRAP_SHA_256",
+        "SM2PKE"
       ]
     },
     "AliasList":{
@@ -2636,7 +2638,8 @@
       "enum":[
         "RSA_2048",
         "RSA_3072",
-        "RSA_4096"
+        "RSA_4096",
+        "SM2"
       ]
     },
     "XksKeyAlreadyInUseException":{

@@ -683,6 +683,14 @@
         "UpdateDataSourceRequest$Name": "<p>The name of the data source to modify.</p>"
       }
     },
+    "DataSourceStatus": {
+      "base": null,
+      "refs": {
+        "DataSourceDetails$Status": "<p>The status of the data source.</p>",
+        "GetDataSourceResponse$Status": "<p>The status of the data source response.</p>",
+        "UpdateDataSourceRequest$Status": "<p>The status of the data source update request.</p>"
+      }
+    },
     "DataSourceType": {
       "base": "<p>The type of data source.</p>",
       "refs": {
@@ -1420,7 +1428,7 @@
     "HostedZoneId": {
       "base": null,
       "refs": {
-        "DomainStatus$DomainEndpointV2HostedZoneId": "<p>The DualStack Hosted Zone Id for the domain. </p>"
+        "DomainStatus$DomainEndpointV2HostedZoneId": "<p>The dual stack hosted zone ID for the domain. </p>"
       }
     },
     "IPAddressType": {
