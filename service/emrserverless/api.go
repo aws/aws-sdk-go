@@ -1482,6 +1482,10 @@ type Application struct {
 	// The initial capacity of the application.
 	InitialCapacity map[string]*InitialCapacityConfig `locationName:"initialCapacity" type:"map"`
 
+	// The interactive configuration object that enables the interactive use cases
+	// for an application.
+	InteractiveConfiguration *InteractiveConfiguration `locationName:"interactiveConfiguration" type:"structure"`
+
 	// The maximum capacity of the application. This is cumulative across all workers
 	// at any given point in time during the lifespan of the application is created.
 	// No new resources will be created once any one of the defined limits is hit.
@@ -1597,6 +1601,12 @@ func (s *Application) SetImageConfiguration(v *ImageConfiguration) *Application 
 // SetInitialCapacity sets the InitialCapacity field's value.
 func (s *Application) SetInitialCapacity(v map[string]*InitialCapacityConfig) *Application {
 	s.InitialCapacity = v
+	return s
+}
+
+// SetInteractiveConfiguration sets the InteractiveConfiguration field's value.
+func (s *Application) SetInteractiveConfiguration(v *InteractiveConfiguration) *Application {
+	s.InteractiveConfiguration = v
 	return s
 }
 
@@ -2344,6 +2354,10 @@ type CreateApplicationInput struct {
 	// The capacity to initialize when the application is created.
 	InitialCapacity map[string]*InitialCapacityConfig `locationName:"initialCapacity" type:"map"`
 
+	// The interactive configuration object that enables the interactive use cases
+	// to use when running an application.
+	InteractiveConfiguration *InteractiveConfiguration `locationName:"interactiveConfiguration" type:"structure"`
+
 	// The maximum capacity to allocate when the application is created. This is
 	// cumulative across all workers at any given point in time, not just when an
 	// application is created. No new resources will be created once any one of
@@ -2516,6 +2530,12 @@ func (s *CreateApplicationInput) SetImageConfiguration(v *ImageConfigurationInpu
 // SetInitialCapacity sets the InitialCapacity field's value.
 func (s *CreateApplicationInput) SetInitialCapacity(v map[string]*InitialCapacityConfig) *CreateApplicationInput {
 	s.InitialCapacity = v
+	return s
+}
+
+// SetInteractiveConfiguration sets the InteractiveConfiguration field's value.
+func (s *CreateApplicationInput) SetInteractiveConfiguration(v *InteractiveConfiguration) *CreateApplicationInput {
+	s.InteractiveConfiguration = v
 	return s
 }
 
@@ -3214,6 +3234,50 @@ func (s *InitialCapacityConfig) SetWorkerConfiguration(v *WorkerResourceConfig) 
 // SetWorkerCount sets the WorkerCount field's value.
 func (s *InitialCapacityConfig) SetWorkerCount(v int64) *InitialCapacityConfig {
 	s.WorkerCount = &v
+	return s
+}
+
+// The configuration to use to enable the different types of interactive use
+// cases in an application.
+type InteractiveConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Enables an Apache Livy endpoint that you can connect to and run interactive
+	// jobs.
+	LivyEndpointEnabled *bool `locationName:"livyEndpointEnabled" type:"boolean"`
+
+	// Enables you to connect an application to Amazon EMR Studio to run interactive
+	// workloads in a notebook.
+	StudioEnabled *bool `locationName:"studioEnabled" type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InteractiveConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InteractiveConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetLivyEndpointEnabled sets the LivyEndpointEnabled field's value.
+func (s *InteractiveConfiguration) SetLivyEndpointEnabled(v bool) *InteractiveConfiguration {
+	s.LivyEndpointEnabled = &v
+	return s
+}
+
+// SetStudioEnabled sets the StudioEnabled field's value.
+func (s *InteractiveConfiguration) SetStudioEnabled(v bool) *InteractiveConfiguration {
+	s.StudioEnabled = &v
 	return s
 }
 
@@ -5287,6 +5351,10 @@ type UpdateApplicationInput struct {
 	// The capacity to initialize when the application is updated.
 	InitialCapacity map[string]*InitialCapacityConfig `locationName:"initialCapacity" type:"map"`
 
+	// The interactive configuration object that contains new interactive use cases
+	// when the application is updated.
+	InteractiveConfiguration *InteractiveConfiguration `locationName:"interactiveConfiguration" type:"structure"`
+
 	// The maximum capacity to allocate when the application is updated. This is
 	// cumulative across all workers at any given point in time during the lifespan
 	// of the application. No new resources will be created once any one of the
@@ -5447,6 +5515,12 @@ func (s *UpdateApplicationInput) SetImageConfiguration(v *ImageConfigurationInpu
 // SetInitialCapacity sets the InitialCapacity field's value.
 func (s *UpdateApplicationInput) SetInitialCapacity(v map[string]*InitialCapacityConfig) *UpdateApplicationInput {
 	s.InitialCapacity = v
+	return s
+}
+
+// SetInteractiveConfiguration sets the InteractiveConfiguration field's value.
+func (s *UpdateApplicationInput) SetInteractiveConfiguration(v *InteractiveConfiguration) *UpdateApplicationInput {
+	s.InteractiveConfiguration = v
 	return s
 }
 

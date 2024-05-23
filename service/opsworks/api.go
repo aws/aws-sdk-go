@@ -62,10 +62,10 @@ func (c *OpsWorks) AssignInstanceRequest(input *AssignInstanceInput) (req *reque
 //
 //   - You can assign registered Amazon EC2 instances only to custom layers.
 //
-//   - You cannot use this action with instances that were created with AWS
-//     OpsWorks Stacks.
+//   - You cannot use this action with instances that were created with OpsWorks
+//     Stacks.
 //
-// Required Permissions: To use this action, an AWS Identity and Access Management
+// Required Permissions: To use this action, an Identity and Access Management
 // (IAM) user must have a Manage permissions level for the stack or an attached
 // policy that explicitly grants permissions. For more information on user permissions,
 // see Managing User Permissions (https://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
@@ -333,14 +333,14 @@ func (c *OpsWorks) AttachElasticLoadBalancerRequest(input *AttachElasticLoadBala
 
 // AttachElasticLoadBalancer API operation for AWS OpsWorks.
 //
-// Attaches an Elastic Load Balancing load balancer to a specified layer. AWS
-// OpsWorks Stacks does not support Application Load Balancer. You can only
-// use Classic Load Balancer with AWS OpsWorks Stacks. For more information,
-// see Elastic Load Balancing (https://docs.aws.amazon.com/opsworks/latest/userguide/layers-elb.html).
+// Attaches an Elastic Load Balancing load balancer to a specified layer. OpsWorks
+// Stacks does not support Application Load Balancer. You can only use Classic
+// Load Balancer with OpsWorks Stacks. For more information, see Elastic Load
+// Balancing (https://docs.aws.amazon.com/opsworks/latest/userguide/layers-elb.html).
 //
 // You must create the Elastic Load Balancing instance separately, by using
 // the Elastic Load Balancing console, API, or CLI. For more information, see
-// Elastic Load Balancing Developer Guide (https://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/Welcome.html).
+// the Elastic Load Balancing Developer Guide (https://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/Welcome.html).
 //
 // Required Permissions: To use this action, an IAM user must have a Manage
 // permissions level for the stack, or an attached policy that explicitly grants
@@ -1574,8 +1574,9 @@ func (c *OpsWorks) DeregisterElasticIpRequest(input *DeregisterElasticIpInput) (
 
 // DeregisterElasticIp API operation for AWS OpsWorks.
 //
-// Deregisters a specified Elastic IP address. The address can then be registered
-// by another stack. For more information, see Resource Management (https://docs.aws.amazon.com/opsworks/latest/userguide/resources.html).
+// Deregisters a specified Elastic IP address. The address can be registered
+// by another stack after it is deregistered. For more information, see Resource
+// Management (https://docs.aws.amazon.com/opsworks/latest/userguide/resources.html).
 //
 // Required Permissions: To use this action, an IAM user must have a Manage
 // permissions level for the stack, or an attached policy that explicitly grants
@@ -1663,9 +1664,9 @@ func (c *OpsWorks) DeregisterInstanceRequest(input *DeregisterInstanceInput) (re
 
 // DeregisterInstance API operation for AWS OpsWorks.
 //
-// Deregister a registered Amazon EC2 or on-premises instance. This action removes
-// the instance from the stack and returns it to your control. This action cannot
-// be used with instances that were created with AWS OpsWorks Stacks.
+// Deregister an instance from OpsWorks Stacks. The instance can be a registered
+// instance (Amazon EC2 or on-premises) or an instance created with OpsWorks.
+// This action removes the instance from the stack and returns it to your control.
 //
 // Required Permissions: To use this action, an IAM user must have a Manage
 // permissions level for the stack or an attached policy that explicitly grants
@@ -1929,7 +1930,7 @@ func (c *OpsWorks) DescribeAgentVersionsRequest(input *DescribeAgentVersionsInpu
 
 // DescribeAgentVersions API operation for AWS OpsWorks.
 //
-// Describes the available AWS OpsWorks Stacks agent versions. You must specify
+// Describes the available OpsWorks Stacks agent versions. You must specify
 // a stack ID or a configuration manager. DescribeAgentVersions returns a list
 // of available agent versions for the specified stack or configuration manager.
 //
@@ -2288,7 +2289,7 @@ func (c *OpsWorks) DescribeEcsClustersRequest(input *DescribeEcsClustersInput) (
 //
 // Describes Amazon ECS clusters that are registered with a stack. If you specify
 // only a stack ID, you can use the MaxResults and NextToken parameters to paginate
-// the response. However, AWS OpsWorks Stacks currently supports only one cluster
+// the response. However, OpsWorks Stacks currently supports only one cluster
 // per layer, so the result set has a maximum of one element.
 //
 // Required Permissions: To use this action, an IAM user must have a Show, Deploy,
@@ -2951,7 +2952,7 @@ func (c *OpsWorks) DescribeOperatingSystemsRequest(input *DescribeOperatingSyste
 
 // DescribeOperatingSystems API operation for AWS OpsWorks.
 //
-// Describes the operating systems that are supported by AWS OpsWorks Stacks.
+// Describes the operating systems that are supported by OpsWorks Stacks.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3289,7 +3290,7 @@ func (c *OpsWorks) DescribeServiceErrorsRequest(input *DescribeServiceErrorsInpu
 
 // DescribeServiceErrors API operation for AWS OpsWorks.
 //
-// Describes AWS OpsWorks Stacks service errors.
+// Describes OpsWorks Stacks service errors.
 //
 // Required Permissions: To use this action, an IAM user must have a Show, Deploy,
 // or Manage permissions level for the stack, or an attached policy that explicitly
@@ -4600,15 +4601,15 @@ func (c *OpsWorks) RegisterInstanceRequest(input *RegisterInstanceInput) (req *r
 
 // RegisterInstance API operation for AWS OpsWorks.
 //
-// Registers instances that were created outside of AWS OpsWorks Stacks with
-// a specified stack.
+// Registers instances that were created outside of OpsWorks Stacks with a specified
+// stack.
 //
 // We do not recommend using this action to register instances. The complete
-// registration operation includes two tasks: installing the AWS OpsWorks Stacks
+// registration operation includes two tasks: installing the OpsWorks Stacks
 // agent on the instance, and registering the instance with the stack. RegisterInstance
-// handles only the second step. You should instead use the AWS CLI register
-// command, which performs the entire registration operation. For more information,
-// see Registering an Instance with an AWS OpsWorks Stacks Stack (https://docs.aws.amazon.com/opsworks/latest/userguide/registered-instances-register.html).
+// handles only the second step. You should instead use the CLI register command,
+// which performs the entire registration operation. For more information, see
+// Registering an Instance with an OpsWorks Stacks Stack (https://docs.aws.amazon.com/opsworks/latest/userguide/registered-instances-register.html).
 //
 // Registered instances have the same requirements as instances that are created
 // by using the CreateInstance API. For example, registered instances must be
@@ -5510,9 +5511,9 @@ func (c *OpsWorks) TagResourceRequest(input *TagResourceInput) (req *request.Req
 
 // TagResource API operation for AWS OpsWorks.
 //
-// Apply cost-allocation tags to a specified stack or layer in AWS OpsWorks
-// Stacks. For more information about how tagging works, see Tags (https://docs.aws.amazon.com/opsworks/latest/userguide/tagging.html)
-// in the AWS OpsWorks User Guide.
+// Apply cost-allocation tags to a specified stack or layer in OpsWorks Stacks.
+// For more information about how tagging works, see Tags (https://docs.aws.amazon.com/opsworks/latest/userguide/tagging.html)
+// in the OpsWorks User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5598,7 +5599,7 @@ func (c *OpsWorks) UnassignInstanceRequest(input *UnassignInstanceInput) (req *r
 // Unassigns a registered instance from all layers that are using the instance.
 // The instance remains in the stack as an unassigned instance, and can be assigned
 // to another layer as needed. You cannot use this action with instances that
-// were created with AWS OpsWorks Stacks.
+// were created with OpsWorks Stacks.
 //
 // Required Permissions: To use this action, an IAM user must have a Manage
 // permissions level for the stack or an attached policy that explicitly grants
@@ -7124,32 +7125,32 @@ func (s AttachElasticLoadBalancerOutput) GoString() string {
 }
 
 // Describes a load-based auto scaling upscaling or downscaling threshold configuration,
-// which specifies when AWS OpsWorks Stacks starts or stops load-based instances.
+// which specifies when OpsWorks Stacks starts or stops load-based instances.
 type AutoScalingThresholds struct {
 	_ struct{} `type:"structure"`
 
-	// Custom Cloudwatch auto scaling alarms, to be used as thresholds. This parameter
+	// Custom CloudWatch auto scaling alarms, to be used as thresholds. This parameter
 	// takes a list of up to five alarm names, which are case sensitive and must
 	// be in the same region as the stack.
 	//
 	// To use custom alarms, you must update your service role to allow cloudwatch:DescribeAlarms.
-	// You can either have AWS OpsWorks Stacks update the role for you when you
-	// first use this feature or you can edit the role manually. For more information,
-	// see Allowing AWS OpsWorks Stacks to Act on Your Behalf (https://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-servicerole.html).
+	// You can either have OpsWorks Stacks update the role for you when you first
+	// use this feature or you can edit the role manually. For more information,
+	// see Allowing OpsWorks Stacks to Act on Your Behalf (https://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-servicerole.html).
 	Alarms []*string `type:"list"`
 
 	// The CPU utilization threshold, as a percent of the available CPU. A value
 	// of -1 disables the threshold.
 	CpuThreshold *float64 `type:"double"`
 
-	// The amount of time (in minutes) after a scaling event occurs that AWS OpsWorks
+	// The amount of time (in minutes) after a scaling event occurs that OpsWorks
 	// Stacks should ignore metrics and suppress additional scaling events. For
-	// example, AWS OpsWorks Stacks adds new instances following an upscaling event
+	// example, OpsWorks Stacks adds new instances following an upscaling event
 	// but the instances won't start reducing the load until they have been booted
 	// and configured. There is no point in raising additional scaling events during
 	// that operation, which typically takes several minutes. IgnoreMetricsTime
-	// allows you to direct AWS OpsWorks Stacks to suppress scaling events long
-	// enough to get the new instances online.
+	// allows you to direct OpsWorks Stacks to suppress scaling events long enough
+	// to get the new instances online.
 	IgnoreMetricsTime *int64 `min:"1" type:"integer"`
 
 	// The number of instances to add or remove when the load exceeds a threshold.
@@ -7252,7 +7253,7 @@ type BlockDeviceMapping struct {
 
 	// The device name that is exposed to the instance, such as /dev/sdh. For the
 	// root device, you can use the explicit device name or you can set this parameter
-	// to ROOT_DEVICE and AWS OpsWorks Stacks will provide the correct device name.
+	// to ROOT_DEVICE and OpsWorks Stacks will provide the correct device name.
 	DeviceName *string `type:"string"`
 
 	// An EBSBlockDevice that defines how to configure an Amazon EBS volume when
@@ -7352,16 +7353,16 @@ func (s *ChefConfiguration) SetManageBerkshelf(v bool) *ChefConfiguration {
 type CloneStackInput struct {
 	_ struct{} `type:"structure"`
 
-	// The default AWS OpsWorks Stacks agent version. You have the following options:
+	// The default OpsWorks Stacks agent version. You have the following options:
 	//
-	//    * Auto-update - Set this parameter to LATEST. AWS OpsWorks Stacks automatically
+	//    * Auto-update - Set this parameter to LATEST. OpsWorks Stacks automatically
 	//    installs new agent versions on the stack's instances as soon as they are
 	//    available.
 	//
 	//    * Fixed version - Set this parameter to your preferred agent version.
 	//    To update the agent version, you must edit the stack configuration and
-	//    specify a new version. AWS OpsWorks Stacks then automatically installs
-	//    that version on the stack's instances.
+	//    specify a new version. OpsWorks Stacks automatically installs that version
+	//    on the stack's instances.
 	//
 	// The default setting is LATEST. To specify an agent version, you must use
 	// the complete version number, not the abbreviated number shown on the console.
@@ -7422,12 +7423,12 @@ type CloneStackInput struct {
 	// The stack's operating system, which must be set to one of the following.
 	//
 	//    * A supported Linux operating system: An Amazon Linux version, such as
-	//    Amazon Linux 2018.03, Amazon Linux 2017.09, Amazon Linux 2017.03, Amazon
-	//    Linux 2016.09, Amazon Linux 2016.03, Amazon Linux 2015.09, or Amazon Linux
-	//    2015.03.
+	//    Amazon Linux 2, Amazon Linux 2018.03, Amazon Linux 2017.09, Amazon Linux
+	//    2017.03, Amazon Linux 2016.09, Amazon Linux 2016.03, Amazon Linux 2015.09,
+	//    or Amazon Linux 2015.03.
 	//
-	//    * A supported Ubuntu operating system, such as Ubuntu 16.04 LTS, Ubuntu
-	//    14.04 LTS, or Ubuntu 12.04 LTS.
+	//    * A supported Ubuntu operating system, such as Ubuntu 18.04 LTS, Ubuntu
+	//    16.04 LTS, Ubuntu 14.04 LTS, or Ubuntu 12.04 LTS.
 	//
 	//    * CentOS Linux 7
 	//
@@ -7441,9 +7442,9 @@ type CloneStackInput struct {
 	//    you create instances. For more information about how to use custom AMIs
 	//    with OpsWorks, see Using Custom AMIs (https://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-custom-ami.html).
 	//
-	// The default option is the parent stack's operating system. For more information
-	// about supported operating systems, see AWS OpsWorks Stacks Operating Systems
-	// (https://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-os.html).
+	// The default option is the parent stack's operating system. Not all operating
+	// systems are supported with all versions of Chef. For more information about
+	// supported operating systems, see OpsWorks Stacks Operating Systems (https://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-os.html).
 	//
 	// You can specify a different Linux operating system for the cloned stack,
 	// but you cannot change from Linux to Windows or Windows to Linux.
@@ -7455,9 +7456,9 @@ type CloneStackInput struct {
 	DefaultRootDeviceType *string `type:"string" enum:"RootDeviceType"`
 
 	// A default Amazon EC2 key pair name. The default value is none. If you specify
-	// a key pair name, AWS OpsWorks installs the public key on the instance and
-	// you can use the private key with an SSH client to log in to the instance.
-	// For more information, see Using SSH to Communicate with an Instance (https://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-ssh.html)
+	// a key pair name, OpsWorks installs the public key on the instance and you
+	// can use the private key with an SSH client to log in to the instance. For
+	// more information, see Using SSH to Communicate with an Instance (https://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-ssh.html)
 	// and Managing SSH Access (https://docs.aws.amazon.com/opsworks/latest/userguide/security-ssh-access.html).
 	// You can override this setting by specifying a different key pair, or no key
 	// pair, when you create an instance (https://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-add.html).
@@ -7502,18 +7503,19 @@ type CloneStackInput struct {
 	// a host name based on the current theme.
 	HostnameTheme *string `type:"string"`
 
-	// The cloned stack name.
+	// The cloned stack name. Stack names can be a maximum of 64 characters.
 	Name *string `type:"string"`
 
-	// The cloned stack AWS region, such as "ap-northeast-2". For more information
-	// about AWS regions, see Regions and Endpoints (https://docs.aws.amazon.com/general/latest/gr/rande.html).
+	// The cloned stack Amazon Web Services Region, such as ap-northeast-2. For
+	// more information about Amazon Web Services Regions, see Regions and Endpoints
+	// (https://docs.aws.amazon.com/general/latest/gr/rande.html).
 	Region *string `type:"string"`
 
-	// The stack AWS Identity and Access Management (IAM) role, which allows AWS
-	// OpsWorks Stacks to work with AWS resources on your behalf. You must set this
-	// parameter to the Amazon Resource Name (ARN) for an existing IAM role. If
-	// you create a stack by using the AWS OpsWorks Stacks console, it creates the
-	// role for you. You can obtain an existing stack's IAM ARN programmatically
+	// The stack Identity and Access Management (IAM) role, which allows OpsWorks
+	// Stacks to work with Amazon Web Services resources on your behalf. You must
+	// set this parameter to the Amazon Resource Name (ARN) for an existing IAM
+	// role. If you create a stack by using the OpsWorkss Stacks console, it creates
+	// the role for you. You can obtain an existing stack's IAM ARN programmatically
 	// by calling DescribePermissions. For more information about IAM ARNs, see
 	// Using Identifiers (https://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html).
 	//
@@ -7532,25 +7534,25 @@ type CloneStackInput struct {
 	// Whether to use custom cookbooks.
 	UseCustomCookbooks *bool `type:"boolean"`
 
-	// Whether to associate the AWS OpsWorks Stacks built-in security groups with
-	// the stack's layers.
+	// Whether to associate the OpsWorks Stacks built-in security groups with the
+	// stack's layers.
 	//
-	// AWS OpsWorks Stacks provides a standard set of built-in security groups,
-	// one for each layer, which are associated with layers by default. With UseOpsworksSecurityGroups
+	// OpsWorks Stacks provides a standard set of security groups, one for each
+	// layer, which are associated with layers by default. With UseOpsworksSecurityGroups
 	// you can instead provide your own custom security groups. UseOpsworksSecurityGroups
 	// has the following settings:
 	//
-	//    * True - AWS OpsWorks Stacks automatically associates the appropriate
-	//    built-in security group with each layer (default setting). You can associate
-	//    additional security groups with a layer after you create it but you cannot
-	//    delete the built-in security group.
+	//    * True - OpsWorks Stacks automatically associates the appropriate built-in
+	//    security group with each layer (default setting). You can associate additional
+	//    security groups with a layer after you create it but you cannot delete
+	//    the built-in security group.
 	//
-	//    * False - AWS OpsWorks Stacks does not associate built-in security groups
-	//    with layers. You must create appropriate Amazon Elastic Compute Cloud
-	//    (Amazon EC2) security groups and associate a security group with each
-	//    layer that you create. However, you can still manually associate a built-in
-	//    security group with a layer on creation; custom security groups are required
-	//    only for those layers that need custom settings.
+	//    * False - OpsWorks Stacks does not associate built-in security groups
+	//    with layers. You must create appropriate Amazon EC2 security groups and
+	//    associate a security group with each layer that you create. However, you
+	//    can still manually associate a built-in security group with a layer on
+	//    creation; custom security groups are required only for those layers that
+	//    need custom settings.
 	//
 	// For more information, see Create a New Stack (https://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-creating.html).
 	UseOpsworksSecurityGroups *bool `type:"boolean"`
@@ -7565,11 +7567,10 @@ type CloneStackInput struct {
 	//    default VPC for the specified region.
 	//
 	// If the VPC ID corresponds to a default VPC and you have specified either
-	// the DefaultAvailabilityZone or the DefaultSubnetId parameter only, AWS OpsWorks
+	// the DefaultAvailabilityZone or the DefaultSubnetId parameter only, OpsWorks
 	// Stacks infers the value of the other parameter. If you specify neither parameter,
-	// AWS OpsWorks Stacks sets these parameters to the first valid Availability
-	// Zone for the specified region and the corresponding default VPC subnet ID,
-	// respectively.
+	// OpsWorks Stacks sets these parameters to the first valid Availability Zone
+	// for the specified region and the corresponding default VPC subnet ID, respectively.
 	//
 	// If you specify a nondefault VPC ID, note the following:
 	//
@@ -7577,8 +7578,8 @@ type CloneStackInput struct {
 	//
 	//    * You must specify a value for DefaultSubnetId.
 	//
-	// For more information about how to use AWS OpsWorks Stacks with a VPC, see
-	// Running a Stack in a VPC (https://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-vpc.html).
+	// For more information about how to use OpsWorks Stacks with a VPC, see Running
+	// a Stack in a VPC (https://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-vpc.html).
 	// For more information about default VPC and EC2 Classic, see Supported Platforms
 	// (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-platforms.html).
 	VpcId *string `type:"string"`
@@ -7782,7 +7783,7 @@ func (s *CloneStackOutput) SetStackId(v string) *CloneStackOutput {
 	return s
 }
 
-// Describes the Amazon CloudWatch logs configuration for a layer.
+// Describes the Amazon CloudWatch Logs configuration for a layer.
 type CloudWatchLogsConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -7823,9 +7824,9 @@ func (s *CloudWatchLogsConfiguration) SetLogStreams(v []*CloudWatchLogsLogStream
 	return s
 }
 
-// Describes the Amazon CloudWatch logs configuration for a layer. For detailed
-// information about members of this data type, see the CloudWatch Logs Agent
-// Reference (https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AgentReference.html).
+// Describes the CloudWatch Logs configuration for a layer. For detailed information
+// about members of this data type, see the CloudWatch Logs Agent Reference
+// (https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AgentReference.html).
 type CloudWatchLogsLogStream struct {
 	_ struct{} `type:"structure"`
 
@@ -8174,10 +8175,10 @@ type CreateAppInput struct {
 	StackId *string `type:"string" required:"true"`
 
 	// The app type. Each supported type is associated with a particular layer.
-	// For example, PHP applications are associated with a PHP layer. AWS OpsWorks
-	// Stacks deploys an application to those instances that are members of the
-	// corresponding layer. If your app isn't one of the standard types, or you
-	// prefer to implement your own Deploy recipes, specify other.
+	// For example, PHP applications are associated with a PHP layer. OpsWorks Stacks
+	// deploys an application to those instances that are members of the corresponding
+	// layer. If your app isn't one of the standard types, or you prefer to implement
+	// your own Deploy recipes, specify other.
 	//
 	// Type is a required field
 	Type *string `type:"string" required:"true" enum:"AppType"`
@@ -8495,14 +8496,14 @@ func (s *CreateDeploymentOutput) SetDeploymentId(v string) *CreateDeploymentOutp
 type CreateInstanceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The default AWS OpsWorks Stacks agent version. You have the following options:
+	// The default OpsWorks Stacks agent version. You have the following options:
 	//
 	//    * INHERIT - Use the stack's default agent version setting.
 	//
 	//    * version_number - Use the specified agent version. This value overrides
 	//    the stack's default setting. To update the agent version, edit the instance
-	//    configuration and specify a new version. AWS OpsWorks Stacks then automatically
-	//    installs that version on the instance.
+	//    configuration and specify a new version. OpsWorks Stacks installs that
+	//    version on the instance.
 	//
 	// The default setting is INHERIT. To specify an agent version, you must use
 	// the complete version number, not the abbreviated number shown on the console.
@@ -8539,7 +8540,12 @@ type CreateInstanceInput struct {
 	// Whether to create an Amazon EBS-optimized instance.
 	EbsOptimized *bool `type:"boolean"`
 
-	// The instance host name.
+	// The instance host name. The following are character limits for instance host
+	// names.
+	//
+	//    * Linux-based instances: 63 characters
+	//
+	//    * Windows-based instances: 15 characters
 	Hostname *string `type:"string"`
 
 	// Whether to install operating system and package updates when the instance
@@ -8570,12 +8576,12 @@ type CreateInstanceInput struct {
 	// The instance's operating system, which must be set to one of the following.
 	//
 	//    * A supported Linux operating system: An Amazon Linux version, such as
-	//    Amazon Linux 2018.03, Amazon Linux 2017.09, Amazon Linux 2017.03, Amazon
-	//    Linux 2016.09, Amazon Linux 2016.03, Amazon Linux 2015.09, or Amazon Linux
-	//    2015.03.
+	//    Amazon Linux 2, Amazon Linux 2018.03, Amazon Linux 2017.09, Amazon Linux
+	//    2017.03, Amazon Linux 2016.09, Amazon Linux 2016.03, Amazon Linux 2015.09,
+	//    or Amazon Linux 2015.03.
 	//
-	//    * A supported Ubuntu operating system, such as Ubuntu 16.04 LTS, Ubuntu
-	//    14.04 LTS, or Ubuntu 12.04 LTS.
+	//    * A supported Ubuntu operating system, such as Ubuntu 18.04 LTS, Ubuntu
+	//    16.04 LTS, Ubuntu 14.04 LTS, or Ubuntu 12.04 LTS.
 	//
 	//    * CentOS Linux 7
 	//
@@ -8588,16 +8594,15 @@ type CreateInstanceInput struct {
 	//
 	//    * A custom AMI: Custom.
 	//
-	// For more information about the supported operating systems, see AWS OpsWorks
-	// Stacks Operating Systems (https://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-os.html).
+	// Not all operating systems are supported with all versions of Chef. For more
+	// information about the supported operating systems, see OpsWorks Stacks Operating
+	// Systems (https://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-os.html).
 	//
 	// The default option is the current Amazon Linux version. If you set this parameter
 	// to Custom, you must use the CreateInstance action's AmiId parameter to specify
 	// the custom AMI that you want to use. Block device mappings are not supported
-	// if the value is Custom. For more information about supported operating systems,
-	// see Operating Systems (https://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-os.html)For
-	// more information about how to use custom AMIs with AWS OpsWorks Stacks, see
-	// Using Custom AMIs (https://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-custom-ami.html).
+	// if the value is Custom. For more information about how to use custom AMIs
+	// with OpsWorks Stacks, see Using Custom AMIs (https://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-custom-ami.html).
 	Os *string `type:"string"`
 
 	// The instance root device type. For more information, see Storage for the
@@ -8614,7 +8619,7 @@ type CreateInstanceInput struct {
 
 	// The ID of the instance's subnet. If the stack is running in a VPC, you can
 	// use this parameter to override the stack's default subnet ID value and direct
-	// AWS OpsWorks Stacks to launch the instance in a different subnet.
+	// OpsWorks Stacks to launch the instance in a different subnet.
 	SubnetId *string `type:"string"`
 
 	// The instance's tenancy option. The default option is no tenancy, or if the
@@ -8839,7 +8844,7 @@ type CreateLayerInput struct {
 	// A JSON-formatted string containing custom stack configuration and deployment
 	// attributes to be installed on the layer's instances. For more information,
 	// see Using Custom JSON (https://docs.aws.amazon.com/opsworks/latest/userguide/workingcookbook-json-override.html).
-	// This feature is supported as of version 1.7.42 of the AWS CLI.
+	// This feature is supported as of version 1.7.42 of the CLI.
 	CustomJson *string `type:"string"`
 
 	// A LayerCustomRecipes object that specifies the layer custom recipes.
@@ -8866,7 +8871,8 @@ type CreateLayerInput struct {
 	// Balancer connection draining.
 	LifecycleEventConfiguration *LifecycleEventConfiguration `type:"structure"`
 
-	// The layer name, which is used by the console.
+	// The layer name, which is used by the console. Layer names can be a maximum
+	// of 32 characters.
 	//
 	// Name is a required field
 	Name *string `type:"string" required:"true"`
@@ -8875,13 +8881,13 @@ type CreateLayerInput struct {
 	Packages []*string `type:"list"`
 
 	// For custom layers only, use this parameter to specify the layer's short name,
-	// which is used internally by AWS OpsWorks Stacks and by Chef recipes. The
-	// short name is also used as the name for the directory where your app files
-	// are installed. It can have a maximum of 200 characters, which are limited
-	// to the alphanumeric characters, '-', '_', and '.'.
+	// which is used internally by OpsWorks Stacks and by Chef recipes. The short
+	// name is also used as the name for the directory where your app files are
+	// installed. It can have a maximum of 32 characters, which are limited to the
+	// alphanumeric characters, '-', '_', and '.'.
 	//
-	// The built-in layers' short names are defined by AWS OpsWorks Stacks. For
-	// more information, see the Layer Reference (https://docs.aws.amazon.com/opsworks/latest/userguide/layers.html).
+	// Built-in layer short names are defined by OpsWorks Stacks. For more information,
+	// see the Layer Reference (https://docs.aws.amazon.com/opsworks/latest/userguide/layers.html).
 	//
 	// Shortname is a required field
 	Shortname *string `type:"string" required:"true"`
@@ -9098,16 +9104,16 @@ func (s *CreateLayerOutput) SetLayerId(v string) *CreateLayerOutput {
 type CreateStackInput struct {
 	_ struct{} `type:"structure"`
 
-	// The default AWS OpsWorks Stacks agent version. You have the following options:
+	// The default OpsWorks Stacks agent version. You have the following options:
 	//
-	//    * Auto-update - Set this parameter to LATEST. AWS OpsWorks Stacks automatically
+	//    * Auto-update - Set this parameter to LATEST. OpsWorks Stacks automatically
 	//    installs new agent versions on the stack's instances as soon as they are
 	//    available.
 	//
 	//    * Fixed version - Set this parameter to your preferred agent version.
 	//    To update the agent version, you must edit the stack configuration and
-	//    specify a new version. AWS OpsWorks Stacks then automatically installs
-	//    that version on the stack's instances.
+	//    specify a new version. OpsWorks Stacks installs that version on the stack's
+	//    instances.
 	//
 	// The default setting is the most recent release of the agent. To specify an
 	// agent version, you must use the complete version number, not the abbreviated
@@ -9165,12 +9171,12 @@ type CreateStackInput struct {
 	// You can specify one of the following.
 	//
 	//    * A supported Linux operating system: An Amazon Linux version, such as
-	//    Amazon Linux 2018.03, Amazon Linux 2017.09, Amazon Linux 2017.03, Amazon
-	//    Linux 2016.09, Amazon Linux 2016.03, Amazon Linux 2015.09, or Amazon Linux
-	//    2015.03.
+	//    Amazon Linux 2, Amazon Linux 2018.03, Amazon Linux 2017.09, Amazon Linux
+	//    2017.03, Amazon Linux 2016.09, Amazon Linux 2016.03, Amazon Linux 2015.09,
+	//    or Amazon Linux 2015.03.
 	//
-	//    * A supported Ubuntu operating system, such as Ubuntu 16.04 LTS, Ubuntu
-	//    14.04 LTS, or Ubuntu 12.04 LTS.
+	//    * A supported Ubuntu operating system, such as Ubuntu 18.04 LTS, Ubuntu
+	//    16.04 LTS, Ubuntu 14.04 LTS, or Ubuntu 12.04 LTS.
 	//
 	//    * CentOS Linux 7
 	//
@@ -9184,9 +9190,9 @@ type CreateStackInput struct {
 	//    * A custom AMI: Custom. You specify the custom AMI you want to use when
 	//    you create instances. For more information, see Using Custom AMIs (https://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-custom-ami.html).
 	//
-	// The default option is the current Amazon Linux version. For more information
-	// about supported operating systems, see AWS OpsWorks Stacks Operating Systems
-	// (https://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-os.html).
+	// The default option is the current Amazon Linux version. Not all operating
+	// systems are supported with all versions of Chef. For more information about
+	// supported operating systems, see OpsWorks Stacks Operating Systems (https://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-os.html).
 	DefaultOs *string `type:"string"`
 
 	// The default root device type. This value is the default for all instances
@@ -9196,9 +9202,9 @@ type CreateStackInput struct {
 	DefaultRootDeviceType *string `type:"string" enum:"RootDeviceType"`
 
 	// A default Amazon EC2 key pair name. The default value is none. If you specify
-	// a key pair name, AWS OpsWorks installs the public key on the instance and
-	// you can use the private key with an SSH client to log in to the instance.
-	// For more information, see Using SSH to Communicate with an Instance (https://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-ssh.html)
+	// a key pair name, OpsWorks installs the public key on the instance and you
+	// can use the private key with an SSH client to log in to the instance. For
+	// more information, see Using SSH to Communicate with an Instance (https://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-ssh.html)
 	// and Managing SSH Access (https://docs.aws.amazon.com/opsworks/latest/userguide/security-ssh-access.html).
 	// You can override this setting by specifying a different key pair, or no key
 	// pair, when you create an instance (https://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-add.html).
@@ -9243,37 +9249,37 @@ type CreateStackInput struct {
 	// a host name based on the current theme.
 	HostnameTheme *string `type:"string"`
 
-	// The stack name.
+	// The stack name. Stack names can be a maximum of 64 characters.
 	//
 	// Name is a required field
 	Name *string `type:"string" required:"true"`
 
-	// The stack's AWS region, such as ap-south-1. For more information about Amazon
-	// regions, see Regions and Endpoints (https://docs.aws.amazon.com/general/latest/gr/rande.html).
+	// The stack's Amazon Web Services Region, such as ap-south-1. For more information
+	// about Amazon Web Services Regions, see Regions and Endpoints (https://docs.aws.amazon.com/general/latest/gr/rande.html).
 	//
-	// In the AWS CLI, this API maps to the --stack-region parameter. If the --stack-region
-	// parameter and the AWS CLI common parameter --region are set to the same value,
+	// In the CLI, this API maps to the --stack-region parameter. If the --stack-region
+	// parameter and the CLI common parameter --region are set to the same value,
 	// the stack uses a regional endpoint. If the --stack-region parameter is not
-	// set, but the AWS CLI --region parameter is, this also results in a stack
-	// with a regional endpoint. However, if the --region parameter is set to us-east-1,
+	// set, but the CLI --region parameter is, this also results in a stack with
+	// a regional endpoint. However, if the --region parameter is set to us-east-1,
 	// and the --stack-region parameter is set to one of the following, then the
 	// stack uses a legacy or classic region: us-west-1, us-west-2, sa-east-1, eu-central-1,
 	// eu-west-1, ap-northeast-1, ap-southeast-1, ap-southeast-2. In this case,
 	// the actual API endpoint of the stack is in us-east-1. Only the preceding
 	// regions are supported as classic regions in the us-east-1 API endpoint. Because
 	// it is a best practice to choose the regional endpoint that is closest to
-	// where you manage AWS, we recommend that you use regional endpoints for new
-	// stacks. The AWS CLI common --region parameter always specifies a regional
-	// API endpoint; it cannot be used to specify a classic AWS OpsWorks Stacks
-	// region.
+	// where you manage Amazon Web Services, we recommend that you use regional
+	// endpoints for new stacks. The CLI common --region parameter always specifies
+	// a regional API endpoint; it cannot be used to specify a classic OpsWorks
+	// Stacks region.
 	//
 	// Region is a required field
 	Region *string `type:"string" required:"true"`
 
-	// The stack's AWS Identity and Access Management (IAM) role, which allows AWS
-	// OpsWorks Stacks to work with AWS resources on your behalf. You must set this
-	// parameter to the Amazon Resource Name (ARN) for an existing IAM role. For
-	// more information about IAM ARNs, see Using Identifiers (https://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html).
+	// The stack's IAM role, which allows OpsWorks Stacks to work with Amazon Web
+	// Services resources on your behalf. You must set this parameter to the Amazon
+	// Resource Name (ARN) for an existing IAM role. For more information about
+	// IAM ARNs, see Using Identifiers (https://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html).
 	//
 	// ServiceRoleArn is a required field
 	ServiceRoleArn *string `type:"string" required:"true"`
@@ -9281,20 +9287,20 @@ type CreateStackInput struct {
 	// Whether the stack uses custom cookbooks.
 	UseCustomCookbooks *bool `type:"boolean"`
 
-	// Whether to associate the AWS OpsWorks Stacks built-in security groups with
-	// the stack's layers.
+	// Whether to associate the OpsWorks Stacks built-in security groups with the
+	// stack's layers.
 	//
-	// AWS OpsWorks Stacks provides a standard set of built-in security groups,
-	// one for each layer, which are associated with layers by default. With UseOpsworksSecurityGroups
+	// OpsWorks Stacks provides a standard set of built-in security groups, one
+	// for each layer, which are associated with layers by default. With UseOpsworksSecurityGroups
 	// you can instead provide your own custom security groups. UseOpsworksSecurityGroups
 	// has the following settings:
 	//
-	//    * True - AWS OpsWorks Stacks automatically associates the appropriate
-	//    built-in security group with each layer (default setting). You can associate
-	//    additional security groups with a layer after you create it, but you cannot
-	//    delete the built-in security group.
+	//    * True - OpsWorks Stacks automatically associates the appropriate built-in
+	//    security group with each layer (default setting). You can associate additional
+	//    security groups with a layer after you create it, but you cannot delete
+	//    the built-in security group.
 	//
-	//    * False - AWS OpsWorks Stacks does not associate built-in security groups
+	//    * False - OpsWorks Stacks does not associate built-in security groups
 	//    with layers. You must create appropriate EC2 security groups and associate
 	//    a security group with each layer that you create. However, you can still
 	//    manually associate a built-in security group with a layer on creation;
@@ -9314,11 +9320,10 @@ type CreateStackInput struct {
 	//    default VPC for the specified region.
 	//
 	// If the VPC ID corresponds to a default VPC and you have specified either
-	// the DefaultAvailabilityZone or the DefaultSubnetId parameter only, AWS OpsWorks
+	// the DefaultAvailabilityZone or the DefaultSubnetId parameter only, OpsWorks
 	// Stacks infers the value of the other parameter. If you specify neither parameter,
-	// AWS OpsWorks Stacks sets these parameters to the first valid Availability
-	// Zone for the specified region and the corresponding default VPC subnet ID,
-	// respectively.
+	// OpsWorks Stacks sets these parameters to the first valid Availability Zone
+	// for the specified region and the corresponding default VPC subnet ID, respectively.
 	//
 	// If you specify a nondefault VPC ID, note the following:
 	//
@@ -9326,8 +9331,8 @@ type CreateStackInput struct {
 	//
 	//    * You must specify a value for DefaultSubnetId.
 	//
-	// For more information about how to use AWS OpsWorks Stacks with a VPC, see
-	// Running a Stack in a VPC (https://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-vpc.html).
+	// For more information about how to use OpsWorks Stacks with a VPC, see Running
+	// a Stack in a VPC (https://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-vpc.html).
 	// For more information about default VPC and EC2-Classic, see Supported Platforms
 	// (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-platforms.html).
 	VpcId *string `type:"string"`
@@ -9536,10 +9541,10 @@ type CreateUserProfileInput struct {
 	SshPublicKey *string `type:"string"`
 
 	// The user's SSH user name. The allowable characters are [a-z], [A-Z], [0-9],
-	// '-', and '_'. If the specified name includes other punctuation marks, AWS
-	// OpsWorks Stacks removes them. For example, my.name will be changed to myname.
-	// If you do not specify an SSH user name, AWS OpsWorks Stacks generates one
-	// from the IAM user name.
+	// '-', and '_'. If the specified name includes other punctuation marks, OpsWorks
+	// Stacks removes them. For example, my.name is changed to myname. If you do
+	// not specify an SSH user name, OpsWorks Stacks generates one from the IAM
+	// user name.
 	SshUsername *string `type:"string"`
 }
 
@@ -10195,18 +10200,18 @@ type DeploymentCommand struct {
 	//
 	// The update_dependencies command takes two arguments:
 	//
-	//    * upgrade_os_to - Specifies the desired Amazon Linux version for instances
-	//    whose OS you want to upgrade, such as Amazon Linux 2016.09. You must also
-	//    set the allow_reboot argument to true.
+	//    * upgrade_os_to - Specifies the Amazon Linux version that you want instances
+	//    to run, such as Amazon Linux 2. You must also set the allow_reboot argument
+	//    to true.
 	//
-	//    * allow_reboot - Specifies whether to allow AWS OpsWorks Stacks to reboot
+	//    * allow_reboot - Specifies whether to allow OpsWorks Stacks to reboot
 	//    the instances if necessary, after installing the updates. This argument
 	//    can be set to either true or false. The default value is false.
 	//
-	// For example, to upgrade an instance to Amazon Linux 2016.09, set Args to
+	// For example, to upgrade an instance to Amazon Linux 2018.03, set Args to
 	// the following.
 	//
-	// { "upgrade_os_to":["Amazon Linux 2016.09"], "allow_reboot":["true"] }
+	// { "upgrade_os_to":["Amazon Linux 2018.03"], "allow_reboot":["true"] }
 	Args map[string][]*string `type:"map"`
 
 	// Specifies the operation. You can specify only one command.
@@ -10234,9 +10239,9 @@ type DeploymentCommand struct {
 	//    The default setting is {"migrate":["false"]}.
 	//
 	//    * rollback Roll the app back to the previous version. When you update
-	//    an app, AWS OpsWorks Stacks stores the previous version, up to a maximum
-	//    of five versions. You can use this command to roll an app back as many
-	//    as four versions.
+	//    an app, OpsWorks Stacks stores the previous version, up to a maximum of
+	//    five versions. You can use this command to roll an app back as many as
+	//    four versions.
 	//
 	//    * start: Start the app's web or application server.
 	//
@@ -10568,9 +10573,9 @@ func (s DeregisterRdsDbInstanceOutput) GoString() string {
 type DeregisterVolumeInput struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS OpsWorks Stacks volume ID, which is the GUID that AWS OpsWorks Stacks
-	// assigned to the instance when you registered the volume with the stack, not
-	// the Amazon EC2 volume ID.
+	// The OpsWorks Stacks volume ID, which is the GUID that OpsWorks Stacks assigned
+	// to the instance when you registered the volume with the stack, not the Amazon
+	// EC2 volume ID.
 	//
 	// VolumeId is a required field
 	VolumeId *string `type:"string" required:"true"`
@@ -11960,7 +11965,7 @@ func (s *DescribeStackProvisioningParametersInput) SetStackId(v string) *Describ
 type DescribeStackProvisioningParametersOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS OpsWorks Stacks agent installer's URL.
+	// The OpsWorks Stacks agent installer's URL.
 	AgentInstallerUrl *string `type:"string"`
 
 	// An embedded object that contains the provisioning parameters.
@@ -12079,7 +12084,12 @@ type DescribeStacksInput struct {
 	_ struct{} `type:"structure"`
 
 	// An array of stack IDs that specify the stacks to be described. If you omit
-	// this parameter, DescribeStacks returns a description of every stack.
+	// this parameter, and have permissions to get information about all stacks,
+	// DescribeStacks returns a description of every stack. If the IAM policy that
+	// is attached to an IAM user limits the DescribeStacks action to specific stack
+	// ARNs, this parameter is required, and the user must specify a stack ARN that
+	// is allowed by the policy. Otherwise, DescribeStacks returns an AccessDenied
+	// error.
 	StackIds []*string `type:"list"`
 }
 
@@ -12551,8 +12561,8 @@ type EbsBlockDevice struct {
 	//
 	// If you specify the io1 volume type, you must also specify a value for the
 	// Iops attribute. The maximum ratio of provisioned IOPS to requested volume
-	// size (in GiB) is 50:1. AWS uses the default volume size (in GiB) specified
-	// in the AMI attributes to set IOPS to 50 x (volume size).
+	// size (in GiB) is 50:1. Amazon Web Services uses the default volume size (in
+	// GiB) specified in the AMI attributes to set IOPS to 50 x (volume size).
 	VolumeType *string `type:"string" enum:"VolumeType"`
 }
 
@@ -12676,10 +12686,11 @@ type ElasticIp struct {
 	// The IP address.
 	Ip *string `type:"string"`
 
-	// The name.
+	// The name, which can be a maximum of 32 characters.
 	Name *string `type:"string"`
 
-	// The AWS region. For more information, see Regions and Endpoints (https://docs.aws.amazon.com/general/latest/gr/rande.html).
+	// The Amazon Web Services Region. For more information, see Regions and Endpoints
+	// (https://docs.aws.amazon.com/general/latest/gr/rande.html).
 	Region *string `type:"string"`
 }
 
@@ -12741,20 +12752,20 @@ type ElasticLoadBalancer struct {
 	// The instance's public DNS name.
 	DnsName *string `type:"string"`
 
-	// A list of the EC2 instances that the Elastic Load Balancing instance is managing
-	// traffic for.
+	// A list of the EC2 instances for which the Elastic Load Balancing instance
+	// is managing traffic.
 	Ec2InstanceIds []*string `type:"list"`
 
-	// The Elastic Load Balancing instance's name.
+	// The Elastic Load Balancing instance name.
 	ElasticLoadBalancerName *string `type:"string"`
 
-	// The ID of the layer that the instance is attached to.
+	// The ID of the layer to which the instance is attached.
 	LayerId *string `type:"string"`
 
-	// The instance's AWS region.
+	// The instance's Amazon Web Services Region.
 	Region *string `type:"string"`
 
-	// The ID of the stack that the instance is associated with.
+	// The ID of the stack with which the instance is associated.
 	StackId *string `type:"string"`
 
 	// A list of subnet IDs, if the stack is running in a VPC.
@@ -12848,10 +12859,10 @@ type EnvironmentVariable struct {
 	// Key is a required field
 	Key *string `type:"string" required:"true"`
 
-	// (Optional) Whether the variable's value will be returned by the DescribeApps
-	// action. To conceal an environment variable's value, set Secure to true. DescribeApps
-	// then returns *****FILTERED***** instead of the actual value. The default
-	// value for Secure is false.
+	// (Optional) Whether the variable's value is returned by the DescribeApps action.
+	// To hide an environment variable's value, set Secure to true. DescribeApps
+	// returns *****FILTERED***** instead of the actual value. The default value
+	// for Secure is false.
 	Secure *bool `type:"boolean"`
 
 	// (Optional) The environment variable's value, which can be left empty. If
@@ -13004,15 +13015,14 @@ func (s *GetHostnameSuggestionOutput) SetLayerId(v string) *GetHostnameSuggestio
 type GrantAccessInput struct {
 	_ struct{} `type:"structure"`
 
-	// The instance's AWS OpsWorks Stacks ID.
+	// The instance's OpsWorks Stacks ID.
 	//
 	// InstanceId is a required field
 	InstanceId *string `type:"string" required:"true"`
 
 	// The length of time (in minutes) that the grant is valid. When the grant expires
 	// at the end of this period, the user will no longer be able to use the credentials
-	// to log in. If the user is logged in at the time, he or she automatically
-	// will be logged out.
+	// to log in. If the user is logged in at the time, they are logged out.
 	ValidForInMinutes *int64 `min:"60" type:"integer"`
 }
 
@@ -13142,7 +13152,12 @@ type Instance struct {
 	// The instance Elastic IP address (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html).
 	ElasticIp *string `type:"string"`
 
-	// The instance host name.
+	// The instance host name. The following are character limits for instance host
+	// names.
+	//
+	//    * Linux-based instances: 63 characters
+	//
+	//    * Windows-based instances: 15 characters
 	Hostname *string `type:"string"`
 
 	// For registered instances, the infrastructure class: ec2 or on-premises.
@@ -13150,11 +13165,11 @@ type Instance struct {
 
 	// Whether to install operating system and package updates when the instance
 	// boots. The default value is true. If this value is set to false, you must
-	// then update your instances manually by using CreateDeployment to run the
-	// update_dependencies stack command or by manually running yum (Amazon Linux)
-	// or apt-get (Ubuntu) on the instances.
+	// update instances manually by using CreateDeployment to run the update_dependencies
+	// stack command or by manually running yum (Amazon Linux) or apt-get (Ubuntu)
+	// on the instances.
 	//
-	// We strongly recommend using the default value of true, to ensure that your
+	// We strongly recommend using the default value of true to ensure that your
 	// instances have the latest security updates.
 	InstallUpdatesOnBoot *bool `type:"boolean"`
 
@@ -13195,7 +13210,7 @@ type Instance struct {
 	// For registered instances, who performed the registration.
 	RegisteredBy *string `type:"string"`
 
-	// The instance's reported AWS OpsWorks Stacks agent version.
+	// The instance's reported OpsWorks Stacks agent version.
 	ReportedAgentVersion *string `type:"string"`
 
 	// For registered instances, the reported operating system.
@@ -13785,10 +13800,10 @@ type Layer struct {
 	// The layer attributes.
 	//
 	// For the HaproxyStatsPassword, MysqlRootPassword, and GangliaPassword attributes,
-	// AWS OpsWorks Stacks returns *****FILTERED***** instead of the actual value
+	// OpsWorks Stacks returns *****FILTERED***** instead of the actual value
 	//
-	// For an ECS Cluster layer, AWS OpsWorks Stacks the EcsClusterArn attribute
-	// is set to the cluster's ARN.
+	// For an ECS Cluster layer, OpsWorks Stacks the EcsClusterArn attribute is
+	// set to the cluster's ARN.
 	Attributes map[string]*string `type:"map"`
 
 	// Whether to automatically assign an Elastic IP address (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html)
@@ -13820,12 +13835,12 @@ type Layer struct {
 	// An array containing the layer's custom security group IDs.
 	CustomSecurityGroupIds []*string `type:"list"`
 
-	// AWS OpsWorks Stacks supports five lifecycle events: setup, configuration,
-	// deploy, undeploy, and shutdown. For each layer, AWS OpsWorks Stacks runs
-	// a set of standard recipes for each event. You can also provide custom recipes
-	// for any or all layers and events. AWS OpsWorks Stacks runs custom event recipes
-	// after the standard recipes. LayerCustomRecipes specifies the custom recipes
-	// for a particular layer to be run in response to each of the five events.
+	// OpsWorks Stacks supports five lifecycle events: setup, configuration, deploy,
+	// undeploy, and shutdown. For each layer, OpsWorks Stacks runs a set of standard
+	// recipes for each event. You can also provide custom recipes for any or all
+	// layers and events. OpsWorks Stacks runs custom event recipes after the standard
+	// recipes. LayerCustomRecipes specifies the custom recipes for a particular
+	// layer to be run in response to each of the five events.
 	//
 	// To specify a recipe, use the cookbook's directory name in the repository
 	// followed by two colons and the recipe name, which is the recipe's file name
@@ -13855,7 +13870,7 @@ type Layer struct {
 	// A LifeCycleEventConfiguration object that specifies the Shutdown event configuration.
 	LifecycleEventConfiguration *LifecycleEventConfiguration `type:"structure"`
 
-	// The layer name.
+	// The layer name. Layer names can be a maximum of 32 characters.
 	Name *string `type:"string"`
 
 	// An array of Package objects that describe the layer's packages.
@@ -14181,7 +14196,7 @@ type LoadBasedAutoScalingConfiguration struct {
 	_ struct{} `type:"structure"`
 
 	// An AutoScalingThresholds object that describes the downscaling configuration,
-	// which defines how and when AWS OpsWorks Stacks reduces the number of instances.
+	// which defines how and when OpsWorks Stacks reduces the number of instances.
 	DownScaling *AutoScalingThresholds `type:"structure"`
 
 	// Whether load-based auto scaling is enabled for the layer.
@@ -14191,7 +14206,7 @@ type LoadBasedAutoScalingConfiguration struct {
 	LayerId *string `type:"string"`
 
 	// An AutoScalingThresholds object that describes the upscaling configuration,
-	// which defines how and when AWS OpsWorks Stacks increases the number of instances.
+	// which defines how and when OpsWorks Stacks increases the number of instances.
 	UpScaling *AutoScalingThresholds `type:"structure"`
 }
 
@@ -14237,18 +14252,18 @@ func (s *LoadBasedAutoScalingConfiguration) SetUpScaling(v *AutoScalingThreshold
 	return s
 }
 
-// Describes supported operating systems in AWS OpsWorks Stacks.
+// Describes supported operating systems in OpsWorks Stacks.
 type OperatingSystem struct {
 	_ struct{} `type:"structure"`
 
-	// Supported configuration manager name and versions for an AWS OpsWorks Stacks
+	// Supported configuration manager name and versions for an OpsWorks Stacks
 	// operating system.
 	ConfigurationManagers []*OperatingSystemConfigurationManager `type:"list"`
 
-	// The ID of a supported operating system, such as Amazon Linux 2018.03.
+	// The ID of a supported operating system, such as Amazon Linux 2.
 	Id *string `type:"string"`
 
-	// The name of the operating system, such as Amazon Linux 2018.03.
+	// The name of the operating system, such as Amazon Linux 2.
 	Name *string `type:"string"`
 
 	// A short name for the operating system manufacturer.
@@ -14379,8 +14394,8 @@ type Permission struct {
 	// Whether the user can use sudo.
 	AllowSudo *bool `type:"boolean"`
 
-	// The Amazon Resource Name (ARN) for an AWS Identity and Access Management
-	// (IAM) role. For more information about IAM ARNs, see Using Identifiers (https://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html).
+	// The Amazon Resource Name (ARN) for an Identity and Access Management (IAM)
+	// role. For more information about IAM ARNs, see Using Identifiers (https://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html).
 	IamUserArn *string `type:"string"`
 
 	// The user's permission level, which must be the following:
@@ -14599,10 +14614,10 @@ type RdsDbInstance struct {
 	// The instance's address.
 	Address *string `type:"string"`
 
-	// The DB instance identifier.
+	// The database instance identifier.
 	DbInstanceIdentifier *string `type:"string"`
 
-	// AWS OpsWorks Stacks returns *****FILTERED***** instead of the actual value.
+	// OpsWorks Stacks returns *****FILTERED***** instead of the actual value.
 	DbPassword *string `type:"string"`
 
 	// The master user name.
@@ -14611,16 +14626,15 @@ type RdsDbInstance struct {
 	// The instance's database engine.
 	Engine *string `type:"string"`
 
-	// Set to true if AWS OpsWorks Stacks is unable to discover the Amazon RDS instance.
-	// AWS OpsWorks Stacks attempts to discover the instance only once. If this
-	// value is set to true, you must deregister the instance, and then register
-	// it again.
+	// Set to true if OpsWorks Stacks is unable to discover the Amazon RDS instance.
+	// OpsWorks Stacks attempts to discover the instance only once. If this value
+	// is set to true, you must deregister the instance, and then register it again.
 	MissingOnRds *bool `type:"boolean"`
 
 	// The instance's ARN.
 	RdsDbInstanceArn *string `type:"string"`
 
-	// The instance's AWS region.
+	// The instance's Amazon Web Services Region.
 	Region *string `type:"string"`
 
 	// The ID of the stack with which the instance is registered.
@@ -14767,13 +14781,12 @@ func (s RebootInstanceOutput) GoString() string {
 	return s.String()
 }
 
-// AWS OpsWorks Stacks supports five lifecycle events: setup, configuration,
-// deploy, undeploy, and shutdown. For each layer, AWS OpsWorks Stacks runs
-// a set of standard recipes for each event. In addition, you can provide custom
-// recipes for any or all layers and events. AWS OpsWorks Stacks runs custom
-// event recipes after the standard recipes. LayerCustomRecipes specifies the
-// custom recipes for a particular layer to be run in response to each of the
-// five events.
+// OpsWorks Stacks supports five lifecycle events: setup, configuration, deploy,
+// undeploy, and shutdown. For each layer, OpsWorks Stacks runs a set of standard
+// recipes for each event. In addition, you can provide custom recipes for any
+// or all layers and events. OpsWorks Stacks runs custom event recipes after
+// the standard recipes. LayerCustomRecipes specifies the custom recipes for
+// a particular layer to be run in response to each of the five events.
 //
 // To specify a recipe, use the cookbook's directory name in the repository
 // followed by two colons and the recipe name, which is the recipe's file name
@@ -15033,7 +15046,12 @@ func (s *RegisterElasticIpOutput) SetElasticIp(v string) *RegisterElasticIpOutpu
 type RegisterInstanceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The instance's hostname.
+	// The instance's host name. The following are character limits for instance
+	// host names.
+	//
+	//    * Linux-based instances: 63 characters
+	//
+	//    * Windows-based instances: 15 characters
 	Hostname *string `type:"string"`
 
 	// An InstanceIdentity object that contains the instance's identity.
@@ -15135,7 +15153,7 @@ func (s *RegisterInstanceInput) SetStackId(v string) *RegisterInstanceInput {
 type RegisterInstanceOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The registered instance's AWS OpsWorks Stacks ID.
+	// The registered instance's OpsWorks Stacks ID.
 	InstanceId *string `type:"string"`
 }
 
@@ -15534,7 +15552,7 @@ func (s *SelfUserProfile) SetSshUsername(v string) *SelfUserProfile {
 	return s
 }
 
-// Describes an AWS OpsWorks Stacks service error.
+// Describes an OpsWorks Stacks service error.
 type ServiceError struct {
 	_ struct{} `type:"structure"`
 
@@ -15616,7 +15634,7 @@ type SetLoadBasedAutoScalingInput struct {
 
 	// An AutoScalingThresholds object with the downscaling threshold configuration.
 	// If the load falls below these thresholds for a specified amount of time,
-	// AWS OpsWorks Stacks stops a specified number of instances.
+	// OpsWorks Stacks stops a specified number of instances.
 	DownScaling *AutoScalingThresholds `type:"structure"`
 
 	// Enables load-based auto scaling for the layer.
@@ -15628,8 +15646,8 @@ type SetLoadBasedAutoScalingInput struct {
 	LayerId *string `type:"string" required:"true"`
 
 	// An AutoScalingThresholds object with the upscaling threshold configuration.
-	// If the load exceeds these thresholds for a specified amount of time, AWS
-	// OpsWorks Stacks starts a specified number of instances.
+	// If the load exceeds these thresholds for a specified amount of time, OpsWorks
+	// Stacks starts a specified number of instances.
 	UpScaling *AutoScalingThresholds `type:"structure"`
 }
 
@@ -15928,8 +15946,8 @@ type ShutdownEventConfiguration struct {
 	// see Connection Draining (https://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/TerminologyandKeyConcepts.html#conn-drain)
 	DelayUntilElbConnectionsDrained *bool `type:"boolean"`
 
-	// The time, in seconds, that AWS OpsWorks Stacks will wait after triggering
-	// a Shutdown event before shutting down an instance.
+	// The time, in seconds, that OpsWorks Stacks waits after triggering a Shutdown
+	// event before shutting down an instance.
 	ExecutionTimeout *int64 `type:"integer"`
 }
 
@@ -15979,20 +15997,20 @@ type Source struct {
 	// For more information on how to safely handle IAM credentials, see https://docs.aws.amazon.com/general/latest/gr/aws-access-keys-best-practices.html
 	// (https://docs.aws.amazon.com/general/latest/gr/aws-access-keys-best-practices.html).
 	//
-	// In responses, AWS OpsWorks Stacks returns *****FILTERED***** instead of the
-	// actual value.
+	// In responses, OpsWorks Stacks returns *****FILTERED***** instead of the actual
+	// value.
 	Password *string `type:"string"`
 
-	// The application's version. AWS OpsWorks Stacks enables you to easily deploy
-	// new versions of an application. One of the simplest approaches is to have
-	// branches or revisions in your repository that represent different versions
-	// that can potentially be deployed.
+	// The application's version. OpsWorks Stacks enables you to easily deploy new
+	// versions of an application. One of the simplest approaches is to have branches
+	// or revisions in your repository that represent different versions that can
+	// potentially be deployed.
 	Revision *string `type:"string"`
 
 	// In requests, the repository's SSH key.
 	//
-	// In responses, AWS OpsWorks Stacks returns *****FILTERED***** instead of the
-	// actual value.
+	// In responses, OpsWorks Stacks returns *****FILTERED***** instead of the actual
+	// value.
 	SshKey *string `type:"string"`
 
 	// The repository type.
@@ -16203,14 +16221,14 @@ type Stack struct {
 	// The stack host name theme, with spaces replaced by underscores.
 	HostnameTheme *string `type:"string"`
 
-	// The stack name.
+	// The stack name. Stack names can be a maximum of 64 characters.
 	Name *string `type:"string"`
 
-	// The stack AWS region, such as "ap-northeast-2". For more information about
-	// AWS regions, see Regions and Endpoints (https://docs.aws.amazon.com/general/latest/gr/rande.html).
+	// The stack Amazon Web Services Region, such as ap-northeast-2. For more information
+	// about Amazon Web Services Regions, see Regions and Endpoints (https://docs.aws.amazon.com/general/latest/gr/rande.html).
 	Region *string `type:"string"`
 
-	// The stack AWS Identity and Access Management (IAM) role.
+	// The stack Identity and Access Management (IAM) role.
 	ServiceRoleArn *string `type:"string"`
 
 	// The stack ID.
@@ -16219,8 +16237,8 @@ type Stack struct {
 	// Whether the stack uses custom cookbooks.
 	UseCustomCookbooks *bool `type:"boolean"`
 
-	// Whether the stack automatically associates the AWS OpsWorks Stacks built-in
-	// security groups with the stack's layers.
+	// Whether the stack automatically associates the OpsWorks Stacks built-in security
+	// groups with the stack's layers.
 	UseOpsworksSecurityGroups *bool `type:"boolean"`
 
 	// The VPC ID; applicable only if the stack is running in a VPC.
@@ -16381,12 +16399,12 @@ func (s *Stack) SetVpcId(v string) *Stack {
 type StackConfigurationManager struct {
 	_ struct{} `type:"structure"`
 
-	// The name. This parameter must be set to "Chef".
+	// The name. This parameter must be set to Chef.
 	Name *string `type:"string"`
 
 	// The Chef version. This parameter must be set to 12, 11.10, or 11.4 for Linux
 	// stacks, and to 12.2 for Windows stacks. The default value for Linux stacks
-	// is 11.4.
+	// is 12.
 	Version *string `type:"string"`
 }
 
@@ -16638,10 +16656,10 @@ type StopInstanceInput struct {
 
 	// Specifies whether to force an instance to stop. If the instance's root device
 	// type is ebs, or EBS-backed, adding the Force parameter to the StopInstances
-	// API call disassociates the AWS OpsWorks Stacks instance from EC2, and forces
+	// API call disassociates the OpsWorks Stacks instance from EC2, and forces
 	// deletion of only the OpsWorks Stacks instance. You must also delete the formerly-associated
-	// instance in EC2 after troubleshooting and replacing the AWS OpsWorks Stacks
-	// instance with a new one.
+	// instance in EC2 after troubleshooting and replacing the OpsWorks Stacks instance
+	// with a new one.
 	Force *bool `type:"boolean"`
 
 	// The instance ID.
@@ -16886,7 +16904,7 @@ func (s TagResourceOutput) GoString() string {
 type TemporaryCredential struct {
 	_ struct{} `type:"structure"`
 
-	// The instance's AWS OpsWorks Stacks ID.
+	// The instance's OpsWorks Stacks ID.
 	InstanceId *string `type:"string"`
 
 	// The password.
@@ -16897,8 +16915,8 @@ type TemporaryCredential struct {
 
 	// The length of time (in minutes) that the grant is valid. When the grant expires,
 	// at the end of this period, the user will no longer be able to use the credentials
-	// to log in. If they are logged in at the time, they will be automatically
-	// logged out.
+	// to log in. If they are logged in at the time, they are automatically logged
+	// out.
 	ValidForInMinutes *int64 `type:"integer"`
 }
 
@@ -17397,7 +17415,7 @@ type UpdateElasticIpInput struct {
 	// ElasticIp is a required field
 	ElasticIp *string `type:"string" required:"true"`
 
-	// The new name.
+	// The new name, which can be a maximum of 32 characters.
 	Name *string `type:"string"`
 }
 
@@ -17469,14 +17487,14 @@ func (s UpdateElasticIpOutput) GoString() string {
 type UpdateInstanceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The default AWS OpsWorks Stacks agent version. You have the following options:
+	// The default OpsWorks Stacks agent version. You have the following options:
 	//
 	//    * INHERIT - Use the stack's default agent version setting.
 	//
 	//    * version_number - Use the specified agent version. This value overrides
 	//    the stack's default setting. To update the agent version, you must edit
-	//    the instance configuration and specify a new version. AWS OpsWorks Stacks
-	//    then automatically installs that version on the instance.
+	//    the instance configuration and specify a new version. OpsWorks Stacks
+	//    installs that version on the instance.
 	//
 	// The default setting is INHERIT. To specify an agent version, you must use
 	// the complete version number, not the abbreviated number shown on the console.
@@ -17503,7 +17521,12 @@ type UpdateInstanceInput struct {
 	// This property cannot be updated.
 	EbsOptimized *bool `type:"boolean"`
 
-	// The instance host name.
+	// The instance host name. The following are character limits for instance host
+	// names.
+	//
+	//    * Linux-based instances: 63 characters
+	//
+	//    * Windows-based instances: 15 characters
 	Hostname *string `type:"string"`
 
 	// Whether to install operating system and package updates when the instance
@@ -17536,12 +17559,12 @@ type UpdateInstanceInput struct {
 	// You cannot update an instance that is using a custom AMI.
 	//
 	//    * A supported Linux operating system: An Amazon Linux version, such as
-	//    Amazon Linux 2018.03, Amazon Linux 2017.09, Amazon Linux 2017.03, Amazon
-	//    Linux 2016.09, Amazon Linux 2016.03, Amazon Linux 2015.09, or Amazon Linux
-	//    2015.03.
+	//    Amazon Linux 2, Amazon Linux 2018.03, Amazon Linux 2017.09, Amazon Linux
+	//    2017.03, Amazon Linux 2016.09, Amazon Linux 2016.03, Amazon Linux 2015.09,
+	//    or Amazon Linux 2015.03.
 	//
-	//    * A supported Ubuntu operating system, such as Ubuntu 16.04 LTS, Ubuntu
-	//    14.04 LTS, or Ubuntu 12.04 LTS.
+	//    * A supported Ubuntu operating system, such as Ubuntu 18.04 LTS, Ubuntu
+	//    16.04 LTS, Ubuntu 14.04 LTS, or Ubuntu 12.04 LTS.
 	//
 	//    * CentOS Linux 7
 	//
@@ -17552,15 +17575,14 @@ type UpdateInstanceInput struct {
 	//    Microsoft Windows Server 2012 R2 with SQL Server Standard, or Microsoft
 	//    Windows Server 2012 R2 with SQL Server Web.
 	//
-	// For more information about supported operating systems, see AWS OpsWorks
-	// Stacks Operating Systems (https://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-os.html).
+	// Not all operating systems are supported with all versions of Chef. For more
+	// information about supported operating systems, see OpsWorks Stacks Operating
+	// Systems (https://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-os.html).
 	//
 	// The default option is the current Amazon Linux version. If you set this parameter
 	// to Custom, you must use the AmiId parameter to specify the custom AMI that
-	// you want to use. For more information about supported operating systems,
-	// see Operating Systems (https://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-os.html).
-	// For more information about how to use custom AMIs with OpsWorks, see Using
-	// Custom AMIs (https://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-custom-ami.html).
+	// you want to use. For more information about how to use custom AMIs with OpsWorks,
+	// see Using Custom AMIs (https://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-custom-ami.html).
 	//
 	// You can specify a different Linux operating system for the updated stack,
 	// but you cannot change from Linux to Windows or Windows to Linux.
@@ -17750,20 +17772,22 @@ type UpdateLayerInput struct {
 	// Specifies the lifecycle event configuration
 	LifecycleEventConfiguration *LifecycleEventConfiguration `type:"structure"`
 
-	// The layer name, which is used by the console.
+	// The layer name, which is used by the console. Layer names can be a maximum
+	// of 32 characters.
 	Name *string `type:"string"`
 
 	// An array of Package objects that describe the layer's packages.
 	Packages []*string `type:"list"`
 
 	// For custom layers only, use this parameter to specify the layer's short name,
-	// which is used internally by AWS OpsWorks Stacks and by Chef. The short name
-	// is also used as the name for the directory where your app files are installed.
-	// It can have a maximum of 200 characters and must be in the following format:
+	// which is used internally by OpsWorks Stacks and by Chef. The short name is
+	// also used as the name for the directory where your app files are installed.
+	// It can have a maximum of 32 characters and must be in the following format:
 	// /\A[a-z0-9\-\_\.]+\Z/.
 	//
-	// The built-in layers' short names are defined by AWS OpsWorks Stacks. For
-	// more information, see the Layer Reference (https://docs.aws.amazon.com/opsworks/latest/userguide/layers.html)
+	// Built-in layer short names are defined by OpsWorks Stacks. For more information,
+	// see the Layer reference (https://docs.aws.amazon.com/opsworks/latest/userguide/layers.html)
+	// in the OpsWorks User Guide.
 	Shortname *string `type:"string"`
 
 	// Whether to use Amazon EBS-optimized instances.
@@ -18080,16 +18104,16 @@ func (s UpdateRdsDbInstanceOutput) GoString() string {
 type UpdateStackInput struct {
 	_ struct{} `type:"structure"`
 
-	// The default AWS OpsWorks Stacks agent version. You have the following options:
+	// The default OpsWorks Stacks agent version. You have the following options:
 	//
-	//    * Auto-update - Set this parameter to LATEST. AWS OpsWorks Stacks automatically
+	//    * Auto-update - Set this parameter to LATEST. OpsWorks Stacks automatically
 	//    installs new agent versions on the stack's instances as soon as they are
 	//    available.
 	//
 	//    * Fixed version - Set this parameter to your preferred agent version.
 	//    To update the agent version, you must edit the stack configuration and
-	//    specify a new version. AWS OpsWorks Stacks then automatically installs
-	//    that version on the stack's instances.
+	//    specify a new version. OpsWorks Stacks installs that version on the stack's
+	//    instances.
 	//
 	// The default setting is LATEST. To specify an agent version, you must use
 	// the complete version number, not the abbreviated number shown on the console.
@@ -18143,12 +18167,12 @@ type UpdateStackInput struct {
 	// The stack's operating system, which must be set to one of the following:
 	//
 	//    * A supported Linux operating system: An Amazon Linux version, such as
-	//    Amazon Linux 2018.03, Amazon Linux 2017.09, Amazon Linux 2017.03, Amazon
-	//    Linux 2016.09, Amazon Linux 2016.03, Amazon Linux 2015.09, or Amazon Linux
-	//    2015.03.
+	//    Amazon Linux 2, Amazon Linux 2018.03, Amazon Linux 2017.09, Amazon Linux
+	//    2017.03, Amazon Linux 2016.09, Amazon Linux 2016.03, Amazon Linux 2015.09,
+	//    or Amazon Linux 2015.03.
 	//
-	//    * A supported Ubuntu operating system, such as Ubuntu 16.04 LTS, Ubuntu
-	//    14.04 LTS, or Ubuntu 12.04 LTS.
+	//    * A supported Ubuntu operating system, such as Ubuntu 18.04 LTS, Ubuntu
+	//    16.04 LTS, Ubuntu 14.04 LTS, or Ubuntu 12.04 LTS.
 	//
 	//    * CentOS Linux 7
 	//
@@ -18163,9 +18187,9 @@ type UpdateStackInput struct {
 	//    you create instances. For more information about how to use custom AMIs
 	//    with OpsWorks, see Using Custom AMIs (https://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-custom-ami.html).
 	//
-	// The default option is the stack's current operating system. For more information
-	// about supported operating systems, see AWS OpsWorks Stacks Operating Systems
-	// (https://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-os.html).
+	// The default option is the stack's current operating system. Not all operating
+	// systems are supported with all versions of Chef. For more information about
+	// supported operating systems, see OpsWorks Stacks Operating Systems (https://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-os.html).
 	DefaultOs *string `type:"string"`
 
 	// The default root device type. This value is used by default for all instances
@@ -18174,7 +18198,7 @@ type UpdateStackInput struct {
 	DefaultRootDeviceType *string `type:"string" enum:"RootDeviceType"`
 
 	// A default Amazon EC2 key-pair name. The default value is none. If you specify
-	// a key-pair name, AWS OpsWorks Stacks installs the public key on the instance
+	// a key-pair name, OpsWorks Stacks installs the public key on the instance
 	// and you can use the private key with an SSH client to log in to the instance.
 	// For more information, see Using SSH to Communicate with an Instance (https://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-ssh.html)
 	// and Managing SSH Access (https://docs.aws.amazon.com/opsworks/latest/userguide/security-ssh-access.html).
@@ -18221,7 +18245,7 @@ type UpdateStackInput struct {
 	// a host name based on the current theme.
 	HostnameTheme *string `type:"string"`
 
-	// The stack's new name.
+	// The stack's new name. Stack names can be a maximum of 64 characters.
 	Name *string `type:"string"`
 
 	// Do not use this parameter. You cannot update a stack's service role.
@@ -18235,20 +18259,20 @@ type UpdateStackInput struct {
 	// Whether the stack uses custom cookbooks.
 	UseCustomCookbooks *bool `type:"boolean"`
 
-	// Whether to associate the AWS OpsWorks Stacks built-in security groups with
-	// the stack's layers.
+	// Whether to associate the OpsWorks Stacks built-in security groups with the
+	// stack's layers.
 	//
-	// AWS OpsWorks Stacks provides a standard set of built-in security groups,
-	// one for each layer, which are associated with layers by default. UseOpsworksSecurityGroups
+	// OpsWorks Stacks provides a standard set of built-in security groups, one
+	// for each layer, which are associated with layers by default. UseOpsworksSecurityGroups
 	// allows you to provide your own custom security groups instead of using the
 	// built-in groups. UseOpsworksSecurityGroups has the following settings:
 	//
-	//    * True - AWS OpsWorks Stacks automatically associates the appropriate
-	//    built-in security group with each layer (default setting). You can associate
-	//    additional security groups with a layer after you create it, but you cannot
-	//    delete the built-in security group.
+	//    * True - OpsWorks Stacks automatically associates the appropriate built-in
+	//    security group with each layer (default setting). You can associate additional
+	//    security groups with a layer after you create it, but you cannot delete
+	//    the built-in security group.
 	//
-	//    * False - AWS OpsWorks Stacks does not associate built-in security groups
+	//    * False - OpsWorks Stacks does not associate built-in security groups
 	//    with layers. You must create appropriate EC2 security groups and associate
 	//    a security group with each layer that you create. However, you can still
 	//    manually associate a built-in security group with a layer on. Custom security
@@ -18435,10 +18459,10 @@ type UpdateUserProfileInput struct {
 	SshPublicKey *string `type:"string"`
 
 	// The user's SSH user name. The allowable characters are [a-z], [A-Z], [0-9],
-	// '-', and '_'. If the specified name includes other punctuation marks, AWS
-	// OpsWorks Stacks removes them. For example, my.name will be changed to myname.
-	// If you do not specify an SSH user name, AWS OpsWorks Stacks generates one
-	// from the IAM user name.
+	// '-', and '_'. If the specified name includes other punctuation marks, OpsWorks
+	// Stacks removes them. For example, my.name will be changed to myname. If you
+	// do not specify an SSH user name, OpsWorks Stacks generates one from the IAM
+	// user name.
 	SshUsername *string `type:"string"`
 }
 
@@ -18525,7 +18549,7 @@ type UpdateVolumeInput struct {
 	// The new mount point.
 	MountPoint *string `type:"string"`
 
-	// The new name.
+	// The new name. Volume names can be a maximum of 128 characters.
 	Name *string `type:"string"`
 
 	// The volume ID.
@@ -18766,14 +18790,14 @@ type Volume struct {
 	// The volume mount point. For example, "/mnt/disk1".
 	MountPoint *string `type:"string"`
 
-	// The volume name.
+	// The volume name. Volume names are a maximum of 128 characters.
 	Name *string `type:"string"`
 
 	// The RAID array ID.
 	RaidArrayId *string `type:"string"`
 
-	// The AWS region. For more information about AWS regions, see Regions and Endpoints
-	// (https://docs.aws.amazon.com/general/latest/gr/rande.html).
+	// The Amazon Web Services Region. For more information about Amazon Web Services
+	// Regions, see Regions and Endpoints (https://docs.aws.amazon.com/general/latest/gr/rande.html).
 	Region *string `type:"string"`
 
 	// The volume size.
@@ -18797,10 +18821,10 @@ type Volume struct {
 	//    size of 1 GiB and a maximum size of 16384 GiB.
 	//
 	//    * st1 - Throughput Optimized hard disk drive (HDD). Throughput optimized
-	//    HDD volumes must have a minimum size of 500 GiB and a maximum size of
+	//    HDD volumes must have a minimum size of 125 GiB and a maximum size of
 	//    16384 GiB.
 	//
-	//    * sc1 - Cold HDD. Cold HDD volumes must have a minimum size of 500 GiB
+	//    * sc1 - Cold HDD. Cold HDD volumes must have a minimum size of 125 GiB
 	//    and a maximum size of 16384 GiB.
 	VolumeType *string `type:"string"`
 }
@@ -18948,10 +18972,10 @@ type VolumeConfiguration struct {
 	//    size of 1 GiB and a maximum size of 16384 GiB.
 	//
 	//    * st1 - Throughput Optimized hard disk drive (HDD). Throughput optimized
-	//    HDD volumes must have a minimum size of 500 GiB and a maximum size of
+	//    HDD volumes must have a minimum size of 125 GiB and a maximum size of
 	//    16384 GiB.
 	//
-	//    * sc1 - Cold HDD. Cold HDD volumes must have a minimum size of 500 GiB
+	//    * sc1 - Cold HDD. Cold HDD volumes must have a minimum size of 125 GiB
 	//    and a maximum size of 16384 GiB.
 	VolumeType *string `type:"string"`
 }

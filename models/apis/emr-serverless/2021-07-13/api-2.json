@@ -3,8 +3,8 @@
   "metadata":{
     "apiVersion":"2021-07-13",
     "endpointPrefix":"emr-serverless",
-    "jsonVersion":"1.1",
     "protocol":"rest-json",
+    "protocols":["rest-json"],
     "serviceFullName":"EMR Serverless",
     "serviceId":"EMR Serverless",
     "signatureVersion":"v4",
@@ -278,7 +278,8 @@
         "imageConfiguration":{"shape":"ImageConfiguration"},
         "workerTypeSpecifications":{"shape":"WorkerTypeSpecificationMap"},
         "runtimeConfiguration":{"shape":"ConfigurationList"},
-        "monitoringConfiguration":{"shape":"MonitoringConfiguration"}
+        "monitoringConfiguration":{"shape":"MonitoringConfiguration"},
+        "interactiveConfiguration":{"shape":"InteractiveConfiguration"}
       }
     },
     "ApplicationArn":{
@@ -499,7 +500,8 @@
         "imageConfiguration":{"shape":"ImageConfigurationInput"},
         "workerTypeSpecifications":{"shape":"WorkerTypeSpecificationInputMap"},
         "runtimeConfiguration":{"shape":"ConfigurationList"},
-        "monitoringConfiguration":{"shape":"MonitoringConfiguration"}
+        "monitoringConfiguration":{"shape":"MonitoringConfiguration"},
+        "interactiveConfiguration":{"shape":"InteractiveConfiguration"}
       }
     },
     "CreateApplicationResponse":{
@@ -719,6 +721,13 @@
     "Integer":{
       "type":"integer",
       "box":true
+    },
+    "InteractiveConfiguration":{
+      "type":"structure",
+      "members":{
+        "studioEnabled":{"shape":"Boolean"},
+        "livyEndpointEnabled":{"shape":"Boolean"}
+      }
     },
     "InternalServerException":{
       "type":"structure",
@@ -1332,6 +1341,7 @@
         "architecture":{"shape":"Architecture"},
         "imageConfiguration":{"shape":"ImageConfigurationInput"},
         "workerTypeSpecifications":{"shape":"WorkerTypeSpecificationInputMap"},
+        "interactiveConfiguration":{"shape":"InteractiveConfiguration"},
         "releaseLabel":{"shape":"ReleaseLabel"},
         "runtimeConfiguration":{"shape":"ConfigurationList"},
         "monitoringConfiguration":{"shape":"MonitoringConfiguration"}

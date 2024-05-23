@@ -3,40 +3,40 @@
 // Package opsworks provides the client and types for making API
 // requests to AWS OpsWorks.
 //
-// Welcome to the AWS OpsWorks Stacks API Reference. This guide provides descriptions,
-// syntax, and usage examples for AWS OpsWorks Stacks actions and data types,
-// including common parameters and error codes.
+// Welcome to the OpsWorks Stacks API Reference. This guide provides descriptions,
+// syntax, and usage examples for OpsWorks Stacks actions and data types, including
+// common parameters and error codes.
 //
-// AWS OpsWorks Stacks is an application management service that provides an
-// integrated experience for overseeing the complete application lifecycle.
-// For information about this product, go to the AWS OpsWorks (http://aws.amazon.com/opsworks/)
-// details page.
+// OpsWorks Stacks is an application management service that provides an integrated
+// experience for managing the complete application lifecycle. For information
+// about OpsWorks, see the OpsWorks (http://aws.amazon.com/opsworks/) information
+// page.
 //
 // # SDKs and CLI
 //
-// The most common way to use the AWS OpsWorks Stacks API is by using the AWS
-// Command Line Interface (CLI) or by using one of the AWS SDKs to implement
-// applications in your preferred language. For more information, see:
+// Use the OpsWorks Stacks API by using the Command Line Interface (CLI) or
+// by using one of the Amazon Web Services SDKs to implement applications in
+// your preferred language. For more information, see:
 //
-//   - AWS CLI (https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html)
+//   - CLI (https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html)
 //
-//   - AWS SDK for Java (https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/services/opsworks/AWSOpsWorksClient.html)
+//   - SDK for Java (https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/services/opsworks/AWSOpsWorksClient.html)
 //
-//   - AWS SDK for .NET (https://docs.aws.amazon.com/sdkfornet/latest/apidocs/html/N_Amazon_OpsWorks.htm)
+//   - SDK for .NET (https://docs.aws.amazon.com/sdkfornet/v3/apidocs/items/OpsWorks/NOpsWorks.html)
 //
-//   - AWS SDK for PHP 2 (https://docs.aws.amazon.com/aws-sdk-php-2/latest/class-Aws.OpsWorks.OpsWorksClient.html)
+//   - SDK for PHP (https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-Aws.OpsWorks.OpsWorksClient.html)
 //
-//   - AWS SDK for Ruby (http://docs.aws.amazon.com/sdkforruby/api/)
+//   - SDK for Ruby (http://docs.aws.amazon.com/sdkforruby/api/)
 //
-//   - AWS SDK for Node.js (http://aws.amazon.com/documentation/sdkforjavascript/)
+//   - Amazon Web Services SDK for Node.js (http://aws.amazon.com/documentation/sdkforjavascript/)
 //
-//   - AWS SDK for Python(Boto) (http://docs.pythonboto.org/en/latest/ref/opsworks.html)
+//   - SDK for Python (Boto) (http://docs.pythonboto.org/en/latest/ref/opsworks.html)
 //
 // # Endpoints
 //
-// AWS OpsWorks Stacks supports the following endpoints, all HTTPS. You must
-// connect to one of the following endpoints. Stacks can only be accessed or
-// managed within the endpoint in which they are created.
+// OpsWorks Stacks supports the following endpoints, all HTTPS. You must connect
+// to one of the following endpoints. Stacks can only be accessed or managed
+// within the endpoint in which they are created.
 //
 //   - opsworks.us-east-1.amazonaws.com
 //
@@ -47,7 +47,7 @@
 //   - opsworks.us-west-2.amazonaws.com
 //
 //   - opsworks.ca-central-1.amazonaws.com (API only; not available in the
-//     AWS console)
+//     Amazon Web Services Management Console)
 //
 //   - opsworks.eu-west-1.amazonaws.com
 //
