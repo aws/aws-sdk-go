@@ -128,6 +128,8 @@
         "AutoStartConfig$enabled": "<p>Enables the application to automatically start on job submission. Defaults to true.</p>",
         "AutoStopConfig$enabled": "<p>Enables the application to automatically stop after a certain amount of time being idle. Defaults to true.</p>",
         "CloudWatchLoggingConfiguration$enabled": "<p>Enables CloudWatch logging.</p>",
+        "InteractiveConfiguration$studioEnabled": "<p>Enables you to connect an application to Amazon EMR Studio to run interactive workloads in a notebook.</p>",
+        "InteractiveConfiguration$livyEndpointEnabled": "<p>Enables an Apache Livy endpoint that you can connect to and run interactive jobs.</p>",
         "ManagedPersistenceMonitoringConfiguration$enabled": "<p>Enables managed logging and defaults to true. If set to false, managed logging will be turned off.</p>"
       }
     },
@@ -404,6 +406,14 @@
       "base": null,
       "refs": {
         "JobRun$totalExecutionDurationSeconds": "<p>The job run total execution duration in seconds. This field is only available for job runs in a <code>COMPLETED</code>, <code>FAILED</code>, or <code>CANCELLED</code> state.</p>"
+      }
+    },
+    "InteractiveConfiguration": {
+      "base": "<p>The configuration to use to enable the different types of interactive use cases in an application.</p>",
+      "refs": {
+        "Application$interactiveConfiguration": "<p>The interactive configuration object that enables the interactive use cases for an application.</p>",
+        "CreateApplicationRequest$interactiveConfiguration": "<p>The interactive configuration object that enables the interactive use cases to use when running an application.</p>",
+        "UpdateApplicationRequest$interactiveConfiguration": "<p>The interactive configuration object that contains new interactive use cases when the application is updated.</p>"
       }
     },
     "InternalServerException": {

@@ -1,3 +1,11 @@
+Release v1.53.9 (2024-05-23)
+===
+
+### Service Client Updates
+* `service/emr-serverless`: Updates service API and documentation
+* `service/opsworks`: Updates service API and documentation
+  * Documentation-only update for OpsWorks Stacks.
+
 Release v1.53.8 (2024-05-22)
 ===
 
