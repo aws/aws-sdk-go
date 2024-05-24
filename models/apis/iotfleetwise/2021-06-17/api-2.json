@@ -2143,6 +2143,8 @@
       "type":"structure",
       "members":{
         "modelManifestArn":{"shape":"arn"},
+        "attributeNames":{"shape":"attributeNamesList"},
+        "attributeValues":{"shape":"attributeValuesList"},
         "nextToken":{"shape":"nextToken"},
         "maxResults":{"shape":"listVehiclesMaxResults"}
       }
@@ -3175,7 +3177,19 @@
       "min":1,
       "pattern":"[a-zA-Z0-9_.-]+"
     },
+    "attributeNamesList":{
+      "type":"list",
+      "member":{"shape":"attributeName"},
+      "max":5,
+      "min":1
+    },
     "attributeValue":{"type":"string"},
+    "attributeValuesList":{
+      "type":"list",
+      "member":{"shape":"attributeValue"},
+      "max":5,
+      "min":1
+    },
     "attributesMap":{
       "type":"map",
       "key":{"shape":"attributeName"},

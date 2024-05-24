@@ -1,3 +1,16 @@
+Release v1.53.10 (2024-05-24)
+===
+
+### Service Client Updates
+* `service/dynamodb`: Updates service API, documentation, waiters, paginators, and examples
+  * Documentation only updates for DynamoDB.
+* `service/iotfleetwise`: Updates service API and documentation
+* `service/managedblockchain`: Updates service API and documentation
+
+### SDK Bugs
+* Fix misaligned struct member used in atomic operation.
+  * This change fixes panics on 32-bit systems in services that use endpoint discovery.
+
 Release v1.53.9 (2024-05-23)
 ===
 

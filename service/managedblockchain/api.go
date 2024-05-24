@@ -3508,16 +3508,14 @@ type CreateAccessorInput struct {
 
 	// The blockchain network that the Accessor token is created for.
 	//
-	// We recommend using the appropriate networkType value for the blockchain network
-	// that you are creating the Accessor token for. You cannnot use the value ETHEREUM_MAINNET_AND_GOERLI
-	// to specify a networkType for your Accessor token.
+	//    * Use the actual networkType value for the blockchain network that you
+	//    are creating the Accessor token for.
 	//
-	// The default value of ETHEREUM_MAINNET_AND_GOERLI is only applied:
-	//
-	//    * when the CreateAccessor action does not set a networkType.
-	//
-	//    * to all existing Accessor tokens that were created before the networkType
-	//    property was introduced.
+	//    * With the shut down of the Ethereum Goerli and Polygon Mumbai Testnet
+	//    networks the following networkType values are no longer available for
+	//    selection and use. ETHEREUM_MAINNET_AND_GOERLI ETHEREUM_GOERLI POLYGON_MUMBAI
+	//    However, your existing Accessor tokens with these networkType values will
+	//    remain unchanged.
 	NetworkType *string `type:"string" enum:"AccessorNetworkType"`
 
 	// Tags to assign to the Accessor.
@@ -4012,8 +4010,6 @@ type CreateNodeInput struct {
 	//
 	//    * n-ethereum-mainnet
 	//
-	//    * n-ethereum-goerli
-	//
 	// NetworkId is a required field
 	NetworkId *string `location:"uri" locationName:"networkId" min:"1" type:"string" required:"true"`
 
@@ -4480,8 +4476,6 @@ type DeleteNodeInput struct {
 	// Ethereum public networks have the following NetworkIds:
 	//
 	//    * n-ethereum-mainnet
-	//
-	//    * n-ethereum-goerli
 	//
 	// NetworkId is a required field
 	NetworkId *string `location:"uri" locationName:"networkId" min:"1" type:"string" required:"true"`
@@ -7209,8 +7203,6 @@ type NetworkEthereumAttributes struct {
 	// as follows:
 	//
 	//    * mainnet = 1
-	//
-	//    * goerli = 5
 	ChainId *string `type:"string"`
 }
 

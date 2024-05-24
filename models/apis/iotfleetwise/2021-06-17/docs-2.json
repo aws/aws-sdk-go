@@ -1497,7 +1497,7 @@
         "CampaignSummary$arn": "<p>The Amazon Resource Name (ARN) of a campaign.</p>",
         "CampaignSummary$signalCatalogArn": "<p>The ARN of the signal catalog associated with the campaign.</p>",
         "CampaignSummary$targetArn": "<p>The ARN of a vehicle or fleet to which the campaign is deployed.</p>",
-        "CreateCampaignRequest$signalCatalogArn": "<p>(Optional) The Amazon Resource Name (ARN) of the signal catalog to associate with the campaign. </p>",
+        "CreateCampaignRequest$signalCatalogArn": "<p>The Amazon Resource Name (ARN) of the signal catalog to associate with the campaign. </p>",
         "CreateCampaignRequest$targetArn": "<p> The ARN of the vehicle or fleet to deploy a campaign to. </p>",
         "CreateCampaignResponse$arn": "<p> The ARN of the created campaign. </p>",
         "CreateDecoderManifestRequest$modelManifestArn": "<p> The Amazon Resource Name (ARN) of the vehicle model (model manifest). </p>",
@@ -1568,13 +1568,27 @@
     "attributeName": {
       "base": null,
       "refs": {
+        "attributeNamesList$member": null,
         "attributesMap$key": null
+      }
+    },
+    "attributeNamesList": {
+      "base": null,
+      "refs": {
+        "ListVehiclesRequest$attributeNames": "<p>The fully qualified names of the attributes. For example, the fully qualified name of an attribute might be <code>Vehicle.Body.Engine.Type</code>.</p>"
       }
     },
     "attributeValue": {
       "base": null,
       "refs": {
+        "attributeValuesList$member": null,
         "attributesMap$value": null
+      }
+    },
+    "attributeValuesList": {
+      "base": null,
+      "refs": {
+        "ListVehiclesRequest$attributeValues": "<p>Static information about a vehicle attribute value in string format. For example:</p> <p> <code>\"1.3 L R2\"</code> </p>"
       }
     },
     "attributesMap": {

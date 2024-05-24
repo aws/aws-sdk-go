@@ -7359,8 +7359,8 @@ type CreateCampaignInput struct {
 	// Default: 0
 	Priority *int64 `locationName:"priority" type:"integer"`
 
-	// (Optional) The Amazon Resource Name (ARN) of the signal catalog to associate
-	// with the campaign.
+	// The Amazon Resource Name (ARN) of the signal catalog to associate with the
+	// campaign.
 	//
 	// SignalCatalogArn is a required field
 	SignalCatalogArn *string `locationName:"signalCatalogArn" type:"string" required:"true"`
@@ -13332,6 +13332,16 @@ func (s *ListVehiclesInFleetOutput) SetVehicles(v []*string) *ListVehiclesInFlee
 type ListVehiclesInput struct {
 	_ struct{} `type:"structure"`
 
+	// The fully qualified names of the attributes. For example, the fully qualified
+	// name of an attribute might be Vehicle.Body.Engine.Type.
+	AttributeNames []*string `locationName:"attributeNames" min:"1" type:"list"`
+
+	// Static information about a vehicle attribute value in string format. For
+	// example:
+	//
+	// "1.3 L R2"
+	AttributeValues []*string `locationName:"attributeValues" min:"1" type:"list"`
+
 	// The maximum number of items to return, between 1 and 100, inclusive.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
@@ -13371,6 +13381,12 @@ func (s ListVehiclesInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ListVehiclesInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ListVehiclesInput"}
+	if s.AttributeNames != nil && len(s.AttributeNames) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AttributeNames", 1))
+	}
+	if s.AttributeValues != nil && len(s.AttributeValues) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AttributeValues", 1))
+	}
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
 	}
@@ -13382,6 +13398,18 @@ func (s *ListVehiclesInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAttributeNames sets the AttributeNames field's value.
+func (s *ListVehiclesInput) SetAttributeNames(v []*string) *ListVehiclesInput {
+	s.AttributeNames = v
+	return s
+}
+
+// SetAttributeValues sets the AttributeValues field's value.
+func (s *ListVehiclesInput) SetAttributeValues(v []*string) *ListVehiclesInput {
+	s.AttributeValues = v
+	return s
 }
 
 // SetMaxResults sets the MaxResults field's value.
