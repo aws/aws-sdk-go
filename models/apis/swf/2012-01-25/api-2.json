@@ -5,6 +5,7 @@
     "endpointPrefix":"swf",
     "jsonVersion":"1.0",
     "protocol":"json",
+    "protocols":["json"],
     "serviceAbbreviation":"Amazon SWF",
     "serviceFullName":"Amazon Simple Workflow Service",
     "serviceId":"SWF",
@@ -62,6 +63,32 @@
       "output":{"shape":"PendingTaskCount"},
       "errors":[
         {"shape":"UnknownResourceFault"},
+        {"shape":"OperationNotPermittedFault"}
+      ]
+    },
+    "DeleteActivityType":{
+      "name":"DeleteActivityType",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteActivityTypeInput"},
+      "errors":[
+        {"shape":"UnknownResourceFault"},
+        {"shape":"TypeNotDeprecatedFault"},
+        {"shape":"OperationNotPermittedFault"}
+      ]
+    },
+    "DeleteWorkflowType":{
+      "name":"DeleteWorkflowType",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteWorkflowTypeInput"},
+      "errors":[
+        {"shape":"UnknownResourceFault"},
+        {"shape":"TypeNotDeprecatedFault"},
         {"shape":"OperationNotPermittedFault"}
       ]
     },
@@ -1111,6 +1138,28 @@
         "message":{"shape":"ErrorMessage"}
       },
       "exception":true
+    },
+    "DeleteActivityTypeInput":{
+      "type":"structure",
+      "required":[
+        "domain",
+        "activityType"
+      ],
+      "members":{
+        "domain":{"shape":"DomainName"},
+        "activityType":{"shape":"ActivityType"}
+      }
+    },
+    "DeleteWorkflowTypeInput":{
+      "type":"structure",
+      "required":[
+        "domain",
+        "workflowType"
+      ],
+      "members":{
+        "domain":{"shape":"DomainName"},
+        "workflowType":{"shape":"WorkflowType"}
+      }
     },
     "DeprecateActivityTypeInput":{
       "type":"structure",
@@ -2416,6 +2465,13 @@
       "exception":true
     },
     "TypeDeprecatedFault":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
+    },
+    "TypeNotDeprecatedFault":{
       "type":"structure",
       "members":{
         "message":{"shape":"ErrorMessage"}

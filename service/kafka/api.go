@@ -7813,6 +7813,38 @@ func (s *ConsumerGroupReplicationUpdate) SetSynchroniseConsumerGroupOffsets(v bo
 	return s
 }
 
+// Controller node information.
+type ControllerNodeInfo struct {
+	_ struct{} `type:"structure"`
+
+	// Endpoints for accessing the Controller.
+	Endpoints []*string `locationName:"endpoints" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ControllerNodeInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ControllerNodeInfo) GoString() string {
+	return s.String()
+}
+
+// SetEndpoints sets the Endpoints field's value.
+func (s *ControllerNodeInfo) SetEndpoints(v []*string) *ControllerNodeInfo {
+	s.Endpoints = v
+	return s
+}
+
 // Creates a cluster.
 type CreateClusterInput struct {
 	_ struct{} `type:"structure"`
@@ -12863,6 +12895,9 @@ type NodeInfo struct {
 	// The broker node info.
 	BrokerNodeInfo *BrokerNodeInfo `locationName:"brokerNodeInfo" type:"structure"`
 
+	// The ControllerNodeInfo.
+	ControllerNodeInfo *ControllerNodeInfo `locationName:"controllerNodeInfo" type:"structure"`
+
 	// The instance type.
 	InstanceType *string `locationName:"instanceType" type:"string"`
 
@@ -12903,6 +12938,12 @@ func (s *NodeInfo) SetAddedToClusterTime(v string) *NodeInfo {
 // SetBrokerNodeInfo sets the BrokerNodeInfo field's value.
 func (s *NodeInfo) SetBrokerNodeInfo(v *BrokerNodeInfo) *NodeInfo {
 	s.BrokerNodeInfo = v
+	return s
+}
+
+// SetControllerNodeInfo sets the ControllerNodeInfo field's value.
+func (s *NodeInfo) SetControllerNodeInfo(v *ControllerNodeInfo) *NodeInfo {
+	s.ControllerNodeInfo = v
 	return s
 }
 
@@ -17243,7 +17284,7 @@ func (s *VpcConnectivityTls) SetEnabled(v bool) *VpcConnectivityTls {
 type ZookeeperNodeInfo struct {
 	_ struct{} `type:"structure"`
 
-	// The attached elastic network interface of the broker.
+	// The attached elastic network interface of the zookeeper.
 	AttachedENIId *string `locationName:"attachedENIId" type:"string"`
 
 	// The virtual private cloud (VPC) IP address of the client.

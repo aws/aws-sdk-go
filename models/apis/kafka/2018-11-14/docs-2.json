@@ -353,6 +353,12 @@
       "base" : "<p>Response body for CreateVpcConnection</p>",
       "refs" : { }
     },
+    "ControllerNodeInfo" : {
+      "base" : "<p>Controller node information.</p>",
+      "refs" : {
+        "NodeInfo$ControllerNodeInfo" : "<p>The ControllerNodeInfo.</p>"
+      }
+    },
     "CustomerActionStatus" : {
       "base" : "<p>A type of an action required from the customer.</p>",
       "refs" : {
@@ -1220,6 +1226,7 @@
         "BrokerNodeGroupInfo$ZoneIds" : "<p>The zoneIds for the cluster.</p>",
         "BrokerNodeInfo$Endpoints" : "<p>Endpoints for accessing the broker.</p>",
         "Configuration$KafkaVersions" : "<p>An array of the versions of Apache Kafka with which you can use this MSK configuration. You can use this configuration for an MSK cluster only if the Apache Kafka version specified for the cluster appears in this array.</p>",
+        "ControllerNodeInfo$Endpoints" : "<p>Endpoints for accessing the Controller.</p>",
         "CreateConfigurationRequest$KafkaVersions" : "<p>The versions of Apache Kafka with which you can use this MSK configuration.</p>",
         "CreateVpcConnectionRequest$ClientSubnets" : "<p>The list of subnets in the client VPC.</p>",
         "CreateVpcConnectionRequest$SecurityGroups" : "<p>The list of security groups to attach to the VPC connection.</p>",
@@ -1440,7 +1447,7 @@
         "VpcConnection$TargetClusterArn" : "<p>The Amazon Resource Name (ARN) of the cluster.</p>",
         "VpcConnection$VpcConnectionArn" : "<p>The Amazon Resource Name (ARN) of the VPC connection.</p>",
         "VpcConnection$VpcId" : "<p>The VPC ID of the VPC connection.</p>",
-        "ZookeeperNodeInfo$AttachedENIId" : "<p>The attached elastic network interface of the broker.</p>",
+        "ZookeeperNodeInfo$AttachedENIId" : "<p>The attached elastic network interface of the zookeeper.</p>",
         "ZookeeperNodeInfo$ClientVpcIpAddress" : "<p>The virtual private cloud (VPC) IP address of the client.</p>",
         "ZookeeperNodeInfo$ZookeeperVersion" : "<p>The version of Zookeeper.</p>",
         "__listOf__string$member" : null,

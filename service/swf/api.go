@@ -437,6 +437,232 @@ func (c *SWF) CountPendingDecisionTasksWithContext(ctx aws.Context, input *Count
 	return out, req.Send()
 }
 
+const opDeleteActivityType = "DeleteActivityType"
+
+// DeleteActivityTypeRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteActivityType operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteActivityType for more information on using the DeleteActivityType
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteActivityTypeRequest method.
+//	req, resp := client.DeleteActivityTypeRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+func (c *SWF) DeleteActivityTypeRequest(input *DeleteActivityTypeInput) (req *request.Request, output *DeleteActivityTypeOutput) {
+	op := &request.Operation{
+		Name:       opDeleteActivityType,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteActivityTypeInput{}
+	}
+
+	output = &DeleteActivityTypeOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteActivityType API operation for Amazon Simple Workflow Service.
+//
+// Deletes the specified activity type.
+//
+// Note: Prior to deletion, activity types must first be deprecated.
+//
+// After an activity type has been deleted, you cannot schedule new activities
+// of that type. Activities that started before the type was deleted will continue
+// to run.
+//
+// # Access Control
+//
+// You can use IAM policies to control this action's access to Amazon SWF resources
+// as follows:
+//
+//   - Use a Resource element with the domain name to limit the action to only
+//     specified domains.
+//
+//   - Use an Action element to allow or deny permission to call this action.
+//
+//   - Constrain the following parameters by using a Condition element with
+//     the appropriate keys. activityType.name: String constraint. The key is
+//     swf:activityType.name. activityType.version: String constraint. The key
+//     is swf:activityType.version.
+//
+// If the caller doesn't have sufficient permissions to invoke the action, or
+// the parameter values fall outside the specified constraints, the action fails.
+// The associated event attribute's cause parameter is set to OPERATION_NOT_PERMITTED.
+// For details and example IAM policies, see Using IAM to Manage Access to Amazon
+// SWF Workflows (https://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html)
+// in the Amazon SWF Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Workflow Service's
+// API operation DeleteActivityType for usage and error information.
+//
+// Returned Error Types:
+//
+//   - UnknownResourceFault
+//     Returned when the named resource cannot be found with in the scope of this
+//     operation (region or domain). This could happen if the named resource was
+//     never created or is no longer available for this operation.
+//
+//   - TypeNotDeprecatedFault
+//     Returned when the resource type has not been deprecated.
+//
+//   - OperationNotPermittedFault
+//     Returned when the caller doesn't have sufficient permissions to invoke the
+//     action.
+func (c *SWF) DeleteActivityType(input *DeleteActivityTypeInput) (*DeleteActivityTypeOutput, error) {
+	req, out := c.DeleteActivityTypeRequest(input)
+	return out, req.Send()
+}
+
+// DeleteActivityTypeWithContext is the same as DeleteActivityType with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteActivityType for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SWF) DeleteActivityTypeWithContext(ctx aws.Context, input *DeleteActivityTypeInput, opts ...request.Option) (*DeleteActivityTypeOutput, error) {
+	req, out := c.DeleteActivityTypeRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteWorkflowType = "DeleteWorkflowType"
+
+// DeleteWorkflowTypeRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteWorkflowType operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteWorkflowType for more information on using the DeleteWorkflowType
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteWorkflowTypeRequest method.
+//	req, resp := client.DeleteWorkflowTypeRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+func (c *SWF) DeleteWorkflowTypeRequest(input *DeleteWorkflowTypeInput) (req *request.Request, output *DeleteWorkflowTypeOutput) {
+	op := &request.Operation{
+		Name:       opDeleteWorkflowType,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteWorkflowTypeInput{}
+	}
+
+	output = &DeleteWorkflowTypeOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteWorkflowType API operation for Amazon Simple Workflow Service.
+//
+// Deletes the specified workflow type.
+//
+// Note: Prior to deletion, workflow types must first be deprecated.
+//
+// After a workflow type has been deleted, you cannot create new executions
+// of that type. Executions that started before the type was deleted will continue
+// to run.
+//
+// # Access Control
+//
+// You can use IAM policies to control this action's access to Amazon SWF resources
+// as follows:
+//
+//   - Use a Resource element with the domain name to limit the action to only
+//     specified domains.
+//
+//   - Use an Action element to allow or deny permission to call this action.
+//
+//   - Constrain the following parameters by using a Condition element with
+//     the appropriate keys. workflowType.name: String constraint. The key is
+//     swf:workflowType.name. workflowType.version: String constraint. The key
+//     is swf:workflowType.version.
+//
+// If the caller doesn't have sufficient permissions to invoke the action, or
+// the parameter values fall outside the specified constraints, the action fails.
+// The associated event attribute's cause parameter is set to OPERATION_NOT_PERMITTED.
+// For details and example IAM policies, see Using IAM to Manage Access to Amazon
+// SWF Workflows (https://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html)
+// in the Amazon SWF Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Workflow Service's
+// API operation DeleteWorkflowType for usage and error information.
+//
+// Returned Error Types:
+//
+//   - UnknownResourceFault
+//     Returned when the named resource cannot be found with in the scope of this
+//     operation (region or domain). This could happen if the named resource was
+//     never created or is no longer available for this operation.
+//
+//   - TypeNotDeprecatedFault
+//     Returned when the resource type has not been deprecated.
+//
+//   - OperationNotPermittedFault
+//     Returned when the caller doesn't have sufficient permissions to invoke the
+//     action.
+func (c *SWF) DeleteWorkflowType(input *DeleteWorkflowTypeInput) (*DeleteWorkflowTypeOutput, error) {
+	req, out := c.DeleteWorkflowTypeRequest(input)
+	return out, req.Send()
+}
+
+// DeleteWorkflowTypeWithContext is the same as DeleteWorkflowType with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteWorkflowType for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SWF) DeleteWorkflowTypeWithContext(ctx aws.Context, input *DeleteWorkflowTypeInput, opts ...request.Option) (*DeleteWorkflowTypeOutput, error) {
+	req, out := c.DeleteWorkflowTypeRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeprecateActivityType = "DeprecateActivityType"
 
 // DeprecateActivityTypeRequest generates a "aws/request.Request" representing the
@@ -482,9 +708,6 @@ func (c *SWF) DeprecateActivityTypeRequest(input *DeprecateActivityTypeInput) (r
 // Deprecates the specified activity type. After an activity type has been deprecated,
 // you cannot create new tasks of that activity type. Tasks of this type that
 // were scheduled before the type was deprecated continue to run.
-//
-// This operation is eventually consistent. The results are best effort and
-// may not exactly reflect recent updates and changes.
 //
 // # Access Control
 //
@@ -7459,6 +7682,186 @@ func (s *DefaultUndefinedFault) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *DefaultUndefinedFault) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type DeleteActivityTypeInput struct {
+	_ struct{} `type:"structure"`
+
+	// The activity type to delete.
+	//
+	// ActivityType is a required field
+	ActivityType *ActivityType `locationName:"activityType" type:"structure" required:"true"`
+
+	// The name of the domain in which the activity type is registered.
+	//
+	// Domain is a required field
+	Domain *string `locationName:"domain" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteActivityTypeInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteActivityTypeInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteActivityTypeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteActivityTypeInput"}
+	if s.ActivityType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ActivityType"))
+	}
+	if s.Domain == nil {
+		invalidParams.Add(request.NewErrParamRequired("Domain"))
+	}
+	if s.Domain != nil && len(*s.Domain) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Domain", 1))
+	}
+	if s.ActivityType != nil {
+		if err := s.ActivityType.Validate(); err != nil {
+			invalidParams.AddNested("ActivityType", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetActivityType sets the ActivityType field's value.
+func (s *DeleteActivityTypeInput) SetActivityType(v *ActivityType) *DeleteActivityTypeInput {
+	s.ActivityType = v
+	return s
+}
+
+// SetDomain sets the Domain field's value.
+func (s *DeleteActivityTypeInput) SetDomain(v string) *DeleteActivityTypeInput {
+	s.Domain = &v
+	return s
+}
+
+type DeleteActivityTypeOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteActivityTypeOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteActivityTypeOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteWorkflowTypeInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the domain in which the workflow type is registered.
+	//
+	// Domain is a required field
+	Domain *string `locationName:"domain" min:"1" type:"string" required:"true"`
+
+	// The workflow type to delete.
+	//
+	// WorkflowType is a required field
+	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteWorkflowTypeInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteWorkflowTypeInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteWorkflowTypeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteWorkflowTypeInput"}
+	if s.Domain == nil {
+		invalidParams.Add(request.NewErrParamRequired("Domain"))
+	}
+	if s.Domain != nil && len(*s.Domain) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Domain", 1))
+	}
+	if s.WorkflowType == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkflowType"))
+	}
+	if s.WorkflowType != nil {
+		if err := s.WorkflowType.Validate(); err != nil {
+			invalidParams.AddNested("WorkflowType", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDomain sets the Domain field's value.
+func (s *DeleteWorkflowTypeInput) SetDomain(v string) *DeleteWorkflowTypeInput {
+	s.Domain = &v
+	return s
+}
+
+// SetWorkflowType sets the WorkflowType field's value.
+func (s *DeleteWorkflowTypeInput) SetWorkflowType(v *WorkflowType) *DeleteWorkflowTypeInput {
+	s.WorkflowType = v
+	return s
+}
+
+type DeleteWorkflowTypeOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteWorkflowTypeOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteWorkflowTypeOutput) GoString() string {
+	return s.String()
 }
 
 type DeprecateActivityTypeInput struct {
@@ -15917,6 +16320,70 @@ func (s *TypeDeprecatedFault) StatusCode() int {
 
 // RequestID returns the service's response RequestID for request.
 func (s *TypeDeprecatedFault) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// Returned when the resource type has not been deprecated.
+type TypeNotDeprecatedFault struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TypeNotDeprecatedFault) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TypeNotDeprecatedFault) GoString() string {
+	return s.String()
+}
+
+func newErrorTypeNotDeprecatedFault(v protocol.ResponseMetadata) error {
+	return &TypeNotDeprecatedFault{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *TypeNotDeprecatedFault) Code() string {
+	return "TypeNotDeprecatedFault"
+}
+
+// Message returns the exception's message.
+func (s *TypeNotDeprecatedFault) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *TypeNotDeprecatedFault) OrigErr() error {
+	return nil
+}
+
+func (s *TypeNotDeprecatedFault) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *TypeNotDeprecatedFault) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *TypeNotDeprecatedFault) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
