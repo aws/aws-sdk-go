@@ -10497,7 +10497,8 @@
         "DryRun":{
           "shape":"Boolean",
           "locationName":"dryRun"
-        }
+        },
+        "BgpAsnExtended":{"shape":"Long"}
       }
     },
     "CreateCustomerGatewayResult":{
@@ -13001,6 +13002,10 @@
         "Tags":{
           "shape":"TagList",
           "locationName":"tagSet"
+        },
+        "BgpAsnExtended":{
+          "shape":"String",
+          "locationName":"bgpAsnExtended"
         }
       }
     },

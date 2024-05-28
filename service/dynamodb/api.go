@@ -11668,6 +11668,9 @@ type CreateTableInput struct {
 	// DynamoDB counts whitespaces when calculating the size of a policy against
 	// this limit. For a full list of all considerations that apply for resource-based
 	// policies, see Resource-based policy considerations (https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/rbac-considerations.html).
+	//
+	// You need to specify the CreateTable and PutResourcePolicy IAM actions for
+	// authorizing a user to create a table with a resource-based policy.
 	ResourcePolicy *string `type:"string"`
 
 	// Represents the settings used to enable server-side encryption.

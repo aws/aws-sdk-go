@@ -4337,6 +4337,10 @@
           "shape": "BrokerNodeInfo",
           "locationName": "brokerNodeInfo"
         },
+        "ControllerNodeInfo": {
+          "shape": "ControllerNodeInfo",
+          "locationName": "controllerNodeInfo"
+        },
         "InstanceType": {
           "shape": "__string",
           "locationName": "instanceType"
@@ -5250,6 +5254,15 @@
         "ZookeeperVersion": {
           "shape": "__string",
           "locationName": "zookeeperVersion"
+        }
+      }
+    },
+    "ControllerNodeInfo": {
+      "type": "structure",
+      "members": {
+        "Endpoints": {
+          "shape": "__listOf__string",
+          "locationName": "endpoints"
         }
       }
     },

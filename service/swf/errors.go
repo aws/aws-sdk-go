@@ -73,6 +73,12 @@ const (
 	// Returned when the specified activity or workflow type was already deprecated.
 	ErrCodeTypeDeprecatedFault = "TypeDeprecatedFault"
 
+	// ErrCodeTypeNotDeprecatedFault for service response error code
+	// "TypeNotDeprecatedFault".
+	//
+	// Returned when the resource type has not been deprecated.
+	ErrCodeTypeNotDeprecatedFault = "TypeNotDeprecatedFault"
+
 	// ErrCodeUnknownResourceFault for service response error code
 	// "UnknownResourceFault".
 	//
@@ -98,6 +104,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"TooManyTagsFault":                     newErrorTooManyTagsFault,
 	"TypeAlreadyExistsFault":               newErrorTypeAlreadyExistsFault,
 	"TypeDeprecatedFault":                  newErrorTypeDeprecatedFault,
+	"TypeNotDeprecatedFault":               newErrorTypeNotDeprecatedFault,
 	"UnknownResourceFault":                 newErrorUnknownResourceFault,
 	"WorkflowExecutionAlreadyStartedFault": newErrorWorkflowExecutionAlreadyStartedFault,
 }

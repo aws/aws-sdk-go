@@ -1,3 +1,15 @@
+Release v1.53.11 (2024-05-28)
+===
+
+### Service Client Updates
+* `service/dynamodb`: Updates service API, documentation, waiters, paginators, and examples
+  * Doc-only update for DynamoDB. Specified the IAM actions needed to authorize a user to create a table with a resource-based policy.
+* `service/ec2`: Updates service API and documentation
+  * Providing support to accept BgpAsnExtended attribute
+* `service/kafka`: Updates service API and documentation
+* `service/swf`: Updates service API and documentation
+  * This release adds new APIs for deleting activity type and workflow type resources.
+
 Release v1.53.10 (2024-05-24)
 ===
 

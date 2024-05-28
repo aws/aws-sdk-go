@@ -76,6 +76,14 @@ type SWFAPI interface {
 	CountPendingDecisionTasksWithContext(aws.Context, *swf.CountPendingDecisionTasksInput, ...request.Option) (*swf.PendingTaskCount, error)
 	CountPendingDecisionTasksRequest(*swf.CountPendingDecisionTasksInput) (*request.Request, *swf.PendingTaskCount)
 
+	DeleteActivityType(*swf.DeleteActivityTypeInput) (*swf.DeleteActivityTypeOutput, error)
+	DeleteActivityTypeWithContext(aws.Context, *swf.DeleteActivityTypeInput, ...request.Option) (*swf.DeleteActivityTypeOutput, error)
+	DeleteActivityTypeRequest(*swf.DeleteActivityTypeInput) (*request.Request, *swf.DeleteActivityTypeOutput)
+
+	DeleteWorkflowType(*swf.DeleteWorkflowTypeInput) (*swf.DeleteWorkflowTypeOutput, error)
+	DeleteWorkflowTypeWithContext(aws.Context, *swf.DeleteWorkflowTypeInput, ...request.Option) (*swf.DeleteWorkflowTypeOutput, error)
+	DeleteWorkflowTypeRequest(*swf.DeleteWorkflowTypeInput) (*request.Request, *swf.DeleteWorkflowTypeOutput)
+
 	DeprecateActivityType(*swf.DeprecateActivityTypeInput) (*swf.DeprecateActivityTypeOutput, error)
 	DeprecateActivityTypeWithContext(aws.Context, *swf.DeprecateActivityTypeInput, ...request.Option) (*swf.DeprecateActivityTypeOutput, error)
 	DeprecateActivityTypeRequest(*swf.DeprecateActivityTypeInput) (*request.Request, *swf.DeprecateActivityTypeOutput)
