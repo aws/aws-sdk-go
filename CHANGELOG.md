@@ -1,3 +1,16 @@
+Release v1.53.12 (2024-05-29)
+===
+
+### Service Client Updates
+* `service/athena`: Updates service API and documentation
+  * Throwing validation errors on CreateNotebook with Name containing `/`,`:`,`\`
+* `service/codebuild`: Updates service API and documentation
+  * AWS CodeBuild now supports manually creating GitHub webhooks
+* `service/connect`: Updates service API and documentation
+* `service/glue`: Updates service API and documentation
+  * Add optional field JobMode to CreateJob and UpdateJob APIs.
+* `service/securityhub`: Updates service API
+
 Release v1.53.11 (2024-05-28)
 ===
 

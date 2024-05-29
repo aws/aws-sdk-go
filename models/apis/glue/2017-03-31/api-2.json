@@ -5405,6 +5405,7 @@
       ],
       "members":{
         "Name":{"shape":"NameString"},
+        "JobMode":{"shape":"JobMode"},
         "Description":{"shape":"DescriptionString"},
         "LogUri":{"shape":"UriString"},
         "Role":{"shape":"RoleString"},
@@ -8992,6 +8993,7 @@
       "type":"structure",
       "members":{
         "Name":{"shape":"NameString"},
+        "JobMode":{"shape":"JobMode"},
         "Description":{"shape":"DescriptionString"},
         "LogUri":{"shape":"UriString"},
         "Role":{"shape":"RoleString"},
@@ -9060,6 +9062,14 @@
       "type":"list",
       "member":{"shape":"Job"}
     },
+    "JobMode":{
+      "type":"string",
+      "enum":[
+        "SCRIPT",
+        "VISUAL",
+        "NOTEBOOK"
+      ]
+    },
     "JobName":{"type":"string"},
     "JobNameList":{
       "type":"list",
@@ -9079,6 +9089,7 @@
         "PreviousRunId":{"shape":"IdString"},
         "TriggerName":{"shape":"NameString"},
         "JobName":{"shape":"NameString"},
+        "JobMode":{"shape":"JobMode"},
         "StartedOn":{"shape":"TimestampValue"},
         "LastModifiedOn":{"shape":"TimestampValue"},
         "CompletedOn":{"shape":"TimestampValue"},
@@ -9127,6 +9138,7 @@
     "JobUpdate":{
       "type":"structure",
       "members":{
+        "JobMode":{"shape":"JobMode"},
         "Description":{"shape":"DescriptionString"},
         "LogUri":{"shape":"UriString"},
         "Role":{"shape":"RoleString"},

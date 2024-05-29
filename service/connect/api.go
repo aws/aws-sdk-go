@@ -2007,22 +2007,22 @@ func (c *Connect) ClaimPhoneNumberRequest(input *ClaimPhoneNumberInput) (req *re
 // API to verify the status of a previous ClaimPhoneNumber (https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimPhoneNumber.html)
 // operation.
 //
-// If you plan to claim and release numbers frequently during a 30 day period,
-// contact us for a service quota exception. Otherwise, it is possible you will
-// be blocked from claiming and releasing any more numbers until 30 days past
-// the oldest number released has expired.
+// If you plan to claim and release numbers frequently, contact us for a service
+// quota exception. Otherwise, it is possible you will be blocked from claiming
+// and releasing any more numbers until up to 180 days past the oldest number
+// released has expired.
 //
 // By default you can claim and release up to 200% of your maximum number of
-// active phone numbers during any 30 day period. If you claim and release phone
-// numbers using the UI or API during a rolling 30 day cycle that exceeds 200%
-// of your phone number service level quota, you will be blocked from claiming
-// any more numbers until 30 days past the oldest number released has expired.
+// active phone numbers. If you claim and release phone numbers using the UI
+// or API during a rolling 180 day cycle that exceeds 200% of your phone number
+// service level quota, you will be blocked from claiming any more numbers until
+// 180 days past the oldest number released has expired.
 //
 // For example, if you already have 99 claimed numbers and a service level quota
-// of 99 phone numbers, and in any 30 day period you release 99, claim 99, and
-// then release 99, you will have exceeded the 200% limit. At that point you
-// are blocked from claiming any more numbers until you open an Amazon Web Services
-// support ticket.
+// of 99 phone numbers, and in any 180 day period you release 99, claim 99,
+// and then release 99, you will have exceeded the 200% limit. At that point
+// you are blocked from claiming any more numbers until you open an Amazon Web
+// Services support ticket.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -18648,26 +18648,26 @@ func (c *Connect) ReleasePhoneNumberRequest(input *ReleasePhoneNumberInput) (req
 // API, not the Amazon Connect admin website.
 //
 // After releasing a phone number, the phone number enters into a cooldown period
-// of 30 days. It cannot be searched for or claimed again until the period has
-// ended. If you accidentally release a phone number, contact Amazon Web Services
-// Support.
+// for up to 180 days. It cannot be searched for or claimed again until the
+// period has ended. If you accidentally release a phone number, contact Amazon
+// Web Services Support.
 //
-// If you plan to claim and release numbers frequently during a 30 day period,
-// contact us for a service quota exception. Otherwise, it is possible you will
-// be blocked from claiming and releasing any more numbers until 30 days past
-// the oldest number released has expired.
+// If you plan to claim and release numbers frequently, contact us for a service
+// quota exception. Otherwise, it is possible you will be blocked from claiming
+// and releasing any more numbers until up to 180 days past the oldest number
+// released has expired.
 //
 // By default you can claim and release up to 200% of your maximum number of
-// active phone numbers during any 30 day period. If you claim and release phone
-// numbers using the UI or API during a rolling 30 day cycle that exceeds 200%
-// of your phone number service level quota, you will be blocked from claiming
-// any more numbers until 30 days past the oldest number released has expired.
+// active phone numbers. If you claim and release phone numbers using the UI
+// or API during a rolling 180 day cycle that exceeds 200% of your phone number
+// service level quota, you will be blocked from claiming any more numbers until
+// 180 days past the oldest number released has expired.
 //
 // For example, if you already have 99 claimed numbers and a service level quota
-// of 99 phone numbers, and in any 30 day period you release 99, claim 99, and
-// then release 99, you will have exceeded the 200% limit. At that point you
-// are blocked from claiming any more numbers until you open an Amazon Web Services
-// support ticket.
+// of 99 phone numbers, and in any 180 day period you release 99, claim 99,
+// and then release 99, you will have exceeded the 200% limit. At that point
+// you are blocked from claiming any more numbers until you open an Amazon Web
+// Services support ticket.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -22096,6 +22096,10 @@ func (c *Connect) StopContactRequest(input *StopContactInput) (req *request.Requ
 //
 //   - QUEUE_TRANSFER
 //
+//   - EXTERNAL_OUTBOUND
+//
+//   - MONITOR
+//
 // Chat and task contacts can be terminated in any state, regardless of initiation
 // method.
 //
@@ -23955,8 +23959,6 @@ func (c *Connect) UpdateContactRoutingDataRequest(input *UpdateContactRoutingDat
 
 // UpdateContactRoutingData API operation for Amazon Connect Service.
 //
-// This API is in preview release for Amazon Connect and is subject to change.
-//
 // Updates routing priority and age on the contact (QueuePriority and QueueTimeAdjustmentInSeconds).
 // These properties can be used to change a customer's position in the queue.
 // For example, you can move a contact to the back of the queue by setting a
@@ -23967,6 +23969,9 @@ func (c *Connect) UpdateContactRoutingDataRequest(input *UpdateContactRoutingDat
 // its position in queue, and not its actual queue wait time as reported through
 // metrics. These properties can also be updated by using the Set routing priority
 // / age flow block (https://docs.aws.amazon.com/connect/latest/adminguide/change-routing-priority.html).
+//
+// Either QueuePriority or QueueTimeAdjustmentInSeconds should be provided within
+// the request body, but not both.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -27881,6 +27886,38 @@ func (s *AgentContactReference) SetStateStartTimestamp(v time.Time) *AgentContac
 	return s
 }
 
+// Information about an agent hierarchy group.
+type AgentHierarchyGroup struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the group.
+	Arn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AgentHierarchyGroup) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AgentHierarchyGroup) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *AgentHierarchyGroup) SetArn(v string) *AgentHierarchyGroup {
+	s.Arn = &v
+	return s
+}
+
 // A structure that defines search criteria for contacts using agent hierarchy
 // group levels. For more information about agent hierarchies, see Set Up Agent
 // Hierarchies (https://docs.aws.amazon.com/connect/latest/adminguide/agent-hierarchy.html)
@@ -27959,8 +27996,18 @@ type AgentInfo struct {
 	// Agent pause duration for a contact in seconds.
 	AgentPauseDurationInSeconds *int64 `type:"integer"`
 
+	// The configuration for the allowed capabilities for participants present over
+	// the call.
+	Capabilities *ParticipantCapabilities `type:"structure"`
+
 	// The timestamp when the contact was connected to the agent.
 	ConnectedToAgentTimestamp *time.Time `type:"timestamp"`
+
+	// Information regarding Agent’s device.
+	DeviceInfo *DeviceInfo `type:"structure"`
+
+	// The agent hierarchy groups for the agent.
+	HierarchyGroups *HierarchyGroups `type:"structure"`
 
 	// The identifier of the agent who accepted the contact.
 	Id *string `min:"1" type:"string"`
@@ -27990,15 +28037,65 @@ func (s *AgentInfo) SetAgentPauseDurationInSeconds(v int64) *AgentInfo {
 	return s
 }
 
+// SetCapabilities sets the Capabilities field's value.
+func (s *AgentInfo) SetCapabilities(v *ParticipantCapabilities) *AgentInfo {
+	s.Capabilities = v
+	return s
+}
+
 // SetConnectedToAgentTimestamp sets the ConnectedToAgentTimestamp field's value.
 func (s *AgentInfo) SetConnectedToAgentTimestamp(v time.Time) *AgentInfo {
 	s.ConnectedToAgentTimestamp = &v
 	return s
 }
 
+// SetDeviceInfo sets the DeviceInfo field's value.
+func (s *AgentInfo) SetDeviceInfo(v *DeviceInfo) *AgentInfo {
+	s.DeviceInfo = v
+	return s
+}
+
+// SetHierarchyGroups sets the HierarchyGroups field's value.
+func (s *AgentInfo) SetHierarchyGroups(v *HierarchyGroups) *AgentInfo {
+	s.HierarchyGroups = v
+	return s
+}
+
 // SetId sets the Id field's value.
 func (s *AgentInfo) SetId(v string) *AgentInfo {
 	s.Id = &v
+	return s
+}
+
+// Information about the quality of the Agent's media connection
+type AgentQualityMetrics struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the audio quality of the Agent
+	Audio *AudioQualityMetricsInfo `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AgentQualityMetrics) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AgentQualityMetrics) GoString() string {
+	return s.String()
+}
+
+// SetAudio sets the Audio field's value.
+func (s *AgentQualityMetrics) SetAudio(v *AudioQualityMetricsInfo) *AgentQualityMetrics {
+	s.Audio = v
 	return s
 }
 
@@ -30340,6 +30437,65 @@ func (s *AttributeAndCondition) SetTagConditions(v []*TagCondition) *AttributeAn
 	return s
 }
 
+// An object to specify the predefined attribute condition.
+type AttributeCondition struct {
+	_ struct{} `type:"structure"`
+
+	// The operator of the condition.
+	ComparisonOperator *string `min:"1" type:"string"`
+
+	// The name of predefined attribute.
+	Name *string `min:"1" type:"string"`
+
+	// The proficiency level of the condition.
+	ProficiencyLevel *float64 `min:"1" type:"float"`
+
+	// The value of predefined attribute.
+	Value *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AttributeCondition) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AttributeCondition) GoString() string {
+	return s.String()
+}
+
+// SetComparisonOperator sets the ComparisonOperator field's value.
+func (s *AttributeCondition) SetComparisonOperator(v string) *AttributeCondition {
+	s.ComparisonOperator = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *AttributeCondition) SetName(v string) *AttributeCondition {
+	s.Name = &v
+	return s
+}
+
+// SetProficiencyLevel sets the ProficiencyLevel field's value.
+func (s *AttributeCondition) SetProficiencyLevel(v float64) *AttributeCondition {
+	s.ProficiencyLevel = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *AttributeCondition) SetValue(v string) *AttributeCondition {
+	s.Value = &v
+	return s
+}
+
 // Has audio-specific configurations as the operating parameter for Echo Reduction.
 type AudioFeatures struct {
 	_ struct{} `type:"structure"`
@@ -30369,6 +30525,50 @@ func (s AudioFeatures) GoString() string {
 // SetEchoReduction sets the EchoReduction field's value.
 func (s *AudioFeatures) SetEchoReduction(v string) *AudioFeatures {
 	s.EchoReduction = &v
+	return s
+}
+
+// Contains information for score and potential quality issues for Audio
+type AudioQualityMetricsInfo struct {
+	_ struct{} `type:"structure"`
+
+	// List of potential issues causing degradation of quality on a media connection.
+	// If the service did not detect any potential quality issues the list is empty.
+	//
+	// Valid values: HighPacketLoss | HighRoundTripTime | HighJitterBuffer
+	PotentialQualityIssues []*string `type:"list"`
+
+	// Number measuring the estimated quality of the media connection.
+	QualityScore *float64 `type:"float"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AudioQualityMetricsInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AudioQualityMetricsInfo) GoString() string {
+	return s.String()
+}
+
+// SetPotentialQualityIssues sets the PotentialQualityIssues field's value.
+func (s *AudioQualityMetricsInfo) SetPotentialQualityIssues(v []*string) *AudioQualityMetricsInfo {
+	s.PotentialQualityIssues = v
+	return s
+}
+
+// SetQualityScore sets the QualityScore field's value.
+func (s *AudioQualityMetricsInfo) SetQualityScore(v float64) *AudioQualityMetricsInfo {
+	s.QualityScore = &v
 	return s
 }
 
@@ -31872,11 +32072,27 @@ type Contact struct {
 	// Information about the agent who accepted the contact.
 	AgentInfo *AgentInfo `type:"structure"`
 
+	// Indicates how an outbound campaign (https://docs.aws.amazon.com/connect/latest/adminguide/how-to-create-campaigns.html)
+	// call is actually disposed if the contact is connected to Amazon Connect.
+	AnsweringMachineDetectionStatus *string `type:"string" enum:"AnsweringMachineDetectionStatus"`
+
 	// The Amazon Resource Name (ARN) for the contact.
 	Arn *string `type:"string"`
 
+	// Information associated with a campaign.
+	Campaign *Campaign `type:"structure"`
+
 	// How the contact reached your contact center.
 	Channel *string `type:"string" enum:"Channel"`
+
+	// The timestamp when customer endpoint connected to Amazon Connect.
+	ConnectedToSystemTimestamp *time.Time `type:"timestamp"`
+
+	// Information about the Customer on the contact.
+	Customer *Customer `type:"structure"`
+
+	// Information about customer’s voice activity.
+	CustomerVoiceActivity *CustomerVoiceActivity `type:"structure"`
 
 	// The description of the contact.
 	//
@@ -31884,6 +32100,9 @@ type Contact struct {
 	// replaced with "sensitive" in string returned by Contact's
 	// String and GoString methods.
 	Description *string `type:"string" sensitive:"true"`
+
+	// Information about the call disconnect experience.
+	DisconnectDetails *DisconnectDetails `type:"structure"`
 
 	// The timestamp when the customer endpoint disconnected from Amazon Connect.
 	DisconnectTimestamp *time.Time `type:"timestamp"`
@@ -31927,6 +32146,9 @@ type Contact struct {
 	// contact.
 	PreviousContactId *string `min:"1" type:"string"`
 
+	// Information about the quality of the participant's media connection.
+	QualityMetrics *QualityMetrics `type:"structure"`
+
 	// If this contact was queued, this contains information about the queue.
 	QueueInfo *QueueInfo `type:"structure"`
 
@@ -31946,9 +32168,19 @@ type Contact struct {
 	// to this contact.
 	RelatedContactId *string `min:"1" type:"string"`
 
+	// Latest routing criteria on the contact.
+	RoutingCriteria *RoutingCriteria `type:"structure"`
+
 	// The timestamp, in Unix epoch time format, at which to start running the inbound
 	// flow.
 	ScheduledTimestamp *time.Time `type:"timestamp"`
+
+	// A set of system defined key-value pairs stored on individual contact segments
+	// using an attribute map. The attributes are standard Amazon Connect attributes
+	// and can be accessed in flows. Attribute keys can include only alphanumeric,
+	// -, and _ characters. This field can be used to show channel subtype. For
+	// example, connect:Guide or connect:SMS.
+	SegmentAttributes map[string]*SegmentAttributeValue `type:"map"`
 
 	// Tags associated with the contact. This contains both Amazon Web Services
 	// generated and user-defined tags.
@@ -31988,9 +32220,21 @@ func (s *Contact) SetAgentInfo(v *AgentInfo) *Contact {
 	return s
 }
 
+// SetAnsweringMachineDetectionStatus sets the AnsweringMachineDetectionStatus field's value.
+func (s *Contact) SetAnsweringMachineDetectionStatus(v string) *Contact {
+	s.AnsweringMachineDetectionStatus = &v
+	return s
+}
+
 // SetArn sets the Arn field's value.
 func (s *Contact) SetArn(v string) *Contact {
 	s.Arn = &v
+	return s
+}
+
+// SetCampaign sets the Campaign field's value.
+func (s *Contact) SetCampaign(v *Campaign) *Contact {
+	s.Campaign = v
 	return s
 }
 
@@ -32000,9 +32244,33 @@ func (s *Contact) SetChannel(v string) *Contact {
 	return s
 }
 
+// SetConnectedToSystemTimestamp sets the ConnectedToSystemTimestamp field's value.
+func (s *Contact) SetConnectedToSystemTimestamp(v time.Time) *Contact {
+	s.ConnectedToSystemTimestamp = &v
+	return s
+}
+
+// SetCustomer sets the Customer field's value.
+func (s *Contact) SetCustomer(v *Customer) *Contact {
+	s.Customer = v
+	return s
+}
+
+// SetCustomerVoiceActivity sets the CustomerVoiceActivity field's value.
+func (s *Contact) SetCustomerVoiceActivity(v *CustomerVoiceActivity) *Contact {
+	s.CustomerVoiceActivity = v
+	return s
+}
+
 // SetDescription sets the Description field's value.
 func (s *Contact) SetDescription(v string) *Contact {
 	s.Description = &v
+	return s
+}
+
+// SetDisconnectDetails sets the DisconnectDetails field's value.
+func (s *Contact) SetDisconnectDetails(v *DisconnectDetails) *Contact {
+	s.DisconnectDetails = v
 	return s
 }
 
@@ -32066,6 +32334,12 @@ func (s *Contact) SetPreviousContactId(v string) *Contact {
 	return s
 }
 
+// SetQualityMetrics sets the QualityMetrics field's value.
+func (s *Contact) SetQualityMetrics(v *QualityMetrics) *Contact {
+	s.QualityMetrics = v
+	return s
+}
+
 // SetQueueInfo sets the QueueInfo field's value.
 func (s *Contact) SetQueueInfo(v *QueueInfo) *Contact {
 	s.QueueInfo = v
@@ -32090,9 +32364,21 @@ func (s *Contact) SetRelatedContactId(v string) *Contact {
 	return s
 }
 
+// SetRoutingCriteria sets the RoutingCriteria field's value.
+func (s *Contact) SetRoutingCriteria(v *RoutingCriteria) *Contact {
+	s.RoutingCriteria = v
+	return s
+}
+
 // SetScheduledTimestamp sets the ScheduledTimestamp field's value.
 func (s *Contact) SetScheduledTimestamp(v time.Time) *Contact {
 	s.ScheduledTimestamp = &v
+	return s
+}
+
+// SetSegmentAttributes sets the SegmentAttributes field's value.
+func (s *Contact) SetSegmentAttributes(v map[string]*SegmentAttributeValue) *Contact {
+	s.SegmentAttributes = v
 	return s
 }
 
@@ -37768,6 +38054,123 @@ func (s *CurrentMetricSortCriteria) SetSortOrder(v string) *CurrentMetricSortCri
 	return s
 }
 
+// Information about the Customer on the contact.
+type Customer struct {
+	_ struct{} `type:"structure"`
+
+	// The configuration for the allowed capabilities for participants present over
+	// the call.
+	Capabilities *ParticipantCapabilities `type:"structure"`
+
+	// Information regarding Customer’s device.
+	DeviceInfo *DeviceInfo `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Customer) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Customer) GoString() string {
+	return s.String()
+}
+
+// SetCapabilities sets the Capabilities field's value.
+func (s *Customer) SetCapabilities(v *ParticipantCapabilities) *Customer {
+	s.Capabilities = v
+	return s
+}
+
+// SetDeviceInfo sets the DeviceInfo field's value.
+func (s *Customer) SetDeviceInfo(v *DeviceInfo) *Customer {
+	s.DeviceInfo = v
+	return s
+}
+
+// Information about the quality of the Customer's media connection
+type CustomerQualityMetrics struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the audio quality of the Customer
+	Audio *AudioQualityMetricsInfo `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CustomerQualityMetrics) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CustomerQualityMetrics) GoString() string {
+	return s.String()
+}
+
+// SetAudio sets the Audio field's value.
+func (s *CustomerQualityMetrics) SetAudio(v *AudioQualityMetricsInfo) *CustomerQualityMetrics {
+	s.Audio = v
+	return s
+}
+
+// Information about customer’s voice activity.
+type CustomerVoiceActivity struct {
+	_ struct{} `type:"structure"`
+
+	// Timestamp that measures the end of the customer greeting from an outbound
+	// voice call.
+	GreetingEndTimestamp *time.Time `type:"timestamp"`
+
+	// Timestamp that measures the beginning of the customer greeting from an outbound
+	// voice call.
+	GreetingStartTimestamp *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CustomerVoiceActivity) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CustomerVoiceActivity) GoString() string {
+	return s.String()
+}
+
+// SetGreetingEndTimestamp sets the GreetingEndTimestamp field's value.
+func (s *CustomerVoiceActivity) SetGreetingEndTimestamp(v time.Time) *CustomerVoiceActivity {
+	s.GreetingEndTimestamp = &v
+	return s
+}
+
+// SetGreetingStartTimestamp sets the GreetingStartTimestamp field's value.
+func (s *CustomerVoiceActivity) SetGreetingStartTimestamp(v time.Time) *CustomerVoiceActivity {
+	s.GreetingStartTimestamp = &v
+	return s
+}
+
 // Information about a reference when the referenceType is DATE. Otherwise,
 // null.
 type DateReference struct {
@@ -42566,6 +42969,56 @@ func (s *DestinationNotAllowedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Information regarding the device.
+type DeviceInfo struct {
+	_ struct{} `type:"structure"`
+
+	// Operating system that the participant used for the call.
+	OperatingSystem *string `type:"string"`
+
+	// Name of the platform that the participant used for the call.
+	PlatformName *string `type:"string"`
+
+	// Version of the platform that the participant used for the call.
+	PlatformVersion *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeviceInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeviceInfo) GoString() string {
+	return s.String()
+}
+
+// SetOperatingSystem sets the OperatingSystem field's value.
+func (s *DeviceInfo) SetOperatingSystem(v string) *DeviceInfo {
+	s.OperatingSystem = &v
+	return s
+}
+
+// SetPlatformName sets the PlatformName field's value.
+func (s *DeviceInfo) SetPlatformName(v string) *DeviceInfo {
+	s.PlatformName = &v
+	return s
+}
+
+// SetPlatformVersion sets the PlatformVersion field's value.
+func (s *DeviceInfo) SetPlatformVersion(v string) *DeviceInfo {
+	s.PlatformVersion = &v
+	return s
+}
+
 // Contains information about the dimensions for a set of metrics.
 type Dimensions struct {
 	_ struct{} `type:"structure"`
@@ -43938,6 +44391,39 @@ func (s DisassociateUserProficienciesOutput) String() string {
 // value will be replaced with "sensitive".
 func (s DisassociateUserProficienciesOutput) GoString() string {
 	return s.String()
+}
+
+// Information about the call disconnect experience.
+type DisconnectDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates the potential disconnection issues for a call. This field is not
+	// populated if the service does not detect potential issues.
+	PotentialDisconnectIssue *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisconnectDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisconnectDetails) GoString() string {
+	return s.String()
+}
+
+// SetPotentialDisconnectIssue sets the PotentialDisconnectIssue field's value.
+func (s *DisconnectDetails) SetPotentialDisconnectIssue(v string) *DisconnectDetails {
+	s.PotentialDisconnectIssue = &v
+	return s
 }
 
 // Contains details about why a contact was disconnected. Only Amazon Connect
@@ -46531,6 +47017,97 @@ func (s *EventBridgeActionDefinition) Validate() error {
 // SetName sets the Name field's value.
 func (s *EventBridgeActionDefinition) SetName(v string) *EventBridgeActionDefinition {
 	s.Name = &v
+	return s
+}
+
+// An object to specify the expiration of a routing step.
+type Expiry struct {
+	_ struct{} `type:"structure"`
+
+	// The number of seconds to wait before expiring the routing step.
+	DurationInSeconds *int64 `type:"integer"`
+
+	// The timestamp indicating when the routing step expires.
+	ExpiryTimestamp *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Expiry) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Expiry) GoString() string {
+	return s.String()
+}
+
+// SetDurationInSeconds sets the DurationInSeconds field's value.
+func (s *Expiry) SetDurationInSeconds(v int64) *Expiry {
+	s.DurationInSeconds = &v
+	return s
+}
+
+// SetExpiryTimestamp sets the ExpiryTimestamp field's value.
+func (s *Expiry) SetExpiryTimestamp(v time.Time) *Expiry {
+	s.ExpiryTimestamp = &v
+	return s
+}
+
+// A tagged union to specify expression for a routing step.
+type Expression struct {
+	_ struct{} `type:"structure"`
+
+	// List of routing expressions which will be AND-ed together.
+	AndExpression []*Expression `type:"list"`
+
+	// An object to specify the predefined attribute condition.
+	AttributeCondition *AttributeCondition `type:"structure"`
+
+	// List of routing expressions which will be OR-ed together.
+	OrExpression []*Expression `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Expression) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Expression) GoString() string {
+	return s.String()
+}
+
+// SetAndExpression sets the AndExpression field's value.
+func (s *Expression) SetAndExpression(v []*Expression) *Expression {
+	s.AndExpression = v
+	return s
+}
+
+// SetAttributeCondition sets the AttributeCondition field's value.
+func (s *Expression) SetAttributeCondition(v *AttributeCondition) *Expression {
+	s.AttributeCondition = v
+	return s
+}
+
+// SetOrExpression sets the OrExpression field's value.
+func (s *Expression) SetOrExpression(v []*Expression) *Expression {
+	s.OrExpression = v
 	return s
 }
 
@@ -50230,6 +50807,75 @@ func (s *HierarchyGroupSummaryReference) SetArn(v string) *HierarchyGroupSummary
 // SetId sets the Id field's value.
 func (s *HierarchyGroupSummaryReference) SetId(v string) *HierarchyGroupSummaryReference {
 	s.Id = &v
+	return s
+}
+
+// Information about the agent hierarchy. Hierarchies can be configured with
+// up to five levels.
+type HierarchyGroups struct {
+	_ struct{} `type:"structure"`
+
+	// The group at level one of the agent hierarchy.
+	Level1 *AgentHierarchyGroup `type:"structure"`
+
+	// The group at level two of the agent hierarchy.
+	Level2 *AgentHierarchyGroup `type:"structure"`
+
+	// The group at level three of the agent hierarchy.
+	Level3 *AgentHierarchyGroup `type:"structure"`
+
+	// The group at level four of the agent hierarchy.
+	Level4 *AgentHierarchyGroup `type:"structure"`
+
+	// The group at level five of the agent hierarchy.
+	Level5 *AgentHierarchyGroup `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s HierarchyGroups) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s HierarchyGroups) GoString() string {
+	return s.String()
+}
+
+// SetLevel1 sets the Level1 field's value.
+func (s *HierarchyGroups) SetLevel1(v *AgentHierarchyGroup) *HierarchyGroups {
+	s.Level1 = v
+	return s
+}
+
+// SetLevel2 sets the Level2 field's value.
+func (s *HierarchyGroups) SetLevel2(v *AgentHierarchyGroup) *HierarchyGroups {
+	s.Level2 = v
+	return s
+}
+
+// SetLevel3 sets the Level3 field's value.
+func (s *HierarchyGroups) SetLevel3(v *AgentHierarchyGroup) *HierarchyGroups {
+	s.Level3 = v
+	return s
+}
+
+// SetLevel4 sets the Level4 field's value.
+func (s *HierarchyGroups) SetLevel4(v *AgentHierarchyGroup) *HierarchyGroups {
+	s.Level4 = v
+	return s
+}
+
+// SetLevel5 sets the Level5 field's value.
+func (s *HierarchyGroups) SetLevel5(v *AgentHierarchyGroup) *HierarchyGroups {
+	s.Level5 = v
 	return s
 }
 
@@ -61009,6 +61655,47 @@ func (s PutUserStatusOutput) GoString() string {
 	return s.String()
 }
 
+// Information about the quality of the participant's media connection.
+type QualityMetrics struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the quality of Agent media connection.
+	Agent *AgentQualityMetrics `type:"structure"`
+
+	// Information about the quality of Customer media connection.
+	Customer *CustomerQualityMetrics `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s QualityMetrics) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s QualityMetrics) GoString() string {
+	return s.String()
+}
+
+// SetAgent sets the Agent field's value.
+func (s *QualityMetrics) SetAgent(v *AgentQualityMetrics) *QualityMetrics {
+	s.Agent = v
+	return s
+}
+
+// SetCustomer sets the Customer field's value.
+func (s *QualityMetrics) SetCustomer(v *CustomerQualityMetrics) *QualityMetrics {
+	s.Customer = v
+	return s
+}
+
 // Contains information about a queue.
 type Queue struct {
 	_ struct{} `type:"structure"`
@@ -63587,6 +64274,63 @@ func (s ResumeContactRecordingOutput) String() string {
 // value will be replaced with "sensitive".
 func (s ResumeContactRecordingOutput) GoString() string {
 	return s.String()
+}
+
+// Latest routing criteria on the contact.
+type RoutingCriteria struct {
+	_ struct{} `type:"structure"`
+
+	// The timestamp indicating when the routing criteria is set to active. A routing
+	// criteria is activated when contact is transferred to a queue. ActivationTimestamp
+	// will be set on routing criteria for contacts in agent queue even though Routing
+	// criteria is never activated for contacts in agent queue.
+	ActivationTimestamp *time.Time `type:"timestamp"`
+
+	// Information about the index of the routing criteria.
+	Index *int64 `type:"integer"`
+
+	// List of routing steps. When Amazon Connect does not find an available agent
+	// meeting the requirements in a step for a given step duration, the routing
+	// criteria will move on to the next step sequentially until a join is completed
+	// with an agent. When all steps are exhausted, the contact will be offered
+	// to any agent in the queue.
+	Steps []*Step `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RoutingCriteria) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RoutingCriteria) GoString() string {
+	return s.String()
+}
+
+// SetActivationTimestamp sets the ActivationTimestamp field's value.
+func (s *RoutingCriteria) SetActivationTimestamp(v time.Time) *RoutingCriteria {
+	s.ActivationTimestamp = &v
+	return s
+}
+
+// SetIndex sets the Index field's value.
+func (s *RoutingCriteria) SetIndex(v int64) *RoutingCriteria {
+	s.Index = &v
+	return s
+}
+
+// SetSteps sets the Steps field's value.
+func (s *RoutingCriteria) SetSteps(v []*Step) *RoutingCriteria {
+	s.Steps = v
+	return s
 }
 
 // Contains information about a routing profile.
@@ -69891,6 +70635,56 @@ func (s *StartWebRTCContactOutput) SetParticipantId(v string) *StartWebRTCContac
 // SetParticipantToken sets the ParticipantToken field's value.
 func (s *StartWebRTCContactOutput) SetParticipantToken(v string) *StartWebRTCContactOutput {
 	s.ParticipantToken = &v
+	return s
+}
+
+// Step signifies the criteria to be used for routing to an agent
+type Step struct {
+	_ struct{} `type:"structure"`
+
+	// An object to specify the expiration of a routing step.
+	Expiry *Expiry `type:"structure"`
+
+	// A tagged union to specify expression for a routing step.
+	Expression *Expression `type:"structure"`
+
+	// Represents status of the Routing step.
+	Status *string `type:"string" enum:"RoutingCriteriaStepStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Step) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Step) GoString() string {
+	return s.String()
+}
+
+// SetExpiry sets the Expiry field's value.
+func (s *Step) SetExpiry(v *Expiry) *Step {
+	s.Expiry = v
+	return s
+}
+
+// SetExpression sets the Expression field's value.
+func (s *Step) SetExpression(v *Expression) *Step {
+	s.Expression = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *Step) SetStatus(v string) *Step {
+	s.Status = &v
 	return s
 }
 
@@ -80404,6 +81198,70 @@ func AgentStatusType_Values() []string {
 }
 
 const (
+	// AnsweringMachineDetectionStatusAnswered is a AnsweringMachineDetectionStatus enum value
+	AnsweringMachineDetectionStatusAnswered = "ANSWERED"
+
+	// AnsweringMachineDetectionStatusUndetected is a AnsweringMachineDetectionStatus enum value
+	AnsweringMachineDetectionStatusUndetected = "UNDETECTED"
+
+	// AnsweringMachineDetectionStatusError is a AnsweringMachineDetectionStatus enum value
+	AnsweringMachineDetectionStatusError = "ERROR"
+
+	// AnsweringMachineDetectionStatusHumanAnswered is a AnsweringMachineDetectionStatus enum value
+	AnsweringMachineDetectionStatusHumanAnswered = "HUMAN_ANSWERED"
+
+	// AnsweringMachineDetectionStatusSitToneDetected is a AnsweringMachineDetectionStatus enum value
+	AnsweringMachineDetectionStatusSitToneDetected = "SIT_TONE_DETECTED"
+
+	// AnsweringMachineDetectionStatusSitToneBusy is a AnsweringMachineDetectionStatus enum value
+	AnsweringMachineDetectionStatusSitToneBusy = "SIT_TONE_BUSY"
+
+	// AnsweringMachineDetectionStatusSitToneInvalidNumber is a AnsweringMachineDetectionStatus enum value
+	AnsweringMachineDetectionStatusSitToneInvalidNumber = "SIT_TONE_INVALID_NUMBER"
+
+	// AnsweringMachineDetectionStatusFaxMachineDetected is a AnsweringMachineDetectionStatus enum value
+	AnsweringMachineDetectionStatusFaxMachineDetected = "FAX_MACHINE_DETECTED"
+
+	// AnsweringMachineDetectionStatusVoicemailBeep is a AnsweringMachineDetectionStatus enum value
+	AnsweringMachineDetectionStatusVoicemailBeep = "VOICEMAIL_BEEP"
+
+	// AnsweringMachineDetectionStatusVoicemailNoBeep is a AnsweringMachineDetectionStatus enum value
+	AnsweringMachineDetectionStatusVoicemailNoBeep = "VOICEMAIL_NO_BEEP"
+
+	// AnsweringMachineDetectionStatusAmdUnresolved is a AnsweringMachineDetectionStatus enum value
+	AnsweringMachineDetectionStatusAmdUnresolved = "AMD_UNRESOLVED"
+
+	// AnsweringMachineDetectionStatusAmdUnanswered is a AnsweringMachineDetectionStatus enum value
+	AnsweringMachineDetectionStatusAmdUnanswered = "AMD_UNANSWERED"
+
+	// AnsweringMachineDetectionStatusAmdError is a AnsweringMachineDetectionStatus enum value
+	AnsweringMachineDetectionStatusAmdError = "AMD_ERROR"
+
+	// AnsweringMachineDetectionStatusAmdNotApplicable is a AnsweringMachineDetectionStatus enum value
+	AnsweringMachineDetectionStatusAmdNotApplicable = "AMD_NOT_APPLICABLE"
+)
+
+// AnsweringMachineDetectionStatus_Values returns all elements of the AnsweringMachineDetectionStatus enum
+func AnsweringMachineDetectionStatus_Values() []string {
+	return []string{
+		AnsweringMachineDetectionStatusAnswered,
+		AnsweringMachineDetectionStatusUndetected,
+		AnsweringMachineDetectionStatusError,
+		AnsweringMachineDetectionStatusHumanAnswered,
+		AnsweringMachineDetectionStatusSitToneDetected,
+		AnsweringMachineDetectionStatusSitToneBusy,
+		AnsweringMachineDetectionStatusSitToneInvalidNumber,
+		AnsweringMachineDetectionStatusFaxMachineDetected,
+		AnsweringMachineDetectionStatusVoicemailBeep,
+		AnsweringMachineDetectionStatusVoicemailNoBeep,
+		AnsweringMachineDetectionStatusAmdUnresolved,
+		AnsweringMachineDetectionStatusAmdUnanswered,
+		AnsweringMachineDetectionStatusAmdError,
+		AnsweringMachineDetectionStatusAmdNotApplicable,
+	}
+}
+
+const (
 	// ArtifactStatusApproved is a ArtifactStatus enum value
 	ArtifactStatusApproved = "APPROVED"
 
@@ -82950,6 +83808,30 @@ func ResourceType_Values() []string {
 		ResourceTypeHierarchyGroup,
 		ResourceTypeUser,
 		ResourceTypePhoneNumber,
+	}
+}
+
+const (
+	// RoutingCriteriaStepStatusActive is a RoutingCriteriaStepStatus enum value
+	RoutingCriteriaStepStatusActive = "ACTIVE"
+
+	// RoutingCriteriaStepStatusInactive is a RoutingCriteriaStepStatus enum value
+	RoutingCriteriaStepStatusInactive = "INACTIVE"
+
+	// RoutingCriteriaStepStatusJoined is a RoutingCriteriaStepStatus enum value
+	RoutingCriteriaStepStatusJoined = "JOINED"
+
+	// RoutingCriteriaStepStatusExpired is a RoutingCriteriaStepStatus enum value
+	RoutingCriteriaStepStatusExpired = "EXPIRED"
+)
+
+// RoutingCriteriaStepStatus_Values returns all elements of the RoutingCriteriaStepStatus enum
+func RoutingCriteriaStepStatus_Values() []string {
+	return []string{
+		RoutingCriteriaStepStatusActive,
+		RoutingCriteriaStepStatusInactive,
+		RoutingCriteriaStepStatusJoined,
+		RoutingCriteriaStepStatusExpired,
 	}
 }
 

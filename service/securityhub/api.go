@@ -67640,6 +67640,9 @@ const (
 
 	// TargetTypeOrganizationalUnit is a TargetType enum value
 	TargetTypeOrganizationalUnit = "ORGANIZATIONAL_UNIT"
+
+	// TargetTypeRoot is a TargetType enum value
+	TargetTypeRoot = "ROOT"
 )
 
 // TargetType_Values returns all elements of the TargetType enum
@@ -67647,6 +67650,7 @@ func TargetType_Values() []string {
 	return []string{
 		TargetTypeAccount,
 		TargetTypeOrganizationalUnit,
+		TargetTypeRoot,
 	}
 }
 

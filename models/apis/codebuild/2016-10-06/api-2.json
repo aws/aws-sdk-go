@@ -1204,7 +1204,8 @@
         "projectName":{"shape":"ProjectName"},
         "branchFilter":{"shape":"String"},
         "filterGroups":{"shape":"FilterGroups"},
-        "buildType":{"shape":"WebhookBuildType"}
+        "buildType":{"shape":"WebhookBuildType"},
+        "manualCreation":{"shape":"WrapperBoolean"}
       }
     },
     "CreateWebhookOutput":{
@@ -2846,6 +2847,7 @@
         "branchFilter":{"shape":"String"},
         "filterGroups":{"shape":"FilterGroups"},
         "buildType":{"shape":"WebhookBuildType"},
+        "manualCreation":{"shape":"WrapperBoolean"},
         "lastModifiedSecret":{"shape":"Timestamp"}
       }
     },
