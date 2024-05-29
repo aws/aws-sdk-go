@@ -22,7 +22,7 @@
     "BatchGetAttachedFileMetadata": "<p>Allows you to retrieve metadata about multiple attached files on an associated resource. Each attached file provided in the input list must be associated with the input AssociatedResourceArn.</p>",
     "BatchGetFlowAssociation": "<p>Retrieve the flow associations for the given resources.</p>",
     "BatchPutContact": "<note> <p>Only the Amazon Connect outbound campaigns service principal is allowed to assume a role in your account and call this API.</p> </note> <p>Allows you to create a batch of contacts in Amazon Connect. The outbound campaigns capability ingests dial requests via the <a href=\"https://docs.aws.amazon.com/connect-outbound/latest/APIReference/API_PutDialRequestBatch.html\">PutDialRequestBatch</a> API. It then uses BatchPutContact to create contacts corresponding to those dial requests. If agents are available, the dial requests are dialed out, which results in a voice call. The resulting voice call uses the same contactId that was created by BatchPutContact. </p>",
-    "ClaimPhoneNumber": "<p>Claims an available phone number to your Amazon Connect instance or traffic distribution group. You can call this API only in the same Amazon Web Services Region where the Amazon Connect instance or traffic distribution group was created.</p> <p>For more information about how to use this operation, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/claim-phone-number.html\">Claim a phone number in your country</a> and <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/claim-phone-numbers-traffic-distribution-groups.html\">Claim phone numbers to traffic distribution groups</a> in the <i>Amazon Connect Administrator Guide</i>. </p> <important> <p>You can call the <a href=\"https://docs.aws.amazon.com/connect/latest/APIReference/API_SearchAvailablePhoneNumbers.html\">SearchAvailablePhoneNumbers</a> API for available phone numbers that you can claim. Call the <a href=\"https://docs.aws.amazon.com/connect/latest/APIReference/API_DescribePhoneNumber.html\">DescribePhoneNumber</a> API to verify the status of a previous <a href=\"https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimPhoneNumber.html\">ClaimPhoneNumber</a> operation.</p> </important> <p>If you plan to claim and release numbers frequently during a 30 day period, contact us for a service quota exception. Otherwise, it is possible you will be blocked from claiming and releasing any more numbers until 30 days past the oldest number released has expired.</p> <p>By default you can claim and release up to 200% of your maximum number of active phone numbers during any 30 day period. If you claim and release phone numbers using the UI or API during a rolling 30 day cycle that exceeds 200% of your phone number service level quota, you will be blocked from claiming any more numbers until 30 days past the oldest number released has expired. </p> <p>For example, if you already have 99 claimed numbers and a service level quota of 99 phone numbers, and in any 30 day period you release 99, claim 99, and then release 99, you will have exceeded the 200% limit. At that point you are blocked from claiming any more numbers until you open an Amazon Web Services support ticket.</p>",
+    "ClaimPhoneNumber": "<p>Claims an available phone number to your Amazon Connect instance or traffic distribution group. You can call this API only in the same Amazon Web Services Region where the Amazon Connect instance or traffic distribution group was created.</p> <p>For more information about how to use this operation, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/claim-phone-number.html\">Claim a phone number in your country</a> and <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/claim-phone-numbers-traffic-distribution-groups.html\">Claim phone numbers to traffic distribution groups</a> in the <i>Amazon Connect Administrator Guide</i>. </p> <important> <p>You can call the <a href=\"https://docs.aws.amazon.com/connect/latest/APIReference/API_SearchAvailablePhoneNumbers.html\">SearchAvailablePhoneNumbers</a> API for available phone numbers that you can claim. Call the <a href=\"https://docs.aws.amazon.com/connect/latest/APIReference/API_DescribePhoneNumber.html\">DescribePhoneNumber</a> API to verify the status of a previous <a href=\"https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimPhoneNumber.html\">ClaimPhoneNumber</a> operation.</p> </important> <p>If you plan to claim and release numbers frequently, contact us for a service quota exception. Otherwise, it is possible you will be blocked from claiming and releasing any more numbers until up to 180 days past the oldest number released has expired.</p> <p>By default you can claim and release up to 200% of your maximum number of active phone numbers. If you claim and release phone numbers using the UI or API during a rolling 180 day cycle that exceeds 200% of your phone number service level quota, you will be blocked from claiming any more numbers until 180 days past the oldest number released has expired. </p> <p>For example, if you already have 99 claimed numbers and a service level quota of 99 phone numbers, and in any 180 day period you release 99, claim 99, and then release 99, you will have exceeded the 200% limit. At that point you are blocked from claiming any more numbers until you open an Amazon Web Services support ticket.</p>",
     "CompleteAttachedFileUpload": "<p>Allows you to confirm that the attached file has been uploaded using the pre-signed URL provided in the StartAttachedFileUpload API.</p>",
     "CreateAgentStatus": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Creates an agent status for the specified Amazon Connect instance.</p>",
     "CreateContactFlow": "<p>Creates a flow for the specified Amazon Connect instance.</p> <p>You can also create and update flows using the <a href=\"https://docs.aws.amazon.com/connect/latest/APIReference/flow-language.html\">Amazon Connect Flow language</a>.</p>",
@@ -169,7 +169,7 @@
     "MonitorContact": "<p>Initiates silent monitoring of a contact. The Contact Control Panel (CCP) of the user specified by <i>userId</i> will be set to silent monitoring mode on the contact.</p>",
     "PauseContact": "<p>Allows pausing an ongoing task contact.</p>",
     "PutUserStatus": "<p>Changes the current status of a user or agent in Amazon Connect. If the agent is currently handling a contact, this sets the agent's next status.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-agent-status.html\">Agent status</a> and <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/set-next-status.html\">Set your next status</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
-    "ReleasePhoneNumber": "<p>Releases a phone number previously claimed to an Amazon Connect instance or traffic distribution group. You can call this API only in the Amazon Web Services Region where the number was claimed.</p> <important> <p>To release phone numbers from a traffic distribution group, use the <code>ReleasePhoneNumber</code> API, not the Amazon Connect admin website.</p> <p>After releasing a phone number, the phone number enters into a cooldown period of 30 days. It cannot be searched for or claimed again until the period has ended. If you accidentally release a phone number, contact Amazon Web Services Support.</p> </important> <p>If you plan to claim and release numbers frequently during a 30 day period, contact us for a service quota exception. Otherwise, it is possible you will be blocked from claiming and releasing any more numbers until 30 days past the oldest number released has expired.</p> <p>By default you can claim and release up to 200% of your maximum number of active phone numbers during any 30 day period. If you claim and release phone numbers using the UI or API during a rolling 30 day cycle that exceeds 200% of your phone number service level quota, you will be blocked from claiming any more numbers until 30 days past the oldest number released has expired. </p> <p>For example, if you already have 99 claimed numbers and a service level quota of 99 phone numbers, and in any 30 day period you release 99, claim 99, and then release 99, you will have exceeded the 200% limit. At that point you are blocked from claiming any more numbers until you open an Amazon Web Services support ticket.</p>",
+    "ReleasePhoneNumber": "<p>Releases a phone number previously claimed to an Amazon Connect instance or traffic distribution group. You can call this API only in the Amazon Web Services Region where the number was claimed.</p> <important> <p>To release phone numbers from a traffic distribution group, use the <code>ReleasePhoneNumber</code> API, not the Amazon Connect admin website.</p> <p>After releasing a phone number, the phone number enters into a cooldown period for up to 180 days. It cannot be searched for or claimed again until the period has ended. If you accidentally release a phone number, contact Amazon Web Services Support.</p> </important> <p>If you plan to claim and release numbers frequently, contact us for a service quota exception. Otherwise, it is possible you will be blocked from claiming and releasing any more numbers until up to 180 days past the oldest number released has expired.</p> <p>By default you can claim and release up to 200% of your maximum number of active phone numbers. If you claim and release phone numbers using the UI or API during a rolling 180 day cycle that exceeds 200% of your phone number service level quota, you will be blocked from claiming any more numbers until 180 days past the oldest number released has expired. </p> <p>For example, if you already have 99 claimed numbers and a service level quota of 99 phone numbers, and in any 180 day period you release 99, claim 99, and then release 99, you will have exceeded the 200% limit. At that point you are blocked from claiming any more numbers until you open an Amazon Web Services support ticket.</p>",
     "ReplicateInstance": "<p>Replicates an Amazon Connect instance in the specified Amazon Web Services Region and copies configuration information for Amazon Connect resources across Amazon Web Services Regions. </p> <p>For more information about replicating an Amazon Connect instance, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/create-replica-connect-instance.html\">Create a replica of your existing Amazon Connect instance</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
     "ResumeContact": "<p>Allows resuming a task contact in a paused state.</p>",
     "ResumeContactRecording": "<p>When a contact is being recorded, and the recording has been suspended using SuspendContactRecording, this API resumes recording whatever recording is selected in the flow configuration: call, screen, or both. If only call recording or only screen recording is enabled, then it would resume.</p> <p>Voice and screen recordings are supported.</p>",
@@ -196,7 +196,7 @@
     "StartOutboundVoiceContact": "<p>Places an outbound call to a contact, and then initiates the flow. It performs the actions in the flow that's specified (in <code>ContactFlowId</code>).</p> <p>Agents do not initiate the outbound API, which means that they do not dial the contact. If the flow places an outbound call to a contact, and then puts the contact in queue, the call is then routed to the agent, like any other inbound case.</p> <p>There is a 60-second dialing timeout for this operation. If the call is not connected after 60 seconds, it fails.</p> <note> <p>UK numbers with a 447 prefix are not allowed by default. Before you can dial these UK mobile numbers, you must submit a service quota increase request. For more information, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html\">Amazon Connect Service Quotas</a> in the <i>Amazon Connect Administrator Guide</i>. </p> </note> <note> <p>Campaign calls are not allowed by default. Before you can make a call with <code>TrafficType</code> = <code>CAMPAIGN</code>, you must submit a service quota increase request to the quota <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html#outbound-communications-quotas\">Amazon Connect campaigns</a>. </p> </note>",
     "StartTaskContact": "<p>Initiates a flow to start a new task contact. For more information about task contacts, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/tasks.html\">Concepts: Tasks in Amazon Connect</a> in the <i>Amazon Connect Administrator Guide</i>. </p> <p>When using <code>PreviousContactId</code> and <code>RelatedContactId</code> input parameters, note the following:</p> <ul> <li> <p> <code>PreviousContactId</code> </p> <ul> <li> <p>Any updates to user-defined task contact attributes on any contact linked through the same <code>PreviousContactId</code> will affect every contact in the chain.</p> </li> <li> <p>There can be a maximum of 12 linked task contacts in a chain. That is, 12 task contacts can be created that share the same <code>PreviousContactId</code>.</p> </li> </ul> </li> <li> <p> <code>RelatedContactId</code> </p> <ul> <li> <p>Copies contact attributes from the related task contact to the new contact.</p> </li> <li> <p>Any update on attributes in a new task contact does not update attributes on previous contact.</p> </li> <li> <p>There’s no limit on the number of task contacts that can be created that use the same <code>RelatedContactId</code>.</p> </li> </ul> </li> </ul> <p>In addition, when calling StartTaskContact include only one of these parameters: <code>ContactFlowID</code>, <code>QuickConnectID</code>, or <code>TaskTemplateID</code>. Only one parameter is required as long as the task template has a flow configured to run it. If more than one parameter is specified, or only the <code>TaskTemplateID</code> is specified but it does not have a flow configured, the request returns an error because Amazon Connect cannot identify the unique flow to run when the task is created.</p> <p>A <code>ServiceQuotaExceededException</code> occurs when the number of open tasks exceeds the active tasks quota or there are already 12 tasks referencing the same <code>PreviousContactId</code>. For more information about service quotas for task contacts, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html\">Amazon Connect service quotas</a> in the <i>Amazon Connect Administrator Guide</i>. </p>",
     "StartWebRTCContact": "<p>Places an inbound in-app, web, or video call to a contact, and then initiates the flow. It performs the actions in the flow that are specified (in ContactFlowId) and present in the Amazon Connect instance (specified as InstanceId).</p>",
-    "StopContact": "<p>Ends the specified contact. Use this API to stop queued callbacks. It does not work for voice contacts that use the following initiation methods:</p> <ul> <li> <p>DISCONNECT</p> </li> <li> <p>TRANSFER</p> </li> <li> <p>QUEUE_TRANSFER</p> </li> </ul> <p>Chat and task contacts can be terminated in any state, regardless of initiation method.</p>",
+    "StopContact": "<p>Ends the specified contact. Use this API to stop queued callbacks. It does not work for voice contacts that use the following initiation methods:</p> <ul> <li> <p>DISCONNECT</p> </li> <li> <p>TRANSFER</p> </li> <li> <p>QUEUE_TRANSFER</p> </li> <li> <p>EXTERNAL_OUTBOUND</p> </li> <li> <p>MONITOR</p> </li> </ul> <p>Chat and task contacts can be terminated in any state, regardless of initiation method.</p>",
     "StopContactRecording": "<p>Stops recording a call when a contact is being recorded. StopContactRecording is a one-time action. If you use StopContactRecording to stop recording an ongoing call, you can't use StartContactRecording to restart it. For scenarios where the recording has started and you want to suspend it for sensitive information (for example, to collect a credit card number), and then restart it, use SuspendContactRecording and ResumeContactRecording.</p> <p>Only voice recordings are supported at this time.</p>",
     "StopContactStreaming": "<p> Ends message streaming on a specified contact. To restart message streaming on that contact, call the <a href=\"https://docs.aws.amazon.com/connect/latest/APIReference/API_StartContactStreaming.html\">StartContactStreaming</a> API. </p>",
     "SubmitContactEvaluation": "<p>Submits a contact evaluation in the specified Amazon Connect instance. Answers included in the request are merged with existing answers for the given evaluation. If no answers or notes are passed, the evaluation is submitted with the existing answers and notes. You can delete an answer or note by passing an empty object (<code>{}</code>) to the question identifier. </p> <p>If a contact evaluation is already in submitted state, this operation will trigger a resubmission.</p>",
@@ -215,7 +215,7 @@
     "UpdateContactFlowModuleContent": "<p>Updates specified flow module for the specified Amazon Connect instance. </p> <p>Use the <code>$SAVED</code> alias in the request to describe the <code>SAVED</code> content of a Flow. For example, <code>arn:aws:.../contact-flow/{id}:$SAVED</code>. Once a contact flow is published, <code>$SAVED</code> needs to be supplied to view saved content that has not been published.</p>",
     "UpdateContactFlowModuleMetadata": "<p>Updates metadata about specified flow module.</p>",
     "UpdateContactFlowName": "<p>The name of the flow.</p> <p>You can also create and update flows using the <a href=\"https://docs.aws.amazon.com/connect/latest/APIReference/flow-language.html\">Amazon Connect Flow language</a>.</p>",
-    "UpdateContactRoutingData": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Updates routing priority and age on the contact (<b>QueuePriority</b> and <b>QueueTimeAdjustmentInSeconds</b>). These properties can be used to change a customer's position in the queue. For example, you can move a contact to the back of the queue by setting a lower routing priority relative to other contacts in queue; or you can move a contact to the front of the queue by increasing the routing age which will make the contact look artificially older and therefore higher up in the first-in-first-out routing order. Note that adjusting the routing age of a contact affects only its position in queue, and not its actual queue wait time as reported through metrics. These properties can also be updated by using <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/change-routing-priority.html\">the Set routing priority / age flow block</a>.</p>",
+    "UpdateContactRoutingData": "<p>Updates routing priority and age on the contact (<b>QueuePriority</b> and <b>QueueTimeAdjustmentInSeconds</b>). These properties can be used to change a customer's position in the queue. For example, you can move a contact to the back of the queue by setting a lower routing priority relative to other contacts in queue; or you can move a contact to the front of the queue by increasing the routing age which will make the contact look artificially older and therefore higher up in the first-in-first-out routing order. Note that adjusting the routing age of a contact affects only its position in queue, and not its actual queue wait time as reported through metrics. These properties can also be updated by using <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/change-routing-priority.html\">the Set routing priority / age flow block</a>.</p> <note> <p>Either <b>QueuePriority</b> or <b>QueueTimeAdjustmentInSeconds</b> should be provided within the request body, but not both.</p> </note>",
     "UpdateContactSchedule": "<p>Updates the scheduled time of a task contact that is already scheduled.</p>",
     "UpdateEvaluationForm": "<p>Updates details about a specific evaluation form version in the specified Amazon Connect instance. Question and section identifiers cannot be duplicated within the same evaluation form.</p> <p>This operation does not support partial updates. Instead it does a full update of evaluation form content.</p>",
     "UpdateHoursOfOperation": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Updates the hours of operation.</p>",
@@ -258,6 +258,7 @@
       "base": null,
       "refs": {
         "ActivateEvaluationFormResponse$EvaluationFormArn": "<p>The Amazon Resource Name (ARN) for the evaluation form resource.</p>",
+        "AgentHierarchyGroup$Arn": "<p>The Amazon Resource Name (ARN) of the group.</p>",
         "AgentStatus$AgentStatusARN": "<p>The Amazon Resource Name (ARN) of the agent status.</p>",
         "AgentStatusReference$StatusArn": "<p>The Amazon Resource Name (ARN) of the agent's status.</p>",
         "AgentStatusSummary$Arn": "<p>The Amazon Resource Name (ARN) for the agent status.</p>",
@@ -484,6 +485,16 @@
         "UserIdentityInfoLite$FirstName": "<p>The user's first name.</p>"
       }
     },
+    "AgentHierarchyGroup": {
+      "base": "<p>Information about an agent hierarchy group.</p>",
+      "refs": {
+        "HierarchyGroups$Level1": "<p>The group at level one of the agent hierarchy.</p>",
+        "HierarchyGroups$Level2": "<p>The group at level two of the agent hierarchy.</p>",
+        "HierarchyGroups$Level3": "<p>The group at level three of the agent hierarchy.</p>",
+        "HierarchyGroups$Level4": "<p>The group at level four of the agent hierarchy.</p>",
+        "HierarchyGroups$Level5": "<p>The group at level five of the agent hierarchy.</p>"
+      }
+    },
     "AgentHierarchyGroups": {
       "base": "<p>A structure that defines search criteria for contacts using agent hierarchy group levels. For more information about agent hierarchies, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/agent-hierarchy.html\">Set Up Agent Hierarchies</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
       "refs": {
@@ -507,6 +518,12 @@
       "base": null,
       "refs": {
         "AgentInfo$AgentPauseDurationInSeconds": "<p>Agent pause duration for a contact in seconds.</p>"
+      }
+    },
+    "AgentQualityMetrics": {
+      "base": "<p>Information about the quality of the Agent's media connection</p>",
+      "refs": {
+        "QualityMetrics$Agent": "<p>Information about the quality of Agent media connection.</p>"
       }
     },
     "AgentResourceId": {
@@ -667,6 +684,12 @@
       "base": "<p>Configuration of the answering machine detection.</p>",
       "refs": {
         "StartOutboundVoiceContactRequest$AnswerMachineDetectionConfig": "<p>Configuration of the answering machine detection for this outbound call. </p>"
+      }
+    },
+    "AnsweringMachineDetectionStatus": {
+      "base": null,
+      "refs": {
+        "Contact$AnsweringMachineDetectionStatus": "<p>Indicates how an <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/how-to-create-campaigns.html\">outbound campaign</a> call is actually disposed if the contact is connected to Amazon Connect.</p>"
       }
     },
     "Application": {
@@ -905,6 +928,12 @@
         "ControlPlaneUserAttributeFilter$AndCondition": "<p>A list of conditions which would be applied together with an <code>AND</code> condition.</p>"
       }
     },
+    "AttributeCondition": {
+      "base": "<p>An object to specify the predefined attribute condition.</p>",
+      "refs": {
+        "Expression$AttributeCondition": "<p>An object to specify the predefined attribute condition.</p>"
+      }
+    },
     "AttributeName": {
       "base": null,
       "refs": {
@@ -946,6 +975,19 @@
       "base": "<p>Has audio-specific configurations as the operating parameter for Echo Reduction.</p>",
       "refs": {
         "MeetingFeaturesConfiguration$Audio": "<p>The configuration settings for the audio features available to a meeting.</p>"
+      }
+    },
+    "AudioQualityMetricsInfo": {
+      "base": "<p>Contains information for score and potential quality issues for Audio</p>",
+      "refs": {
+        "AgentQualityMetrics$Audio": "<p>Information about the audio quality of the Agent</p>",
+        "CustomerQualityMetrics$Audio": "<p>Information about the audio quality of the Customer</p>"
+      }
+    },
+    "AudioQualityScore": {
+      "base": null,
+      "refs": {
+        "AudioQualityMetricsInfo$QualityScore": "<p>Number measuring the estimated quality of the media connection.</p>"
       }
     },
     "AutoAccept": {
@@ -1072,6 +1114,7 @@
     "Campaign": {
       "base": "<p>Information associated with a campaign.</p>",
       "refs": {
+        "Contact$Campaign": null,
         "ContactDataRequest$Campaign": "<p>Structure to store information associated with a campaign.</p>"
       }
     },
@@ -1239,6 +1282,12 @@
       "base": null,
       "refs": {
         "Threshold$Comparison": "<p>The type of comparison. Only \"less than\" (LT) comparisons are supported.</p>"
+      }
+    },
+    "ComparisonOperator": {
+      "base": null,
+      "refs": {
+        "AttributeCondition$ComparisonOperator": "<p>The operator of the condition.</p>"
       }
     },
     "CompleteAttachedFileUploadRequest": {
@@ -2040,6 +2089,24 @@
         "GetCurrentMetricDataRequest$CurrentMetrics": "<p>The metrics to retrieve. Specify the name and unit for each metric. The following metrics are available. For a description of all the metrics, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html\">Real-time Metrics Definitions</a> in the <i>Amazon Connect Administrator Guide</i>.</p> <dl> <dt>AGENTS_AFTER_CONTACT_WORK</dt> <dd> <p>Unit: COUNT</p> <p>Name in real-time metrics report: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#aftercallwork-real-time\">ACW</a> </p> </dd> <dt>AGENTS_AVAILABLE</dt> <dd> <p>Unit: COUNT</p> <p>Name in real-time metrics report: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#available-real-time\">Available</a> </p> </dd> <dt>AGENTS_ERROR</dt> <dd> <p>Unit: COUNT</p> <p>Name in real-time metrics report: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#error-real-time\">Error</a> </p> </dd> <dt>AGENTS_NON_PRODUCTIVE</dt> <dd> <p>Unit: COUNT</p> <p>Name in real-time metrics report: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#non-productive-time-real-time\">NPT (Non-Productive Time)</a> </p> </dd> <dt>AGENTS_ON_CALL</dt> <dd> <p>Unit: COUNT</p> <p>Name in real-time metrics report: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#on-call-real-time\">On contact</a> </p> </dd> <dt>AGENTS_ON_CONTACT</dt> <dd> <p>Unit: COUNT</p> <p>Name in real-time metrics report: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#on-call-real-time\">On contact</a> </p> </dd> <dt>AGENTS_ONLINE</dt> <dd> <p>Unit: COUNT</p> <p>Name in real-time metrics report: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#online-real-time\">Online</a> </p> </dd> <dt>AGENTS_STAFFED</dt> <dd> <p>Unit: COUNT</p> <p>Name in real-time metrics report: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#staffed-real-time\">Staffed</a> </p> </dd> <dt>CONTACTS_IN_QUEUE</dt> <dd> <p>Unit: COUNT</p> <p>Name in real-time metrics report: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#in-queue-real-time\">In queue</a> </p> </dd> <dt>CONTACTS_SCHEDULED</dt> <dd> <p>Unit: COUNT</p> <p>Name in real-time metrics report: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#scheduled-real-time\">Scheduled</a> </p> </dd> <dt>OLDEST_CONTACT_AGE</dt> <dd> <p>Unit: SECONDS</p> <p>When you use groupings, Unit says SECONDS and the Value is returned in SECONDS. </p> <p>When you do not use groupings, Unit says SECONDS but the Value is returned in MILLISECONDS. For example, if you get a response like this:</p> <p> <code>{ \"Metric\": { \"Name\": \"OLDEST_CONTACT_AGE\", \"Unit\": \"SECONDS\" }, \"Value\": 24113.0 </code>}</p> <p>The actual OLDEST_CONTACT_AGE is 24 seconds.</p> <p>When the filter <code>RoutingStepExpression</code> is used, this metric is still calculated from enqueue time. For example, if a contact that has been queued under <code>&lt;Expression 1&gt;</code> for 10 seconds has expired and <code>&lt;Expression 2&gt;</code> becomes active, then <code>OLDEST_CONTACT_AGE</code> for this queue will be counted starting from 10, not 0.</p> <p>Name in real-time metrics report: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#oldest-real-time\">Oldest</a> </p> </dd> <dt>SLOTS_ACTIVE</dt> <dd> <p>Unit: COUNT</p> <p>Name in real-time metrics report: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#active-real-time\">Active</a> </p> </dd> <dt>SLOTS_AVAILABLE</dt> <dd> <p>Unit: COUNT</p> <p>Name in real-time metrics report: <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#availability-real-time\">Availability</a> </p> </dd> </dl>"
       }
     },
+    "Customer": {
+      "base": "<p>Information about the Customer on the contact.</p>",
+      "refs": {
+        "Contact$Customer": "<p>Information about the Customer on the contact.</p>"
+      }
+    },
+    "CustomerQualityMetrics": {
+      "base": "<p>Information about the quality of the Customer's media connection</p>",
+      "refs": {
+        "QualityMetrics$Customer": "<p>Information about the quality of Customer media connection.</p>"
+      }
+    },
+    "CustomerVoiceActivity": {
+      "base": "<p>Information about customer’s voice activity.</p>",
+      "refs": {
+        "Contact$CustomerVoiceActivity": "<p>Information about customer’s voice activity.</p>"
+      }
+    },
     "DataSetId": {
       "base": null,
       "refs": {
@@ -2517,6 +2584,13 @@
       "refs": {
       }
     },
+    "DeviceInfo": {
+      "base": "<p>Information regarding the device.</p>",
+      "refs": {
+        "AgentInfo$DeviceInfo": "<p>Information regarding Agent’s device.</p>",
+        "Customer$DeviceInfo": "<p>Information regarding Customer’s device.</p>"
+      }
+    },
     "Dimensions": {
       "base": "<p>Contains information about the dimensions for a set of metrics.</p>",
       "refs": {
@@ -2648,6 +2722,12 @@
       "refs": {
       }
     },
+    "DisconnectDetails": {
+      "base": "<p>Information about the call disconnect experience.</p>",
+      "refs": {
+        "Contact$DisconnectDetails": "<p>Information about the call disconnect experience.</p>"
+      }
+    },
     "DisconnectReason": {
       "base": "<p>Contains details about why a contact was disconnected. Only Amazon Connect outbound campaigns can provide this field.</p>",
       "refs": {
@@ -2708,6 +2788,12 @@
     "DuplicateResourceException": {
       "base": "<p>A resource with the specified name already exists.</p>",
       "refs": {
+      }
+    },
+    "DurationInSeconds": {
+      "base": null,
+      "refs": {
+        "Expiry$DurationInSeconds": "<p>The number of seconds to wait before expiring the routing step.</p>"
       }
     },
     "Email": {
@@ -3170,6 +3256,26 @@
         "RuleTriggerEventSource$EventSourceName": "<p>The name of the event source.</p>"
       }
     },
+    "Expiry": {
+      "base": "<p>An object to specify the expiration of a routing step.</p>",
+      "refs": {
+        "Step$Expiry": "<p>An object to specify the expiration of a routing step.</p>"
+      }
+    },
+    "Expression": {
+      "base": "<p>A tagged union to specify expression for a routing step.</p>",
+      "refs": {
+        "Expressions$member": null,
+        "Step$Expression": "<p>A tagged union to specify expression for a routing step.</p>"
+      }
+    },
+    "Expressions": {
+      "base": null,
+      "refs": {
+        "Expression$AndExpression": "<p>List of routing expressions which will be AND-ed together.</p>",
+        "Expression$OrExpression": "<p>List of routing expressions which will be OR-ed together.</p>"
+      }
+    },
     "FailedRequest": {
       "base": "<p>Request for which contact failed to be generated.</p>",
       "refs": {
@@ -3554,6 +3660,12 @@
         "HierarchyPathReference$LevelFive": "<p>Information about level five.</p>"
       }
     },
+    "HierarchyGroups": {
+      "base": "<p>Information about the agent hierarchy. Hierarchies can be configured with up to five levels.</p>",
+      "refs": {
+        "AgentInfo$HierarchyGroups": "<p>The agent hierarchy groups for the agent.</p>"
+      }
+    },
     "HierarchyLevel": {
       "base": "<p>Contains information about a hierarchy level.</p>",
       "refs": {
@@ -3812,6 +3924,12 @@
         "CreateInstanceRequest$InboundCallsEnabled": "<p>Your contact center handles incoming contacts.</p>",
         "Instance$InboundCallsEnabled": "<p>Whether inbound calls are enabled.</p>",
         "InstanceSummary$InboundCallsEnabled": "<p>Whether inbound calls are enabled.</p>"
+      }
+    },
+    "Index": {
+      "base": null,
+      "refs": {
+        "RoutingCriteria$Index": "<p>Information about the index of the routing criteria.</p>"
       }
     },
     "InitiationMethodList": {
@@ -5285,6 +5403,12 @@
         "EvaluationFormNumericQuestionAutomation$PropertyValue": "<p>The property value of the automation.</p>"
       }
     },
+    "OperatingSystem": {
+      "base": null,
+      "refs": {
+        "DeviceInfo$OperatingSystem": "<p>Operating system that the participant used for the call.</p>"
+      }
+    },
     "Origin": {
       "base": null,
       "refs": {
@@ -5341,8 +5465,10 @@
     "ParticipantCapabilities": {
       "base": "<p>The configuration for the allowed capabilities for participants present over the call.</p>",
       "refs": {
+        "AgentInfo$Capabilities": null,
         "AllowedCapabilities$Customer": "<p>Information about the customer's video sharing capabilities.</p>",
-        "AllowedCapabilities$Agent": "<p>Information about the agent's video sharing capabilities.</p>"
+        "AllowedCapabilities$Agent": "<p>Information about the agent's video sharing capabilities.</p>",
+        "Customer$Capabilities": null
       }
     },
     "ParticipantDetails": {
@@ -5600,6 +5726,36 @@
         "UserPhoneConfig$PhoneType": "<p>The phone type.</p>"
       }
     },
+    "PlatformName": {
+      "base": null,
+      "refs": {
+        "DeviceInfo$PlatformName": "<p>Name of the platform that the participant used for the call.</p>"
+      }
+    },
+    "PlatformVersion": {
+      "base": null,
+      "refs": {
+        "DeviceInfo$PlatformVersion": "<p>Version of the platform that the participant used for the call.</p>"
+      }
+    },
+    "PotentialAudioQualityIssue": {
+      "base": null,
+      "refs": {
+        "PotentialAudioQualityIssues$member": null
+      }
+    },
+    "PotentialAudioQualityIssues": {
+      "base": null,
+      "refs": {
+        "AudioQualityMetricsInfo$PotentialQualityIssues": "<p>List of potential issues causing degradation of quality on a media connection. If the service did not detect any potential quality issues the list is empty.</p> <p>Valid values: <code>HighPacketLoss</code> | <code>HighRoundTripTime</code> | <code>HighJitterBuffer</code> </p>"
+      }
+    },
+    "PotentialDisconnectIssue": {
+      "base": null,
+      "refs": {
+        "DisconnectDetails$PotentialDisconnectIssue": "<p>Indicates the potential disconnection issues for a call. This field is not populated if the service does not detect potential issues.</p>"
+      }
+    },
     "PredefinedAttribute": {
       "base": "<p>Information about a predefined attribute.</p>",
       "refs": {
@@ -5610,6 +5766,7 @@
     "PredefinedAttributeName": {
       "base": null,
       "refs": {
+        "AttributeCondition$Name": "<p>The name of predefined attribute.</p>",
         "CreatePredefinedAttributeRequest$Name": "<p> The name of the predefined attribute. </p>",
         "DeletePredefinedAttributeRequest$Name": "<p> The name of the predefined attribute.</p>",
         "DescribePredefinedAttributeRequest$Name": "<p>The name of the predefined attribute.</p>",
@@ -5710,7 +5867,14 @@
     "ProficiencyLevel": {
       "base": null,
       "refs": {
+        "AttributeCondition$ProficiencyLevel": "<p>The proficiency level of the condition.</p>",
         "UserProficiency$Level": "<p>The level of the proficiency. The valid values are 1, 2, 3, 4 and 5.</p>"
+      }
+    },
+    "ProficiencyValue": {
+      "base": null,
+      "refs": {
+        "AttributeCondition$Value": "<p>The value of predefined attribute.</p>"
       }
     },
     "Prompt": {
@@ -5822,6 +5986,12 @@
     "PutUserStatusResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "QualityMetrics": {
+      "base": "<p>Information about the quality of the participant's media connection.</p>",
+      "refs": {
+        "Contact$QualityMetrics": "<p>Information about the quality of the participant's media connection.</p>"
       }
     },
     "Queue": {
@@ -6580,6 +6750,18 @@
       "refs": {
       }
     },
+    "RoutingCriteria": {
+      "base": "<p>Latest routing criteria on the contact.</p>",
+      "refs": {
+        "Contact$RoutingCriteria": "<p>Latest routing criteria on the contact.</p>"
+      }
+    },
+    "RoutingCriteriaStepStatus": {
+      "base": null,
+      "refs": {
+        "Step$Status": "<p>Represents status of the Routing step.</p>"
+      }
+    },
     "RoutingExpression": {
       "base": null,
       "refs": {
@@ -7191,6 +7373,7 @@
     "SegmentAttributes": {
       "base": null,
       "refs": {
+        "Contact$SegmentAttributes": "<p>A set of system defined key-value pairs stored on individual contact segments using an attribute map. The attributes are standard Amazon Connect attributes and can be accessed in flows. Attribute keys can include only alphanumeric, -, and _ characters. This field can be used to show channel subtype. For example, <code>connect:Guide</code> or <code>connect:SMS</code>.</p>",
         "StartChatContactRequest$SegmentAttributes": "<p>A set of system defined key-value pairs stored on individual contact segments using an attribute map. The attributes are standard Amazon Connect attributes. They can be accessed in flows.</p> <p>Attribute keys can include only alphanumeric, -, and _.</p> <p>This field can be used to show channel subtype, such as <code>connect:Guide</code>.</p> <note> <p>The types <code>application/vnd.amazonaws.connect.message.interactive</code> and <code>application/vnd.amazonaws.connect.message.interactive.response</code> must be present in the SupportedMessagingContentTypes field of this API in order to set <code>SegmentAttributes</code> as {<code> \"connect:Subtype\": {\"valueString\" : \"connect:Guide\" }}</code>.</p> </note>"
       }
     },
@@ -7387,6 +7570,18 @@
       "base": null,
       "refs": {
         "HistoricalMetric$Statistic": "<p>The statistic for the metric.</p>"
+      }
+    },
+    "Step": {
+      "base": "<p>Step signifies the criteria to be used for routing to an agent</p>",
+      "refs": {
+        "Steps$member": null
+      }
+    },
+    "Steps": {
+      "base": null,
+      "refs": {
+        "RoutingCriteria$Steps": "<p>List of routing steps. When Amazon Connect does not find an available agent meeting the requirements in a step for a given step duration, the routing criteria will move on to the next step sequentially until a join is completed with an agent. When all steps are exhausted, the contact will be offered to any agent in the queue.</p>"
       }
     },
     "StopContactRecordingRequest": {
@@ -9080,6 +9275,7 @@
         "Contact$LastPausedTimestamp": "<p>The timestamp when the contact was last paused.</p>",
         "Contact$LastResumedTimestamp": "<p>The timestamp when the contact was last resumed.</p>",
         "Contact$ScheduledTimestamp": "<p>The timestamp, in Unix epoch time format, at which to start running the inbound flow. </p>",
+        "Contact$ConnectedToSystemTimestamp": "<p>The timestamp when customer endpoint connected to Amazon Connect.</p>",
         "ContactSearchSummary$InitiationTimestamp": "<p>The date and time this contact was initiated, in UTC time. For <code>INBOUND</code>, this is when the contact arrived. For <code>OUTBOUND</code>, this is when the agent began dialing. For <code>CALLBACK</code>, this is when the callback contact was created. For <code>TRANSFER</code> and <code>QUEUE_TRANSFER</code>, this is when the transfer was initiated. For API, this is when the request arrived. For <code>EXTERNAL_OUTBOUND</code>, this is when the agent started dialing the external participant. For <code>MONITOR</code>, this is when the supervisor started listening to a contact.</p>",
         "ContactSearchSummary$DisconnectTimestamp": "<p>The timestamp when the customer endpoint disconnected from Amazon Connect.</p>",
         "ContactSearchSummary$ScheduledTimestamp": "<p>The timestamp, in Unix epoch time format, at which to start running the inbound flow.</p>",
@@ -9087,12 +9283,16 @@
         "ContactSearchSummaryQueueInfo$EnqueueTimestamp": "<p>The timestamp when the contact was added to the queue.</p>",
         "Credentials$AccessTokenExpiration": "<p>A token generated with an expiration time for the session a user is logged in to Amazon Connect.</p>",
         "Credentials$RefreshTokenExpiration": "<p>Renews the expiration timer for a generated token.</p>",
+        "CustomerVoiceActivity$GreetingStartTimestamp": "<p>Timestamp that measures the beginning of the customer greeting from an outbound voice call.</p>",
+        "CustomerVoiceActivity$GreetingEndTimestamp": "<p>Timestamp that measures the end of the customer greeting from an outbound voice call.</p>",
+        "Expiry$ExpiryTimestamp": "<p>The timestamp indicating when the routing step expires.</p>",
         "GetCurrentMetricDataResponse$DataSnapshotTime": "<p>The time at which the metrics were retrieved and cached for pagination.</p>",
         "GetMetricDataRequest$StartTime": "<p>The timestamp, in UNIX Epoch time format, at which to start the reporting interval for the retrieval of historical metrics data. The time must be specified using a multiple of 5 minutes, such as 10:05, 10:10, 10:15.</p> <p>The start time cannot be earlier than 24 hours before the time of the request. Historical metrics are available only for 24 hours.</p>",
         "GetMetricDataRequest$EndTime": "<p>The timestamp, in UNIX Epoch time format, at which to end the reporting interval for the retrieval of historical metrics data. The time must be specified using an interval of 5 minutes, such as 11:00, 11:05, 11:10, and must be later than the start time timestamp.</p> <p>The time range between the start and end time must be less than 24 hours.</p>",
         "GetTaskTemplateResponse$LastModifiedTime": "<p>The timestamp when the task template was last modified.</p>",
         "GetTaskTemplateResponse$CreatedTime": "<p>The timestamp when the task template was created.</p>",
         "QueueInfo$EnqueueTimestamp": "<p>The timestamp when the contact was added to the queue.</p>",
+        "RoutingCriteria$ActivationTimestamp": "<p>The timestamp indicating when the routing criteria is set to active. A routing criteria is activated when contact is transferred to a queue. ActivationTimestamp will be set on routing criteria for contacts in agent queue even though Routing criteria is never activated for contacts in agent queue.</p>",
         "SecurityKey$CreationTime": "<p>When the security key was created.</p>",
         "TaskTemplateMetadata$LastModifiedTime": "<p>The timestamp when the task template was last modified.</p>",
         "TaskTemplateMetadata$CreatedTime": "<p>The timestamp when the task template was created.</p>",

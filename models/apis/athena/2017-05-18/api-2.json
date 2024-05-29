@@ -5,6 +5,7 @@
     "endpointPrefix":"athena",
     "jsonVersion":"1.1",
     "protocol":"json",
+    "protocols":["json"],
     "serviceFullName":"Amazon Athena",
     "serviceId":"Athena",
     "signatureVersion":"v4",
@@ -2474,7 +2475,7 @@
       "type":"string",
       "max":255,
       "min":1,
-      "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\t]+"
+      "pattern":"(?!.*[/:\\\\])[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\t]+"
     },
     "NotebookSessionSummary":{
       "type":"structure",

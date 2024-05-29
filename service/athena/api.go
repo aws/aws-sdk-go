@@ -2740,11 +2740,13 @@ func (c *Athena) GetQueryRuntimeStatisticsRequest(input *GetQueryRuntimeStatisti
 // GetQueryRuntimeStatistics API operation for Amazon Athena.
 //
 // Returns query execution runtime statistics related to a single execution
-// of a query if you have access to the workgroup in which the query ran. Query
-// execution runtime statistics are returned only when QueryExecutionStatus$State
-// is in a SUCCEEDED or FAILED state. Stage-level input and output row count
-// and data size statistics are not shown when a query has row-level filters
-// defined in Lake Formation.
+// of a query if you have access to the workgroup in which the query ran. Statistics
+// from the Timeline section of the response object are available as soon as
+// QueryExecutionStatus$State is in a SUCCEEDED or FAILED state. The remaining
+// non-timeline statistics in the response (like stage-level input and output
+// row count and data size) are updated asynchronously and may not be available
+// immediately after a query completes. The non-timeline statistics are also
+// not included when a query has row-level filters defined in Lake Formation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -15402,10 +15404,8 @@ type ResultConfiguration struct {
 	// query results location using one of the ways: either for individual queries
 	// using either this setting (client-side), or in the workgroup, using WorkGroupConfiguration.
 	// If none of them is set, Athena issues an error that no output location is
-	// provided. For more information, see Working with query results, recent queries,
-	// and output files (https://docs.aws.amazon.com/athena/latest/ug/querying.html).
-	// If workgroup settings override client-side settings, then the query uses
-	// the settings specified for the workgroup. See WorkGroupConfiguration$EnforceWorkGroupConfiguration.
+	// provided. If workgroup settings override client-side settings, then the query
+	// uses the settings specified for the workgroup. See WorkGroupConfiguration$EnforceWorkGroupConfiguration.
 	OutputLocation *string `type:"string"`
 }
 
@@ -15500,13 +15500,11 @@ type ResultConfigurationUpdates struct {
 	ExpectedBucketOwner *string `min:"12" type:"string"`
 
 	// The location in Amazon S3 where your query and calculation results are stored,
-	// such as s3://path/to/query/bucket/. For more information, see Working with
-	// query results, recent queries, and output files (https://docs.aws.amazon.com/athena/latest/ug/querying.html).
-	// If workgroup settings override client-side settings, then the query uses
-	// the location for the query results and the encryption configuration that
-	// are specified for the workgroup. The "workgroup settings override" is specified
-	// in EnforceWorkGroupConfiguration (true/false) in the WorkGroupConfiguration.
-	// See WorkGroupConfiguration$EnforceWorkGroupConfiguration.
+	// such as s3://path/to/query/bucket/. If workgroup settings override client-side
+	// settings, then the query uses the location for the query results and the
+	// encryption configuration that are specified for the workgroup. The "workgroup
+	// settings override" is specified in EnforceWorkGroupConfiguration (true/false)
+	// in the WorkGroupConfiguration. See WorkGroupConfiguration$EnforceWorkGroupConfiguration.
 	OutputLocation *string `type:"string"`
 
 	// If set to true, indicates that the previously-specified ACL configuration
@@ -18487,8 +18485,7 @@ type WorkGroupConfiguration struct {
 	// specify the query results location using one of the ways: either in the workgroup
 	// using this setting, or for individual queries (client-side), using ResultConfiguration$OutputLocation.
 	// If none of them is set, Athena issues an error that no output location is
-	// provided. For more information, see Working with query results, recent queries,
-	// and output files (https://docs.aws.amazon.com/athena/latest/ug/querying.html).
+	// provided.
 	ResultConfiguration *ResultConfiguration `type:"structure"`
 }
 

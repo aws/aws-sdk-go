@@ -33060,6 +33060,18 @@ type CreateJobInput struct {
 	// Jobs that are created without specifying a Glue version default to Glue 0.9.
 	GlueVersion *string `min:"1" type:"string"`
 
+	// A mode that describes how a job was created. Valid values are:
+	//
+	//    * SCRIPT - The job was created using the Glue Studio script editor.
+	//
+	//    * VISUAL - The job was created using the Glue Studio visual editor.
+	//
+	//    * NOTEBOOK - The job was created using an interactive sessions notebook.
+	//
+	// When the JobMode field is missing or null, SCRIPT is assigned as the default
+	// value.
+	JobMode *string `type:"string" enum:"JobMode"`
+
 	// This field is reserved for future use.
 	LogUri *string `type:"string"`
 
@@ -33305,6 +33317,12 @@ func (s *CreateJobInput) SetExecutionProperty(v *ExecutionProperty) *CreateJobIn
 // SetGlueVersion sets the GlueVersion field's value.
 func (s *CreateJobInput) SetGlueVersion(v string) *CreateJobInput {
 	s.GlueVersion = &v
+	return s
+}
+
+// SetJobMode sets the JobMode field's value.
+func (s *CreateJobInput) SetJobMode(v string) *CreateJobInput {
+	s.JobMode = &v
 	return s
 }
 
@@ -54107,6 +54125,18 @@ type Job struct {
 	// Jobs that are created without specifying a Glue version default to Glue 0.9.
 	GlueVersion *string `min:"1" type:"string"`
 
+	// A mode that describes how a job was created. Valid values are:
+	//
+	//    * SCRIPT - The job was created using the Glue Studio script editor.
+	//
+	//    * VISUAL - The job was created using the Glue Studio visual editor.
+	//
+	//    * NOTEBOOK - The job was created using an interactive sessions notebook.
+	//
+	// When the JobMode field is missing or null, SCRIPT is assigned as the default
+	// value.
+	JobMode *string `type:"string" enum:"JobMode"`
+
 	// The last point in time when this job definition was modified.
 	LastModifiedOn *time.Time `type:"timestamp"`
 
@@ -54300,6 +54330,12 @@ func (s *Job) SetExecutionProperty(v *ExecutionProperty) *Job {
 // SetGlueVersion sets the GlueVersion field's value.
 func (s *Job) SetGlueVersion(v string) *Job {
 	s.GlueVersion = &v
+	return s
+}
+
+// SetJobMode sets the JobMode field's value.
+func (s *Job) SetJobMode(v string) *Job {
+	s.JobMode = &v
 	return s
 }
 
@@ -54702,6 +54738,18 @@ type JobRun struct {
 	// The ID of this job run.
 	Id *string `min:"1" type:"string"`
 
+	// A mode that describes how a job was created. Valid values are:
+	//
+	//    * SCRIPT - The job was created using the Glue Studio script editor.
+	//
+	//    * VISUAL - The job was created using the Glue Studio visual editor.
+	//
+	//    * NOTEBOOK - The job was created using an interactive sessions notebook.
+	//
+	// When the JobMode field is missing or null, SCRIPT is assigned as the default
+	// value.
+	JobMode *string `type:"string" enum:"JobMode"`
+
 	// The name of the job definition being used in this run.
 	JobName *string `min:"1" type:"string"`
 
@@ -54917,6 +54965,12 @@ func (s *JobRun) SetId(v string) *JobRun {
 	return s
 }
 
+// SetJobMode sets the JobMode field's value.
+func (s *JobRun) SetJobMode(v string) *JobRun {
+	s.JobMode = &v
+	return s
+}
+
 // SetJobName sets the JobName field's value.
 func (s *JobRun) SetJobName(v string) *JobRun {
 	s.JobName = &v
@@ -55092,6 +55146,18 @@ type JobUpdate struct {
 	//
 	// Jobs that are created without specifying a Glue version default to Glue 0.9.
 	GlueVersion *string `min:"1" type:"string"`
+
+	// A mode that describes how a job was created. Valid values are:
+	//
+	//    * SCRIPT - The job was created using the Glue Studio script editor.
+	//
+	//    * VISUAL - The job was created using the Glue Studio visual editor.
+	//
+	//    * NOTEBOOK - The job was created using an interactive sessions notebook.
+	//
+	// When the JobMode field is missing or null, SCRIPT is assigned as the default
+	// value.
+	JobMode *string `type:"string" enum:"JobMode"`
 
 	// This field is reserved for future use.
 	LogUri *string `type:"string"`
@@ -55313,6 +55379,12 @@ func (s *JobUpdate) SetExecutionProperty(v *ExecutionProperty) *JobUpdate {
 // SetGlueVersion sets the GlueVersion field's value.
 func (s *JobUpdate) SetGlueVersion(v string) *JobUpdate {
 	s.GlueVersion = &v
+	return s
+}
+
+// SetJobMode sets the JobMode field's value.
+func (s *JobUpdate) SetJobMode(v string) *JobUpdate {
+	s.JobMode = &v
 	return s
 }
 
@@ -79596,6 +79668,26 @@ func JobBookmarksEncryptionMode_Values() []string {
 	return []string{
 		JobBookmarksEncryptionModeDisabled,
 		JobBookmarksEncryptionModeCseKms,
+	}
+}
+
+const (
+	// JobModeScript is a JobMode enum value
+	JobModeScript = "SCRIPT"
+
+	// JobModeVisual is a JobMode enum value
+	JobModeVisual = "VISUAL"
+
+	// JobModeNotebook is a JobMode enum value
+	JobModeNotebook = "NOTEBOOK"
+)
+
+// JobMode_Values returns all elements of the JobMode enum
+func JobMode_Values() []string {
+	return []string{
+		JobModeScript,
+		JobModeVisual,
+		JobModeNotebook,
 	}
 }
 

@@ -4177,6 +4177,12 @@
       "min":1,
       "sensitive":true
     },
+    "AgentHierarchyGroup":{
+      "type":"structure",
+      "members":{
+        "Arn":{"shape":"ARN"}
+      }
+    },
     "AgentHierarchyGroups":{
       "type":"structure",
       "members":{
@@ -4192,7 +4198,10 @@
       "members":{
         "Id":{"shape":"AgentResourceId"},
         "ConnectedToAgentTimestamp":{"shape":"timestamp"},
-        "AgentPauseDurationInSeconds":{"shape":"AgentPauseDurationInSeconds"}
+        "AgentPauseDurationInSeconds":{"shape":"AgentPauseDurationInSeconds"},
+        "HierarchyGroups":{"shape":"HierarchyGroups"},
+        "DeviceInfo":{"shape":"DeviceInfo"},
+        "Capabilities":{"shape":"ParticipantCapabilities"}
       }
     },
     "AgentLastName":{
@@ -4204,6 +4213,12 @@
     "AgentPauseDurationInSeconds":{
       "type":"integer",
       "min":0
+    },
+    "AgentQualityMetrics":{
+      "type":"structure",
+      "members":{
+        "Audio":{"shape":"AudioQualityMetricsInfo"}
+      }
     },
     "AgentResourceId":{
       "type":"string",
@@ -4343,6 +4358,25 @@
         "EnableAnswerMachineDetection":{"shape":"Boolean"},
         "AwaitAnswerMachinePrompt":{"shape":"Boolean"}
       }
+    },
+    "AnsweringMachineDetectionStatus":{
+      "type":"string",
+      "enum":[
+        "ANSWERED",
+        "UNDETECTED",
+        "ERROR",
+        "HUMAN_ANSWERED",
+        "SIT_TONE_DETECTED",
+        "SIT_TONE_BUSY",
+        "SIT_TONE_INVALID_NUMBER",
+        "FAX_MACHINE_DETECTED",
+        "VOICEMAIL_BEEP",
+        "VOICEMAIL_NO_BEEP",
+        "AMD_UNRESOLVED",
+        "AMD_UNANSWERED",
+        "AMD_ERROR",
+        "AMD_NOT_APPLICABLE"
+      ]
     },
     "Application":{
       "type":"structure",
@@ -4749,6 +4783,15 @@
         "HierarchyGroupCondition":{"shape":"HierarchyGroupCondition"}
       }
     },
+    "AttributeCondition":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"PredefinedAttributeName"},
+        "Value":{"shape":"ProficiencyValue"},
+        "ProficiencyLevel":{"shape":"ProficiencyLevel"},
+        "ComparisonOperator":{"shape":"ComparisonOperator"}
+      }
+    },
     "AttributeName":{
       "type":"string",
       "max":32767,
@@ -4778,6 +4821,14 @@
         "EchoReduction":{"shape":"MeetingFeatureStatus"}
       }
     },
+    "AudioQualityMetricsInfo":{
+      "type":"structure",
+      "members":{
+        "QualityScore":{"shape":"AudioQualityScore"},
+        "PotentialQualityIssues":{"shape":"PotentialAudioQualityIssues"}
+      }
+    },
+    "AudioQualityScore":{"type":"float"},
     "AutoAccept":{"type":"boolean"},
     "AvailableNumberSummary":{
       "type":"structure",
@@ -5083,6 +5134,11 @@
       "type":"string",
       "enum":["LT"]
     },
+    "ComparisonOperator":{
+      "type":"string",
+      "max":127,
+      "min":1
+    },
     "CompleteAttachedFileUploadRequest":{
       "type":"structure",
       "required":[
@@ -5158,7 +5214,16 @@
         "WisdomInfo":{"shape":"WisdomInfo"},
         "QueueTimeAdjustmentSeconds":{"shape":"QueueTimeAdjustmentSeconds"},
         "QueuePriority":{"shape":"QueuePriority"},
-        "Tags":{"shape":"ContactTagMap"}
+        "Tags":{"shape":"ContactTagMap"},
+        "ConnectedToSystemTimestamp":{"shape":"timestamp"},
+        "RoutingCriteria":{"shape":"RoutingCriteria"},
+        "Customer":{"shape":"Customer"},
+        "Campaign":{"shape":"Campaign"},
+        "AnsweringMachineDetectionStatus":{"shape":"AnsweringMachineDetectionStatus"},
+        "CustomerVoiceActivity":{"shape":"CustomerVoiceActivity"},
+        "QualityMetrics":{"shape":"QualityMetrics"},
+        "DisconnectDetails":{"shape":"DisconnectDetails"},
+        "SegmentAttributes":{"shape":"SegmentAttributes"}
       }
     },
     "ContactAnalysis":{
@@ -6318,6 +6383,26 @@
     "CurrentMetrics":{
       "type":"list",
       "member":{"shape":"CurrentMetric"}
+    },
+    "Customer":{
+      "type":"structure",
+      "members":{
+        "DeviceInfo":{"shape":"DeviceInfo"},
+        "Capabilities":{"shape":"ParticipantCapabilities"}
+      }
+    },
+    "CustomerQualityMetrics":{
+      "type":"structure",
+      "members":{
+        "Audio":{"shape":"AudioQualityMetricsInfo"}
+      }
+    },
+    "CustomerVoiceActivity":{
+      "type":"structure",
+      "members":{
+        "GreetingStartTimestamp":{"shape":"timestamp"},
+        "GreetingEndTimestamp":{"shape":"timestamp"}
+      }
     },
     "DataSetId":{
       "type":"string",
@@ -7499,6 +7584,14 @@
       "error":{"httpStatusCode":403},
       "exception":true
     },
+    "DeviceInfo":{
+      "type":"structure",
+      "members":{
+        "PlatformName":{"shape":"PlatformName"},
+        "PlatformVersion":{"shape":"PlatformVersion"},
+        "OperatingSystem":{"shape":"OperatingSystem"}
+      }
+    },
     "Dimensions":{
       "type":"structure",
       "members":{
@@ -7815,6 +7908,12 @@
         "UserProficiencies":{"shape":"UserProficiencyDisassociateList"}
       }
     },
+    "DisconnectDetails":{
+      "type":"structure",
+      "members":{
+        "PotentialDisconnectIssue":{"shape":"PotentialDisconnectIssue"}
+      }
+    },
     "DisconnectReason":{
       "type":"structure",
       "members":{
@@ -7884,6 +7983,7 @@
       "error":{"httpStatusCode":409},
       "exception":true
     },
+    "DurationInSeconds":{"type":"integer"},
     "Email":{
       "type":"string",
       "sensitive":true
@@ -8478,6 +8578,25 @@
         "OnCaseUpdate"
       ]
     },
+    "Expiry":{
+      "type":"structure",
+      "members":{
+        "DurationInSeconds":{"shape":"DurationInSeconds"},
+        "ExpiryTimestamp":{"shape":"timestamp"}
+      }
+    },
+    "Expression":{
+      "type":"structure",
+      "members":{
+        "AttributeCondition":{"shape":"AttributeCondition"},
+        "AndExpression":{"shape":"Expressions"},
+        "OrExpression":{"shape":"Expressions"}
+      }
+    },
+    "Expressions":{
+      "type":"list",
+      "member":{"shape":"Expression"}
+    },
     "FailedRequest":{
       "type":"structure",
       "members":{
@@ -9051,6 +9170,16 @@
         "Arn":{"shape":"ARN"}
       }
     },
+    "HierarchyGroups":{
+      "type":"structure",
+      "members":{
+        "Level1":{"shape":"AgentHierarchyGroup"},
+        "Level2":{"shape":"AgentHierarchyGroup"},
+        "Level3":{"shape":"AgentHierarchyGroup"},
+        "Level4":{"shape":"AgentHierarchyGroup"},
+        "Level5":{"shape":"AgentHierarchyGroup"}
+      }
+    },
     "HierarchyLevel":{
       "type":"structure",
       "members":{
@@ -9339,6 +9468,7 @@
       }
     },
     "InboundCallsEnabled":{"type":"boolean"},
+    "Index":{"type":"integer"},
     "InitiationMethodList":{
       "type":"list",
       "member":{"shape":"ContactInitiationMethod"}
@@ -11412,6 +11542,11 @@
         "Label":{"shape":"NumericQuestionPropertyAutomationLabel"}
       }
     },
+    "OperatingSystem":{
+      "type":"string",
+      "max":128,
+      "min":0
+    },
     "Origin":{
       "type":"string",
       "max":267
@@ -11917,6 +12052,32 @@
         "DESK_PHONE"
       ]
     },
+    "PlatformName":{
+      "type":"string",
+      "max":128,
+      "min":0
+    },
+    "PlatformVersion":{
+      "type":"string",
+      "max":128,
+      "min":0
+    },
+    "PotentialAudioQualityIssue":{
+      "type":"string",
+      "max":128,
+      "min":0
+    },
+    "PotentialAudioQualityIssues":{
+      "type":"list",
+      "member":{"shape":"PotentialAudioQualityIssue"},
+      "max":3,
+      "min":0
+    },
+    "PotentialDisconnectIssue":{
+      "type":"string",
+      "max":128,
+      "min":0
+    },
     "PredefinedAttribute":{
       "type":"structure",
       "members":{
@@ -12009,6 +12170,11 @@
       "box":true,
       "max":5.0,
       "min":1.0
+    },
+    "ProficiencyValue":{
+      "type":"string",
+      "max":128,
+      "min":1
     },
     "Prompt":{
       "type":"structure",
@@ -12140,6 +12306,13 @@
     "PutUserStatusResponse":{
       "type":"structure",
       "members":{
+      }
+    },
+    "QualityMetrics":{
+      "type":"structure",
+      "members":{
+        "Agent":{"shape":"AgentQualityMetrics"},
+        "Customer":{"shape":"CustomerQualityMetrics"}
       }
     },
     "Queue":{
@@ -12884,6 +13057,23 @@
       "type":"structure",
       "members":{
       }
+    },
+    "RoutingCriteria":{
+      "type":"structure",
+      "members":{
+        "Steps":{"shape":"Steps"},
+        "ActivationTimestamp":{"shape":"timestamp"},
+        "Index":{"shape":"Index"}
+      }
+    },
+    "RoutingCriteriaStepStatus":{
+      "type":"string",
+      "enum":[
+        "ACTIVE",
+        "INACTIVE",
+        "JOINED",
+        "EXPIRED"
+      ]
     },
     "RoutingExpression":{
       "type":"string",
@@ -14101,6 +14291,18 @@
         "MAX",
         "AVG"
       ]
+    },
+    "Step":{
+      "type":"structure",
+      "members":{
+        "Expiry":{"shape":"Expiry"},
+        "Expression":{"shape":"Expression"},
+        "Status":{"shape":"RoutingCriteriaStepStatus"}
+      }
+    },
+    "Steps":{
+      "type":"list",
+      "member":{"shape":"Step"}
     },
     "StopContactRecordingRequest":{
       "type":"structure",

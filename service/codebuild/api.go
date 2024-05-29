@@ -7399,7 +7399,9 @@ type CreateFleetInput struct {
 	// EnvironmentType is a required field
 	EnvironmentType *string `locationName:"environmentType" type:"string" required:"true" enum:"EnvironmentType"`
 
-	// The service role associated with the compute fleet.
+	// The service role associated with the compute fleet. For more information,
+	// see Allow a user to add a permission policy for a fleet service role (https://docs.aws.amazon.com/codebuild/latest/userguide/auth-and-access-control-iam-identity-based-access-control.html#customer-managed-policies-example-permission-policy-fleet-service-role.html)
+	// in the CodeBuild User Guide.
 	FleetServiceRole *string `locationName:"fleetServiceRole" min:"1" type:"string"`
 
 	// The name of the compute fleet.
@@ -8165,6 +8167,14 @@ type CreateWebhookInput struct {
 	// array must pass. For a filter group to pass, each of its filters must pass.
 	FilterGroups [][]*WebhookFilter `locationName:"filterGroups" type:"list"`
 
+	// If manualCreation is true, CodeBuild doesn't create a webhook in GitHub and
+	// instead returns payloadUrl and secret values for the webhook. The payloadUrl
+	// and secret values in the output can be used to manually create a webhook
+	// within GitHub.
+	//
+	// manualCreation is only available for GitHub webhooks.
+	ManualCreation *bool `locationName:"manualCreation" type:"boolean"`
+
 	// The name of the CodeBuild project.
 	//
 	// ProjectName is a required field
@@ -8220,6 +8230,12 @@ func (s *CreateWebhookInput) SetBuildType(v string) *CreateWebhookInput {
 // SetFilterGroups sets the FilterGroups field's value.
 func (s *CreateWebhookInput) SetFilterGroups(v [][]*WebhookFilter) *CreateWebhookInput {
 	s.FilterGroups = v
+	return s
+}
+
+// SetManualCreation sets the ManualCreation field's value.
+func (s *CreateWebhookInput) SetManualCreation(v bool) *CreateWebhookInput {
+	s.ManualCreation = &v
 	return s
 }
 
@@ -9583,7 +9599,9 @@ type Fleet struct {
 	// in the CodeBuild user guide.
 	EnvironmentType *string `locationName:"environmentType" type:"string" enum:"EnvironmentType"`
 
-	// The service role associated with the compute fleet.
+	// The service role associated with the compute fleet. For more information,
+	// see Allow a user to add a permission policy for a fleet service role (https://docs.aws.amazon.com/codebuild/latest/userguide/auth-and-access-control-iam-identity-based-access-control.html#customer-managed-policies-example-permission-policy-fleet-service-role.html)
+	// in the CodeBuild User Guide.
 	FleetServiceRole *string `locationName:"fleetServiceRole" min:"1" type:"string"`
 
 	// The ID of the compute fleet.
@@ -16882,7 +16900,9 @@ type UpdateFleetInput struct {
 	// in the CodeBuild user guide.
 	EnvironmentType *string `locationName:"environmentType" type:"string" enum:"EnvironmentType"`
 
-	// The service role associated with the compute fleet.
+	// The service role associated with the compute fleet. For more information,
+	// see Allow a user to add a permission policy for a fleet service role (https://docs.aws.amazon.com/codebuild/latest/userguide/auth-and-access-control-iam-identity-based-access-control.html#customer-managed-policies-example-permission-policy-fleet-service-role.html)
+	// in the CodeBuild User Guide.
 	FleetServiceRole *string `locationName:"fleetServiceRole" min:"1" type:"string"`
 
 	// The compute fleet overflow behavior.
@@ -17937,6 +17957,14 @@ type Webhook struct {
 	// modified.
 	LastModifiedSecret *time.Time `locationName:"lastModifiedSecret" type:"timestamp"`
 
+	// If manualCreation is true, CodeBuild doesn't create a webhook in GitHub and
+	// instead returns payloadUrl and secret values for the webhook. The payloadUrl
+	// and secret values in the output can be used to manually create a webhook
+	// within GitHub.
+	//
+	// manualCreation is only available for GitHub webhooks.
+	ManualCreation *bool `locationName:"manualCreation" type:"boolean"`
+
 	// The CodeBuild endpoint where webhook events are sent.
 	PayloadUrl *string `locationName:"payloadUrl" min:"1" type:"string"`
 
@@ -17988,6 +18016,12 @@ func (s *Webhook) SetFilterGroups(v [][]*WebhookFilter) *Webhook {
 // SetLastModifiedSecret sets the LastModifiedSecret field's value.
 func (s *Webhook) SetLastModifiedSecret(v time.Time) *Webhook {
 	s.LastModifiedSecret = &v
+	return s
+}
+
+// SetManualCreation sets the ManualCreation field's value.
+func (s *Webhook) SetManualCreation(v bool) *Webhook {
+	s.ManualCreation = &v
 	return s
 }
 
