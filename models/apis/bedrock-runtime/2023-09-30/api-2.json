@@ -1,353 +1,1198 @@
 {
-  "version":"2.0",
-  "metadata":{
-    "apiVersion":"2023-09-30",
-    "endpointPrefix":"bedrock-runtime",
-    "jsonVersion":"1.1",
-    "protocol":"rest-json",
-    "serviceFullName":"Amazon Bedrock Runtime",
-    "serviceId":"Bedrock Runtime",
-    "signatureVersion":"v4",
-    "signingName":"bedrock",
-    "uid":"bedrock-runtime-2023-09-30"
+  "metadata": {
+    "apiVersion": "2023-09-30",
+    "endpointPrefix": "bedrock-runtime",
+    "jsonVersion": "1.1",
+    "protocol": "rest-json",
+    "serviceFullName": "Amazon Bedrock Runtime",
+    "serviceId": "Bedrock Runtime",
+    "signatureVersion": "v4",
+    "signingName": "bedrock",
+    "uid": "bedrock-runtime-2023-09-30"
   },
-  "operations":{
-    "InvokeModel":{
-      "name":"InvokeModel",
-      "http":{
-        "method":"POST",
-        "requestUri":"/model/{modelId}/invoke",
-        "responseCode":200
+  "operations": {
+    "Converse": {
+      "errors": [
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ModelTimeoutException"
+        },
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "ModelNotReadyException"
+        },
+        {
+          "shape": "ModelErrorException"
+        }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/model/{modelId}/converse",
+        "responseCode": 200
       },
-      "input":{"shape":"InvokeModelRequest"},
-      "output":{"shape":"InvokeModelResponse"},
-      "errors":[
-        {"shape":"AccessDeniedException"},
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"ThrottlingException"},
-        {"shape":"ModelTimeoutException"},
-        {"shape":"InternalServerException"},
-        {"shape":"ValidationException"},
-        {"shape":"ModelNotReadyException"},
-        {"shape":"ServiceQuotaExceededException"},
-        {"shape":"ModelErrorException"}
-      ]
+      "input": {
+        "shape": "ConverseRequest"
+      },
+      "name": "Converse",
+      "output": {
+        "shape": "ConverseResponse"
+      }
     },
-    "InvokeModelWithResponseStream":{
-      "name":"InvokeModelWithResponseStream",
-      "http":{
-        "method":"POST",
-        "requestUri":"/model/{modelId}/invoke-with-response-stream",
-        "responseCode":200
+    "ConverseStream": {
+      "errors": [
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ModelTimeoutException"
+        },
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "ModelNotReadyException"
+        },
+        {
+          "shape": "ModelErrorException"
+        }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/model/{modelId}/converse-stream",
+        "responseCode": 200
       },
-      "input":{"shape":"InvokeModelWithResponseStreamRequest"},
-      "output":{"shape":"InvokeModelWithResponseStreamResponse"},
-      "errors":[
-        {"shape":"AccessDeniedException"},
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"ThrottlingException"},
-        {"shape":"ModelTimeoutException"},
-        {"shape":"InternalServerException"},
-        {"shape":"ModelStreamErrorException"},
-        {"shape":"ValidationException"},
-        {"shape":"ModelNotReadyException"},
-        {"shape":"ServiceQuotaExceededException"},
-        {"shape":"ModelErrorException"}
-      ]
+      "input": {
+        "shape": "ConverseStreamRequest"
+      },
+      "name": "ConverseStream",
+      "output": {
+        "shape": "ConverseStreamResponse"
+      }
+    },
+    "InvokeModel": {
+      "errors": [
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ModelTimeoutException"
+        },
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "ModelNotReadyException"
+        },
+        {
+          "shape": "ServiceQuotaExceededException"
+        },
+        {
+          "shape": "ModelErrorException"
+        }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/model/{modelId}/invoke",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "InvokeModelRequest"
+      },
+      "name": "InvokeModel",
+      "output": {
+        "shape": "InvokeModelResponse"
+      }
+    },
+    "InvokeModelWithResponseStream": {
+      "errors": [
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ModelTimeoutException"
+        },
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "ModelStreamErrorException"
+        },
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "ModelNotReadyException"
+        },
+        {
+          "shape": "ServiceQuotaExceededException"
+        },
+        {
+          "shape": "ModelErrorException"
+        }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/model/{modelId}/invoke-with-response-stream",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "InvokeModelWithResponseStreamRequest"
+      },
+      "name": "InvokeModelWithResponseStream",
+      "output": {
+        "shape": "InvokeModelWithResponseStreamResponse"
+      }
     }
   },
-  "shapes":{
-    "AccessDeniedException":{
-      "type":"structure",
-      "members":{
-        "message":{"shape":"NonBlankString"}
+  "shapes": {
+    "AccessDeniedException": {
+      "error": {
+        "httpStatusCode": 403,
+        "senderFault": true
       },
-      "error":{
-        "httpStatusCode":403,
-        "senderFault":true
+      "exception": true,
+      "members": {
+        "message": {
+          "shape": "NonBlankString"
+        }
       },
-      "exception":true
+      "type": "structure"
     },
-    "Body":{
-      "type":"blob",
-      "max":25000000,
-      "min":0,
-      "sensitive":true
+    "AnyToolChoice": {
+      "members": {},
+      "type": "structure"
     },
-    "GuardrailIdentifier":{
-      "type":"string",
-      "max":2048,
-      "min":0,
-      "pattern":"(([a-z0-9]+)|(arn:aws(-[^:]+)?:bedrock:[a-z0-9-]{1,20}:[0-9]{12}:guardrail/[a-z0-9]+))"
+    "AutoToolChoice": {
+      "members": {},
+      "type": "structure"
     },
-    "GuardrailVersion":{
-      "type":"string",
-      "pattern":"(([1-9][0-9]{0,7})|(DRAFT))"
+    "Body": {
+      "max": 25000000,
+      "min": 0,
+      "sensitive": true,
+      "type": "blob"
     },
-    "InternalServerException":{
-      "type":"structure",
-      "members":{
-        "message":{"shape":"NonBlankString"}
+    "ContentBlock": {
+      "members": {
+        "image": {
+          "shape": "ImageBlock"
+        },
+        "text": {
+          "shape": "String"
+        },
+        "toolResult": {
+          "shape": "ToolResultBlock"
+        }
       },
-      "error":{"httpStatusCode":500},
-      "exception":true,
-      "fault":true
+      "type": "structure",
+      "union": true
     },
-    "InvokeModelIdentifier":{
-      "type":"string",
-      "max":2048,
-      "min":1,
-      "pattern":"(arn:aws(-[^:]+)?:bedrock:[a-z0-9-]{1,20}:(([0-9]{12}:custom-model/[a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}/[a-z0-9]{12})|(:foundation-model/[a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}([.:]?[a-z0-9-]{1,63}))|([0-9]{12}:provisioned-model/[a-z0-9]{12})))|([a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}([.:]?[a-z0-9-]{1,63}))|(([0-9a-zA-Z][_-]?)+)"
+    "ContentBlockDelta": {
+      "members": {
+        "text": {
+          "shape": "String"
+        },
+        "toolUse": {
+          "shape": "ToolUseBlockDelta"
+        }
+      },
+      "type": "structure",
+      "union": true
     },
-    "InvokeModelRequest":{
-      "type":"structure",
-      "required":[
+    "ContentBlockDeltaEvent": {
+      "event": true,
+      "members": {
+        "contentBlockIndex": {
+          "shape": "NonNegativeInteger"
+        },
+        "delta": {
+          "shape": "ContentBlockDelta"
+        }
+      },
+      "required": [
+        "delta",
+        "contentBlockIndex"
+      ],
+      "type": "structure"
+    },
+    "ContentBlockStart": {
+      "members": {
+        "toolUse": {
+          "shape": "ToolUseBlockStart"
+        }
+      },
+      "type": "structure",
+      "union": true
+    },
+    "ContentBlockStartEvent": {
+      "event": true,
+      "members": {
+        "contentBlockIndex": {
+          "shape": "NonNegativeInteger"
+        },
+        "start": {
+          "shape": "ContentBlockStart"
+        }
+      },
+      "required": [
+        "start",
+        "contentBlockIndex"
+      ],
+      "type": "structure"
+    },
+    "ContentBlockStopEvent": {
+      "event": true,
+      "members": {
+        "contentBlockIndex": {
+          "shape": "NonNegativeInteger"
+        }
+      },
+      "required": [
+        "contentBlockIndex"
+      ],
+      "type": "structure"
+    },
+    "ContentBlocks": {
+      "member": {
+        "shape": "ContentBlock"
+      },
+      "type": "list"
+    },
+    "ConversationRole": {
+      "enum": [
+        "user",
+        "assistant"
+      ],
+      "type": "string"
+    },
+    "ConversationalModelId": {
+      "max": 2048,
+      "min": 1,
+      "pattern": "(arn:aws(-[^:]+)?:bedrock:[a-z0-9-]{1,20}:(([0-9]{12}:custom-model/[a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}/[a-z0-9]{12})|(:foundation-model/[a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}([.:]?[a-z0-9-]{1,63}))|([0-9]{12}:provisioned-model/[a-z0-9]{12})))|([a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}([.:]?[a-z0-9-]{1,63}))|(([0-9a-zA-Z][_-]?)+)",
+      "type": "string"
+    },
+    "ConverseMetrics": {
+      "members": {
+        "latencyMs": {
+          "shape": "Long"
+        }
+      },
+      "required": [
+        "latencyMs"
+      ],
+      "type": "structure"
+    },
+    "ConverseOutput": {
+      "members": {
+        "message": {
+          "shape": "Message"
+        }
+      },
+      "type": "structure",
+      "union": true
+    },
+    "ConverseRequest": {
+      "members": {
+        "additionalModelResponseFieldPaths": {
+          "shape": "ConverseRequestAdditionalModelResponseFieldPathsList"
+        },
+        "inferenceConfig": {
+          "shape": "InferenceConfiguration"
+        },
+        "messages": {
+          "shape": "Messages"
+        },
+        "modelId": {
+          "location": "uri",
+          "locationName": "modelId",
+          "shape": "ConversationalModelId"
+        },
+        "system": {
+          "shape": "SystemContentBlocks"
+        },
+        "toolConfig": {
+          "shape": "ToolConfiguration"
+        }
+      },
+      "required": [
+        "modelId",
+        "messages"
+      ],
+      "type": "structure"
+    },
+    "ConverseRequestAdditionalModelResponseFieldPathsList": {
+      "max": 10,
+      "member": {
+        "shape": "ConverseRequestAdditionalModelResponseFieldPathsListMemberString"
+      },
+      "min": 0,
+      "type": "list"
+    },
+    "ConverseRequestAdditionalModelResponseFieldPathsListMemberString": {
+      "max": 256,
+      "min": 1,
+      "type": "string"
+    },
+    "ConverseResponse": {
+      "members": {
+        "metrics": {
+          "shape": "ConverseMetrics"
+        },
+        "output": {
+          "shape": "ConverseOutput"
+        },
+        "stopReason": {
+          "shape": "StopReason"
+        },
+        "usage": {
+          "shape": "TokenUsage"
+        }
+      },
+      "required": [
+        "output",
+        "stopReason",
+        "usage",
+        "metrics"
+      ],
+      "type": "structure"
+    },
+    "ConverseStreamMetadataEvent": {
+      "event": true,
+      "members": {
+        "metrics": {
+          "shape": "ConverseStreamMetrics"
+        },
+        "usage": {
+          "shape": "TokenUsage"
+        }
+      },
+      "required": [
+        "usage",
+        "metrics"
+      ],
+      "type": "structure"
+    },
+    "ConverseStreamMetrics": {
+      "members": {
+        "latencyMs": {
+          "shape": "Long"
+        }
+      },
+      "required": [
+        "latencyMs"
+      ],
+      "type": "structure"
+    },
+    "ConverseStreamOutput": {
+      "eventstream": true,
+      "members": {
+        "contentBlockDelta": {
+          "shape": "ContentBlockDeltaEvent"
+        },
+        "contentBlockStart": {
+          "shape": "ContentBlockStartEvent"
+        },
+        "contentBlockStop": {
+          "shape": "ContentBlockStopEvent"
+        },
+        "internalServerException": {
+          "shape": "InternalServerException"
+        },
+        "messageStart": {
+          "shape": "MessageStartEvent"
+        },
+        "messageStop": {
+          "shape": "MessageStopEvent"
+        },
+        "metadata": {
+          "shape": "ConverseStreamMetadataEvent"
+        },
+        "modelStreamErrorException": {
+          "shape": "ModelStreamErrorException"
+        },
+        "throttlingException": {
+          "shape": "ThrottlingException"
+        },
+        "validationException": {
+          "shape": "ValidationException"
+        }
+      },
+      "type": "structure"
+    },
+    "ConverseStreamRequest": {
+      "members": {
+        "additionalModelResponseFieldPaths": {
+          "shape": "ConverseStreamRequestAdditionalModelResponseFieldPathsList"
+        },
+        "inferenceConfig": {
+          "shape": "InferenceConfiguration"
+        },
+        "messages": {
+          "shape": "Messages"
+        },
+        "modelId": {
+          "location": "uri",
+          "locationName": "modelId",
+          "shape": "ConversationalModelId"
+        },
+        "system": {
+          "shape": "SystemContentBlocks"
+        },
+        "toolConfig": {
+          "shape": "ToolConfiguration"
+        }
+      },
+      "required": [
+        "modelId",
+        "messages"
+      ],
+      "type": "structure"
+    },
+    "ConverseStreamRequestAdditionalModelResponseFieldPathsList": {
+      "max": 10,
+      "member": {
+        "shape": "ConverseStreamRequestAdditionalModelResponseFieldPathsListMemberString"
+      },
+      "min": 0,
+      "type": "list"
+    },
+    "ConverseStreamRequestAdditionalModelResponseFieldPathsListMemberString": {
+      "max": 256,
+      "min": 1,
+      "type": "string"
+    },
+    "ConverseStreamResponse": {
+      "members": {
+        "stream": {
+          "shape": "ConverseStreamOutput"
+        }
+      },
+      "payload": "stream",
+      "type": "structure"
+    },
+    "GuardrailIdentifier": {
+      "max": 2048,
+      "min": 0,
+      "pattern": "(([a-z0-9]+)|(arn:aws(-[^:]+)?:bedrock:[a-z0-9-]{1,20}:[0-9]{12}:guardrail/[a-z0-9]+))",
+      "type": "string"
+    },
+    "GuardrailVersion": {
+      "pattern": "(([1-9][0-9]{0,7})|(DRAFT))",
+      "type": "string"
+    },
+    "ImageBlock": {
+      "members": {
+        "format": {
+          "shape": "ImageFormat"
+        },
+        "source": {
+          "shape": "ImageSource"
+        }
+      },
+      "required": [
+        "format",
+        "source"
+      ],
+      "type": "structure"
+    },
+    "ImageFormat": {
+      "enum": [
+        "png",
+        "jpeg",
+        "gif",
+        "webp"
+      ],
+      "type": "string"
+    },
+    "ImageSource": {
+      "members": {
+        "bytes": {
+          "shape": "ImageSourceBytesBlob"
+        }
+      },
+      "type": "structure",
+      "union": true
+    },
+    "ImageSourceBytesBlob": {
+      "min": 1,
+      "type": "blob"
+    },
+    "InferenceConfiguration": {
+      "members": {
+        "maxTokens": {
+          "shape": "InferenceConfigurationMaxTokensInteger"
+        },
+        "stopSequences": {
+          "shape": "InferenceConfigurationStopSequencesList"
+        },
+        "temperature": {
+          "shape": "InferenceConfigurationTemperatureFloat"
+        },
+        "topP": {
+          "shape": "InferenceConfigurationTopPFloat"
+        }
+      },
+      "type": "structure"
+    },
+    "InferenceConfigurationMaxTokensInteger": {
+      "box": true,
+      "min": 1,
+      "type": "integer"
+    },
+    "InferenceConfigurationStopSequencesList": {
+      "max": 4,
+      "member": {
+        "shape": "NonEmptyString"
+      },
+      "min": 0,
+      "type": "list"
+    },
+    "InferenceConfigurationTemperatureFloat": {
+      "box": true,
+      "max": 1,
+      "min": 0,
+      "type": "float"
+    },
+    "InferenceConfigurationTopPFloat": {
+      "box": true,
+      "max": 1,
+      "min": 0,
+      "type": "float"
+    },
+    "InternalServerException": {
+      "error": {
+        "httpStatusCode": 500
+      },
+      "exception": true,
+      "fault": true,
+      "members": {
+        "message": {
+          "shape": "NonBlankString"
+        }
+      },
+      "type": "structure"
+    },
+    "InvokeModelIdentifier": {
+      "max": 2048,
+      "min": 1,
+      "pattern": "(arn:aws(-[^:]+)?:bedrock:[a-z0-9-]{1,20}:(([0-9]{12}:custom-model/[a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}/[a-z0-9]{12})|(:foundation-model/[a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}([.:]?[a-z0-9-]{1,63}))|([0-9]{12}:provisioned-model/[a-z0-9]{12})))|([a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}([.:]?[a-z0-9-]{1,63}))|(([0-9a-zA-Z][_-]?)+)",
+      "type": "string"
+    },
+    "InvokeModelRequest": {
+      "members": {
+        "accept": {
+          "location": "header",
+          "locationName": "Accept",
+          "shape": "MimeType"
+        },
+        "body": {
+          "shape": "Body"
+        },
+        "contentType": {
+          "location": "header",
+          "locationName": "Content-Type",
+          "shape": "MimeType"
+        },
+        "guardrailIdentifier": {
+          "location": "header",
+          "locationName": "X-Amzn-Bedrock-GuardrailIdentifier",
+          "shape": "GuardrailIdentifier"
+        },
+        "guardrailVersion": {
+          "location": "header",
+          "locationName": "X-Amzn-Bedrock-GuardrailVersion",
+          "shape": "GuardrailVersion"
+        },
+        "modelId": {
+          "location": "uri",
+          "locationName": "modelId",
+          "shape": "InvokeModelIdentifier"
+        },
+        "trace": {
+          "location": "header",
+          "locationName": "X-Amzn-Bedrock-Trace",
+          "shape": "Trace"
+        }
+      },
+      "payload": "body",
+      "required": [
         "body",
         "modelId"
       ],
-      "members":{
-        "body":{"shape":"Body"},
-        "contentType":{
-          "shape":"MimeType",
-          "location":"header",
-          "locationName":"Content-Type"
+      "type": "structure"
+    },
+    "InvokeModelResponse": {
+      "members": {
+        "body": {
+          "shape": "Body"
         },
-        "accept":{
-          "shape":"MimeType",
-          "location":"header",
-          "locationName":"Accept"
-        },
-        "modelId":{
-          "shape":"InvokeModelIdentifier",
-          "location":"uri",
-          "locationName":"modelId"
-        },
-        "trace":{
-          "shape":"Trace",
-          "location":"header",
-          "locationName":"X-Amzn-Bedrock-Trace"
-        },
-        "guardrailIdentifier":{
-          "shape":"GuardrailIdentifier",
-          "location":"header",
-          "locationName":"X-Amzn-Bedrock-GuardrailIdentifier"
-        },
-        "guardrailVersion":{
-          "shape":"GuardrailVersion",
-          "location":"header",
-          "locationName":"X-Amzn-Bedrock-GuardrailVersion"
+        "contentType": {
+          "location": "header",
+          "locationName": "Content-Type",
+          "shape": "MimeType"
         }
       },
-      "payload":"body"
-    },
-    "InvokeModelResponse":{
-      "type":"structure",
-      "required":[
+      "payload": "body",
+      "required": [
         "body",
         "contentType"
       ],
-      "members":{
-        "body":{"shape":"Body"},
-        "contentType":{
-          "shape":"MimeType",
-          "location":"header",
-          "locationName":"Content-Type"
+      "type": "structure"
+    },
+    "InvokeModelWithResponseStreamRequest": {
+      "members": {
+        "accept": {
+          "location": "header",
+          "locationName": "X-Amzn-Bedrock-Accept",
+          "shape": "MimeType"
+        },
+        "body": {
+          "shape": "Body"
+        },
+        "contentType": {
+          "location": "header",
+          "locationName": "Content-Type",
+          "shape": "MimeType"
+        },
+        "guardrailIdentifier": {
+          "location": "header",
+          "locationName": "X-Amzn-Bedrock-GuardrailIdentifier",
+          "shape": "GuardrailIdentifier"
+        },
+        "guardrailVersion": {
+          "location": "header",
+          "locationName": "X-Amzn-Bedrock-GuardrailVersion",
+          "shape": "GuardrailVersion"
+        },
+        "modelId": {
+          "location": "uri",
+          "locationName": "modelId",
+          "shape": "InvokeModelIdentifier"
+        },
+        "trace": {
+          "location": "header",
+          "locationName": "X-Amzn-Bedrock-Trace",
+          "shape": "Trace"
         }
       },
-      "payload":"body"
-    },
-    "InvokeModelWithResponseStreamRequest":{
-      "type":"structure",
-      "required":[
+      "payload": "body",
+      "required": [
         "body",
         "modelId"
       ],
-      "members":{
-        "body":{"shape":"Body"},
-        "contentType":{
-          "shape":"MimeType",
-          "location":"header",
-          "locationName":"Content-Type"
+      "type": "structure"
+    },
+    "InvokeModelWithResponseStreamResponse": {
+      "members": {
+        "body": {
+          "shape": "ResponseStream"
         },
-        "accept":{
-          "shape":"MimeType",
-          "location":"header",
-          "locationName":"X-Amzn-Bedrock-Accept"
-        },
-        "modelId":{
-          "shape":"InvokeModelIdentifier",
-          "location":"uri",
-          "locationName":"modelId"
-        },
-        "trace":{
-          "shape":"Trace",
-          "location":"header",
-          "locationName":"X-Amzn-Bedrock-Trace"
-        },
-        "guardrailIdentifier":{
-          "shape":"GuardrailIdentifier",
-          "location":"header",
-          "locationName":"X-Amzn-Bedrock-GuardrailIdentifier"
-        },
-        "guardrailVersion":{
-          "shape":"GuardrailVersion",
-          "location":"header",
-          "locationName":"X-Amzn-Bedrock-GuardrailVersion"
+        "contentType": {
+          "location": "header",
+          "locationName": "X-Amzn-Bedrock-Content-Type",
+          "shape": "MimeType"
         }
       },
-      "payload":"body"
-    },
-    "InvokeModelWithResponseStreamResponse":{
-      "type":"structure",
-      "required":[
+      "payload": "body",
+      "required": [
         "body",
         "contentType"
       ],
-      "members":{
-        "body":{"shape":"ResponseStream"},
-        "contentType":{
-          "shape":"MimeType",
-          "location":"header",
-          "locationName":"X-Amzn-Bedrock-Content-Type"
+      "type": "structure"
+    },
+    "Long": {
+      "box": true,
+      "type": "long"
+    },
+    "Message": {
+      "members": {
+        "content": {
+          "shape": "ContentBlocks"
+        },
+        "role": {
+          "shape": "ConversationRole"
         }
       },
-      "payload":"body"
+      "required": [
+        "role",
+        "content"
+      ],
+      "type": "structure"
     },
-    "MimeType":{"type":"string"},
-    "ModelErrorException":{
-      "type":"structure",
-      "members":{
-        "message":{"shape":"NonBlankString"},
-        "originalStatusCode":{"shape":"StatusCode"},
-        "resourceName":{"shape":"NonBlankString"}
+    "MessageStartEvent": {
+      "event": true,
+      "members": {
+        "role": {
+          "shape": "ConversationRole"
+        }
       },
-      "error":{
-        "httpStatusCode":424,
-        "senderFault":true
-      },
-      "exception":true
+      "required": [
+        "role"
+      ],
+      "type": "structure"
     },
-    "ModelNotReadyException":{
-      "type":"structure",
-      "members":{
-        "message":{"shape":"NonBlankString"}
+    "MessageStopEvent": {
+      "event": true,
+      "members": {
+        "stopReason": {
+          "shape": "StopReason"
+        }
       },
-      "error":{
-        "httpStatusCode":429,
-        "senderFault":true
-      },
-      "exception":true
+      "required": [
+        "stopReason"
+      ],
+      "type": "structure"
     },
-    "ModelStreamErrorException":{
-      "type":"structure",
-      "members":{
-        "message":{"shape":"NonBlankString"},
-        "originalStatusCode":{"shape":"StatusCode"},
-        "originalMessage":{"shape":"NonBlankString"}
+    "Messages": {
+      "member": {
+        "shape": "Message"
       },
-      "error":{
-        "httpStatusCode":424,
-        "senderFault":true
-      },
-      "exception":true
+      "type": "list"
     },
-    "ModelTimeoutException":{
-      "type":"structure",
-      "members":{
-        "message":{"shape":"NonBlankString"}
-      },
-      "error":{
-        "httpStatusCode":408,
-        "senderFault":true
-      },
-      "exception":true
+    "MimeType": {
+      "type": "string"
     },
-    "NonBlankString":{
-      "type":"string",
-      "pattern":"[\\s\\S]*"
-    },
-    "PartBody":{
-      "type":"blob",
-      "max":1000000,
-      "min":0,
-      "sensitive":true
-    },
-    "PayloadPart":{
-      "type":"structure",
-      "members":{
-        "bytes":{"shape":"PartBody"}
+    "ModelErrorException": {
+      "error": {
+        "httpStatusCode": 424,
+        "senderFault": true
       },
-      "event":true,
-      "sensitive":true
+      "exception": true,
+      "members": {
+        "message": {
+          "shape": "NonBlankString"
+        },
+        "originalStatusCode": {
+          "shape": "StatusCode"
+        },
+        "resourceName": {
+          "shape": "NonBlankString"
+        }
+      },
+      "type": "structure"
     },
-    "ResourceNotFoundException":{
-      "type":"structure",
-      "members":{
-        "message":{"shape":"NonBlankString"}
+    "ModelNotReadyException": {
+      "error": {
+        "httpStatusCode": 429,
+        "senderFault": true
       },
-      "error":{
-        "httpStatusCode":404,
-        "senderFault":true
+      "exception": true,
+      "members": {
+        "message": {
+          "shape": "NonBlankString"
+        }
       },
-      "exception":true
+      "type": "structure"
     },
-    "ResponseStream":{
-      "type":"structure",
-      "members":{
-        "chunk":{"shape":"PayloadPart"},
-        "internalServerException":{"shape":"InternalServerException"},
-        "modelStreamErrorException":{"shape":"ModelStreamErrorException"},
-        "validationException":{"shape":"ValidationException"},
-        "throttlingException":{"shape":"ThrottlingException"},
-        "modelTimeoutException":{"shape":"ModelTimeoutException"}
+    "ModelStreamErrorException": {
+      "error": {
+        "httpStatusCode": 424,
+        "senderFault": true
       },
-      "eventstream":true
+      "exception": true,
+      "members": {
+        "message": {
+          "shape": "NonBlankString"
+        },
+        "originalMessage": {
+          "shape": "NonBlankString"
+        },
+        "originalStatusCode": {
+          "shape": "StatusCode"
+        }
+      },
+      "type": "structure"
     },
-    "ServiceQuotaExceededException":{
-      "type":"structure",
-      "members":{
-        "message":{"shape":"NonBlankString"}
+    "ModelTimeoutException": {
+      "error": {
+        "httpStatusCode": 408,
+        "senderFault": true
       },
-      "error":{
-        "httpStatusCode":400,
-        "senderFault":true
+      "exception": true,
+      "members": {
+        "message": {
+          "shape": "NonBlankString"
+        }
       },
-      "exception":true
+      "type": "structure"
     },
-    "StatusCode":{
-      "type":"integer",
-      "box":true,
-      "max":599,
-      "min":100
+    "NonBlankString": {
+      "pattern": "[\\s\\S]*",
+      "type": "string"
     },
-    "ThrottlingException":{
-      "type":"structure",
-      "members":{
-        "message":{"shape":"NonBlankString"}
-      },
-      "error":{
-        "httpStatusCode":429,
-        "senderFault":true
-      },
-      "exception":true
+    "NonEmptyString": {
+      "min": 1,
+      "type": "string"
     },
-    "Trace":{
-      "type":"string",
-      "enum":[
+    "NonNegativeInteger": {
+      "box": true,
+      "min": 0,
+      "type": "integer"
+    },
+    "PartBody": {
+      "max": 1000000,
+      "min": 0,
+      "sensitive": true,
+      "type": "blob"
+    },
+    "PayloadPart": {
+      "event": true,
+      "members": {
+        "bytes": {
+          "shape": "PartBody"
+        }
+      },
+      "sensitive": true,
+      "type": "structure"
+    },
+    "ResourceNotFoundException": {
+      "error": {
+        "httpStatusCode": 404,
+        "senderFault": true
+      },
+      "exception": true,
+      "members": {
+        "message": {
+          "shape": "NonBlankString"
+        }
+      },
+      "type": "structure"
+    },
+    "ResponseStream": {
+      "eventstream": true,
+      "members": {
+        "chunk": {
+          "shape": "PayloadPart"
+        },
+        "internalServerException": {
+          "shape": "InternalServerException"
+        },
+        "modelStreamErrorException": {
+          "shape": "ModelStreamErrorException"
+        },
+        "modelTimeoutException": {
+          "shape": "ModelTimeoutException"
+        },
+        "throttlingException": {
+          "shape": "ThrottlingException"
+        },
+        "validationException": {
+          "shape": "ValidationException"
+        }
+      },
+      "type": "structure"
+    },
+    "ServiceQuotaExceededException": {
+      "error": {
+        "httpStatusCode": 400,
+        "senderFault": true
+      },
+      "exception": true,
+      "members": {
+        "message": {
+          "shape": "NonBlankString"
+        }
+      },
+      "type": "structure"
+    },
+    "SpecificToolChoice": {
+      "members": {
+        "name": {
+          "shape": "ToolName"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "type": "structure"
+    },
+    "StatusCode": {
+      "box": true,
+      "max": 599,
+      "min": 100,
+      "type": "integer"
+    },
+    "StopReason": {
+      "enum": [
+        "end_turn",
+        "tool_use",
+        "max_tokens",
+        "stop_sequence",
+        "content_filtered"
+      ],
+      "type": "string"
+    },
+    "String": {
+      "type": "string"
+    },
+    "SystemContentBlock": {
+      "members": {
+        "text": {
+          "shape": "NonEmptyString"
+        }
+      },
+      "type": "structure",
+      "union": true
+    },
+    "SystemContentBlocks": {
+      "member": {
+        "shape": "SystemContentBlock"
+      },
+      "type": "list"
+    },
+    "ThrottlingException": {
+      "error": {
+        "httpStatusCode": 429,
+        "senderFault": true
+      },
+      "exception": true,
+      "members": {
+        "message": {
+          "shape": "NonBlankString"
+        }
+      },
+      "type": "structure"
+    },
+    "TokenUsage": {
+      "members": {
+        "inputTokens": {
+          "shape": "TokenUsageInputTokensInteger"
+        },
+        "outputTokens": {
+          "shape": "TokenUsageOutputTokensInteger"
+        },
+        "totalTokens": {
+          "shape": "TokenUsageTotalTokensInteger"
+        }
+      },
+      "required": [
+        "inputTokens",
+        "outputTokens",
+        "totalTokens"
+      ],
+      "type": "structure"
+    },
+    "TokenUsageInputTokensInteger": {
+      "box": true,
+      "min": 0,
+      "type": "integer"
+    },
+    "TokenUsageOutputTokensInteger": {
+      "box": true,
+      "min": 0,
+      "type": "integer"
+    },
+    "TokenUsageTotalTokensInteger": {
+      "box": true,
+      "min": 0,
+      "type": "integer"
+    },
+    "Tool": {
+      "members": {
+        "toolSpec": {
+          "shape": "ToolSpecification"
+        }
+      },
+      "type": "structure",
+      "union": true
+    },
+    "ToolChoice": {
+      "members": {
+        "any": {
+          "shape": "AnyToolChoice"
+        },
+        "auto": {
+          "shape": "AutoToolChoice"
+        },
+        "tool": {
+          "shape": "SpecificToolChoice"
+        }
+      },
+      "type": "structure",
+      "union": true
+    },
+    "ToolConfiguration": {
+      "members": {
+        "toolChoice": {
+          "shape": "ToolChoice"
+        },
+        "tools": {
+          "shape": "ToolConfigurationToolsList"
+        }
+      },
+      "required": [
+        "tools"
+      ],
+      "type": "structure"
+    },
+    "ToolConfigurationToolsList": {
+      "member": {
+        "shape": "Tool"
+      },
+      "min": 1,
+      "type": "list"
+    },
+    "ToolInputSchema": {
+      "members": {},
+      "type": "structure",
+      "union": true
+    },
+    "ToolName": {
+      "max": 64,
+      "min": 1,
+      "pattern": "[a-zA-Z][a-zA-Z0-9_]*",
+      "type": "string"
+    },
+    "ToolResultBlock": {
+      "members": {
+        "content": {
+          "shape": "ToolResultContentBlocks"
+        },
+        "status": {
+          "shape": "ToolResultStatus"
+        },
+        "toolUseId": {
+          "shape": "ToolUseId"
+        }
+      },
+      "required": [
+        "toolUseId",
+        "content"
+      ],
+      "type": "structure"
+    },
+    "ToolResultContentBlock": {
+      "members": {
+        "image": {
+          "shape": "ImageBlock"
+        },
+        "text": {
+          "shape": "String"
+        }
+      },
+      "type": "structure",
+      "union": true
+    },
+    "ToolResultContentBlocks": {
+      "member": {
+        "shape": "ToolResultContentBlock"
+      },
+      "type": "list"
+    },
+    "ToolResultStatus": {
+      "enum": [
+        "success",
+        "error"
+      ],
+      "type": "string"
+    },
+    "ToolSpecification": {
+      "members": {
+        "description": {
+          "shape": "NonEmptyString"
+        },
+        "inputSchema": {
+          "shape": "ToolInputSchema"
+        },
+        "name": {
+          "shape": "ToolName"
+        }
+      },
+      "required": [
+        "name",
+        "inputSchema"
+      ],
+      "type": "structure"
+    },
+    "ToolUseBlockDelta": {
+      "members": {
+        "input": {
+          "shape": "String"
+        }
+      },
+      "required": [
+        "input"
+      ],
+      "type": "structure"
+    },
+    "ToolUseBlockStart": {
+      "members": {
+        "name": {
+          "shape": "ToolName"
+        },
+        "toolUseId": {
+          "shape": "ToolUseId"
+        }
+      },
+      "required": [
+        "toolUseId",
+        "name"
+      ],
+      "type": "structure"
+    },
+    "ToolUseId": {
+      "max": 64,
+      "min": 1,
+      "pattern": "[a-zA-Z0-9_-]+",
+      "type": "string"
+    },
+    "Trace": {
+      "enum": [
         "ENABLED",
         "DISABLED"
-      ]
+      ],
+      "type": "string"
     },
-    "ValidationException":{
-      "type":"structure",
-      "members":{
-        "message":{"shape":"NonBlankString"}
+    "ValidationException": {
+      "error": {
+        "httpStatusCode": 400,
+        "senderFault": true
       },
-      "error":{
-        "httpStatusCode":400,
-        "senderFault":true
+      "exception": true,
+      "members": {
+        "message": {
+          "shape": "NonBlankString"
+        }
       },
-      "exception":true
+      "type": "structure"
     }
-  }
+  },
+  "version": "2.0"
 }

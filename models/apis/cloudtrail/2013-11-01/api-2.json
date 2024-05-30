@@ -5,6 +5,7 @@
     "endpointPrefix":"cloudtrail",
     "jsonVersion":"1.1",
     "protocol":"json",
+    "protocols":["json"],
     "serviceAbbreviation":"CloudTrail",
     "serviceFullName":"AWS CloudTrail",
     "serviceId":"CloudTrail",
@@ -1834,7 +1835,8 @@
         "KmsKeyId":{"shape":"EventDataStoreKmsKeyId"},
         "BillingMode":{"shape":"BillingMode"},
         "FederationStatus":{"shape":"FederationStatus"},
-        "FederationRoleArn":{"shape":"FederationRoleArn"}
+        "FederationRoleArn":{"shape":"FederationRoleArn"},
+        "PartitionKeys":{"shape":"PartitionKeyList"}
       }
     },
     "GetEventSelectorsRequest":{
@@ -2627,6 +2629,34 @@
       "max":1000,
       "min":4,
       "pattern":".*"
+    },
+    "PartitionKey":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Type"
+      ],
+      "members":{
+        "Name":{"shape":"PartitionKeyName"},
+        "Type":{"shape":"PartitionKeyType"}
+      }
+    },
+    "PartitionKeyList":{
+      "type":"list",
+      "member":{"shape":"PartitionKey"},
+      "max":2
+    },
+    "PartitionKeyName":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\t]*"
+    },
+    "PartitionKeyType":{
+      "type":"string",
+      "max":255,
+      "min":0,
+      "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\t]*"
     },
     "PublicKey":{
       "type":"structure",

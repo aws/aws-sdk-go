@@ -64341,6 +64341,9 @@ type RoutingProfile struct {
 	// based on time since their last inbound contact or longest idle time.
 	AgentAvailabilityTimer *string `type:"string" enum:"AgentAvailabilityTimer"`
 
+	// The IDs of the associated queue.
+	AssociatedQueueIds []*string `type:"list"`
+
 	// The identifier of the default outbound queue for this routing profile.
 	DefaultOutboundQueueId *string `type:"string"`
 
@@ -64406,6 +64409,12 @@ func (s RoutingProfile) GoString() string {
 // SetAgentAvailabilityTimer sets the AgentAvailabilityTimer field's value.
 func (s *RoutingProfile) SetAgentAvailabilityTimer(v string) *RoutingProfile {
 	s.AgentAvailabilityTimer = &v
+	return s
+}
+
+// SetAssociatedQueueIds sets the AssociatedQueueIds field's value.
+func (s *RoutingProfile) SetAssociatedQueueIds(v []*string) *RoutingProfile {
+	s.AssociatedQueueIds = v
 	return s
 }
 
@@ -64787,7 +64796,8 @@ type RoutingProfileSearchCriteria struct {
 
 	// A leaf node condition which can be used to specify a string condition.
 	//
-	// The currently supported values for FieldName are name, description, and resourceID.
+	// The currently supported values for FieldName are associatedQueueIds, name,
+	// description, and resourceID.
 	StringCondition *StringCondition `type:"structure"`
 }
 

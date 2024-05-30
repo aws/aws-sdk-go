@@ -4693,6 +4693,10 @@
         "UserProficiencies":{"shape":"UserProficiencyList"}
       }
     },
+    "AssociatedQueueIdList":{
+      "type":"list",
+      "member":{"shape":"QueueId"}
+    },
     "AssociationId":{
       "type":"string",
       "max":100,
@@ -13101,7 +13105,8 @@
         "AgentAvailabilityTimer":{"shape":"AgentAvailabilityTimer"},
         "LastModifiedTime":{"shape":"Timestamp"},
         "LastModifiedRegion":{"shape":"RegionName"},
-        "IsDefault":{"shape":"Boolean"}
+        "IsDefault":{"shape":"Boolean"},
+        "AssociatedQueueIds":{"shape":"AssociatedQueueIdList"}
       }
     },
     "RoutingProfileDescription":{

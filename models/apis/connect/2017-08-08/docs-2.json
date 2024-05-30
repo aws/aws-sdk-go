@@ -847,6 +847,12 @@
       "refs": {
       }
     },
+    "AssociatedQueueIdList": {
+      "base": null,
+      "refs": {
+        "RoutingProfile$AssociatedQueueIds": "<p>The IDs of the associated queue.</p>"
+      }
+    },
     "AssociationId": {
       "base": null,
       "refs": {
@@ -6013,6 +6019,7 @@
       "base": null,
       "refs": {
         "AssociateQueueQuickConnectsRequest$QueueId": "<p>The identifier for the queue.</p>",
+        "AssociatedQueueIdList$member": null,
         "ContactDataRequest$QueueId": "<p>The identifier of the queue associated with the Amazon Connect instance in which contacts that are created will be queued.</p>",
         "ContactSearchSummaryQueueInfo$Id": "<p>The unique identifier for the queue.</p>",
         "CreateQueueResponse$QueueId": "<p>The identifier for the queue.</p>",
@@ -7668,7 +7675,7 @@
         "PromptSearchCriteria$StringCondition": "<p>A leaf node condition which can be used to specify a string condition.</p> <note> <p>The currently supported values for <code>FieldName</code> are <code>name</code>, <code>description</code>, and <code>resourceID</code>.</p> </note>",
         "QueueSearchCriteria$StringCondition": "<p>A leaf node condition which can be used to specify a string condition.</p> <note> <p>The currently supported values for <code>FieldName</code> are <code>name</code>, <code>description</code>, and <code>resourceID</code>.</p> </note>",
         "QuickConnectSearchCriteria$StringCondition": "<p>A leaf node condition which can be used to specify a string condition.</p> <note> <p>The currently supported values for <code>FieldName</code> are <code>name</code>, <code>description</code>, and <code>resourceID</code>.</p> </note>",
-        "RoutingProfileSearchCriteria$StringCondition": "<p>A leaf node condition which can be used to specify a string condition.</p> <note> <p>The currently supported values for <code>FieldName</code> are <code>name</code>, <code>description</code>, and <code>resourceID</code>.</p> </note>",
+        "RoutingProfileSearchCriteria$StringCondition": "<p>A leaf node condition which can be used to specify a string condition.</p> <note> <p>The currently supported values for <code>FieldName</code> are <code>associatedQueueIds</code>, <code>name</code>, <code>description</code>, and <code>resourceID</code>.</p> </note>",
         "SecurityProfileSearchCriteria$StringCondition": null,
         "UserSearchCriteria$StringCondition": "<p>A leaf node condition which can be used to specify a string condition.</p> <p>The currently supported values for <code>FieldName</code> are <code>Username</code>, <code>FirstName</code>, <code>LastName</code>, <code>RoutingProfileId</code>, <code>SecurityProfileId</code>, <code>ResourceId</code>.</p>"
       }

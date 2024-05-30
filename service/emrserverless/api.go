@@ -685,6 +685,149 @@ func (c *EMRServerless) ListApplicationsPagesWithContext(ctx aws.Context, input 
 	return p.Err()
 }
 
+const opListJobRunAttempts = "ListJobRunAttempts"
+
+// ListJobRunAttemptsRequest generates a "aws/request.Request" representing the
+// client's request for the ListJobRunAttempts operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListJobRunAttempts for more information on using the ListJobRunAttempts
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListJobRunAttemptsRequest method.
+//	req, resp := client.ListJobRunAttemptsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/emr-serverless-2021-07-13/ListJobRunAttempts
+func (c *EMRServerless) ListJobRunAttemptsRequest(input *ListJobRunAttemptsInput) (req *request.Request, output *ListJobRunAttemptsOutput) {
+	op := &request.Operation{
+		Name:       opListJobRunAttempts,
+		HTTPMethod: "GET",
+		HTTPPath:   "/applications/{applicationId}/jobruns/{jobRunId}/attempts",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListJobRunAttemptsInput{}
+	}
+
+	output = &ListJobRunAttemptsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListJobRunAttempts API operation for EMR Serverless.
+//
+// Lists all attempt of a job run.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for EMR Serverless's
+// API operation ListJobRunAttempts for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - InternalServerException
+//     Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/emr-serverless-2021-07-13/ListJobRunAttempts
+func (c *EMRServerless) ListJobRunAttempts(input *ListJobRunAttemptsInput) (*ListJobRunAttemptsOutput, error) {
+	req, out := c.ListJobRunAttemptsRequest(input)
+	return out, req.Send()
+}
+
+// ListJobRunAttemptsWithContext is the same as ListJobRunAttempts with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListJobRunAttempts for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EMRServerless) ListJobRunAttemptsWithContext(ctx aws.Context, input *ListJobRunAttemptsInput, opts ...request.Option) (*ListJobRunAttemptsOutput, error) {
+	req, out := c.ListJobRunAttemptsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListJobRunAttemptsPages iterates over the pages of a ListJobRunAttempts operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListJobRunAttempts method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListJobRunAttempts operation.
+//	pageNum := 0
+//	err := client.ListJobRunAttemptsPages(params,
+//	    func(page *emrserverless.ListJobRunAttemptsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *EMRServerless) ListJobRunAttemptsPages(input *ListJobRunAttemptsInput, fn func(*ListJobRunAttemptsOutput, bool) bool) error {
+	return c.ListJobRunAttemptsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListJobRunAttemptsPagesWithContext same as ListJobRunAttemptsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EMRServerless) ListJobRunAttemptsPagesWithContext(ctx aws.Context, input *ListJobRunAttemptsInput, fn func(*ListJobRunAttemptsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListJobRunAttemptsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListJobRunAttemptsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListJobRunAttemptsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListJobRuns = "ListJobRuns"
 
 // ListJobRunsRequest generates a "aws/request.Request" representing the
@@ -2807,6 +2950,10 @@ type GetDashboardForJobRunInput struct {
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"applicationId" min:"1" type:"string" required:"true"`
 
+	// An optimal parameter that indicates the amount of attempts for the job. If
+	// not specified, this value defaults to the attempt of the latest job.
+	Attempt *int64 `location:"querystring" locationName:"attempt" min:"1" type:"integer"`
+
 	// The ID of the job run.
 	//
 	// JobRunId is a required field
@@ -2840,6 +2987,9 @@ func (s *GetDashboardForJobRunInput) Validate() error {
 	if s.ApplicationId != nil && len(*s.ApplicationId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ApplicationId", 1))
 	}
+	if s.Attempt != nil && *s.Attempt < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Attempt", 1))
+	}
 	if s.JobRunId == nil {
 		invalidParams.Add(request.NewErrParamRequired("JobRunId"))
 	}
@@ -2856,6 +3006,12 @@ func (s *GetDashboardForJobRunInput) Validate() error {
 // SetApplicationId sets the ApplicationId field's value.
 func (s *GetDashboardForJobRunInput) SetApplicationId(v string) *GetDashboardForJobRunInput {
 	s.ApplicationId = &v
+	return s
+}
+
+// SetAttempt sets the Attempt field's value.
+func (s *GetDashboardForJobRunInput) SetAttempt(v int64) *GetDashboardForJobRunInput {
+	s.Attempt = &v
 	return s
 }
 
@@ -2904,6 +3060,10 @@ type GetJobRunInput struct {
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"applicationId" min:"1" type:"string" required:"true"`
 
+	// An optimal parameter that indicates the amount of attempts for the job. If
+	// not specified, this value defaults to the attempt of the latest job.
+	Attempt *int64 `location:"querystring" locationName:"attempt" min:"1" type:"integer"`
+
 	// The ID of the job run.
 	//
 	// JobRunId is a required field
@@ -2937,6 +3097,9 @@ func (s *GetJobRunInput) Validate() error {
 	if s.ApplicationId != nil && len(*s.ApplicationId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ApplicationId", 1))
 	}
+	if s.Attempt != nil && *s.Attempt < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Attempt", 1))
+	}
 	if s.JobRunId == nil {
 		invalidParams.Add(request.NewErrParamRequired("JobRunId"))
 	}
@@ -2953,6 +3116,12 @@ func (s *GetJobRunInput) Validate() error {
 // SetApplicationId sets the ApplicationId field's value.
 func (s *GetJobRunInput) SetApplicationId(v string) *GetJobRunInput {
 	s.ApplicationId = &v
+	return s
+}
+
+// SetAttempt sets the Attempt field's value.
+func (s *GetJobRunInput) SetAttempt(v int64) *GetJobRunInput {
+	s.Attempt = &v
 	return s
 }
 
@@ -3422,6 +3591,15 @@ type JobRun struct {
 	// Arn is a required field
 	Arn *string `locationName:"arn" min:"60" type:"string" required:"true"`
 
+	// The attempt of the job run.
+	Attempt *int64 `locationName:"attempt" min:"1" type:"integer"`
+
+	// The date and time of when the job run attempt was created.
+	AttemptCreatedAt *time.Time `locationName:"attemptCreatedAt" type:"timestamp"`
+
+	// The date and time of when the job run attempt was last updated.
+	AttemptUpdatedAt *time.Time `locationName:"attemptUpdatedAt" type:"timestamp"`
+
 	// The aggregate vCPU, memory, and storage that Amazon Web Services has billed
 	// for the job run. The billed resources include a 1-minute minimum usage for
 	// workers, plus additional storage over 20 GB per worker. Note that billed
@@ -3460,6 +3638,9 @@ type JobRun struct {
 	// JobRunId is a required field
 	JobRunId *string `locationName:"jobRunId" min:"1" type:"string" required:"true"`
 
+	// The mode of the job run.
+	Mode *string `locationName:"mode" type:"string" enum:"JobRunMode"`
+
 	// The optional job run name. This doesn't have to be unique.
 	Name *string `locationName:"name" min:"1" type:"string"`
 
@@ -3471,6 +3652,9 @@ type JobRun struct {
 	//
 	// ReleaseLabel is a required field
 	ReleaseLabel *string `locationName:"releaseLabel" min:"1" type:"string" required:"true"`
+
+	// The retry policy of the job run.
+	RetryPolicy *RetryPolicy `locationName:"retryPolicy" type:"structure"`
 
 	// The state of the job run.
 	//
@@ -3530,6 +3714,24 @@ func (s *JobRun) SetArn(v string) *JobRun {
 	return s
 }
 
+// SetAttempt sets the Attempt field's value.
+func (s *JobRun) SetAttempt(v int64) *JobRun {
+	s.Attempt = &v
+	return s
+}
+
+// SetAttemptCreatedAt sets the AttemptCreatedAt field's value.
+func (s *JobRun) SetAttemptCreatedAt(v time.Time) *JobRun {
+	s.AttemptCreatedAt = &v
+	return s
+}
+
+// SetAttemptUpdatedAt sets the AttemptUpdatedAt field's value.
+func (s *JobRun) SetAttemptUpdatedAt(v time.Time) *JobRun {
+	s.AttemptUpdatedAt = &v
+	return s
+}
+
 // SetBilledResourceUtilization sets the BilledResourceUtilization field's value.
 func (s *JobRun) SetBilledResourceUtilization(v *ResourceUtilization) *JobRun {
 	s.BilledResourceUtilization = v
@@ -3578,6 +3780,12 @@ func (s *JobRun) SetJobRunId(v string) *JobRun {
 	return s
 }
 
+// SetMode sets the Mode field's value.
+func (s *JobRun) SetMode(v string) *JobRun {
+	s.Mode = &v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *JobRun) SetName(v string) *JobRun {
 	s.Name = &v
@@ -3593,6 +3801,12 @@ func (s *JobRun) SetNetworkConfiguration(v *NetworkConfiguration) *JobRun {
 // SetReleaseLabel sets the ReleaseLabel field's value.
 func (s *JobRun) SetReleaseLabel(v string) *JobRun {
 	s.ReleaseLabel = &v
+	return s
+}
+
+// SetRetryPolicy sets the RetryPolicy field's value.
+func (s *JobRun) SetRetryPolicy(v *RetryPolicy) *JobRun {
+	s.RetryPolicy = v
 	return s
 }
 
@@ -3632,6 +3846,186 @@ func (s *JobRun) SetUpdatedAt(v time.Time) *JobRun {
 	return s
 }
 
+// The summary of attributes associated with a job run attempt.
+type JobRunAttemptSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the application the job is running on.
+	//
+	// ApplicationId is a required field
+	ApplicationId *string `locationName:"applicationId" min:"1" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the job run.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" min:"60" type:"string" required:"true"`
+
+	// The attempt number of the job run execution.
+	Attempt *int64 `locationName:"attempt" min:"1" type:"integer"`
+
+	// The date and time when the job run attempt was created.
+	//
+	// CreatedAt is a required field
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" required:"true"`
+
+	// The user who created the job run.
+	//
+	// CreatedBy is a required field
+	CreatedBy *string `locationName:"createdBy" min:"20" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the execution role of the job run..
+	//
+	// ExecutionRole is a required field
+	ExecutionRole *string `locationName:"executionRole" min:"20" type:"string" required:"true"`
+
+	// The ID of the job run attempt.
+	//
+	// Id is a required field
+	Id *string `locationName:"id" min:"1" type:"string" required:"true"`
+
+	// The date and time of when the job run was created.
+	//
+	// JobCreatedAt is a required field
+	JobCreatedAt *time.Time `locationName:"jobCreatedAt" type:"timestamp" required:"true"`
+
+	// The mode of the job run attempt.
+	Mode *string `locationName:"mode" type:"string" enum:"JobRunMode"`
+
+	// The name of the job run attempt.
+	Name *string `locationName:"name" min:"1" type:"string"`
+
+	// The Amazon EMR release label of the job run attempt.
+	//
+	// ReleaseLabel is a required field
+	ReleaseLabel *string `locationName:"releaseLabel" min:"1" type:"string" required:"true"`
+
+	// The state of the job run attempt.
+	//
+	// State is a required field
+	State *string `locationName:"state" type:"string" required:"true" enum:"JobRunState"`
+
+	// The state details of the job run attempt.
+	//
+	// StateDetails is a required field
+	StateDetails *string `locationName:"stateDetails" min:"1" type:"string" required:"true"`
+
+	// The type of the job run, such as Spark or Hive.
+	Type *string `locationName:"type" type:"string"`
+
+	// The date and time of when the job run attempt was last updated.
+	//
+	// UpdatedAt is a required field
+	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s JobRunAttemptSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s JobRunAttemptSummary) GoString() string {
+	return s.String()
+}
+
+// SetApplicationId sets the ApplicationId field's value.
+func (s *JobRunAttemptSummary) SetApplicationId(v string) *JobRunAttemptSummary {
+	s.ApplicationId = &v
+	return s
+}
+
+// SetArn sets the Arn field's value.
+func (s *JobRunAttemptSummary) SetArn(v string) *JobRunAttemptSummary {
+	s.Arn = &v
+	return s
+}
+
+// SetAttempt sets the Attempt field's value.
+func (s *JobRunAttemptSummary) SetAttempt(v int64) *JobRunAttemptSummary {
+	s.Attempt = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *JobRunAttemptSummary) SetCreatedAt(v time.Time) *JobRunAttemptSummary {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetCreatedBy sets the CreatedBy field's value.
+func (s *JobRunAttemptSummary) SetCreatedBy(v string) *JobRunAttemptSummary {
+	s.CreatedBy = &v
+	return s
+}
+
+// SetExecutionRole sets the ExecutionRole field's value.
+func (s *JobRunAttemptSummary) SetExecutionRole(v string) *JobRunAttemptSummary {
+	s.ExecutionRole = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *JobRunAttemptSummary) SetId(v string) *JobRunAttemptSummary {
+	s.Id = &v
+	return s
+}
+
+// SetJobCreatedAt sets the JobCreatedAt field's value.
+func (s *JobRunAttemptSummary) SetJobCreatedAt(v time.Time) *JobRunAttemptSummary {
+	s.JobCreatedAt = &v
+	return s
+}
+
+// SetMode sets the Mode field's value.
+func (s *JobRunAttemptSummary) SetMode(v string) *JobRunAttemptSummary {
+	s.Mode = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *JobRunAttemptSummary) SetName(v string) *JobRunAttemptSummary {
+	s.Name = &v
+	return s
+}
+
+// SetReleaseLabel sets the ReleaseLabel field's value.
+func (s *JobRunAttemptSummary) SetReleaseLabel(v string) *JobRunAttemptSummary {
+	s.ReleaseLabel = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *JobRunAttemptSummary) SetState(v string) *JobRunAttemptSummary {
+	s.State = &v
+	return s
+}
+
+// SetStateDetails sets the StateDetails field's value.
+func (s *JobRunAttemptSummary) SetStateDetails(v string) *JobRunAttemptSummary {
+	s.StateDetails = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *JobRunAttemptSummary) SetType(v string) *JobRunAttemptSummary {
+	s.Type = &v
+	return s
+}
+
+// SetUpdatedAt sets the UpdatedAt field's value.
+func (s *JobRunAttemptSummary) SetUpdatedAt(v time.Time) *JobRunAttemptSummary {
+	s.UpdatedAt = &v
+	return s
+}
+
 // The summary of attributes associated with a job run.
 type JobRunSummary struct {
 	_ struct{} `type:"structure"`
@@ -3645,6 +4039,15 @@ type JobRunSummary struct {
 	//
 	// Arn is a required field
 	Arn *string `locationName:"arn" min:"60" type:"string" required:"true"`
+
+	// The attempt number of the job run execution.
+	Attempt *int64 `locationName:"attempt" min:"1" type:"integer"`
+
+	// The date and time of when the job run attempt was created.
+	AttemptCreatedAt *time.Time `locationName:"attemptCreatedAt" type:"timestamp"`
+
+	// The date and time of when the job run attempt was last updated.
+	AttemptUpdatedAt *time.Time `locationName:"attemptUpdatedAt" type:"timestamp"`
 
 	// The date and time when the job run was created.
 	//
@@ -3665,6 +4068,9 @@ type JobRunSummary struct {
 	//
 	// Id is a required field
 	Id *string `locationName:"id" min:"1" type:"string" required:"true"`
+
+	// The mode of the job run.
+	Mode *string `locationName:"mode" type:"string" enum:"JobRunMode"`
 
 	// The optional job run name. This doesn't have to be unique.
 	Name *string `locationName:"name" min:"1" type:"string"`
@@ -3724,6 +4130,24 @@ func (s *JobRunSummary) SetArn(v string) *JobRunSummary {
 	return s
 }
 
+// SetAttempt sets the Attempt field's value.
+func (s *JobRunSummary) SetAttempt(v int64) *JobRunSummary {
+	s.Attempt = &v
+	return s
+}
+
+// SetAttemptCreatedAt sets the AttemptCreatedAt field's value.
+func (s *JobRunSummary) SetAttemptCreatedAt(v time.Time) *JobRunSummary {
+	s.AttemptCreatedAt = &v
+	return s
+}
+
+// SetAttemptUpdatedAt sets the AttemptUpdatedAt field's value.
+func (s *JobRunSummary) SetAttemptUpdatedAt(v time.Time) *JobRunSummary {
+	s.AttemptUpdatedAt = &v
+	return s
+}
+
 // SetCreatedAt sets the CreatedAt field's value.
 func (s *JobRunSummary) SetCreatedAt(v time.Time) *JobRunSummary {
 	s.CreatedAt = &v
@@ -3745,6 +4169,12 @@ func (s *JobRunSummary) SetExecutionRole(v string) *JobRunSummary {
 // SetId sets the Id field's value.
 func (s *JobRunSummary) SetId(v string) *JobRunSummary {
 	s.Id = &v
+	return s
+}
+
+// SetMode sets the Mode field's value.
+func (s *JobRunSummary) SetMode(v string) *JobRunSummary {
+	s.Mode = &v
 	return s
 }
 
@@ -3897,6 +4327,140 @@ func (s *ListApplicationsOutput) SetNextToken(v string) *ListApplicationsOutput 
 	return s
 }
 
+type ListJobRunAttemptsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID of the application for which to list job runs.
+	//
+	// ApplicationId is a required field
+	ApplicationId *string `location:"uri" locationName:"applicationId" min:"1" type:"string" required:"true"`
+
+	// The ID of the job run to list.
+	//
+	// JobRunId is a required field
+	JobRunId *string `location:"uri" locationName:"jobRunId" min:"1" type:"string" required:"true"`
+
+	// The maximum number of job run attempts to list.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token for the next set of job run attempt results.
+	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListJobRunAttemptsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListJobRunAttemptsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListJobRunAttemptsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListJobRunAttemptsInput"}
+	if s.ApplicationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ApplicationId"))
+	}
+	if s.ApplicationId != nil && len(*s.ApplicationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ApplicationId", 1))
+	}
+	if s.JobRunId == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobRunId"))
+	}
+	if s.JobRunId != nil && len(*s.JobRunId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobRunId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetApplicationId sets the ApplicationId field's value.
+func (s *ListJobRunAttemptsInput) SetApplicationId(v string) *ListJobRunAttemptsInput {
+	s.ApplicationId = &v
+	return s
+}
+
+// SetJobRunId sets the JobRunId field's value.
+func (s *ListJobRunAttemptsInput) SetJobRunId(v string) *ListJobRunAttemptsInput {
+	s.JobRunId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListJobRunAttemptsInput) SetMaxResults(v int64) *ListJobRunAttemptsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListJobRunAttemptsInput) SetNextToken(v string) *ListJobRunAttemptsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListJobRunAttemptsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The array of the listed job run attempt objects.
+	//
+	// JobRunAttempts is a required field
+	JobRunAttempts []*JobRunAttemptSummary `locationName:"jobRunAttempts" type:"list" required:"true"`
+
+	// The output displays the token for the next set of application results. This
+	// is required for pagination and is available as a response of the previous
+	// request.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListJobRunAttemptsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListJobRunAttemptsOutput) GoString() string {
+	return s.String()
+}
+
+// SetJobRunAttempts sets the JobRunAttempts field's value.
+func (s *ListJobRunAttemptsOutput) SetJobRunAttempts(v []*JobRunAttemptSummary) *ListJobRunAttemptsOutput {
+	s.JobRunAttempts = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListJobRunAttemptsOutput) SetNextToken(v string) *ListJobRunAttemptsOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListJobRunsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -3913,6 +4477,9 @@ type ListJobRunsInput struct {
 
 	// The maximum number of job runs that can be listed.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The mode of the job runs to list.
+	Mode *string `location:"querystring" locationName:"mode" type:"string" enum:"JobRunMode"`
 
 	// The token for the next set of job run results.
 	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
@@ -3983,6 +4550,12 @@ func (s *ListJobRunsInput) SetCreatedAtBefore(v time.Time) *ListJobRunsInput {
 // SetMaxResults sets the MaxResults field's value.
 func (s *ListJobRunsInput) SetMaxResults(v int64) *ListJobRunsInput {
 	s.MaxResults = &v
+	return s
+}
+
+// SetMode sets the Mode field's value.
+func (s *ListJobRunsInput) SetMode(v string) *ListJobRunsInput {
+	s.Mode = &v
 	return s
 }
 
@@ -4554,6 +5127,65 @@ func (s *ResourceUtilization) SetVCPUHour(v float64) *ResourceUtilization {
 	return s
 }
 
+// The retry policy to use for a job run.
+type RetryPolicy struct {
+	_ struct{} `type:"structure"`
+
+	// Maximum number of attempts for the job run. This parameter is only applicable
+	// for BATCH mode.
+	MaxAttempts *int64 `locationName:"maxAttempts" min:"1" type:"integer"`
+
+	// Maximum number of failed attempts per hour. This [arameter is only applicable
+	// for STREAMING mode.
+	MaxFailedAttemptsPerHour *int64 `locationName:"maxFailedAttemptsPerHour" min:"1" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RetryPolicy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RetryPolicy) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RetryPolicy) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RetryPolicy"}
+	if s.MaxAttempts != nil && *s.MaxAttempts < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxAttempts", 1))
+	}
+	if s.MaxFailedAttemptsPerHour != nil && *s.MaxFailedAttemptsPerHour < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxFailedAttemptsPerHour", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxAttempts sets the MaxAttempts field's value.
+func (s *RetryPolicy) SetMaxAttempts(v int64) *RetryPolicy {
+	s.MaxAttempts = &v
+	return s
+}
+
+// SetMaxFailedAttemptsPerHour sets the MaxFailedAttemptsPerHour field's value.
+func (s *RetryPolicy) SetMaxFailedAttemptsPerHour(v int64) *RetryPolicy {
+	s.MaxFailedAttemptsPerHour = &v
+	return s
+}
+
 // The Amazon S3 configuration for monitoring log publishing. You can configure
 // your jobs to send log information to Amazon S3.
 type S3MonitoringConfiguration struct {
@@ -4853,8 +5485,14 @@ type StartJobRunInput struct {
 	// The job driver for the job run.
 	JobDriver *JobDriver `locationName:"jobDriver" type:"structure"`
 
+	// The mode of the job run when it starts.
+	Mode *string `locationName:"mode" type:"string" enum:"JobRunMode"`
+
 	// The optional job run name. This doesn't have to be unique.
 	Name *string `locationName:"name" min:"1" type:"string"`
+
+	// The retry policy when job run starts.
+	RetryPolicy *RetryPolicy `locationName:"retryPolicy" type:"structure"`
 
 	// The tags assigned to the job run.
 	Tags map[string]*string `locationName:"tags" type:"map"`
@@ -4909,6 +5547,11 @@ func (s *StartJobRunInput) Validate() error {
 			invalidParams.AddNested("JobDriver", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.RetryPolicy != nil {
+		if err := s.RetryPolicy.Validate(); err != nil {
+			invalidParams.AddNested("RetryPolicy", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -4952,9 +5595,21 @@ func (s *StartJobRunInput) SetJobDriver(v *JobDriver) *StartJobRunInput {
 	return s
 }
 
+// SetMode sets the Mode field's value.
+func (s *StartJobRunInput) SetMode(v string) *StartJobRunInput {
+	s.Mode = &v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *StartJobRunInput) SetName(v string) *StartJobRunInput {
 	s.Name = &v
+	return s
+}
+
+// SetRetryPolicy sets the RetryPolicy field's value.
+func (s *StartJobRunInput) SetRetryPolicy(v *RetryPolicy) *StartJobRunInput {
+	s.RetryPolicy = v
 	return s
 }
 
@@ -5877,6 +6532,22 @@ func Architecture_Values() []string {
 	return []string{
 		ArchitectureArm64,
 		ArchitectureX8664,
+	}
+}
+
+const (
+	// JobRunModeBatch is a JobRunMode enum value
+	JobRunModeBatch = "BATCH"
+
+	// JobRunModeStreaming is a JobRunMode enum value
+	JobRunModeStreaming = "STREAMING"
+)
+
+// JobRunMode_Values returns all elements of the JobRunMode enum
+func JobRunMode_Values() []string {
+	return []string{
+		JobRunModeBatch,
+		JobRunModeStreaming,
 	}
 }
 

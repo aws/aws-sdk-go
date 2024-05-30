@@ -330,8 +330,9 @@ func (c *RDS) AddTagsToResourceRequest(input *AddTagsToResourceInput) (req *requ
 // with cost allocation reporting to track cost associated with Amazon RDS resources,
 // or used in a Condition statement in an IAM policy for Amazon RDS.
 //
-// For an overview on tagging Amazon RDS resources, see Tagging Amazon RDS Resources
-// (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.Tagging.html).
+// For an overview on tagging your relational database resources, see Tagging
+// Amazon RDS Resources (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.html)
+// or Tagging Amazon Aurora and Amazon RDS Resources (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_Tagging.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -22125,9 +22126,9 @@ type CreateDBClusterInput struct {
 	// Reserved for future use.
 	DBSystemId *string `type:"string"`
 
-	// The name for your database of up to 64 alphanumeric characters. If you don't
-	// provide a name, Amazon RDS doesn't create a database in the DB cluster you
-	// are creating.
+	// The name for your database of up to 64 alphanumeric characters. A database
+	// named postgres is always created. If this parameter is specified, an additional
+	// database with this name is created.
 	//
 	// Valid for Cluster Type: Aurora DB clusters and Multi-AZ DB clusters
 	DatabaseName *string `type:"string"`
@@ -23715,9 +23716,9 @@ type CreateDBInstanceInput struct {
 	// Amazon Aurora PostgreSQL
 	//
 	// The name of the database to create when the primary DB instance of the Aurora
-	// PostgreSQL DB cluster is created. If this parameter isn't specified for an
-	// Aurora PostgreSQL DB cluster, a database named postgres is created in the
-	// DB cluster.
+	// PostgreSQL DB cluster is created. A database named postgres is always created.
+	// If this parameter is specified, an additional database with this name is
+	// created.
 	//
 	// Constraints:
 	//
@@ -23807,9 +23808,9 @@ type CreateDBInstanceInput struct {
 	//
 	// RDS for PostgreSQL
 	//
-	// The name of the database to create when the DB instance is created. If this
-	// parameter isn't specified, a database named postgres is created in the DB
-	// instance.
+	// The name of the database to create when the DB instance is created. A database
+	// named postgres is always created. If this parameter is specified, an additional
+	// database with this name is created.
 	//
 	// Constraints:
 	//
@@ -58813,8 +58814,11 @@ type RestoreDBInstanceFromS3Input struct {
 	// S3BucketName is a required field
 	S3BucketName *string `type:"string" required:"true"`
 
-	// An Amazon Web Services Identity and Access Management (IAM) role to allow
-	// Amazon RDS to access your Amazon S3 bucket.
+	// An Amazon Web Services Identity and Access Management (IAM) role with a trust
+	// policy and a permissions policy that allows Amazon RDS to access your Amazon
+	// S3 bucket. For information about this role, see Creating an IAM role manually
+	// (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/MySQL.Procedural.Importing.html#MySQL.Procedural.Importing.Enabling.IAM)
+	// in the Amazon RDS User Guide.
 	//
 	// S3IngestionRoleArn is a required field
 	S3IngestionRoleArn *string `type:"string" required:"true"`
@@ -62389,7 +62393,9 @@ func (s *SwitchoverReadReplicaOutput) SetDBInstance(v *DBInstance) *SwitchoverRe
 // Metadata assigned to an Amazon RDS resource consisting of a key-value pair.
 //
 // For more information, see Tagging Amazon RDS Resources (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.html)
-// in the Amazon RDS User Guide.
+// in the Amazon RDS User Guide or Tagging Amazon Aurora and Amazon RDS Resources
+// (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_Tagging.html)
+// in the Amazon Aurora User Guide.
 type Tag struct {
 	_ struct{} `type:"structure"`
 

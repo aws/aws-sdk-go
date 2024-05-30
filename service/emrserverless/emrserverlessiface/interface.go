@@ -91,6 +91,13 @@ type EMRServerlessAPI interface {
 	ListApplicationsPages(*emrserverless.ListApplicationsInput, func(*emrserverless.ListApplicationsOutput, bool) bool) error
 	ListApplicationsPagesWithContext(aws.Context, *emrserverless.ListApplicationsInput, func(*emrserverless.ListApplicationsOutput, bool) bool, ...request.Option) error
 
+	ListJobRunAttempts(*emrserverless.ListJobRunAttemptsInput) (*emrserverless.ListJobRunAttemptsOutput, error)
+	ListJobRunAttemptsWithContext(aws.Context, *emrserverless.ListJobRunAttemptsInput, ...request.Option) (*emrserverless.ListJobRunAttemptsOutput, error)
+	ListJobRunAttemptsRequest(*emrserverless.ListJobRunAttemptsInput) (*request.Request, *emrserverless.ListJobRunAttemptsOutput)
+
+	ListJobRunAttemptsPages(*emrserverless.ListJobRunAttemptsInput, func(*emrserverless.ListJobRunAttemptsOutput, bool) bool) error
+	ListJobRunAttemptsPagesWithContext(aws.Context, *emrserverless.ListJobRunAttemptsInput, func(*emrserverless.ListJobRunAttemptsOutput, bool) bool, ...request.Option) error
+
 	ListJobRuns(*emrserverless.ListJobRunsInput) (*emrserverless.ListJobRunsOutput, error)
 	ListJobRunsWithContext(aws.Context, *emrserverless.ListJobRunsInput, ...request.Option) (*emrserverless.ListJobRunsOutput, error)
 	ListJobRunsRequest(*emrserverless.ListJobRunsInput) (*request.Request, *emrserverless.ListJobRunsOutput)

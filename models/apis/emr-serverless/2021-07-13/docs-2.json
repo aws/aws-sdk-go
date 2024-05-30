@@ -9,6 +9,7 @@
     "GetDashboardForJobRun": "<p>Creates and returns a URL that you can use to access the application UIs for a job run.</p> <p>For jobs in a running state, the application UI is a live user interface such as the Spark or Tez web UI. For completed jobs, the application UI is a persistent application user interface such as the Spark History Server or persistent Tez UI.</p> <note> <p>The URL is valid for one hour after you generate it. To access the application UI after that hour elapses, you must invoke the API again to generate a new URL.</p> </note>",
     "GetJobRun": "<p>Displays detailed information about a job run.</p>",
     "ListApplications": "<p>Lists applications based on a set of parameters.</p>",
+    "ListJobRunAttempts": "<p>Lists all attempt of a job run.</p>",
     "ListJobRuns": "<p>Lists job runs based on a set of parameters.</p>",
     "ListTagsForResource": "<p>Lists the tags assigned to the resources.</p>",
     "StartApplication": "<p>Starts a specified application and initializes initial capacity if configured.</p>",
@@ -47,7 +48,9 @@
         "GetDashboardForJobRunRequest$applicationId": "<p>The ID of the application.</p>",
         "GetJobRunRequest$applicationId": "<p>The ID of the application on which the job run is submitted.</p>",
         "JobRun$applicationId": "<p>The ID of the application the job is running on.</p>",
+        "JobRunAttemptSummary$applicationId": "<p>The ID of the application the job is running on.</p>",
         "JobRunSummary$applicationId": "<p>The ID of the application the job is running on.</p>",
+        "ListJobRunAttemptsRequest$applicationId": "<p>The ID of the application for which to list job runs.</p>",
         "ListJobRunsRequest$applicationId": "<p>The ID of the application for which to list the job run.</p>",
         "StartApplicationRequest$applicationId": "<p>The ID of the application to start.</p>",
         "StartJobRunRequest$applicationId": "<p>The ID of the application on which to run the job.</p>",
@@ -98,6 +101,17 @@
         "ApplicationSummary$architecture": "<p>The CPU architecture of an application.</p>",
         "CreateApplicationRequest$architecture": "<p>The CPU architecture of an application.</p>",
         "UpdateApplicationRequest$architecture": "<p>The CPU architecture of an application.</p>"
+      }
+    },
+    "AttemptNumber": {
+      "base": null,
+      "refs": {
+        "GetDashboardForJobRunRequest$attempt": "<p>An optimal parameter that indicates the amount of attempts for the job. If not specified, this value defaults to the attempt of the latest job.</p>",
+        "GetJobRunRequest$attempt": "<p>An optimal parameter that indicates the amount of attempts for the job. If not specified, this value defaults to the attempt of the latest job.</p>",
+        "JobRun$attempt": "<p>The attempt of the job run.</p>",
+        "JobRunAttemptSummary$attempt": "<p>The attempt number of the job run execution.</p>",
+        "JobRunSummary$attempt": "<p>The attempt number of the job run execution.</p>",
+        "RetryPolicy$maxAttempts": "<p>Maximum number of attempts for the job run. This parameter is only applicable for <code>BATCH</code> mode.</p>"
       }
     },
     "AutoStartConfig": {
@@ -223,8 +237,15 @@
         "ApplicationSummary$updatedAt": "<p>The date and time when the application was last updated.</p>",
         "JobRun$createdAt": "<p>The date and time when the job run was created.</p>",
         "JobRun$updatedAt": "<p>The date and time when the job run was updated.</p>",
+        "JobRun$attemptCreatedAt": "<p>The date and time of when the job run attempt was created.</p>",
+        "JobRun$attemptUpdatedAt": "<p>The date and time of when the job run attempt was last updated.</p>",
+        "JobRunAttemptSummary$jobCreatedAt": "<p>The date and time of when the job run was created.</p>",
+        "JobRunAttemptSummary$createdAt": "<p>The date and time when the job run attempt was created.</p>",
+        "JobRunAttemptSummary$updatedAt": "<p>The date and time of when the job run attempt was last updated.</p>",
         "JobRunSummary$createdAt": "<p>The date and time when the job run was created.</p>",
         "JobRunSummary$updatedAt": "<p>The date and time when the job run was last updated.</p>",
+        "JobRunSummary$attemptCreatedAt": "<p>The date and time of when the job run attempt was created.</p>",
+        "JobRunSummary$attemptUpdatedAt": "<p>The date and time of when the job run attempt was last updated.</p>",
         "ListJobRunsRequest$createdAtAfter": "<p>The lower bound of the option to filter by creation date and time.</p>",
         "ListJobRunsRequest$createdAtBefore": "<p>The upper bound of the option to filter by creation date and time.</p>"
       }
@@ -350,6 +371,7 @@
       "base": null,
       "refs": {
         "JobRun$executionRole": "<p>The execution role ARN of the job run.</p>",
+        "JobRunAttemptSummary$executionRole": "<p>The Amazon Resource Name (ARN) of the execution role of the job run..</p>",
         "JobRunSummary$executionRole": "<p>The execution role ARN of the job run.</p>",
         "StartJobRunRequest$executionRoleArn": "<p>The execution role ARN for the job run.</p>"
       }
@@ -425,6 +447,7 @@
       "base": null,
       "refs": {
         "JobRun$arn": "<p>The execution role ARN of the job run.</p>",
+        "JobRunAttemptSummary$arn": "<p>The Amazon Resource Name (ARN) of the job run.</p>",
         "JobRunSummary$arn": "<p>The ARN of the job run.</p>",
         "StartJobRunResponse$arn": "<p>This output displays the ARN of the job run..</p>"
       }
@@ -442,6 +465,18 @@
         "GetJobRunResponse$jobRun": "<p>The output displays information about the job run.</p>"
       }
     },
+    "JobRunAttemptSummary": {
+      "base": "<p>The summary of attributes associated with a job run attempt.</p>",
+      "refs": {
+        "JobRunAttempts$member": null
+      }
+    },
+    "JobRunAttempts": {
+      "base": null,
+      "refs": {
+        "ListJobRunAttemptsResponse$jobRunAttempts": "<p>The array of the listed job run attempt objects.</p>"
+      }
+    },
     "JobRunId": {
       "base": null,
       "refs": {
@@ -450,14 +485,27 @@
         "GetDashboardForJobRunRequest$jobRunId": "<p>The ID of the job run.</p>",
         "GetJobRunRequest$jobRunId": "<p>The ID of the job run.</p>",
         "JobRun$jobRunId": "<p>The ID of the job run.</p>",
+        "JobRunAttemptSummary$id": "<p>The ID of the job run attempt.</p>",
         "JobRunSummary$id": "<p>The ID of the job run.</p>",
+        "ListJobRunAttemptsRequest$jobRunId": "<p>The ID of the job run to list.</p>",
         "StartJobRunResponse$jobRunId": "<p>The output contains the ID of the started job run.</p>"
+      }
+    },
+    "JobRunMode": {
+      "base": null,
+      "refs": {
+        "JobRun$mode": "<p>The mode of the job run.</p>",
+        "JobRunAttemptSummary$mode": "<p>The mode of the job run attempt.</p>",
+        "JobRunSummary$mode": "<p>The mode of the job run.</p>",
+        "ListJobRunsRequest$mode": "<p>The mode of the job runs to list.</p>",
+        "StartJobRunRequest$mode": "<p>The mode of the job run when it starts.</p>"
       }
     },
     "JobRunState": {
       "base": null,
       "refs": {
         "JobRun$state": "<p>The state of the job run.</p>",
+        "JobRunAttemptSummary$state": "<p>The state of the job run attempt.</p>",
         "JobRunStateSet$member": null,
         "JobRunSummary$state": "<p>The state of the job run.</p>"
       }
@@ -477,6 +525,7 @@
     "JobRunType": {
       "base": null,
       "refs": {
+        "JobRunAttemptSummary$type": "<p>The type of the job run, such as Spark or Hive.</p>",
         "JobRunSummary$type": "<p>The type of job run, such as Spark or Hive.</p>"
       }
     },
@@ -498,6 +547,22 @@
       }
     },
     "ListApplicationsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListJobRunAttemptsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListJobRunAttemptsRequestMaxResultsInteger": {
+      "base": null,
+      "refs": {
+        "ListJobRunAttemptsRequest$maxResults": "<p>The maximum number of job run attempts to list.</p>"
+      }
+    },
+    "ListJobRunAttemptsResponse": {
       "base": null,
       "refs": {
       }
@@ -602,6 +667,8 @@
       "refs": {
         "ListApplicationsRequest$nextToken": "<p>The token for the next set of application results.</p>",
         "ListApplicationsResponse$nextToken": "<p>The output displays the token for the next set of application results. This is required for pagination and is available as a response of the previous request.</p>",
+        "ListJobRunAttemptsRequest$nextToken": "<p>The token for the next set of job run attempt results.</p>",
+        "ListJobRunAttemptsResponse$nextToken": "<p>The output displays the token for the next set of application results. This is required for pagination and is available as a response of the previous request.</p>",
         "ListJobRunsRequest$nextToken": "<p>The token for the next set of job run results.</p>",
         "ListJobRunsResponse$nextToken": "<p>The output displays the token for the next set of job run results. This is required for pagination and is available as a response of the previous request.</p>"
       }
@@ -631,6 +698,7 @@
         "ApplicationSummary$releaseLabel": "<p>The Amazon EMR release associated with the application.</p>",
         "CreateApplicationRequest$releaseLabel": "<p>The Amazon EMR release associated with the application.</p>",
         "JobRun$releaseLabel": "<p>The Amazon EMR release associated with the application your job is running on.</p>",
+        "JobRunAttemptSummary$releaseLabel": "<p>The Amazon EMR release label of the job run attempt.</p>",
         "JobRunSummary$releaseLabel": "<p>The Amazon EMR release associated with the application your job is running on.</p>",
         "UpdateApplicationRequest$releaseLabel": "<p>The Amazon EMR release label for the application. You can change the release label to use a different release of Amazon EMR.</p>"
       }
@@ -639,6 +707,7 @@
       "base": null,
       "refs": {
         "JobRun$createdBy": "<p>The user who created the job run.</p>",
+        "JobRunAttemptSummary$createdBy": "<p>The user who created the job run.</p>",
         "JobRunSummary$createdBy": "<p>The user who created the job run.</p>"
       }
     },
@@ -659,6 +728,19 @@
       "base": "<p>The resource utilization for memory, storage, and vCPU for jobs.</p>",
       "refs": {
         "JobRun$billedResourceUtilization": "<p>The aggregate vCPU, memory, and storage that Amazon Web Services has billed for the job run. The billed resources include a 1-minute minimum usage for workers, plus additional storage over 20 GB per worker. Note that billed resources do not include usage for idle pre-initialized workers.</p>"
+      }
+    },
+    "RetryPolicy": {
+      "base": "<p>The retry policy to use for a job run.</p>",
+      "refs": {
+        "JobRun$retryPolicy": "<p>The retry policy of the job run.</p>",
+        "StartJobRunRequest$retryPolicy": "<p>The retry policy when job run starts.</p>"
+      }
+    },
+    "RetryPolicyMaxFailedAttemptsPerHourInteger": {
+      "base": null,
+      "refs": {
+        "RetryPolicy$maxFailedAttemptsPerHour": "<p>Maximum number of failed attempts per hour. This [arameter is only applicable for <code>STREAMING</code> mode.</p>"
       }
     },
     "S3MonitoringConfiguration": {
@@ -750,6 +832,8 @@
         "ApplicationSummary$stateDetails": "<p>The state details of the application.</p>",
         "JobRun$name": "<p>The optional job run name. This doesn't have to be unique.</p>",
         "JobRun$stateDetails": "<p>The state details of the job run.</p>",
+        "JobRunAttemptSummary$name": "<p>The name of the job run attempt.</p>",
+        "JobRunAttemptSummary$stateDetails": "<p>The state details of the job run attempt.</p>",
         "JobRunSummary$name": "<p>The optional job run name. This doesn't have to be unique.</p>",
         "JobRunSummary$stateDetails": "<p>The state details of the job run.</p>",
         "StartJobRunRequest$name": "<p>The optional job run name. This doesn't have to be unique.</p>"

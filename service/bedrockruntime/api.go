@@ -21,6 +21,393 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
 
+const opConverse = "Converse"
+
+// ConverseRequest generates a "aws/request.Request" representing the
+// client's request for the Converse operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See Converse for more information on using the Converse
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ConverseRequest method.
+//	req, resp := client.ConverseRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-runtime-2023-09-30/Converse
+func (c *BedrockRuntime) ConverseRequest(input *ConverseInput) (req *request.Request, output *ConverseOutput) {
+	op := &request.Operation{
+		Name:       opConverse,
+		HTTPMethod: "POST",
+		HTTPPath:   "/model/{modelId}/converse",
+	}
+
+	if input == nil {
+		input = &ConverseInput{}
+	}
+
+	output = &ConverseOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// Converse API operation for Amazon Bedrock Runtime.
+//
+// Sends messages to the specified Amazon Bedrock model. Converse provides a
+// consistent interface that works with all models that support messages. This
+// allows you to write code once and use it with different models. Should a
+// model have unique inference parameters, you can also pass those unique parameters
+// to the model. For more information, see Run inference (https://docs.aws.amazon.com/bedrock/latest/userguide/api-methods-run.html)
+// in the Bedrock User Guide.
+//
+// This operation requires permission for the bedrock:InvokeModel action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Bedrock Runtime's
+// API operation Converse for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     The request is denied because of missing access permissions.
+//
+//   - ResourceNotFoundException
+//     The specified resource ARN was not found. Check the ARN and try your request
+//     again.
+//
+//   - ThrottlingException
+//     The number of requests exceeds the limit. Resubmit your request later.
+//
+//   - ModelTimeoutException
+//     The request took too long to process. Processing time exceeded the model
+//     timeout length.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
+//
+//   - ValidationException
+//     Input validation failed. Check your request parameters and retry the request.
+//
+//   - ModelNotReadyException
+//     The model specified in the request is not ready to serve inference requests.
+//
+//   - ModelErrorException
+//     The request failed due to an error while processing the model.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-runtime-2023-09-30/Converse
+func (c *BedrockRuntime) Converse(input *ConverseInput) (*ConverseOutput, error) {
+	req, out := c.ConverseRequest(input)
+	return out, req.Send()
+}
+
+// ConverseWithContext is the same as Converse with the addition of
+// the ability to pass a context and additional request options.
+//
+// See Converse for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *BedrockRuntime) ConverseWithContext(ctx aws.Context, input *ConverseInput, opts ...request.Option) (*ConverseOutput, error) {
+	req, out := c.ConverseRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opConverseStream = "ConverseStream"
+
+// ConverseStreamRequest generates a "aws/request.Request" representing the
+// client's request for the ConverseStream operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ConverseStream for more information on using the ConverseStream
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ConverseStreamRequest method.
+//	req, resp := client.ConverseStreamRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-runtime-2023-09-30/ConverseStream
+func (c *BedrockRuntime) ConverseStreamRequest(input *ConverseStreamInput) (req *request.Request, output *ConverseStreamOutput) {
+	op := &request.Operation{
+		Name:       opConverseStream,
+		HTTPMethod: "POST",
+		HTTPPath:   "/model/{modelId}/converse-stream",
+	}
+
+	if input == nil {
+		input = &ConverseStreamInput{}
+	}
+
+	output = &ConverseStreamOutput{}
+	req = c.newRequest(op, input, output)
+
+	es := NewConverseStreamEventStream()
+	output.eventStream = es
+
+	req.Handlers.Send.Swap(client.LogHTTPResponseHandler.Name, client.LogHTTPResponseHeaderHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, rest.UnmarshalHandler)
+	req.Handlers.Unmarshal.PushBack(es.runOutputStream)
+	req.Handlers.Unmarshal.PushBack(es.runOnStreamPartClose)
+	return
+}
+
+// ConverseStream API operation for Amazon Bedrock Runtime.
+//
+// Sends messages to the specified Amazon Bedrock model and returns the response
+// in a stream. ConverseStream provides a consistent API that works with all
+// Amazon Bedrock models that support messages. This allows you to write code
+// once and use it with different models. Should a model have unique inference
+// parameters, you can also pass those unique parameters to the model. For more
+// information, see Run inference (https://docs.aws.amazon.com/bedrock/latest/userguide/api-methods-run.html)
+// in the Bedrock User Guide.
+//
+// To find out if a model supports streaming, call GetFoundationModel (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_GetFoundationModel.html)
+// and check the responseStreamingSupported field in the response.
+//
+// For example code, see Invoke model with streaming code example in the Amazon
+// Bedrock User Guide.
+//
+// This operation requires permission for the bedrock:InvokeModelWithResponseStream
+// action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Bedrock Runtime's
+// API operation ConverseStream for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     The request is denied because of missing access permissions.
+//
+//   - ResourceNotFoundException
+//     The specified resource ARN was not found. Check the ARN and try your request
+//     again.
+//
+//   - ThrottlingException
+//     The number of requests exceeds the limit. Resubmit your request later.
+//
+//   - ModelTimeoutException
+//     The request took too long to process. Processing time exceeded the model
+//     timeout length.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
+//
+//   - ValidationException
+//     Input validation failed. Check your request parameters and retry the request.
+//
+//   - ModelNotReadyException
+//     The model specified in the request is not ready to serve inference requests.
+//
+//   - ModelErrorException
+//     The request failed due to an error while processing the model.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-runtime-2023-09-30/ConverseStream
+func (c *BedrockRuntime) ConverseStream(input *ConverseStreamInput) (*ConverseStreamOutput, error) {
+	req, out := c.ConverseStreamRequest(input)
+	return out, req.Send()
+}
+
+// ConverseStreamWithContext is the same as ConverseStream with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ConverseStream for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *BedrockRuntime) ConverseStreamWithContext(ctx aws.Context, input *ConverseStreamInput, opts ...request.Option) (*ConverseStreamOutput, error) {
+	req, out := c.ConverseStreamRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+var _ awserr.Error
+var _ time.Time
+
+// ConverseStreamEventStream provides the event stream handling for the ConverseStream.
+//
+// For testing and mocking the event stream this type should be initialized via
+// the NewConverseStreamEventStream constructor function. Using the functional options
+// to pass in nested mock behavior.
+type ConverseStreamEventStream struct {
+
+	// Reader is the EventStream reader for the ConverseStreamOutput_
+	// events. This value is automatically set by the SDK when the API call is made
+	// Use this member when unit testing your code with the SDK to mock out the
+	// EventStream Reader.
+	//
+	// Must not be nil.
+	Reader ConverseStreamOutput_Reader
+
+	outputReader io.ReadCloser
+
+	done      chan struct{}
+	closeOnce sync.Once
+	err       *eventstreamapi.OnceError
+}
+
+// NewConverseStreamEventStream initializes an ConverseStreamEventStream.
+// This function should only be used for testing and mocking the ConverseStreamEventStream
+// stream within your application.
+//
+// The Reader member must be set before reading events from the stream.
+//
+//	es := NewConverseStreamEventStream(func(o *ConverseStreamEventStream){
+//	    es.Reader = myMockStreamReader
+//	})
+func NewConverseStreamEventStream(opts ...func(*ConverseStreamEventStream)) *ConverseStreamEventStream {
+	es := &ConverseStreamEventStream{
+		done: make(chan struct{}),
+		err:  eventstreamapi.NewOnceError(),
+	}
+
+	for _, fn := range opts {
+		fn(es)
+	}
+
+	return es
+}
+
+func (es *ConverseStreamEventStream) runOnStreamPartClose(r *request.Request) {
+	if es.done == nil {
+		return
+	}
+	go es.waitStreamPartClose()
+
+}
+
+func (es *ConverseStreamEventStream) waitStreamPartClose() {
+	var outputErrCh <-chan struct{}
+	if v, ok := es.Reader.(interface{ ErrorSet() <-chan struct{} }); ok {
+		outputErrCh = v.ErrorSet()
+	}
+	var outputClosedCh <-chan struct{}
+	if v, ok := es.Reader.(interface{ Closed() <-chan struct{} }); ok {
+		outputClosedCh = v.Closed()
+	}
+
+	select {
+	case <-es.done:
+	case <-outputErrCh:
+		es.err.SetError(es.Reader.Err())
+		es.Close()
+	case <-outputClosedCh:
+		if err := es.Reader.Err(); err != nil {
+			es.err.SetError(es.Reader.Err())
+		}
+		es.Close()
+	}
+}
+
+// Events returns a channel to read events from.
+//
+// These events are:
+//
+//   - ContentBlockDeltaEvent
+//   - ContentBlockStartEvent
+//   - ContentBlockStopEvent
+//   - MessageStartEvent
+//   - MessageStopEvent
+//   - ConverseStreamMetadataEvent
+//   - ConverseStreamOutput_UnknownEvent
+func (es *ConverseStreamEventStream) Events() <-chan ConverseStreamOutput_Event {
+	return es.Reader.Events()
+}
+
+func (es *ConverseStreamEventStream) runOutputStream(r *request.Request) {
+	var opts []func(*eventstream.Decoder)
+	if r.Config.Logger != nil && r.Config.LogLevel.Matches(aws.LogDebugWithEventStreamBody) {
+		opts = append(opts, eventstream.DecodeWithLogger(r.Config.Logger))
+	}
+
+	unmarshalerForEvent := unmarshalerForConverseStreamOutput_Event{
+		metadata: protocol.ResponseMetadata{
+			StatusCode: r.HTTPResponse.StatusCode,
+			RequestID:  r.RequestID,
+		},
+	}.UnmarshalerForEventName
+
+	decoder := eventstream.NewDecoder(r.HTTPResponse.Body, opts...)
+	eventReader := eventstreamapi.NewEventReader(decoder,
+		protocol.HandlerPayloadUnmarshal{
+			Unmarshalers: r.Handlers.UnmarshalStream,
+		},
+		unmarshalerForEvent,
+	)
+
+	es.outputReader = r.HTTPResponse.Body
+	es.Reader = newReadConverseStreamOutput_(eventReader)
+}
+
+// Close closes the stream. This will also cause the stream to be closed.
+// Close must be called when done using the stream API. Not calling Close
+// may result in resource leaks.
+//
+// You can use the closing of the Reader's Events channel to terminate your
+// application's read from the API's stream.
+func (es *ConverseStreamEventStream) Close() (err error) {
+	es.closeOnce.Do(es.safeClose)
+	return es.Err()
+}
+
+func (es *ConverseStreamEventStream) safeClose() {
+	if es.done != nil {
+		close(es.done)
+	}
+
+	es.Reader.Close()
+	if es.outputReader != nil {
+		es.outputReader.Close()
+	}
+}
+
+// Err returns any error that occurred while reading or writing EventStream
+// Events from the service API's response. Returns nil if there were no errors.
+func (es *ConverseStreamEventStream) Err() error {
+	if err := es.err.Err(); err != nil {
+		return err
+	}
+	if err := es.Reader.Err(); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 const opInvokeModel = "InvokeModel"
 
 // InvokeModelRequest generates a "aws/request.Request" representing the
@@ -474,6 +861,1402 @@ func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The model must request at least one tool (no text is generated).
+type AnyToolChoice struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnyToolChoice) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnyToolChoice) GoString() string {
+	return s.String()
+}
+
+// The Model automatically decides if a tool should be called or to whether
+// to generate text instead.
+type AutoToolChoice struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AutoToolChoice) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AutoToolChoice) GoString() string {
+	return s.String()
+}
+
+// A block of content for a message.
+type ContentBlock struct {
+	_ struct{} `type:"structure"`
+
+	// Image to include in the message.
+	//
+	// This field is only supported by Anthropic Claude 3 models.
+	Image *ImageBlock `locationName:"image" type:"structure"`
+
+	// Text to include in the message.
+	Text *string `locationName:"text" type:"string"`
+
+	// The result for a tool request that a model makes.
+	ToolResult *ToolResultBlock `locationName:"toolResult" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContentBlock) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContentBlock) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ContentBlock) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ContentBlock"}
+	if s.Image != nil {
+		if err := s.Image.Validate(); err != nil {
+			invalidParams.AddNested("Image", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ToolResult != nil {
+		if err := s.ToolResult.Validate(); err != nil {
+			invalidParams.AddNested("ToolResult", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetImage sets the Image field's value.
+func (s *ContentBlock) SetImage(v *ImageBlock) *ContentBlock {
+	s.Image = v
+	return s
+}
+
+// SetText sets the Text field's value.
+func (s *ContentBlock) SetText(v string) *ContentBlock {
+	s.Text = &v
+	return s
+}
+
+// SetToolResult sets the ToolResult field's value.
+func (s *ContentBlock) SetToolResult(v *ToolResultBlock) *ContentBlock {
+	s.ToolResult = v
+	return s
+}
+
+// A bock of content in a streaming response.
+type ContentBlockDelta struct {
+	_ struct{} `type:"structure"`
+
+	// The content text.
+	Text *string `locationName:"text" type:"string"`
+
+	// Information about a tool that the model is requesting to use.
+	ToolUse *ToolUseBlockDelta `locationName:"toolUse" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContentBlockDelta) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContentBlockDelta) GoString() string {
+	return s.String()
+}
+
+// SetText sets the Text field's value.
+func (s *ContentBlockDelta) SetText(v string) *ContentBlockDelta {
+	s.Text = &v
+	return s
+}
+
+// SetToolUse sets the ToolUse field's value.
+func (s *ContentBlockDelta) SetToolUse(v *ToolUseBlockDelta) *ContentBlockDelta {
+	s.ToolUse = v
+	return s
+}
+
+// The content block delta event.
+type ContentBlockDeltaEvent struct {
+	_ struct{} `type:"structure"`
+
+	// The block index for a content block delta event.
+	//
+	// ContentBlockIndex is a required field
+	ContentBlockIndex *int64 `locationName:"contentBlockIndex" type:"integer" required:"true"`
+
+	// The delta for a content block delta event.
+	//
+	// Delta is a required field
+	Delta *ContentBlockDelta `locationName:"delta" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContentBlockDeltaEvent) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContentBlockDeltaEvent) GoString() string {
+	return s.String()
+}
+
+// SetContentBlockIndex sets the ContentBlockIndex field's value.
+func (s *ContentBlockDeltaEvent) SetContentBlockIndex(v int64) *ContentBlockDeltaEvent {
+	s.ContentBlockIndex = &v
+	return s
+}
+
+// SetDelta sets the Delta field's value.
+func (s *ContentBlockDeltaEvent) SetDelta(v *ContentBlockDelta) *ContentBlockDeltaEvent {
+	s.Delta = v
+	return s
+}
+
+// The ContentBlockDeltaEvent is and event in the ConverseStreamOutput_ group of events.
+func (s *ContentBlockDeltaEvent) eventConverseStreamOutput_() {}
+
+// UnmarshalEvent unmarshals the EventStream Message into the ContentBlockDeltaEvent value.
+// This method is only used internally within the SDK's EventStream handling.
+func (s *ContentBlockDeltaEvent) UnmarshalEvent(
+	payloadUnmarshaler protocol.PayloadUnmarshaler,
+	msg eventstream.Message,
+) error {
+	if err := payloadUnmarshaler.UnmarshalPayload(
+		bytes.NewReader(msg.Payload), s,
+	); err != nil {
+		return err
+	}
+	return nil
+}
+
+// MarshalEvent marshals the type into an stream event value. This method
+// should only used internally within the SDK's EventStream handling.
+func (s *ContentBlockDeltaEvent) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
+	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.EventMessageType))
+	var buf bytes.Buffer
+	if err = pm.MarshalPayload(&buf, s); err != nil {
+		return eventstream.Message{}, err
+	}
+	msg.Payload = buf.Bytes()
+	return msg, err
+}
+
+// Content block start information.
+type ContentBlockStart struct {
+	_ struct{} `type:"structure"`
+
+	// Information about a tool that the model is requesting to use.
+	ToolUse *ToolUseBlockStart `locationName:"toolUse" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContentBlockStart) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContentBlockStart) GoString() string {
+	return s.String()
+}
+
+// SetToolUse sets the ToolUse field's value.
+func (s *ContentBlockStart) SetToolUse(v *ToolUseBlockStart) *ContentBlockStart {
+	s.ToolUse = v
+	return s
+}
+
+// Content block start event.
+type ContentBlockStartEvent struct {
+	_ struct{} `type:"structure"`
+
+	// The index for a content block start event.
+	//
+	// ContentBlockIndex is a required field
+	ContentBlockIndex *int64 `locationName:"contentBlockIndex" type:"integer" required:"true"`
+
+	// Start information about a content block start event.
+	//
+	// Start is a required field
+	Start *ContentBlockStart `locationName:"start" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContentBlockStartEvent) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContentBlockStartEvent) GoString() string {
+	return s.String()
+}
+
+// SetContentBlockIndex sets the ContentBlockIndex field's value.
+func (s *ContentBlockStartEvent) SetContentBlockIndex(v int64) *ContentBlockStartEvent {
+	s.ContentBlockIndex = &v
+	return s
+}
+
+// SetStart sets the Start field's value.
+func (s *ContentBlockStartEvent) SetStart(v *ContentBlockStart) *ContentBlockStartEvent {
+	s.Start = v
+	return s
+}
+
+// The ContentBlockStartEvent is and event in the ConverseStreamOutput_ group of events.
+func (s *ContentBlockStartEvent) eventConverseStreamOutput_() {}
+
+// UnmarshalEvent unmarshals the EventStream Message into the ContentBlockStartEvent value.
+// This method is only used internally within the SDK's EventStream handling.
+func (s *ContentBlockStartEvent) UnmarshalEvent(
+	payloadUnmarshaler protocol.PayloadUnmarshaler,
+	msg eventstream.Message,
+) error {
+	if err := payloadUnmarshaler.UnmarshalPayload(
+		bytes.NewReader(msg.Payload), s,
+	); err != nil {
+		return err
+	}
+	return nil
+}
+
+// MarshalEvent marshals the type into an stream event value. This method
+// should only used internally within the SDK's EventStream handling.
+func (s *ContentBlockStartEvent) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
+	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.EventMessageType))
+	var buf bytes.Buffer
+	if err = pm.MarshalPayload(&buf, s); err != nil {
+		return eventstream.Message{}, err
+	}
+	msg.Payload = buf.Bytes()
+	return msg, err
+}
+
+// A content block stop event.
+type ContentBlockStopEvent struct {
+	_ struct{} `type:"structure"`
+
+	// The index for a content block.
+	//
+	// ContentBlockIndex is a required field
+	ContentBlockIndex *int64 `locationName:"contentBlockIndex" type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContentBlockStopEvent) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContentBlockStopEvent) GoString() string {
+	return s.String()
+}
+
+// SetContentBlockIndex sets the ContentBlockIndex field's value.
+func (s *ContentBlockStopEvent) SetContentBlockIndex(v int64) *ContentBlockStopEvent {
+	s.ContentBlockIndex = &v
+	return s
+}
+
+// The ContentBlockStopEvent is and event in the ConverseStreamOutput_ group of events.
+func (s *ContentBlockStopEvent) eventConverseStreamOutput_() {}
+
+// UnmarshalEvent unmarshals the EventStream Message into the ContentBlockStopEvent value.
+// This method is only used internally within the SDK's EventStream handling.
+func (s *ContentBlockStopEvent) UnmarshalEvent(
+	payloadUnmarshaler protocol.PayloadUnmarshaler,
+	msg eventstream.Message,
+) error {
+	if err := payloadUnmarshaler.UnmarshalPayload(
+		bytes.NewReader(msg.Payload), s,
+	); err != nil {
+		return err
+	}
+	return nil
+}
+
+// MarshalEvent marshals the type into an stream event value. This method
+// should only used internally within the SDK's EventStream handling.
+func (s *ContentBlockStopEvent) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
+	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.EventMessageType))
+	var buf bytes.Buffer
+	if err = pm.MarshalPayload(&buf, s); err != nil {
+		return eventstream.Message{}, err
+	}
+	msg.Payload = buf.Bytes()
+	return msg, err
+}
+
+type ConverseInput struct {
+	_ struct{} `type:"structure"`
+
+	// Additional model parameters field paths to return in the response. Converse
+	// returns the requested fields as a JSON Pointer object in the additionalModelResultFields
+	// field. The following is example JSON for additionalModelResponseFieldPaths.
+	//
+	// [ "/stop_sequence" ]
+	//
+	// For information about the JSON Pointer syntax, see the Internet Engineering
+	// Task Force (IETF) (https://datatracker.ietf.org/doc/html/rfc6901) documentation.
+	//
+	// Converse rejects an empty JSON Pointer or incorrectly structured JSON Pointer
+	// with a 400 error code. if the JSON Pointer is valid, but the requested field
+	// is not in the model response, it is ignored by Converse.
+	AdditionalModelResponseFieldPaths []*string `locationName:"additionalModelResponseFieldPaths" type:"list"`
+
+	// Inference parameters to pass to the model. Converse supports a base set of
+	// inference parameters. If you need to pass additional parameters that the
+	// model supports, use the additionalModelRequestFields request field.
+	InferenceConfig *InferenceConfiguration `locationName:"inferenceConfig" type:"structure"`
+
+	// The messages that you want to send to the model.
+	//
+	// Messages is a required field
+	Messages []*Message `locationName:"messages" type:"list" required:"true"`
+
+	// The identifier for the model that you want to call.
+	//
+	// The modelId to provide depends on the type of model that you use:
+	//
+	//    * If you use a base model, specify the model ID or its ARN. For a list
+	//    of model IDs for base models, see Amazon Bedrock base model IDs (on-demand
+	//    throughput) (https://docs.aws.amazon.com/bedrock/latest/userguide/model-ids.html#model-ids-arns)
+	//    in the Amazon Bedrock User Guide.
+	//
+	//    * If you use a provisioned model, specify the ARN of the Provisioned Throughput.
+	//    For more information, see Run inference using a Provisioned Throughput
+	//    (https://docs.aws.amazon.com/bedrock/latest/userguide/prov-thru-use.html)
+	//    in the Amazon Bedrock User Guide.
+	//
+	//    * If you use a custom model, first purchase Provisioned Throughput for
+	//    it. Then specify the ARN of the resulting provisioned model. For more
+	//    information, see Use a custom model in Amazon Bedrock (https://docs.aws.amazon.com/bedrock/latest/userguide/model-customization-use.html)
+	//    in the Amazon Bedrock User Guide.
+	//
+	// ModelId is a required field
+	ModelId *string `location:"uri" locationName:"modelId" min:"1" type:"string" required:"true"`
+
+	// A system prompt to pass to the model.
+	System []*SystemContentBlock `locationName:"system" type:"list"`
+
+	// Configuration information for the tools that the model can use when generating
+	// a response.
+	//
+	// This field is only supported by Anthropic Claude 3, Cohere Command R, Cohere
+	// Command R+, and Mistral Large models.
+	ToolConfig *ToolConfiguration `locationName:"toolConfig" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConverseInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConverseInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ConverseInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ConverseInput"}
+	if s.Messages == nil {
+		invalidParams.Add(request.NewErrParamRequired("Messages"))
+	}
+	if s.ModelId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ModelId"))
+	}
+	if s.ModelId != nil && len(*s.ModelId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ModelId", 1))
+	}
+	if s.InferenceConfig != nil {
+		if err := s.InferenceConfig.Validate(); err != nil {
+			invalidParams.AddNested("InferenceConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Messages != nil {
+		for i, v := range s.Messages {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Messages", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.System != nil {
+		for i, v := range s.System {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "System", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.ToolConfig != nil {
+		if err := s.ToolConfig.Validate(); err != nil {
+			invalidParams.AddNested("ToolConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAdditionalModelResponseFieldPaths sets the AdditionalModelResponseFieldPaths field's value.
+func (s *ConverseInput) SetAdditionalModelResponseFieldPaths(v []*string) *ConverseInput {
+	s.AdditionalModelResponseFieldPaths = v
+	return s
+}
+
+// SetInferenceConfig sets the InferenceConfig field's value.
+func (s *ConverseInput) SetInferenceConfig(v *InferenceConfiguration) *ConverseInput {
+	s.InferenceConfig = v
+	return s
+}
+
+// SetMessages sets the Messages field's value.
+func (s *ConverseInput) SetMessages(v []*Message) *ConverseInput {
+	s.Messages = v
+	return s
+}
+
+// SetModelId sets the ModelId field's value.
+func (s *ConverseInput) SetModelId(v string) *ConverseInput {
+	s.ModelId = &v
+	return s
+}
+
+// SetSystem sets the System field's value.
+func (s *ConverseInput) SetSystem(v []*SystemContentBlock) *ConverseInput {
+	s.System = v
+	return s
+}
+
+// SetToolConfig sets the ToolConfig field's value.
+func (s *ConverseInput) SetToolConfig(v *ToolConfiguration) *ConverseInput {
+	s.ToolConfig = v
+	return s
+}
+
+// Metrics for a call to Converse (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_runtime_Converse.html).
+type ConverseMetrics struct {
+	_ struct{} `type:"structure"`
+
+	// The latency of the call to Converse, in milliseconds.
+	//
+	// LatencyMs is a required field
+	LatencyMs *int64 `locationName:"latencyMs" type:"long" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConverseMetrics) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConverseMetrics) GoString() string {
+	return s.String()
+}
+
+// SetLatencyMs sets the LatencyMs field's value.
+func (s *ConverseMetrics) SetLatencyMs(v int64) *ConverseMetrics {
+	s.LatencyMs = &v
+	return s
+}
+
+type ConverseOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Metrics for the call to Converse.
+	//
+	// Metrics is a required field
+	Metrics *ConverseMetrics `locationName:"metrics" type:"structure" required:"true"`
+
+	// The result from the call to Converse.
+	//
+	// Output is a required field
+	Output *ConverseOutput_ `locationName:"output" type:"structure" required:"true"`
+
+	// The reason why the model stopped generating output.
+	//
+	// StopReason is a required field
+	StopReason *string `locationName:"stopReason" type:"string" required:"true" enum:"StopReason"`
+
+	// The total number of tokens used in the call to Converse. The total includes
+	// the tokens input to the model and the tokens generated by the model.
+	//
+	// Usage is a required field
+	Usage *TokenUsage `locationName:"usage" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConverseOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConverseOutput) GoString() string {
+	return s.String()
+}
+
+// SetMetrics sets the Metrics field's value.
+func (s *ConverseOutput) SetMetrics(v *ConverseMetrics) *ConverseOutput {
+	s.Metrics = v
+	return s
+}
+
+// SetOutput sets the Output field's value.
+func (s *ConverseOutput) SetOutput(v *ConverseOutput_) *ConverseOutput {
+	s.Output = v
+	return s
+}
+
+// SetStopReason sets the StopReason field's value.
+func (s *ConverseOutput) SetStopReason(v string) *ConverseOutput {
+	s.StopReason = &v
+	return s
+}
+
+// SetUsage sets the Usage field's value.
+func (s *ConverseOutput) SetUsage(v *TokenUsage) *ConverseOutput {
+	s.Usage = v
+	return s
+}
+
+// The output from a call to Converse (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_runtime_Converse.html).
+type ConverseOutput_ struct {
+	_ struct{} `type:"structure"`
+
+	// The message that the model generates.
+	Message *Message `locationName:"message" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConverseOutput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConverseOutput_) GoString() string {
+	return s.String()
+}
+
+// SetMessage sets the Message field's value.
+func (s *ConverseOutput_) SetMessage(v *Message) *ConverseOutput_ {
+	s.Message = v
+	return s
+}
+
+type ConverseStreamInput struct {
+	_ struct{} `type:"structure"`
+
+	// Additional model parameters field paths to return in the response. ConverseStream
+	// returns the requested fields as a JSON Pointer object in the additionalModelResultFields
+	// field. The following is example JSON for additionalModelResponseFieldPaths.
+	//
+	// [ "/stop_sequence" ]
+	//
+	// For information about the JSON Pointer syntax, see the Internet Engineering
+	// Task Force (IETF) (https://datatracker.ietf.org/doc/html/rfc6901) documentation.
+	//
+	// ConverseStream rejects an empty JSON Pointer or incorrectly structured JSON
+	// Pointer with a 400 error code. if the JSON Pointer is valid, but the requested
+	// field is not in the model response, it is ignored by ConverseStream.
+	AdditionalModelResponseFieldPaths []*string `locationName:"additionalModelResponseFieldPaths" type:"list"`
+
+	// Inference parameters to pass to the model. ConverseStream supports a base
+	// set of inference parameters. If you need to pass additional parameters that
+	// the model supports, use the additionalModelRequestFields request field.
+	InferenceConfig *InferenceConfiguration `locationName:"inferenceConfig" type:"structure"`
+
+	// The messages that you want to send to the model.
+	//
+	// Messages is a required field
+	Messages []*Message `locationName:"messages" type:"list" required:"true"`
+
+	// The ID for the model.
+	//
+	// The modelId to provide depends on the type of model that you use:
+	//
+	//    * If you use a base model, specify the model ID or its ARN. For a list
+	//    of model IDs for base models, see Amazon Bedrock base model IDs (on-demand
+	//    throughput) (https://docs.aws.amazon.com/bedrock/latest/userguide/model-ids.html#model-ids-arns)
+	//    in the Amazon Bedrock User Guide.
+	//
+	//    * If you use a provisioned model, specify the ARN of the Provisioned Throughput.
+	//    For more information, see Run inference using a Provisioned Throughput
+	//    (https://docs.aws.amazon.com/bedrock/latest/userguide/prov-thru-use.html)
+	//    in the Amazon Bedrock User Guide.
+	//
+	//    * If you use a custom model, first purchase Provisioned Throughput for
+	//    it. Then specify the ARN of the resulting provisioned model. For more
+	//    information, see Use a custom model in Amazon Bedrock (https://docs.aws.amazon.com/bedrock/latest/userguide/model-customization-use.html)
+	//    in the Amazon Bedrock User Guide.
+	//
+	// ModelId is a required field
+	ModelId *string `location:"uri" locationName:"modelId" min:"1" type:"string" required:"true"`
+
+	// A system prompt to send to the model.
+	System []*SystemContentBlock `locationName:"system" type:"list"`
+
+	// Configuration information for the tools that the model can use when generating
+	// a response.
+	//
+	// This field is only supported by Anthropic Claude 3 models.
+	ToolConfig *ToolConfiguration `locationName:"toolConfig" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConverseStreamInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConverseStreamInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ConverseStreamInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ConverseStreamInput"}
+	if s.Messages == nil {
+		invalidParams.Add(request.NewErrParamRequired("Messages"))
+	}
+	if s.ModelId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ModelId"))
+	}
+	if s.ModelId != nil && len(*s.ModelId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ModelId", 1))
+	}
+	if s.InferenceConfig != nil {
+		if err := s.InferenceConfig.Validate(); err != nil {
+			invalidParams.AddNested("InferenceConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Messages != nil {
+		for i, v := range s.Messages {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Messages", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.System != nil {
+		for i, v := range s.System {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "System", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.ToolConfig != nil {
+		if err := s.ToolConfig.Validate(); err != nil {
+			invalidParams.AddNested("ToolConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAdditionalModelResponseFieldPaths sets the AdditionalModelResponseFieldPaths field's value.
+func (s *ConverseStreamInput) SetAdditionalModelResponseFieldPaths(v []*string) *ConverseStreamInput {
+	s.AdditionalModelResponseFieldPaths = v
+	return s
+}
+
+// SetInferenceConfig sets the InferenceConfig field's value.
+func (s *ConverseStreamInput) SetInferenceConfig(v *InferenceConfiguration) *ConverseStreamInput {
+	s.InferenceConfig = v
+	return s
+}
+
+// SetMessages sets the Messages field's value.
+func (s *ConverseStreamInput) SetMessages(v []*Message) *ConverseStreamInput {
+	s.Messages = v
+	return s
+}
+
+// SetModelId sets the ModelId field's value.
+func (s *ConverseStreamInput) SetModelId(v string) *ConverseStreamInput {
+	s.ModelId = &v
+	return s
+}
+
+// SetSystem sets the System field's value.
+func (s *ConverseStreamInput) SetSystem(v []*SystemContentBlock) *ConverseStreamInput {
+	s.System = v
+	return s
+}
+
+// SetToolConfig sets the ToolConfig field's value.
+func (s *ConverseStreamInput) SetToolConfig(v *ToolConfiguration) *ConverseStreamInput {
+	s.ToolConfig = v
+	return s
+}
+
+// A conversation stream metadata event.
+type ConverseStreamMetadataEvent struct {
+	_ struct{} `type:"structure"`
+
+	// The metrics for the conversation stream metadata event.
+	//
+	// Metrics is a required field
+	Metrics *ConverseStreamMetrics `locationName:"metrics" type:"structure" required:"true"`
+
+	// Usage information for the conversation stream event.
+	//
+	// Usage is a required field
+	Usage *TokenUsage `locationName:"usage" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConverseStreamMetadataEvent) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConverseStreamMetadataEvent) GoString() string {
+	return s.String()
+}
+
+// SetMetrics sets the Metrics field's value.
+func (s *ConverseStreamMetadataEvent) SetMetrics(v *ConverseStreamMetrics) *ConverseStreamMetadataEvent {
+	s.Metrics = v
+	return s
+}
+
+// SetUsage sets the Usage field's value.
+func (s *ConverseStreamMetadataEvent) SetUsage(v *TokenUsage) *ConverseStreamMetadataEvent {
+	s.Usage = v
+	return s
+}
+
+// The ConverseStreamMetadataEvent is and event in the ConverseStreamOutput_ group of events.
+func (s *ConverseStreamMetadataEvent) eventConverseStreamOutput_() {}
+
+// UnmarshalEvent unmarshals the EventStream Message into the ConverseStreamMetadataEvent value.
+// This method is only used internally within the SDK's EventStream handling.
+func (s *ConverseStreamMetadataEvent) UnmarshalEvent(
+	payloadUnmarshaler protocol.PayloadUnmarshaler,
+	msg eventstream.Message,
+) error {
+	if err := payloadUnmarshaler.UnmarshalPayload(
+		bytes.NewReader(msg.Payload), s,
+	); err != nil {
+		return err
+	}
+	return nil
+}
+
+// MarshalEvent marshals the type into an stream event value. This method
+// should only used internally within the SDK's EventStream handling.
+func (s *ConverseStreamMetadataEvent) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
+	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.EventMessageType))
+	var buf bytes.Buffer
+	if err = pm.MarshalPayload(&buf, s); err != nil {
+		return eventstream.Message{}, err
+	}
+	msg.Payload = buf.Bytes()
+	return msg, err
+}
+
+// Metrics for the stream.
+type ConverseStreamMetrics struct {
+	_ struct{} `type:"structure"`
+
+	// The latency for the streaming request, in milliseconds.
+	//
+	// LatencyMs is a required field
+	LatencyMs *int64 `locationName:"latencyMs" type:"long" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConverseStreamMetrics) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConverseStreamMetrics) GoString() string {
+	return s.String()
+}
+
+// SetLatencyMs sets the LatencyMs field's value.
+func (s *ConverseStreamMetrics) SetLatencyMs(v int64) *ConverseStreamMetrics {
+	s.LatencyMs = &v
+	return s
+}
+
+type ConverseStreamOutput struct {
+	_ struct{} `type:"structure" payload:"Stream"`
+
+	eventStream *ConverseStreamEventStream
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConverseStreamOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConverseStreamOutput) GoString() string {
+	return s.String()
+}
+
+// GetStream returns the type to interact with the event stream.
+func (s *ConverseStreamOutput) GetStream() *ConverseStreamEventStream {
+	return s.eventStream
+}
+
+// ConverseStreamOutput_Event groups together all EventStream
+// events writes for ConverseStreamOutput_.
+//
+// These events are:
+//
+//   - ContentBlockDeltaEvent
+//   - ContentBlockStartEvent
+//   - ContentBlockStopEvent
+//   - MessageStartEvent
+//   - MessageStopEvent
+//   - ConverseStreamMetadataEvent
+type ConverseStreamOutput_Event interface {
+	eventConverseStreamOutput_()
+	eventstreamapi.Marshaler
+	eventstreamapi.Unmarshaler
+}
+
+// ConverseStreamOutput_Reader provides the interface for reading to the stream. The
+// default implementation for this interface will be ConverseStreamOutput_.
+//
+// The reader's Close method must allow multiple concurrent calls.
+//
+// These events are:
+//
+//   - ContentBlockDeltaEvent
+//   - ContentBlockStartEvent
+//   - ContentBlockStopEvent
+//   - MessageStartEvent
+//   - MessageStopEvent
+//   - ConverseStreamMetadataEvent
+//   - ConverseStreamOutput_UnknownEvent
+type ConverseStreamOutput_Reader interface {
+	// Returns a channel of events as they are read from the event stream.
+	Events() <-chan ConverseStreamOutput_Event
+
+	// Close will stop the reader reading events from the stream.
+	Close() error
+
+	// Returns any error that has occurred while reading from the event stream.
+	Err() error
+}
+
+type readConverseStreamOutput_ struct {
+	eventReader *eventstreamapi.EventReader
+	stream      chan ConverseStreamOutput_Event
+	err         *eventstreamapi.OnceError
+
+	done      chan struct{}
+	closeOnce sync.Once
+}
+
+func newReadConverseStreamOutput_(eventReader *eventstreamapi.EventReader) *readConverseStreamOutput_ {
+	r := &readConverseStreamOutput_{
+		eventReader: eventReader,
+		stream:      make(chan ConverseStreamOutput_Event),
+		done:        make(chan struct{}),
+		err:         eventstreamapi.NewOnceError(),
+	}
+	go r.readEventStream()
+
+	return r
+}
+
+// Close will close the underlying event stream reader.
+func (r *readConverseStreamOutput_) Close() error {
+	r.closeOnce.Do(r.safeClose)
+	return r.Err()
+}
+
+func (r *readConverseStreamOutput_) ErrorSet() <-chan struct{} {
+	return r.err.ErrorSet()
+}
+
+func (r *readConverseStreamOutput_) Closed() <-chan struct{} {
+	return r.done
+}
+
+func (r *readConverseStreamOutput_) safeClose() {
+	close(r.done)
+}
+
+func (r *readConverseStreamOutput_) Err() error {
+	return r.err.Err()
+}
+
+func (r *readConverseStreamOutput_) Events() <-chan ConverseStreamOutput_Event {
+	return r.stream
+}
+
+func (r *readConverseStreamOutput_) readEventStream() {
+	defer r.Close()
+	defer close(r.stream)
+
+	for {
+		event, err := r.eventReader.ReadEvent()
+		if err != nil {
+			if err == io.EOF {
+				return
+			}
+			select {
+			case <-r.done:
+				// If closed already ignore the error
+				return
+			default:
+			}
+			if _, ok := err.(*eventstreamapi.UnknownMessageTypeError); ok {
+				continue
+			}
+			r.err.SetError(err)
+			return
+		}
+
+		select {
+		case r.stream <- event.(ConverseStreamOutput_Event):
+		case <-r.done:
+			return
+		}
+	}
+}
+
+type unmarshalerForConverseStreamOutput_Event struct {
+	metadata protocol.ResponseMetadata
+}
+
+func (u unmarshalerForConverseStreamOutput_Event) UnmarshalerForEventName(eventType string) (eventstreamapi.Unmarshaler, error) {
+	switch eventType {
+	case "contentBlockDelta":
+		return &ContentBlockDeltaEvent{}, nil
+	case "contentBlockStart":
+		return &ContentBlockStartEvent{}, nil
+	case "contentBlockStop":
+		return &ContentBlockStopEvent{}, nil
+	case "messageStart":
+		return &MessageStartEvent{}, nil
+	case "messageStop":
+		return &MessageStopEvent{}, nil
+	case "metadata":
+		return &ConverseStreamMetadataEvent{}, nil
+	case "internalServerException":
+		return newErrorInternalServerException(u.metadata).(eventstreamapi.Unmarshaler), nil
+	case "modelStreamErrorException":
+		return newErrorModelStreamErrorException(u.metadata).(eventstreamapi.Unmarshaler), nil
+	case "throttlingException":
+		return newErrorThrottlingException(u.metadata).(eventstreamapi.Unmarshaler), nil
+	case "validationException":
+		return newErrorValidationException(u.metadata).(eventstreamapi.Unmarshaler), nil
+	default:
+		return &ConverseStreamOutput_UnknownEvent{Type: eventType}, nil
+	}
+}
+
+// ConverseStreamOutput_UnknownEvent provides a failsafe event for the
+// ConverseStreamOutput_ group of events when an unknown event is received.
+type ConverseStreamOutput_UnknownEvent struct {
+	Type    string
+	Message eventstream.Message
+}
+
+// The ConverseStreamOutput_UnknownEvent is and event in the ConverseStreamOutput_
+// group of events.
+func (s *ConverseStreamOutput_UnknownEvent) eventConverseStreamOutput_() {}
+
+// MarshalEvent marshals the type into an stream event value. This method
+// should only used internally within the SDK's EventStream handling.
+func (e *ConverseStreamOutput_UnknownEvent) MarshalEvent(pm protocol.PayloadMarshaler) (
+	msg eventstream.Message, err error,
+) {
+	return e.Message.Clone(), nil
+}
+
+// UnmarshalEvent unmarshals the EventStream Message into the ConverseStreamOutput_ value.
+// This method is only used internally within the SDK's EventStream handling.
+func (e *ConverseStreamOutput_UnknownEvent) UnmarshalEvent(
+	payloadUnmarshaler protocol.PayloadUnmarshaler,
+	msg eventstream.Message,
+) error {
+	e.Message = msg.Clone()
+	return nil
+}
+
+// Image content for a message.
+type ImageBlock struct {
+	_ struct{} `type:"structure"`
+
+	// The format of the image.
+	//
+	// Format is a required field
+	Format *string `locationName:"format" type:"string" required:"true" enum:"ImageFormat"`
+
+	// The source for the image.
+	//
+	// Source is a required field
+	Source *ImageSource `locationName:"source" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImageBlock) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImageBlock) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ImageBlock) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ImageBlock"}
+	if s.Format == nil {
+		invalidParams.Add(request.NewErrParamRequired("Format"))
+	}
+	if s.Source == nil {
+		invalidParams.Add(request.NewErrParamRequired("Source"))
+	}
+	if s.Source != nil {
+		if err := s.Source.Validate(); err != nil {
+			invalidParams.AddNested("Source", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFormat sets the Format field's value.
+func (s *ImageBlock) SetFormat(v string) *ImageBlock {
+	s.Format = &v
+	return s
+}
+
+// SetSource sets the Source field's value.
+func (s *ImageBlock) SetSource(v *ImageSource) *ImageBlock {
+	s.Source = v
+	return s
+}
+
+// The source for an image.
+type ImageSource struct {
+	_ struct{} `type:"structure"`
+
+	// The raw image bytes for the image. If you use an AWS SDK, you don't need
+	// to base64 encode the image bytes.
+	// Bytes is automatically base64 encoded/decoded by the SDK.
+	Bytes []byte `locationName:"bytes" min:"1" type:"blob"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImageSource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImageSource) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ImageSource) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ImageSource"}
+	if s.Bytes != nil && len(s.Bytes) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Bytes", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBytes sets the Bytes field's value.
+func (s *ImageSource) SetBytes(v []byte) *ImageSource {
+	s.Bytes = v
+	return s
+}
+
+// Base inference parameters to pass to a model in a call to Converse (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_runtime_Converse.html)
+// or ConverseStream (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_runtime_ConverseStream.html).
+// For more information, see Inference parameters for foundation models (https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters.html).
+//
+// If you need to pass additional parameters that the model supports, use the
+// additionalModelRequestFields request field in the call to Converse or ConverseStream.
+// For more information, see Model parameters (https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters.html).
+type InferenceConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of tokens to allow in the generated response. The default
+	// value is the maximum allowed value for the model that you are using. For
+	// more information, see Inference parameters for foundatio{ "messages": [ {
+	// "role": "user", "content": [ { "text": "what's the weather in Queens, NY
+	// and Austin, TX?" } ] }, { "role": "assistant", "content": [ { "toolUse":
+	// { "toolUseId": "1", "name": "get_weather", "input": { "city": "Queens", "state":
+	// "NY" } } }, { "toolUse": { "toolUseId": "2", "name": "get_weather", "input":
+	// { "city": "Austin", "state": "TX" } } } ] }, { "role": "user", "content":
+	// [ { "toolResult": { "toolUseId": "2", "content": [ { "json": { "weather":
+	// "40" } } ] } }, { "text": "..." }, { "toolResult": { "toolUseId": "1", "content":
+	// [ { "text": "result text" } ] } } ] } ], "toolConfig": { "tools": [ { "name":
+	// "get_weather", "description": "Get weather", "inputSchema": { "type": "object",
+	// "properties": { "city": { "type": "string", "description": "City of location"
+	// }, "state": { "type": "string", "description": "State of location" } }, "required":
+	// ["city", "state"] } } ] } } n models (https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters.html).
+	MaxTokens *int64 `locationName:"maxTokens" min:"1" type:"integer"`
+
+	// A list of stop sequences. A stop sequence is a sequence of characters that
+	// causes the model to stop generating the response.
+	StopSequences []*string `locationName:"stopSequences" type:"list"`
+
+	// The likelihood of the model selecting higher-probability options while generating
+	// a response. A lower value makes the model more likely to choose higher-probability
+	// options, while a higher value makes the model more likely to choose lower-probability
+	// options.
+	//
+	// The default value is the default value for the model that you are using.
+	// For more information, see Inference parameters for foundation models (https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters.html).
+	Temperature *float64 `locationName:"temperature" type:"float"`
+
+	// The percentage of most-likely candidates that the model considers for the
+	// next token. For example, if you choose a value of 0.8 for topP, the model
+	// selects from the top 80% of the probability distribution of tokens that could
+	// be next in the sequence.
+	//
+	// The default value is the default value for the model that you are using.
+	// For more information, see Inference parameters for foundation models (https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters.html).
+	TopP *float64 `locationName:"topP" type:"float"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InferenceConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InferenceConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *InferenceConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "InferenceConfiguration"}
+	if s.MaxTokens != nil && *s.MaxTokens < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxTokens", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxTokens sets the MaxTokens field's value.
+func (s *InferenceConfiguration) SetMaxTokens(v int64) *InferenceConfiguration {
+	s.MaxTokens = &v
+	return s
+}
+
+// SetStopSequences sets the StopSequences field's value.
+func (s *InferenceConfiguration) SetStopSequences(v []*string) *InferenceConfiguration {
+	s.StopSequences = v
+	return s
+}
+
+// SetTemperature sets the Temperature field's value.
+func (s *InferenceConfiguration) SetTemperature(v float64) *InferenceConfiguration {
+	s.Temperature = &v
+	return s
+}
+
+// SetTopP sets the TopP field's value.
+func (s *InferenceConfiguration) SetTopP(v float64) *InferenceConfiguration {
+	s.TopP = &v
+	return s
+}
+
 // An internal server error occurred. Retry your request.
 type InternalServerException struct {
 	_            struct{}                  `type:"structure"`
@@ -499,6 +2282,9 @@ func (s InternalServerException) String() string {
 func (s InternalServerException) GoString() string {
 	return s.String()
 }
+
+// The InternalServerException is and event in the ConverseStreamOutput_ group of events.
+func (s *InternalServerException) eventConverseStreamOutput_() {}
 
 // The InternalServerException is and event in the ResponseStream group of events.
 func (s *InternalServerException) eventResponseStream() {}
@@ -947,6 +2733,204 @@ func (s *InvokeModelWithResponseStreamOutput) GetStream() *InvokeModelWithRespon
 	return s.eventStream
 }
 
+// A message in the Message (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_runtime_Message.html)
+// field. Use to send a message in a call to Converse (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_runtime_Converse.html).
+type Message struct {
+	_ struct{} `type:"structure"`
+
+	// The message content.
+	//
+	// Content is a required field
+	Content []*ContentBlock `locationName:"content" type:"list" required:"true"`
+
+	// The role that the message plays in the message.
+	//
+	// Role is a required field
+	Role *string `locationName:"role" type:"string" required:"true" enum:"ConversationRole"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Message) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Message) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Message) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Message"}
+	if s.Content == nil {
+		invalidParams.Add(request.NewErrParamRequired("Content"))
+	}
+	if s.Role == nil {
+		invalidParams.Add(request.NewErrParamRequired("Role"))
+	}
+	if s.Content != nil {
+		for i, v := range s.Content {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Content", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContent sets the Content field's value.
+func (s *Message) SetContent(v []*ContentBlock) *Message {
+	s.Content = v
+	return s
+}
+
+// SetRole sets the Role field's value.
+func (s *Message) SetRole(v string) *Message {
+	s.Role = &v
+	return s
+}
+
+// The start of a message.
+type MessageStartEvent struct {
+	_ struct{} `type:"structure"`
+
+	// The role for the message.
+	//
+	// Role is a required field
+	Role *string `locationName:"role" type:"string" required:"true" enum:"ConversationRole"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MessageStartEvent) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MessageStartEvent) GoString() string {
+	return s.String()
+}
+
+// SetRole sets the Role field's value.
+func (s *MessageStartEvent) SetRole(v string) *MessageStartEvent {
+	s.Role = &v
+	return s
+}
+
+// The MessageStartEvent is and event in the ConverseStreamOutput_ group of events.
+func (s *MessageStartEvent) eventConverseStreamOutput_() {}
+
+// UnmarshalEvent unmarshals the EventStream Message into the MessageStartEvent value.
+// This method is only used internally within the SDK's EventStream handling.
+func (s *MessageStartEvent) UnmarshalEvent(
+	payloadUnmarshaler protocol.PayloadUnmarshaler,
+	msg eventstream.Message,
+) error {
+	if err := payloadUnmarshaler.UnmarshalPayload(
+		bytes.NewReader(msg.Payload), s,
+	); err != nil {
+		return err
+	}
+	return nil
+}
+
+// MarshalEvent marshals the type into an stream event value. This method
+// should only used internally within the SDK's EventStream handling.
+func (s *MessageStartEvent) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
+	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.EventMessageType))
+	var buf bytes.Buffer
+	if err = pm.MarshalPayload(&buf, s); err != nil {
+		return eventstream.Message{}, err
+	}
+	msg.Payload = buf.Bytes()
+	return msg, err
+}
+
+// The stop event for a message.
+type MessageStopEvent struct {
+	_ struct{} `type:"structure"`
+
+	// The reason why the model stopped generating output.
+	//
+	// StopReason is a required field
+	StopReason *string `locationName:"stopReason" type:"string" required:"true" enum:"StopReason"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MessageStopEvent) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MessageStopEvent) GoString() string {
+	return s.String()
+}
+
+// SetStopReason sets the StopReason field's value.
+func (s *MessageStopEvent) SetStopReason(v string) *MessageStopEvent {
+	s.StopReason = &v
+	return s
+}
+
+// The MessageStopEvent is and event in the ConverseStreamOutput_ group of events.
+func (s *MessageStopEvent) eventConverseStreamOutput_() {}
+
+// UnmarshalEvent unmarshals the EventStream Message into the MessageStopEvent value.
+// This method is only used internally within the SDK's EventStream handling.
+func (s *MessageStopEvent) UnmarshalEvent(
+	payloadUnmarshaler protocol.PayloadUnmarshaler,
+	msg eventstream.Message,
+) error {
+	if err := payloadUnmarshaler.UnmarshalPayload(
+		bytes.NewReader(msg.Payload), s,
+	); err != nil {
+		return err
+	}
+	return nil
+}
+
+// MarshalEvent marshals the type into an stream event value. This method
+// should only used internally within the SDK's EventStream handling.
+func (s *MessageStopEvent) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
+	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.EventMessageType))
+	var buf bytes.Buffer
+	if err = pm.MarshalPayload(&buf, s); err != nil {
+		return eventstream.Message{}, err
+	}
+	msg.Payload = buf.Bytes()
+	return msg, err
+}
+
 // The request failed due to an error while processing the model.
 type ModelErrorException struct {
 	_            struct{}                  `type:"structure"`
@@ -1112,6 +3096,9 @@ func (s ModelStreamErrorException) String() string {
 func (s ModelStreamErrorException) GoString() string {
 	return s.String()
 }
+
+// The ModelStreamErrorException is and event in the ConverseStreamOutput_ group of events.
+func (s *ModelStreamErrorException) eventConverseStreamOutput_() {}
 
 // The ModelStreamErrorException is and event in the ResponseStream group of events.
 func (s *ModelStreamErrorException) eventResponseStream() {}
@@ -1632,6 +3619,103 @@ func (s *ServiceQuotaExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The model must request a specific tool.
+//
+// This field is only supported by Anthropic Claude 3 models.
+type SpecificToolChoice struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the tool that the model must request.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SpecificToolChoice) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SpecificToolChoice) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SpecificToolChoice) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SpecificToolChoice"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *SpecificToolChoice) SetName(v string) *SpecificToolChoice {
+	s.Name = &v
+	return s
+}
+
+// A system content block
+type SystemContentBlock struct {
+	_ struct{} `type:"structure"`
+
+	// A system prompt for the model.
+	Text *string `locationName:"text" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SystemContentBlock) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SystemContentBlock) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SystemContentBlock) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SystemContentBlock"}
+	if s.Text != nil && len(*s.Text) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Text", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetText sets the Text field's value.
+func (s *SystemContentBlock) SetText(v string) *SystemContentBlock {
+	s.Text = &v
+	return s
+}
+
 // The number of requests exceeds the limit. Resubmit your request later.
 type ThrottlingException struct {
 	_            struct{}                  `type:"structure"`
@@ -1657,6 +3741,9 @@ func (s ThrottlingException) String() string {
 func (s ThrottlingException) GoString() string {
 	return s.String()
 }
+
+// The ThrottlingException is and event in the ConverseStreamOutput_ group of events.
+func (s *ThrottlingException) eventConverseStreamOutput_() {}
 
 // The ThrottlingException is and event in the ResponseStream group of events.
 func (s *ThrottlingException) eventResponseStream() {}
@@ -1725,6 +3812,574 @@ func (s *ThrottlingException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The tokens used in a message API inference call.
+type TokenUsage struct {
+	_ struct{} `type:"structure"`
+
+	// The number of tokens sent in the request to the model.
+	//
+	// InputTokens is a required field
+	InputTokens *int64 `locationName:"inputTokens" type:"integer" required:"true"`
+
+	// The number of tokens that the model generated for the request.
+	//
+	// OutputTokens is a required field
+	OutputTokens *int64 `locationName:"outputTokens" type:"integer" required:"true"`
+
+	// The total of input tokens and tokens generated by the model.
+	//
+	// TotalTokens is a required field
+	TotalTokens *int64 `locationName:"totalTokens" type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TokenUsage) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TokenUsage) GoString() string {
+	return s.String()
+}
+
+// SetInputTokens sets the InputTokens field's value.
+func (s *TokenUsage) SetInputTokens(v int64) *TokenUsage {
+	s.InputTokens = &v
+	return s
+}
+
+// SetOutputTokens sets the OutputTokens field's value.
+func (s *TokenUsage) SetOutputTokens(v int64) *TokenUsage {
+	s.OutputTokens = &v
+	return s
+}
+
+// SetTotalTokens sets the TotalTokens field's value.
+func (s *TokenUsage) SetTotalTokens(v int64) *TokenUsage {
+	s.TotalTokens = &v
+	return s
+}
+
+// Information about a tool that you can use with the Converse API.
+type Tool struct {
+	_ struct{} `type:"structure"`
+
+	// The specfication for the tool.
+	ToolSpec *ToolSpecification `locationName:"toolSpec" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Tool) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Tool) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Tool) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Tool"}
+	if s.ToolSpec != nil {
+		if err := s.ToolSpec.Validate(); err != nil {
+			invalidParams.AddNested("ToolSpec", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetToolSpec sets the ToolSpec field's value.
+func (s *Tool) SetToolSpec(v *ToolSpecification) *Tool {
+	s.ToolSpec = v
+	return s
+}
+
+// Forces a model to use a tool.
+type ToolChoice struct {
+	_ struct{} `type:"structure"`
+
+	// The model must request at least one tool (no text is generated).
+	Any *AnyToolChoice `locationName:"any" type:"structure"`
+
+	// The Model automatically decides if a tool should be called or to whether
+	// to generate text instead.
+	Auto *AutoToolChoice `locationName:"auto" type:"structure"`
+
+	// The Model must request the specified tool.
+	Tool *SpecificToolChoice `locationName:"tool" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ToolChoice) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ToolChoice) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ToolChoice) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ToolChoice"}
+	if s.Tool != nil {
+		if err := s.Tool.Validate(); err != nil {
+			invalidParams.AddNested("Tool", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAny sets the Any field's value.
+func (s *ToolChoice) SetAny(v *AnyToolChoice) *ToolChoice {
+	s.Any = v
+	return s
+}
+
+// SetAuto sets the Auto field's value.
+func (s *ToolChoice) SetAuto(v *AutoToolChoice) *ToolChoice {
+	s.Auto = v
+	return s
+}
+
+// SetTool sets the Tool field's value.
+func (s *ToolChoice) SetTool(v *SpecificToolChoice) *ToolChoice {
+	s.Tool = v
+	return s
+}
+
+// Configuration information for the tools that you pass to a model.
+//
+// This field is only supported by Anthropic Claude 3, Cohere Command R, Cohere
+// Command R+, and Mistral Large models.
+type ToolConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// If supported by model, forces the model to request a tool.
+	ToolChoice *ToolChoice `locationName:"toolChoice" type:"structure"`
+
+	// An array of tools that you want to pass to a model.
+	//
+	// Tools is a required field
+	Tools []*Tool `locationName:"tools" min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ToolConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ToolConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ToolConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ToolConfiguration"}
+	if s.Tools == nil {
+		invalidParams.Add(request.NewErrParamRequired("Tools"))
+	}
+	if s.Tools != nil && len(s.Tools) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tools", 1))
+	}
+	if s.ToolChoice != nil {
+		if err := s.ToolChoice.Validate(); err != nil {
+			invalidParams.AddNested("ToolChoice", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Tools != nil {
+		for i, v := range s.Tools {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tools", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetToolChoice sets the ToolChoice field's value.
+func (s *ToolConfiguration) SetToolChoice(v *ToolChoice) *ToolConfiguration {
+	s.ToolChoice = v
+	return s
+}
+
+// SetTools sets the Tools field's value.
+func (s *ToolConfiguration) SetTools(v []*Tool) *ToolConfiguration {
+	s.Tools = v
+	return s
+}
+
+// The schema for the tool. The top level schema type must be object.
+type ToolInputSchema struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ToolInputSchema) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ToolInputSchema) GoString() string {
+	return s.String()
+}
+
+// A tool result block that contains the results for a tool request that the
+// model previously made.
+type ToolResultBlock struct {
+	_ struct{} `type:"structure"`
+
+	// The content for tool result content block.
+	//
+	// Content is a required field
+	Content []*ToolResultContentBlock `locationName:"content" type:"list" required:"true"`
+
+	// The status for the tool result content block.
+	//
+	// This field is only supported Anthropic Claude 3 models.
+	Status *string `locationName:"status" type:"string" enum:"ToolResultStatus"`
+
+	// The ID of the tool request that this is the result for.
+	//
+	// ToolUseId is a required field
+	ToolUseId *string `locationName:"toolUseId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ToolResultBlock) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ToolResultBlock) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ToolResultBlock) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ToolResultBlock"}
+	if s.Content == nil {
+		invalidParams.Add(request.NewErrParamRequired("Content"))
+	}
+	if s.ToolUseId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ToolUseId"))
+	}
+	if s.ToolUseId != nil && len(*s.ToolUseId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ToolUseId", 1))
+	}
+	if s.Content != nil {
+		for i, v := range s.Content {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Content", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContent sets the Content field's value.
+func (s *ToolResultBlock) SetContent(v []*ToolResultContentBlock) *ToolResultBlock {
+	s.Content = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ToolResultBlock) SetStatus(v string) *ToolResultBlock {
+	s.Status = &v
+	return s
+}
+
+// SetToolUseId sets the ToolUseId field's value.
+func (s *ToolResultBlock) SetToolUseId(v string) *ToolResultBlock {
+	s.ToolUseId = &v
+	return s
+}
+
+// The tool result content block.
+type ToolResultContentBlock struct {
+	_ struct{} `type:"structure"`
+
+	// A tool result that is an image.
+	//
+	// This field is only supported by Anthropic Claude 3 models.
+	Image *ImageBlock `locationName:"image" type:"structure"`
+
+	// A tool result that is text.
+	Text *string `locationName:"text" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ToolResultContentBlock) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ToolResultContentBlock) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ToolResultContentBlock) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ToolResultContentBlock"}
+	if s.Image != nil {
+		if err := s.Image.Validate(); err != nil {
+			invalidParams.AddNested("Image", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetImage sets the Image field's value.
+func (s *ToolResultContentBlock) SetImage(v *ImageBlock) *ToolResultContentBlock {
+	s.Image = v
+	return s
+}
+
+// SetText sets the Text field's value.
+func (s *ToolResultContentBlock) SetText(v string) *ToolResultContentBlock {
+	s.Text = &v
+	return s
+}
+
+// The specification for the tool.
+type ToolSpecification struct {
+	_ struct{} `type:"structure"`
+
+	// The description for the tool.
+	Description *string `locationName:"description" min:"1" type:"string"`
+
+	// The input schema for the tool in JSON format.
+	//
+	// InputSchema is a required field
+	InputSchema *ToolInputSchema `locationName:"inputSchema" type:"structure" required:"true"`
+
+	// The name for the tool.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ToolSpecification) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ToolSpecification) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ToolSpecification) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ToolSpecification"}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.InputSchema == nil {
+		invalidParams.Add(request.NewErrParamRequired("InputSchema"))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *ToolSpecification) SetDescription(v string) *ToolSpecification {
+	s.Description = &v
+	return s
+}
+
+// SetInputSchema sets the InputSchema field's value.
+func (s *ToolSpecification) SetInputSchema(v *ToolInputSchema) *ToolSpecification {
+	s.InputSchema = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ToolSpecification) SetName(v string) *ToolSpecification {
+	s.Name = &v
+	return s
+}
+
+// The delta for a tool use block.
+type ToolUseBlockDelta struct {
+	_ struct{} `type:"structure"`
+
+	// The input for a requested tool.
+	//
+	// Input is a required field
+	Input *string `locationName:"input" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ToolUseBlockDelta) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ToolUseBlockDelta) GoString() string {
+	return s.String()
+}
+
+// SetInput sets the Input field's value.
+func (s *ToolUseBlockDelta) SetInput(v string) *ToolUseBlockDelta {
+	s.Input = &v
+	return s
+}
+
+// The start of a tool use block.
+type ToolUseBlockStart struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the tool that the model is requesting to use.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// The ID for the tool request.
+	//
+	// ToolUseId is a required field
+	ToolUseId *string `locationName:"toolUseId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ToolUseBlockStart) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ToolUseBlockStart) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *ToolUseBlockStart) SetName(v string) *ToolUseBlockStart {
+	s.Name = &v
+	return s
+}
+
+// SetToolUseId sets the ToolUseId field's value.
+func (s *ToolUseBlockStart) SetToolUseId(v string) *ToolUseBlockStart {
+	s.ToolUseId = &v
+	return s
+}
+
 // Input validation failed. Check your request parameters and retry the request.
 type ValidationException struct {
 	_            struct{}                  `type:"structure"`
@@ -1750,6 +4405,9 @@ func (s ValidationException) String() string {
 func (s ValidationException) GoString() string {
 	return s.String()
 }
+
+// The ValidationException is and event in the ConverseStreamOutput_ group of events.
+func (s *ValidationException) eventConverseStreamOutput_() {}
 
 // The ValidationException is and event in the ResponseStream group of events.
 func (s *ValidationException) eventResponseStream() {}
@@ -1816,6 +4474,90 @@ func (s *ValidationException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ValidationException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+const (
+	// ConversationRoleUser is a ConversationRole enum value
+	ConversationRoleUser = "user"
+
+	// ConversationRoleAssistant is a ConversationRole enum value
+	ConversationRoleAssistant = "assistant"
+)
+
+// ConversationRole_Values returns all elements of the ConversationRole enum
+func ConversationRole_Values() []string {
+	return []string{
+		ConversationRoleUser,
+		ConversationRoleAssistant,
+	}
+}
+
+const (
+	// ImageFormatPng is a ImageFormat enum value
+	ImageFormatPng = "png"
+
+	// ImageFormatJpeg is a ImageFormat enum value
+	ImageFormatJpeg = "jpeg"
+
+	// ImageFormatGif is a ImageFormat enum value
+	ImageFormatGif = "gif"
+
+	// ImageFormatWebp is a ImageFormat enum value
+	ImageFormatWebp = "webp"
+)
+
+// ImageFormat_Values returns all elements of the ImageFormat enum
+func ImageFormat_Values() []string {
+	return []string{
+		ImageFormatPng,
+		ImageFormatJpeg,
+		ImageFormatGif,
+		ImageFormatWebp,
+	}
+}
+
+const (
+	// StopReasonEndTurn is a StopReason enum value
+	StopReasonEndTurn = "end_turn"
+
+	// StopReasonToolUse is a StopReason enum value
+	StopReasonToolUse = "tool_use"
+
+	// StopReasonMaxTokens is a StopReason enum value
+	StopReasonMaxTokens = "max_tokens"
+
+	// StopReasonStopSequence is a StopReason enum value
+	StopReasonStopSequence = "stop_sequence"
+
+	// StopReasonContentFiltered is a StopReason enum value
+	StopReasonContentFiltered = "content_filtered"
+)
+
+// StopReason_Values returns all elements of the StopReason enum
+func StopReason_Values() []string {
+	return []string{
+		StopReasonEndTurn,
+		StopReasonToolUse,
+		StopReasonMaxTokens,
+		StopReasonStopSequence,
+		StopReasonContentFiltered,
+	}
+}
+
+const (
+	// ToolResultStatusSuccess is a ToolResultStatus enum value
+	ToolResultStatusSuccess = "success"
+
+	// ToolResultStatusError is a ToolResultStatus enum value
+	ToolResultStatusError = "error"
+)
+
+// ToolResultStatus_Values returns all elements of the ToolResultStatus enum
+func ToolResultStatus_Values() []string {
+	return []string{
+		ToolResultStatusSuccess,
+		ToolResultStatusError,
+	}
 }
 
 const (

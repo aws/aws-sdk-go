@@ -4455,7 +4455,13 @@
         "randomforest",
         "extra-trees",
         "nn-torch",
-        "fastai"
+        "fastai",
+        "cnn-qr",
+        "deepar",
+        "prophet",
+        "npts",
+        "arima",
+        "ets"
       ]
     },
     "AutoMLAlgorithmConfig":{
@@ -7198,7 +7204,9 @@
         "DriftCheckBaselines":{"shape":"DriftCheckBaselines"},
         "AdditionalInferenceSpecifications":{"shape":"AdditionalInferenceSpecifications"},
         "SkipModelValidation":{"shape":"SkipModelValidation"},
-        "SourceUri":{"shape":"ModelPackageSourceUri"}
+        "SourceUri":{"shape":"ModelPackageSourceUri"},
+        "SecurityConfig":{"shape":"ModelPackageSecurityConfig"},
+        "ModelCard":{"shape":"ModelPackageModelCard"}
       }
     },
     "CreateModelPackageOutput":{
@@ -9878,7 +9886,9 @@
         "DriftCheckBaselines":{"shape":"DriftCheckBaselines"},
         "AdditionalInferenceSpecifications":{"shape":"AdditionalInferenceSpecifications"},
         "SkipModelValidation":{"shape":"SkipModelValidation"},
-        "SourceUri":{"shape":"ModelPackageSourceUri"}
+        "SourceUri":{"shape":"ModelPackageSourceUri"},
+        "SecurityConfig":{"shape":"ModelPackageSecurityConfig"},
+        "ModelCard":{"shape":"ModelPackageModelCard"}
       }
     },
     "DescribeModelQualityJobDefinitionRequest":{
@@ -16576,6 +16586,8 @@
         "SamplePayloadUrl":{"shape":"String"},
         "AdditionalInferenceSpecifications":{"shape":"AdditionalInferenceSpecifications"},
         "SourceUri":{"shape":"ModelPackageSourceUri"},
+        "SecurityConfig":{"shape":"ModelPackageSecurityConfig"},
+        "ModelCard":{"shape":"ModelPackageModelCard"},
         "Tags":{"shape":"TagList"},
         "CustomerMetadataProperties":{"shape":"CustomerMetadataMap"},
         "DriftCheckBaselines":{"shape":"DriftCheckBaselines"},
@@ -16679,6 +16691,20 @@
     "ModelPackageGroupSummaryList":{
       "type":"list",
       "member":{"shape":"ModelPackageGroupSummary"}
+    },
+    "ModelPackageModelCard":{
+      "type":"structure",
+      "members":{
+        "ModelCardContent":{"shape":"ModelCardContent"},
+        "ModelCardStatus":{"shape":"ModelCardStatus"}
+      }
+    },
+    "ModelPackageSecurityConfig":{
+      "type":"structure",
+      "required":["KmsKeyId"],
+      "members":{
+        "KmsKeyId":{"shape":"KmsKeyId"}
+      }
     },
     "ModelPackageSortBy":{
       "type":"string",
@@ -21410,7 +21436,8 @@
         "ForecastQuantiles":{"shape":"ForecastQuantiles"},
         "Transformations":{"shape":"TimeSeriesTransformations"},
         "TimeSeriesConfig":{"shape":"TimeSeriesConfig"},
-        "HolidayConfig":{"shape":"HolidayConfig"}
+        "HolidayConfig":{"shape":"HolidayConfig"},
+        "CandidateGenerationConfig":{"shape":"CandidateGenerationConfig"}
       }
     },
     "TimeSeriesForecastingSettings":{
@@ -22741,7 +22768,8 @@
         "CustomerMetadataPropertiesToRemove":{"shape":"CustomerMetadataKeyList"},
         "AdditionalInferenceSpecificationsToAdd":{"shape":"AdditionalInferenceSpecifications"},
         "InferenceSpecification":{"shape":"InferenceSpecification"},
-        "SourceUri":{"shape":"ModelPackageSourceUri"}
+        "SourceUri":{"shape":"ModelPackageSourceUri"},
+        "ModelCard":{"shape":"ModelPackageModelCard"}
       }
     },
     "UpdateModelPackageOutput":{
