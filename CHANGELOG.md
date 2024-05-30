@@ -1,3 +1,20 @@
+Release v1.53.13 (2024-05-30)
+===
+
+### Service Client Updates
+* `service/acm`: Updates service API
+  * add v2 smoke tests and smithy smokeTests trait for SDK testing.
+* `service/bedrock-agent`: Updates service API and documentation
+* `service/bedrock-runtime`: Updates service API and documentation
+* `service/cloudtrail`: Updates service API and documentation
+  * CloudTrail Lake returns PartitionKeys in the GetEventDataStore API response. Events are grouped into partitions based on these keys for better query performance. For example, the calendarday key groups events by day, while combining the calendarday key with the hour key groups them by day and hour.
+* `service/connect`: Updates service API and documentation
+* `service/emr-serverless`: Updates service API, documentation, and paginators
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * Updates Amazon RDS documentation for Aurora Postgres DBname.
+* `service/sagemaker`: Updates service API and documentation
+  * Adds Model Card information as a new component to Model Package. Autopilot launches algorithm selection for TimeSeries modality to generate AutoML candidates per algorithm.
+
 Release v1.53.12 (2024-05-29)
 ===
 

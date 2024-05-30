@@ -6073,6 +6073,39 @@ func (s *AssociateAgentKnowledgeBaseOutput) SetAgentKnowledgeBase(v *AgentKnowle
 	return s
 }
 
+// The vector configuration details for the Bedrock embeddings model.
+type BedrockEmbeddingModelConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The dimensions details for the vector configuration used on the Bedrock embeddings
+	// model.
+	Dimensions *int64 `locationName:"dimensions" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BedrockEmbeddingModelConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BedrockEmbeddingModelConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetDimensions sets the Dimensions field's value.
+func (s *BedrockEmbeddingModelConfiguration) SetDimensions(v int64) *BedrockEmbeddingModelConfiguration {
+	s.Dimensions = &v
+	return s
+}
+
 // Details about how to chunk the documents in the data source. A chunk refers
 // to an excerpt from a data source that is returned when the knowledge base
 // that it belongs to is queried.
@@ -8226,6 +8259,38 @@ func (s DisassociateAgentKnowledgeBaseOutput) String() string {
 // value will be replaced with "sensitive".
 func (s DisassociateAgentKnowledgeBaseOutput) GoString() string {
 	return s.String()
+}
+
+// The configuration details for the embeddings model.
+type EmbeddingModelConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The vector configuration details on the Bedrock embeddings model.
+	BedrockEmbeddingModelConfiguration *BedrockEmbeddingModelConfiguration `locationName:"bedrockEmbeddingModelConfiguration" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EmbeddingModelConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EmbeddingModelConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetBedrockEmbeddingModelConfiguration sets the BedrockEmbeddingModelConfiguration field's value.
+func (s *EmbeddingModelConfiguration) SetBedrockEmbeddingModelConfiguration(v *BedrockEmbeddingModelConfiguration) *EmbeddingModelConfiguration {
+	s.BedrockEmbeddingModelConfiguration = v
+	return s
 }
 
 // Configurations for when you choose fixed-size chunking. If you set the chunkingStrategy
@@ -14636,6 +14701,10 @@ type VectorKnowledgeBaseConfiguration struct {
 	//
 	// EmbeddingModelArn is a required field
 	EmbeddingModelArn *string `locationName:"embeddingModelArn" min:"20" type:"string" required:"true"`
+
+	// The embeddings model configuration details for the vector model used in Knowledge
+	// Base.
+	EmbeddingModelConfiguration *EmbeddingModelConfiguration `locationName:"embeddingModelConfiguration" type:"structure"`
 }
 
 // String returns the string representation.
@@ -14675,6 +14744,12 @@ func (s *VectorKnowledgeBaseConfiguration) Validate() error {
 // SetEmbeddingModelArn sets the EmbeddingModelArn field's value.
 func (s *VectorKnowledgeBaseConfiguration) SetEmbeddingModelArn(v string) *VectorKnowledgeBaseConfiguration {
 	s.EmbeddingModelArn = &v
+	return s
+}
+
+// SetEmbeddingModelConfiguration sets the EmbeddingModelConfiguration field's value.
+func (s *VectorKnowledgeBaseConfiguration) SetEmbeddingModelConfiguration(v *EmbeddingModelConfiguration) *VectorKnowledgeBaseConfiguration {
+	s.EmbeddingModelConfiguration = v
 	return s
 }
 

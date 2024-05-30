@@ -2,6 +2,8 @@
   "version": "2.0",
   "service": "<p>Describes the API operations for running inference using Amazon Bedrock models.</p>",
   "operations": {
+    "Converse": "<p>Sends messages to the specified Amazon Bedrock model. <code>Converse</code> provides a consistent interface that works with all models that support messages. This allows you to write code once and use it with different models. Should a model have unique inference parameters, you can also pass those unique parameters to the model. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/api-methods-run.html\">Run inference</a> in the Bedrock User Guide.</p> <p>This operation requires permission for the <code>bedrock:InvokeModel</code> action. </p>",
+    "ConverseStream": "<p>Sends messages to the specified Amazon Bedrock model and returns the response in a stream. <code>ConverseStream</code> provides a consistent API that works with all Amazon Bedrock models that support messages. This allows you to write code once and use it with different models. Should a model have unique inference parameters, you can also pass those unique parameters to the model. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/api-methods-run.html\">Run inference</a> in the Bedrock User Guide.</p> <p>To find out if a model supports streaming, call <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_GetFoundationModel.html\">GetFoundationModel</a> and check the <code>responseStreamingSupported</code> field in the response.</p> <p>For example code, see <i>Invoke model with streaming code example</i> in the <i>Amazon Bedrock User Guide</i>. </p> <p>This operation requires permission for the <code>bedrock:InvokeModelWithResponseStream</code> action.</p>",
     "InvokeModel": "<p>Invokes the specified Amazon Bedrock model to run inference using the prompt and inference parameters provided in the request body. You use model inference to generate text, images, and embeddings.</p> <p>For example code, see <i>Invoke model code examples</i> in the <i>Amazon Bedrock User Guide</i>. </p> <p>This operation requires permission for the <code>bedrock:InvokeModel</code> action.</p>",
     "InvokeModelWithResponseStream": "<p>Invoke the specified Amazon Bedrock model to run inference using the prompt and inference parameters provided in the request body. The response is returned in a stream.</p> <p>To see if a model supports streaming, call <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_GetFoundationModel.html\">GetFoundationModel</a> and check the <code>responseStreamingSupported</code> field in the response.</p> <note> <p>The CLI doesn't support <code>InvokeModelWithResponseStream</code>.</p> </note> <p>For example code, see <i>Invoke model with streaming code example</i> in the <i>Amazon Bedrock User Guide</i>. </p> <p>This operation requires permissions to perform the <code>bedrock:InvokeModelWithResponseStream</code> action. </p>"
   },
@@ -11,12 +13,166 @@
       "refs": {
       }
     },
+    "AnyToolChoice": {
+      "base": "<p>The model must request at least one tool (no text is generated).</p>",
+      "refs": {
+        "ToolChoice$any": "<p>The model must request at least one tool (no text is generated).</p>"
+      }
+    },
+    "AutoToolChoice": {
+      "base": "<p>The Model automatically decides if a tool should be called or to whether to generate text instead.</p>",
+      "refs": {
+        "ToolChoice$auto": "<p>The Model automatically decides if a tool should be called or to whether to generate text instead.</p>"
+      }
+    },
     "Body": {
       "base": null,
       "refs": {
         "InvokeModelRequest$body": "<p>The prompt and inference parameters in the format specified in the <code>contentType</code> in the header. To see the format and content of the request and response bodies for different models, refer to <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters.html\">Inference parameters</a>. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/api-methods-run.html\">Run inference</a> in the Bedrock User Guide.</p>",
         "InvokeModelResponse$body": "<p>Inference response from the model in the format specified in the <code>contentType</code> header. To see the format and content of the request and response bodies for different models, refer to <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters.html\">Inference parameters</a>.</p>",
         "InvokeModelWithResponseStreamRequest$body": "<p>The prompt and inference parameters in the format specified in the <code>contentType</code> in the header. To see the format and content of the request and response bodies for different models, refer to <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters.html\">Inference parameters</a>. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/api-methods-run.html\">Run inference</a> in the Bedrock User Guide.</p>"
+      }
+    },
+    "ContentBlock": {
+      "base": "<p>A block of content for a message.</p>",
+      "refs": {
+        "ContentBlocks$member": null
+      }
+    },
+    "ContentBlockDelta": {
+      "base": "<p>A bock of content in a streaming response.</p>",
+      "refs": {
+        "ContentBlockDeltaEvent$delta": "<p>The delta for a content block delta event.</p>"
+      }
+    },
+    "ContentBlockDeltaEvent": {
+      "base": "<p>The content block delta event.</p>",
+      "refs": {
+        "ConverseStreamOutput$contentBlockDelta": "<p>The messages output content block delta.</p>"
+      }
+    },
+    "ContentBlockStart": {
+      "base": "<p>Content block start information.</p>",
+      "refs": {
+        "ContentBlockStartEvent$start": "<p>Start information about a content block start event. </p>"
+      }
+    },
+    "ContentBlockStartEvent": {
+      "base": "<p>Content block start event.</p>",
+      "refs": {
+        "ConverseStreamOutput$contentBlockStart": "<p>Start information for a content block.</p>"
+      }
+    },
+    "ContentBlockStopEvent": {
+      "base": "<p>A content block stop event.</p>",
+      "refs": {
+        "ConverseStreamOutput$contentBlockStop": "<p>Stop information for a content block.</p>"
+      }
+    },
+    "ContentBlocks": {
+      "base": null,
+      "refs": {
+        "Message$content": "<p>The message content.</p>"
+      }
+    },
+    "ConversationRole": {
+      "base": null,
+      "refs": {
+        "Message$role": "<p>The role that the message plays in the message.</p>",
+        "MessageStartEvent$role": "<p>The role for the message.</p>"
+      }
+    },
+    "ConversationalModelId": {
+      "base": null,
+      "refs": {
+        "ConverseRequest$modelId": "<p>The identifier for the model that you want to call.</p> <p>The <code>modelId</code> to provide depends on the type of model that you use:</p> <ul> <li> <p>If you use a base model, specify the model ID or its ARN. For a list of model IDs for base models, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/model-ids.html#model-ids-arns\">Amazon Bedrock base model IDs (on-demand throughput)</a> in the Amazon Bedrock User Guide.</p> </li> <li> <p>If you use a provisioned model, specify the ARN of the Provisioned Throughput. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/prov-thru-use.html\">Run inference using a Provisioned Throughput</a> in the Amazon Bedrock User Guide.</p> </li> <li> <p>If you use a custom model, first purchase Provisioned Throughput for it. Then specify the ARN of the resulting provisioned model. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/model-customization-use.html\">Use a custom model in Amazon Bedrock</a> in the Amazon Bedrock User Guide.</p> </li> </ul>",
+        "ConverseStreamRequest$modelId": "<p>The ID for the model.</p> <p>The <code>modelId</code> to provide depends on the type of model that you use:</p> <ul> <li> <p>If you use a base model, specify the model ID or its ARN. For a list of model IDs for base models, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/model-ids.html#model-ids-arns\">Amazon Bedrock base model IDs (on-demand throughput)</a> in the Amazon Bedrock User Guide.</p> </li> <li> <p>If you use a provisioned model, specify the ARN of the Provisioned Throughput. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/prov-thru-use.html\">Run inference using a Provisioned Throughput</a> in the Amazon Bedrock User Guide.</p> </li> <li> <p>If you use a custom model, first purchase Provisioned Throughput for it. Then specify the ARN of the resulting provisioned model. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/model-customization-use.html\">Use a custom model in Amazon Bedrock</a> in the Amazon Bedrock User Guide.</p> </li> </ul>"
+      }
+    },
+    "ConverseMetrics": {
+      "base": "<p>Metrics for a call to <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_runtime_Converse.html\">Converse</a>.</p>",
+      "refs": {
+        "ConverseResponse$metrics": "<p>Metrics for the call to <code>Converse</code>.</p>"
+      }
+    },
+    "ConverseOutput": {
+      "base": "<p>The output from a call to <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_runtime_Converse.html\">Converse</a>.</p>",
+      "refs": {
+        "ConverseResponse$output": "<p>The result from the call to <code>Converse</code>.</p>"
+      }
+    },
+    "ConverseRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ConverseRequestAdditionalModelResponseFieldPathsList": {
+      "base": null,
+      "refs": {
+        "ConverseRequest$additionalModelResponseFieldPaths": "<p>Additional model parameters field paths to return in the response. <code>Converse</code> returns the requested fields as a JSON Pointer object in the <code>additionalModelResultFields</code> field. The following is example JSON for <code>additionalModelResponseFieldPaths</code>.</p> <p> <code>[ \"/stop_sequence\" ]</code> </p> <p>For information about the JSON Pointer syntax, see the <a href=\"https://datatracker.ietf.org/doc/html/rfc6901\">Internet Engineering Task Force (IETF)</a> documentation.</p> <p> <code>Converse</code> rejects an empty JSON Pointer or incorrectly structured JSON Pointer with a <code>400</code> error code. if the JSON Pointer is valid, but the requested field is not in the model response, it is ignored by <code>Converse</code>.</p>"
+      }
+    },
+    "ConverseRequestAdditionalModelResponseFieldPathsListMemberString": {
+      "base": null,
+      "refs": {
+        "ConverseRequestAdditionalModelResponseFieldPathsList$member": null
+      }
+    },
+    "ConverseResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ConverseStreamMetadataEvent": {
+      "base": "<p>A conversation stream metadata event.</p>",
+      "refs": {
+        "ConverseStreamOutput$metadata": "<p>Metadata for the converse output stream.</p>"
+      }
+    },
+    "ConverseStreamMetrics": {
+      "base": "<p>Metrics for the stream.</p>",
+      "refs": {
+        "ConverseStreamMetadataEvent$metrics": "<p>The metrics for the conversation stream metadata event.</p>"
+      }
+    },
+    "ConverseStreamOutput": {
+      "base": "<p>The messages output stream</p>",
+      "refs": {
+        "ConverseStreamResponse$stream": "<p>The output stream that the model generated.</p>"
+      }
+    },
+    "ConverseStreamRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ConverseStreamRequestAdditionalModelResponseFieldPathsList": {
+      "base": null,
+      "refs": {
+        "ConverseStreamRequest$additionalModelResponseFieldPaths": "<p>Additional model parameters field paths to return in the response. <code>ConverseStream</code> returns the requested fields as a JSON Pointer object in the <code>additionalModelResultFields</code> field. The following is example JSON for <code>additionalModelResponseFieldPaths</code>.</p> <p> <code>[ \"/stop_sequence\" ]</code> </p> <p>For information about the JSON Pointer syntax, see the <a href=\"https://datatracker.ietf.org/doc/html/rfc6901\">Internet Engineering Task Force (IETF)</a> documentation.</p> <p> <code>ConverseStream</code> rejects an empty JSON Pointer or incorrectly structured JSON Pointer with a <code>400</code> error code. if the JSON Pointer is valid, but the requested field is not in the model response, it is ignored by <code>ConverseStream</code>.</p>"
+      }
+    },
+    "ConverseStreamRequestAdditionalModelResponseFieldPathsListMemberString": {
+      "base": null,
+      "refs": {
+        "ConverseStreamRequestAdditionalModelResponseFieldPathsList$member": null
+      }
+    },
+    "ConverseStreamResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "Document": {
+      "base": null,
+      "refs": {
+        "ConverseRequest$additionalModelRequestFields": "<p>Additional inference parameters that the model supports, beyond the base set of inference parameters that <code>Converse</code> supports in the <code>inferenceConfig</code> field. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters.html\">Model parameters</a>.</p>",
+        "ConverseResponse$additionalModelResponseFields": "<p>Additional fields in the response that are unique to the model. </p>",
+        "ConverseStreamRequest$additionalModelRequestFields": "<p>Additional inference parameters that the model supports, beyond the base set of inference parameters that <code>ConverseStream</code> supports in the <code>inferenceConfig</code> field.</p>",
+        "MessageStopEvent$additionalModelResponseFields": "<p>The additional model response fields.</p>",
+        "ToolInputSchema$json": "<p>The JSON schema for the tool. For more information, see <a href=\"https://json-schema.org/understanding-json-schema/reference\">JSON Schema Reference</a>.</p>",
+        "ToolResultContentBlock$json": "<p>A tool result that is JSON format data.</p>",
+        "ToolUseBlock$input": "<p>The input to pass to the tool. </p>"
       }
     },
     "GuardrailIdentifier": {
@@ -33,9 +189,66 @@
         "InvokeModelWithResponseStreamRequest$guardrailVersion": "<p>The version number for the guardrail. The value can also be <code>DRAFT</code>.</p>"
       }
     },
+    "ImageBlock": {
+      "base": "<p>Image content for a message.</p>",
+      "refs": {
+        "ContentBlock$image": "<p>Image to include in the message. </p> <note> <p>This field is only supported by Anthropic Claude 3 models.</p> </note>",
+        "ToolResultContentBlock$image": "<p>A tool result that is an image.</p> <note> <p>This field is only supported by Anthropic Claude 3 models.</p> </note>"
+      }
+    },
+    "ImageFormat": {
+      "base": null,
+      "refs": {
+        "ImageBlock$format": "<p>The format of the image.</p>"
+      }
+    },
+    "ImageSource": {
+      "base": "<p>The source for an image.</p>",
+      "refs": {
+        "ImageBlock$source": "<p>The source for the image.</p>"
+      }
+    },
+    "ImageSourceBytesBlob": {
+      "base": null,
+      "refs": {
+        "ImageSource$bytes": "<p>The raw image bytes for the image. If you use an AWS SDK, you don't need to base64 encode the image bytes.</p>"
+      }
+    },
+    "InferenceConfiguration": {
+      "base": "<p>Base inference parameters to pass to a model in a call to <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_runtime_Converse.html\">Converse</a> or <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_runtime_ConverseStream.html\">ConverseStream</a>. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters.html\">Inference parameters for foundation models</a>.</p> <p>If you need to pass additional parameters that the model supports, use the <code>additionalModelRequestFields</code> request field in the call to <code>Converse</code> or <code>ConverseStream</code>. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters.html\">Model parameters</a>.</p>",
+      "refs": {
+        "ConverseRequest$inferenceConfig": "<p>Inference parameters to pass to the model. <code>Converse</code> supports a base set of inference parameters. If you need to pass additional parameters that the model supports, use the <code>additionalModelRequestFields</code> request field.</p>",
+        "ConverseStreamRequest$inferenceConfig": "<p>Inference parameters to pass to the model. <code>ConverseStream</code> supports a base set of inference parameters. If you need to pass additional parameters that the model supports, use the <code>additionalModelRequestFields</code> request field.</p>"
+      }
+    },
+    "InferenceConfigurationMaxTokensInteger": {
+      "base": null,
+      "refs": {
+        "InferenceConfiguration$maxTokens": "<p>The maximum number of tokens to allow in the generated response. The default value is the maximum allowed value for the model that you are using. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters.html\">Inference parameters for foundatio{ \"messages\": [ { \"role\": \"user\", \"content\": [ { \"text\": \"what's the weather in Queens, NY and Austin, TX?\" } ] }, { \"role\": \"assistant\", \"content\": [ { \"toolUse\": { \"toolUseId\": \"1\", \"name\": \"get_weather\", \"input\": { \"city\": \"Queens\", \"state\": \"NY\" } } }, { \"toolUse\": { \"toolUseId\": \"2\", \"name\": \"get_weather\", \"input\": { \"city\": \"Austin\", \"state\": \"TX\" } } } ] }, { \"role\": \"user\", \"content\": [ { \"toolResult\": { \"toolUseId\": \"2\", \"content\": [ { \"json\": { \"weather\": \"40\" } } ] } }, { \"text\": \"...\" }, { \"toolResult\": { \"toolUseId\": \"1\", \"content\": [ { \"text\": \"result text\" } ] } } ] } ], \"toolConfig\": { \"tools\": [ { \"name\": \"get_weather\", \"description\": \"Get weather\", \"inputSchema\": { \"type\": \"object\", \"properties\": { \"city\": { \"type\": \"string\", \"description\": \"City of location\" }, \"state\": { \"type\": \"string\", \"description\": \"State of location\" } }, \"required\": [\"city\", \"state\"] } } ] } } n models</a>. </p>"
+      }
+    },
+    "InferenceConfigurationStopSequencesList": {
+      "base": null,
+      "refs": {
+        "InferenceConfiguration$stopSequences": "<p>A list of stop sequences. A stop sequence is a sequence of characters that causes the model to stop generating the response. </p>"
+      }
+    },
+    "InferenceConfigurationTemperatureFloat": {
+      "base": null,
+      "refs": {
+        "InferenceConfiguration$temperature": "<p>The likelihood of the model selecting higher-probability options while generating a response. A lower value makes the model more likely to choose higher-probability options, while a higher value makes the model more likely to choose lower-probability options.</p> <p>The default value is the default value for the model that you are using. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters.html\">Inference parameters for foundation models</a>. </p>"
+      }
+    },
+    "InferenceConfigurationTopPFloat": {
+      "base": null,
+      "refs": {
+        "InferenceConfiguration$topP": "<p>The percentage of most-likely candidates that the model considers for the next token. For example, if you choose a value of 0.8 for <code>topP</code>, the model selects from the top 80% of the probability distribution of tokens that could be next in the sequence.</p> <p>The default value is the default value for the model that you are using. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters.html\">Inference parameters for foundation models</a>. </p>"
+      }
+    },
     "InternalServerException": {
       "base": "<p>An internal server error occurred. Retry your request.</p>",
       "refs": {
+        "ConverseStreamOutput$internalServerException": "<p>An internal server error occurred. Retry your request.</p>",
         "ResponseStream$internalServerException": "<p>An internal server error occurred. Retry your request.</p>"
       }
     },
@@ -66,6 +279,39 @@
       "refs": {
       }
     },
+    "Long": {
+      "base": null,
+      "refs": {
+        "ConverseMetrics$latencyMs": "<p>The latency of the call to <code>Converse</code>, in milliseconds. </p>",
+        "ConverseStreamMetrics$latencyMs": "<p>The latency for the streaming request, in milliseconds.</p>"
+      }
+    },
+    "Message": {
+      "base": "<p>A message in the <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_runtime_Message.html\">Message</a> field. Use to send a message in a call to <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_runtime_Converse.html\">Converse</a>. </p>",
+      "refs": {
+        "ConverseOutput$message": "<p>The message that the model generates.</p>",
+        "Messages$member": null
+      }
+    },
+    "MessageStartEvent": {
+      "base": "<p>The start of a message.</p>",
+      "refs": {
+        "ConverseStreamOutput$messageStart": "<p>Message start information.</p>"
+      }
+    },
+    "MessageStopEvent": {
+      "base": "<p>The stop event for a message.</p>",
+      "refs": {
+        "ConverseStreamOutput$messageStop": "<p>Message stop information.</p>"
+      }
+    },
+    "Messages": {
+      "base": null,
+      "refs": {
+        "ConverseRequest$messages": "<p>The messages that you want to send to the model.</p>",
+        "ConverseStreamRequest$messages": "<p>The messages that you want to send to the model.</p>"
+      }
+    },
     "MimeType": {
       "base": null,
       "refs": {
@@ -90,6 +336,7 @@
     "ModelStreamErrorException": {
       "base": "<p>An error occurred while streaming the response. Retry your request.</p>",
       "refs": {
+        "ConverseStreamOutput$modelStreamErrorException": "<p>A streaming error occurred. Retry your request.</p>",
         "ResponseStream$modelStreamErrorException": "<p>An error occurred while streaming the response. Retry your request.</p>"
       }
     },
@@ -114,6 +361,22 @@
         "ServiceQuotaExceededException$message": null,
         "ThrottlingException$message": null,
         "ValidationException$message": null
+      }
+    },
+    "NonEmptyString": {
+      "base": null,
+      "refs": {
+        "InferenceConfigurationStopSequencesList$member": null,
+        "SystemContentBlock$text": "<p>A system prompt for the model. </p>",
+        "ToolSpecification$description": "<p>The description for the tool.</p>"
+      }
+    },
+    "NonNegativeInteger": {
+      "base": null,
+      "refs": {
+        "ContentBlockDeltaEvent$contentBlockIndex": "<p>The block index for a content block delta event. </p>",
+        "ContentBlockStartEvent$contentBlockIndex": "<p>The index for a content block start event.</p>",
+        "ContentBlockStopEvent$contentBlockIndex": "<p>The index for a content block.</p>"
       }
     },
     "PartBody": {
@@ -144,6 +407,12 @@
       "refs": {
       }
     },
+    "SpecificToolChoice": {
+      "base": "<p>The model must request a specific tool.</p> <note> <p>This field is only supported by Anthropic Claude 3 models.</p> </note>",
+      "refs": {
+        "ToolChoice$tool": "<p>The Model must request the specified tool.</p>"
+      }
+    },
     "StatusCode": {
       "base": null,
       "refs": {
@@ -151,10 +420,161 @@
         "ModelStreamErrorException$originalStatusCode": "<p>The original status code.</p>"
       }
     },
+    "StopReason": {
+      "base": null,
+      "refs": {
+        "ConverseResponse$stopReason": "<p>The reason why the model stopped generating output.</p>",
+        "MessageStopEvent$stopReason": "<p>The reason why the model stopped generating output.</p>"
+      }
+    },
+    "String": {
+      "base": null,
+      "refs": {
+        "ContentBlock$text": "<p>Text to include in the message.</p>",
+        "ContentBlockDelta$text": "<p>The content text.</p>",
+        "ToolResultContentBlock$text": "<p>A tool result that is text.</p>",
+        "ToolUseBlockDelta$input": "<p>The input for a requested tool.</p>"
+      }
+    },
+    "SystemContentBlock": {
+      "base": "<p>A system content block</p>",
+      "refs": {
+        "SystemContentBlocks$member": null
+      }
+    },
+    "SystemContentBlocks": {
+      "base": null,
+      "refs": {
+        "ConverseRequest$system": "<p>A system prompt to pass to the model.</p>",
+        "ConverseStreamRequest$system": "<p>A system prompt to send to the model.</p>"
+      }
+    },
     "ThrottlingException": {
       "base": "<p>The number of requests exceeds the limit. Resubmit your request later.</p>",
       "refs": {
+        "ConverseStreamOutput$throttlingException": "<p>The number of requests exceeds the limit. Resubmit your request later.</p>",
         "ResponseStream$throttlingException": "<p>The number or frequency of requests exceeds the limit. Resubmit your request later.</p>"
+      }
+    },
+    "TokenUsage": {
+      "base": "<p>The tokens used in a message API inference call. </p>",
+      "refs": {
+        "ConverseResponse$usage": "<p>The total number of tokens used in the call to <code>Converse</code>. The total includes the tokens input to the model and the tokens generated by the model.</p>",
+        "ConverseStreamMetadataEvent$usage": "<p>Usage information for the conversation stream event.</p>"
+      }
+    },
+    "TokenUsageInputTokensInteger": {
+      "base": null,
+      "refs": {
+        "TokenUsage$inputTokens": "<p>The number of tokens sent in the request to the model.</p>"
+      }
+    },
+    "TokenUsageOutputTokensInteger": {
+      "base": null,
+      "refs": {
+        "TokenUsage$outputTokens": "<p>The number of tokens that the model generated for the request.</p>"
+      }
+    },
+    "TokenUsageTotalTokensInteger": {
+      "base": null,
+      "refs": {
+        "TokenUsage$totalTokens": "<p>The total of input tokens and tokens generated by the model.</p>"
+      }
+    },
+    "Tool": {
+      "base": "<p>Information about a tool that you can use with the Converse API. </p>",
+      "refs": {
+        "ToolConfigurationToolsList$member": null
+      }
+    },
+    "ToolChoice": {
+      "base": "<p>Forces a model to use a tool.</p>",
+      "refs": {
+        "ToolConfiguration$toolChoice": "<p>If supported by model, forces the model to request a tool.</p>"
+      }
+    },
+    "ToolConfiguration": {
+      "base": "<p>Configuration information for the tools that you pass to a model.</p> <note> <p>This field is only supported by Anthropic Claude 3, Cohere Command R, Cohere Command R+, and Mistral Large models.</p> </note>",
+      "refs": {
+        "ConverseRequest$toolConfig": "<p>Configuration information for the tools that the model can use when generating a response. </p> <note> <p>This field is only supported by Anthropic Claude 3, Cohere Command R, Cohere Command R+, and Mistral Large models.</p> </note>",
+        "ConverseStreamRequest$toolConfig": "<p>Configuration information for the tools that the model can use when generating a response.</p> <note> <p>This field is only supported by Anthropic Claude 3 models.</p> </note>"
+      }
+    },
+    "ToolConfigurationToolsList": {
+      "base": null,
+      "refs": {
+        "ToolConfiguration$tools": "<p>An array of tools that you want to pass to a model.</p>"
+      }
+    },
+    "ToolInputSchema": {
+      "base": "<p>The schema for the tool. The top level schema type must be <code>object</code>. </p>",
+      "refs": {
+        "ToolSpecification$inputSchema": "<p>The input schema for the tool in JSON format.</p>"
+      }
+    },
+    "ToolName": {
+      "base": null,
+      "refs": {
+        "SpecificToolChoice$name": "<p>The name of the tool that the model must request. </p>",
+        "ToolSpecification$name": "<p>The name for the tool.</p>",
+        "ToolUseBlock$name": "<p>The name of the tool that the model wants to use.</p>",
+        "ToolUseBlockStart$name": "<p>The name of the tool that the model is requesting to use.</p>"
+      }
+    },
+    "ToolResultBlock": {
+      "base": "<p>A tool result block that contains the results for a tool request that the model previously made.</p>",
+      "refs": {
+        "ContentBlock$toolResult": "<p>The result for a tool request that a model makes.</p>"
+      }
+    },
+    "ToolResultContentBlock": {
+      "base": "<p>The tool result content block.</p>",
+      "refs": {
+        "ToolResultContentBlocks$member": null
+      }
+    },
+    "ToolResultContentBlocks": {
+      "base": null,
+      "refs": {
+        "ToolResultBlock$content": "<p>The content for tool result content block.</p>"
+      }
+    },
+    "ToolResultStatus": {
+      "base": null,
+      "refs": {
+        "ToolResultBlock$status": "<p>The status for the tool result content block.</p> <note> <p>This field is only supported Anthropic Claude 3 models.</p> </note>"
+      }
+    },
+    "ToolSpecification": {
+      "base": "<p>The specification for the tool.</p>",
+      "refs": {
+        "Tool$toolSpec": "<p>The specfication for the tool.</p>"
+      }
+    },
+    "ToolUseBlock": {
+      "base": "<p>A tool use content block. Contains information about a tool that the model is requesting be run., The model uses the result from the tool to generate a response. </p>",
+      "refs": {
+        "ContentBlock$toolUse": "<p>Information about a tool use request from a model. </p>"
+      }
+    },
+    "ToolUseBlockDelta": {
+      "base": "<p>The delta for a tool use block.</p>",
+      "refs": {
+        "ContentBlockDelta$toolUse": "<p>Information about a tool that the model is requesting to use.</p>"
+      }
+    },
+    "ToolUseBlockStart": {
+      "base": "<p>The start of a tool use block.</p>",
+      "refs": {
+        "ContentBlockStart$toolUse": "<p>Information about a tool that the model is requesting to use.</p>"
+      }
+    },
+    "ToolUseId": {
+      "base": null,
+      "refs": {
+        "ToolResultBlock$toolUseId": "<p>The ID of the tool request that this is the result for.</p>",
+        "ToolUseBlock$toolUseId": "<p>The ID for the tool request.</p>",
+        "ToolUseBlockStart$toolUseId": "<p>The ID for the tool request.</p>"
       }
     },
     "Trace": {
@@ -167,6 +587,7 @@
     "ValidationException": {
       "base": "<p>Input validation failed. Check your request parameters and retry the request.</p>",
       "refs": {
+        "ConverseStreamOutput$validationException": "<p>Input validation failed. Check your request parameters and retry the request.</p>",
         "ResponseStream$validationException": "<p>Input validation failed. Check your request parameters and retry the request.</p>"
       }
     }

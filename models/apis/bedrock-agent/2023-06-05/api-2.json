@@ -1156,6 +1156,12 @@
       "min":20,
       "pattern":"^(arn:aws(-[^:]+)?:bedrock:[a-z0-9-]{1,20}:(([0-9]{12}:custom-model/[a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}/[a-z0-9]{12})|(:foundation-model/[a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}([.:]?[a-z0-9-]{1,63}))|([0-9]{12}:provisioned-model/[a-z0-9]{12})))|([a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}([.:]?[a-z0-9-]{1,63}))|(([0-9a-zA-Z][_-]?)+)$"
     },
+    "BedrockEmbeddingModelConfiguration":{
+      "type":"structure",
+      "members":{
+        "dimensions":{"shape":"Dimensions"}
+      }
+    },
     "Boolean":{
       "type":"boolean",
       "box":true
@@ -1638,6 +1644,12 @@
       "max":200,
       "min":1
     },
+    "Dimensions":{
+      "type":"integer",
+      "box":true,
+      "max":4096,
+      "min":0
+    },
     "DisassociateAgentKnowledgeBaseRequest":{
       "type":"structure",
       "required":[
@@ -1673,6 +1685,12 @@
       "max":5,
       "min":5,
       "pattern":"^DRAFT$"
+    },
+    "EmbeddingModelConfiguration":{
+      "type":"structure",
+      "members":{
+        "bedrockEmbeddingModelConfiguration":{"shape":"BedrockEmbeddingModelConfiguration"}
+      }
     },
     "FailureReason":{
       "type":"string",
@@ -3288,7 +3306,8 @@
       "type":"structure",
       "required":["embeddingModelArn"],
       "members":{
-        "embeddingModelArn":{"shape":"BedrockEmbeddingModelArn"}
+        "embeddingModelArn":{"shape":"BedrockEmbeddingModelArn"},
+        "embeddingModelConfiguration":{"shape":"EmbeddingModelConfiguration"}
       }
     },
     "Version":{

@@ -283,6 +283,12 @@
         "VectorKnowledgeBaseConfiguration$embeddingModelArn": "<p>The Amazon Resource Name (ARN) of the model used to create vector embeddings for the knowledge base.</p>"
       }
     },
+    "BedrockEmbeddingModelConfiguration": {
+      "base": "<p>The vector configuration details for the Bedrock embeddings model.</p>",
+      "refs": {
+        "EmbeddingModelConfiguration$bedrockEmbeddingModelConfiguration": "<p>The vector configuration details on the Bedrock embeddings model.</p>"
+      }
+    },
     "Boolean": {
       "base": null,
       "refs": {
@@ -581,6 +587,12 @@
         "UpdateKnowledgeBaseRequest$description": "<p>Specifies a new description for the knowledge base.</p>"
       }
     },
+    "Dimensions": {
+      "base": null,
+      "refs": {
+        "BedrockEmbeddingModelConfiguration$dimensions": "<p>The dimensions details for the vector configuration used on the Bedrock embeddings model.</p>"
+      }
+    },
     "DisassociateAgentKnowledgeBaseRequest": {
       "base": null,
       "refs": {
@@ -601,6 +613,12 @@
         "DisassociateAgentKnowledgeBaseRequest$agentVersion": "<p>The version of the agent from which to disassociate the knowledge base.</p>",
         "UpdateAgentActionGroupRequest$agentVersion": "<p>The unique identifier of the agent version for which to update the action group.</p>",
         "UpdateAgentKnowledgeBaseRequest$agentVersion": "<p>The version of the agent associated with the knowledge base that you want to update.</p>"
+      }
+    },
+    "EmbeddingModelConfiguration": {
+      "base": "<p>The configuration details for the embeddings model.</p>",
+      "refs": {
+        "VectorKnowledgeBaseConfiguration$embeddingModelConfiguration": "<p>The embeddings model configuration details for the vector model used in Knowledge Base.</p>"
       }
     },
     "FailureReason": {
