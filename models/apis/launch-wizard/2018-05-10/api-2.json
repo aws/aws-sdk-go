@@ -5,6 +5,7 @@
     "endpointPrefix":"launchwizard",
     "jsonVersion":"1.1",
     "protocol":"rest-json",
+    "protocols":["rest-json"],
     "serviceFullName":"AWS Launch Wizard",
     "serviceId":"Launch Wizard",
     "signatureVersion":"v4",
@@ -38,6 +39,7 @@
       "input":{"shape":"DeleteDeploymentInput"},
       "output":{"shape":"DeleteDeploymentOutput"},
       "errors":[
+        {"shape":"ResourceLimitException"},
         {"shape":"InternalServerException"},
         {"shape":"ValidationException"},
         {"shape":"ResourceNotFoundException"}
@@ -74,6 +76,21 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "GetWorkloadDeploymentPattern":{
+      "name":"GetWorkloadDeploymentPattern",
+      "http":{
+        "method":"POST",
+        "requestUri":"/getWorkloadDeploymentPattern",
+        "responseCode":200
+      },
+      "input":{"shape":"GetWorkloadDeploymentPatternInput"},
+      "output":{"shape":"GetWorkloadDeploymentPatternOutput"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "ListDeploymentEvents":{
       "name":"ListDeploymentEvents",
       "http":{
@@ -101,6 +118,21 @@
       "errors":[
         {"shape":"InternalServerException"},
         {"shape":"ValidationException"}
+      ]
+    },
+    "ListTagsForResource":{
+      "name":"ListTagsForResource",
+      "http":{
+        "method":"GET",
+        "requestUri":"/tags/{resourceArn}",
+        "responseCode":200
+      },
+      "input":{"shape":"ListTagsForResourceInput"},
+      "output":{"shape":"ListTagsForResourceOutput"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "ListWorkloadDeploymentPatterns":{
@@ -131,9 +163,44 @@
         {"shape":"InternalServerException"},
         {"shape":"ValidationException"}
       ]
+    },
+    "TagResource":{
+      "name":"TagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/tags/{resourceArn}",
+        "responseCode":200
+      },
+      "input":{"shape":"TagResourceInput"},
+      "output":{"shape":"TagResourceOutput"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "UntagResource":{
+      "name":"UntagResource",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/tags/{resourceArn}",
+        "responseCode":200
+      },
+      "input":{"shape":"UntagResourceInput"},
+      "output":{"shape":"UntagResourceOutput"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
+      ],
+      "idempotent":true
     }
   },
   "shapes":{
+    "AllowedValues":{
+      "type":"list",
+      "member":{"shape":"ValueString"}
+    },
     "Boolean":{
       "type":"boolean",
       "box":true
@@ -151,6 +218,7 @@
         "dryRun":{"shape":"Boolean"},
         "name":{"shape":"DeploymentName"},
         "specifications":{"shape":"DeploymentSpecifications"},
+        "tags":{"shape":"Tags"},
         "workloadName":{"shape":"WorkloadName"}
       }
     },
@@ -174,17 +242,27 @@
         "statusReason":{"shape":"String"}
       }
     },
+    "DeploymentConditionalField":{
+      "type":"structure",
+      "members":{
+        "comparator":{"shape":"String"},
+        "name":{"shape":"String"},
+        "value":{"shape":"String"}
+      }
+    },
     "DeploymentData":{
       "type":"structure",
       "members":{
         "createdAt":{"shape":"Timestamp"},
         "deletedAt":{"shape":"Timestamp"},
+        "deploymentArn":{"shape":"String"},
         "id":{"shape":"DeploymentId"},
         "name":{"shape":"String"},
         "patternName":{"shape":"DeploymentPatternName"},
         "resourceGroup":{"shape":"String"},
         "specifications":{"shape":"DeploymentSpecifications"},
         "status":{"shape":"DeploymentStatus"},
+        "tags":{"shape":"Tags"},
         "workloadName":{"shape":"WorkloadName"}
       }
     },
@@ -253,15 +331,15 @@
     },
     "DeploymentName":{
       "type":"string",
-      "max":25,
+      "max":50,
       "min":1,
-      "pattern":"^[A-Za-z0-9_\\s\\.-]+$"
+      "pattern":"^[A-Za-z0-9_\\.-]+$"
     },
     "DeploymentPatternName":{
       "type":"string",
       "max":256,
       "min":1,
-      "pattern":"^[a-zA-Z0-9-]+$"
+      "pattern":"^[A-Za-z0-9][a-zA-Z0-9-]*$"
     },
     "DeploymentSpecifications":{
       "type":"map",
@@ -270,6 +348,22 @@
       "max":100,
       "min":1,
       "sensitive":true
+    },
+    "DeploymentSpecificationsData":{
+      "type":"list",
+      "member":{"shape":"DeploymentSpecificationsField"},
+      "max":100,
+      "min":1
+    },
+    "DeploymentSpecificationsField":{
+      "type":"structure",
+      "members":{
+        "allowedValues":{"shape":"AllowedValues"},
+        "conditionals":{"shape":"SpecificationsConditionalData"},
+        "description":{"shape":"String"},
+        "name":{"shape":"String"},
+        "required":{"shape":"String"}
+      }
     },
     "DeploymentStatus":{
       "type":"string",
@@ -309,6 +403,23 @@
       "type":"structure",
       "members":{
         "deployment":{"shape":"DeploymentData"}
+      }
+    },
+    "GetWorkloadDeploymentPatternInput":{
+      "type":"structure",
+      "required":[
+        "deploymentPatternName",
+        "workloadName"
+      ],
+      "members":{
+        "deploymentPatternName":{"shape":"DeploymentPatternName"},
+        "workloadName":{"shape":"WorkloadName"}
+      }
+    },
+    "GetWorkloadDeploymentPatternOutput":{
+      "type":"structure",
+      "members":{
+        "workloadDeploymentPattern":{"shape":"WorkloadDeploymentPatternData"}
       }
     },
     "GetWorkloadInput":{
@@ -368,6 +479,23 @@
       "members":{
         "deployments":{"shape":"DeploymentDataSummaryList"},
         "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListTagsForResourceInput":{
+      "type":"structure",
+      "required":["resourceArn"],
+      "members":{
+        "resourceArn":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"resourceArn"
+        }
+      }
+    },
+    "ListTagsForResourceOutput":{
+      "type":"structure",
+      "members":{
+        "tags":{"shape":"Tags"}
       }
     },
     "ListWorkloadDeploymentPatternsInput":{
@@ -451,8 +579,82 @@
       },
       "exception":true
     },
+    "SpecificationsConditionalData":{
+      "type":"list",
+      "member":{"shape":"DeploymentConditionalField"},
+      "max":5,
+      "min":1
+    },
     "String":{"type":"string"},
+    "TagKey":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"^(?!aws:)[a-zA-Z+-=._:/]+$"
+    },
+    "TagKeyList":{
+      "type":"list",
+      "member":{"shape":"TagKey"},
+      "max":200,
+      "min":1
+    },
+    "TagResourceInput":{
+      "type":"structure",
+      "required":[
+        "resourceArn",
+        "tags"
+      ],
+      "members":{
+        "resourceArn":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"resourceArn"
+        },
+        "tags":{"shape":"Tags"}
+      }
+    },
+    "TagResourceOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "TagValue":{
+      "type":"string",
+      "max":256,
+      "min":0
+    },
+    "Tags":{
+      "type":"map",
+      "key":{"shape":"TagKey"},
+      "value":{"shape":"TagValue"},
+      "max":200,
+      "min":1
+    },
     "Timestamp":{"type":"timestamp"},
+    "UntagResourceInput":{
+      "type":"structure",
+      "required":[
+        "resourceArn",
+        "tagKeys"
+      ],
+      "members":{
+        "resourceArn":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"resourceArn"
+        },
+        "tagKeys":{
+          "shape":"TagKeyList",
+          "location":"querystring",
+          "locationName":"tagKeys"
+        }
+      }
+    },
+    "UntagResourceOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "ValidationException":{
       "type":"structure",
       "members":{
@@ -492,6 +694,19 @@
       "type":"list",
       "member":{"shape":"WorkloadDataSummary"}
     },
+    "WorkloadDeploymentPatternData":{
+      "type":"structure",
+      "members":{
+        "deploymentPatternName":{"shape":"DeploymentPatternName"},
+        "description":{"shape":"String"},
+        "displayName":{"shape":"String"},
+        "specifications":{"shape":"DeploymentSpecificationsData"},
+        "status":{"shape":"WorkloadDeploymentPatternStatus"},
+        "statusMessage":{"shape":"String"},
+        "workloadName":{"shape":"WorkloadName"},
+        "workloadVersionName":{"shape":"WorkloadVersionName"}
+      }
+    },
     "WorkloadDeploymentPatternDataSummary":{
       "type":"structure",
       "members":{
@@ -519,9 +734,9 @@
     },
     "WorkloadName":{
       "type":"string",
-      "max":256,
+      "max":100,
       "min":1,
-      "pattern":"^[a-zA-Z0-9-]+$"
+      "pattern":"^[A-Za-z][a-zA-Z0-9-_]*$"
     },
     "WorkloadStatus":{
       "type":"string",
@@ -536,7 +751,7 @@
       "type":"string",
       "max":30,
       "min":5,
-      "pattern":"^[a-zA-Z0-9-]+$"
+      "pattern":"^[A-Za-z0-9][a-zA-Z0-9-]*$"
     }
   }
 }

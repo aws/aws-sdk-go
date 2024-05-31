@@ -1,3 +1,14 @@
+Release v1.53.14 (2024-05-31)
+===
+
+### Service Client Updates
+* `service/codebuild`: Updates service documentation
+  * AWS CodeBuild now supports Self-hosted GitHub Actions runners for Github Enterprise
+* `service/codeguru-security`: Updates service API and documentation
+* `service/elasticache`: Updates service API and documentation
+  * Update to attributes of TestFailover and minor revisions.
+* `service/launch-wizard`: Updates service API and documentation
+
 Release v1.53.13 (2024-05-30)
 ===
 

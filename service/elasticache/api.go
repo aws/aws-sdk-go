@@ -8433,7 +8433,7 @@ func (c *ElastiCache) TestFailoverRequest(input *TestFailoverInput) (req *reques
 
 // TestFailover API operation for Amazon ElastiCache.
 //
-// Represents the input of a TestFailover operation which test automatic failover
+// Represents the input of a TestFailover operation which tests automatic failover
 // on a specified node group (called shard in the console) in a replication
 // group (called cluster in the console).
 //
@@ -8446,7 +8446,7 @@ func (c *ElastiCache) TestFailoverRequest(input *TestFailoverInput) (req *reques
 // Note the following
 //
 //   - A customer can use this operation to test automatic failover on up to
-//     5 shards (called node groups in the ElastiCache API and Amazon CLI) in
+//     15 shards (called node groups in the ElastiCache API and Amazon CLI) in
 //     any rolling 24-hour period.
 //
 //   - If calling this operation on shards in different clusters (called replication
@@ -17194,8 +17194,7 @@ type DescribeUserGroupsOutput struct {
 
 	// An optional marker returned from a prior request. Use this marker for pagination
 	// of results from this operation. If this parameter is specified, the response
-	// includes only records beyond the marker, up to the value specified by MaxRecords.
-	// >
+	// includes only records beyond the marker, up to the value specified by MaxRecords.>
 	Marker *string `type:"string"`
 
 	// Returns a list of user groups.
@@ -19007,9 +19006,11 @@ type ModifyCacheClusterInput struct {
 	// Specifies the strategy to use to update the AUTH token. This parameter must
 	// be specified with the auth-token parameter. Possible values:
 	//
-	//    * Rotate
+	//    * ROTATE - default, if no update strategy is provided
 	//
-	//    * Set
+	//    * SET - allowed only after ROTATE
+	//
+	//    * DELETE - allowed only when transitioning to RBAC
 	//
 	// For more information, see Authenticating Users with Redis AUTH (http://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/auth.html)
 	AuthTokenUpdateStrategy *string `type:"string" enum:"AuthTokenUpdateStrategyType"`
@@ -19746,9 +19747,11 @@ type ModifyReplicationGroupInput struct {
 	// Specifies the strategy to use to update the AUTH token. This parameter must
 	// be specified with the auth-token parameter. Possible values:
 	//
-	//    * Rotate
+	//    * ROTATE - default, if no update strategy is provided
 	//
-	//    * Set
+	//    * SET - allowed only after ROTATE
+	//
+	//    * DELETE - allowed only when transitioning to RBAC
 	//
 	// For more information, see Authenticating Users with Redis AUTH (http://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/auth.html)
 	AuthTokenUpdateStrategy *string `type:"string" enum:"AuthTokenUpdateStrategyType"`
@@ -24586,7 +24589,7 @@ type TestFailoverInput struct {
 
 	// The name of the node group (called shard in the console) in this replication
 	// group on which automatic failover is to be tested. You may test automatic
-	// failover on up to 5 node groups in any rolling 24-hour period.
+	// failover on up to 15 node groups in any rolling 24-hour period.
 	//
 	// NodeGroupId is a required field
 	NodeGroupId *string `min:"1" type:"string" required:"true"`

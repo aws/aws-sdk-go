@@ -76,6 +76,10 @@ type LaunchWizardAPI interface {
 	GetWorkloadWithContext(aws.Context, *launchwizard.GetWorkloadInput, ...request.Option) (*launchwizard.GetWorkloadOutput, error)
 	GetWorkloadRequest(*launchwizard.GetWorkloadInput) (*request.Request, *launchwizard.GetWorkloadOutput)
 
+	GetWorkloadDeploymentPattern(*launchwizard.GetWorkloadDeploymentPatternInput) (*launchwizard.GetWorkloadDeploymentPatternOutput, error)
+	GetWorkloadDeploymentPatternWithContext(aws.Context, *launchwizard.GetWorkloadDeploymentPatternInput, ...request.Option) (*launchwizard.GetWorkloadDeploymentPatternOutput, error)
+	GetWorkloadDeploymentPatternRequest(*launchwizard.GetWorkloadDeploymentPatternInput) (*request.Request, *launchwizard.GetWorkloadDeploymentPatternOutput)
+
 	ListDeploymentEvents(*launchwizard.ListDeploymentEventsInput) (*launchwizard.ListDeploymentEventsOutput, error)
 	ListDeploymentEventsWithContext(aws.Context, *launchwizard.ListDeploymentEventsInput, ...request.Option) (*launchwizard.ListDeploymentEventsOutput, error)
 	ListDeploymentEventsRequest(*launchwizard.ListDeploymentEventsInput) (*request.Request, *launchwizard.ListDeploymentEventsOutput)
@@ -90,6 +94,10 @@ type LaunchWizardAPI interface {
 	ListDeploymentsPages(*launchwizard.ListDeploymentsInput, func(*launchwizard.ListDeploymentsOutput, bool) bool) error
 	ListDeploymentsPagesWithContext(aws.Context, *launchwizard.ListDeploymentsInput, func(*launchwizard.ListDeploymentsOutput, bool) bool, ...request.Option) error
 
+	ListTagsForResource(*launchwizard.ListTagsForResourceInput) (*launchwizard.ListTagsForResourceOutput, error)
+	ListTagsForResourceWithContext(aws.Context, *launchwizard.ListTagsForResourceInput, ...request.Option) (*launchwizard.ListTagsForResourceOutput, error)
+	ListTagsForResourceRequest(*launchwizard.ListTagsForResourceInput) (*request.Request, *launchwizard.ListTagsForResourceOutput)
+
 	ListWorkloadDeploymentPatterns(*launchwizard.ListWorkloadDeploymentPatternsInput) (*launchwizard.ListWorkloadDeploymentPatternsOutput, error)
 	ListWorkloadDeploymentPatternsWithContext(aws.Context, *launchwizard.ListWorkloadDeploymentPatternsInput, ...request.Option) (*launchwizard.ListWorkloadDeploymentPatternsOutput, error)
 	ListWorkloadDeploymentPatternsRequest(*launchwizard.ListWorkloadDeploymentPatternsInput) (*request.Request, *launchwizard.ListWorkloadDeploymentPatternsOutput)
@@ -103,6 +111,14 @@ type LaunchWizardAPI interface {
 
 	ListWorkloadsPages(*launchwizard.ListWorkloadsInput, func(*launchwizard.ListWorkloadsOutput, bool) bool) error
 	ListWorkloadsPagesWithContext(aws.Context, *launchwizard.ListWorkloadsInput, func(*launchwizard.ListWorkloadsOutput, bool) bool, ...request.Option) error
+
+	TagResource(*launchwizard.TagResourceInput) (*launchwizard.TagResourceOutput, error)
+	TagResourceWithContext(aws.Context, *launchwizard.TagResourceInput, ...request.Option) (*launchwizard.TagResourceOutput, error)
+	TagResourceRequest(*launchwizard.TagResourceInput) (*request.Request, *launchwizard.TagResourceOutput)
+
+	UntagResource(*launchwizard.UntagResourceInput) (*launchwizard.UntagResourceOutput, error)
+	UntagResourceWithContext(aws.Context, *launchwizard.UntagResourceInput, ...request.Option) (*launchwizard.UntagResourceOutput, error)
+	UntagResourceRequest(*launchwizard.UntagResourceInput) (*request.Request, *launchwizard.UntagResourceOutput)
 }
 
 var _ LaunchWizardAPI = (*launchwizard.LaunchWizard)(nil)
