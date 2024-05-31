@@ -10,6 +10,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/private/protocol"
+	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
 
 const opCreateDeployment = "CreateDeployment"
@@ -158,6 +159,10 @@ func (c *LaunchWizard) DeleteDeploymentRequest(input *DeleteDeploymentInput) (re
 // API operation DeleteDeployment for usage and error information.
 //
 // Returned Error Types:
+//
+//   - ResourceLimitException
+//     You have exceeded an Launch Wizard resource limit. For example, you might
+//     have too many deployments in progress.
 //
 //   - InternalServerException
 //     An internal error has occurred. Retry your request, but if the problem persists,
@@ -361,6 +366,97 @@ func (c *LaunchWizard) GetWorkload(input *GetWorkloadInput) (*GetWorkloadOutput,
 // for more information on using Contexts.
 func (c *LaunchWizard) GetWorkloadWithContext(ctx aws.Context, input *GetWorkloadInput, opts ...request.Option) (*GetWorkloadOutput, error) {
 	req, out := c.GetWorkloadRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetWorkloadDeploymentPattern = "GetWorkloadDeploymentPattern"
+
+// GetWorkloadDeploymentPatternRequest generates a "aws/request.Request" representing the
+// client's request for the GetWorkloadDeploymentPattern operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetWorkloadDeploymentPattern for more information on using the GetWorkloadDeploymentPattern
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetWorkloadDeploymentPatternRequest method.
+//	req, resp := client.GetWorkloadDeploymentPatternRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/launch-wizard-2018-05-10/GetWorkloadDeploymentPattern
+func (c *LaunchWizard) GetWorkloadDeploymentPatternRequest(input *GetWorkloadDeploymentPatternInput) (req *request.Request, output *GetWorkloadDeploymentPatternOutput) {
+	op := &request.Operation{
+		Name:       opGetWorkloadDeploymentPattern,
+		HTTPMethod: "POST",
+		HTTPPath:   "/getWorkloadDeploymentPattern",
+	}
+
+	if input == nil {
+		input = &GetWorkloadDeploymentPatternInput{}
+	}
+
+	output = &GetWorkloadDeploymentPatternOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetWorkloadDeploymentPattern API operation for AWS Launch Wizard.
+//
+// Returns details for a given workload and deployment pattern, including the
+// available specifications. You can use the ListWorkloads (https://docs.aws.amazon.com/launchwizard/latest/APIReference/API_ListWorkloads.html)
+// operation to discover the available workload names and the ListWorkloadDeploymentPatterns
+// (https://docs.aws.amazon.com/launchwizard/latest/APIReference/API_ListWorkloadDeploymentPatterns.html)
+// operation to discover the available deployment pattern names of a given workload.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Launch Wizard's
+// API operation GetWorkloadDeploymentPattern for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     An internal error has occurred. Retry your request, but if the problem persists,
+//     contact us with details by posting a question on re:Post (https://repost.aws/).
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
+//
+//   - ResourceNotFoundException
+//     The specified workload or deployment resource can't be found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/launch-wizard-2018-05-10/GetWorkloadDeploymentPattern
+func (c *LaunchWizard) GetWorkloadDeploymentPattern(input *GetWorkloadDeploymentPatternInput) (*GetWorkloadDeploymentPatternOutput, error) {
+	req, out := c.GetWorkloadDeploymentPatternRequest(input)
+	return out, req.Send()
+}
+
+// GetWorkloadDeploymentPatternWithContext is the same as GetWorkloadDeploymentPattern with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetWorkloadDeploymentPattern for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LaunchWizard) GetWorkloadDeploymentPatternWithContext(ctx aws.Context, input *GetWorkloadDeploymentPatternInput, opts ...request.Option) (*GetWorkloadDeploymentPatternOutput, error) {
+	req, out := c.GetWorkloadDeploymentPatternRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -651,6 +747,93 @@ func (c *LaunchWizard) ListDeploymentsPagesWithContext(ctx aws.Context, input *L
 	return p.Err()
 }
 
+const opListTagsForResource = "ListTagsForResource"
+
+// ListTagsForResourceRequest generates a "aws/request.Request" representing the
+// client's request for the ListTagsForResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListTagsForResource for more information on using the ListTagsForResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListTagsForResourceRequest method.
+//	req, resp := client.ListTagsForResourceRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/launch-wizard-2018-05-10/ListTagsForResource
+func (c *LaunchWizard) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
+	op := &request.Operation{
+		Name:       opListTagsForResource,
+		HTTPMethod: "GET",
+		HTTPPath:   "/tags/{resourceArn}",
+	}
+
+	if input == nil {
+		input = &ListTagsForResourceInput{}
+	}
+
+	output = &ListTagsForResourceOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListTagsForResource API operation for AWS Launch Wizard.
+//
+// Lists the tags associated with a specified resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Launch Wizard's
+// API operation ListTagsForResource for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     An internal error has occurred. Retry your request, but if the problem persists,
+//     contact us with details by posting a question on re:Post (https://repost.aws/).
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
+//
+//   - ResourceNotFoundException
+//     The specified workload or deployment resource can't be found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/launch-wizard-2018-05-10/ListTagsForResource
+func (c *LaunchWizard) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
+	req, out := c.ListTagsForResourceRequest(input)
+	return out, req.Send()
+}
+
+// ListTagsForResourceWithContext is the same as ListTagsForResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListTagsForResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LaunchWizard) ListTagsForResourceWithContext(ctx aws.Context, input *ListTagsForResourceInput, opts ...request.Option) (*ListTagsForResourceOutput, error) {
+	req, out := c.ListTagsForResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListWorkloadDeploymentPatterns = "ListWorkloadDeploymentPatterns"
 
 // ListWorkloadDeploymentPatternsRequest generates a "aws/request.Request" representing the
@@ -700,7 +883,9 @@ func (c *LaunchWizard) ListWorkloadDeploymentPatternsRequest(input *ListWorkload
 
 // ListWorkloadDeploymentPatterns API operation for AWS Launch Wizard.
 //
-// Lists the workload deployment patterns.
+// Lists the workload deployment patterns for a given workload name. You can
+// use the ListWorkloads (https://docs.aws.amazon.com/launchwizard/latest/APIReference/API_ListWorkloads.html)
+// operation to discover the available workload names.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -844,7 +1029,9 @@ func (c *LaunchWizard) ListWorkloadsRequest(input *ListWorkloadsInput) (req *req
 
 // ListWorkloads API operation for AWS Launch Wizard.
 //
-// Lists the workloads.
+// Lists the available workload names. You can use the ListWorkloadDeploymentPatterns
+// (https://docs.aws.amazon.com/launchwizard/latest/APIReference/API_ListWorkloadDeploymentPatterns.html)
+// operation to discover the available deployment patterns for a given workload.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -936,6 +1123,182 @@ func (c *LaunchWizard) ListWorkloadsPagesWithContext(ctx aws.Context, input *Lis
 	return p.Err()
 }
 
+const opTagResource = "TagResource"
+
+// TagResourceRequest generates a "aws/request.Request" representing the
+// client's request for the TagResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See TagResource for more information on using the TagResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the TagResourceRequest method.
+//	req, resp := client.TagResourceRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/launch-wizard-2018-05-10/TagResource
+func (c *LaunchWizard) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
+	op := &request.Operation{
+		Name:       opTagResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/tags/{resourceArn}",
+	}
+
+	if input == nil {
+		input = &TagResourceInput{}
+	}
+
+	output = &TagResourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// TagResource API operation for AWS Launch Wizard.
+//
+// Adds the specified tags to the given resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Launch Wizard's
+// API operation TagResource for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     An internal error has occurred. Retry your request, but if the problem persists,
+//     contact us with details by posting a question on re:Post (https://repost.aws/).
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
+//
+//   - ResourceNotFoundException
+//     The specified workload or deployment resource can't be found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/launch-wizard-2018-05-10/TagResource
+func (c *LaunchWizard) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
+	req, out := c.TagResourceRequest(input)
+	return out, req.Send()
+}
+
+// TagResourceWithContext is the same as TagResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See TagResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LaunchWizard) TagResourceWithContext(ctx aws.Context, input *TagResourceInput, opts ...request.Option) (*TagResourceOutput, error) {
+	req, out := c.TagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUntagResource = "UntagResource"
+
+// UntagResourceRequest generates a "aws/request.Request" representing the
+// client's request for the UntagResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UntagResource for more information on using the UntagResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UntagResourceRequest method.
+//	req, resp := client.UntagResourceRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/launch-wizard-2018-05-10/UntagResource
+func (c *LaunchWizard) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
+	op := &request.Operation{
+		Name:       opUntagResource,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/tags/{resourceArn}",
+	}
+
+	if input == nil {
+		input = &UntagResourceInput{}
+	}
+
+	output = &UntagResourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UntagResource API operation for AWS Launch Wizard.
+//
+// Removes the specified tags from the given resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Launch Wizard's
+// API operation UntagResource for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     An internal error has occurred. Retry your request, but if the problem persists,
+//     contact us with details by posting a question on re:Post (https://repost.aws/).
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
+//
+//   - ResourceNotFoundException
+//     The specified workload or deployment resource can't be found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/launch-wizard-2018-05-10/UntagResource
+func (c *LaunchWizard) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
+	req, out := c.UntagResourceRequest(input)
+	return out, req.Send()
+}
+
+// UntagResourceWithContext is the same as UntagResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UntagResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LaunchWizard) UntagResourceWithContext(ctx aws.Context, input *UntagResourceInput, opts ...request.Option) (*UntagResourceOutput, error) {
+	req, out := c.UntagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 type CreateDeploymentInput struct {
 	_ struct{} `type:"structure"`
 
@@ -957,8 +1320,13 @@ type CreateDeploymentInput struct {
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
-	// The settings specified for the deployment. For more information on the specifications
-	// required for creating a deployment, see Workload specifications (https://docs.aws.amazon.com/launchwizard/latest/APIReference/launch-wizard-specifications.html).
+	// The settings specified for the deployment. These settings define how to deploy
+	// and configure your resources created by the deployment. For more information
+	// about the specifications required for creating a deployment for a SAP workload,
+	// see SAP deployment specifications (https://docs.aws.amazon.com/launchwizard/latest/APIReference/launch-wizard-specifications-sap.html).
+	// To retrieve the specifications required to create a deployment for other
+	// workloads, use the GetWorkloadDeploymentPattern (https://docs.aws.amazon.com/launchwizard/latest/APIReference/API_GetWorkloadDeploymentPattern.html)
+	// operation.
 	//
 	// Specifications is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CreateDeploymentInput's
@@ -967,8 +1335,10 @@ type CreateDeploymentInput struct {
 	// Specifications is a required field
 	Specifications map[string]*string `locationName:"specifications" min:"1" type:"map" required:"true" sensitive:"true"`
 
-	// The name of the workload. You can use the ListWorkloadDeploymentPatterns
-	// (https://docs.aws.amazon.com/launchwizard/latest/APIReference/API_ListWorkloadDeploymentPatterns.html)
+	// The tags to add to the deployment.
+	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
+
+	// The name of the workload. You can use the ListWorkloads (https://docs.aws.amazon.com/launchwizard/latest/APIReference/API_ListWorkloads.html)
 	// operation to discover supported values for this parameter.
 	//
 	// WorkloadName is a required field
@@ -1014,6 +1384,9 @@ func (s *CreateDeploymentInput) Validate() error {
 	if s.Specifications != nil && len(s.Specifications) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Specifications", 1))
 	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
 	if s.WorkloadName == nil {
 		invalidParams.Add(request.NewErrParamRequired("WorkloadName"))
 	}
@@ -1048,6 +1421,12 @@ func (s *CreateDeploymentInput) SetName(v string) *CreateDeploymentInput {
 // SetSpecifications sets the Specifications field's value.
 func (s *CreateDeploymentInput) SetSpecifications(v map[string]*string) *CreateDeploymentInput {
 	s.Specifications = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateDeploymentInput) SetTags(v map[string]*string) *CreateDeploymentInput {
+	s.Tags = v
 	return s
 }
 
@@ -1177,6 +1556,58 @@ func (s *DeleteDeploymentOutput) SetStatusReason(v string) *DeleteDeploymentOutp
 	return s
 }
 
+// A field that details a condition of the specifications for a deployment.
+type DeploymentConditionalField struct {
+	_ struct{} `type:"structure"`
+
+	// The comparator of the condition.
+	//
+	// Valid values: Equal | NotEqual
+	Comparator *string `locationName:"comparator" type:"string"`
+
+	// The name of the deployment condition.
+	Name *string `locationName:"name" type:"string"`
+
+	// The value of the condition.
+	Value *string `locationName:"value" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeploymentConditionalField) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeploymentConditionalField) GoString() string {
+	return s.String()
+}
+
+// SetComparator sets the Comparator field's value.
+func (s *DeploymentConditionalField) SetComparator(v string) *DeploymentConditionalField {
+	s.Comparator = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *DeploymentConditionalField) SetName(v string) *DeploymentConditionalField {
+	s.Name = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *DeploymentConditionalField) SetValue(v string) *DeploymentConditionalField {
+	s.Value = &v
+	return s
+}
+
 // The data associated with a deployment.
 type DeploymentData struct {
 	_ struct{} `type:"structure"`
@@ -1186,6 +1617,9 @@ type DeploymentData struct {
 
 	// The time the deployment was deleted.
 	DeletedAt *time.Time `locationName:"deletedAt" type:"timestamp"`
+
+	// The Amazon Resource Name (ARN) of the deployment.
+	DeploymentArn *string `locationName:"deploymentArn" type:"string"`
 
 	// The ID of the deployment.
 	Id *string `locationName:"id" min:"2" type:"string"`
@@ -1199,8 +1633,13 @@ type DeploymentData struct {
 	// The resource group of the deployment.
 	ResourceGroup *string `locationName:"resourceGroup" type:"string"`
 
-	// The specifications of the deployment. For more information on specifications
-	// for each deployment, see Workload specifications (https://docs.aws.amazon.com/launchwizard/latest/APIReference/launch-wizard-specifications.html).
+	// The settings specified for the deployment. These settings define how to deploy
+	// and configure your resources created by the deployment. For more information
+	// about the specifications required for creating a deployment for a SAP workload,
+	// see SAP deployment specifications (https://docs.aws.amazon.com/launchwizard/latest/APIReference/launch-wizard-specifications-sap.html).
+	// To retrieve the specifications required to create a deployment for other
+	// workloads, use the GetWorkloadDeploymentPattern (https://docs.aws.amazon.com/launchwizard/latest/APIReference/API_GetWorkloadDeploymentPattern.html)
+	// operation.
 	//
 	// Specifications is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by DeploymentData's
@@ -1209,6 +1648,9 @@ type DeploymentData struct {
 
 	// The status of the deployment.
 	Status *string `locationName:"status" type:"string" enum:"DeploymentStatus"`
+
+	// Information about the tags attached to a deployment.
+	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
 
 	// The name of the workload.
 	WorkloadName *string `locationName:"workloadName" min:"1" type:"string"`
@@ -1241,6 +1683,12 @@ func (s *DeploymentData) SetCreatedAt(v time.Time) *DeploymentData {
 // SetDeletedAt sets the DeletedAt field's value.
 func (s *DeploymentData) SetDeletedAt(v time.Time) *DeploymentData {
 	s.DeletedAt = &v
+	return s
+}
+
+// SetDeploymentArn sets the DeploymentArn field's value.
+func (s *DeploymentData) SetDeploymentArn(v string) *DeploymentData {
+	s.DeploymentArn = &v
 	return s
 }
 
@@ -1277,6 +1725,12 @@ func (s *DeploymentData) SetSpecifications(v map[string]*string) *DeploymentData
 // SetStatus sets the Status field's value.
 func (s *DeploymentData) SetStatus(v string) *DeploymentData {
 	s.Status = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *DeploymentData) SetTags(v map[string]*string) *DeploymentData {
+	s.Tags = v
 	return s
 }
 
@@ -1476,6 +1930,74 @@ func (s *DeploymentFilter) SetValues(v []*string) *DeploymentFilter {
 	return s
 }
 
+// A field that details a specification of a deployment pattern.
+type DeploymentSpecificationsField struct {
+	_ struct{} `type:"structure"`
+
+	// The allowed values of the deployment specification.
+	AllowedValues []*string `locationName:"allowedValues" type:"list"`
+
+	// The conditionals used for the deployment specification.
+	Conditionals []*DeploymentConditionalField `locationName:"conditionals" min:"1" type:"list"`
+
+	// The description of the deployment specification.
+	Description *string `locationName:"description" type:"string"`
+
+	// The name of the deployment specification.
+	Name *string `locationName:"name" type:"string"`
+
+	// Indicates if the deployment specification is required.
+	Required *string `locationName:"required" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeploymentSpecificationsField) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeploymentSpecificationsField) GoString() string {
+	return s.String()
+}
+
+// SetAllowedValues sets the AllowedValues field's value.
+func (s *DeploymentSpecificationsField) SetAllowedValues(v []*string) *DeploymentSpecificationsField {
+	s.AllowedValues = v
+	return s
+}
+
+// SetConditionals sets the Conditionals field's value.
+func (s *DeploymentSpecificationsField) SetConditionals(v []*DeploymentConditionalField) *DeploymentSpecificationsField {
+	s.Conditionals = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *DeploymentSpecificationsField) SetDescription(v string) *DeploymentSpecificationsField {
+	s.Description = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *DeploymentSpecificationsField) SetName(v string) *DeploymentSpecificationsField {
+	s.Name = &v
+	return s
+}
+
+// SetRequired sets the Required field's value.
+func (s *DeploymentSpecificationsField) SetRequired(v string) *DeploymentSpecificationsField {
+	s.Required = &v
+	return s
+}
+
 type GetDeploymentInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1553,6 +2075,103 @@ func (s GetDeploymentOutput) GoString() string {
 // SetDeployment sets the Deployment field's value.
 func (s *GetDeploymentOutput) SetDeployment(v *DeploymentData) *GetDeploymentOutput {
 	s.Deployment = v
+	return s
+}
+
+type GetWorkloadDeploymentPatternInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the deployment pattern.
+	//
+	// DeploymentPatternName is a required field
+	DeploymentPatternName *string `locationName:"deploymentPatternName" min:"1" type:"string" required:"true"`
+
+	// The name of the workload.
+	//
+	// WorkloadName is a required field
+	WorkloadName *string `locationName:"workloadName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetWorkloadDeploymentPatternInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetWorkloadDeploymentPatternInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetWorkloadDeploymentPatternInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetWorkloadDeploymentPatternInput"}
+	if s.DeploymentPatternName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DeploymentPatternName"))
+	}
+	if s.DeploymentPatternName != nil && len(*s.DeploymentPatternName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DeploymentPatternName", 1))
+	}
+	if s.WorkloadName == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkloadName"))
+	}
+	if s.WorkloadName != nil && len(*s.WorkloadName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkloadName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDeploymentPatternName sets the DeploymentPatternName field's value.
+func (s *GetWorkloadDeploymentPatternInput) SetDeploymentPatternName(v string) *GetWorkloadDeploymentPatternInput {
+	s.DeploymentPatternName = &v
+	return s
+}
+
+// SetWorkloadName sets the WorkloadName field's value.
+func (s *GetWorkloadDeploymentPatternInput) SetWorkloadName(v string) *GetWorkloadDeploymentPatternInput {
+	s.WorkloadName = &v
+	return s
+}
+
+type GetWorkloadDeploymentPatternOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Details about the workload deployment pattern.
+	WorkloadDeploymentPattern *WorkloadDeploymentPatternData `locationName:"workloadDeploymentPattern" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetWorkloadDeploymentPatternOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetWorkloadDeploymentPatternOutput) GoString() string {
+	return s.String()
+}
+
+// SetWorkloadDeploymentPattern sets the WorkloadDeploymentPattern field's value.
+func (s *GetWorkloadDeploymentPatternOutput) SetWorkloadDeploymentPattern(v *WorkloadDeploymentPatternData) *GetWorkloadDeploymentPatternOutput {
+	s.WorkloadDeploymentPattern = v
 	return s
 }
 
@@ -1822,9 +2441,10 @@ type ListDeploymentsInput struct {
 
 	// Filters to scope the results. The following filters are supported:
 	//
-	//    * WORKLOAD_NAME
+	//    * WORKLOAD_NAME - The name used in deployments.
 	//
-	//    * DEPLOYMENT_STATUS
+	//    * DEPLOYMENT_STATUS - COMPLETED | CREATING | DELETE_IN_PROGRESS | DELETE_INITIATING
+	//    | DELETE_FAILED | DELETED | FAILED | IN_PROGRESS | VALIDATING
 	Filters []*DeploymentFilter `locationName:"filters" min:"1" type:"list"`
 
 	// The maximum number of items to return for this request. To get the next page
@@ -1929,6 +2549,86 @@ func (s *ListDeploymentsOutput) SetDeployments(v []*DeploymentDataSummary) *List
 // SetNextToken sets the NextToken field's value.
 func (s *ListDeploymentsOutput) SetNextToken(v string) *ListDeploymentsOutput {
 	s.NextToken = &v
+	return s
+}
+
+type ListTagsForResourceInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The Amazon Resource Name (ARN) of the resource.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListTagsForResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListTagsForResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *ListTagsForResourceInput) SetResourceArn(v string) *ListTagsForResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+type ListTagsForResourceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the tags.
+	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceOutput) GoString() string {
+	return s.String()
+}
+
+// SetTags sets the Tags field's value.
+func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForResourceOutput {
+	s.Tags = v
 	return s
 }
 
@@ -2276,6 +2976,182 @@ func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+type TagResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the resource.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
+
+	// One or more tags to attach to the resource.
+	//
+	// Tags is a required field
+	Tags map[string]*string `locationName:"tags" min:"1" type:"map" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TagResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TagResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
+	}
+	if s.Tags == nil {
+		invalidParams.Add(request.NewErrParamRequired("Tags"))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *TagResourceInput) SetResourceArn(v string) *TagResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
+	s.Tags = v
+	return s
+}
+
+type TagResourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceOutput) GoString() string {
+	return s.String()
+}
+
+type UntagResourceInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The Amazon Resource Name (ARN) of the resource.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
+
+	// Keys identifying the tags to remove.
+	//
+	// TagKeys is a required field
+	TagKeys []*string `location:"querystring" locationName:"tagKeys" min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UntagResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UntagResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
+	}
+	if s.TagKeys == nil {
+		invalidParams.Add(request.NewErrParamRequired("TagKeys"))
+	}
+	if s.TagKeys != nil && len(s.TagKeys) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TagKeys", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *UntagResourceInput) SetResourceArn(v string) *UntagResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetTagKeys sets the TagKeys field's value.
+func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
+	s.TagKeys = v
+	return s
+}
+
+type UntagResourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceOutput) GoString() string {
+	return s.String()
+}
+
 // The input fails to satisfy the constraints specified by an Amazon Web Services
 // service.
 type ValidationException struct {
@@ -2465,6 +3341,107 @@ func (s *WorkloadDataSummary) SetDisplayName(v string) *WorkloadDataSummary {
 // SetWorkloadName sets the WorkloadName field's value.
 func (s *WorkloadDataSummary) SetWorkloadName(v string) *WorkloadDataSummary {
 	s.WorkloadName = &v
+	return s
+}
+
+// The data that details a workload deployment pattern.
+type WorkloadDeploymentPatternData struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the deployment pattern.
+	DeploymentPatternName *string `locationName:"deploymentPatternName" min:"1" type:"string"`
+
+	// The description of the deployment pattern.
+	Description *string `locationName:"description" type:"string"`
+
+	// The display name of the deployment pattern.
+	DisplayName *string `locationName:"displayName" type:"string"`
+
+	// The settings specified for the deployment. These settings define how to deploy
+	// and configure your resources created by the deployment. For more information
+	// about the specifications required for creating a deployment for a SAP workload,
+	// see SAP deployment specifications (https://docs.aws.amazon.com/launchwizard/latest/APIReference/launch-wizard-specifications-sap.html).
+	// To retrieve the specifications required to create a deployment for other
+	// workloads, use the GetWorkloadDeploymentPattern (https://docs.aws.amazon.com/launchwizard/latest/APIReference/API_GetWorkloadDeploymentPattern.html)
+	// operation.
+	Specifications []*DeploymentSpecificationsField `locationName:"specifications" min:"1" type:"list"`
+
+	// The status of the deployment pattern.
+	Status *string `locationName:"status" type:"string" enum:"WorkloadDeploymentPatternStatus"`
+
+	// The status message of the deployment pattern.
+	StatusMessage *string `locationName:"statusMessage" type:"string"`
+
+	// The workload name of the deployment pattern.
+	WorkloadName *string `locationName:"workloadName" min:"1" type:"string"`
+
+	// The workload version name of the deployment pattern.
+	WorkloadVersionName *string `locationName:"workloadVersionName" min:"5" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WorkloadDeploymentPatternData) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WorkloadDeploymentPatternData) GoString() string {
+	return s.String()
+}
+
+// SetDeploymentPatternName sets the DeploymentPatternName field's value.
+func (s *WorkloadDeploymentPatternData) SetDeploymentPatternName(v string) *WorkloadDeploymentPatternData {
+	s.DeploymentPatternName = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *WorkloadDeploymentPatternData) SetDescription(v string) *WorkloadDeploymentPatternData {
+	s.Description = &v
+	return s
+}
+
+// SetDisplayName sets the DisplayName field's value.
+func (s *WorkloadDeploymentPatternData) SetDisplayName(v string) *WorkloadDeploymentPatternData {
+	s.DisplayName = &v
+	return s
+}
+
+// SetSpecifications sets the Specifications field's value.
+func (s *WorkloadDeploymentPatternData) SetSpecifications(v []*DeploymentSpecificationsField) *WorkloadDeploymentPatternData {
+	s.Specifications = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *WorkloadDeploymentPatternData) SetStatus(v string) *WorkloadDeploymentPatternData {
+	s.Status = &v
+	return s
+}
+
+// SetStatusMessage sets the StatusMessage field's value.
+func (s *WorkloadDeploymentPatternData) SetStatusMessage(v string) *WorkloadDeploymentPatternData {
+	s.StatusMessage = &v
+	return s
+}
+
+// SetWorkloadName sets the WorkloadName field's value.
+func (s *WorkloadDeploymentPatternData) SetWorkloadName(v string) *WorkloadDeploymentPatternData {
+	s.WorkloadName = &v
+	return s
+}
+
+// SetWorkloadVersionName sets the WorkloadVersionName field's value.
+func (s *WorkloadDeploymentPatternData) SetWorkloadVersionName(v string) *WorkloadDeploymentPatternData {
+	s.WorkloadVersionName = &v
 	return s
 }
 

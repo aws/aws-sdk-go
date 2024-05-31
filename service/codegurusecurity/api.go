@@ -56,7 +56,7 @@ func (c *CodeGuruSecurity) BatchGetFindingsRequest(input *BatchGetFindingsInput)
 
 // BatchGetFindings API operation for Amazon CodeGuru Security.
 //
-// Returns a list of all requested findings.
+// Returns a list of requested findings from standard scans.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -144,7 +144,7 @@ func (c *CodeGuruSecurity) CreateScanRequest(input *CreateScanInput) (req *reque
 
 // CreateScan API operation for Amazon CodeGuru Security.
 //
-// Use to create a scan using code uploaded to an S3 bucket.
+// Use to create a scan using code uploaded to an Amazon S3 bucket.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -240,10 +240,11 @@ func (c *CodeGuruSecurity) CreateUploadUrlRequest(input *CreateUploadUrlInput) (
 
 // CreateUploadUrl API operation for Amazon CodeGuru Security.
 //
-// Generates a pre-signed URL and request headers used to upload a code resource.
+// Generates a pre-signed URL, request headers used to upload a code resource,
+// and code artifact identifier for the uploaded resource.
 //
-// You can upload your code resource to the URL and add the request headers
-// using any HTTP client.
+// You can upload your code resource to the URL with the request headers using
+// any HTTP client.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -331,7 +332,7 @@ func (c *CodeGuruSecurity) GetAccountConfigurationRequest(input *GetAccountConfi
 
 // GetAccountConfiguration API operation for Amazon CodeGuru Security.
 //
-// Use to get account level configuration.
+// Use to get the encryption configuration for an account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -572,7 +573,7 @@ func (c *CodeGuruSecurity) GetMetricsSummaryRequest(input *GetMetricsSummaryInpu
 
 // GetMetricsSummary API operation for Amazon CodeGuru Security.
 //
-// Returns top level metrics about an account from a specified date, including
+// Returns a summary of metrics for an account from a specified date, including
 // number of open findings, the categories with most findings, the scans with
 // most open findings, and scans with most open critical findings.
 //
@@ -681,6 +682,9 @@ func (c *CodeGuruSecurity) GetScanRequest(input *GetScanInput) (req *request.Req
 //
 //   - ThrottlingException
 //     The request was denied due to request throttling.
+//
+//   - ValidationException
+//     The input fails to satisfy the specified constraints.
 //
 //   - AccessDeniedException
 //     You do not have sufficient access to perform this action.
@@ -902,8 +906,7 @@ func (c *CodeGuruSecurity) ListScansRequest(input *ListScansInput) (req *request
 
 // ListScans API operation for Amazon CodeGuru Security.
 //
-// Returns a list of all the standard scans in an account. Does not return express
-// scans.
+// Returns a list of all scans in an account. Does not return EXPRESS scans.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1332,7 +1335,7 @@ func (c *CodeGuruSecurity) UpdateAccountConfigurationRequest(input *UpdateAccoun
 
 // UpdateAccountConfiguration API operation for Amazon CodeGuru Security.
 //
-// Use to update account-level configuration with an encryption key.
+// Use to update the encryption configuration for an account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1456,25 +1459,24 @@ func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// A summary of findings metrics in an account.
+// A summary of findings metrics for an account on a specified date.
 type AccountFindingsMetric struct {
 	_ struct{} `type:"structure"`
 
-	// The number of closed findings of each severity in an account on the specified
-	// date.
+	// The number of closed findings of each severity on the specified date.
 	ClosedFindings *FindingMetricsValuePerSeverity `locationName:"closedFindings" type:"structure"`
 
-	// The date from which the finding metrics were retrieved.
+	// The date from which the findings metrics were retrieved.
 	Date *time.Time `locationName:"date" type:"timestamp"`
 
-	// The average time it takes to close findings of each severity in days.
+	// The average time in days it takes to close findings of each severity as of
+	// a specified date.
 	MeanTimeToClose *FindingMetricsValuePerSeverity `locationName:"meanTimeToClose" type:"structure"`
 
-	// The number of new findings of each severity in account on the specified date.
+	// The number of new findings of each severity on the specified date.
 	NewFindings *FindingMetricsValuePerSeverity `locationName:"newFindings" type:"structure"`
 
-	// The number of open findings of each severity in an account as of the specified
-	// date.
+	// The number of open findings of each severity as of the specified date.
 	OpenFindings *FindingMetricsValuePerSeverity `locationName:"openFindings" type:"structure"`
 }
 
@@ -1663,7 +1665,7 @@ type BatchGetFindingsOutput struct {
 	// FailedFindings is a required field
 	FailedFindings []*BatchGetFindingsError `locationName:"failedFindings" type:"list" required:"true"`
 
-	// A list of all requested findings.
+	// A list of all findings which were successfully fetched.
 	//
 	// Findings is a required field
 	Findings []*Finding `locationName:"findings" type:"list" required:"true"`
@@ -1878,14 +1880,13 @@ type CreateScanInput struct {
 	// failures and retries.
 	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
 
-	// The identifier for an input resource used to create a scan.
+	// The identifier for the resource object to be scanned.
 	//
 	// ResourceId is a required field
 	ResourceId *ResourceId `locationName:"resourceId" type:"structure" required:"true"`
 
 	// The unique name that CodeGuru Security uses to track revisions across multiple
-	// scans of the same resource. Only allowed for a STANDARD scan type. If not
-	// specified, it will be auto generated.
+	// scans of the same resource. Only allowed for a STANDARD scan type.
 	//
 	// ScanName is a required field
 	ScanName *string `locationName:"scanName" min:"1" type:"string" required:"true"`
@@ -2118,7 +2119,8 @@ func (s *CreateUploadUrlInput) SetScanName(v string) *CreateUploadUrlInput {
 type CreateUploadUrlOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier for the uploaded code resource.
+	// The identifier for the uploaded code resource. Pass this to CreateScan to
+	// use the uploaded resources.
 	//
 	// CodeArtifactId is a required field
 	CodeArtifactId *string `locationName:"codeArtifactId" type:"string" required:"true"`
@@ -2133,8 +2135,8 @@ type CreateUploadUrlOutput struct {
 	// RequestHeaders is a required field
 	RequestHeaders map[string]*string `locationName:"requestHeaders" type:"map" required:"true" sensitive:"true"`
 
-	// A pre-signed S3 URL. You can upload the code file you want to scan and add
-	// the required requestHeaders using any HTTP client.
+	// A pre-signed S3 URL. You can upload the code file you want to scan with the
+	// required requestHeaders using any HTTP client.
 	//
 	// S3Url is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CreateUploadUrlOutput's
@@ -2180,12 +2182,13 @@ func (s *CreateUploadUrlOutput) SetS3Url(v string) *CreateUploadUrlOutput {
 	return s
 }
 
-// Information about account-level configuration.
+// Information about the encryption configuration for an account. Required to
+// call UpdateAccountConfiguration.
 type EncryptionConfig struct {
 	_ struct{} `type:"structure"`
 
-	// The KMS key ARN to use for encryption. This must be provided as a header
-	// when uploading your code resource.
+	// The KMS key ARN that is used for encryption. If an AWS-managed key is used
+	// for encryption, returns empty.
 	KmsKeyArn *string `locationName:"kmsKeyArn" min:"1" type:"string"`
 }
 
@@ -2321,8 +2324,7 @@ type Finding struct {
 	// such as maintainability or consistency.
 	DetectorTags []*string `locationName:"detectorTags" type:"list"`
 
-	// The identifier for the component that generated a finding such as AWSCodeGuruSecurity
-	// or AWSInspector.
+	// The identifier for the component that generated a finding such as AmazonCodeGuruSecurity.
 	GeneratorId *string `locationName:"generatorId" type:"string"`
 
 	// The identifier for a finding.
@@ -2337,7 +2339,10 @@ type Finding struct {
 	// The identifier for the rule that generated the finding.
 	RuleId *string `locationName:"ruleId" type:"string"`
 
-	// The severity of the finding.
+	// The severity of the finding. Severity can be critical, high, medium, low,
+	// or informational. For information on severity levels, see Finding severity
+	// (https://docs.aws.amazon.com/codeguru/latest/security-ug/findings-overview.html#severity-distribution)
+	// in the Amazon CodeGuru Security User Guide.
 	Severity *string `locationName:"severity" type:"string" enum:"Severity"`
 
 	// The status of the finding. A finding status can be open or closed.
@@ -2533,26 +2538,25 @@ func (s *FindingIdentifier) SetScanName(v string) *FindingIdentifier {
 	return s
 }
 
-// The severity of the issue in the code that generated a finding.
+// A numeric value corresponding to the severity of a finding, such as the number
+// of open findings or the average time it takes to close findings of a given
+// severity.
 type FindingMetricsValuePerSeverity struct {
 	_ struct{} `type:"structure"`
 
-	// The severity of the finding is critical and should be addressed immediately.
+	// A numeric value corresponding to a critical finding.
 	Critical *float64 `locationName:"critical" type:"double"`
 
-	// The severity of the finding is high and should be addressed as a near-term
-	// priority.
+	// A numeric value corresponding to a high severity finding.
 	High *float64 `locationName:"high" type:"double"`
 
-	// The finding is related to quality or readability improvements and not considered
-	// actionable.
+	// A numeric value corresponding to an informational finding.
 	Info *float64 `locationName:"info" type:"double"`
 
-	// The severity of the finding is low and does require action on its own.
+	// A numeric value corresponding to a low severity finding.
 	Low *float64 `locationName:"low" type:"double"`
 
-	// The severity of the finding is medium and should be addressed as a mid-term
-	// priority.
+	// A numeric value corresponding to a medium severity finding.
 	Medium *float64 `locationName:"medium" type:"double"`
 }
 
@@ -2629,9 +2633,10 @@ func (s GetAccountConfigurationInput) GoString() string {
 type GetAccountConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 
-	// An EncryptionConfig object that contains the KMS key ARN to use for encryption.
-	// By default, CodeGuru Security uses an AWS-managed key for encryption. To
-	// specify your own key, call UpdateAccountConfiguration.
+	// An EncryptionConfig object that contains the KMS key ARN that is used for
+	// encryption. By default, CodeGuru Security uses an AWS-managed key for encryption.
+	// To specify your own key, call UpdateAccountConfiguration. If you do not specify
+	// a customer-managed key, returns empty.
 	//
 	// EncryptionConfig is a required field
 	EncryptionConfig *EncryptionConfig `locationName:"encryptionConfig" type:"structure" required:"true"`
@@ -2667,7 +2672,8 @@ type GetFindingsInput struct {
 	// The maximum number of results to return in the response. Use this parameter
 	// when paginating results. If additional results exist beyond the number you
 	// specify, the nextToken element is returned in the response. Use nextToken
-	// in a subsequent request to retrieve additional results.
+	// in a subsequent request to retrieve additional results. If not specified,
+	// returns 1000 results.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
 	// A token to use for paginating results that are returned in the response.
@@ -2795,9 +2801,7 @@ type GetMetricsSummaryInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The date you want to retrieve summary metrics from, rounded to the nearest
-	// day. The date must be within the past two years since metrics data is only
-	// stored for two years. If a date outside of this range is passed, the response
-	// will be empty.
+	// day. The date must be within the past two years.
 	//
 	// Date is a required field
 	Date *time.Time `location:"querystring" locationName:"date" type:"timestamp" required:"true"`
@@ -2946,6 +2950,9 @@ type GetScanOutput struct {
 	// CreatedAt is a required field
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" required:"true"`
 
+	// Details about the error that causes a scan to fail to be retrieved.
+	ErrorMessage *string `locationName:"errorMessage" min:"1" type:"string"`
+
 	// The number of times a scan has been re-run on a revised resource.
 	NumberOfRevisions *int64 `locationName:"numberOfRevisions" type:"long"`
 
@@ -2962,7 +2969,8 @@ type GetScanOutput struct {
 	// The ARN for the scan name.
 	ScanNameArn *string `locationName:"scanNameArn" min:"1" type:"string"`
 
-	// The current state of the scan. Pass either InProgress, Successful, or Failed.
+	// The current state of the scan. Returns either InProgress, Successful, or
+	// Failed.
 	//
 	// ScanState is a required field
 	ScanState *string `locationName:"scanState" type:"string" required:"true" enum:"ScanState"`
@@ -2999,6 +3007,12 @@ func (s *GetScanOutput) SetAnalysisType(v string) *GetScanOutput {
 // SetCreatedAt sets the CreatedAt field's value.
 func (s *GetScanOutput) SetCreatedAt(v time.Time) *GetScanOutput {
 	s.CreatedAt = &v
+	return s
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *GetScanOutput) SetErrorMessage(v string) *GetScanOutput {
+	s.ErrorMessage = &v
 	return s
 }
 
@@ -3109,7 +3123,8 @@ func (s *InternalServerException) RequestID() string {
 type ListFindingsMetricsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The end date of the interval which you want to retrieve metrics from.
+	// The end date of the interval which you want to retrieve metrics from. Round
+	// to the nearest day.
 	//
 	// EndDate is a required field
 	EndDate *time.Time `location:"querystring" locationName:"endDate" type:"timestamp" required:"true"`
@@ -3117,7 +3132,8 @@ type ListFindingsMetricsInput struct {
 	// The maximum number of results to return in the response. Use this parameter
 	// when paginating results. If additional results exist beyond the number you
 	// specify, the nextToken element is returned in the response. Use nextToken
-	// in a subsequent request to retrieve additional results.
+	// in a subsequent request to retrieve additional results. If not specified,
+	// returns 1000 results.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
 	// A token to use for paginating results that are returned in the response.
@@ -3126,7 +3142,8 @@ type ListFindingsMetricsInput struct {
 	// listing results after the first page.
 	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
 
-	// The start date of the interval which you want to retrieve metrics from.
+	// The start date of the interval which you want to retrieve metrics from. Rounds
+	// to the nearest day.
 	//
 	// StartDate is a required field
 	StartDate *time.Time `location:"querystring" locationName:"startDate" type:"timestamp" required:"true"`
@@ -3244,7 +3261,8 @@ type ListScansInput struct {
 	// The maximum number of results to return in the response. Use this parameter
 	// when paginating results. If additional results exist beyond the number you
 	// specify, the nextToken element is returned in the response. Use nextToken
-	// in a subsequent request to retrieve additional results.
+	// in a subsequent request to retrieve additional results. If not specified,
+	// returns 100 results.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
 	// A token to use for paginating results that are returned in the response.
@@ -3344,8 +3362,8 @@ func (s *ListScansOutput) SetSummaries(v []*ScanSummary) *ListScansOutput {
 type ListTagsForResourceInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The ARN of the ScanName object. You can retrieve this ARN by calling ListScans
-	// or GetScan.
+	// The ARN of the ScanName object. You can retrieve this ARN by calling CreateScan,
+	// ListScans, or GetScan.
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resourceArn" min:"1" type:"string" required:"true"`
@@ -3430,26 +3448,26 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 	return s
 }
 
-// Information about summary metrics in an account.
+// A summary of metrics for an account as of a specified date.
 type MetricsSummary struct {
 	_ struct{} `type:"structure"`
 
 	// A list of CategoryWithFindingNum objects for the top 5 finding categories
-	// with the most open findings in an account.
+	// with the most findings.
 	CategoriesWithMostFindings []*CategoryWithFindingNum `locationName:"categoriesWithMostFindings" type:"list"`
 
 	// The date from which the metrics summary information was retrieved.
 	Date *time.Time `locationName:"date" type:"timestamp"`
 
-	// The number of open findings of each severity in an account.
+	// The number of open findings of each severity.
 	OpenFindings *FindingMetricsValuePerSeverity `locationName:"openFindings" type:"structure"`
 
 	// A list of ScanNameWithFindingNum objects for the top 3 scans with the most
-	// number of open findings in an account.
+	// number of open critical findings.
 	ScansWithMostOpenCriticalFindings []*ScanNameWithFindingNum `locationName:"scansWithMostOpenCriticalFindings" type:"list"`
 
 	// A list of ScanNameWithFindingNum objects for the top 3 scans with the most
-	// number of open critical findings in an account.
+	// number of open findings.
 	ScansWithMostOpenFindings []*ScanNameWithFindingNum `locationName:"scansWithMostOpenFindings" type:"list"`
 }
 
@@ -3585,15 +3603,14 @@ func (s *Remediation) SetSuggestedFixes(v []*SuggestedFix) *Remediation {
 	return s
 }
 
-// Information about a resource, such as an Amazon S3 bucket or AWS Lambda function,
-// that contains a finding.
+// Information about a resource that contains a finding.
 type Resource struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier for the resource.
+	// The scanName of the scan that was run on the resource.
 	Id *string `locationName:"id" type:"string"`
 
-	// The identifier for a section of the resource, such as an AWS Lambda layer.
+	// The identifier for a section of the resource.
 	SubResourceId *string `locationName:"subResourceId" type:"string"`
 }
 
@@ -3627,13 +3644,13 @@ func (s *Resource) SetSubResourceId(v string) *Resource {
 	return s
 }
 
-// The identifier for a resource object that contains resources where a finding
-// was detected.
+// The identifier for a resource object that contains resources to scan. Specifying
+// a codeArtifactId is required to create a scan.
 type ResourceId struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier for the code file uploaded to the resource where a finding
-	// was detected.
+	// The identifier for the code file uploaded to the resource object. Returned
+	// by CreateUploadUrl when you upload resources to be scanned.
 	CodeArtifactId *string `locationName:"codeArtifactId" type:"string"`
 }
 
@@ -3741,11 +3758,11 @@ func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Information about a scan with open findings.
+// Information about the number of findings generated by a scan.
 type ScanNameWithFindingNum struct {
 	_ struct{} `type:"structure"`
 
-	// The number of open findings generated by a scan.
+	// The number of findings generated by a scan.
 	FindingNumber *int64 `locationName:"findingNumber" type:"integer"`
 
 	// The name of the scan.
@@ -3871,7 +3888,8 @@ func (s *ScanSummary) SetUpdatedAt(v time.Time) *ScanSummary {
 type SuggestedFix struct {
 	_ struct{} `type:"structure"`
 
-	// The suggested code to add to your file.
+	// The suggested code fix. If applicable, includes code patch to replace your
+	// source code.
 	Code *string `locationName:"code" type:"string"`
 
 	// A description of the suggested code fix and why it is being suggested.
@@ -3911,8 +3929,8 @@ func (s *SuggestedFix) SetDescription(v string) *SuggestedFix {
 type TagResourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the ScanName object. You can retrieve this ARN by calling ListScans
-	// or GetScan.
+	// The ARN of the ScanName object. You can retrieve this ARN by calling CreateScan,
+	// ListScans, or GetScan.
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resourceArn" min:"1" type:"string" required:"true"`
@@ -4081,8 +4099,8 @@ func (s *ThrottlingException) RequestID() string {
 type UntagResourceInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The ARN of the ScanName object. You can retrieve this ARN by calling ListScans
-	// or GetScan.
+	// The ARN of the ScanName object. You can retrieve this ARN by calling CreateScan,
+	// ListScans, or GetScan.
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resourceArn" min:"1" type:"string" required:"true"`
@@ -4167,8 +4185,10 @@ func (s UntagResourceOutput) GoString() string {
 type UpdateAccountConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
-	// The KMS key ARN you want to use for encryption. Defaults to service-side
-	// encryption if missing.
+	// The customer-managed KMS key ARN you want to use for encryption. If not specified,
+	// CodeGuru Security will use an AWS-managed key for encryption. If you previously
+	// specified a customer-managed KMS key and want CodeGuru Security to use an
+	// AWS-managed key for encryption instead, pass nothing.
 	//
 	// EncryptionConfig is a required field
 	EncryptionConfig *EncryptionConfig `locationName:"encryptionConfig" type:"structure" required:"true"`
@@ -4219,7 +4239,9 @@ func (s *UpdateAccountConfigurationInput) SetEncryptionConfig(v *EncryptionConfi
 type UpdateAccountConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 
-	// An EncryptionConfig object that contains the KMS key ARN to use for encryption.
+	// An EncryptionConfig object that contains the KMS key ARN that is used for
+	// encryption. If you did not specify a customer-managed KMS key in the request,
+	// returns empty.
 	//
 	// EncryptionConfig is a required field
 	EncryptionConfig *EncryptionConfig `locationName:"encryptionConfig" type:"structure" required:"true"`
@@ -4385,7 +4407,9 @@ type Vulnerability struct {
 	Id *string `locationName:"id" type:"string"`
 
 	// The number of times the vulnerability appears in your code.
-	ItemCount *int64 `locationName:"itemCount" type:"integer"`
+	//
+	// Deprecated: This shape is not used.
+	ItemCount *int64 `locationName:"itemCount" deprecated:"true" type:"integer"`
 
 	// One or more URL addresses that contain details about a vulnerability.
 	ReferenceUrls []*string `locationName:"referenceUrls" type:"list"`

@@ -18076,8 +18076,8 @@ type WebhookFilter struct {
 	//    PRERELEASED, and WORKFLOW_JOB_QUEUED. The EVENT patterns are specified
 	//    as a comma-separated string. For example, PUSH, PULL_REQUEST_CREATED,
 	//    PULL_REQUEST_UPDATED filters all push, pull request created, and pull
-	//    request updated events. The PULL_REQUEST_REOPENED works with GitHub and
-	//    GitHub Enterprise only. The RELEASED, PRERELEASED, and WORKFLOW_JOB_QUEUED
+	//    request updated events. Types PULL_REQUEST_REOPENED and WORKFLOW_JOB_QUEUED
+	//    work with GitHub and GitHub Enterprise only. Types RELEASED and PRERELEASED
 	//    work with GitHub only.
 	//
 	//    * ACTOR_ACCOUNT_ID A webhook event triggers a build when a GitHub, GitHub

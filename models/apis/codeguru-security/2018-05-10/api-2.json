@@ -5,6 +5,7 @@
     "endpointPrefix":"codeguru-security",
     "jsonVersion":"1.1",
     "protocol":"rest-json",
+    "protocols":["rest-json"],
     "serviceFullName":"Amazon CodeGuru Security",
     "serviceId":"CodeGuru Security",
     "signatureVersion":"v4",
@@ -125,6 +126,7 @@
         {"shape":"InternalServerException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"}
       ]
     },
@@ -434,6 +436,10 @@
         "INVALID_SCAN_NAME"
       ]
     },
+    "ErrorMessage":{
+      "type":"string",
+      "min":1
+    },
     "FilePath":{
       "type":"structure",
       "members":{
@@ -541,7 +547,7 @@
     "GetFindingsRequestMaxResultsInteger":{
       "type":"integer",
       "box":true,
-      "max":100,
+      "max":1000,
       "min":1
     },
     "GetFindingsResponse":{
@@ -596,6 +602,7 @@
       "members":{
         "analysisType":{"shape":"AnalysisType"},
         "createdAt":{"shape":"Timestamp"},
+        "errorMessage":{"shape":"ErrorMessage"},
         "numberOfRevisions":{"shape":"Long"},
         "runId":{"shape":"Uuid"},
         "scanName":{"shape":"ScanName"},
@@ -1058,7 +1065,11 @@
       "members":{
         "filePath":{"shape":"FilePath"},
         "id":{"shape":"String"},
-        "itemCount":{"shape":"Integer"},
+        "itemCount":{
+          "shape":"Integer",
+          "deprecated":true,
+          "deprecatedMessage":"This shape is not used."
+        },
         "referenceUrls":{"shape":"ReferenceUrls"},
         "relatedVulnerabilities":{"shape":"RelatedVulnerabilities"}
       }
