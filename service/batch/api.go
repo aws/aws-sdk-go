@@ -1418,6 +1418,92 @@ func (c *Batch) DescribeSchedulingPoliciesWithContext(ctx aws.Context, input *De
 	return out, req.Send()
 }
 
+const opGetJobQueueSnapshot = "GetJobQueueSnapshot"
+
+// GetJobQueueSnapshotRequest generates a "aws/request.Request" representing the
+// client's request for the GetJobQueueSnapshot operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetJobQueueSnapshot for more information on using the GetJobQueueSnapshot
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetJobQueueSnapshotRequest method.
+//	req, resp := client.GetJobQueueSnapshotRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/GetJobQueueSnapshot
+func (c *Batch) GetJobQueueSnapshotRequest(input *GetJobQueueSnapshotInput) (req *request.Request, output *GetJobQueueSnapshotOutput) {
+	op := &request.Operation{
+		Name:       opGetJobQueueSnapshot,
+		HTTPMethod: "POST",
+		HTTPPath:   "/v1/getjobqueuesnapshot",
+	}
+
+	if input == nil {
+		input = &GetJobQueueSnapshotInput{}
+	}
+
+	output = &GetJobQueueSnapshotOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetJobQueueSnapshot API operation for AWS Batch.
+//
+// Provides a list of the first 100 RUNNABLE jobs associated to a single job
+// queue.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Batch's
+// API operation GetJobQueueSnapshot for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ClientException
+//     These errors are usually caused by a client action. One example cause is
+//     using an action or resource on behalf of a user that doesn't have permissions
+//     to use the action or resource. Another cause is specifying an identifier
+//     that's not valid.
+//
+//   - ServerException
+//     These errors are usually caused by a server issue.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/GetJobQueueSnapshot
+func (c *Batch) GetJobQueueSnapshot(input *GetJobQueueSnapshotInput) (*GetJobQueueSnapshotOutput, error) {
+	req, out := c.GetJobQueueSnapshotRequest(input)
+	return out, req.Send()
+}
+
+// GetJobQueueSnapshotWithContext is the same as GetJobQueueSnapshot with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetJobQueueSnapshot for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Batch) GetJobQueueSnapshotWithContext(ctx aws.Context, input *GetJobQueueSnapshotInput, opts ...request.Option) (*GetJobQueueSnapshotOutput, error) {
+	req, out := c.GetJobQueueSnapshotRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListJobs = "ListJobs"
 
 // ListJobsRequest generates a "aws/request.Request" representing the
@@ -9462,6 +9548,175 @@ func (s *FargatePlatformConfiguration) SetPlatformVersion(v string) *FargatePlat
 	return s
 }
 
+// Contains a list of the first 100 RUNNABLE jobs associated to a single job
+// queue.
+type FrontOfQueueDetail struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Names (ARNs) of the first 100 RUNNABLE jobs in a named
+	// job queue. For first-in-first-out (FIFO) job queues, jobs are ordered based
+	// on their submission time. For fair share scheduling (FSS) job queues, jobs
+	// are ordered based on their job priority and share usage.
+	Jobs []*FrontOfQueueJobSummary `locationName:"jobs" type:"list"`
+
+	// The Unix timestamp (in milliseconds) for when each of the first 100 RUNNABLE
+	// jobs were last updated.
+	LastUpdatedAt *int64 `locationName:"lastUpdatedAt" type:"long"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FrontOfQueueDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FrontOfQueueDetail) GoString() string {
+	return s.String()
+}
+
+// SetJobs sets the Jobs field's value.
+func (s *FrontOfQueueDetail) SetJobs(v []*FrontOfQueueJobSummary) *FrontOfQueueDetail {
+	s.Jobs = v
+	return s
+}
+
+// SetLastUpdatedAt sets the LastUpdatedAt field's value.
+func (s *FrontOfQueueDetail) SetLastUpdatedAt(v int64) *FrontOfQueueDetail {
+	s.LastUpdatedAt = &v
+	return s
+}
+
+// An object that represents summary details for the first 100 RUNNABLE jobs
+// in a job queue.
+type FrontOfQueueJobSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The Unix timestamp (in milliseconds) for when the job transitioned to its
+	// current position in the job queue.
+	EarliestTimeAtPosition *int64 `locationName:"earliestTimeAtPosition" type:"long"`
+
+	// The ARN for a job in a named job queue.
+	JobArn *string `locationName:"jobArn" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FrontOfQueueJobSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FrontOfQueueJobSummary) GoString() string {
+	return s.String()
+}
+
+// SetEarliestTimeAtPosition sets the EarliestTimeAtPosition field's value.
+func (s *FrontOfQueueJobSummary) SetEarliestTimeAtPosition(v int64) *FrontOfQueueJobSummary {
+	s.EarliestTimeAtPosition = &v
+	return s
+}
+
+// SetJobArn sets the JobArn field's value.
+func (s *FrontOfQueueJobSummary) SetJobArn(v string) *FrontOfQueueJobSummary {
+	s.JobArn = &v
+	return s
+}
+
+type GetJobQueueSnapshotInput struct {
+	_ struct{} `type:"structure"`
+
+	// The job queue’s name or full queue Amazon Resource Name (ARN).
+	//
+	// JobQueue is a required field
+	JobQueue *string `locationName:"jobQueue" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetJobQueueSnapshotInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetJobQueueSnapshotInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetJobQueueSnapshotInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetJobQueueSnapshotInput"}
+	if s.JobQueue == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobQueue"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetJobQueue sets the JobQueue field's value.
+func (s *GetJobQueueSnapshotInput) SetJobQueue(v string) *GetJobQueueSnapshotInput {
+	s.JobQueue = &v
+	return s
+}
+
+type GetJobQueueSnapshotOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of the first 100 RUNNABLE jobs in each job queue. For first-in-first-out
+	// (FIFO) job queues, jobs are ordered based on their submission time. For fair
+	// share scheduling (FSS) job queues, jobs are ordered based on their job priority
+	// and share usage.
+	FrontOfQueue *FrontOfQueueDetail `locationName:"frontOfQueue" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetJobQueueSnapshotOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetJobQueueSnapshotOutput) GoString() string {
+	return s.String()
+}
+
+// SetFrontOfQueue sets the FrontOfQueue field's value.
+func (s *GetJobQueueSnapshotOutput) SetFrontOfQueue(v *FrontOfQueueDetail) *GetJobQueueSnapshotOutput {
+	s.FrontOfQueue = v
+	return s
+}
+
 // Determine whether your data volume persists on the host container instance
 // and where it's stored. If this parameter is empty, then the Docker daemon
 // assigns a host path for your data volume. However, the data isn't guaranteed
@@ -10957,12 +11212,22 @@ type ListJobsInput struct {
 	// are returned.
 	JobStatus *string `locationName:"jobStatus" type:"string" enum:"JobStatus"`
 
-	// The maximum number of results returned by ListJobs in paginated output. When
-	// this parameter is used, ListJobs only returns maxResults results in a single
-	// page and a nextToken response element. The remaining results of the initial
-	// request can be seen by sending another ListJobs request with the returned
-	// nextToken value. This value can be between 1 and 100. If this parameter isn't
-	// used, then ListJobs returns up to 100 results and a nextToken value if applicable.
+	// The maximum number of results returned by ListJobs in a paginated output.
+	// When this parameter is used, ListJobs returns up to maxResults results in
+	// a single page and a nextToken response element, if applicable. The remaining
+	// results of the initial request can be seen by sending another ListJobs request
+	// with the returned nextToken value.
+	//
+	// The following outlines key parameters and limitations:
+	//
+	//    * The minimum value is 1.
+	//
+	//    * When --job-status is used, Batch returns up to 1000 values.
+	//
+	//    * When --filters is used, Batch returns up to 100 values.
+	//
+	//    * If neither parameter is used, then ListJobs returns up to 1000 results
+	//    (jobs that are in the RUNNING status) and a nextToken value, if applicable.
 	MaxResults *int64 `locationName:"maxResults" type:"integer"`
 
 	// The job ID for a multi-node parallel job. Specifying a multi-node parallel

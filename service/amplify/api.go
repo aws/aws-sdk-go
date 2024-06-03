@@ -151,9 +151,9 @@ func (c *Amplify) CreateBackendEnvironmentRequest(input *CreateBackendEnvironmen
 //
 // This API is available only to Amplify Gen 1 applications where the backend
 // is created using Amplify Studio or the Amplify command line interface (CLI).
-// This API isn’t available to applications created using the Amplify Gen
-// 2 public preview. When you deploy an application with Amplify Gen 2, you
-// provision the app's backend infrastructure using Typescript code.
+// This API isn’t available to Amplify Gen 2 applications. When you deploy
+// an application with Amplify Gen 2, you provision the app's backend infrastructure
+// using Typescript code.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -714,10 +714,10 @@ func (c *Amplify) DeleteBackendEnvironmentRequest(input *DeleteBackendEnvironmen
 // Deletes a backend environment for an Amplify app.
 //
 // This API is available only to Amplify Gen 1 applications where the backend
-// was created using Amplify Studio or the Amplify command line interface (CLI).
-// This API isn’t available to applications created using the Amplify Gen
-// 2 public preview. When you deploy an application with Amplify Gen 2, you
-// provision the app's backend infrastructure using Typescript code.
+// is created using Amplify Studio or the Amplify command line interface (CLI).
+// This API isn’t available to Amplify Gen 2 applications. When you deploy
+// an application with Amplify Gen 2, you provision the app's backend infrastructure
+// using Typescript code.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1443,10 +1443,10 @@ func (c *Amplify) GetBackendEnvironmentRequest(input *GetBackendEnvironmentInput
 // Returns a backend environment for an Amplify app.
 //
 // This API is available only to Amplify Gen 1 applications where the backend
-// was created using Amplify Studio or the Amplify command line interface (CLI).
-// This API isn’t available to applications created using the Amplify Gen
-// 2 public preview. When you deploy an application with Amplify Gen 2, you
-// provision the app's backend infrastructure using Typescript code.
+// is created using Amplify Studio or the Amplify command line interface (CLI).
+// This API isn’t available to Amplify Gen 2 applications. When you deploy
+// an application with Amplify Gen 2, you provision the app's backend infrastructure
+// using Typescript code.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2125,10 +2125,10 @@ func (c *Amplify) ListBackendEnvironmentsRequest(input *ListBackendEnvironmentsI
 // Lists the backend environments for an Amplify app.
 //
 // This API is available only to Amplify Gen 1 applications where the backend
-// was created using Amplify Studio or the Amplify command line interface (CLI).
-// This API isn’t available to applications created using the Amplify Gen
-// 2 public preview. When you deploy an application with Amplify Gen 2, you
-// provision the app's backend infrastructure using Typescript code.
+// is created using Amplify Studio or the Amplify command line interface (CLI).
+// This API isn’t available to Amplify Gen 2 applications. When you deploy
+// an application with Amplify Gen 2, you provision the app's backend infrastructure
+// using Typescript code.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4058,7 +4058,11 @@ func (s *AutoBranchCreationConfig) SetStage(v string) *AutoBranchCreationConfig 
 	return s
 }
 
-// Describes the backend properties associated with an Amplify Branch.
+// Describes the backend associated with an Amplify Branch.
+//
+// This property is available to Amplify Gen 2 apps only. When you deploy an
+// application with Amplify Gen 2, you provision the app's backend infrastructure
+// using Typescript code.
 type Backend struct {
 	_ struct{} `type:"structure"`
 
@@ -4103,7 +4107,9 @@ func (s *Backend) SetStackArn(v string) *Backend {
 	return s
 }
 
-// Describes the backend environment for an Amplify app.
+// Describes the backend environment associated with a Branch of a Gen 1 Amplify
+// app. Amplify Gen 1 applications are created using Amplify Studio or the Amplify
+// command line interface (CLI).
 type BackendEnvironment struct {
 	_ struct{} `type:"structure"`
 
@@ -4267,11 +4273,19 @@ type Branch struct {
 	// A list of custom resources that are linked to this branch.
 	AssociatedResources []*string `locationName:"associatedResources" type:"list"`
 
-	// Describes the backend properties associated with an Amplify Branch.
+	// Describes the backend associated with an Amplify Branch.
+	//
+	// This property is available to Amplify Gen 2 apps only. When you deploy an
+	// application with Amplify Gen 2, you provision the app's backend infrastructure
+	// using Typescript code.
 	Backend *Backend `locationName:"backend" type:"structure"`
 
 	// The Amazon Resource Name (ARN) for a backend environment that is part of
 	// an Amplify app.
+	//
+	// This property is available to Amplify Gen 1 apps only. When you deploy an
+	// application with Amplify Gen 2, you provision the app's backend infrastructure
+	// using Typescript code.
 	BackendEnvironmentArn *string `locationName:"backendEnvironmentArn" type:"string"`
 
 	// The basic authorization credentials for a branch of an Amplify app. You must
@@ -5174,10 +5188,17 @@ type CreateBranchInput struct {
 
 	// The backend for a Branch of an Amplify app. Use for a backend created from
 	// an CloudFormation stack.
+	//
+	// This field is available to Amplify Gen 2 apps only. When you deploy an application
+	// with Amplify Gen 2, you provision the app's backend infrastructure using
+	// Typescript code.
 	Backend *Backend `locationName:"backend" type:"structure"`
 
 	// The Amazon Resource Name (ARN) for a backend environment that is part of
-	// an Amplify app.
+	// a Gen 1 Amplify app.
+	//
+	// This field is available to Amplify Gen 1 apps only where the backend is created
+	// using Amplify Studio or the Amplify command line interface (CLI).
 	BackendEnvironmentArn *string `locationName:"backendEnvironmentArn" type:"string"`
 
 	// The basic authorization credentials for the branch. You must base64-encode
@@ -10222,10 +10243,17 @@ type UpdateBranchInput struct {
 
 	// The backend for a Branch of an Amplify app. Use for a backend created from
 	// an CloudFormation stack.
+	//
+	// This field is available to Amplify Gen 2 apps only. When you deploy an application
+	// with Amplify Gen 2, you provision the app's backend infrastructure using
+	// Typescript code.
 	Backend *Backend `locationName:"backend" type:"structure"`
 
 	// The Amazon Resource Name (ARN) for a backend environment that is part of
-	// an Amplify app.
+	// a Gen 1 Amplify app.
+	//
+	// This field is available to Amplify Gen 1 apps only where the backend is created
+	// using Amplify Studio or the Amplify command line interface (CLI).
 	BackendEnvironmentArn *string `locationName:"backendEnvironmentArn" type:"string"`
 
 	// The basic authorization credentials for the branch. You must base64-encode
