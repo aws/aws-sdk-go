@@ -1,3 +1,13 @@
+Release v1.53.15 (2024-06-03)
+===
+
+### Service Client Updates
+* `service/amplify`: Updates service documentation
+* `service/batch`: Updates service API and documentation
+  * This release adds support for the AWS Batch GetJobQueueSnapshot API operation.
+* `service/eks`: Updates service API and documentation
+* `service/iottwinmaker`: Updates service API
+
 Release v1.53.14 (2024-05-31)
 ===
 

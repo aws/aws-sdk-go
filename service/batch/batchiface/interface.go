@@ -121,6 +121,10 @@ type BatchAPI interface {
 	DescribeSchedulingPoliciesWithContext(aws.Context, *batch.DescribeSchedulingPoliciesInput, ...request.Option) (*batch.DescribeSchedulingPoliciesOutput, error)
 	DescribeSchedulingPoliciesRequest(*batch.DescribeSchedulingPoliciesInput) (*request.Request, *batch.DescribeSchedulingPoliciesOutput)
 
+	GetJobQueueSnapshot(*batch.GetJobQueueSnapshotInput) (*batch.GetJobQueueSnapshotOutput, error)
+	GetJobQueueSnapshotWithContext(aws.Context, *batch.GetJobQueueSnapshotInput, ...request.Option) (*batch.GetJobQueueSnapshotOutput, error)
+	GetJobQueueSnapshotRequest(*batch.GetJobQueueSnapshotInput) (*request.Request, *batch.GetJobQueueSnapshotOutput)
+
 	ListJobs(*batch.ListJobsInput) (*batch.ListJobsOutput, error)
 	ListJobsWithContext(aws.Context, *batch.ListJobsInput, ...request.Option) (*batch.ListJobsOutput, error)
 	ListJobsRequest(*batch.ListJobsInput) (*request.Request, *batch.ListJobsOutput)

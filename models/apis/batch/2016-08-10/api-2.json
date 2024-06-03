@@ -5,6 +5,7 @@
     "endpointPrefix":"batch",
     "jsonVersion":"1.1",
     "protocol":"rest-json",
+    "protocols":["rest-json"],
     "serviceAbbreviation":"AWS Batch",
     "serviceFullName":"AWS Batch",
     "serviceId":"Batch",
@@ -176,6 +177,19 @@
       },
       "input":{"shape":"DescribeSchedulingPoliciesRequest"},
       "output":{"shape":"DescribeSchedulingPoliciesResponse"},
+      "errors":[
+        {"shape":"ClientException"},
+        {"shape":"ServerException"}
+      ]
+    },
+    "GetJobQueueSnapshot":{
+      "name":"GetJobQueueSnapshot",
+      "http":{
+        "method":"POST",
+        "requestUri":"/v1/getjobqueuesnapshot"
+      },
+      "input":{"shape":"GetJobQueueSnapshotRequest"},
+      "output":{"shape":"GetJobQueueSnapshotResponse"},
       "errors":[
         {"shape":"ClientException"},
         {"shape":"ServerException"}
@@ -1279,6 +1293,37 @@
       }
     },
     "Float":{"type":"float"},
+    "FrontOfQueueDetail":{
+      "type":"structure",
+      "members":{
+        "jobs":{"shape":"FrontOfQueueJobSummaryList"},
+        "lastUpdatedAt":{"shape":"Long"}
+      }
+    },
+    "FrontOfQueueJobSummary":{
+      "type":"structure",
+      "members":{
+        "jobArn":{"shape":"String"},
+        "earliestTimeAtPosition":{"shape":"Long"}
+      }
+    },
+    "FrontOfQueueJobSummaryList":{
+      "type":"list",
+      "member":{"shape":"FrontOfQueueJobSummary"}
+    },
+    "GetJobQueueSnapshotRequest":{
+      "type":"structure",
+      "required":["jobQueue"],
+      "members":{
+        "jobQueue":{"shape":"String"}
+      }
+    },
+    "GetJobQueueSnapshotResponse":{
+      "type":"structure",
+      "members":{
+        "frontOfQueue":{"shape":"FrontOfQueueDetail"}
+      }
+    },
     "Host":{
       "type":"structure",
       "members":{

@@ -5,6 +5,7 @@
     "endpointPrefix":"eks",
     "jsonVersion":"1.1",
     "protocol":"rest-json",
+    "protocols":["rest-json"],
     "serviceAbbreviation":"Amazon EKS",
     "serviceFullName":"Amazon Elastic Kubernetes Service",
     "serviceId":"EKS",
@@ -982,7 +983,8 @@
         "publisher":{"shape":"String"},
         "owner":{"shape":"String"},
         "marketplaceInformation":{"shape":"MarketplaceInformation"},
-        "configurationValues":{"shape":"String"}
+        "configurationValues":{"shape":"String"},
+        "podIdentityAssociations":{"shape":"StringList"}
       }
     },
     "AddonHealth":{
@@ -1020,12 +1022,40 @@
         "ConfigurationConflict",
         "AdmissionRequestDenied",
         "UnsupportedAddonModification",
-        "K8sResourceNotFound"
+        "K8sResourceNotFound",
+        "AddonSubscriptionNeeded",
+        "AddonPermissionFailure"
       ]
     },
     "AddonIssueList":{
       "type":"list",
       "member":{"shape":"AddonIssue"}
+    },
+    "AddonPodIdentityAssociations":{
+      "type":"structure",
+      "required":[
+        "serviceAccount",
+        "roleArn"
+      ],
+      "members":{
+        "serviceAccount":{"shape":"String"},
+        "roleArn":{"shape":"String"}
+      }
+    },
+    "AddonPodIdentityAssociationsList":{
+      "type":"list",
+      "member":{"shape":"AddonPodIdentityAssociations"}
+    },
+    "AddonPodIdentityConfiguration":{
+      "type":"structure",
+      "members":{
+        "serviceAccount":{"shape":"String"},
+        "recommendedManagedPolicies":{"shape":"StringList"}
+      }
+    },
+    "AddonPodIdentityConfigurationList":{
+      "type":"list",
+      "member":{"shape":"AddonPodIdentityConfiguration"}
     },
     "AddonStatus":{
       "type":"string",
@@ -1046,7 +1076,8 @@
         "addonVersion":{"shape":"String"},
         "architecture":{"shape":"StringList"},
         "compatibilities":{"shape":"Compatibilities"},
-        "requiresConfiguration":{"shape":"Boolean"}
+        "requiresConfiguration":{"shape":"Boolean"},
+        "requiresIamPermissions":{"shape":"Boolean"}
       }
     },
     "AddonVersionInfoList":{
@@ -1439,7 +1470,8 @@
           "idempotencyToken":true
         },
         "tags":{"shape":"TagMap"},
-        "configurationValues":{"shape":"String"}
+        "configurationValues":{"shape":"String"},
+        "podIdentityAssociations":{"shape":"AddonPodIdentityAssociationsList"}
       }
     },
     "CreateAddonResponse":{
@@ -1848,7 +1880,8 @@
       "members":{
         "addonName":{"shape":"String"},
         "addonVersion":{"shape":"String"},
-        "configurationSchema":{"shape":"String"}
+        "configurationSchema":{"shape":"String"},
+        "podIdentityConfiguration":{"shape":"AddonPodIdentityConfigurationList"}
       }
     },
     "DescribeAddonRequest":{
@@ -3182,7 +3215,8 @@
         "associationId":{"shape":"String"},
         "tags":{"shape":"TagMap"},
         "createdAt":{"shape":"Timestamp"},
-        "modifiedAt":{"shape":"Timestamp"}
+        "modifiedAt":{"shape":"Timestamp"},
+        "ownerArn":{"shape":"String"}
       }
     },
     "PodIdentityAssociationSummaries":{
@@ -3196,7 +3230,8 @@
         "namespace":{"shape":"String"},
         "serviceAccount":{"shape":"String"},
         "associationArn":{"shape":"String"},
-        "associationId":{"shape":"String"}
+        "associationId":{"shape":"String"},
+        "ownerArn":{"shape":"String"}
       }
     },
     "Provider":{
@@ -3483,7 +3518,8 @@
           "shape":"String",
           "idempotencyToken":true
         },
-        "configurationValues":{"shape":"String"}
+        "configurationValues":{"shape":"String"},
+        "podIdentityAssociations":{"shape":"AddonPodIdentityAssociationsList"}
       }
     },
     "UpdateAddonResponse":{
@@ -3675,7 +3711,8 @@
         "ConfigurationValues",
         "SecurityGroups",
         "Subnets",
-        "AuthenticationMode"
+        "AuthenticationMode",
+        "PodIdentityAssociations"
       ]
     },
     "UpdateParams":{

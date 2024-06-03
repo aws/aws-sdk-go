@@ -16117,6 +16117,9 @@ const (
 
 	// PropertyUpdateTypeCreate is a PropertyUpdateType enum value
 	PropertyUpdateTypeCreate = "CREATE"
+
+	// PropertyUpdateTypeResetValue is a PropertyUpdateType enum value
+	PropertyUpdateTypeResetValue = "RESET_VALUE"
 )
 
 // PropertyUpdateType_Values returns all elements of the PropertyUpdateType enum
@@ -16125,6 +16128,7 @@ func PropertyUpdateType_Values() []string {
 		PropertyUpdateTypeUpdate,
 		PropertyUpdateTypeDelete,
 		PropertyUpdateTypeCreate,
+		PropertyUpdateTypeResetValue,
 	}
 }
 
