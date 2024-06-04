@@ -1,3 +1,14 @@
+Release v1.53.16 (2024-06-04)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API
+  * U7i instances with up to 32 TiB of DDR5 memory and 896 vCPUs are now available. C7i-flex instances are launched and are lower-priced variants of the Amazon EC2 C7i instances that offer a baseline level of CPU performance with the ability to scale up to the full compute performance 95% of the time.
+* `service/pipes`: Updates service API, documentation, and waiters
+* `service/sagemaker`: Updates service API and documentation
+  * Extend DescribeClusterNode response with private DNS hostname and IP address, and placement information about availability zone and availability zone ID.
+* `service/taxsettings`: Adds new service
+
 Release v1.53.15 (2024-06-03)
 ===
 

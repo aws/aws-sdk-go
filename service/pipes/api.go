@@ -2465,6 +2465,92 @@ func (s *DescribePipeOutput) SetTargetParameters(v *PipeTargetParameters) *Descr
 	return s
 }
 
+// Maps source data to a dimension in the target Timestream for LiveAnalytics
+// table.
+//
+// For more information, see Amazon Timestream for LiveAnalytics concepts (https://docs.aws.amazon.com/timestream/latest/developerguide/concepts.html)
+type DimensionMapping struct {
+	_ struct{} `type:"structure"`
+
+	// The metadata attributes of the time series. For example, the name and Availability
+	// Zone of an Amazon EC2 instance or the name of the manufacturer of a wind
+	// turbine are dimensions.
+	//
+	// DimensionName is a required field
+	DimensionName *string `min:"1" type:"string" required:"true"`
+
+	// Dynamic path to the dimension value in the source event.
+	//
+	// DimensionValue is a required field
+	DimensionValue *string `min:"1" type:"string" required:"true"`
+
+	// The data type of the dimension for the time-series data.
+	//
+	// DimensionValueType is a required field
+	DimensionValueType *string `type:"string" required:"true" enum:"DimensionValueType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DimensionMapping) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DimensionMapping) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DimensionMapping) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DimensionMapping"}
+	if s.DimensionName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DimensionName"))
+	}
+	if s.DimensionName != nil && len(*s.DimensionName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DimensionName", 1))
+	}
+	if s.DimensionValue == nil {
+		invalidParams.Add(request.NewErrParamRequired("DimensionValue"))
+	}
+	if s.DimensionValue != nil && len(*s.DimensionValue) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DimensionValue", 1))
+	}
+	if s.DimensionValueType == nil {
+		invalidParams.Add(request.NewErrParamRequired("DimensionValueType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDimensionName sets the DimensionName field's value.
+func (s *DimensionMapping) SetDimensionName(v string) *DimensionMapping {
+	s.DimensionName = &v
+	return s
+}
+
+// SetDimensionValue sets the DimensionValue field's value.
+func (s *DimensionMapping) SetDimensionValue(v string) *DimensionMapping {
+	s.DimensionValue = &v
+	return s
+}
+
+// SetDimensionValueType sets the DimensionValueType field's value.
+func (s *DimensionMapping) SetDimensionValueType(v string) *DimensionMapping {
+	s.DimensionValueType = &v
+	return s
+}
+
 // The overrides that are sent to a container. An empty container override can
 // be passed in. An example of an empty container override is {"containerOverrides":
 // [ ] }. If a non-empty container override is specified, the name parameter
@@ -3121,12 +3207,12 @@ func (s *FilterCriteria) SetFilters(v []*Filter) *FilterCriteria {
 	return s
 }
 
-// The Amazon Kinesis Data Firehose logging configuration settings for the pipe.
+// The Amazon Data Firehose logging configuration settings for the pipe.
 type FirehoseLogDestination struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the Kinesis Data Firehose delivery stream
-	// to which EventBridge delivers the pipe log records.
+	// The Amazon Resource Name (ARN) of the Firehose delivery stream to which EventBridge
+	// delivers the pipe log records.
 	DeliveryStreamArn *string `min:"1" type:"string"`
 }
 
@@ -3154,12 +3240,12 @@ func (s *FirehoseLogDestination) SetDeliveryStreamArn(v string) *FirehoseLogDest
 	return s
 }
 
-// The Amazon Kinesis Data Firehose logging configuration settings for the pipe.
+// The Amazon Data Firehose logging configuration settings for the pipe.
 type FirehoseLogDestinationParameters struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies the Amazon Resource Name (ARN) of the Kinesis Data Firehose delivery
-	// stream to which EventBridge delivers the pipe log records.
+	// Specifies the Amazon Resource Name (ARN) of the Firehose delivery stream
+	// to which EventBridge delivers the pipe log records.
 	//
 	// DeliveryStreamArn is a required field
 	DeliveryStreamArn *string `min:"1" type:"string" required:"true"`
@@ -3623,6 +3709,169 @@ func (s *MSKAccessCredentials) SetSaslScram512Auth(v string) *MSKAccessCredentia
 	return s
 }
 
+// A mapping of a source event data field to a measure in a Timestream for LiveAnalytics
+// record.
+type MultiMeasureAttributeMapping struct {
+	_ struct{} `type:"structure"`
+
+	// Dynamic path to the measurement attribute in the source event.
+	//
+	// MeasureValue is a required field
+	MeasureValue *string `min:"1" type:"string" required:"true"`
+
+	// Data type of the measurement attribute in the source event.
+	//
+	// MeasureValueType is a required field
+	MeasureValueType *string `type:"string" required:"true" enum:"MeasureValueType"`
+
+	// Target measure name to be used.
+	//
+	// MultiMeasureAttributeName is a required field
+	MultiMeasureAttributeName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MultiMeasureAttributeMapping) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MultiMeasureAttributeMapping) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MultiMeasureAttributeMapping) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MultiMeasureAttributeMapping"}
+	if s.MeasureValue == nil {
+		invalidParams.Add(request.NewErrParamRequired("MeasureValue"))
+	}
+	if s.MeasureValue != nil && len(*s.MeasureValue) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MeasureValue", 1))
+	}
+	if s.MeasureValueType == nil {
+		invalidParams.Add(request.NewErrParamRequired("MeasureValueType"))
+	}
+	if s.MultiMeasureAttributeName == nil {
+		invalidParams.Add(request.NewErrParamRequired("MultiMeasureAttributeName"))
+	}
+	if s.MultiMeasureAttributeName != nil && len(*s.MultiMeasureAttributeName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MultiMeasureAttributeName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMeasureValue sets the MeasureValue field's value.
+func (s *MultiMeasureAttributeMapping) SetMeasureValue(v string) *MultiMeasureAttributeMapping {
+	s.MeasureValue = &v
+	return s
+}
+
+// SetMeasureValueType sets the MeasureValueType field's value.
+func (s *MultiMeasureAttributeMapping) SetMeasureValueType(v string) *MultiMeasureAttributeMapping {
+	s.MeasureValueType = &v
+	return s
+}
+
+// SetMultiMeasureAttributeName sets the MultiMeasureAttributeName field's value.
+func (s *MultiMeasureAttributeMapping) SetMultiMeasureAttributeName(v string) *MultiMeasureAttributeMapping {
+	s.MultiMeasureAttributeName = &v
+	return s
+}
+
+// Maps multiple measures from the source event to the same Timestream for LiveAnalytics
+// record.
+//
+// For more information, see Amazon Timestream for LiveAnalytics concepts (https://docs.aws.amazon.com/timestream/latest/developerguide/concepts.html)
+type MultiMeasureMapping struct {
+	_ struct{} `type:"structure"`
+
+	// Mappings that represent multiple source event fields mapped to measures in
+	// the same Timestream for LiveAnalytics record.
+	//
+	// MultiMeasureAttributeMappings is a required field
+	MultiMeasureAttributeMappings []*MultiMeasureAttributeMapping `min:"1" type:"list" required:"true"`
+
+	// The name of the multiple measurements per record (multi-measure).
+	//
+	// MultiMeasureName is a required field
+	MultiMeasureName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MultiMeasureMapping) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MultiMeasureMapping) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MultiMeasureMapping) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MultiMeasureMapping"}
+	if s.MultiMeasureAttributeMappings == nil {
+		invalidParams.Add(request.NewErrParamRequired("MultiMeasureAttributeMappings"))
+	}
+	if s.MultiMeasureAttributeMappings != nil && len(s.MultiMeasureAttributeMappings) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MultiMeasureAttributeMappings", 1))
+	}
+	if s.MultiMeasureName == nil {
+		invalidParams.Add(request.NewErrParamRequired("MultiMeasureName"))
+	}
+	if s.MultiMeasureName != nil && len(*s.MultiMeasureName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MultiMeasureName", 1))
+	}
+	if s.MultiMeasureAttributeMappings != nil {
+		for i, v := range s.MultiMeasureAttributeMappings {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "MultiMeasureAttributeMappings", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMultiMeasureAttributeMappings sets the MultiMeasureAttributeMappings field's value.
+func (s *MultiMeasureMapping) SetMultiMeasureAttributeMappings(v []*MultiMeasureAttributeMapping) *MultiMeasureMapping {
+	s.MultiMeasureAttributeMappings = v
+	return s
+}
+
+// SetMultiMeasureName sets the MultiMeasureName field's value.
+func (s *MultiMeasureMapping) SetMultiMeasureName(v string) *MultiMeasureMapping {
+	s.MultiMeasureName = &v
+	return s
+}
+
 // This structure specifies the network configuration for an Amazon ECS task.
 type NetworkConfiguration struct {
 	_ struct{} `type:"structure"`
@@ -3972,7 +4221,7 @@ type PipeLogConfiguration struct {
 	// The Amazon CloudWatch Logs logging configuration settings for the pipe.
 	CloudwatchLogsLogDestination *CloudwatchLogsLogDestination `type:"structure"`
 
-	// The Amazon Kinesis Data Firehose logging configuration settings for the pipe.
+	// The Amazon Data Firehose logging configuration settings for the pipe.
 	FirehoseLogDestination *FirehoseLogDestination `type:"structure"`
 
 	// Whether the execution data (specifically, the payload, awsRequest, and awsResponse
@@ -4049,11 +4298,11 @@ func (s *PipeLogConfiguration) SetS3LogDestination(v *S3LogDestination) *PipeLog
 // or S3LogDestinationParameters), EventBridge sets that field to its system-default
 // value during the update.
 //
-// For example, suppose when you created the pipe you specified a Kinesis Data
-// Firehose stream log destination. You then update the pipe to add an Amazon
-// S3 log destination. In addition to specifying the S3LogDestinationParameters
-// for the new log destination, you must also specify the fields in the FirehoseLogDestinationParameters
-// object in order to retain the Kinesis Data Firehose stream log destination.
+// For example, suppose when you created the pipe you specified a Firehose stream
+// log destination. You then update the pipe to add an Amazon S3 log destination.
+// In addition to specifying the S3LogDestinationParameters for the new log
+// destination, you must also specify the fields in the FirehoseLogDestinationParameters
+// object in order to retain the Firehose stream log destination.
 //
 // For more information on generating pipe log records, see Log EventBridge
 // Pipes (eventbridge/latest/userguide/eb-pipes-logs.html) in the Amazon EventBridge
@@ -4064,18 +4313,18 @@ type PipeLogConfigurationParameters struct {
 	// The Amazon CloudWatch Logs logging configuration settings for the pipe.
 	CloudwatchLogsLogDestination *CloudwatchLogsLogDestinationParameters `type:"structure"`
 
-	// The Amazon Kinesis Data Firehose logging configuration settings for the pipe.
+	// The Amazon Data Firehose logging configuration settings for the pipe.
 	FirehoseLogDestination *FirehoseLogDestinationParameters `type:"structure"`
 
-	// Specify ON to include the execution data (specifically, the payload and awsRequest
-	// fields) in the log messages for this pipe.
+	// Specify ALL to include the execution data (specifically, the payload, awsRequest,
+	// and awsResponse fields) in the log messages for this pipe.
 	//
 	// This applies to all log destinations for the pipe.
 	//
 	// For more information, see Including execution data in logs (https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-pipes-logs.html#eb-pipes-logs-execution-data)
 	// in the Amazon EventBridge User Guide.
 	//
-	// The default is OFF.
+	// By default, execution data is not included.
 	IncludeExecutionData []*string `type:"list" enum:"IncludeExecutionDataOption"`
 
 	// The level of logging detail to include. This applies to all log destinations
@@ -4684,6 +4933,13 @@ type PipeSourceParameters struct {
 	RabbitMQBrokerParameters *PipeSourceRabbitMQBrokerParameters `type:"structure"`
 
 	// The parameters for using a self-managed Apache Kafka stream as a source.
+	//
+	// A self managed cluster refers to any Apache Kafka cluster not hosted by Amazon
+	// Web Services. This includes both clusters you manage yourself, as well as
+	// those hosted by a third-party provider, such as Confluent Cloud (https://www.confluent.io/),
+	// CloudKarafka (https://www.cloudkarafka.com/), or Redpanda (https://redpanda.com/).
+	// For more information, see Apache Kafka streams as a source (https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-pipes-kafka.html)
+	// in the Amazon EventBridge User Guide.
 	SelfManagedKafkaParameters *PipeSourceSelfManagedKafkaParameters `type:"structure"`
 
 	// The parameters for using a Amazon SQS stream as a source.
@@ -4912,6 +5168,13 @@ func (s *PipeSourceRabbitMQBrokerParameters) SetVirtualHost(v string) *PipeSourc
 }
 
 // The parameters for using a self-managed Apache Kafka stream as a source.
+//
+// A self managed cluster refers to any Apache Kafka cluster not hosted by Amazon
+// Web Services. This includes both clusters you manage yourself, as well as
+// those hosted by a third-party provider, such as Confluent Cloud (https://www.confluent.io/),
+// CloudKarafka (https://www.cloudkarafka.com/), or Redpanda (https://redpanda.com/).
+// For more information, see Apache Kafka streams as a source (https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-pipes-kafka.html)
+// in the Amazon EventBridge User Guide.
 type PipeSourceSelfManagedKafkaParameters struct {
 	_ struct{} `type:"structure"`
 
@@ -5871,6 +6134,9 @@ type PipeTargetParameters struct {
 
 	// The parameters for using a Step Functions state machine as a target.
 	StepFunctionStateMachineParameters *PipeTargetStateMachineParameters `type:"structure"`
+
+	// The parameters for using a Timestream for LiveAnalytics table as a target.
+	TimestreamParameters *PipeTargetTimestreamParameters `type:"structure"`
 }
 
 // String returns the string representation.
@@ -5927,6 +6193,11 @@ func (s *PipeTargetParameters) Validate() error {
 	if s.SageMakerPipelineParameters != nil {
 		if err := s.SageMakerPipelineParameters.Validate(); err != nil {
 			invalidParams.AddNested("SageMakerPipelineParameters", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.TimestreamParameters != nil {
+		if err := s.TimestreamParameters.Validate(); err != nil {
+			invalidParams.AddNested("TimestreamParameters", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -6005,6 +6276,12 @@ func (s *PipeTargetParameters) SetSqsQueueParameters(v *PipeTargetSqsQueueParame
 // SetStepFunctionStateMachineParameters sets the StepFunctionStateMachineParameters field's value.
 func (s *PipeTargetParameters) SetStepFunctionStateMachineParameters(v *PipeTargetStateMachineParameters) *PipeTargetParameters {
 	s.StepFunctionStateMachineParameters = v
+	return s
+}
+
+// SetTimestreamParameters sets the TimestreamParameters field's value.
+func (s *PipeTargetParameters) SetTimestreamParameters(v *PipeTargetTimestreamParameters) *PipeTargetParameters {
+	s.TimestreamParameters = v
 	return s
 }
 
@@ -6282,6 +6559,196 @@ func (s PipeTargetStateMachineParameters) GoString() string {
 // SetInvocationType sets the InvocationType field's value.
 func (s *PipeTargetStateMachineParameters) SetInvocationType(v string) *PipeTargetStateMachineParameters {
 	s.InvocationType = &v
+	return s
+}
+
+// The parameters for using a Timestream for LiveAnalytics table as a target.
+type PipeTargetTimestreamParameters struct {
+	_ struct{} `type:"structure"`
+
+	// Map source data to dimensions in the target Timestream for LiveAnalytics
+	// table.
+	//
+	// For more information, see Amazon Timestream for LiveAnalytics concepts (https://docs.aws.amazon.com/timestream/latest/developerguide/concepts.html)
+	//
+	// DimensionMappings is a required field
+	DimensionMappings []*DimensionMapping `min:"1" type:"list" required:"true"`
+
+	// The granularity of the time units used. Default is MILLISECONDS.
+	//
+	// Required if TimeFieldType is specified as EPOCH.
+	EpochTimeUnit *string `type:"string" enum:"EpochTimeUnit"`
+
+	// Maps multiple measures from the source event to the same record in the specified
+	// Timestream for LiveAnalytics table.
+	MultiMeasureMappings []*MultiMeasureMapping `type:"list"`
+
+	// Mappings of single source data fields to individual records in the specified
+	// Timestream for LiveAnalytics table.
+	SingleMeasureMappings []*SingleMeasureMapping `type:"list"`
+
+	// The type of time value used.
+	//
+	// The default is EPOCH.
+	TimeFieldType *string `type:"string" enum:"TimeFieldType"`
+
+	// Dynamic path to the source data field that represents the time value for
+	// your data.
+	//
+	// TimeValue is a required field
+	TimeValue *string `min:"1" type:"string" required:"true"`
+
+	// How to format the timestamps. For example, YYYY-MM-DDThh:mm:ss.sssTZD.
+	//
+	// Required if TimeFieldType is specified as TIMESTAMP_FORMAT.
+	TimestampFormat *string `min:"1" type:"string"`
+
+	// 64 bit version value or source data field that represents the version value
+	// for your data.
+	//
+	// Write requests with a higher version number will update the existing measure
+	// values of the record and version. In cases where the measure value is the
+	// same, the version will still be updated.
+	//
+	// Default value is 1.
+	//
+	// Timestream for LiveAnalytics does not support updating partial measure values
+	// in a record.
+	//
+	// Write requests for duplicate data with a higher version number will update
+	// the existing measure value and version. In cases where the measure value
+	// is the same, Version will still be updated. Default value is 1.
+	//
+	// Version must be 1 or greater, or you will receive a ValidationException error.
+	//
+	// VersionValue is a required field
+	VersionValue *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PipeTargetTimestreamParameters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PipeTargetTimestreamParameters) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PipeTargetTimestreamParameters) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PipeTargetTimestreamParameters"}
+	if s.DimensionMappings == nil {
+		invalidParams.Add(request.NewErrParamRequired("DimensionMappings"))
+	}
+	if s.DimensionMappings != nil && len(s.DimensionMappings) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DimensionMappings", 1))
+	}
+	if s.TimeValue == nil {
+		invalidParams.Add(request.NewErrParamRequired("TimeValue"))
+	}
+	if s.TimeValue != nil && len(*s.TimeValue) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TimeValue", 1))
+	}
+	if s.TimestampFormat != nil && len(*s.TimestampFormat) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TimestampFormat", 1))
+	}
+	if s.VersionValue == nil {
+		invalidParams.Add(request.NewErrParamRequired("VersionValue"))
+	}
+	if s.VersionValue != nil && len(*s.VersionValue) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VersionValue", 1))
+	}
+	if s.DimensionMappings != nil {
+		for i, v := range s.DimensionMappings {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "DimensionMappings", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.MultiMeasureMappings != nil {
+		for i, v := range s.MultiMeasureMappings {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "MultiMeasureMappings", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.SingleMeasureMappings != nil {
+		for i, v := range s.SingleMeasureMappings {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "SingleMeasureMappings", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDimensionMappings sets the DimensionMappings field's value.
+func (s *PipeTargetTimestreamParameters) SetDimensionMappings(v []*DimensionMapping) *PipeTargetTimestreamParameters {
+	s.DimensionMappings = v
+	return s
+}
+
+// SetEpochTimeUnit sets the EpochTimeUnit field's value.
+func (s *PipeTargetTimestreamParameters) SetEpochTimeUnit(v string) *PipeTargetTimestreamParameters {
+	s.EpochTimeUnit = &v
+	return s
+}
+
+// SetMultiMeasureMappings sets the MultiMeasureMappings field's value.
+func (s *PipeTargetTimestreamParameters) SetMultiMeasureMappings(v []*MultiMeasureMapping) *PipeTargetTimestreamParameters {
+	s.MultiMeasureMappings = v
+	return s
+}
+
+// SetSingleMeasureMappings sets the SingleMeasureMappings field's value.
+func (s *PipeTargetTimestreamParameters) SetSingleMeasureMappings(v []*SingleMeasureMapping) *PipeTargetTimestreamParameters {
+	s.SingleMeasureMappings = v
+	return s
+}
+
+// SetTimeFieldType sets the TimeFieldType field's value.
+func (s *PipeTargetTimestreamParameters) SetTimeFieldType(v string) *PipeTargetTimestreamParameters {
+	s.TimeFieldType = &v
+	return s
+}
+
+// SetTimeValue sets the TimeValue field's value.
+func (s *PipeTargetTimestreamParameters) SetTimeValue(v string) *PipeTargetTimestreamParameters {
+	s.TimeValue = &v
+	return s
+}
+
+// SetTimestampFormat sets the TimestampFormat field's value.
+func (s *PipeTargetTimestreamParameters) SetTimestampFormat(v string) *PipeTargetTimestreamParameters {
+	s.TimestampFormat = &v
+	return s
+}
+
+// SetVersionValue sets the VersionValue field's value.
+func (s *PipeTargetTimestreamParameters) SetVersionValue(v string) *PipeTargetTimestreamParameters {
+	s.VersionValue = &v
 	return s
 }
 
@@ -6844,6 +7311,90 @@ func (s *ServiceQuotaExceededException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ServiceQuotaExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Maps a single source data field to a single record in the specified Timestream
+// for LiveAnalytics table.
+//
+// For more information, see Amazon Timestream for LiveAnalytics concepts (https://docs.aws.amazon.com/timestream/latest/developerguide/concepts.html)
+type SingleMeasureMapping struct {
+	_ struct{} `type:"structure"`
+
+	// Target measure name for the measurement attribute in the Timestream table.
+	//
+	// MeasureName is a required field
+	MeasureName *string `min:"1" type:"string" required:"true"`
+
+	// Dynamic path of the source field to map to the measure in the record.
+	//
+	// MeasureValue is a required field
+	MeasureValue *string `min:"1" type:"string" required:"true"`
+
+	// Data type of the source field.
+	//
+	// MeasureValueType is a required field
+	MeasureValueType *string `type:"string" required:"true" enum:"MeasureValueType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SingleMeasureMapping) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SingleMeasureMapping) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SingleMeasureMapping) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SingleMeasureMapping"}
+	if s.MeasureName == nil {
+		invalidParams.Add(request.NewErrParamRequired("MeasureName"))
+	}
+	if s.MeasureName != nil && len(*s.MeasureName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MeasureName", 1))
+	}
+	if s.MeasureValue == nil {
+		invalidParams.Add(request.NewErrParamRequired("MeasureValue"))
+	}
+	if s.MeasureValue != nil && len(*s.MeasureValue) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MeasureValue", 1))
+	}
+	if s.MeasureValueType == nil {
+		invalidParams.Add(request.NewErrParamRequired("MeasureValueType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMeasureName sets the MeasureName field's value.
+func (s *SingleMeasureMapping) SetMeasureName(v string) *SingleMeasureMapping {
+	s.MeasureName = &v
+	return s
+}
+
+// SetMeasureValue sets the MeasureValue field's value.
+func (s *SingleMeasureMapping) SetMeasureValue(v string) *SingleMeasureMapping {
+	s.MeasureValue = &v
+	return s
+}
+
+// SetMeasureValueType sets the MeasureValueType field's value.
+func (s *SingleMeasureMapping) SetMeasureValueType(v string) *SingleMeasureMapping {
+	s.MeasureValueType = &v
+	return s
 }
 
 type StartPipeInput struct {
@@ -8068,6 +8619,13 @@ type UpdatePipeSourceParameters struct {
 	RabbitMQBrokerParameters *UpdatePipeSourceRabbitMQBrokerParameters `type:"structure"`
 
 	// The parameters for using a self-managed Apache Kafka stream as a source.
+	//
+	// A self managed cluster refers to any Apache Kafka cluster not hosted by Amazon
+	// Web Services. This includes both clusters you manage yourself, as well as
+	// those hosted by a third-party provider, such as Confluent Cloud (https://www.confluent.io/),
+	// CloudKarafka (https://www.cloudkarafka.com/), or Redpanda (https://redpanda.com/).
+	// For more information, see Apache Kafka streams as a source (https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-pipes-kafka.html)
+	// in the Amazon EventBridge User Guide.
 	SelfManagedKafkaParameters *UpdatePipeSourceSelfManagedKafkaParameters `type:"structure"`
 
 	// The parameters for using a Amazon SQS stream as a source.
@@ -8259,6 +8817,13 @@ func (s *UpdatePipeSourceRabbitMQBrokerParameters) SetMaximumBatchingWindowInSec
 }
 
 // The parameters for using a self-managed Apache Kafka stream as a source.
+//
+// A self managed cluster refers to any Apache Kafka cluster not hosted by Amazon
+// Web Services. This includes both clusters you manage yourself, as well as
+// those hosted by a third-party provider, such as Confluent Cloud (https://www.confluent.io/),
+// CloudKarafka (https://www.cloudkarafka.com/), or Redpanda (https://redpanda.com/).
+// For more information, see Apache Kafka streams as a source (https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-pipes-kafka.html)
+// in the Amazon EventBridge User Guide.
 type UpdatePipeSourceSelfManagedKafkaParameters struct {
 	_ struct{} `type:"structure"`
 
@@ -8568,6 +9133,18 @@ func BatchResourceRequirementType_Values() []string {
 }
 
 const (
+	// DimensionValueTypeVarchar is a DimensionValueType enum value
+	DimensionValueTypeVarchar = "VARCHAR"
+)
+
+// DimensionValueType_Values returns all elements of the DimensionValueType enum
+func DimensionValueType_Values() []string {
+	return []string{
+		DimensionValueTypeVarchar,
+	}
+}
+
+const (
 	// DynamoDBStreamStartPositionTrimHorizon is a DynamoDBStreamStartPosition enum value
 	DynamoDBStreamStartPositionTrimHorizon = "TRIM_HORIZON"
 
@@ -8608,6 +9185,30 @@ func EcsResourceRequirementType_Values() []string {
 	return []string{
 		EcsResourceRequirementTypeGpu,
 		EcsResourceRequirementTypeInferenceAccelerator,
+	}
+}
+
+const (
+	// EpochTimeUnitMilliseconds is a EpochTimeUnit enum value
+	EpochTimeUnitMilliseconds = "MILLISECONDS"
+
+	// EpochTimeUnitSeconds is a EpochTimeUnit enum value
+	EpochTimeUnitSeconds = "SECONDS"
+
+	// EpochTimeUnitMicroseconds is a EpochTimeUnit enum value
+	EpochTimeUnitMicroseconds = "MICROSECONDS"
+
+	// EpochTimeUnitNanoseconds is a EpochTimeUnit enum value
+	EpochTimeUnitNanoseconds = "NANOSECONDS"
+)
+
+// EpochTimeUnit_Values returns all elements of the EpochTimeUnit enum
+func EpochTimeUnit_Values() []string {
+	return []string{
+		EpochTimeUnitMilliseconds,
+		EpochTimeUnitSeconds,
+		EpochTimeUnitMicroseconds,
+		EpochTimeUnitNanoseconds,
 	}
 }
 
@@ -8700,6 +9301,34 @@ func MSKStartPosition_Values() []string {
 	return []string{
 		MSKStartPositionTrimHorizon,
 		MSKStartPositionLatest,
+	}
+}
+
+const (
+	// MeasureValueTypeDouble is a MeasureValueType enum value
+	MeasureValueTypeDouble = "DOUBLE"
+
+	// MeasureValueTypeBigint is a MeasureValueType enum value
+	MeasureValueTypeBigint = "BIGINT"
+
+	// MeasureValueTypeVarchar is a MeasureValueType enum value
+	MeasureValueTypeVarchar = "VARCHAR"
+
+	// MeasureValueTypeBoolean is a MeasureValueType enum value
+	MeasureValueTypeBoolean = "BOOLEAN"
+
+	// MeasureValueTypeTimestamp is a MeasureValueType enum value
+	MeasureValueTypeTimestamp = "TIMESTAMP"
+)
+
+// MeasureValueType_Values returns all elements of the MeasureValueType enum
+func MeasureValueType_Values() []string {
+	return []string{
+		MeasureValueTypeDouble,
+		MeasureValueTypeBigint,
+		MeasureValueTypeVarchar,
+		MeasureValueTypeBoolean,
+		MeasureValueTypeTimestamp,
 	}
 }
 
@@ -8916,5 +9545,21 @@ func SelfManagedKafkaStartPosition_Values() []string {
 	return []string{
 		SelfManagedKafkaStartPositionTrimHorizon,
 		SelfManagedKafkaStartPositionLatest,
+	}
+}
+
+const (
+	// TimeFieldTypeEpoch is a TimeFieldType enum value
+	TimeFieldTypeEpoch = "EPOCH"
+
+	// TimeFieldTypeTimestampFormat is a TimeFieldType enum value
+	TimeFieldTypeTimestampFormat = "TIMESTAMP_FORMAT"
+)
+
+// TimeFieldType_Values returns all elements of the TimeFieldType enum
+func TimeFieldType_Values() []string {
+	return []string{
+		TimeFieldTypeEpoch,
+		TimeFieldTypeTimestampFormat,
 	}
 }

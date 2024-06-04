@@ -250,6 +250,36 @@
       "refs": {
       }
     },
+    "DimensionMapping": {
+      "base": "<p>Maps source data to a dimension in the target Timestream for LiveAnalytics table.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/timestream/latest/developerguide/concepts.html\">Amazon Timestream for LiveAnalytics concepts</a> </p>",
+      "refs": {
+        "DimensionMappings$member": null
+      }
+    },
+    "DimensionMappings": {
+      "base": null,
+      "refs": {
+        "PipeTargetTimestreamParameters$DimensionMappings": "<p>Map source data to dimensions in the target Timestream for LiveAnalytics table.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/timestream/latest/developerguide/concepts.html\">Amazon Timestream for LiveAnalytics concepts</a> </p>"
+      }
+    },
+    "DimensionName": {
+      "base": null,
+      "refs": {
+        "DimensionMapping$DimensionName": "<p>The metadata attributes of the time series. For example, the name and Availability Zone of an Amazon EC2 instance or the name of the manufacturer of a wind turbine are dimensions.</p>"
+      }
+    },
+    "DimensionValue": {
+      "base": null,
+      "refs": {
+        "DimensionMapping$DimensionValue": "<p>Dynamic path to the dimension value in the source event.</p>"
+      }
+    },
+    "DimensionValueType": {
+      "base": null,
+      "refs": {
+        "DimensionMapping$DimensionValueType": "<p>The data type of the dimension for the time-series data.</p>"
+      }
+    },
     "DynamoDBStreamStartPosition": {
       "base": null,
       "refs": {
@@ -352,6 +382,12 @@
         "EcsEphemeralStorage$sizeInGiB": "<p>The total amount, in GiB, of ephemeral storage to set for the task. The minimum supported value is <code>21</code> GiB and the maximum supported value is <code>200</code> GiB.</p>"
       }
     },
+    "EpochTimeUnit": {
+      "base": null,
+      "refs": {
+        "PipeTargetTimestreamParameters$EpochTimeUnit": "<p>The granularity of the time units used. Default is <code>MILLISECONDS</code>.</p> <p>Required if <code>TimeFieldType</code> is specified as <code>EPOCH</code>.</p>"
+      }
+    },
     "ErrorMessage": {
       "base": null,
       "refs": {
@@ -412,20 +448,20 @@
     "FirehoseArn": {
       "base": null,
       "refs": {
-        "FirehoseLogDestination$DeliveryStreamArn": "<p>The Amazon Resource Name (ARN) of the Kinesis Data Firehose delivery stream to which EventBridge delivers the pipe log records.</p>",
-        "FirehoseLogDestinationParameters$DeliveryStreamArn": "<p>Specifies the Amazon Resource Name (ARN) of the Kinesis Data Firehose delivery stream to which EventBridge delivers the pipe log records.</p>"
+        "FirehoseLogDestination$DeliveryStreamArn": "<p>The Amazon Resource Name (ARN) of the Firehose delivery stream to which EventBridge delivers the pipe log records.</p>",
+        "FirehoseLogDestinationParameters$DeliveryStreamArn": "<p>Specifies the Amazon Resource Name (ARN) of the Firehose delivery stream to which EventBridge delivers the pipe log records.</p>"
       }
     },
     "FirehoseLogDestination": {
-      "base": "<p>The Amazon Kinesis Data Firehose logging configuration settings for the pipe.</p>",
+      "base": "<p>The Amazon Data Firehose logging configuration settings for the pipe.</p>",
       "refs": {
-        "PipeLogConfiguration$FirehoseLogDestination": "<p>The Amazon Kinesis Data Firehose logging configuration settings for the pipe.</p>"
+        "PipeLogConfiguration$FirehoseLogDestination": "<p>The Amazon Data Firehose logging configuration settings for the pipe.</p>"
       }
     },
     "FirehoseLogDestinationParameters": {
-      "base": "<p>The Amazon Kinesis Data Firehose logging configuration settings for the pipe.</p>",
+      "base": "<p>The Amazon Data Firehose logging configuration settings for the pipe.</p>",
       "refs": {
-        "PipeLogConfigurationParameters$FirehoseLogDestination": "<p>The Amazon Kinesis Data Firehose logging configuration settings for the pipe.</p>"
+        "PipeLogConfigurationParameters$FirehoseLogDestination": "<p>The Amazon Data Firehose logging configuration settings for the pipe.</p>"
       }
     },
     "HeaderKey": {
@@ -451,7 +487,7 @@
       "base": null,
       "refs": {
         "PipeLogConfiguration$IncludeExecutionData": "<p>Whether the execution data (specifically, the <code>payload</code>, <code>awsRequest</code>, and <code>awsResponse</code> fields) is included in the log messages for this pipe.</p> <p>This applies to all log destinations for the pipe.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-pipes-logs.html#eb-pipes-logs-execution-data\">Including execution data in logs</a> in the <i>Amazon EventBridge User Guide</i>.</p>",
-        "PipeLogConfigurationParameters$IncludeExecutionData": "<p>Specify <code>ON</code> to include the execution data (specifically, the <code>payload</code> and <code>awsRequest</code> fields) in the log messages for this pipe.</p> <p>This applies to all log destinations for the pipe.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-pipes-logs.html#eb-pipes-logs-execution-data\">Including execution data in logs</a> in the <i>Amazon EventBridge User Guide</i>.</p> <p>The default is <code>OFF</code>.</p>"
+        "PipeLogConfigurationParameters$IncludeExecutionData": "<p>Specify <code>ALL</code> to include the execution data (specifically, the <code>payload</code>, <code>awsRequest</code>, and <code>awsResponse</code> fields) in the log messages for this pipe.</p> <p>This applies to all log destinations for the pipe.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-pipes-logs.html#eb-pipes-logs-execution-data\">Including execution data in logs</a> in the <i>Amazon EventBridge User Guide</i>.</p> <p>By default, execution data is not included.</p>"
       }
     },
     "IncludeExecutionDataOption": {
@@ -659,6 +695,26 @@
         "UpdatePipeSourceKinesisStreamParameters$MaximumRetryAttempts": "<p>(Streams only) Discard records after the specified number of retries. The default value is -1, which sets the maximum number of retries to infinite. When MaximumRetryAttempts is infinite, EventBridge retries failed records until the record expires in the event source.</p>"
       }
     },
+    "MeasureName": {
+      "base": null,
+      "refs": {
+        "SingleMeasureMapping$MeasureName": "<p>Target measure name for the measurement attribute in the Timestream table.</p>"
+      }
+    },
+    "MeasureValue": {
+      "base": null,
+      "refs": {
+        "MultiMeasureAttributeMapping$MeasureValue": "<p>Dynamic path to the measurement attribute in the source event.</p>",
+        "SingleMeasureMapping$MeasureValue": "<p>Dynamic path of the source field to map to the measure in the record.</p>"
+      }
+    },
+    "MeasureValueType": {
+      "base": null,
+      "refs": {
+        "MultiMeasureAttributeMapping$MeasureValueType": "<p>Data type of the measurement attribute in the source event.</p>",
+        "SingleMeasureMapping$MeasureValueType": "<p>Data type of the source field.</p>"
+      }
+    },
     "MessageDeduplicationId": {
       "base": null,
       "refs": {
@@ -669,6 +725,42 @@
       "base": null,
       "refs": {
         "PipeTargetSqsQueueParameters$MessageGroupId": "<p>The FIFO message group ID to use as the target.</p>"
+      }
+    },
+    "MultiMeasureAttributeMapping": {
+      "base": "<p>A mapping of a source event data field to a measure in a Timestream for LiveAnalytics record.</p>",
+      "refs": {
+        "MultiMeasureAttributeMappings$member": null
+      }
+    },
+    "MultiMeasureAttributeMappings": {
+      "base": null,
+      "refs": {
+        "MultiMeasureMapping$MultiMeasureAttributeMappings": "<p>Mappings that represent multiple source event fields mapped to measures in the same Timestream for LiveAnalytics record.</p>"
+      }
+    },
+    "MultiMeasureAttributeName": {
+      "base": null,
+      "refs": {
+        "MultiMeasureAttributeMapping$MultiMeasureAttributeName": "<p>Target measure name to be used.</p>"
+      }
+    },
+    "MultiMeasureMapping": {
+      "base": "<p>Maps multiple measures from the source event to the same Timestream for LiveAnalytics record.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/timestream/latest/developerguide/concepts.html\">Amazon Timestream for LiveAnalytics concepts</a> </p>",
+      "refs": {
+        "MultiMeasureMappings$member": null
+      }
+    },
+    "MultiMeasureMappings": {
+      "base": null,
+      "refs": {
+        "PipeTargetTimestreamParameters$MultiMeasureMappings": "<p>Maps multiple measures from the source event to the same record in the specified Timestream for LiveAnalytics table.</p>"
+      }
+    },
+    "MultiMeasureName": {
+      "base": null,
+      "refs": {
+        "MultiMeasureMapping$MultiMeasureName": "<p>The name of the multiple measurements per record (multi-measure).</p>"
       }
     },
     "NetworkConfiguration": {
@@ -776,7 +868,7 @@
       }
     },
     "PipeLogConfigurationParameters": {
-      "base": "<p>Specifies the logging configuration settings for the pipe.</p> <p>When you call <code>UpdatePipe</code>, EventBridge updates the fields in the <code>PipeLogConfigurationParameters</code> object atomically as one and overrides existing values. This is by design. If you don't specify an optional field in any of the Amazon Web Services service parameters objects (<code>CloudwatchLogsLogDestinationParameters</code>, <code>FirehoseLogDestinationParameters</code>, or <code>S3LogDestinationParameters</code>), EventBridge sets that field to its system-default value during the update. </p> <p>For example, suppose when you created the pipe you specified a Kinesis Data Firehose stream log destination. You then update the pipe to add an Amazon S3 log destination. In addition to specifying the <code>S3LogDestinationParameters</code> for the new log destination, you must also specify the fields in the <code>FirehoseLogDestinationParameters</code> object in order to retain the Kinesis Data Firehose stream log destination. </p> <p>For more information on generating pipe log records, see <a href=\"eventbridge/latest/userguide/eb-pipes-logs.html\">Log EventBridge Pipes</a> in the <i>Amazon EventBridge User Guide</i>.</p>",
+      "base": "<p>Specifies the logging configuration settings for the pipe.</p> <p>When you call <code>UpdatePipe</code>, EventBridge updates the fields in the <code>PipeLogConfigurationParameters</code> object atomically as one and overrides existing values. This is by design. If you don't specify an optional field in any of the Amazon Web Services service parameters objects (<code>CloudwatchLogsLogDestinationParameters</code>, <code>FirehoseLogDestinationParameters</code>, or <code>S3LogDestinationParameters</code>), EventBridge sets that field to its system-default value during the update. </p> <p>For example, suppose when you created the pipe you specified a Firehose stream log destination. You then update the pipe to add an Amazon S3 log destination. In addition to specifying the <code>S3LogDestinationParameters</code> for the new log destination, you must also specify the fields in the <code>FirehoseLogDestinationParameters</code> object in order to retain the Firehose stream log destination. </p> <p>For more information on generating pipe log records, see <a href=\"eventbridge/latest/userguide/eb-pipes-logs.html\">Log EventBridge Pipes</a> in the <i>Amazon EventBridge User Guide</i>.</p>",
       "refs": {
         "CreatePipeRequest$LogConfiguration": "<p>The logging configuration settings for the pipe.</p>",
         "UpdatePipeRequest$LogConfiguration": "<p>The logging configuration settings for the pipe.</p>"
@@ -839,9 +931,9 @@
       }
     },
     "PipeSourceSelfManagedKafkaParameters": {
-      "base": "<p>The parameters for using a self-managed Apache Kafka stream as a source.</p>",
+      "base": "<p>The parameters for using a self-managed Apache Kafka stream as a source.</p> <p>A <i>self managed</i> cluster refers to any Apache Kafka cluster not hosted by Amazon Web Services. This includes both clusters you manage yourself, as well as those hosted by a third-party provider, such as <a href=\"https://www.confluent.io/\">Confluent Cloud</a>, <a href=\"https://www.cloudkarafka.com/\">CloudKarafka</a>, or <a href=\"https://redpanda.com/\">Redpanda</a>. For more information, see <a href=\"https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-pipes-kafka.html\">Apache Kafka streams as a source</a> in the <i>Amazon EventBridge User Guide</i>.</p>",
       "refs": {
-        "PipeSourceParameters$SelfManagedKafkaParameters": "<p>The parameters for using a self-managed Apache Kafka stream as a source.</p>"
+        "PipeSourceParameters$SelfManagedKafkaParameters": "<p>The parameters for using a self-managed Apache Kafka stream as a source.</p> <p>A <i>self managed</i> cluster refers to any Apache Kafka cluster not hosted by Amazon Web Services. This includes both clusters you manage yourself, as well as those hosted by a third-party provider, such as <a href=\"https://www.confluent.io/\">Confluent Cloud</a>, <a href=\"https://www.cloudkarafka.com/\">CloudKarafka</a>, or <a href=\"https://redpanda.com/\">Redpanda</a>. For more information, see <a href=\"https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-pipes-kafka.html\">Apache Kafka streams as a source</a> in the <i>Amazon EventBridge User Guide</i>.</p>"
       }
     },
     "PipeSourceSqsQueueParameters": {
@@ -949,6 +1041,12 @@
       "base": "<p>The parameters for using a Step Functions state machine as a target.</p>",
       "refs": {
         "PipeTargetParameters$StepFunctionStateMachineParameters": "<p>The parameters for using a Step Functions state machine as a target.</p>"
+      }
+    },
+    "PipeTargetTimestreamParameters": {
+      "base": "<p>The parameters for using a Timestream for LiveAnalytics table as a target.</p>",
+      "refs": {
+        "PipeTargetParameters$TimestreamParameters": "<p>The parameters for using a Timestream for LiveAnalytics table as a target.</p>"
       }
     },
     "PlacementConstraint": {
@@ -1130,13 +1228,13 @@
       "base": "<p>// Optional SecretManager ARN which stores the database credentials</p>",
       "refs": {
         "MQBrokerAccessCredentials$BasicAuth": "<p>The ARN of the Secrets Manager secret.</p>",
-        "MSKAccessCredentials$ClientCertificateTlsAuth": "<p>The ARN of the Secrets Manager secret.</p>",
         "MSKAccessCredentials$SaslScram512Auth": "<p>The ARN of the Secrets Manager secret.</p>",
+        "MSKAccessCredentials$ClientCertificateTlsAuth": "<p>The ARN of the Secrets Manager secret.</p>",
         "PipeSourceSelfManagedKafkaParameters$ServerRootCaCertificate": "<p>The ARN of the Secrets Manager secret used for certification.</p>",
         "SelfManagedKafkaAccessConfigurationCredentials$BasicAuth": "<p>The ARN of the Secrets Manager secret.</p>",
-        "SelfManagedKafkaAccessConfigurationCredentials$ClientCertificateTlsAuth": "<p>The ARN of the Secrets Manager secret.</p>",
-        "SelfManagedKafkaAccessConfigurationCredentials$SaslScram256Auth": "<p>The ARN of the Secrets Manager secret.</p>",
         "SelfManagedKafkaAccessConfigurationCredentials$SaslScram512Auth": "<p>The ARN of the Secrets Manager secret.</p>",
+        "SelfManagedKafkaAccessConfigurationCredentials$SaslScram256Auth": "<p>The ARN of the Secrets Manager secret.</p>",
+        "SelfManagedKafkaAccessConfigurationCredentials$ClientCertificateTlsAuth": "<p>The ARN of the Secrets Manager secret.</p>",
         "UpdatePipeSourceSelfManagedKafkaParameters$ServerRootCaCertificate": "<p>The ARN of the Secrets Manager secret used for certification.</p>"
       }
     },
@@ -1193,6 +1291,18 @@
     "ServiceQuotaExceededException": {
       "base": "<p>A quota has been exceeded.</p>",
       "refs": {
+      }
+    },
+    "SingleMeasureMapping": {
+      "base": "<p>Maps a single source data field to a single record in the specified Timestream for LiveAnalytics table.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/timestream/latest/developerguide/concepts.html\">Amazon Timestream for LiveAnalytics concepts</a> </p>",
+      "refs": {
+        "SingleMeasureMappings$member": null
+      }
+    },
+    "SingleMeasureMappings": {
+      "base": null,
+      "refs": {
+        "PipeTargetTimestreamParameters$SingleMeasureMappings": "<p>Mappings of single source data fields to individual records in the specified Timestream for LiveAnalytics table.</p>"
       }
     },
     "Sql": {
@@ -1258,20 +1368,20 @@
         "InternalException$message": null,
         "PipeTargetBatchJobParameters$JobDefinition": "<p>The job definition used by this job. This value can be one of <code>name</code>, <code>name:revision</code>, or the Amazon Resource Name (ARN) for the job definition. If name is specified without a revision then the latest active revision is used.</p>",
         "PipeTargetBatchJobParameters$JobName": "<p>The name of the job. It can be up to 128 letters long. The first character must be alphanumeric, can contain uppercase and lowercase letters, numbers, hyphens (-), and underscores (_).</p>",
-        "PipeTargetEcsTaskParameters$Group": "<p>Specifies an Amazon ECS task group for the task. The maximum length is 255 characters.</p>",
         "PipeTargetEcsTaskParameters$PlatformVersion": "<p>Specifies the platform version for the task. Specify only the numeric portion of the platform version, such as <code>1.1.0</code>.</p> <p>This structure is used only if <code>LaunchType</code> is <code>FARGATE</code>. For more information about valid platform versions, see <a href=\"https://docs.aws.amazon.com/AmazonECS/latest/developerguide/platform_versions.html\">Fargate Platform Versions</a> in the <i>Amazon Elastic Container Service Developer Guide</i>.</p>",
+        "PipeTargetEcsTaskParameters$Group": "<p>Specifies an Amazon ECS task group for the task. The maximum length is 255 characters.</p>",
         "S3LogDestination$BucketName": "<p>The name of the Amazon S3 bucket to which EventBridge delivers the log records for the pipe.</p>",
-        "S3LogDestination$BucketOwner": "<p>The Amazon Web Services account that owns the Amazon S3 bucket to which EventBridge delivers the log records for the pipe.</p>",
         "S3LogDestination$Prefix": "<p>The prefix text with which to begin Amazon S3 log object names.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-prefixes.html\">Organizing objects using prefixes</a> in the <i>Amazon Simple Storage Service User Guide</i>.</p>",
+        "S3LogDestination$BucketOwner": "<p>The Amazon Web Services account that owns the Amazon S3 bucket to which EventBridge delivers the log records for the pipe.</p>",
         "ServiceQuotaExceededException$message": null,
-        "ServiceQuotaExceededException$quotaCode": "<p>The identifier of the quota that caused the exception.</p>",
         "ServiceQuotaExceededException$resourceId": "<p>The ID of the resource that caused the exception.</p>",
         "ServiceQuotaExceededException$resourceType": "<p>The type of resource that caused the exception.</p>",
         "ServiceQuotaExceededException$serviceCode": "<p>The identifier of the service that caused the exception.</p>",
+        "ServiceQuotaExceededException$quotaCode": "<p>The identifier of the quota that caused the exception.</p>",
         "StringList$member": null,
         "ThrottlingException$message": null,
-        "ThrottlingException$quotaCode": "<p>The identifier of the quota that caused the exception.</p>",
         "ThrottlingException$serviceCode": "<p>The identifier of the service that caused the exception.</p>",
+        "ThrottlingException$quotaCode": "<p>The identifier of the quota that caused the exception.</p>",
         "ValidationExceptionField$name": "<p>The name of the exception.</p>"
       }
     },
@@ -1363,6 +1473,18 @@
       "refs": {
       }
     },
+    "TimeFieldType": {
+      "base": null,
+      "refs": {
+        "PipeTargetTimestreamParameters$TimeFieldType": "<p>The type of time value used.</p> <p>The default is <code>EPOCH</code>.</p>"
+      }
+    },
+    "TimeValue": {
+      "base": null,
+      "refs": {
+        "PipeTargetTimestreamParameters$TimeValue": "<p>Dynamic path to the source data field that represents the time value for your data.</p>"
+      }
+    },
     "Timestamp": {
       "base": null,
       "refs": {
@@ -1381,6 +1503,12 @@
         "StopPipeResponse$LastModifiedTime": "<p>When the pipe was last updated, in <a href=\"https://www.w3.org/TR/NOTE-datetime\">ISO-8601 format</a> (YYYY-MM-DDThh:mm:ss.sTZD).</p>",
         "UpdatePipeResponse$CreationTime": "<p>The time the pipe was created.</p>",
         "UpdatePipeResponse$LastModifiedTime": "<p>When the pipe was last updated, in <a href=\"https://www.w3.org/TR/NOTE-datetime\">ISO-8601 format</a> (YYYY-MM-DDThh:mm:ss.sTZD).</p>"
+      }
+    },
+    "TimestampFormat": {
+      "base": null,
+      "refs": {
+        "PipeTargetTimestreamParameters$TimestampFormat": "<p>How to format the timestamps. For example, <code>YYYY-MM-DDThh:mm:ss.sssTZD</code>.</p> <p>Required if <code>TimeFieldType</code> is specified as <code>TIMESTAMP_FORMAT</code>.</p>"
       }
     },
     "URI": {
@@ -1448,9 +1576,9 @@
       }
     },
     "UpdatePipeSourceSelfManagedKafkaParameters": {
-      "base": "<p>The parameters for using a self-managed Apache Kafka stream as a source.</p>",
+      "base": "<p>The parameters for using a self-managed Apache Kafka stream as a source.</p> <p>A <i>self managed</i> cluster refers to any Apache Kafka cluster not hosted by Amazon Web Services. This includes both clusters you manage yourself, as well as those hosted by a third-party provider, such as <a href=\"https://www.confluent.io/\">Confluent Cloud</a>, <a href=\"https://www.cloudkarafka.com/\">CloudKarafka</a>, or <a href=\"https://redpanda.com/\">Redpanda</a>. For more information, see <a href=\"https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-pipes-kafka.html\">Apache Kafka streams as a source</a> in the <i>Amazon EventBridge User Guide</i>.</p>",
       "refs": {
-        "UpdatePipeSourceParameters$SelfManagedKafkaParameters": "<p>The parameters for using a self-managed Apache Kafka stream as a source.</p>"
+        "UpdatePipeSourceParameters$SelfManagedKafkaParameters": "<p>The parameters for using a self-managed Apache Kafka stream as a source.</p> <p>A <i>self managed</i> cluster refers to any Apache Kafka cluster not hosted by Amazon Web Services. This includes both clusters you manage yourself, as well as those hosted by a third-party provider, such as <a href=\"https://www.confluent.io/\">Confluent Cloud</a>, <a href=\"https://www.cloudkarafka.com/\">CloudKarafka</a>, or <a href=\"https://redpanda.com/\">Redpanda</a>. For more information, see <a href=\"https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-pipes-kafka.html\">Apache Kafka streams as a source</a> in the <i>Amazon EventBridge User Guide</i>.</p>"
       }
     },
     "UpdatePipeSourceSqsQueueParameters": {
@@ -1474,6 +1602,12 @@
       "base": null,
       "refs": {
         "ValidationException$fieldList": "<p>The list of fields for which validation failed and the corresponding failure messages.</p>"
+      }
+    },
+    "VersionValue": {
+      "base": null,
+      "refs": {
+        "PipeTargetTimestreamParameters$VersionValue": "<p>64 bit version value or source data field that represents the version value for your data.</p> <p>Write requests with a higher version number will update the existing measure values of the record and version. In cases where the measure value is the same, the version will still be updated. </p> <p>Default value is 1. </p> <p>Timestream for LiveAnalytics does not support updating partial measure values in a record.</p> <p>Write requests for duplicate data with a higher version number will update the existing measure value and version. In cases where the measure value is the same, <code>Version</code> will still be updated. Default value is <code>1</code>.</p> <note> <p> <code>Version</code> must be <code>1</code> or greater, or you will receive a <code>ValidationException</code> error.</p> </note>"
       }
     }
   }

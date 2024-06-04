@@ -12,7 +12,8 @@
     "signatureVersion":"v4",
     "signingName":"sagemaker",
     "targetPrefix":"SageMaker",
-    "uid":"sagemaker-2017-07-24"
+    "uid":"sagemaker-2017-07-24",
+    "auth":["aws.auth#sigv4"]
   },
   "operations":{
     "AddAssociation":{
@@ -5647,6 +5648,14 @@
       "max":256,
       "pattern":"^arn:aws[a-z\\-]*:sagemaker:[a-z0-9\\-]*:[0-9]{12}:cluster/[a-z0-9]{12}$"
     },
+    "ClusterAvailabilityZone":{
+      "type":"string",
+      "pattern":"^[a-z]{2}-[a-z]+-\\d[a-z]$"
+    },
+    "ClusterAvailabilityZoneId":{
+      "type":"string",
+      "pattern":"^[a-z]{3}\\d-az\\d$"
+    },
     "ClusterInstanceCount":{
       "type":"integer",
       "min":1
@@ -5696,6 +5705,13 @@
       "member":{"shape":"ClusterInstanceGroupSpecification"},
       "max":20,
       "min":1
+    },
+    "ClusterInstancePlacement":{
+      "type":"structure",
+      "members":{
+        "AvailabilityZone":{"shape":"ClusterAvailabilityZone"},
+        "AvailabilityZoneId":{"shape":"ClusterAvailabilityZoneId"}
+      }
     },
     "ClusterInstanceStatus":{
       "type":"string",
@@ -5795,7 +5811,10 @@
         "InstanceType":{"shape":"ClusterInstanceType"},
         "LaunchTime":{"shape":"Timestamp"},
         "LifeCycleConfig":{"shape":"ClusterLifeCycleConfig"},
-        "ThreadsPerCore":{"shape":"ClusterThreadsPerCore"}
+        "ThreadsPerCore":{"shape":"ClusterThreadsPerCore"},
+        "PrivatePrimaryIp":{"shape":"ClusterPrivatePrimaryIp"},
+        "PrivateDnsHostname":{"shape":"ClusterPrivateDnsHostname"},
+        "Placement":{"shape":"ClusterInstancePlacement"}
       }
     },
     "ClusterNodeId":{
@@ -5828,6 +5847,14 @@
     "ClusterNonNegativeInstanceCount":{
       "type":"integer",
       "min":0
+    },
+    "ClusterPrivateDnsHostname":{
+      "type":"string",
+      "pattern":"^ip-((25[0-5]|(2[0-4]|1\\d|[1-9]|)\\d)-?\\b){4}\\..*$"
+    },
+    "ClusterPrivatePrimaryIp":{
+      "type":"string",
+      "pattern":"^((25[0-5]|(2[0-4]|1\\d|[1-9]|)\\d)\\.?\\b){4}$"
     },
     "ClusterSortBy":{
       "type":"string",
