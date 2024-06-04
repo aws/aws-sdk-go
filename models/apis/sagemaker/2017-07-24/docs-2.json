@@ -120,7 +120,7 @@
     "DescribeAutoMLJob": "<p>Returns information about an AutoML job created by calling <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateAutoMLJob.html\">CreateAutoMLJob</a>.</p> <note> <p>AutoML jobs created by calling <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateAutoMLJobV2.html\">CreateAutoMLJobV2</a> cannot be described by <code>DescribeAutoMLJob</code>.</p> </note>",
     "DescribeAutoMLJobV2": "<p>Returns information about an AutoML job created by calling <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateAutoMLJobV2.html\">CreateAutoMLJobV2</a> or <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateAutoMLJob.html\">CreateAutoMLJob</a>.</p>",
     "DescribeCluster": "<p>Retrieves information of a SageMaker HyperPod cluster.</p>",
-    "DescribeClusterNode": "<p>Retrieves information of an instance (also called a <i>node</i> interchangeably) of a SageMaker HyperPod cluster.</p>",
+    "DescribeClusterNode": "<p>Retrieves information of a node (also called a <i>instance</i> interchangeably) of a SageMaker HyperPod cluster.</p>",
     "DescribeCodeRepository": "<p>Gets details about the specified Git repository.</p>",
     "DescribeCompilationJob": "<p>Returns information about a model compilation job.</p> <p>To create a model compilation job, use <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateCompilationJob.html\">CreateCompilationJob</a>. To get information about multiple model compilation jobs, use <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_ListCompilationJobs.html\">ListCompilationJobs</a>.</p>",
     "DescribeContext": "<p>Describes a context.</p>",
@@ -1985,6 +1985,18 @@
         "UpdateClusterSoftwareResponse$ClusterArn": "<p>The Amazon Resource Name (ARN) of the SageMaker HyperPod cluster being updated for security patching.</p>"
       }
     },
+    "ClusterAvailabilityZone": {
+      "base": null,
+      "refs": {
+        "ClusterInstancePlacement$AvailabilityZone": "<p>The Availability Zone where the node in the SageMaker HyperPod cluster is launched.</p>"
+      }
+    },
+    "ClusterAvailabilityZoneId": {
+      "base": null,
+      "refs": {
+        "ClusterInstancePlacement$AvailabilityZoneId": "<p>The unique identifier (ID) of the Availability Zone where the node in the SageMaker HyperPod cluster is launched.</p>"
+      }
+    },
     "ClusterInstanceCount": {
       "base": null,
       "refs": {
@@ -2025,6 +2037,12 @@
       "refs": {
         "CreateClusterRequest$InstanceGroups": "<p>The instance groups to be created in the SageMaker HyperPod cluster.</p>",
         "UpdateClusterRequest$InstanceGroups": "<p>Specify the instance groups to update.</p>"
+      }
+    },
+    "ClusterInstancePlacement": {
+      "base": "<p>Specifies the placement details for the node in the SageMaker HyperPod cluster, including the Availability Zone and the unique identifier (ID) of the Availability Zone.</p>",
+      "refs": {
+        "ClusterNodeDetails$Placement": "<p>The placement details of the SageMaker HyperPod cluster node.</p>"
       }
     },
     "ClusterInstanceStatus": {
@@ -2075,7 +2093,7 @@
       "base": null,
       "refs": {
         "DeleteClusterRequest$ClusterName": "<p>The string name or the Amazon Resource Name (ARN) of the SageMaker HyperPod cluster to delete.</p>",
-        "DescribeClusterNodeRequest$ClusterName": "<p>The string name or the Amazon Resource Name (ARN) of the SageMaker HyperPod cluster in which the instance is.</p>",
+        "DescribeClusterNodeRequest$ClusterName": "<p>The string name or the Amazon Resource Name (ARN) of the SageMaker HyperPod cluster in which the node is.</p>",
         "DescribeClusterRequest$ClusterName": "<p>The string name or the Amazon Resource Name (ARN) of the SageMaker HyperPod cluster.</p>",
         "ListClusterNodesRequest$ClusterName": "<p>The string name or the Amazon Resource Name (ARN) of the SageMaker HyperPod cluster in which you want to retrieve the list of nodes.</p>",
         "UpdateClusterRequest$ClusterName": "<p>Specify the name of the SageMaker HyperPod cluster you want to update.</p>",
@@ -2085,13 +2103,13 @@
     "ClusterNodeDetails": {
       "base": "<p>Details of an instance (also called a <i>node</i> interchangeably) in a SageMaker HyperPod cluster.</p>",
       "refs": {
-        "DescribeClusterNodeResponse$NodeDetails": "<p>The details of the instance.</p>"
+        "DescribeClusterNodeResponse$NodeDetails": "<p>The details of the SageMaker HyperPod cluster node.</p>"
       }
     },
     "ClusterNodeId": {
       "base": null,
       "refs": {
-        "DescribeClusterNodeRequest$NodeId": "<p>The ID of the instance.</p>"
+        "DescribeClusterNodeRequest$NodeId": "<p>The ID of the SageMaker HyperPod cluster node.</p>"
       }
     },
     "ClusterNodeSummaries": {
@@ -2110,6 +2128,18 @@
       "base": null,
       "refs": {
         "ClusterInstanceGroupDetails$CurrentCount": "<p>The number of instances that are currently in the instance group of a SageMaker HyperPod cluster.</p>"
+      }
+    },
+    "ClusterPrivateDnsHostname": {
+      "base": null,
+      "refs": {
+        "ClusterNodeDetails$PrivateDnsHostname": "<p>The private DNS hostname of the SageMaker HyperPod cluster node.</p>"
+      }
+    },
+    "ClusterPrivatePrimaryIp": {
+      "base": null,
+      "refs": {
+        "ClusterNodeDetails$PrivatePrimaryIp": "<p>The private primary IP address of the SageMaker HyperPod cluster node.</p>"
       }
     },
     "ClusterSortBy": {
