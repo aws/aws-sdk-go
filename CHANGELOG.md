@@ -1,3 +1,13 @@
+Release v1.53.17 (2024-06-05)
+===
+
+### Service Client Updates
+* `service/globalaccelerator`: Updates service API and documentation
+* `service/glue`: Updates service API and documentation
+  * AWS Glue now supports native SaaS connectivity: Salesforce connector available now
+* `service/s3`: Updates service API and examples
+  * Added new params copySource and key to copyObject API for supporting S3 Access Grants plugin. These changes will not change any of the existing S3 API functionality.
+
 Release v1.53.16 (2024-06-04)
 ===
 

@@ -2189,7 +2189,6 @@ func (c *Glue) CreateConnectionRequest(input *CreateConnectionInput) (req *reque
 
 	output = &CreateConnectionOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -22974,6 +22973,183 @@ func (s *AuditContext) SetRequestedColumns(v []*string) *AuditContext {
 	return s
 }
 
+// A structure containing the authentication configuration.
+type AuthenticationConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// A structure containing the authentication configuration.
+	AuthenticationType *string `type:"string" enum:"AuthenticationType"`
+
+	// The properties for OAuth2 authentication.
+	OAuth2Properties *OAuth2Properties `type:"structure"`
+
+	// The secret manager ARN to store credentials.
+	SecretArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AuthenticationConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AuthenticationConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetAuthenticationType sets the AuthenticationType field's value.
+func (s *AuthenticationConfiguration) SetAuthenticationType(v string) *AuthenticationConfiguration {
+	s.AuthenticationType = &v
+	return s
+}
+
+// SetOAuth2Properties sets the OAuth2Properties field's value.
+func (s *AuthenticationConfiguration) SetOAuth2Properties(v *OAuth2Properties) *AuthenticationConfiguration {
+	s.OAuth2Properties = v
+	return s
+}
+
+// SetSecretArn sets the SecretArn field's value.
+func (s *AuthenticationConfiguration) SetSecretArn(v string) *AuthenticationConfiguration {
+	s.SecretArn = &v
+	return s
+}
+
+// A structure containing the authentication configuration in the CreateConnection
+// request.
+type AuthenticationConfigurationInput_ struct {
+	_ struct{} `type:"structure"`
+
+	// A structure containing the authentication configuration in the CreateConnection
+	// request.
+	AuthenticationType *string `type:"string" enum:"AuthenticationType"`
+
+	// The properties for OAuth2 authentication in the CreateConnection request.
+	OAuth2Properties *OAuth2PropertiesInput_ `type:"structure"`
+
+	// The secret manager ARN to store credentials in the CreateConnection request.
+	SecretArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AuthenticationConfigurationInput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AuthenticationConfigurationInput_) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AuthenticationConfigurationInput_) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AuthenticationConfigurationInput_"}
+	if s.OAuth2Properties != nil {
+		if err := s.OAuth2Properties.Validate(); err != nil {
+			invalidParams.AddNested("OAuth2Properties", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAuthenticationType sets the AuthenticationType field's value.
+func (s *AuthenticationConfigurationInput_) SetAuthenticationType(v string) *AuthenticationConfigurationInput_ {
+	s.AuthenticationType = &v
+	return s
+}
+
+// SetOAuth2Properties sets the OAuth2Properties field's value.
+func (s *AuthenticationConfigurationInput_) SetOAuth2Properties(v *OAuth2PropertiesInput_) *AuthenticationConfigurationInput_ {
+	s.OAuth2Properties = v
+	return s
+}
+
+// SetSecretArn sets the SecretArn field's value.
+func (s *AuthenticationConfigurationInput_) SetSecretArn(v string) *AuthenticationConfigurationInput_ {
+	s.SecretArn = &v
+	return s
+}
+
+// The set of properties required for the the OAuth2 AUTHORIZATION_CODE grant
+// type workflow.
+type AuthorizationCodeProperties struct {
+	_ struct{} `type:"structure"`
+
+	// An authorization code to be used in the third leg of the AUTHORIZATION_CODE
+	// grant workflow. This is a single-use code which becomes invalid once exchanged
+	// for an access token, thus it is acceptable to have this value as a request
+	// parameter.
+	AuthorizationCode *string `min:"1" type:"string"`
+
+	// The redirect URI where the user gets redirected to by authorization server
+	// when issuing an authorization code. The URI is subsequently used when the
+	// authorization code is exchanged for an access token.
+	RedirectUri *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AuthorizationCodeProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AuthorizationCodeProperties) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AuthorizationCodeProperties) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AuthorizationCodeProperties"}
+	if s.AuthorizationCode != nil && len(*s.AuthorizationCode) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AuthorizationCode", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAuthorizationCode sets the AuthorizationCode field's value.
+func (s *AuthorizationCodeProperties) SetAuthorizationCode(v string) *AuthorizationCodeProperties {
+	s.AuthorizationCode = &v
+	return s
+}
+
+// SetRedirectUri sets the RedirectUri field's value.
+func (s *AuthorizationCodeProperties) SetRedirectUri(v string) *AuthorizationCodeProperties {
+	s.RedirectUri = &v
+	return s
+}
+
 // A list of errors that can occur when registering partition indexes for an
 // existing table.
 //
@@ -29741,6 +29917,9 @@ func (s *ConfusionMatrix) SetNumTruePositives(v int64) *ConfusionMatrix {
 type Connection struct {
 	_ struct{} `type:"structure"`
 
+	// The authentication properties of the connection.
+	AuthenticationConfiguration *AuthenticationConfiguration `type:"structure"`
+
 	// These key-value pairs define parameters for the connection:
 	//
 	//    * HOST - The host URI: either the fully qualified domain name (FQDN) or
@@ -29885,16 +30064,19 @@ type Connection struct {
 	// The type of the connection. Currently, SFTP is not supported.
 	ConnectionType *string `type:"string" enum:"ConnectionType"`
 
-	// The time that this connection definition was created.
+	// The timestamp of the time that this connection definition was created.
 	CreationTime *time.Time `type:"timestamp"`
 
 	// The description of the connection.
 	Description *string `type:"string"`
 
+	// A timestamp of the time this connection was last validated.
+	LastConnectionValidationTime *time.Time `type:"timestamp"`
+
 	// The user, group, or role that last updated this connection definition.
 	LastUpdatedBy *string `min:"1" type:"string"`
 
-	// The last time that this connection definition was updated.
+	// The timestamp of the last time the connection definition was updated.
 	LastUpdatedTime *time.Time `type:"timestamp"`
 
 	// A list of criteria that can be used in selecting this connection.
@@ -29903,9 +30085,15 @@ type Connection struct {
 	// The name of the connection definition.
 	Name *string `min:"1" type:"string"`
 
-	// A map of physical connection requirements, such as virtual private cloud
-	// (VPC) and SecurityGroup, that are needed to make this connection successfully.
+	// The physical connection requirements, such as virtual private cloud (VPC)
+	// and SecurityGroup, that are needed to make this connection successfully.
 	PhysicalConnectionRequirements *PhysicalConnectionRequirements `type:"structure"`
+
+	// The status of the connection. Can be one of: READY, IN_PROGRESS, or FAILED.
+	Status *string `type:"string" enum:"ConnectionStatus"`
+
+	// The reason for the connection status.
+	StatusReason *string `min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -29924,6 +30112,12 @@ func (s Connection) String() string {
 // value will be replaced with "sensitive".
 func (s Connection) GoString() string {
 	return s.String()
+}
+
+// SetAuthenticationConfiguration sets the AuthenticationConfiguration field's value.
+func (s *Connection) SetAuthenticationConfiguration(v *AuthenticationConfiguration) *Connection {
+	s.AuthenticationConfiguration = v
+	return s
 }
 
 // SetConnectionProperties sets the ConnectionProperties field's value.
@@ -29947,6 +30141,12 @@ func (s *Connection) SetCreationTime(v time.Time) *Connection {
 // SetDescription sets the Description field's value.
 func (s *Connection) SetDescription(v string) *Connection {
 	s.Description = &v
+	return s
+}
+
+// SetLastConnectionValidationTime sets the LastConnectionValidationTime field's value.
+func (s *Connection) SetLastConnectionValidationTime(v time.Time) *Connection {
+	s.LastConnectionValidationTime = &v
 	return s
 }
 
@@ -29980,9 +30180,24 @@ func (s *Connection) SetPhysicalConnectionRequirements(v *PhysicalConnectionRequ
 	return s
 }
 
+// SetStatus sets the Status field's value.
+func (s *Connection) SetStatus(v string) *Connection {
+	s.Status = &v
+	return s
+}
+
+// SetStatusReason sets the StatusReason field's value.
+func (s *Connection) SetStatusReason(v string) *Connection {
+	s.StatusReason = &v
+	return s
+}
+
 // A structure that is used to specify a connection to create or update.
 type ConnectionInput struct {
 	_ struct{} `type:"structure"`
+
+	// The authentication properties of the connection. Used for a Salesforce connection.
+	AuthenticationConfiguration *AuthenticationConfigurationInput_ `type:"structure"`
 
 	// These key-value pairs define parameters for the connection.
 	//
@@ -30015,6 +30230,9 @@ type ConnectionInput struct {
 	//    * MONGODB - Designates a connection to a MongoDB document database. MONGODB
 	//    Connections use the following ConnectionParameters. Required: CONNECTION_URL.
 	//    Required: All of (USERNAME, PASSWORD) or SECRET_ID.
+	//
+	//    * SALESFORCE - Designates a connection to Salesforce using OAuth authencation.
+	//    Requires the AuthenticationConfiguration member to be configured.
 	//
 	//    * NETWORK - Designates a network connection to a data source within an
 	//    Amazon Virtual Private Cloud environment (Amazon VPC). NETWORK Connections
@@ -30049,15 +30267,18 @@ type ConnectionInput struct {
 	// A list of criteria that can be used in selecting this connection.
 	MatchCriteria []*string `type:"list"`
 
-	// The name of the connection. Connection will not function as expected without
-	// a name.
+	// The name of the connection.
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
-	// A map of physical connection requirements, such as virtual private cloud
-	// (VPC) and SecurityGroup, that are needed to successfully make this connection.
+	// The physical connection requirements, such as virtual private cloud (VPC)
+	// and SecurityGroup, that are needed to successfully make this connection.
 	PhysicalConnectionRequirements *PhysicalConnectionRequirements `type:"structure"`
+
+	// A flag to validate the credentials during create connection. Used for a Salesforce
+	// connection. Default is true.
+	ValidateCredentials *bool `type:"boolean"`
 }
 
 // String returns the string representation.
@@ -30093,6 +30314,11 @@ func (s *ConnectionInput) Validate() error {
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
 	}
+	if s.AuthenticationConfiguration != nil {
+		if err := s.AuthenticationConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("AuthenticationConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.PhysicalConnectionRequirements != nil {
 		if err := s.PhysicalConnectionRequirements.Validate(); err != nil {
 			invalidParams.AddNested("PhysicalConnectionRequirements", err.(request.ErrInvalidParams))
@@ -30103,6 +30329,12 @@ func (s *ConnectionInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAuthenticationConfiguration sets the AuthenticationConfiguration field's value.
+func (s *ConnectionInput) SetAuthenticationConfiguration(v *AuthenticationConfigurationInput_) *ConnectionInput {
+	s.AuthenticationConfiguration = v
+	return s
 }
 
 // SetConnectionProperties sets the ConnectionProperties field's value.
@@ -30138,6 +30370,12 @@ func (s *ConnectionInput) SetName(v string) *ConnectionInput {
 // SetPhysicalConnectionRequirements sets the PhysicalConnectionRequirements field's value.
 func (s *ConnectionInput) SetPhysicalConnectionRequirements(v *PhysicalConnectionRequirements) *ConnectionInput {
 	s.PhysicalConnectionRequirements = v
+	return s
+}
+
+// SetValidateCredentials sets the ValidateCredentials field's value.
+func (s *ConnectionInput) SetValidateCredentials(v bool) *ConnectionInput {
+	s.ValidateCredentials = &v
 	return s
 }
 
@@ -31689,6 +31927,11 @@ func (s *CreateConnectionInput) SetTags(v map[string]*string) *CreateConnectionI
 
 type CreateConnectionOutput struct {
 	_ struct{} `type:"structure"`
+
+	// The status of the connection creation request. The request can take some
+	// time for certain authentication types, for example when creating an OAuth
+	// connection with token exchange over VPC.
+	CreateConnectionStatus *string `type:"string" enum:"ConnectionStatus"`
 }
 
 // String returns the string representation.
@@ -31707,6 +31950,12 @@ func (s CreateConnectionOutput) String() string {
 // value will be replaced with "sensitive".
 func (s CreateConnectionOutput) GoString() string {
 	return s.String()
+}
+
+// SetCreateConnectionStatus sets the CreateConnectionStatus field's value.
+func (s *CreateConnectionOutput) SetCreateConnectionStatus(v string) *CreateConnectionOutput {
+	s.CreateConnectionStatus = &v
+	return s
 }
 
 type CreateCrawlerInput struct {
@@ -33148,7 +33397,12 @@ type CreateJobInput struct {
 
 	// The job timeout in minutes. This is the maximum time that a job run can consume
 	// resources before it is terminated and enters TIMEOUT status. The default
-	// is 2,880 minutes (48 hours).
+	// is 2,880 minutes (48 hours) for batch jobs.
+	//
+	// Streaming jobs must have timeout values less than 7 days or 10080 minutes.
+	// When the value is left blank, the job will be restarted after 7 days based
+	// if you have not setup a maintenance window. If you have setup maintenance
+	// window, it will be restarted during the maintenance window after 7 days.
 	Timeout *int64 `min:"1" type:"integer"`
 
 	// The type of predefined worker that is allocated when a job runs. Accepts
@@ -54206,7 +54460,12 @@ type Job struct {
 
 	// The job timeout in minutes. This is the maximum time that a job run can consume
 	// resources before it is terminated and enters TIMEOUT status. The default
-	// is 2,880 minutes (48 hours).
+	// is 2,880 minutes (48 hours) for batch jobs.
+	//
+	// Streaming jobs must have timeout values less than 7 days or 10080 minutes.
+	// When the value is left blank, the job will be restarted after 7 days based
+	// if you have not setup a maintenance window. If you have setup maintenance
+	// window, it will be restarted during the maintenance window after 7 days.
 	Timeout *int64 `min:"1" type:"integer"`
 
 	// The type of predefined worker that is allocated when a job runs. Accepts
@@ -54825,13 +55084,6 @@ type JobRun struct {
 	// consume resources before it is terminated and enters TIMEOUT status. This
 	// value overrides the timeout value set in the parent job.
 	//
-	// The maximum value for timeout for batch jobs is 7 days or 10080 minutes.
-	// The default is 2880 minutes (48 hours) for batch jobs.
-	//
-	// Any existing Glue jobs that have a greater timeout value are defaulted to
-	// 7 days. For instance you have specified a timeout of 20 days for a batch
-	// job, it will be stopped on the 7th day.
-	//
 	// Streaming jobs must have timeout values less than 7 days or 10080 minutes.
 	// When the value is left blank, the job will be restarted after 7 days based
 	// if you have not setup a maintenance window. If you have setup maintenance
@@ -55222,7 +55474,12 @@ type JobUpdate struct {
 
 	// The job timeout in minutes. This is the maximum time that a job run can consume
 	// resources before it is terminated and enters TIMEOUT status. The default
-	// is 2,880 minutes (48 hours).
+	// is 2,880 minutes (48 hours) for batch jobs.
+	//
+	// Streaming jobs must have timeout values less than 7 days or 10080 minutes.
+	// When the value is left blank, the job will be restarted after 7 days based
+	// if you have not setup a maintenance window. If you have setup maintenance
+	// window, it will be restarted during the maintenance window after 7 days.
 	Timeout *int64 `min:"1" type:"integer"`
 
 	// The type of predefined worker that is allocated when a job runs. Accepts
@@ -60428,6 +60685,194 @@ func (s *NullValueField) SetValue(v string) *NullValueField {
 	return s
 }
 
+// The OAuth2 client app used for the connection.
+type OAuth2ClientApplication struct {
+	_ struct{} `type:"structure"`
+
+	// The reference to the SaaS-side client app that is Amazon Web Services managed.
+	AWSManagedClientApplicationReference *string `type:"string"`
+
+	// The client application clientID if the ClientAppType is USER_MANAGED.
+	UserManagedClientApplicationClientId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OAuth2ClientApplication) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OAuth2ClientApplication) GoString() string {
+	return s.String()
+}
+
+// SetAWSManagedClientApplicationReference sets the AWSManagedClientApplicationReference field's value.
+func (s *OAuth2ClientApplication) SetAWSManagedClientApplicationReference(v string) *OAuth2ClientApplication {
+	s.AWSManagedClientApplicationReference = &v
+	return s
+}
+
+// SetUserManagedClientApplicationClientId sets the UserManagedClientApplicationClientId field's value.
+func (s *OAuth2ClientApplication) SetUserManagedClientApplicationClientId(v string) *OAuth2ClientApplication {
+	s.UserManagedClientApplicationClientId = &v
+	return s
+}
+
+// A structure containing properties for OAuth2 authentication.
+type OAuth2Properties struct {
+	_ struct{} `type:"structure"`
+
+	// The client application type. For example, AWS_MANAGED or USER_MANAGED.
+	OAuth2ClientApplication *OAuth2ClientApplication `type:"structure"`
+
+	// The OAuth2 grant type. For example, AUTHORIZATION_CODE, JWT_BEARER, or CLIENT_CREDENTIALS.
+	OAuth2GrantType *string `type:"string" enum:"OAuth2GrantType"`
+
+	// The URL of the provider's authentication server, to exchange an authorization
+	// code for an access token.
+	TokenUrl *string `type:"string"`
+
+	// A map of parameters that are added to the token GET request.
+	TokenUrlParametersMap map[string]*string `type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OAuth2Properties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OAuth2Properties) GoString() string {
+	return s.String()
+}
+
+// SetOAuth2ClientApplication sets the OAuth2ClientApplication field's value.
+func (s *OAuth2Properties) SetOAuth2ClientApplication(v *OAuth2ClientApplication) *OAuth2Properties {
+	s.OAuth2ClientApplication = v
+	return s
+}
+
+// SetOAuth2GrantType sets the OAuth2GrantType field's value.
+func (s *OAuth2Properties) SetOAuth2GrantType(v string) *OAuth2Properties {
+	s.OAuth2GrantType = &v
+	return s
+}
+
+// SetTokenUrl sets the TokenUrl field's value.
+func (s *OAuth2Properties) SetTokenUrl(v string) *OAuth2Properties {
+	s.TokenUrl = &v
+	return s
+}
+
+// SetTokenUrlParametersMap sets the TokenUrlParametersMap field's value.
+func (s *OAuth2Properties) SetTokenUrlParametersMap(v map[string]*string) *OAuth2Properties {
+	s.TokenUrlParametersMap = v
+	return s
+}
+
+// A structure containing properties for OAuth2 in the CreateConnection request.
+type OAuth2PropertiesInput_ struct {
+	_ struct{} `type:"structure"`
+
+	// The set of properties required for the the OAuth2 AUTHORIZATION_CODE grant
+	// type.
+	AuthorizationCodeProperties *AuthorizationCodeProperties `type:"structure"`
+
+	// The client application type in the CreateConnection request. For example,
+	// AWS_MANAGED or USER_MANAGED.
+	OAuth2ClientApplication *OAuth2ClientApplication `type:"structure"`
+
+	// The OAuth2 grant type in the CreateConnection request. For example, AUTHORIZATION_CODE,
+	// JWT_BEARER, or CLIENT_CREDENTIALS.
+	OAuth2GrantType *string `type:"string" enum:"OAuth2GrantType"`
+
+	// The URL of the provider's authentication server, to exchange an authorization
+	// code for an access token.
+	TokenUrl *string `type:"string"`
+
+	// A map of parameters that are added to the token GET request.
+	TokenUrlParametersMap map[string]*string `type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OAuth2PropertiesInput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OAuth2PropertiesInput_) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *OAuth2PropertiesInput_) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "OAuth2PropertiesInput_"}
+	if s.AuthorizationCodeProperties != nil {
+		if err := s.AuthorizationCodeProperties.Validate(); err != nil {
+			invalidParams.AddNested("AuthorizationCodeProperties", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAuthorizationCodeProperties sets the AuthorizationCodeProperties field's value.
+func (s *OAuth2PropertiesInput_) SetAuthorizationCodeProperties(v *AuthorizationCodeProperties) *OAuth2PropertiesInput_ {
+	s.AuthorizationCodeProperties = v
+	return s
+}
+
+// SetOAuth2ClientApplication sets the OAuth2ClientApplication field's value.
+func (s *OAuth2PropertiesInput_) SetOAuth2ClientApplication(v *OAuth2ClientApplication) *OAuth2PropertiesInput_ {
+	s.OAuth2ClientApplication = v
+	return s
+}
+
+// SetOAuth2GrantType sets the OAuth2GrantType field's value.
+func (s *OAuth2PropertiesInput_) SetOAuth2GrantType(v string) *OAuth2PropertiesInput_ {
+	s.OAuth2GrantType = &v
+	return s
+}
+
+// SetTokenUrl sets the TokenUrl field's value.
+func (s *OAuth2PropertiesInput_) SetTokenUrl(v string) *OAuth2PropertiesInput_ {
+	s.TokenUrl = &v
+	return s
+}
+
+// SetTokenUrlParametersMap sets the TokenUrlParametersMap field's value.
+func (s *OAuth2PropertiesInput_) SetTokenUrlParametersMap(v map[string]*string) *OAuth2PropertiesInput_ {
+	s.TokenUrlParametersMap = v
+	return s
+}
+
 // A structure representing an open format table.
 type OpenTableFormatInput_ struct {
 	_ struct{} `type:"structure"`
@@ -61493,13 +61938,11 @@ func (s *PermissionTypeMismatchException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Specifies the physical requirements for a connection.
+// The OAuth client app in GetConnection response.
 type PhysicalConnectionRequirements struct {
 	_ struct{} `type:"structure"`
 
-	// The connection's Availability Zone. This field is redundant because the specified
-	// subnet implies the Availability Zone to be used. Currently the field must
-	// be populated, but it will be deprecated in the future.
+	// The connection's Availability Zone.
 	AvailabilityZone *string `min:"1" type:"string"`
 
 	// The security group ID list used by the connection.
@@ -70204,8 +70647,10 @@ type StartJobRunInput struct {
 	// consume resources before it is terminated and enters TIMEOUT status. This
 	// value overrides the timeout value set in the parent job.
 	//
-	// Streaming jobs do not have a timeout. The default for non-streaming jobs
-	// is 2,880 minutes (48 hours).
+	// Streaming jobs must have timeout values less than 7 days or 10080 minutes.
+	// When the value is left blank, the job will be restarted after 7 days based
+	// if you have not setup a maintenance window. If you have setup maintenance
+	// window, it will be restarted during the maintenance window after 7 days.
 	Timeout *int64 `min:"1" type:"integer"`
 
 	// The type of predefined worker that is allocated when a job runs. Accepts
@@ -77851,7 +78296,7 @@ type ViewRepresentation struct {
 	// a query on a view. Engines may perform operations during view creation to
 	// transform ViewOriginalText to ViewExpandedText. For example:
 	//
-	//    * Fully qualify identifiers: SELECT * from table1 → SELECT * from db1.table1
+	//    * Fully qualified identifiers: SELECT * from table1 -> SELECT * from db1.table1
 	ViewExpandedText *string `type:"string"`
 
 	// The SELECT query provided by the customer during CREATE VIEW DDL. This SQL
@@ -78456,6 +78901,26 @@ func AggFunction_Values() []string {
 }
 
 const (
+	// AuthenticationTypeBasic is a AuthenticationType enum value
+	AuthenticationTypeBasic = "BASIC"
+
+	// AuthenticationTypeOauth2 is a AuthenticationType enum value
+	AuthenticationTypeOauth2 = "OAUTH2"
+
+	// AuthenticationTypeCustom is a AuthenticationType enum value
+	AuthenticationTypeCustom = "CUSTOM"
+)
+
+// AuthenticationType_Values returns all elements of the AuthenticationType enum
+func AuthenticationType_Values() []string {
+	return []string{
+		AuthenticationTypeBasic,
+		AuthenticationTypeOauth2,
+		AuthenticationTypeCustom,
+	}
+}
+
+const (
 	// BackfillErrorCodeEncryptedPartitionError is a BackfillErrorCode enum value
 	BackfillErrorCodeEncryptedPartitionError = "ENCRYPTED_PARTITION_ERROR"
 
@@ -78841,6 +79306,9 @@ const (
 
 	// ConnectionPropertyKeyKafkaSaslGssapiPrincipal is a ConnectionPropertyKey enum value
 	ConnectionPropertyKeyKafkaSaslGssapiPrincipal = "KAFKA_SASL_GSSAPI_PRINCIPAL"
+
+	// ConnectionPropertyKeyRoleArn is a ConnectionPropertyKey enum value
+	ConnectionPropertyKeyRoleArn = "ROLE_ARN"
 )
 
 // ConnectionPropertyKey_Values returns all elements of the ConnectionPropertyKey enum
@@ -78888,6 +79356,27 @@ func ConnectionPropertyKey_Values() []string {
 		ConnectionPropertyKeyKafkaSaslGssapiKrb5Conf,
 		ConnectionPropertyKeyKafkaSaslGssapiService,
 		ConnectionPropertyKeyKafkaSaslGssapiPrincipal,
+		ConnectionPropertyKeyRoleArn,
+	}
+}
+
+const (
+	// ConnectionStatusReady is a ConnectionStatus enum value
+	ConnectionStatusReady = "READY"
+
+	// ConnectionStatusInProgress is a ConnectionStatus enum value
+	ConnectionStatusInProgress = "IN_PROGRESS"
+
+	// ConnectionStatusFailed is a ConnectionStatus enum value
+	ConnectionStatusFailed = "FAILED"
+)
+
+// ConnectionStatus_Values returns all elements of the ConnectionStatus enum
+func ConnectionStatus_Values() []string {
+	return []string{
+		ConnectionStatusReady,
+		ConnectionStatusInProgress,
+		ConnectionStatusFailed,
 	}
 }
 
@@ -78912,6 +79401,9 @@ const (
 
 	// ConnectionTypeCustom is a ConnectionType enum value
 	ConnectionTypeCustom = "CUSTOM"
+
+	// ConnectionTypeSalesforce is a ConnectionType enum value
+	ConnectionTypeSalesforce = "SALESFORCE"
 )
 
 // ConnectionType_Values returns all elements of the ConnectionType enum
@@ -78924,6 +79416,7 @@ func ConnectionType_Values() []string {
 		ConnectionTypeNetwork,
 		ConnectionTypeMarketplace,
 		ConnectionTypeCustom,
+		ConnectionTypeSalesforce,
 	}
 }
 
@@ -79220,6 +79713,18 @@ func ExistCondition_Values() []string {
 }
 
 const (
+	// FederationSourceErrorCodeAccessDeniedException is a FederationSourceErrorCode enum value
+	FederationSourceErrorCodeAccessDeniedException = "AccessDeniedException"
+
+	// FederationSourceErrorCodeEntityNotFoundException is a FederationSourceErrorCode enum value
+	FederationSourceErrorCodeEntityNotFoundException = "EntityNotFoundException"
+
+	// FederationSourceErrorCodeInvalidCredentialsException is a FederationSourceErrorCode enum value
+	FederationSourceErrorCodeInvalidCredentialsException = "InvalidCredentialsException"
+
+	// FederationSourceErrorCodeInvalidInputException is a FederationSourceErrorCode enum value
+	FederationSourceErrorCodeInvalidInputException = "InvalidInputException"
+
 	// FederationSourceErrorCodeInvalidResponseException is a FederationSourceErrorCode enum value
 	FederationSourceErrorCodeInvalidResponseException = "InvalidResponseException"
 
@@ -79232,6 +79737,9 @@ const (
 	// FederationSourceErrorCodeInternalServiceException is a FederationSourceErrorCode enum value
 	FederationSourceErrorCodeInternalServiceException = "InternalServiceException"
 
+	// FederationSourceErrorCodePartialFailureException is a FederationSourceErrorCode enum value
+	FederationSourceErrorCodePartialFailureException = "PartialFailureException"
+
 	// FederationSourceErrorCodeThrottlingException is a FederationSourceErrorCode enum value
 	FederationSourceErrorCodeThrottlingException = "ThrottlingException"
 )
@@ -79239,10 +79747,15 @@ const (
 // FederationSourceErrorCode_Values returns all elements of the FederationSourceErrorCode enum
 func FederationSourceErrorCode_Values() []string {
 	return []string{
+		FederationSourceErrorCodeAccessDeniedException,
+		FederationSourceErrorCodeEntityNotFoundException,
+		FederationSourceErrorCodeInvalidCredentialsException,
+		FederationSourceErrorCodeInvalidInputException,
 		FederationSourceErrorCodeInvalidResponseException,
 		FederationSourceErrorCodeOperationTimeoutException,
 		FederationSourceErrorCodeOperationNotSupportedException,
 		FederationSourceErrorCodeInternalServiceException,
+		FederationSourceErrorCodePartialFailureException,
 		FederationSourceErrorCodeThrottlingException,
 	}
 }
@@ -79880,6 +80393,26 @@ func NodeType_Values() []string {
 		NodeTypeCrawler,
 		NodeTypeJob,
 		NodeTypeTrigger,
+	}
+}
+
+const (
+	// OAuth2GrantTypeAuthorizationCode is a OAuth2GrantType enum value
+	OAuth2GrantTypeAuthorizationCode = "AUTHORIZATION_CODE"
+
+	// OAuth2GrantTypeClientCredentials is a OAuth2GrantType enum value
+	OAuth2GrantTypeClientCredentials = "CLIENT_CREDENTIALS"
+
+	// OAuth2GrantTypeJwtBearer is a OAuth2GrantType enum value
+	OAuth2GrantTypeJwtBearer = "JWT_BEARER"
+)
+
+// OAuth2GrantType_Values returns all elements of the OAuth2GrantType enum
+func OAuth2GrantType_Values() []string {
+	return []string{
+		OAuth2GrantTypeAuthorizationCode,
+		OAuth2GrantTypeClientCredentials,
+		OAuth2GrantTypeJwtBearer,
 	}
 }
 

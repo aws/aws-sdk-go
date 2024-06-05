@@ -2036,6 +2036,7 @@
         },
         "CopySource":{
           "shape":"CopySource",
+          "contextParam":{"name":"CopySource"},
           "location":"header",
           "locationName":"x-amz-copy-source"
         },
@@ -2086,6 +2087,7 @@
         },
         "Key":{
           "shape":"ObjectKey",
+          "contextParam":{"name":"Key"},
           "location":"uri",
           "locationName":"Key"
         },

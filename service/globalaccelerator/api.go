@@ -14103,6 +14103,9 @@ type UpdateAcceleratorInput struct {
 	// the value can be IPV4 or DUAL_STACK.
 	IpAddressType *string `type:"string" enum:"IpAddressType"`
 
+	// The IP addresses for an accelerator.
+	IpAddresses []*string `type:"list"`
+
 	// The name of the accelerator. The name can have a maximum of 64 characters,
 	// must contain only alphanumeric characters, periods (.), or hyphens (-), and
 	// must not begin or end with a hyphen or period.
@@ -14155,6 +14158,12 @@ func (s *UpdateAcceleratorInput) SetEnabled(v bool) *UpdateAcceleratorInput {
 // SetIpAddressType sets the IpAddressType field's value.
 func (s *UpdateAcceleratorInput) SetIpAddressType(v string) *UpdateAcceleratorInput {
 	s.IpAddressType = &v
+	return s
+}
+
+// SetIpAddresses sets the IpAddresses field's value.
+func (s *UpdateAcceleratorInput) SetIpAddresses(v []*string) *UpdateAcceleratorInput {
+	s.IpAddresses = v
 	return s
 }
 
@@ -14474,6 +14483,9 @@ type UpdateCustomRoutingAcceleratorInput struct {
 	// the value must be IPV4.
 	IpAddressType *string `type:"string" enum:"IpAddressType"`
 
+	// The IP addresses for an accelerator.
+	IpAddresses []*string `type:"list"`
+
 	// The name of the accelerator. The name can have a maximum of 64 characters,
 	// must contain only alphanumeric characters, periods (.), or hyphens (-), and
 	// must not begin or end with a hyphen or period.
@@ -14526,6 +14538,12 @@ func (s *UpdateCustomRoutingAcceleratorInput) SetEnabled(v bool) *UpdateCustomRo
 // SetIpAddressType sets the IpAddressType field's value.
 func (s *UpdateCustomRoutingAcceleratorInput) SetIpAddressType(v string) *UpdateCustomRoutingAcceleratorInput {
 	s.IpAddressType = &v
+	return s
+}
+
+// SetIpAddresses sets the IpAddresses field's value.
+func (s *UpdateCustomRoutingAcceleratorInput) SetIpAddresses(v []*string) *UpdateCustomRoutingAcceleratorInput {
+	s.IpAddresses = v
 	return s
 }
 

@@ -10,7 +10,8 @@
     "serviceId":"Glue",
     "signatureVersion":"v4",
     "targetPrefix":"AWSGlue",
-    "uid":"glue-2017-03-31"
+    "uid":"glue-2017-03-31",
+    "auth":["aws.auth#sigv4"]
   },
   "operations":{
     "BatchCreatePartition":{
@@ -3327,6 +3328,11 @@
     }
   },
   "shapes":{
+    "AWSManagedClientApplicationReference":{
+      "type":"string",
+      "max":2048,
+      "pattern":"\\S+"
+    },
     "AccessDeniedException":{
       "type":"structure",
       "members":{
@@ -3552,6 +3558,43 @@
       "max":255,
       "min":1,
       "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\t]*"
+    },
+    "AuthenticationConfiguration":{
+      "type":"structure",
+      "members":{
+        "AuthenticationType":{"shape":"AuthenticationType"},
+        "SecretArn":{"shape":"SecretArn"},
+        "OAuth2Properties":{"shape":"OAuth2Properties"}
+      }
+    },
+    "AuthenticationConfigurationInput":{
+      "type":"structure",
+      "members":{
+        "AuthenticationType":{"shape":"AuthenticationType"},
+        "SecretArn":{"shape":"SecretArn"},
+        "OAuth2Properties":{"shape":"OAuth2PropertiesInput"}
+      }
+    },
+    "AuthenticationType":{
+      "type":"string",
+      "enum":[
+        "BASIC",
+        "OAUTH2",
+        "CUSTOM"
+      ]
+    },
+    "AuthorizationCode":{
+      "type":"string",
+      "max":4096,
+      "min":1,
+      "pattern":"\\S+"
+    },
+    "AuthorizationCodeProperties":{
+      "type":"structure",
+      "members":{
+        "AuthorizationCode":{"shape":"AuthorizationCode"},
+        "RedirectUri":{"shape":"RedirectUri"}
+      }
     },
     "BackfillError":{
       "type":"structure",
@@ -4854,7 +4897,11 @@
         "PhysicalConnectionRequirements":{"shape":"PhysicalConnectionRequirements"},
         "CreationTime":{"shape":"Timestamp"},
         "LastUpdatedTime":{"shape":"Timestamp"},
-        "LastUpdatedBy":{"shape":"NameString"}
+        "LastUpdatedBy":{"shape":"NameString"},
+        "Status":{"shape":"ConnectionStatus"},
+        "StatusReason":{"shape":"LongValueString"},
+        "LastConnectionValidationTime":{"shape":"Timestamp"},
+        "AuthenticationConfiguration":{"shape":"AuthenticationConfiguration"}
       }
     },
     "ConnectionInput":{
@@ -4870,7 +4917,9 @@
         "ConnectionType":{"shape":"ConnectionType"},
         "MatchCriteria":{"shape":"MatchCriteria"},
         "ConnectionProperties":{"shape":"ConnectionProperties"},
-        "PhysicalConnectionRequirements":{"shape":"PhysicalConnectionRequirements"}
+        "PhysicalConnectionRequirements":{"shape":"PhysicalConnectionRequirements"},
+        "AuthenticationConfiguration":{"shape":"AuthenticationConfigurationInput"},
+        "ValidateCredentials":{"shape":"Boolean"}
       }
     },
     "ConnectionList":{
@@ -4937,7 +4986,16 @@
         "KAFKA_SASL_GSSAPI_KEYTAB",
         "KAFKA_SASL_GSSAPI_KRB5_CONF",
         "KAFKA_SASL_GSSAPI_SERVICE",
-        "KAFKA_SASL_GSSAPI_PRINCIPAL"
+        "KAFKA_SASL_GSSAPI_PRINCIPAL",
+        "ROLE_ARN"
+      ]
+    },
+    "ConnectionStatus":{
+      "type":"string",
+      "enum":[
+        "READY",
+        "IN_PROGRESS",
+        "FAILED"
       ]
     },
     "ConnectionType":{
@@ -4949,7 +5007,8 @@
         "KAFKA",
         "NETWORK",
         "MARKETPLACE",
-        "CUSTOM"
+        "CUSTOM",
+        "SALESFORCE"
       ]
     },
     "ConnectionsList":{
@@ -5232,6 +5291,7 @@
     "CreateConnectionResponse":{
       "type":"structure",
       "members":{
+        "CreateConnectionStatus":{"shape":"ConnectionStatus"}
       }
     },
     "CreateCrawlerRequest":{
@@ -7108,10 +7168,15 @@
     "FederationSourceErrorCode":{
       "type":"string",
       "enum":[
+        "AccessDeniedException",
+        "EntityNotFoundException",
+        "InvalidCredentialsException",
+        "InvalidInputException",
         "InvalidResponseException",
         "OperationTimeoutException",
         "OperationNotSupportedException",
         "InternalServiceException",
+        "PartialFailureException",
         "ThrottlingException"
       ]
     },
@@ -9753,6 +9818,11 @@
       }
     },
     "LongValue":{"type":"long"},
+    "LongValueString":{
+      "type":"string",
+      "max":16384,
+      "min":1
+    },
     "MLTransform":{
       "type":"structure",
       "members":{
@@ -10128,6 +10198,40 @@
     "NullableString":{
       "type":"string",
       "box":true
+    },
+    "OAuth2ClientApplication":{
+      "type":"structure",
+      "members":{
+        "UserManagedClientApplicationClientId":{"shape":"UserManagedClientApplicationClientId"},
+        "AWSManagedClientApplicationReference":{"shape":"AWSManagedClientApplicationReference"}
+      }
+    },
+    "OAuth2GrantType":{
+      "type":"string",
+      "enum":[
+        "AUTHORIZATION_CODE",
+        "CLIENT_CREDENTIALS",
+        "JWT_BEARER"
+      ]
+    },
+    "OAuth2Properties":{
+      "type":"structure",
+      "members":{
+        "OAuth2GrantType":{"shape":"OAuth2GrantType"},
+        "OAuth2ClientApplication":{"shape":"OAuth2ClientApplication"},
+        "TokenUrl":{"shape":"TokenUrl"},
+        "TokenUrlParametersMap":{"shape":"TokenUrlParametersMap"}
+      }
+    },
+    "OAuth2PropertiesInput":{
+      "type":"structure",
+      "members":{
+        "OAuth2GrantType":{"shape":"OAuth2GrantType"},
+        "OAuth2ClientApplication":{"shape":"OAuth2ClientApplication"},
+        "TokenUrl":{"shape":"TokenUrl"},
+        "TokenUrlParametersMap":{"shape":"TokenUrlParametersMap"},
+        "AuthorizationCodeProperties":{"shape":"AuthorizationCodeProperties"}
+      }
     },
     "OneInput":{
       "type":"list",
@@ -10762,6 +10866,11 @@
       "members":{
         "RecrawlBehavior":{"shape":"RecrawlBehavior"}
       }
+    },
+    "RedirectUri":{
+      "type":"string",
+      "max":512,
+      "pattern":"^(https?):\\/\\/[^\\s/$.?#].[^\\s]*$"
     },
     "RedshiftSource":{
       "type":"structure",
@@ -11549,6 +11658,10 @@
         "NextToken":{"shape":"Token"},
         "TableList":{"shape":"TableList"}
       }
+    },
+    "SecretArn":{
+      "type":"string",
+      "pattern":"^arn:aws(-(cn|us-gov|iso(-[bef])?))?:secretsmanager:.*$"
     },
     "SecurityConfiguration":{
       "type":"structure",
@@ -12592,6 +12705,26 @@
     "Timestamp":{"type":"timestamp"},
     "TimestampValue":{"type":"timestamp"},
     "Token":{"type":"string"},
+    "TokenUrl":{
+      "type":"string",
+      "max":256,
+      "pattern":"^(https?)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]"
+    },
+    "TokenUrlParameterKey":{
+      "type":"string",
+      "max":128,
+      "min":1
+    },
+    "TokenUrlParameterValue":{
+      "type":"string",
+      "max":512,
+      "min":1
+    },
+    "TokenUrlParametersMap":{
+      "type":"map",
+      "key":{"shape":"TokenUrlParameterKey"},
+      "value":{"shape":"TokenUrlParameterValue"}
+    },
     "Topk":{
       "type":"integer",
       "box":true,
@@ -13344,6 +13477,11 @@
     "UserDefinedFunctionList":{
       "type":"list",
       "member":{"shape":"UserDefinedFunction"}
+    },
+    "UserManagedClientApplicationClientId":{
+      "type":"string",
+      "max":2048,
+      "pattern":"\\S+"
     },
     "ValidationException":{
       "type":"structure",

@@ -217,6 +217,12 @@
     "UpdateWorkflow": "<p>Updates an existing workflow.</p>"
   },
   "shapes": {
+    "AWSManagedClientApplicationReference": {
+      "base": null,
+      "refs": {
+        "OAuth2ClientApplication$AWSManagedClientApplicationReference": "<p>The reference to the SaaS-side client app that is Amazon Web Services managed.</p>"
+      }
+    },
     "AccessDeniedException": {
       "base": "<p>Access to a resource was denied.</p>",
       "refs": {
@@ -394,6 +400,37 @@
       "refs": {
         "UpdateJobFromSourceControlRequest$AuthToken": "<p>The value of the authorization token.</p>",
         "UpdateSourceControlFromJobRequest$AuthToken": "<p>The value of the authorization token.</p>"
+      }
+    },
+    "AuthenticationConfiguration": {
+      "base": "<p>A structure containing the authentication configuration.</p>",
+      "refs": {
+        "Connection$AuthenticationConfiguration": "<p>The authentication properties of the connection.</p>"
+      }
+    },
+    "AuthenticationConfigurationInput": {
+      "base": "<p>A structure containing the authentication configuration in the CreateConnection request.</p>",
+      "refs": {
+        "ConnectionInput$AuthenticationConfiguration": "<p>The authentication properties of the connection. Used for a Salesforce connection.</p>"
+      }
+    },
+    "AuthenticationType": {
+      "base": null,
+      "refs": {
+        "AuthenticationConfiguration$AuthenticationType": "<p>A structure containing the authentication configuration.</p>",
+        "AuthenticationConfigurationInput$AuthenticationType": "<p>A structure containing the authentication configuration in the CreateConnection request.</p>"
+      }
+    },
+    "AuthorizationCode": {
+      "base": null,
+      "refs": {
+        "AuthorizationCodeProperties$AuthorizationCode": "<p>An authorization code to be used in the third leg of the <code>AUTHORIZATION_CODE</code> grant workflow. This is a single-use code which becomes invalid once exchanged for an access token, thus it is acceptable to have this value as a request parameter.</p>"
+      }
+    },
+    "AuthorizationCodeProperties": {
+      "base": "<p>The set of properties required for the the OAuth2 <code>AUTHORIZATION_CODE</code> grant type workflow.</p>",
+      "refs": {
+        "OAuth2PropertiesInput$AuthorizationCodeProperties": "<p>The set of properties required for the the OAuth2 <code>AUTHORIZATION_CODE</code> grant type.</p>"
       }
     },
     "BackfillError": {
@@ -811,6 +848,7 @@
       "refs": {
         "CatalogImportStatus$ImportCompleted": "<p> <code>True</code> if the migration has completed, or <code>False</code> otherwise.</p>",
         "CodeGenNodeArg$Param": "<p>True if the value is used as a parameter.</p>",
+        "ConnectionInput$ValidateCredentials": "<p>A flag to validate the credentials during create connection. Used for a Salesforce connection. Default is true. </p>",
         "ConnectionPasswordEncryption$ReturnConnectionPasswordEncrypted": "<p>When the <code>ReturnConnectionPasswordEncrypted</code> flag is set to \"true\", passwords remain encrypted in the responses of <code>GetConnection</code> and <code>GetConnections</code>. This encryption takes effect independently from catalog encryption. </p>",
         "CrawlerMetrics$StillEstimating": "<p>True if the crawler is still estimating how long it will take to complete this run.</p>",
         "GetConnectionRequest$HidePassword": "<p>Allows you to retrieve the connection metadata without returning the password. For instance, the Glue console uses this flag to retrieve the connection, and does not display the password. Set this parameter when the caller might not have permission to use the KMS key to decrypt the password, but it does have permission to access the rest of the connection properties.</p>",
@@ -1568,11 +1606,18 @@
         "ConnectionProperties$key": null
       }
     },
+    "ConnectionStatus": {
+      "base": null,
+      "refs": {
+        "Connection$Status": "<p>The status of the connection. Can be one of: <code>READY</code>, <code>IN_PROGRESS</code>, or <code>FAILED</code>.</p>",
+        "CreateConnectionResponse$CreateConnectionStatus": "<p>The status of the connection creation request. The request can take some time for certain authentication types, for example when creating an OAuth connection with token exchange over VPC.</p>"
+      }
+    },
     "ConnectionType": {
       "base": null,
       "refs": {
         "Connection$ConnectionType": "<p>The type of the connection. Currently, SFTP is not supported.</p>",
-        "ConnectionInput$ConnectionType": "<p>The type of the connection. Currently, these types are supported:</p> <ul> <li> <p> <code>JDBC</code> - Designates a connection to a database through Java Database Connectivity (JDBC).</p> <p> <code>JDBC</code> Connections use the following ConnectionParameters.</p> <ul> <li> <p>Required: All of (<code>HOST</code>, <code>PORT</code>, <code>JDBC_ENGINE</code>) or <code>JDBC_CONNECTION_URL</code>.</p> </li> <li> <p>Required: All of (<code>USERNAME</code>, <code>PASSWORD</code>) or <code>SECRET_ID</code>.</p> </li> <li> <p>Optional: <code>JDBC_ENFORCE_SSL</code>, <code>CUSTOM_JDBC_CERT</code>, <code>CUSTOM_JDBC_CERT_STRING</code>, <code>SKIP_CUSTOM_JDBC_CERT_VALIDATION</code>. These parameters are used to configure SSL with JDBC.</p> </li> </ul> </li> <li> <p> <code>KAFKA</code> - Designates a connection to an Apache Kafka streaming platform.</p> <p> <code>KAFKA</code> Connections use the following ConnectionParameters.</p> <ul> <li> <p>Required: <code>KAFKA_BOOTSTRAP_SERVERS</code>.</p> </li> <li> <p>Optional: <code>KAFKA_SSL_ENABLED</code>, <code>KAFKA_CUSTOM_CERT</code>, <code>KAFKA_SKIP_CUSTOM_CERT_VALIDATION</code>. These parameters are used to configure SSL with <code>KAFKA</code>.</p> </li> <li> <p>Optional: <code>KAFKA_CLIENT_KEYSTORE</code>, <code>KAFKA_CLIENT_KEYSTORE_PASSWORD</code>, <code>KAFKA_CLIENT_KEY_PASSWORD</code>, <code>ENCRYPTED_KAFKA_CLIENT_KEYSTORE_PASSWORD</code>, <code>ENCRYPTED_KAFKA_CLIENT_KEY_PASSWORD</code>. These parameters are used to configure TLS client configuration with SSL in <code>KAFKA</code>.</p> </li> <li> <p>Optional: <code>KAFKA_SASL_MECHANISM</code>. Can be specified as <code>SCRAM-SHA-512</code>, <code>GSSAPI</code>, or <code>AWS_MSK_IAM</code>.</p> </li> <li> <p>Optional: <code>KAFKA_SASL_SCRAM_USERNAME</code>, <code>KAFKA_SASL_SCRAM_PASSWORD</code>, <code>ENCRYPTED_KAFKA_SASL_SCRAM_PASSWORD</code>. These parameters are used to configure SASL/SCRAM-SHA-512 authentication with <code>KAFKA</code>.</p> </li> <li> <p>Optional: <code>KAFKA_SASL_GSSAPI_KEYTAB</code>, <code>KAFKA_SASL_GSSAPI_KRB5_CONF</code>, <code>KAFKA_SASL_GSSAPI_SERVICE</code>, <code>KAFKA_SASL_GSSAPI_PRINCIPAL</code>. These parameters are used to configure SASL/GSSAPI authentication with <code>KAFKA</code>.</p> </li> </ul> </li> <li> <p> <code>MONGODB</code> - Designates a connection to a MongoDB document database.</p> <p> <code>MONGODB</code> Connections use the following ConnectionParameters.</p> <ul> <li> <p>Required: <code>CONNECTION_URL</code>.</p> </li> <li> <p>Required: All of (<code>USERNAME</code>, <code>PASSWORD</code>) or <code>SECRET_ID</code>.</p> </li> </ul> </li> <li> <p> <code>NETWORK</code> - Designates a network connection to a data source within an Amazon Virtual Private Cloud environment (Amazon VPC).</p> <p> <code>NETWORK</code> Connections do not require ConnectionParameters. Instead, provide a PhysicalConnectionRequirements.</p> </li> <li> <p> <code>MARKETPLACE</code> - Uses configuration settings contained in a connector purchased from Amazon Web Services Marketplace to read from and write to data stores that are not natively supported by Glue.</p> <p> <code>MARKETPLACE</code> Connections use the following ConnectionParameters.</p> <ul> <li> <p>Required: <code>CONNECTOR_TYPE</code>, <code>CONNECTOR_URL</code>, <code>CONNECTOR_CLASS_NAME</code>, <code>CONNECTION_URL</code>.</p> </li> <li> <p>Required for <code>JDBC</code> <code>CONNECTOR_TYPE</code> connections: All of (<code>USERNAME</code>, <code>PASSWORD</code>) or <code>SECRET_ID</code>.</p> </li> </ul> </li> <li> <p> <code>CUSTOM</code> - Uses configuration settings contained in a custom connector to read from and write to data stores that are not natively supported by Glue.</p> </li> </ul> <p> <code>SFTP</code> is not supported.</p> <p>For more information about how optional ConnectionProperties are used to configure features in Glue, consult <a href=\"https://docs.aws.amazon.com/glue/latest/dg/connection-defining.html\">Glue connection properties</a>.</p> <p>For more information about how optional ConnectionProperties are used to configure features in Glue Studio, consult <a href=\"https://docs.aws.amazon.com/glue/latest/ug/connectors-chapter.html\">Using connectors and connections</a>.</p>",
+        "ConnectionInput$ConnectionType": "<p>The type of the connection. Currently, these types are supported:</p> <ul> <li> <p> <code>JDBC</code> - Designates a connection to a database through Java Database Connectivity (JDBC).</p> <p> <code>JDBC</code> Connections use the following ConnectionParameters.</p> <ul> <li> <p>Required: All of (<code>HOST</code>, <code>PORT</code>, <code>JDBC_ENGINE</code>) or <code>JDBC_CONNECTION_URL</code>.</p> </li> <li> <p>Required: All of (<code>USERNAME</code>, <code>PASSWORD</code>) or <code>SECRET_ID</code>.</p> </li> <li> <p>Optional: <code>JDBC_ENFORCE_SSL</code>, <code>CUSTOM_JDBC_CERT</code>, <code>CUSTOM_JDBC_CERT_STRING</code>, <code>SKIP_CUSTOM_JDBC_CERT_VALIDATION</code>. These parameters are used to configure SSL with JDBC.</p> </li> </ul> </li> <li> <p> <code>KAFKA</code> - Designates a connection to an Apache Kafka streaming platform.</p> <p> <code>KAFKA</code> Connections use the following ConnectionParameters.</p> <ul> <li> <p>Required: <code>KAFKA_BOOTSTRAP_SERVERS</code>.</p> </li> <li> <p>Optional: <code>KAFKA_SSL_ENABLED</code>, <code>KAFKA_CUSTOM_CERT</code>, <code>KAFKA_SKIP_CUSTOM_CERT_VALIDATION</code>. These parameters are used to configure SSL with <code>KAFKA</code>.</p> </li> <li> <p>Optional: <code>KAFKA_CLIENT_KEYSTORE</code>, <code>KAFKA_CLIENT_KEYSTORE_PASSWORD</code>, <code>KAFKA_CLIENT_KEY_PASSWORD</code>, <code>ENCRYPTED_KAFKA_CLIENT_KEYSTORE_PASSWORD</code>, <code>ENCRYPTED_KAFKA_CLIENT_KEY_PASSWORD</code>. These parameters are used to configure TLS client configuration with SSL in <code>KAFKA</code>.</p> </li> <li> <p>Optional: <code>KAFKA_SASL_MECHANISM</code>. Can be specified as <code>SCRAM-SHA-512</code>, <code>GSSAPI</code>, or <code>AWS_MSK_IAM</code>.</p> </li> <li> <p>Optional: <code>KAFKA_SASL_SCRAM_USERNAME</code>, <code>KAFKA_SASL_SCRAM_PASSWORD</code>, <code>ENCRYPTED_KAFKA_SASL_SCRAM_PASSWORD</code>. These parameters are used to configure SASL/SCRAM-SHA-512 authentication with <code>KAFKA</code>.</p> </li> <li> <p>Optional: <code>KAFKA_SASL_GSSAPI_KEYTAB</code>, <code>KAFKA_SASL_GSSAPI_KRB5_CONF</code>, <code>KAFKA_SASL_GSSAPI_SERVICE</code>, <code>KAFKA_SASL_GSSAPI_PRINCIPAL</code>. These parameters are used to configure SASL/GSSAPI authentication with <code>KAFKA</code>.</p> </li> </ul> </li> <li> <p> <code>MONGODB</code> - Designates a connection to a MongoDB document database.</p> <p> <code>MONGODB</code> Connections use the following ConnectionParameters.</p> <ul> <li> <p>Required: <code>CONNECTION_URL</code>.</p> </li> <li> <p>Required: All of (<code>USERNAME</code>, <code>PASSWORD</code>) or <code>SECRET_ID</code>.</p> </li> </ul> </li> <li> <p> <code>SALESFORCE</code> - Designates a connection to Salesforce using OAuth authencation.</p> <ul> <li> <p>Requires the <code>AuthenticationConfiguration</code> member to be configured.</p> </li> </ul> </li> <li> <p> <code>NETWORK</code> - Designates a network connection to a data source within an Amazon Virtual Private Cloud environment (Amazon VPC).</p> <p> <code>NETWORK</code> Connections do not require ConnectionParameters. Instead, provide a PhysicalConnectionRequirements.</p> </li> <li> <p> <code>MARKETPLACE</code> - Uses configuration settings contained in a connector purchased from Amazon Web Services Marketplace to read from and write to data stores that are not natively supported by Glue.</p> <p> <code>MARKETPLACE</code> Connections use the following ConnectionParameters.</p> <ul> <li> <p>Required: <code>CONNECTOR_TYPE</code>, <code>CONNECTOR_URL</code>, <code>CONNECTOR_CLASS_NAME</code>, <code>CONNECTION_URL</code>.</p> </li> <li> <p>Required for <code>JDBC</code> <code>CONNECTOR_TYPE</code> connections: All of (<code>USERNAME</code>, <code>PASSWORD</code>) or <code>SECRET_ID</code>.</p> </li> </ul> </li> <li> <p> <code>CUSTOM</code> - Uses configuration settings contained in a custom connector to read from and write to data stores that are not natively supported by Glue.</p> </li> </ul> <p> <code>SFTP</code> is not supported.</p> <p>For more information about how optional ConnectionProperties are used to configure features in Glue, consult <a href=\"https://docs.aws.amazon.com/glue/latest/dg/connection-defining.html\">Glue connection properties</a>.</p> <p>For more information about how optional ConnectionProperties are used to configure features in Glue Studio, consult <a href=\"https://docs.aws.amazon.com/glue/latest/ug/connectors-chapter.html\">Using connectors and connections</a>.</p>",
         "GetConnectionsFilter$ConnectionType": "<p>The type of connections to return. Currently, SFTP is not supported.</p>"
       }
     },
@@ -5404,6 +5449,12 @@
         "Statement$CompletedOn": "<p>The unix time and date that the job definition was completed.</p>"
       }
     },
+    "LongValueString": {
+      "base": null,
+      "refs": {
+        "Connection$StatusReason": "<p>The reason for the connection status.</p>"
+      }
+    },
     "MLTransform": {
       "base": "<p>A structure for a machine learning transform.</p>",
       "refs": {
@@ -5720,7 +5771,7 @@
         "Condition$CrawlerName": "<p>The name of the crawler to which this condition applies.</p>",
         "Connection$Name": "<p>The name of the connection definition.</p>",
         "Connection$LastUpdatedBy": "<p>The user, group, or role that last updated this connection definition.</p>",
-        "ConnectionInput$Name": "<p>The name of the connection. Connection will not function as expected without a name.</p>",
+        "ConnectionInput$Name": "<p>The name of the connection.</p>",
         "ConnectionPasswordEncryption$AwsKmsKeyId": "<p>An KMS key that is used to encrypt the connection password. </p> <p>If connection password protection is enabled, the caller of <code>CreateConnection</code> and <code>UpdateConnection</code> needs at least <code>kms:Encrypt</code> permission on the specified KMS key, to encrypt passwords before storing them in the Data Catalog. </p> <p>You can set the decrypt permission to enable or restrict access on the password key according to your security requirements.</p>",
         "ContextWords$member": null,
         "Crawler$Name": "<p>The name of the crawler.</p>",
@@ -5930,7 +5981,7 @@
         "PartitionIndex$IndexName": "<p>The name of the partition index.</p>",
         "PartitionIndexDescriptor$IndexName": "<p>The name of the partition index.</p>",
         "PhysicalConnectionRequirements$SubnetId": "<p>The subnet ID used by the connection.</p>",
-        "PhysicalConnectionRequirements$AvailabilityZone": "<p>The connection's Availability Zone. This field is redundant because the specified subnet implies the Availability Zone to be used. Currently the field must be populated, but it will be deprecated in the future.</p>",
+        "PhysicalConnectionRequirements$AvailabilityZone": "<p>The connection's Availability Zone.</p>",
         "Predecessor$JobName": "<p>The name of the job definition used by the predecessor job run.</p>",
         "PutWorkflowRunPropertiesRequest$Name": "<p>Name of the workflow which was run.</p>",
         "ResumeWorkflowRunRequest$Name": "<p>The name of the workflow to resume.</p>",
@@ -6355,6 +6406,32 @@
       "base": null,
       "refs": {
         "QuerySessionContext$ClusterId": "<p>An identifier string for the consumer cluster.</p>"
+      }
+    },
+    "OAuth2ClientApplication": {
+      "base": "<p>The OAuth2 client app used for the connection.</p>",
+      "refs": {
+        "OAuth2Properties$OAuth2ClientApplication": "<p>The client application type. For example, AWS_MANAGED or USER_MANAGED.</p>",
+        "OAuth2PropertiesInput$OAuth2ClientApplication": "<p>The client application type in the CreateConnection request. For example, <code>AWS_MANAGED</code> or <code>USER_MANAGED</code>.</p>"
+      }
+    },
+    "OAuth2GrantType": {
+      "base": null,
+      "refs": {
+        "OAuth2Properties$OAuth2GrantType": "<p>The OAuth2 grant type. For example, <code>AUTHORIZATION_CODE</code>, <code>JWT_BEARER</code>, or <code>CLIENT_CREDENTIALS</code>.</p>",
+        "OAuth2PropertiesInput$OAuth2GrantType": "<p>The OAuth2 grant type in the CreateConnection request. For example, <code>AUTHORIZATION_CODE</code>, <code>JWT_BEARER</code>, or <code>CLIENT_CREDENTIALS</code>.</p>"
+      }
+    },
+    "OAuth2Properties": {
+      "base": "<p>A structure containing properties for OAuth2 authentication.</p>",
+      "refs": {
+        "AuthenticationConfiguration$OAuth2Properties": "<p>The properties for OAuth2 authentication.</p>"
+      }
+    },
+    "OAuth2PropertiesInput": {
+      "base": "<p>A structure containing properties for OAuth2 in the CreateConnection request.</p>",
+      "refs": {
+        "AuthenticationConfigurationInput$OAuth2Properties": "<p>The properties for OAuth2 authentication in the CreateConnection request.</p>"
       }
     },
     "OneInput": {
@@ -6795,10 +6872,10 @@
       }
     },
     "PhysicalConnectionRequirements": {
-      "base": "<p>Specifies the physical requirements for a connection.</p>",
+      "base": "<p>The OAuth client app in GetConnection response.</p>",
       "refs": {
-        "Connection$PhysicalConnectionRequirements": "<p>A map of physical connection requirements, such as virtual private cloud (VPC) and <code>SecurityGroup</code>, that are needed to make this connection successfully.</p>",
-        "ConnectionInput$PhysicalConnectionRequirements": "<p>A map of physical connection requirements, such as virtual private cloud (VPC) and <code>SecurityGroup</code>, that are needed to successfully make this connection.</p>"
+        "Connection$PhysicalConnectionRequirements": "<p>The physical connection requirements, such as virtual private cloud (VPC) and <code>SecurityGroup</code>, that are needed to make this connection successfully.</p>",
+        "ConnectionInput$PhysicalConnectionRequirements": "<p>The physical connection requirements, such as virtual private cloud (VPC) and <code>SecurityGroup</code>, that are needed to successfully make this connection.</p>"
       }
     },
     "PiiType": {
@@ -7039,6 +7116,12 @@
         "Crawler$RecrawlPolicy": "<p>A policy that specifies whether to crawl the entire dataset again, or to crawl only folders that were added since the last crawler run.</p>",
         "CreateCrawlerRequest$RecrawlPolicy": "<p>A policy that specifies whether to crawl the entire dataset again, or to crawl only folders that were added since the last crawler run.</p>",
         "UpdateCrawlerRequest$RecrawlPolicy": "<p>A policy that specifies whether to crawl the entire dataset again, or to crawl only folders that were added since the last crawler run.</p>"
+      }
+    },
+    "RedirectUri": {
+      "base": null,
+      "refs": {
+        "AuthorizationCodeProperties$RedirectUri": "<p>The redirect URI where the user gets redirected to by authorization server when issuing an authorization code. The URI is subsequently used when the authorization code is exchanged for an access token.</p>"
       }
     },
     "RedshiftSource": {
@@ -7661,6 +7744,13 @@
     "SearchTablesResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "SecretArn": {
+      "base": null,
+      "refs": {
+        "AuthenticationConfiguration$SecretArn": "<p>The secret manager ARN to store credentials.</p>",
+        "AuthenticationConfigurationInput$SecretArn": "<p>The secret manager ARN to store credentials in the CreateConnection request.</p>"
       }
     },
     "SecurityConfiguration": {
@@ -8410,20 +8500,20 @@
       "base": null,
       "refs": {
         "Action$Timeout": "<p>The <code>JobRun</code> timeout in minutes. This is the maximum time that a job run can consume resources before it is terminated and enters <code>TIMEOUT</code> status. The default is 2,880 minutes (48 hours). This overrides the timeout value set in the parent job.</p>",
-        "CreateJobRequest$Timeout": "<p>The job timeout in minutes. This is the maximum time that a job run can consume resources before it is terminated and enters <code>TIMEOUT</code> status. The default is 2,880 minutes (48 hours).</p>",
+        "CreateJobRequest$Timeout": "<p>The job timeout in minutes. This is the maximum time that a job run can consume resources before it is terminated and enters <code>TIMEOUT</code> status. The default is 2,880 minutes (48 hours) for batch jobs.</p> <p>Streaming jobs must have timeout values less than 7 days or 10080 minutes. When the value is left blank, the job will be restarted after 7 days based if you have not setup a maintenance window. If you have setup maintenance window, it will be restarted during the maintenance window after 7 days.</p>",
         "CreateMLTransformRequest$Timeout": "<p>The timeout of the task run for this transform in minutes. This is the maximum time that a task run for this transform can consume resources before it is terminated and enters <code>TIMEOUT</code> status. The default is 2,880 minutes (48 hours).</p>",
         "CreateSessionRequest$Timeout": "<p> The number of minutes before session times out. Default for Spark ETL jobs is 48 hours (2880 minutes), the maximum session lifetime for this job type. Consult the documentation for other job types. </p>",
         "CreateSessionRequest$IdleTimeout": "<p> The number of minutes when idle before session times out. Default for Spark ETL jobs is value of Timeout. Consult the documentation for other job types. </p>",
         "GetDataQualityRuleRecommendationRunResponse$Timeout": "<p>The timeout for a run in minutes. This is the maximum time that a run can consume resources before it is terminated and enters <code>TIMEOUT</code> status. The default is 2,880 minutes (48 hours).</p>",
         "GetDataQualityRulesetEvaluationRunResponse$Timeout": "<p>The timeout for a run in minutes. This is the maximum time that a run can consume resources before it is terminated and enters <code>TIMEOUT</code> status. The default is 2,880 minutes (48 hours).</p>",
         "GetMLTransformResponse$Timeout": "<p>The timeout for a task run for this transform in minutes. This is the maximum time that a task run for this transform can consume resources before it is terminated and enters <code>TIMEOUT</code> status. The default is 2,880 minutes (48 hours).</p>",
-        "Job$Timeout": "<p>The job timeout in minutes. This is the maximum time that a job run can consume resources before it is terminated and enters <code>TIMEOUT</code> status. The default is 2,880 minutes (48 hours).</p>",
-        "JobRun$Timeout": "<p>The <code>JobRun</code> timeout in minutes. This is the maximum time that a job run can consume resources before it is terminated and enters <code>TIMEOUT</code> status. This value overrides the timeout value set in the parent job.</p> <p>The maximum value for timeout for batch jobs is 7 days or 10080 minutes. The default is 2880 minutes (48 hours) for batch jobs.</p> <p>Any existing Glue jobs that have a greater timeout value are defaulted to 7 days. For instance you have specified a timeout of 20 days for a batch job, it will be stopped on the 7th day.</p> <p>Streaming jobs must have timeout values less than 7 days or 10080 minutes. When the value is left blank, the job will be restarted after 7 days based if you have not setup a maintenance window. If you have setup maintenance window, it will be restarted during the maintenance window after 7 days.</p>",
-        "JobUpdate$Timeout": "<p>The job timeout in minutes. This is the maximum time that a job run can consume resources before it is terminated and enters <code>TIMEOUT</code> status. The default is 2,880 minutes (48 hours).</p>",
+        "Job$Timeout": "<p>The job timeout in minutes. This is the maximum time that a job run can consume resources before it is terminated and enters <code>TIMEOUT</code> status. The default is 2,880 minutes (48 hours) for batch jobs.</p> <p>Streaming jobs must have timeout values less than 7 days or 10080 minutes. When the value is left blank, the job will be restarted after 7 days based if you have not setup a maintenance window. If you have setup maintenance window, it will be restarted during the maintenance window after 7 days.</p>",
+        "JobRun$Timeout": "<p>The <code>JobRun</code> timeout in minutes. This is the maximum time that a job run can consume resources before it is terminated and enters <code>TIMEOUT</code> status. This value overrides the timeout value set in the parent job.</p> <p>Streaming jobs must have timeout values less than 7 days or 10080 minutes. When the value is left blank, the job will be restarted after 7 days based if you have not setup a maintenance window. If you have setup maintenance window, it will be restarted during the maintenance window after 7 days.</p>",
+        "JobUpdate$Timeout": "<p>The job timeout in minutes. This is the maximum time that a job run can consume resources before it is terminated and enters <code>TIMEOUT</code> status. The default is 2,880 minutes (48 hours) for batch jobs.</p> <p>Streaming jobs must have timeout values less than 7 days or 10080 minutes. When the value is left blank, the job will be restarted after 7 days based if you have not setup a maintenance window. If you have setup maintenance window, it will be restarted during the maintenance window after 7 days.</p>",
         "MLTransform$Timeout": "<p>The timeout in minutes of the machine learning transform.</p>",
         "StartDataQualityRuleRecommendationRunRequest$Timeout": "<p>The timeout for a run in minutes. This is the maximum time that a run can consume resources before it is terminated and enters <code>TIMEOUT</code> status. The default is 2,880 minutes (48 hours).</p>",
         "StartDataQualityRulesetEvaluationRunRequest$Timeout": "<p>The timeout for a run in minutes. This is the maximum time that a run can consume resources before it is terminated and enters <code>TIMEOUT</code> status. The default is 2,880 minutes (48 hours).</p>",
-        "StartJobRunRequest$Timeout": "<p>The <code>JobRun</code> timeout in minutes. This is the maximum time that a job run can consume resources before it is terminated and enters <code>TIMEOUT</code> status. This value overrides the timeout value set in the parent job.</p> <p>Streaming jobs do not have a timeout. The default for non-streaming jobs is 2,880 minutes (48 hours).</p>",
+        "StartJobRunRequest$Timeout": "<p>The <code>JobRun</code> timeout in minutes. This is the maximum time that a job run can consume resources before it is terminated and enters <code>TIMEOUT</code> status. This value overrides the timeout value set in the parent job. </p> <p>Streaming jobs must have timeout values less than 7 days or 10080 minutes. When the value is left blank, the job will be restarted after 7 days based if you have not setup a maintenance window. If you have setup maintenance window, it will be restarted during the maintenance window after 7 days.</p>",
         "UpdateMLTransformRequest$Timeout": "<p>The timeout for a task run for this transform in minutes. This is the maximum time that a task run for this transform can consume resources before it is terminated and enters <code>TIMEOUT</code> status. The default is 2,880 minutes (48 hours).</p>"
       }
     },
@@ -8436,8 +8526,9 @@
         "ColumnStatisticsTaskRun$LastUpdated": "<p>The last point in time when this task was modified.</p>",
         "ColumnStatisticsTaskRun$StartTime": "<p>The start time of the task.</p>",
         "ColumnStatisticsTaskRun$EndTime": "<p>The end time of the task.</p>",
-        "Connection$CreationTime": "<p>The time that this connection definition was created.</p>",
-        "Connection$LastUpdatedTime": "<p>The last time that this connection definition was updated.</p>",
+        "Connection$CreationTime": "<p>The timestamp of the time that this connection definition was created.</p>",
+        "Connection$LastUpdatedTime": "<p>The timestamp of the last time the connection definition was updated.</p>",
+        "Connection$LastConnectionValidationTime": "<p>A timestamp of the time this connection was last validated.</p>",
         "Crawler$CreationTime": "<p>The time that the crawler was created.</p>",
         "Crawler$LastUpdated": "<p>The time that the crawler was last updated.</p>",
         "CrawlerHistory$StartTime": "<p>The date and time on which the crawl started.</p>",
@@ -8584,6 +8675,32 @@
         "ListCrawlsResponse$NextToken": "<p>A continuation token for paginating the returned list of tokens, returned if the current segment of the list is not the last.</p>",
         "SearchTablesRequest$NextToken": "<p>A continuation token, included if this is a continuation call.</p>",
         "SearchTablesResponse$NextToken": "<p>A continuation token, present if the current list segment is not the last.</p>"
+      }
+    },
+    "TokenUrl": {
+      "base": null,
+      "refs": {
+        "OAuth2Properties$TokenUrl": "<p>The URL of the provider's authentication server, to exchange an authorization code for an access token.</p>",
+        "OAuth2PropertiesInput$TokenUrl": "<p>The URL of the provider's authentication server, to exchange an authorization code for an access token.</p>"
+      }
+    },
+    "TokenUrlParameterKey": {
+      "base": null,
+      "refs": {
+        "TokenUrlParametersMap$key": null
+      }
+    },
+    "TokenUrlParameterValue": {
+      "base": null,
+      "refs": {
+        "TokenUrlParametersMap$value": null
+      }
+    },
+    "TokenUrlParametersMap": {
+      "base": null,
+      "refs": {
+        "OAuth2Properties$TokenUrlParametersMap": "<p>A map of parameters that are added to the token <code>GET</code> request.</p>",
+        "OAuth2PropertiesInput$TokenUrlParametersMap": "<p>A map of parameters that are added to the token <code>GET</code> request.</p>"
       }
     },
     "Topk": {
@@ -9114,6 +9231,12 @@
         "GetUserDefinedFunctionsResponse$UserDefinedFunctions": "<p>A list of requested function definitions.</p>"
       }
     },
+    "UserManagedClientApplicationClientId": {
+      "base": null,
+      "refs": {
+        "OAuth2ClientApplication$UserManagedClientApplicationClientId": "<p>The client application clientID if the ClientAppType is <code>USER_MANAGED</code>.</p>"
+      }
+    },
     "ValidationException": {
       "base": "<p>A value could not be validated.</p>",
       "refs": {
@@ -9246,7 +9369,7 @@
         "TableInput$ViewOriginalText": "<p>Included for Apache Hive compatibility. Not used in the normal course of Glue operations. If the table is a <code>VIRTUAL_VIEW</code>, certain Athena configuration encoded in base64.</p>",
         "TableInput$ViewExpandedText": "<p>Included for Apache Hive compatibility. Not used in the normal course of Glue operations.</p>",
         "ViewRepresentation$ViewOriginalText": "<p>The <code>SELECT</code> query provided by the customer during <code>CREATE VIEW DDL</code>. This SQL is not used during a query on a view (<code>ViewExpandedText</code> is used instead). <code>ViewOriginalText</code> is used for cases like <code>SHOW CREATE VIEW</code> where users want to see the original DDL command that created the view.</p>",
-        "ViewRepresentation$ViewExpandedText": "<p>The expanded SQL for the view. This SQL is used by engines while processing a query on a view. Engines may perform operations during view creation to transform <code>ViewOriginalText</code> to <code>ViewExpandedText</code>. For example:</p> <ul> <li> <p>Fully qualify identifiers: <code>SELECT * from table1 → SELECT * from db1.table1</code> </p> </li> </ul>"
+        "ViewRepresentation$ViewExpandedText": "<p>The expanded SQL for the view. This SQL is used by engines while processing a query on a view. Engines may perform operations during view creation to transform <code>ViewOriginalText</code> to <code>ViewExpandedText</code>. For example:</p> <ul> <li> <p>Fully qualified identifiers: <code>SELECT * from table1 -&gt; SELECT * from db1.table1</code> </p> </li> </ul>"
       }
     },
     "WorkerType": {
