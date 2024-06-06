@@ -31651,6 +31651,9 @@ const (
 
 	// FuotaDeviceStatusSuccessful is a FuotaDeviceStatus enum value
 	FuotaDeviceStatusSuccessful = "Successful"
+
+	// FuotaDeviceStatusDeviceExistInConflictFuotaTask is a FuotaDeviceStatus enum value
+	FuotaDeviceStatusDeviceExistInConflictFuotaTask = "Device_exist_in_conflict_fuota_task"
 )
 
 // FuotaDeviceStatus_Values returns all elements of the FuotaDeviceStatus enum
@@ -31667,6 +31670,7 @@ func FuotaDeviceStatus_Values() []string {
 		FuotaDeviceStatusMemoryError,
 		FuotaDeviceStatusMicerror,
 		FuotaDeviceStatusSuccessful,
+		FuotaDeviceStatusDeviceExistInConflictFuotaTask,
 	}
 }
 

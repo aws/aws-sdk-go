@@ -172,6 +172,13 @@ type LocationServiceAPI interface {
 	DisassociateTrackerConsumerWithContext(aws.Context, *locationservice.DisassociateTrackerConsumerInput, ...request.Option) (*locationservice.DisassociateTrackerConsumerOutput, error)
 	DisassociateTrackerConsumerRequest(*locationservice.DisassociateTrackerConsumerInput) (*request.Request, *locationservice.DisassociateTrackerConsumerOutput)
 
+	ForecastGeofenceEvents(*locationservice.ForecastGeofenceEventsInput) (*locationservice.ForecastGeofenceEventsOutput, error)
+	ForecastGeofenceEventsWithContext(aws.Context, *locationservice.ForecastGeofenceEventsInput, ...request.Option) (*locationservice.ForecastGeofenceEventsOutput, error)
+	ForecastGeofenceEventsRequest(*locationservice.ForecastGeofenceEventsInput) (*request.Request, *locationservice.ForecastGeofenceEventsOutput)
+
+	ForecastGeofenceEventsPages(*locationservice.ForecastGeofenceEventsInput, func(*locationservice.ForecastGeofenceEventsOutput, bool) bool) error
+	ForecastGeofenceEventsPagesWithContext(aws.Context, *locationservice.ForecastGeofenceEventsInput, func(*locationservice.ForecastGeofenceEventsOutput, bool) bool, ...request.Option) error
+
 	GetDevicePosition(*locationservice.GetDevicePositionInput) (*locationservice.GetDevicePositionOutput, error)
 	GetDevicePositionWithContext(aws.Context, *locationservice.GetDevicePositionInput, ...request.Option) (*locationservice.GetDevicePositionOutput, error)
 	GetDevicePositionRequest(*locationservice.GetDevicePositionInput) (*request.Request, *locationservice.GetDevicePositionOutput)
@@ -321,6 +328,10 @@ type LocationServiceAPI interface {
 	UpdateTracker(*locationservice.UpdateTrackerInput) (*locationservice.UpdateTrackerOutput, error)
 	UpdateTrackerWithContext(aws.Context, *locationservice.UpdateTrackerInput, ...request.Option) (*locationservice.UpdateTrackerOutput, error)
 	UpdateTrackerRequest(*locationservice.UpdateTrackerInput) (*request.Request, *locationservice.UpdateTrackerOutput)
+
+	VerifyDevicePosition(*locationservice.VerifyDevicePositionInput) (*locationservice.VerifyDevicePositionOutput, error)
+	VerifyDevicePositionWithContext(aws.Context, *locationservice.VerifyDevicePositionInput, ...request.Option) (*locationservice.VerifyDevicePositionOutput, error)
+	VerifyDevicePositionRequest(*locationservice.VerifyDevicePositionInput) (*request.Request, *locationservice.VerifyDevicePositionOutput)
 }
 
 var _ LocationServiceAPI = (*locationservice.LocationService)(nil)

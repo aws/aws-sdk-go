@@ -2870,6 +2870,168 @@ func (c *LocationService) DisassociateTrackerConsumerWithContext(ctx aws.Context
 	return out, req.Send()
 }
 
+const opForecastGeofenceEvents = "ForecastGeofenceEvents"
+
+// ForecastGeofenceEventsRequest generates a "aws/request.Request" representing the
+// client's request for the ForecastGeofenceEvents operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ForecastGeofenceEvents for more information on using the ForecastGeofenceEvents
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ForecastGeofenceEventsRequest method.
+//	req, resp := client.ForecastGeofenceEventsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/location-2020-11-19/ForecastGeofenceEvents
+func (c *LocationService) ForecastGeofenceEventsRequest(input *ForecastGeofenceEventsInput) (req *request.Request, output *ForecastGeofenceEventsOutput) {
+	op := &request.Operation{
+		Name:       opForecastGeofenceEvents,
+		HTTPMethod: "POST",
+		HTTPPath:   "/geofencing/v0/collections/{CollectionName}/forecast-geofence-events",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ForecastGeofenceEventsInput{}
+	}
+
+	output = &ForecastGeofenceEventsOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("geofencing.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// ForecastGeofenceEvents API operation for Amazon Location Service.
+//
+// Evaluates device positions against geofence geometries from a given geofence
+// collection. The event forecasts three states for which a device can be in
+// relative to a geofence:
+//
+// ENTER: If a device is outside of a geofence, but would breach the fence if
+// the device is moving at its current speed within time horizon window.
+//
+// EXIT: If a device is inside of a geofence, but would breach the fence if
+// the device is moving at its current speed within time horizon window.
+//
+// IDLE: If a device is inside of a geofence, and the device is not moving.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Location Service's
+// API operation ForecastGeofenceEvents for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     The request has failed to process because of an unknown server error, exception,
+//     or failure.
+//
+//   - ResourceNotFoundException
+//     The resource that you've entered was not found in your AWS account.
+//
+//   - AccessDeniedException
+//     The request was denied because of insufficient access or permissions. Check
+//     with an administrator to verify your permissions.
+//
+//   - ValidationException
+//     The input failed to meet the constraints specified by the AWS service.
+//
+//   - ThrottlingException
+//     The request was denied because of request throttling.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/location-2020-11-19/ForecastGeofenceEvents
+func (c *LocationService) ForecastGeofenceEvents(input *ForecastGeofenceEventsInput) (*ForecastGeofenceEventsOutput, error) {
+	req, out := c.ForecastGeofenceEventsRequest(input)
+	return out, req.Send()
+}
+
+// ForecastGeofenceEventsWithContext is the same as ForecastGeofenceEvents with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ForecastGeofenceEvents for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LocationService) ForecastGeofenceEventsWithContext(ctx aws.Context, input *ForecastGeofenceEventsInput, opts ...request.Option) (*ForecastGeofenceEventsOutput, error) {
+	req, out := c.ForecastGeofenceEventsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ForecastGeofenceEventsPages iterates over the pages of a ForecastGeofenceEvents operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ForecastGeofenceEvents method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ForecastGeofenceEvents operation.
+//	pageNum := 0
+//	err := client.ForecastGeofenceEventsPages(params,
+//	    func(page *locationservice.ForecastGeofenceEventsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *LocationService) ForecastGeofenceEventsPages(input *ForecastGeofenceEventsInput, fn func(*ForecastGeofenceEventsOutput, bool) bool) error {
+	return c.ForecastGeofenceEventsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ForecastGeofenceEventsPagesWithContext same as ForecastGeofenceEventsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LocationService) ForecastGeofenceEventsPagesWithContext(ctx aws.Context, input *ForecastGeofenceEventsInput, fn func(*ForecastGeofenceEventsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ForecastGeofenceEventsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ForecastGeofenceEventsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ForecastGeofenceEventsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opGetDevicePosition = "GetDevicePosition"
 
 // GetDevicePositionRequest generates a "aws/request.Request" representing the
@@ -3168,6 +3330,9 @@ func (c *LocationService) GetGeofenceRequest(input *GetGeofenceInput) (req *requ
 // GetGeofence API operation for Amazon Location Service.
 //
 // Retrieves the geofence details from a geofence collection.
+//
+// The returned geometry will always match the geometry format used when the
+// geofence was created.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6337,6 +6502,103 @@ func (c *LocationService) UpdateTrackerWithContext(ctx aws.Context, input *Updat
 	return out, req.Send()
 }
 
+const opVerifyDevicePosition = "VerifyDevicePosition"
+
+// VerifyDevicePositionRequest generates a "aws/request.Request" representing the
+// client's request for the VerifyDevicePosition operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See VerifyDevicePosition for more information on using the VerifyDevicePosition
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the VerifyDevicePositionRequest method.
+//	req, resp := client.VerifyDevicePositionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/location-2020-11-19/VerifyDevicePosition
+func (c *LocationService) VerifyDevicePositionRequest(input *VerifyDevicePositionInput) (req *request.Request, output *VerifyDevicePositionOutput) {
+	op := &request.Operation{
+		Name:       opVerifyDevicePosition,
+		HTTPMethod: "POST",
+		HTTPPath:   "/tracking/v0/trackers/{TrackerName}/positions/verify",
+	}
+
+	if input == nil {
+		input = &VerifyDevicePositionInput{}
+	}
+
+	output = &VerifyDevicePositionOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("tracking.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// VerifyDevicePosition API operation for Amazon Location Service.
+//
+// Verifies the integrity of the device's position by determining if it was
+// reported behind a proxy, and by comparing it to an inferred position estimated
+// based on the device's state.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Location Service's
+// API operation VerifyDevicePosition for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     The request has failed to process because of an unknown server error, exception,
+//     or failure.
+//
+//   - ResourceNotFoundException
+//     The resource that you've entered was not found in your AWS account.
+//
+//   - AccessDeniedException
+//     The request was denied because of insufficient access or permissions. Check
+//     with an administrator to verify your permissions.
+//
+//   - ValidationException
+//     The input failed to meet the constraints specified by the AWS service.
+//
+//   - ThrottlingException
+//     The request was denied because of request throttling.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/location-2020-11-19/VerifyDevicePosition
+func (c *LocationService) VerifyDevicePosition(input *VerifyDevicePositionInput) (*VerifyDevicePositionOutput, error) {
+	req, out := c.VerifyDevicePositionRequest(input)
+	return out, req.Send()
+}
+
+// VerifyDevicePositionWithContext is the same as VerifyDevicePosition with the addition of
+// the ability to pass a context and additional request options.
+//
+// See VerifyDevicePosition for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LocationService) VerifyDevicePositionWithContext(ctx aws.Context, input *VerifyDevicePositionInput, opts ...request.Option) (*VerifyDevicePositionOutput, error) {
+	req, out := c.VerifyDevicePositionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 // The request was denied because of insufficient access or permissions. Check
 // with an administrator to verify your permissions.
 type AccessDeniedException struct {
@@ -7504,11 +7766,13 @@ type BatchPutGeofenceRequestEntry struct {
 	// String and GoString methods.
 	GeofenceProperties map[string]*string `type:"map" sensitive:"true"`
 
-	// Contains the details of the position of the geofence. Can be either a polygon
-	// or a circle. Including both will return a validation error.
+	// Contains the details to specify the position of the geofence. Can be a polygon,
+	// a circle or a polygon encoded in Geobuf format. Including multiple selections
+	// will return a validation error.
 	//
-	// Each geofence polygon (https://docs.aws.amazon.com/location-geofences/latest/APIReference/API_GeofenceGeometry.html)
-	// can have a maximum of 1,000 vertices.
+	// The geofence polygon (https://docs.aws.amazon.com/location-geofences/latest/APIReference/API_GeofenceGeometry.html)
+	// format supports a maximum of 1,000 vertices. The Geofence geobuf (https://docs.aws.amazon.com/location-geofences/latest/APIReference/API_GeofenceGeometry.html)
+	// format supports a maximum of 100,000 vertices.
 	//
 	// Geometry is a required field
 	Geometry *GeofenceGeometry `type:"structure" required:"true"`
@@ -8750,6 +9014,67 @@ func (s *CalculateRouteTruckModeOptions) SetDimensions(v *TruckDimensions) *Calc
 // SetWeight sets the Weight field's value.
 func (s *CalculateRouteTruckModeOptions) SetWeight(v *TruckWeight) *CalculateRouteTruckModeOptions {
 	s.Weight = v
+	return s
+}
+
+// The cellular network communication infrastructure that the device uses.
+type CellSignals struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the Long-Term Evolution (LTE) network the device is connected
+	// to.
+	//
+	// LteCellDetails is a required field
+	LteCellDetails []*LteCellDetails `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CellSignals) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CellSignals) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CellSignals) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CellSignals"}
+	if s.LteCellDetails == nil {
+		invalidParams.Add(request.NewErrParamRequired("LteCellDetails"))
+	}
+	if s.LteCellDetails != nil && len(s.LteCellDetails) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LteCellDetails", 1))
+	}
+	if s.LteCellDetails != nil {
+		for i, v := range s.LteCellDetails {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "LteCellDetails", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLteCellDetails sets the LteCellDetails field's value.
+func (s *CellSignals) SetLteCellDetails(v []*LteCellDetails) *CellSignals {
+	s.LteCellDetails = v
 	return s
 }
 
@@ -11957,6 +12282,148 @@ func (s *DevicePositionUpdate) SetSampleTime(v time.Time) *DevicePositionUpdate 
 	return s
 }
 
+// The device's position, IP address, and Wi-Fi access points.
+type DeviceState struct {
+	_ struct{} `type:"structure"`
+
+	// Defines the level of certainty of the position.
+	Accuracy *PositionalAccuracy `type:"structure"`
+
+	// The cellular network infrastructure that the device is connected to.
+	CellSignals *CellSignals `type:"structure"`
+
+	// The device identifier.
+	//
+	// DeviceId is a required field
+	DeviceId *string `min:"1" type:"string" required:"true"`
+
+	// The device's Ipv4 address.
+	Ipv4Address *string `type:"string"`
+
+	// The last known device position.
+	//
+	// Position is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by DeviceState's
+	// String and GoString methods.
+	//
+	// Position is a required field
+	Position []*float64 `min:"2" type:"list" required:"true" sensitive:"true"`
+
+	// The timestamp at which the device's position was determined. Uses ISO 8601
+	// (https://www.iso.org/iso-8601-date-and-time-format.html) format: YYYY-MM-DDThh:mm:ss.sssZ.
+	//
+	// SampleTime is a required field
+	SampleTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// The Wi-Fi access points the device is using.
+	WiFiAccessPoints []*WiFiAccessPoint `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeviceState) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeviceState) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeviceState) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeviceState"}
+	if s.DeviceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DeviceId"))
+	}
+	if s.DeviceId != nil && len(*s.DeviceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DeviceId", 1))
+	}
+	if s.Position == nil {
+		invalidParams.Add(request.NewErrParamRequired("Position"))
+	}
+	if s.Position != nil && len(s.Position) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("Position", 2))
+	}
+	if s.SampleTime == nil {
+		invalidParams.Add(request.NewErrParamRequired("SampleTime"))
+	}
+	if s.Accuracy != nil {
+		if err := s.Accuracy.Validate(); err != nil {
+			invalidParams.AddNested("Accuracy", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.CellSignals != nil {
+		if err := s.CellSignals.Validate(); err != nil {
+			invalidParams.AddNested("CellSignals", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.WiFiAccessPoints != nil {
+		for i, v := range s.WiFiAccessPoints {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "WiFiAccessPoints", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccuracy sets the Accuracy field's value.
+func (s *DeviceState) SetAccuracy(v *PositionalAccuracy) *DeviceState {
+	s.Accuracy = v
+	return s
+}
+
+// SetCellSignals sets the CellSignals field's value.
+func (s *DeviceState) SetCellSignals(v *CellSignals) *DeviceState {
+	s.CellSignals = v
+	return s
+}
+
+// SetDeviceId sets the DeviceId field's value.
+func (s *DeviceState) SetDeviceId(v string) *DeviceState {
+	s.DeviceId = &v
+	return s
+}
+
+// SetIpv4Address sets the Ipv4Address field's value.
+func (s *DeviceState) SetIpv4Address(v string) *DeviceState {
+	s.Ipv4Address = &v
+	return s
+}
+
+// SetPosition sets the Position field's value.
+func (s *DeviceState) SetPosition(v []*float64) *DeviceState {
+	s.Position = v
+	return s
+}
+
+// SetSampleTime sets the SampleTime field's value.
+func (s *DeviceState) SetSampleTime(v time.Time) *DeviceState {
+	s.SampleTime = &v
+	return s
+}
+
+// SetWiFiAccessPoints sets the WiFiAccessPoints field's value.
+func (s *DeviceState) SetWiFiAccessPoints(v []*WiFiAccessPoint) *DeviceState {
+	s.WiFiAccessPoints = v
+	return s
+}
+
 type DisassociateTrackerConsumerInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -12049,10 +12516,382 @@ func (s DisassociateTrackerConsumerOutput) GoString() string {
 	return s.String()
 }
 
+// The device's position, IP address, and WiFi access points.
+type ForecastGeofenceEventsDeviceState struct {
+	_ struct{} `type:"structure"`
+
+	// The device's position.
+	//
+	// Position is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ForecastGeofenceEventsDeviceState's
+	// String and GoString methods.
+	//
+	// Position is a required field
+	Position []*float64 `min:"2" type:"list" required:"true" sensitive:"true"`
+
+	// The device's speed.
+	Speed *float64 `type:"double"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ForecastGeofenceEventsDeviceState) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ForecastGeofenceEventsDeviceState) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ForecastGeofenceEventsDeviceState) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ForecastGeofenceEventsDeviceState"}
+	if s.Position == nil {
+		invalidParams.Add(request.NewErrParamRequired("Position"))
+	}
+	if s.Position != nil && len(s.Position) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("Position", 2))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPosition sets the Position field's value.
+func (s *ForecastGeofenceEventsDeviceState) SetPosition(v []*float64) *ForecastGeofenceEventsDeviceState {
+	s.Position = v
+	return s
+}
+
+// SetSpeed sets the Speed field's value.
+func (s *ForecastGeofenceEventsDeviceState) SetSpeed(v float64) *ForecastGeofenceEventsDeviceState {
+	s.Speed = &v
+	return s
+}
+
+type ForecastGeofenceEventsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the geofence collection.
+	//
+	// CollectionName is a required field
+	CollectionName *string `location:"uri" locationName:"CollectionName" min:"1" type:"string" required:"true"`
+
+	// The device's state, including current position and speed.
+	//
+	// DeviceState is a required field
+	DeviceState *ForecastGeofenceEventsDeviceState `type:"structure" required:"true"`
+
+	// The distance unit used for the NearestDistance property returned in a forecasted
+	// event. The measurement system must match for DistanceUnit and SpeedUnit;
+	// if Kilometers is specified for DistanceUnit, then SpeedUnit must be KilometersPerHour.
+	//
+	// Default Value: Kilometers
+	DistanceUnit *string `type:"string" enum:"DistanceUnit"`
+
+	// An optional limit for the number of resources returned in a single call.
+	//
+	// Default value: 20
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// The pagination token specifying which page of results to return in the response.
+	// If no token is provided, the default page is the first page.
+	//
+	// Default value: null
+	NextToken *string `min:"1" type:"string"`
+
+	// The speed unit for the device captured by the device state. The measurement
+	// system must match for DistanceUnit and SpeedUnit; if Kilometers is specified
+	// for DistanceUnit, then SpeedUnit must be KilometersPerHour.
+	//
+	// Default Value: KilometersPerHour.
+	SpeedUnit *string `type:"string" enum:"SpeedUnit"`
+
+	// Specifies the time horizon in minutes for the forecasted events.
+	TimeHorizonMinutes *float64 `type:"double"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ForecastGeofenceEventsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ForecastGeofenceEventsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ForecastGeofenceEventsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ForecastGeofenceEventsInput"}
+	if s.CollectionName == nil {
+		invalidParams.Add(request.NewErrParamRequired("CollectionName"))
+	}
+	if s.CollectionName != nil && len(*s.CollectionName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CollectionName", 1))
+	}
+	if s.DeviceState == nil {
+		invalidParams.Add(request.NewErrParamRequired("DeviceState"))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.DeviceState != nil {
+		if err := s.DeviceState.Validate(); err != nil {
+			invalidParams.AddNested("DeviceState", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCollectionName sets the CollectionName field's value.
+func (s *ForecastGeofenceEventsInput) SetCollectionName(v string) *ForecastGeofenceEventsInput {
+	s.CollectionName = &v
+	return s
+}
+
+// SetDeviceState sets the DeviceState field's value.
+func (s *ForecastGeofenceEventsInput) SetDeviceState(v *ForecastGeofenceEventsDeviceState) *ForecastGeofenceEventsInput {
+	s.DeviceState = v
+	return s
+}
+
+// SetDistanceUnit sets the DistanceUnit field's value.
+func (s *ForecastGeofenceEventsInput) SetDistanceUnit(v string) *ForecastGeofenceEventsInput {
+	s.DistanceUnit = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ForecastGeofenceEventsInput) SetMaxResults(v int64) *ForecastGeofenceEventsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ForecastGeofenceEventsInput) SetNextToken(v string) *ForecastGeofenceEventsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSpeedUnit sets the SpeedUnit field's value.
+func (s *ForecastGeofenceEventsInput) SetSpeedUnit(v string) *ForecastGeofenceEventsInput {
+	s.SpeedUnit = &v
+	return s
+}
+
+// SetTimeHorizonMinutes sets the TimeHorizonMinutes field's value.
+func (s *ForecastGeofenceEventsInput) SetTimeHorizonMinutes(v float64) *ForecastGeofenceEventsInput {
+	s.TimeHorizonMinutes = &v
+	return s
+}
+
+type ForecastGeofenceEventsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The distance unit for the forecasted events.
+	//
+	// DistanceUnit is a required field
+	DistanceUnit *string `type:"string" required:"true" enum:"DistanceUnit"`
+
+	// The list of forecasted events.
+	//
+	// ForecastedEvents is a required field
+	ForecastedEvents []*ForecastedEvent `type:"list" required:"true"`
+
+	// The pagination token specifying which page of results to return in the response.
+	// If no token is provided, the default page is the first page.
+	NextToken *string `min:"1" type:"string"`
+
+	// The speed unit for the forecasted events.
+	//
+	// SpeedUnit is a required field
+	SpeedUnit *string `type:"string" required:"true" enum:"SpeedUnit"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ForecastGeofenceEventsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ForecastGeofenceEventsOutput) GoString() string {
+	return s.String()
+}
+
+// SetDistanceUnit sets the DistanceUnit field's value.
+func (s *ForecastGeofenceEventsOutput) SetDistanceUnit(v string) *ForecastGeofenceEventsOutput {
+	s.DistanceUnit = &v
+	return s
+}
+
+// SetForecastedEvents sets the ForecastedEvents field's value.
+func (s *ForecastGeofenceEventsOutput) SetForecastedEvents(v []*ForecastedEvent) *ForecastGeofenceEventsOutput {
+	s.ForecastedEvents = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ForecastGeofenceEventsOutput) SetNextToken(v string) *ForecastGeofenceEventsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSpeedUnit sets the SpeedUnit field's value.
+func (s *ForecastGeofenceEventsOutput) SetSpeedUnit(v string) *ForecastGeofenceEventsOutput {
+	s.SpeedUnit = &v
+	return s
+}
+
+// A forecasted event represents a geofence event in relation to the requested
+// device state, that may occur given the provided device state and time horizon.
+type ForecastedEvent struct {
+	_ struct{} `type:"structure"`
+
+	// The forecasted event identifier.
+	//
+	// EventId is a required field
+	EventId *string `type:"string" required:"true"`
+
+	// The event type, forecasting three states for which a device can be in relative
+	// to a geofence:
+	//
+	// ENTER: If a device is outside of a geofence, but would breach the fence if
+	// the device is moving at its current speed within time horizon window.
+	//
+	// EXIT: If a device is inside of a geofence, but would breach the fence if
+	// the device is moving at its current speed within time horizon window.
+	//
+	// IDLE: If a device is inside of a geofence, and the device is not moving.
+	//
+	// EventType is a required field
+	EventType *string `type:"string" required:"true" enum:"ForecastedGeofenceEventType"`
+
+	// The forecasted time the device will breach the geofence in ISO 8601 (https://www.iso.org/iso-8601-date-and-time-format.html)
+	// format: YYYY-MM-DDThh:mm:ss.sssZ
+	ForecastedBreachTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// The geofence identifier pertaining to the forecasted event.
+	//
+	// GeofenceId is a required field
+	GeofenceId *string `min:"1" type:"string" required:"true"`
+
+	// The geofence properties.
+	//
+	// GeofenceProperties is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ForecastedEvent's
+	// String and GoString methods.
+	GeofenceProperties map[string]*string `type:"map" sensitive:"true"`
+
+	// Indicates if the device is located within the geofence.
+	//
+	// IsDeviceInGeofence is a required field
+	IsDeviceInGeofence *bool `type:"boolean" required:"true"`
+
+	// The closest distance from the device's position to the geofence.
+	//
+	// NearestDistance is a required field
+	NearestDistance *float64 `type:"double" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ForecastedEvent) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ForecastedEvent) GoString() string {
+	return s.String()
+}
+
+// SetEventId sets the EventId field's value.
+func (s *ForecastedEvent) SetEventId(v string) *ForecastedEvent {
+	s.EventId = &v
+	return s
+}
+
+// SetEventType sets the EventType field's value.
+func (s *ForecastedEvent) SetEventType(v string) *ForecastedEvent {
+	s.EventType = &v
+	return s
+}
+
+// SetForecastedBreachTime sets the ForecastedBreachTime field's value.
+func (s *ForecastedEvent) SetForecastedBreachTime(v time.Time) *ForecastedEvent {
+	s.ForecastedBreachTime = &v
+	return s
+}
+
+// SetGeofenceId sets the GeofenceId field's value.
+func (s *ForecastedEvent) SetGeofenceId(v string) *ForecastedEvent {
+	s.GeofenceId = &v
+	return s
+}
+
+// SetGeofenceProperties sets the GeofenceProperties field's value.
+func (s *ForecastedEvent) SetGeofenceProperties(v map[string]*string) *ForecastedEvent {
+	s.GeofenceProperties = v
+	return s
+}
+
+// SetIsDeviceInGeofence sets the IsDeviceInGeofence field's value.
+func (s *ForecastedEvent) SetIsDeviceInGeofence(v bool) *ForecastedEvent {
+	s.IsDeviceInGeofence = &v
+	return s
+}
+
+// SetNearestDistance sets the NearestDistance field's value.
+func (s *ForecastedEvent) SetNearestDistance(v float64) *ForecastedEvent {
+	s.NearestDistance = &v
+	return s
+}
+
 // Contains the geofence geometry details.
 //
-// A geofence geometry is made up of either a polygon or a circle. Can be either
-// a polygon or a circle. Including both will return a validation error.
+// A geofence geometry is made up of either a polygon or a circle. Can be a
+// polygon, a circle or a polygon encoded in Geobuf format. Including multiple
+// selections will return a validation error.
 //
 // Amazon Location doesn't currently support polygons with holes, multipolygons,
 // polygons that are wound clockwise, or that cross the antimeridian.
@@ -12065,6 +12904,18 @@ type GeofenceGeometry struct {
 	// replaced with "sensitive" in string returned by GeofenceGeometry's
 	// String and GoString methods.
 	Circle *Circle `type:"structure" sensitive:"true"`
+
+	// Geobuf is a compact binary encoding for geographic data that provides lossless
+	// compression of GeoJSON polygons. The Geobuf must be Base64-encoded.
+	//
+	// A polygon in Geobuf format can have up to 100,000 vertices.
+	//
+	// Geobuf is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GeofenceGeometry's
+	// String and GoString methods.
+	//
+	// Geobuf is automatically base64 encoded/decoded by the SDK.
+	Geobuf []byte `type:"blob" sensitive:"true"`
 
 	// A polygon is a list of linear rings which are each made up of a list of vertices.
 	//
@@ -12124,6 +12975,12 @@ func (s *GeofenceGeometry) Validate() error {
 // SetCircle sets the Circle field's value.
 func (s *GeofenceGeometry) SetCircle(v *Circle) *GeofenceGeometry {
 	s.Circle = v
+	return s
+}
+
+// SetGeobuf sets the Geobuf field's value.
+func (s *GeofenceGeometry) SetGeobuf(v []byte) *GeofenceGeometry {
+	s.Geobuf = v
 	return s
 }
 
@@ -12393,8 +13250,8 @@ type GetDevicePositionOutput struct {
 	// String and GoString methods.
 	PositionProperties map[string]*string `type:"map" sensitive:"true"`
 
-	// The timestamp for when the tracker resource received the device position
-	// in ISO 8601 (https://www.iso.org/iso-8601-date-and-time-format.html) format:
+	// The timestamp for when the tracker resource received the device position.
+	// Uses ISO 8601 (https://www.iso.org/iso-8601-date-and-time-format.html) format:
 	// YYYY-MM-DDThh:mm:ss.sssZ.
 	//
 	// ReceivedTime is a required field
@@ -12653,8 +13510,7 @@ type GetMapGlyphsInput struct {
 	//
 	//    * VectorEsriStreets – Arial Regular | Arial Italic | Arial Bold
 	//
-	//    * VectorEsriNavigation – Arial Regular | Arial Italic | Arial Bold |
-	//    Arial Unicode MS Bold | Arial Unicode MS Regular
+	//    * VectorEsriNavigation – Arial Regular | Arial Italic | Arial Bold
 	//
 	// Valid font stacks for HERE Technologies (https://docs.aws.amazon.com/location/latest/developerguide/HERE.html)
 	// styles:
@@ -13285,32 +14141,6 @@ type GetPlaceInput struct {
 
 	// The identifier of the place to find.
 	//
-	// While you can use PlaceID in subsequent requests, PlaceID is not intended
-	// to be a permanent identifier and the ID can change between consecutive API
-	// calls. Please see the following PlaceID behaviour for each data provider:
-	//
-	//    * Esri: Place IDs will change every quarter at a minimum. The typical
-	//    time period for these changes would be March, June, September, and December.
-	//    Place IDs might also change between the typical quarterly change but that
-	//    will be much less frequent.
-	//
-	//    * HERE: We recommend that you cache data for no longer than a week to
-	//    keep your data data fresh. You can assume that less than 1% ID shifts
-	//    will release over release which is approximately 1 - 2 times per week.
-	//
-	//    * Grab: Place IDs can expire or become invalid in the following situations.
-	//    Data operations: The POI may be removed from Grab POI database by Grab
-	//    Map Ops based on the ground-truth, such as being closed in the real world,
-	//    being detected as a duplicate POI, or having incorrect information. Grab
-	//    will synchronize data to the Waypoint environment on weekly basis. Interpolated
-	//    POI: Interpolated POI is a temporary POI generated in real time when serving
-	//    a request, and it will be marked as derived in the place.result_type field
-	//    in the response. The information of interpolated POIs will be retained
-	//    for at least 30 days, which means that within 30 days, you are able to
-	//    obtain POI details by Place ID from Place Details API. After 30 days,
-	//    the interpolated POIs(both Place ID and details) may expire and inaccessible
-	//    from the Places Details API.
-	//
 	// PlaceId is a required field
 	PlaceId *string `location:"uri" locationName:"PlaceId" type:"string" required:"true"`
 }
@@ -13412,6 +14242,74 @@ func (s GetPlaceOutput) GoString() string {
 // SetPlace sets the Place field's value.
 func (s *GetPlaceOutput) SetPlace(v *Place) *GetPlaceOutput {
 	s.Place = v
+	return s
+}
+
+// The inferred state of the device, given the provided position, IP address,
+// cellular signals, and Wi-Fi- access points.
+type InferredState struct {
+	_ struct{} `type:"structure"`
+
+	// The level of certainty of the inferred position.
+	Accuracy *PositionalAccuracy `type:"structure"`
+
+	// The distance between the inferred position and the device's self-reported
+	// position.
+	DeviationDistance *float64 `type:"double"`
+
+	// The device position inferred by the provided position, IP address, cellular
+	// signals, and Wi-Fi- access points.
+	//
+	// Position is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by InferredState's
+	// String and GoString methods.
+	Position []*float64 `min:"2" type:"list" sensitive:"true"`
+
+	// Indicates if a proxy was used.
+	//
+	// ProxyDetected is a required field
+	ProxyDetected *bool `type:"boolean" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InferredState) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InferredState) GoString() string {
+	return s.String()
+}
+
+// SetAccuracy sets the Accuracy field's value.
+func (s *InferredState) SetAccuracy(v *PositionalAccuracy) *InferredState {
+	s.Accuracy = v
+	return s
+}
+
+// SetDeviationDistance sets the DeviationDistance field's value.
+func (s *InferredState) SetDeviationDistance(v float64) *InferredState {
+	s.DeviationDistance = &v
+	return s
+}
+
+// SetPosition sets the Position field's value.
+func (s *InferredState) SetPosition(v []*float64) *InferredState {
+	s.Position = v
+	return s
+}
+
+// SetProxyDetected sets the ProxyDetected field's value.
+func (s *InferredState) SetProxyDetected(v bool) *InferredState {
+	s.ProxyDetected = &v
 	return s
 }
 
@@ -13969,6 +14867,9 @@ func (s *ListGeofenceCollectionsOutput) SetNextToken(v string) *ListGeofenceColl
 }
 
 // Contains the geofence collection details.
+//
+// The returned geometry will always match the geometry format used when the
+// geofence was created.
 type ListGeofenceCollectionsResponseEntry struct {
 	_ struct{} `type:"structure"`
 
@@ -14060,6 +14961,9 @@ func (s *ListGeofenceCollectionsResponseEntry) SetUpdateTime(v time.Time) *ListG
 }
 
 // Contains a list of geofences stored in a given geofence collection.
+//
+// The returned geometry will always match the geometry format used when the
+// geofence was created.
 type ListGeofenceResponseEntry struct {
 	_ struct{} `type:"structure"`
 
@@ -15507,6 +16411,334 @@ func (s *ListTrackersResponseEntry) SetUpdateTime(v time.Time) *ListTrackersResp
 	return s
 }
 
+// Details about the Long-Term Evolution (LTE) network.
+type LteCellDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The E-UTRAN Cell Identifier (ECI).
+	//
+	// CellId is a required field
+	CellId *int64 `type:"integer" required:"true"`
+
+	// The LTE local identification information (local ID).
+	LocalId *LteLocalId `type:"structure"`
+
+	// The Mobile Country Code (MCC).
+	//
+	// Mcc is a required field
+	Mcc *int64 `min:"200" type:"integer" required:"true"`
+
+	// The Mobile Network Code (MNC)
+	//
+	// Mnc is a required field
+	Mnc *int64 `type:"integer" required:"true"`
+
+	// The network measurements.
+	NetworkMeasurements []*LteNetworkMeasurements `min:"1" type:"list"`
+
+	// Indicates whether the LTE object is capable of supporting NR (new radio).
+	NrCapable *bool `type:"boolean"`
+
+	// Signal power of the reference signal received, measured in decibel-milliwatts
+	// (dBm).
+	Rsrp *int64 `type:"integer"`
+
+	// Signal quality of the reference Signal received, measured in decibels (dB).
+	Rsrq *float64 `type:"float"`
+
+	// LTE Tracking Area Code (TAC).
+	Tac *int64 `type:"integer"`
+
+	// Timing Advance (TA).
+	TimingAdvance *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LteCellDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LteCellDetails) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *LteCellDetails) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LteCellDetails"}
+	if s.CellId == nil {
+		invalidParams.Add(request.NewErrParamRequired("CellId"))
+	}
+	if s.Mcc == nil {
+		invalidParams.Add(request.NewErrParamRequired("Mcc"))
+	}
+	if s.Mcc != nil && *s.Mcc < 200 {
+		invalidParams.Add(request.NewErrParamMinValue("Mcc", 200))
+	}
+	if s.Mnc == nil {
+		invalidParams.Add(request.NewErrParamRequired("Mnc"))
+	}
+	if s.NetworkMeasurements != nil && len(s.NetworkMeasurements) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NetworkMeasurements", 1))
+	}
+	if s.Rsrp != nil && *s.Rsrp < -140 {
+		invalidParams.Add(request.NewErrParamMinValue("Rsrp", -140))
+	}
+	if s.Rsrq != nil && *s.Rsrq < -19.5 {
+		invalidParams.Add(request.NewErrParamMinValue("Rsrq", -19.5))
+	}
+	if s.LocalId != nil {
+		if err := s.LocalId.Validate(); err != nil {
+			invalidParams.AddNested("LocalId", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.NetworkMeasurements != nil {
+		for i, v := range s.NetworkMeasurements {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "NetworkMeasurements", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCellId sets the CellId field's value.
+func (s *LteCellDetails) SetCellId(v int64) *LteCellDetails {
+	s.CellId = &v
+	return s
+}
+
+// SetLocalId sets the LocalId field's value.
+func (s *LteCellDetails) SetLocalId(v *LteLocalId) *LteCellDetails {
+	s.LocalId = v
+	return s
+}
+
+// SetMcc sets the Mcc field's value.
+func (s *LteCellDetails) SetMcc(v int64) *LteCellDetails {
+	s.Mcc = &v
+	return s
+}
+
+// SetMnc sets the Mnc field's value.
+func (s *LteCellDetails) SetMnc(v int64) *LteCellDetails {
+	s.Mnc = &v
+	return s
+}
+
+// SetNetworkMeasurements sets the NetworkMeasurements field's value.
+func (s *LteCellDetails) SetNetworkMeasurements(v []*LteNetworkMeasurements) *LteCellDetails {
+	s.NetworkMeasurements = v
+	return s
+}
+
+// SetNrCapable sets the NrCapable field's value.
+func (s *LteCellDetails) SetNrCapable(v bool) *LteCellDetails {
+	s.NrCapable = &v
+	return s
+}
+
+// SetRsrp sets the Rsrp field's value.
+func (s *LteCellDetails) SetRsrp(v int64) *LteCellDetails {
+	s.Rsrp = &v
+	return s
+}
+
+// SetRsrq sets the Rsrq field's value.
+func (s *LteCellDetails) SetRsrq(v float64) *LteCellDetails {
+	s.Rsrq = &v
+	return s
+}
+
+// SetTac sets the Tac field's value.
+func (s *LteCellDetails) SetTac(v int64) *LteCellDetails {
+	s.Tac = &v
+	return s
+}
+
+// SetTimingAdvance sets the TimingAdvance field's value.
+func (s *LteCellDetails) SetTimingAdvance(v int64) *LteCellDetails {
+	s.TimingAdvance = &v
+	return s
+}
+
+// LTE local identification information (local ID).
+type LteLocalId struct {
+	_ struct{} `type:"structure"`
+
+	// E-UTRA (Evolved Universal Terrestrial Radio Access) absolute radio frequency
+	// channel number (EARFCN).
+	//
+	// Earfcn is a required field
+	Earfcn *int64 `type:"integer" required:"true"`
+
+	// Physical Cell ID (PCI).
+	//
+	// Pci is a required field
+	Pci *int64 `type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LteLocalId) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LteLocalId) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *LteLocalId) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LteLocalId"}
+	if s.Earfcn == nil {
+		invalidParams.Add(request.NewErrParamRequired("Earfcn"))
+	}
+	if s.Pci == nil {
+		invalidParams.Add(request.NewErrParamRequired("Pci"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEarfcn sets the Earfcn field's value.
+func (s *LteLocalId) SetEarfcn(v int64) *LteLocalId {
+	s.Earfcn = &v
+	return s
+}
+
+// SetPci sets the Pci field's value.
+func (s *LteLocalId) SetPci(v int64) *LteLocalId {
+	s.Pci = &v
+	return s
+}
+
+// LTE network measurements.
+type LteNetworkMeasurements struct {
+	_ struct{} `type:"structure"`
+
+	// E-UTRAN Cell Identifier (ECI).
+	//
+	// CellId is a required field
+	CellId *int64 `type:"integer" required:"true"`
+
+	// E-UTRA (Evolved Universal Terrestrial Radio Access) absolute radio frequency
+	// channel number (EARFCN).
+	//
+	// Earfcn is a required field
+	Earfcn *int64 `type:"integer" required:"true"`
+
+	// Physical Cell ID (PCI).
+	//
+	// Pci is a required field
+	Pci *int64 `type:"integer" required:"true"`
+
+	// Signal power of the reference signal received, measured in dBm (decibel-milliwatts).
+	Rsrp *int64 `type:"integer"`
+
+	// Signal quality of the reference Signal received, measured in decibels (dB).
+	Rsrq *float64 `type:"float"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LteNetworkMeasurements) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LteNetworkMeasurements) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *LteNetworkMeasurements) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LteNetworkMeasurements"}
+	if s.CellId == nil {
+		invalidParams.Add(request.NewErrParamRequired("CellId"))
+	}
+	if s.Earfcn == nil {
+		invalidParams.Add(request.NewErrParamRequired("Earfcn"))
+	}
+	if s.Pci == nil {
+		invalidParams.Add(request.NewErrParamRequired("Pci"))
+	}
+	if s.Rsrp != nil && *s.Rsrp < -140 {
+		invalidParams.Add(request.NewErrParamMinValue("Rsrp", -140))
+	}
+	if s.Rsrq != nil && *s.Rsrq < -19.5 {
+		invalidParams.Add(request.NewErrParamMinValue("Rsrq", -19.5))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCellId sets the CellId field's value.
+func (s *LteNetworkMeasurements) SetCellId(v int64) *LteNetworkMeasurements {
+	s.CellId = &v
+	return s
+}
+
+// SetEarfcn sets the Earfcn field's value.
+func (s *LteNetworkMeasurements) SetEarfcn(v int64) *LteNetworkMeasurements {
+	s.Earfcn = &v
+	return s
+}
+
+// SetPci sets the Pci field's value.
+func (s *LteNetworkMeasurements) SetPci(v int64) *LteNetworkMeasurements {
+	s.Pci = &v
+	return s
+}
+
+// SetRsrp sets the Rsrp field's value.
+func (s *LteNetworkMeasurements) SetRsrp(v int64) *LteNetworkMeasurements {
+	s.Rsrp = &v
+	return s
+}
+
+// SetRsrq sets the Rsrq field's value.
+func (s *LteNetworkMeasurements) SetRsrq(v float64) *LteNetworkMeasurements {
+	s.Rsrq = &v
+	return s
+}
+
 // Specifies the map tile style selected from an available provider.
 type MapConfiguration struct {
 	_ struct{} `type:"structure"`
@@ -15515,8 +16747,8 @@ type MapConfiguration struct {
 	// custom layer, or, for styles that support custom layers, you can enable layer(s),
 	// such as POI layer for the VectorEsriNavigation style. Default is unset.
 	//
-	// Currenlty only VectorEsriNavigation supports CustomLayers. For more information,
-	// see Custom Layers (https://docs.aws.amazon.com/location/latest/developerguide/map-concepts.html#map-custom-layers).
+	// Not all map resources or styles support custom layers. See Custom Layers
+	// for more information.
 	CustomLayers []*string `type:"list"`
 
 	// Specifies the political view for the style. Leave unset to not use a political
@@ -15534,12 +16766,10 @@ type MapConfiguration struct {
 	//
 	// Valid Esri map styles (https://docs.aws.amazon.com/location/latest/developerguide/esri.html):
 	//
-	//    * VectorEsriNavigation – The Esri Navigation map style, which provides
-	//    a detailed basemap for the world symbolized with a custom navigation map
-	//    style that's designed for use during the day in mobile devices. It also
-	//    includes a richer set of places, such as shops, services, restaurants,
-	//    attractions, and other points of interest. Enable the POI layer by setting
-	//    it in CustomLayers to leverage the additional places data.
+	//    * VectorEsriDarkGrayCanvas – The Esri Dark Gray Canvas map style. A
+	//    vector basemap with a dark gray, neutral background with minimal colors,
+	//    labels, and features that's designed to draw attention to your thematic
+	//    content.
 	//
 	//    * RasterEsriImagery – The Esri Imagery map style. A raster basemap that
 	//    provides one meter or better satellite and aerial imagery in many parts
@@ -15558,16 +16788,26 @@ type MapConfiguration struct {
 	//    style. The vector tile layer is similar in content and style to the World
 	//    Street Map raster map.
 	//
-	//    * VectorEsriDarkGrayCanvas – The Esri Dark Gray Canvas map style. A
-	//    vector basemap with a dark gray, neutral background with minimal colors,
-	//    labels, and features that's designed to draw attention to your thematic
-	//    content.
+	//    * VectorEsriNavigation – The Esri Navigation map style, which provides
+	//    a detailed basemap for the world symbolized with a custom navigation map
+	//    style that's designed for use during the day in mobile devices.
 	//
 	// Valid HERE Technologies map styles (https://docs.aws.amazon.com/location/latest/developerguide/HERE.html):
+	//
+	//    * VectorHereContrast – The HERE Contrast (Berlin) map style is a high
+	//    contrast detailed base map of the world that blends 3D and 2D rendering.
+	//    The VectorHereContrast style has been renamed from VectorHereBerlin. VectorHereBerlin
+	//    has been deprecated, but will continue to work in applications that use
+	//    it.
 	//
 	//    * VectorHereExplore – A default HERE map style containing a neutral,
 	//    global map and its features including roads, buildings, landmarks, and
 	//    water features. It also now includes a fully designed map of Japan.
+	//
+	//    * VectorHereExploreTruck – A global map containing truck restrictions
+	//    and attributes (e.g. width / height / HAZMAT) symbolized with highlighted
+	//    segments and icons on top of HERE Explore to support use cases within
+	//    transport and logistics.
 	//
 	//    * RasterHereExploreSatellite – A global map containing high resolution
 	//    satellite imagery.
@@ -15579,17 +16819,6 @@ type MapConfiguration struct {
 	//    and raster tiles when rendering the map that you see. This means that
 	//    more tiles are retrieved than when using either vector or raster tiles
 	//    alone. Your charges will include all tiles retrieved.
-	//
-	//    * VectorHereContrast – The HERE Contrast (Berlin) map style is a high
-	//    contrast detailed base map of the world that blends 3D and 2D rendering.
-	//    The VectorHereContrast style has been renamed from VectorHereBerlin. VectorHereBerlin
-	//    has been deprecated, but will continue to work in applications that use
-	//    it.
-	//
-	//    * VectorHereExploreTruck – A global map containing truck restrictions
-	//    and attributes (e.g. width / height / HAZMAT) symbolized with highlighted
-	//    segments and icons on top of HERE Explore to support use cases within
-	//    transport and logistics.
 	//
 	// Valid GrabMaps map styles (https://docs.aws.amazon.com/location/latest/developerguide/grab.html):
 	//
@@ -15693,8 +16922,8 @@ type MapConfigurationUpdate struct {
 	// custom layer, or, for styles that support custom layers, you can enable layer(s),
 	// such as POI layer for the VectorEsriNavigation style. Default is unset.
 	//
-	// Currenlty only VectorEsriNavigation supports CustomLayers. For more information,
-	// see Custom Layers (https://docs.aws.amazon.com/location/latest/developerguide/map-concepts.html#map-custom-layers).
+	// Not all map resources or styles support custom layers. See Custom Layers
+	// for more information.
 	CustomLayers []*string `type:"list"`
 
 	// Specifies the political view for the style. Set to an empty string to not
@@ -15800,11 +17029,8 @@ type Place struct {
 	// An area that's part of a larger municipality. For example, Blissville is
 	// a submunicipality in the Queen County in New York.
 	//
-	// This property is only returned for a place index that uses Esri as a data
-	// provider. The property is represented as a district.
-	//
-	// For more information about data providers, see Amazon Location Service data
-	// providers (https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html).
+	// This property supported by Esri and OpenData. The Esri property is district,
+	// and the OpenData property is borough.
 	SubMunicipality *string `type:"string"`
 
 	// A county, or an area that's part of a larger region. For example, Metro Vancouver.
@@ -15821,14 +17047,13 @@ type Place struct {
 	// For addresses with multiple units, the unit identifier. Can include numbers
 	// and letters, for example 3B or Unit 123.
 	//
-	// This property is returned only for a place index that uses Esri or Grab as
-	// a data provider. It is not returned for SearchPlaceIndexForPosition.
+	// Returned only for a place index that uses Esri or Grab as a data provider.
+	// Is not returned for SearchPlaceIndexForPosition.
 	UnitNumber *string `type:"string"`
 
 	// For addresses with a UnitNumber, the type of unit. For example, Apartment.
 	//
-	// This property is returned only for a place index that uses Esri as a data
-	// provider.
+	// Returned only for a place index that uses Esri as a data provider.
 	UnitType *string `type:"string"`
 }
 
@@ -16065,11 +17290,13 @@ type PutGeofenceInput struct {
 	// String and GoString methods.
 	GeofenceProperties map[string]*string `type:"map" sensitive:"true"`
 
-	// Contains the details to specify the position of the geofence. Can be either
-	// a polygon or a circle. Including both will return a validation error.
+	// Contains the details to specify the position of the geofence. Can be a polygon,
+	// a circle or a polygon encoded in Geobuf format. Including multiple selections
+	// will return a validation error.
 	//
-	// Each geofence polygon (https://docs.aws.amazon.com/location-geofences/latest/APIReference/API_GeofenceGeometry.html)
-	// can have a maximum of 1,000 vertices.
+	// The geofence polygon (https://docs.aws.amazon.com/location-geofences/latest/APIReference/API_GeofenceGeometry.html)
+	// format supports a maximum of 1,000 vertices. The Geofence Geobuf (https://docs.aws.amazon.com/location-geofences/latest/APIReference/API_GeofenceGeometry.html)
+	// format supports a maximum of 100,000 vertices.
 	//
 	// Geometry is a required field
 	Geometry *GeofenceGeometry `type:"structure" required:"true"`
@@ -16466,32 +17693,6 @@ type SearchForSuggestionsResult struct {
 	//
 	// For SearchPlaceIndexForSuggestions operations, the PlaceId is returned by
 	// place indexes that use Esri, Grab, or HERE as data providers.
-	//
-	// While you can use PlaceID in subsequent requests, PlaceID is not intended
-	// to be a permanent identifier and the ID can change between consecutive API
-	// calls. Please see the following PlaceID behaviour for each data provider:
-	//
-	//    * Esri: Place IDs will change every quarter at a minimum. The typical
-	//    time period for these changes would be March, June, September, and December.
-	//    Place IDs might also change between the typical quarterly change but that
-	//    will be much less frequent.
-	//
-	//    * HERE: We recommend that you cache data for no longer than a week to
-	//    keep your data data fresh. You can assume that less than 1% ID shifts
-	//    will release over release which is approximately 1 - 2 times per week.
-	//
-	//    * Grab: Place IDs can expire or become invalid in the following situations.
-	//    Data operations: The POI may be removed from Grab POI database by Grab
-	//    Map Ops based on the ground-truth, such as being closed in the real world,
-	//    being detected as a duplicate POI, or having incorrect information. Grab
-	//    will synchronize data to the Waypoint environment on weekly basis. Interpolated
-	//    POI: Interpolated POI is a temporary POI generated in real time when serving
-	//    a request, and it will be marked as derived in the place.result_type field
-	//    in the response. The information of interpolated POIs will be retained
-	//    for at least 30 days, which means that within 30 days, you are able to
-	//    obtain POI details by Place ID from Place Details API. After 30 days,
-	//    the interpolated POIs(both Place ID and details) may expire and inaccessible
-	//    from the Places Details API.
 	PlaceId *string `type:"string"`
 
 	// Categories from the data provider that describe the Place that are not mapped
@@ -19357,6 +20558,234 @@ func (s *ValidationExceptionField) SetName(v string) *ValidationExceptionField {
 	return s
 }
 
+type VerifyDevicePositionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The device's state, including position, IP address, cell signals and Wi-Fi
+	// access points.
+	//
+	// DeviceState is a required field
+	DeviceState *DeviceState `type:"structure" required:"true"`
+
+	// The distance unit for the verification request.
+	//
+	// Default Value: Kilometers
+	DistanceUnit *string `type:"string" enum:"DistanceUnit"`
+
+	// The name of the tracker resource to be associated with verification request.
+	//
+	// TrackerName is a required field
+	TrackerName *string `location:"uri" locationName:"TrackerName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VerifyDevicePositionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VerifyDevicePositionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *VerifyDevicePositionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "VerifyDevicePositionInput"}
+	if s.DeviceState == nil {
+		invalidParams.Add(request.NewErrParamRequired("DeviceState"))
+	}
+	if s.TrackerName == nil {
+		invalidParams.Add(request.NewErrParamRequired("TrackerName"))
+	}
+	if s.TrackerName != nil && len(*s.TrackerName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TrackerName", 1))
+	}
+	if s.DeviceState != nil {
+		if err := s.DeviceState.Validate(); err != nil {
+			invalidParams.AddNested("DeviceState", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDeviceState sets the DeviceState field's value.
+func (s *VerifyDevicePositionInput) SetDeviceState(v *DeviceState) *VerifyDevicePositionInput {
+	s.DeviceState = v
+	return s
+}
+
+// SetDistanceUnit sets the DistanceUnit field's value.
+func (s *VerifyDevicePositionInput) SetDistanceUnit(v string) *VerifyDevicePositionInput {
+	s.DistanceUnit = &v
+	return s
+}
+
+// SetTrackerName sets the TrackerName field's value.
+func (s *VerifyDevicePositionInput) SetTrackerName(v string) *VerifyDevicePositionInput {
+	s.TrackerName = &v
+	return s
+}
+
+type VerifyDevicePositionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The device identifier.
+	//
+	// DeviceId is a required field
+	DeviceId *string `min:"1" type:"string" required:"true"`
+
+	// The distance unit for the verification response.
+	//
+	// DistanceUnit is a required field
+	DistanceUnit *string `type:"string" required:"true" enum:"DistanceUnit"`
+
+	// The inferred state of the device, given the provided position, IP address,
+	// cellular signals, and Wi-Fi- access points.
+	//
+	// InferredState is a required field
+	InferredState *InferredState `type:"structure" required:"true"`
+
+	// The timestamp for when the tracker resource received the device position
+	// in ISO 8601 (https://www.iso.org/iso-8601-date-and-time-format.html) format:
+	// YYYY-MM-DDThh:mm:ss.sssZ.
+	//
+	// ReceivedTime is a required field
+	ReceivedTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// The timestamp at which the device's position was determined. Uses ISO 8601
+	// (https://www.iso.org/iso-8601-date-and-time-format.html) format: YYYY-MM-DDThh:mm:ss.sssZ.
+	//
+	// SampleTime is a required field
+	SampleTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VerifyDevicePositionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VerifyDevicePositionOutput) GoString() string {
+	return s.String()
+}
+
+// SetDeviceId sets the DeviceId field's value.
+func (s *VerifyDevicePositionOutput) SetDeviceId(v string) *VerifyDevicePositionOutput {
+	s.DeviceId = &v
+	return s
+}
+
+// SetDistanceUnit sets the DistanceUnit field's value.
+func (s *VerifyDevicePositionOutput) SetDistanceUnit(v string) *VerifyDevicePositionOutput {
+	s.DistanceUnit = &v
+	return s
+}
+
+// SetInferredState sets the InferredState field's value.
+func (s *VerifyDevicePositionOutput) SetInferredState(v *InferredState) *VerifyDevicePositionOutput {
+	s.InferredState = v
+	return s
+}
+
+// SetReceivedTime sets the ReceivedTime field's value.
+func (s *VerifyDevicePositionOutput) SetReceivedTime(v time.Time) *VerifyDevicePositionOutput {
+	s.ReceivedTime = &v
+	return s
+}
+
+// SetSampleTime sets the SampleTime field's value.
+func (s *VerifyDevicePositionOutput) SetSampleTime(v time.Time) *VerifyDevicePositionOutput {
+	s.SampleTime = &v
+	return s
+}
+
+// Wi-Fi access point.
+type WiFiAccessPoint struct {
+	_ struct{} `type:"structure"`
+
+	// Medium access control address (Mac).
+	//
+	// MacAddress is a required field
+	MacAddress *string `min:"12" type:"string" required:"true"`
+
+	// Received signal strength (dBm) of the WLAN measurement data.
+	//
+	// Rss is a required field
+	Rss *int64 `type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WiFiAccessPoint) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WiFiAccessPoint) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *WiFiAccessPoint) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "WiFiAccessPoint"}
+	if s.MacAddress == nil {
+		invalidParams.Add(request.NewErrParamRequired("MacAddress"))
+	}
+	if s.MacAddress != nil && len(*s.MacAddress) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("MacAddress", 12))
+	}
+	if s.Rss == nil {
+		invalidParams.Add(request.NewErrParamRequired("Rss"))
+	}
+	if s.Rss != nil && *s.Rss < -128 {
+		invalidParams.Add(request.NewErrParamMinValue("Rss", -128))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMacAddress sets the MacAddress field's value.
+func (s *WiFiAccessPoint) SetMacAddress(v string) *WiFiAccessPoint {
+	s.MacAddress = &v
+	return s
+}
+
+// SetRss sets the Rss field's value.
+func (s *WiFiAccessPoint) SetRss(v int64) *WiFiAccessPoint {
+	s.Rss = &v
+	return s
+}
+
 const (
 	// BatchItemErrorCodeAccessDeniedError is a BatchItemErrorCode enum value
 	BatchItemErrorCodeAccessDeniedError = "AccessDeniedError"
@@ -19418,6 +20847,26 @@ func DistanceUnit_Values() []string {
 	return []string{
 		DistanceUnitKilometers,
 		DistanceUnitMiles,
+	}
+}
+
+const (
+	// ForecastedGeofenceEventTypeEnter is a ForecastedGeofenceEventType enum value
+	ForecastedGeofenceEventTypeEnter = "ENTER"
+
+	// ForecastedGeofenceEventTypeExit is a ForecastedGeofenceEventType enum value
+	ForecastedGeofenceEventTypeExit = "EXIT"
+
+	// ForecastedGeofenceEventTypeIdle is a ForecastedGeofenceEventType enum value
+	ForecastedGeofenceEventTypeIdle = "IDLE"
+)
+
+// ForecastedGeofenceEventType_Values returns all elements of the ForecastedGeofenceEventType enum
+func ForecastedGeofenceEventType_Values() []string {
+	return []string{
+		ForecastedGeofenceEventTypeEnter,
+		ForecastedGeofenceEventTypeExit,
+		ForecastedGeofenceEventTypeIdle,
 	}
 }
 
@@ -19522,6 +20971,22 @@ func RouteMatrixErrorCode_Values() []string {
 		RouteMatrixErrorCodeDestinationPositionNotFound,
 		RouteMatrixErrorCodeDeparturePositionNotFound,
 		RouteMatrixErrorCodeOtherValidationError,
+	}
+}
+
+const (
+	// SpeedUnitKilometersPerHour is a SpeedUnit enum value
+	SpeedUnitKilometersPerHour = "KilometersPerHour"
+
+	// SpeedUnitMilesPerHour is a SpeedUnit enum value
+	SpeedUnitMilesPerHour = "MilesPerHour"
+)
+
+// SpeedUnit_Values returns all elements of the SpeedUnit enum
+func SpeedUnit_Values() []string {
+	return []string{
+		SpeedUnitKilometersPerHour,
+		SpeedUnitMilesPerHour,
 	}
 }
 

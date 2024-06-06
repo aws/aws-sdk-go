@@ -12488,7 +12488,8 @@
         "ViewExpandedText":{"shape":"ViewTextString"},
         "TableType":{"shape":"TableTypeString"},
         "Parameters":{"shape":"ParametersMap"},
-        "TargetTable":{"shape":"TableIdentifier"}
+        "TargetTable":{"shape":"TableIdentifier"},
+        "ViewDefinition":{"shape":"ViewDefinitionInput"}
       }
     },
     "TableList":{
@@ -13372,7 +13373,9 @@
         "TableInput":{"shape":"TableInput"},
         "SkipArchive":{"shape":"BooleanNullable"},
         "TransactionId":{"shape":"TransactionIdString"},
-        "VersionId":{"shape":"VersionString"}
+        "VersionId":{"shape":"VersionString"},
+        "ViewUpdateAction":{"shape":"ViewUpdateAction"},
+        "Force":{"shape":"Boolean"}
       }
     },
     "UpdateTableResponse":{
@@ -13532,6 +13535,15 @@
         "Representations":{"shape":"ViewRepresentationList"}
       }
     },
+    "ViewDefinitionInput":{
+      "type":"structure",
+      "members":{
+        "IsProtected":{"shape":"NullableBoolean"},
+        "Definer":{"shape":"ArnString"},
+        "Representations":{"shape":"ViewRepresentationInputList"},
+        "SubObjects":{"shape":"ViewSubObjectsList"}
+      }
+    },
     "ViewDialect":{
       "type":"string",
       "enum":[
@@ -13552,8 +13564,25 @@
         "DialectVersion":{"shape":"ViewDialectVersionString"},
         "ViewOriginalText":{"shape":"ViewTextString"},
         "ViewExpandedText":{"shape":"ViewTextString"},
+        "ValidationConnection":{"shape":"NameString"},
         "IsStale":{"shape":"NullableBoolean"}
       }
+    },
+    "ViewRepresentationInput":{
+      "type":"structure",
+      "members":{
+        "Dialect":{"shape":"ViewDialect"},
+        "DialectVersion":{"shape":"ViewDialectVersionString"},
+        "ViewOriginalText":{"shape":"ViewTextString"},
+        "ValidationConnection":{"shape":"NameString"},
+        "ViewExpandedText":{"shape":"ViewTextString"}
+      }
+    },
+    "ViewRepresentationInputList":{
+      "type":"list",
+      "member":{"shape":"ViewRepresentationInput"},
+      "max":10,
+      "min":1
     },
     "ViewRepresentationList":{
       "type":"list",
@@ -13570,6 +13599,15 @@
     "ViewTextString":{
       "type":"string",
       "max":409600
+    },
+    "ViewUpdateAction":{
+      "type":"string",
+      "enum":[
+        "ADD",
+        "REPLACE",
+        "ADD_OR_REPLACE",
+        "DROP"
+      ]
     },
     "WorkerType":{
       "type":"string",

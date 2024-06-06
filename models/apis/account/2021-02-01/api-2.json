@@ -12,6 +12,24 @@
     "uid":"account-2021-02-01"
   },
   "operations":{
+    "AcceptPrimaryEmailUpdate":{
+      "name":"AcceptPrimaryEmailUpdate",
+      "http":{
+        "method":"POST",
+        "requestUri":"/acceptPrimaryEmailUpdate",
+        "responseCode":200
+      },
+      "input":{"shape":"AcceptPrimaryEmailUpdateRequest"},
+      "output":{"shape":"AcceptPrimaryEmailUpdateResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "DeleteAlternateContact":{
       "name":"DeleteAlternateContact",
       "http":{
@@ -95,6 +113,23 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "GetPrimaryEmail":{
+      "name":"GetPrimaryEmail",
+      "http":{
+        "method":"POST",
+        "requestUri":"/getPrimaryEmail",
+        "responseCode":200
+      },
+      "input":{"shape":"GetPrimaryEmailRequest"},
+      "output":{"shape":"GetPrimaryEmailResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "GetRegionOptStatus":{
       "name":"GetRegionOptStatus",
       "http":{
@@ -158,9 +193,46 @@
         {"shape":"InternalServerException"}
       ],
       "idempotent":true
+    },
+    "StartPrimaryEmailUpdate":{
+      "name":"StartPrimaryEmailUpdate",
+      "http":{
+        "method":"POST",
+        "requestUri":"/startPrimaryEmailUpdate",
+        "responseCode":200
+      },
+      "input":{"shape":"StartPrimaryEmailUpdateRequest"},
+      "output":{"shape":"StartPrimaryEmailUpdateResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InternalServerException"}
+      ]
     }
   },
   "shapes":{
+    "AcceptPrimaryEmailUpdateRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "Otp",
+        "PrimaryEmail"
+      ],
+      "members":{
+        "AccountId":{"shape":"AccountId"},
+        "Otp":{"shape":"Otp"},
+        "PrimaryEmail":{"shape":"PrimaryEmailAddress"}
+      }
+    },
+    "AcceptPrimaryEmailUpdateResponse":{
+      "type":"structure",
+      "members":{
+        "Status":{"shape":"PrimaryEmailUpdateStatus"}
+      }
+    },
     "AccessDeniedException":{
       "type":"structure",
       "required":["message"],
@@ -332,6 +404,19 @@
         "ContactInformation":{"shape":"ContactInformation"}
       }
     },
+    "GetPrimaryEmailRequest":{
+      "type":"structure",
+      "required":["AccountId"],
+      "members":{
+        "AccountId":{"shape":"AccountId"}
+      }
+    },
+    "GetPrimaryEmailResponse":{
+      "type":"structure",
+      "members":{
+        "PrimaryEmail":{"shape":"PrimaryEmailAddress"}
+      }
+    },
     "GetRegionOptStatusRequest":{
       "type":"structure",
       "required":["RegionName"],
@@ -391,6 +476,11 @@
       "min":1,
       "sensitive":true
     },
+    "Otp":{
+      "type":"string",
+      "pattern":"^[a-zA-Z0-9]{6}$",
+      "sensitive":true
+    },
     "PhoneNumber":{
       "type":"string",
       "max":25,
@@ -403,6 +493,19 @@
       "max":20,
       "min":1,
       "sensitive":true
+    },
+    "PrimaryEmailAddress":{
+      "type":"string",
+      "max":64,
+      "min":5,
+      "sensitive":true
+    },
+    "PrimaryEmailUpdateStatus":{
+      "type":"string",
+      "enum":[
+        "PENDING",
+        "ACCEPTED"
+      ]
     },
     "PutAlternateContactRequest":{
       "type":"structure",
@@ -475,6 +578,23 @@
     "SensitiveString":{
       "type":"string",
       "sensitive":true
+    },
+    "StartPrimaryEmailUpdateRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "PrimaryEmail"
+      ],
+      "members":{
+        "AccountId":{"shape":"AccountId"},
+        "PrimaryEmail":{"shape":"PrimaryEmailAddress"}
+      }
+    },
+    "StartPrimaryEmailUpdateResponse":{
+      "type":"structure",
+      "members":{
+        "Status":{"shape":"PrimaryEmailUpdateStatus"}
+      }
     },
     "StateOrRegion":{
       "type":"string",

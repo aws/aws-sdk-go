@@ -5,6 +5,7 @@
     "endpointPrefix":"firehose",
     "jsonVersion":"1.1",
     "protocol":"json",
+    "protocols":["json"],
     "serviceAbbreviation":"Firehose",
     "serviceFullName":"Amazon Kinesis Firehose",
     "serviceId":"Firehose",
@@ -1122,7 +1123,8 @@
         "RoleARN":{"shape":"RoleARN"},
         "RetryOptions":{"shape":"HttpEndpointRetryOptions"},
         "S3BackupMode":{"shape":"HttpEndpointS3BackupMode"},
-        "S3Configuration":{"shape":"S3DestinationConfiguration"}
+        "S3Configuration":{"shape":"S3DestinationConfiguration"},
+        "SecretsManagerConfiguration":{"shape":"SecretsManagerConfiguration"}
       }
     },
     "HttpEndpointDestinationDescription":{
@@ -1136,7 +1138,8 @@
         "RoleARN":{"shape":"RoleARN"},
         "RetryOptions":{"shape":"HttpEndpointRetryOptions"},
         "S3BackupMode":{"shape":"HttpEndpointS3BackupMode"},
-        "S3DestinationDescription":{"shape":"S3DestinationDescription"}
+        "S3DestinationDescription":{"shape":"S3DestinationDescription"},
+        "SecretsManagerConfiguration":{"shape":"SecretsManagerConfiguration"}
       }
     },
     "HttpEndpointDestinationUpdate":{
@@ -1150,7 +1153,8 @@
         "RoleARN":{"shape":"RoleARN"},
         "RetryOptions":{"shape":"HttpEndpointRetryOptions"},
         "S3BackupMode":{"shape":"HttpEndpointS3BackupMode"},
-        "S3Update":{"shape":"S3DestinationUpdate"}
+        "S3Update":{"shape":"S3DestinationUpdate"},
+        "SecretsManagerConfiguration":{"shape":"SecretsManagerConfiguration"}
       }
     },
     "HttpEndpointName":{
@@ -1640,8 +1644,6 @@
         "RoleARN",
         "ClusterJDBCURL",
         "CopyCommand",
-        "Username",
-        "Password",
         "S3Configuration"
       ],
       "members":{
@@ -1655,7 +1657,8 @@
         "ProcessingConfiguration":{"shape":"ProcessingConfiguration"},
         "S3BackupMode":{"shape":"RedshiftS3BackupMode"},
         "S3BackupConfiguration":{"shape":"S3DestinationConfiguration"},
-        "CloudWatchLoggingOptions":{"shape":"CloudWatchLoggingOptions"}
+        "CloudWatchLoggingOptions":{"shape":"CloudWatchLoggingOptions"},
+        "SecretsManagerConfiguration":{"shape":"SecretsManagerConfiguration"}
       }
     },
     "RedshiftDestinationDescription":{
@@ -1664,7 +1667,6 @@
         "RoleARN",
         "ClusterJDBCURL",
         "CopyCommand",
-        "Username",
         "S3DestinationDescription"
       ],
       "members":{
@@ -1677,7 +1679,8 @@
         "ProcessingConfiguration":{"shape":"ProcessingConfiguration"},
         "S3BackupMode":{"shape":"RedshiftS3BackupMode"},
         "S3BackupDescription":{"shape":"S3DestinationDescription"},
-        "CloudWatchLoggingOptions":{"shape":"CloudWatchLoggingOptions"}
+        "CloudWatchLoggingOptions":{"shape":"CloudWatchLoggingOptions"},
+        "SecretsManagerConfiguration":{"shape":"SecretsManagerConfiguration"}
       }
     },
     "RedshiftDestinationUpdate":{
@@ -1693,7 +1696,8 @@
         "ProcessingConfiguration":{"shape":"ProcessingConfiguration"},
         "S3BackupMode":{"shape":"RedshiftS3BackupMode"},
         "S3BackupUpdate":{"shape":"S3DestinationUpdate"},
-        "CloudWatchLoggingOptions":{"shape":"CloudWatchLoggingOptions"}
+        "CloudWatchLoggingOptions":{"shape":"CloudWatchLoggingOptions"},
+        "SecretsManagerConfiguration":{"shape":"SecretsManagerConfiguration"}
       }
     },
     "RedshiftRetryDurationInSeconds":{
@@ -1813,6 +1817,21 @@
         "VersionId":{"shape":"NonEmptyStringWithoutWhitespace"}
       }
     },
+    "SecretARN":{
+      "type":"string",
+      "max":2048,
+      "min":1,
+      "pattern":"arn:.*"
+    },
+    "SecretsManagerConfiguration":{
+      "type":"structure",
+      "required":["Enabled"],
+      "members":{
+        "SecretARN":{"shape":"SecretARN"},
+        "RoleARN":{"shape":"RoleARN"},
+        "Enabled":{"shape":"BooleanObject"}
+      }
+    },
     "SecurityGroupIdList":{
       "type":"list",
       "member":{"shape":"NonEmptyStringWithoutWhitespace"},
@@ -1870,8 +1889,6 @@
       "type":"structure",
       "required":[
         "AccountUrl",
-        "PrivateKey",
-        "User",
         "Database",
         "Schema",
         "Table",
@@ -1896,7 +1913,8 @@
         "RoleARN":{"shape":"RoleARN"},
         "RetryOptions":{"shape":"SnowflakeRetryOptions"},
         "S3BackupMode":{"shape":"SnowflakeS3BackupMode"},
-        "S3Configuration":{"shape":"S3DestinationConfiguration"}
+        "S3Configuration":{"shape":"S3DestinationConfiguration"},
+        "SecretsManagerConfiguration":{"shape":"SecretsManagerConfiguration"}
       }
     },
     "SnowflakeDestinationDescription":{
@@ -1917,7 +1935,8 @@
         "RoleARN":{"shape":"RoleARN"},
         "RetryOptions":{"shape":"SnowflakeRetryOptions"},
         "S3BackupMode":{"shape":"SnowflakeS3BackupMode"},
-        "S3DestinationDescription":{"shape":"S3DestinationDescription"}
+        "S3DestinationDescription":{"shape":"S3DestinationDescription"},
+        "SecretsManagerConfiguration":{"shape":"SecretsManagerConfiguration"}
       }
     },
     "SnowflakeDestinationUpdate":{
@@ -1939,7 +1958,8 @@
         "RoleARN":{"shape":"RoleARN"},
         "RetryOptions":{"shape":"SnowflakeRetryOptions"},
         "S3BackupMode":{"shape":"SnowflakeS3BackupMode"},
-        "S3Update":{"shape":"S3DestinationUpdate"}
+        "S3Update":{"shape":"S3DestinationUpdate"},
+        "SecretsManagerConfiguration":{"shape":"SecretsManagerConfiguration"}
       }
     },
     "SnowflakeKeyPassphrase":{
@@ -2053,7 +2073,6 @@
       "required":[
         "HECEndpoint",
         "HECEndpointType",
-        "HECToken",
         "S3Configuration"
       ],
       "members":{
@@ -2066,7 +2085,8 @@
         "S3Configuration":{"shape":"S3DestinationConfiguration"},
         "ProcessingConfiguration":{"shape":"ProcessingConfiguration"},
         "CloudWatchLoggingOptions":{"shape":"CloudWatchLoggingOptions"},
-        "BufferingHints":{"shape":"SplunkBufferingHints"}
+        "BufferingHints":{"shape":"SplunkBufferingHints"},
+        "SecretsManagerConfiguration":{"shape":"SecretsManagerConfiguration"}
       }
     },
     "SplunkDestinationDescription":{
@@ -2081,7 +2101,8 @@
         "S3DestinationDescription":{"shape":"S3DestinationDescription"},
         "ProcessingConfiguration":{"shape":"ProcessingConfiguration"},
         "CloudWatchLoggingOptions":{"shape":"CloudWatchLoggingOptions"},
-        "BufferingHints":{"shape":"SplunkBufferingHints"}
+        "BufferingHints":{"shape":"SplunkBufferingHints"},
+        "SecretsManagerConfiguration":{"shape":"SecretsManagerConfiguration"}
       }
     },
     "SplunkDestinationUpdate":{
@@ -2096,7 +2117,8 @@
         "S3Update":{"shape":"S3DestinationUpdate"},
         "ProcessingConfiguration":{"shape":"ProcessingConfiguration"},
         "CloudWatchLoggingOptions":{"shape":"CloudWatchLoggingOptions"},
-        "BufferingHints":{"shape":"SplunkBufferingHints"}
+        "BufferingHints":{"shape":"SplunkBufferingHints"},
+        "SecretsManagerConfiguration":{"shape":"SecretsManagerConfiguration"}
       }
     },
     "SplunkRetryDurationInSeconds":{

@@ -5,6 +5,7 @@
     "endpointPrefix":"fsx",
     "jsonVersion":"1.1",
     "protocol":"json",
+    "protocols":["json"],
     "serviceFullName":"Amazon FSx",
     "serviceId":"FSx",
     "signatureVersion":"v4",
@@ -1355,7 +1356,16 @@
         "DriveCacheType":{"shape":"DriveCacheType"},
         "DataCompressionType":{"shape":"DataCompressionType"},
         "LogConfiguration":{"shape":"LustreLogCreateConfiguration"},
-        "RootSquashConfiguration":{"shape":"LustreRootSquashConfiguration"}
+        "RootSquashConfiguration":{"shape":"LustreRootSquashConfiguration"},
+        "MetadataConfiguration":{"shape":"CreateFileSystemLustreMetadataConfiguration"}
+      }
+    },
+    "CreateFileSystemLustreMetadataConfiguration":{
+      "type":"structure",
+      "required":["Mode"],
+      "members":{
+        "Iops":{"shape":"MetadataIops"},
+        "Mode":{"shape":"MetadataConfigurationMode"}
       }
     },
     "CreateFileSystemOntapConfiguration":{
@@ -2512,6 +2522,14 @@
         "MISCONFIGURED_UNAVAILABLE"
       ]
     },
+    "FileSystemLustreMetadataConfiguration":{
+      "type":"structure",
+      "required":["Mode"],
+      "members":{
+        "Iops":{"shape":"MetadataIops"},
+        "Mode":{"shape":"MetadataConfigurationMode"}
+      }
+    },
     "FileSystemMaintenanceOperation":{
       "type":"string",
       "enum":[
@@ -2801,7 +2819,8 @@
         "DriveCacheType":{"shape":"DriveCacheType"},
         "DataCompressionType":{"shape":"DataCompressionType"},
         "LogConfiguration":{"shape":"LustreLogConfiguration"},
-        "RootSquashConfiguration":{"shape":"LustreRootSquashConfiguration"}
+        "RootSquashConfiguration":{"shape":"LustreRootSquashConfiguration"},
+        "MetadataConfiguration":{"shape":"FileSystemLustreMetadataConfiguration"}
       }
     },
     "LustreFileSystemMountName":{
@@ -2864,6 +2883,18 @@
       "type":"integer",
       "max":100000,
       "min":8
+    },
+    "MetadataConfigurationMode":{
+      "type":"string",
+      "enum":[
+        "AUTOMATIC",
+        "USER_PROVISIONED"
+      ]
+    },
+    "MetadataIops":{
+      "type":"integer",
+      "max":192000,
+      "min":1500
     },
     "MetadataStorageCapacity":{
       "type":"integer",
@@ -3918,7 +3949,15 @@
         "DataCompressionType":{"shape":"DataCompressionType"},
         "LogConfiguration":{"shape":"LustreLogCreateConfiguration"},
         "RootSquashConfiguration":{"shape":"LustreRootSquashConfiguration"},
-        "PerUnitStorageThroughput":{"shape":"PerUnitStorageThroughput"}
+        "PerUnitStorageThroughput":{"shape":"PerUnitStorageThroughput"},
+        "MetadataConfiguration":{"shape":"UpdateFileSystemLustreMetadataConfiguration"}
+      }
+    },
+    "UpdateFileSystemLustreMetadataConfiguration":{
+      "type":"structure",
+      "members":{
+        "Iops":{"shape":"MetadataIops"},
+        "Mode":{"shape":"MetadataConfigurationMode"}
       }
     },
     "UpdateFileSystemOntapConfiguration":{

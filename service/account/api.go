@@ -12,6 +12,107 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
 
+const opAcceptPrimaryEmailUpdate = "AcceptPrimaryEmailUpdate"
+
+// AcceptPrimaryEmailUpdateRequest generates a "aws/request.Request" representing the
+// client's request for the AcceptPrimaryEmailUpdate operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See AcceptPrimaryEmailUpdate for more information on using the AcceptPrimaryEmailUpdate
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the AcceptPrimaryEmailUpdateRequest method.
+//	req, resp := client.AcceptPrimaryEmailUpdateRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/account-2021-02-01/AcceptPrimaryEmailUpdate
+func (c *Account) AcceptPrimaryEmailUpdateRequest(input *AcceptPrimaryEmailUpdateInput) (req *request.Request, output *AcceptPrimaryEmailUpdateOutput) {
+	op := &request.Operation{
+		Name:       opAcceptPrimaryEmailUpdate,
+		HTTPMethod: "POST",
+		HTTPPath:   "/acceptPrimaryEmailUpdate",
+	}
+
+	if input == nil {
+		input = &AcceptPrimaryEmailUpdateInput{}
+	}
+
+	output = &AcceptPrimaryEmailUpdateOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// AcceptPrimaryEmailUpdate API operation for AWS Account.
+//
+// Accepts the request that originated from StartPrimaryEmailUpdate to update
+// the primary email address (also known as the root user email address) for
+// the specified account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Account's
+// API operation AcceptPrimaryEmailUpdate for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The operation failed because it specified a resource that can't be found.
+//
+//   - ValidationException
+//     The operation failed because one of the input parameters was invalid.
+//
+//   - ConflictException
+//     The request could not be processed because of a conflict in the current status
+//     of the resource. For example, this happens if you try to enable a Region
+//     that is currently being disabled (in a status of DISABLING).
+//
+//   - AccessDeniedException
+//     The operation failed because the calling identity doesn't have the minimum
+//     required permissions.
+//
+//   - TooManyRequestsException
+//     The operation failed because it was called too frequently and exceeded a
+//     throttle limit.
+//
+//   - InternalServerException
+//     The operation failed because of an error internal to Amazon Web Services.
+//     Try your operation again later.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/account-2021-02-01/AcceptPrimaryEmailUpdate
+func (c *Account) AcceptPrimaryEmailUpdate(input *AcceptPrimaryEmailUpdateInput) (*AcceptPrimaryEmailUpdateOutput, error) {
+	req, out := c.AcceptPrimaryEmailUpdateRequest(input)
+	return out, req.Send()
+}
+
+// AcceptPrimaryEmailUpdateWithContext is the same as AcceptPrimaryEmailUpdate with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AcceptPrimaryEmailUpdate for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Account) AcceptPrimaryEmailUpdateWithContext(ctx aws.Context, input *AcceptPrimaryEmailUpdateInput, opts ...request.Option) (*AcceptPrimaryEmailUpdateOutput, error) {
+	req, out := c.AcceptPrimaryEmailUpdateRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteAlternateContact = "DeleteAlternateContact"
 
 // DeleteAlternateContactRequest generates a "aws/request.Request" representing the
@@ -161,6 +262,9 @@ func (c *Account) DisableRegionRequest(input *DisableRegionInput) (req *request.
 // DisableRegion API operation for AWS Account.
 //
 // Disables (opts-out) a particular Region for an account.
+//
+// The act of disabling a Region will remove all IAM access to any resources
+// that reside in that Region.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -506,6 +610,100 @@ func (c *Account) GetContactInformation(input *GetContactInformationInput) (*Get
 // for more information on using Contexts.
 func (c *Account) GetContactInformationWithContext(ctx aws.Context, input *GetContactInformationInput, opts ...request.Option) (*GetContactInformationOutput, error) {
 	req, out := c.GetContactInformationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetPrimaryEmail = "GetPrimaryEmail"
+
+// GetPrimaryEmailRequest generates a "aws/request.Request" representing the
+// client's request for the GetPrimaryEmail operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetPrimaryEmail for more information on using the GetPrimaryEmail
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetPrimaryEmailRequest method.
+//	req, resp := client.GetPrimaryEmailRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/account-2021-02-01/GetPrimaryEmail
+func (c *Account) GetPrimaryEmailRequest(input *GetPrimaryEmailInput) (req *request.Request, output *GetPrimaryEmailOutput) {
+	op := &request.Operation{
+		Name:       opGetPrimaryEmail,
+		HTTPMethod: "POST",
+		HTTPPath:   "/getPrimaryEmail",
+	}
+
+	if input == nil {
+		input = &GetPrimaryEmailInput{}
+	}
+
+	output = &GetPrimaryEmailOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetPrimaryEmail API operation for AWS Account.
+//
+// Retrieves the primary email address for the specified account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Account's
+// API operation GetPrimaryEmail for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The operation failed because it specified a resource that can't be found.
+//
+//   - ValidationException
+//     The operation failed because one of the input parameters was invalid.
+//
+//   - AccessDeniedException
+//     The operation failed because the calling identity doesn't have the minimum
+//     required permissions.
+//
+//   - TooManyRequestsException
+//     The operation failed because it was called too frequently and exceeded a
+//     throttle limit.
+//
+//   - InternalServerException
+//     The operation failed because of an error internal to Amazon Web Services.
+//     Try your operation again later.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/account-2021-02-01/GetPrimaryEmail
+func (c *Account) GetPrimaryEmail(input *GetPrimaryEmailInput) (*GetPrimaryEmailOutput, error) {
+	req, out := c.GetPrimaryEmailRequest(input)
+	return out, req.Send()
+}
+
+// GetPrimaryEmailWithContext is the same as GetPrimaryEmail with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetPrimaryEmail for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Account) GetPrimaryEmailWithContext(ctx aws.Context, input *GetPrimaryEmailInput, opts ...request.Option) (*GetPrimaryEmailOutput, error) {
+	req, out := c.GetPrimaryEmailRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -948,6 +1146,238 @@ func (c *Account) PutContactInformationWithContext(ctx aws.Context, input *PutCo
 	return out, req.Send()
 }
 
+const opStartPrimaryEmailUpdate = "StartPrimaryEmailUpdate"
+
+// StartPrimaryEmailUpdateRequest generates a "aws/request.Request" representing the
+// client's request for the StartPrimaryEmailUpdate operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartPrimaryEmailUpdate for more information on using the StartPrimaryEmailUpdate
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StartPrimaryEmailUpdateRequest method.
+//	req, resp := client.StartPrimaryEmailUpdateRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/account-2021-02-01/StartPrimaryEmailUpdate
+func (c *Account) StartPrimaryEmailUpdateRequest(input *StartPrimaryEmailUpdateInput) (req *request.Request, output *StartPrimaryEmailUpdateOutput) {
+	op := &request.Operation{
+		Name:       opStartPrimaryEmailUpdate,
+		HTTPMethod: "POST",
+		HTTPPath:   "/startPrimaryEmailUpdate",
+	}
+
+	if input == nil {
+		input = &StartPrimaryEmailUpdateInput{}
+	}
+
+	output = &StartPrimaryEmailUpdateOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartPrimaryEmailUpdate API operation for AWS Account.
+//
+// Starts the process to update the primary email address for the specified
+// account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Account's
+// API operation StartPrimaryEmailUpdate for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The operation failed because it specified a resource that can't be found.
+//
+//   - ValidationException
+//     The operation failed because one of the input parameters was invalid.
+//
+//   - ConflictException
+//     The request could not be processed because of a conflict in the current status
+//     of the resource. For example, this happens if you try to enable a Region
+//     that is currently being disabled (in a status of DISABLING).
+//
+//   - AccessDeniedException
+//     The operation failed because the calling identity doesn't have the minimum
+//     required permissions.
+//
+//   - TooManyRequestsException
+//     The operation failed because it was called too frequently and exceeded a
+//     throttle limit.
+//
+//   - InternalServerException
+//     The operation failed because of an error internal to Amazon Web Services.
+//     Try your operation again later.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/account-2021-02-01/StartPrimaryEmailUpdate
+func (c *Account) StartPrimaryEmailUpdate(input *StartPrimaryEmailUpdateInput) (*StartPrimaryEmailUpdateOutput, error) {
+	req, out := c.StartPrimaryEmailUpdateRequest(input)
+	return out, req.Send()
+}
+
+// StartPrimaryEmailUpdateWithContext is the same as StartPrimaryEmailUpdate with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartPrimaryEmailUpdate for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Account) StartPrimaryEmailUpdateWithContext(ctx aws.Context, input *StartPrimaryEmailUpdateInput, opts ...request.Option) (*StartPrimaryEmailUpdateOutput, error) {
+	req, out := c.StartPrimaryEmailUpdateRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+type AcceptPrimaryEmailUpdateInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the 12-digit account ID number of the Amazon Web Services account
+	// that you want to access or modify with this operation. To use this parameter,
+	// the caller must be an identity in the organization's management account (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_getting-started_concepts.html#account)
+	// or a delegated administrator account. The specified account ID must be a
+	// member account in the same organization. The organization must have all features
+	// enabled (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_org_support-all-features.html),
+	// and the organization must have trusted access (https://docs.aws.amazon.com/organizations/latest/userguide/using-orgs-trusted-access.html)
+	// enabled for the Account Management service, and optionally a delegated admin
+	// (https://docs.aws.amazon.com/organizations/latest/userguide/using-orgs-delegated-admin.html)
+	// account assigned.
+	//
+	// This operation can only be called from the management account or the delegated
+	// administrator account of an organization for a member account.
+	//
+	// The management account can't specify its own AccountId.
+	//
+	// AccountId is a required field
+	AccountId *string `type:"string" required:"true"`
+
+	// The OTP code sent to the PrimaryEmail specified on the StartPrimaryEmailUpdate
+	// API call.
+	//
+	// Otp is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by AcceptPrimaryEmailUpdateInput's
+	// String and GoString methods.
+	//
+	// Otp is a required field
+	Otp *string `type:"string" required:"true" sensitive:"true"`
+
+	// The new primary email address for use with the specified account. This must
+	// match the PrimaryEmail from the StartPrimaryEmailUpdate API call.
+	//
+	// PrimaryEmail is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by AcceptPrimaryEmailUpdateInput's
+	// String and GoString methods.
+	//
+	// PrimaryEmail is a required field
+	PrimaryEmail *string `min:"5" type:"string" required:"true" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AcceptPrimaryEmailUpdateInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AcceptPrimaryEmailUpdateInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AcceptPrimaryEmailUpdateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AcceptPrimaryEmailUpdateInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.Otp == nil {
+		invalidParams.Add(request.NewErrParamRequired("Otp"))
+	}
+	if s.PrimaryEmail == nil {
+		invalidParams.Add(request.NewErrParamRequired("PrimaryEmail"))
+	}
+	if s.PrimaryEmail != nil && len(*s.PrimaryEmail) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("PrimaryEmail", 5))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *AcceptPrimaryEmailUpdateInput) SetAccountId(v string) *AcceptPrimaryEmailUpdateInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetOtp sets the Otp field's value.
+func (s *AcceptPrimaryEmailUpdateInput) SetOtp(v string) *AcceptPrimaryEmailUpdateInput {
+	s.Otp = &v
+	return s
+}
+
+// SetPrimaryEmail sets the PrimaryEmail field's value.
+func (s *AcceptPrimaryEmailUpdateInput) SetPrimaryEmail(v string) *AcceptPrimaryEmailUpdateInput {
+	s.PrimaryEmail = &v
+	return s
+}
+
+type AcceptPrimaryEmailUpdateOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Retrieves the status of the accepted primary email update request.
+	Status *string `type:"string" enum:"PrimaryEmailUpdateStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AcceptPrimaryEmailUpdateOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AcceptPrimaryEmailUpdateOutput) GoString() string {
+	return s.String()
+}
+
+// SetStatus sets the Status field's value.
+func (s *AcceptPrimaryEmailUpdateOutput) SetStatus(v string) *AcceptPrimaryEmailUpdateOutput {
+	s.Status = &v
+	return s
+}
+
 // The operation failed because the calling identity doesn't have the minimum
 // required permissions.
 type AccessDeniedException struct {
@@ -1253,8 +1683,11 @@ type ContactInformation struct {
 	// PostalCode is a required field
 	PostalCode *string `min:"1" type:"string" required:"true" sensitive:"true"`
 
-	// The state or region of the primary contact address. This field is required
-	// in selected countries.
+	// The state or region of the primary contact address. If the mailing address
+	// is within the United States (US), the value in this field can be either a
+	// two character state code (for example, NJ) or the full state name (for example,
+	// New Jersey). This field is required in the following countries: US, CA, GB,
+	// DE, JP, IN, and BR.
 	//
 	// StateOrRegion is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by ContactInformation's
@@ -1530,9 +1963,9 @@ type DisableRegionInput struct {
 	// this parameter, it defaults to the Amazon Web Services account of the identity
 	// used to call the operation. To use this parameter, the caller must be an
 	// identity in the organization's management account (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_getting-started_concepts.html#account)
-	// or a delegated administrator account. The specified account ID must also
-	// be a member account in the same organization. The organization must have
-	// all features enabled (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_org_support-all-features.html),
+	// or a delegated administrator account. The specified account ID must be a
+	// member account in the same organization. The organization must have all features
+	// enabled (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_org_support-all-features.html),
 	// and the organization must have trusted access (https://docs.aws.amazon.com/organizations/latest/userguide/using-orgs-trusted-access.html)
 	// enabled for the Account Management service, and optionally a delegated admin
 	// (https://docs.aws.amazon.com/organizations/latest/userguide/using-orgs-delegated-admin.html)
@@ -1633,9 +2066,9 @@ type EnableRegionInput struct {
 	// this parameter, it defaults to the Amazon Web Services account of the identity
 	// used to call the operation. To use this parameter, the caller must be an
 	// identity in the organization's management account (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_getting-started_concepts.html#account)
-	// or a delegated administrator account. The specified account ID must also
-	// be a member account in the same organization. The organization must have
-	// all features enabled (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_org_support-all-features.html),
+	// or a delegated administrator account. The specified account ID must be a
+	// member account in the same organization. The organization must have all features
+	// enabled (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_org_support-all-features.html),
 	// and the organization must have trusted access (https://docs.aws.amazon.com/organizations/latest/userguide/using-orgs-trusted-access.html)
 	// enabled for the Account Management service, and optionally a delegated admin
 	// (https://docs.aws.amazon.com/organizations/latest/userguide/using-orgs-delegated-admin.html)
@@ -1844,9 +2277,9 @@ type GetContactInformationInput struct {
 	// this parameter, it defaults to the Amazon Web Services account of the identity
 	// used to call the operation. To use this parameter, the caller must be an
 	// identity in the organization's management account (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_getting-started_concepts.html#account)
-	// or a delegated administrator account. The specified account ID must also
-	// be a member account in the same organization. The organization must have
-	// all features enabled (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_org_support-all-features.html),
+	// or a delegated administrator account. The specified account ID must be a
+	// member account in the same organization. The organization must have all features
+	// enabled (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_org_support-all-features.html),
 	// and the organization must have trusted access (https://docs.aws.amazon.com/organizations/latest/userguide/using-orgs-trusted-access.html)
 	// enabled for the Account Management service, and optionally a delegated admin
 	// (https://docs.aws.amazon.com/organizations/latest/userguide/using-orgs-delegated-admin.html)
@@ -1917,6 +2350,101 @@ func (s *GetContactInformationOutput) SetContactInformation(v *ContactInformatio
 	return s
 }
 
+type GetPrimaryEmailInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the 12-digit account ID number of the Amazon Web Services account
+	// that you want to access or modify with this operation. To use this parameter,
+	// the caller must be an identity in the organization's management account (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_getting-started_concepts.html#account)
+	// or a delegated administrator account. The specified account ID must be a
+	// member account in the same organization. The organization must have all features
+	// enabled (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_org_support-all-features.html),
+	// and the organization must have trusted access (https://docs.aws.amazon.com/organizations/latest/userguide/using-orgs-trusted-access.html)
+	// enabled for the Account Management service, and optionally a delegated admin
+	// (https://docs.aws.amazon.com/organizations/latest/userguide/using-orgs-delegated-admin.html)
+	// account assigned.
+	//
+	// This operation can only be called from the management account or the delegated
+	// administrator account of an organization for a member account.
+	//
+	// The management account can't specify its own AccountId.
+	//
+	// AccountId is a required field
+	AccountId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetPrimaryEmailInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetPrimaryEmailInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetPrimaryEmailInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetPrimaryEmailInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *GetPrimaryEmailInput) SetAccountId(v string) *GetPrimaryEmailInput {
+	s.AccountId = &v
+	return s
+}
+
+type GetPrimaryEmailOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Retrieves the primary email address associated with the specified account.
+	//
+	// PrimaryEmail is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GetPrimaryEmailOutput's
+	// String and GoString methods.
+	PrimaryEmail *string `min:"5" type:"string" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetPrimaryEmailOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetPrimaryEmailOutput) GoString() string {
+	return s.String()
+}
+
+// SetPrimaryEmail sets the PrimaryEmail field's value.
+func (s *GetPrimaryEmailOutput) SetPrimaryEmail(v string) *GetPrimaryEmailOutput {
+	s.PrimaryEmail = &v
+	return s
+}
+
 type GetRegionOptStatusInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1925,9 +2453,9 @@ type GetRegionOptStatusInput struct {
 	// this parameter, it defaults to the Amazon Web Services account of the identity
 	// used to call the operation. To use this parameter, the caller must be an
 	// identity in the organization's management account (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_getting-started_concepts.html#account)
-	// or a delegated administrator account. The specified account ID must also
-	// be a member account in the same organization. The organization must have
-	// all features enabled (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_org_support-all-features.html),
+	// or a delegated administrator account. The specified account ID must be a
+	// member account in the same organization. The organization must have all features
+	// enabled (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_org_support-all-features.html),
 	// and the organization must have trusted access (https://docs.aws.amazon.com/organizations/latest/userguide/using-orgs-trusted-access.html)
 	// enabled for the Account Management service, and optionally a delegated admin
 	// (https://docs.aws.amazon.com/organizations/latest/userguide/using-orgs-delegated-admin.html)
@@ -2109,9 +2637,9 @@ type ListRegionsInput struct {
 	// this parameter, it defaults to the Amazon Web Services account of the identity
 	// used to call the operation. To use this parameter, the caller must be an
 	// identity in the organization's management account (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_getting-started_concepts.html#account)
-	// or a delegated administrator account. The specified account ID must also
-	// be a member account in the same organization. The organization must have
-	// all features enabled (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_org_support-all-features.html),
+	// or a delegated administrator account. The specified account ID must be a
+	// member account in the same organization. The organization must have all features
+	// enabled (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_org_support-all-features.html),
 	// and the organization must have trusted access (https://docs.aws.amazon.com/organizations/latest/userguide/using-orgs-trusted-access.html)
 	// enabled for the Account Management service, and optionally a delegated admin
 	// (https://docs.aws.amazon.com/organizations/latest/userguide/using-orgs-delegated-admin.html)
@@ -2435,9 +2963,9 @@ type PutContactInformationInput struct {
 	// this parameter, it defaults to the Amazon Web Services account of the identity
 	// used to call the operation. To use this parameter, the caller must be an
 	// identity in the organization's management account (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_getting-started_concepts.html#account)
-	// or a delegated administrator account. The specified account ID must also
-	// be a member account in the same organization. The organization must have
-	// all features enabled (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_org_support-all-features.html),
+	// or a delegated administrator account. The specified account ID must be a
+	// member account in the same organization. The organization must have all features
+	// enabled (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_org_support-all-features.html),
 	// and the organization must have trusted access (https://docs.aws.amazon.com/organizations/latest/userguide/using-orgs-trusted-access.html)
 	// enabled for the Account Management service, and optionally a delegated admin
 	// (https://docs.aws.amazon.com/organizations/latest/userguide/using-orgs-delegated-admin.html)
@@ -2633,6 +3161,119 @@ func (s *ResourceNotFoundException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type StartPrimaryEmailUpdateInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the 12-digit account ID number of the Amazon Web Services account
+	// that you want to access or modify with this operation. To use this parameter,
+	// the caller must be an identity in the organization's management account (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_getting-started_concepts.html#account)
+	// or a delegated administrator account. The specified account ID must be a
+	// member account in the same organization. The organization must have all features
+	// enabled (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_org_support-all-features.html),
+	// and the organization must have trusted access (https://docs.aws.amazon.com/organizations/latest/userguide/using-orgs-trusted-access.html)
+	// enabled for the Account Management service, and optionally a delegated admin
+	// (https://docs.aws.amazon.com/organizations/latest/userguide/using-orgs-delegated-admin.html)
+	// account assigned.
+	//
+	// This operation can only be called from the management account or the delegated
+	// administrator account of an organization for a member account.
+	//
+	// The management account can't specify its own AccountId.
+	//
+	// AccountId is a required field
+	AccountId *string `type:"string" required:"true"`
+
+	// The new primary email address (also known as the root user email address)
+	// to use in the specified account.
+	//
+	// PrimaryEmail is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by StartPrimaryEmailUpdateInput's
+	// String and GoString methods.
+	//
+	// PrimaryEmail is a required field
+	PrimaryEmail *string `min:"5" type:"string" required:"true" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartPrimaryEmailUpdateInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartPrimaryEmailUpdateInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartPrimaryEmailUpdateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartPrimaryEmailUpdateInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.PrimaryEmail == nil {
+		invalidParams.Add(request.NewErrParamRequired("PrimaryEmail"))
+	}
+	if s.PrimaryEmail != nil && len(*s.PrimaryEmail) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("PrimaryEmail", 5))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *StartPrimaryEmailUpdateInput) SetAccountId(v string) *StartPrimaryEmailUpdateInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetPrimaryEmail sets the PrimaryEmail field's value.
+func (s *StartPrimaryEmailUpdateInput) SetPrimaryEmail(v string) *StartPrimaryEmailUpdateInput {
+	s.PrimaryEmail = &v
+	return s
+}
+
+type StartPrimaryEmailUpdateOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The status of the primary email update request.
+	Status *string `type:"string" enum:"PrimaryEmailUpdateStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartPrimaryEmailUpdateOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartPrimaryEmailUpdateOutput) GoString() string {
+	return s.String()
+}
+
+// SetStatus sets the Status field's value.
+func (s *StartPrimaryEmailUpdateOutput) SetStatus(v string) *StartPrimaryEmailUpdateOutput {
+	s.Status = &v
+	return s
 }
 
 // The operation failed because it was called too frequently and exceeded a
@@ -2842,6 +3483,22 @@ func AlternateContactType_Values() []string {
 		AlternateContactTypeBilling,
 		AlternateContactTypeOperations,
 		AlternateContactTypeSecurity,
+	}
+}
+
+const (
+	// PrimaryEmailUpdateStatusPending is a PrimaryEmailUpdateStatus enum value
+	PrimaryEmailUpdateStatusPending = "PENDING"
+
+	// PrimaryEmailUpdateStatusAccepted is a PrimaryEmailUpdateStatus enum value
+	PrimaryEmailUpdateStatusAccepted = "ACCEPTED"
+)
+
+// PrimaryEmailUpdateStatus_Values returns all elements of the PrimaryEmailUpdateStatus enum
+func PrimaryEmailUpdateStatus_Values() []string {
+	return []string{
+		PrimaryEmailUpdateStatusPending,
+		PrimaryEmailUpdateStatusAccepted,
 	}
 }
 
