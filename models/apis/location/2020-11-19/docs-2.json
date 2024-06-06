@@ -30,9 +30,10 @@
     "DescribeRouteCalculator": "<p>Retrieves the route calculator resource details.</p>",
     "DescribeTracker": "<p>Retrieves the tracker resource details.</p>",
     "DisassociateTrackerConsumer": "<p>Removes the association between a tracker resource and a geofence collection.</p> <note> <p>Once you unlink a tracker resource from a geofence collection, the tracker positions will no longer be automatically evaluated against geofences.</p> </note>",
+    "ForecastGeofenceEvents": "<p>Evaluates device positions against geofence geometries from a given geofence collection. The event forecasts three states for which a device can be in relative to a geofence:</p> <p> <code>ENTER</code>: If a device is outside of a geofence, but would breach the fence if the device is moving at its current speed within time horizon window.</p> <p> <code>EXIT</code>: If a device is inside of a geofence, but would breach the fence if the device is moving at its current speed within time horizon window.</p> <p> <code>IDLE</code>: If a device is inside of a geofence, and the device is not moving.</p>",
     "GetDevicePosition": "<p>Retrieves a device's most recent position according to its sample time.</p> <note> <p>Device positions are deleted after 30 days.</p> </note>",
     "GetDevicePositionHistory": "<p>Retrieves the device position history from a tracker resource within a specified range of time.</p> <note> <p>Device positions are deleted after 30 days.</p> </note>",
-    "GetGeofence": "<p>Retrieves the geofence details from a geofence collection.</p>",
+    "GetGeofence": "<p>Retrieves the geofence details from a geofence collection.</p> <note> <p>The returned geometry will always match the geometry format used when the geofence was created.</p> </note>",
     "GetMapGlyphs": "<p>Retrieves glyphs used to display labels on a map.</p>",
     "GetMapSprites": "<p>Retrieves the sprite sheet corresponding to a map resource. The sprite sheet is a PNG image paired with a JSON document describing the offsets of individual icons that will be displayed on a rendered map.</p>",
     "GetMapStyleDescriptor": "<p>Retrieves the map style descriptor from a map resource. </p> <p>The style descriptor contains speciﬁcations on how features render on a map. For example, what data to display, what order to display the data in, and the style for the data. Style descriptors follow the Mapbox Style Specification.</p>",
@@ -59,7 +60,8 @@
     "UpdateMap": "<p>Updates the specified properties of a given map resource.</p>",
     "UpdatePlaceIndex": "<p>Updates the specified properties of a given place index resource.</p>",
     "UpdateRouteCalculator": "<p>Updates the specified properties for a given route calculator resource.</p>",
-    "UpdateTracker": "<p>Updates the specified properties of a given tracker resource.</p>"
+    "UpdateTracker": "<p>Updates the specified properties of a given tracker resource.</p>",
+    "VerifyDevicePosition": "<p>Verifies the integrity of the device's position by determining if it was reported behind a proxy, and by comparing it to an inferred position estimated based on the device's state.</p>"
   },
   "shapes": {
     "AccessDeniedException": {
@@ -157,6 +159,12 @@
     "AssociateTrackerConsumerResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "Base64EncodedGeobuf": {
+      "base": null,
+      "refs": {
+        "GeofenceGeometry$Geobuf": "<p>Geobuf is a compact binary encoding for geographic data that provides lossless compression of GeoJSON polygons. The Geobuf must be Base64-encoded.</p> <p>A polygon in Geobuf format can have up to 100,000 vertices.</p>"
       }
     },
     "BatchDeleteDevicePositionHistoryError": {
@@ -393,9 +401,12 @@
         "DeleteKeyRequest$ForceDelete": "<p>ForceDelete bypasses an API key's expiry conditions and deletes the key. Set the parameter <code>true</code> to delete the key or to <code>false</code> to not preemptively delete the API key.</p> <p>Valid values: <code>true</code>, or <code>false</code>.</p> <p>Required: No</p> <note> <p>This action is irreversible. Only use ForceDelete if you are certain the key is no longer in use.</p> </note>",
         "DescribeTrackerResponse$EventBridgeEnabled": "<p>Whether <code>UPDATE</code> events from this tracker in EventBridge are enabled. If set to <code>true</code> these events will be sent to EventBridge.</p>",
         "DescribeTrackerResponse$KmsKeyEnableGeospatialQueries": "<p>Enables <code>GeospatialQueries</code> for a tracker that uses a <a href=\"https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html\">Amazon Web Services KMS customer managed key</a>.</p> <p>This parameter is only used if you are using a KMS customer managed key.</p> <note> <p>If you wish to encrypt your data using your own KMS customer managed key, then the Bounding Polygon Queries feature will be disabled by default. This is because by using this feature, a representation of your device positions will not be encrypted using the your KMS managed key. The exact device position, however; is still encrypted using your managed key.</p> <p>You can choose to opt-in to the Bounding Polygon Quseries feature. This is done by setting the <code>KmsKeyEnableGeospatialQueries</code> parameter to true when creating or updating a Tracker.</p> </note>",
+        "ForecastedEvent$IsDeviceInGeofence": "<p>Indicates if the device is located within the geofence.</p>",
+        "InferredState$ProxyDetected": "<p>Indicates if a proxy was used.</p>",
+        "LteCellDetails$NrCapable": "<p>Indicates whether the LTE object is capable of supporting NR (new radio).</p>",
         "Place$Interpolated": "<p> <code>True</code> if the result is interpolated from other known places.</p> <p> <code>False</code> if the Place is a known place.</p> <p>Not returned when the partner does not provide the information.</p> <p>For example, returns <code>False</code> for an address location that is found in the partner data, but returns <code>True</code> if an address does not exist in the partner data and its location is calculated by interpolating between other known addresses. </p>",
-        "UpdateKeyRequest$ForceUpdate": "<p>The boolean flag to be included for updating <code>ExpireTime</code> or <code>Restrictions</code> details.</p> <p>Must be set to <code>true</code> to update an API key resource that has been used in the past 7 days.</p> <p> <code>False</code> if force update is not preferred</p> <p>Default value: <code>False</code> </p>",
         "UpdateKeyRequest$NoExpiry": "<p>Whether the API key should expire. Set to <code>true</code> to set the API key to have no expiration time.</p>",
+        "UpdateKeyRequest$ForceUpdate": "<p>The boolean flag to be included for updating <code>ExpireTime</code> or <code>Restrictions</code> details.</p> <p>Must be set to <code>true</code> to update an API key resource that has been used in the past 7 days.</p> <p> <code>False</code> if force update is not preferred</p> <p>Default value: <code>False</code> </p>",
         "UpdateTrackerRequest$EventBridgeEnabled": "<p>Whether to enable position <code>UPDATE</code> events from this tracker to be sent to EventBridge.</p> <note> <p>You do not need enable this feature to get <code>ENTER</code> and <code>EXIT</code> events for geofences with this tracker. Those events are always sent to EventBridge.</p> </note>",
         "UpdateTrackerRequest$KmsKeyEnableGeospatialQueries": "<p>Enables <code>GeospatialQueries</code> for a tracker that uses a <a href=\"https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html\">Amazon Web Services KMS customer managed key</a>.</p> <p>This parameter is only used if you are using a KMS customer managed key.</p>"
       }
@@ -511,6 +522,18 @@
         "CalculateRouteRequest$TruckModeOptions": "<p>Specifies route preferences when traveling by <code>Truck</code>, such as avoiding routes that use ferries or tolls, and truck specifications to consider when choosing an optimal road.</p> <p>Requirements: <code>TravelMode</code> must be specified as <code>Truck</code>.</p>"
       }
     },
+    "CellSignals": {
+      "base": "<p>The cellular network communication infrastructure that the device uses.</p>",
+      "refs": {
+        "DeviceState$CellSignals": "<p>The cellular network infrastructure that the device is connected to.</p>"
+      }
+    },
+    "CellSignalsLteCellDetailsList": {
+      "base": null,
+      "refs": {
+        "CellSignals$LteCellDetails": "<p>Information about the Long-Term Evolution (LTE) network the device is connected to.</p>"
+      }
+    },
     "Circle": {
       "base": "<p>A circle on the earth, as defined by a center point and a radius.</p>",
       "refs": {
@@ -522,15 +545,10 @@
       "refs": {
       }
     },
-    "CountryCode": {
-      "base": null,
-      "refs": {
-        "CountryCodeList$member": null
-      }
-    },
     "CountryCode3": {
       "base": null,
       "refs": {
+        "CountryCodeList$member": null,
         "MapConfiguration$PoliticalView": "<p>Specifies the political view for the style. Leave unset to not use a political view, or, for styles that support specific political views, you can choose a view, such as <code>IND</code> for the Indian view.</p> <p>Default is unset.</p> <note> <p>Not all map resources or styles support political view styles. See <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/map-concepts.html#political-views\">Political views</a> for more information.</p> </note>"
       }
     },
@@ -618,8 +636,8 @@
     "CustomLayerList": {
       "base": null,
       "refs": {
-        "MapConfiguration$CustomLayers": "<p>Specifies the custom layers for the style. Leave unset to not enable any custom layer, or, for styles that support custom layers, you can enable layer(s), such as <code>POI</code> layer for the VectorEsriNavigation style. Default is <code>unset</code>.</p> <note> <p>Currenlty only <code>VectorEsriNavigation</code> supports CustomLayers. For more information, see <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/map-concepts.html#map-custom-layers\">Custom Layers</a>.</p> </note>",
-        "MapConfigurationUpdate$CustomLayers": "<p>Specifies the custom layers for the style. Leave unset to not enable any custom layer, or, for styles that support custom layers, you can enable layer(s), such as <code>POI</code> layer for the VectorEsriNavigation style. Default is <code>unset</code>.</p> <note> <p>Currenlty only <code>VectorEsriNavigation</code> supports CustomLayers. For more information, see <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/map-concepts.html#map-custom-layers\">Custom Layers</a>.</p> </note>"
+        "MapConfiguration$CustomLayers": "<p>Specifies the custom layers for the style. Leave unset to not enable any custom layer, or, for styles that support custom layers, you can enable layer(s), such as POI layer for the VectorEsriNavigation style. Default is <code>unset</code>.</p> <note> <p>Not all map resources or styles support custom layers. See Custom Layers for more information.</p> </note>",
+        "MapConfigurationUpdate$CustomLayers": "<p>Specifies the custom layers for the style. Leave unset to not enable any custom layer, or, for styles that support custom layers, you can enable layer(s), such as POI layer for the VectorEsriNavigation style. Default is <code>unset</code>.</p> <note> <p>Not all map resources or styles support custom layers. See Custom Layers for more information.</p> </note>"
       }
     },
     "DataSourceConfiguration": {
@@ -776,6 +794,18 @@
         "BatchUpdateDevicePositionRequestUpdatesList$member": null
       }
     },
+    "DeviceState": {
+      "base": "<p>The device's position, IP address, and Wi-Fi access points.</p>",
+      "refs": {
+        "VerifyDevicePositionRequest$DeviceState": "<p>The device's state, including position, IP address, cell signals and Wi-Fi access points.</p>"
+      }
+    },
+    "DeviceStateIpv4AddressString": {
+      "base": null,
+      "refs": {
+        "DeviceState$Ipv4Address": "<p>The device's Ipv4 address.</p>"
+      }
+    },
     "DimensionUnit": {
       "base": null,
       "refs": {
@@ -798,7 +828,11 @@
         "CalculateRouteMatrixRequest$DistanceUnit": "<p>Set the unit system to specify the distance.</p> <p>Default Value: <code>Kilometers</code> </p>",
         "CalculateRouteMatrixSummary$DistanceUnit": "<p>The unit of measurement for route distances.</p>",
         "CalculateRouteRequest$DistanceUnit": "<p>Set the unit system to specify the distance.</p> <p>Default Value: <code>Kilometers</code> </p>",
-        "CalculateRouteSummary$DistanceUnit": "<p>The unit of measurement for route distances.</p>"
+        "CalculateRouteSummary$DistanceUnit": "<p>The unit of measurement for route distances.</p>",
+        "ForecastGeofenceEventsRequest$DistanceUnit": "<p>The distance unit used for the <code>NearestDistance</code> property returned in a forecasted event. The measurement system must match for <code>DistanceUnit</code> and <code>SpeedUnit</code>; if <code>Kilometers</code> is specified for <code>DistanceUnit</code>, then <code>SpeedUnit</code> must be <code>KilometersPerHour</code>. </p> <p>Default Value: <code>Kilometers</code> </p>",
+        "ForecastGeofenceEventsResponse$DistanceUnit": "<p>The distance unit for the forecasted events.</p>",
+        "VerifyDevicePositionRequest$DistanceUnit": "<p>The distance unit for the verification request.</p> <p>Default Value: <code>Kilometers</code> </p>",
+        "VerifyDevicePositionResponse$DistanceUnit": "<p>The distance unit for the verification response.</p>"
       }
     },
     "Double": {
@@ -806,7 +840,22 @@
       "refs": {
         "BoundingBox$member": null,
         "Circle$Radius": "<p>The radius of the circle in meters. Must be greater than zero and no larger than 100,000 (100 kilometers).</p>",
+        "InferredState$DeviationDistance": "<p>The distance between the inferred position and the device's self-reported position.</p>",
         "Position$member": null
+      }
+    },
+    "Earfcn": {
+      "base": null,
+      "refs": {
+        "LteLocalId$Earfcn": "<p>E-UTRA (Evolved Universal Terrestrial Radio Access) absolute radio frequency channel number (EARFCN).</p>",
+        "LteNetworkMeasurements$Earfcn": "<p>E-UTRA (Evolved Universal Terrestrial Radio Access) absolute radio frequency channel number (EARFCN).</p>"
+      }
+    },
+    "EutranCellId": {
+      "base": null,
+      "refs": {
+        "LteCellDetails$CellId": "<p>The E-UTRAN Cell Identifier (ECI).</p>",
+        "LteNetworkMeasurements$CellId": "<p>E-UTRAN Cell Identifier (ECI).</p>"
       }
     },
     "FilterPlaceCategoryList": {
@@ -818,10 +867,61 @@
         "SearchPlaceIndexForTextSummary$FilterCategories": "<p>The optional category filter specified in the request.</p>"
       }
     },
+    "ForecastGeofenceEventsDeviceState": {
+      "base": "<p>The device's position, IP address, and WiFi access points.</p>",
+      "refs": {
+        "ForecastGeofenceEventsRequest$DeviceState": "<p>The device's state, including current position and speed.</p>"
+      }
+    },
+    "ForecastGeofenceEventsDeviceStateSpeedDouble": {
+      "base": null,
+      "refs": {
+        "ForecastGeofenceEventsDeviceState$Speed": "<p>The device's speed.</p>"
+      }
+    },
+    "ForecastGeofenceEventsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ForecastGeofenceEventsRequestMaxResultsInteger": {
+      "base": null,
+      "refs": {
+        "ForecastGeofenceEventsRequest$MaxResults": "<p>An optional limit for the number of resources returned in a single call.</p> <p>Default value: <code>20</code> </p>"
+      }
+    },
+    "ForecastGeofenceEventsRequestTimeHorizonMinutesDouble": {
+      "base": null,
+      "refs": {
+        "ForecastGeofenceEventsRequest$TimeHorizonMinutes": "<p>Specifies the time horizon in minutes for the forecasted events.</p>"
+      }
+    },
+    "ForecastGeofenceEventsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ForecastedEvent": {
+      "base": "<p>A forecasted event represents a geofence event in relation to the requested device state, that may occur given the provided device state and time horizon.</p>",
+      "refs": {
+        "ForecastedEventsList$member": null
+      }
+    },
+    "ForecastedEventsList": {
+      "base": null,
+      "refs": {
+        "ForecastGeofenceEventsResponse$ForecastedEvents": "<p>The list of forecasted events.</p>"
+      }
+    },
+    "ForecastedGeofenceEventType": {
+      "base": null,
+      "refs": {
+        "ForecastedEvent$EventType": "<p>The event type, forecasting three states for which a device can be in relative to a geofence:</p> <p> <code>ENTER</code>: If a device is outside of a geofence, but would breach the fence if the device is moving at its current speed within time horizon window.</p> <p> <code>EXIT</code>: If a device is inside of a geofence, but would breach the fence if the device is moving at its current speed within time horizon window.</p> <p> <code>IDLE</code>: If a device is inside of a geofence, and the device is not moving.</p>"
+      }
+    },
     "GeoArn": {
       "base": null,
       "refs": {
-        "ApiKeyRestrictionsAllowResourcesList$member": null,
         "CreateMapResponse$MapArn": "<p>The Amazon Resource Name (ARN) for the map resource. Used to specify a resource across all Amazon Web Services.</p> <ul> <li> <p>Format example: <code>arn:aws:geo:region:account-id:map/ExampleMap</code> </p> </li> </ul>",
         "CreatePlaceIndexResponse$IndexArn": "<p>The Amazon Resource Name (ARN) for the place index resource. Used to specify a resource across Amazon Web Services. </p> <ul> <li> <p>Format example: <code>arn:aws:geo:region:account-id:place-index/ExamplePlaceIndex</code> </p> </li> </ul>",
         "CreateRouteCalculatorResponse$CalculatorArn": "<p>The Amazon Resource Name (ARN) for the route calculator resource. Use the ARN when you specify a resource across all Amazon Web Services.</p> <ul> <li> <p>Format example: <code>arn:aws:geo:region:account-id:route-calculator/ExampleCalculator</code> </p> </li> </ul>",
@@ -833,13 +933,19 @@
         "UpdateRouteCalculatorResponse$CalculatorArn": "<p>The Amazon Resource Name (ARN) of the updated route calculator resource. Used to specify a resource across AWS.</p> <ul> <li> <p>Format example: <code>arn:aws:geo:region:account-id:route- calculator/ExampleCalculator</code> </p> </li> </ul>"
       }
     },
-    "GeofenceGeometry": {
-      "base": "<p>Contains the geofence geometry details.</p> <p>A geofence geometry is made up of either a polygon or a circle. Can be either a polygon or a circle. Including both will return a validation error.</p> <note> <p>Amazon Location doesn't currently support polygons with holes, multipolygons, polygons that are wound clockwise, or that cross the antimeridian. </p> </note>",
+    "GeoArnV2": {
+      "base": null,
       "refs": {
-        "BatchPutGeofenceRequestEntry$Geometry": "<p>Contains the details of the position of the geofence. Can be either a polygon or a circle. Including both will return a validation error.</p> <note> <p>Each <a href=\"https://docs.aws.amazon.com/location-geofences/latest/APIReference/API_GeofenceGeometry.html\"> geofence polygon</a> can have a maximum of 1,000 vertices.</p> </note>",
+        "ApiKeyRestrictionsAllowResourcesList$member": null
+      }
+    },
+    "GeofenceGeometry": {
+      "base": "<p>Contains the geofence geometry details.</p> <p>A geofence geometry is made up of either a polygon or a circle. Can be a polygon, a circle or a polygon encoded in Geobuf format. Including multiple selections will return a validation error.</p> <note> <p>Amazon Location doesn't currently support polygons with holes, multipolygons, polygons that are wound clockwise, or that cross the antimeridian. </p> </note>",
+      "refs": {
+        "BatchPutGeofenceRequestEntry$Geometry": "<p>Contains the details to specify the position of the geofence. Can be a polygon, a circle or a polygon encoded in Geobuf format. Including multiple selections will return a validation error.</p> <note> <p>The <a href=\"https://docs.aws.amazon.com/location-geofences/latest/APIReference/API_GeofenceGeometry.html\"> geofence polygon</a> format supports a maximum of 1,000 vertices. The <a href=\"https://docs.aws.amazon.com/location-geofences/latest/APIReference/API_GeofenceGeometry.html\">Geofence geobuf</a> format supports a maximum of 100,000 vertices.</p> </note>",
         "GetGeofenceResponse$Geometry": "<p>Contains the geofence geometry details describing a polygon or a circle.</p>",
         "ListGeofenceResponseEntry$Geometry": "<p>Contains the geofence geometry details describing a polygon or a circle.</p>",
-        "PutGeofenceRequest$Geometry": "<p>Contains the details to specify the position of the geofence. Can be either a polygon or a circle. Including both will return a validation error.</p> <note> <p>Each <a href=\"https://docs.aws.amazon.com/location-geofences/latest/APIReference/API_GeofenceGeometry.html\"> geofence polygon</a> can have a maximum of 1,000 vertices.</p> </note>"
+        "PutGeofenceRequest$Geometry": "<p>Contains the details to specify the position of the geofence. Can be a polygon, a circle or a polygon encoded in Geobuf format. Including multiple selections will return a validation error.</p> <note> <p>The <a href=\"https://docs.aws.amazon.com/location-geofences/latest/APIReference/API_GeofenceGeometry.html\"> geofence polygon</a> format supports a maximum of 1,000 vertices. The <a href=\"https://docs.aws.amazon.com/location-geofences/latest/APIReference/API_GeofenceGeometry.html\">Geofence Geobuf</a> format supports a maximum of 100,000 vertices.</p> </note>"
       }
     },
     "GetDevicePositionHistoryRequest": {
@@ -974,6 +1080,8 @@
         "BatchUpdateDevicePositionError$DeviceId": "<p>The device associated with the failed location update.</p>",
         "DevicePosition$DeviceId": "<p>The device whose position you retrieved.</p>",
         "DevicePositionUpdate$DeviceId": "<p>The device associated to the position update.</p>",
+        "DeviceState$DeviceId": "<p>The device identifier.</p>",
+        "ForecastedEvent$GeofenceId": "<p>The geofence identifier pertaining to the forecasted event.</p>",
         "GetDevicePositionHistoryRequest$DeviceId": "<p>The device whose position history you want to retrieve.</p>",
         "GetDevicePositionRequest$DeviceId": "<p>The device whose position you want to retrieve.</p>",
         "GetDevicePositionResponse$DeviceId": "<p>The device whose position you retrieved.</p>",
@@ -982,7 +1090,14 @@
         "ListDevicePositionsResponseEntry$DeviceId": "<p>The ID of the device for this position.</p>",
         "ListGeofenceResponseEntry$GeofenceId": "<p>The geofence identifier.</p>",
         "PutGeofenceRequest$GeofenceId": "<p>An identifier for the geofence. For example, <code>ExampleGeofence-1</code>.</p>",
-        "PutGeofenceResponse$GeofenceId": "<p>The geofence identifier entered in the request.</p>"
+        "PutGeofenceResponse$GeofenceId": "<p>The geofence identifier entered in the request.</p>",
+        "VerifyDevicePositionResponse$DeviceId": "<p>The device identifier.</p>"
+      }
+    },
+    "InferredState": {
+      "base": "<p>The inferred state of the device, given the provided position, IP address, cellular signals, and Wi-Fi- access points.</p>",
+      "refs": {
+        "VerifyDevicePositionResponse$InferredState": "<p>The inferred state of the device, given the provided position, IP address, cellular signals, and Wi-Fi- access points.</p>"
       }
     },
     "Integer": {
@@ -1022,6 +1137,15 @@
         "SearchPlaceIndexForSuggestionsSummary$Language": "<p>The preferred language used to return results. Matches the language in the request. The value is a valid <a href=\"https://tools.ietf.org/search/bcp47\">BCP 47</a> language tag, for example, <code>en</code> for English.</p>",
         "SearchPlaceIndexForTextRequest$Language": "<p>The preferred language used to return results. The value must be a valid <a href=\"https://tools.ietf.org/search/bcp47\">BCP 47</a> language tag, for example, <code>en</code> for English.</p> <p>This setting affects the languages used in the results, but not the results themselves. If no language is specified, or not supported for a particular result, the partner automatically chooses a language for the result.</p> <p>For an example, we'll use the Greek language. You search for <code>Athens, Greece</code>, with the <code>language</code> parameter set to <code>en</code>. The result found will most likely be returned as <code>Athens</code>.</p> <p>If you set the <code>language</code> parameter to <code>el</code>, for Greek, then the result found will more likely be returned as <code>Αθήνα</code>.</p> <p>If the data provider does not have a value for Greek, the result will be in a language that the provider does support.</p>",
         "SearchPlaceIndexForTextSummary$Language": "<p>The preferred language used to return results. Matches the language in the request. The value is a valid <a href=\"https://tools.ietf.org/search/bcp47\">BCP 47</a> language tag, for example, <code>en</code> for English.</p>"
+      }
+    },
+    "LargeToken": {
+      "base": null,
+      "refs": {
+        "ForecastGeofenceEventsRequest$NextToken": "<p>The pagination token specifying which page of results to return in the response. If no token is provided, the default page is the first page.</p> <p>Default value: <code>null</code> </p>",
+        "ForecastGeofenceEventsResponse$NextToken": "<p>The pagination token specifying which page of results to return in the response. If no token is provided, the default page is the first page. </p>",
+        "ListGeofencesRequest$NextToken": "<p>The pagination token specifying which page of results to return in the response. If no token is provided, the default page is the first page. </p> <p>Default value: <code>null</code> </p>",
+        "ListGeofencesResponse$NextToken": "<p>A pagination token indicating there are additional pages available. You can use the token in a following request to fetch the next set of results. </p>"
       }
     },
     "Leg": {
@@ -1118,7 +1242,7 @@
       }
     },
     "ListGeofenceCollectionsResponseEntry": {
-      "base": "<p>Contains the geofence collection details.</p>",
+      "base": "<p>Contains the geofence collection details.</p> <note> <p>The returned geometry will always match the geometry format used when the geofence was created.</p> </note>",
       "refs": {
         "ListGeofenceCollectionsResponseEntryList$member": null
       }
@@ -1130,7 +1254,7 @@
       }
     },
     "ListGeofenceResponseEntry": {
-      "base": "<p>Contains a list of geofences stored in a given geofence collection.</p>",
+      "base": "<p>Contains a list of geofences stored in a given geofence collection.</p> <note> <p>The returned geometry will always match the geometry format used when the geofence was created.</p> </note>",
       "refs": {
         "ListGeofenceResponseEntryList$member": null
       }
@@ -1323,6 +1447,54 @@
         "ListTrackersResponse$Entries": "<p>Contains tracker resources in your Amazon Web Services account. Details include tracker name, description and timestamps for when the tracker was created and last updated.</p>"
       }
     },
+    "LteCellDetails": {
+      "base": "<p>Details about the Long-Term Evolution (LTE) network.</p>",
+      "refs": {
+        "CellSignalsLteCellDetailsList$member": null
+      }
+    },
+    "LteCellDetailsMccInteger": {
+      "base": null,
+      "refs": {
+        "LteCellDetails$Mcc": "<p>The Mobile Country Code (MCC).</p>"
+      }
+    },
+    "LteCellDetailsMncInteger": {
+      "base": null,
+      "refs": {
+        "LteCellDetails$Mnc": "<p>The Mobile Network Code (MNC)</p>"
+      }
+    },
+    "LteCellDetailsNetworkMeasurementsList": {
+      "base": null,
+      "refs": {
+        "LteCellDetails$NetworkMeasurements": "<p>The network measurements.</p>"
+      }
+    },
+    "LteCellDetailsTacInteger": {
+      "base": null,
+      "refs": {
+        "LteCellDetails$Tac": "<p>LTE Tracking Area Code (TAC).</p>"
+      }
+    },
+    "LteCellDetailsTimingAdvanceInteger": {
+      "base": null,
+      "refs": {
+        "LteCellDetails$TimingAdvance": "<p>Timing Advance (TA).</p>"
+      }
+    },
+    "LteLocalId": {
+      "base": "<p>LTE local identification information (local ID).</p>",
+      "refs": {
+        "LteCellDetails$LocalId": "<p>The LTE local identification information (local ID).</p>"
+      }
+    },
+    "LteNetworkMeasurements": {
+      "base": "<p>LTE network measurements.</p>",
+      "refs": {
+        "LteCellDetailsNetworkMeasurementsList$member": null
+      }
+    },
     "MapConfiguration": {
       "base": "<p>Specifies the map tile style selected from an available provider.</p>",
       "refs": {
@@ -1339,13 +1511,26 @@
     "MapStyle": {
       "base": null,
       "refs": {
-        "MapConfiguration$Style": "<p>Specifies the map style selected from an available data provider.</p> <p>Valid <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/esri.html\">Esri map styles</a>:</p> <ul> <li> <p> <code>VectorEsriNavigation</code> – The Esri Navigation map style, which provides a detailed basemap for the world symbolized with a custom navigation map style that's designed for use during the day in mobile devices. It also includes a richer set of places, such as shops, services, restaurants, attractions, and other points of interest. Enable the <code>POI</code> layer by setting it in CustomLayers to leverage the additional places data.</p> <p/> </li> <li> <p> <code>RasterEsriImagery</code> – The Esri Imagery map style. A raster basemap that provides one meter or better satellite and aerial imagery in many parts of the world and lower resolution satellite imagery worldwide. </p> </li> <li> <p> <code>VectorEsriLightGrayCanvas</code> – The Esri Light Gray Canvas map style, which provides a detailed vector basemap with a light gray, neutral background style with minimal colors, labels, and features that's designed to draw attention to your thematic content. </p> </li> <li> <p> <code>VectorEsriTopographic</code> – The Esri Light map style, which provides a detailed vector basemap with a classic Esri map style.</p> </li> <li> <p> <code>VectorEsriStreets</code> – The Esri Street Map style, which provides a detailed vector basemap for the world symbolized with a classic Esri street map style. The vector tile layer is similar in content and style to the World Street Map raster map.</p> </li> <li> <p> <code>VectorEsriDarkGrayCanvas</code> – The Esri Dark Gray Canvas map style. A vector basemap with a dark gray, neutral background with minimal colors, labels, and features that's designed to draw attention to your thematic content. </p> </li> </ul> <p>Valid <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/HERE.html\">HERE Technologies map styles</a>:</p> <ul> <li> <p> <code>VectorHereExplore</code> – A default HERE map style containing a neutral, global map and its features including roads, buildings, landmarks, and water features. It also now includes a fully designed map of Japan.</p> </li> <li> <p> <code>RasterHereExploreSatellite</code> – A global map containing high resolution satellite imagery.</p> </li> <li> <p> <code>HybridHereExploreSatellite</code> – A global map displaying the road network, street names, and city labels over satellite imagery. This style will automatically retrieve both raster and vector tiles, and your charges will be based on total tiles retrieved.</p> <note> <p>Hybrid styles use both vector and raster tiles when rendering the map that you see. This means that more tiles are retrieved than when using either vector or raster tiles alone. Your charges will include all tiles retrieved.</p> </note> </li> <li> <p> <code>VectorHereContrast</code> – The HERE Contrast (Berlin) map style is a high contrast detailed base map of the world that blends 3D and 2D rendering.</p> <note> <p>The <code>VectorHereContrast</code> style has been renamed from <code>VectorHereBerlin</code>. <code>VectorHereBerlin</code> has been deprecated, but will continue to work in applications that use it.</p> </note> </li> <li> <p> <code>VectorHereExploreTruck</code> – A global map containing truck restrictions and attributes (e.g. width / height / HAZMAT) symbolized with highlighted segments and icons on top of HERE Explore to support use cases within transport and logistics.</p> </li> </ul> <p>Valid <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/grab.html\">GrabMaps map styles</a>:</p> <ul> <li> <p> <code>VectorGrabStandardLight</code> – The Grab Standard Light map style provides a basemap with detailed land use coloring, area names, roads, landmarks, and points of interest covering Southeast Asia.</p> </li> <li> <p> <code>VectorGrabStandardDark</code> – The Grab Standard Dark map style provides a dark variation of the standard basemap covering Southeast Asia.</p> </li> </ul> <note> <p>Grab provides maps only for countries in Southeast Asia, and is only available in the Asia Pacific (Singapore) Region (<code>ap-southeast-1</code>). For more information, see <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/grab.html#grab-coverage-area\">GrabMaps countries and area covered</a>.</p> </note> <p>Valid <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/open-data.html\">Open Data map styles</a>:</p> <ul> <li> <p> <code>VectorOpenDataStandardLight</code> – The Open Data Standard Light map style provides a detailed basemap for the world suitable for website and mobile application use. The map includes highways major roads, minor roads, railways, water features, cities, parks, landmarks, building footprints, and administrative boundaries.</p> </li> <li> <p> <code>VectorOpenDataStandardDark</code> – Open Data Standard Dark is a dark-themed map style that provides a detailed basemap for the world suitable for website and mobile application use. The map includes highways major roads, minor roads, railways, water features, cities, parks, landmarks, building footprints, and administrative boundaries.</p> </li> <li> <p> <code>VectorOpenDataVisualizationLight</code> – The Open Data Visualization Light map style is a light-themed style with muted colors and fewer features that aids in understanding overlaid data.</p> </li> <li> <p> <code>VectorOpenDataVisualizationDark</code> – The Open Data Visualization Dark map style is a dark-themed style with muted colors and fewer features that aids in understanding overlaid data.</p> </li> </ul>"
+        "MapConfiguration$Style": "<p>Specifies the map style selected from an available data provider.</p> <p>Valid <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/esri.html\">Esri map styles</a>:</p> <ul> <li> <p> <code>VectorEsriDarkGrayCanvas</code> – The Esri Dark Gray Canvas map style. A vector basemap with a dark gray, neutral background with minimal colors, labels, and features that's designed to draw attention to your thematic content. </p> </li> <li> <p> <code>RasterEsriImagery</code> – The Esri Imagery map style. A raster basemap that provides one meter or better satellite and aerial imagery in many parts of the world and lower resolution satellite imagery worldwide. </p> </li> <li> <p> <code>VectorEsriLightGrayCanvas</code> – The Esri Light Gray Canvas map style, which provides a detailed vector basemap with a light gray, neutral background style with minimal colors, labels, and features that's designed to draw attention to your thematic content. </p> </li> <li> <p> <code>VectorEsriTopographic</code> – The Esri Light map style, which provides a detailed vector basemap with a classic Esri map style.</p> </li> <li> <p> <code>VectorEsriStreets</code> – The Esri Street Map style, which provides a detailed vector basemap for the world symbolized with a classic Esri street map style. The vector tile layer is similar in content and style to the World Street Map raster map.</p> </li> <li> <p> <code>VectorEsriNavigation</code> – The Esri Navigation map style, which provides a detailed basemap for the world symbolized with a custom navigation map style that's designed for use during the day in mobile devices.</p> </li> </ul> <p>Valid <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/HERE.html\">HERE Technologies map styles</a>:</p> <ul> <li> <p> <code>VectorHereContrast</code> – The HERE Contrast (Berlin) map style is a high contrast detailed base map of the world that blends 3D and 2D rendering.</p> <note> <p>The <code>VectorHereContrast</code> style has been renamed from <code>VectorHereBerlin</code>. <code>VectorHereBerlin</code> has been deprecated, but will continue to work in applications that use it.</p> </note> </li> <li> <p> <code>VectorHereExplore</code> – A default HERE map style containing a neutral, global map and its features including roads, buildings, landmarks, and water features. It also now includes a fully designed map of Japan.</p> </li> <li> <p> <code>VectorHereExploreTruck</code> – A global map containing truck restrictions and attributes (e.g. width / height / HAZMAT) symbolized with highlighted segments and icons on top of HERE Explore to support use cases within transport and logistics.</p> </li> <li> <p> <code>RasterHereExploreSatellite</code> – A global map containing high resolution satellite imagery.</p> </li> <li> <p> <code>HybridHereExploreSatellite</code> – A global map displaying the road network, street names, and city labels over satellite imagery. This style will automatically retrieve both raster and vector tiles, and your charges will be based on total tiles retrieved.</p> <note> <p>Hybrid styles use both vector and raster tiles when rendering the map that you see. This means that more tiles are retrieved than when using either vector or raster tiles alone. Your charges will include all tiles retrieved.</p> </note> </li> </ul> <p>Valid <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/grab.html\">GrabMaps map styles</a>:</p> <ul> <li> <p> <code>VectorGrabStandardLight</code> – The Grab Standard Light map style provides a basemap with detailed land use coloring, area names, roads, landmarks, and points of interest covering Southeast Asia.</p> </li> <li> <p> <code>VectorGrabStandardDark</code> – The Grab Standard Dark map style provides a dark variation of the standard basemap covering Southeast Asia.</p> </li> </ul> <note> <p>Grab provides maps only for countries in Southeast Asia, and is only available in the Asia Pacific (Singapore) Region (<code>ap-southeast-1</code>). For more information, see <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/grab.html#grab-coverage-area\">GrabMaps countries and area covered</a>.</p> </note> <p>Valid <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/open-data.html\">Open Data map styles</a>:</p> <ul> <li> <p> <code>VectorOpenDataStandardLight</code> – The Open Data Standard Light map style provides a detailed basemap for the world suitable for website and mobile application use. The map includes highways major roads, minor roads, railways, water features, cities, parks, landmarks, building footprints, and administrative boundaries.</p> </li> <li> <p> <code>VectorOpenDataStandardDark</code> – Open Data Standard Dark is a dark-themed map style that provides a detailed basemap for the world suitable for website and mobile application use. The map includes highways major roads, minor roads, railways, water features, cities, parks, landmarks, building footprints, and administrative boundaries.</p> </li> <li> <p> <code>VectorOpenDataVisualizationLight</code> – The Open Data Visualization Light map style is a light-themed style with muted colors and fewer features that aids in understanding overlaid data.</p> </li> <li> <p> <code>VectorOpenDataVisualizationDark</code> – The Open Data Visualization Dark map style is a dark-themed style with muted colors and fewer features that aids in understanding overlaid data.</p> </li> </ul>"
+      }
+    },
+    "NearestDistance": {
+      "base": null,
+      "refs": {
+        "ForecastedEvent$NearestDistance": "<p>The closest distance from the device's position to the geofence.</p>"
       }
     },
     "OptimizationMode": {
       "base": null,
       "refs": {
         "CalculateRouteRequest$OptimizeFor": "<p>Specifies the distance to optimize for when calculating a route.</p>"
+      }
+    },
+    "Pci": {
+      "base": null,
+      "refs": {
+        "LteLocalId$Pci": "<p>Physical Cell ID (PCI).</p>",
+        "LteNetworkMeasurements$Pci": "<p>Physical Cell ID (PCI).</p>"
       }
     },
     "Place": {
@@ -1379,9 +1564,9 @@
     "PlaceId": {
       "base": null,
       "refs": {
-        "GetPlaceRequest$PlaceId": "<p>The identifier of the place to find.</p> <p>While you can use PlaceID in subsequent requests, PlaceID is not intended to be a permanent identifier and the ID can change between consecutive API calls. Please see the following PlaceID behaviour for each data provider:</p> <ul> <li> <p>Esri: Place IDs will change every quarter at a minimum. The typical time period for these changes would be March, June, September, and December. Place IDs might also change between the typical quarterly change but that will be much less frequent.</p> </li> <li> <p>HERE: We recommend that you cache data for no longer than a week to keep your data data fresh. You can assume that less than 1% ID shifts will release over release which is approximately 1 - 2 times per week.</p> </li> <li> <p>Grab: Place IDs can expire or become invalid in the following situations.</p> <ul> <li> <p>Data operations: The POI may be removed from Grab POI database by Grab Map Ops based on the ground-truth, such as being closed in the real world, being detected as a duplicate POI, or having incorrect information. Grab will synchronize data to the Waypoint environment on weekly basis.</p> </li> <li> <p>Interpolated POI: Interpolated POI is a temporary POI generated in real time when serving a request, and it will be marked as derived in the <code>place.result_type</code> field in the response. The information of interpolated POIs will be retained for at least 30 days, which means that within 30 days, you are able to obtain POI details by Place ID from Place Details API. After 30 days, the interpolated POIs(both Place ID and details) may expire and inaccessible from the Places Details API.</p> </li> </ul> </li> </ul>",
+        "GetPlaceRequest$PlaceId": "<p>The identifier of the place to find.</p>",
         "SearchForPositionResult$PlaceId": "<p>The unique identifier of the place. You can use this with the <code>GetPlace</code> operation to find the place again later.</p> <note> <p>For <code>SearchPlaceIndexForPosition</code> operations, the <code>PlaceId</code> is returned only by place indexes that use HERE or Grab as a data provider.</p> </note>",
-        "SearchForSuggestionsResult$PlaceId": "<p>The unique identifier of the Place. You can use this with the <code>GetPlace</code> operation to find the place again later, or to get full information for the Place.</p> <p>The <code>GetPlace</code> request must use the same <code>PlaceIndex</code> resource as the <code>SearchPlaceIndexForSuggestions</code> that generated the Place ID.</p> <note> <p>For <code>SearchPlaceIndexForSuggestions</code> operations, the <code>PlaceId</code> is returned by place indexes that use Esri, Grab, or HERE as data providers.</p> </note> <p>While you can use PlaceID in subsequent requests, PlaceID is not intended to be a permanent identifier and the ID can change between consecutive API calls. Please see the following PlaceID behaviour for each data provider:</p> <ul> <li> <p>Esri: Place IDs will change every quarter at a minimum. The typical time period for these changes would be March, June, September, and December. Place IDs might also change between the typical quarterly change but that will be much less frequent.</p> </li> <li> <p>HERE: We recommend that you cache data for no longer than a week to keep your data data fresh. You can assume that less than 1% ID shifts will release over release which is approximately 1 - 2 times per week.</p> </li> <li> <p>Grab: Place IDs can expire or become invalid in the following situations.</p> <ul> <li> <p>Data operations: The POI may be removed from Grab POI database by Grab Map Ops based on the ground-truth, such as being closed in the real world, being detected as a duplicate POI, or having incorrect information. Grab will synchronize data to the Waypoint environment on weekly basis.</p> </li> <li> <p>Interpolated POI: Interpolated POI is a temporary POI generated in real time when serving a request, and it will be marked as derived in the <code>place.result_type</code> field in the response. The information of interpolated POIs will be retained for at least 30 days, which means that within 30 days, you are able to obtain POI details by Place ID from Place Details API. After 30 days, the interpolated POIs(both Place ID and details) may expire and inaccessible from the Places Details API.</p> </li> </ul> </li> </ul>",
+        "SearchForSuggestionsResult$PlaceId": "<p>The unique identifier of the Place. You can use this with the <code>GetPlace</code> operation to find the place again later, or to get full information for the Place.</p> <p>The <code>GetPlace</code> request must use the same <code>PlaceIndex</code> resource as the <code>SearchPlaceIndexForSuggestions</code> that generated the Place ID.</p> <note> <p>For <code>SearchPlaceIndexForSuggestions</code> operations, the <code>PlaceId</code> is returned by place indexes that use Esri, Grab, or HERE as data providers.</p> </note>",
         "SearchForTextResult$PlaceId": "<p>The unique identifier of the place. You can use this with the <code>GetPlace</code> operation to find the place again later.</p> <note> <p>For <code>SearchPlaceIndexForText</code> operations, the <code>PlaceId</code> is returned only by place indexes that use HERE or Grab as a data provider.</p> </note>"
       }
     },
@@ -1420,9 +1605,12 @@
         "Circle$Center": "<p>A single point geometry, specifying the center of the circle, using <a href=\"https://gisgeography.com/wgs84-world-geodetic-system/\">WGS 84</a> coordinates, in the form <code>[longitude, latitude]</code>.</p>",
         "DevicePosition$Position": "<p>The last known device position.</p>",
         "DevicePositionUpdate$Position": "<p>The latest device position defined in <a href=\"https://earth-info.nga.mil/index.php?dir=wgs84&amp;action=wgs84\">WGS 84</a> format: <code>[X or longitude, Y or latitude]</code>.</p>",
+        "DeviceState$Position": "<p>The last known device position.</p>",
+        "ForecastGeofenceEventsDeviceState$Position": "<p>The device's position.</p>",
         "GetDevicePositionResponse$Position": "<p>The last known device position.</p>",
-        "Leg$EndPosition": "<p>The terminating position of the leg. Follows the format <code>[longitude,latitude]</code>.</p> <note> <p>If the <code>EndPosition</code> isn't located on a road, it's <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/nap-to-nearby-road.html\">snapped to a nearby road</a>. </p> </note>",
+        "InferredState$Position": "<p>The device position inferred by the provided position, IP address, cellular signals, and Wi-Fi- access points.</p>",
         "Leg$StartPosition": "<p>The starting position of the leg. Follows the format <code>[longitude,latitude]</code>.</p> <note> <p>If the <code>StartPosition</code> isn't located on a road, it's <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html\">snapped to a nearby road</a>. </p> </note>",
+        "Leg$EndPosition": "<p>The terminating position of the leg. Follows the format <code>[longitude,latitude]</code>.</p> <note> <p>If the <code>EndPosition</code> isn't located on a road, it's <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/nap-to-nearby-road.html\">snapped to a nearby road</a>. </p> </note>",
         "LineString$member": null,
         "LinearRing$member": null,
         "ListDevicePositionsResponseEntry$Position": "<p>The last known device position. Empty if no positions currently stored.</p>",
@@ -1433,8 +1621,8 @@
         "SearchPlaceIndexForSuggestionsSummary$BiasPosition": "<p>Contains the coordinates for the optional bias position specified in the request.</p> <p>This parameter contains a pair of numbers. The first number represents the X coordinate, or longitude; the second number represents the Y coordinate, or latitude.</p> <p>For example, <code>[-123.1174, 49.2847]</code> represents the position with longitude <code>-123.1174</code> and latitude <code>49.2847</code>.</p>",
         "SearchPlaceIndexForTextRequest$BiasPosition": "<p>An optional parameter that indicates a preference for places that are closer to a specified position.</p> <p> If provided, this parameter must contain a pair of numbers. The first number represents the X coordinate, or longitude; the second number represents the Y coordinate, or latitude.</p> <p>For example, <code>[-123.1174, 49.2847]</code> represents the position with longitude <code>-123.1174</code> and latitude <code>49.2847</code>.</p> <note> <p> <code>BiasPosition</code> and <code>FilterBBox</code> are mutually exclusive. Specifying both options results in an error. </p> </note>",
         "SearchPlaceIndexForTextSummary$BiasPosition": "<p>Contains the coordinates for the optional bias position specified in the request.</p> <p>This parameter contains a pair of numbers. The first number represents the X coordinate, or longitude; the second number represents the Y coordinate, or latitude.</p> <p>For example, <code>[-123.1174, 49.2847]</code> represents the position with longitude <code>-123.1174</code> and latitude <code>49.2847</code>.</p>",
-        "Step$EndPosition": "<p>The end position of a step. If the position the last step in the leg, this position is the same as the end position of the leg.</p>",
-        "Step$StartPosition": "<p>The starting position of a step. If the position is the first step in the leg, this position is the same as the start position of the leg.</p>"
+        "Step$StartPosition": "<p>The starting position of a step. If the position is the first step in the leg, this position is the same as the start position of the leg.</p>",
+        "Step$EndPosition": "<p>The end position of a step. If the position the last step in the leg, this position is the same as the end position of the leg.</p>"
       }
     },
     "PositionFiltering": {
@@ -1450,7 +1638,9 @@
       "refs": {
         "DevicePosition$Accuracy": "<p>The accuracy of the device position.</p>",
         "DevicePositionUpdate$Accuracy": "<p>The accuracy of the device position.</p>",
+        "DeviceState$Accuracy": null,
         "GetDevicePositionResponse$Accuracy": "<p>The accuracy of the device position.</p>",
+        "InferredState$Accuracy": "<p>The level of certainty of the inferred position.</p>",
         "ListDevicePositionsResponseEntry$Accuracy": "<p>The accuracy of the device position.</p>"
       }
     },
@@ -1491,6 +1681,7 @@
         "BatchPutGeofenceRequestEntry$GeofenceProperties": "<p>Associates one of more properties with the geofence. A property is a key-value pair stored with the geofence and added to any geofence event triggered with that geofence.</p> <p>Format: <code>\"key\" : \"value\"</code> </p>",
         "DevicePosition$PositionProperties": "<p>The properties associated with the position.</p>",
         "DevicePositionUpdate$PositionProperties": "<p>Associates one of more properties with the position update. A property is a key-value pair stored with the position update and added to any geofence event the update may trigger.</p> <p>Format: <code>\"key\" : \"value\"</code> </p>",
+        "ForecastedEvent$GeofenceProperties": "<p>The geofence properties.</p>",
         "GetDevicePositionResponse$PositionProperties": "<p>The properties associated with the position.</p>",
         "GetGeofenceResponse$GeofenceProperties": "<p>User defined properties of the geofence. A property is a key-value pair stored with the geofence and added to any geofence event triggered with that geofence.</p> <p>Format: <code>\"key\" : \"value\"</code> </p>",
         "ListDevicePositionsResponseEntry$PositionProperties": "<p>The properties associated with the position.</p>",
@@ -1597,6 +1788,7 @@
         "DescribeTrackerRequest$TrackerName": "<p>The name of the tracker resource.</p>",
         "DescribeTrackerResponse$TrackerName": "<p>The name of the tracker resource.</p>",
         "DisassociateTrackerConsumerRequest$TrackerName": "<p>The name of the tracker resource to be dissociated from the consumer.</p>",
+        "ForecastGeofenceEventsRequest$CollectionName": "<p>The name of the geofence collection.</p>",
         "GetDevicePositionHistoryRequest$TrackerName": "<p>The tracker resource receiving the request for the device position history.</p>",
         "GetDevicePositionRequest$TrackerName": "<p>The tracker resource receiving the position update.</p>",
         "GetGeofenceRequest$CollectionName": "<p>The geofence collection storing the target geofence.</p>",
@@ -1629,7 +1821,8 @@
         "UpdateRouteCalculatorRequest$CalculatorName": "<p>The name of the route calculator resource to update.</p>",
         "UpdateRouteCalculatorResponse$CalculatorName": "<p>The name of the updated route calculator resource.</p>",
         "UpdateTrackerRequest$TrackerName": "<p>The name of the tracker resource to update.</p>",
-        "UpdateTrackerResponse$TrackerName": "<p>The name of the updated tracker resource.</p>"
+        "UpdateTrackerResponse$TrackerName": "<p>The name of the updated tracker resource.</p>",
+        "VerifyDevicePositionRequest$TrackerName": "<p>The name of the tracker resource to be associated with verification request.</p>"
       }
     },
     "ResourceNotFoundException": {
@@ -1677,6 +1870,20 @@
       "base": null,
       "refs": {
         "RouteMatrix$member": null
+      }
+    },
+    "Rsrp": {
+      "base": null,
+      "refs": {
+        "LteCellDetails$Rsrp": "<p>Signal power of the reference signal received, measured in decibel-milliwatts (dBm).</p>",
+        "LteNetworkMeasurements$Rsrp": "<p>Signal power of the reference signal received, measured in dBm (decibel-milliwatts).</p>"
+      }
+    },
+    "Rsrq": {
+      "base": null,
+      "refs": {
+        "LteCellDetails$Rsrq": "<p>Signal quality of the reference Signal received, measured in decibels (dB).</p>",
+        "LteNetworkMeasurements$Rsrq": "<p>Signal quality of the reference Signal received, measured in decibels (dB).</p>"
       }
     },
     "SearchForPositionResult": {
@@ -1811,6 +2018,13 @@
       "refs": {
       }
     },
+    "SpeedUnit": {
+      "base": null,
+      "refs": {
+        "ForecastGeofenceEventsRequest$SpeedUnit": "<p>The speed unit for the device captured by the device state. The measurement system must match for <code>DistanceUnit</code> and <code>SpeedUnit</code>; if <code>Kilometers</code> is specified for <code>DistanceUnit</code>, then <code>SpeedUnit</code> must be <code>KilometersPerHour</code>.</p> <p>Default Value: <code>KilometersPerHour</code>.</p>",
+        "ForecastGeofenceEventsResponse$SpeedUnit": "<p>The speed unit for the forecasted events.</p>"
+      }
+    },
     "Status": {
       "base": null,
       "refs": {
@@ -1865,15 +2079,15 @@
         "DescribeRouteCalculatorResponse$DataSource": "<p>The data provider of traffic and road network data. Indicates one of the available providers:</p> <ul> <li> <p> <code>Esri</code> </p> </li> <li> <p> <code>Grab</code> </p> </li> <li> <p> <code>Here</code> </p> </li> </ul> <p>For more information about data providers, see <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html\">Amazon Location Service data providers</a>.</p>",
         "DescribeTrackerResponse$PricingPlanDataSource": "<p>No longer used. Always returns an empty string.</p>",
         "GetGeofenceResponse$Status": "<p>Identifies the state of the geofence. A geofence will hold one of the following states:</p> <ul> <li> <p> <code>ACTIVE</code> — The geofence has been indexed by the system. </p> </li> <li> <p> <code>PENDING</code> — The geofence is being processed by the system.</p> </li> <li> <p> <code>FAILED</code> — The geofence failed to be indexed by the system.</p> </li> <li> <p> <code>DELETED</code> — The geofence has been deleted from the system index.</p> </li> <li> <p> <code>DELETING</code> — The geofence is being deleted from the system index.</p> </li> </ul>",
-        "GetMapGlyphsRequest$FontStack": "<p>A comma-separated list of fonts to load glyphs from in order of preference. For example, <code>Noto Sans Regular, Arial Unicode</code>.</p> <p>Valid font stacks for <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/esri.html\">Esri</a> styles: </p> <ul> <li> <p>VectorEsriDarkGrayCanvas – <code>Ubuntu Medium Italic</code> | <code>Ubuntu Medium</code> | <code>Ubuntu Italic</code> | <code>Ubuntu Regular</code> | <code>Ubuntu Bold</code> </p> </li> <li> <p>VectorEsriLightGrayCanvas – <code>Ubuntu Italic</code> | <code>Ubuntu Regular</code> | <code>Ubuntu Light</code> | <code>Ubuntu Bold</code> </p> </li> <li> <p>VectorEsriTopographic – <code>Noto Sans Italic</code> | <code>Noto Sans Regular</code> | <code>Noto Sans Bold</code> | <code>Noto Serif Regular</code> | <code>Roboto Condensed Light Italic</code> </p> </li> <li> <p>VectorEsriStreets – <code>Arial Regular</code> | <code>Arial Italic</code> | <code>Arial Bold</code> </p> </li> <li> <p>VectorEsriNavigation – <code>Arial Regular</code> | <code>Arial Italic</code> | <code>Arial Bold</code> | <code>Arial Unicode MS Bold</code> | <code>Arial Unicode MS Regular</code> </p> </li> </ul> <p>Valid font stacks for <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/HERE.html\">HERE Technologies</a> styles:</p> <ul> <li> <p>VectorHereContrast – <code>Fira GO Regular</code> | <code>Fira GO Bold</code> </p> </li> <li> <p>VectorHereExplore, VectorHereExploreTruck, HybridHereExploreSatellite – <code>Fira GO Italic</code> | <code>Fira GO Map</code> | <code>Fira GO Map Bold</code> | <code>Noto Sans CJK JP Bold</code> | <code>Noto Sans CJK JP Light</code> | <code>Noto Sans CJK JP Regular</code> </p> </li> </ul> <p>Valid font stacks for <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/grab.html\">GrabMaps</a> styles:</p> <ul> <li> <p>VectorGrabStandardLight, VectorGrabStandardDark – <code>Noto Sans Regular</code> | <code>Noto Sans Medium</code> | <code>Noto Sans Bold</code> </p> </li> </ul> <p>Valid font stacks for <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/open-data.html\">Open Data</a> styles:</p> <ul> <li> <p>VectorOpenDataStandardLight, VectorOpenDataStandardDark, VectorOpenDataVisualizationLight, VectorOpenDataVisualizationDark – <code>Amazon Ember Regular,Noto Sans Regular</code> | <code>Amazon Ember Bold,Noto Sans Bold</code> | <code>Amazon Ember Medium,Noto Sans Medium</code> | <code>Amazon Ember Regular Italic,Noto Sans Italic</code> | <code>Amazon Ember Condensed RC Regular,Noto Sans Regular</code> | <code>Amazon Ember Condensed RC Bold,Noto Sans Bold</code> | <code>Amazon Ember Regular,Noto Sans Regular,Noto Sans Arabic Regular</code> | <code>Amazon Ember Condensed RC Bold,Noto Sans Bold,Noto Sans Arabic Condensed Bold</code> | <code>Amazon Ember Bold,Noto Sans Bold,Noto Sans Arabic Bold</code> | <code>Amazon Ember Regular Italic,Noto Sans Italic,Noto Sans Arabic Regular</code> | <code>Amazon Ember Condensed RC Regular,Noto Sans Regular,Noto Sans Arabic Condensed Regular</code> | <code>Amazon Ember Medium,Noto Sans Medium,Noto Sans Arabic Medium</code> </p> </li> </ul> <note> <p>The fonts used by the Open Data map styles are combined fonts that use <code>Amazon Ember</code> for most glyphs but <code>Noto Sans</code> for glyphs unsupported by <code>Amazon Ember</code>.</p> </note>",
-        "GetMapGlyphsResponse$CacheControl": "<p>The HTTP Cache-Control directive for the value.</p>",
+        "GetMapGlyphsRequest$FontStack": "<p>A comma-separated list of fonts to load glyphs from in order of preference. For example, <code>Noto Sans Regular, Arial Unicode</code>.</p> <p>Valid font stacks for <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/esri.html\">Esri</a> styles: </p> <ul> <li> <p>VectorEsriDarkGrayCanvas – <code>Ubuntu Medium Italic</code> | <code>Ubuntu Medium</code> | <code>Ubuntu Italic</code> | <code>Ubuntu Regular</code> | <code>Ubuntu Bold</code> </p> </li> <li> <p>VectorEsriLightGrayCanvas – <code>Ubuntu Italic</code> | <code>Ubuntu Regular</code> | <code>Ubuntu Light</code> | <code>Ubuntu Bold</code> </p> </li> <li> <p>VectorEsriTopographic – <code>Noto Sans Italic</code> | <code>Noto Sans Regular</code> | <code>Noto Sans Bold</code> | <code>Noto Serif Regular</code> | <code>Roboto Condensed Light Italic</code> </p> </li> <li> <p>VectorEsriStreets – <code>Arial Regular</code> | <code>Arial Italic</code> | <code>Arial Bold</code> </p> </li> <li> <p>VectorEsriNavigation – <code>Arial Regular</code> | <code>Arial Italic</code> | <code>Arial Bold</code> </p> </li> </ul> <p>Valid font stacks for <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/HERE.html\">HERE Technologies</a> styles:</p> <ul> <li> <p>VectorHereContrast – <code>Fira GO Regular</code> | <code>Fira GO Bold</code> </p> </li> <li> <p>VectorHereExplore, VectorHereExploreTruck, HybridHereExploreSatellite – <code>Fira GO Italic</code> | <code>Fira GO Map</code> | <code>Fira GO Map Bold</code> | <code>Noto Sans CJK JP Bold</code> | <code>Noto Sans CJK JP Light</code> | <code>Noto Sans CJK JP Regular</code> </p> </li> </ul> <p>Valid font stacks for <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/grab.html\">GrabMaps</a> styles:</p> <ul> <li> <p>VectorGrabStandardLight, VectorGrabStandardDark – <code>Noto Sans Regular</code> | <code>Noto Sans Medium</code> | <code>Noto Sans Bold</code> </p> </li> </ul> <p>Valid font stacks for <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/open-data.html\">Open Data</a> styles:</p> <ul> <li> <p>VectorOpenDataStandardLight, VectorOpenDataStandardDark, VectorOpenDataVisualizationLight, VectorOpenDataVisualizationDark – <code>Amazon Ember Regular,Noto Sans Regular</code> | <code>Amazon Ember Bold,Noto Sans Bold</code> | <code>Amazon Ember Medium,Noto Sans Medium</code> | <code>Amazon Ember Regular Italic,Noto Sans Italic</code> | <code>Amazon Ember Condensed RC Regular,Noto Sans Regular</code> | <code>Amazon Ember Condensed RC Bold,Noto Sans Bold</code> | <code>Amazon Ember Regular,Noto Sans Regular,Noto Sans Arabic Regular</code> | <code>Amazon Ember Condensed RC Bold,Noto Sans Bold,Noto Sans Arabic Condensed Bold</code> | <code>Amazon Ember Bold,Noto Sans Bold,Noto Sans Arabic Bold</code> | <code>Amazon Ember Regular Italic,Noto Sans Italic,Noto Sans Arabic Regular</code> | <code>Amazon Ember Condensed RC Regular,Noto Sans Regular,Noto Sans Arabic Condensed Regular</code> | <code>Amazon Ember Medium,Noto Sans Medium,Noto Sans Arabic Medium</code> </p> </li> </ul> <note> <p>The fonts used by the Open Data map styles are combined fonts that use <code>Amazon Ember</code> for most glyphs but <code>Noto Sans</code> for glyphs unsupported by <code>Amazon Ember</code>.</p> </note>",
         "GetMapGlyphsResponse$ContentType": "<p>The map glyph content type. For example, <code>application/octet-stream</code>.</p>",
-        "GetMapSpritesResponse$CacheControl": "<p>The HTTP Cache-Control directive for the value.</p>",
+        "GetMapGlyphsResponse$CacheControl": "<p>The HTTP Cache-Control directive for the value.</p>",
         "GetMapSpritesResponse$ContentType": "<p>The content type of the sprite sheet and offsets. For example, the sprite sheet content type is <code>image/png</code>, and the sprite offset JSON document is <code>application/json</code>. </p>",
-        "GetMapStyleDescriptorResponse$CacheControl": "<p>The HTTP Cache-Control directive for the value.</p>",
+        "GetMapSpritesResponse$CacheControl": "<p>The HTTP Cache-Control directive for the value.</p>",
         "GetMapStyleDescriptorResponse$ContentType": "<p>The style descriptor's content type. For example, <code>application/json</code>.</p>",
-        "GetMapTileResponse$CacheControl": "<p>The HTTP Cache-Control directive for the value.</p>",
+        "GetMapStyleDescriptorResponse$CacheControl": "<p>The HTTP Cache-Control directive for the value.</p>",
         "GetMapTileResponse$ContentType": "<p>The map tile's content type. For example, <code>application/vnd.mapbox-vector-tile</code>.</p>",
+        "GetMapTileResponse$CacheControl": "<p>The HTTP Cache-Control directive for the value.</p>",
         "InternalServerException$Message": null,
         "ListGeofenceCollectionsResponseEntry$PricingPlanDataSource": "<p>No longer used. Always returns an empty string.</p>",
         "ListGeofenceResponseEntry$Status": "<p>Identifies the state of the geofence. A geofence will hold one of the following states:</p> <ul> <li> <p> <code>ACTIVE</code> — The geofence has been indexed by the system. </p> </li> <li> <p> <code>PENDING</code> — The geofence is being processed by the system.</p> </li> <li> <p> <code>FAILED</code> — The geofence failed to be indexed by the system.</p> </li> <li> <p> <code>DELETED</code> — The geofence has been deleted from the system index.</p> </li> <li> <p> <code>DELETING</code> — The geofence is being deleted from the system index.</p> </li> </ul>",
@@ -1881,18 +2095,18 @@
         "ListPlaceIndexesResponseEntry$DataSource": "<p>The data provider of geospatial data. Values can be one of the following:</p> <ul> <li> <p> <code>Esri</code> </p> </li> <li> <p> <code>Grab</code> </p> </li> <li> <p> <code>Here</code> </p> </li> </ul> <p>For more information about data providers, see <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html\">Amazon Location Service data providers</a>.</p>",
         "ListRouteCalculatorsResponseEntry$DataSource": "<p>The data provider of traffic and road network data. Indicates one of the available providers:</p> <ul> <li> <p> <code>Esri</code> </p> </li> <li> <p> <code>Grab</code> </p> </li> <li> <p> <code>Here</code> </p> </li> </ul> <p>For more information about data providers, see <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html\">Amazon Location Service data providers</a>.</p>",
         "ListTrackersResponseEntry$PricingPlanDataSource": "<p>No longer used. Always returns an empty string.</p>",
-        "Place$AddressNumber": "<p>The numerical portion of an address, such as a building number. </p>",
-        "Place$Country": "<p>A country/region specified using <a href=\"https://www.iso.org/iso-3166-country-codes.html\">ISO 3166</a> 3-digit country/region code. For example, <code>CAN</code>.</p>",
         "Place$Label": "<p>The full name and address of the point of interest such as a city, region, or country. For example, <code>123 Any Street, Any Town, USA</code>.</p>",
-        "Place$Municipality": "<p>A name for a local area, such as a city or town name. For example, <code>Toronto</code>.</p>",
-        "Place$Neighborhood": "<p>The name of a community district. For example, <code>Downtown</code>.</p>",
-        "Place$PostalCode": "<p>A group of numbers and letters in a country-specific format, which accompanies the address for the purpose of identifying a location. </p>",
-        "Place$Region": "<p>A name for an area or geographical division, such as a province or state name. For example, <code>British Columbia</code>.</p>",
+        "Place$AddressNumber": "<p>The numerical portion of an address, such as a building number. </p>",
         "Place$Street": "<p>The name for a street or a road to identify a location. For example, <code>Main Street</code>.</p>",
-        "Place$SubMunicipality": "<p>An area that's part of a larger municipality. For example, <code>Blissville</code> is a submunicipality in the Queen County in New York.</p> <note> <p>This property is only returned for a place index that uses Esri as a data provider. The property is represented as a <code>district</code>.</p> </note> <p>For more information about data providers, see <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html\">Amazon Location Service data providers</a>.</p>",
+        "Place$Neighborhood": "<p>The name of a community district. For example, <code>Downtown</code>.</p>",
+        "Place$Municipality": "<p>A name for a local area, such as a city or town name. For example, <code>Toronto</code>.</p>",
         "Place$SubRegion": "<p>A county, or an area that's part of a larger region. For example, <code>Metro Vancouver</code>.</p>",
-        "Place$UnitNumber": "<p>For addresses with multiple units, the unit identifier. Can include numbers and letters, for example <code>3B</code> or <code>Unit 123</code>.</p> <note> <p>This property is returned only for a place index that uses Esri or Grab as a data provider. It is not returned for <code>SearchPlaceIndexForPosition</code>.</p> </note>",
-        "Place$UnitType": "<p>For addresses with a <code>UnitNumber</code>, the type of unit. For example, <code>Apartment</code>.</p> <note> <p>This property is returned only for a place index that uses Esri as a data provider.</p> </note>",
+        "Place$Region": "<p>A name for an area or geographical division, such as a province or state name. For example, <code>British Columbia</code>.</p>",
+        "Place$Country": "<p>A country/region specified using <a href=\"https://www.iso.org/iso-3166-country-codes.html\">ISO 3166</a> 3-digit country/region code. For example, <code>CAN</code>.</p>",
+        "Place$PostalCode": "<p>A group of numbers and letters in a country-specific format, which accompanies the address for the purpose of identifying a location. </p>",
+        "Place$UnitType": "<p>For addresses with a <code>UnitNumber</code>, the type of unit. For example, <code>Apartment</code>.</p> <note> <p>Returned only for a place index that uses Esri as a data provider.</p> </note>",
+        "Place$UnitNumber": "<p>For addresses with multiple units, the unit identifier. Can include numbers and letters, for example <code>3B</code> or <code>Unit 123</code>.</p> <note> <p>Returned only for a place index that uses Esri or Grab as a data provider. Is not returned for <code>SearchPlaceIndexForPosition</code>.</p> </note>",
+        "Place$SubMunicipality": "<p>An area that's part of a larger municipality. For example, <code>Blissville </code> is a submunicipality in the Queen County in New York.</p> <note> <p>This property supported by Esri and OpenData. The Esri property is <code>district</code>, and the OpenData property is <code>borough</code>.</p> </note>",
         "ResourceNotFoundException$Message": null,
         "RouteMatrixEntryError$Message": "<p>A message about the error that occurred for the route calculation.</p>",
         "SearchForSuggestionsResult$Text": "<p>The text of the place suggestion, typically formatted as an address string.</p>",
@@ -1906,8 +2120,8 @@
         "UpdateGeofenceCollectionRequest$PricingPlanDataSource": "<p>This parameter is no longer used.</p>",
         "UpdateTrackerRequest$PricingPlanDataSource": "<p>This parameter is no longer used.</p>",
         "ValidationException$Message": null,
-        "ValidationExceptionField$Message": "<p>A message with the reason for the validation exception error.</p>",
-        "ValidationExceptionField$Name": "<p>The field name where the invalid entry was detected.</p>"
+        "ValidationExceptionField$Name": "<p>The field name where the invalid entry was detected.</p>",
+        "ValidationExceptionField$Message": "<p>A message with the reason for the validation exception error.</p>"
       }
     },
     "TagKey": {
@@ -1976,8 +2190,8 @@
         "BatchPutGeofenceSuccess$UpdateTime": "<p>The timestamp for when the geofence was last updated in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\">ISO 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code> </p>",
         "BatchUpdateDevicePositionError$SampleTime": "<p>The timestamp at which the device position was determined. Uses <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\"> ISO 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. </p>",
         "CalculateRouteMatrixRequest$DepartureTime": "<p>Specifies the desired time of departure. Uses the given time to calculate the route matrix. You can't set both <code>DepartureTime</code> and <code>DepartNow</code>. If neither is set, the best time of day to travel with the best traffic conditions is used to calculate the route matrix.</p> <note> <p>Setting a departure time in the past returns a <code>400 ValidationException</code> error.</p> </note> <ul> <li> <p>In <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\">ISO 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. For example, <code>2020–07-2T12:15:20.000Z+01:00</code> </p> </li> </ul>",
-        "CalculateRouteRequest$ArrivalTime": "<p>Specifies the desired time of arrival. Uses the given time to calculate the route. Otherwise, the best time of day to travel with the best traffic conditions is used to calculate the route.</p> <note> <p>ArrivalTime is not supported Esri.</p> </note>",
         "CalculateRouteRequest$DepartureTime": "<p>Specifies the desired time of departure. Uses the given time to calculate the route. Otherwise, the best time of day to travel with the best traffic conditions is used to calculate the route.</p> <ul> <li> <p>In <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\">ISO 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. For example, <code>2020–07-2T12:15:20.000Z+01:00</code> </p> </li> </ul>",
+        "CalculateRouteRequest$ArrivalTime": "<p>Specifies the desired time of arrival. Uses the given time to calculate the route. Otherwise, the best time of day to travel with the best traffic conditions is used to calculate the route.</p> <note> <p>ArrivalTime is not supported Esri.</p> </note>",
         "CreateGeofenceCollectionResponse$CreateTime": "<p>The timestamp for when the geofence collection was created in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\">ISO 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code> </p>",
         "CreateKeyRequest$ExpireTime": "<p>The optional timestamp for when the API key resource will expire in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\"> ISO 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. One of <code>NoExpiry</code> or <code>ExpireTime</code> must be set.</p>",
         "CreateKeyResponse$CreateTime": "<p>The timestamp for when the API key resource was created in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\"> ISO 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. </p>",
@@ -1998,13 +2212,15 @@
         "DescribeRouteCalculatorResponse$UpdateTime": "<p>The timestamp when the route calculator resource was last updated in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\">ISO 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. </p> <ul> <li> <p>For example, <code>2020–07-2T12:15:20.000Z+01:00</code> </p> </li> </ul>",
         "DescribeTrackerResponse$CreateTime": "<p>The timestamp for when the tracker resource was created in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\"> ISO 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. </p>",
         "DescribeTrackerResponse$UpdateTime": "<p>The timestamp for when the tracker resource was last updated in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\"> ISO 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. </p>",
-        "DevicePosition$ReceivedTime": "<p>The timestamp for when the tracker resource received the device position in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\"> ISO 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. </p>",
         "DevicePosition$SampleTime": "<p>The timestamp at which the device's position was determined. Uses <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\"> ISO 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. </p>",
+        "DevicePosition$ReceivedTime": "<p>The timestamp for when the tracker resource received the device position in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\"> ISO 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. </p>",
         "DevicePositionUpdate$SampleTime": "<p>The timestamp at which the device's position was determined. Uses <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\">ISO 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code> </p>",
-        "GetDevicePositionHistoryRequest$EndTimeExclusive": "<p>Specify the end time for the position history in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\"> ISO 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. By default, the value will be the time that the request is made.</p> <p>Requirement:</p> <ul> <li> <p>The time specified for <code>EndTimeExclusive</code> must be after the time for <code>StartTimeInclusive</code>.</p> </li> </ul>",
+        "DeviceState$SampleTime": "<p>The timestamp at which the device's position was determined. Uses <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\"> ISO 8601 </a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. </p>",
+        "ForecastedEvent$ForecastedBreachTime": "<p>The forecasted time the device will breach the geofence in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\">ISO 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code> </p>",
         "GetDevicePositionHistoryRequest$StartTimeInclusive": "<p>Specify the start time for the position history in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\"> ISO 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. By default, the value will be 24 hours prior to the time that the request is made.</p> <p>Requirement:</p> <ul> <li> <p>The time specified for <code>StartTimeInclusive</code> must be before <code>EndTimeExclusive</code>.</p> </li> </ul>",
-        "GetDevicePositionResponse$ReceivedTime": "<p>The timestamp for when the tracker resource received the device position in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\"> ISO 8601 </a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. </p>",
+        "GetDevicePositionHistoryRequest$EndTimeExclusive": "<p>Specify the end time for the position history in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\"> ISO 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. By default, the value will be the time that the request is made.</p> <p>Requirement:</p> <ul> <li> <p>The time specified for <code>EndTimeExclusive</code> must be after the time for <code>StartTimeInclusive</code>.</p> </li> </ul>",
         "GetDevicePositionResponse$SampleTime": "<p>The timestamp at which the device's position was determined. Uses <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\"> ISO 8601 </a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. </p>",
+        "GetDevicePositionResponse$ReceivedTime": "<p>The timestamp for when the tracker resource received the device position. Uses <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\"> ISO 8601 </a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. </p>",
         "GetGeofenceResponse$CreateTime": "<p>The timestamp for when the geofence collection was created in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\">ISO 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code> </p>",
         "GetGeofenceResponse$UpdateTime": "<p>The timestamp for when the geofence collection was last updated in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\">ISO 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code> </p>",
         "ListDevicePositionsResponseEntry$SampleTime": "<p>The timestamp at which the device position was determined. Uses <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\"> ISO 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.</p>",
@@ -2012,8 +2228,8 @@
         "ListGeofenceCollectionsResponseEntry$UpdateTime": "<p>Specifies a timestamp for when the resource was last updated in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\">ISO 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code> </p>",
         "ListGeofenceResponseEntry$CreateTime": "<p>The timestamp for when the geofence was stored in a geofence collection in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\">ISO 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code> </p>",
         "ListGeofenceResponseEntry$UpdateTime": "<p>The timestamp for when the geofence was last updated in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\">ISO 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code> </p>",
-        "ListKeysResponseEntry$CreateTime": "<p>The timestamp of when the API key was created, in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\"> ISO 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.</p>",
         "ListKeysResponseEntry$ExpireTime": "<p>The timestamp for when the API key resource will expire, in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\"> ISO 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.</p>",
+        "ListKeysResponseEntry$CreateTime": "<p>The timestamp of when the API key was created, in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\"> ISO 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.</p>",
         "ListKeysResponseEntry$UpdateTime": "<p>The timestamp of when the API key was last updated, in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\"> ISO 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.</p>",
         "ListMapsResponseEntry$CreateTime": "<p>The timestamp for when the map resource was created in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\">ISO 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.</p>",
         "ListMapsResponseEntry$UpdateTime": "<p>The timestamp for when the map resource was last updated in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\">ISO 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.</p>",
@@ -2031,7 +2247,9 @@
         "UpdateMapResponse$UpdateTime": "<p>The timestamp for when the map resource was last updated in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\"> ISO 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. </p>",
         "UpdatePlaceIndexResponse$UpdateTime": "<p>The timestamp for when the place index resource was last updated in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\"> ISO 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. </p>",
         "UpdateRouteCalculatorResponse$UpdateTime": "<p>The timestamp for when the route calculator was last updated in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\"> ISO 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. </p>",
-        "UpdateTrackerResponse$UpdateTime": "<p>The timestamp for when the tracker resource was last updated in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\"> ISO 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. </p>"
+        "UpdateTrackerResponse$UpdateTime": "<p>The timestamp for when the tracker resource was last updated in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\"> ISO 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. </p>",
+        "VerifyDevicePositionResponse$SampleTime": "<p>The timestamp at which the device's position was determined. Uses <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\"> ISO 8601 </a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. </p>",
+        "VerifyDevicePositionResponse$ReceivedTime": "<p>The timestamp for when the tracker resource received the device position in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\"> ISO 8601 </a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. </p>"
       }
     },
     "Token": {
@@ -2043,8 +2261,6 @@
         "ListDevicePositionsResponse$NextToken": "<p>A pagination token indicating there are additional pages available. You can use the token in a following request to fetch the next set of results.</p>",
         "ListGeofenceCollectionsRequest$NextToken": "<p>The pagination token specifying which page of results to return in the response. If no token is provided, the default page is the first page. </p> <p>Default value: <code>null</code> </p>",
         "ListGeofenceCollectionsResponse$NextToken": "<p>A pagination token indicating there are additional pages available. You can use the token in a following request to fetch the next set of results. </p>",
-        "ListGeofencesRequest$NextToken": "<p>The pagination token specifying which page of results to return in the response. If no token is provided, the default page is the first page. </p> <p>Default value: <code>null</code> </p>",
-        "ListGeofencesResponse$NextToken": "<p>A pagination token indicating there are additional pages available. You can use the token in a following request to fetch the next set of results. </p>",
         "ListKeysRequest$NextToken": "<p>The pagination token specifying which page of results to return in the response. If no token is provided, the default page is the first page. </p> <p>Default value: <code>null</code> </p>",
         "ListKeysResponse$NextToken": "<p>A pagination token indicating there are additional pages available. You can use the token in a following request to fetch the next set of results. </p>",
         "ListMapsRequest$NextToken": "<p>The pagination token specifying which page of results to return in the response. If no token is provided, the default page is the first page.</p> <p>Default value: <code>null</code> </p>",
@@ -2178,6 +2394,12 @@
       "refs": {
       }
     },
+    "Uuid": {
+      "base": null,
+      "refs": {
+        "ForecastedEvent$EventId": "<p>The forecasted event identifier.</p>"
+      }
+    },
     "ValidationException": {
       "base": "<p>The input failed to meet the constraints specified by the AWS service. </p>",
       "refs": {
@@ -2205,6 +2427,40 @@
       "base": null,
       "refs": {
         "TruckWeight$Unit": "<p>The unit of measurement to use for the truck weight.</p> <p>Default Value: <code>Kilograms</code> </p>"
+      }
+    },
+    "VerifyDevicePositionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "VerifyDevicePositionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "WiFiAccessPoint": {
+      "base": "<p>Wi-Fi access point.</p>",
+      "refs": {
+        "WiFiAccessPointList$member": null
+      }
+    },
+    "WiFiAccessPointList": {
+      "base": null,
+      "refs": {
+        "DeviceState$WiFiAccessPoints": "<p>The Wi-Fi access points the device is using.</p>"
+      }
+    },
+    "WiFiAccessPointMacAddressString": {
+      "base": null,
+      "refs": {
+        "WiFiAccessPoint$MacAddress": "<p>Medium access control address (Mac).</p>"
+      }
+    },
+    "WiFiAccessPointRssInteger": {
+      "base": null,
+      "refs": {
+        "WiFiAccessPoint$Rss": "<p>Received signal strength (dBm) of the WLAN measurement data.</p>"
       }
     }
   }

@@ -72862,6 +72862,10 @@ type TableInput struct {
 	// A TableIdentifier structure that describes a target table for resource linking.
 	TargetTable *TableIdentifier `type:"structure"`
 
+	// A structure that contains all the information that defines the view, including
+	// the dialect or dialects for the view, and the query.
+	ViewDefinition *ViewDefinitionInput_ `type:"structure"`
+
 	// Included for Apache Hive compatibility. Not used in the normal course of
 	// Glue operations.
 	ViewExpandedText *string `type:"string"`
@@ -72920,6 +72924,11 @@ func (s *TableInput) Validate() error {
 	if s.TargetTable != nil {
 		if err := s.TargetTable.Validate(); err != nil {
 			invalidParams.AddNested("TargetTable", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ViewDefinition != nil {
+		if err := s.ViewDefinition.Validate(); err != nil {
+			invalidParams.AddNested("ViewDefinition", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -72992,6 +73001,12 @@ func (s *TableInput) SetTableType(v string) *TableInput {
 // SetTargetTable sets the TargetTable field's value.
 func (s *TableInput) SetTargetTable(v *TableIdentifier) *TableInput {
 	s.TargetTable = v
+	return s
+}
+
+// SetViewDefinition sets the ViewDefinition field's value.
+func (s *TableInput) SetViewDefinition(v *ViewDefinitionInput_) *TableInput {
+	s.ViewDefinition = v
 	return s
 }
 
@@ -77177,6 +77192,10 @@ type UpdateTableInput struct {
 	// DatabaseName is a required field
 	DatabaseName *string `min:"1" type:"string" required:"true"`
 
+	// A flag that can be set to true to ignore matching storage descriptor and
+	// subobject matching requirements.
+	Force *bool `type:"boolean"`
+
 	// By default, UpdateTable always creates an archived version of the table before
 	// updating it. However, if skipArchive is set to true, UpdateTable does not
 	// create the archived version.
@@ -77192,6 +77211,9 @@ type UpdateTableInput struct {
 
 	// The version ID at which to update the table contents.
 	VersionId *string `min:"1" type:"string"`
+
+	// The operation to be performed when updating the view.
+	ViewUpdateAction *string `type:"string" enum:"ViewUpdateAction"`
 }
 
 // String returns the string representation.
@@ -77257,6 +77279,12 @@ func (s *UpdateTableInput) SetDatabaseName(v string) *UpdateTableInput {
 	return s
 }
 
+// SetForce sets the Force field's value.
+func (s *UpdateTableInput) SetForce(v bool) *UpdateTableInput {
+	s.Force = &v
+	return s
+}
+
 // SetSkipArchive sets the SkipArchive field's value.
 func (s *UpdateTableInput) SetSkipArchive(v bool) *UpdateTableInput {
 	s.SkipArchive = &v
@@ -77278,6 +77306,12 @@ func (s *UpdateTableInput) SetTransactionId(v string) *UpdateTableInput {
 // SetVersionId sets the VersionId field's value.
 func (s *UpdateTableInput) SetVersionId(v string) *UpdateTableInput {
 	s.VersionId = &v
+	return s
+}
+
+// SetViewUpdateAction sets the ViewUpdateAction field's value.
+func (s *UpdateTableInput) SetViewUpdateAction(v string) *UpdateTableInput {
+	s.ViewUpdateAction = &v
 	return s
 }
 
@@ -78277,6 +78311,95 @@ func (s *ViewDefinition) SetSubObjects(v []*string) *ViewDefinition {
 	return s
 }
 
+// A structure containing details for creating or updating an Glue view.
+type ViewDefinitionInput_ struct {
+	_ struct{} `type:"structure"`
+
+	// The definer of a view in SQL.
+	Definer *string `min:"20" type:"string"`
+
+	// You can set this flag as true to instruct the engine not to push user-provided
+	// operations into the logical plan of the view during query planning. However,
+	// setting this flag does not guarantee that the engine will comply. Refer to
+	// the engine's documentation to understand the guarantees provided, if any.
+	IsProtected *bool `type:"boolean"`
+
+	// A list of structures that contains the dialect of the view, and the query
+	// that defines the view.
+	Representations []*ViewRepresentationInput_ `min:"1" type:"list"`
+
+	// A list of base table ARNs that make up the view.
+	SubObjects []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ViewDefinitionInput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ViewDefinitionInput_) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ViewDefinitionInput_) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ViewDefinitionInput_"}
+	if s.Definer != nil && len(*s.Definer) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("Definer", 20))
+	}
+	if s.Representations != nil && len(s.Representations) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Representations", 1))
+	}
+	if s.Representations != nil {
+		for i, v := range s.Representations {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Representations", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDefiner sets the Definer field's value.
+func (s *ViewDefinitionInput_) SetDefiner(v string) *ViewDefinitionInput_ {
+	s.Definer = &v
+	return s
+}
+
+// SetIsProtected sets the IsProtected field's value.
+func (s *ViewDefinitionInput_) SetIsProtected(v bool) *ViewDefinitionInput_ {
+	s.IsProtected = &v
+	return s
+}
+
+// SetRepresentations sets the Representations field's value.
+func (s *ViewDefinitionInput_) SetRepresentations(v []*ViewRepresentationInput_) *ViewDefinitionInput_ {
+	s.Representations = v
+	return s
+}
+
+// SetSubObjects sets the SubObjects field's value.
+func (s *ViewDefinitionInput_) SetSubObjects(v []*string) *ViewDefinitionInput_ {
+	s.SubObjects = v
+	return s
+}
+
 // A structure that contains the dialect of the view, and the query that defines
 // the view.
 type ViewRepresentation struct {
@@ -78291,6 +78414,10 @@ type ViewRepresentation struct {
 	// Dialects marked as stale are no longer valid and must be updated before they
 	// can be queried in their respective query engines.
 	IsStale *bool `type:"boolean"`
+
+	// The name of the connection to be used to validate the specific representation
+	// of the view.
+	ValidationConnection *string `min:"1" type:"string"`
 
 	// The expanded SQL for the view. This SQL is used by engines while processing
 	// a query on a view. Engines may perform operations during view creation to
@@ -78342,6 +78469,12 @@ func (s *ViewRepresentation) SetIsStale(v bool) *ViewRepresentation {
 	return s
 }
 
+// SetValidationConnection sets the ValidationConnection field's value.
+func (s *ViewRepresentation) SetValidationConnection(v string) *ViewRepresentation {
+	s.ValidationConnection = &v
+	return s
+}
+
 // SetViewExpandedText sets the ViewExpandedText field's value.
 func (s *ViewRepresentation) SetViewExpandedText(v string) *ViewRepresentation {
 	s.ViewExpandedText = &v
@@ -78350,6 +78483,93 @@ func (s *ViewRepresentation) SetViewExpandedText(v string) *ViewRepresentation {
 
 // SetViewOriginalText sets the ViewOriginalText field's value.
 func (s *ViewRepresentation) SetViewOriginalText(v string) *ViewRepresentation {
+	s.ViewOriginalText = &v
+	return s
+}
+
+// A structure containing details of a representation to update or create a
+// Lake Formation view.
+type ViewRepresentationInput_ struct {
+	_ struct{} `type:"structure"`
+
+	// A parameter that specifies the engine type of a specific representation.
+	Dialect *string `type:"string" enum:"ViewDialect"`
+
+	// A parameter that specifies the version of the engine of a specific representation.
+	DialectVersion *string `min:"1" type:"string"`
+
+	// The name of the connection to be used to validate the specific representation
+	// of the view.
+	ValidationConnection *string `min:"1" type:"string"`
+
+	// A string that represents the SQL query that describes the view with expanded
+	// resource ARNs
+	ViewExpandedText *string `type:"string"`
+
+	// A string that represents the original SQL query that describes the view.
+	ViewOriginalText *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ViewRepresentationInput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ViewRepresentationInput_) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ViewRepresentationInput_) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ViewRepresentationInput_"}
+	if s.DialectVersion != nil && len(*s.DialectVersion) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DialectVersion", 1))
+	}
+	if s.ValidationConnection != nil && len(*s.ValidationConnection) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ValidationConnection", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDialect sets the Dialect field's value.
+func (s *ViewRepresentationInput_) SetDialect(v string) *ViewRepresentationInput_ {
+	s.Dialect = &v
+	return s
+}
+
+// SetDialectVersion sets the DialectVersion field's value.
+func (s *ViewRepresentationInput_) SetDialectVersion(v string) *ViewRepresentationInput_ {
+	s.DialectVersion = &v
+	return s
+}
+
+// SetValidationConnection sets the ValidationConnection field's value.
+func (s *ViewRepresentationInput_) SetValidationConnection(v string) *ViewRepresentationInput_ {
+	s.ValidationConnection = &v
+	return s
+}
+
+// SetViewExpandedText sets the ViewExpandedText field's value.
+func (s *ViewRepresentationInput_) SetViewExpandedText(v string) *ViewRepresentationInput_ {
+	s.ViewExpandedText = &v
+	return s
+}
+
+// SetViewOriginalText sets the ViewOriginalText field's value.
+func (s *ViewRepresentationInput_) SetViewOriginalText(v string) *ViewRepresentationInput_ {
 	s.ViewOriginalText = &v
 	return s
 }
@@ -81345,6 +81565,30 @@ func ViewDialect_Values() []string {
 		ViewDialectRedshift,
 		ViewDialectAthena,
 		ViewDialectSpark,
+	}
+}
+
+const (
+	// ViewUpdateActionAdd is a ViewUpdateAction enum value
+	ViewUpdateActionAdd = "ADD"
+
+	// ViewUpdateActionReplace is a ViewUpdateAction enum value
+	ViewUpdateActionReplace = "REPLACE"
+
+	// ViewUpdateActionAddOrReplace is a ViewUpdateAction enum value
+	ViewUpdateActionAddOrReplace = "ADD_OR_REPLACE"
+
+	// ViewUpdateActionDrop is a ViewUpdateAction enum value
+	ViewUpdateActionDrop = "DROP"
+)
+
+// ViewUpdateAction_Values returns all elements of the ViewUpdateAction enum
+func ViewUpdateAction_Values() []string {
+	return []string{
+		ViewUpdateActionAdd,
+		ViewUpdateActionReplace,
+		ViewUpdateActionAddOrReplace,
+		ViewUpdateActionDrop,
 	}
 }
 

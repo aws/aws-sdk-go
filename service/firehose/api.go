@@ -904,9 +904,9 @@ func (c *Firehose) StartDeliveryStreamEncryptionRequest(input *StartDeliveryStre
 // creates a grant that enables it to use the new CMK to encrypt and decrypt
 // data and to manage the grant.
 //
-// For the KMS grant creation to be successful, Firehose APIs StartDeliveryStreamEncryption
-// and CreateDeliveryStream should not be called with session credentials that
-// are more than 6 hours old.
+// For the KMS grant creation to be successful, the Firehose API operations
+// StartDeliveryStreamEncryption and CreateDeliveryStream should not be called
+// with session credentials that are more than 6 hours old.
 //
 // If a delivery stream already has encryption enabled and then you invoke this
 // operation to change the ARN of the CMK or both its type and ARN and you get
@@ -5875,8 +5875,8 @@ type HttpEndpointDestinationConfiguration struct {
 	// Describes a data processing configuration.
 	ProcessingConfiguration *ProcessingConfiguration `type:"structure"`
 
-	// The configuration of the requeste sent to the HTTP endpoint specified as
-	// the destination.
+	// The configuration of the request sent to the HTTP endpoint that is specified
+	// as the destination.
 	RequestConfiguration *HttpEndpointRequestConfiguration `type:"structure"`
 
 	// Describes the retry behavior in case Firehose is unable to deliver data to
@@ -5898,6 +5898,9 @@ type HttpEndpointDestinationConfiguration struct {
 	//
 	// S3Configuration is a required field
 	S3Configuration *S3DestinationConfiguration `type:"structure" required:"true"`
+
+	// The configuration that defines how you access secrets for HTTP Endpoint destination.
+	SecretsManagerConfiguration *SecretsManagerConfiguration `type:"structure"`
 }
 
 // String returns the string representation.
@@ -5953,6 +5956,11 @@ func (s *HttpEndpointDestinationConfiguration) Validate() error {
 	if s.S3Configuration != nil {
 		if err := s.S3Configuration.Validate(); err != nil {
 			invalidParams.AddNested("S3Configuration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SecretsManagerConfiguration != nil {
+		if err := s.SecretsManagerConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("SecretsManagerConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -6016,6 +6024,12 @@ func (s *HttpEndpointDestinationConfiguration) SetS3Configuration(v *S3Destinati
 	return s
 }
 
+// SetSecretsManagerConfiguration sets the SecretsManagerConfiguration field's value.
+func (s *HttpEndpointDestinationConfiguration) SetSecretsManagerConfiguration(v *SecretsManagerConfiguration) *HttpEndpointDestinationConfiguration {
+	s.SecretsManagerConfiguration = v
+	return s
+}
+
 // Describes the HTTP endpoint destination.
 type HttpEndpointDestinationDescription struct {
 	_ struct{} `type:"structure"`
@@ -6056,6 +6070,9 @@ type HttpEndpointDestinationDescription struct {
 
 	// Describes a destination in Amazon S3.
 	S3DestinationDescription *S3DestinationDescription `type:"structure"`
+
+	// The configuration that defines how you access secrets for HTTP Endpoint destination.
+	SecretsManagerConfiguration *SecretsManagerConfiguration `type:"structure"`
 }
 
 // String returns the string representation.
@@ -6130,6 +6147,12 @@ func (s *HttpEndpointDestinationDescription) SetS3DestinationDescription(v *S3De
 	return s
 }
 
+// SetSecretsManagerConfiguration sets the SecretsManagerConfiguration field's value.
+func (s *HttpEndpointDestinationDescription) SetSecretsManagerConfiguration(v *SecretsManagerConfiguration) *HttpEndpointDestinationDescription {
+	s.SecretsManagerConfiguration = v
+	return s
+}
+
 // Updates the specified HTTP endpoint destination.
 type HttpEndpointDestinationUpdate struct {
 	_ struct{} `type:"structure"`
@@ -6171,6 +6194,9 @@ type HttpEndpointDestinationUpdate struct {
 
 	// Describes an update for a destination in Amazon S3.
 	S3Update *S3DestinationUpdate `type:"structure"`
+
+	// The configuration that defines how you access secrets for HTTP Endpoint destination.
+	SecretsManagerConfiguration *SecretsManagerConfiguration `type:"structure"`
 }
 
 // String returns the string representation.
@@ -6220,6 +6246,11 @@ func (s *HttpEndpointDestinationUpdate) Validate() error {
 	if s.S3Update != nil {
 		if err := s.S3Update.Validate(); err != nil {
 			invalidParams.AddNested("S3Update", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SecretsManagerConfiguration != nil {
+		if err := s.SecretsManagerConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("SecretsManagerConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -6280,6 +6311,12 @@ func (s *HttpEndpointDestinationUpdate) SetS3BackupMode(v string) *HttpEndpointD
 // SetS3Update sets the S3Update field's value.
 func (s *HttpEndpointDestinationUpdate) SetS3Update(v *S3DestinationUpdate) *HttpEndpointDestinationUpdate {
 	s.S3Update = v
+	return s
+}
+
+// SetSecretsManagerConfiguration sets the SecretsManagerConfiguration field's value.
+func (s *HttpEndpointDestinationUpdate) SetSecretsManagerConfiguration(v *SecretsManagerConfiguration) *HttpEndpointDestinationUpdate {
+	s.SecretsManagerConfiguration = v
 	return s
 }
 
@@ -7527,7 +7564,7 @@ func (s *OutputFormatConfiguration) SetSerializer(v *Serializer) *OutputFormatCo
 }
 
 // A serializer to use for converting data to the Parquet format before storing
-// it in Amazon S3. For more information, see Apache Parquet (https://parquet.apache.org/documentation/latest/).
+// it in Amazon S3. For more information, see Apache Parquet (https://parquet.apache.org/docs/).
 type ParquetSerDe struct {
 	_ struct{} `type:"structure"`
 
@@ -8194,9 +8231,7 @@ type RedshiftDestinationConfiguration struct {
 	// Password is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by RedshiftDestinationConfiguration's
 	// String and GoString methods.
-	//
-	// Password is a required field
-	Password *string `min:"6" type:"string" required:"true" sensitive:"true"`
+	Password *string `min:"6" type:"string" sensitive:"true"`
 
 	// The data processing configuration.
 	ProcessingConfiguration *ProcessingConfiguration `type:"structure"`
@@ -8230,14 +8265,15 @@ type RedshiftDestinationConfiguration struct {
 	// S3Configuration is a required field
 	S3Configuration *S3DestinationConfiguration `type:"structure" required:"true"`
 
+	// The configuration that defines how you access secrets for Amazon Redshift.
+	SecretsManagerConfiguration *SecretsManagerConfiguration `type:"structure"`
+
 	// The name of the user.
 	//
 	// Username is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by RedshiftDestinationConfiguration's
 	// String and GoString methods.
-	//
-	// Username is a required field
-	Username *string `min:"1" type:"string" required:"true" sensitive:"true"`
+	Username *string `min:"1" type:"string" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -8270,9 +8306,6 @@ func (s *RedshiftDestinationConfiguration) Validate() error {
 	if s.CopyCommand == nil {
 		invalidParams.Add(request.NewErrParamRequired("CopyCommand"))
 	}
-	if s.Password == nil {
-		invalidParams.Add(request.NewErrParamRequired("Password"))
-	}
 	if s.Password != nil && len(*s.Password) < 6 {
 		invalidParams.Add(request.NewErrParamMinLen("Password", 6))
 	}
@@ -8284,9 +8317,6 @@ func (s *RedshiftDestinationConfiguration) Validate() error {
 	}
 	if s.S3Configuration == nil {
 		invalidParams.Add(request.NewErrParamRequired("S3Configuration"))
-	}
-	if s.Username == nil {
-		invalidParams.Add(request.NewErrParamRequired("Username"))
 	}
 	if s.Username != nil && len(*s.Username) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Username", 1))
@@ -8309,6 +8339,11 @@ func (s *RedshiftDestinationConfiguration) Validate() error {
 	if s.S3Configuration != nil {
 		if err := s.S3Configuration.Validate(); err != nil {
 			invalidParams.AddNested("S3Configuration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SecretsManagerConfiguration != nil {
+		if err := s.SecretsManagerConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("SecretsManagerConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -8378,6 +8413,12 @@ func (s *RedshiftDestinationConfiguration) SetS3Configuration(v *S3DestinationCo
 	return s
 }
 
+// SetSecretsManagerConfiguration sets the SecretsManagerConfiguration field's value.
+func (s *RedshiftDestinationConfiguration) SetSecretsManagerConfiguration(v *SecretsManagerConfiguration) *RedshiftDestinationConfiguration {
+	s.SecretsManagerConfiguration = v
+	return s
+}
+
 // SetUsername sets the Username field's value.
 func (s *RedshiftDestinationConfiguration) SetUsername(v string) *RedshiftDestinationConfiguration {
 	s.Username = &v
@@ -8426,14 +8467,15 @@ type RedshiftDestinationDescription struct {
 	// S3DestinationDescription is a required field
 	S3DestinationDescription *S3DestinationDescription `type:"structure" required:"true"`
 
+	// The configuration that defines how you access secrets for Amazon Redshift.
+	SecretsManagerConfiguration *SecretsManagerConfiguration `type:"structure"`
+
 	// The name of the user.
 	//
 	// Username is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by RedshiftDestinationDescription's
 	// String and GoString methods.
-	//
-	// Username is a required field
-	Username *string `min:"1" type:"string" required:"true" sensitive:"true"`
+	Username *string `min:"1" type:"string" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -8508,6 +8550,12 @@ func (s *RedshiftDestinationDescription) SetS3DestinationDescription(v *S3Destin
 	return s
 }
 
+// SetSecretsManagerConfiguration sets the SecretsManagerConfiguration field's value.
+func (s *RedshiftDestinationDescription) SetSecretsManagerConfiguration(v *SecretsManagerConfiguration) *RedshiftDestinationDescription {
+	s.SecretsManagerConfiguration = v
+	return s
+}
+
 // SetUsername sets the Username field's value.
 func (s *RedshiftDestinationDescription) SetUsername(v string) *RedshiftDestinationDescription {
 	s.Username = &v
@@ -8559,6 +8607,9 @@ type RedshiftDestinationUpdate struct {
 	// because the Amazon Redshift COPY operation that reads from the S3 bucket
 	// doesn't support these compression formats.
 	S3Update *S3DestinationUpdate `type:"structure"`
+
+	// The configuration that defines how you access secrets for Amazon Redshift.
+	SecretsManagerConfiguration *SecretsManagerConfiguration `type:"structure"`
 
 	// The name of the user.
 	//
@@ -8619,6 +8670,11 @@ func (s *RedshiftDestinationUpdate) Validate() error {
 	if s.S3Update != nil {
 		if err := s.S3Update.Validate(); err != nil {
 			invalidParams.AddNested("S3Update", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SecretsManagerConfiguration != nil {
+		if err := s.SecretsManagerConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("SecretsManagerConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -8685,6 +8741,12 @@ func (s *RedshiftDestinationUpdate) SetS3BackupUpdate(v *S3DestinationUpdate) *R
 // SetS3Update sets the S3Update field's value.
 func (s *RedshiftDestinationUpdate) SetS3Update(v *S3DestinationUpdate) *RedshiftDestinationUpdate {
 	s.S3Update = v
+	return s
+}
+
+// SetSecretsManagerConfiguration sets the SecretsManagerConfiguration field's value.
+func (s *RedshiftDestinationUpdate) SetSecretsManagerConfiguration(v *SecretsManagerConfiguration) *RedshiftDestinationUpdate {
+	s.SecretsManagerConfiguration = v
 	return s
 }
 
@@ -9418,6 +9480,88 @@ func (s *SchemaConfiguration) SetVersionId(v string) *SchemaConfiguration {
 	return s
 }
 
+// The structure that defines how Firehose accesses the secret.
+type SecretsManagerConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies whether you want to use the the secrets manager feature. When set
+	// as True the secrets manager configuration overwrites the existing secrets
+	// in the destination configuration. When it's set to False Firehose falls back
+	// to the credentials in the destination configuration.
+	//
+	// Enabled is a required field
+	Enabled *bool `type:"boolean" required:"true"`
+
+	// Specifies the role that Firehose assumes when calling the Secrets Manager
+	// API operation. When you provide the role, it overrides any destination specific
+	// role defined in the destination configuration. If you do not provide the
+	// then we use the destination specific role. This parameter is required for
+	// Splunk.
+	RoleARN *string `min:"1" type:"string"`
+
+	// The ARN of the secret that stores your credentials. It must be in the same
+	// region as the Firehose stream and the role. The secret ARN can reside in
+	// a different account than the delivery stream and role as Firehose supports
+	// cross-account secret access. This parameter is required when Enabled is set
+	// to True.
+	SecretARN *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SecretsManagerConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SecretsManagerConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SecretsManagerConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SecretsManagerConfiguration"}
+	if s.Enabled == nil {
+		invalidParams.Add(request.NewErrParamRequired("Enabled"))
+	}
+	if s.RoleARN != nil && len(*s.RoleARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RoleARN", 1))
+	}
+	if s.SecretARN != nil && len(*s.SecretARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SecretARN", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *SecretsManagerConfiguration) SetEnabled(v bool) *SecretsManagerConfiguration {
+	s.Enabled = &v
+	return s
+}
+
+// SetRoleARN sets the RoleARN field's value.
+func (s *SecretsManagerConfiguration) SetRoleARN(v string) *SecretsManagerConfiguration {
+	s.RoleARN = &v
+	return s
+}
+
+// SetSecretARN sets the SecretARN field's value.
+func (s *SecretsManagerConfiguration) SetSecretARN(v string) *SecretsManagerConfiguration {
+	s.SecretARN = &v
+	return s
+}
+
 // The serializer that you want Firehose to use to convert data to the target
 // format before writing it to Amazon S3. Firehose supports two types of serializers:
 // the ORC SerDe (https://hive.apache.org/javadocs/r1.2.2/api/org/apache/hadoop/hive/ql/io/orc/OrcSerde.html)
@@ -9612,9 +9756,7 @@ type SnowflakeDestinationConfiguration struct {
 	// PrivateKey is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by SnowflakeDestinationConfiguration's
 	// String and GoString methods.
-	//
-	// PrivateKey is a required field
-	PrivateKey *string `min:"256" type:"string" required:"true" sensitive:"true"`
+	PrivateKey *string `min:"256" type:"string" sensitive:"true"`
 
 	// Describes a data processing configuration.
 	ProcessingConfiguration *ProcessingConfiguration `type:"structure"`
@@ -9646,6 +9788,9 @@ type SnowflakeDestinationConfiguration struct {
 	// Schema is a required field
 	Schema *string `min:"1" type:"string" required:"true" sensitive:"true"`
 
+	// The configuration that defines how you access secrets for Snowflake.
+	SecretsManagerConfiguration *SecretsManagerConfiguration `type:"structure"`
+
 	// Optionally configure a Snowflake role. Otherwise the default user role will
 	// be used.
 	SnowflakeRoleConfiguration *SnowflakeRoleConfiguration `type:"structure"`
@@ -9670,9 +9815,7 @@ type SnowflakeDestinationConfiguration struct {
 	// User is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by SnowflakeDestinationConfiguration's
 	// String and GoString methods.
-	//
-	// User is a required field
-	User *string `min:"1" type:"string" required:"true" sensitive:"true"`
+	User *string `min:"1" type:"string" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -9717,9 +9860,6 @@ func (s *SnowflakeDestinationConfiguration) Validate() error {
 	if s.MetaDataColumnName != nil && len(*s.MetaDataColumnName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("MetaDataColumnName", 1))
 	}
-	if s.PrivateKey == nil {
-		invalidParams.Add(request.NewErrParamRequired("PrivateKey"))
-	}
 	if s.PrivateKey != nil && len(*s.PrivateKey) < 256 {
 		invalidParams.Add(request.NewErrParamMinLen("PrivateKey", 256))
 	}
@@ -9744,9 +9884,6 @@ func (s *SnowflakeDestinationConfiguration) Validate() error {
 	if s.Table != nil && len(*s.Table) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Table", 1))
 	}
-	if s.User == nil {
-		invalidParams.Add(request.NewErrParamRequired("User"))
-	}
 	if s.User != nil && len(*s.User) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("User", 1))
 	}
@@ -9758,6 +9895,11 @@ func (s *SnowflakeDestinationConfiguration) Validate() error {
 	if s.S3Configuration != nil {
 		if err := s.S3Configuration.Validate(); err != nil {
 			invalidParams.AddNested("S3Configuration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SecretsManagerConfiguration != nil {
+		if err := s.SecretsManagerConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("SecretsManagerConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.SnowflakeRoleConfiguration != nil {
@@ -9861,6 +10003,12 @@ func (s *SnowflakeDestinationConfiguration) SetSchema(v string) *SnowflakeDestin
 	return s
 }
 
+// SetSecretsManagerConfiguration sets the SecretsManagerConfiguration field's value.
+func (s *SnowflakeDestinationConfiguration) SetSecretsManagerConfiguration(v *SecretsManagerConfiguration) *SnowflakeDestinationConfiguration {
+	s.SecretsManagerConfiguration = v
+	return s
+}
+
 // SetSnowflakeRoleConfiguration sets the SnowflakeRoleConfiguration field's value.
 func (s *SnowflakeDestinationConfiguration) SetSnowflakeRoleConfiguration(v *SnowflakeRoleConfiguration) *SnowflakeDestinationConfiguration {
 	s.SnowflakeRoleConfiguration = v
@@ -9950,6 +10098,9 @@ type SnowflakeDestinationDescription struct {
 	// replaced with "sensitive" in string returned by SnowflakeDestinationDescription's
 	// String and GoString methods.
 	Schema *string `min:"1" type:"string" sensitive:"true"`
+
+	// The configuration that defines how you access secrets for Snowflake.
+	SecretsManagerConfiguration *SecretsManagerConfiguration `type:"structure"`
 
 	// Optionally configure a Snowflake role. Otherwise the default user role will
 	// be used.
@@ -10063,6 +10214,12 @@ func (s *SnowflakeDestinationDescription) SetS3DestinationDescription(v *S3Desti
 // SetSchema sets the Schema field's value.
 func (s *SnowflakeDestinationDescription) SetSchema(v string) *SnowflakeDestinationDescription {
 	s.Schema = &v
+	return s
+}
+
+// SetSecretsManagerConfiguration sets the SecretsManagerConfiguration field's value.
+func (s *SnowflakeDestinationDescription) SetSecretsManagerConfiguration(v *SecretsManagerConfiguration) *SnowflakeDestinationDescription {
+	s.SecretsManagerConfiguration = v
 	return s
 }
 
@@ -10185,6 +10342,9 @@ type SnowflakeDestinationUpdate struct {
 	// String and GoString methods.
 	Schema *string `min:"1" type:"string" sensitive:"true"`
 
+	// Describes the Secrets Manager configuration in Snowflake.
+	SecretsManagerConfiguration *SecretsManagerConfiguration `type:"structure"`
+
 	// Optionally configure a Snowflake role. Otherwise the default user role will
 	// be used.
 	SnowflakeRoleConfiguration *SnowflakeRoleConfiguration `type:"structure"`
@@ -10264,6 +10424,11 @@ func (s *SnowflakeDestinationUpdate) Validate() error {
 	if s.S3Update != nil {
 		if err := s.S3Update.Validate(); err != nil {
 			invalidParams.AddNested("S3Update", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SecretsManagerConfiguration != nil {
+		if err := s.SecretsManagerConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("SecretsManagerConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.SnowflakeRoleConfiguration != nil {
@@ -10359,6 +10524,12 @@ func (s *SnowflakeDestinationUpdate) SetS3Update(v *S3DestinationUpdate) *Snowfl
 // SetSchema sets the Schema field's value.
 func (s *SnowflakeDestinationUpdate) SetSchema(v string) *SnowflakeDestinationUpdate {
 	s.Schema = &v
+	return s
+}
+
+// SetSecretsManagerConfiguration sets the SecretsManagerConfiguration field's value.
+func (s *SnowflakeDestinationUpdate) SetSecretsManagerConfiguration(v *SecretsManagerConfiguration) *SnowflakeDestinationUpdate {
+	s.SecretsManagerConfiguration = v
 	return s
 }
 
@@ -10671,9 +10842,7 @@ type SplunkDestinationConfiguration struct {
 
 	// This is a GUID that you obtain from your Splunk cluster when you create a
 	// new HEC endpoint.
-	//
-	// HECToken is a required field
-	HECToken *string `type:"string" required:"true"`
+	HECToken *string `type:"string"`
 
 	// The data processing configuration.
 	ProcessingConfiguration *ProcessingConfiguration `type:"structure"`
@@ -10696,6 +10865,9 @@ type SplunkDestinationConfiguration struct {
 	//
 	// S3Configuration is a required field
 	S3Configuration *S3DestinationConfiguration `type:"structure" required:"true"`
+
+	// The configuration that defines how you access secrets for Splunk.
+	SecretsManagerConfiguration *SecretsManagerConfiguration `type:"structure"`
 }
 
 // String returns the string representation.
@@ -10728,9 +10900,6 @@ func (s *SplunkDestinationConfiguration) Validate() error {
 	if s.HECEndpointType == nil {
 		invalidParams.Add(request.NewErrParamRequired("HECEndpointType"))
 	}
-	if s.HECToken == nil {
-		invalidParams.Add(request.NewErrParamRequired("HECToken"))
-	}
 	if s.S3Configuration == nil {
 		invalidParams.Add(request.NewErrParamRequired("S3Configuration"))
 	}
@@ -10747,6 +10916,11 @@ func (s *SplunkDestinationConfiguration) Validate() error {
 	if s.S3Configuration != nil {
 		if err := s.S3Configuration.Validate(); err != nil {
 			invalidParams.AddNested("S3Configuration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SecretsManagerConfiguration != nil {
+		if err := s.SecretsManagerConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("SecretsManagerConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -10816,6 +10990,12 @@ func (s *SplunkDestinationConfiguration) SetS3Configuration(v *S3DestinationConf
 	return s
 }
 
+// SetSecretsManagerConfiguration sets the SecretsManagerConfiguration field's value.
+func (s *SplunkDestinationConfiguration) SetSecretsManagerConfiguration(v *SecretsManagerConfiguration) *SplunkDestinationConfiguration {
+	s.SecretsManagerConfiguration = v
+	return s
+}
+
 // Describes a destination in Splunk.
 type SplunkDestinationDescription struct {
 	_ struct{} `type:"structure"`
@@ -10858,6 +11038,9 @@ type SplunkDestinationDescription struct {
 
 	// The Amazon S3 destination.>
 	S3DestinationDescription *S3DestinationDescription `type:"structure"`
+
+	// The configuration that defines how you access secrets for Splunk.
+	SecretsManagerConfiguration *SecretsManagerConfiguration `type:"structure"`
 }
 
 // String returns the string representation.
@@ -10938,6 +11121,12 @@ func (s *SplunkDestinationDescription) SetS3DestinationDescription(v *S3Destinat
 	return s
 }
 
+// SetSecretsManagerConfiguration sets the SecretsManagerConfiguration field's value.
+func (s *SplunkDestinationDescription) SetSecretsManagerConfiguration(v *SecretsManagerConfiguration) *SplunkDestinationDescription {
+	s.SecretsManagerConfiguration = v
+	return s
+}
+
 // Describes an update for a destination in Splunk.
 type SplunkDestinationUpdate struct {
 	_ struct{} `type:"structure"`
@@ -10984,6 +11173,9 @@ type SplunkDestinationUpdate struct {
 
 	// Your update to the configuration of the backup Amazon S3 location.
 	S3Update *S3DestinationUpdate `type:"structure"`
+
+	// The configuration that defines how you access secrets for Splunk.
+	SecretsManagerConfiguration *SecretsManagerConfiguration `type:"structure"`
 }
 
 // String returns the string representation.
@@ -11023,6 +11215,11 @@ func (s *SplunkDestinationUpdate) Validate() error {
 	if s.S3Update != nil {
 		if err := s.S3Update.Validate(); err != nil {
 			invalidParams.AddNested("S3Update", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SecretsManagerConfiguration != nil {
+		if err := s.SecretsManagerConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("SecretsManagerConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -11089,6 +11286,12 @@ func (s *SplunkDestinationUpdate) SetS3BackupMode(v string) *SplunkDestinationUp
 // SetS3Update sets the S3Update field's value.
 func (s *SplunkDestinationUpdate) SetS3Update(v *S3DestinationUpdate) *SplunkDestinationUpdate {
 	s.S3Update = v
+	return s
+}
+
+// SetSecretsManagerConfiguration sets the SecretsManagerConfiguration field's value.
+func (s *SplunkDestinationUpdate) SetSecretsManagerConfiguration(v *SecretsManagerConfiguration) *SplunkDestinationUpdate {
+	s.SecretsManagerConfiguration = v
 	return s
 }
 
@@ -11583,7 +11786,7 @@ type UpdateDestinationInput struct {
 	// Deprecated: S3DestinationUpdate has been deprecated
 	S3DestinationUpdate *S3DestinationUpdate `deprecated:"true" type:"structure"`
 
-	// Update to the Snowflake destination condiguration settings
+	// Update to the Snowflake destination configuration settings.
 	SnowflakeDestinationUpdate *SnowflakeDestinationUpdate `type:"structure"`
 
 	// Describes an update for a destination in Splunk.

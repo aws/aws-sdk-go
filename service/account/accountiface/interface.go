@@ -26,7 +26,7 @@ import (
 //	// myFunc uses an SDK service client to make a request to
 //	// AWS Account.
 //	func myFunc(svc accountiface.AccountAPI) bool {
-//	    // Make svc.DeleteAlternateContact request
+//	    // Make svc.AcceptPrimaryEmailUpdate request
 //	}
 //
 //	func main() {
@@ -42,7 +42,7 @@ import (
 //	type mockAccountClient struct {
 //	    accountiface.AccountAPI
 //	}
-//	func (m *mockAccountClient) DeleteAlternateContact(input *account.DeleteAlternateContactInput) (*account.DeleteAlternateContactOutput, error) {
+//	func (m *mockAccountClient) AcceptPrimaryEmailUpdate(input *account.AcceptPrimaryEmailUpdateInput) (*account.AcceptPrimaryEmailUpdateOutput, error) {
 //	    // mock response/functionality
 //	}
 //
@@ -60,6 +60,10 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type AccountAPI interface {
+	AcceptPrimaryEmailUpdate(*account.AcceptPrimaryEmailUpdateInput) (*account.AcceptPrimaryEmailUpdateOutput, error)
+	AcceptPrimaryEmailUpdateWithContext(aws.Context, *account.AcceptPrimaryEmailUpdateInput, ...request.Option) (*account.AcceptPrimaryEmailUpdateOutput, error)
+	AcceptPrimaryEmailUpdateRequest(*account.AcceptPrimaryEmailUpdateInput) (*request.Request, *account.AcceptPrimaryEmailUpdateOutput)
+
 	DeleteAlternateContact(*account.DeleteAlternateContactInput) (*account.DeleteAlternateContactOutput, error)
 	DeleteAlternateContactWithContext(aws.Context, *account.DeleteAlternateContactInput, ...request.Option) (*account.DeleteAlternateContactOutput, error)
 	DeleteAlternateContactRequest(*account.DeleteAlternateContactInput) (*request.Request, *account.DeleteAlternateContactOutput)
@@ -80,6 +84,10 @@ type AccountAPI interface {
 	GetContactInformationWithContext(aws.Context, *account.GetContactInformationInput, ...request.Option) (*account.GetContactInformationOutput, error)
 	GetContactInformationRequest(*account.GetContactInformationInput) (*request.Request, *account.GetContactInformationOutput)
 
+	GetPrimaryEmail(*account.GetPrimaryEmailInput) (*account.GetPrimaryEmailOutput, error)
+	GetPrimaryEmailWithContext(aws.Context, *account.GetPrimaryEmailInput, ...request.Option) (*account.GetPrimaryEmailOutput, error)
+	GetPrimaryEmailRequest(*account.GetPrimaryEmailInput) (*request.Request, *account.GetPrimaryEmailOutput)
+
 	GetRegionOptStatus(*account.GetRegionOptStatusInput) (*account.GetRegionOptStatusOutput, error)
 	GetRegionOptStatusWithContext(aws.Context, *account.GetRegionOptStatusInput, ...request.Option) (*account.GetRegionOptStatusOutput, error)
 	GetRegionOptStatusRequest(*account.GetRegionOptStatusInput) (*request.Request, *account.GetRegionOptStatusOutput)
@@ -98,6 +106,10 @@ type AccountAPI interface {
 	PutContactInformation(*account.PutContactInformationInput) (*account.PutContactInformationOutput, error)
 	PutContactInformationWithContext(aws.Context, *account.PutContactInformationInput, ...request.Option) (*account.PutContactInformationOutput, error)
 	PutContactInformationRequest(*account.PutContactInformationInput) (*request.Request, *account.PutContactInformationOutput)
+
+	StartPrimaryEmailUpdate(*account.StartPrimaryEmailUpdateInput) (*account.StartPrimaryEmailUpdateOutput, error)
+	StartPrimaryEmailUpdateWithContext(aws.Context, *account.StartPrimaryEmailUpdateInput, ...request.Option) (*account.StartPrimaryEmailUpdateOutput, error)
+	StartPrimaryEmailUpdateRequest(*account.StartPrimaryEmailUpdateInput) (*request.Request, *account.StartPrimaryEmailUpdateOutput)
 }
 
 var _ AccountAPI = (*account.Account)(nil)

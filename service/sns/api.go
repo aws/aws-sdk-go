@@ -359,14 +359,14 @@ func (c *SNS) CreatePlatformApplicationRequest(input *CreatePlatformApplicationI
 //   - For ADM, PlatformPrincipal is client id and PlatformCredential is client
 //     secret.
 //
-//   - For Baidu, PlatformPrincipal is API key and PlatformCredential is secret
-//     key.
-//
 //   - For APNS and APNS_SANDBOX using certificate credentials, PlatformPrincipal
 //     is SSL certificate and PlatformCredential is private key.
 //
 //   - For APNS and APNS_SANDBOX using token credentials, PlatformPrincipal
 //     is signing key ID and PlatformCredential is signing key.
+//
+//   - For Baidu, PlatformPrincipal is API key and PlatformCredential is secret
+//     key.
 //
 //   - For GCM (Firebase Cloud Messaging) using key credentials, there is no
 //     PlatformPrincipal. The PlatformCredential is API key.
@@ -5418,7 +5418,7 @@ type CreateTopicInput struct {
 
 	// A map of attributes with their corresponding values.
 	//
-	// The following lists the names, descriptions, and values of the special request
+	// The following lists names, descriptions, and values of the special request
 	// parameters that the CreateTopic action uses:
 	//
 	//    * DeliveryPolicy – The policy that defines how Amazon SNS retries failed
@@ -6412,15 +6412,14 @@ type GetSubscriptionAttributesOutput struct {
 	//
 	//    * TopicArn – The topic ARN that the subscription is associated with.
 	//
-	// The following attribute applies only to Amazon Kinesis Data Firehose delivery
-	// stream subscriptions:
+	// The following attribute applies only to Amazon Data Firehose delivery stream
+	// subscriptions:
 	//
 	//    * SubscriptionRoleArn – The ARN of the IAM role that has the following:
-	//    Permission to write to the Kinesis Data Firehose delivery stream Amazon
-	//    SNS listed as a trusted entity Specifying a valid ARN for this attribute
-	//    is required for Kinesis Data Firehose delivery stream subscriptions. For
-	//    more information, see Fanout to Kinesis Data Firehose delivery streams
-	//    (https://docs.aws.amazon.com/sns/latest/dg/sns-firehose-as-subscriber.html)
+	//    Permission to write to the Firehose delivery stream Amazon SNS listed
+	//    as a trusted entity Specifying a valid ARN for this attribute is required
+	//    for Firehose delivery stream subscriptions. For more information, see
+	//    Fanout to Firehose delivery streams (https://docs.aws.amazon.com/sns/latest/dg/sns-firehose-as-subscriber.html)
 	//    in the Amazon SNS Developer Guide.
 	Attributes map[string]*string `type:"map"`
 }
@@ -8099,9 +8098,8 @@ type PublishInput struct {
 	// to email endpoints. This field will also be included, if present, in the
 	// standard JSON messages delivered to other endpoints.
 	//
-	// Constraints: Subjects must be ASCII text that begins with a letter, number,
-	// or punctuation mark; must not include line breaks or control characters;
-	// and must be less than 100 characters long.
+	// Constraints: Subjects must be UTF-8 text with no line breaks or control characters,
+	// and less than 100 characters long.
 	Subject *string `type:"string"`
 
 	// If you don't specify a value for the TargetArn parameter, you must specify
@@ -8889,15 +8887,14 @@ type SetSubscriptionAttributesInput struct {
 	//    endpoint becomes unavailable) are held in the dead-letter queue for further
 	//    analysis or reprocessing.
 	//
-	// The following attribute applies only to Amazon Kinesis Data Firehose delivery
-	// stream subscriptions:
+	// The following attribute applies only to Amazon Data Firehose delivery stream
+	// subscriptions:
 	//
 	//    * SubscriptionRoleArn – The ARN of the IAM role that has the following:
-	//    Permission to write to the Kinesis Data Firehose delivery stream Amazon
-	//    SNS listed as a trusted entity Specifying a valid ARN for this attribute
-	//    is required for Kinesis Data Firehose delivery stream subscriptions. For
-	//    more information, see Fanout to Kinesis Data Firehose delivery streams
-	//    (https://docs.aws.amazon.com/sns/latest/dg/sns-firehose-as-subscriber.html)
+	//    Permission to write to the Firehose delivery stream Amazon SNS listed
+	//    as a trusted entity Specifying a valid ARN for this attribute is required
+	//    for Firehose delivery stream subscriptions. For more information, see
+	//    Fanout to Firehose delivery streams (https://docs.aws.amazon.com/sns/latest/dg/sns-firehose-as-subscriber.html)
 	//    in the Amazon SNS Developer Guide.
 	//
 	// AttributeName is a required field
@@ -9211,15 +9208,14 @@ type SubscribeInput struct {
 	//    endpoint becomes unavailable) are held in the dead-letter queue for further
 	//    analysis or reprocessing.
 	//
-	// The following attribute applies only to Amazon Kinesis Data Firehose delivery
-	// stream subscriptions:
+	// The following attribute applies only to Amazon Data Firehose delivery stream
+	// subscriptions:
 	//
 	//    * SubscriptionRoleArn – The ARN of the IAM role that has the following:
-	//    Permission to write to the Kinesis Data Firehose delivery stream Amazon
-	//    SNS listed as a trusted entity Specifying a valid ARN for this attribute
-	//    is required for Kinesis Data Firehose delivery stream subscriptions. For
-	//    more information, see Fanout to Kinesis Data Firehose delivery streams
-	//    (https://docs.aws.amazon.com/sns/latest/dg/sns-firehose-as-subscriber.html)
+	//    Permission to write to the Firehose delivery stream Amazon SNS listed
+	//    as a trusted entity Specifying a valid ARN for this attribute is required
+	//    for Firehose delivery stream subscriptions. For more information, see
+	//    Fanout to Firehose delivery streams (https://docs.aws.amazon.com/sns/latest/dg/sns-firehose-as-subscriber.html)
 	//    in the Amazon SNS Developer Guide.
 	//
 	// The following attributes apply only to FIFO topics (https://docs.aws.amazon.com/sns/latest/dg/sns-fifo-topics.html):

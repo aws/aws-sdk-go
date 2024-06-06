@@ -1,3 +1,22 @@
+Release v1.53.18 (2024-06-06)
+===
+
+### Service Client Updates
+* `service/account`: Updates service API and documentation
+* `service/firehose`: Updates service API and documentation
+  * Adds integration with Secrets Manager for Redshift, Splunk, HttpEndpoint, and Snowflake destinations
+* `service/fsx`: Updates service API and documentation
+* `service/glue`: Updates service API and documentation
+  * This release adds support for creating and updating Glue Data Catalog Views.
+* `service/iotwireless`: Updates service API
+* `service/location`: Updates service API, documentation, and paginators
+* `service/sns`: Updates service API and documentation
+  * Doc-only update for SNS. These changes include customer-reported issues and TXC3 updates.
+* `service/sqs`: Updates service API and documentation
+  * Doc only updates for SQS. These updates include customer-reported issues and TCX3 modifications.
+* `service/storagegateway`: Updates service API and documentation
+  * Adds SoftwareUpdatePreferences to DescribeMaintenanceStartTime and UpdateMaintenanceStartTime, a structure which contains AutomaticUpdatePolicy.
+
 Release v1.53.17 (2024-06-05)
 ===
 

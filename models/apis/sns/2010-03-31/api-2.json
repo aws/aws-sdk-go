@@ -4,12 +4,14 @@
     "apiVersion":"2010-03-31",
     "endpointPrefix":"sns",
     "protocol":"query",
+    "protocols":["query"],
     "serviceAbbreviation":"Amazon SNS",
     "serviceFullName":"Amazon Simple Notification Service",
     "serviceId":"SNS",
     "signatureVersion":"v4",
     "uid":"sns-2010-03-31",
-    "xmlNamespace":"http://sns.amazonaws.com/doc/2010-03-31/"
+    "xmlNamespace":"http://sns.amazonaws.com/doc/2010-03-31/",
+    "auth":["aws.auth#sigv4"]
   },
   "operations":{
     "AddPermission":{
