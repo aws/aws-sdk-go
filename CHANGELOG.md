@@ -1,3 +1,15 @@
+Release v1.53.19 (2024-06-07)
+===
+
+### Service Client Updates
+* `service/auditmanager`: Updates service API and documentation
+* `service/b2bi`: Updates service API
+* `service/codepipeline`: Updates service API and documentation
+  * CodePipeline now supports overriding S3 Source Object Key during StartPipelineExecution, as part of Source Overrides.
+* `service/sagemaker`: Updates service API and documentation
+  * This release introduces a new optional parameter: InferenceAmiVersion, in ProductionVariant.
+* `service/verifiedpermissions`: Updates service API and documentation
+
 Release v1.53.18 (2024-06-06)
 ===
 

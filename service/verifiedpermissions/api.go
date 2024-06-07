@@ -363,34 +363,32 @@ func (c *VerifiedPermissions) CreateIdentitySourceRequest(input *CreateIdentityS
 
 // CreateIdentitySource API operation for Amazon Verified Permissions.
 //
-// Creates a reference to an Amazon Cognito user pool as an external identity
-// provider (IdP).
+// Adds an identity source to a policy store–an Amazon Cognito user pool or
+// OpenID Connect (OIDC) identity provider (IdP).
 //
 // After you create an identity source, you can use the identities provided
 // by the IdP as proxies for the principal in authorization queries that use
 // the IsAuthorizedWithToken (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_IsAuthorizedWithToken.html)
-// operation. These identities take the form of tokens that contain claims about
-// the user, such as IDs, attributes and group memberships. Amazon Cognito provides
-// both identity tokens and access tokens, and Verified Permissions can use
-// either or both. Any combination of identity and access tokens results in
-// the same Cedar principal. Verified Permissions automatically translates the
-// information about the identities into the standard Cedar attributes that
-// can be evaluated by your policies. Because the Amazon Cognito identity and
-// access tokens can contain different information, the tokens you choose to
-// use determine which principal attributes are available to access when evaluating
-// Cedar policies.
+// or BatchIsAuthorizedWithToken (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_BatchIsAuthorizedWithToken.html)
+// API operations. These identities take the form of tokens that contain claims
+// about the user, such as IDs, attributes and group memberships. Identity sources
+// provide identity (ID) tokens and access tokens. Verified Permissions derives
+// information about your user and session from token claims. Access tokens
+// provide action context to your policies, and ID tokens provide principal
+// Attributes.
 //
-// If you delete a Amazon Cognito user pool or user, tokens from that deleted
-// pool or that deleted user continue to be usable until they expire.
+// Tokens from an identity source user continue to be usable until they expire.
+// Token revocation and resource deletion have no effect on the validity of
+// a token in your policy store
 //
-// To reference a user from this identity source in your Cedar policies, use
-// the following syntax.
+// To reference a user from this identity source in your Cedar policies, refer
+// to the following syntax examples.
 //
-// IdentityType::"<CognitoUserPoolIdentifier>|<CognitoClientId>
+//   - Amazon Cognito user pool: Namespace::[Entity type]::[User pool ID]|[user
+//     principal attribute], for example MyCorp::User::us-east-1_EXAMPLE|a1b2c3d4-5678-90ab-cdef-EXAMPLE11111.
 //
-// Where IdentityType is the string that you provide to the PrincipalEntityType
-// parameter for this operation. The CognitoUserPoolId and CognitoClientId are
-// defined by the Amazon Cognito user pool.
+//   - OpenID Connect (OIDC) provider: Namespace::[Entity type]::[principalIdClaim]|[user
+//     principal attribute], for example MyCorp::User::MyOIDCProvider|a1b2c3d4-5678-90ab-cdef-EXAMPLE22222.
 //
 // Verified Permissions is eventually consistent (https://wikipedia.org/wiki/Eventual_consistency)
 // . It can take a few seconds for a new or changed element to propagate through
@@ -2392,8 +2390,9 @@ func (c *VerifiedPermissions) IsAuthorizedWithTokenRequest(input *IsAuthorizedWi
 // Verified Permissions validates each token that is specified in a request
 // by checking its expiration date and its signature.
 //
-// If you delete a Amazon Cognito user pool or user, tokens from that deleted
-// pool or that deleted user continue to be usable until they expire.
+// Tokens from an identity source user continue to be usable until they expire.
+// Token revocation and resource deletion have no effect on the validity of
+// a token in your policy store
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3447,9 +3446,9 @@ func (c *VerifiedPermissions) UpdateIdentitySourceRequest(input *UpdateIdentityS
 
 // UpdateIdentitySource API operation for Amazon Verified Permissions.
 //
-// Updates the specified identity source to use a new identity provider (IdP)
-// source, or to change the mapping of identities from the IdP to a different
-// principal entity type.
+// Updates the specified identity source to use a new identity provider (IdP),
+// or to change the mapping of identities from the IdP to a different principal
+// entity type.
 //
 // Verified Permissions is eventually consistent (https://wikipedia.org/wiki/Eventual_consistency)
 // . It can take a few seconds for a new or changed element to propagate through
@@ -5084,7 +5083,7 @@ func (s *CognitoGroupConfigurationItem) SetGroupEntityType(v string) *CognitoGro
 // The configuration for an identity source that represents a connection to
 // an Amazon Cognito user pool used as an identity provider for Verified Permissions.
 //
-// This data type is used as a field that is part of an Configuration (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_Configuration.html)
+// This data type part of a Configuration (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_Configuration.html)
 // structure that is used as a parameter to CreateIdentitySource (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_CreateIdentitySource.html).
 //
 // Example:"CognitoUserPoolConfiguration":{"UserPoolArn":"arn:aws:cognito-idp:us-east-1:123456789012:userpool/us-east-1_1a2b3c4d5","ClientIds":
@@ -5338,11 +5337,6 @@ func (s *CognitoUserPoolConfigurationItem) SetUserPoolArn(v string) *CognitoUser
 
 // Contains configuration information used when creating a new identity source.
 //
-// At this time, the only valid member of this structure is a Amazon Cognito
-// user pool configuration.
-//
-// Specifies a userPoolArn, a groupConfiguration, and a ClientId.
-//
 // This data type is used as a request parameter for the CreateIdentitySource
 // (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_CreateIdentitySource.html)
 // operation.
@@ -5358,6 +5352,14 @@ type Configuration struct {
 	// ["a1b2c3d4e5f6g7h8i9j0kalbmc"],"groupConfiguration": {"groupEntityType":
 	// "MyCorp::Group"}}}
 	CognitoUserPoolConfiguration *CognitoUserPoolConfiguration `locationName:"cognitoUserPoolConfiguration" type:"structure"`
+
+	// Contains configuration details of an OpenID Connect (OIDC) identity provider,
+	// or identity source, that Verified Permissions can use to generate entities
+	// from authenticated identities. It specifies the issuer URL, token type that
+	// you want to use, and policy store entity details.
+	//
+	// Example:"configuration":{"openIdConnectConfiguration":{"issuer":"https://auth.example.com","tokenSelection":{"accessTokenOnly":{"audiences":["https://myapp.example.com","https://myapp2.example.com"],"principalIdClaim":"sub"}},"entityIdPrefix":"MyOIDCProvider","groupConfiguration":{"groupClaim":"groups","groupEntityType":"MyCorp::UserGroup"}}}
+	OpenIdConnectConfiguration *OpenIdConnectConfiguration `locationName:"openIdConnectConfiguration" type:"structure"`
 }
 
 // String returns the string representation.
@@ -5386,6 +5388,11 @@ func (s *Configuration) Validate() error {
 			invalidParams.AddNested("CognitoUserPoolConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.OpenIdConnectConfiguration != nil {
+		if err := s.OpenIdConnectConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("OpenIdConnectConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -5396,6 +5403,12 @@ func (s *Configuration) Validate() error {
 // SetCognitoUserPoolConfiguration sets the CognitoUserPoolConfiguration field's value.
 func (s *Configuration) SetCognitoUserPoolConfiguration(v *CognitoUserPoolConfiguration) *Configuration {
 	s.CognitoUserPoolConfiguration = v
+	return s
+}
+
+// SetOpenIdConnectConfiguration sets the OpenIdConnectConfiguration field's value.
+func (s *Configuration) SetOpenIdConnectConfiguration(v *OpenIdConnectConfiguration) *Configuration {
+	s.OpenIdConnectConfiguration = v
 	return s
 }
 
@@ -5416,6 +5429,14 @@ type ConfigurationDetail struct {
 	// ["a1b2c3d4e5f6g7h8i9j0kalbmc"],"groupConfiguration": {"groupEntityType":
 	// "MyCorp::Group"}}}
 	CognitoUserPoolConfiguration *CognitoUserPoolConfigurationDetail `locationName:"cognitoUserPoolConfiguration" type:"structure"`
+
+	// Contains configuration details of an OpenID Connect (OIDC) identity provider,
+	// or identity source, that Verified Permissions can use to generate entities
+	// from authenticated identities. It specifies the issuer URL, token type that
+	// you want to use, and policy store entity details.
+	//
+	// Example:"configuration":{"openIdConnectConfiguration":{"issuer":"https://auth.example.com","tokenSelection":{"accessTokenOnly":{"audiences":["https://myapp.example.com","https://myapp2.example.com"],"principalIdClaim":"sub"}},"entityIdPrefix":"MyOIDCProvider","groupConfiguration":{"groupClaim":"groups","groupEntityType":"MyCorp::UserGroup"}}}
+	OpenIdConnectConfiguration *OpenIdConnectConfigurationDetail `locationName:"openIdConnectConfiguration" type:"structure"`
 }
 
 // String returns the string representation.
@@ -5442,6 +5463,12 @@ func (s *ConfigurationDetail) SetCognitoUserPoolConfiguration(v *CognitoUserPool
 	return s
 }
 
+// SetOpenIdConnectConfiguration sets the OpenIdConnectConfiguration field's value.
+func (s *ConfigurationDetail) SetOpenIdConnectConfiguration(v *OpenIdConnectConfigurationDetail) *ConfigurationDetail {
+	s.OpenIdConnectConfiguration = v
+	return s
+}
+
 // Contains configuration information about an identity source.
 //
 // This data type is a response parameter to the ListIdentitySources (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_ListIdentitySources.html)
@@ -5459,6 +5486,14 @@ type ConfigurationItem struct {
 	// ["a1b2c3d4e5f6g7h8i9j0kalbmc"],"groupConfiguration": {"groupEntityType":
 	// "MyCorp::Group"}}}
 	CognitoUserPoolConfiguration *CognitoUserPoolConfigurationItem `locationName:"cognitoUserPoolConfiguration" type:"structure"`
+
+	// Contains configuration details of an OpenID Connect (OIDC) identity provider,
+	// or identity source, that Verified Permissions can use to generate entities
+	// from authenticated identities. It specifies the issuer URL, token type that
+	// you want to use, and policy store entity details.
+	//
+	// Example:"configuration":{"openIdConnectConfiguration":{"issuer":"https://auth.example.com","tokenSelection":{"accessTokenOnly":{"audiences":["https://myapp.example.com","https://myapp2.example.com"],"principalIdClaim":"sub"}},"entityIdPrefix":"MyOIDCProvider","groupConfiguration":{"groupClaim":"groups","groupEntityType":"MyCorp::UserGroup"}}}
+	OpenIdConnectConfiguration *OpenIdConnectConfigurationItem `locationName:"openIdConnectConfiguration" type:"structure"`
 }
 
 // String returns the string representation.
@@ -5482,6 +5517,12 @@ func (s ConfigurationItem) GoString() string {
 // SetCognitoUserPoolConfiguration sets the CognitoUserPoolConfiguration field's value.
 func (s *ConfigurationItem) SetCognitoUserPoolConfiguration(v *CognitoUserPoolConfigurationItem) *ConfigurationItem {
 	s.CognitoUserPoolConfiguration = v
+	return s
+}
+
+// SetOpenIdConnectConfiguration sets the OpenIdConnectConfiguration field's value.
+func (s *ConfigurationItem) SetOpenIdConnectConfiguration(v *OpenIdConnectConfigurationItem) *ConfigurationItem {
+	s.OpenIdConnectConfiguration = v
 	return s
 }
 
@@ -5573,7 +5614,11 @@ type ContextDefinition struct {
 	// its value.
 	//
 	// Example: "contextMap":{"<KeyName1>":{"boolean":true},"<KeyName2>":{"long":1234}}
-	ContextMap map[string]*AttributeValue `locationName:"contextMap" type:"map"`
+	//
+	// ContextMap is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ContextDefinition's
+	// String and GoString methods.
+	ContextMap map[string]*AttributeValue `locationName:"contextMap" type:"map" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -5642,11 +5687,6 @@ type CreateIdentitySourceInput struct {
 
 	// Specifies the details required to communicate with the identity provider
 	// (IdP) associated with this identity source.
-	//
-	// At this time, the only valid member of this structure is a Amazon Cognito
-	// user pool configuration.
-	//
-	// You must specify a UserPoolArn, and optionally, a ClientId.
 	//
 	// Configuration is a required field
 	Configuration *Configuration `locationName:"configuration" type:"structure" required:"true"`
@@ -6912,7 +6952,14 @@ type EntityItem struct {
 	// Identifier is a required field
 	Identifier *EntityIdentifier `locationName:"identifier" type:"structure" required:"true"`
 
-	// The parents in the hierarchy that contains the entity.
+	// The parent entities in the hierarchy that contains the entity. A principal
+	// or resource entity can be defined with at most 99 transitive parents per
+	// authorization request.
+	//
+	// A transitive parent is an entity in the hierarchy of entities including all
+	// direct parents, and parents of parents. For example, a user can be a member
+	// of 91 groups if one of those groups is a member of eight groups, for a total
+	// of 100: one entity, 91 entity parents, and eight parents of parents.
 	Parents []*EntityIdentifier `locationName:"parents" type:"list"`
 }
 
@@ -9254,6 +9301,1003 @@ func (s *ListPolicyTemplatesOutput) SetPolicyTemplates(v []*PolicyTemplateItem) 
 	return s
 }
 
+// The configuration of an OpenID Connect (OIDC) identity source for handling
+// access token claims. Contains the claim that you want to identify as the
+// principal in an authorization request, and the values of the aud claim, or
+// audiences, that you want to accept.
+//
+// This data type is part of a OpenIdConnectTokenSelection (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_OpenIdConnectTokenSelection.html)
+// structure, which is a parameter of CreateIdentitySource (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_CreateIdentitySource.html).
+type OpenIdConnectAccessTokenConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The access token aud claim values that you want to accept in your policy
+	// store. For example, https://myapp.example.com, https://myapp2.example.com.
+	Audiences []*string `locationName:"audiences" min:"1" type:"list"`
+
+	// The claim that determines the principal in OIDC access tokens. For example,
+	// sub.
+	//
+	// PrincipalIdClaim is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by OpenIdConnectAccessTokenConfiguration's
+	// String and GoString methods.
+	PrincipalIdClaim *string `locationName:"principalIdClaim" min:"1" type:"string" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OpenIdConnectAccessTokenConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OpenIdConnectAccessTokenConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *OpenIdConnectAccessTokenConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "OpenIdConnectAccessTokenConfiguration"}
+	if s.Audiences != nil && len(s.Audiences) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Audiences", 1))
+	}
+	if s.PrincipalIdClaim != nil && len(*s.PrincipalIdClaim) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PrincipalIdClaim", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAudiences sets the Audiences field's value.
+func (s *OpenIdConnectAccessTokenConfiguration) SetAudiences(v []*string) *OpenIdConnectAccessTokenConfiguration {
+	s.Audiences = v
+	return s
+}
+
+// SetPrincipalIdClaim sets the PrincipalIdClaim field's value.
+func (s *OpenIdConnectAccessTokenConfiguration) SetPrincipalIdClaim(v string) *OpenIdConnectAccessTokenConfiguration {
+	s.PrincipalIdClaim = &v
+	return s
+}
+
+// The configuration of an OpenID Connect (OIDC) identity source for handling
+// access token claims. Contains the claim that you want to identify as the
+// principal in an authorization request, and the values of the aud claim, or
+// audiences, that you want to accept.
+//
+// This data type is part of a OpenIdConnectTokenSelectionDetail (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_OpenIdConnectTokenSelectionDetail.html)
+// structure, which is a parameter of GetIdentitySource (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_GetIdentitySource.html).
+type OpenIdConnectAccessTokenConfigurationDetail struct {
+	_ struct{} `type:"structure"`
+
+	// The access token aud claim values that you want to accept in your policy
+	// store. For example, https://myapp.example.com, https://myapp2.example.com.
+	Audiences []*string `locationName:"audiences" min:"1" type:"list"`
+
+	// The claim that determines the principal in OIDC access tokens. For example,
+	// sub.
+	//
+	// PrincipalIdClaim is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by OpenIdConnectAccessTokenConfigurationDetail's
+	// String and GoString methods.
+	PrincipalIdClaim *string `locationName:"principalIdClaim" min:"1" type:"string" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OpenIdConnectAccessTokenConfigurationDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OpenIdConnectAccessTokenConfigurationDetail) GoString() string {
+	return s.String()
+}
+
+// SetAudiences sets the Audiences field's value.
+func (s *OpenIdConnectAccessTokenConfigurationDetail) SetAudiences(v []*string) *OpenIdConnectAccessTokenConfigurationDetail {
+	s.Audiences = v
+	return s
+}
+
+// SetPrincipalIdClaim sets the PrincipalIdClaim field's value.
+func (s *OpenIdConnectAccessTokenConfigurationDetail) SetPrincipalIdClaim(v string) *OpenIdConnectAccessTokenConfigurationDetail {
+	s.PrincipalIdClaim = &v
+	return s
+}
+
+// The configuration of an OpenID Connect (OIDC) identity source for handling
+// access token claims. Contains the claim that you want to identify as the
+// principal in an authorization request, and the values of the aud claim, or
+// audiences, that you want to accept.
+//
+// This data type is part of a OpenIdConnectTokenSelectionItem (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_OpenIdConnectTokenSelectionItem.html)
+// structure, which is a parameter of ListIdentitySources (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_ListIdentitySources.html).
+type OpenIdConnectAccessTokenConfigurationItem struct {
+	_ struct{} `type:"structure"`
+
+	// The access token aud claim values that you want to accept in your policy
+	// store. For example, https://myapp.example.com, https://myapp2.example.com.
+	Audiences []*string `locationName:"audiences" min:"1" type:"list"`
+
+	// The claim that determines the principal in OIDC access tokens. For example,
+	// sub.
+	//
+	// PrincipalIdClaim is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by OpenIdConnectAccessTokenConfigurationItem's
+	// String and GoString methods.
+	PrincipalIdClaim *string `locationName:"principalIdClaim" min:"1" type:"string" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OpenIdConnectAccessTokenConfigurationItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OpenIdConnectAccessTokenConfigurationItem) GoString() string {
+	return s.String()
+}
+
+// SetAudiences sets the Audiences field's value.
+func (s *OpenIdConnectAccessTokenConfigurationItem) SetAudiences(v []*string) *OpenIdConnectAccessTokenConfigurationItem {
+	s.Audiences = v
+	return s
+}
+
+// SetPrincipalIdClaim sets the PrincipalIdClaim field's value.
+func (s *OpenIdConnectAccessTokenConfigurationItem) SetPrincipalIdClaim(v string) *OpenIdConnectAccessTokenConfigurationItem {
+	s.PrincipalIdClaim = &v
+	return s
+}
+
+// Contains configuration details of an OpenID Connect (OIDC) identity provider,
+// or identity source, that Verified Permissions can use to generate entities
+// from authenticated identities. It specifies the issuer URL, token type that
+// you want to use, and policy store entity details.
+//
+// This data type is part of a Configuration (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_Configuration.html)
+// structure, which is a parameter to CreateIdentitySource (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_CreateIdentitySource.html).
+type OpenIdConnectConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// A descriptive string that you want to prefix to user entities from your OIDC
+	// identity provider. For example, if you set an entityIdPrefix of MyOIDCProvider,
+	// you can reference principals in your policies in the format MyCorp::User::MyOIDCProvider|Carlos.
+	//
+	// EntityIdPrefix is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by OpenIdConnectConfiguration's
+	// String and GoString methods.
+	EntityIdPrefix *string `locationName:"entityIdPrefix" min:"1" type:"string" sensitive:"true"`
+
+	// The claim in OIDC identity provider tokens that indicates a user's group
+	// membership, and the entity type that you want to map it to. For example,
+	// this object can map the contents of a groups claim to MyCorp::UserGroup.
+	GroupConfiguration *OpenIdConnectGroupConfiguration `locationName:"groupConfiguration" type:"structure"`
+
+	// The issuer URL of an OIDC identity provider. This URL must have an OIDC discovery
+	// endpoint at the path .well-known/openid-configuration.
+	//
+	// Issuer is a required field
+	Issuer *string `locationName:"issuer" min:"1" type:"string" required:"true"`
+
+	// The token type that you want to process from your OIDC identity provider.
+	// Your policy store can process either identity (ID) or access tokens from
+	// a given OIDC identity source.
+	//
+	// TokenSelection is a required field
+	TokenSelection *OpenIdConnectTokenSelection `locationName:"tokenSelection" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OpenIdConnectConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OpenIdConnectConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *OpenIdConnectConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "OpenIdConnectConfiguration"}
+	if s.EntityIdPrefix != nil && len(*s.EntityIdPrefix) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EntityIdPrefix", 1))
+	}
+	if s.Issuer == nil {
+		invalidParams.Add(request.NewErrParamRequired("Issuer"))
+	}
+	if s.Issuer != nil && len(*s.Issuer) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Issuer", 1))
+	}
+	if s.TokenSelection == nil {
+		invalidParams.Add(request.NewErrParamRequired("TokenSelection"))
+	}
+	if s.GroupConfiguration != nil {
+		if err := s.GroupConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("GroupConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.TokenSelection != nil {
+		if err := s.TokenSelection.Validate(); err != nil {
+			invalidParams.AddNested("TokenSelection", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEntityIdPrefix sets the EntityIdPrefix field's value.
+func (s *OpenIdConnectConfiguration) SetEntityIdPrefix(v string) *OpenIdConnectConfiguration {
+	s.EntityIdPrefix = &v
+	return s
+}
+
+// SetGroupConfiguration sets the GroupConfiguration field's value.
+func (s *OpenIdConnectConfiguration) SetGroupConfiguration(v *OpenIdConnectGroupConfiguration) *OpenIdConnectConfiguration {
+	s.GroupConfiguration = v
+	return s
+}
+
+// SetIssuer sets the Issuer field's value.
+func (s *OpenIdConnectConfiguration) SetIssuer(v string) *OpenIdConnectConfiguration {
+	s.Issuer = &v
+	return s
+}
+
+// SetTokenSelection sets the TokenSelection field's value.
+func (s *OpenIdConnectConfiguration) SetTokenSelection(v *OpenIdConnectTokenSelection) *OpenIdConnectConfiguration {
+	s.TokenSelection = v
+	return s
+}
+
+// Contains configuration details of an OpenID Connect (OIDC) identity provider,
+// or identity source, that Verified Permissions can use to generate entities
+// from authenticated identities. It specifies the issuer URL, token type that
+// you want to use, and policy store entity details.
+//
+// This data type is part of a ConfigurationDetail (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_ConfigurationDetail.html)
+// structure, which is a parameter to GetIdentitySource (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_GetIdentitySource.html).
+type OpenIdConnectConfigurationDetail struct {
+	_ struct{} `type:"structure"`
+
+	// A descriptive string that you want to prefix to user entities from your OIDC
+	// identity provider. For example, if you set an entityIdPrefix of MyOIDCProvider,
+	// you can reference principals in your policies in the format MyCorp::User::MyOIDCProvider|Carlos.
+	//
+	// EntityIdPrefix is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by OpenIdConnectConfigurationDetail's
+	// String and GoString methods.
+	EntityIdPrefix *string `locationName:"entityIdPrefix" min:"1" type:"string" sensitive:"true"`
+
+	// The claim in OIDC identity provider tokens that indicates a user's group
+	// membership, and the entity type that you want to map it to. For example,
+	// this object can map the contents of a groups claim to MyCorp::UserGroup.
+	GroupConfiguration *OpenIdConnectGroupConfigurationDetail `locationName:"groupConfiguration" type:"structure"`
+
+	// The issuer URL of an OIDC identity provider. This URL must have an OIDC discovery
+	// endpoint at the path .well-known/openid-configuration.
+	//
+	// Issuer is a required field
+	Issuer *string `locationName:"issuer" min:"1" type:"string" required:"true"`
+
+	// The token type that you want to process from your OIDC identity provider.
+	// Your policy store can process either identity (ID) or access tokens from
+	// a given OIDC identity source.
+	//
+	// TokenSelection is a required field
+	TokenSelection *OpenIdConnectTokenSelectionDetail `locationName:"tokenSelection" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OpenIdConnectConfigurationDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OpenIdConnectConfigurationDetail) GoString() string {
+	return s.String()
+}
+
+// SetEntityIdPrefix sets the EntityIdPrefix field's value.
+func (s *OpenIdConnectConfigurationDetail) SetEntityIdPrefix(v string) *OpenIdConnectConfigurationDetail {
+	s.EntityIdPrefix = &v
+	return s
+}
+
+// SetGroupConfiguration sets the GroupConfiguration field's value.
+func (s *OpenIdConnectConfigurationDetail) SetGroupConfiguration(v *OpenIdConnectGroupConfigurationDetail) *OpenIdConnectConfigurationDetail {
+	s.GroupConfiguration = v
+	return s
+}
+
+// SetIssuer sets the Issuer field's value.
+func (s *OpenIdConnectConfigurationDetail) SetIssuer(v string) *OpenIdConnectConfigurationDetail {
+	s.Issuer = &v
+	return s
+}
+
+// SetTokenSelection sets the TokenSelection field's value.
+func (s *OpenIdConnectConfigurationDetail) SetTokenSelection(v *OpenIdConnectTokenSelectionDetail) *OpenIdConnectConfigurationDetail {
+	s.TokenSelection = v
+	return s
+}
+
+// Contains configuration details of an OpenID Connect (OIDC) identity provider,
+// or identity source, that Verified Permissions can use to generate entities
+// from authenticated identities. It specifies the issuer URL, token type that
+// you want to use, and policy store entity details.
+//
+// This data type is part of a ConfigurationItem (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_ConfigurationDetail.html)
+// structure, which is a parameter to ListIdentitySources (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_ListIdentitySources.html).
+type OpenIdConnectConfigurationItem struct {
+	_ struct{} `type:"structure"`
+
+	// A descriptive string that you want to prefix to user entities from your OIDC
+	// identity provider. For example, if you set an entityIdPrefix of MyOIDCProvider,
+	// you can reference principals in your policies in the format MyCorp::User::MyOIDCProvider|Carlos.
+	//
+	// EntityIdPrefix is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by OpenIdConnectConfigurationItem's
+	// String and GoString methods.
+	EntityIdPrefix *string `locationName:"entityIdPrefix" min:"1" type:"string" sensitive:"true"`
+
+	// The claim in OIDC identity provider tokens that indicates a user's group
+	// membership, and the entity type that you want to map it to. For example,
+	// this object can map the contents of a groups claim to MyCorp::UserGroup.
+	GroupConfiguration *OpenIdConnectGroupConfigurationItem `locationName:"groupConfiguration" type:"structure"`
+
+	// The issuer URL of an OIDC identity provider. This URL must have an OIDC discovery
+	// endpoint at the path .well-known/openid-configuration.
+	//
+	// Issuer is a required field
+	Issuer *string `locationName:"issuer" min:"1" type:"string" required:"true"`
+
+	// The token type that you want to process from your OIDC identity provider.
+	// Your policy store can process either identity (ID) or access tokens from
+	// a given OIDC identity source.
+	//
+	// TokenSelection is a required field
+	TokenSelection *OpenIdConnectTokenSelectionItem `locationName:"tokenSelection" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OpenIdConnectConfigurationItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OpenIdConnectConfigurationItem) GoString() string {
+	return s.String()
+}
+
+// SetEntityIdPrefix sets the EntityIdPrefix field's value.
+func (s *OpenIdConnectConfigurationItem) SetEntityIdPrefix(v string) *OpenIdConnectConfigurationItem {
+	s.EntityIdPrefix = &v
+	return s
+}
+
+// SetGroupConfiguration sets the GroupConfiguration field's value.
+func (s *OpenIdConnectConfigurationItem) SetGroupConfiguration(v *OpenIdConnectGroupConfigurationItem) *OpenIdConnectConfigurationItem {
+	s.GroupConfiguration = v
+	return s
+}
+
+// SetIssuer sets the Issuer field's value.
+func (s *OpenIdConnectConfigurationItem) SetIssuer(v string) *OpenIdConnectConfigurationItem {
+	s.Issuer = &v
+	return s
+}
+
+// SetTokenSelection sets the TokenSelection field's value.
+func (s *OpenIdConnectConfigurationItem) SetTokenSelection(v *OpenIdConnectTokenSelectionItem) *OpenIdConnectConfigurationItem {
+	s.TokenSelection = v
+	return s
+}
+
+// The claim in OIDC identity provider tokens that indicates a user's group
+// membership, and the entity type that you want to map it to. For example,
+// this object can map the contents of a groups claim to MyCorp::UserGroup.
+//
+// This data type is part of a OpenIdConnectConfiguration (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_OpenIdConnectConfiguration.html)
+// structure, which is a parameter of CreateIdentitySource (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_CreateIdentitySource.html).
+type OpenIdConnectGroupConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The token claim that you want Verified Permissions to interpret as group
+	// membership. For example, groups.
+	//
+	// GroupClaim is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by OpenIdConnectGroupConfiguration's
+	// String and GoString methods.
+	//
+	// GroupClaim is a required field
+	GroupClaim *string `locationName:"groupClaim" min:"1" type:"string" required:"true" sensitive:"true"`
+
+	// The policy store entity type that you want to map your users' group claim
+	// to. For example, MyCorp::UserGroup. A group entity type is an entity that
+	// can have a user entity type as a member.
+	//
+	// GroupEntityType is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by OpenIdConnectGroupConfiguration's
+	// String and GoString methods.
+	//
+	// GroupEntityType is a required field
+	GroupEntityType *string `locationName:"groupEntityType" min:"1" type:"string" required:"true" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OpenIdConnectGroupConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OpenIdConnectGroupConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *OpenIdConnectGroupConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "OpenIdConnectGroupConfiguration"}
+	if s.GroupClaim == nil {
+		invalidParams.Add(request.NewErrParamRequired("GroupClaim"))
+	}
+	if s.GroupClaim != nil && len(*s.GroupClaim) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GroupClaim", 1))
+	}
+	if s.GroupEntityType == nil {
+		invalidParams.Add(request.NewErrParamRequired("GroupEntityType"))
+	}
+	if s.GroupEntityType != nil && len(*s.GroupEntityType) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GroupEntityType", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetGroupClaim sets the GroupClaim field's value.
+func (s *OpenIdConnectGroupConfiguration) SetGroupClaim(v string) *OpenIdConnectGroupConfiguration {
+	s.GroupClaim = &v
+	return s
+}
+
+// SetGroupEntityType sets the GroupEntityType field's value.
+func (s *OpenIdConnectGroupConfiguration) SetGroupEntityType(v string) *OpenIdConnectGroupConfiguration {
+	s.GroupEntityType = &v
+	return s
+}
+
+// The claim in OIDC identity provider tokens that indicates a user's group
+// membership, and the entity type that you want to map it to. For example,
+// this object can map the contents of a groups claim to MyCorp::UserGroup.
+//
+// This data type is part of a OpenIdConnectConfigurationDetail (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_OpenIdConnectConfigurationDetail.html)
+// structure, which is a parameter of GetIdentitySource (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_GetIdentitySource.html).
+type OpenIdConnectGroupConfigurationDetail struct {
+	_ struct{} `type:"structure"`
+
+	// The token claim that you want Verified Permissions to interpret as group
+	// membership. For example, groups.
+	//
+	// GroupClaim is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by OpenIdConnectGroupConfigurationDetail's
+	// String and GoString methods.
+	//
+	// GroupClaim is a required field
+	GroupClaim *string `locationName:"groupClaim" min:"1" type:"string" required:"true" sensitive:"true"`
+
+	// The policy store entity type that you want to map your users' group claim
+	// to. For example, MyCorp::UserGroup. A group entity type is an entity that
+	// can have a user entity type as a member.
+	//
+	// GroupEntityType is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by OpenIdConnectGroupConfigurationDetail's
+	// String and GoString methods.
+	//
+	// GroupEntityType is a required field
+	GroupEntityType *string `locationName:"groupEntityType" min:"1" type:"string" required:"true" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OpenIdConnectGroupConfigurationDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OpenIdConnectGroupConfigurationDetail) GoString() string {
+	return s.String()
+}
+
+// SetGroupClaim sets the GroupClaim field's value.
+func (s *OpenIdConnectGroupConfigurationDetail) SetGroupClaim(v string) *OpenIdConnectGroupConfigurationDetail {
+	s.GroupClaim = &v
+	return s
+}
+
+// SetGroupEntityType sets the GroupEntityType field's value.
+func (s *OpenIdConnectGroupConfigurationDetail) SetGroupEntityType(v string) *OpenIdConnectGroupConfigurationDetail {
+	s.GroupEntityType = &v
+	return s
+}
+
+// The claim in OIDC identity provider tokens that indicates a user's group
+// membership, and the entity type that you want to map it to. For example,
+// this object can map the contents of a groups claim to MyCorp::UserGroup.
+//
+// This data type is part of a OpenIdConnectConfigurationItem (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_OpenIdConnectConfigurationItem.html)
+// structure, which is a parameter of ListIdentitySourcea (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_ListIdentitySources.html).
+type OpenIdConnectGroupConfigurationItem struct {
+	_ struct{} `type:"structure"`
+
+	// The token claim that you want Verified Permissions to interpret as group
+	// membership. For example, groups.
+	//
+	// GroupClaim is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by OpenIdConnectGroupConfigurationItem's
+	// String and GoString methods.
+	//
+	// GroupClaim is a required field
+	GroupClaim *string `locationName:"groupClaim" min:"1" type:"string" required:"true" sensitive:"true"`
+
+	// The policy store entity type that you want to map your users' group claim
+	// to. For example, MyCorp::UserGroup. A group entity type is an entity that
+	// can have a user entity type as a member.
+	//
+	// GroupEntityType is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by OpenIdConnectGroupConfigurationItem's
+	// String and GoString methods.
+	//
+	// GroupEntityType is a required field
+	GroupEntityType *string `locationName:"groupEntityType" min:"1" type:"string" required:"true" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OpenIdConnectGroupConfigurationItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OpenIdConnectGroupConfigurationItem) GoString() string {
+	return s.String()
+}
+
+// SetGroupClaim sets the GroupClaim field's value.
+func (s *OpenIdConnectGroupConfigurationItem) SetGroupClaim(v string) *OpenIdConnectGroupConfigurationItem {
+	s.GroupClaim = &v
+	return s
+}
+
+// SetGroupEntityType sets the GroupEntityType field's value.
+func (s *OpenIdConnectGroupConfigurationItem) SetGroupEntityType(v string) *OpenIdConnectGroupConfigurationItem {
+	s.GroupEntityType = &v
+	return s
+}
+
+// The configuration of an OpenID Connect (OIDC) identity source for handling
+// identity (ID) token claims. Contains the claim that you want to identify
+// as the principal in an authorization request, and the values of the aud claim,
+// or audiences, that you want to accept.
+//
+// This data type is part of a OpenIdConnectTokenSelection (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_OpenIdConnectTokenSelection.html)
+// structure, which is a parameter of CreateIdentitySource (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_CreateIdentitySource.html).
+type OpenIdConnectIdentityTokenConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The ID token audience, or client ID, claim values that you want to accept
+	// in your policy store from an OIDC identity provider. For example, 1example23456789,
+	// 2example10111213.
+	ClientIds []*string `locationName:"clientIds" type:"list"`
+
+	// The claim that determines the principal in OIDC access tokens. For example,
+	// sub.
+	//
+	// PrincipalIdClaim is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by OpenIdConnectIdentityTokenConfiguration's
+	// String and GoString methods.
+	PrincipalIdClaim *string `locationName:"principalIdClaim" min:"1" type:"string" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OpenIdConnectIdentityTokenConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OpenIdConnectIdentityTokenConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *OpenIdConnectIdentityTokenConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "OpenIdConnectIdentityTokenConfiguration"}
+	if s.PrincipalIdClaim != nil && len(*s.PrincipalIdClaim) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PrincipalIdClaim", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientIds sets the ClientIds field's value.
+func (s *OpenIdConnectIdentityTokenConfiguration) SetClientIds(v []*string) *OpenIdConnectIdentityTokenConfiguration {
+	s.ClientIds = v
+	return s
+}
+
+// SetPrincipalIdClaim sets the PrincipalIdClaim field's value.
+func (s *OpenIdConnectIdentityTokenConfiguration) SetPrincipalIdClaim(v string) *OpenIdConnectIdentityTokenConfiguration {
+	s.PrincipalIdClaim = &v
+	return s
+}
+
+// The configuration of an OpenID Connect (OIDC) identity source for handling
+// identity (ID) token claims. Contains the claim that you want to identify
+// as the principal in an authorization request, and the values of the aud claim,
+// or audiences, that you want to accept.
+//
+// This data type is part of a OpenIdConnectTokenSelectionDetail (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_OpenIdConnectTokenSelectionDetail.html)
+// structure, which is a parameter of GetIdentitySource (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_GetIdentitySource.html).
+type OpenIdConnectIdentityTokenConfigurationDetail struct {
+	_ struct{} `type:"structure"`
+
+	// The ID token audience, or client ID, claim values that you want to accept
+	// in your policy store from an OIDC identity provider. For example, 1example23456789,
+	// 2example10111213.
+	ClientIds []*string `locationName:"clientIds" type:"list"`
+
+	// The claim that determines the principal in OIDC access tokens. For example,
+	// sub.
+	//
+	// PrincipalIdClaim is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by OpenIdConnectIdentityTokenConfigurationDetail's
+	// String and GoString methods.
+	PrincipalIdClaim *string `locationName:"principalIdClaim" min:"1" type:"string" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OpenIdConnectIdentityTokenConfigurationDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OpenIdConnectIdentityTokenConfigurationDetail) GoString() string {
+	return s.String()
+}
+
+// SetClientIds sets the ClientIds field's value.
+func (s *OpenIdConnectIdentityTokenConfigurationDetail) SetClientIds(v []*string) *OpenIdConnectIdentityTokenConfigurationDetail {
+	s.ClientIds = v
+	return s
+}
+
+// SetPrincipalIdClaim sets the PrincipalIdClaim field's value.
+func (s *OpenIdConnectIdentityTokenConfigurationDetail) SetPrincipalIdClaim(v string) *OpenIdConnectIdentityTokenConfigurationDetail {
+	s.PrincipalIdClaim = &v
+	return s
+}
+
+// The configuration of an OpenID Connect (OIDC) identity source for handling
+// identity (ID) token claims. Contains the claim that you want to identify
+// as the principal in an authorization request, and the values of the aud claim,
+// or audiences, that you want to accept.
+//
+// This data type is part of a OpenIdConnectTokenSelectionItem (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_OpenIdConnectTokenSelectionItem.html)
+// structure, which is a parameter of ListIdentitySources (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_ListIdentitySources.html).
+type OpenIdConnectIdentityTokenConfigurationItem struct {
+	_ struct{} `type:"structure"`
+
+	// The ID token audience, or client ID, claim values that you want to accept
+	// in your policy store from an OIDC identity provider. For example, 1example23456789,
+	// 2example10111213.
+	ClientIds []*string `locationName:"clientIds" type:"list"`
+
+	// The claim that determines the principal in OIDC access tokens. For example,
+	// sub.
+	//
+	// PrincipalIdClaim is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by OpenIdConnectIdentityTokenConfigurationItem's
+	// String and GoString methods.
+	PrincipalIdClaim *string `locationName:"principalIdClaim" min:"1" type:"string" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OpenIdConnectIdentityTokenConfigurationItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OpenIdConnectIdentityTokenConfigurationItem) GoString() string {
+	return s.String()
+}
+
+// SetClientIds sets the ClientIds field's value.
+func (s *OpenIdConnectIdentityTokenConfigurationItem) SetClientIds(v []*string) *OpenIdConnectIdentityTokenConfigurationItem {
+	s.ClientIds = v
+	return s
+}
+
+// SetPrincipalIdClaim sets the PrincipalIdClaim field's value.
+func (s *OpenIdConnectIdentityTokenConfigurationItem) SetPrincipalIdClaim(v string) *OpenIdConnectIdentityTokenConfigurationItem {
+	s.PrincipalIdClaim = &v
+	return s
+}
+
+// The token type that you want to process from your OIDC identity provider.
+// Your policy store can process either identity (ID) or access tokens from
+// a given OIDC identity source.
+//
+// This data type is part of a OpenIdConnectConfiguration (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_OpenIdConnectConfiguration.html)
+// structure, which is a parameter of CreateIdentitySource (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_CreateIdentitySource.html).
+type OpenIdConnectTokenSelection struct {
+	_ struct{} `type:"structure"`
+
+	// The OIDC configuration for processing access tokens. Contains allowed audience
+	// claims, for example https://auth.example.com, and the claim that you want
+	// to map to the principal, for example sub.
+	AccessTokenOnly *OpenIdConnectAccessTokenConfiguration `locationName:"accessTokenOnly" type:"structure"`
+
+	// The OIDC configuration for processing identity (ID) tokens. Contains allowed
+	// client ID claims, for example 1example23456789, and the claim that you want
+	// to map to the principal, for example sub.
+	IdentityTokenOnly *OpenIdConnectIdentityTokenConfiguration `locationName:"identityTokenOnly" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OpenIdConnectTokenSelection) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OpenIdConnectTokenSelection) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *OpenIdConnectTokenSelection) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "OpenIdConnectTokenSelection"}
+	if s.AccessTokenOnly != nil {
+		if err := s.AccessTokenOnly.Validate(); err != nil {
+			invalidParams.AddNested("AccessTokenOnly", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.IdentityTokenOnly != nil {
+		if err := s.IdentityTokenOnly.Validate(); err != nil {
+			invalidParams.AddNested("IdentityTokenOnly", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccessTokenOnly sets the AccessTokenOnly field's value.
+func (s *OpenIdConnectTokenSelection) SetAccessTokenOnly(v *OpenIdConnectAccessTokenConfiguration) *OpenIdConnectTokenSelection {
+	s.AccessTokenOnly = v
+	return s
+}
+
+// SetIdentityTokenOnly sets the IdentityTokenOnly field's value.
+func (s *OpenIdConnectTokenSelection) SetIdentityTokenOnly(v *OpenIdConnectIdentityTokenConfiguration) *OpenIdConnectTokenSelection {
+	s.IdentityTokenOnly = v
+	return s
+}
+
+// The token type that you want to process from your OIDC identity provider.
+// Your policy store can process either identity (ID) or access tokens from
+// a given OIDC identity source.
+//
+// This data type is part of a OpenIdConnectConfigurationDetail (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_OpenIdConnectConfigurationDetail.html)
+// structure, which is a parameter of GetIdentitySource (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_GetIdentitySource.html).
+type OpenIdConnectTokenSelectionDetail struct {
+	_ struct{} `type:"structure"`
+
+	// The OIDC configuration for processing access tokens. Contains allowed audience
+	// claims, for example https://auth.example.com, and the claim that you want
+	// to map to the principal, for example sub.
+	AccessTokenOnly *OpenIdConnectAccessTokenConfigurationDetail `locationName:"accessTokenOnly" type:"structure"`
+
+	// The OIDC configuration for processing identity (ID) tokens. Contains allowed
+	// client ID claims, for example 1example23456789, and the claim that you want
+	// to map to the principal, for example sub.
+	IdentityTokenOnly *OpenIdConnectIdentityTokenConfigurationDetail `locationName:"identityTokenOnly" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OpenIdConnectTokenSelectionDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OpenIdConnectTokenSelectionDetail) GoString() string {
+	return s.String()
+}
+
+// SetAccessTokenOnly sets the AccessTokenOnly field's value.
+func (s *OpenIdConnectTokenSelectionDetail) SetAccessTokenOnly(v *OpenIdConnectAccessTokenConfigurationDetail) *OpenIdConnectTokenSelectionDetail {
+	s.AccessTokenOnly = v
+	return s
+}
+
+// SetIdentityTokenOnly sets the IdentityTokenOnly field's value.
+func (s *OpenIdConnectTokenSelectionDetail) SetIdentityTokenOnly(v *OpenIdConnectIdentityTokenConfigurationDetail) *OpenIdConnectTokenSelectionDetail {
+	s.IdentityTokenOnly = v
+	return s
+}
+
+// The token type that you want to process from your OIDC identity provider.
+// Your policy store can process either identity (ID) or access tokens from
+// a given OIDC identity source.
+//
+// This data type is part of a OpenIdConnectConfigurationItem (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_OpenIdConnectConfigurationItem.html)
+// structure, which is a parameter of ListIdentitySources (http://amazonaws.com/verifiedpermissions/latest/apireference/API_ListIdentitySources.html).
+type OpenIdConnectTokenSelectionItem struct {
+	_ struct{} `type:"structure"`
+
+	// The OIDC configuration for processing access tokens. Contains allowed audience
+	// claims, for example https://auth.example.com, and the claim that you want
+	// to map to the principal, for example sub.
+	AccessTokenOnly *OpenIdConnectAccessTokenConfigurationItem `locationName:"accessTokenOnly" type:"structure"`
+
+	// The OIDC configuration for processing identity (ID) tokens. Contains allowed
+	// client ID claims, for example 1example23456789, and the claim that you want
+	// to map to the principal, for example sub.
+	IdentityTokenOnly *OpenIdConnectIdentityTokenConfigurationItem `locationName:"identityTokenOnly" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OpenIdConnectTokenSelectionItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OpenIdConnectTokenSelectionItem) GoString() string {
+	return s.String()
+}
+
+// SetAccessTokenOnly sets the AccessTokenOnly field's value.
+func (s *OpenIdConnectTokenSelectionItem) SetAccessTokenOnly(v *OpenIdConnectAccessTokenConfigurationItem) *OpenIdConnectTokenSelectionItem {
+	s.AccessTokenOnly = v
+	return s
+}
+
+// SetIdentityTokenOnly sets the IdentityTokenOnly field's value.
+func (s *OpenIdConnectTokenSelectionItem) SetIdentityTokenOnly(v *OpenIdConnectIdentityTokenConfigurationItem) *OpenIdConnectTokenSelectionItem {
+	s.IdentityTokenOnly = v
+	return s
+}
+
 // A structure that contains the details for a Cedar policy definition. It includes
 // the policy type, a description, and a policy body. This is a top level data
 // type used to create a policy.
@@ -10761,18 +11805,18 @@ func (s *UpdateCognitoUserPoolConfiguration) SetUserPoolArn(v string) *UpdateCog
 	return s
 }
 
-// Contains an updated configuration to replace the configuration in an existing
-// identity source.
-//
-// At this time, the only valid member of this structure is a Amazon Cognito
-// user pool configuration.
-//
-// You must specify a userPoolArn, and optionally, a ClientId.
+// Contains an update to replace the configuration in an existing identity source.
 type UpdateConfiguration struct {
 	_ struct{} `type:"structure"`
 
 	// Contains configuration details of a Amazon Cognito user pool.
 	CognitoUserPoolConfiguration *UpdateCognitoUserPoolConfiguration `locationName:"cognitoUserPoolConfiguration" type:"structure"`
+
+	// Contains configuration details of an OpenID Connect (OIDC) identity provider,
+	// or identity source, that Verified Permissions can use to generate entities
+	// from authenticated identities. It specifies the issuer URL, token type that
+	// you want to use, and policy store entity details.
+	OpenIdConnectConfiguration *UpdateOpenIdConnectConfiguration `locationName:"openIdConnectConfiguration" type:"structure"`
 }
 
 // String returns the string representation.
@@ -10801,6 +11845,11 @@ func (s *UpdateConfiguration) Validate() error {
 			invalidParams.AddNested("CognitoUserPoolConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.OpenIdConnectConfiguration != nil {
+		if err := s.OpenIdConnectConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("OpenIdConnectConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -10811,6 +11860,12 @@ func (s *UpdateConfiguration) Validate() error {
 // SetCognitoUserPoolConfiguration sets the CognitoUserPoolConfiguration field's value.
 func (s *UpdateConfiguration) SetCognitoUserPoolConfiguration(v *UpdateCognitoUserPoolConfiguration) *UpdateConfiguration {
 	s.CognitoUserPoolConfiguration = v
+	return s
+}
+
+// SetOpenIdConnectConfiguration sets the OpenIdConnectConfiguration field's value.
+func (s *UpdateConfiguration) SetOpenIdConnectConfiguration(v *UpdateOpenIdConnectConfiguration) *UpdateConfiguration {
+	s.OpenIdConnectConfiguration = v
 	return s
 }
 
@@ -10986,6 +12041,407 @@ func (s *UpdateIdentitySourceOutput) SetLastUpdatedDate(v time.Time) *UpdateIden
 // SetPolicyStoreId sets the PolicyStoreId field's value.
 func (s *UpdateIdentitySourceOutput) SetPolicyStoreId(v string) *UpdateIdentitySourceOutput {
 	s.PolicyStoreId = &v
+	return s
+}
+
+// The configuration of an OpenID Connect (OIDC) identity source for handling
+// access token claims. Contains the claim that you want to identify as the
+// principal in an authorization request, and the values of the aud claim, or
+// audiences, that you want to accept.
+//
+// This data type is part of a UpdateOpenIdConnectTokenSelection (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_UpdateOpenIdConnectTokenSelection.html)
+// structure, which is a parameter to UpdateIdentitySource (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_UpdateIdentitySource.html).
+type UpdateOpenIdConnectAccessTokenConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The access token aud claim values that you want to accept in your policy
+	// store. For example, https://myapp.example.com, https://myapp2.example.com.
+	Audiences []*string `locationName:"audiences" min:"1" type:"list"`
+
+	// The claim that determines the principal in OIDC access tokens. For example,
+	// sub.
+	//
+	// PrincipalIdClaim is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateOpenIdConnectAccessTokenConfiguration's
+	// String and GoString methods.
+	PrincipalIdClaim *string `locationName:"principalIdClaim" min:"1" type:"string" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateOpenIdConnectAccessTokenConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateOpenIdConnectAccessTokenConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateOpenIdConnectAccessTokenConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateOpenIdConnectAccessTokenConfiguration"}
+	if s.Audiences != nil && len(s.Audiences) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Audiences", 1))
+	}
+	if s.PrincipalIdClaim != nil && len(*s.PrincipalIdClaim) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PrincipalIdClaim", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAudiences sets the Audiences field's value.
+func (s *UpdateOpenIdConnectAccessTokenConfiguration) SetAudiences(v []*string) *UpdateOpenIdConnectAccessTokenConfiguration {
+	s.Audiences = v
+	return s
+}
+
+// SetPrincipalIdClaim sets the PrincipalIdClaim field's value.
+func (s *UpdateOpenIdConnectAccessTokenConfiguration) SetPrincipalIdClaim(v string) *UpdateOpenIdConnectAccessTokenConfiguration {
+	s.PrincipalIdClaim = &v
+	return s
+}
+
+// Contains configuration details of an OpenID Connect (OIDC) identity provider,
+// or identity source, that Verified Permissions can use to generate entities
+// from authenticated identities. It specifies the issuer URL, token type that
+// you want to use, and policy store entity details.
+//
+// This data type is part of a UpdateConfiguration (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_UpdateConfiguration.html)
+// structure, which is a parameter to UpdateIdentitySource (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_UpdateIdentitySource.html).
+type UpdateOpenIdConnectConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// A descriptive string that you want to prefix to user entities from your OIDC
+	// identity provider. For example, if you set an entityIdPrefix of MyOIDCProvider,
+	// you can reference principals in your policies in the format MyCorp::User::MyOIDCProvider|Carlos.
+	//
+	// EntityIdPrefix is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateOpenIdConnectConfiguration's
+	// String and GoString methods.
+	EntityIdPrefix *string `locationName:"entityIdPrefix" min:"1" type:"string" sensitive:"true"`
+
+	// The claim in OIDC identity provider tokens that indicates a user's group
+	// membership, and the entity type that you want to map it to. For example,
+	// this object can map the contents of a groups claim to MyCorp::UserGroup.
+	GroupConfiguration *UpdateOpenIdConnectGroupConfiguration `locationName:"groupConfiguration" type:"structure"`
+
+	// The issuer URL of an OIDC identity provider. This URL must have an OIDC discovery
+	// endpoint at the path .well-known/openid-configuration.
+	//
+	// Issuer is a required field
+	Issuer *string `locationName:"issuer" min:"1" type:"string" required:"true"`
+
+	// The token type that you want to process from your OIDC identity provider.
+	// Your policy store can process either identity (ID) or access tokens from
+	// a given OIDC identity source.
+	//
+	// TokenSelection is a required field
+	TokenSelection *UpdateOpenIdConnectTokenSelection `locationName:"tokenSelection" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateOpenIdConnectConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateOpenIdConnectConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateOpenIdConnectConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateOpenIdConnectConfiguration"}
+	if s.EntityIdPrefix != nil && len(*s.EntityIdPrefix) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EntityIdPrefix", 1))
+	}
+	if s.Issuer == nil {
+		invalidParams.Add(request.NewErrParamRequired("Issuer"))
+	}
+	if s.Issuer != nil && len(*s.Issuer) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Issuer", 1))
+	}
+	if s.TokenSelection == nil {
+		invalidParams.Add(request.NewErrParamRequired("TokenSelection"))
+	}
+	if s.GroupConfiguration != nil {
+		if err := s.GroupConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("GroupConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.TokenSelection != nil {
+		if err := s.TokenSelection.Validate(); err != nil {
+			invalidParams.AddNested("TokenSelection", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEntityIdPrefix sets the EntityIdPrefix field's value.
+func (s *UpdateOpenIdConnectConfiguration) SetEntityIdPrefix(v string) *UpdateOpenIdConnectConfiguration {
+	s.EntityIdPrefix = &v
+	return s
+}
+
+// SetGroupConfiguration sets the GroupConfiguration field's value.
+func (s *UpdateOpenIdConnectConfiguration) SetGroupConfiguration(v *UpdateOpenIdConnectGroupConfiguration) *UpdateOpenIdConnectConfiguration {
+	s.GroupConfiguration = v
+	return s
+}
+
+// SetIssuer sets the Issuer field's value.
+func (s *UpdateOpenIdConnectConfiguration) SetIssuer(v string) *UpdateOpenIdConnectConfiguration {
+	s.Issuer = &v
+	return s
+}
+
+// SetTokenSelection sets the TokenSelection field's value.
+func (s *UpdateOpenIdConnectConfiguration) SetTokenSelection(v *UpdateOpenIdConnectTokenSelection) *UpdateOpenIdConnectConfiguration {
+	s.TokenSelection = v
+	return s
+}
+
+// The claim in OIDC identity provider tokens that indicates a user's group
+// membership, and the entity type that you want to map it to. For example,
+// this object can map the contents of a groups claim to MyCorp::UserGroup.
+//
+// This data type is part of a UpdateOpenIdConnectConfiguration (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_UpdateOpenIdConnectConfiguration.html)
+// structure, which is a parameter to UpdateIdentitySource (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_UpdateIdentitySource.html).
+type UpdateOpenIdConnectGroupConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The token claim that you want Verified Permissions to interpret as group
+	// membership. For example, groups.
+	//
+	// GroupClaim is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateOpenIdConnectGroupConfiguration's
+	// String and GoString methods.
+	//
+	// GroupClaim is a required field
+	GroupClaim *string `locationName:"groupClaim" min:"1" type:"string" required:"true" sensitive:"true"`
+
+	// The policy store entity type that you want to map your users' group claim
+	// to. For example, MyCorp::UserGroup. A group entity type is an entity that
+	// can have a user entity type as a member.
+	//
+	// GroupEntityType is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateOpenIdConnectGroupConfiguration's
+	// String and GoString methods.
+	//
+	// GroupEntityType is a required field
+	GroupEntityType *string `locationName:"groupEntityType" min:"1" type:"string" required:"true" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateOpenIdConnectGroupConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateOpenIdConnectGroupConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateOpenIdConnectGroupConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateOpenIdConnectGroupConfiguration"}
+	if s.GroupClaim == nil {
+		invalidParams.Add(request.NewErrParamRequired("GroupClaim"))
+	}
+	if s.GroupClaim != nil && len(*s.GroupClaim) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GroupClaim", 1))
+	}
+	if s.GroupEntityType == nil {
+		invalidParams.Add(request.NewErrParamRequired("GroupEntityType"))
+	}
+	if s.GroupEntityType != nil && len(*s.GroupEntityType) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GroupEntityType", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetGroupClaim sets the GroupClaim field's value.
+func (s *UpdateOpenIdConnectGroupConfiguration) SetGroupClaim(v string) *UpdateOpenIdConnectGroupConfiguration {
+	s.GroupClaim = &v
+	return s
+}
+
+// SetGroupEntityType sets the GroupEntityType field's value.
+func (s *UpdateOpenIdConnectGroupConfiguration) SetGroupEntityType(v string) *UpdateOpenIdConnectGroupConfiguration {
+	s.GroupEntityType = &v
+	return s
+}
+
+// The configuration of an OpenID Connect (OIDC) identity source for handling
+// identity (ID) token claims. Contains the claim that you want to identify
+// as the principal in an authorization request, and the values of the aud claim,
+// or audiences, that you want to accept.
+//
+// This data type is part of a UpdateOpenIdConnectTokenSelection (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_UpdateOpenIdConnectTokenSelection.html)
+// structure, which is a parameter to UpdateIdentitySource (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_UpdateIdentitySource.html).
+type UpdateOpenIdConnectIdentityTokenConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The ID token audience, or client ID, claim values that you want to accept
+	// in your policy store from an OIDC identity provider. For example, 1example23456789,
+	// 2example10111213.
+	ClientIds []*string `locationName:"clientIds" type:"list"`
+
+	// The claim that determines the principal in OIDC access tokens. For example,
+	// sub.
+	//
+	// PrincipalIdClaim is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateOpenIdConnectIdentityTokenConfiguration's
+	// String and GoString methods.
+	PrincipalIdClaim *string `locationName:"principalIdClaim" min:"1" type:"string" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateOpenIdConnectIdentityTokenConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateOpenIdConnectIdentityTokenConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateOpenIdConnectIdentityTokenConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateOpenIdConnectIdentityTokenConfiguration"}
+	if s.PrincipalIdClaim != nil && len(*s.PrincipalIdClaim) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PrincipalIdClaim", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientIds sets the ClientIds field's value.
+func (s *UpdateOpenIdConnectIdentityTokenConfiguration) SetClientIds(v []*string) *UpdateOpenIdConnectIdentityTokenConfiguration {
+	s.ClientIds = v
+	return s
+}
+
+// SetPrincipalIdClaim sets the PrincipalIdClaim field's value.
+func (s *UpdateOpenIdConnectIdentityTokenConfiguration) SetPrincipalIdClaim(v string) *UpdateOpenIdConnectIdentityTokenConfiguration {
+	s.PrincipalIdClaim = &v
+	return s
+}
+
+// The token type that you want to process from your OIDC identity provider.
+// Your policy store can process either identity (ID) or access tokens from
+// a given OIDC identity source.
+//
+// This data type is part of a UpdateOpenIdConnectConfiguration (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_UpdateOpenIdConnectConfiguration.html)
+// structure, which is a parameter to UpdateIdentitySource (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_UpdateIdentitySource.html).
+type UpdateOpenIdConnectTokenSelection struct {
+	_ struct{} `type:"structure"`
+
+	// The OIDC configuration for processing access tokens. Contains allowed audience
+	// claims, for example https://auth.example.com, and the claim that you want
+	// to map to the principal, for example sub.
+	AccessTokenOnly *UpdateOpenIdConnectAccessTokenConfiguration `locationName:"accessTokenOnly" type:"structure"`
+
+	// The OIDC configuration for processing identity (ID) tokens. Contains allowed
+	// client ID claims, for example 1example23456789, and the claim that you want
+	// to map to the principal, for example sub.
+	IdentityTokenOnly *UpdateOpenIdConnectIdentityTokenConfiguration `locationName:"identityTokenOnly" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateOpenIdConnectTokenSelection) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateOpenIdConnectTokenSelection) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateOpenIdConnectTokenSelection) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateOpenIdConnectTokenSelection"}
+	if s.AccessTokenOnly != nil {
+		if err := s.AccessTokenOnly.Validate(); err != nil {
+			invalidParams.AddNested("AccessTokenOnly", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.IdentityTokenOnly != nil {
+		if err := s.IdentityTokenOnly.Validate(); err != nil {
+			invalidParams.AddNested("IdentityTokenOnly", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccessTokenOnly sets the AccessTokenOnly field's value.
+func (s *UpdateOpenIdConnectTokenSelection) SetAccessTokenOnly(v *UpdateOpenIdConnectAccessTokenConfiguration) *UpdateOpenIdConnectTokenSelection {
+	s.AccessTokenOnly = v
+	return s
+}
+
+// SetIdentityTokenOnly sets the IdentityTokenOnly field's value.
+func (s *UpdateOpenIdConnectTokenSelection) SetIdentityTokenOnly(v *UpdateOpenIdConnectIdentityTokenConfiguration) *UpdateOpenIdConnectTokenSelection {
+	s.IdentityTokenOnly = v
 	return s
 }
 

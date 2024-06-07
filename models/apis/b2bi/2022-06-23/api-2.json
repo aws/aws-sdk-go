@@ -2,9 +2,11 @@
   "version":"2.0",
   "metadata":{
     "apiVersion":"2022-06-23",
+    "auth":["aws.auth#sigv4"],
     "endpointPrefix":"b2bi",
     "jsonVersion":"1.0",
     "protocol":"json",
+    "protocols":["json"],
     "serviceAbbreviation":"AWS B2BI",
     "serviceFullName":"AWS B2B Data Interchange",
     "serviceId":"b2bi",
@@ -245,7 +247,13 @@
         "requestUri":"/"
       },
       "input":{"shape":"ListCapabilitiesRequest"},
-      "output":{"shape":"ListCapabilitiesResponse"}
+      "output":{"shape":"ListCapabilitiesResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
     },
     "ListPartnerships":{
       "name":"ListPartnerships",
@@ -270,7 +278,13 @@
         "requestUri":"/"
       },
       "input":{"shape":"ListProfilesRequest"},
-      "output":{"shape":"ListProfilesResponse"}
+      "output":{"shape":"ListProfilesResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
     },
     "ListTagsForResource":{
       "name":"ListTagsForResource",
@@ -293,7 +307,13 @@
         "requestUri":"/"
       },
       "input":{"shape":"ListTransformersRequest"},
-      "output":{"shape":"ListTransformersResponse"}
+      "output":{"shape":"ListTransformersResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
     },
     "StartTransformerJob":{
       "name":"StartTransformerJob",
@@ -304,6 +324,7 @@
       "input":{"shape":"StartTransformerJobRequest"},
       "output":{"shape":"StartTransformerJobResponse"},
       "errors":[
+        {"shape":"ConflictException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ValidationException"},
         {"shape":"ThrottlingException"},
@@ -569,7 +590,8 @@
       "required":[
         "profileId",
         "name",
-        "email"
+        "email",
+        "capabilities"
       ],
       "members":{
         "profileId":{"shape":"ProfileId"},

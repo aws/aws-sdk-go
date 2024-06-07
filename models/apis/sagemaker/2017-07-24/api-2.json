@@ -18615,7 +18615,8 @@
         "ContainerStartupHealthCheckTimeoutInSeconds":{"shape":"ProductionVariantContainerStartupHealthCheckTimeoutInSeconds"},
         "EnableSSMAccess":{"shape":"ProductionVariantSSMAccess"},
         "ManagedInstanceScaling":{"shape":"ProductionVariantManagedInstanceScaling"},
-        "RoutingConfig":{"shape":"ProductionVariantRoutingConfig"}
+        "RoutingConfig":{"shape":"ProductionVariantRoutingConfig"},
+        "InferenceAmiVersion":{"shape":"ProductionVariantInferenceAmiVersion"}
       }
     },
     "ProductionVariantAcceleratorType":{
@@ -18641,6 +18642,10 @@
         "DestinationS3Uri":{"shape":"DestinationS3Uri"},
         "KmsKeyId":{"shape":"KmsKeyId"}
       }
+    },
+    "ProductionVariantInferenceAmiVersion":{
+      "type":"string",
+      "enum":["al2-ami-sagemaker-inference-gpu-2"]
     },
     "ProductionVariantInstanceType":{
       "type":"string",
@@ -23294,7 +23299,7 @@
     "VpcOnlyTrustedAccounts":{
       "type":"list",
       "member":{"shape":"AccountId"},
-      "max":10
+      "max":20
     },
     "VpcSecurityGroupIds":{
       "type":"list",

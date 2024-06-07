@@ -654,6 +654,9 @@ func (c *AuditManager) CreateAssessmentRequest(input *CreateAssessmentInput) (re
 //     the Service Quotas console. For a list of Audit Manager service quotas, see
 //     Quotas and restrictions for Audit Manager (https://docs.aws.amazon.com/audit-manager/latest/userguide/service-quotas.html).
 //
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/auditmanager-2017-07-25/CreateAssessment
 func (c *AuditManager) CreateAssessment(input *CreateAssessmentInput) (*CreateAssessmentOutput, error) {
 	req, out := c.CreateAssessmentRequest(input)
@@ -3548,10 +3551,18 @@ func (c *AuditManager) GetServicesInScopeRequest(input *GetServicesInScopeInput)
 
 // GetServicesInScope API operation for AWS Audit Manager.
 //
-// Gets a list of all of the Amazon Web Services that you can choose to include
-// in your assessment. When you create an assessment (https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_CreateAssessment.html),
-// specify which of these services you want to include to narrow the assessment's
-// scope (https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_Scope.html).
+// Gets a list of the Amazon Web Services from which Audit Manager can collect
+// evidence.
+//
+// Audit Manager defines which Amazon Web Services are in scope for an assessment.
+// Audit Manager infers this scope by examining the assessment’s controls
+// and their data sources, and then mapping this information to one or more
+// of the corresponding Amazon Web Services that are in this list.
+//
+// For information about why it's no longer possible to specify services in
+// scope manually, see I can't edit the services in scope for my assessment
+// (https://docs.aws.amazon.com/audit-manager/latest/userguide/evidence-collection-issues.html#unable-to-edit-services)
+// in the Troubleshooting section of the Audit Manager user guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4462,6 +4473,11 @@ func (c *AuditManager) ListControlDomainInsightsRequest(input *ListControlDomain
 // Lists the latest analytics data for control domains across all of your active
 // assessments.
 //
+// Audit Manager supports the control domains that are provided by Amazon Web
+// Services Control Catalog. For information about how to find a list of available
+// control domains, see ListDomains (https://docs.aws.amazon.com/controlcatalog/latest/APIReference/API_ListDomains.html)
+// in the Amazon Web Services Control Catalog API Reference.
+//
 // A control domain is listed only if at least one of the controls within that
 // domain collected evidence on the lastUpdated date of controlDomainInsights.
 // If this condition isn’t met, no data is listed for that control domain.
@@ -4612,6 +4628,11 @@ func (c *AuditManager) ListControlDomainInsightsByAssessmentRequest(input *ListC
 // ListControlDomainInsightsByAssessment API operation for AWS Audit Manager.
 //
 // Lists analytics data for control domains within a specified active assessment.
+//
+// Audit Manager supports the control domains that are provided by Amazon Web
+// Services Control Catalog. For information about how to find a list of available
+// control domains, see ListDomains (https://docs.aws.amazon.com/controlcatalog/latest/APIReference/API_ListDomains.html)
+// in the Amazon Web Services Control Catalog API Reference.
 //
 // A control domain is listed only if at least one of the controls within that
 // domain collected evidence on the lastUpdated date of controlDomainInsights.
@@ -5939,6 +5960,9 @@ func (c *AuditManager) UpdateAssessmentRequest(input *UpdateAssessmentInput) (re
 //     An internal service error occurred during the processing of your request.
 //     Try again later.
 //
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/auditmanager-2017-07-25/UpdateAssessment
 func (c *AuditManager) UpdateAssessment(input *UpdateAssessmentInput) (*UpdateAssessmentOutput, error) {
 	req, out := c.UpdateAssessmentRequest(input)
@@ -6968,7 +6992,11 @@ type AssessmentControl struct {
 	Comments []*ControlComment `locationName:"comments" type:"list"`
 
 	// The description of the control.
-	Description *string `locationName:"description" type:"string"`
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by AssessmentControl's
+	// String and GoString methods.
+	Description *string `locationName:"description" type:"string" sensitive:"true"`
 
 	// The amount of evidence that's collected for the control.
 	EvidenceCount *int64 `locationName:"evidenceCount" type:"integer"`
@@ -9248,7 +9276,11 @@ type Control struct {
 	CreatedBy *string `locationName:"createdBy" min:"1" type:"string" sensitive:"true"`
 
 	// The description of the control.
-	Description *string `locationName:"description" type:"string"`
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Control's
+	// String and GoString methods.
+	Description *string `locationName:"description" type:"string" sensitive:"true"`
 
 	// The unique identifier for the control.
 	Id *string `locationName:"id" min:"36" type:"string"`
@@ -9265,6 +9297,12 @@ type Control struct {
 
 	// The name of the control.
 	Name *string `locationName:"name" min:"1" type:"string"`
+
+	// The state of the control. The END_OF_SUPPORT state is applicable to standard
+	// controls only. This state indicates that the standard control can still be
+	// used to collect evidence, but Audit Manager is no longer updating or maintaining
+	// that control.
+	State *string `locationName:"state" type:"string" enum:"ControlState"`
 
 	// The tags associated with the control.
 	Tags map[string]*string `locationName:"tags" type:"map"`
@@ -9370,6 +9408,12 @@ func (s *Control) SetName(v string) *Control {
 	return s
 }
 
+// SetState sets the State field's value.
+func (s *Control) SetState(v string) *Control {
+	s.State = &v
+	return s
+}
+
 // SetTags sets the Tags field's value.
 func (s *Control) SetTags(v map[string]*string) *Control {
 	s.Tags = v
@@ -9462,14 +9506,18 @@ type ControlDomainInsights struct {
 	// with the control domain.
 	EvidenceInsights *EvidenceInsights `locationName:"evidenceInsights" type:"structure"`
 
-	// The unique identifier for the control domain.
-	Id *string `locationName:"id" min:"36" type:"string"`
+	// The unique identifier for the control domain. Audit Manager supports the
+	// control domains that are provided by Amazon Web Services Control Catalog.
+	// For information about how to find a list of available control domains, see
+	// ListDomains (https://docs.aws.amazon.com/controlcatalog/latest/APIReference/API_ListDomains.html)
+	// in the Amazon Web Services Control Catalog API Reference.
+	Id *string `locationName:"id" min:"13" type:"string"`
 
 	// The time when the control domain insights were last updated.
 	LastUpdated *time.Time `locationName:"lastUpdated" type:"timestamp"`
 
 	// The name of the control domain.
-	Name *string `locationName:"name" min:"1" type:"string"`
+	Name *string `locationName:"name" type:"string"`
 
 	// The total number of controls in the control domain.
 	TotalControlsCount *int64 `locationName:"totalControlsCount" type:"integer"`
@@ -9545,13 +9593,13 @@ type ControlInsightsMetadataByAssessmentItem struct {
 	EvidenceInsights *EvidenceInsights `locationName:"evidenceInsights" type:"structure"`
 
 	// The unique identifier for the assessment control.
-	Id *string `locationName:"id" min:"36" type:"string"`
+	Id *string `locationName:"id" min:"13" type:"string"`
 
 	// The time when the assessment control insights were last updated.
 	LastUpdated *time.Time `locationName:"lastUpdated" type:"timestamp"`
 
 	// The name of the assessment control.
-	Name *string `locationName:"name" min:"1" type:"string"`
+	Name *string `locationName:"name" type:"string"`
 }
 
 // String returns the string representation.
@@ -9615,13 +9663,13 @@ type ControlInsightsMetadataItem struct {
 	EvidenceInsights *EvidenceInsights `locationName:"evidenceInsights" type:"structure"`
 
 	// The unique identifier for the control.
-	Id *string `locationName:"id" min:"36" type:"string"`
+	Id *string `locationName:"id" min:"13" type:"string"`
 
 	// The time when the control insights were last updated.
 	LastUpdated *time.Time `locationName:"lastUpdated" type:"timestamp"`
 
 	// The name of the control.
-	Name *string `locationName:"name" min:"1" type:"string"`
+	Name *string `locationName:"name" type:"string"`
 }
 
 // String returns the string representation.
@@ -9705,10 +9753,18 @@ type ControlMappingSource struct {
 	SourceName *string `locationName:"sourceName" min:"1" type:"string"`
 
 	// The setup option for the data source. This option reflects if the evidence
-	// collection is automated or manual.
+	// collection method is automated or manual. If you don’t provide a value
+	// for sourceSetUpOption, Audit Manager automatically infers and populates the
+	// correct value based on the sourceType that you specify.
 	SourceSetUpOption *string `locationName:"sourceSetUpOption" type:"string" enum:"SourceSetUpOption"`
 
-	// Specifies one of the five data source types for evidence collection.
+	// Specifies which type of data source is used to collect evidence.
+	//
+	//    * The source can be an individual data source type, such as AWS_Cloudtrail,
+	//    AWS_Config, AWS_Security_Hub, AWS_API_Call, or MANUAL.
+	//
+	//    * The source can also be a managed grouping of data sources, such as a
+	//    Core_Control or a Common_Control.
 	SourceType *string `locationName:"sourceType" type:"string" enum:"SourceType"`
 
 	// The instructions for troubleshooting the control.
@@ -10245,8 +10301,18 @@ type CreateAssessmentInput struct {
 	// Roles is a required field
 	Roles []*Role `locationName:"roles" type:"list" required:"true" sensitive:"true"`
 
-	// The wrapper that contains the Amazon Web Services accounts and services that
-	// are in scope for the assessment.
+	// The wrapper that contains the Amazon Web Services accounts that are in scope
+	// for the assessment.
+	//
+	// You no longer need to specify which Amazon Web Services are in scope when
+	// you create or update an assessment. Audit Manager infers the services in
+	// scope by examining your assessment controls and their data sources, and then
+	// mapping this information to the relevant Amazon Web Services.
+	//
+	// If an underlying data source changes for your assessment, we automatically
+	// update the services scope as needed to reflect the correct Amazon Web Services.
+	// This ensures that your assessment collects accurate and comprehensive evidence
+	// about all of the relevant services in your AWS environment.
 	//
 	// Scope is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CreateAssessmentInput's
@@ -10561,7 +10627,11 @@ type CreateControlInput struct {
 	ControlMappingSources []*CreateControlMappingSource `locationName:"controlMappingSources" min:"1" type:"list" required:"true"`
 
 	// The description of the control.
-	Description *string `locationName:"description" type:"string"`
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateControlInput's
+	// String and GoString methods.
+	Description *string `locationName:"description" type:"string" sensitive:"true"`
 
 	// The name of the control.
 	//
@@ -10671,7 +10741,7 @@ func (s *CreateControlInput) SetTestingInformation(v string) *CreateControlInput
 	return s
 }
 
-// The control mapping fields that represent the source for evidence collection,
+// The mapping attributes that determine the evidence source for a given control,
 // along with related parameters and metadata. This doesn't contain mappingID.
 type CreateControlMappingSource struct {
 	_ struct{} `type:"structure"`
@@ -10707,11 +10777,19 @@ type CreateControlMappingSource struct {
 	// The name of the control mapping data source.
 	SourceName *string `locationName:"sourceName" min:"1" type:"string"`
 
-	// The setup option for the data source, which reflects if the evidence collection
-	// is automated or manual.
+	// The setup option for the data source. This option reflects if the evidence
+	// collection method is automated or manual. If you don’t provide a value
+	// for sourceSetUpOption, Audit Manager automatically infers and populates the
+	// correct value based on the sourceType that you specify.
 	SourceSetUpOption *string `locationName:"sourceSetUpOption" type:"string" enum:"SourceSetUpOption"`
 
-	// Specifies one of the five types of data sources for evidence collection.
+	// Specifies which type of data source is used to collect evidence.
+	//
+	//    * The source can be an individual data source type, such as AWS_Cloudtrail,
+	//    AWS_Config, AWS_Security_Hub, AWS_API_Call, or MANUAL.
+	//
+	//    * The source can also be a managed grouping of data sources, such as a
+	//    Core_Control or a Common_Control.
 	SourceType *string `locationName:"sourceType" type:"string" enum:"SourceType"`
 
 	// The instructions for troubleshooting the control.
@@ -14443,8 +14521,13 @@ type ListAssessmentControlInsightsByControlDomainInput struct {
 
 	// The unique identifier for the control domain.
 	//
+	// Audit Manager supports the control domains that are provided by Amazon Web
+	// Services Control Catalog. For information about how to find a list of available
+	// control domains, see ListDomains (https://docs.aws.amazon.com/controlcatalog/latest/APIReference/API_ListDomains.html)
+	// in the Amazon Web Services Control Catalog API Reference.
+	//
 	// ControlDomainId is a required field
-	ControlDomainId *string `location:"querystring" locationName:"controlDomainId" min:"36" type:"string" required:"true"`
+	ControlDomainId *string `location:"querystring" locationName:"controlDomainId" min:"13" type:"string" required:"true"`
 
 	// Represents the maximum number of results on a page or for an API request
 	// call.
@@ -14484,8 +14567,8 @@ func (s *ListAssessmentControlInsightsByControlDomainInput) Validate() error {
 	if s.ControlDomainId == nil {
 		invalidParams.Add(request.NewErrParamRequired("ControlDomainId"))
 	}
-	if s.ControlDomainId != nil && len(*s.ControlDomainId) < 36 {
-		invalidParams.Add(request.NewErrParamMinLen("ControlDomainId", 36))
+	if s.ControlDomainId != nil && len(*s.ControlDomainId) < 13 {
+		invalidParams.Add(request.NewErrParamMinLen("ControlDomainId", 13))
 	}
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
@@ -15210,8 +15293,13 @@ type ListControlInsightsByControlDomainInput struct {
 
 	// The unique identifier for the control domain.
 	//
+	// Audit Manager supports the control domains that are provided by Amazon Web
+	// Services Control Catalog. For information about how to find a list of available
+	// control domains, see ListDomains (https://docs.aws.amazon.com/controlcatalog/latest/APIReference/API_ListDomains.html)
+	// in the Amazon Web Services Control Catalog API Reference.
+	//
 	// ControlDomainId is a required field
-	ControlDomainId *string `location:"querystring" locationName:"controlDomainId" min:"36" type:"string" required:"true"`
+	ControlDomainId *string `location:"querystring" locationName:"controlDomainId" min:"13" type:"string" required:"true"`
 
 	// Represents the maximum number of results on a page or for an API request
 	// call.
@@ -15245,8 +15333,8 @@ func (s *ListControlInsightsByControlDomainInput) Validate() error {
 	if s.ControlDomainId == nil {
 		invalidParams.Add(request.NewErrParamRequired("ControlDomainId"))
 	}
-	if s.ControlDomainId != nil && len(*s.ControlDomainId) < 36 {
-		invalidParams.Add(request.NewErrParamMinLen("ControlDomainId", 36))
+	if s.ControlDomainId != nil && len(*s.ControlDomainId) < 13 {
+		invalidParams.Add(request.NewErrParamMinLen("ControlDomainId", 13))
 	}
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
@@ -15323,13 +15411,33 @@ func (s *ListControlInsightsByControlDomainOutput) SetNextToken(v string) *ListC
 type ListControlsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The type of control, such as a standard control or a custom control.
+	// A filter that narrows the list of controls to a specific resource from the
+	// Amazon Web Services Control Catalog.
+	//
+	// To use this parameter, specify the ARN of the Control Catalog resource. You
+	// can specify either a control domain, a control objective, or a common control.
+	// For information about how to find the ARNs for these resources, see ListDomains
+	// (https://docs.aws.amazon.com/controlcatalog/latest/APIReference/API_ListDomains.html),
+	// ListObjectives (https://docs.aws.amazon.com/controlcatalog/latest/APIReference/API_ListObjectives.html),
+	// and ListCommonControls (https://docs.aws.amazon.com/controlcatalog/latest/APIReference/API_ListCommonControls.html).
+	//
+	// You can only filter by one Control Catalog resource at a time. Specifying
+	// multiple resource ARNs isn’t currently supported. If you want to filter
+	// by more than one ARN, we recommend that you run the ListControls operation
+	// separately for each ARN.
+	//
+	// Alternatively, specify UNCATEGORIZED to list controls that aren't mapped
+	// to a Control Catalog resource. For example, this operation might return a
+	// list of custom controls that don't belong to any control domain or control
+	// objective.
+	ControlCatalogId *string `location:"querystring" locationName:"controlCatalogId" min:"13" type:"string"`
+
+	// A filter that narrows the list of controls to a specific type.
 	//
 	// ControlType is a required field
 	ControlType *string `location:"querystring" locationName:"controlType" type:"string" required:"true" enum:"ControlType"`
 
-	// Represents the maximum number of results on a page or for an API request
-	// call.
+	// The maximum number of results on a page or for an API request call.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
 	// The pagination token that's used to fetch the next set of results.
@@ -15357,6 +15465,9 @@ func (s ListControlsInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ListControlsInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ListControlsInput"}
+	if s.ControlCatalogId != nil && len(*s.ControlCatalogId) < 13 {
+		invalidParams.Add(request.NewErrParamMinLen("ControlCatalogId", 13))
+	}
 	if s.ControlType == nil {
 		invalidParams.Add(request.NewErrParamRequired("ControlType"))
 	}
@@ -15371,6 +15482,12 @@ func (s *ListControlsInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetControlCatalogId sets the ControlCatalogId field's value.
+func (s *ListControlsInput) SetControlCatalogId(v string) *ListControlsInput {
+	s.ControlCatalogId = &v
+	return s
 }
 
 // SetControlType sets the ControlType field's value.
@@ -15444,7 +15561,7 @@ type ListKeywordsForDataSourceInput struct {
 	// The control mapping data source that the keywords apply to.
 	//
 	// Source is a required field
-	Source *string `location:"querystring" locationName:"source" type:"string" required:"true" enum:"SourceType"`
+	Source *string `location:"querystring" locationName:"source" type:"string" required:"true" enum:"DataSourceType"`
 }
 
 // String returns the string representation.
@@ -15505,7 +15622,7 @@ func (s *ListKeywordsForDataSourceInput) SetSource(v string) *ListKeywordsForDat
 type ListKeywordsForDataSourceOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The list of keywords for the event mapping source.
+	// The list of keywords for the control mapping source.
 	Keywords []*string `locationName:"keywords" type:"list"`
 
 	// The pagination token that's used to fetch the next set of results.
@@ -16285,8 +16402,18 @@ func (s *Role) SetRoleType(v string) *Role {
 	return s
 }
 
-// The wrapper that contains the Amazon Web Services accounts and services that
-// are in scope for the assessment.
+// The wrapper that contains the Amazon Web Services accounts that are in scope
+// for the assessment.
+//
+// You no longer need to specify which Amazon Web Services are in scope when
+// you create or update an assessment. Audit Manager infers the services in
+// scope by examining your assessment controls and their data sources, and then
+// mapping this information to the relevant Amazon Web Services.
+//
+// If an underlying data source changes for your assessment, we automatically
+// update the services scope as needed to reflect the correct Amazon Web Services.
+// This ensures that your assessment collects accurate and comprehensive evidence
+// about all of the relevant services in your AWS environment.
 type Scope struct {
 	_ struct{} `type:"structure" sensitive:"true"`
 
@@ -16298,7 +16425,13 @@ type Scope struct {
 	AwsAccounts []*AWSAccount `locationName:"awsAccounts" min:"1" type:"list" sensitive:"true"`
 
 	// The Amazon Web Services services that are included in the scope of the assessment.
-	AwsServices []*AWSService `locationName:"awsServices" type:"list"`
+	//
+	// This API parameter is no longer supported. If you use this parameter to specify
+	// one or more Amazon Web Services, Audit Manager ignores this input. Instead,
+	// the value for awsServices will show as empty.
+	//
+	// Deprecated: You can't specify services in scope when creating/updating an assessment. If you use the parameter to specify one or more AWS services, Audit Manager ignores the input. Instead the value of the parameter will show as empty indicating that the services are defined and managed by Audit Manager.
+	AwsServices []*AWSService `locationName:"awsServices" deprecated:"true" type:"list"`
 }
 
 // String returns the string representation.
@@ -18056,7 +18189,11 @@ type UpdateControlInput struct {
 	ControlMappingSources []*ControlMappingSource `locationName:"controlMappingSources" min:"1" type:"list" required:"true"`
 
 	// The optional description of the control.
-	Description *string `locationName:"description" type:"string"`
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateControlInput's
+	// String and GoString methods.
+	Description *string `locationName:"description" type:"string" sensitive:"true"`
 
 	// The name of the updated control.
 	//
@@ -18756,6 +18893,22 @@ func ControlSetStatus_Values() []string {
 }
 
 const (
+	// ControlStateActive is a ControlState enum value
+	ControlStateActive = "ACTIVE"
+
+	// ControlStateEndOfSupport is a ControlState enum value
+	ControlStateEndOfSupport = "END_OF_SUPPORT"
+)
+
+// ControlState_Values returns all elements of the ControlState enum
+func ControlState_Values() []string {
+	return []string{
+		ControlStateActive,
+		ControlStateEndOfSupport,
+	}
+}
+
+const (
 	// ControlStatusUnderReview is a ControlStatus enum value
 	ControlStatusUnderReview = "UNDER_REVIEW"
 
@@ -18781,6 +18934,9 @@ const (
 
 	// ControlTypeCustom is a ControlType enum value
 	ControlTypeCustom = "Custom"
+
+	// ControlTypeCore is a ControlType enum value
+	ControlTypeCore = "Core"
 )
 
 // ControlType_Values returns all elements of the ControlType enum
@@ -18788,6 +18944,35 @@ func ControlType_Values() []string {
 	return []string{
 		ControlTypeStandard,
 		ControlTypeCustom,
+		ControlTypeCore,
+	}
+}
+
+const (
+	// DataSourceTypeAwsCloudtrail is a DataSourceType enum value
+	DataSourceTypeAwsCloudtrail = "AWS_Cloudtrail"
+
+	// DataSourceTypeAwsConfig is a DataSourceType enum value
+	DataSourceTypeAwsConfig = "AWS_Config"
+
+	// DataSourceTypeAwsSecurityHub is a DataSourceType enum value
+	DataSourceTypeAwsSecurityHub = "AWS_Security_Hub"
+
+	// DataSourceTypeAwsApiCall is a DataSourceType enum value
+	DataSourceTypeAwsApiCall = "AWS_API_Call"
+
+	// DataSourceTypeManual is a DataSourceType enum value
+	DataSourceTypeManual = "MANUAL"
+)
+
+// DataSourceType_Values returns all elements of the DataSourceType enum
+func DataSourceType_Values() []string {
+	return []string{
+		DataSourceTypeAwsCloudtrail,
+		DataSourceTypeAwsConfig,
+		DataSourceTypeAwsSecurityHub,
+		DataSourceTypeAwsApiCall,
+		DataSourceTypeManual,
 	}
 }
 
@@ -19130,6 +19315,12 @@ const (
 
 	// SourceTypeManual is a SourceType enum value
 	SourceTypeManual = "MANUAL"
+
+	// SourceTypeCommonControl is a SourceType enum value
+	SourceTypeCommonControl = "Common_Control"
+
+	// SourceTypeCoreControl is a SourceType enum value
+	SourceTypeCoreControl = "Core_Control"
 )
 
 // SourceType_Values returns all elements of the SourceType enum
@@ -19140,6 +19331,8 @@ func SourceType_Values() []string {
 		SourceTypeAwsSecurityHub,
 		SourceTypeAwsApiCall,
 		SourceTypeManual,
+		SourceTypeCommonControl,
+		SourceTypeCoreControl,
 	}
 }
 

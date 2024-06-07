@@ -36,18 +36,18 @@
     "GetInsights": "<p>Gets the latest analytics data for all your current active assessments. </p>",
     "GetInsightsByAssessment": "<p>Gets the latest analytics data for a specific active assessment. </p>",
     "GetOrganizationAdminAccount": "<p> Gets the name of the delegated Amazon Web Services administrator account for a specified organization. </p>",
-    "GetServicesInScope": "<p>Gets a list of all of the Amazon Web Services that you can choose to include in your assessment. When you <a href=\"https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_CreateAssessment.html\">create an assessment</a>, specify which of these services you want to include to narrow the assessment's <a href=\"https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_Scope.html\">scope</a>.</p>",
+    "GetServicesInScope": "<p>Gets a list of the Amazon Web Services from which Audit Manager can collect evidence. </p> <p>Audit Manager defines which Amazon Web Services are in scope for an assessment. Audit Manager infers this scope by examining the assessment’s controls and their data sources, and then mapping this information to one or more of the corresponding Amazon Web Services that are in this list.</p> <note> <p>For information about why it's no longer possible to specify services in scope manually, see <a href=\"https://docs.aws.amazon.com/audit-manager/latest/userguide/evidence-collection-issues.html#unable-to-edit-services\">I can't edit the services in scope for my assessment</a> in the <i>Troubleshooting</i> section of the Audit Manager user guide.</p> </note>",
     "GetSettings": "<p> Gets the settings for a specified Amazon Web Services account. </p>",
     "ListAssessmentControlInsightsByControlDomain": "<p>Lists the latest analytics data for controls within a specific control domain and a specific active assessment.</p> <note> <p>Control insights are listed only if the control belongs to the control domain and assessment that was specified. Moreover, the control must have collected evidence on the <code>lastUpdated</code> date of <code>controlInsightsByAssessment</code>. If neither of these conditions are met, no data is listed for that control. </p> </note>",
     "ListAssessmentFrameworkShareRequests": "<p> Returns a list of sent or received share requests for custom frameworks in Audit Manager. </p>",
     "ListAssessmentFrameworks": "<p> Returns a list of the frameworks that are available in the Audit Manager framework library. </p>",
     "ListAssessmentReports": "<p> Returns a list of assessment reports created in Audit Manager. </p>",
     "ListAssessments": "<p> Returns a list of current and past assessments from Audit Manager. </p>",
-    "ListControlDomainInsights": "<p>Lists the latest analytics data for control domains across all of your active assessments. </p> <note> <p>A control domain is listed only if at least one of the controls within that domain collected evidence on the <code>lastUpdated</code> date of <code>controlDomainInsights</code>. If this condition isn’t met, no data is listed for that control domain.</p> </note>",
-    "ListControlDomainInsightsByAssessment": "<p>Lists analytics data for control domains within a specified active assessment.</p> <note> <p>A control domain is listed only if at least one of the controls within that domain collected evidence on the <code>lastUpdated</code> date of <code>controlDomainInsights</code>. If this condition isn’t met, no data is listed for that domain.</p> </note>",
+    "ListControlDomainInsights": "<p>Lists the latest analytics data for control domains across all of your active assessments. </p> <p>Audit Manager supports the control domains that are provided by Amazon Web Services Control Catalog. For information about how to find a list of available control domains, see <a href=\"https://docs.aws.amazon.com/controlcatalog/latest/APIReference/API_ListDomains.html\"> <code>ListDomains</code> </a> in the Amazon Web Services Control Catalog API Reference.</p> <note> <p>A control domain is listed only if at least one of the controls within that domain collected evidence on the <code>lastUpdated</code> date of <code>controlDomainInsights</code>. If this condition isn’t met, no data is listed for that control domain.</p> </note>",
+    "ListControlDomainInsightsByAssessment": "<p>Lists analytics data for control domains within a specified active assessment.</p> <p>Audit Manager supports the control domains that are provided by Amazon Web Services Control Catalog. For information about how to find a list of available control domains, see <a href=\"https://docs.aws.amazon.com/controlcatalog/latest/APIReference/API_ListDomains.html\"> <code>ListDomains</code> </a> in the Amazon Web Services Control Catalog API Reference.</p> <note> <p>A control domain is listed only if at least one of the controls within that domain collected evidence on the <code>lastUpdated</code> date of <code>controlDomainInsights</code>. If this condition isn’t met, no data is listed for that domain.</p> </note>",
     "ListControlInsightsByControlDomain": "<p>Lists the latest analytics data for controls within a specific control domain across all active assessments.</p> <note> <p>Control insights are listed only if the control belongs to the control domain that was specified and the control collected evidence on the <code>lastUpdated</code> date of <code>controlInsightsMetadata</code>. If neither of these conditions are met, no data is listed for that control. </p> </note>",
     "ListControls": "<p> Returns a list of controls from Audit Manager. </p>",
-    "ListKeywordsForDataSource": "<p> Returns a list of keywords that are pre-mapped to the specified control data source. </p>",
+    "ListKeywordsForDataSource": "<p>Returns a list of keywords that are pre-mapped to the specified control data source.</p>",
     "ListNotifications": "<p> Returns a list of all Audit Manager notifications. </p>",
     "ListTagsForResource": "<p> Returns a list of tags for the specified resource in Audit Manager. </p>",
     "RegisterAccount": "<p> Enables Audit Manager for the specified Amazon Web Services account. </p>",
@@ -96,7 +96,7 @@
     "AWSServices": {
       "base": null,
       "refs": {
-        "Scope$awsServices": "<p> The Amazon Web Services services that are included in the scope of the assessment. </p>"
+        "Scope$awsServices": "<p> The Amazon Web Services services that are included in the scope of the assessment. </p> <important> <p>This API parameter is no longer supported. If you use this parameter to specify one or more Amazon Web Services, Audit Manager ignores this input. Instead, the value for <code>awsServices</code> will show as empty.</p> </important>"
       }
     },
     "AccessDeniedException": {
@@ -516,6 +516,12 @@
         "UpdateControlResponse$control": "<p> The name of the updated control set that the <code>UpdateControl</code> API returned. </p>"
       }
     },
+    "ControlCatalogId": {
+      "base": null,
+      "refs": {
+        "ListControlsRequest$controlCatalogId": "<p>A filter that narrows the list of controls to a specific resource from the Amazon Web Services Control Catalog. </p> <p>To use this parameter, specify the ARN of the Control Catalog resource. You can specify either a control domain, a control objective, or a common control. For information about how to find the ARNs for these resources, see <a href=\"https://docs.aws.amazon.com/controlcatalog/latest/APIReference/API_ListDomains.html\"> <code>ListDomains</code> </a>, <a href=\"https://docs.aws.amazon.com/controlcatalog/latest/APIReference/API_ListObjectives.html\"> <code>ListObjectives</code> </a>, and <a href=\"https://docs.aws.amazon.com/controlcatalog/latest/APIReference/API_ListCommonControls.html\"> <code>ListCommonControls</code> </a>.</p> <note> <p>You can only filter by one Control Catalog resource at a time. Specifying multiple resource ARNs isn’t currently supported. If you want to filter by more than one ARN, we recommend that you run the <code>ListControls</code> operation separately for each ARN. </p> </note> <p>Alternatively, specify <code>UNCATEGORIZED</code> to list controls that aren't mapped to a Control Catalog resource. For example, this operation might return a list of custom controls that don't belong to any control domain or control objective.</p>"
+      }
+    },
     "ControlComment": {
       "base": "<p> A comment that's posted by a user on a control. This includes the author's name, the comment text, and a timestamp. </p>",
       "refs": {
@@ -542,6 +548,16 @@
         "Control$description": "<p> The description of the control. </p>",
         "CreateControlRequest$description": "<p> The description of the control. </p>",
         "UpdateControlRequest$description": "<p> The optional description of the control. </p>"
+      }
+    },
+    "ControlDomainId": {
+      "base": null,
+      "refs": {
+        "ControlDomainInsights$id": "<p>The unique identifier for the control domain. Audit Manager supports the control domains that are provided by Amazon Web Services Control Catalog. For information about how to find a list of available control domains, see <a href=\"https://docs.aws.amazon.com/controlcatalog/latest/APIReference/API_ListDomains.html\"> <code>ListDomains</code> </a> in the Amazon Web Services Control Catalog API Reference.</p>",
+        "ControlInsightsMetadataByAssessmentItem$id": "<p>The unique identifier for the assessment control. </p>",
+        "ControlInsightsMetadataItem$id": "<p>The unique identifier for the control. </p>",
+        "ListAssessmentControlInsightsByControlDomainRequest$controlDomainId": "<p>The unique identifier for the control domain. </p> <p>Audit Manager supports the control domains that are provided by Amazon Web Services Control Catalog. For information about how to find a list of available control domains, see <a href=\"https://docs.aws.amazon.com/controlcatalog/latest/APIReference/API_ListDomains.html\"> <code>ListDomains</code> </a> in the Amazon Web Services Control Catalog API Reference.</p>",
+        "ListControlInsightsByControlDomainRequest$controlDomainId": "<p>The unique identifier for the control domain. </p> <p>Audit Manager supports the control domains that are provided by Amazon Web Services Control Catalog. For information about how to find a list of available control domains, see <a href=\"https://docs.aws.amazon.com/controlcatalog/latest/APIReference/API_ListDomains.html\"> <code>ListDomains</code> </a> in the Amazon Web Services Control Catalog API Reference.</p>"
       }
     },
     "ControlDomainInsights": {
@@ -682,6 +698,12 @@
         "Framework$controlSources": "<p> The control data sources where Audit Manager collects evidence from.</p>"
       }
     },
+    "ControlState": {
+      "base": null,
+      "refs": {
+        "Control$state": "<p>The state of the control. The <code>END_OF_SUPPORT</code> state is applicable to standard controls only. This state indicates that the standard control can still be used to collect evidence, but Audit Manager is no longer updating or maintaining that control.</p>"
+      }
+    },
     "ControlStatus": {
       "base": null,
       "refs": {
@@ -693,7 +715,7 @@
       "base": null,
       "refs": {
         "Control$type": "<p> Specifies whether the control is a standard control or a custom control.</p>",
-        "ListControlsRequest$controlType": "<p> The type of control, such as a standard control or a custom control. </p>"
+        "ListControlsRequest$controlType": "<p>A filter that narrows the list of controls to a specific type. </p>"
       }
     },
     "Controls": {
@@ -764,7 +786,7 @@
       }
     },
     "CreateControlMappingSource": {
-      "base": "<p> The control mapping fields that represent the source for evidence collection, along with related parameters and metadata. This doesn't contain <code>mappingID</code>. </p>",
+      "base": "<p>The mapping attributes that determine the evidence source for a given control, along with related parameters and metadata. This doesn't contain <code>mappingID</code>. </p>",
       "refs": {
         "CreateControlMappingSources$member": null
       }
@@ -804,6 +826,12 @@
         "Control$createdBy": "<p> The user or role that created the control. </p>",
         "Delegation$createdBy": "<p> The user or role that created the delegation. </p>",
         "Framework$createdBy": "<p> The user or role that created the framework. </p>"
+      }
+    },
+    "DataSourceType": {
+      "base": null,
+      "refs": {
+        "ListKeywordsForDataSourceRequest$source": "<p>The control mapping data source that the keywords apply to. </p>"
       }
     },
     "DefaultExportDestination": {
@@ -1373,7 +1401,7 @@
     "Keywords": {
       "base": null,
       "refs": {
-        "ListKeywordsForDataSourceResponse$keywords": "<p> The list of keywords for the event mapping source. </p>"
+        "ListKeywordsForDataSourceResponse$keywords": "<p>The list of keywords for the control mapping source.</p>"
       }
     },
     "KmsKey": {
@@ -1559,7 +1587,7 @@
         "ListControlDomainInsightsByAssessmentRequest$maxResults": "<p>Represents the maximum number of results on a page or for an API request call. </p>",
         "ListControlDomainInsightsRequest$maxResults": "<p>Represents the maximum number of results on a page or for an API request call. </p>",
         "ListControlInsightsByControlDomainRequest$maxResults": "<p>Represents the maximum number of results on a page or for an API request call. </p>",
-        "ListControlsRequest$maxResults": "<p> Represents the maximum number of results on a page or for an API request call. </p>",
+        "ListControlsRequest$maxResults": "<p>The maximum number of results on a page or for an API request call. </p>",
         "ListKeywordsForDataSourceRequest$maxResults": "<p> Represents the maximum number of results on a page or for an API request call. </p>",
         "ListNotificationsRequest$maxResults": "<p> Represents the maximum number of results on a page or for an API request call. </p>"
       }
@@ -1569,10 +1597,7 @@
       "refs": {
         "AssessmentControlSet$description": "<p> The description for the control set. </p>",
         "ChangeLog$objectName": "<p> The name of the object that changed. This could be the name of an assessment, control, or control set.</p>",
-        "ControlDomainInsights$name": "<p>The name of the control domain. </p>",
-        "ControlInsightsMetadataByAssessmentItem$name": "<p>The name of the assessment control. </p>",
         "ControlInsightsMetadataByAssessmentItem$controlSetName": "<p>The name of the control set that the assessment control belongs to. </p>",
-        "ControlInsightsMetadataItem$name": "<p>The name of the control. </p>",
         "DelegationMetadata$controlSetName": "<p> Specifies the name of the control set that was delegated for review. </p>",
         "EvidenceSources$member": null,
         "GetEvidenceFileUploadUrlResponse$evidenceFileName": "<p>The name of the uploaded manual evidence file that the presigned URL was generated for.</p>",
@@ -1720,7 +1745,7 @@
       }
     },
     "Scope": {
-      "base": "<p> The wrapper that contains the Amazon Web Services accounts and services that are in scope for the assessment. </p>",
+      "base": "<p> The wrapper that contains the Amazon Web Services accounts that are in scope for the assessment. </p> <note> <p>You no longer need to specify which Amazon Web Services are in scope when you create or update an assessment. Audit Manager infers the services in scope by examining your assessment controls and their data sources, and then mapping this information to the relevant Amazon Web Services. </p> <p>If an underlying data source changes for your assessment, we automatically update the services scope as needed to reflect the correct Amazon Web Services. This ensures that your assessment collects accurate and comprehensive evidence about all of the relevant services in your AWS environment.</p> </note>",
       "refs": {
         "AssessmentMetadata$scope": "<p> The wrapper of Amazon Web Services accounts and services that are in scope for the assessment. </p>",
         "CreateAssessmentRequest$scope": null,
@@ -1821,16 +1846,15 @@
     "SourceSetUpOption": {
       "base": null,
       "refs": {
-        "ControlMappingSource$sourceSetUpOption": "<p> The setup option for the data source. This option reflects if the evidence collection is automated or manual. </p>",
-        "CreateControlMappingSource$sourceSetUpOption": "<p> The setup option for the data source, which reflects if the evidence collection is automated or manual. </p>"
+        "ControlMappingSource$sourceSetUpOption": "<p>The setup option for the data source. This option reflects if the evidence collection method is automated or manual. If you don’t provide a value for <code>sourceSetUpOption</code>, Audit Manager automatically infers and populates the correct value based on the <code>sourceType</code> that you specify.</p>",
+        "CreateControlMappingSource$sourceSetUpOption": "<p>The setup option for the data source. This option reflects if the evidence collection method is automated or manual. If you don’t provide a value for <code>sourceSetUpOption</code>, Audit Manager automatically infers and populates the correct value based on the <code>sourceType</code> that you specify.</p>"
       }
     },
     "SourceType": {
       "base": null,
       "refs": {
-        "ControlMappingSource$sourceType": "<p> Specifies one of the five data source types for evidence collection. </p>",
-        "CreateControlMappingSource$sourceType": "<p> Specifies one of the five types of data sources for evidence collection. </p>",
-        "ListKeywordsForDataSourceRequest$source": "<p> The control mapping data source that the keywords apply to. </p>"
+        "ControlMappingSource$sourceType": "<p> Specifies which type of data source is used to collect evidence. </p> <ul> <li> <p>The source can be an individual data source type, such as <code>AWS_Cloudtrail</code>, <code>AWS_Config</code>, <code>AWS_Security_Hub</code>, <code>AWS_API_Call</code>, or <code>MANUAL</code>. </p> </li> <li> <p>The source can also be a managed grouping of data sources, such as a <code>Core_Control</code> or a <code>Common_Control</code>.</p> </li> </ul>",
+        "CreateControlMappingSource$sourceType": "<p> Specifies which type of data source is used to collect evidence. </p> <ul> <li> <p>The source can be an individual data source type, such as <code>AWS_Cloudtrail</code>, <code>AWS_Config</code>, <code>AWS_Security_Hub</code>, <code>AWS_API_Call</code>, or <code>MANUAL</code>. </p> </li> <li> <p>The source can also be a managed grouping of data sources, such as a <code>Core_Control</code> or a <code>Common_Control</code>.</p> </li> </ul>"
       }
     },
     "StartAssessmentFrameworkShareRequest": {
@@ -1849,6 +1873,9 @@
         "AccessDeniedException$message": null,
         "AssessmentEvidenceFolder$dataSource": "<p> The Amazon Web Service that the evidence was collected from. </p>",
         "AssessmentEvidenceFolder$author": "<p> The name of the user who created the evidence folder. </p>",
+        "ControlDomainInsights$name": "<p>The name of the control domain. </p>",
+        "ControlInsightsMetadataByAssessmentItem$name": "<p>The name of the assessment control. </p>",
+        "ControlInsightsMetadataItem$name": "<p>The name of the control. </p>",
         "Evidence$dataSource": "<p> The data source where the evidence was collected from. </p>",
         "Evidence$evidenceByType": "<p> The type of automated evidence. </p>",
         "Evidence$complianceCheck": "<p>The evaluation status for automated evidence that falls under the compliance check category.</p> <ul> <li> <p>Audit Manager classes evidence as non-compliant if Security Hub reports a <i>Fail</i> result, or if Config reports a <i>Non-compliant</i> result.</p> </li> <li> <p>Audit Manager classes evidence as compliant if Security Hub reports a <i>Pass</i> result, or if Config reports a <i>Compliant</i> result.</p> </li> <li> <p>If a compliance check isn't available or applicable, then no compliance evaluation can be made for that evidence. This is the case if the evidence uses Config or Security Hub as the underlying data source type, but those services aren't enabled. This is also the case if the evidence uses an underlying data source type that doesn't support compliance checks (such as manual evidence, Amazon Web Services API calls, or CloudTrail). </p> </li> </ul>",
@@ -1996,8 +2023,8 @@
         "ListControlDomainInsightsResponse$nextToken": "<p>The pagination token that's used to fetch the next set of results. </p>",
         "ListControlInsightsByControlDomainRequest$nextToken": "<p>The pagination token that's used to fetch the next set of results. </p>",
         "ListControlInsightsByControlDomainResponse$nextToken": "<p>The pagination token that's used to fetch the next set of results. </p>",
-        "ListControlsRequest$nextToken": "<p> The pagination token that's used to fetch the next set of results. </p>",
-        "ListControlsResponse$nextToken": "<p> The pagination token that's used to fetch the next set of results. </p>",
+        "ListControlsRequest$nextToken": "<p>The pagination token that's used to fetch the next set of results. </p>",
+        "ListControlsResponse$nextToken": "<p>The pagination token that's used to fetch the next set of results. </p>",
         "ListKeywordsForDataSourceRequest$nextToken": "<p> The pagination token that's used to fetch the next set of results. </p>",
         "ListKeywordsForDataSourceResponse$nextToken": "<p> The pagination token that's used to fetch the next set of results. </p>",
         "ListNotificationsRequest$nextToken": "<p> The pagination token that's used to fetch the next set of results. </p>",
@@ -2047,9 +2074,6 @@
         "BatchImportEvidenceToAssessmentControlRequest$assessmentId": "<p> The identifier for the assessment. </p>",
         "BatchImportEvidenceToAssessmentControlRequest$controlId": "<p> The identifier for the control. </p>",
         "Control$id": "<p> The unique identifier for the control. </p>",
-        "ControlDomainInsights$id": "<p>The unique identifier for the control domain. </p>",
-        "ControlInsightsMetadataByAssessmentItem$id": "<p>The unique identifier for the assessment control. </p>",
-        "ControlInsightsMetadataItem$id": "<p>The unique identifier for the control. </p>",
         "ControlMappingSource$sourceId": "<p> The unique identifier for the source. </p>",
         "ControlMetadata$id": "<p> The unique identifier for the control. </p>",
         "ControlSet$id": "<p> The identifier of the control set in the assessment. This is the control set name in a plain string format. </p>",
@@ -2091,10 +2115,8 @@
         "GetEvidenceRequest$evidenceFolderId": "<p> The unique identifier for the folder that the evidence is stored in. </p>",
         "GetEvidenceRequest$evidenceId": "<p> The unique identifier for the evidence. </p>",
         "GetInsightsByAssessmentRequest$assessmentId": "<p>The unique identifier for the assessment. </p>",
-        "ListAssessmentControlInsightsByControlDomainRequest$controlDomainId": "<p>The unique identifier for the control domain. </p>",
         "ListAssessmentControlInsightsByControlDomainRequest$assessmentId": "<p>The unique identifier for the active assessment. </p>",
         "ListControlDomainInsightsByAssessmentRequest$assessmentId": "<p>The unique identifier for the active assessment. </p>",
-        "ListControlInsightsByControlDomainRequest$controlDomainId": "<p>The unique identifier for the control domain. </p>",
         "Notification$assessmentId": "<p> The identifier for the assessment. </p>",
         "StartAssessmentFrameworkShareRequest$frameworkId": "<p> The unique identifier for the custom framework to be shared. </p>",
         "UpdateAssessmentControlRequest$assessmentId": "<p> The unique identifier for the assessment. </p>",
