@@ -116,7 +116,8 @@
         {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
         {"shape":"InternalServerException"},
-        {"shape":"ServiceQuotaExceededException"}
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "CreateAssessmentFramework":{
@@ -805,7 +806,8 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
-        {"shape":"InternalServerException"}
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "UpdateAssessmentControl":{
@@ -1506,8 +1508,15 @@
         "lastUpdatedAt":{"shape":"Timestamp"},
         "createdBy":{"shape":"CreatedBy"},
         "lastUpdatedBy":{"shape":"LastUpdatedBy"},
-        "tags":{"shape":"TagMap"}
+        "tags":{"shape":"TagMap"},
+        "state":{"shape":"ControlState"}
       }
+    },
+    "ControlCatalogId":{
+      "type":"string",
+      "max":2048,
+      "min":13,
+      "pattern":"^arn:.*:controlcatalog:.*|UNCATEGORIZED"
     },
     "ControlComment":{
       "type":"structure",
@@ -1530,13 +1539,20 @@
     "ControlDescription":{
       "type":"string",
       "max":1000,
-      "pattern":"^[\\w\\W\\s\\S]*$"
+      "pattern":"^[\\w\\W\\s\\S]*$",
+      "sensitive":true
+    },
+    "ControlDomainId":{
+      "type":"string",
+      "max":2048,
+      "min":13,
+      "pattern":"^arn:.*:controlcatalog:.*:.*:domain/.*|UNCATEGORIZED|^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$"
     },
     "ControlDomainInsights":{
       "type":"structure",
       "members":{
-        "name":{"shape":"NonEmptyString"},
-        "id":{"shape":"UUID"},
+        "name":{"shape":"String"},
+        "id":{"shape":"ControlDomainId"},
         "controlsCountByNoncompliantEvidence":{"shape":"NullableInteger"},
         "totalControlsCount":{"shape":"NullableInteger"},
         "evidenceInsights":{"shape":"EvidenceInsights"},
@@ -1558,8 +1574,8 @@
     "ControlInsightsMetadataByAssessmentItem":{
       "type":"structure",
       "members":{
-        "name":{"shape":"NonEmptyString"},
-        "id":{"shape":"UUID"},
+        "name":{"shape":"String"},
+        "id":{"shape":"ControlDomainId"},
         "evidenceInsights":{"shape":"EvidenceInsights"},
         "controlSetName":{"shape":"NonEmptyString"},
         "lastUpdated":{"shape":"Timestamp"}
@@ -1568,8 +1584,8 @@
     "ControlInsightsMetadataItem":{
       "type":"structure",
       "members":{
-        "name":{"shape":"NonEmptyString"},
-        "id":{"shape":"UUID"},
+        "name":{"shape":"String"},
+        "id":{"shape":"ControlDomainId"},
         "evidenceInsights":{"shape":"EvidenceInsights"},
         "lastUpdated":{"shape":"Timestamp"}
       }
@@ -1663,6 +1679,13 @@
       "min":1,
       "pattern":"^[a-zA-Z_0-9-\\s.,]+$"
     },
+    "ControlState":{
+      "type":"string",
+      "enum":[
+        "ACTIVE",
+        "END_OF_SUPPORT"
+      ]
+    },
     "ControlStatus":{
       "type":"string",
       "enum":[
@@ -1675,7 +1698,8 @@
       "type":"string",
       "enum":[
         "Standard",
-        "Custom"
+        "Custom",
+        "Core"
       ]
     },
     "Controls":{
@@ -1838,6 +1862,16 @@
       "min":1,
       "pattern":"^[a-zA-Z0-9\\s-_()\\[\\]]+$",
       "sensitive":true
+    },
+    "DataSourceType":{
+      "type":"string",
+      "enum":[
+        "AWS_Cloudtrail",
+        "AWS_Config",
+        "AWS_Security_Hub",
+        "AWS_API_Call",
+        "MANUAL"
+      ]
     },
     "DefaultExportDestination":{
       "type":"structure",
@@ -2700,7 +2734,7 @@
       "type":"string",
       "max":100,
       "min":1,
-      "pattern":"^[a-zA-Z_0-9-\\s().]+$"
+      "pattern":"^[a-zA-Z_0-9-\\s().:\\/]+$"
     },
     "Keywords":{
       "type":"list",
@@ -2727,7 +2761,7 @@
       ],
       "members":{
         "controlDomainId":{
-          "shape":"UUID",
+          "shape":"ControlDomainId",
           "location":"querystring",
           "locationName":"controlDomainId"
         },
@@ -2919,7 +2953,7 @@
       "required":["controlDomainId"],
       "members":{
         "controlDomainId":{
-          "shape":"UUID",
+          "shape":"ControlDomainId",
           "location":"querystring",
           "locationName":"controlDomainId"
         },
@@ -2960,6 +2994,11 @@
           "shape":"MaxResults",
           "location":"querystring",
           "locationName":"maxResults"
+        },
+        "controlCatalogId":{
+          "shape":"ControlCatalogId",
+          "location":"querystring",
+          "locationName":"controlCatalogId"
         }
       }
     },
@@ -2975,7 +3014,7 @@
       "required":["source"],
       "members":{
         "source":{
-          "shape":"SourceType",
+          "shape":"DataSourceType",
           "location":"querystring",
           "locationName":"source"
         },
@@ -3208,7 +3247,11 @@
       "type":"structure",
       "members":{
         "awsAccounts":{"shape":"AWSAccounts"},
-        "awsServices":{"shape":"AWSServices"}
+        "awsServices":{
+          "shape":"AWSServices",
+          "deprecated":true,
+          "deprecatedMessage":"You can't specify services in scope when creating/updating an assessment. If you use the parameter to specify one or more AWS services, Audit Manager ignores the input. Instead the value of the parameter will show as empty indicating that the services are defined and managed by Audit Manager."
+        }
       },
       "sensitive":true
     },
@@ -3321,7 +3364,7 @@
     },
     "SourceName":{
       "type":"string",
-      "max":100,
+      "max":300,
       "min":1
     },
     "SourceSetUpOption":{
@@ -3338,7 +3381,9 @@
         "AWS_Config",
         "AWS_Security_Hub",
         "AWS_API_Call",
-        "MANUAL"
+        "MANUAL",
+        "Common_Control",
+        "Core_Control"
       ]
     },
     "StartAssessmentFrameworkShareRequest":{
@@ -3428,7 +3473,7 @@
       "members":{
         "message":{"shape":"String"}
       },
-      "error":{"httpStatusCode":400},
+      "error":{"httpStatusCode":429},
       "exception":true
     },
     "Timestamp":{"type":"timestamp"},

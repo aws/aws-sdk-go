@@ -11,7 +11,8 @@
     "serviceId":"CodePipeline",
     "signatureVersion":"v4",
     "targetPrefix":"CodePipeline_20150709",
-    "uid":"codepipeline-2015-07-09"
+    "uid":"codepipeline-2015-07-09",
+    "auth":["aws.auth#sigv4"]
   },
   "operations":{
     "AcknowledgeJob":{
@@ -2744,7 +2745,8 @@
       "enum":[
         "COMMIT_ID",
         "IMAGE_DIGEST",
-        "S3_OBJECT_VERSION_ID"
+        "S3_OBJECT_VERSION_ID",
+        "S3_OBJECT_KEY"
       ]
     },
     "StageActionDeclarationList":{

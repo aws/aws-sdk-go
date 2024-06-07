@@ -1774,6 +1774,10 @@ func (c *CodePipeline) ListPipelineExecutionsRequest(input *ListPipelineExecutio
 //
 // Gets a summary of the most recent executions for a pipeline.
 //
+// When applying the filter for pipeline executions that have succeeded in the
+// stage, the operation returns all executions in the current pipeline version
+// beginning on February 1, 2024.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -11213,9 +11217,6 @@ type ListActionExecutionsInput struct {
 	// remaining results, make another call with the returned nextToken value. Action
 	// execution history is retained for up to 12 months, based on action execution
 	// start times. Default value is 100.
-	//
-	// Detailed execution history is available for executions run on or after February
-	// 21, 2019.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
 	// The token that was returned from the previous ListActionExecutions call,
@@ -15323,6 +15324,10 @@ func (s *SourceRevision) SetRevisionUrl(v string) *SourceRevision {
 // pipeline execution that's being started. A source revision is the version
 // with all the changes to your application code, or source artifact, for the
 // pipeline execution.
+//
+// For the S3_OBJECT_VERSION_ID and S3_OBJECT_KEY types of source revisions,
+// either of the types can be used independently, or they can be used together
+// to override the source with a specific ObjectKey and VersionID.
 type SourceRevisionOverride struct {
 	_ struct{} `type:"structure"`
 
@@ -17741,6 +17746,9 @@ const (
 
 	// SourceRevisionTypeS3ObjectVersionId is a SourceRevisionType enum value
 	SourceRevisionTypeS3ObjectVersionId = "S3_OBJECT_VERSION_ID"
+
+	// SourceRevisionTypeS3ObjectKey is a SourceRevisionType enum value
+	SourceRevisionTypeS3ObjectKey = "S3_OBJECT_KEY"
 )
 
 // SourceRevisionType_Values returns all elements of the SourceRevisionType enum
@@ -17749,6 +17757,7 @@ func SourceRevisionType_Values() []string {
 		SourceRevisionTypeCommitId,
 		SourceRevisionTypeImageDigest,
 		SourceRevisionTypeS3ObjectVersionId,
+		SourceRevisionTypeS3ObjectKey,
 	}
 }
 

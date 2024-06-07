@@ -4,7 +4,7 @@
   "operations": {
     "BatchIsAuthorized": "<p>Makes a series of decisions about multiple authorization requests for one principal or resource. Each request contains the equivalent content of an <code>IsAuthorized</code> request: principal, action, resource, and context. Either the <code>principal</code> or the <code>resource</code> parameter must be identical across all requests. For example, Verified Permissions won't evaluate a pair of requests where <code>bob</code> views <code>photo1</code> and <code>alice</code> views <code>photo2</code>. Authorization of <code>bob</code> to view <code>photo1</code> and <code>photo2</code>, or <code>bob</code> and <code>alice</code> to view <code>photo1</code>, are valid batches. </p> <p>The request is evaluated against all policies in the specified policy store that match the entities that you declare. The result of the decisions is a series of <code>Allow</code> or <code>Deny</code> responses, along with the IDs of the policies that produced each decision.</p> <p>The <code>entities</code> of a <code>BatchIsAuthorized</code> API request can contain up to 100 principals and up to 100 resources. The <code>requests</code> of a <code>BatchIsAuthorized</code> API request can contain up to 30 requests.</p> <note> <p>The <code>BatchIsAuthorized</code> operation doesn't have its own IAM permission. To authorize this operation for Amazon Web Services principals, include the permission <code>verifiedpermissions:IsAuthorized</code> in their IAM policies.</p> </note>",
     "BatchIsAuthorizedWithToken": "<p>Makes a series of decisions about multiple authorization requests for one token. The principal in this request comes from an external identity source in the form of an identity or access token, formatted as a <a href=\"https://wikipedia.org/wiki/JSON_Web_Token\">JSON web token (JWT)</a>. The information in the parameters can also define additional context that Verified Permissions can include in the evaluations.</p> <p>The request is evaluated against all policies in the specified policy store that match the entities that you provide in the entities declaration and in the token. The result of the decisions is a series of <code>Allow</code> or <code>Deny</code> responses, along with the IDs of the policies that produced each decision.</p> <p>The <code>entities</code> of a <code>BatchIsAuthorizedWithToken</code> API request can contain up to 100 resources and up to 99 user groups. The <code>requests</code> of a <code>BatchIsAuthorizedWithToken</code> API request can contain up to 30 requests.</p> <note> <p>The <code>BatchIsAuthorizedWithToken</code> operation doesn't have its own IAM permission. To authorize this operation for Amazon Web Services principals, include the permission <code>verifiedpermissions:IsAuthorizedWithToken</code> in their IAM policies.</p> </note>",
-    "CreateIdentitySource": "<p>Creates a reference to an Amazon Cognito user pool as an external identity provider (IdP). </p> <p>After you create an identity source, you can use the identities provided by the IdP as proxies for the principal in authorization queries that use the <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_IsAuthorizedWithToken.html\">IsAuthorizedWithToken</a> operation. These identities take the form of tokens that contain claims about the user, such as IDs, attributes and group memberships. Amazon Cognito provides both identity tokens and access tokens, and Verified Permissions can use either or both. Any combination of identity and access tokens results in the same Cedar principal. Verified Permissions automatically translates the information about the identities into the standard Cedar attributes that can be evaluated by your policies. Because the Amazon Cognito identity and access tokens can contain different information, the tokens you choose to use determine which principal attributes are available to access when evaluating Cedar policies.</p> <important> <p>If you delete a Amazon Cognito user pool or user, tokens from that deleted pool or that deleted user continue to be usable until they expire.</p> </important> <note> <p>To reference a user from this identity source in your Cedar policies, use the following syntax.</p> <p> <i>IdentityType::\"&lt;CognitoUserPoolIdentifier&gt;|&lt;CognitoClientId&gt;</i> </p> <p>Where <code>IdentityType</code> is the string that you provide to the <code>PrincipalEntityType</code> parameter for this operation. The <code>CognitoUserPoolId</code> and <code>CognitoClientId</code> are defined by the Amazon Cognito user pool.</p> </note> <note> <p>Verified Permissions is <i> <a href=\"https://wikipedia.org/wiki/Eventual_consistency\">eventually consistent</a> </i>. It can take a few seconds for a new or changed element to propagate through the service and be visible in the results of other Verified Permissions operations.</p> </note>",
+    "CreateIdentitySource": "<p>Adds an identity source to a policy store–an Amazon Cognito user pool or OpenID Connect (OIDC) identity provider (IdP). </p> <p>After you create an identity source, you can use the identities provided by the IdP as proxies for the principal in authorization queries that use the <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_IsAuthorizedWithToken.html\">IsAuthorizedWithToken</a> or <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_BatchIsAuthorizedWithToken.html\">BatchIsAuthorizedWithToken</a> API operations. These identities take the form of tokens that contain claims about the user, such as IDs, attributes and group memberships. Identity sources provide identity (ID) tokens and access tokens. Verified Permissions derives information about your user and session from token claims. Access tokens provide action <code>context</code> to your policies, and ID tokens provide principal <code>Attributes</code>.</p> <important> <p>Tokens from an identity source user continue to be usable until they expire. Token revocation and resource deletion have no effect on the validity of a token in your policy store</p> </important> <note> <p>To reference a user from this identity source in your Cedar policies, refer to the following syntax examples.</p> <ul> <li> <p>Amazon Cognito user pool: <code>Namespace::[Entity type]::[User pool ID]|[user principal attribute]</code>, for example <code>MyCorp::User::us-east-1_EXAMPLE|a1b2c3d4-5678-90ab-cdef-EXAMPLE11111</code>.</p> </li> <li> <p>OpenID Connect (OIDC) provider: <code>Namespace::[Entity type]::[principalIdClaim]|[user principal attribute]</code>, for example <code>MyCorp::User::MyOIDCProvider|a1b2c3d4-5678-90ab-cdef-EXAMPLE22222</code>.</p> </li> </ul> </note> <note> <p>Verified Permissions is <i> <a href=\"https://wikipedia.org/wiki/Eventual_consistency\">eventually consistent</a> </i>. It can take a few seconds for a new or changed element to propagate through the service and be visible in the results of other Verified Permissions operations.</p> </note>",
     "CreatePolicy": "<p>Creates a Cedar policy and saves it in the specified policy store. You can create either a static policy or a policy linked to a policy template.</p> <ul> <li> <p>To create a static policy, provide the Cedar policy text in the <code>StaticPolicy</code> section of the <code>PolicyDefinition</code>.</p> </li> <li> <p>To create a policy that is dynamically linked to a policy template, specify the policy template ID and the principal and resource to associate with this policy in the <code>templateLinked</code> section of the <code>PolicyDefinition</code>. If the policy template is ever updated, any policies linked to the policy template automatically use the updated template.</p> </li> </ul> <note> <p>Creating a policy causes it to be validated against the schema in the policy store. If the policy doesn't pass validation, the operation fails and the policy isn't stored.</p> </note> <note> <p>Verified Permissions is <i> <a href=\"https://wikipedia.org/wiki/Eventual_consistency\">eventually consistent</a> </i>. It can take a few seconds for a new or changed element to propagate through the service and be visible in the results of other Verified Permissions operations.</p> </note>",
     "CreatePolicyStore": "<p>Creates a policy store. A policy store is a container for policy resources.</p> <note> <p>Although <a href=\"https://docs.cedarpolicy.com/schema/schema.html#namespace\">Cedar supports multiple namespaces</a>, Verified Permissions currently supports only one namespace per policy store.</p> </note> <note> <p>Verified Permissions is <i> <a href=\"https://wikipedia.org/wiki/Eventual_consistency\">eventually consistent</a> </i>. It can take a few seconds for a new or changed element to propagate through the service and be visible in the results of other Verified Permissions operations.</p> </note>",
     "CreatePolicyTemplate": "<p>Creates a policy template. A template can use placeholders for the principal and resource. A template must be instantiated into a policy by associating it with specific principals and resources to use for the placeholders. That instantiated policy can then be considered in authorization decisions. The instantiated policy works identically to any other policy, except that it is dynamically linked to the template. If the template changes, then any policies that are linked to that template are immediately updated as well.</p> <note> <p>Verified Permissions is <i> <a href=\"https://wikipedia.org/wiki/Eventual_consistency\">eventually consistent</a> </i>. It can take a few seconds for a new or changed element to propagate through the service and be visible in the results of other Verified Permissions operations.</p> </note>",
@@ -18,13 +18,13 @@
     "GetPolicyTemplate": "<p>Retrieve the details for the specified policy template in the specified policy store.</p>",
     "GetSchema": "<p>Retrieve the details for the specified schema in the specified policy store.</p>",
     "IsAuthorized": "<p>Makes an authorization decision about a service request described in the parameters. The information in the parameters can also define additional context that Verified Permissions can include in the evaluation. The request is evaluated against all matching policies in the specified policy store. The result of the decision is either <code>Allow</code> or <code>Deny</code>, along with a list of the policies that resulted in the decision.</p>",
-    "IsAuthorizedWithToken": "<p>Makes an authorization decision about a service request described in the parameters. The principal in this request comes from an external identity source in the form of an identity token formatted as a <a href=\"https://wikipedia.org/wiki/JSON_Web_Token\">JSON web token (JWT)</a>. The information in the parameters can also define additional context that Verified Permissions can include in the evaluation. The request is evaluated against all matching policies in the specified policy store. The result of the decision is either <code>Allow</code> or <code>Deny</code>, along with a list of the policies that resulted in the decision.</p> <p>At this time, Verified Permissions accepts tokens from only Amazon Cognito.</p> <p>Verified Permissions validates each token that is specified in a request by checking its expiration date and its signature.</p> <important> <p>If you delete a Amazon Cognito user pool or user, tokens from that deleted pool or that deleted user continue to be usable until they expire.</p> </important>",
+    "IsAuthorizedWithToken": "<p>Makes an authorization decision about a service request described in the parameters. The principal in this request comes from an external identity source in the form of an identity token formatted as a <a href=\"https://wikipedia.org/wiki/JSON_Web_Token\">JSON web token (JWT)</a>. The information in the parameters can also define additional context that Verified Permissions can include in the evaluation. The request is evaluated against all matching policies in the specified policy store. The result of the decision is either <code>Allow</code> or <code>Deny</code>, along with a list of the policies that resulted in the decision.</p> <p>At this time, Verified Permissions accepts tokens from only Amazon Cognito.</p> <p>Verified Permissions validates each token that is specified in a request by checking its expiration date and its signature.</p> <important> <p>Tokens from an identity source user continue to be usable until they expire. Token revocation and resource deletion have no effect on the validity of a token in your policy store</p> </important>",
     "ListIdentitySources": "<p>Returns a paginated list of all of the identity sources defined in the specified policy store.</p>",
     "ListPolicies": "<p>Returns a paginated list of all policies stored in the specified policy store.</p>",
     "ListPolicyStores": "<p>Returns a paginated list of all policy stores in the calling Amazon Web Services account.</p>",
     "ListPolicyTemplates": "<p>Returns a paginated list of all policy templates in the specified policy store.</p>",
     "PutSchema": "<p>Creates or updates the policy schema in the specified policy store. The schema is used to validate any Cedar policies and policy templates submitted to the policy store. Any changes to the schema validate only policies and templates submitted after the schema change. Existing policies and templates are not re-evaluated against the changed schema. If you later update a policy, then it is evaluated against the new schema at that time.</p> <note> <p>Verified Permissions is <i> <a href=\"https://wikipedia.org/wiki/Eventual_consistency\">eventually consistent</a> </i>. It can take a few seconds for a new or changed element to propagate through the service and be visible in the results of other Verified Permissions operations.</p> </note>",
-    "UpdateIdentitySource": "<p>Updates the specified identity source to use a new identity provider (IdP) source, or to change the mapping of identities from the IdP to a different principal entity type.</p> <note> <p>Verified Permissions is <i> <a href=\"https://wikipedia.org/wiki/Eventual_consistency\">eventually consistent</a> </i>. It can take a few seconds for a new or changed element to propagate through the service and be visible in the results of other Verified Permissions operations.</p> </note>",
+    "UpdateIdentitySource": "<p>Updates the specified identity source to use a new identity provider (IdP), or to change the mapping of identities from the IdP to a different principal entity type.</p> <note> <p>Verified Permissions is <i> <a href=\"https://wikipedia.org/wiki/Eventual_consistency\">eventually consistent</a> </i>. It can take a few seconds for a new or changed element to propagate through the service and be visible in the results of other Verified Permissions operations.</p> </note>",
     "UpdatePolicy": "<p>Modifies a Cedar static policy in the specified policy store. You can change only certain elements of the <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_UpdatePolicyInput.html#amazonverifiedpermissions-UpdatePolicy-request-UpdatePolicyDefinition\">UpdatePolicyDefinition</a> parameter. You can directly update only static policies. To change a template-linked policy, you must update the template instead, using <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_UpdatePolicyTemplate.html\">UpdatePolicyTemplate</a>.</p> <note> <ul> <li> <p>If policy validation is enabled in the policy store, then updating a static policy causes Verified Permissions to validate the policy against the schema in the policy store. If the updated static policy doesn't pass validation, the operation fails and the update isn't stored.</p> </li> <li> <p>When you edit a static policy, you can change only certain elements of a static policy:</p> <ul> <li> <p>The action referenced by the policy. </p> </li> <li> <p>A condition clause, such as when and unless. </p> </li> </ul> <p>You can't change these elements of a static policy: </p> <ul> <li> <p>Changing a policy from a static policy to a template-linked policy. </p> </li> <li> <p>Changing the effect of a static policy from permit or forbid. </p> </li> <li> <p>The principal referenced by a static policy. </p> </li> <li> <p>The resource referenced by a static policy. </p> </li> </ul> </li> <li> <p>To update a template-linked policy, you must update the template instead. </p> </li> </ul> </note> <note> <p>Verified Permissions is <i> <a href=\"https://wikipedia.org/wiki/Eventual_consistency\">eventually consistent</a> </i>. It can take a few seconds for a new or changed element to propagate through the service and be visible in the results of other Verified Permissions operations.</p> </note>",
     "UpdatePolicyStore": "<p>Modifies the validation setting for a policy store.</p> <note> <p>Verified Permissions is <i> <a href=\"https://wikipedia.org/wiki/Eventual_consistency\">eventually consistent</a> </i>. It can take a few seconds for a new or changed element to propagate through the service and be visible in the results of other Verified Permissions operations.</p> </note>",
     "UpdatePolicyTemplate": "<p>Updates the specified policy template. You can update only the description and the some elements of the <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_UpdatePolicyTemplate.html#amazonverifiedpermissions-UpdatePolicyTemplate-request-policyBody\">policyBody</a>. </p> <important> <p>Changes you make to the policy template content are immediately (within the constraints of eventual consistency) reflected in authorization decisions that involve all template-linked policies instantiated from this template.</p> </important> <note> <p>Verified Permissions is <i> <a href=\"https://wikipedia.org/wiki/Eventual_consistency\">eventually consistent</a> </i>. It can take a few seconds for a new or changed element to propagate through the service and be visible in the results of other Verified Permissions operations.</p> </note>"
@@ -73,6 +73,21 @@
         "EntityAttributes$value": null,
         "RecordAttribute$value": null,
         "SetAttribute$member": null
+      }
+    },
+    "Audience": {
+      "base": null,
+      "refs": {
+        "Audiences$member": null
+      }
+    },
+    "Audiences": {
+      "base": null,
+      "refs": {
+        "OpenIdConnectAccessTokenConfiguration$audiences": "<p>The access token <code>aud</code> claim values that you want to accept in your policy store. For example, <code>https://myapp.example.com, https://myapp2.example.com</code>.</p>",
+        "OpenIdConnectAccessTokenConfigurationDetail$audiences": "<p>The access token <code>aud</code> claim values that you want to accept in your policy store. For example, <code>https://myapp.example.com, https://myapp2.example.com</code>.</p>",
+        "OpenIdConnectAccessTokenConfigurationItem$audiences": "<p>The access token <code>aud</code> claim values that you want to accept in your policy store. For example, <code>https://myapp.example.com, https://myapp2.example.com</code>.</p>",
+        "UpdateOpenIdConnectAccessTokenConfiguration$audiences": "<p>The access token <code>aud</code> claim values that you want to accept in your policy store. For example, <code>https://myapp.example.com, https://myapp2.example.com</code>.</p>"
       }
     },
     "BatchIsAuthorizedInput": {
@@ -157,6 +172,23 @@
         "AttributeValue$boolean": "<p>An attribute value of <a href=\"https://docs.cedarpolicy.com/policies/syntax-datatypes.html#boolean\">Boolean</a> type.</p> <p>Example: <code>{\"boolean\": true}</code> </p>"
       }
     },
+    "Claim": {
+      "base": null,
+      "refs": {
+        "OpenIdConnectAccessTokenConfiguration$principalIdClaim": "<p>The claim that determines the principal in OIDC access tokens. For example, <code>sub</code>.</p>",
+        "OpenIdConnectAccessTokenConfigurationDetail$principalIdClaim": "<p>The claim that determines the principal in OIDC access tokens. For example, <code>sub</code>.</p>",
+        "OpenIdConnectAccessTokenConfigurationItem$principalIdClaim": "<p>The claim that determines the principal in OIDC access tokens. For example, <code>sub</code>.</p>",
+        "OpenIdConnectGroupConfiguration$groupClaim": "<p>The token claim that you want Verified Permissions to interpret as group membership. For example, <code>groups</code>.</p>",
+        "OpenIdConnectGroupConfigurationDetail$groupClaim": "<p>The token claim that you want Verified Permissions to interpret as group membership. For example, <code>groups</code>.</p>",
+        "OpenIdConnectGroupConfigurationItem$groupClaim": "<p>The token claim that you want Verified Permissions to interpret as group membership. For example, <code>groups</code>.</p>",
+        "OpenIdConnectIdentityTokenConfiguration$principalIdClaim": "<p>The claim that determines the principal in OIDC access tokens. For example, <code>sub</code>.</p>",
+        "OpenIdConnectIdentityTokenConfigurationDetail$principalIdClaim": "<p>The claim that determines the principal in OIDC access tokens. For example, <code>sub</code>.</p>",
+        "OpenIdConnectIdentityTokenConfigurationItem$principalIdClaim": "<p>The claim that determines the principal in OIDC access tokens. For example, <code>sub</code>.</p>",
+        "UpdateOpenIdConnectAccessTokenConfiguration$principalIdClaim": "<p>The claim that determines the principal in OIDC access tokens. For example, <code>sub</code>.</p>",
+        "UpdateOpenIdConnectGroupConfiguration$groupClaim": "<p>The token claim that you want Verified Permissions to interpret as group membership. For example, <code>groups</code>.</p>",
+        "UpdateOpenIdConnectIdentityTokenConfiguration$principalIdClaim": "<p>The claim that determines the principal in OIDC access tokens. For example, <code>sub</code>.</p>"
+      }
+    },
     "ClientId": {
       "base": null,
       "refs": {
@@ -171,7 +203,11 @@
         "CognitoUserPoolConfigurationItem$clientIds": "<p>The unique application client IDs that are associated with the specified Amazon Cognito user pool.</p> <p>Example: <code>\"clientIds\": [\"&amp;ExampleCogClientId;\"]</code> </p>",
         "IdentitySourceDetails$clientIds": "<p>The application client IDs associated with the specified Amazon Cognito user pool that are enabled for this identity source.</p>",
         "IdentitySourceItemDetails$clientIds": "<p>The application client IDs associated with the specified Amazon Cognito user pool that are enabled for this identity source.</p>",
-        "UpdateCognitoUserPoolConfiguration$clientIds": "<p>The client ID of an app client that is configured for the specified Amazon Cognito user pool.</p>"
+        "OpenIdConnectIdentityTokenConfiguration$clientIds": "<p>The ID token audience, or client ID, claim values that you want to accept in your policy store from an OIDC identity provider. For example, <code>1example23456789, 2example10111213</code>.</p>",
+        "OpenIdConnectIdentityTokenConfigurationDetail$clientIds": "<p>The ID token audience, or client ID, claim values that you want to accept in your policy store from an OIDC identity provider. For example, <code>1example23456789, 2example10111213</code>.</p>",
+        "OpenIdConnectIdentityTokenConfigurationItem$clientIds": "<p>The ID token audience, or client ID, claim values that you want to accept in your policy store from an OIDC identity provider. For example, <code>1example23456789, 2example10111213</code>.</p>",
+        "UpdateCognitoUserPoolConfiguration$clientIds": "<p>The client ID of an app client that is configured for the specified Amazon Cognito user pool.</p>",
+        "UpdateOpenIdConnectIdentityTokenConfiguration$clientIds": "<p>The ID token audience, or client ID, claim values that you want to accept in your policy store from an OIDC identity provider. For example, <code>1example23456789, 2example10111213</code>.</p>"
       }
     },
     "CognitoGroupConfiguration": {
@@ -193,7 +229,7 @@
       }
     },
     "CognitoUserPoolConfiguration": {
-      "base": "<p>The configuration for an identity source that represents a connection to an Amazon Cognito user pool used as an identity provider for Verified Permissions.</p> <p>This data type is used as a field that is part of an <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_Configuration.html\">Configuration</a> structure that is used as a parameter to <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_CreateIdentitySource.html\">CreateIdentitySource</a>.</p> <p>Example:<code>\"CognitoUserPoolConfiguration\":{\"UserPoolArn\":\"arn:aws:cognito-idp:us-east-1:123456789012:userpool/us-east-1_1a2b3c4d5\",\"ClientIds\": [\"a1b2c3d4e5f6g7h8i9j0kalbmc\"],\"groupConfiguration\": {\"groupEntityType\": \"MyCorp::Group\"}}</code> </p>",
+      "base": "<p>The configuration for an identity source that represents a connection to an Amazon Cognito user pool used as an identity provider for Verified Permissions.</p> <p>This data type part of a <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_Configuration.html\">Configuration</a> structure that is used as a parameter to <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_CreateIdentitySource.html\">CreateIdentitySource</a>.</p> <p>Example:<code>\"CognitoUserPoolConfiguration\":{\"UserPoolArn\":\"arn:aws:cognito-idp:us-east-1:123456789012:userpool/us-east-1_1a2b3c4d5\",\"ClientIds\": [\"a1b2c3d4e5f6g7h8i9j0kalbmc\"],\"groupConfiguration\": {\"groupEntityType\": \"MyCorp::Group\"}}</code> </p>",
       "refs": {
         "Configuration$cognitoUserPoolConfiguration": "<p>Contains configuration details of a Amazon Cognito user pool that Verified Permissions can use as a source of authenticated identities as entities. It specifies the <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Name (ARN)</a> of a Amazon Cognito user pool and one or more application client IDs.</p> <p>Example: <code>\"configuration\":{\"cognitoUserPoolConfiguration\":{\"userPoolArn\":\"arn:aws:cognito-idp:us-east-1:123456789012:userpool/us-east-1_1a2b3c4d5\",\"clientIds\": [\"a1b2c3d4e5f6g7h8i9j0kalbmc\"],\"groupConfiguration\": {\"groupEntityType\": \"MyCorp::Group\"}}}</code> </p>"
       }
@@ -211,9 +247,9 @@
       }
     },
     "Configuration": {
-      "base": "<p>Contains configuration information used when creating a new identity source.</p> <note> <p>At this time, the only valid member of this structure is a Amazon Cognito user pool configuration.</p> <p>Specifies a <code>userPoolArn</code>, a <code>groupConfiguration</code>, and a <code>ClientId</code>.</p> </note> <p>This data type is used as a request parameter for the <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_CreateIdentitySource.html\">CreateIdentitySource</a> operation.</p>",
+      "base": "<p>Contains configuration information used when creating a new identity source.</p> <p>This data type is used as a request parameter for the <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_CreateIdentitySource.html\">CreateIdentitySource</a> operation.</p>",
       "refs": {
-        "CreateIdentitySourceInput$configuration": "<p>Specifies the details required to communicate with the identity provider (IdP) associated with this identity source.</p> <note> <p>At this time, the only valid member of this structure is a Amazon Cognito user pool configuration.</p> <p>You must specify a <code>UserPoolArn</code>, and optionally, a <code>ClientId</code>.</p> </note>"
+        "CreateIdentitySourceInput$configuration": "<p>Specifies the details required to communicate with the identity provider (IdP) associated with this identity source.</p>"
       }
     },
     "ConfigurationDetail": {
@@ -380,6 +416,15 @@
         "EntityIdentifier$entityId": "<p>The identifier of an entity.</p> <p> <code>\"entityId\":\"<i>identifier</i>\"</code> </p>"
       }
     },
+    "EntityIdPrefix": {
+      "base": null,
+      "refs": {
+        "OpenIdConnectConfiguration$entityIdPrefix": "<p>A descriptive string that you want to prefix to user entities from your OIDC identity provider. For example, if you set an <code>entityIdPrefix</code> of <code>MyOIDCProvider</code>, you can reference principals in your policies in the format <code>MyCorp::User::MyOIDCProvider|Carlos</code>.</p>",
+        "OpenIdConnectConfigurationDetail$entityIdPrefix": "<p>A descriptive string that you want to prefix to user entities from your OIDC identity provider. For example, if you set an <code>entityIdPrefix</code> of <code>MyOIDCProvider</code>, you can reference principals in your policies in the format <code>MyCorp::User::MyOIDCProvider|Carlos</code>.</p>",
+        "OpenIdConnectConfigurationItem$entityIdPrefix": "<p>A descriptive string that you want to prefix to user entities from your OIDC identity provider. For example, if you set an <code>entityIdPrefix</code> of <code>MyOIDCProvider</code>, you can reference principals in your policies in the format <code>MyCorp::User::MyOIDCProvider|Carlos</code>.</p>",
+        "UpdateOpenIdConnectConfiguration$entityIdPrefix": "<p>A descriptive string that you want to prefix to user entities from your OIDC identity provider. For example, if you set an <code>entityIdPrefix</code> of <code>MyOIDCProvider</code>, you can reference principals in your policies in the format <code>MyCorp::User::MyOIDCProvider|Carlos</code>.</p>"
+      }
+    },
     "EntityIdentifier": {
       "base": "<p>Contains the identifier of an entity, including its ID and type.</p> <p>This data type is used as a request parameter for <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_IsAuthorized.html\">IsAuthorized</a> operation, and as a response parameter for the <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_CreatePolicy.html\">CreatePolicy</a>, <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_GetPolicy.html\">GetPolicy</a>, and <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_UpdatePolicy.html\">UpdatePolicy</a> operations.</p> <p>Example: <code>{\"entityId\":\"<i>string</i>\",\"entityType\":\"<i>string</i>\"}</code> </p>",
       "refs": {
@@ -507,7 +552,11 @@
         "CognitoGroupConfiguration$groupEntityType": "<p>The name of the schema entity type that's mapped to the user pool group. Defaults to <code>AWS::CognitoGroup</code>.</p>",
         "CognitoGroupConfigurationDetail$groupEntityType": "<p>The name of the schema entity type that's mapped to the user pool group. Defaults to <code>AWS::CognitoGroup</code>.</p>",
         "CognitoGroupConfigurationItem$groupEntityType": "<p>The name of the schema entity type that's mapped to the user pool group. Defaults to <code>AWS::CognitoGroup</code>.</p>",
-        "UpdateCognitoGroupConfiguration$groupEntityType": "<p>The name of the schema entity type that's mapped to the user pool group. Defaults to <code>AWS::CognitoGroup</code>.</p>"
+        "OpenIdConnectGroupConfiguration$groupEntityType": "<p>The policy store entity type that you want to map your users' group claim to. For example, <code>MyCorp::UserGroup</code>. A group entity type is an entity that can have a user entity type as a member.</p>",
+        "OpenIdConnectGroupConfigurationDetail$groupEntityType": "<p>The policy store entity type that you want to map your users' group claim to. For example, <code>MyCorp::UserGroup</code>. A group entity type is an entity that can have a user entity type as a member.</p>",
+        "OpenIdConnectGroupConfigurationItem$groupEntityType": "<p>The policy store entity type that you want to map your users' group claim to. For example, <code>MyCorp::UserGroup</code>. A group entity type is an entity that can have a user entity type as a member.</p>",
+        "UpdateCognitoGroupConfiguration$groupEntityType": "<p>The name of the schema entity type that's mapped to the user pool group. Defaults to <code>AWS::CognitoGroup</code>.</p>",
+        "UpdateOpenIdConnectGroupConfiguration$groupEntityType": "<p>The policy store entity type that you want to map your users' group claim to. For example, <code>MyCorp::UserGroup</code>. A group entity type is an entity that can have a user entity type as a member.</p>"
       }
     },
     "IdempotencyToken": {
@@ -596,7 +645,11 @@
       "base": null,
       "refs": {
         "CognitoUserPoolConfigurationDetail$issuer": "<p>The OpenID Connect (OIDC) <code>issuer</code> ID of the Amazon Cognito user pool that contains the identities to be authorized.</p> <p>Example: <code>\"issuer\": \"https://cognito-idp.us-east-1.amazonaws.com/us-east-1_1a2b3c4d5\"</code> </p>",
-        "CognitoUserPoolConfigurationItem$issuer": "<p>The OpenID Connect (OIDC) <code>issuer</code> ID of the Amazon Cognito user pool that contains the identities to be authorized.</p> <p>Example: <code>\"issuer\": \"https://cognito-idp.us-east-1.amazonaws.com/us-east-1_1a2b3c4d5\"</code> </p>"
+        "CognitoUserPoolConfigurationItem$issuer": "<p>The OpenID Connect (OIDC) <code>issuer</code> ID of the Amazon Cognito user pool that contains the identities to be authorized.</p> <p>Example: <code>\"issuer\": \"https://cognito-idp.us-east-1.amazonaws.com/us-east-1_1a2b3c4d5\"</code> </p>",
+        "OpenIdConnectConfiguration$issuer": "<p>The issuer URL of an OIDC identity provider. This URL must have an OIDC discovery endpoint at the path <code>.well-known/openid-configuration</code>.</p>",
+        "OpenIdConnectConfigurationDetail$issuer": "<p>The issuer URL of an OIDC identity provider. This URL must have an OIDC discovery endpoint at the path <code>.well-known/openid-configuration</code>.</p>",
+        "OpenIdConnectConfigurationItem$issuer": "<p>The issuer URL of an OIDC identity provider. This URL must have an OIDC discovery endpoint at the path <code>.well-known/openid-configuration</code>.</p>",
+        "UpdateOpenIdConnectConfiguration$issuer": "<p>The issuer URL of an OIDC identity provider. This URL must have an OIDC discovery endpoint at the path <code>.well-known/openid-configuration</code>.</p>"
       }
     },
     "ListIdentitySourcesInput": {
@@ -685,6 +738,96 @@
         "ListPolicyTemplatesOutput$nextToken": "<p>If present, this value indicates that more output is available than is included in the current response. Use this value in the <code>NextToken</code> request parameter in a subsequent call to the operation to get the next part of the output. You should repeat this until the <code>NextToken</code> response element comes back as <code>null</code>. This indicates that this is the last page of results.</p>"
       }
     },
+    "OpenIdConnectAccessTokenConfiguration": {
+      "base": "<p>The configuration of an OpenID Connect (OIDC) identity source for handling access token claims. Contains the claim that you want to identify as the principal in an authorization request, and the values of the <code>aud</code> claim, or audiences, that you want to accept.</p> <p>This data type is part of a <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_OpenIdConnectTokenSelection.html\">OpenIdConnectTokenSelection</a> structure, which is a parameter of <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_CreateIdentitySource.html\">CreateIdentitySource</a>.</p>",
+      "refs": {
+        "OpenIdConnectTokenSelection$accessTokenOnly": "<p>The OIDC configuration for processing access tokens. Contains allowed audience claims, for example <code>https://auth.example.com</code>, and the claim that you want to map to the principal, for example <code>sub</code>.</p>"
+      }
+    },
+    "OpenIdConnectAccessTokenConfigurationDetail": {
+      "base": "<p>The configuration of an OpenID Connect (OIDC) identity source for handling access token claims. Contains the claim that you want to identify as the principal in an authorization request, and the values of the <code>aud</code> claim, or audiences, that you want to accept.</p> <p>This data type is part of a <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_OpenIdConnectTokenSelectionDetail.html\">OpenIdConnectTokenSelectionDetail</a> structure, which is a parameter of <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_GetIdentitySource.html\">GetIdentitySource</a>.</p>",
+      "refs": {
+        "OpenIdConnectTokenSelectionDetail$accessTokenOnly": "<p>The OIDC configuration for processing access tokens. Contains allowed audience claims, for example <code>https://auth.example.com</code>, and the claim that you want to map to the principal, for example <code>sub</code>.</p>"
+      }
+    },
+    "OpenIdConnectAccessTokenConfigurationItem": {
+      "base": "<p>The configuration of an OpenID Connect (OIDC) identity source for handling access token claims. Contains the claim that you want to identify as the principal in an authorization request, and the values of the <code>aud</code> claim, or audiences, that you want to accept.</p> <p>This data type is part of a <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_OpenIdConnectTokenSelectionItem.html\">OpenIdConnectTokenSelectionItem</a> structure, which is a parameter of <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_ListIdentitySources.html\">ListIdentitySources</a>.</p>",
+      "refs": {
+        "OpenIdConnectTokenSelectionItem$accessTokenOnly": "<p>The OIDC configuration for processing access tokens. Contains allowed audience claims, for example <code>https://auth.example.com</code>, and the claim that you want to map to the principal, for example <code>sub</code>.</p>"
+      }
+    },
+    "OpenIdConnectConfiguration": {
+      "base": "<p>Contains configuration details of an OpenID Connect (OIDC) identity provider, or identity source, that Verified Permissions can use to generate entities from authenticated identities. It specifies the issuer URL, token type that you want to use, and policy store entity details.</p> <p>This data type is part of a <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_Configuration.html\">Configuration</a> structure, which is a parameter to <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_CreateIdentitySource.html\">CreateIdentitySource</a>.</p>",
+      "refs": {
+        "Configuration$openIdConnectConfiguration": "<p>Contains configuration details of an OpenID Connect (OIDC) identity provider, or identity source, that Verified Permissions can use to generate entities from authenticated identities. It specifies the issuer URL, token type that you want to use, and policy store entity details.</p> <p>Example:<code>\"configuration\":{\"openIdConnectConfiguration\":{\"issuer\":\"https://auth.example.com\",\"tokenSelection\":{\"accessTokenOnly\":{\"audiences\":[\"https://myapp.example.com\",\"https://myapp2.example.com\"],\"principalIdClaim\":\"sub\"}},\"entityIdPrefix\":\"MyOIDCProvider\",\"groupConfiguration\":{\"groupClaim\":\"groups\",\"groupEntityType\":\"MyCorp::UserGroup\"}}}</code> </p>"
+      }
+    },
+    "OpenIdConnectConfigurationDetail": {
+      "base": "<p>Contains configuration details of an OpenID Connect (OIDC) identity provider, or identity source, that Verified Permissions can use to generate entities from authenticated identities. It specifies the issuer URL, token type that you want to use, and policy store entity details.</p> <p>This data type is part of a <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_ConfigurationDetail.html\">ConfigurationDetail</a> structure, which is a parameter to <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_GetIdentitySource.html\">GetIdentitySource</a>.</p>",
+      "refs": {
+        "ConfigurationDetail$openIdConnectConfiguration": "<p>Contains configuration details of an OpenID Connect (OIDC) identity provider, or identity source, that Verified Permissions can use to generate entities from authenticated identities. It specifies the issuer URL, token type that you want to use, and policy store entity details.</p> <p>Example:<code>\"configuration\":{\"openIdConnectConfiguration\":{\"issuer\":\"https://auth.example.com\",\"tokenSelection\":{\"accessTokenOnly\":{\"audiences\":[\"https://myapp.example.com\",\"https://myapp2.example.com\"],\"principalIdClaim\":\"sub\"}},\"entityIdPrefix\":\"MyOIDCProvider\",\"groupConfiguration\":{\"groupClaim\":\"groups\",\"groupEntityType\":\"MyCorp::UserGroup\"}}}</code> </p>"
+      }
+    },
+    "OpenIdConnectConfigurationItem": {
+      "base": "<p>Contains configuration details of an OpenID Connect (OIDC) identity provider, or identity source, that Verified Permissions can use to generate entities from authenticated identities. It specifies the issuer URL, token type that you want to use, and policy store entity details.</p> <p>This data type is part of a <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_ConfigurationDetail.html\">ConfigurationItem</a> structure, which is a parameter to <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_ListIdentitySources.html\">ListIdentitySources</a>.</p>",
+      "refs": {
+        "ConfigurationItem$openIdConnectConfiguration": "<p>Contains configuration details of an OpenID Connect (OIDC) identity provider, or identity source, that Verified Permissions can use to generate entities from authenticated identities. It specifies the issuer URL, token type that you want to use, and policy store entity details.</p> <p>Example:<code>\"configuration\":{\"openIdConnectConfiguration\":{\"issuer\":\"https://auth.example.com\",\"tokenSelection\":{\"accessTokenOnly\":{\"audiences\":[\"https://myapp.example.com\",\"https://myapp2.example.com\"],\"principalIdClaim\":\"sub\"}},\"entityIdPrefix\":\"MyOIDCProvider\",\"groupConfiguration\":{\"groupClaim\":\"groups\",\"groupEntityType\":\"MyCorp::UserGroup\"}}}</code> </p>"
+      }
+    },
+    "OpenIdConnectGroupConfiguration": {
+      "base": "<p>The claim in OIDC identity provider tokens that indicates a user's group membership, and the entity type that you want to map it to. For example, this object can map the contents of a <code>groups</code> claim to <code>MyCorp::UserGroup</code>.</p> <p>This data type is part of a <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_OpenIdConnectConfiguration.html\">OpenIdConnectConfiguration</a> structure, which is a parameter of <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_CreateIdentitySource.html\">CreateIdentitySource</a>.</p>",
+      "refs": {
+        "OpenIdConnectConfiguration$groupConfiguration": "<p>The claim in OIDC identity provider tokens that indicates a user's group membership, and the entity type that you want to map it to. For example, this object can map the contents of a <code>groups</code> claim to <code>MyCorp::UserGroup</code>.</p>"
+      }
+    },
+    "OpenIdConnectGroupConfigurationDetail": {
+      "base": "<p>The claim in OIDC identity provider tokens that indicates a user's group membership, and the entity type that you want to map it to. For example, this object can map the contents of a <code>groups</code> claim to <code>MyCorp::UserGroup</code>.</p> <p>This data type is part of a <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_OpenIdConnectConfigurationDetail.html\">OpenIdConnectConfigurationDetail</a> structure, which is a parameter of <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_GetIdentitySource.html\">GetIdentitySource</a>.</p>",
+      "refs": {
+        "OpenIdConnectConfigurationDetail$groupConfiguration": "<p>The claim in OIDC identity provider tokens that indicates a user's group membership, and the entity type that you want to map it to. For example, this object can map the contents of a <code>groups</code> claim to <code>MyCorp::UserGroup</code>.</p>"
+      }
+    },
+    "OpenIdConnectGroupConfigurationItem": {
+      "base": "<p>The claim in OIDC identity provider tokens that indicates a user's group membership, and the entity type that you want to map it to. For example, this object can map the contents of a <code>groups</code> claim to <code>MyCorp::UserGroup</code>.</p> <p>This data type is part of a <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_OpenIdConnectConfigurationItem.html\">OpenIdConnectConfigurationItem</a> structure, which is a parameter of <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_ListIdentitySources.html\">ListIdentitySourcea</a>.</p>",
+      "refs": {
+        "OpenIdConnectConfigurationItem$groupConfiguration": "<p>The claim in OIDC identity provider tokens that indicates a user's group membership, and the entity type that you want to map it to. For example, this object can map the contents of a <code>groups</code> claim to <code>MyCorp::UserGroup</code>.</p>"
+      }
+    },
+    "OpenIdConnectIdentityTokenConfiguration": {
+      "base": "<p>The configuration of an OpenID Connect (OIDC) identity source for handling identity (ID) token claims. Contains the claim that you want to identify as the principal in an authorization request, and the values of the <code>aud</code> claim, or audiences, that you want to accept.</p> <p>This data type is part of a <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_OpenIdConnectTokenSelection.html\">OpenIdConnectTokenSelection</a> structure, which is a parameter of <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_CreateIdentitySource.html\">CreateIdentitySource</a>.</p>",
+      "refs": {
+        "OpenIdConnectTokenSelection$identityTokenOnly": "<p>The OIDC configuration for processing identity (ID) tokens. Contains allowed client ID claims, for example <code>1example23456789</code>, and the claim that you want to map to the principal, for example <code>sub</code>.</p>"
+      }
+    },
+    "OpenIdConnectIdentityTokenConfigurationDetail": {
+      "base": "<p>The configuration of an OpenID Connect (OIDC) identity source for handling identity (ID) token claims. Contains the claim that you want to identify as the principal in an authorization request, and the values of the <code>aud</code> claim, or audiences, that you want to accept.</p> <p>This data type is part of a <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_OpenIdConnectTokenSelectionDetail.html\">OpenIdConnectTokenSelectionDetail</a> structure, which is a parameter of <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_GetIdentitySource.html\">GetIdentitySource</a>.</p>",
+      "refs": {
+        "OpenIdConnectTokenSelectionDetail$identityTokenOnly": "<p>The OIDC configuration for processing identity (ID) tokens. Contains allowed client ID claims, for example <code>1example23456789</code>, and the claim that you want to map to the principal, for example <code>sub</code>.</p>"
+      }
+    },
+    "OpenIdConnectIdentityTokenConfigurationItem": {
+      "base": "<p>The configuration of an OpenID Connect (OIDC) identity source for handling identity (ID) token claims. Contains the claim that you want to identify as the principal in an authorization request, and the values of the <code>aud</code> claim, or audiences, that you want to accept.</p> <p>This data type is part of a <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_OpenIdConnectTokenSelectionItem.html\">OpenIdConnectTokenSelectionItem</a> structure, which is a parameter of <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_ListIdentitySources.html\">ListIdentitySources</a>.</p>",
+      "refs": {
+        "OpenIdConnectTokenSelectionItem$identityTokenOnly": "<p>The OIDC configuration for processing identity (ID) tokens. Contains allowed client ID claims, for example <code>1example23456789</code>, and the claim that you want to map to the principal, for example <code>sub</code>.</p>"
+      }
+    },
+    "OpenIdConnectTokenSelection": {
+      "base": "<p>The token type that you want to process from your OIDC identity provider. Your policy store can process either identity (ID) or access tokens from a given OIDC identity source.</p> <p>This data type is part of a <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_OpenIdConnectConfiguration.html\">OpenIdConnectConfiguration</a> structure, which is a parameter of <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_CreateIdentitySource.html\">CreateIdentitySource</a>.</p>",
+      "refs": {
+        "OpenIdConnectConfiguration$tokenSelection": "<p>The token type that you want to process from your OIDC identity provider. Your policy store can process either identity (ID) or access tokens from a given OIDC identity source.</p>"
+      }
+    },
+    "OpenIdConnectTokenSelectionDetail": {
+      "base": "<p>The token type that you want to process from your OIDC identity provider. Your policy store can process either identity (ID) or access tokens from a given OIDC identity source.</p> <p>This data type is part of a <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_OpenIdConnectConfigurationDetail.html\">OpenIdConnectConfigurationDetail</a> structure, which is a parameter of <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_GetIdentitySource.html\">GetIdentitySource</a>.</p>",
+      "refs": {
+        "OpenIdConnectConfigurationDetail$tokenSelection": "<p>The token type that you want to process from your OIDC identity provider. Your policy store can process either identity (ID) or access tokens from a given OIDC identity source.</p>"
+      }
+    },
+    "OpenIdConnectTokenSelectionItem": {
+      "base": "<p>The token type that you want to process from your OIDC identity provider. Your policy store can process either identity (ID) or access tokens from a given OIDC identity source.</p> <p>This data type is part of a <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_OpenIdConnectConfigurationItem.html\">OpenIdConnectConfigurationItem</a> structure, which is a parameter of <a href=\"http://amazonaws.com/verifiedpermissions/latest/apireference/API_ListIdentitySources.html\">ListIdentitySources</a>.</p>",
+      "refs": {
+        "OpenIdConnectConfigurationItem$tokenSelection": "<p>The token type that you want to process from your OIDC identity provider. Your policy store can process either identity (ID) or access tokens from a given OIDC identity source.</p>"
+      }
+    },
     "OpenIdIssuer": {
       "base": null,
       "refs": {
@@ -695,7 +838,7 @@
     "ParentList": {
       "base": null,
       "refs": {
-        "EntityItem$parents": "<p>The parents in the hierarchy that contains the entity.</p>"
+        "EntityItem$parents": "<p>The parent entities in the hierarchy that contains the entity. A principal or resource entity can be defined with at most 99 <i>transitive parents</i> per authorization request. </p> <p>A transitive parent is an entity in the hierarchy of entities including all direct parents, and parents of parents. For example, a user can be a member of 91 groups if one of those groups is a member of eight groups, for a total of 100: one entity, 91 entity parents, and eight parents of parents. </p>"
       }
     },
     "PolicyDefinition": {
@@ -1110,7 +1253,7 @@
       }
     },
     "UpdateConfiguration": {
-      "base": "<p>Contains an updated configuration to replace the configuration in an existing identity source.</p> <note> <p>At this time, the only valid member of this structure is a Amazon Cognito user pool configuration.</p> <p>You must specify a <code>userPoolArn</code>, and optionally, a <code>ClientId</code>.</p> </note>",
+      "base": "<p>Contains an update to replace the configuration in an existing identity source.</p>",
       "refs": {
         "UpdateIdentitySourceInput$updateConfiguration": "<p>Specifies the details required to communicate with the identity provider (IdP) associated with this identity source.</p> <note> <p>At this time, the only valid member of this structure is a Amazon Cognito user pool configuration.</p> <p>You must specify a <code>userPoolArn</code>, and optionally, a <code>ClientId</code>.</p> </note>"
       }
@@ -1123,6 +1266,36 @@
     "UpdateIdentitySourceOutput": {
       "base": null,
       "refs": {
+      }
+    },
+    "UpdateOpenIdConnectAccessTokenConfiguration": {
+      "base": "<p>The configuration of an OpenID Connect (OIDC) identity source for handling access token claims. Contains the claim that you want to identify as the principal in an authorization request, and the values of the <code>aud</code> claim, or audiences, that you want to accept.</p> <p>This data type is part of a <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_UpdateOpenIdConnectTokenSelection.html\">UpdateOpenIdConnectTokenSelection</a> structure, which is a parameter to <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_UpdateIdentitySource.html\">UpdateIdentitySource</a>.</p>",
+      "refs": {
+        "UpdateOpenIdConnectTokenSelection$accessTokenOnly": "<p>The OIDC configuration for processing access tokens. Contains allowed audience claims, for example <code>https://auth.example.com</code>, and the claim that you want to map to the principal, for example <code>sub</code>.</p>"
+      }
+    },
+    "UpdateOpenIdConnectConfiguration": {
+      "base": "<p>Contains configuration details of an OpenID Connect (OIDC) identity provider, or identity source, that Verified Permissions can use to generate entities from authenticated identities. It specifies the issuer URL, token type that you want to use, and policy store entity details.</p> <p>This data type is part of a <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_UpdateConfiguration.html\">UpdateConfiguration</a> structure, which is a parameter to <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_UpdateIdentitySource.html\">UpdateIdentitySource</a>.</p>",
+      "refs": {
+        "UpdateConfiguration$openIdConnectConfiguration": "<p>Contains configuration details of an OpenID Connect (OIDC) identity provider, or identity source, that Verified Permissions can use to generate entities from authenticated identities. It specifies the issuer URL, token type that you want to use, and policy store entity details.</p>"
+      }
+    },
+    "UpdateOpenIdConnectGroupConfiguration": {
+      "base": "<p>The claim in OIDC identity provider tokens that indicates a user's group membership, and the entity type that you want to map it to. For example, this object can map the contents of a <code>groups</code> claim to <code>MyCorp::UserGroup</code>.</p> <p>This data type is part of a <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_UpdateOpenIdConnectConfiguration.html\">UpdateOpenIdConnectConfiguration</a> structure, which is a parameter to <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_UpdateIdentitySource.html\">UpdateIdentitySource</a>.</p>",
+      "refs": {
+        "UpdateOpenIdConnectConfiguration$groupConfiguration": "<p>The claim in OIDC identity provider tokens that indicates a user's group membership, and the entity type that you want to map it to. For example, this object can map the contents of a <code>groups</code> claim to <code>MyCorp::UserGroup</code>.</p>"
+      }
+    },
+    "UpdateOpenIdConnectIdentityTokenConfiguration": {
+      "base": "<p>The configuration of an OpenID Connect (OIDC) identity source for handling identity (ID) token claims. Contains the claim that you want to identify as the principal in an authorization request, and the values of the <code>aud</code> claim, or audiences, that you want to accept.</p> <p>This data type is part of a <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_UpdateOpenIdConnectTokenSelection.html\">UpdateOpenIdConnectTokenSelection</a> structure, which is a parameter to <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_UpdateIdentitySource.html\">UpdateIdentitySource</a>.</p>",
+      "refs": {
+        "UpdateOpenIdConnectTokenSelection$identityTokenOnly": "<p>The OIDC configuration for processing identity (ID) tokens. Contains allowed client ID claims, for example <code>1example23456789</code>, and the claim that you want to map to the principal, for example <code>sub</code>.</p>"
+      }
+    },
+    "UpdateOpenIdConnectTokenSelection": {
+      "base": "<p>The token type that you want to process from your OIDC identity provider. Your policy store can process either identity (ID) or access tokens from a given OIDC identity source.</p> <p>This data type is part of a <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_UpdateOpenIdConnectConfiguration.html\">UpdateOpenIdConnectConfiguration</a> structure, which is a parameter to <a href=\"https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_UpdateIdentitySource.html\">UpdateIdentitySource</a>.</p>",
+      "refs": {
+        "UpdateOpenIdConnectConfiguration$tokenSelection": "<p>The token type that you want to process from your OIDC identity provider. Your policy store can process either identity (ID) or access tokens from a given OIDC identity source.</p>"
       }
     },
     "UpdatePolicyDefinition": {
