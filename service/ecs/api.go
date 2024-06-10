@@ -4894,6 +4894,11 @@ func (c *ECS) StopTaskRequest(input *StopTaskInput) (req *request.Request, outpu
 // gracefully and exits within 30 seconds from receiving it, no SIGKILL value
 // is sent.
 //
+// For Windows containers, POSIX signals do not work and runtime stops the container
+// by sending a CTRL_SHUTDOWN_EVENT. For more information, see Unable to react
+// to graceful shutdown of (Windows) container #25982 (https://github.com/moby/moby/issues/25982)
+// on GitHub.
+//
 // The default 30-second timeout can be configured on the Amazon ECS container
 // agent with the ECS_CONTAINER_STOP_TIMEOUT variable. For more information,
 // see Amazon ECS Container Agent Configuration (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-agent-config.html)
@@ -7378,6 +7383,12 @@ func (s *CapacityProvider) SetUpdateStatusReason(v string) *CapacityProvider {
 // and only need to be associated with a cluster to be used in a capacity provider
 // strategy.
 //
+// With FARGATE_SPOT, you can run interruption tolerant tasks at a rate that's
+// discounted compared to the FARGATE price. FARGATE_SPOT runs tasks on spare
+// compute capacity. When Amazon Web Services needs the capacity back, your
+// tasks are interrupted with a two-minute warning. FARGATE_SPOT only supports
+// Linux tasks with the X86_64 architecture on platform version 1.3.0 or later.
+//
 // A capacity provider strategy may contain a maximum of 6 capacity providers.
 type CapacityProviderStrategyItem struct {
 	_ struct{} `type:"structure"`
@@ -7806,12 +7817,15 @@ func (s *Cluster) SetTags(v []*Tag) *Cluster {
 	return s
 }
 
-// The execute command configuration for the cluster.
+// The execute command and managed storage configuration for the cluster.
 type ClusterConfiguration struct {
 	_ struct{} `type:"structure"`
 
 	// The details of the execute command configuration.
 	ExecuteCommandConfiguration *ExecuteCommandConfiguration `locationName:"executeCommandConfiguration" type:"structure"`
+
+	// The details of the managed storage configuration.
+	ManagedStorageConfiguration *ManagedStorageConfiguration `locationName:"managedStorageConfiguration" type:"structure"`
 }
 
 // String returns the string representation.
@@ -7835,6 +7849,12 @@ func (s ClusterConfiguration) GoString() string {
 // SetExecuteCommandConfiguration sets the ExecuteCommandConfiguration field's value.
 func (s *ClusterConfiguration) SetExecuteCommandConfiguration(v *ExecuteCommandConfiguration) *ClusterConfiguration {
 	s.ExecuteCommandConfiguration = v
+	return s
+}
+
+// SetManagedStorageConfiguration sets the ManagedStorageConfiguration field's value.
+func (s *ClusterConfiguration) SetManagedStorageConfiguration(v *ManagedStorageConfiguration) *ClusterConfiguration {
+	s.ManagedStorageConfiguration = v
 	return s
 }
 
@@ -12057,6 +12077,9 @@ type Deployment struct {
 	// failed task count resets to zero and stops being evaluated.
 	FailedTasks *int64 `locationName:"failedTasks" type:"integer"`
 
+	// The Fargate ephemeral storage settings for the deployment.
+	FargateEphemeralStorage *DeploymentEphemeralStorage `locationName:"fargateEphemeralStorage" type:"structure"`
+
 	// The ID of the deployment.
 	Id *string `locationName:"id" type:"string"`
 
@@ -12194,6 +12217,12 @@ func (s *Deployment) SetDesiredCount(v int64) *Deployment {
 // SetFailedTasks sets the FailedTasks field's value.
 func (s *Deployment) SetFailedTasks(v int64) *Deployment {
 	s.FailedTasks = &v
+	return s
+}
+
+// SetFargateEphemeralStorage sets the FargateEphemeralStorage field's value.
+func (s *Deployment) SetFargateEphemeralStorage(v *DeploymentEphemeralStorage) *Deployment {
+	s.FargateEphemeralStorage = v
 	return s
 }
 
@@ -12679,6 +12708,39 @@ func (s *DeploymentController) Validate() error {
 // SetType sets the Type field's value.
 func (s *DeploymentController) SetType(v string) *DeploymentController {
 	s.Type = &v
+	return s
+}
+
+// The amount of ephemeral storage to allocate for the deployment.
+type DeploymentEphemeralStorage struct {
+	_ struct{} `type:"structure"`
+
+	// Specify an Key Management Service key ID to encrypt the ephemeral storage
+	// for deployment.
+	KmsKeyId *string `locationName:"kmsKeyId" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeploymentEphemeralStorage) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeploymentEphemeralStorage) GoString() string {
+	return s.String()
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *DeploymentEphemeralStorage) SetKmsKeyId(v string) *DeploymentEphemeralStorage {
+	s.KmsKeyId = &v
 	return s
 }
 
@@ -15076,12 +15138,14 @@ func (s *GetTaskProtectionOutput) SetProtectedTasks(v []*ProtectedTask) *GetTask
 //
 // The following are notes about container health check support:
 //
-//   - When the Amazon ECS agent cannot connect to the Amazon ECS service,
-//     the service reports the container as UNHEALTHY.
-//
-//   - The health check statuses are the "last heard from" response from the
-//     Amazon ECS agent. There are no assumptions made about the status of the
-//     container health checks.
+//   - If the Amazon ECS container agent becomes disconnected from the Amazon
+//     ECS service, this won't cause a container to transition to an UNHEALTHY
+//     status. This is by design, to ensure that containers remain running during
+//     agent restarts or temporary unavailability. The health check status is
+//     the "last heard from" response from the Amazon ECS agent, so if the container
+//     was considered HEALTHY prior to the disconnect, that status will remain
+//     until the agent reconnects and another health check occurs. There are
+//     no assumptions made about the status of the container health checks.
 //
 //   - Container health checks require version 1.17.0 or greater of the Amazon
 //     ECS container agent. For more information, see Updating the Amazon ECS
@@ -17672,6 +17736,47 @@ func (s *ManagedScaling) SetTargetCapacity(v int64) *ManagedScaling {
 	return s
 }
 
+// The managed storage configuration for the cluster.
+type ManagedStorageConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Specify the Key Management Service key ID for the Fargate ephemeral storage.
+	FargateEphemeralStorageKmsKeyId *string `locationName:"fargateEphemeralStorageKmsKeyId" type:"string"`
+
+	// Specify a Key Management Service key ID to encrypt the managed storage.
+	KmsKeyId *string `locationName:"kmsKeyId" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ManagedStorageConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ManagedStorageConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetFargateEphemeralStorageKmsKeyId sets the FargateEphemeralStorageKmsKeyId field's value.
+func (s *ManagedStorageConfiguration) SetFargateEphemeralStorageKmsKeyId(v string) *ManagedStorageConfiguration {
+	s.FargateEphemeralStorageKmsKeyId = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *ManagedStorageConfiguration) SetKmsKeyId(v string) *ManagedStorageConfiguration {
+	s.KmsKeyId = &v
+	return s
+}
+
 // Amazon ECS can't determine the current version of the Amazon ECS container
 // agent on the container instance and doesn't have enough information to proceed
 // with an update. This could be because the agent running on the container
@@ -19876,9 +19981,6 @@ type RegisterTaskDefinitionInput struct {
 
 	// The operating system that your tasks definitions run on. A platform family
 	// is specified only for tasks using the Fargate launch type.
-	//
-	// When you specify a task definition in a service, this value must match the
-	// runtimePlatform value of the service.
 	RuntimePlatform *RuntimePlatform `locationName:"runtimePlatform" type:"structure"`
 
 	// The metadata that you apply to the task definition to help you categorize
@@ -20417,21 +20519,20 @@ func (s *ResourceNotFoundException) RequestID() string {
 type ResourceRequirement struct {
 	_ struct{} `type:"structure"`
 
-	// The type of resource to assign to a container. The supported values are GPU
-	// or InferenceAccelerator.
+	// The type of resource to assign to a container.
 	//
 	// Type is a required field
 	Type *string `locationName:"type" type:"string" required:"true" enum:"ResourceType"`
 
 	// The value for the specified resource type.
 	//
-	// If the GPU type is used, the value is the number of physical GPUs the Amazon
+	// When the type is GPU, the value is the number of physical GPUs the Amazon
 	// ECS container agent reserves for the container. The number of GPUs that's
 	// reserved for all containers in a task can't exceed the number of available
 	// GPUs on the container instance that the task is launched on.
 	//
-	// If the InferenceAccelerator type is used, the value matches the deviceName
-	// for an InferenceAccelerator (https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_InferenceAccelerator.html)
+	// When the type is InferenceAccelerator, the value matches the deviceName for
+	// an InferenceAccelerator (https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_InferenceAccelerator.html)
 	// specified in a task definition.
 	//
 	// Value is a required field
@@ -21957,8 +22058,7 @@ func (s *ServiceConnectServiceResource) SetDiscoveryName(v string) *ServiceConne
 	return s
 }
 
-// An object that represents the Amazon Web Services Private Certificate Authority
-// certificate.
+// The certificate root authority that secures your service.
 type ServiceConnectTlsCertificateAuthority struct {
 	_ struct{} `type:"structure"`
 
@@ -21990,7 +22090,7 @@ func (s *ServiceConnectTlsCertificateAuthority) SetAwsPcaAuthorityArn(v string) 
 	return s
 }
 
-// An object that represents the configuration for Service Connect TLS.
+// The key that encrypts and decrypts your resources for Service Connect TLS.
 type ServiceConnectTlsConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -24028,6 +24128,9 @@ type Task struct {
 	// The Unix timestamp for the time when the task execution stopped.
 	ExecutionStoppedAt *time.Time `locationName:"executionStoppedAt" type:"timestamp"`
 
+	// The Fargate ephemeral storage settings for the task.
+	FargateEphemeralStorage *TaskEphemeralStorage `locationName:"fargateEphemeralStorage" type:"structure"`
+
 	// The name of the task group that's associated with the task.
 	Group *string `locationName:"group" type:"string"`
 
@@ -24289,6 +24392,12 @@ func (s *Task) SetEphemeralStorage(v *EphemeralStorage) *Task {
 // SetExecutionStoppedAt sets the ExecutionStoppedAt field's value.
 func (s *Task) SetExecutionStoppedAt(v time.Time) *Task {
 	s.ExecutionStoppedAt = &v
+	return s
+}
+
+// SetFargateEphemeralStorage sets the FargateEphemeralStorage field's value.
+func (s *Task) SetFargateEphemeralStorage(v *TaskEphemeralStorage) *Task {
+	s.FargateEphemeralStorage = v
 	return s
 }
 
@@ -24911,6 +25020,50 @@ func (s *TaskDefinitionPlacementConstraint) SetType(v string) *TaskDefinitionPla
 	return s
 }
 
+// The amount of ephemeral storage to allocate for the task.
+type TaskEphemeralStorage struct {
+	_ struct{} `type:"structure"`
+
+	// Specify an Key Management Service key ID to encrypt the ephemeral storage
+	// for the task.
+	KmsKeyId *string `locationName:"kmsKeyId" type:"string"`
+
+	// The total amount, in GiB, of the ephemeral storage to set for the task. The
+	// minimum supported value is 20 GiB and the maximum supported value is 200
+	// GiB.
+	SizeInGiB *int64 `locationName:"sizeInGiB" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TaskEphemeralStorage) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TaskEphemeralStorage) GoString() string {
+	return s.String()
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *TaskEphemeralStorage) SetKmsKeyId(v string) *TaskEphemeralStorage {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetSizeInGiB sets the SizeInGiB field's value.
+func (s *TaskEphemeralStorage) SetSizeInGiB(v int64) *TaskEphemeralStorage {
+	s.SizeInGiB = &v
+	return s
+}
+
 // The configuration for the Amazon EBS volume that Amazon ECS creates and manages
 // on your behalf. These settings are used to create each Amazon EBS volume,
 // with one volume created for each task.
@@ -25359,6 +25512,9 @@ type TaskSet struct {
 	// Cloud Map attribute.
 	ExternalId *string `locationName:"externalId" type:"string"`
 
+	// The Fargate ephemeral storage settings for the task set.
+	FargateEphemeralStorage *DeploymentEphemeralStorage `locationName:"fargateEphemeralStorage" type:"structure"`
+
 	// The ID of the task set.
 	Id *string `locationName:"id" type:"string"`
 
@@ -25528,6 +25684,12 @@ func (s *TaskSet) SetCreatedAt(v time.Time) *TaskSet {
 // SetExternalId sets the ExternalId field's value.
 func (s *TaskSet) SetExternalId(v string) *TaskSet {
 	s.ExternalId = &v
+	return s
+}
+
+// SetFargateEphemeralStorage sets the FargateEphemeralStorage field's value.
+func (s *TaskSet) SetFargateEphemeralStorage(v *DeploymentEphemeralStorage) *TaskSet {
+	s.FargateEphemeralStorage = v
 	return s
 }
 

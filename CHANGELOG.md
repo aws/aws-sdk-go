@@ -1,3 +1,12 @@
+Release v1.53.20 (2024-06-10)
+===
+
+### Service Client Updates
+* `service/application-signals`: Adds new service
+* `service/ecs`: Updates service API and documentation
+  * This release introduces a new cluster configuration to support the customer-managed keys for ECS managed storage encryption.
+* `service/imagebuilder`: Updates service API
+
 Release v1.53.19 (2024-06-07)
 ===
 

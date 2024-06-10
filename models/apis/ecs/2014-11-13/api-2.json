@@ -5,12 +5,14 @@
     "endpointPrefix":"ecs",
     "jsonVersion":"1.1",
     "protocol":"json",
+    "protocols":["json"],
     "serviceAbbreviation":"Amazon ECS",
     "serviceFullName":"Amazon EC2 Container Service",
     "serviceId":"ECS",
     "signatureVersion":"v4",
     "targetPrefix":"AmazonEC2ContainerServiceV20141113",
-    "uid":"ecs-2014-11-13"
+    "uid":"ecs-2014-11-13",
+    "auth":["aws.auth#sigv4"]
   },
   "operations":{
     "CreateCapacityProvider":{
@@ -1131,7 +1133,8 @@
     "ClusterConfiguration":{
       "type":"structure",
       "members":{
-        "executeCommandConfiguration":{"shape":"ExecuteCommandConfiguration"}
+        "executeCommandConfiguration":{"shape":"ExecuteCommandConfiguration"},
+        "managedStorageConfiguration":{"shape":"ManagedStorageConfiguration"}
       }
     },
     "ClusterContainsContainerInstancesException":{
@@ -1642,7 +1645,8 @@
         "rolloutStateReason":{"shape":"String"},
         "serviceConnectConfiguration":{"shape":"ServiceConnectConfiguration"},
         "serviceConnectResources":{"shape":"ServiceConnectServiceResourceList"},
-        "volumeConfigurations":{"shape":"ServiceVolumeConfigurations"}
+        "volumeConfigurations":{"shape":"ServiceVolumeConfigurations"},
+        "fargateEphemeralStorage":{"shape":"DeploymentEphemeralStorage"}
       }
     },
     "DeploymentAlarms":{
@@ -1692,6 +1696,12 @@
         "CODE_DEPLOY",
         "EXTERNAL"
       ]
+    },
+    "DeploymentEphemeralStorage":{
+      "type":"structure",
+      "members":{
+        "kmsKeyId":{"shape":"String"}
+      }
     },
     "DeploymentRolloutState":{
       "type":"string",
@@ -2556,6 +2566,13 @@
       "type":"integer",
       "max":100,
       "min":1
+    },
+    "ManagedStorageConfiguration":{
+      "type":"structure",
+      "members":{
+        "kmsKeyId":{"shape":"String"},
+        "fargateEphemeralStorageKmsKeyId":{"shape":"String"}
+      }
     },
     "ManagedTerminationProtection":{
       "type":"string",
@@ -3516,7 +3533,8 @@
         "taskArn":{"shape":"String"},
         "taskDefinitionArn":{"shape":"String"},
         "version":{"shape":"Long"},
-        "ephemeralStorage":{"shape":"EphemeralStorage"}
+        "ephemeralStorage":{"shape":"EphemeralStorage"},
+        "fargateEphemeralStorage":{"shape":"TaskEphemeralStorage"}
       }
     },
     "TaskDefinition":{
@@ -3590,6 +3608,13 @@
         "INACTIVE",
         "DELETE_IN_PROGRESS"
       ]
+    },
+    "TaskEphemeralStorage":{
+      "type":"structure",
+      "members":{
+        "sizeInGiB":{"shape":"Integer"},
+        "kmsKeyId":{"shape":"String"}
+      }
     },
     "TaskField":{
       "type":"string",
@@ -3669,7 +3694,8 @@
         "scale":{"shape":"Scale"},
         "stabilityStatus":{"shape":"StabilityStatus"},
         "stabilityStatusAt":{"shape":"Timestamp"},
-        "tags":{"shape":"Tags"}
+        "tags":{"shape":"Tags"},
+        "fargateEphemeralStorage":{"shape":"DeploymentEphemeralStorage"}
       }
     },
     "TaskSetField":{
