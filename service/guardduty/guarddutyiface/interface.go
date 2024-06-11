@@ -84,6 +84,10 @@ type GuardDutyAPI interface {
 	CreateIPSetWithContext(aws.Context, *guardduty.CreateIPSetInput, ...request.Option) (*guardduty.CreateIPSetOutput, error)
 	CreateIPSetRequest(*guardduty.CreateIPSetInput) (*request.Request, *guardduty.CreateIPSetOutput)
 
+	CreateMalwareProtectionPlan(*guardduty.CreateMalwareProtectionPlanInput) (*guardduty.CreateMalwareProtectionPlanOutput, error)
+	CreateMalwareProtectionPlanWithContext(aws.Context, *guardduty.CreateMalwareProtectionPlanInput, ...request.Option) (*guardduty.CreateMalwareProtectionPlanOutput, error)
+	CreateMalwareProtectionPlanRequest(*guardduty.CreateMalwareProtectionPlanInput) (*request.Request, *guardduty.CreateMalwareProtectionPlanOutput)
+
 	CreateMembers(*guardduty.CreateMembersInput) (*guardduty.CreateMembersOutput, error)
 	CreateMembersWithContext(aws.Context, *guardduty.CreateMembersInput, ...request.Option) (*guardduty.CreateMembersOutput, error)
 	CreateMembersRequest(*guardduty.CreateMembersInput) (*request.Request, *guardduty.CreateMembersOutput)
@@ -119,6 +123,10 @@ type GuardDutyAPI interface {
 	DeleteInvitations(*guardduty.DeleteInvitationsInput) (*guardduty.DeleteInvitationsOutput, error)
 	DeleteInvitationsWithContext(aws.Context, *guardduty.DeleteInvitationsInput, ...request.Option) (*guardduty.DeleteInvitationsOutput, error)
 	DeleteInvitationsRequest(*guardduty.DeleteInvitationsInput) (*request.Request, *guardduty.DeleteInvitationsOutput)
+
+	DeleteMalwareProtectionPlan(*guardduty.DeleteMalwareProtectionPlanInput) (*guardduty.DeleteMalwareProtectionPlanOutput, error)
+	DeleteMalwareProtectionPlanWithContext(aws.Context, *guardduty.DeleteMalwareProtectionPlanInput, ...request.Option) (*guardduty.DeleteMalwareProtectionPlanOutput, error)
+	DeleteMalwareProtectionPlanRequest(*guardduty.DeleteMalwareProtectionPlanInput) (*request.Request, *guardduty.DeleteMalwareProtectionPlanOutput)
 
 	DeleteMembers(*guardduty.DeleteMembersInput) (*guardduty.DeleteMembersOutput, error)
 	DeleteMembersWithContext(aws.Context, *guardduty.DeleteMembersInput, ...request.Option) (*guardduty.DeleteMembersOutput, error)
@@ -202,6 +210,10 @@ type GuardDutyAPI interface {
 	GetInvitationsCountWithContext(aws.Context, *guardduty.GetInvitationsCountInput, ...request.Option) (*guardduty.GetInvitationsCountOutput, error)
 	GetInvitationsCountRequest(*guardduty.GetInvitationsCountInput) (*request.Request, *guardduty.GetInvitationsCountOutput)
 
+	GetMalwareProtectionPlan(*guardduty.GetMalwareProtectionPlanInput) (*guardduty.GetMalwareProtectionPlanOutput, error)
+	GetMalwareProtectionPlanWithContext(aws.Context, *guardduty.GetMalwareProtectionPlanInput, ...request.Option) (*guardduty.GetMalwareProtectionPlanOutput, error)
+	GetMalwareProtectionPlanRequest(*guardduty.GetMalwareProtectionPlanInput) (*request.Request, *guardduty.GetMalwareProtectionPlanOutput)
+
 	GetMalwareScanSettings(*guardduty.GetMalwareScanSettingsInput) (*guardduty.GetMalwareScanSettingsOutput, error)
 	GetMalwareScanSettingsWithContext(aws.Context, *guardduty.GetMalwareScanSettingsInput, ...request.Option) (*guardduty.GetMalwareScanSettingsOutput, error)
 	GetMalwareScanSettingsRequest(*guardduty.GetMalwareScanSettingsInput) (*request.Request, *guardduty.GetMalwareScanSettingsOutput)
@@ -283,6 +295,10 @@ type GuardDutyAPI interface {
 	ListInvitationsPages(*guardduty.ListInvitationsInput, func(*guardduty.ListInvitationsOutput, bool) bool) error
 	ListInvitationsPagesWithContext(aws.Context, *guardduty.ListInvitationsInput, func(*guardduty.ListInvitationsOutput, bool) bool, ...request.Option) error
 
+	ListMalwareProtectionPlans(*guardduty.ListMalwareProtectionPlansInput) (*guardduty.ListMalwareProtectionPlansOutput, error)
+	ListMalwareProtectionPlansWithContext(aws.Context, *guardduty.ListMalwareProtectionPlansInput, ...request.Option) (*guardduty.ListMalwareProtectionPlansOutput, error)
+	ListMalwareProtectionPlansRequest(*guardduty.ListMalwareProtectionPlansInput) (*request.Request, *guardduty.ListMalwareProtectionPlansOutput)
+
 	ListMembers(*guardduty.ListMembersInput) (*guardduty.ListMembersOutput, error)
 	ListMembersWithContext(aws.Context, *guardduty.ListMembersInput, ...request.Option) (*guardduty.ListMembersOutput, error)
 	ListMembersRequest(*guardduty.ListMembersInput) (*request.Request, *guardduty.ListMembersOutput)
@@ -354,6 +370,10 @@ type GuardDutyAPI interface {
 	UpdateIPSet(*guardduty.UpdateIPSetInput) (*guardduty.UpdateIPSetOutput, error)
 	UpdateIPSetWithContext(aws.Context, *guardduty.UpdateIPSetInput, ...request.Option) (*guardduty.UpdateIPSetOutput, error)
 	UpdateIPSetRequest(*guardduty.UpdateIPSetInput) (*request.Request, *guardduty.UpdateIPSetOutput)
+
+	UpdateMalwareProtectionPlan(*guardduty.UpdateMalwareProtectionPlanInput) (*guardduty.UpdateMalwareProtectionPlanOutput, error)
+	UpdateMalwareProtectionPlanWithContext(aws.Context, *guardduty.UpdateMalwareProtectionPlanInput, ...request.Option) (*guardduty.UpdateMalwareProtectionPlanOutput, error)
+	UpdateMalwareProtectionPlanRequest(*guardduty.UpdateMalwareProtectionPlanInput) (*request.Request, *guardduty.UpdateMalwareProtectionPlanOutput)
 
 	UpdateMalwareScanSettings(*guardduty.UpdateMalwareScanSettingsInput) (*guardduty.UpdateMalwareScanSettingsOutput, error)
 	UpdateMalwareScanSettingsWithContext(aws.Context, *guardduty.UpdateMalwareScanSettingsInput, ...request.Option) (*guardduty.UpdateMalwareScanSettingsOutput, error)

@@ -8,6 +8,7 @@
     "CreateDetector": "<p>Creates a single GuardDuty detector. A detector is a resource that represents the GuardDuty service. To start using GuardDuty, you must create a detector in each Region where you enable the service. You can have only one detector per account per Region. All data sources are enabled in a new detector by default.</p> <ul> <li> <p>When you don't specify any <code>features</code>, with an exception to <code>RUNTIME_MONITORING</code>, all the optional features are enabled by default.</p> </li> <li> <p>When you specify some of the <code>features</code>, any feature that is not specified in the API call gets enabled by default, with an exception to <code>RUNTIME_MONITORING</code>. </p> </li> </ul> <p>Specifying both EKS Runtime Monitoring (<code>EKS_RUNTIME_MONITORING</code>) and Runtime Monitoring (<code>RUNTIME_MONITORING</code>) will cause an error. You can add only one of these two features because Runtime Monitoring already includes the threat detection for Amazon EKS resources. For more information, see <a href=\"https://docs.aws.amazon.com/guardduty/latest/ug/runtime-monitoring.html\">Runtime Monitoring</a>.</p> <p>There might be regional differences because some data sources might not be available in all the Amazon Web Services Regions where GuardDuty is presently supported. For more information, see <a href=\"https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_regions.html\">Regions and endpoints</a>.</p>",
     "CreateFilter": "<p>Creates a filter using the specified finding criteria. The maximum number of saved filters per Amazon Web Services account per Region is 100. For more information, see <a href=\"https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_limits.html\">Quotas for GuardDuty</a>.</p>",
     "CreateIPSet": "<p>Creates a new IPSet, which is called a trusted IP list in the console user interface. An IPSet is a list of IP addresses that are trusted for secure communication with Amazon Web Services infrastructure and applications. GuardDuty doesn't generate findings for IP addresses that are included in IPSets. Only users from the administrator account can use this operation.</p>",
+    "CreateMalwareProtectionPlan": "<p>Creates a new Malware Protection plan for the protected resource.</p> <p>When you create a Malware Protection plan, the Amazon Web Services service terms for GuardDuty Malware Protection apply. For more information, see <a href=\"http://aws.amazon.com/service-terms/#87._Amazon_GuardDuty\">Amazon Web Services service terms for GuardDuty Malware Protection</a>.</p>",
     "CreateMembers": "<p>Creates member accounts of the current Amazon Web Services account by specifying a list of Amazon Web Services account IDs. This step is a prerequisite for managing the associated member accounts either by invitation or through an organization.</p> <p>As a delegated administrator, using <code>CreateMembers</code> will enable GuardDuty in the added member accounts, with the exception of the organization delegated administrator account. A delegated administrator must enable GuardDuty prior to being added as a member.</p> <p>When you use CreateMembers as an Organizations delegated administrator, GuardDuty applies your organization's auto-enable settings to the member accounts in this request, irrespective of the accounts being new or existing members. For more information about the existing auto-enable settings for your organization, see <a href=\"https://docs.aws.amazon.com/guardduty/latest/APIReference/API_DescribeOrganizationConfiguration.html\">DescribeOrganizationConfiguration</a>.</p> <p>If you disassociate a member account that was added by invitation, the member account details obtained from this API, including the associated email addresses, will be retained. This is done so that the delegated administrator can invoke the <a href=\"https://docs.aws.amazon.com/guardduty/latest/APIReference/API_InviteMembers.html\">InviteMembers</a> API without the need to invoke the CreateMembers API again. To remove the details associated with a member account, the delegated administrator must invoke the <a href=\"https://docs.aws.amazon.com/guardduty/latest/APIReference/API_DeleteMembers.html\">DeleteMembers</a> API. </p> <p>When the member accounts added through Organizations are later disassociated, you (administrator) can't invite them by calling the InviteMembers API. You can create an association with these member accounts again only by calling the CreateMembers API.</p>",
     "CreatePublishingDestination": "<p>Creates a publishing destination to export findings to. The resource to export findings to must exist before you use this operation.</p>",
     "CreateSampleFindings": "<p>Generates sample findings of types specified by the list of finding types. If 'NULL' is specified for <code>findingTypes</code>, the API generates sample findings of all supported finding types.</p>",
@@ -17,6 +18,7 @@
     "DeleteFilter": "<p>Deletes the filter specified by the filter name.</p>",
     "DeleteIPSet": "<p>Deletes the IPSet specified by the <code>ipSetId</code>. IPSets are called trusted IP lists in the console user interface.</p>",
     "DeleteInvitations": "<p>Deletes invitations sent to the current member account by Amazon Web Services accounts specified by their account IDs.</p>",
+    "DeleteMalwareProtectionPlan": "<p>Deletes the Malware Protection plan ID associated with the Malware Protection plan resource. Use this API only when you no longer want to protect the resource associated with this Malware Protection plan ID.</p>",
     "DeleteMembers": "<p>Deletes GuardDuty member accounts (to the current GuardDuty administrator account) specified by the account IDs.</p> <p>With <code>autoEnableOrganizationMembers</code> configuration for your organization set to <code>ALL</code>, you'll receive an error if you attempt to disable GuardDuty for a member account in your organization.</p>",
     "DeletePublishingDestination": "<p>Deletes the publishing definition with the specified <code>destinationId</code>.</p>",
     "DeleteThreatIntelSet": "<p>Deletes the ThreatIntelSet specified by the ThreatIntelSet ID.</p>",
@@ -36,6 +38,7 @@
     "GetFindingsStatistics": "<p>Lists Amazon GuardDuty findings statistics for the specified detector ID.</p> <p>There might be regional differences because some flags might not be available in all the Regions where GuardDuty is currently supported. For more information, see <a href=\"https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_regions.html\">Regions and endpoints</a>.</p>",
     "GetIPSet": "<p>Retrieves the IPSet specified by the <code>ipSetId</code>.</p>",
     "GetInvitationsCount": "<p>Returns the count of all GuardDuty membership invitations that were sent to the current member account except the currently accepted invitation.</p>",
+    "GetMalwareProtectionPlan": "<p>Retrieves the Malware Protection plan details associated with a Malware Protection plan ID.</p>",
     "GetMalwareScanSettings": "<p>Returns the details of the malware scan settings.</p> <p>There might be regional differences because some data sources might not be available in all the Amazon Web Services Regions where GuardDuty is presently supported. For more information, see <a href=\"https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_regions.html\">Regions and endpoints</a>.</p>",
     "GetMasterAccount": "<p>Provides the details for the GuardDuty administrator account associated with the current GuardDuty member account.</p>",
     "GetMemberDetectors": "<p>Describes which data sources are enabled for the member account's detector.</p> <p>There might be regional differences because some data sources might not be available in all the Amazon Web Services Regions where GuardDuty is presently supported. For more information, see <a href=\"https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_regions.html\">Regions and endpoints</a>.</p>",
@@ -51,6 +54,7 @@
     "ListFindings": "<p>Lists GuardDuty findings for the specified detector ID.</p> <p>There might be regional differences because some flags might not be available in all the Regions where GuardDuty is currently supported. For more information, see <a href=\"https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_regions.html\">Regions and endpoints</a>.</p>",
     "ListIPSets": "<p>Lists the IPSets of the GuardDuty service specified by the detector ID. If you use this operation from a member account, the IPSets returned are the IPSets from the associated administrator account.</p>",
     "ListInvitations": "<p>Lists all GuardDuty membership invitations that were sent to the current Amazon Web Services account.</p>",
+    "ListMalwareProtectionPlans": "<p>Lists the Malware Protection plan IDs associated with the protected resources in your Amazon Web Services account.</p>",
     "ListMembers": "<p>Lists details about all member accounts for the current GuardDuty administrator account.</p>",
     "ListOrganizationAdminAccounts": "<p>Lists the accounts designated as GuardDuty delegated administrators. Only the organization's management account can run this API operation.</p>",
     "ListPublishingDestinations": "<p>Returns a list of publishing destinations associated with the specified <code>detectorId</code>.</p>",
@@ -66,6 +70,7 @@
     "UpdateFilter": "<p>Updates the filter specified by the filter name.</p>",
     "UpdateFindingsFeedback": "<p>Marks the specified GuardDuty findings as useful or not useful.</p>",
     "UpdateIPSet": "<p>Updates the IPSet specified by the IPSet ID.</p>",
+    "UpdateMalwareProtectionPlan": "<p>Updates an existing Malware Protection plan resource.</p>",
     "UpdateMalwareScanSettings": "<p>Updates the malware scan settings.</p> <p>There might be regional differences because some data sources might not be available in all the Amazon Web Services Regions where GuardDuty is presently supported. For more information, see <a href=\"https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_regions.html\">Regions and endpoints</a>.</p>",
     "UpdateMemberDetectors": "<p>Contains information on member accounts to be updated.</p> <p>Specifying both EKS Runtime Monitoring (<code>EKS_RUNTIME_MONITORING</code>) and Runtime Monitoring (<code>RUNTIME_MONITORING</code>) will cause an error. You can add only one of these two features because Runtime Monitoring already includes the threat detection for Amazon EKS resources. For more information, see <a href=\"https://docs.aws.amazon.com/guardduty/latest/ug/runtime-monitoring.html\">Runtime Monitoring</a>.</p> <p>There might be regional differences because some data sources might not be available in all the Amazon Web Services Regions where GuardDuty is presently supported. For more information, see <a href=\"https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_regions.html\">Regions and endpoints</a>.</p>",
     "UpdateOrganizationConfiguration": "<p>Configures the delegated administrator account with the provided values. You must provide a value for either <code>autoEnableOrganizationMembers</code> or <code>autoEnable</code>, but not both. </p> <p>Specifying both EKS Runtime Monitoring (<code>EKS_RUNTIME_MONITORING</code>) and Runtime Monitoring (<code>RUNTIME_MONITORING</code>) will cause an error. You can add only one of these two features because Runtime Monitoring already includes the threat detection for Amazon EKS resources. For more information, see <a href=\"https://docs.aws.amazon.com/guardduty/latest/ug/runtime-monitoring.html\">Runtime Monitoring</a>.</p> <p>There might be regional differences because some data sources might not be available in all the Amazon Web Services Regions where GuardDuty is presently supported. For more information, see <a href=\"https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_regions.html\">Regions and endpoints</a>.</p>",
@@ -374,6 +379,7 @@
         "CreateDetectorRequest$ClientToken": "<p>The idempotency token for the create request.</p>",
         "CreateFilterRequest$ClientToken": "<p>The idempotency token for the create request.</p>",
         "CreateIPSetRequest$ClientToken": "<p>The idempotency token for the create request.</p>",
+        "CreateMalwareProtectionPlanRequest$ClientToken": "<p>The idempotency token for the create request.</p>",
         "CreatePublishingDestinationRequest$ClientToken": "<p>The idempotency token for the request.</p>",
         "CreateThreatIntelSetRequest$ClientToken": "<p>The idempotency token for the create request.</p>"
       }
@@ -573,6 +579,16 @@
       "refs": {
       }
     },
+    "CreateMalwareProtectionPlanRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateMalwareProtectionPlanResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreateMembersRequest": {
       "base": null,
       "refs": {
@@ -583,6 +599,13 @@
       "refs": {
       }
     },
+    "CreateProtectedResource": {
+      "base": "<p>Information about the protected resource that is associated with the created Malware Protection plan. Presently, <code>S3Bucket</code> is the only supported protected resource.</p>",
+      "refs": {
+        "CreateMalwareProtectionPlanRequest$ProtectedResource": "<p>Information about the protected resource that is associated with the created Malware Protection plan. Presently, <code>S3Bucket</code> is the only supported protected resource.</p>",
+        "GetMalwareProtectionPlanResponse$ProtectedResource": "<p>Information about the protected resource that is associated with the created Malware Protection plan. Presently, <code>S3Bucket</code> is the only supported protected resource.</p>"
+      }
+    },
     "CreatePublishingDestinationRequest": {
       "base": null,
       "refs": {
@@ -591,6 +614,12 @@
     "CreatePublishingDestinationResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "CreateS3BucketResource": {
+      "base": "<p>Information about the protected S3 bucket resource.</p>",
+      "refs": {
+        "CreateProtectedResource$S3Bucket": "<p>Information about the protected S3 bucket resource.</p>"
       }
     },
     "CreateSampleFindingsRequest": {
@@ -739,6 +768,11 @@
       }
     },
     "DeleteInvitationsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteMalwareProtectionPlanRequest": {
       "base": null,
       "refs": {
       }
@@ -1412,6 +1446,16 @@
       "refs": {
       }
     },
+    "GetMalwareProtectionPlanRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetMalwareProtectionPlanResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetMalwareScanSettingsRequest": {
       "base": null,
       "refs": {
@@ -1529,7 +1573,7 @@
     "InstanceArn": {
       "base": null,
       "refs": {
-        "ResourceDetails$InstanceArn": "<p>InstanceArn that was scanned in the scan entry.</p>"
+        "ResourceDetails$InstanceArn": "<p>Instance ARN that was scanned in the scan entry.</p>"
       }
     },
     "InstanceDetails": {
@@ -1646,6 +1690,18 @@
       "base": null,
       "refs": {
         "FargateDetails$Issues": "<p>Runtime coverage issues identified for the resource running on Amazon Web Services Fargate.</p>"
+      }
+    },
+    "ItemPath": {
+      "base": "<p>Information about the nested item path and hash of the protected resource.</p>",
+      "refs": {
+        "ItemPaths$member": null
+      }
+    },
+    "ItemPaths": {
+      "base": null,
+      "refs": {
+        "Threat$ItemPaths": "<p>Information about the nested item path and hash of the protected resource.</p>"
       }
     },
     "KubernetesApiCallAction": {
@@ -1798,6 +1854,16 @@
       "refs": {
       }
     },
+    "ListMalwareProtectionPlansRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListMalwareProtectionPlansResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListMembersRequest": {
       "base": null,
       "refs": {
@@ -1925,6 +1991,69 @@
       "base": "<p>Provides details about Malware Protection when it is enabled as a data source.</p>",
       "refs": {
         "DataSourcesFreeTrial$MalwareProtection": "<p>Describes whether Malware Protection is enabled as a data source.</p>"
+      }
+    },
+    "MalwareProtectionPlanActions": {
+      "base": "<p>Information about whether the tags will be added to the S3 object after scanning.</p>",
+      "refs": {
+        "CreateMalwareProtectionPlanRequest$Actions": "<p>Information about whether the tags will be added to the S3 object after scanning.</p>",
+        "GetMalwareProtectionPlanResponse$Actions": "<p>Information about whether the tags will be added to the S3 object after scanning.</p>",
+        "UpdateMalwareProtectionPlanRequest$Actions": "<p>Information about whether the tags will be added to the S3 object after scanning.</p>"
+      }
+    },
+    "MalwareProtectionPlanObjectPrefixesList": {
+      "base": null,
+      "refs": {
+        "CreateS3BucketResource$ObjectPrefixes": "<p>Information about the specified object prefixes. The S3 object will be scanned only if it belongs to any of the specified object prefixes.</p>",
+        "UpdateS3BucketResource$ObjectPrefixes": "<p>Information about the specified object prefixes. The S3 object will be scanned only if it belongs to any of the specified object prefixes.</p>"
+      }
+    },
+    "MalwareProtectionPlanStatus": {
+      "base": null,
+      "refs": {
+        "GetMalwareProtectionPlanResponse$Status": "<p>Malware Protection plan status.</p>"
+      }
+    },
+    "MalwareProtectionPlanStatusReason": {
+      "base": "<p>Information about the issue code and message associated to the status of your Malware Protection plan.</p>",
+      "refs": {
+        "MalwareProtectionPlanStatusReasonsList$member": null
+      }
+    },
+    "MalwareProtectionPlanStatusReasonsList": {
+      "base": null,
+      "refs": {
+        "GetMalwareProtectionPlanResponse$StatusReasons": "<p>Information about the issue code and message associated to the status of your Malware Protection plan.</p>"
+      }
+    },
+    "MalwareProtectionPlanSummary": {
+      "base": "<p>Information about the Malware Protection plan resource.</p>",
+      "refs": {
+        "MalwareProtectionPlansSummary$member": null
+      }
+    },
+    "MalwareProtectionPlanTaggingAction": {
+      "base": "<p>Information about adding tags to the scanned S3 object after the scan result.</p>",
+      "refs": {
+        "MalwareProtectionPlanActions$Tagging": "<p>Indicates whether the scanned S3 object will have tags about the scan result.</p>"
+      }
+    },
+    "MalwareProtectionPlanTaggingActionStatus": {
+      "base": null,
+      "refs": {
+        "MalwareProtectionPlanTaggingAction$Status": "<p>Indicates whether or not the tags will added.</p>"
+      }
+    },
+    "MalwareProtectionPlansSummary": {
+      "base": null,
+      "refs": {
+        "ListMalwareProtectionPlansResponse$MalwareProtectionPlans": "<p>A list of unique identifiers associated with each Malware Protection plan.</p>"
+      }
+    },
+    "MalwareScanDetails": {
+      "base": "<p>Information about the malware scan that generated a GuardDuty finding.</p>",
+      "refs": {
+        "Service$MalwareScanDetails": "<p>Returns details from the malware scan that generated a GuardDuty finding.</p>"
       }
     },
     "ManagementType": {
@@ -2476,6 +2605,11 @@
         "UsageCriteria$Resources": "<p>The resources to aggregate usage statistics from. Only accepts exact resource names.</p>"
       }
     },
+    "ResourceNotFoundException": {
+      "base": "<p>The requested resource can't be found.</p>",
+      "refs": {
+      }
+    },
     "ResourceType": {
       "base": null,
       "refs": {
@@ -2517,6 +2651,18 @@
       "base": "<p>Describes whether S3 data event logs will be enabled as a data source.</p>",
       "refs": {
         "DataSourceConfigurationsResult$S3Logs": "<p>An object that contains information on the status of S3 Data event logs as a data source.</p>"
+      }
+    },
+    "S3ObjectDetail": {
+      "base": "<p>Information about the S3 object that was scanned</p>",
+      "refs": {
+        "S3ObjectDetails$member": null
+      }
+    },
+    "S3ObjectDetails": {
+      "base": null,
+      "refs": {
+        "S3BucketDetail$S3ObjectDetails": "<p>Information about the S3 object that was scanned.</p>"
       }
     },
     "Scan": {
@@ -2782,13 +2928,17 @@
         "CoverageResource$ResourceId": "<p>The unique ID of the resource.</p>",
         "CoverageResource$Issue": "<p>Represents the reason why a coverage status was <code>UNHEALTHY</code> for the EKS cluster.</p>",
         "CreateIPSetResponse$IpSetId": "<p>The ID of the IPSet resource.</p>",
+        "CreateMalwareProtectionPlanRequest$Role": "<p>IAM role with permissions required to scan and add tags to the associated protected resource.</p>",
+        "CreateMalwareProtectionPlanResponse$MalwareProtectionPlanId": "<p>A unique identifier associated with the Malware Protection plan resource.</p>",
         "CreatePublishingDestinationResponse$DestinationId": "<p>The ID of the publishing destination that is created.</p>",
+        "CreateS3BucketResource$BucketName": "<p>Name of the S3 bucket.</p>",
         "CreateThreatIntelSetResponse$ThreatIntelSetId": "<p>The ID of the ThreatIntelSet resource.</p>",
         "Criterion$key": null,
         "DefaultServerSideEncryption$EncryptionType": "<p>The type of encryption used for objects within the S3 bucket.</p>",
         "DefaultServerSideEncryption$KmsMasterKeyArn": "<p>The Amazon Resource Name (ARN) of the KMS encryption key. Only available if the bucket <code>EncryptionType</code> is <code>aws:kms</code>.</p>",
         "DeleteFilterRequest$FilterName": "<p>The name of the filter that you want to delete.</p>",
         "DeleteIPSetRequest$IpSetId": "<p>The unique ID of the IPSet to delete.</p>",
+        "DeleteMalwareProtectionPlanRequest$MalwareProtectionPlanId": "<p>A unique identifier associated with Malware Protection plan resource.</p>",
         "DeletePublishingDestinationRequest$DestinationId": "<p>The ID of the publishing destination to delete.</p>",
         "DeleteThreatIntelSetRequest$ThreatIntelSetId": "<p>The unique ID of the threatIntelSet that you want to delete.</p>",
         "DescribeMalwareScansRequest$NextToken": "<p>You can use this parameter when paginating results. Set the value of this parameter to null on your first call to the list action. For subsequent calls to the action, fill nextToken in the request with the value of NextToken from the previous response to continue listing data.</p>",
@@ -2839,6 +2989,9 @@
         "GetDetectorResponse$UpdatedAt": "<p>The last-updated timestamp for the detector.</p>",
         "GetFilterRequest$FilterName": "<p>The name of the filter you want to get.</p>",
         "GetIPSetRequest$IpSetId": "<p>The unique ID of the IPSet to retrieve.</p>",
+        "GetMalwareProtectionPlanRequest$MalwareProtectionPlanId": "<p>A unique identifier associated with Malware Protection plan resource.</p>",
+        "GetMalwareProtectionPlanResponse$Arn": "<p>Amazon Resource Name (ARN) of the protected resource.</p>",
+        "GetMalwareProtectionPlanResponse$Role": "<p>IAM role that includes the permissions required to scan and add tags to the associated protected resource.</p>",
         "GetThreatIntelSetRequest$ThreatIntelSetId": "<p>The unique ID of the threatIntelSet that you want to get.</p>",
         "GetUsageStatisticsRequest$Unit": "<p>The currency unit you would like to view your usage statistics in. Current valid values are USD.</p>",
         "GetUsageStatisticsRequest$NextToken": "<p>A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. For subsequent calls, use the NextToken value returned from the previous request to continue listing results after the first page.</p>",
@@ -2868,6 +3021,8 @@
         "IpSetIds$member": null,
         "Ipv6Addresses$member": null,
         "Issues$member": null,
+        "ItemPath$NestedItemPath": "<p>The nested item path where the infected file was found.</p>",
+        "ItemPath$Hash": "<p>The hash value of the infected resource.</p>",
         "KubernetesApiCallAction$RequestUri": "<p>The Kubernetes API request URI.</p>",
         "KubernetesApiCallAction$Verb": "<p>The Kubernetes API request HTTP verb.</p>",
         "KubernetesApiCallAction$UserAgent": "<p>The user agent of the caller of the Kubernetes API.</p>",
@@ -2916,6 +3071,8 @@
         "ListIPSetsResponse$NextToken": "<p>The pagination parameter to be used on the next list operation to retrieve more items.</p>",
         "ListInvitationsRequest$NextToken": "<p>You can use this parameter when paginating results. Set the value of this parameter to null on your first call to the list action. For subsequent calls to the action, fill nextToken in the request with the value of NextToken from the previous response to continue listing data.</p>",
         "ListInvitationsResponse$NextToken": "<p>The pagination parameter to be used on the next list operation to retrieve more items.</p>",
+        "ListMalwareProtectionPlansRequest$NextToken": "<p>You can use this parameter when paginating results. Set the value of this parameter to null on your first call to the list action. For subsequent calls to the action, fill nextToken in the request with the value of <code>NextToken</code> from the previous response to continue listing data.</p>",
+        "ListMalwareProtectionPlansResponse$NextToken": "<p>You can use this parameter when paginating results. Set the value of this parameter to null on your first call to the list action. For subsequent calls to the action, fill nextToken in the request with the value of <code>NextToken</code> from the previous response to continue listing data.</p>",
         "ListMembersRequest$NextToken": "<p>You can use this parameter when paginating results. Set the value of this parameter to null on your first call to the list action. For subsequent calls to the action, fill nextToken in the request with the value of NextToken from the previous response to continue listing data.</p>",
         "ListMembersRequest$OnlyAssociated": "<p>Specifies whether to only return associated members or to return all members (including members who haven't been invited yet or have been disassociated). Member accounts must have been previously associated with the GuardDuty administrator account using <a href=\"https://docs.aws.amazon.com/guardduty/latest/APIReference/API_CreateMembers.html\"> <code>Create Members</code> </a>. </p>",
         "ListMembersResponse$NextToken": "<p>The pagination parameter to be used on the next list operation to retrieve more items.</p>",
@@ -2929,6 +3086,10 @@
         "LoginAttribute$User": "<p>Indicates the user name which attempted to log in.</p>",
         "LoginAttribute$Application": "<p>Indicates the application name used to attempt log in.</p>",
         "MalwareProtectionConfigurationResult$ServiceRole": "<p>The GuardDuty Malware Protection service role.</p>",
+        "MalwareProtectionPlanObjectPrefixesList$member": null,
+        "MalwareProtectionPlanStatusReason$Code": "<p>Issue code.</p>",
+        "MalwareProtectionPlanStatusReason$Message": "<p>Issue message that specifies the reason. For information about potential troubleshooting steps, see <a href=\"https://docs.aws.amazon.com/guardduty/latest/ug/troubleshoot-s3-malware-protection-status-errors.html\">Troubleshooting Malware Protection for S3 status issues</a> in the <i>GuardDuty User Guide</i>.</p>",
+        "MalwareProtectionPlanSummary$MalwareProtectionPlanId": "<p>A unique identifier associated with Malware Protection plan.</p>",
         "Master$InvitationId": "<p>The value used to validate the administrator account to the member account.</p>",
         "Master$RelationshipStatus": "<p>The status of the relationship between the administrator and member accounts.</p>",
         "Master$InvitedAt": "<p>The timestamp when the invitation was sent.</p>",
@@ -2979,6 +3140,8 @@
         "RemotePortDetails$PortName": "<p>The port name of the remote connection.</p>",
         "Resource$ResourceType": "<p>The type of Amazon Web Services resource.</p>",
         "ResourceList$member": null,
+        "ResourceNotFoundException$Message": "<p>The error message.</p>",
+        "ResourceNotFoundException$Type": "<p>The error type.</p>",
         "RuntimeContext$ScriptPath": "<p>The path to the script that was executed.</p>",
         "RuntimeContext$LibraryPath": "<p>The path to the new library that was loaded.</p>",
         "RuntimeContext$LdPreloadValue": "<p>The value of the LD_PRELOAD environment variable.</p>",
@@ -3001,8 +3164,13 @@
         "S3BucketDetail$Arn": "<p>The Amazon Resource Name (ARN) of the S3 bucket.</p>",
         "S3BucketDetail$Name": "<p>The name of the S3 bucket.</p>",
         "S3BucketDetail$Type": "<p>Describes whether the bucket is a source or destination bucket.</p>",
+        "S3ObjectDetail$ObjectArn": "<p>Amazon Resource Name (ARN) of the S3 object.</p>",
+        "S3ObjectDetail$Key": "<p>Key of the S3 object.</p>",
+        "S3ObjectDetail$ETag": "<p>The entity tag is a hash of the S3 object. The ETag reflects changes only to the contents of an object, and not its metadata.</p>",
+        "S3ObjectDetail$Hash": "<p>Hash of the threat detected in this finding.</p>",
+        "S3ObjectDetail$VersionId": "<p>Version ID of the object.</p>",
         "ScanFilePath$FilePath": "<p>The file path of the infected file.</p>",
-        "ScanFilePath$VolumeArn": "<p>EBS volume Arn details of the infected file.</p>",
+        "ScanFilePath$VolumeArn": "<p>EBS volume ARN details of the infected file.</p>",
         "ScanFilePath$Hash": "<p>The hash value of the infected file.</p>",
         "ScanFilePath$FileName": "<p>File name of the infected file.</p>",
         "ScanThreatName$Name": "<p>The name of the identified threat.</p>",
@@ -3024,6 +3192,8 @@
         "SubnetIds$member": null,
         "Tag$Key": "<p>The EC2 instance tag key.</p>",
         "Tag$Value": "<p>The EC2 instance tag value.</p>",
+        "Threat$Name": "<p>Name of the detected threat that caused GuardDuty to generate this finding.</p>",
+        "Threat$Source": "<p>Source of the threat that generated this finding.</p>",
         "ThreatIntelSetIds$member": null,
         "ThreatIntelligenceDetail$ThreatListName": "<p>The name of the threat intelligence list that triggered the finding.</p>",
         "ThreatIntelligenceDetail$ThreatFileSha256": "<p>SHA256 of the file that generated the finding.</p>",
@@ -3034,16 +3204,18 @@
         "UpdateFilterRequest$FilterName": "<p>The name of the filter.</p>",
         "UpdateFindingsFeedbackRequest$Comments": "<p>Additional feedback about the GuardDuty findings.</p>",
         "UpdateIPSetRequest$IpSetId": "<p>The unique ID that specifies the IPSet that you want to update.</p>",
+        "UpdateMalwareProtectionPlanRequest$MalwareProtectionPlanId": "<p>A unique identifier associated with the Malware Protection plan.</p>",
+        "UpdateMalwareProtectionPlanRequest$Role": "<p>IAM role with permissions required to scan and add tags to the associated protected resource.</p>",
         "UpdatePublishingDestinationRequest$DestinationId": "<p>The ID of the publishing destination to update.</p>",
         "UpdateThreatIntelSetRequest$ThreatIntelSetId": "<p>The unique ID that specifies the ThreatIntelSet that you want to update.</p>",
         "UsageResourceResult$Resource": "<p>The Amazon Web Services resource that generated usage.</p>",
         "Volume$Name": "<p>Volume name.</p>",
-        "VolumeDetail$VolumeArn": "<p>EBS volume Arn information.</p>",
+        "VolumeDetail$VolumeArn": "<p>EBS volume ARN information.</p>",
         "VolumeDetail$VolumeType": "<p>The EBS volume type.</p>",
         "VolumeDetail$DeviceName": "<p>The device name for the EBS volume.</p>",
         "VolumeDetail$EncryptionType": "<p>EBS volume encryption type.</p>",
-        "VolumeDetail$SnapshotArn": "<p>Snapshot Arn of the EBS volume.</p>",
-        "VolumeDetail$KmsKeyArn": "<p>KMS key Arn used to encrypt the EBS volume.</p>",
+        "VolumeDetail$SnapshotArn": "<p>Snapshot ARN of the EBS volume.</p>",
+        "VolumeDetail$KmsKeyArn": "<p>KMS key ARN used to encrypt the EBS volume.</p>",
         "VolumeMount$Name": "<p>Volume mount name.</p>",
         "VolumeMount$MountPath": "<p>Volume mount path.</p>",
         "VpcConfig$VpcId": "<p>The identifier of the Amazon Virtual Private Cloud.</p>"
@@ -3081,10 +3253,12 @@
         "CreateDetectorRequest$Tags": "<p>The tags to be added to a new detector resource.</p>",
         "CreateFilterRequest$Tags": "<p>The tags to be added to a new filter resource.</p>",
         "CreateIPSetRequest$Tags": "<p>The tags to be added to a new IP set resource.</p>",
+        "CreateMalwareProtectionPlanRequest$Tags": "<p>Tags added to the Malware Protection plan resource. </p>",
         "CreateThreatIntelSetRequest$Tags": "<p>The tags to be added to a new threat list resource.</p>",
         "GetDetectorResponse$Tags": "<p>The tags of the detector resource.</p>",
         "GetFilterResponse$Tags": "<p>The tags of the filter resource.</p>",
         "GetIPSetResponse$Tags": "<p>The tags of the IPSet resource.</p>",
+        "GetMalwareProtectionPlanResponse$Tags": "<p>Tags added to the Malware Protection plan resource.</p>",
         "GetThreatIntelSetResponse$Tags": "<p>The tags of the threat list resource.</p>",
         "ListTagsForResourceResponse$Tags": "<p>The tags associated with the resource.</p>",
         "TagResourceRequest$Tags": "<p>The tags to be added to a resource.</p>"
@@ -3117,6 +3291,12 @@
         "LambdaDetails$Tags": "<p>A list of tags attached to this resource, listed in the format of <code>key</code>:<code>value</code> pair.</p>",
         "RdsDbInstanceDetails$Tags": "<p>Instance tag key-value pairs associated with the database instance ID.</p>",
         "S3BucketDetail$Tags": "<p>All tags attached to the S3 bucket</p>"
+      }
+    },
+    "Threat": {
+      "base": "<p>Information about the detected threats associated with the generated finding.</p>",
+      "refs": {
+        "Threats$member": null
       }
     },
     "ThreatDetectedByName": {
@@ -3162,6 +3342,12 @@
         "ThreatIntelligenceDetail$ThreatNames": "<p>A list of names of the threats in the threat intelligence list that triggered the finding.</p>"
       }
     },
+    "Threats": {
+      "base": null,
+      "refs": {
+        "MalwareScanDetails$Threats": "<p>Information about the detected threats associated with the generated GuardDuty finding.</p>"
+      }
+    },
     "ThreatsDetectedItemCount": {
       "base": "<p>Contains total number of infected files.</p>",
       "refs": {
@@ -3179,6 +3365,7 @@
         "EcsTaskDetails$TaskCreatedAt": "<p>The Unix timestamp for the time when the task was created.</p>",
         "EcsTaskDetails$StartedAt": "<p>The Unix timestamp for the time when the task started.</p>",
         "EksClusterDetails$CreatedAt": "<p>The timestamp when the EKS cluster was created.</p>",
+        "GetMalwareProtectionPlanResponse$CreatedAt": "<p>The timestamp when the Malware Protection plan resource was created.</p>",
         "LambdaDetails$LastModifiedAt": "<p>The timestamp when the Lambda function was last modified. This field is in the UTC date string format <code>(2023-03-22T19:37:20.168Z)</code>.</p>",
         "LineageObject$StartTime": "<p>The time when the process started. This is in UTC format.</p>",
         "MemberAdditionalConfigurationResult$UpdatedAt": "<p>The timestamp at which the additional configuration was set for the member account. This is in UTC format.</p>",
@@ -3296,6 +3483,11 @@
       "refs": {
       }
     },
+    "UpdateMalwareProtectionPlanRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
     "UpdateMalwareScanSettingsRequest": {
       "base": null,
       "refs": {
@@ -3326,6 +3518,12 @@
       "refs": {
       }
     },
+    "UpdateProtectedResource": {
+      "base": "<p>Information about the protected resource that is associated with the created Malware Protection plan. Presently, <code>S3Bucket</code> is the only supported protected resource.</p>",
+      "refs": {
+        "UpdateMalwareProtectionPlanRequest$ProtectedResource": "<p>Information about the protected resource that is associated with the created Malware Protection plan. Presently, <code>S3Bucket</code> is the only supported protected resource.</p>"
+      }
+    },
     "UpdatePublishingDestinationRequest": {
       "base": null,
       "refs": {
@@ -3334,6 +3532,12 @@
     "UpdatePublishingDestinationResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "UpdateS3BucketResource": {
+      "base": "<p>Information about the protected S3 bucket resource.</p>",
+      "refs": {
+        "UpdateProtectedResource$S3Bucket": "<p>Information about the protected S3 bucket resource.</p>"
       }
     },
     "UpdateThreatIntelSetRequest": {

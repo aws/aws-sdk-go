@@ -4444,6 +4444,22 @@
         "IAM"
       ]
     },
+    "AuthenticationRequestExtraParams":{
+      "type":"map",
+      "key":{"shape":"AuthenticationRequestExtraParamsKey"},
+      "value":{"shape":"AuthenticationRequestExtraParamsValue"},
+      "max":10
+    },
+    "AuthenticationRequestExtraParamsKey":{
+      "type":"string",
+      "max":512,
+      "pattern":".*"
+    },
+    "AuthenticationRequestExtraParamsValue":{
+      "type":"string",
+      "max":512,
+      "pattern":".*"
+    },
     "AutoGenerateEndpointName":{"type":"boolean"},
     "AutoMLAlgorithm":{
       "type":"string",
@@ -15171,7 +15187,8 @@
         "NameContains":{"shape":"NameContains"},
         "NextToken":{"shape":"NextToken"},
         "SortBy":{"shape":"ModelPackageGroupSortBy"},
-        "SortOrder":{"shape":"SortOrder"}
+        "SortOrder":{"shape":"SortOrder"},
+        "CrossAccountFilterOption":{"shape":"CrossAccountFilterOption"}
       }
     },
     "ListModelPackageGroupsOutput":{
@@ -17765,7 +17782,9 @@
         "TokenEndpoint":{"shape":"OidcEndpoint"},
         "UserInfoEndpoint":{"shape":"OidcEndpoint"},
         "LogoutEndpoint":{"shape":"OidcEndpoint"},
-        "JwksUri":{"shape":"OidcEndpoint"}
+        "JwksUri":{"shape":"OidcEndpoint"},
+        "Scope":{"shape":"Scope"},
+        "AuthenticationRequestExtraParams":{"shape":"AuthenticationRequestExtraParams"}
       }
     },
     "OidcConfigForResponse":{
@@ -17777,7 +17796,9 @@
         "TokenEndpoint":{"shape":"OidcEndpoint"},
         "UserInfoEndpoint":{"shape":"OidcEndpoint"},
         "LogoutEndpoint":{"shape":"OidcEndpoint"},
-        "JwksUri":{"shape":"OidcEndpoint"}
+        "JwksUri":{"shape":"OidcEndpoint"},
+        "Scope":{"shape":"Scope"},
+        "AuthenticationRequestExtraParams":{"shape":"AuthenticationRequestExtraParams"}
       }
     },
     "OidcEndpoint":{
@@ -20145,6 +20166,11 @@
         "Scheduled",
         "Stopped"
       ]
+    },
+    "Scope":{
+      "type":"string",
+      "max":1024,
+      "pattern":"^[!#-\\[\\]-~]+( [!#-\\[\\]-~]+)*$"
     },
     "SearchExpression":{
       "type":"structure",

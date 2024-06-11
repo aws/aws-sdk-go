@@ -955,6 +955,25 @@
         "DescribeDomainResponse$AuthMode": "<p>The domain's authentication mode.</p>"
       }
     },
+    "AuthenticationRequestExtraParams": {
+      "base": null,
+      "refs": {
+        "OidcConfig$AuthenticationRequestExtraParams": "<p>A string to string map of identifiers specific to the custom identity provider (IdP) being used.</p>",
+        "OidcConfigForResponse$AuthenticationRequestExtraParams": "<p>A string to string map of identifiers specific to the custom identity provider (IdP) being used.</p>"
+      }
+    },
+    "AuthenticationRequestExtraParamsKey": {
+      "base": null,
+      "refs": {
+        "AuthenticationRequestExtraParams$key": null
+      }
+    },
+    "AuthenticationRequestExtraParamsValue": {
+      "base": null,
+      "refs": {
+        "AuthenticationRequestExtraParams$value": null
+      }
+    },
     "AutoGenerateEndpointName": {
       "base": null,
       "refs": {
@@ -3214,6 +3233,7 @@
     "CrossAccountFilterOption": {
       "base": null,
       "refs": {
+        "ListModelPackageGroupsInput$CrossAccountFilterOption": "<p>A filter that returns either model groups shared with you or model groups in your own account. When the value is <code>CrossAccount</code>, the results show the resources made discoverable to you from other accounts. When the value is <code>SameAccount</code> or <code>null</code>, the results show resources from your account. The default is <code>SameAccount</code>.</p>",
         "SearchRequest$CrossAccountFilterOption": "<p> A cross account filter option. When the value is <code>\"CrossAccount\"</code> the search results will only include resources made discoverable to you from other accounts. When the value is <code>\"SameAccount\"</code> or <code>null</code> the search results will only include resources from your account. Default is <code>null</code>. For more information on searching for resources made discoverable to your account, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/feature-store-cross-account-discoverability-use.html\"> Search discoverable resources</a> in the SageMaker Developer Guide. The maximum number of <code>ResourceCatalog</code>s viewable is 1000. </p>"
       }
     },
@@ -13302,6 +13322,13 @@
         "ModelDashboardMonitoringSchedule$MonitoringScheduleStatus": "<p>The status of the monitoring schedule.</p>",
         "MonitoringSchedule$MonitoringScheduleStatus": "<p>The status of the monitoring schedule. This can be one of the following values.</p> <ul> <li> <p> <code>PENDING</code> - The schedule is pending being created.</p> </li> <li> <p> <code>FAILED</code> - The schedule failed.</p> </li> <li> <p> <code>SCHEDULED</code> - The schedule was successfully created.</p> </li> <li> <p> <code>STOPPED</code> - The schedule was stopped.</p> </li> </ul>",
         "MonitoringScheduleSummary$MonitoringScheduleStatus": "<p>The status of the monitoring schedule.</p>"
+      }
+    },
+    "Scope": {
+      "base": null,
+      "refs": {
+        "OidcConfig$Scope": "<p>An array of string identifiers used to refer to the specific pieces of user data or claims that the client application wants to access.</p>",
+        "OidcConfigForResponse$Scope": "<p>An array of string identifiers used to refer to the specific pieces of user data or claims that the client application wants to access.</p>"
       }
     },
     "SearchExpression": {

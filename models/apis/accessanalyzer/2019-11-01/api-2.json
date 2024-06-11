@@ -3,8 +3,8 @@
   "metadata":{
     "apiVersion":"2019-11-01",
     "endpointPrefix":"access-analyzer",
-    "jsonVersion":"1.1",
     "protocol":"rest-json",
+    "protocols":["rest-json"],
     "serviceFullName":"Access Analyzer",
     "serviceId":"AccessAnalyzer",
     "signatureVersion":"v4",
@@ -73,6 +73,24 @@
       },
       "input":{"shape":"CheckNoNewAccessRequest"},
       "output":{"shape":"CheckNoNewAccessResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"UnprocessableEntityException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "CheckNoPublicAccess":{
+      "name":"CheckNoPublicAccess",
+      "http":{
+        "method":"POST",
+        "requestUri":"/policy/check-no-public-access",
+        "responseCode":200
+      },
+      "input":{"shape":"CheckNoPublicAccessRequest"},
+      "output":{"shape":"CheckNoPublicAccessResponse"},
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"InternalServerException"},
@@ -174,6 +192,21 @@
       ],
       "idempotent":true
     },
+    "GenerateFindingRecommendation":{
+      "name":"GenerateFindingRecommendation",
+      "http":{
+        "method":"POST",
+        "requestUri":"/recommendation/{id}",
+        "responseCode":200
+      },
+      "input":{"shape":"GenerateFindingRecommendationRequest"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
     "GetAccessPreview":{
       "name":"GetAccessPreview",
       "http":{
@@ -251,6 +284,23 @@
       },
       "input":{"shape":"GetFindingRequest"},
       "output":{"shape":"GetFindingResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "GetFindingRecommendation":{
+      "name":"GetFindingRecommendation",
+      "http":{
+        "method":"GET",
+        "requestUri":"/recommendation/{id}",
+        "responseCode":200
+      },
+      "input":{"shape":"GetFindingRecommendationRequest"},
+      "output":{"shape":"GetFindingRecommendationResponse"},
       "errors":[
         {"shape":"ResourceNotFoundException"},
         {"shape":"ValidationException"},
@@ -568,9 +618,9 @@
   "shapes":{
     "Access":{
       "type":"structure",
-      "required":["actions"],
       "members":{
-        "actions":{"shape":"AccessActionsList"}
+        "actions":{"shape":"AccessActionsList"},
+        "resources":{"shape":"AccessResourcesList"}
       }
     },
     "AccessActionsList":{
@@ -588,6 +638,29 @@
       "enum":[
         "IDENTITY_POLICY",
         "RESOURCE_POLICY"
+      ]
+    },
+    "AccessCheckResourceType":{
+      "type":"string",
+      "enum":[
+        "AWS::DynamoDB::Table",
+        "AWS::DynamoDB::Stream",
+        "AWS::EFS::FileSystem",
+        "AWS::OpenSearchService::Domain",
+        "AWS::Kinesis::Stream",
+        "AWS::Kinesis::StreamConsumer",
+        "AWS::KMS::Key",
+        "AWS::Lambda::Function",
+        "AWS::S3::Bucket",
+        "AWS::S3::AccessPoint",
+        "AWS::S3Express::DirectoryBucket",
+        "AWS::S3::Glacier",
+        "AWS::S3Outposts::Bucket",
+        "AWS::S3Outposts::AccessPoint",
+        "AWS::SecretsManager::Secret",
+        "AWS::SNS::Topic",
+        "AWS::SQS::Queue",
+        "AWS::IAM::AssumeRolePolicyDocument"
       ]
     },
     "AccessDeniedException":{
@@ -703,6 +776,12 @@
     "AccessPreviewsList":{
       "type":"list",
       "member":{"shape":"AccessPreviewSummary"}
+    },
+    "AccessResourcesList":{
+      "type":"list",
+      "member":{"shape":"Resource"},
+      "max":100,
+      "min":0
     },
     "AclCanonicalId":{"type":"string"},
     "AclGrantee":{
@@ -927,6 +1006,32 @@
       }
     },
     "CheckNoNewAccessResult":{
+      "type":"string",
+      "enum":[
+        "PASS",
+        "FAIL"
+      ]
+    },
+    "CheckNoPublicAccessRequest":{
+      "type":"structure",
+      "required":[
+        "policyDocument",
+        "resourceType"
+      ],
+      "members":{
+        "policyDocument":{"shape":"AccessCheckPolicyDocument"},
+        "resourceType":{"shape":"AccessCheckResourceType"}
+      }
+    },
+    "CheckNoPublicAccessResponse":{
+      "type":"structure",
+      "members":{
+        "result":{"shape":"CheckNoPublicAccessResult"},
+        "message":{"shape":"String"},
+        "reasons":{"shape":"ReasonSummaryList"}
+      }
+    },
+    "CheckNoPublicAccessResult":{
       "type":"string",
       "enum":[
         "PASS",
@@ -1365,6 +1470,30 @@
       "type":"list",
       "member":{"shape":"FindingSummaryV2"}
     },
+    "GenerateFindingRecommendationRequest":{
+      "type":"structure",
+      "required":[
+        "analyzerArn",
+        "id"
+      ],
+      "members":{
+        "analyzerArn":{
+          "shape":"AnalyzerArn",
+          "location":"querystring",
+          "locationName":"analyzerArn"
+        },
+        "id":{
+          "shape":"GenerateFindingRecommendationRequestIdString",
+          "location":"uri",
+          "locationName":"id"
+        }
+      }
+    },
+    "GenerateFindingRecommendationRequestIdString":{
+      "type":"string",
+      "max":2048,
+      "min":1
+    },
     "GeneratedPolicy":{
       "type":"structure",
       "required":["policy"],
@@ -1486,6 +1615,65 @@
       "required":["archiveRule"],
       "members":{
         "archiveRule":{"shape":"ArchiveRuleSummary"}
+      }
+    },
+    "GetFindingRecommendationRequest":{
+      "type":"structure",
+      "required":[
+        "analyzerArn",
+        "id"
+      ],
+      "members":{
+        "analyzerArn":{
+          "shape":"AnalyzerArn",
+          "location":"querystring",
+          "locationName":"analyzerArn"
+        },
+        "id":{
+          "shape":"GetFindingRecommendationRequestIdString",
+          "location":"uri",
+          "locationName":"id"
+        },
+        "maxResults":{
+          "shape":"GetFindingRecommendationRequestMaxResultsInteger",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "nextToken":{
+          "shape":"Token",
+          "location":"querystring",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "GetFindingRecommendationRequestIdString":{
+      "type":"string",
+      "max":2048,
+      "min":1
+    },
+    "GetFindingRecommendationRequestMaxResultsInteger":{
+      "type":"integer",
+      "box":true,
+      "max":1000,
+      "min":1
+    },
+    "GetFindingRecommendationResponse":{
+      "type":"structure",
+      "required":[
+        "startedAt",
+        "resourceArn",
+        "recommendationType",
+        "status"
+      ],
+      "members":{
+        "startedAt":{"shape":"Timestamp"},
+        "completedAt":{"shape":"Timestamp"},
+        "nextToken":{"shape":"Token"},
+        "error":{"shape":"RecommendationError"},
+        "resourceArn":{"shape":"ResourceArn"},
+        "recommendedSteps":{"shape":"RecommendedStepList"},
+        "recommendationType":{"shape":"RecommendationType"},
+        "status":{"shape":"Status"}
       }
     },
     "GetFindingRequest":{
@@ -2193,9 +2381,47 @@
       "type":"list",
       "member":{"shape":"ReasonSummary"}
     },
+    "RecommendationError":{
+      "type":"structure",
+      "required":[
+        "code",
+        "message"
+      ],
+      "members":{
+        "code":{"shape":"String"},
+        "message":{"shape":"String"}
+      }
+    },
+    "RecommendationType":{
+      "type":"string",
+      "enum":["UnusedPermissionRecommendation"]
+    },
+    "RecommendedRemediationAction":{
+      "type":"string",
+      "enum":[
+        "CREATE_POLICY",
+        "DETACH_POLICY"
+      ]
+    },
+    "RecommendedStep":{
+      "type":"structure",
+      "members":{
+        "unusedPermissionsRecommendedStep":{"shape":"UnusedPermissionsRecommendedStep"}
+      },
+      "union":true
+    },
+    "RecommendedStepList":{
+      "type":"list",
+      "member":{"shape":"RecommendedStep"}
+    },
     "RegionList":{
       "type":"list",
       "member":{"shape":"String"}
+    },
+    "Resource":{
+      "type":"string",
+      "max":2048,
+      "min":0
     },
     "ResourceArn":{
       "type":"string",
@@ -2399,6 +2625,14 @@
         "resourceOwnerAccount":{"shape":"String"}
       }
     },
+    "Status":{
+      "type":"string",
+      "enum":[
+        "SUCCEEDED",
+        "FAILED",
+        "IN_PROGRESS"
+      ]
+    },
     "StatusReason":{
       "type":"structure",
       "required":["code"],
@@ -2589,6 +2823,16 @@
         "lastAccessed":{"shape":"Timestamp"}
       }
     },
+    "UnusedPermissionsRecommendedStep":{
+      "type":"structure",
+      "required":["recommendedAction"],
+      "members":{
+        "policyUpdatedAt":{"shape":"Timestamp"},
+        "recommendedAction":{"shape":"RecommendedRemediationAction"},
+        "recommendedPolicy":{"shape":"String"},
+        "existingPolicyId":{"shape":"String"}
+      }
+    },
     "UpdateArchiveRuleRequest":{
       "type":"structure",
       "required":[
@@ -2741,7 +2985,8 @@
         "unknownOperation",
         "cannotParse",
         "fieldValidationFailed",
-        "other"
+        "other",
+        "notSupported"
       ]
     },
     "ValueList":{
