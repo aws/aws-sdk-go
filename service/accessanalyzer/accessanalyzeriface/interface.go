@@ -76,6 +76,10 @@ type AccessAnalyzerAPI interface {
 	CheckNoNewAccessWithContext(aws.Context, *accessanalyzer.CheckNoNewAccessInput, ...request.Option) (*accessanalyzer.CheckNoNewAccessOutput, error)
 	CheckNoNewAccessRequest(*accessanalyzer.CheckNoNewAccessInput) (*request.Request, *accessanalyzer.CheckNoNewAccessOutput)
 
+	CheckNoPublicAccess(*accessanalyzer.CheckNoPublicAccessInput) (*accessanalyzer.CheckNoPublicAccessOutput, error)
+	CheckNoPublicAccessWithContext(aws.Context, *accessanalyzer.CheckNoPublicAccessInput, ...request.Option) (*accessanalyzer.CheckNoPublicAccessOutput, error)
+	CheckNoPublicAccessRequest(*accessanalyzer.CheckNoPublicAccessInput) (*request.Request, *accessanalyzer.CheckNoPublicAccessOutput)
+
 	CreateAccessPreview(*accessanalyzer.CreateAccessPreviewInput) (*accessanalyzer.CreateAccessPreviewOutput, error)
 	CreateAccessPreviewWithContext(aws.Context, *accessanalyzer.CreateAccessPreviewInput, ...request.Option) (*accessanalyzer.CreateAccessPreviewOutput, error)
 	CreateAccessPreviewRequest(*accessanalyzer.CreateAccessPreviewInput) (*request.Request, *accessanalyzer.CreateAccessPreviewOutput)
@@ -96,6 +100,10 @@ type AccessAnalyzerAPI interface {
 	DeleteArchiveRuleWithContext(aws.Context, *accessanalyzer.DeleteArchiveRuleInput, ...request.Option) (*accessanalyzer.DeleteArchiveRuleOutput, error)
 	DeleteArchiveRuleRequest(*accessanalyzer.DeleteArchiveRuleInput) (*request.Request, *accessanalyzer.DeleteArchiveRuleOutput)
 
+	GenerateFindingRecommendation(*accessanalyzer.GenerateFindingRecommendationInput) (*accessanalyzer.GenerateFindingRecommendationOutput, error)
+	GenerateFindingRecommendationWithContext(aws.Context, *accessanalyzer.GenerateFindingRecommendationInput, ...request.Option) (*accessanalyzer.GenerateFindingRecommendationOutput, error)
+	GenerateFindingRecommendationRequest(*accessanalyzer.GenerateFindingRecommendationInput) (*request.Request, *accessanalyzer.GenerateFindingRecommendationOutput)
+
 	GetAccessPreview(*accessanalyzer.GetAccessPreviewInput) (*accessanalyzer.GetAccessPreviewOutput, error)
 	GetAccessPreviewWithContext(aws.Context, *accessanalyzer.GetAccessPreviewInput, ...request.Option) (*accessanalyzer.GetAccessPreviewOutput, error)
 	GetAccessPreviewRequest(*accessanalyzer.GetAccessPreviewInput) (*request.Request, *accessanalyzer.GetAccessPreviewOutput)
@@ -115,6 +123,13 @@ type AccessAnalyzerAPI interface {
 	GetFinding(*accessanalyzer.GetFindingInput) (*accessanalyzer.GetFindingOutput, error)
 	GetFindingWithContext(aws.Context, *accessanalyzer.GetFindingInput, ...request.Option) (*accessanalyzer.GetFindingOutput, error)
 	GetFindingRequest(*accessanalyzer.GetFindingInput) (*request.Request, *accessanalyzer.GetFindingOutput)
+
+	GetFindingRecommendation(*accessanalyzer.GetFindingRecommendationInput) (*accessanalyzer.GetFindingRecommendationOutput, error)
+	GetFindingRecommendationWithContext(aws.Context, *accessanalyzer.GetFindingRecommendationInput, ...request.Option) (*accessanalyzer.GetFindingRecommendationOutput, error)
+	GetFindingRecommendationRequest(*accessanalyzer.GetFindingRecommendationInput) (*request.Request, *accessanalyzer.GetFindingRecommendationOutput)
+
+	GetFindingRecommendationPages(*accessanalyzer.GetFindingRecommendationInput, func(*accessanalyzer.GetFindingRecommendationOutput, bool) bool) error
+	GetFindingRecommendationPagesWithContext(aws.Context, *accessanalyzer.GetFindingRecommendationInput, func(*accessanalyzer.GetFindingRecommendationOutput, bool) bool, ...request.Option) error
 
 	GetFindingV2(*accessanalyzer.GetFindingV2Input) (*accessanalyzer.GetFindingV2Output, error)
 	GetFindingV2WithContext(aws.Context, *accessanalyzer.GetFindingV2Input, ...request.Option) (*accessanalyzer.GetFindingV2Output, error)

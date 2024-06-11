@@ -1,3 +1,15 @@
+Release v1.53.21 (2024-06-11)
+===
+
+### Service Client Updates
+* `service/accessanalyzer`: Updates service API, documentation, paginators, and examples
+* `service/guardduty`: Updates service API and documentation
+  * Added API support for GuardDuty Malware Protection for S3.
+* `service/networkmanager`: Updates service API and documentation
+* `service/pca-connector-scep`: Adds new service
+* `service/sagemaker`: Updates service API and documentation
+  * Introduced Scope and AuthenticationRequestExtraParams to SageMaker Workforce OIDC configuration; this allows customers to modify these options for their private Workforce IdP integration. Model Registry Cross-account model package groups are discoverable.
+
 Release v1.53.20 (2024-06-10)
 ===
 

@@ -5,11 +5,13 @@
     "endpointPrefix":"guardduty",
     "jsonVersion":"1.1",
     "protocol":"rest-json",
+    "protocols":["rest-json"],
     "serviceFullName":"Amazon GuardDuty",
     "serviceId":"GuardDuty",
     "signatureVersion":"v4",
     "signingName":"guardduty",
-    "uid":"guardduty-2017-11-28"
+    "uid":"guardduty-2017-11-28",
+    "auth":["aws.auth#sigv4"]
   },
   "operations":{
     "AcceptAdministratorInvitation":{
@@ -95,6 +97,22 @@
       "output":{"shape":"CreateIPSetResponse"},
       "errors":[
         {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
+    },
+    "CreateMalwareProtectionPlan":{
+      "name":"CreateMalwareProtectionPlan",
+      "http":{
+        "method":"POST",
+        "requestUri":"/malware-protection-plan",
+        "responseCode":200
+      },
+      "input":{"shape":"CreateMalwareProtectionPlanRequest"},
+      "output":{"shape":"CreateMalwareProtectionPlanResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
         {"shape":"InternalServerErrorException"}
       ]
     },
@@ -222,6 +240,21 @@
       "errors":[
         {"shape":"BadRequestException"},
         {"shape":"InternalServerErrorException"}
+      ]
+    },
+    "DeleteMalwareProtectionPlan":{
+      "name":"DeleteMalwareProtectionPlan",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/malware-protection-plan/{malwareProtectionPlanId}",
+        "responseCode":200
+      },
+      "input":{"shape":"DeleteMalwareProtectionPlanRequest"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerErrorException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "DeleteMembers":{
@@ -492,6 +525,22 @@
         {"shape":"InternalServerErrorException"}
       ]
     },
+    "GetMalwareProtectionPlan":{
+      "name":"GetMalwareProtectionPlan",
+      "http":{
+        "method":"GET",
+        "requestUri":"/malware-protection-plan/{malwareProtectionPlanId}",
+        "responseCode":200
+      },
+      "input":{"shape":"GetMalwareProtectionPlanRequest"},
+      "output":{"shape":"GetMalwareProtectionPlanResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerErrorException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "GetMalwareScanSettings":{
       "name":"GetMalwareScanSettings",
       "http":{
@@ -700,6 +749,21 @@
       "output":{"shape":"ListInvitationsResponse"},
       "errors":[
         {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
+    },
+    "ListMalwareProtectionPlans":{
+      "name":"ListMalwareProtectionPlans",
+      "http":{
+        "method":"GET",
+        "requestUri":"/malware-protection-plan",
+        "responseCode":200
+      },
+      "input":{"shape":"ListMalwareProtectionPlansRequest"},
+      "output":{"shape":"ListMalwareProtectionPlansResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"AccessDeniedException"},
         {"shape":"InternalServerErrorException"}
       ]
     },
@@ -914,6 +978,21 @@
       "output":{"shape":"UpdateIPSetResponse"},
       "errors":[
         {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
+    },
+    "UpdateMalwareProtectionPlan":{
+      "name":"UpdateMalwareProtectionPlan",
+      "http":{
+        "method":"PATCH",
+        "requestUri":"/malware-protection-plan/{malwareProtectionPlanId}",
+        "responseCode":200
+      },
+      "input":{"shape":"UpdateMalwareProtectionPlanRequest"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerErrorException"}
       ]
     },
@@ -2055,6 +2134,45 @@
         }
       }
     },
+    "CreateMalwareProtectionPlanRequest":{
+      "type":"structure",
+      "required":[
+        "Role",
+        "ProtectedResource"
+      ],
+      "members":{
+        "ClientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true,
+          "locationName":"clientToken"
+        },
+        "Role":{
+          "shape":"String",
+          "locationName":"role"
+        },
+        "ProtectedResource":{
+          "shape":"CreateProtectedResource",
+          "locationName":"protectedResource"
+        },
+        "Actions":{
+          "shape":"MalwareProtectionPlanActions",
+          "locationName":"actions"
+        },
+        "Tags":{
+          "shape":"TagMap",
+          "locationName":"tags"
+        }
+      }
+    },
+    "CreateMalwareProtectionPlanResponse":{
+      "type":"structure",
+      "members":{
+        "MalwareProtectionPlanId":{
+          "shape":"String",
+          "locationName":"malwareProtectionPlanId"
+        }
+      }
+    },
     "CreateMembersRequest":{
       "type":"structure",
       "required":[
@@ -2080,6 +2198,15 @@
         "UnprocessedAccounts":{
           "shape":"UnprocessedAccounts",
           "locationName":"unprocessedAccounts"
+        }
+      }
+    },
+    "CreateProtectedResource":{
+      "type":"structure",
+      "members":{
+        "S3Bucket":{
+          "shape":"CreateS3BucketResource",
+          "locationName":"s3Bucket"
         }
       }
     },
@@ -2118,6 +2245,19 @@
         "DestinationId":{
           "shape":"String",
           "locationName":"destinationId"
+        }
+      }
+    },
+    "CreateS3BucketResource":{
+      "type":"structure",
+      "members":{
+        "BucketName":{
+          "shape":"String",
+          "locationName":"bucketName"
+        },
+        "ObjectPrefixes":{
+          "shape":"MalwareProtectionPlanObjectPrefixesList",
+          "locationName":"objectPrefixes"
         }
       }
     },
@@ -2448,6 +2588,17 @@
         "UnprocessedAccounts":{
           "shape":"UnprocessedAccounts",
           "locationName":"unprocessedAccounts"
+        }
+      }
+    },
+    "DeleteMalwareProtectionPlanRequest":{
+      "type":"structure",
+      "required":["MalwareProtectionPlanId"],
+      "members":{
+        "MalwareProtectionPlanId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"malwareProtectionPlanId"
         }
       }
     },
@@ -3786,6 +3937,54 @@
         }
       }
     },
+    "GetMalwareProtectionPlanRequest":{
+      "type":"structure",
+      "required":["MalwareProtectionPlanId"],
+      "members":{
+        "MalwareProtectionPlanId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"malwareProtectionPlanId"
+        }
+      }
+    },
+    "GetMalwareProtectionPlanResponse":{
+      "type":"structure",
+      "members":{
+        "Arn":{
+          "shape":"String",
+          "locationName":"arn"
+        },
+        "Role":{
+          "shape":"String",
+          "locationName":"role"
+        },
+        "ProtectedResource":{
+          "shape":"CreateProtectedResource",
+          "locationName":"protectedResource"
+        },
+        "Actions":{
+          "shape":"MalwareProtectionPlanActions",
+          "locationName":"actions"
+        },
+        "CreatedAt":{
+          "shape":"Timestamp",
+          "locationName":"createdAt"
+        },
+        "Status":{
+          "shape":"MalwareProtectionPlanStatus",
+          "locationName":"status"
+        },
+        "StatusReasons":{
+          "shape":"MalwareProtectionPlanStatusReasonsList",
+          "locationName":"statusReasons"
+        },
+        "Tags":{
+          "shape":"TagMap",
+          "locationName":"tags"
+        }
+      }
+    },
     "GetMalwareScanSettingsRequest":{
       "type":"structure",
       "required":["DetectorId"],
@@ -4287,6 +4486,23 @@
       "member":{"shape":"String"},
       "max":50,
       "min":0
+    },
+    "ItemPath":{
+      "type":"structure",
+      "members":{
+        "NestedItemPath":{
+          "shape":"String",
+          "locationName":"nestedItemPath"
+        },
+        "Hash":{
+          "shape":"String",
+          "locationName":"hash"
+        }
+      }
+    },
+    "ItemPaths":{
+      "type":"list",
+      "member":{"shape":"ItemPath"}
     },
     "KubernetesApiCallAction":{
       "type":"structure",
@@ -4827,6 +5043,29 @@
         }
       }
     },
+    "ListMalwareProtectionPlansRequest":{
+      "type":"structure",
+      "members":{
+        "NextToken":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "ListMalwareProtectionPlansResponse":{
+      "type":"structure",
+      "members":{
+        "MalwareProtectionPlans":{
+          "shape":"MalwareProtectionPlansSummary",
+          "locationName":"malwareProtectionPlans"
+        },
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
+        }
+      }
+    },
     "ListMembersRequest":{
       "type":"structure",
       "required":["DetectorId"],
@@ -5070,6 +5309,86 @@
         "ScanEc2InstanceWithFindings":{
           "shape":"DataSourceFreeTrial",
           "locationName":"scanEc2InstanceWithFindings"
+        }
+      }
+    },
+    "MalwareProtectionPlanActions":{
+      "type":"structure",
+      "members":{
+        "Tagging":{
+          "shape":"MalwareProtectionPlanTaggingAction",
+          "locationName":"tagging"
+        }
+      }
+    },
+    "MalwareProtectionPlanObjectPrefixesList":{
+      "type":"list",
+      "member":{"shape":"String"},
+      "max":5,
+      "min":0
+    },
+    "MalwareProtectionPlanStatus":{
+      "type":"string",
+      "enum":[
+        "ACTIVE",
+        "WARNING",
+        "ERROR"
+      ]
+    },
+    "MalwareProtectionPlanStatusReason":{
+      "type":"structure",
+      "members":{
+        "Code":{
+          "shape":"String",
+          "locationName":"code"
+        },
+        "Message":{
+          "shape":"String",
+          "locationName":"message"
+        }
+      }
+    },
+    "MalwareProtectionPlanStatusReasonsList":{
+      "type":"list",
+      "member":{"shape":"MalwareProtectionPlanStatusReason"},
+      "max":50,
+      "min":0
+    },
+    "MalwareProtectionPlanSummary":{
+      "type":"structure",
+      "members":{
+        "MalwareProtectionPlanId":{
+          "shape":"String",
+          "locationName":"malwareProtectionPlanId"
+        }
+      }
+    },
+    "MalwareProtectionPlanTaggingAction":{
+      "type":"structure",
+      "members":{
+        "Status":{
+          "shape":"MalwareProtectionPlanTaggingActionStatus",
+          "locationName":"status"
+        }
+      }
+    },
+    "MalwareProtectionPlanTaggingActionStatus":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
+      ]
+    },
+    "MalwareProtectionPlansSummary":{
+      "type":"list",
+      "member":{"shape":"MalwareProtectionPlanSummary"}
+    },
+    "MalwareScanDetails":{
+      "type":"structure",
+      "members":{
+        "Threats":{
+          "shape":"Threats",
+          "locationName":"threats"
         }
       }
     },
@@ -6122,6 +6441,21 @@
       "type":"list",
       "member":{"shape":"String"}
     },
+    "ResourceNotFoundException":{
+      "type":"structure",
+      "members":{
+        "Message":{
+          "shape":"String",
+          "locationName":"message"
+        },
+        "Type":{
+          "shape":"String",
+          "locationName":"__type"
+        }
+      },
+      "error":{"httpStatusCode":404},
+      "exception":true
+    },
     "ResourceType":{
       "type":"string",
       "enum":[
@@ -6282,6 +6616,10 @@
         "PublicAccess":{
           "shape":"PublicAccess",
           "locationName":"publicAccess"
+        },
+        "S3ObjectDetails":{
+          "shape":"S3ObjectDetails",
+          "locationName":"s3ObjectDetails"
         }
       }
     },
@@ -6308,6 +6646,35 @@
           "locationName":"status"
         }
       }
+    },
+    "S3ObjectDetail":{
+      "type":"structure",
+      "members":{
+        "ObjectArn":{
+          "shape":"String",
+          "locationName":"objectArn"
+        },
+        "Key":{
+          "shape":"String",
+          "locationName":"key"
+        },
+        "ETag":{
+          "shape":"String",
+          "locationName":"eTag"
+        },
+        "Hash":{
+          "shape":"String",
+          "locationName":"hash"
+        },
+        "VersionId":{
+          "shape":"String",
+          "locationName":"versionId"
+        }
+      }
+    },
+    "S3ObjectDetails":{
+      "type":"list",
+      "member":{"shape":"S3ObjectDetail"}
     },
     "Scan":{
       "type":"structure",
@@ -6654,6 +7021,10 @@
         "Detection":{
           "shape":"Detection",
           "locationName":"detection"
+        },
+        "MalwareScanDetails":{
+          "shape":"MalwareScanDetails",
+          "locationName":"malwareScanDetails"
         }
       }
     },
@@ -6838,6 +7209,23 @@
       "type":"list",
       "member":{"shape":"Tag"}
     },
+    "Threat":{
+      "type":"structure",
+      "members":{
+        "Name":{
+          "shape":"String",
+          "locationName":"name"
+        },
+        "Source":{
+          "shape":"String",
+          "locationName":"source"
+        },
+        "ItemPaths":{
+          "shape":"ItemPaths",
+          "locationName":"itemPaths"
+        }
+      }
+    },
     "ThreatDetectedByName":{
       "type":"structure",
       "members":{
@@ -6916,6 +7304,10 @@
     "ThreatNames":{
       "type":"list",
       "member":{"shape":"String"}
+    },
+    "Threats":{
+      "type":"list",
+      "member":{"shape":"Threat"}
     },
     "ThreatsDetectedItemCount":{
       "type":"structure",
@@ -7179,6 +7571,29 @@
       "members":{
       }
     },
+    "UpdateMalwareProtectionPlanRequest":{
+      "type":"structure",
+      "required":["MalwareProtectionPlanId"],
+      "members":{
+        "MalwareProtectionPlanId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"malwareProtectionPlanId"
+        },
+        "Role":{
+          "shape":"String",
+          "locationName":"role"
+        },
+        "Actions":{
+          "shape":"MalwareProtectionPlanActions",
+          "locationName":"actions"
+        },
+        "ProtectedResource":{
+          "shape":"UpdateProtectedResource",
+          "locationName":"protectedResource"
+        }
+      }
+    },
     "UpdateMalwareScanSettingsRequest":{
       "type":"structure",
       "required":["DetectorId"],
@@ -7277,6 +7692,15 @@
       "members":{
       }
     },
+    "UpdateProtectedResource":{
+      "type":"structure",
+      "members":{
+        "S3Bucket":{
+          "shape":"UpdateS3BucketResource",
+          "locationName":"s3Bucket"
+        }
+      }
+    },
     "UpdatePublishingDestinationRequest":{
       "type":"structure",
       "required":[
@@ -7303,6 +7727,15 @@
     "UpdatePublishingDestinationResponse":{
       "type":"structure",
       "members":{
+      }
+    },
+    "UpdateS3BucketResource":{
+      "type":"structure",
+      "members":{
+        "ObjectPrefixes":{
+          "shape":"MalwareProtectionPlanObjectPrefixesList",
+          "locationName":"objectPrefixes"
+        }
       }
     },
     "UpdateThreatIntelSetRequest":{

@@ -390,6 +390,101 @@ func (c *AccessAnalyzer) CheckNoNewAccessWithContext(ctx aws.Context, input *Che
 	return out, req.Send()
 }
 
+const opCheckNoPublicAccess = "CheckNoPublicAccess"
+
+// CheckNoPublicAccessRequest generates a "aws/request.Request" representing the
+// client's request for the CheckNoPublicAccess operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CheckNoPublicAccess for more information on using the CheckNoPublicAccess
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CheckNoPublicAccessRequest method.
+//	req, resp := client.CheckNoPublicAccessRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/accessanalyzer-2019-11-01/CheckNoPublicAccess
+func (c *AccessAnalyzer) CheckNoPublicAccessRequest(input *CheckNoPublicAccessInput) (req *request.Request, output *CheckNoPublicAccessOutput) {
+	op := &request.Operation{
+		Name:       opCheckNoPublicAccess,
+		HTTPMethod: "POST",
+		HTTPPath:   "/policy/check-no-public-access",
+	}
+
+	if input == nil {
+		input = &CheckNoPublicAccessInput{}
+	}
+
+	output = &CheckNoPublicAccessOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CheckNoPublicAccess API operation for Access Analyzer.
+//
+// Checks whether a resource policy can grant public access to the specified
+// resource type.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Access Analyzer's
+// API operation CheckNoPublicAccess for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     Validation exception error.
+//
+//   - InternalServerException
+//     Internal server error.
+//
+//   - InvalidParameterException
+//     The specified parameter is invalid.
+//
+//   - UnprocessableEntityException
+//     The specified entity could not be processed.
+//
+//   - ThrottlingException
+//     Throttling limit exceeded error.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/accessanalyzer-2019-11-01/CheckNoPublicAccess
+func (c *AccessAnalyzer) CheckNoPublicAccess(input *CheckNoPublicAccessInput) (*CheckNoPublicAccessOutput, error) {
+	req, out := c.CheckNoPublicAccessRequest(input)
+	return out, req.Send()
+}
+
+// CheckNoPublicAccessWithContext is the same as CheckNoPublicAccess with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CheckNoPublicAccess for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AccessAnalyzer) CheckNoPublicAccessWithContext(ctx aws.Context, input *CheckNoPublicAccessInput, opts ...request.Option) (*CheckNoPublicAccessOutput, error) {
+	req, out := c.CheckNoPublicAccessRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateAccessPreview = "CreateAccessPreview"
 
 // CreateAccessPreviewRequest generates a "aws/request.Request" representing the
@@ -873,6 +968,95 @@ func (c *AccessAnalyzer) DeleteArchiveRuleWithContext(ctx aws.Context, input *De
 	return out, req.Send()
 }
 
+const opGenerateFindingRecommendation = "GenerateFindingRecommendation"
+
+// GenerateFindingRecommendationRequest generates a "aws/request.Request" representing the
+// client's request for the GenerateFindingRecommendation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GenerateFindingRecommendation for more information on using the GenerateFindingRecommendation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GenerateFindingRecommendationRequest method.
+//	req, resp := client.GenerateFindingRecommendationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/accessanalyzer-2019-11-01/GenerateFindingRecommendation
+func (c *AccessAnalyzer) GenerateFindingRecommendationRequest(input *GenerateFindingRecommendationInput) (req *request.Request, output *GenerateFindingRecommendationOutput) {
+	op := &request.Operation{
+		Name:       opGenerateFindingRecommendation,
+		HTTPMethod: "POST",
+		HTTPPath:   "/recommendation/{id}",
+	}
+
+	if input == nil {
+		input = &GenerateFindingRecommendationInput{}
+	}
+
+	output = &GenerateFindingRecommendationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// GenerateFindingRecommendation API operation for Access Analyzer.
+//
+// Creates a recommendation for an unused permissions finding.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Access Analyzer's
+// API operation GenerateFindingRecommendation for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     Validation exception error.
+//
+//   - InternalServerException
+//     Internal server error.
+//
+//   - ThrottlingException
+//     Throttling limit exceeded error.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/accessanalyzer-2019-11-01/GenerateFindingRecommendation
+func (c *AccessAnalyzer) GenerateFindingRecommendation(input *GenerateFindingRecommendationInput) (*GenerateFindingRecommendationOutput, error) {
+	req, out := c.GenerateFindingRecommendationRequest(input)
+	return out, req.Send()
+}
+
+// GenerateFindingRecommendationWithContext is the same as GenerateFindingRecommendation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GenerateFindingRecommendation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AccessAnalyzer) GenerateFindingRecommendationWithContext(ctx aws.Context, input *GenerateFindingRecommendationInput, opts ...request.Option) (*GenerateFindingRecommendationOutput, error) {
+	req, out := c.GenerateFindingRecommendationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetAccessPreview = "GetAccessPreview"
 
 // GetAccessPreviewRequest generates a "aws/request.Request" representing the
@@ -1333,6 +1517,154 @@ func (c *AccessAnalyzer) GetFindingWithContext(ctx aws.Context, input *GetFindin
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+const opGetFindingRecommendation = "GetFindingRecommendation"
+
+// GetFindingRecommendationRequest generates a "aws/request.Request" representing the
+// client's request for the GetFindingRecommendation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetFindingRecommendation for more information on using the GetFindingRecommendation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetFindingRecommendationRequest method.
+//	req, resp := client.GetFindingRecommendationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/accessanalyzer-2019-11-01/GetFindingRecommendation
+func (c *AccessAnalyzer) GetFindingRecommendationRequest(input *GetFindingRecommendationInput) (req *request.Request, output *GetFindingRecommendationOutput) {
+	op := &request.Operation{
+		Name:       opGetFindingRecommendation,
+		HTTPMethod: "GET",
+		HTTPPath:   "/recommendation/{id}",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &GetFindingRecommendationInput{}
+	}
+
+	output = &GetFindingRecommendationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetFindingRecommendation API operation for Access Analyzer.
+//
+// Retrieves information about a finding recommendation for the specified analyzer.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Access Analyzer's
+// API operation GetFindingRecommendation for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The specified resource could not be found.
+//
+//   - ValidationException
+//     Validation exception error.
+//
+//   - InternalServerException
+//     Internal server error.
+//
+//   - ThrottlingException
+//     Throttling limit exceeded error.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/accessanalyzer-2019-11-01/GetFindingRecommendation
+func (c *AccessAnalyzer) GetFindingRecommendation(input *GetFindingRecommendationInput) (*GetFindingRecommendationOutput, error) {
+	req, out := c.GetFindingRecommendationRequest(input)
+	return out, req.Send()
+}
+
+// GetFindingRecommendationWithContext is the same as GetFindingRecommendation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetFindingRecommendation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AccessAnalyzer) GetFindingRecommendationWithContext(ctx aws.Context, input *GetFindingRecommendationInput, opts ...request.Option) (*GetFindingRecommendationOutput, error) {
+	req, out := c.GetFindingRecommendationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// GetFindingRecommendationPages iterates over the pages of a GetFindingRecommendation operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See GetFindingRecommendation method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a GetFindingRecommendation operation.
+//	pageNum := 0
+//	err := client.GetFindingRecommendationPages(params,
+//	    func(page *accessanalyzer.GetFindingRecommendationOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *AccessAnalyzer) GetFindingRecommendationPages(input *GetFindingRecommendationInput, fn func(*GetFindingRecommendationOutput, bool) bool) error {
+	return c.GetFindingRecommendationPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// GetFindingRecommendationPagesWithContext same as GetFindingRecommendationPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AccessAnalyzer) GetFindingRecommendationPagesWithContext(ctx aws.Context, input *GetFindingRecommendationInput, fn func(*GetFindingRecommendationOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *GetFindingRecommendationInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.GetFindingRecommendationRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*GetFindingRecommendationOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opGetFindingV2 = "GetFindingV2"
@@ -3562,16 +3894,18 @@ func (c *AccessAnalyzer) ValidatePolicyPagesWithContext(ctx aws.Context, input *
 	return p.Err()
 }
 
-// Contains information about actions that define permissions to check against
-// a policy.
+// Contains information about actions and resources that define permissions
+// to check against a policy.
 type Access struct {
 	_ struct{} `type:"structure"`
 
 	// A list of actions for the access permissions. Any strings that can be used
 	// as an action in an IAM policy can be used in the list of actions to check.
-	//
-	// Actions is a required field
-	Actions []*string `locationName:"actions" type:"list" required:"true"`
+	Actions []*string `locationName:"actions" type:"list"`
+
+	// A list of resources for the access permissions. Any strings that can be used
+	// as a resource in an IAM policy can be used in the list of resources to check.
+	Resources []*string `locationName:"resources" type:"list"`
 }
 
 // String returns the string representation.
@@ -3592,22 +3926,15 @@ func (s Access) GoString() string {
 	return s.String()
 }
 
-// Validate inspects the fields of the type to determine if they are valid.
-func (s *Access) Validate() error {
-	invalidParams := request.ErrInvalidParams{Context: "Access"}
-	if s.Actions == nil {
-		invalidParams.Add(request.NewErrParamRequired("Actions"))
-	}
-
-	if invalidParams.Len() > 0 {
-		return invalidParams
-	}
-	return nil
-}
-
 // SetActions sets the Actions field's value.
 func (s *Access) SetActions(v []*string) *Access {
 	s.Actions = v
+	return s
+}
+
+// SetResources sets the Resources field's value.
+func (s *Access) SetResources(v []*string) *Access {
+	s.Resources = v
 	return s
 }
 
@@ -4737,7 +5064,12 @@ type CheckAccessNotGrantedInput struct {
 	_ struct{} `type:"structure"`
 
 	// An access object containing the permissions that shouldn't be granted by
-	// the specified policy.
+	// the specified policy. If only actions are specified, IAM Access Analyzer
+	// checks for access of the actions on all resources in the policy. If only
+	// resources are specified, then IAM Access Analyzer checks which actions have
+	// access to the specified resources. If both actions and resources are specified,
+	// then IAM Access Analyzer checks which of the specified actions have access
+	// to the specified resources.
 	//
 	// Access is a required field
 	Access []*Access `locationName:"access" type:"list" required:"true"`
@@ -4793,16 +5125,6 @@ func (s *CheckAccessNotGrantedInput) Validate() error {
 	}
 	if s.PolicyType == nil {
 		invalidParams.Add(request.NewErrParamRequired("PolicyType"))
-	}
-	if s.Access != nil {
-		for i, v := range s.Access {
-			if v == nil {
-				continue
-			}
-			if err := v.Validate(); err != nil {
-				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Access", i), err.(request.ErrInvalidParams))
-			}
-		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -5017,6 +5339,129 @@ func (s *CheckNoNewAccessOutput) SetReasons(v []*ReasonSummary) *CheckNoNewAcces
 
 // SetResult sets the Result field's value.
 func (s *CheckNoNewAccessOutput) SetResult(v string) *CheckNoNewAccessOutput {
+	s.Result = &v
+	return s
+}
+
+type CheckNoPublicAccessInput struct {
+	_ struct{} `type:"structure"`
+
+	// The JSON policy document to evaluate for public access.
+	//
+	// PolicyDocument is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CheckNoPublicAccessInput's
+	// String and GoString methods.
+	//
+	// PolicyDocument is a required field
+	PolicyDocument *string `locationName:"policyDocument" type:"string" required:"true" sensitive:"true"`
+
+	// The type of resource to evaluate for public access. For example, to check
+	// for public access to Amazon S3 buckets, you can choose AWS::S3::Bucket for
+	// the resource type.
+	//
+	// For resource types not supported as valid values, IAM Access Analyzer will
+	// return an error.
+	//
+	// ResourceType is a required field
+	ResourceType *string `locationName:"resourceType" type:"string" required:"true" enum:"AccessCheckResourceType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CheckNoPublicAccessInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CheckNoPublicAccessInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CheckNoPublicAccessInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CheckNoPublicAccessInput"}
+	if s.PolicyDocument == nil {
+		invalidParams.Add(request.NewErrParamRequired("PolicyDocument"))
+	}
+	if s.ResourceType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPolicyDocument sets the PolicyDocument field's value.
+func (s *CheckNoPublicAccessInput) SetPolicyDocument(v string) *CheckNoPublicAccessInput {
+	s.PolicyDocument = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *CheckNoPublicAccessInput) SetResourceType(v string) *CheckNoPublicAccessInput {
+	s.ResourceType = &v
+	return s
+}
+
+type CheckNoPublicAccessOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The message indicating whether the specified policy allows public access
+	// to resources.
+	Message *string `locationName:"message" type:"string"`
+
+	// A list of reasons why the specified resource policy grants public access
+	// for the resource type.
+	Reasons []*ReasonSummary `locationName:"reasons" type:"list"`
+
+	// The result of the check for public access to the specified resource type.
+	// If the result is PASS, the policy doesn't allow public access to the specified
+	// resource type. If the result is FAIL, the policy might allow public access
+	// to the specified resource type.
+	Result *string `locationName:"result" type:"string" enum:"CheckNoPublicAccessResult"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CheckNoPublicAccessOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CheckNoPublicAccessOutput) GoString() string {
+	return s.String()
+}
+
+// SetMessage sets the Message field's value.
+func (s *CheckNoPublicAccessOutput) SetMessage(v string) *CheckNoPublicAccessOutput {
+	s.Message = &v
+	return s
+}
+
+// SetReasons sets the Reasons field's value.
+func (s *CheckNoPublicAccessOutput) SetReasons(v []*ReasonSummary) *CheckNoPublicAccessOutput {
+	s.Reasons = v
+	return s
+}
+
+// SetResult sets the Result field's value.
+func (s *CheckNoPublicAccessOutput) SetResult(v string) *CheckNoPublicAccessOutput {
 	s.Result = &v
 	return s
 }
@@ -7046,6 +7491,92 @@ func (s *FindingSummaryV2) SetUpdatedAt(v time.Time) *FindingSummaryV2 {
 	return s
 }
 
+type GenerateFindingRecommendationInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ARN of the analyzer (https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-getting-started.html#permission-resources)
+	// used to generate the finding recommendation.
+	//
+	// AnalyzerArn is a required field
+	AnalyzerArn *string `location:"querystring" locationName:"analyzerArn" type:"string" required:"true"`
+
+	// The unique ID for the finding recommendation.
+	//
+	// Id is a required field
+	Id *string `location:"uri" locationName:"id" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GenerateFindingRecommendationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GenerateFindingRecommendationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GenerateFindingRecommendationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GenerateFindingRecommendationInput"}
+	if s.AnalyzerArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AnalyzerArn"))
+	}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAnalyzerArn sets the AnalyzerArn field's value.
+func (s *GenerateFindingRecommendationInput) SetAnalyzerArn(v string) *GenerateFindingRecommendationInput {
+	s.AnalyzerArn = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *GenerateFindingRecommendationInput) SetId(v string) *GenerateFindingRecommendationInput {
+	s.Id = &v
+	return s
+}
+
+type GenerateFindingRecommendationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GenerateFindingRecommendationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GenerateFindingRecommendationOutput) GoString() string {
+	return s.String()
+}
+
 // Contains the text for the generated policy.
 type GeneratedPolicy struct {
 	_ struct{} `type:"structure"`
@@ -7653,6 +8184,194 @@ func (s GetFindingOutput) GoString() string {
 // SetFinding sets the Finding field's value.
 func (s *GetFindingOutput) SetFinding(v *Finding) *GetFindingOutput {
 	s.Finding = v
+	return s
+}
+
+type GetFindingRecommendationInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ARN of the analyzer (https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-getting-started.html#permission-resources)
+	// used to generate the finding recommendation.
+	//
+	// AnalyzerArn is a required field
+	AnalyzerArn *string `location:"querystring" locationName:"analyzerArn" type:"string" required:"true"`
+
+	// The unique ID for the finding recommendation.
+	//
+	// Id is a required field
+	Id *string `location:"uri" locationName:"id" min:"1" type:"string" required:"true"`
+
+	// The maximum number of results to return in the response.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// A token used for pagination of results returned.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetFindingRecommendationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetFindingRecommendationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetFindingRecommendationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetFindingRecommendationInput"}
+	if s.AnalyzerArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AnalyzerArn"))
+	}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAnalyzerArn sets the AnalyzerArn field's value.
+func (s *GetFindingRecommendationInput) SetAnalyzerArn(v string) *GetFindingRecommendationInput {
+	s.AnalyzerArn = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *GetFindingRecommendationInput) SetId(v string) *GetFindingRecommendationInput {
+	s.Id = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *GetFindingRecommendationInput) SetMaxResults(v int64) *GetFindingRecommendationInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetFindingRecommendationInput) SetNextToken(v string) *GetFindingRecommendationInput {
+	s.NextToken = &v
+	return s
+}
+
+type GetFindingRecommendationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The time at which the retrieval of the finding recommendation was completed.
+	CompletedAt *time.Time `locationName:"completedAt" type:"timestamp" timestampFormat:"iso8601"`
+
+	// Detailed information about the reason that the retrieval of a recommendation
+	// for the finding failed.
+	Error *RecommendationError `locationName:"error" type:"structure"`
+
+	// A token used for pagination of results returned.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// The type of recommendation for the finding.
+	//
+	// RecommendationType is a required field
+	RecommendationType *string `locationName:"recommendationType" type:"string" required:"true" enum:"RecommendationType"`
+
+	// A group of recommended steps for the finding.
+	RecommendedSteps []*RecommendedStep `locationName:"recommendedSteps" type:"list"`
+
+	// The ARN of the resource of the finding.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `locationName:"resourceArn" type:"string" required:"true"`
+
+	// The time at which the retrieval of the finding recommendation was started.
+	//
+	// StartedAt is a required field
+	StartedAt *time.Time `locationName:"startedAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// The status of the retrieval of the finding recommendation.
+	//
+	// Status is a required field
+	Status *string `locationName:"status" type:"string" required:"true" enum:"Status"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetFindingRecommendationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetFindingRecommendationOutput) GoString() string {
+	return s.String()
+}
+
+// SetCompletedAt sets the CompletedAt field's value.
+func (s *GetFindingRecommendationOutput) SetCompletedAt(v time.Time) *GetFindingRecommendationOutput {
+	s.CompletedAt = &v
+	return s
+}
+
+// SetError sets the Error field's value.
+func (s *GetFindingRecommendationOutput) SetError(v *RecommendationError) *GetFindingRecommendationOutput {
+	s.Error = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetFindingRecommendationOutput) SetNextToken(v string) *GetFindingRecommendationOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRecommendationType sets the RecommendationType field's value.
+func (s *GetFindingRecommendationOutput) SetRecommendationType(v string) *GetFindingRecommendationOutput {
+	s.RecommendationType = &v
+	return s
+}
+
+// SetRecommendedSteps sets the RecommendedSteps field's value.
+func (s *GetFindingRecommendationOutput) SetRecommendedSteps(v []*RecommendedStep) *GetFindingRecommendationOutput {
+	s.RecommendedSteps = v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *GetFindingRecommendationOutput) SetResourceArn(v string) *GetFindingRecommendationOutput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetStartedAt sets the StartedAt field's value.
+func (s *GetFindingRecommendationOutput) SetStartedAt(v time.Time) *GetFindingRecommendationOutput {
+	s.StartedAt = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *GetFindingRecommendationOutput) SetStatus(v string) *GetFindingRecommendationOutput {
+	s.Status = &v
 	return s
 }
 
@@ -10274,6 +10993,85 @@ func (s *ReasonSummary) SetStatementIndex(v int64) *ReasonSummary {
 	return s
 }
 
+// Contains information about the reason that the retrieval of a recommendation
+// for a finding failed.
+type RecommendationError struct {
+	_ struct{} `type:"structure"`
+
+	// The error code for a failed retrieval of a recommendation for a finding.
+	//
+	// Code is a required field
+	Code *string `locationName:"code" type:"string" required:"true"`
+
+	// The error message for a failed retrieval of a recommendation for a finding.
+	//
+	// Message is a required field
+	Message *string `locationName:"message" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecommendationError) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecommendationError) GoString() string {
+	return s.String()
+}
+
+// SetCode sets the Code field's value.
+func (s *RecommendationError) SetCode(v string) *RecommendationError {
+	s.Code = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *RecommendationError) SetMessage(v string) *RecommendationError {
+	s.Message = &v
+	return s
+}
+
+// Contains information about a recommended step for an unused access analyzer
+// finding.
+type RecommendedStep struct {
+	_ struct{} `type:"structure"`
+
+	// A recommended step for an unused permissions finding.
+	UnusedPermissionsRecommendedStep *UnusedPermissionsRecommendedStep `locationName:"unusedPermissionsRecommendedStep" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecommendedStep) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecommendedStep) GoString() string {
+	return s.String()
+}
+
+// SetUnusedPermissionsRecommendedStep sets the UnusedPermissionsRecommendedStep field's value.
+func (s *RecommendedStep) SetUnusedPermissionsRecommendedStep(v *UnusedPermissionsRecommendedStep) *RecommendedStep {
+	s.UnusedPermissionsRecommendedStep = v
+	return s
+}
+
 // The specified resource could not be found.
 type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
@@ -11945,7 +12743,7 @@ type UnusedPermissionDetails struct {
 	// A list of unused actions for which the unused access finding was generated.
 	Actions []*UnusedAction `locationName:"actions" type:"list"`
 
-	// The time at which the permission last accessed.
+	// The time at which the permission was last accessed.
 	LastAccessed *time.Time `locationName:"lastAccessed" type:"timestamp" timestampFormat:"iso8601"`
 
 	// The namespace of the Amazon Web Services service that contains the unused
@@ -11988,6 +12786,73 @@ func (s *UnusedPermissionDetails) SetLastAccessed(v time.Time) *UnusedPermission
 // SetServiceNamespace sets the ServiceNamespace field's value.
 func (s *UnusedPermissionDetails) SetServiceNamespace(v string) *UnusedPermissionDetails {
 	s.ServiceNamespace = &v
+	return s
+}
+
+// Contains information about the action to take for a policy in an unused permissions
+// finding.
+type UnusedPermissionsRecommendedStep struct {
+	_ struct{} `type:"structure"`
+
+	// If the recommended action for the unused permissions finding is to detach
+	// a policy, the ID of an existing policy to be detached.
+	ExistingPolicyId *string `locationName:"existingPolicyId" type:"string"`
+
+	// The time at which the existing policy for the unused permissions finding
+	// was last updated.
+	PolicyUpdatedAt *time.Time `locationName:"policyUpdatedAt" type:"timestamp" timestampFormat:"iso8601"`
+
+	// A recommendation of whether to create or detach a policy for an unused permissions
+	// finding.
+	//
+	// RecommendedAction is a required field
+	RecommendedAction *string `locationName:"recommendedAction" type:"string" required:"true" enum:"RecommendedRemediationAction"`
+
+	// If the recommended action for the unused permissions finding is to replace
+	// the existing policy, the contents of the recommended policy to replace the
+	// policy specified in the existingPolicyId field.
+	RecommendedPolicy *string `locationName:"recommendedPolicy" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UnusedPermissionsRecommendedStep) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UnusedPermissionsRecommendedStep) GoString() string {
+	return s.String()
+}
+
+// SetExistingPolicyId sets the ExistingPolicyId field's value.
+func (s *UnusedPermissionsRecommendedStep) SetExistingPolicyId(v string) *UnusedPermissionsRecommendedStep {
+	s.ExistingPolicyId = &v
+	return s
+}
+
+// SetPolicyUpdatedAt sets the PolicyUpdatedAt field's value.
+func (s *UnusedPermissionsRecommendedStep) SetPolicyUpdatedAt(v time.Time) *UnusedPermissionsRecommendedStep {
+	s.PolicyUpdatedAt = &v
+	return s
+}
+
+// SetRecommendedAction sets the RecommendedAction field's value.
+func (s *UnusedPermissionsRecommendedStep) SetRecommendedAction(v string) *UnusedPermissionsRecommendedStep {
+	s.RecommendedAction = &v
+	return s
+}
+
+// SetRecommendedPolicy sets the RecommendedPolicy field's value.
+func (s *UnusedPermissionsRecommendedStep) SetRecommendedPolicy(v string) *UnusedPermissionsRecommendedStep {
+	s.RecommendedPolicy = &v
 	return s
 }
 
@@ -12661,6 +13526,86 @@ func AccessCheckPolicyType_Values() []string {
 }
 
 const (
+	// AccessCheckResourceTypeAwsDynamoDbTable is a AccessCheckResourceType enum value
+	AccessCheckResourceTypeAwsDynamoDbTable = "AWS::DynamoDB::Table"
+
+	// AccessCheckResourceTypeAwsDynamoDbStream is a AccessCheckResourceType enum value
+	AccessCheckResourceTypeAwsDynamoDbStream = "AWS::DynamoDB::Stream"
+
+	// AccessCheckResourceTypeAwsEfsFileSystem is a AccessCheckResourceType enum value
+	AccessCheckResourceTypeAwsEfsFileSystem = "AWS::EFS::FileSystem"
+
+	// AccessCheckResourceTypeAwsOpenSearchServiceDomain is a AccessCheckResourceType enum value
+	AccessCheckResourceTypeAwsOpenSearchServiceDomain = "AWS::OpenSearchService::Domain"
+
+	// AccessCheckResourceTypeAwsKinesisStream is a AccessCheckResourceType enum value
+	AccessCheckResourceTypeAwsKinesisStream = "AWS::Kinesis::Stream"
+
+	// AccessCheckResourceTypeAwsKinesisStreamConsumer is a AccessCheckResourceType enum value
+	AccessCheckResourceTypeAwsKinesisStreamConsumer = "AWS::Kinesis::StreamConsumer"
+
+	// AccessCheckResourceTypeAwsKmsKey is a AccessCheckResourceType enum value
+	AccessCheckResourceTypeAwsKmsKey = "AWS::KMS::Key"
+
+	// AccessCheckResourceTypeAwsLambdaFunction is a AccessCheckResourceType enum value
+	AccessCheckResourceTypeAwsLambdaFunction = "AWS::Lambda::Function"
+
+	// AccessCheckResourceTypeAwsS3Bucket is a AccessCheckResourceType enum value
+	AccessCheckResourceTypeAwsS3Bucket = "AWS::S3::Bucket"
+
+	// AccessCheckResourceTypeAwsS3AccessPoint is a AccessCheckResourceType enum value
+	AccessCheckResourceTypeAwsS3AccessPoint = "AWS::S3::AccessPoint"
+
+	// AccessCheckResourceTypeAwsS3expressDirectoryBucket is a AccessCheckResourceType enum value
+	AccessCheckResourceTypeAwsS3expressDirectoryBucket = "AWS::S3Express::DirectoryBucket"
+
+	// AccessCheckResourceTypeAwsS3Glacier is a AccessCheckResourceType enum value
+	AccessCheckResourceTypeAwsS3Glacier = "AWS::S3::Glacier"
+
+	// AccessCheckResourceTypeAwsS3outpostsBucket is a AccessCheckResourceType enum value
+	AccessCheckResourceTypeAwsS3outpostsBucket = "AWS::S3Outposts::Bucket"
+
+	// AccessCheckResourceTypeAwsS3outpostsAccessPoint is a AccessCheckResourceType enum value
+	AccessCheckResourceTypeAwsS3outpostsAccessPoint = "AWS::S3Outposts::AccessPoint"
+
+	// AccessCheckResourceTypeAwsSecretsManagerSecret is a AccessCheckResourceType enum value
+	AccessCheckResourceTypeAwsSecretsManagerSecret = "AWS::SecretsManager::Secret"
+
+	// AccessCheckResourceTypeAwsSnsTopic is a AccessCheckResourceType enum value
+	AccessCheckResourceTypeAwsSnsTopic = "AWS::SNS::Topic"
+
+	// AccessCheckResourceTypeAwsSqsQueue is a AccessCheckResourceType enum value
+	AccessCheckResourceTypeAwsSqsQueue = "AWS::SQS::Queue"
+
+	// AccessCheckResourceTypeAwsIamAssumeRolePolicyDocument is a AccessCheckResourceType enum value
+	AccessCheckResourceTypeAwsIamAssumeRolePolicyDocument = "AWS::IAM::AssumeRolePolicyDocument"
+)
+
+// AccessCheckResourceType_Values returns all elements of the AccessCheckResourceType enum
+func AccessCheckResourceType_Values() []string {
+	return []string{
+		AccessCheckResourceTypeAwsDynamoDbTable,
+		AccessCheckResourceTypeAwsDynamoDbStream,
+		AccessCheckResourceTypeAwsEfsFileSystem,
+		AccessCheckResourceTypeAwsOpenSearchServiceDomain,
+		AccessCheckResourceTypeAwsKinesisStream,
+		AccessCheckResourceTypeAwsKinesisStreamConsumer,
+		AccessCheckResourceTypeAwsKmsKey,
+		AccessCheckResourceTypeAwsLambdaFunction,
+		AccessCheckResourceTypeAwsS3Bucket,
+		AccessCheckResourceTypeAwsS3AccessPoint,
+		AccessCheckResourceTypeAwsS3expressDirectoryBucket,
+		AccessCheckResourceTypeAwsS3Glacier,
+		AccessCheckResourceTypeAwsS3outpostsBucket,
+		AccessCheckResourceTypeAwsS3outpostsAccessPoint,
+		AccessCheckResourceTypeAwsSecretsManagerSecret,
+		AccessCheckResourceTypeAwsSnsTopic,
+		AccessCheckResourceTypeAwsSqsQueue,
+		AccessCheckResourceTypeAwsIamAssumeRolePolicyDocument,
+	}
+}
+
+const (
 	// AccessPreviewStatusCompleted is a AccessPreviewStatus enum value
 	AccessPreviewStatusCompleted = "COMPLETED"
 
@@ -12777,6 +13722,22 @@ func CheckNoNewAccessResult_Values() []string {
 	return []string{
 		CheckNoNewAccessResultPass,
 		CheckNoNewAccessResultFail,
+	}
+}
+
+const (
+	// CheckNoPublicAccessResultPass is a CheckNoPublicAccessResult enum value
+	CheckNoPublicAccessResultPass = "PASS"
+
+	// CheckNoPublicAccessResultFail is a CheckNoPublicAccessResult enum value
+	CheckNoPublicAccessResultFail = "FAIL"
+)
+
+// CheckNoPublicAccessResult_Values returns all elements of the CheckNoPublicAccessResult enum
+func CheckNoPublicAccessResult_Values() []string {
+	return []string{
+		CheckNoPublicAccessResultPass,
+		CheckNoPublicAccessResultFail,
 	}
 }
 
@@ -13109,6 +14070,34 @@ func ReasonCode_Values() []string {
 }
 
 const (
+	// RecommendationTypeUnusedPermissionRecommendation is a RecommendationType enum value
+	RecommendationTypeUnusedPermissionRecommendation = "UnusedPermissionRecommendation"
+)
+
+// RecommendationType_Values returns all elements of the RecommendationType enum
+func RecommendationType_Values() []string {
+	return []string{
+		RecommendationTypeUnusedPermissionRecommendation,
+	}
+}
+
+const (
+	// RecommendedRemediationActionCreatePolicy is a RecommendedRemediationAction enum value
+	RecommendedRemediationActionCreatePolicy = "CREATE_POLICY"
+
+	// RecommendedRemediationActionDetachPolicy is a RecommendedRemediationAction enum value
+	RecommendedRemediationActionDetachPolicy = "DETACH_POLICY"
+)
+
+// RecommendedRemediationAction_Values returns all elements of the RecommendedRemediationAction enum
+func RecommendedRemediationAction_Values() []string {
+	return []string{
+		RecommendedRemediationActionCreatePolicy,
+		RecommendedRemediationActionDetachPolicy,
+	}
+}
+
+const (
 	// ResourceTypeAwsS3Bucket is a ResourceType enum value
 	ResourceTypeAwsS3Bucket = "AWS::S3::Bucket"
 
@@ -13177,6 +14166,26 @@ func ResourceType_Values() []string {
 		ResourceTypeAwsS3expressDirectoryBucket,
 		ResourceTypeAwsDynamoDbTable,
 		ResourceTypeAwsDynamoDbStream,
+	}
+}
+
+const (
+	// StatusSucceeded is a Status enum value
+	StatusSucceeded = "SUCCEEDED"
+
+	// StatusFailed is a Status enum value
+	StatusFailed = "FAILED"
+
+	// StatusInProgress is a Status enum value
+	StatusInProgress = "IN_PROGRESS"
+)
+
+// Status_Values returns all elements of the Status enum
+func Status_Values() []string {
+	return []string{
+		StatusSucceeded,
+		StatusFailed,
+		StatusInProgress,
 	}
 }
 
@@ -13272,6 +14281,9 @@ const (
 
 	// ValidationExceptionReasonOther is a ValidationExceptionReason enum value
 	ValidationExceptionReasonOther = "other"
+
+	// ValidationExceptionReasonNotSupported is a ValidationExceptionReason enum value
+	ValidationExceptionReasonNotSupported = "notSupported"
 )
 
 // ValidationExceptionReason_Values returns all elements of the ValidationExceptionReason enum
@@ -13281,5 +14293,6 @@ func ValidationExceptionReason_Values() []string {
 		ValidationExceptionReasonCannotParse,
 		ValidationExceptionReasonFieldValidationFailed,
 		ValidationExceptionReasonOther,
+		ValidationExceptionReasonNotSupported,
 	}
 }

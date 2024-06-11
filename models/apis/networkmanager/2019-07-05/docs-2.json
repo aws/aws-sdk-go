@@ -256,7 +256,7 @@
     "BgpOptions": {
       "base": "<p>Describes the BGP options.</p>",
       "refs": {
-        "CreateConnectPeerRequest$BgpOptions": "<p>The Connect peer BGP options.</p>"
+        "CreateConnectPeerRequest$BgpOptions": "<p>The Connect peer BGP options. This only applies only when the protocol is <code>GRE</code>.</p>"
       }
     },
     "Boolean": {
@@ -486,10 +486,14 @@
         "CoreNetworkChange$IdentifierPath": "<p>Uniquely identifies the path for a change within the changeset. For example, the <code>IdentifierPath</code> for a core network segment change might be <code>\"CORE_NETWORK_SEGMENT/us-east-1/devsegment\"</code>.</p>",
         "CoreNetworkChangeEvent$IdentifierPath": "<p>Uniquely identifies the path for a change within the changeset. For example, the <code>IdentifierPath</code> for a core network segment change might be <code>\"CORE_NETWORK_SEGMENT/us-east-1/devsegment\"</code>.</p>",
         "CoreNetworkChangeEventValues$SegmentName": "<p>The segment name if the change event is associated with a segment.</p>",
+        "CoreNetworkChangeEventValues$NetworkFunctionGroupName": "<p>The changed network function group name.</p>",
         "CoreNetworkChangeEventValues$Cidr": "<p>For a <code>STATIC_ROUTE</code> event, this is the IP address.</p>",
         "CoreNetworkChangeValues$SegmentName": "<p>The names of the segments in a core network.</p>",
+        "CoreNetworkChangeValues$NetworkFunctionGroupName": "<p>The network function group name if the change event is associated with a network function group.</p>",
         "CoreNetworkChangeValues$Cidr": "<p>The IP addresses used for a core network.</p>",
         "CoreNetworkChangeValues$DestinationIdentifier": "<p>The ID of the destination.</p>",
+        "CoreNetworkNetworkFunctionGroup$Name": "<p>The name of the network function group.</p>",
+        "CoreNetworkNetworkFunctionGroupIdentifier$NetworkFunctionGroupName": "<p>The network function group name.</p>",
         "CoreNetworkPolicy$Description": "<p>The description of a core network policy.</p>",
         "CoreNetworkPolicyVersion$Description": "<p>The description of a core network policy version.</p>",
         "CoreNetworkSegment$Name": "<p>The name of a core network segment.</p>",
@@ -512,12 +516,14 @@
         "Device$Vendor": "<p>The device vendor.</p>",
         "Device$Model": "<p>The device model.</p>",
         "Device$SerialNumber": "<p>The device serial number.</p>",
+        "EdgeOverride$UseEdge": "<p>The edge that should be used when overriding the current edge order.</p>",
+        "EdgeSet$member": null,
         "GetLinksRequest$Type": "<p>The link type.</p>",
         "GetLinksRequest$Provider": "<p>The link provider.</p>",
-        "GetNetworkResourceCountsRequest$ResourceType": "<p>The resource type.</p> <p>The following are the supported resource types for Direct Connect:</p> <ul> <li> <p> <code>dxcon</code> </p> </li> <li> <p> <code>dx-gateway</code> </p> </li> <li> <p> <code>dx-vif</code> </p> </li> </ul> <p>The following are the supported resource types for Network Manager:</p> <ul> <li> <p> <code>connection</code> </p> </li> <li> <p> <code>device</code> </p> </li> <li> <p> <code>link</code> </p> </li> <li> <p> <code>site</code> </p> </li> </ul> <p>The following are the supported resource types for Amazon VPC:</p> <ul> <li> <p> <code>customer-gateway</code> </p> </li> <li> <p> <code>transit-gateway</code> </p> </li> <li> <p> <code>transit-gateway-attachment</code> </p> </li> <li> <p> <code>transit-gateway-connect-peer</code> </p> </li> <li> <p> <code>transit-gateway-route-table</code> </p> </li> <li> <p> <code>vpn-connection</code> </p> </li> </ul>",
-        "GetNetworkResourceRelationshipsRequest$ResourceType": "<p>The resource type.</p> <p>The following are the supported resource types for Direct Connect:</p> <ul> <li> <p> <code>dxcon</code> </p> </li> <li> <p> <code>dx-gateway</code> </p> </li> <li> <p> <code>dx-vif</code> </p> </li> </ul> <p>The following are the supported resource types for Network Manager:</p> <ul> <li> <p> <code>connection</code> </p> </li> <li> <p> <code>device</code> </p> </li> <li> <p> <code>link</code> </p> </li> <li> <p> <code>site</code> </p> </li> </ul> <p>The following are the supported resource types for Amazon VPC:</p> <ul> <li> <p> <code>customer-gateway</code> </p> </li> <li> <p> <code>transit-gateway</code> </p> </li> <li> <p> <code>transit-gateway-attachment</code> </p> </li> <li> <p> <code>transit-gateway-connect-peer</code> </p> </li> <li> <p> <code>transit-gateway-route-table</code> </p> </li> <li> <p> <code>vpn-connection</code> </p> </li> </ul>",
-        "GetNetworkResourcesRequest$ResourceType": "<p>The resource type.</p> <p>The following are the supported resource types for Direct Connect:</p> <ul> <li> <p> <code>dxcon</code> - The definition model is <a href=\"https://docs.aws.amazon.com/directconnect/latest/APIReference/API_Connection.html\">Connection</a>.</p> </li> <li> <p> <code>dx-gateway</code> - The definition model is <a href=\"https://docs.aws.amazon.com/directconnect/latest/APIReference/API_DirectConnectGateway.html\">DirectConnectGateway</a>.</p> </li> <li> <p> <code>dx-vif</code> - The definition model is <a href=\"https://docs.aws.amazon.com/directconnect/latest/APIReference/API_VirtualInterface.html\">VirtualInterface</a>.</p> </li> </ul> <p>The following are the supported resource types for Network Manager:</p> <ul> <li> <p> <code>connection</code> - The definition model is <a href=\"https://docs.aws.amazon.com/networkmanager/latest/APIReference/API_Connection.html\">Connection</a>.</p> </li> <li> <p> <code>device</code> - The definition model is <a href=\"https://docs.aws.amazon.com/networkmanager/latest/APIReference/API_Device.html\">Device</a>.</p> </li> <li> <p> <code>link</code> - The definition model is <a href=\"https://docs.aws.amazon.com/networkmanager/latest/APIReference/API_Link.html\">Link</a>.</p> </li> <li> <p> <code>site</code> - The definition model is <a href=\"https://docs.aws.amazon.com/networkmanager/latest/APIReference/API_Site.html\">Site</a>.</p> </li> </ul> <p>The following are the supported resource types for Amazon VPC:</p> <ul> <li> <p> <code>customer-gateway</code> - The definition model is <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CustomerGateway.html\">CustomerGateway</a>.</p> </li> <li> <p> <code>transit-gateway</code> - The definition model is <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_TransitGateway.html\">TransitGateway</a>.</p> </li> <li> <p> <code>transit-gateway-attachment</code> - The definition model is <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_TransitGatewayAttachment.html\">TransitGatewayAttachment</a>.</p> </li> <li> <p> <code>transit-gateway-connect-peer</code> - The definition model is <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_TransitGatewayConnectPeer.html\">TransitGatewayConnectPeer</a>.</p> </li> <li> <p> <code>transit-gateway-route-table</code> - The definition model is <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_TransitGatewayRouteTable.html\">TransitGatewayRouteTable</a>.</p> </li> <li> <p> <code>vpn-connection</code> - The definition model is <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_VpnConnection.html\">VpnConnection</a>.</p> </li> </ul>",
-        "GetNetworkTelemetryRequest$ResourceType": "<p>The resource type.</p> <p>The following are the supported resource types for Direct Connect:</p> <ul> <li> <p> <code>dxcon</code> </p> </li> <li> <p> <code>dx-gateway</code> </p> </li> <li> <p> <code>dx-vif</code> </p> </li> </ul> <p>The following are the supported resource types for Network Manager:</p> <ul> <li> <p> <code>connection</code> </p> </li> <li> <p> <code>device</code> </p> </li> <li> <p> <code>link</code> </p> </li> <li> <p> <code>site</code> </p> </li> </ul> <p>The following are the supported resource types for Amazon VPC:</p> <ul> <li> <p> <code>customer-gateway</code> </p> </li> <li> <p> <code>transit-gateway</code> </p> </li> <li> <p> <code>transit-gateway-attachment</code> </p> </li> <li> <p> <code>transit-gateway-connect-peer</code> </p> </li> <li> <p> <code>transit-gateway-route-table</code> </p> </li> <li> <p> <code>vpn-connection</code> </p> </li> </ul>",
+        "GetNetworkResourceCountsRequest$ResourceType": "<p>The resource type.</p> <p>The following are the supported resource types for Direct Connect:</p> <ul> <li> <p> <code>dxcon</code> </p> </li> <li> <p> <code>dx-gateway</code> </p> </li> <li> <p> <code>dx-vif</code> </p> </li> </ul> <p>The following are the supported resource types for Network Manager:</p> <ul> <li> <p> <code>attachment</code> </p> </li> <li> <p> <code>connect-peer</code> </p> </li> <li> <p> <code>connection</code> </p> </li> <li> <p> <code>core-network</code> </p> </li> <li> <p> <code>device</code> </p> </li> <li> <p> <code>link</code> </p> </li> <li> <p> <code>peering</code> </p> </li> <li> <p> <code>site</code> </p> </li> </ul> <p>The following are the supported resource types for Amazon VPC:</p> <ul> <li> <p> <code>customer-gateway</code> </p> </li> <li> <p> <code>transit-gateway</code> </p> </li> <li> <p> <code>transit-gateway-attachment</code> </p> </li> <li> <p> <code>transit-gateway-connect-peer</code> </p> </li> <li> <p> <code>transit-gateway-route-table</code> </p> </li> <li> <p> <code>vpn-connection</code> </p> </li> </ul>",
+        "GetNetworkResourceRelationshipsRequest$ResourceType": "<p>The resource type.</p> <p>The following are the supported resource types for Direct Connect:</p> <ul> <li> <p> <code>dxcon</code> </p> </li> <li> <p> <code>dx-gateway</code> </p> </li> <li> <p> <code>dx-vif</code> </p> </li> </ul> <p>The following are the supported resource types for Network Manager:</p> <ul> <li> <p> <code>attachment</code> </p> </li> <li> <p> <code>connect-peer</code> </p> </li> <li> <p> <code>connection</code> </p> </li> <li> <p> <code>core-network</code> </p> </li> <li> <p> <code>device</code> </p> </li> <li> <p> <code>link</code> </p> </li> <li> <p> <code>peering</code> </p> </li> <li> <p> <code>site</code> </p> </li> </ul> <p>The following are the supported resource types for Amazon VPC:</p> <ul> <li> <p> <code>customer-gateway</code> </p> </li> <li> <p> <code>transit-gateway</code> </p> </li> <li> <p> <code>transit-gateway-attachment</code> </p> </li> <li> <p> <code>transit-gateway-connect-peer</code> </p> </li> <li> <p> <code>transit-gateway-route-table</code> </p> </li> <li> <p> <code>vpn-connection</code> </p> </li> </ul>",
+        "GetNetworkResourcesRequest$ResourceType": "<p>The resource type.</p> <p>The following are the supported resource types for Direct Connect:</p> <ul> <li> <p> <code>dxcon</code> </p> </li> <li> <p> <code>dx-gateway</code> </p> </li> <li> <p> <code>dx-vif</code> </p> </li> </ul> <p>The following are the supported resource types for Network Manager:</p> <ul> <li> <p> <code>attachment</code> </p> </li> <li> <p> <code>connect-peer</code> </p> </li> <li> <p> <code>connection</code> </p> </li> <li> <p> <code>core-network</code> </p> </li> <li> <p> <code>device</code> </p> </li> <li> <p> <code>link</code> </p> </li> <li> <p> <code>peering</code> </p> </li> <li> <p> <code>site</code> </p> </li> </ul> <p>The following are the supported resource types for Amazon VPC:</p> <ul> <li> <p> <code>customer-gateway</code> </p> </li> <li> <p> <code>transit-gateway</code> </p> </li> <li> <p> <code>transit-gateway-attachment</code> </p> </li> <li> <p> <code>transit-gateway-connect-peer</code> </p> </li> <li> <p> <code>transit-gateway-route-table</code> </p> </li> <li> <p> <code>vpn-connection</code> </p> </li> </ul>",
+        "GetNetworkTelemetryRequest$ResourceType": "<p>The resource type. The following are the supported resource types:</p> <ul> <li> <p> <code>connect-peer</code> </p> </li> <li> <p> <code>transit-gateway-connect-peer</code> </p> </li> <li> <p> <code>vpn-connection</code> </p> </li> </ul>",
         "GetRouteAnalysisRequest$RouteAnalysisId": "<p>The ID of the route analysis.</p>",
         "GlobalNetwork$Description": "<p>The description of the global network.</p>",
         "Link$Description": "<p>The description of the link.</p>",
@@ -526,7 +532,8 @@
         "Location$Address": "<p>The physical address.</p>",
         "Location$Latitude": "<p>The latitude.</p>",
         "Location$Longitude": "<p>The longitude.</p>",
-        "NetworkResource$ResourceType": "<p>The resource type.</p> <p>The following are the supported resource types for Direct Connect:</p> <ul> <li> <p> <code>dxcon</code> </p> </li> <li> <p> <code>dx-gateway</code> </p> </li> <li> <p> <code>dx-vif</code> </p> </li> </ul> <p>The following are the supported resource types for Network Manager:</p> <ul> <li> <p> <code>connection</code> </p> </li> <li> <p> <code>device</code> </p> </li> <li> <p> <code>link</code> </p> </li> <li> <p> <code>site</code> </p> </li> </ul> <p>The following are the supported resource types for Amazon VPC:</p> <ul> <li> <p> <code>customer-gateway</code> </p> </li> <li> <p> <code>transit-gateway</code> </p> </li> <li> <p> <code>transit-gateway-attachment</code> </p> </li> <li> <p> <code>transit-gateway-connect-peer</code> </p> </li> <li> <p> <code>transit-gateway-route-table</code> </p> </li> <li> <p> <code>vpn-connection</code> </p> </li> </ul>",
+        "NetworkFunctionGroup$Name": "<p>The name of the network function group.</p>",
+        "NetworkResource$ResourceType": "<p>The resource type.</p> <p>The following are the supported resource types for Direct Connect:</p> <ul> <li> <p> <code>dxcon</code> </p> </li> <li> <p> <code>dx-gateway</code> </p> </li> <li> <p> <code>dx-vif</code> </p> </li> </ul> <p>The following are the supported resource types for Network Manager:</p> <ul> <li> <p> <code>attachment</code> </p> </li> <li> <p> <code>connect-peer</code> </p> </li> <li> <p> <code>connection</code> </p> </li> <li> <p> <code>core-network</code> </p> </li> <li> <p> <code>device</code> </p> </li> <li> <p> <code>link</code> </p> </li> <li> <p> <code>peering</code> </p> </li> <li> <p> <code>site</code> </p> </li> </ul> <p>The following are the supported resource types for Amazon VPC:</p> <ul> <li> <p> <code>customer-gateway</code> </p> </li> <li> <p> <code>transit-gateway</code> </p> </li> <li> <p> <code>transit-gateway-attachment</code> </p> </li> <li> <p> <code>transit-gateway-connect-peer</code> </p> </li> <li> <p> <code>transit-gateway-route-table</code> </p> </li> <li> <p> <code>vpn-connection</code> </p> </li> </ul>",
         "NetworkResource$ResourceId": "<p>The ID of the resource.</p>",
         "NetworkResource$Definition": "<p>Information about the resource, in JSON format. Network Manager gets this information by describing the resource using its Describe API call.</p>",
         "NetworkResourceCount$ResourceType": "<p>The resource type.</p>",
@@ -538,12 +545,14 @@
         "NetworkRoute$DestinationCidrBlock": "<p>A unique identifier for the route, such as a CIDR block.</p>",
         "NetworkRoute$PrefixListId": "<p>The ID of the prefix list.</p>",
         "NetworkRouteDestination$SegmentName": "<p>The name of the segment.</p>",
+        "NetworkRouteDestination$NetworkFunctionGroupName": "<p>The network function group name associated with the destination.</p>",
         "NetworkRouteDestination$ResourceType": "<p>The resource type.</p>",
         "NetworkRouteDestination$ResourceId": "<p>The ID of the resource.</p>",
         "NetworkTelemetry$ResourceType": "<p>The resource type.</p>",
         "NetworkTelemetry$ResourceId": "<p>The ID of the resource.</p>",
         "NetworkTelemetry$Address": "<p>The address.</p>",
         "PathComponent$DestinationCidrBlock": "<p>The destination CIDR block in the route table.</p>",
+        "ProposedNetworkFunctionGroupChange$NetworkFunctionGroupName": "<p>The proposed name change for the network function group name.</p>",
         "ProposedSegmentChange$SegmentName": "<p>The name of the segment to change.</p>",
         "PutCoreNetworkPolicyRequest$Description": "<p>a core network policy description.</p>",
         "Relationship$From": "<p>The ARN of the resource.</p>",
@@ -562,7 +571,8 @@
         "UpdateLinkRequest$Description": "<p>A description of the link.</p> <p>Constraints: Maximum length of 256 characters.</p>",
         "UpdateLinkRequest$Type": "<p>The type of the link.</p> <p>Constraints: Maximum length of 128 characters.</p>",
         "UpdateLinkRequest$Provider": "<p>The provider of the link.</p> <p>Constraints: Maximum length of 128 characters.</p>",
-        "UpdateSiteRequest$Description": "<p>A description of your site.</p> <p>Constraints: Maximum length of 256 characters.</p>"
+        "UpdateSiteRequest$Description": "<p>A description of your site.</p> <p>Constraints: Maximum length of 256 characters.</p>",
+        "WhenSentToSegmentsList$member": null
       }
     },
     "ConstrainedStringList": {
@@ -578,7 +588,9 @@
         "GetNetworkRoutesRequest$LongestPrefixMatches": "<p>The most specific route that matches the traffic (longest prefix match).</p>",
         "GetNetworkRoutesRequest$SubnetOfMatches": "<p>The routes with a subnet that match the specified CIDR filter.</p>",
         "GetNetworkRoutesRequest$SupernetOfMatches": "<p>The routes with a CIDR that encompasses the CIDR filter. Example: If you specify 10.0.1.0/30, then the result returns 10.0.1.0/29.</p>",
-        "GetNetworkRoutesRequest$PrefixListIds": "<p>The IDs of the prefix lists.</p>"
+        "GetNetworkRoutesRequest$PrefixListIds": "<p>The IDs of the prefix lists.</p>",
+        "ServiceInsertionSegments$SendVia": "<p>The list of segments associated with the <code>send-via</code> action.</p>",
+        "ServiceInsertionSegments$SendTo": "<p>The list of segments associated with the <code>send-to</code> action.</p>"
       }
     },
     "CoreNetwork": {
@@ -655,6 +667,7 @@
         "ConnectPeer$CoreNetworkId": "<p>The ID of a core network.</p>",
         "ConnectPeerSummary$CoreNetworkId": "<p>The ID of a core network.</p>",
         "CoreNetwork$CoreNetworkId": "<p>The ID of a core network.</p>",
+        "CoreNetworkNetworkFunctionGroupIdentifier$CoreNetworkId": "<p>The ID of the core network.</p>",
         "CoreNetworkPolicy$CoreNetworkId": "<p>The ID of a core network.</p>",
         "CoreNetworkPolicyVersion$CoreNetworkId": "<p>The ID of a core network.</p>",
         "CoreNetworkSegmentEdgeIdentifier$CoreNetworkId": "<p>The ID of a core network.</p>",
@@ -683,6 +696,24 @@
         "PutCoreNetworkPolicyRequest$CoreNetworkId": "<p>The ID of a core network.</p>",
         "RestoreCoreNetworkPolicyVersionRequest$CoreNetworkId": "<p>The ID of a core network.</p>",
         "UpdateCoreNetworkRequest$CoreNetworkId": "<p>The ID of a core network.</p>"
+      }
+    },
+    "CoreNetworkNetworkFunctionGroup": {
+      "base": "<p>Describes a network function group.</p>",
+      "refs": {
+        "CoreNetworkNetworkFunctionGroupList$member": null
+      }
+    },
+    "CoreNetworkNetworkFunctionGroupIdentifier": {
+      "base": "<p>Describes a core network </p>",
+      "refs": {
+        "RouteTableIdentifier$CoreNetworkNetworkFunctionGroup": "<p>The route table identifier associated with the network function group.</p>"
+      }
+    },
+    "CoreNetworkNetworkFunctionGroupList": {
+      "base": null,
+      "refs": {
+        "CoreNetwork$NetworkFunctionGroups": "<p>The network function groups associated with a core network.</p>"
       }
     },
     "CoreNetworkPolicy": {
@@ -1183,6 +1214,24 @@
       "refs": {
       }
     },
+    "EdgeOverride": {
+      "base": "<p>Describes the edge that's used for the override. </p>",
+      "refs": {
+        "WithEdgeOverridesList$member": null
+      }
+    },
+    "EdgeSet": {
+      "base": null,
+      "refs": {
+        "EdgeSetList$member": null
+      }
+    },
+    "EdgeSetList": {
+      "base": null,
+      "refs": {
+        "EdgeOverride$EdgeSets": "<p>The list of edge locations.</p>"
+      }
+    },
     "ExceptionContextKey": {
       "base": null,
       "refs": {
@@ -1219,6 +1268,7 @@
         "ConnectPeerSummary$EdgeLocation": "<p>The Region where the edge is located.</p>",
         "CoreNetworkChangeEventValues$EdgeLocation": "<p>The edge location for the core network change event.</p>",
         "CoreNetworkEdge$EdgeLocation": "<p>The Region where a core network edge is located.</p>",
+        "CoreNetworkNetworkFunctionGroupIdentifier$EdgeLocation": "<p>The location for the core network edge.</p>",
         "CoreNetworkSegmentEdgeIdentifier$EdgeLocation": "<p>The Region where the segment edge is located.</p>",
         "CreateConnectAttachmentRequest$EdgeLocation": "<p>The Region where the edge is located.</p>",
         "ExternalRegionCodeList$member": null,
@@ -1237,6 +1287,7 @@
       "base": null,
       "refs": {
         "CoreNetworkChangeValues$EdgeLocations": "<p>The Regions where edges are located in a core network. </p>",
+        "CoreNetworkNetworkFunctionGroup$EdgeLocations": "<p>The core network edge locations.</p>",
         "CoreNetworkSegment$EdgeLocations": "<p>The Regions where the edges are located.</p>"
       }
     },
@@ -1625,7 +1676,7 @@
         "ConnectPeerBgpConfiguration$PeerAddress": "<p>The address of a core network Connect peer.</p>",
         "ConnectPeerConfiguration$CoreNetworkAddress": "<p>The IP address of a core network.</p>",
         "ConnectPeerConfiguration$PeerAddress": "<p>The IP address of the Connect peer.</p>",
-        "CreateConnectPeerRequest$CoreNetworkAddress": "<p>A Connect peer core network address.</p>",
+        "CreateConnectPeerRequest$CoreNetworkAddress": "<p>A Connect peer core network address. This only applies only when the protocol is <code>GRE</code>.</p>",
         "CreateConnectPeerRequest$PeerAddress": "<p>The Connect peer address.</p>",
         "RouteAnalysisEndpointOptions$IpAddress": "<p>The IP address.</p>",
         "RouteAnalysisEndpointOptionsSpecification$IpAddress": "<p>The IP address.</p>"
@@ -1646,6 +1697,7 @@
         "GetCoreNetworkPolicyRequest$PolicyVersionId": "<p>The ID of a core network policy version.</p>",
         "NetworkResourceCount$Count": "<p>The resource count.</p>",
         "PathComponent$Sequence": "<p>The sequence number in the path. The destination is 0.</p>",
+        "ProposedNetworkFunctionGroupChange$AttachmentPolicyRuleNumber": "<p>The proposed new attachment policy rule number for the network function group.</p>",
         "ProposedSegmentChange$AttachmentPolicyRuleNumber": "<p>The rule number in the policy document that applies to this change.</p>",
         "PutCoreNetworkPolicyRequest$LatestVersionId": "<p>The ID of a core network policy. </p>",
         "RestoreCoreNetworkPolicyVersionRequest$PolicyVersionId": "<p>The ID of the policy version to restore.</p>"
@@ -1852,6 +1904,24 @@
         "ListPeeringsRequest$MaxResults": "<p>The maximum number of results to return.</p>"
       }
     },
+    "NetworkFunctionGroup": {
+      "base": "<p>Describes a network function group for service insertion.</p>",
+      "refs": {
+        "NetworkFunctionGroupList$member": null
+      }
+    },
+    "NetworkFunctionGroupList": {
+      "base": null,
+      "refs": {
+        "Via$NetworkFunctionGroups": "<p>The list of network function groups associated with the service insertion action.</p>"
+      }
+    },
+    "NetworkFunctionGroupName": {
+      "base": null,
+      "refs": {
+        "Attachment$NetworkFunctionGroupName": "<p>The name of the network function group.</p>"
+      }
+    },
     "NetworkResource": {
       "base": "<p>Describes a network resource.</p>",
       "refs": {
@@ -2042,6 +2112,12 @@
       "refs": {
         "ListPeeringsRequest$PeeringType": "<p>Returns a list of a peering requests.</p>",
         "Peering$PeeringType": "<p>The type of peering. This will be <code>TRANSIT_GATEWAY</code>.</p>"
+      }
+    },
+    "ProposedNetworkFunctionGroupChange": {
+      "base": "<p>Describes proposed changes to a network function group. </p>",
+      "refs": {
+        "Attachment$ProposedNetworkFunctionGroupChange": "<p>Describes a proposed change to a network function group associated with the attachment.</p>"
       }
     },
     "ProposedSegmentChange": {
@@ -2274,6 +2350,18 @@
         "OrganizationStatus$SLRDeploymentStatus": "<p>The status of the SLR deployment for the account. This will be either <code>SUCCEEDED</code> or <code>IN_PROGRESS</code>.</p>"
       }
     },
+    "SegmentActionServiceInsertion": {
+      "base": null,
+      "refs": {
+        "ServiceInsertionAction$Action": "<p>The action the service insertion takes for traffic. <code>send-via</code> sends east-west traffic between attachments. <code>send-to</code> sends north-south traffic to the security appliance, and then from that to either the Internet or to an on-premesis location. </p>"
+      }
+    },
+    "SendViaMode": {
+      "base": null,
+      "refs": {
+        "ServiceInsertionAction$Mode": "<p>Describes the mode packets take for the <code>send-via</code> action. This is not used when the action is <code>send-to</code>. <code>dual-hop</code> packets traverse attachments in both the source to the destination core network edges. This mode requires that an inspection attachment must be present in all Regions of the service insertion-enabled segments. For <code>single-hop</code>, packets traverse a single intermediate inserted attachment. You can use <code>EdgeOverride</code> to specify a specific edge to use. </p>"
+      }
+    },
     "ServerSideString": {
       "base": null,
       "refs": {
@@ -2298,6 +2386,24 @@
         "ValidationException$Message": null,
         "ValidationExceptionField$Name": "<p>The name of the field.</p>",
         "ValidationExceptionField$Message": "<p>The message for the field.</p>"
+      }
+    },
+    "ServiceInsertionAction": {
+      "base": "<p>Describes the action that the service insertion will take for any segments associated with it.</p>",
+      "refs": {
+        "ServiceInsertionActionList$member": null
+      }
+    },
+    "ServiceInsertionActionList": {
+      "base": null,
+      "refs": {
+        "CoreNetworkChangeValues$ServiceInsertionActions": "<p>Describes the service insertion action. </p>"
+      }
+    },
+    "ServiceInsertionSegments": {
+      "base": "<p>Describes the segments associated with the service insertion action.</p>",
+      "refs": {
+        "CoreNetworkNetworkFunctionGroup$Segments": "<p>The segments associated with the network function group.</p>"
       }
     },
     "ServiceQuotaExceededException": {
@@ -2385,9 +2491,9 @@
       "base": null,
       "refs": {
         "AWSLocation$SubnetArn": "<p>The Amazon Resource Name (ARN) of the subnet that the device is located in.</p>",
-        "ConnectPeer$SubnetArn": "<p>The subnet ARN for the Connect peer.</p>",
+        "ConnectPeer$SubnetArn": "<p>The subnet ARN for the Connect peer. This only applies only when the protocol is NO_ENCAP.</p>",
         "ConnectPeerSummary$SubnetArn": "<p>The subnet ARN for the Connect peer summary.</p>",
-        "CreateConnectPeerRequest$SubnetArn": "<p>The subnet ARN for the Connect peer.</p>",
+        "CreateConnectPeerRequest$SubnetArn": "<p>The subnet ARN for the Connect peer. This only applies only when the protocol is NO_ENCAP.</p>",
         "SubnetArnList$member": null
       }
     },
@@ -2446,6 +2552,7 @@
         "ListTagsForResourceResponse$TagList": "<p>The list of tags.</p>",
         "NetworkResource$Tags": "<p>The tags.</p>",
         "Peering$Tags": "<p>The list of key-value tags associated with the peering.</p>",
+        "ProposedNetworkFunctionGroupChange$Tags": "<p>The list of proposed changes to the key-value tags associated with the network function group.</p>",
         "ProposedSegmentChange$Tags": "<p>The list of key-value tags that changed for the segment.</p>",
         "Site$Tags": "<p>The tags for the site.</p>",
         "TagResourceRequest$Tags": "<p>The tags to apply to the specified resource.</p>"
@@ -2712,6 +2819,12 @@
         "ValidationException$Reason": "<p>The reason for the error.</p>"
       }
     },
+    "Via": {
+      "base": "<p>The list of network function groups and edge overrides for the service insertion action. Used for both the <code>send-to</code> and <code>send-via</code> actions.</p>",
+      "refs": {
+        "ServiceInsertionAction$Via": "<p>The list of network function groups and any edge overrides for the chosen service insertion action. Used for both <code>send-to</code> or <code>send-via</code>.</p>"
+      }
+    },
     "VpcArn": {
       "base": null,
       "refs": {
@@ -2739,6 +2852,24 @@
       "refs": {
         "CreateSiteToSiteVpnAttachmentRequest$VpnConnectionArn": "<p>The ARN identifying the VPN attachment.</p>",
         "SiteToSiteVpnAttachment$VpnConnectionArn": "<p>The ARN of the site-to-site VPN attachment. </p>"
+      }
+    },
+    "WhenSentTo": {
+      "base": "<p>Displays a list of the destination segments. Used only when the service insertion action is <code>send-to</code>. </p>",
+      "refs": {
+        "ServiceInsertionAction$WhenSentTo": "<p>The list of destination segments if the service insertion action is <code>send-via</code>.</p>"
+      }
+    },
+    "WhenSentToSegmentsList": {
+      "base": null,
+      "refs": {
+        "WhenSentTo$WhenSentToSegmentsList": "<p>The list of destination segments when the service insertion action is <code>send-to</code>.</p>"
+      }
+    },
+    "WithEdgeOverridesList": {
+      "base": null,
+      "refs": {
+        "Via$WithEdgeOverrides": "<p>Describes any edge overrides. An edge override is a specific edge to be used for traffic.</p>"
       }
     }
   }

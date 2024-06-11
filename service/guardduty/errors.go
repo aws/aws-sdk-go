@@ -31,6 +31,12 @@ const (
 	//
 	// An internal server error exception object.
 	ErrCodeInternalServerErrorException = "InternalServerErrorException"
+
+	// ErrCodeResourceNotFoundException for service response error code
+	// "ResourceNotFoundException".
+	//
+	// The requested resource can't be found.
+	ErrCodeResourceNotFoundException = "ResourceNotFoundException"
 )
 
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
@@ -38,4 +44,5 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"BadRequestException":          newErrorBadRequestException,
 	"ConflictException":            newErrorConflictException,
 	"InternalServerErrorException": newErrorInternalServerErrorException,
+	"ResourceNotFoundException":    newErrorResourceNotFoundException,
 }
