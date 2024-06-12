@@ -5,11 +5,13 @@
     "endpointPrefix":"securitylake",
     "jsonVersion":"1.1",
     "protocol":"rest-json",
+    "protocols":["rest-json"],
     "serviceFullName":"Amazon Security Lake",
     "serviceId":"SecurityLake",
     "signatureVersion":"v4",
     "signingName":"securitylake",
-    "uid":"securitylake-2018-05-10"
+    "uid":"securitylake-2018-05-10",
+    "auth":["aws.auth#sigv4"]
   },
   "operations":{
     "CreateAwsLogSource":{
@@ -616,7 +618,7 @@
       "type":"string",
       "max":1011,
       "min":1,
-      "pattern":"^arn:aws:securitylake:[A-za-z0-9_/.\\-]{0,63}:[A-za-z0-9_/.\\-]{0,63}:[A-Za-z0-9][A-za-z0-9_/.\\-]{0,127}$"
+      "pattern":"^arn:(aws|aws-us-gov|aws-cn):securitylake:[A-za-z0-9_/.\\-]{0,63}:[A-za-z0-9_/.\\-]{0,63}:[A-Za-z0-9][A-za-z0-9_/.\\-]{0,127}$"
     },
     "AwsAccountId":{
       "type":"string",
@@ -872,7 +874,7 @@
       "type":"string",
       "max":64,
       "min":1,
-      "pattern":"^[\\\\\\w\\-_:/.]*$"
+      "pattern":"^[\\w\\-\\_\\:\\.]*$"
     },
     "CustomLogSourceProvider":{
       "type":"structure",
@@ -1416,7 +1418,7 @@
     },
     "Region":{
       "type":"string",
-      "pattern":"^(af|ap|ca|eu|me|sa|us)-(central|north|(north(?:east|west))|south|south(?:east|west)|east|west)-\\d+$"
+      "pattern":"^(us(-gov)?|af|ap|ca|eu|me|sa)-(central|north|(north(?:east|west))|south|south(?:east|west)|east|west)-\\d+$"
     },
     "RegionList":{
       "type":"list",

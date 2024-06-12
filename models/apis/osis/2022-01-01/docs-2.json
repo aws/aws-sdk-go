@@ -427,6 +427,7 @@
         "Pipeline$PipelineName": "<p>The name of the pipeline.</p>",
         "Pipeline$PipelineArn": "<p>The Amazon Resource Name (ARN) of the pipeline.</p>",
         "Pipeline$PipelineConfigurationBody": "<p>The Data Prepper pipeline configuration in YAML format.</p>",
+        "Pipeline$VpcEndpointService": "<p>The VPC endpoint service name for the pipeline.</p>",
         "PipelineBlueprint$BlueprintName": "<p>The name of the blueprint.</p>",
         "PipelineBlueprint$PipelineConfigurationBody": "<p>The YAML configuration of the blueprint.</p>",
         "PipelineBlueprint$DisplayName": "<p>The display name of the blueprint.</p>",
@@ -572,6 +573,12 @@
       "base": "<p>An OpenSearch Ingestion-managed VPC endpoint that will access one or more pipelines.</p>",
       "refs": {
         "VpcEndpointsList$member": null
+      }
+    },
+    "VpcEndpointManagement": {
+      "base": null,
+      "refs": {
+        "VpcOptions$VpcEndpointManagement": "<p>Defines whether you or Amazon OpenSearch Ingestion service create and manage the VPC endpoint configured for the pipeline.</p>"
       }
     },
     "VpcEndpointServiceName": {

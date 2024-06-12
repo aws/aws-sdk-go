@@ -337,9 +337,8 @@ func (c *SESV2) CreateConfigurationSetEventDestinationRequest(input *CreateConfi
 // Create an event destination. Events include message sends, deliveries, opens,
 // clicks, bounces, and complaints. Event destinations are places that you can
 // send information about these events to. For example, you can send event data
-// to Amazon SNS to receive notifications when you receive bounces or complaints,
-// or you can use Amazon Kinesis Data Firehose to stream data to Amazon S3 for
-// long-term storage.
+// to Amazon EventBridge and associate a rule to send the event to the specified
+// target.
 //
 // A single configuration set can include more than one event destination.
 //
@@ -1512,9 +1511,8 @@ func (c *SESV2) DeleteConfigurationSetEventDestinationRequest(input *DeleteConfi
 //
 // Events include message sends, deliveries, opens, clicks, bounces, and complaints.
 // Event destinations are places that you can send information about these events
-// to. For example, you can send event data to Amazon SNS to receive notifications
-// when you receive bounces or complaints, or you can use Amazon Kinesis Data
-// Firehose to stream data to Amazon S3 for long-term storage.
+// to. For example, you can send event data to Amazon EventBridge and associate
+// a rule to send the event to the specified target.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2583,9 +2581,8 @@ func (c *SESV2) GetConfigurationSetEventDestinationsRequest(input *GetConfigurat
 //
 // Events include message sends, deliveries, opens, clicks, bounces, and complaints.
 // Event destinations are places that you can send information about these events
-// to. For example, you can send event data to Amazon SNS to receive notifications
-// when you receive bounces or complaints, or you can use Amazon Kinesis Data
-// Firehose to stream data to Amazon S3 for long-term storage.
+// to. For example, you can send event data to Amazon EventBridge and associate
+// a rule to send the event to the specified target.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -8616,9 +8613,8 @@ func (c *SESV2) UpdateConfigurationSetEventDestinationRequest(input *UpdateConfi
 //
 // Events include message sends, deliveries, opens, clicks, bounces, and complaints.
 // Event destinations are places that you can send information about these events
-// to. For example, you can send event data to Amazon SNS to receive notifications
-// when you receive bounces or complaints, or you can use Amazon Kinesis Data
-// Firehose to stream data to Amazon S3 for long-term storage.
+// to. For example, you can send event data to Amazon EventBridge and associate
+// a rule to send the event to the specified target.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -14297,6 +14293,56 @@ func (s *EmailTemplateMetadata) SetTemplateName(v string) *EmailTemplateMetadata
 	return s
 }
 
+// An object that defines an Amazon EventBridge destination for email events.
+// You can use Amazon EventBridge to send notifications when certain email events
+// occur.
+type EventBridgeDestination struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the Amazon EventBridge bus to publish email
+	// events to. Only the default bus is supported.
+	//
+	// EventBusArn is a required field
+	EventBusArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EventBridgeDestination) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EventBridgeDestination) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EventBridgeDestination) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EventBridgeDestination"}
+	if s.EventBusArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("EventBusArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEventBusArn sets the EventBusArn field's value.
+func (s *EventBridgeDestination) SetEventBusArn(v string) *EventBridgeDestination {
+	s.EventBusArn = &v
+	return s
+}
+
 // In the Amazon SES API v2, events include message sends, deliveries, opens,
 // clicks, bounces, complaints and delivery delays. Event destinations are places
 // that you can send information about these events to. For example, you can
@@ -14317,6 +14363,11 @@ type EventDestination struct {
 	// If false, the event destination is disabled. When the event destination is
 	// disabled, events aren't sent to the specified destinations.
 	Enabled *bool `type:"boolean"`
+
+	// An object that defines an Amazon EventBridge destination for email events.
+	// You can use Amazon EventBridge to send notifications when certain email events
+	// occur.
+	EventBridgeDestination *EventBridgeDestination `type:"structure"`
 
 	// An object that defines an Amazon Kinesis Data Firehose destination for email
 	// events. You can use Amazon Kinesis Data Firehose to stream data to other
@@ -14380,7 +14431,7 @@ type EventDestination struct {
 	PinpointDestination *PinpointDestination `type:"structure"`
 
 	// An object that defines an Amazon SNS destination for email events. You can
-	// use Amazon SNS to send notification when certain email events occur.
+	// use Amazon SNS to send notifications when certain email events occur.
 	SnsDestination *SnsDestination `type:"structure"`
 }
 
@@ -14411,6 +14462,12 @@ func (s *EventDestination) SetCloudWatchDestination(v *CloudWatchDestination) *E
 // SetEnabled sets the Enabled field's value.
 func (s *EventDestination) SetEnabled(v bool) *EventDestination {
 	s.Enabled = &v
+	return s
+}
+
+// SetEventBridgeDestination sets the EventBridgeDestination field's value.
+func (s *EventDestination) SetEventBridgeDestination(v *EventBridgeDestination) *EventDestination {
+	s.EventBridgeDestination = v
 	return s
 }
 
@@ -14463,6 +14520,11 @@ type EventDestinationDefinition struct {
 	// disabled, events aren't sent to the specified destinations.
 	Enabled *bool `type:"boolean"`
 
+	// An object that defines an Amazon EventBridge destination for email events.
+	// You can use Amazon EventBridge to send notifications when certain email events
+	// occur.
+	EventBridgeDestination *EventBridgeDestination `type:"structure"`
+
 	// An object that defines an Amazon Kinesis Data Firehose destination for email
 	// events. You can use Amazon Kinesis Data Firehose to stream data to other
 	// services, such as Amazon S3 and Amazon Redshift.
@@ -14480,7 +14542,7 @@ type EventDestinationDefinition struct {
 	PinpointDestination *PinpointDestination `type:"structure"`
 
 	// An object that defines an Amazon SNS destination for email events. You can
-	// use Amazon SNS to send notification when certain email events occur.
+	// use Amazon SNS to send notifications when certain email events occur.
 	SnsDestination *SnsDestination `type:"structure"`
 }
 
@@ -14510,6 +14572,11 @@ func (s *EventDestinationDefinition) Validate() error {
 			invalidParams.AddNested("CloudWatchDestination", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.EventBridgeDestination != nil {
+		if err := s.EventBridgeDestination.Validate(); err != nil {
+			invalidParams.AddNested("EventBridgeDestination", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.KinesisFirehoseDestination != nil {
 		if err := s.KinesisFirehoseDestination.Validate(); err != nil {
 			invalidParams.AddNested("KinesisFirehoseDestination", err.(request.ErrInvalidParams))
@@ -14536,6 +14603,12 @@ func (s *EventDestinationDefinition) SetCloudWatchDestination(v *CloudWatchDesti
 // SetEnabled sets the Enabled field's value.
 func (s *EventDestinationDefinition) SetEnabled(v bool) *EventDestinationDefinition {
 	s.Enabled = &v
+	return s
+}
+
+// SetEventBridgeDestination sets the EventBridgeDestination field's value.
+func (s *EventDestinationDefinition) SetEventBridgeDestination(v *EventBridgeDestination) *EventDestinationDefinition {
+	s.EventBridgeDestination = v
 	return s
 }
 
@@ -23885,7 +23958,7 @@ func (s *SendingPausedException) RequestID() string {
 }
 
 // An object that defines an Amazon SNS destination for email events. You can
-// use Amazon SNS to send notification when certain email events occur.
+// use Amazon SNS to send notifications when certain email events occur.
 type SnsDestination struct {
 	_ struct{} `type:"structure"`
 

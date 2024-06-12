@@ -11,7 +11,8 @@
     "signatureVersion":"v4",
     "signingName":"secretsmanager",
     "targetPrefix":"secretsmanager",
-    "uid":"secretsmanager-2017-10-17"
+    "uid":"secretsmanager-2017-10-17",
+    "auth":["aws.auth#sigv4"]
   },
   "operations":{
     "BatchGetSecretValue":{
@@ -898,7 +899,8 @@
         },
         "SecretBinary":{"shape":"SecretBinaryType"},
         "SecretString":{"shape":"SecretStringType"},
-        "VersionStages":{"shape":"SecretVersionStagesType"}
+        "VersionStages":{"shape":"SecretVersionStagesType"},
+        "RotationToken":{"shape":"RotationTokenType"}
       }
     },
     "PutSecretValueResponse":{
@@ -1059,6 +1061,13 @@
         "Duration":{"shape":"DurationType"},
         "ScheduleExpression":{"shape":"ScheduleExpressionType"}
       }
+    },
+    "RotationTokenType":{
+      "type":"string",
+      "max":256,
+      "min":36,
+      "pattern":"^[a-zA-Z0-9\\-]+$",
+      "sensitive":true
     },
     "ScheduleExpressionType":{
       "type":"string",

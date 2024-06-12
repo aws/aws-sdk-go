@@ -11,7 +11,8 @@
     "serviceId":"SESv2",
     "signatureVersion":"v4",
     "signingName":"ses",
-    "uid":"sesv2-2019-09-27"
+    "uid":"sesv2-2019-09-27",
+    "auth":["aws.auth#sigv4"]
   },
   "operations":{
     "BatchGetMetricData":{
@@ -2413,6 +2414,13 @@
       "type":"list",
       "member":{"shape":"Esp"}
     },
+    "EventBridgeDestination":{
+      "type":"structure",
+      "required":["EventBusArn"],
+      "members":{
+        "EventBusArn":{"shape":"AmazonResourceName"}
+      }
+    },
     "EventDestination":{
       "type":"structure",
       "required":[
@@ -2426,6 +2434,7 @@
         "KinesisFirehoseDestination":{"shape":"KinesisFirehoseDestination"},
         "CloudWatchDestination":{"shape":"CloudWatchDestination"},
         "SnsDestination":{"shape":"SnsDestination"},
+        "EventBridgeDestination":{"shape":"EventBridgeDestination"},
         "PinpointDestination":{"shape":"PinpointDestination"}
       }
     },
@@ -2437,6 +2446,7 @@
         "KinesisFirehoseDestination":{"shape":"KinesisFirehoseDestination"},
         "CloudWatchDestination":{"shape":"CloudWatchDestination"},
         "SnsDestination":{"shape":"SnsDestination"},
+        "EventBridgeDestination":{"shape":"EventBridgeDestination"},
         "PinpointDestination":{"shape":"PinpointDestination"}
       }
     },

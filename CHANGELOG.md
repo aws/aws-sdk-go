@@ -1,3 +1,22 @@
+Release v1.54.0 (2024-06-12)
+===
+
+### Service Client Updates
+* `service/apptest`: Updates service API, documentation, waiters, paginators, and examples
+* `service/ec2`: Updates service API and documentation
+  * Tagging support for Traffic Mirroring FilterRule resource
+* `service/osis`: Updates service API and documentation
+* `service/redshift`: Updates service API and documentation
+  * Updates to remove DC1 and DS2 node types.
+* `service/secretsmanager`: Updates service API and documentation
+  * Introducing RotationToken parameter for PutSecretValue API
+* `service/securitylake`: Updates service API and documentation
+* `service/sesv2`: Updates service API and documentation
+
+### SDK Features
+* `service/backupstorage`: Remove Backupstorage
+  * This change removes the Backupstorage service, which has been deprecated.
+
 Release v1.53.21 (2024-06-11)
 ===
 

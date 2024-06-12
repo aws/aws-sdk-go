@@ -8,7 +8,8 @@
     "serviceFullName":"Amazon OpenSearch Ingestion",
     "serviceId":"OSIS",
     "signatureVersion":"v4",
-    "uid":"osis-2022-01-01"
+    "uid":"osis-2022-01-01",
+    "auth":["aws.auth#sigv4"]
   },
   "operations":{
     "CreatePipeline":{
@@ -559,6 +560,7 @@
         "VpcEndpoints":{"shape":"VpcEndpointsList"},
         "BufferOptions":{"shape":"BufferOptions"},
         "EncryptionAtRestOptions":{"shape":"EncryptionAtRestOptions"},
+        "VpcEndpointService":{"shape":"String"},
         "ServiceVpcEndpoints":{"shape":"ServiceVpcEndpointsList"},
         "Destinations":{"shape":"PipelineDestinationList"},
         "Tags":{"shape":"TagList"}
@@ -887,6 +889,13 @@
         "VpcOptions":{"shape":"VpcOptions"}
       }
     },
+    "VpcEndpointManagement":{
+      "type":"string",
+      "enum":[
+        "CUSTOMER",
+        "SERVICE"
+      ]
+    },
     "VpcEndpointServiceName":{
       "type":"string",
       "enum":["OPENSEARCH_SERVERLESS"]
@@ -901,7 +910,8 @@
       "members":{
         "SubnetIds":{"shape":"SubnetIds"},
         "SecurityGroupIds":{"shape":"SecurityGroupIds"},
-        "VpcAttachmentOptions":{"shape":"VpcAttachmentOptions"}
+        "VpcAttachmentOptions":{"shape":"VpcAttachmentOptions"},
+        "VpcEndpointManagement":{"shape":"VpcEndpointManagement"}
       }
     }
   }

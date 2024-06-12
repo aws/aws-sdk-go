@@ -335,6 +335,7 @@
     "DescribeStoreImageTasks": "<p>Describes the progress of the AMI store tasks. You can describe the store tasks for specified AMIs. If you don't specify the AMIs, you get a paginated list of store tasks from the last 31 days.</p> <p>For each AMI task, the response indicates if the task is <code>InProgress</code>, <code>Completed</code>, or <code>Failed</code>. For tasks <code>InProgress</code>, the response shows the estimated progress as a percentage.</p> <p>Tasks are listed in reverse chronological order. Currently, only tasks from the past 31 days can be viewed.</p> <p>To use this API, you must have the required permissions. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ami-store-restore.html#ami-s3-permissions\">Permissions for storing and restoring AMIs using Amazon S3</a> in the <i>Amazon EC2 User Guide</i>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ami-store-restore.html\">Store and restore an AMI using Amazon S3</a> in the <i>Amazon EC2 User Guide</i>.</p>",
     "DescribeSubnets": "<p>Describes one or more of your subnets.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/configure-subnets.html\">Subnets</a> in the <i>Amazon VPC User Guide</i>.</p>",
     "DescribeTags": "<p>Describes the specified tags for your EC2 resources.</p> <p>For more information about tags, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html\">Tag your Amazon EC2 resources</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <important> <p>We strongly recommend using only paginated requests. Unpaginated requests are susceptible to throttling and timeouts.</p> </important> <note> <p>The order of the elements in the response, including those within nested structures, might vary. Applications should not assume the elements appear in a particular order.</p> </note>",
+    "DescribeTrafficMirrorFilterRules": "<p>Describe traffic mirror filters that determine the traffic that is mirrored.</p>",
     "DescribeTrafficMirrorFilters": "<p>Describes one or more Traffic Mirror filters.</p>",
     "DescribeTrafficMirrorSessions": "<p>Describes one or more Traffic Mirror sessions. By default, all Traffic Mirror sessions are described. Alternatively, you can filter the results.</p>",
     "DescribeTrafficMirrorTargets": "<p>Information about one or more Traffic Mirror targets.</p>",
@@ -2348,6 +2349,7 @@
         "DescribeStoreImageTasksRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeSubnetsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeTagsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "DescribeTrafficMirrorFilterRulesRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeTrafficMirrorFiltersRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeTrafficMirrorSessionsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeTrafficMirrorTargetsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -7524,6 +7526,16 @@
       "refs": {
       }
     },
+    "DescribeTrafficMirrorFilterRulesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeTrafficMirrorFilterRulesResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeTrafficMirrorFiltersRequest": {
       "base": null,
       "refs": {
@@ -9557,6 +9569,7 @@
         "DescribeStoreImageTasksRequest$Filters": "<p>The filters.</p> <ul> <li> <p> <code>task-state</code> - Returns tasks in a certain state (<code>InProgress</code> | <code>Completed</code> | <code>Failed</code>)</p> </li> <li> <p> <code>bucket</code> - Returns task information for tasks that targeted a specific bucket. For the filter value, specify the bucket name.</p> </li> </ul> <note> <p>When you specify the <code>ImageIds</code> parameter, any filters that you specify are ignored. To use the filters, you must remove the <code>ImageIds</code> parameter.</p> </note>",
         "DescribeSubnetsRequest$Filters": "<p>The filters.</p> <ul> <li> <p> <code>availability-zone</code> - The Availability Zone for the subnet. You can also use <code>availabilityZone</code> as the filter name.</p> </li> <li> <p> <code>availability-zone-id</code> - The ID of the Availability Zone for the subnet. You can also use <code>availabilityZoneId</code> as the filter name.</p> </li> <li> <p> <code>available-ip-address-count</code> - The number of IPv4 addresses in the subnet that are available.</p> </li> <li> <p> <code>cidr-block</code> - The IPv4 CIDR block of the subnet. The CIDR block you specify must exactly match the subnet's CIDR block for information to be returned for the subnet. You can also use <code>cidr</code> or <code>cidrBlock</code> as the filter names.</p> </li> <li> <p> <code>customer-owned-ipv4-pool</code> - The customer-owned IPv4 address pool associated with the subnet.</p> </li> <li> <p> <code>default-for-az</code> - Indicates whether this is the default subnet for the Availability Zone (<code>true</code> | <code>false</code>). You can also use <code>defaultForAz</code> as the filter name.</p> </li> <li> <p> <code>enable-dns64</code> - Indicates whether DNS queries made to the Amazon-provided DNS Resolver in this subnet should return synthetic IPv6 addresses for IPv4-only destinations.</p> </li> <li> <p> <code>enable-lni-at-device-index</code> - Indicates the device position for local network interfaces in this subnet. For example, <code>1</code> indicates local network interfaces in this subnet are the secondary network interface (eth1). </p> </li> <li> <p> <code>ipv6-cidr-block-association.ipv6-cidr-block</code> - An IPv6 CIDR block associated with the subnet.</p> </li> <li> <p> <code>ipv6-cidr-block-association.association-id</code> - An association ID for an IPv6 CIDR block associated with the subnet.</p> </li> <li> <p> <code>ipv6-cidr-block-association.state</code> - The state of an IPv6 CIDR block associated with the subnet.</p> </li> <li> <p> <code>ipv6-native</code> - Indicates whether this is an IPv6 only subnet (<code>true</code> | <code>false</code>).</p> </li> <li> <p> <code>map-customer-owned-ip-on-launch</code> - Indicates whether a network interface created in this subnet (including a network interface created by <a>RunInstances</a>) receives a customer-owned IPv4 address.</p> </li> <li> <p> <code>map-public-ip-on-launch</code> - Indicates whether instances launched in this subnet receive a public IPv4 address.</p> </li> <li> <p> <code>outpost-arn</code> - The Amazon Resource Name (ARN) of the Outpost.</p> </li> <li> <p> <code>owner-id</code> - The ID of the Amazon Web Services account that owns the subnet.</p> </li> <li> <p> <code>private-dns-name-options-on-launch.hostname-type</code> - The type of hostname to assign to instances in the subnet at launch. For IPv4-only and dual-stack (IPv4 and IPv6) subnets, an instance DNS name can be based on the instance IPv4 address (ip-name) or the instance ID (resource-name). For IPv6 only subnets, an instance DNS name must be based on the instance ID (resource-name).</p> </li> <li> <p> <code>private-dns-name-options-on-launch.enable-resource-name-dns-a-record</code> - Indicates whether to respond to DNS queries for instance hostnames with DNS A records.</p> </li> <li> <p> <code>private-dns-name-options-on-launch.enable-resource-name-dns-aaaa-record</code> - Indicates whether to respond to DNS queries for instance hostnames with DNS AAAA records.</p> </li> <li> <p> <code>state</code> - The state of the subnet (<code>pending</code> | <code>available</code>).</p> </li> <li> <p> <code>subnet-arn</code> - The Amazon Resource Name (ARN) of the subnet.</p> </li> <li> <p> <code>subnet-id</code> - The ID of the subnet.</p> </li> <li> <p> <code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p> </li> <li> <p> <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p> </li> <li> <p> <code>vpc-id</code> - The ID of the VPC for the subnet.</p> </li> </ul>",
         "DescribeTagsRequest$Filters": "<p>The filters.</p> <ul> <li> <p> <code>key</code> - The tag key.</p> </li> <li> <p> <code>resource-id</code> - The ID of the resource.</p> </li> <li> <p> <code>resource-type</code> - The resource type. For a list of possible values, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_TagSpecification.html\">TagSpecification</a>.</p> </li> <li> <p> <code>tag</code>:&lt;key&gt; - The key/value combination of the tag. For example, specify \"tag:Owner\" for the filter name and \"TeamA\" for the filter value to find resources with the tag \"Owner=TeamA\".</p> </li> <li> <p> <code>value</code> - The tag value.</p> </li> </ul>",
+        "DescribeTrafficMirrorFilterRulesRequest$Filters": "<p>Traffic mirror filters.</p> <ul> <li> <p> <code>traffic-mirror-filter-rule-id</code>: The ID of the Traffic Mirror rule.</p> </li> <li> <p> <code>traffic-mirror-filter-id</code>: The ID of the filter that this rule is associated with.</p> </li> <li> <p> <code>rule-number</code>: The number of the Traffic Mirror rule.</p> </li> <li> <p> <code>rule-action</code>: The action taken on the filtered traffic. Possible actions are <code>accept</code> and <code>reject</code>.</p> </li> <li> <p> <code>traffic-direction</code>: The traffic direction. Possible directions are <code>ingress</code> and <code>egress</code>.</p> </li> <li> <p> <code>protocol</code>: The protocol, for example UDP, assigned to the Traffic Mirror rule.</p> </li> <li> <p> <code>source-cidr-block</code>: The source CIDR block assigned to the Traffic Mirror rule.</p> </li> <li> <p> <code>destination-cidr-block</code>: The destination CIDR block assigned to the Traffic Mirror rule.</p> </li> <li> <p> <code>description</code>: The description of the Traffic Mirror rule.</p> </li> </ul>",
         "DescribeTrafficMirrorFiltersRequest$Filters": "<p>One or more filters. The possible values are:</p> <ul> <li> <p> <code>description</code>: The Traffic Mirror filter description.</p> </li> <li> <p> <code>traffic-mirror-filter-id</code>: The ID of the Traffic Mirror filter.</p> </li> </ul>",
         "DescribeTrafficMirrorSessionsRequest$Filters": "<p>One or more filters. The possible values are:</p> <ul> <li> <p> <code>description</code>: The Traffic Mirror session description.</p> </li> <li> <p> <code>network-interface-id</code>: The ID of the Traffic Mirror session network interface.</p> </li> <li> <p> <code>owner-id</code>: The ID of the account that owns the Traffic Mirror session.</p> </li> <li> <p> <code>packet-length</code>: The assigned number of packets to mirror. </p> </li> <li> <p> <code>session-number</code>: The assigned session number. </p> </li> <li> <p> <code>traffic-mirror-filter-id</code>: The ID of the Traffic Mirror filter.</p> </li> <li> <p> <code>traffic-mirror-session-id</code>: The ID of the Traffic Mirror session.</p> </li> <li> <p> <code>traffic-mirror-target-id</code>: The ID of the Traffic Mirror target.</p> </li> <li> <p> <code>virtual-network-id</code>: The virtual network ID of the Traffic Mirror session.</p> </li> </ul>",
         "DescribeTrafficMirrorTargetsRequest$Filters": "<p>One or more filters. The possible values are:</p> <ul> <li> <p> <code>description</code>: The Traffic Mirror target description.</p> </li> <li> <p> <code>network-interface-id</code>: The ID of the Traffic Mirror session network interface.</p> </li> <li> <p> <code>network-load-balancer-arn</code>: The Amazon Resource Name (ARN) of the Network Load Balancer that is associated with the session.</p> </li> <li> <p> <code>owner-id</code>: The ID of the account that owns the Traffic Mirror session.</p> </li> <li> <p> <code>traffic-mirror-target-id</code>: The ID of the Traffic Mirror target.</p> </li> </ul>",
@@ -12193,7 +12206,7 @@
         "CreateTrafficMirrorFilterRuleRequest$Protocol": "<p>The protocol, for example UDP, to assign to the Traffic Mirror rule.</p> <p>For information about the protocol value, see <a href=\"https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml\">Protocol Numbers</a> on the Internet Assigned Numbers Authority (IANA) website.</p>",
         "CreateTrafficMirrorSessionRequest$PacketLength": "<p>The number of bytes in each packet to mirror. These are bytes after the VXLAN header. Do not specify this parameter when you want to mirror the entire packet. To mirror a subset of the packet, set this to the length (in bytes) that you want to mirror. For example, if you set this value to 100, then the first 100 bytes that meet the filter criteria are copied to the target.</p> <p>If you do not want to mirror the entire packet, use the <code>PacketLength</code> parameter to specify the number of bytes in each packet to mirror.</p> <p>For sessions with Network Load Balancer (NLB) Traffic Mirror targets the default <code>PacketLength</code> will be set to 8500. Valid values are 1-8500. Setting a <code>PacketLength</code> greater than 8500 will result in an error response.</p>",
         "CreateTrafficMirrorSessionRequest$SessionNumber": "<p>The session number determines the order in which sessions are evaluated when an interface is used by multiple sessions. The first session with a matching filter is the one that mirrors the packets.</p> <p>Valid values are 1-32766.</p>",
-        "CreateTrafficMirrorSessionRequest$VirtualNetworkId": "<p>The VXLAN ID for the Traffic Mirror session. For more information about the VXLAN protocol, see <a href=\"https://tools.ietf.org/html/rfc7348\">RFC 7348</a>. If you do not specify a <code>VirtualNetworkId</code>, an account-wide unique id is chosen at random.</p>",
+        "CreateTrafficMirrorSessionRequest$VirtualNetworkId": "<p>The VXLAN ID for the Traffic Mirror session. For more information about the VXLAN protocol, see <a href=\"https://datatracker.ietf.org/doc/html/rfc7348\">RFC 7348</a>. If you do not specify a <code>VirtualNetworkId</code>, an account-wide unique ID is chosen at random.</p>",
         "CreateVolumeRequest$Iops": "<p>The number of I/O operations per second (IOPS). For <code>gp3</code>, <code>io1</code>, and <code>io2</code> volumes, this represents the number of IOPS that are provisioned for the volume. For <code>gp2</code> volumes, this represents the baseline performance of the volume and the rate at which the volume accumulates I/O credits for bursting.</p> <p>The following are the supported values for each volume type:</p> <ul> <li> <p> <code>gp3</code>: 3,000 - 16,000 IOPS</p> </li> <li> <p> <code>io1</code>: 100 - 64,000 IOPS</p> </li> <li> <p> <code>io2</code>: 100 - 256,000 IOPS</p> </li> </ul> <p>For <code>io2</code> volumes, you can achieve up to 256,000 IOPS on <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#ec2-nitro-instances\">instances built on the Nitro System</a>. On other instances, you can achieve performance up to 32,000 IOPS.</p> <p>This parameter is required for <code>io1</code> and <code>io2</code> volumes. The default for <code>gp3</code> volumes is 3,000 IOPS. This parameter is not supported for <code>gp2</code>, <code>st1</code>, <code>sc1</code>, or <code>standard</code> volumes.</p>",
         "CreateVolumeRequest$Size": "<p>The size of the volume, in GiBs. You must specify either a snapshot ID or a volume size. If you specify a snapshot, the default is the snapshot size. You can specify a volume size that is equal to or larger than the snapshot size.</p> <p>The following are the supported volumes sizes for each volume type:</p> <ul> <li> <p> <code>gp2</code> and <code>gp3</code>: 1 - 16,384 GiB</p> </li> <li> <p> <code>io1</code>: 4 - 16,384 GiB</p> </li> <li> <p> <code>io2</code>: 4 - 65,536 GiB</p> </li> <li> <p> <code>st1</code> and <code>sc1</code>: 125 - 16,384 GiB</p> </li> <li> <p> <code>standard</code>: 1 - 1024 GiB</p> </li> </ul>",
         "CreateVolumeRequest$Throughput": "<p>The throughput to provision for a volume, with a maximum of 1,000 MiB/s.</p> <p>This parameter is valid only for <code>gp3</code> volumes.</p> <p>Valid Range: Minimum value of 125. Maximum value of 1000.</p>",
@@ -16102,6 +16115,7 @@
         "DescribeNetworkInsightsPathsRequest$NextToken": "<p>The token for the next page of results.</p>",
         "DescribePublicIpv4PoolsRequest$NextToken": "<p>The token for the next page of results.</p>",
         "DescribeReplaceRootVolumeTasksRequest$NextToken": "<p>The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.</p>",
+        "DescribeTrafficMirrorFilterRulesRequest$NextToken": "<p>The token for the next page of results.</p>",
         "DescribeTrafficMirrorFiltersRequest$NextToken": "<p>The token for the next page of results.</p>",
         "DescribeTrafficMirrorSessionsRequest$NextToken": "<p>The token for the next page of results.</p>",
         "DescribeTrafficMirrorTargetsRequest$NextToken": "<p>The token for the next page of results.</p>",
@@ -19715,20 +19729,20 @@
         "CreateSubnetRequest$Ipv6CidrBlock": "<p>The IPv6 network range for the subnet, in CIDR notation. This parameter is required for an IPv6 only subnet.</p>",
         "CreateSubnetRequest$OutpostArn": "<p>The Amazon Resource Name (ARN) of the Outpost. If you specify an Outpost ARN, you must also specify the Availability Zone of the Outpost subnet.</p>",
         "CreateTrafficMirrorFilterRequest$Description": "<p>The description of the Traffic Mirror filter.</p>",
-        "CreateTrafficMirrorFilterRequest$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">How to ensure idempotency</a>.</p>",
-        "CreateTrafficMirrorFilterResult$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">How to ensure idempotency</a>.</p>",
+        "CreateTrafficMirrorFilterRequest$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/ec2/latest/devguide/ec2-api-idempotency.html\">How to ensure idempotency</a>.</p>",
+        "CreateTrafficMirrorFilterResult$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/ec2/latest/devguide/ec2-api-idempotency.html\">How to ensure idempotency</a>.</p>",
         "CreateTrafficMirrorFilterRuleRequest$DestinationCidrBlock": "<p>The destination CIDR block to assign to the Traffic Mirror rule.</p>",
         "CreateTrafficMirrorFilterRuleRequest$SourceCidrBlock": "<p>The source CIDR block to assign to the Traffic Mirror rule.</p>",
         "CreateTrafficMirrorFilterRuleRequest$Description": "<p>The description of the Traffic Mirror rule.</p>",
-        "CreateTrafficMirrorFilterRuleRequest$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">How to ensure idempotency</a>.</p>",
-        "CreateTrafficMirrorFilterRuleResult$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">How to ensure idempotency</a>.</p>",
+        "CreateTrafficMirrorFilterRuleRequest$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/ec2/latest/devguide/ec2-api-idempotency.html\">How to ensure idempotency</a>.</p>",
+        "CreateTrafficMirrorFilterRuleResult$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/ec2/latest/devguide/ec2-api-idempotency.html\">How to ensure idempotency</a>.</p>",
         "CreateTrafficMirrorSessionRequest$Description": "<p>The description of the Traffic Mirror session.</p>",
-        "CreateTrafficMirrorSessionRequest$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">How to ensure idempotency</a>.</p>",
-        "CreateTrafficMirrorSessionResult$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">How to ensure idempotency</a>.</p>",
+        "CreateTrafficMirrorSessionRequest$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/ec2/latest/devguide/ec2-api-idempotency.html\">How to ensure idempotency</a>.</p>",
+        "CreateTrafficMirrorSessionResult$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/ec2/latest/devguide/ec2-api-idempotency.html\">How to ensure idempotency</a>.</p>",
         "CreateTrafficMirrorTargetRequest$NetworkLoadBalancerArn": "<p>The Amazon Resource Name (ARN) of the Network Load Balancer that is associated with the target.</p>",
         "CreateTrafficMirrorTargetRequest$Description": "<p>The description of the Traffic Mirror target.</p>",
-        "CreateTrafficMirrorTargetRequest$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">How to ensure idempotency</a>.</p>",
-        "CreateTrafficMirrorTargetResult$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">How to ensure idempotency</a>.</p>",
+        "CreateTrafficMirrorTargetRequest$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/ec2/latest/devguide/ec2-api-idempotency.html\">How to ensure idempotency</a>.</p>",
+        "CreateTrafficMirrorTargetResult$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/ec2/latest/devguide/ec2-api-idempotency.html\">How to ensure idempotency</a>.</p>",
         "CreateTransitGatewayConnectPeerRequest$TransitGatewayAddress": "<p>The peer IP address (GRE outer IP address) on the transit gateway side of the Connect peer, which must be specified from a transit gateway CIDR block. If not specified, Amazon automatically assigns the first available IP address from the transit gateway CIDR block.</p>",
         "CreateTransitGatewayConnectPeerRequest$PeerAddress": "<p>The peer IP address (GRE outer IP address) on the appliance side of the Connect peer.</p>",
         "CreateTransitGatewayPeeringAttachmentRequest$PeerAccountId": "<p>The ID of the Amazon Web Services account that owns the peer transit gateway.</p>",
@@ -19976,6 +19990,7 @@
         "DescribeSubnetsResult$NextToken": "<p>The token to include in another request to get the next page of items. This value is <code>null</code> when there are no more items to return.</p>",
         "DescribeTagsRequest$NextToken": "<p>The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.</p>",
         "DescribeTagsResult$NextToken": "<p>The token to include in another request to get the next page of items. This value is <code>null</code> when there are no more items to return.</p>",
+        "DescribeTrafficMirrorFilterRulesResult$NextToken": "<p>The token to use to retrieve the next page of results. The value is <code>null</code> when there are no more results to return.</p>",
         "DescribeTrafficMirrorFiltersResult$NextToken": "<p>The token to use to retrieve the next page of results. The value is <code>null</code> when there are no more results to return.</p>",
         "DescribeTrafficMirrorSessionsResult$NextToken": "<p>The token to use to retrieve the next page of results. The value is <code>null</code> when there are no more results to return.</p>",
         "DescribeTrafficMirrorTargetsResult$NextToken": "<p>The token to use to retrieve the next page of results. The value is <code>null</code> when there are no more results to return.</p>",
@@ -21788,6 +21803,7 @@
         "SubnetCidrReservation$Tags": "<p>The tags assigned to the subnet CIDR reservation.</p>",
         "TagSpecification$Tags": "<p>The tags to apply to the resource.</p>",
         "TrafficMirrorFilter$Tags": "<p>The tags assigned to the Traffic Mirror filter.</p>",
+        "TrafficMirrorFilterRule$Tags": "<p>Tags on Traffic Mirroring filter rules.</p>",
         "TrafficMirrorSession$Tags": "<p>The tags assigned to the Traffic Mirror session.</p>",
         "TrafficMirrorTarget$Tags": "<p>The tags assigned to the Traffic Mirror target.</p>",
         "TransitGateway$Tags": "<p>The tags for the transit gateway.</p>",
@@ -21874,6 +21890,7 @@
         "CreateSubnetCidrReservationRequest$TagSpecifications": "<p>The tags to assign to the subnet CIDR reservation.</p>",
         "CreateSubnetRequest$TagSpecifications": "<p>The tags to assign to the subnet.</p>",
         "CreateTrafficMirrorFilterRequest$TagSpecifications": "<p>The tags to assign to a Traffic Mirror filter.</p>",
+        "CreateTrafficMirrorFilterRuleRequest$TagSpecifications": "<p>Traffic Mirroring tags specifications.</p>",
         "CreateTrafficMirrorSessionRequest$TagSpecifications": "<p>The tags to assign to a Traffic Mirror session.</p>",
         "CreateTrafficMirrorTargetRequest$TagSpecifications": "<p>The tags to assign to the Traffic Mirror target.</p>",
         "CreateTransitGatewayConnectPeerRequest$TagSpecifications": "<p>The tags to apply to the Connect peer.</p>",
@@ -22154,6 +22171,7 @@
         "CreateTrafficMirrorFilterRuleRequest$TrafficMirrorFilterId": "<p>The ID of the filter that this rule is associated with.</p>",
         "CreateTrafficMirrorSessionRequest$TrafficMirrorFilterId": "<p>The ID of the Traffic Mirror filter.</p>",
         "DeleteTrafficMirrorFilterRequest$TrafficMirrorFilterId": "<p>The ID of the Traffic Mirror filter.</p>",
+        "DescribeTrafficMirrorFilterRulesRequest$TrafficMirrorFilterId": "<p>Traffic filter ID.</p>",
         "ModifyTrafficMirrorFilterNetworkServicesRequest$TrafficMirrorFilterId": "<p>The ID of the Traffic Mirror filter.</p>",
         "ModifyTrafficMirrorSessionRequest$TrafficMirrorFilterId": "<p>The ID of the Traffic Mirror filter.</p>",
         "TrafficMirrorFilterIdList$member": null
@@ -22169,8 +22187,9 @@
       "base": "<p>Describes the Traffic Mirror rule.</p>",
       "refs": {
         "CreateTrafficMirrorFilterRuleResult$TrafficMirrorFilterRule": "<p>The Traffic Mirror rule.</p>",
-        "ModifyTrafficMirrorFilterRuleResult$TrafficMirrorFilterRule": "<p>Modifies a Traffic Mirror rule.</p>",
-        "TrafficMirrorFilterRuleList$member": null
+        "ModifyTrafficMirrorFilterRuleResult$TrafficMirrorFilterRule": "<note> <p>Tags are not returned for ModifyTrafficMirrorFilterRule.</p> </note> <p>A Traffic Mirror rule.</p>",
+        "TrafficMirrorFilterRuleList$member": null,
+        "TrafficMirrorFilterRuleSet$member": null
       }
     },
     "TrafficMirrorFilterRuleField": {
@@ -22185,11 +22204,18 @@
         "ModifyTrafficMirrorFilterRuleRequest$RemoveFields": "<p>The properties that you want to remove from the Traffic Mirror filter rule.</p> <p>When you remove a property from a Traffic Mirror filter rule, the property is set to the default.</p>"
       }
     },
+    "TrafficMirrorFilterRuleIdList": {
+      "base": null,
+      "refs": {
+        "DescribeTrafficMirrorFilterRulesRequest$TrafficMirrorFilterRuleIds": "<p>Traffic filter rule IDs.</p>"
+      }
+    },
     "TrafficMirrorFilterRuleIdWithResolver": {
       "base": null,
       "refs": {
         "DeleteTrafficMirrorFilterRuleRequest$TrafficMirrorFilterRuleId": "<p>The ID of the Traffic Mirror rule.</p>",
-        "ModifyTrafficMirrorFilterRuleRequest$TrafficMirrorFilterRuleId": "<p>The ID of the Traffic Mirror rule.</p>"
+        "ModifyTrafficMirrorFilterRuleRequest$TrafficMirrorFilterRuleId": "<p>The ID of the Traffic Mirror rule.</p>",
+        "TrafficMirrorFilterRuleIdList$member": null
       }
     },
     "TrafficMirrorFilterRuleList": {
@@ -22197,6 +22223,12 @@
       "refs": {
         "TrafficMirrorFilter$IngressFilterRules": "<p>Information about the ingress rules that are associated with the Traffic Mirror filter.</p>",
         "TrafficMirrorFilter$EgressFilterRules": "<p>Information about the egress rules that are associated with the Traffic Mirror filter.</p>"
+      }
+    },
+    "TrafficMirrorFilterRuleSet": {
+      "base": null,
+      "refs": {
+        "DescribeTrafficMirrorFilterRulesResult$TrafficMirrorFilterRules": "<p>Traffic mirror rules.</p>"
       }
     },
     "TrafficMirrorFilterSet": {
@@ -22320,6 +22352,7 @@
     "TrafficMirroringMaxResults": {
       "base": null,
       "refs": {
+        "DescribeTrafficMirrorFilterRulesRequest$MaxResults": "<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>",
         "DescribeTrafficMirrorFiltersRequest$MaxResults": "<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>",
         "DescribeTrafficMirrorSessionsRequest$MaxResults": "<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>",
         "DescribeTrafficMirrorTargetsRequest$MaxResults": "<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>"

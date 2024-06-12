@@ -2941,6 +2941,9 @@ type Pipeline struct {
 	// A list of tags associated with the given pipeline.
 	Tags []*Tag `type:"list"`
 
+	// The VPC endpoint service name for the pipeline.
+	VpcEndpointService *string `type:"string"`
+
 	// The VPC interface endpoints that have access to the pipeline.
 	VpcEndpoints []*VpcEndpoint `type:"list"`
 }
@@ -3056,6 +3059,12 @@ func (s *Pipeline) SetStatusReason(v *PipelineStatusReason) *Pipeline {
 // SetTags sets the Tags field's value.
 func (s *Pipeline) SetTags(v []*Tag) *Pipeline {
 	s.Tags = v
+	return s
+}
+
+// SetVpcEndpointService sets the VpcEndpointService field's value.
+func (s *Pipeline) SetVpcEndpointService(v string) *Pipeline {
+	s.VpcEndpointService = &v
 	return s
 }
 
@@ -4445,6 +4454,10 @@ type VpcOptions struct {
 
 	// Options for attaching a VPC to a pipeline.
 	VpcAttachmentOptions *VpcAttachmentOptions `type:"structure"`
+
+	// Defines whether you or Amazon OpenSearch Ingestion service create and manage
+	// the VPC endpoint configured for the pipeline.
+	VpcEndpointManagement *string `type:"string" enum:"VpcEndpointManagement"`
 }
 
 // String returns the string representation.
@@ -4504,6 +4517,12 @@ func (s *VpcOptions) SetSubnetIds(v []*string) *VpcOptions {
 // SetVpcAttachmentOptions sets the VpcAttachmentOptions field's value.
 func (s *VpcOptions) SetVpcAttachmentOptions(v *VpcAttachmentOptions) *VpcOptions {
 	s.VpcAttachmentOptions = v
+	return s
+}
+
+// SetVpcEndpointManagement sets the VpcEndpointManagement field's value.
+func (s *VpcOptions) SetVpcEndpointManagement(v string) *VpcOptions {
+	s.VpcEndpointManagement = &v
 	return s
 }
 
@@ -4600,6 +4619,22 @@ func PipelineStatus_Values() []string {
 		PipelineStatusStartFailed,
 		PipelineStatusStopping,
 		PipelineStatusStopped,
+	}
+}
+
+const (
+	// VpcEndpointManagementCustomer is a VpcEndpointManagement enum value
+	VpcEndpointManagementCustomer = "CUSTOMER"
+
+	// VpcEndpointManagementService is a VpcEndpointManagement enum value
+	VpcEndpointManagementService = "SERVICE"
+)
+
+// VpcEndpointManagement_Values returns all elements of the VpcEndpointManagement enum
+func VpcEndpointManagement_Values() []string {
+	return []string{
+		VpcEndpointManagementCustomer,
+		VpcEndpointManagementService,
 	}
 }
 

@@ -1644,6 +1644,10 @@ type EC2API interface {
 	DescribeTagsPages(*ec2.DescribeTagsInput, func(*ec2.DescribeTagsOutput, bool) bool) error
 	DescribeTagsPagesWithContext(aws.Context, *ec2.DescribeTagsInput, func(*ec2.DescribeTagsOutput, bool) bool, ...request.Option) error
 
+	DescribeTrafficMirrorFilterRules(*ec2.DescribeTrafficMirrorFilterRulesInput) (*ec2.DescribeTrafficMirrorFilterRulesOutput, error)
+	DescribeTrafficMirrorFilterRulesWithContext(aws.Context, *ec2.DescribeTrafficMirrorFilterRulesInput, ...request.Option) (*ec2.DescribeTrafficMirrorFilterRulesOutput, error)
+	DescribeTrafficMirrorFilterRulesRequest(*ec2.DescribeTrafficMirrorFilterRulesInput) (*request.Request, *ec2.DescribeTrafficMirrorFilterRulesOutput)
+
 	DescribeTrafficMirrorFilters(*ec2.DescribeTrafficMirrorFiltersInput) (*ec2.DescribeTrafficMirrorFiltersOutput, error)
 	DescribeTrafficMirrorFiltersWithContext(aws.Context, *ec2.DescribeTrafficMirrorFiltersInput, ...request.Option) (*ec2.DescribeTrafficMirrorFiltersOutput, error)
 	DescribeTrafficMirrorFiltersRequest(*ec2.DescribeTrafficMirrorFiltersInput) (*request.Request, *ec2.DescribeTrafficMirrorFiltersOutput)

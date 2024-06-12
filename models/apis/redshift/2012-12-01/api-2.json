@@ -4,11 +4,13 @@
     "apiVersion":"2012-12-01",
     "endpointPrefix":"redshift",
     "protocol":"query",
+    "protocols":["query"],
     "serviceFullName":"Amazon Redshift",
     "serviceId":"Redshift",
     "signatureVersion":"v4",
     "uid":"redshift-2012-12-01",
-    "xmlNamespace":"http://redshift.amazonaws.com/doc/2012-12-01/"
+    "xmlNamespace":"http://redshift.amazonaws.com/doc/2012-12-01/",
+    "auth":["aws.auth#sigv4"]
   },
   "operations":{
     "AcceptReservedNodeExchange":{
