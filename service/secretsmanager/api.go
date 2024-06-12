@@ -1700,9 +1700,9 @@ func (c *SecretsManager) PutSecretValueRequest(input *PutSecretValueInput) (req 
 // version; you can only create new ones.
 //
 // Secrets Manager generates a CloudTrail log entry when you call this action.
-// Do not include sensitive information in request parameters except SecretBinary
-// or SecretString because it might be logged. For more information, see Logging
-// Secrets Manager events with CloudTrail (https://docs.aws.amazon.com/secretsmanager/latest/userguide/retrieve-ct-entries.html).
+// Do not include sensitive information in request parameters except SecretBinary,
+// SecretString, or RotationToken because it might be logged. For more information,
+// see Logging Secrets Manager events with CloudTrail (https://docs.aws.amazon.com/secretsmanager/latest/userguide/retrieve-ct-entries.html).
 //
 // Required permissions: secretsmanager:PutSecretValue. For more information,
 // see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions)
@@ -3393,6 +3393,10 @@ type CreateSecretInput struct {
 	//
 	// This parameter is not available in the Secrets Manager console.
 	//
+	// Sensitive: This field contains sensitive information, so the service does
+	// not include it in CloudTrail log entries. If you create your own log entries,
+	// you must also avoid logging the information in this field.
+	//
 	// SecretBinary is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CreateSecretInput's
 	// String and GoString methods.
@@ -3409,6 +3413,10 @@ type CreateSecretInput struct {
 	// Manager puts the protected secret text in only the SecretString parameter.
 	// The Secrets Manager console stores the information as a JSON structure of
 	// key/value pairs that a Lambda rotation function can parse.
+	//
+	// Sensitive: This field contains sensitive information, so the service does
+	// not include it in CloudTrail log entries. If you create your own log entries,
+	// you must also avoid logging the information in this field.
 	//
 	// SecretString is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CreateSecretInput's
@@ -4054,7 +4062,8 @@ type DescribeSecretOutput struct {
 	//    * InSync, which indicates that the replica was created.
 	ReplicationStatus []*ReplicationStatusType `type:"list"`
 
-	// Specifies whether automatic rotation is turned on for this secret.
+	// Specifies whether automatic rotation is turned on for this secret. If the
+	// secret has never been configured for rotation, Secrets Manager returns null.
 	//
 	// To turn on rotation, use RotateSecret. To turn off rotation, use CancelRotateSecret.
 	RotationEnabled *bool `type:"boolean"`
@@ -4619,7 +4628,8 @@ func (s *GetResourcePolicyOutput) SetResourcePolicy(v string) *GetResourcePolicy
 type GetSecretValueInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN or name of the secret to retrieve.
+	// The ARN or name of the secret to retrieve. To retrieve a secret from another
+	// account, you must use an ARN.
 	//
 	// For an ARN, we recommend that you specify a complete ARN rather than a partial
 	// ARN. See Finding a secret from a partial ARN (https://docs.aws.amazon.com/secretsmanager/latest/userguide/troubleshoot.html#ARN_secretnamehyphen).
@@ -4727,6 +4737,10 @@ type GetSecretValueOutput struct {
 	// secret value was originally provided as a string, then this field is omitted.
 	// The secret value appears in SecretString instead.
 	//
+	// Sensitive: This field contains sensitive information, so the service does
+	// not include it in CloudTrail log entries. If you create your own log entries,
+	// you must also avoid logging the information in this field.
+	//
 	// SecretBinary is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by GetSecretValueOutput's
 	// String and GoString methods.
@@ -4739,6 +4753,10 @@ type GetSecretValueOutput struct {
 	//
 	// If this secret was created by using the console, then Secrets Manager stores
 	// the information as a JSON structure of key/value pairs.
+	//
+	// Sensitive: This field contains sensitive information, so the service does
+	// not include it in CloudTrail log entries. If you create your own log entries,
+	// you must also avoid logging the information in this field.
 	//
 	// SecretString is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by GetSecretValueOutput's
@@ -5806,6 +5824,21 @@ type PutSecretValueInput struct {
 	// This value becomes the VersionId of the new version.
 	ClientRequestToken *string `min:"32" type:"string" idempotencyToken:"true"`
 
+	// A unique identifier that indicates the source of the request. For cross-account
+	// rotation (when you rotate a secret in one account by using a Lambda rotation
+	// function in another account) and the Lambda rotation function assumes an
+	// IAM role to call Secrets Manager, Secrets Manager validates the identity
+	// with the rotation token. For more information, see How rotation works (https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotating-secrets.html).
+	//
+	// Sensitive: This field contains sensitive information, so the service does
+	// not include it in CloudTrail log entries. If you create your own log entries,
+	// you must also avoid logging the information in this field.
+	//
+	// RotationToken is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by PutSecretValueInput's
+	// String and GoString methods.
+	RotationToken *string `min:"36" type:"string" sensitive:"true"`
+
 	// The binary data to encrypt and store in the new version of the secret. To
 	// use this parameter in the command-line tools, we recommend that you store
 	// your binary data in a file and then pass the contents of the file as a parameter.
@@ -5813,6 +5846,10 @@ type PutSecretValueInput struct {
 	// You must include SecretBinary or SecretString, but not both.
 	//
 	// You can't access this value from the Secrets Manager console.
+	//
+	// Sensitive: This field contains sensitive information, so the service does
+	// not include it in CloudTrail log entries. If you create your own log entries,
+	// you must also avoid logging the information in this field.
 	//
 	// SecretBinary is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by PutSecretValueInput's
@@ -5837,6 +5874,10 @@ type PutSecretValueInput struct {
 	//
 	// We recommend you create the secret string as JSON key/value pairs, as shown
 	// in the example.
+	//
+	// Sensitive: This field contains sensitive information, so the service does
+	// not include it in CloudTrail log entries. If you create your own log entries,
+	// you must also avoid logging the information in this field.
 	//
 	// SecretString is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by PutSecretValueInput's
@@ -5883,6 +5924,9 @@ func (s *PutSecretValueInput) Validate() error {
 	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 32 {
 		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 32))
 	}
+	if s.RotationToken != nil && len(*s.RotationToken) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("RotationToken", 36))
+	}
 	if s.SecretBinary != nil && len(s.SecretBinary) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("SecretBinary", 1))
 	}
@@ -5908,6 +5952,12 @@ func (s *PutSecretValueInput) Validate() error {
 // SetClientRequestToken sets the ClientRequestToken field's value.
 func (s *PutSecretValueInput) SetClientRequestToken(v string) *PutSecretValueInput {
 	s.ClientRequestToken = &v
+	return s
+}
+
+// SetRotationToken sets the RotationToken field's value.
+func (s *PutSecretValueInput) SetRotationToken(v string) *PutSecretValueInput {
+	s.RotationToken = &v
 	return s
 }
 
@@ -7615,6 +7665,10 @@ type UpdateSecretInput struct {
 	//
 	// You can't access this parameter in the Secrets Manager console.
 	//
+	// Sensitive: This field contains sensitive information, so the service does
+	// not include it in CloudTrail log entries. If you create your own log entries,
+	// you must also avoid logging the information in this field.
+	//
 	// SecretBinary is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by UpdateSecretInput's
 	// String and GoString methods.
@@ -7634,6 +7688,10 @@ type UpdateSecretInput struct {
 	// you use a JSON structure of key/value pairs for your secret value.
 	//
 	// Either SecretBinary or SecretString must have a value, but not both.
+	//
+	// Sensitive: This field contains sensitive information, so the service does
+	// not include it in CloudTrail log entries. If you create your own log entries,
+	// you must also avoid logging the information in this field.
 	//
 	// SecretString is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by UpdateSecretInput's
@@ -7923,7 +7981,8 @@ type ValidateResourcePolicyInput struct {
 	// ResourcePolicy is a required field
 	ResourcePolicy *string `min:"1" type:"string" required:"true"`
 
-	// This field is reserved for internal use.
+	// The ARN or name of the secret with the resource-based policy you want to
+	// validate.
 	SecretId *string `min:"1" type:"string"`
 }
 

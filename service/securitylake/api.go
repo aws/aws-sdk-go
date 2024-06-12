@@ -4540,7 +4540,7 @@ type CreateSubscriberInput struct {
 	// The description for your subscriber account in Security Lake.
 	SubscriberDescription *string `locationName:"subscriberDescription" type:"string"`
 
-	// The AWS identity used to access your data.
+	// The Amazon Web Services identity used to access your data.
 	//
 	// SubscriberIdentity is a required field
 	SubscriberIdentity *AwsIdentity `locationName:"subscriberIdentity" type:"structure" required:"true"`
@@ -7803,9 +7803,9 @@ type SubscriberResource struct {
 	// The date and time when the subscriber was created.
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601"`
 
-	// The Amazon Resource Name (ARN) which uniquely defines the AWS RAM resource
-	// share. Before accepting the RAM resource share invitation, you can view details
-	// related to the RAM resource share.
+	// The Amazon Resource Name (ARN) which uniquely defines the Amazon Web Services
+	// RAM resource share. Before accepting the RAM resource share invitation, you
+	// can view details related to the RAM resource share.
 	//
 	// This field is available only for Lake Formation subscribers created after
 	// March 8, 2023.
@@ -7844,7 +7844,7 @@ type SubscriberResource struct {
 	// SubscriberId is a required field
 	SubscriberId *string `locationName:"subscriberId" type:"string" required:"true"`
 
-	// The AWS identity used to access your data.
+	// The Amazon Web Services identity used to access your data.
 	//
 	// SubscriberIdentity is a required field
 	SubscriberIdentity *AwsIdentity `locationName:"subscriberIdentity" type:"structure" required:"true"`

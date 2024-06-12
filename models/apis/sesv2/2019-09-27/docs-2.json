@@ -5,7 +5,7 @@
     "BatchGetMetricData": "<p>Retrieves batches of metric data collected based on your sending activity.</p> <p>You can execute this operation no more than 16 times per second, and with at most 160 queries from the batches per second (cumulative).</p>",
     "CancelExportJob": "<p>Cancels an export job.</p>",
     "CreateConfigurationSet": "<p>Create a configuration set. <i>Configuration sets</i> are groups of rules that you can apply to the emails that you send. You apply a configuration set to an email by specifying the name of the configuration set when you call the Amazon SES API v2. When you apply a configuration set to an email, all of the rules in that configuration set are applied to the email. </p>",
-    "CreateConfigurationSetEventDestination": "<p>Create an event destination. <i>Events</i> include message sends, deliveries, opens, clicks, bounces, and complaints. <i>Event destinations</i> are places that you can send information about these events to. For example, you can send event data to Amazon SNS to receive notifications when you receive bounces or complaints, or you can use Amazon Kinesis Data Firehose to stream data to Amazon S3 for long-term storage.</p> <p>A single configuration set can include more than one event destination.</p>",
+    "CreateConfigurationSetEventDestination": "<p>Create an event destination. <i>Events</i> include message sends, deliveries, opens, clicks, bounces, and complaints. <i>Event destinations</i> are places that you can send information about these events to. For example, you can send event data to Amazon EventBridge and associate a rule to send the event to the specified target.</p> <p>A single configuration set can include more than one event destination.</p>",
     "CreateContact": "<p>Creates a contact, which is an end-user who is receiving the email, and adds them to a contact list.</p>",
     "CreateContactList": "<p>Creates a contact list.</p>",
     "CreateCustomVerificationEmailTemplate": "<p>Creates a new custom verification email template.</p> <p>For more information about custom verification email templates, see <a href=\"https://docs.aws.amazon.com/ses/latest/dg/creating-identities.html#send-email-verify-address-custom\">Using custom verification email templates</a> in the <i>Amazon SES Developer Guide</i>.</p> <p>You can execute this operation no more than once per second.</p>",
@@ -17,7 +17,7 @@
     "CreateExportJob": "<p>Creates an export job for a data source and destination.</p> <p>You can execute this operation no more than once per second.</p>",
     "CreateImportJob": "<p>Creates an import job for a data destination.</p>",
     "DeleteConfigurationSet": "<p>Delete an existing configuration set.</p> <p> <i>Configuration sets</i> are groups of rules that you can apply to the emails you send. You apply a configuration set to an email by including a reference to the configuration set in the headers of the email. When you apply a configuration set to an email, all of the rules in that configuration set are applied to the email.</p>",
-    "DeleteConfigurationSetEventDestination": "<p>Delete an event destination.</p> <p> <i>Events</i> include message sends, deliveries, opens, clicks, bounces, and complaints. <i>Event destinations</i> are places that you can send information about these events to. For example, you can send event data to Amazon SNS to receive notifications when you receive bounces or complaints, or you can use Amazon Kinesis Data Firehose to stream data to Amazon S3 for long-term storage.</p>",
+    "DeleteConfigurationSetEventDestination": "<p>Delete an event destination.</p> <p> <i>Events</i> include message sends, deliveries, opens, clicks, bounces, and complaints. <i>Event destinations</i> are places that you can send information about these events to. For example, you can send event data to Amazon EventBridge and associate a rule to send the event to the specified target.</p>",
     "DeleteContact": "<p>Removes a contact from a contact list.</p>",
     "DeleteContactList": "<p>Deletes a contact list and all of the contacts on that list.</p>",
     "DeleteCustomVerificationEmailTemplate": "<p>Deletes an existing custom verification email template.</p> <p>For more information about custom verification email templates, see <a href=\"https://docs.aws.amazon.com/ses/latest/dg/creating-identities.html#send-email-verify-address-custom\">Using custom verification email templates</a> in the <i>Amazon SES Developer Guide</i>.</p> <p>You can execute this operation no more than once per second.</p>",
@@ -29,7 +29,7 @@
     "GetAccount": "<p>Obtain information about the email-sending status and capabilities of your Amazon SES account in the current Amazon Web Services Region.</p>",
     "GetBlacklistReports": "<p>Retrieve a list of the blacklists that your dedicated IP addresses appear on.</p>",
     "GetConfigurationSet": "<p>Get information about an existing configuration set, including the dedicated IP pool that it's associated with, whether or not it's enabled for sending email, and more.</p> <p> <i>Configuration sets</i> are groups of rules that you can apply to the emails you send. You apply a configuration set to an email by including a reference to the configuration set in the headers of the email. When you apply a configuration set to an email, all of the rules in that configuration set are applied to the email.</p>",
-    "GetConfigurationSetEventDestinations": "<p>Retrieve a list of event destinations that are associated with a configuration set.</p> <p> <i>Events</i> include message sends, deliveries, opens, clicks, bounces, and complaints. <i>Event destinations</i> are places that you can send information about these events to. For example, you can send event data to Amazon SNS to receive notifications when you receive bounces or complaints, or you can use Amazon Kinesis Data Firehose to stream data to Amazon S3 for long-term storage.</p>",
+    "GetConfigurationSetEventDestinations": "<p>Retrieve a list of event destinations that are associated with a configuration set.</p> <p> <i>Events</i> include message sends, deliveries, opens, clicks, bounces, and complaints. <i>Event destinations</i> are places that you can send information about these events to. For example, you can send event data to Amazon EventBridge and associate a rule to send the event to the specified target.</p>",
     "GetContact": "<p>Returns a contact from a contact list.</p>",
     "GetContactList": "<p>Returns contact list metadata. It does not return any information about the contacts present in the list.</p>",
     "GetCustomVerificationEmailTemplate": "<p>Returns the custom email verification template for the template name you specify.</p> <p>For more information about custom verification email templates, see <a href=\"https://docs.aws.amazon.com/ses/latest/dg/creating-identities.html#send-email-verify-address-custom\">Using custom verification email templates</a> in the <i>Amazon SES Developer Guide</i>.</p> <p>You can execute this operation no more than once per second.</p>",
@@ -88,7 +88,7 @@
     "TagResource": "<p>Add one or more tags (keys and values) to a specified resource. A <i>tag</i> is a label that you optionally define and associate with a resource. Tags can help you categorize and manage resources in different ways, such as by purpose, owner, environment, or other criteria. A resource can have as many as 50 tags.</p> <p>Each tag consists of a required <i>tag key</i> and an associated <i>tag value</i>, both of which you define. A tag key is a general label that acts as a category for more specific tag values. A tag value acts as a descriptor within a tag key.</p>",
     "TestRenderEmailTemplate": "<p>Creates a preview of the MIME content of an email when provided with a template and a set of replacement data.</p> <p>You can execute this operation no more than once per second.</p>",
     "UntagResource": "<p>Remove one or more tags (keys and values) from a specified resource.</p>",
-    "UpdateConfigurationSetEventDestination": "<p>Update the configuration of an event destination for a configuration set.</p> <p> <i>Events</i> include message sends, deliveries, opens, clicks, bounces, and complaints. <i>Event destinations</i> are places that you can send information about these events to. For example, you can send event data to Amazon SNS to receive notifications when you receive bounces or complaints, or you can use Amazon Kinesis Data Firehose to stream data to Amazon S3 for long-term storage.</p>",
+    "UpdateConfigurationSetEventDestination": "<p>Update the configuration of an event destination for a configuration set.</p> <p> <i>Events</i> include message sends, deliveries, opens, clicks, bounces, and complaints. <i>Event destinations</i> are places that you can send information about these events to. For example, you can send event data to Amazon EventBridge and associate a rule to send the event to the specified target.</p>",
     "UpdateContact": "<p>Updates a contact's preferences for a list.</p> <note> <p>You must specify all existing topic preferences in the <code>TopicPreferences</code> object, not just the ones that need updating; otherwise, all your existing preferences will be removed.</p> </note>",
     "UpdateContactList": "<p>Updates contact list metadata. This operation does a complete replacement.</p>",
     "UpdateCustomVerificationEmailTemplate": "<p>Updates an existing custom verification email template.</p> <p>For more information about custom verification email templates, see <a href=\"https://docs.aws.amazon.com/ses/latest/dg/creating-identities.html#send-email-verify-address-custom\">Using custom verification email templates</a> in the <i>Amazon SES Developer Guide</i>.</p> <p>You can execute this operation no more than once per second.</p>",
@@ -134,6 +134,7 @@
     "AmazonResourceName": {
       "base": null,
       "refs": {
+        "EventBridgeDestination$EventBusArn": "<p>The Amazon Resource Name (ARN) of the Amazon EventBridge bus to publish email events to. Only the default bus is supported. </p>",
         "KinesisFirehoseDestination$IamRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role that the Amazon SES API v2 uses to send email events to the Amazon Kinesis Data Firehose stream.</p>",
         "KinesisFirehoseDestination$DeliveryStreamArn": "<p>The Amazon Resource Name (ARN) of the Amazon Kinesis Data Firehose stream that the Amazon SES API v2 sends email events to.</p>",
         "ListTagsForResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource that you want to retrieve tag information for.</p>",
@@ -1144,6 +1145,13 @@
       "base": null,
       "refs": {
         "DomainDeliverabilityCampaign$Esps": "<p>The major email providers who handled the email message.</p>"
+      }
+    },
+    "EventBridgeDestination": {
+      "base": "<p>An object that defines an Amazon EventBridge destination for email events. You can use Amazon EventBridge to send notifications when certain email events occur.</p>",
+      "refs": {
+        "EventDestination$EventBridgeDestination": "<p>An object that defines an Amazon EventBridge destination for email events. You can use Amazon EventBridge to send notifications when certain email events occur.</p>",
+        "EventDestinationDefinition$EventBridgeDestination": "<p>An object that defines an Amazon EventBridge destination for email events. You can use Amazon EventBridge to send notifications when certain email events occur.</p>"
       }
     },
     "EventDestination": {
@@ -2757,10 +2765,10 @@
       }
     },
     "SnsDestination": {
-      "base": "<p>An object that defines an Amazon SNS destination for email events. You can use Amazon SNS to send notification when certain email events occur.</p>",
+      "base": "<p>An object that defines an Amazon SNS destination for email events. You can use Amazon SNS to send notifications when certain email events occur.</p>",
       "refs": {
-        "EventDestination$SnsDestination": "<p>An object that defines an Amazon SNS destination for email events. You can use Amazon SNS to send notification when certain email events occur.</p>",
-        "EventDestinationDefinition$SnsDestination": "<p>An object that defines an Amazon SNS destination for email events. You can use Amazon SNS to send notification when certain email events occur.</p>"
+        "EventDestination$SnsDestination": "<p>An object that defines an Amazon SNS destination for email events. You can use Amazon SNS to send notifications when certain email events occur.</p>",
+        "EventDestinationDefinition$SnsDestination": "<p>An object that defines an Amazon SNS destination for email events. You can use Amazon SNS to send notifications when certain email events occur.</p>"
       }
     },
     "Subject": {

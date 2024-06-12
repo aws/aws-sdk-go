@@ -13510,9 +13510,8 @@ func (c *Redshift) ResizeClusterRequest(input *ResizeClusterInput) (req *request
 //
 // Elastic resize operations have the following restrictions:
 //
-//   - You can only resize clusters of the following types: dc1.large (if your
-//     cluster is in a VPC) dc1.8xlarge (if your cluster is in a VPC) dc2.large
-//     dc2.8xlarge ds2.xlarge ds2.8xlarge ra3.xlplus ra3.4xlarge ra3.16xlarge
+//   - You can only resize clusters of the following types: dc2.large dc2.8xlarge
+//     ra3.xlplus ra3.4xlarge ra3.16xlarge
 //
 //   - The type of nodes that you add must match the node type for the cluster.
 //
@@ -18132,8 +18131,7 @@ type CreateClusterInput struct {
 	// types, go to Working with Clusters (https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#how-many-nodes)
 	// in the Amazon Redshift Cluster Management Guide.
 	//
-	// Valid Values: ds2.xlarge | ds2.8xlarge | dc1.large | dc1.8xlarge | dc2.large
-	// | dc2.8xlarge | ra3.xlplus | ra3.4xlarge | ra3.16xlarge
+	// Valid Values: dc2.large | dc2.8xlarge | ra3.xlplus | ra3.4xlarge | ra3.16xlarge
 	//
 	// NodeType is a required field
 	NodeType *string `type:"string" required:"true"`
@@ -18168,8 +18166,7 @@ type CreateClusterInput struct {
 	//    or 8191-8215. (If you have an existing cluster with ra3 nodes, it isn't
 	//    required that you change the port to these ranges.)
 	//
-	//    * For clusters with ds2 or dc2 nodes - Select a port within the range
-	//    1150-65535.
+	//    * For clusters with dc2 nodes - Select a port within the range 1150-65535.
 	Port *int64 `type:"integer"`
 
 	// The weekly time range (in UTC) during which automated cluster maintenance
@@ -20140,7 +20137,7 @@ type CreateScheduledActionOutput struct {
 
 	// A JSON format string of the Amazon Redshift API operation with input parameters.
 	//
-	// "{\"ResizeCluster\":{\"NodeType\":\"ds2.8xlarge\",\"ClusterIdentifier\":\"my-test-cluster\",\"NumberOfNodes\":3}}".
+	// "{\"ResizeCluster\":{\"NodeType\":\"ra3.4xlarge\",\"ClusterIdentifier\":\"my-test-cluster\",\"NumberOfNodes\":3}}".
 	TargetAction *ScheduledActionType `type:"structure"`
 }
 
@@ -31218,8 +31215,7 @@ type ModifyClusterInput struct {
 	// Amazon Redshift (https://docs.aws.amazon.com/redshift/latest/mgmt/rs-resize-tutorial.html)
 	// in the Amazon Redshift Cluster Management Guide.
 	//
-	// Valid Values: ds2.xlarge | ds2.8xlarge | dc1.large | dc1.8xlarge | dc2.large
-	// | dc2.8xlarge | ra3.xlplus | ra3.4xlarge | ra3.16xlarge
+	// Valid Values: dc2.large | dc2.8xlarge | ra3.xlplus | ra3.4xlarge | ra3.16xlarge
 	NodeType *string `type:"string"`
 
 	// The new number of nodes of the cluster. If you specify a new number of nodes,
@@ -31240,8 +31236,7 @@ type ModifyClusterInput struct {
 	//    or 8191-8215. (If you have an existing cluster with ra3 nodes, it isn't
 	//    required that you change the port to these ranges.)
 	//
-	//    * For clusters with ds2 or dc2 nodes - Select a port within the range
-	//    1150-65535.
+	//    * For clusters with dc2 nodes - Select a port within the range 1150-65535.
 	Port *int64 `type:"integer"`
 
 	// The weekly time range (in UTC) during which system maintenance can occur,
@@ -32769,7 +32764,7 @@ type ModifyScheduledActionOutput struct {
 
 	// A JSON format string of the Amazon Redshift API operation with input parameters.
 	//
-	// "{\"ResizeCluster\":{\"NodeType\":\"ds2.8xlarge\",\"ClusterIdentifier\":\"my-test-cluster\",\"NumberOfNodes\":3}}".
+	// "{\"ResizeCluster\":{\"NodeType\":\"ra3.4xlarge\",\"ClusterIdentifier\":\"my-test-cluster\",\"NumberOfNodes\":3}}".
 	TargetAction *ScheduledActionType `type:"structure"`
 }
 
@@ -33367,7 +33362,7 @@ type NodeConfigurationOption struct {
 	// The category of the node configuration recommendation.
 	Mode *string `type:"string" enum:"Mode"`
 
-	// The node type, such as, "ds2.8xlarge".
+	// The node type, such as, "ra3.4xlarge".
 	NodeType *string `type:"string"`
 
 	// The number of nodes.
@@ -34978,7 +34973,7 @@ type ReservedNodeExchangeStatus struct {
 	// The identifier of the source reserved node.
 	SourceReservedNodeId *string `type:"string"`
 
-	// The source reserved-node type, for example ds2.xlarge.
+	// The source reserved-node type, for example ra3.4xlarge.
 	SourceReservedNodeType *string `type:"string"`
 
 	// The status of the reserved-node exchange request. Statuses include in-progress
@@ -35741,16 +35736,10 @@ type RestoreFromClusterSnapshotInput struct {
 
 	// The node type that the restored cluster will be provisioned with.
 	//
-	// Default: The node type of the cluster from which the snapshot was taken.
-	// You can modify this if you are using any DS node type. In that case, you
-	// can choose to restore into another DS node type of the same size. For example,
-	// you can restore ds1.8xlarge into ds2.8xlarge, or ds1.xlarge into ds2.xlarge.
 	// If you have a DC instance type, you must restore into that same instance
-	// type and size. In other words, you can only restore a dc1.large instance
-	// type into another dc1.large instance type or dc2.large instance type. You
-	// can't restore dc1.8xlarge to dc2.8xlarge. First restore to a dc1.8xlarge
-	// cluster, then resize to a dc2.8large cluster. For more information about
-	// node types, see About Clusters and Nodes (https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#rs-about-clusters-and-nodes)
+	// type and size. In other words, you can only restore a dc2.large node type
+	// into another dc2 type. For more information about node types, see About Clusters
+	// and Nodes (https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#rs-about-clusters-and-nodes)
 	// in the Amazon Redshift Cluster Management Guide.
 	NodeType *string `type:"string"`
 
@@ -35765,9 +35754,8 @@ type RestoreFromClusterSnapshotInput struct {
 	//
 	// Default: The same port as the original cluster.
 	//
-	// Valid values: For clusters with ds2 or dc2 nodes, must be within the range
-	// 1150-65535. For clusters with ra3 nodes, must be within the ranges 5431-5455
-	// or 8191-8215.
+	// Valid values: For clusters with DC2 nodes, must be within the range 1150-65535.
+	// For clusters with ra3 nodes, must be within the ranges 5431-5455 or 8191-8215.
 	Port *int64 `type:"integer"`
 
 	// The weekly time range (in UTC) during which automated cluster maintenance
@@ -36114,25 +36102,25 @@ type RestoreStatus struct {
 
 	// The number of megabytes per second being transferred from the backup storage.
 	// Returns the average rate for a completed backup. This field is only updated
-	// when you restore to DC2 and DS2 node types.
+	// when you restore to DC2 node types.
 	CurrentRestoreRateInMegaBytesPerSecond *float64 `type:"double"`
 
 	// The amount of time an in-progress restore has been running, or the amount
 	// of time it took a completed restore to finish. This field is only updated
-	// when you restore to DC2 and DS2 node types.
+	// when you restore to DC2 node types.
 	ElapsedTimeInSeconds *int64 `type:"long"`
 
 	// The estimate of the time remaining before the restore will complete. Returns
 	// 0 for a completed restore. This field is only updated when you restore to
-	// DC2 and DS2 node types.
+	// DC2 node types.
 	EstimatedTimeToCompletionInSeconds *int64 `type:"long"`
 
 	// The number of megabytes that have been transferred from snapshot storage.
-	// This field is only updated when you restore to DC2 and DS2 node types.
+	// This field is only updated when you restore to DC2 node types.
 	ProgressInMegaBytes *int64 `type:"long"`
 
 	// The size of the set of snapshot data used to restore the cluster. This field
-	// is only updated when you restore to DC2 and DS2 node types.
+	// is only updated when you restore to DC2 node types.
 	SnapshotSizeInMegaBytes *int64 `type:"long"`
 
 	// The status of the restore action. Returns starting, restoring, completed,
@@ -37061,7 +37049,7 @@ type ScheduledAction struct {
 
 	// A JSON format string of the Amazon Redshift API operation with input parameters.
 	//
-	// "{\"ResizeCluster\":{\"NodeType\":\"ds2.8xlarge\",\"ClusterIdentifier\":\"my-test-cluster\",\"NumberOfNodes\":3}}".
+	// "{\"ResizeCluster\":{\"NodeType\":\"ra3.4xlarge\",\"ClusterIdentifier\":\"my-test-cluster\",\"NumberOfNodes\":3}}".
 	TargetAction *ScheduledActionType `type:"structure"`
 }
 

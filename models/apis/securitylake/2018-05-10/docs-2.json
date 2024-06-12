@@ -87,9 +87,9 @@
     "AwsIdentity": {
       "base": "<p>The AWS identity.</p>",
       "refs": {
-        "CreateSubscriberRequest$subscriberIdentity": "<p>The AWS identity used to access your data.</p>",
+        "CreateSubscriberRequest$subscriberIdentity": "<p>The Amazon Web Services identity used to access your data.</p>",
         "CustomLogSourceConfiguration$providerIdentity": "<p>The identity of the log provider for the third-party custom source.</p>",
-        "SubscriberResource$subscriberIdentity": "<p>The AWS identity used to access your data.</p>",
+        "SubscriberResource$subscriberIdentity": "<p>The Amazon Web Services identity used to access your data.</p>",
         "UpdateSubscriberRequest$subscriberIdentity": "<p>The AWS identity used to access your data.</p>"
       }
     },
@@ -759,7 +759,7 @@
     "ResourceShareArn": {
       "base": null,
       "refs": {
-        "SubscriberResource$resourceShareArn": "<p>The Amazon Resource Name (ARN) which uniquely defines the AWS RAM resource share. Before accepting the RAM resource share invitation, you can view details related to the RAM resource share.</p> <p>This field is available only for Lake Formation subscribers created after March 8, 2023.</p>"
+        "SubscriberResource$resourceShareArn": "<p>The Amazon Resource Name (ARN) which uniquely defines the Amazon Web Services RAM resource share. Before accepting the RAM resource share invitation, you can view details related to the RAM resource share.</p> <p>This field is available only for Lake Formation subscribers created after March 8, 2023.</p>"
       }
     },
     "ResourceShareName": {
