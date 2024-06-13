@@ -360,6 +360,18 @@
         "Encryption$EncryptionMethod": "<p>The encryption method to use.</p>"
       }
     },
+    "EndpointErrorCondition": {
+      "base": null,
+      "refs": {
+        "EndpointErrorConditions$member": null
+      }
+    },
+    "EndpointErrorConditions": {
+      "base": null,
+      "refs": {
+        "ForceEndpointErrorConfiguration$EndpointErrorConditions": "<p>The failover conditions for the endpoint. The options are:</p> <ul> <li> <p> <code>STALE_MANIFEST</code> - The manifest stalled and there are no new segments or parts.</p> </li> <li> <p> <code>INCOMPLETE_MANIFEST</code> - There is a gap in the manifest.</p> </li> <li> <p> <code>MISSING_DRM_KEY</code> - Key rotation is enabled but we're unable to fetch the key for the current key period.</p> </li> <li> <p> <code>SLATE_INPUT</code> - The segments which contain slate content are considered to be missing content.</p> </li> </ul>"
+      }
+    },
     "EntityTag": {
       "base": null,
       "refs": {
@@ -398,6 +410,17 @@
       "base": null,
       "refs": {
         "FilterConfiguration$TimeDelaySeconds": "<p>Optionally specify the time delay for all of your manifest egress requests. Enter a value that is smaller than your endpoint's startover window. When you include time delay, note that you cannot use time delay query parameters for this manifest's endpoint URL.</p>"
+      }
+    },
+    "ForceEndpointErrorConfiguration": {
+      "base": "<p>The failover settings for the endpoint.</p>",
+      "refs": {
+        "CreateOriginEndpointRequest$ForceEndpointErrorConfiguration": "<p>The failover settings for the endpoint.</p>",
+        "CreateOriginEndpointResponse$ForceEndpointErrorConfiguration": "<p>The failover settings for the endpoint.</p>",
+        "GetOriginEndpointResponse$ForceEndpointErrorConfiguration": "<p>The failover settings for the endpoint.</p>",
+        "OriginEndpointListConfiguration$ForceEndpointErrorConfiguration": "<p>The failover settings for the endpoint.</p>",
+        "UpdateOriginEndpointRequest$ForceEndpointErrorConfiguration": "<p>The failover settings for the endpoint.</p>",
+        "UpdateOriginEndpointResponse$ForceEndpointErrorConfiguration": "<p>The failover settings for the endpoint.</p>"
       }
     },
     "GetChannelGroupRequest": {
@@ -512,6 +535,16 @@
         "CreateChannelResponse$IngestEndpoints": null,
         "GetChannelResponse$IngestEndpoints": null,
         "UpdateChannelResponse$IngestEndpoints": null
+      }
+    },
+    "InputType": {
+      "base": null,
+      "refs": {
+        "ChannelListConfiguration$InputType": "<p>The input type will be an immutable field which will be used to define whether the channel will allow CMAF ingest or HLS ingest. If unprovided, it will default to HLS to preserve current behavior.</p> <p>The allowed values are:</p> <ul> <li> <p> <code>HLS</code> - The HLS streaming specification (which defines M3U8 manifests and TS segments).</p> </li> <li> <p> <code>CMAF</code> - The DASH-IF CMAF Ingest specification (which defines CMAF segments with optional DASH manifests).</p> </li> </ul>",
+        "CreateChannelRequest$InputType": "<p>The input type will be an immutable field which will be used to define whether the channel will allow CMAF ingest or HLS ingest. If unprovided, it will default to HLS to preserve current behavior.</p> <p>The allowed values are:</p> <ul> <li> <p> <code>HLS</code> - The HLS streaming specification (which defines M3U8 manifests and TS segments).</p> </li> <li> <p> <code>CMAF</code> - The DASH-IF CMAF Ingest specification (which defines CMAF segments with optional DASH manifests).</p> </li> </ul>",
+        "CreateChannelResponse$InputType": "<p>The input type will be an immutable field which will be used to define whether the channel will allow CMAF ingest or HLS ingest. If unprovided, it will default to HLS to preserve current behavior.</p> <p>The allowed values are:</p> <ul> <li> <p> <code>HLS</code> - The HLS streaming specification (which defines M3U8 manifests and TS segments).</p> </li> <li> <p> <code>CMAF</code> - The DASH-IF CMAF Ingest specification (which defines CMAF segments with optional DASH manifests).</p> </li> </ul>",
+        "GetChannelResponse$InputType": "<p>The input type will be an immutable field which will be used to define whether the channel will allow CMAF ingest or HLS ingest. If unprovided, it will default to HLS to preserve current behavior.</p> <p>The allowed values are:</p> <ul> <li> <p> <code>HLS</code> - The HLS streaming specification (which defines M3U8 manifests and TS segments).</p> </li> <li> <p> <code>CMAF</code> - The DASH-IF CMAF Ingest specification (which defines CMAF segments with optional DASH manifests).</p> </li> </ul>",
+        "UpdateChannelResponse$InputType": "<p>The input type will be an immutable field which will be used to define whether the channel will allow CMAF ingest or HLS ingest. If unprovided, it will default to HLS to preserve current behavior.</p> <p>The allowed values are:</p> <ul> <li> <p> <code>HLS</code> - The HLS streaming specification (which defines M3U8 manifests and TS segments).</p> </li> <li> <p> <code>CMAF</code> - The DASH-IF CMAF Ingest specification (which defines CMAF segments with optional DASH manifests).</p> </li> </ul>"
       }
     },
     "Integer": {

@@ -2692,6 +2692,19 @@ type ChannelListConfiguration struct {
 	// identification purposes.
 	Description *string `type:"string"`
 
+	// The input type will be an immutable field which will be used to define whether
+	// the channel will allow CMAF ingest or HLS ingest. If unprovided, it will
+	// default to HLS to preserve current behavior.
+	//
+	// The allowed values are:
+	//
+	//    * HLS - The HLS streaming specification (which defines M3U8 manifests
+	//    and TS segments).
+	//
+	//    * CMAF - The DASH-IF CMAF Ingest specification (which defines CMAF segments
+	//    with optional DASH manifests).
+	InputType *string `type:"string" enum:"InputType"`
+
 	// The date and time the channel was modified.
 	//
 	// ModifiedAt is a required field
@@ -2743,6 +2756,12 @@ func (s *ChannelListConfiguration) SetCreatedAt(v time.Time) *ChannelListConfigu
 // SetDescription sets the Description field's value.
 func (s *ChannelListConfiguration) SetDescription(v string) *ChannelListConfiguration {
 	s.Description = &v
+	return s
+}
+
+// SetInputType sets the InputType field's value.
+func (s *ChannelListConfiguration) SetInputType(v string) *ChannelListConfiguration {
+	s.InputType = &v
 	return s
 }
 
@@ -3036,6 +3055,19 @@ type CreateChannelInput struct {
 	// Enter any descriptive text that helps you to identify the channel.
 	Description *string `type:"string"`
 
+	// The input type will be an immutable field which will be used to define whether
+	// the channel will allow CMAF ingest or HLS ingest. If unprovided, it will
+	// default to HLS to preserve current behavior.
+	//
+	// The allowed values are:
+	//
+	//    * HLS - The HLS streaming specification (which defines M3U8 manifests
+	//    and TS segments).
+	//
+	//    * CMAF - The DASH-IF CMAF Ingest specification (which defines CMAF segments
+	//    with optional DASH manifests).
+	InputType *string `type:"string" enum:"InputType"`
+
 	// A comma-separated list of tag key:value pairs that you define. For example:
 	//
 	// "Key1": "Value1",
@@ -3111,6 +3143,12 @@ func (s *CreateChannelInput) SetDescription(v string) *CreateChannelInput {
 	return s
 }
 
+// SetInputType sets the InputType field's value.
+func (s *CreateChannelInput) SetInputType(v string) *CreateChannelInput {
+	s.InputType = &v
+	return s
+}
+
 // SetTags sets the Tags field's value.
 func (s *CreateChannelInput) SetTags(v map[string]*string) *CreateChannelInput {
 	s.Tags = v
@@ -3152,6 +3190,19 @@ type CreateChannelOutput struct {
 
 	// The list of ingest endpoints.
 	IngestEndpoints []*IngestEndpoint `type:"list"`
+
+	// The input type will be an immutable field which will be used to define whether
+	// the channel will allow CMAF ingest or HLS ingest. If unprovided, it will
+	// default to HLS to preserve current behavior.
+	//
+	// The allowed values are:
+	//
+	//    * HLS - The HLS streaming specification (which defines M3U8 manifests
+	//    and TS segments).
+	//
+	//    * CMAF - The DASH-IF CMAF Ingest specification (which defines CMAF segments
+	//    with optional DASH manifests).
+	InputType *string `type:"string" enum:"InputType"`
 
 	// The date and time the channel was modified.
 	//
@@ -3219,6 +3270,12 @@ func (s *CreateChannelOutput) SetETag(v string) *CreateChannelOutput {
 // SetIngestEndpoints sets the IngestEndpoints field's value.
 func (s *CreateChannelOutput) SetIngestEndpoints(v []*IngestEndpoint) *CreateChannelOutput {
 	s.IngestEndpoints = v
+	return s
+}
+
+// SetInputType sets the InputType field's value.
+func (s *CreateChannelOutput) SetInputType(v string) *CreateChannelOutput {
+	s.InputType = &v
 	return s
 }
 
@@ -3703,6 +3760,9 @@ type CreateOriginEndpointInput struct {
 	// Enter any descriptive text that helps you to identify the origin endpoint.
 	Description *string `type:"string"`
 
+	// The failover settings for the endpoint.
+	ForceEndpointErrorConfiguration *ForceEndpointErrorConfiguration `type:"structure"`
+
 	// An HTTP live streaming (HLS) manifest configuration.
 	HlsManifests []*CreateHlsManifestConfiguration `type:"list"`
 
@@ -3861,6 +3921,12 @@ func (s *CreateOriginEndpointInput) SetDescription(v string) *CreateOriginEndpoi
 	return s
 }
 
+// SetForceEndpointErrorConfiguration sets the ForceEndpointErrorConfiguration field's value.
+func (s *CreateOriginEndpointInput) SetForceEndpointErrorConfiguration(v *ForceEndpointErrorConfiguration) *CreateOriginEndpointInput {
+	s.ForceEndpointErrorConfiguration = v
+	return s
+}
+
 // SetHlsManifests sets the HlsManifests field's value.
 func (s *CreateOriginEndpointInput) SetHlsManifests(v []*CreateHlsManifestConfiguration) *CreateOriginEndpointInput {
 	s.HlsManifests = v
@@ -3937,6 +4003,9 @@ type CreateOriginEndpointOutput struct {
 	// The current Entity Tag (ETag) associated with this resource. The entity tag
 	// can be used to safely make concurrent updates to the resource.
 	ETag *string `min:"1" type:"string"`
+
+	// The failover settings for the endpoint.
+	ForceEndpointErrorConfiguration *ForceEndpointErrorConfiguration `type:"structure"`
 
 	// An HTTP live streaming (HLS) manifest configuration.
 	HlsManifests []*GetHlsManifestConfiguration `type:"list"`
@@ -4034,6 +4103,12 @@ func (s *CreateOriginEndpointOutput) SetDescription(v string) *CreateOriginEndpo
 // SetETag sets the ETag field's value.
 func (s *CreateOriginEndpointOutput) SetETag(v string) *CreateOriginEndpointOutput {
 	s.ETag = &v
+	return s
+}
+
+// SetForceEndpointErrorConfiguration sets the ForceEndpointErrorConfiguration field's value.
+func (s *CreateOriginEndpointOutput) SetForceEndpointErrorConfiguration(v *ForceEndpointErrorConfiguration) *CreateOriginEndpointOutput {
+	s.ForceEndpointErrorConfiguration = v
 	return s
 }
 
@@ -4955,6 +5030,49 @@ func (s *FilterConfiguration) SetTimeDelaySeconds(v int64) *FilterConfiguration 
 	return s
 }
 
+// The failover settings for the endpoint.
+type ForceEndpointErrorConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The failover conditions for the endpoint. The options are:
+	//
+	//    * STALE_MANIFEST - The manifest stalled and there are no new segments
+	//    or parts.
+	//
+	//    * INCOMPLETE_MANIFEST - There is a gap in the manifest.
+	//
+	//    * MISSING_DRM_KEY - Key rotation is enabled but we're unable to fetch
+	//    the key for the current key period.
+	//
+	//    * SLATE_INPUT - The segments which contain slate content are considered
+	//    to be missing content.
+	EndpointErrorConditions []*string `type:"list" enum:"EndpointErrorCondition"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ForceEndpointErrorConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ForceEndpointErrorConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetEndpointErrorConditions sets the EndpointErrorConditions field's value.
+func (s *ForceEndpointErrorConfiguration) SetEndpointErrorConditions(v []*string) *ForceEndpointErrorConfiguration {
+	s.EndpointErrorConditions = v
+	return s
+}
+
 type GetChannelGroupInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -5217,6 +5335,19 @@ type GetChannelOutput struct {
 	// The list of ingest endpoints.
 	IngestEndpoints []*IngestEndpoint `type:"list"`
 
+	// The input type will be an immutable field which will be used to define whether
+	// the channel will allow CMAF ingest or HLS ingest. If unprovided, it will
+	// default to HLS to preserve current behavior.
+	//
+	// The allowed values are:
+	//
+	//    * HLS - The HLS streaming specification (which defines M3U8 manifests
+	//    and TS segments).
+	//
+	//    * CMAF - The DASH-IF CMAF Ingest specification (which defines CMAF segments
+	//    with optional DASH manifests).
+	InputType *string `type:"string" enum:"InputType"`
+
 	// The date and time the channel was modified.
 	//
 	// ModifiedAt is a required field
@@ -5283,6 +5414,12 @@ func (s *GetChannelOutput) SetETag(v string) *GetChannelOutput {
 // SetIngestEndpoints sets the IngestEndpoints field's value.
 func (s *GetChannelOutput) SetIngestEndpoints(v []*IngestEndpoint) *GetChannelOutput {
 	s.IngestEndpoints = v
+	return s
+}
+
+// SetInputType sets the InputType field's value.
+func (s *GetChannelOutput) SetInputType(v string) *GetChannelOutput {
+	s.InputType = &v
 	return s
 }
 
@@ -5927,6 +6064,9 @@ type GetOriginEndpointOutput struct {
 	// can be used to safely make concurrent updates to the resource.
 	ETag *string `min:"1" type:"string"`
 
+	// The failover settings for the endpoint.
+	ForceEndpointErrorConfiguration *ForceEndpointErrorConfiguration `type:"structure"`
+
 	// An HTTP live streaming (HLS) manifest configuration.
 	HlsManifests []*GetHlsManifestConfiguration `type:"list"`
 
@@ -6023,6 +6163,12 @@ func (s *GetOriginEndpointOutput) SetDescription(v string) *GetOriginEndpointOut
 // SetETag sets the ETag field's value.
 func (s *GetOriginEndpointOutput) SetETag(v string) *GetOriginEndpointOutput {
 	s.ETag = &v
+	return s
+}
+
+// SetForceEndpointErrorConfiguration sets the ForceEndpointErrorConfiguration field's value.
+func (s *GetOriginEndpointOutput) SetForceEndpointErrorConfiguration(v *ForceEndpointErrorConfiguration) *GetOriginEndpointOutput {
+	s.ForceEndpointErrorConfiguration = v
 	return s
 }
 
@@ -6959,6 +7105,9 @@ type OriginEndpointListConfiguration struct {
 	// future identification purposes.
 	Description *string `type:"string"`
 
+	// The failover settings for the endpoint.
+	ForceEndpointErrorConfiguration *ForceEndpointErrorConfiguration `type:"structure"`
+
 	// An HTTP live streaming (HLS) manifest configuration.
 	HlsManifests []*ListHlsManifestConfiguration `type:"list"`
 
@@ -7033,6 +7182,12 @@ func (s *OriginEndpointListConfiguration) SetDashManifests(v []*ListDashManifest
 // SetDescription sets the Description field's value.
 func (s *OriginEndpointListConfiguration) SetDescription(v string) *OriginEndpointListConfiguration {
 	s.Description = &v
+	return s
+}
+
+// SetForceEndpointErrorConfiguration sets the ForceEndpointErrorConfiguration field's value.
+func (s *OriginEndpointListConfiguration) SetForceEndpointErrorConfiguration(v *ForceEndpointErrorConfiguration) *OriginEndpointListConfiguration {
+	s.ForceEndpointErrorConfiguration = v
 	return s
 }
 
@@ -8344,6 +8499,19 @@ type UpdateChannelOutput struct {
 	// The list of ingest endpoints.
 	IngestEndpoints []*IngestEndpoint `type:"list"`
 
+	// The input type will be an immutable field which will be used to define whether
+	// the channel will allow CMAF ingest or HLS ingest. If unprovided, it will
+	// default to HLS to preserve current behavior.
+	//
+	// The allowed values are:
+	//
+	//    * HLS - The HLS streaming specification (which defines M3U8 manifests
+	//    and TS segments).
+	//
+	//    * CMAF - The DASH-IF CMAF Ingest specification (which defines CMAF segments
+	//    with optional DASH manifests).
+	InputType *string `type:"string" enum:"InputType"`
+
 	// The date and time the channel was modified.
 	//
 	// ModifiedAt is a required field
@@ -8413,6 +8581,12 @@ func (s *UpdateChannelOutput) SetIngestEndpoints(v []*IngestEndpoint) *UpdateCha
 	return s
 }
 
+// SetInputType sets the InputType field's value.
+func (s *UpdateChannelOutput) SetInputType(v string) *UpdateChannelOutput {
+	s.InputType = &v
+	return s
+}
+
 // SetModifiedAt sets the ModifiedAt field's value.
 func (s *UpdateChannelOutput) SetModifiedAt(v time.Time) *UpdateChannelOutput {
 	s.ModifiedAt = &v
@@ -8459,6 +8633,9 @@ type UpdateOriginEndpointInput struct {
 	// ETag does not match the resource's current entity tag, the update request
 	// will be rejected.
 	ETag *string `location:"header" locationName:"x-amzn-update-if-match" min:"1" type:"string"`
+
+	// The failover settings for the endpoint.
+	ForceEndpointErrorConfiguration *ForceEndpointErrorConfiguration `type:"structure"`
 
 	// An HTTP live streaming (HLS) manifest configuration.
 	HlsManifests []*CreateHlsManifestConfiguration `type:"list"`
@@ -8610,6 +8787,12 @@ func (s *UpdateOriginEndpointInput) SetETag(v string) *UpdateOriginEndpointInput
 	return s
 }
 
+// SetForceEndpointErrorConfiguration sets the ForceEndpointErrorConfiguration field's value.
+func (s *UpdateOriginEndpointInput) SetForceEndpointErrorConfiguration(v *ForceEndpointErrorConfiguration) *UpdateOriginEndpointInput {
+	s.ForceEndpointErrorConfiguration = v
+	return s
+}
+
 // SetHlsManifests sets the HlsManifests field's value.
 func (s *UpdateOriginEndpointInput) SetHlsManifests(v []*CreateHlsManifestConfiguration) *UpdateOriginEndpointInput {
 	s.HlsManifests = v
@@ -8680,6 +8863,9 @@ type UpdateOriginEndpointOutput struct {
 	// The current Entity Tag (ETag) associated with this resource. The entity tag
 	// can be used to safely make concurrent updates to the resource.
 	ETag *string `min:"1" type:"string"`
+
+	// The failover settings for the endpoint.
+	ForceEndpointErrorConfiguration *ForceEndpointErrorConfiguration `type:"structure"`
 
 	// An HTTP live streaming (HLS) manifest configuration.
 	HlsManifests []*GetHlsManifestConfiguration `type:"list"`
@@ -8777,6 +8963,12 @@ func (s *UpdateOriginEndpointOutput) SetDescription(v string) *UpdateOriginEndpo
 // SetETag sets the ETag field's value.
 func (s *UpdateOriginEndpointOutput) SetETag(v string) *UpdateOriginEndpointOutput {
 	s.ETag = &v
+	return s
+}
+
+// SetForceEndpointErrorConfiguration sets the ForceEndpointErrorConfiguration field's value.
+func (s *UpdateOriginEndpointOutput) SetForceEndpointErrorConfiguration(v *ForceEndpointErrorConfiguration) *UpdateOriginEndpointOutput {
+	s.ForceEndpointErrorConfiguration = v
 	return s
 }
 
@@ -9078,6 +9270,46 @@ func DrmSystem_Values() []string {
 }
 
 const (
+	// EndpointErrorConditionStaleManifest is a EndpointErrorCondition enum value
+	EndpointErrorConditionStaleManifest = "STALE_MANIFEST"
+
+	// EndpointErrorConditionIncompleteManifest is a EndpointErrorCondition enum value
+	EndpointErrorConditionIncompleteManifest = "INCOMPLETE_MANIFEST"
+
+	// EndpointErrorConditionMissingDrmKey is a EndpointErrorCondition enum value
+	EndpointErrorConditionMissingDrmKey = "MISSING_DRM_KEY"
+
+	// EndpointErrorConditionSlateInput is a EndpointErrorCondition enum value
+	EndpointErrorConditionSlateInput = "SLATE_INPUT"
+)
+
+// EndpointErrorCondition_Values returns all elements of the EndpointErrorCondition enum
+func EndpointErrorCondition_Values() []string {
+	return []string{
+		EndpointErrorConditionStaleManifest,
+		EndpointErrorConditionIncompleteManifest,
+		EndpointErrorConditionMissingDrmKey,
+		EndpointErrorConditionSlateInput,
+	}
+}
+
+const (
+	// InputTypeHls is a InputType enum value
+	InputTypeHls = "HLS"
+
+	// InputTypeCmaf is a InputType enum value
+	InputTypeCmaf = "CMAF"
+)
+
+// InputType_Values returns all elements of the InputType enum
+func InputType_Values() []string {
+	return []string{
+		InputTypeHls,
+		InputTypeCmaf,
+	}
+}
+
+const (
 	// PresetSpeke20AudioPresetAudio1 is a PresetSpeke20Audio enum value
 	PresetSpeke20AudioPresetAudio1 = "PRESET_AUDIO_1"
 
@@ -9368,6 +9600,12 @@ const (
 
 	// ValidationExceptionTypeDrmSignalingMismatchSegmentEncryptionStatus is a ValidationExceptionType enum value
 	ValidationExceptionTypeDrmSignalingMismatchSegmentEncryptionStatus = "DRM_SIGNALING_MISMATCH_SEGMENT_ENCRYPTION_STATUS"
+
+	// ValidationExceptionTypeOnlyCmafInputTypeAllowForceEndpointErrorConfiguration is a ValidationExceptionType enum value
+	ValidationExceptionTypeOnlyCmafInputTypeAllowForceEndpointErrorConfiguration = "ONLY_CMAF_INPUT_TYPE_ALLOW_FORCE_ENDPOINT_ERROR_CONFIGURATION"
+
+	// ValidationExceptionTypeSourceDisruptionsEnabledIncorrectly is a ValidationExceptionType enum value
+	ValidationExceptionTypeSourceDisruptionsEnabledIncorrectly = "SOURCE_DISRUPTIONS_ENABLED_INCORRECTLY"
 )
 
 // ValidationExceptionType_Values returns all elements of the ValidationExceptionType enum
@@ -9418,5 +9656,7 @@ func ValidationExceptionType_Values() []string {
 		ValidationExceptionTypeUpdatePeriodSmallerThanSegmentDuration,
 		ValidationExceptionTypePeriodTriggersNoneSpecifiedWithAdditionalValues,
 		ValidationExceptionTypeDrmSignalingMismatchSegmentEncryptionStatus,
+		ValidationExceptionTypeOnlyCmafInputTypeAllowForceEndpointErrorConfiguration,
+		ValidationExceptionTypeSourceDisruptionsEnabledIncorrectly,
 	}
 }

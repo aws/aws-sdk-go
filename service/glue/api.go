@@ -36631,6 +36631,9 @@ type DataQualityEvaluationRunAdditionalRunOptions struct {
 	// Whether or not to enable CloudWatch metrics.
 	CloudWatchMetricsEnabled *bool `type:"boolean"`
 
+	// Set the evaluation method for composite rules in the ruleset to ROW/COLUMN
+	CompositeRuleEvaluationMethod *string `type:"string" enum:"DQCompositeRuleEvaluationMethod"`
+
 	// Prefix for Amazon S3 to store results.
 	ResultsS3Prefix *string `type:"string"`
 }
@@ -36656,6 +36659,12 @@ func (s DataQualityEvaluationRunAdditionalRunOptions) GoString() string {
 // SetCloudWatchMetricsEnabled sets the CloudWatchMetricsEnabled field's value.
 func (s *DataQualityEvaluationRunAdditionalRunOptions) SetCloudWatchMetricsEnabled(v bool) *DataQualityEvaluationRunAdditionalRunOptions {
 	s.CloudWatchMetricsEnabled = &v
+	return s
+}
+
+// SetCompositeRuleEvaluationMethod sets the CompositeRuleEvaluationMethod field's value.
+func (s *DataQualityEvaluationRunAdditionalRunOptions) SetCompositeRuleEvaluationMethod(v string) *DataQualityEvaluationRunAdditionalRunOptions {
+	s.CompositeRuleEvaluationMethod = &v
 	return s
 }
 
@@ -46061,7 +46070,8 @@ type GetDataQualityRulesetEvaluationRunOutput struct {
 	// An IAM role supplied to encrypt the results of the run.
 	Role *string `type:"string"`
 
-	// A list of ruleset names for the run.
+	// A list of ruleset names for the run. Currently, this parameter takes only
+	// one Ruleset name.
 	RulesetNames []*string `min:"1" type:"list"`
 
 	// The unique run identifier associated with this run.
@@ -79769,6 +79779,22 @@ func CsvSerdeOption_Values() []string {
 		CsvSerdeOptionOpenCsvserDe,
 		CsvSerdeOptionLazySimpleSerDe,
 		CsvSerdeOptionNone,
+	}
+}
+
+const (
+	// DQCompositeRuleEvaluationMethodColumn is a DQCompositeRuleEvaluationMethod enum value
+	DQCompositeRuleEvaluationMethodColumn = "COLUMN"
+
+	// DQCompositeRuleEvaluationMethodRow is a DQCompositeRuleEvaluationMethod enum value
+	DQCompositeRuleEvaluationMethodRow = "ROW"
+)
+
+// DQCompositeRuleEvaluationMethod_Values returns all elements of the DQCompositeRuleEvaluationMethod enum
+func DQCompositeRuleEvaluationMethod_Values() []string {
+	return []string{
+		DQCompositeRuleEvaluationMethodColumn,
+		DQCompositeRuleEvaluationMethodRow,
 	}
 }
 

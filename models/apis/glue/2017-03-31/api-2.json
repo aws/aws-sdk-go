@@ -5916,6 +5916,13 @@
       "key":{"shape":"AdditionalOptionKeys"},
       "value":{"shape":"GenericString"}
     },
+    "DQCompositeRuleEvaluationMethod":{
+      "type":"string",
+      "enum":[
+        "COLUMN",
+        "ROW"
+      ]
+    },
     "DQDLAliases":{
       "type":"map",
       "key":{"shape":"NodeName"},
@@ -6009,7 +6016,8 @@
       "type":"structure",
       "members":{
         "CloudWatchMetricsEnabled":{"shape":"NullableBoolean"},
-        "ResultsS3Prefix":{"shape":"UriString"}
+        "ResultsS3Prefix":{"shape":"UriString"},
+        "CompositeRuleEvaluationMethod":{"shape":"DQCompositeRuleEvaluationMethod"}
       }
     },
     "DataQualityMetricValues":{

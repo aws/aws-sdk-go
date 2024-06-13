@@ -1,3 +1,16 @@
+Release v1.54.1 (2024-06-13)
+===
+
+### Service Client Updates
+* `service/cloudhsmv2`: Updates service API and documentation
+  * Added support for hsm type hsm2m.medium. Added supported for creating a cluster in FIPS or NON_FIPS mode.
+* `service/glue`: Updates service API and documentation
+  * This release adds support for configuration of evaluation method for composite rules in Glue Data Quality rulesets.
+* `service/iotwireless`: Updates service API
+* `service/kms`: Updates service API, documentation, and examples
+  * This feature allows customers to use their keys stored in KMS to derive a shared secret which can then be used to establish a secured channel for communication, provide proof of possession, or establish trust with other parties.
+* `service/mediapackagev2`: Updates service API, documentation, and examples
+
 Release v1.54.0 (2024-06-12)
 ===
 

@@ -1099,6 +1099,52 @@ func ExampleKMS_DeleteImportedKeyMaterial_shared00() {
 	fmt.Println(result)
 }
 
+// To derive a shared secret
+// The following example derives a shared secret using a key agreement algorithm.
+func ExampleKMS_DeriveSharedSecret_shared00() {
+	svc := kms.New(session.New())
+	input := &kms.DeriveSharedSecretInput{
+		KeyAgreementAlgorithm: aws.String("ECDH"),
+		KeyId:                 aws.String("1234abcd-12ab-34cd-56ef-1234567890ab"),
+		PublicKey:             []byte("MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvH3Yj0wbkLEpUl95Cv1cJVjsVNSjwGq3tCLnzXfhVwVvmzGN8pYj3U8nKwgouaHbBWNJYjP5VutbbkKS4Kv4GojwZBJyHN17kmxo8yTjRmjR15SKIQ8cqRA2uaERMLnpztIXdZp232PQPbWGxDyXYJ0aJ5EFSag+iSK341kr2kFTpINN7T1ZaX9vfXBdGR+VtkRKMWoHQeWzHrPZ+3irvpXNCKxGUxmPNsJSjPUhuSXT5+0VrY/LEYLQ5lUTrhU6z5/OK0kzaCc66DXc5ipSloS4Xyg+QcYSMxe9xuqO5HtzFImUSKBm1W6eDT6lHnSbpi7vXzNbIX7pWxKw9nmQvQIDAQAB"),
+	}
+
+	result, err := svc.DeriveSharedSecret(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case kms.ErrCodeNotFoundException:
+				fmt.Println(kms.ErrCodeNotFoundException, aerr.Error())
+			case kms.ErrCodeDisabledException:
+				fmt.Println(kms.ErrCodeDisabledException, aerr.Error())
+			case kms.ErrCodeKeyUnavailableException:
+				fmt.Println(kms.ErrCodeKeyUnavailableException, aerr.Error())
+			case kms.ErrCodeDependencyTimeoutException:
+				fmt.Println(kms.ErrCodeDependencyTimeoutException, aerr.Error())
+			case kms.ErrCodeInvalidGrantTokenException:
+				fmt.Println(kms.ErrCodeInvalidGrantTokenException, aerr.Error())
+			case kms.ErrCodeInvalidKeyUsageException:
+				fmt.Println(kms.ErrCodeInvalidKeyUsageException, aerr.Error())
+			case kms.ErrCodeInternalException:
+				fmt.Println(kms.ErrCodeInternalException, aerr.Error())
+			case kms.ErrCodeInvalidStateException:
+				fmt.Println(kms.ErrCodeInvalidStateException, aerr.Error())
+			case kms.ErrCodeDryRunOperationException:
+				fmt.Println(kms.ErrCodeDryRunOperationException, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
 // To get detailed information about custom key stores in the account and Region
 // This example gets detailed information about all AWS KMS custom key stores in an
 // AWS account and Region. To get all key stores, do not enter a custom key store name

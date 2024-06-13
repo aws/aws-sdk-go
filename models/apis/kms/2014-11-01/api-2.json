@@ -11,7 +11,8 @@
     "serviceId":"KMS",
     "signatureVersion":"v4",
     "targetPrefix":"TrentService",
-    "uid":"kms-2014-11-01"
+    "uid":"kms-2014-11-01",
+    "auth":["aws.auth#sigv4"]
   },
   "operations":{
     "CancelKeyDeletion":{
@@ -200,6 +201,26 @@
         {"shape":"NotFoundException"},
         {"shape":"KMSInternalException"},
         {"shape":"KMSInvalidStateException"}
+      ]
+    },
+    "DeriveSharedSecret":{
+      "name":"DeriveSharedSecret",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeriveSharedSecretRequest"},
+      "output":{"shape":"DeriveSharedSecretResponse"},
+      "errors":[
+        {"shape":"NotFoundException"},
+        {"shape":"DisabledException"},
+        {"shape":"KeyUnavailableException"},
+        {"shape":"DependencyTimeoutException"},
+        {"shape":"InvalidGrantTokenException"},
+        {"shape":"InvalidKeyUsageException"},
+        {"shape":"KMSInternalException"},
+        {"shape":"KMSInvalidStateException"},
+        {"shape":"DryRunOperationException"}
       ]
     },
     "DescribeCustomKeyStores":{
@@ -1356,6 +1377,32 @@
       "exception":true,
       "fault":true
     },
+    "DeriveSharedSecretRequest":{
+      "type":"structure",
+      "required":[
+        "KeyId",
+        "KeyAgreementAlgorithm",
+        "PublicKey"
+      ],
+      "members":{
+        "KeyId":{"shape":"KeyIdType"},
+        "KeyAgreementAlgorithm":{"shape":"KeyAgreementAlgorithmSpec"},
+        "PublicKey":{"shape":"PublicKeyType"},
+        "GrantTokens":{"shape":"GrantTokenList"},
+        "DryRun":{"shape":"NullableBooleanType"},
+        "Recipient":{"shape":"RecipientInfo"}
+      }
+    },
+    "DeriveSharedSecretResponse":{
+      "type":"structure",
+      "members":{
+        "KeyId":{"shape":"KeyIdType"},
+        "SharedSecret":{"shape":"PlaintextType"},
+        "CiphertextForRecipient":{"shape":"CiphertextType"},
+        "KeyAgreementAlgorithm":{"shape":"KeyAgreementAlgorithmSpec"},
+        "KeyOrigin":{"shape":"OriginType"}
+      }
+    },
     "DescribeCustomKeyStoresRequest":{
       "type":"structure",
       "members":{
@@ -1708,7 +1755,8 @@
         "KeySpec":{"shape":"KeySpec"},
         "KeyUsage":{"shape":"KeyUsageType"},
         "EncryptionAlgorithms":{"shape":"EncryptionAlgorithmSpecList"},
-        "SigningAlgorithms":{"shape":"SigningAlgorithmSpecList"}
+        "SigningAlgorithms":{"shape":"SigningAlgorithmSpecList"},
+        "KeyAgreementAlgorithms":{"shape":"KeyAgreementAlgorithmSpecList"}
       }
     },
     "GrantConstraints":{
@@ -1765,7 +1813,8 @@
         "GenerateDataKeyPair",
         "GenerateDataKeyPairWithoutPlaintext",
         "GenerateMac",
-        "VerifyMac"
+        "VerifyMac",
+        "DeriveSharedSecret"
       ]
     },
     "GrantOperationList":{
@@ -1909,6 +1958,14 @@
       },
       "exception":true
     },
+    "KeyAgreementAlgorithmSpec":{
+      "type":"string",
+      "enum":["ECDH"]
+    },
+    "KeyAgreementAlgorithmSpecList":{
+      "type":"list",
+      "member":{"shape":"KeyAgreementAlgorithmSpec"}
+    },
     "KeyEncryptionMechanism":{
       "type":"string",
       "enum":["RSAES_OAEP_SHA_256"]
@@ -1963,6 +2020,7 @@
         "KeySpec":{"shape":"KeySpec"},
         "EncryptionAlgorithms":{"shape":"EncryptionAlgorithmSpecList"},
         "SigningAlgorithms":{"shape":"SigningAlgorithmSpecList"},
+        "KeyAgreementAlgorithms":{"shape":"KeyAgreementAlgorithmSpecList"},
         "MultiRegion":{"shape":"NullableBooleanType"},
         "MultiRegionConfiguration":{"shape":"MultiRegionConfiguration"},
         "PendingDeletionWindowInDays":{"shape":"PendingWindowInDaysType"},
@@ -2020,7 +2078,8 @@
       "enum":[
         "SIGN_VERIFY",
         "ENCRYPT_DECRYPT",
-        "GENERATE_VERIFY_MAC"
+        "GENERATE_VERIFY_MAC",
+        "KEY_AGREEMENT"
       ]
     },
     "LimitExceededException":{
