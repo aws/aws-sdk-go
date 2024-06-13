@@ -5,6 +5,7 @@
     "endpointPrefix":"cloudhsmv2",
     "jsonVersion":"1.1",
     "protocol":"json",
+    "protocols":["json"],
     "serviceAbbreviation":"CloudHSM V2",
     "serviceFullName":"AWS CloudHSM V2",
     "serviceId":"CloudHSM V2",
@@ -277,7 +278,9 @@
         "SourceBackup":{"shape":"BackupId"},
         "SourceCluster":{"shape":"ClusterId"},
         "DeleteTimestamp":{"shape":"Timestamp"},
-        "TagList":{"shape":"TagList"}
+        "TagList":{"shape":"TagList"},
+        "HsmType":{"shape":"HsmType"},
+        "Mode":{"shape":"ClusterMode"}
       }
     },
     "BackupId":{
@@ -326,7 +329,7 @@
     "Boolean":{"type":"boolean"},
     "Cert":{
       "type":"string",
-      "max":5000,
+      "max":20000,
       "pattern":"[a-zA-Z0-9+-/=\\s]*"
     },
     "Certificates":{
@@ -399,12 +402,20 @@
         "SubnetMapping":{"shape":"ExternalSubnetMapping"},
         "VpcId":{"shape":"VpcId"},
         "Certificates":{"shape":"Certificates"},
-        "TagList":{"shape":"TagList"}
+        "TagList":{"shape":"TagList"},
+        "Mode":{"shape":"ClusterMode"}
       }
     },
     "ClusterId":{
       "type":"string",
       "pattern":"cluster-[2-7a-zA-Z]{11,16}"
+    },
+    "ClusterMode":{
+      "type":"string",
+      "enum":[
+        "FIPS",
+        "NON_FIPS"
+      ]
     },
     "ClusterState":{
       "type":"string",
@@ -458,7 +469,8 @@
         "HsmType":{"shape":"HsmType"},
         "SourceBackupId":{"shape":"BackupId"},
         "SubnetIds":{"shape":"SubnetIds"},
-        "TagList":{"shape":"TagList"}
+        "TagList":{"shape":"TagList"},
+        "Mode":{"shape":"ClusterMode"}
       }
     },
     "CreateClusterResponse":{
@@ -587,7 +599,8 @@
     "Filters":{
       "type":"map",
       "key":{"shape":"Field"},
-      "value":{"shape":"Strings"}
+      "value":{"shape":"Strings"},
+      "max":30
     },
     "Hsm":{
       "type":"structure",
@@ -619,7 +632,8 @@
     },
     "HsmType":{
       "type":"string",
-      "pattern":"(hsm1\\.medium)"
+      "max":32,
+      "pattern":"((p|)hsm[0-9][a-z.]*\\.[a-zA-Z]+)"
     },
     "Hsms":{
       "type":"list",

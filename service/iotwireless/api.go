@@ -31818,6 +31818,12 @@ const (
 	// MetricNameDeviceSnr is a MetricName enum value
 	MetricNameDeviceSnr = "DeviceSNR"
 
+	// MetricNameDeviceRoamingRssi is a MetricName enum value
+	MetricNameDeviceRoamingRssi = "DeviceRoamingRSSI"
+
+	// MetricNameDeviceRoamingSnr is a MetricName enum value
+	MetricNameDeviceRoamingSnr = "DeviceRoamingSNR"
+
 	// MetricNameDeviceUplinkCount is a MetricName enum value
 	MetricNameDeviceUplinkCount = "DeviceUplinkCount"
 
@@ -31908,6 +31914,8 @@ func MetricName_Values() []string {
 	return []string{
 		MetricNameDeviceRssi,
 		MetricNameDeviceSnr,
+		MetricNameDeviceRoamingRssi,
+		MetricNameDeviceRoamingSnr,
 		MetricNameDeviceUplinkCount,
 		MetricNameDeviceDownlinkCount,
 		MetricNameDeviceUplinkLostCount,

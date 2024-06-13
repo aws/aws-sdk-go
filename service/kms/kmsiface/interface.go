@@ -100,6 +100,10 @@ type KMSAPI interface {
 	DeleteImportedKeyMaterialWithContext(aws.Context, *kms.DeleteImportedKeyMaterialInput, ...request.Option) (*kms.DeleteImportedKeyMaterialOutput, error)
 	DeleteImportedKeyMaterialRequest(*kms.DeleteImportedKeyMaterialInput) (*request.Request, *kms.DeleteImportedKeyMaterialOutput)
 
+	DeriveSharedSecret(*kms.DeriveSharedSecretInput) (*kms.DeriveSharedSecretOutput, error)
+	DeriveSharedSecretWithContext(aws.Context, *kms.DeriveSharedSecretInput, ...request.Option) (*kms.DeriveSharedSecretOutput, error)
+	DeriveSharedSecretRequest(*kms.DeriveSharedSecretInput) (*request.Request, *kms.DeriveSharedSecretOutput)
+
 	DescribeCustomKeyStores(*kms.DescribeCustomKeyStoresInput) (*kms.DescribeCustomKeyStoresOutput, error)
 	DescribeCustomKeyStoresWithContext(aws.Context, *kms.DescribeCustomKeyStoresInput, ...request.Option) (*kms.DescribeCustomKeyStoresOutput, error)
 	DescribeCustomKeyStoresRequest(*kms.DescribeCustomKeyStoresInput) (*request.Request, *kms.DescribeCustomKeyStoresOutput)

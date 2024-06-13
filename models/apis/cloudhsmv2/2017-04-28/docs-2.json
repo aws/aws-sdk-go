@@ -166,6 +166,14 @@
         "ModifyClusterRequest$ClusterId": "<p>The identifier (ID) of the cluster that you want to modify. To find the cluster ID, use <a>DescribeClusters</a>.</p>"
       }
     },
+    "ClusterMode": {
+      "base": null,
+      "refs": {
+        "Backup$Mode": "<p>The mode of the cluster that was backed up.</p>",
+        "Cluster$Mode": "<p>The mode of the cluster.</p>",
+        "CreateClusterRequest$Mode": "<p>The mode to use in the cluster. The allowed values are <code>FIPS</code> and <code>NON_FIPS</code>.</p>"
+      }
+    },
     "ClusterState": {
       "base": null,
       "refs": {
@@ -329,8 +337,9 @@
     "HsmType": {
       "base": null,
       "refs": {
+        "Backup$HsmType": "<p>The HSM type of the cluster that was backed up.</p>",
         "Cluster$HsmType": "<p>The type of HSM that the cluster contains.</p>",
-        "CreateClusterRequest$HsmType": "<p>The type of HSM to use in the cluster. Currently the only allowed value is <code>hsm1.medium</code>.</p>"
+        "CreateClusterRequest$HsmType": "<p>The type of HSM to use in the cluster. The allowed values are <code>hsm1.medium</code> and <code>hsm2m.medium</code>.</p>"
       }
     },
     "Hsms": {

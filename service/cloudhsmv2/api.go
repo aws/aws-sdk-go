@@ -1671,6 +1671,12 @@ type Backup struct {
 	// The date and time when the backup will be permanently deleted.
 	DeleteTimestamp *time.Time `type:"timestamp"`
 
+	// The HSM type of the cluster that was backed up.
+	HsmType *string `type:"string"`
+
+	// The mode of the cluster that was backed up.
+	Mode *string `type:"string" enum:"ClusterMode"`
+
 	// Specifies whether the service should exempt a backup from the retention policy
 	// for the cluster. True exempts a backup from the retention policy. False means
 	// the service applies the backup retention policy defined at the cluster.
@@ -1742,6 +1748,18 @@ func (s *Backup) SetCreateTimestamp(v time.Time) *Backup {
 // SetDeleteTimestamp sets the DeleteTimestamp field's value.
 func (s *Backup) SetDeleteTimestamp(v time.Time) *Backup {
 	s.DeleteTimestamp = &v
+	return s
+}
+
+// SetHsmType sets the HsmType field's value.
+func (s *Backup) SetHsmType(v string) *Backup {
+	s.HsmType = &v
+	return s
+}
+
+// SetMode sets the Mode field's value.
+func (s *Backup) SetMode(v string) *Backup {
+	s.Mode = &v
 	return s
 }
 
@@ -2312,6 +2330,9 @@ type Cluster struct {
 	// Contains information about the HSMs in the cluster.
 	Hsms []*Hsm `type:"list"`
 
+	// The mode of the cluster.
+	Mode *string `type:"string" enum:"ClusterMode"`
+
 	// The default password for the cluster's Pre-Crypto Officer (PRECO) user.
 	PreCoPassword *string `min:"7" type:"string"`
 
@@ -2397,6 +2418,12 @@ func (s *Cluster) SetHsmType(v string) *Cluster {
 // SetHsms sets the Hsms field's value.
 func (s *Cluster) SetHsms(v []*Hsm) *Cluster {
 	s.Hsms = v
+	return s
+}
+
+// SetMode sets the Mode field's value.
+func (s *Cluster) SetMode(v string) *Cluster {
+	s.Mode = &v
 	return s
 }
 
@@ -2577,11 +2604,14 @@ type CreateClusterInput struct {
 	// A policy that defines how the service retains backups.
 	BackupRetentionPolicy *BackupRetentionPolicy `type:"structure"`
 
-	// The type of HSM to use in the cluster. Currently the only allowed value is
-	// hsm1.medium.
+	// The type of HSM to use in the cluster. The allowed values are hsm1.medium
+	// and hsm2m.medium.
 	//
 	// HsmType is a required field
 	HsmType *string `type:"string" required:"true"`
+
+	// The mode to use in the cluster. The allowed values are FIPS and NON_FIPS.
+	Mode *string `type:"string" enum:"ClusterMode"`
 
 	// The identifier (ID) of the cluster backup to restore. Use this value to restore
 	// the cluster from a backup instead of creating a new cluster. To find the
@@ -2667,6 +2697,12 @@ func (s *CreateClusterInput) SetBackupRetentionPolicy(v *BackupRetentionPolicy) 
 // SetHsmType sets the HsmType field's value.
 func (s *CreateClusterInput) SetHsmType(v string) *CreateClusterInput {
 	s.HsmType = &v
+	return s
+}
+
+// SetMode sets the Mode field's value.
+func (s *CreateClusterInput) SetMode(v string) *CreateClusterInput {
+	s.Mode = &v
 	return s
 }
 
@@ -4293,6 +4329,22 @@ func BackupState_Values() []string {
 		BackupStateReady,
 		BackupStateDeleted,
 		BackupStatePendingDeletion,
+	}
+}
+
+const (
+	// ClusterModeFips is a ClusterMode enum value
+	ClusterModeFips = "FIPS"
+
+	// ClusterModeNonFips is a ClusterMode enum value
+	ClusterModeNonFips = "NON_FIPS"
+)
+
+// ClusterMode_Values returns all elements of the ClusterMode enum
+func ClusterMode_Values() []string {
+	return []string{
+		ClusterModeFips,
+		ClusterModeNonFips,
 	}
 }
 

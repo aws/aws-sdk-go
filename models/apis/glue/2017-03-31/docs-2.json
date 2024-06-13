@@ -2181,6 +2181,12 @@
         "EvaluateDataQualityMultiFrame$AdditionalOptions": "<p>Options to configure runtime behavior of the transform.</p>"
       }
     },
+    "DQCompositeRuleEvaluationMethod": {
+      "base": null,
+      "refs": {
+        "DataQualityEvaluationRunAdditionalRunOptions$CompositeRuleEvaluationMethod": "<p>Set the evaluation method for composite rules in the ruleset to ROW/COLUMN</p>"
+      }
+    },
     "DQDLAliases": {
       "base": null,
       "refs": {
@@ -7310,7 +7316,7 @@
     "RulesetNames": {
       "base": null,
       "refs": {
-        "GetDataQualityRulesetEvaluationRunResponse$RulesetNames": "<p>A list of ruleset names for the run.</p>",
+        "GetDataQualityRulesetEvaluationRunResponse$RulesetNames": "<p>A list of ruleset names for the run. Currently, this parameter takes only one Ruleset name.</p>",
         "StartDataQualityRulesetEvaluationRunRequest$RulesetNames": "<p>A list of ruleset names.</p>"
       }
     },

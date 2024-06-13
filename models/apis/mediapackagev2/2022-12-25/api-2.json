@@ -2,9 +2,10 @@
   "version":"2.0",
   "metadata":{
     "apiVersion":"2022-12-25",
+    "auth":["aws.auth#sigv4"],
     "endpointPrefix":"mediapackagev2",
-    "jsonVersion":"1.1",
     "protocol":"rest-json",
+    "protocols":["rest-json"],
     "serviceAbbreviation":"mediapackagev2",
     "serviceFullName":"AWS Elemental MediaPackage v2",
     "serviceId":"MediaPackageV2",
@@ -498,7 +499,8 @@
         "ChannelGroupName":{"shape":"String"},
         "CreatedAt":{"shape":"Timestamp"},
         "ModifiedAt":{"shape":"Timestamp"},
-        "Description":{"shape":"ResourceDescription"}
+        "Description":{"shape":"ResourceDescription"},
+        "InputType":{"shape":"InputType"}
       }
     },
     "CmafEncryptionMethod":{
@@ -593,6 +595,7 @@
           "location":"header",
           "locationName":"x-amzn-client-token"
         },
+        "InputType":{"shape":"InputType"},
         "Description":{"shape":"ResourceDescription"},
         "Tags":{
           "shape":"TagMap",
@@ -617,6 +620,7 @@
         "ModifiedAt":{"shape":"Timestamp"},
         "Description":{"shape":"ResourceDescription"},
         "IngestEndpoints":{"shape":"IngestEndpointList"},
+        "InputType":{"shape":"InputType"},
         "ETag":{"shape":"EntityTag"},
         "Tags":{"shape":"TagMap"}
       }
@@ -752,6 +756,7 @@
         "HlsManifests":{"shape":"CreateHlsManifests"},
         "LowLatencyHlsManifests":{"shape":"CreateLowLatencyHlsManifests"},
         "DashManifests":{"shape":"CreateDashManifests"},
+        "ForceEndpointErrorConfiguration":{"shape":"ForceEndpointErrorConfiguration"},
         "Tags":{"shape":"TagMap"}
       }
     },
@@ -787,6 +792,7 @@
         "HlsManifests":{"shape":"GetHlsManifests"},
         "LowLatencyHlsManifests":{"shape":"GetLowLatencyHlsManifests"},
         "DashManifests":{"shape":"GetDashManifests"},
+        "ForceEndpointErrorConfiguration":{"shape":"ForceEndpointErrorConfiguration"},
         "ETag":{"shape":"EntityTag"},
         "Tags":{"shape":"TagMap"}
       }
@@ -1015,6 +1021,19 @@
         "CmafEncryptionMethod":{"shape":"CmafEncryptionMethod"}
       }
     },
+    "EndpointErrorCondition":{
+      "type":"string",
+      "enum":[
+        "STALE_MANIFEST",
+        "INCOMPLETE_MANIFEST",
+        "MISSING_DRM_KEY",
+        "SLATE_INPUT"
+      ]
+    },
+    "EndpointErrorConditions":{
+      "type":"list",
+      "member":{"shape":"EndpointErrorCondition"}
+    },
     "EntityTag":{
       "type":"string",
       "max":256,
@@ -1040,6 +1059,12 @@
       "box":true,
       "max":1209600,
       "min":0
+    },
+    "ForceEndpointErrorConfiguration":{
+      "type":"structure",
+      "members":{
+        "EndpointErrorConditions":{"shape":"EndpointErrorConditions"}
+      }
     },
     "GetChannelGroupRequest":{
       "type":"structure",
@@ -1143,6 +1168,7 @@
         "ModifiedAt":{"shape":"Timestamp"},
         "Description":{"shape":"ResourceDescription"},
         "IngestEndpoints":{"shape":"IngestEndpointList"},
+        "InputType":{"shape":"InputType"},
         "ETag":{"shape":"EntityTag"},
         "Tags":{"shape":"TagMap"}
       }
@@ -1302,9 +1328,10 @@
         "StartoverWindowSeconds":{"shape":"Integer"},
         "HlsManifests":{"shape":"GetHlsManifests"},
         "LowLatencyHlsManifests":{"shape":"GetLowLatencyHlsManifests"},
+        "DashManifests":{"shape":"GetDashManifests"},
+        "ForceEndpointErrorConfiguration":{"shape":"ForceEndpointErrorConfiguration"},
         "ETag":{"shape":"EntityTag"},
-        "Tags":{"shape":"TagMap"},
-        "DashManifests":{"shape":"GetDashManifests"}
+        "Tags":{"shape":"TagMap"}
       }
     },
     "IdempotencyToken":{
@@ -1323,6 +1350,13 @@
     "IngestEndpointList":{
       "type":"list",
       "member":{"shape":"IngestEndpoint"}
+    },
+    "InputType":{
+      "type":"string",
+      "enum":[
+        "HLS",
+        "CMAF"
+      ]
     },
     "Integer":{
       "type":"integer",
@@ -1513,7 +1547,8 @@
         "ModifiedAt":{"shape":"Timestamp"},
         "HlsManifests":{"shape":"ListHlsManifests"},
         "LowLatencyHlsManifests":{"shape":"ListLowLatencyHlsManifests"},
-        "DashManifests":{"shape":"ListDashManifests"}
+        "DashManifests":{"shape":"ListDashManifests"},
+        "ForceEndpointErrorConfiguration":{"shape":"ForceEndpointErrorConfiguration"}
       }
     },
     "OriginEndpointsList":{
@@ -1902,6 +1937,7 @@
         "ModifiedAt":{"shape":"Timestamp"},
         "Description":{"shape":"ResourceDescription"},
         "IngestEndpoints":{"shape":"IngestEndpointList"},
+        "InputType":{"shape":"InputType"},
         "ETag":{"shape":"EntityTag"},
         "Tags":{
           "shape":"TagMap",
@@ -1940,6 +1976,7 @@
         "HlsManifests":{"shape":"CreateHlsManifests"},
         "LowLatencyHlsManifests":{"shape":"CreateLowLatencyHlsManifests"},
         "DashManifests":{"shape":"CreateDashManifests"},
+        "ForceEndpointErrorConfiguration":{"shape":"ForceEndpointErrorConfiguration"},
         "ETag":{
           "shape":"EntityTag",
           "location":"header",
@@ -1978,6 +2015,7 @@
         "StartoverWindowSeconds":{"shape":"Integer"},
         "HlsManifests":{"shape":"GetHlsManifests"},
         "LowLatencyHlsManifests":{"shape":"GetLowLatencyHlsManifests"},
+        "ForceEndpointErrorConfiguration":{"shape":"ForceEndpointErrorConfiguration"},
         "ETag":{"shape":"EntityTag"},
         "Tags":{
           "shape":"TagMap",
@@ -2041,7 +2079,9 @@
         "TIMING_SOURCE_MISSING",
         "UPDATE_PERIOD_SMALLER_THAN_SEGMENT_DURATION",
         "PERIOD_TRIGGERS_NONE_SPECIFIED_WITH_ADDITIONAL_VALUES",
-        "DRM_SIGNALING_MISMATCH_SEGMENT_ENCRYPTION_STATUS"
+        "DRM_SIGNALING_MISMATCH_SEGMENT_ENCRYPTION_STATUS",
+        "ONLY_CMAF_INPUT_TYPE_ALLOW_FORCE_ENDPOINT_ERROR_CONFIGURATION",
+        "SOURCE_DISRUPTIONS_ENABLED_INCORRECTLY"
       ]
     }
   }
