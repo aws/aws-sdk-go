@@ -21,12 +21,16 @@ import (
 	"github.com/aws/aws-sdk-go/awstesting/unit"
 	"github.com/aws/aws-sdk-go/private/protocol"
 	"github.com/aws/aws-sdk-go/private/protocol/eventstream"
-	"golang.org/x/net/http2"
 )
 
 const (
 	errClientDisconnected = "client disconnected"
 	errStreamClosed       = "http2: stream closed"
+
+	// x/net had an exported StreamError type that we could assert against,
+	// net/http's h2 implementation internalizes all of its error types but the
+	// Error() text pattern remains identical
+	http2StreamError = "stream error: stream ID"
 )
 
 // ServeEventStream provides serving EventStream messages from a HTTP server to
@@ -106,12 +110,7 @@ func (s *ServeEventStream) serveBiDirectionalStream(w http.ResponseWriter, r *ht
 }
 
 func isError(err error) bool {
-	switch err.(type) {
-	case http2.StreamError:
-		return false
-	}
-
-	for _, s := range []string{errClientDisconnected, errStreamClosed} {
+	for _, s := range []string{errClientDisconnected, errStreamClosed, http2StreamError} {
 		if strings.Contains(err.Error(), s) {
 			return false
 		}

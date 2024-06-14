@@ -19,7 +19,6 @@ import (
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/awstesting/integration"
 	"github.com/aws/aws-sdk-go/service/kinesis"
-	"golang.org/x/net/http2"
 )
 
 var (
@@ -131,26 +130,18 @@ func TestMain(m *testing.M) {
 }
 
 func createClient() *kinesis.Kinesis {
-	ts := &http.Transport{}
-
-	if skipTLSVerify {
-		ts.TLSClientConfig = &tls.Config{
-			InsecureSkipVerify: true,
-		}
+	ts := &http.Transport{
+		TLSClientConfig: &tls.Config{
+			InsecureSkipVerify: skipTLSVerify,
+		},
 	}
 
-	http2.ConfigureTransport(ts)
 	switch hUsage {
-	case "default":
-		// Restore H2 optional support since the Transport/TLSConfig was
-		// modified.
-		http2.ConfigureTransport(ts)
-	case "1":
-		// Do nothing. Without usign ConfigureTransport h2 won't be available.
+	case "1", "default":
 		ts.TLSClientConfig.NextProtos = []string{"http/1.1"}
 	case "2":
 		// Force the TLS ALPN (NextProto) to H2 only.
-		ts.TLSClientConfig.NextProtos = []string{http2.NextProtoTLS}
+		ts.TLSClientConfig.NextProtos = []string{"h2"}
 	default:
 		panic("unknown h usage, " + hUsage)
 	}
