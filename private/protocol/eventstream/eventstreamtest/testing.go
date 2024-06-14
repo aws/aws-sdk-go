@@ -6,6 +6,7 @@ package eventstreamtest
 import (
 	"bytes"
 	"context"
+	"crypto/tls"
 	"fmt"
 	"io"
 	"net/http"
@@ -34,9 +35,28 @@ const (
 )
 
 func setupServer(server *httptest.Server, useH2 bool) *http.Client {
-	server.Start()
+	server.Config.TLSConfig = &tls.Config{
+		InsecureSkipVerify: true,
+	}
 
-	return nil
+	tr := &http.Transport{
+		TLSClientConfig: &tls.Config{
+			InsecureSkipVerify: true,
+		},
+	}
+
+	if useH2 {
+		server.Config.TLSConfig.NextProtos = []string{"h2"}
+		tr.TLSClientConfig.NextProtos = []string{"h2"}
+		tr.ForceAttemptHTTP2 = true
+	}
+	server.TLS = server.Config.TLSConfig
+
+	server.StartTLS()
+
+	return &http.Client{
+		Transport: tr,
+	}
 }
 
 // ServeEventStream provides serving EventStream messages from a HTTP server to
