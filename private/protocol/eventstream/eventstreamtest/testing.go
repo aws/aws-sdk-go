@@ -6,6 +6,7 @@ package eventstreamtest
 import (
 	"bytes"
 	"context"
+	"crypto/tls"
 	"fmt"
 	"io"
 	"net/http"
@@ -21,13 +22,42 @@ import (
 	"github.com/aws/aws-sdk-go/awstesting/unit"
 	"github.com/aws/aws-sdk-go/private/protocol"
 	"github.com/aws/aws-sdk-go/private/protocol/eventstream"
-	"golang.org/x/net/http2"
 )
 
 const (
 	errClientDisconnected = "client disconnected"
 	errStreamClosed       = "http2: stream closed"
+
+	// x/net had an exported StreamError type that we could assert against,
+	// net/http's h2 implementation internalizes all of its error types but the
+	// Error() text pattern remains identical
+	http2StreamError = "stream error: stream ID"
 )
+
+func setupServer(server *httptest.Server, useH2 bool) *http.Client {
+	server.Config.TLSConfig = &tls.Config{
+		InsecureSkipVerify: true,
+	}
+
+	tr := &http.Transport{
+		TLSClientConfig: &tls.Config{
+			InsecureSkipVerify: true,
+		},
+	}
+
+	if useH2 {
+		server.Config.TLSConfig.NextProtos = []string{"h2"}
+		tr.TLSClientConfig.NextProtos = []string{"h2"}
+		tr.ForceAttemptHTTP2 = true
+	}
+	server.TLS = server.Config.TLSConfig
+
+	server.StartTLS()
+
+	return &http.Client{
+		Transport: tr,
+	}
+}
 
 // ServeEventStream provides serving EventStream messages from a HTTP server to
 // the client. The events are sent sequentially to the client without delay.
@@ -106,12 +136,7 @@ func (s *ServeEventStream) serveBiDirectionalStream(w http.ResponseWriter, r *ht
 }
 
 func isError(err error) bool {
-	switch err.(type) {
-	case http2.StreamError:
-		return false
-	}
-
-	for _, s := range []string{errClientDisconnected, errStreamClosed} {
+	for _, s := range []string{errClientDisconnected, errStreamClosed, http2StreamError} {
 		if strings.Contains(err.Error(), s) {
 			return false
 		}

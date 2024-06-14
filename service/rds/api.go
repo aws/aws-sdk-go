@@ -45030,18 +45030,18 @@ type FailoverState struct {
 
 	// The current status of the global cluster. Possible values are as follows:
 	//
-	//    * pending – The service received a request to switch over or fail over
+	//    * pending  The service received a request to switch over or fail over
 	//    the global cluster. The global cluster's primary DB cluster and the specified
 	//    secondary DB cluster are being verified before the operation starts.
 	//
-	//    * failing-over – Aurora is promoting the chosen secondary Aurora DB
-	//    cluster to become the new primary DB cluster to fail over the global cluster.
+	//    * failing-over  Aurora is promoting the chosen secondary Aurora DB cluster
+	//    to become the new primary DB cluster to fail over the global cluster.
 	//
-	//    * cancelling – The request to switch over or fail over the global cluster
+	//    * cancelling  The request to switch over or fail over the global cluster
 	//    was cancelled and the primary Aurora DB cluster and the selected secondary
 	//    Aurora DB cluster are returning to their previous states.
 	//
-	//    * switching-over – This status covers the range of Aurora internal operations
+	//    * switching-over  This status covers the range of Aurora internal operations
 	//    that take place during the switchover process, such as demoting the primary
 	//    Aurora DB cluster, promoting the secondary Aurora DB cluster, and synchronizing
 	//    replicas.

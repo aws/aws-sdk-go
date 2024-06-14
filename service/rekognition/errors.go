@@ -141,6 +141,7 @@ const (
 	// ErrCodeServiceQuotaExceededException for service response error code
 	// "ServiceQuotaExceededException".
 	//
+	//
 	// The size of the collection exceeds the allowed limit. For more information,
 	// see Guidelines and quotas in Amazon Rekognition in the Amazon Rekognition
 	// Developer Guide.

@@ -2771,6 +2771,7 @@ type ASN1Subject struct {
 	// located.
 	Country *string `min:"2" type:"string"`
 
+	//
 	// Contains a sequence of one or more X.500 relative distinguished names (RDNs),
 	// each of which consists of an object identifier (OID) and a value. For more
 	// information, see NIST’s definition of Object Identifier (OID) (https://csrc.nist.gov/glossary/term/Object_Identifier).
@@ -4360,6 +4361,7 @@ type CustomAttribute struct {
 	// ObjectIdentifier is a required field
 	ObjectIdentifier *string `type:"string" required:"true"`
 
+	//
 	// Specifies the attribute value of relative distinguished name (RDN).
 	//
 	// Value is a required field
@@ -4422,15 +4424,18 @@ func (s *CustomAttribute) SetValue(v string) *CustomAttribute {
 type CustomExtension struct {
 	_ struct{} `type:"structure"`
 
+	//
 	// Specifies the critical flag of the X.509 extension.
 	Critical *bool `type:"boolean"`
 
+	//
 	// Specifies the object identifier (OID) of the X.509 extension. For more information,
 	// see the Global OID reference database. (https://oidref.com/2.5.29)
 	//
 	// ObjectIdentifier is a required field
 	ObjectIdentifier *string `type:"string" required:"true"`
 
+	//
 	// Specifies the base64-encoded value of the X.509 extension.
 	//
 	// Value is a required field
@@ -5083,6 +5088,7 @@ type Extensions struct {
 	// paths that include this certificate.
 	CertificatePolicies []*PolicyInformation `min:"1" type:"list"`
 
+	//
 	// Contains a sequence of one or more X.509 extensions, each of which consists
 	// of an object identifier (OID), a base64-encoded value, and the critical flag.
 	// For more information, see the Global OID reference database. (https://oidref.com/2.5.29)

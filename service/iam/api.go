@@ -20805,6 +20805,7 @@ type CreateServiceLinkedRoleInput struct {
 	// AWSServiceName is a required field
 	AWSServiceName *string `min:"1" type:"string" required:"true"`
 
+	//
 	// A string that you provide, which is combined with the service-provided prefix
 	// to form the complete role name. If you make multiple requests for the same
 	// service, then you must supply a different CustomSuffix for each request.

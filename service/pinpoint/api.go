@@ -14562,6 +14562,26 @@ func (s *ApplicationsResponse) SetNextToken(v string) *ApplicationsResponse {
 type AttributeDimension struct {
 	_ struct{} `type:"structure"`
 
+	//    * INCLUSIVE - endpoints that have attributes matching the values are included
+	//    in the segment.
+	//
+	//    * EXCLUSIVE - endpoints that have attributes matching the values are excluded
+	//    in the segment.
+	//
+	//    * CONTAINS - endpoints that have attributes' substrings match the values
+	//    are included in the segment.
+	//
+	//    * BEFORE - endpoints with attributes read as ISO_INSTANT datetimes before
+	//    the value are included in the segment.
+	//
+	//    * AFTER - endpoints with attributes read as ISO_INSTANT datetimes after
+	//    the value are included in the segment.
+	//
+	//    * ON - endpoints with attributes read as ISO_INSTANT dates on the value
+	//    are included in the segment. Time is ignored in this comparison.
+	//
+	//    * BETWEEN - endpoints with attributes read as ISO_INSTANT datetimes between
+	//    the values are included in the segment.
 	AttributeType *string `type:"string" enum:"AttributeType"`
 
 	// The criteria values to use for the segment dimension. Depending on the value
@@ -15381,7 +15401,7 @@ type CampaignEventFilter struct {
 
 	// The type of event that causes the campaign to be sent. Valid values are:
 	// SYSTEM, sends the campaign when a system event occurs; and, ENDPOINT, sends
-	// the campaign when an endpoint event (Events resource) occurs.
+	// the campaign when an endpoint event (Events
 	//
 	// FilterType is a required field
 	FilterType *string `type:"string" required:"true" enum:"FilterType"`
@@ -18175,12 +18195,7 @@ type CustomMessageActivity struct {
 	// The unique identifier for the version of the message template to use for
 	// the message. If specified, this value must match the identifier for an existing
 	// template version. To retrieve a list of versions and version identifiers
-	// for a template, use the Template Versions resource.
-	//
-	// If you don't specify a value for this property, Amazon Pinpoint uses the
-	// active version of the template. The active version is typically the version
-	// of a template that's been most recently reviewed and approved for use, depending
-	// on your workflow. It isn't necessarily the latest version of a template.
+	// for a template, use the Template Versions
 	TemplateVersion *string `type:"string"`
 }
 
@@ -21055,12 +21070,7 @@ type EmailMessageActivity struct {
 	// The unique identifier for the version of the email template to use for the
 	// message. If specified, this value must match the identifier for an existing
 	// template version. To retrieve a list of versions and version identifiers
-	// for a template, use the Template Versions resource.
-	//
-	// If you don't specify a value for this property, Amazon Pinpoint uses the
-	// active version of the template. The active version is typically the version
-	// of a template that's been most recently reviewed and approved for use, depending
-	// on your workflow. It isn't necessarily the latest version of a template.
+	// for a template, use the Template Versions
 	TemplateVersion *string `type:"string"`
 }
 
@@ -22745,7 +22755,7 @@ type EventFilter struct {
 	// The type of event that causes the campaign to be sent or the journey activity
 	// to be performed. Valid values are: SYSTEM, sends the campaign or performs
 	// the activity when a system event occurs; and, ENDPOINT, sends the campaign
-	// or performs the activity when an endpoint event (Events resource) occurs.
+	// or performs the activity when an endpoint event (Events resource
 	//
 	// FilterType is a required field
 	FilterType *string `type:"string" required:"true" enum:"FilterType"`
@@ -33900,12 +33910,7 @@ type PushMessageActivity struct {
 	// The unique identifier for the version of the push notification template to
 	// use for the message. If specified, this value must match the identifier for
 	// an existing template version. To retrieve a list of versions and version
-	// identifiers for a template, use the Template Versions resource.
-	//
-	// If you don't specify a value for this property, Amazon Pinpoint uses the
-	// active version of the template. The active version is typically the version
-	// of a template that's been most recently reviewed and approved for use, depending
-	// on your workflow. It isn't necessarily the latest version of a template.
+	// identifiers for a template, use the Template Versions
 	TemplateVersion *string `type:"string"`
 }
 
@@ -35443,12 +35448,7 @@ type SMSMessageActivity struct {
 	// The unique identifier for the version of the SMS template to use for the
 	// message. If specified, this value must match the identifier for an existing
 	// template version. To retrieve a list of versions and version identifiers
-	// for a template, use the Template Versions resource.
-	//
-	// If you don't specify a value for this property, Amazon Pinpoint uses the
-	// active version of the template. The active version is typically the version
-	// of a template that's been most recently reviewed and approved for use, depending
-	// on your workflow. It isn't necessarily the latest version of a template.
+	// for a template, use the Template Versions
 	TemplateVersion *string `type:"string"`
 }
 
@@ -37939,12 +37939,7 @@ type Template struct {
 	// The unique identifier for the version of the message template to use for
 	// the message. If specified, this value must match the identifier for an existing
 	// template version. To retrieve a list of versions and version identifiers
-	// for a template, use the Template Versions resource.
-	//
-	// If you don't specify a value for this property, Amazon Pinpoint uses the
-	// active version of the template. The active version is typically the version
-	// of a template that's been most recently reviewed and approved for use, depending
-	// on your workflow. It isn't necessarily the latest version of a template.
+	// for a template, use the Template Versions
 	Version *string `type:"string"`
 }
 
@@ -37988,7 +37983,7 @@ type TemplateActiveVersionRequest struct {
 	// the unique identifier for any existing version of the template. If you specify
 	// an identifier, the value must match the identifier for an existing template
 	// version. To retrieve a list of versions and version identifiers for a template,
-	// use the Template Versions resource.
+	// use the Template Versions
 	Version *string `type:"string"`
 }
 
@@ -42255,7 +42250,7 @@ type WriteApplicationSettingsRequest struct {
 	// that are used by campaigns in the application.
 	//
 	// To override these settings and define custom settings for a specific campaign,
-	// use the CampaignHook object of the Campaign resource.
+	// use the CampaignHook object of the Campaign
 	CampaignHook *CampaignHook `type:"structure"`
 
 	// Specifies whether to enable application-related alarms in Amazon CloudWatch.
@@ -42268,7 +42263,7 @@ type WriteApplicationSettingsRequest struct {
 
 	// The default sending limits for campaigns in the application. To override
 	// these limits and define custom limits for a specific campaign or journey,
-	// use the Campaign resource or the Journey resource, respectively.
+	// use the Campaign
 	Limits *CampaignLimits `type:"structure"`
 
 	// The default quiet time for campaigns in the application. Quiet time is a
@@ -42290,8 +42285,7 @@ type WriteApplicationSettingsRequest struct {
 	// from a campaign or journey, even if quiet time is enabled.
 	//
 	// To override the default quiet time settings for a specific campaign or journey,
-	// use the Campaign resource or the Journey resource to define a custom quiet
-	// time for the campaign or journey.
+	// use the Campaign
 	QuietTime *QuietTime `type:"structure"`
 }
 
@@ -42740,7 +42734,7 @@ type WriteJourneyRequest struct {
 	//
 	// PAUSED, CANCELLED, COMPLETED, and CLOSED states are not supported in requests
 	// to create or update a journey. To cancel, pause, or resume a journey, use
-	// the Journey State resource.
+	// the Journey State
 	State *string `type:"string" enum:"State"`
 
 	// An array of time zone estimation methods, if any, to use for determining

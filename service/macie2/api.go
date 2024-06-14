@@ -2309,7 +2309,6 @@ func (c *Macie2) DisassociateFromMasterAccountRequest(input *DisassociateFromMas
 //
 // (Deprecated) Disassociates a member account from its Amazon Macie administrator
 // account. This operation has been replaced by the DisassociateFromAdministratorAccount
-// operation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4061,7 +4060,6 @@ func (c *Macie2) GetMasterAccountRequest(input *GetMasterAccountInput) (req *req
 //
 // (Deprecated) Retrieves information about the Amazon Macie administrator account
 // for an account. This operation has been replaced by the GetAdministratorAccount
-// operation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
