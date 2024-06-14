@@ -332,10 +332,6 @@ func (e *htmlTokenEncoder) Encode(token xml.Token) error {
 			e.depth = 0
 		}
 
-		// TODO
-		////case xml.SelfClosingTagToken:
-		////	h.handler.OnSelfClosingTagToken(token)
-
 	case xml.CharData:
 		h.handler.OnTextTagToken(v)
 	}
