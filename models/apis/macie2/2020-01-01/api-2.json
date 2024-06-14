@@ -8,7 +8,10 @@
     "protocol": "rest-json",
     "jsonVersion": "1.1",
     "uid": "macie2-2020-01-01",
-    "signatureVersion": "v4"
+    "signatureVersion": "v4",
+    "auth": [
+      "aws.auth#sigv4"
+    ]
   },
   "operations": {
     "AcceptInvitation": {
@@ -82,6 +85,37 @@
         },
         {
           "shape": "ConflictException"
+        }
+      ]
+    },
+    "BatchUpdateAutomatedDiscoveryAccounts": {
+      "name": "BatchUpdateAutomatedDiscoveryAccounts",
+      "http": {
+        "method": "PATCH",
+        "requestUri": "/automated-discovery/accounts",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "BatchUpdateAutomatedDiscoveryAccountsRequest"
+      },
+      "output": {
+        "shape": "BatchUpdateAutomatedDiscoveryAccountsResponse"
+      },
+      "errors": [
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "ConflictException"
+        },
+        {
+          "shape": "AccessDeniedException"
         }
       ]
     },
@@ -1721,6 +1755,37 @@
         }
       ]
     },
+    "ListAutomatedDiscoveryAccounts": {
+      "name": "ListAutomatedDiscoveryAccounts",
+      "http": {
+        "method": "GET",
+        "requestUri": "/automated-discovery/accounts",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "ListAutomatedDiscoveryAccountsRequest"
+      },
+      "output": {
+        "shape": "ListAutomatedDiscoveryAccountsResponse"
+      },
+      "errors": [
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        }
+      ]
+    },
     "ListClassificationJobs": {
       "name": "ListClassificationJobs",
       "http": {
@@ -1947,7 +2012,9 @@
       "output": {
         "shape": "ListManagedDataIdentifiersResponse"
       },
-      "errors": []
+      "errors": [
+
+      ]
     },
     "ListMembers": {
       "name": "ListMembers",
@@ -2132,7 +2199,9 @@
       "output": {
         "shape": "ListTagsForResourceResponse"
       },
-      "errors": []
+      "errors": [
+
+      ]
     },
     "PutClassificationExportConfiguration": {
       "name": "PutClassificationExportConfiguration",
@@ -2258,7 +2327,9 @@
       "output": {
         "shape": "TagResourceResponse"
       },
-      "errors": []
+      "errors": [
+
+      ]
     },
     "TestCustomDataIdentifier": {
       "name": "TestCustomDataIdentifier",
@@ -2310,7 +2381,9 @@
       "output": {
         "shape": "UntagResourceResponse"
       },
-      "errors": []
+      "errors": [
+
+      ]
     },
     "UpdateAllowList": {
       "name": "UpdateAllowList",
@@ -2738,7 +2811,8 @@
     },
     "AcceptInvitationResponse": {
       "type": "structure",
-      "members": {}
+      "members": {
+      }
     },
     "AccessControlList": {
       "type": "structure",
@@ -2937,6 +3011,74 @@
         }
       }
     },
+    "AutoEnableMode": {
+      "type": "string",
+      "enum": [
+        "ALL",
+        "NEW",
+        "NONE"
+      ]
+    },
+    "AutomatedDiscoveryAccount": {
+      "type": "structure",
+      "members": {
+        "accountId": {
+          "shape": "__string",
+          "locationName": "accountId"
+        },
+        "status": {
+          "shape": "AutomatedDiscoveryAccountStatus",
+          "locationName": "status"
+        }
+      }
+    },
+    "AutomatedDiscoveryAccountStatus": {
+      "type": "string",
+      "enum": [
+        "ENABLED",
+        "DISABLED"
+      ]
+    },
+    "AutomatedDiscoveryAccountUpdate": {
+      "type": "structure",
+      "members": {
+        "accountId": {
+          "shape": "__string",
+          "locationName": "accountId"
+        },
+        "status": {
+          "shape": "AutomatedDiscoveryAccountStatus",
+          "locationName": "status"
+        }
+      }
+    },
+    "AutomatedDiscoveryAccountUpdateError": {
+      "type": "structure",
+      "members": {
+        "accountId": {
+          "shape": "__string",
+          "locationName": "accountId"
+        },
+        "errorCode": {
+          "shape": "AutomatedDiscoveryAccountUpdateErrorCode",
+          "locationName": "errorCode"
+        }
+      }
+    },
+    "AutomatedDiscoveryAccountUpdateErrorCode": {
+      "type": "string",
+      "enum": [
+        "ACCOUNT_PAUSED",
+        "ACCOUNT_NOT_FOUND"
+      ]
+    },
+    "AutomatedDiscoveryMonitoringStatus": {
+      "type": "string",
+      "enum": [
+        "MONITORED",
+        "NOT_MONITORED"
+      ]
+    },
     "AutomatedDiscoveryStatus": {
       "type": "string",
       "enum": [
@@ -3021,6 +3163,24 @@
         "notFoundIdentifierIds": {
           "shape": "__listOf__string",
           "locationName": "notFoundIdentifierIds"
+        }
+      }
+    },
+    "BatchUpdateAutomatedDiscoveryAccountsRequest": {
+      "type": "structure",
+      "members": {
+        "accounts": {
+          "shape": "__listOfAutomatedDiscoveryAccountUpdate",
+          "locationName": "accounts"
+        }
+      }
+    },
+    "BatchUpdateAutomatedDiscoveryAccountsResponse": {
+      "type": "structure",
+      "members": {
+        "errors": {
+          "shape": "__listOfAutomatedDiscoveryAccountUpdateError",
+          "locationName": "errors"
         }
       }
     },
@@ -3194,6 +3354,10 @@
         "allowsUnencryptedObjectUploads": {
           "shape": "AllowsUnencryptedObjectUploads",
           "locationName": "allowsUnencryptedObjectUploads"
+        },
+        "automatedDiscoveryMonitoringStatus": {
+          "shape": "AutomatedDiscoveryMonitoringStatus",
+          "locationName": "automatedDiscoveryMonitoringStatus"
         },
         "bucketArn": {
           "shape": "__string",
@@ -3823,7 +3987,8 @@
     },
     "CreateSampleFindingsResponse": {
       "type": "structure",
-      "members": {}
+      "members": {
+      }
     },
     "CriteriaBlockForJob": {
       "type": "structure",
@@ -3962,7 +4127,8 @@
     },
     "DailySchedule": {
       "type": "structure",
-      "members": {}
+      "members": {
+      }
     },
     "DataIdentifierSeverity": {
       "type": "string",
@@ -4055,7 +4221,8 @@
     },
     "DeleteAllowListResponse": {
       "type": "structure",
-      "members": {}
+      "members": {
+      }
     },
     "DeleteCustomDataIdentifierRequest": {
       "type": "structure",
@@ -4072,7 +4239,8 @@
     },
     "DeleteCustomDataIdentifierResponse": {
       "type": "structure",
-      "members": {}
+      "members": {
+      }
     },
     "DeleteFindingsFilterRequest": {
       "type": "structure",
@@ -4089,7 +4257,8 @@
     },
     "DeleteFindingsFilterResponse": {
       "type": "structure",
-      "members": {}
+      "members": {
+      }
     },
     "DeleteInvitationsRequest": {
       "type": "structure",
@@ -4127,7 +4296,8 @@
     },
     "DeleteMemberResponse": {
       "type": "structure",
-      "members": {}
+      "members": {
+      }
     },
     "DescribeBucketsRequest": {
       "type": "structure",
@@ -4268,7 +4438,8 @@
     },
     "DescribeOrganizationConfigurationRequest": {
       "type": "structure",
-      "members": {}
+      "members": {
+      }
     },
     "DescribeOrganizationConfigurationResponse": {
       "type": "structure",
@@ -4326,11 +4497,13 @@
     },
     "DisableMacieRequest": {
       "type": "structure",
-      "members": {}
+      "members": {
+      }
     },
     "DisableMacieResponse": {
       "type": "structure",
-      "members": {}
+      "members": {
+      }
     },
     "DisableOrganizationAdminAccountRequest": {
       "type": "structure",
@@ -4347,23 +4520,28 @@
     },
     "DisableOrganizationAdminAccountResponse": {
       "type": "structure",
-      "members": {}
+      "members": {
+      }
     },
     "DisassociateFromAdministratorAccountRequest": {
       "type": "structure",
-      "members": {}
+      "members": {
+      }
     },
     "DisassociateFromAdministratorAccountResponse": {
       "type": "structure",
-      "members": {}
+      "members": {
+      }
     },
     "DisassociateFromMasterAccountRequest": {
       "type": "structure",
-      "members": {}
+      "members": {
+      }
     },
     "DisassociateFromMasterAccountResponse": {
       "type": "structure",
-      "members": {}
+      "members": {
+      }
     },
     "DisassociateMemberRequest": {
       "type": "structure",
@@ -4380,7 +4558,8 @@
     },
     "DisassociateMemberResponse": {
       "type": "structure",
-      "members": {}
+      "members": {
+      }
     },
     "DomainDetails": {
       "type": "structure",
@@ -4401,7 +4580,8 @@
     },
     "Empty": {
       "type": "structure",
-      "members": {}
+      "members": {
+      }
     },
     "EnableMacieRequest": {
       "type": "structure",
@@ -4423,7 +4603,8 @@
     },
     "EnableMacieResponse": {
       "type": "structure",
-      "members": {}
+      "members": {
+      }
     },
     "EnableOrganizationAdminAccountRequest": {
       "type": "structure",
@@ -4444,7 +4625,8 @@
     },
     "EnableOrganizationAdminAccountResponse": {
       "type": "structure",
-      "members": {}
+      "members": {
+      }
     },
     "EncryptionType": {
       "type": "string",
@@ -4453,7 +4635,7 @@
         "AES256",
         "aws:kms",
         "UNKNOWN",
-	"aws:kms:dsse"
+        "aws:kms:dsse"
       ]
     },
     "ErrorCode": {
@@ -4695,7 +4877,8 @@
     },
     "GetAdministratorAccountRequest": {
       "type": "structure",
-      "members": {}
+      "members": {
+      }
     },
     "GetAdministratorAccountResponse": {
       "type": "structure",
@@ -4762,11 +4945,16 @@
     },
     "GetAutomatedDiscoveryConfigurationRequest": {
       "type": "structure",
-      "members": {}
+      "members": {
+      }
     },
     "GetAutomatedDiscoveryConfigurationResponse": {
       "type": "structure",
       "members": {
+        "autoEnableOrganizationMembers": {
+          "shape": "AutoEnableMode",
+          "locationName": "autoEnableOrganizationMembers"
+        },
         "classificationScopeId": {
           "shape": "ClassificationScopeId",
           "locationName": "classificationScopeId"
@@ -4865,7 +5053,8 @@
     },
     "GetClassificationExportConfigurationRequest": {
       "type": "structure",
-      "members": {}
+      "members": {
+      }
     },
     "GetClassificationExportConfigurationResponse": {
       "type": "structure",
@@ -5057,7 +5246,8 @@
     },
     "GetFindingsPublicationConfigurationRequest": {
       "type": "structure",
-      "members": {}
+      "members": {
+      }
     },
     "GetFindingsPublicationConfigurationResponse": {
       "type": "structure",
@@ -5095,7 +5285,8 @@
     },
     "GetInvitationsCountRequest": {
       "type": "structure",
-      "members": {}
+      "members": {
+      }
     },
     "GetInvitationsCountResponse": {
       "type": "structure",
@@ -5108,7 +5299,8 @@
     },
     "GetMacieSessionRequest": {
       "type": "structure",
-      "members": {}
+      "members": {
+      }
     },
     "GetMacieSessionResponse": {
       "type": "structure",
@@ -5137,7 +5329,8 @@
     },
     "GetMasterAccountRequest": {
       "type": "structure",
-      "members": {}
+      "members": {
+      }
     },
     "GetMasterAccountResponse": {
       "type": "structure",
@@ -5238,7 +5431,8 @@
     },
     "GetRevealConfigurationRequest": {
       "type": "structure",
-      "members": {}
+      "members": {
+      }
     },
     "GetRevealConfigurationResponse": {
       "type": "structure",
@@ -5781,6 +5975,39 @@
         }
       }
     },
+    "ListAutomatedDiscoveryAccountsRequest": {
+      "type": "structure",
+      "members": {
+        "accountIds": {
+          "shape": "__listOf__string",
+          "location": "querystring",
+          "locationName": "accountIds"
+        },
+        "maxResults": {
+          "shape": "MaxResults",
+          "location": "querystring",
+          "locationName": "maxResults"
+        },
+        "nextToken": {
+          "shape": "__string",
+          "location": "querystring",
+          "locationName": "nextToken"
+        }
+      }
+    },
+    "ListAutomatedDiscoveryAccountsResponse": {
+      "type": "structure",
+      "members": {
+        "items": {
+          "shape": "__listOfAutomatedDiscoveryAccount",
+          "locationName": "items"
+        },
+        "nextToken": {
+          "shape": "__string",
+          "locationName": "nextToken"
+        }
+      }
+    },
     "ListClassificationJobsRequest": {
       "type": "structure",
       "members": {
@@ -6257,6 +6484,10 @@
           "shape": "__string",
           "locationName": "accountId"
         },
+        "automatedDiscoveryMonitoringStatus": {
+          "shape": "AutomatedDiscoveryMonitoringStatus",
+          "locationName": "automatedDiscoveryMonitoringStatus"
+        },
         "bucketName": {
           "shape": "__string",
           "locationName": "bucketName"
@@ -6537,7 +6768,8 @@
     },
     "PutFindingsPublicationConfigurationResponse": {
       "type": "structure",
-      "members": {}
+      "members": {
+      }
     },
     "Range": {
       "type": "structure",
@@ -7125,7 +7357,8 @@
         "ACCOUNT_ID",
         "S3_BUCKET_NAME",
         "S3_BUCKET_EFFECTIVE_PERMISSION",
-        "S3_BUCKET_SHARED_ACCESS"
+        "S3_BUCKET_SHARED_ACCESS",
+        "AUTOMATED_DISCOVERY_MONITORING_STATUS"
       ]
     },
     "SearchResourcesSortAttributeName": {
@@ -7595,7 +7828,8 @@
     },
     "TagResourceResponse": {
       "type": "structure",
-      "members": {}
+      "members": {
+      }
     },
     "TagScopeTerm": {
       "type": "structure",
@@ -7705,7 +7939,7 @@
         "NONE",
         "AES256",
         "aws:kms",
-	"aws:kms:dsse"
+        "aws:kms:dsse"
       ]
     },
     "UnavailabilityReasonCode": {
@@ -7784,7 +8018,8 @@
     },
     "UntagResourceResponse": {
       "type": "structure",
-      "members": {}
+      "members": {
+      }
     },
     "UpdateAllowListRequest": {
       "type": "structure",
@@ -7829,6 +8064,10 @@
     "UpdateAutomatedDiscoveryConfigurationRequest": {
       "type": "structure",
       "members": {
+        "autoEnableOrganizationMembers": {
+          "shape": "AutoEnableMode",
+          "locationName": "autoEnableOrganizationMembers"
+        },
         "status": {
           "shape": "AutomatedDiscoveryStatus",
           "locationName": "status"
@@ -7840,7 +8079,8 @@
     },
     "UpdateAutomatedDiscoveryConfigurationResponse": {
       "type": "structure",
-      "members": {}
+      "members": {
+      }
     },
     "UpdateClassificationJobRequest": {
       "type": "structure",
@@ -7862,7 +8102,8 @@
     },
     "UpdateClassificationJobResponse": {
       "type": "structure",
-      "members": {}
+      "members": {
+      }
     },
     "UpdateClassificationScopeRequest": {
       "type": "structure",
@@ -7883,7 +8124,8 @@
     },
     "UpdateClassificationScopeResponse": {
       "type": "structure",
-      "members": {}
+      "members": {
+      }
     },
     "UpdateFindingsFilterRequest": {
       "type": "structure",
@@ -7951,7 +8193,8 @@
     },
     "UpdateMacieSessionResponse": {
       "type": "structure",
-      "members": {}
+      "members": {
+      }
     },
     "UpdateMemberSessionRequest": {
       "type": "structure",
@@ -7973,7 +8216,8 @@
     },
     "UpdateMemberSessionResponse": {
       "type": "structure",
-      "members": {}
+      "members": {
+      }
     },
     "UpdateOrganizationConfigurationRequest": {
       "type": "structure",
@@ -7989,7 +8233,8 @@
     },
     "UpdateOrganizationConfigurationResponse": {
       "type": "structure",
-      "members": {}
+      "members": {
+      }
     },
     "UpdateResourceProfileDetectionsRequest": {
       "type": "structure",
@@ -8010,7 +8255,8 @@
     },
     "UpdateResourceProfileDetectionsResponse": {
       "type": "structure",
-      "members": {}
+      "members": {
+      }
     },
     "UpdateResourceProfileRequest": {
       "type": "structure",
@@ -8031,7 +8277,8 @@
     },
     "UpdateResourceProfileResponse": {
       "type": "structure",
-      "members": {}
+      "members": {
+      }
     },
     "UpdateRetrievalConfiguration": {
       "type": "structure",
@@ -8105,7 +8352,8 @@
     },
     "UpdateSensitivityInspectionTemplateResponse": {
       "type": "structure",
-      "members": {}
+      "members": {
+      }
     },
     "UsageByAccount": {
       "type": "structure",
@@ -8354,6 +8602,24 @@
       "type": "list",
       "member": {
         "shape": "AllowListSummary"
+      }
+    },
+    "__listOfAutomatedDiscoveryAccount": {
+      "type": "list",
+      "member": {
+        "shape": "AutomatedDiscoveryAccount"
+      }
+    },
+    "__listOfAutomatedDiscoveryAccountUpdate": {
+      "type": "list",
+      "member": {
+        "shape": "AutomatedDiscoveryAccountUpdate"
+      }
+    },
+    "__listOfAutomatedDiscoveryAccountUpdateError": {
+      "type": "list",
+      "member": {
+        "shape": "AutomatedDiscoveryAccountUpdateError"
       }
     },
     "__listOfBatchGetCustomDataIdentifierSummary": {

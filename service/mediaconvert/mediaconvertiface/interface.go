@@ -167,6 +167,13 @@ type MediaConvertAPI interface {
 	PutPolicyWithContext(aws.Context, *mediaconvert.PutPolicyInput, ...request.Option) (*mediaconvert.PutPolicyOutput, error)
 	PutPolicyRequest(*mediaconvert.PutPolicyInput) (*request.Request, *mediaconvert.PutPolicyOutput)
 
+	SearchJobs(*mediaconvert.SearchJobsInput) (*mediaconvert.SearchJobsOutput, error)
+	SearchJobsWithContext(aws.Context, *mediaconvert.SearchJobsInput, ...request.Option) (*mediaconvert.SearchJobsOutput, error)
+	SearchJobsRequest(*mediaconvert.SearchJobsInput) (*request.Request, *mediaconvert.SearchJobsOutput)
+
+	SearchJobsPages(*mediaconvert.SearchJobsInput, func(*mediaconvert.SearchJobsOutput, bool) bool) error
+	SearchJobsPagesWithContext(aws.Context, *mediaconvert.SearchJobsInput, func(*mediaconvert.SearchJobsOutput, bool) bool, ...request.Option) error
+
 	TagResource(*mediaconvert.TagResourceInput) (*mediaconvert.TagResourceOutput, error)
 	TagResourceWithContext(aws.Context, *mediaconvert.TagResourceInput, ...request.Option) (*mediaconvert.TagResourceOutput, error)
 	TagResourceRequest(*mediaconvert.TagResourceInput) (*request.Request, *mediaconvert.TagResourceOutput)

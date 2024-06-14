@@ -1,3 +1,20 @@
+Release v1.54.2 (2024-06-14)
+===
+
+### Service Client Updates
+* `service/datazone`: Updates service API, documentation, and paginators
+* `service/ec2`: Updates service documentation
+  * Documentation updates for Amazon EC2.
+* `service/macie2`: Updates service API, documentation, and paginators
+* `service/mediaconvert`: Updates service API, documentation, and paginators
+  * This release adds the ability to search for historical job records within the management console using a search box and/or via the SDK/CLI with partial string matching search on input file name.
+* `service/route53domains`: Updates service API
+  * Add v2 smoke tests and smithy smokeTests trait for SDK testing.
+
+### SDK Bugs
+* Remove test dependency on golang.org/x/net.
+  * This was used for h2 support which is now transparently available in the stdlib.
+
 Release v1.54.1 (2024-06-13)
 ===
 

@@ -959,8 +959,10 @@ func (c *MediaConvert) DescribeEndpointsRequest(input *DescribeEndpointsInput) (
 
 // DescribeEndpoints API operation for AWS Elemental MediaConvert.
 //
-// Send an request with an empty body to the regional API endpoint to get your
-// account API endpoint.
+// Send a request with an empty body to the regional API endpoint to get your
+// account API endpoint. Note that DescribeEndpoints is no longer required.
+// We recommend that you send your requests directly to the regional endpoint
+// instead.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2358,6 +2360,154 @@ func (c *MediaConvert) PutPolicyWithContext(ctx aws.Context, input *PutPolicyInp
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+const opSearchJobs = "SearchJobs"
+
+// SearchJobsRequest generates a "aws/request.Request" representing the
+// client's request for the SearchJobs operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See SearchJobs for more information on using the SearchJobs
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the SearchJobsRequest method.
+//	req, resp := client.SearchJobsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediaconvert-2017-08-29/SearchJobs
+func (c *MediaConvert) SearchJobsRequest(input *SearchJobsInput) (req *request.Request, output *SearchJobsOutput) {
+	op := &request.Operation{
+		Name:       opSearchJobs,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2017-08-29/search",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &SearchJobsInput{}
+	}
+
+	output = &SearchJobsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// SearchJobs API operation for AWS Elemental MediaConvert.
+//
+// Retrieve a JSON array that includes job details for up to twenty of your
+// most recent jobs. Optionally filter results further according to input file,
+// queue, or status. To retrieve the twenty next most recent jobs, use the nextToken
+// string returned with the array.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elemental MediaConvert's
+// API operation SearchJobs for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//
+//   - InternalServerErrorException
+//
+//   - ForbiddenException
+//
+//   - NotFoundException
+//
+//   - TooManyRequestsException
+//
+//   - ConflictException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediaconvert-2017-08-29/SearchJobs
+func (c *MediaConvert) SearchJobs(input *SearchJobsInput) (*SearchJobsOutput, error) {
+	req, out := c.SearchJobsRequest(input)
+	return out, req.Send()
+}
+
+// SearchJobsWithContext is the same as SearchJobs with the addition of
+// the ability to pass a context and additional request options.
+//
+// See SearchJobs for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaConvert) SearchJobsWithContext(ctx aws.Context, input *SearchJobsInput, opts ...request.Option) (*SearchJobsOutput, error) {
+	req, out := c.SearchJobsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// SearchJobsPages iterates over the pages of a SearchJobs operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See SearchJobs method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a SearchJobs operation.
+//	pageNum := 0
+//	err := client.SearchJobsPages(params,
+//	    func(page *mediaconvert.SearchJobsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *MediaConvert) SearchJobsPages(input *SearchJobsInput, fn func(*SearchJobsOutput, bool) bool) error {
+	return c.SearchJobsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// SearchJobsPagesWithContext same as SearchJobsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaConvert) SearchJobsPagesWithContext(ctx aws.Context, input *SearchJobsInput, fn func(*SearchJobsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *SearchJobsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.SearchJobsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*SearchJobsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opTagResource = "TagResource"
@@ -9584,8 +9734,10 @@ func (s DeleteQueueOutput) GoString() string {
 	return s.String()
 }
 
-// Send an request with an empty body to the regional API endpoint to get your
-// account API endpoint.
+// Send a request with an empty body to the regional API endpoint to get your
+// account API endpoint. Note that DescribeEndpoints is no longer required.
+// We recommend that you send your requests directly to the regional endpoint
+// instead.
 //
 // Deprecated: DescribeEndpoints and account specific endpoints are no longer required. We recommend that you send your requests directly to the regional endpoint instead.
 type DescribeEndpointsInput struct {
@@ -23660,6 +23812,147 @@ func (s SccDestinationSettings) GoString() string {
 // SetFramerate sets the Framerate field's value.
 func (s *SccDestinationSettings) SetFramerate(v string) *SccDestinationSettings {
 	s.Framerate = &v
+	return s
+}
+
+// Retrieve a JSON array that includes job details for up to twenty of your
+// most recent jobs. Optionally filter results further according to input file,
+// queue, or status. To retrieve the twenty next most recent jobs, use the nextToken
+// string returned with the array.
+type SearchJobsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// Optional. Provide your input file URL or your partial input file name. The
+	// maximum length for an input file is 300 characters.
+	InputFile *string `location:"querystring" locationName:"inputFile" type:"string"`
+
+	// Optional. Number of jobs, up to twenty, that will be returned at one time.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// Optional. Use this string, provided with the response to a previous request,
+	// to request the next batch of jobs.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+
+	// Optional. When you request lists of resources, you can specify whether they
+	// are sorted in ASCENDING or DESCENDING order. Default varies by resource.
+	Order *string `location:"querystring" locationName:"order" type:"string" enum:"Order"`
+
+	// Optional. Provide a queue name, or a queue ARN, to return only jobs from
+	// that queue.
+	Queue *string `location:"querystring" locationName:"queue" type:"string"`
+
+	// Optional. A job's status can be SUBMITTED, PROGRESSING, COMPLETE, CANCELED,
+	// or ERROR.
+	Status *string `location:"querystring" locationName:"status" type:"string" enum:"JobStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchJobsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchJobsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SearchJobsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SearchJobsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInputFile sets the InputFile field's value.
+func (s *SearchJobsInput) SetInputFile(v string) *SearchJobsInput {
+	s.InputFile = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *SearchJobsInput) SetMaxResults(v int64) *SearchJobsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *SearchJobsInput) SetNextToken(v string) *SearchJobsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetOrder sets the Order field's value.
+func (s *SearchJobsInput) SetOrder(v string) *SearchJobsInput {
+	s.Order = &v
+	return s
+}
+
+// SetQueue sets the Queue field's value.
+func (s *SearchJobsInput) SetQueue(v string) *SearchJobsInput {
+	s.Queue = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *SearchJobsInput) SetStatus(v string) *SearchJobsInput {
+	s.Status = &v
+	return s
+}
+
+// Successful search jobs requests return a JSON array of jobs. If you don't
+// specify how they are ordered, you will receive the most recently created
+// first.
+type SearchJobsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// List of jobs.
+	Jobs []*Job `locationName:"jobs" type:"list"`
+
+	// Use this string to request the next batch of jobs.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchJobsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchJobsOutput) GoString() string {
+	return s.String()
+}
+
+// SetJobs sets the Jobs field's value.
+func (s *SearchJobsOutput) SetJobs(v []*Job) *SearchJobsOutput {
+	s.Jobs = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *SearchJobsOutput) SetNextToken(v string) *SearchJobsOutput {
+	s.NextToken = &v
 	return s
 }
 

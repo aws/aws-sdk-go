@@ -68,6 +68,10 @@ type Macie2API interface {
 	BatchGetCustomDataIdentifiersWithContext(aws.Context, *macie2.BatchGetCustomDataIdentifiersInput, ...request.Option) (*macie2.BatchGetCustomDataIdentifiersOutput, error)
 	BatchGetCustomDataIdentifiersRequest(*macie2.BatchGetCustomDataIdentifiersInput) (*request.Request, *macie2.BatchGetCustomDataIdentifiersOutput)
 
+	BatchUpdateAutomatedDiscoveryAccounts(*macie2.BatchUpdateAutomatedDiscoveryAccountsInput) (*macie2.BatchUpdateAutomatedDiscoveryAccountsOutput, error)
+	BatchUpdateAutomatedDiscoveryAccountsWithContext(aws.Context, *macie2.BatchUpdateAutomatedDiscoveryAccountsInput, ...request.Option) (*macie2.BatchUpdateAutomatedDiscoveryAccountsOutput, error)
+	BatchUpdateAutomatedDiscoveryAccountsRequest(*macie2.BatchUpdateAutomatedDiscoveryAccountsInput) (*request.Request, *macie2.BatchUpdateAutomatedDiscoveryAccountsOutput)
+
 	CreateAllowList(*macie2.CreateAllowListInput) (*macie2.CreateAllowListOutput, error)
 	CreateAllowListWithContext(aws.Context, *macie2.CreateAllowListInput, ...request.Option) (*macie2.CreateAllowListOutput, error)
 	CreateAllowListRequest(*macie2.CreateAllowListInput) (*request.Request, *macie2.CreateAllowListOutput)
@@ -260,6 +264,13 @@ type Macie2API interface {
 
 	ListAllowListsPages(*macie2.ListAllowListsInput, func(*macie2.ListAllowListsOutput, bool) bool) error
 	ListAllowListsPagesWithContext(aws.Context, *macie2.ListAllowListsInput, func(*macie2.ListAllowListsOutput, bool) bool, ...request.Option) error
+
+	ListAutomatedDiscoveryAccounts(*macie2.ListAutomatedDiscoveryAccountsInput) (*macie2.ListAutomatedDiscoveryAccountsOutput, error)
+	ListAutomatedDiscoveryAccountsWithContext(aws.Context, *macie2.ListAutomatedDiscoveryAccountsInput, ...request.Option) (*macie2.ListAutomatedDiscoveryAccountsOutput, error)
+	ListAutomatedDiscoveryAccountsRequest(*macie2.ListAutomatedDiscoveryAccountsInput) (*request.Request, *macie2.ListAutomatedDiscoveryAccountsOutput)
+
+	ListAutomatedDiscoveryAccountsPages(*macie2.ListAutomatedDiscoveryAccountsInput, func(*macie2.ListAutomatedDiscoveryAccountsOutput, bool) bool) error
+	ListAutomatedDiscoveryAccountsPagesWithContext(aws.Context, *macie2.ListAutomatedDiscoveryAccountsInput, func(*macie2.ListAutomatedDiscoveryAccountsOutput, bool) bool, ...request.Option) error
 
 	ListClassificationJobs(*macie2.ListClassificationJobsInput) (*macie2.ListClassificationJobsOutput, error)
 	ListClassificationJobsWithContext(aws.Context, *macie2.ListClassificationJobsInput, ...request.Option) (*macie2.ListClassificationJobsOutput, error)
