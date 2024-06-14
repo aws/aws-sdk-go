@@ -6876,10 +6876,7 @@ type CmafGroupSettings struct {
 	// nearest integer value above its current value in seconds. When set to SPEC\\_COMPLIANT,
 	// the segment target duration is rounded up to the nearest integer value if
 	// fraction seconds are greater than or equal to 0.5 (>= 0.5) and rounded down
-	// if less than 0.5 (< 0.5). You may need to use LEGACY if your client needs
-	// to ensure that the target duration is always longer than the actual duration
-	// of the segment. Some older players may experience interrupted playback when
-	// the actual duration of a track in a segment is longer than the target duration.
+	// if less than 0.5 (
 	TargetDurationCompatibilityMode *string `locationName:"targetDurationCompatibilityMode" type:"string" enum:"CmafTargetDurationCompatibilityMode"`
 
 	// Specify the video sample composition time offset mode in the output fMP4
@@ -14542,10 +14539,7 @@ type HlsGroupSettings struct {
 	// nearest integer value above its current value in seconds. When set to SPEC\\_COMPLIANT,
 	// the segment target duration is rounded up to the nearest integer value if
 	// fraction seconds are greater than or equal to 0.5 (>= 0.5) and rounded down
-	// if less than 0.5 (< 0.5). You may need to use LEGACY if your client needs
-	// to ensure that the target duration is always longer than the actual duration
-	// of the segment. Some older players may experience interrupted playback when
-	// the actual duration of a track in a segment is longer than the target duration.
+	// if less than 0.5 (
 	TargetDurationCompatibilityMode *string `locationName:"targetDurationCompatibilityMode" type:"string" enum:"HlsTargetDurationCompatibilityMode"`
 
 	// Specify the type of the ID3 frame to use for ID3 timestamps in your output.
@@ -30064,10 +30058,7 @@ func CmafStreamInfResolution_Values() []string {
 // nearest integer value above its current value in seconds. When set to SPEC\\_COMPLIANT,
 // the segment target duration is rounded up to the nearest integer value if
 // fraction seconds are greater than or equal to 0.5 (>= 0.5) and rounded down
-// if less than 0.5 (< 0.5). You may need to use LEGACY if your client needs
-// to ensure that the target duration is always longer than the actual duration
-// of the segment. Some older players may experience interrupted playback when
-// the actual duration of a track in a segment is longer than the target duration.
+// if less than 0.5 (
 const (
 	// CmafTargetDurationCompatibilityModeLegacy is a CmafTargetDurationCompatibilityMode enum value
 	CmafTargetDurationCompatibilityModeLegacy = "LEGACY"
@@ -34177,10 +34168,7 @@ func HlsStreamInfResolution_Values() []string {
 // nearest integer value above its current value in seconds. When set to SPEC\\_COMPLIANT,
 // the segment target duration is rounded up to the nearest integer value if
 // fraction seconds are greater than or equal to 0.5 (>= 0.5) and rounded down
-// if less than 0.5 (< 0.5). You may need to use LEGACY if your client needs
-// to ensure that the target duration is always longer than the actual duration
-// of the segment. Some older players may experience interrupted playback when
-// the actual duration of a track in a segment is longer than the target duration.
+// if less than 0.5 (
 const (
 	// HlsTargetDurationCompatibilityModeLegacy is a HlsTargetDurationCompatibilityMode enum value
 	HlsTargetDurationCompatibilityModeLegacy = "LEGACY"

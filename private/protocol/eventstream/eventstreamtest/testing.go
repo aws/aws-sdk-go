@@ -33,6 +33,12 @@ const (
 	http2StreamError = "stream error: stream ID"
 )
 
+func setupServer(server *httptest.Server, useH2 bool) *http.Client {
+	server.Start()
+
+	return nil
+}
+
 // ServeEventStream provides serving EventStream messages from a HTTP server to
 // the client. The events are sent sequentially to the client without delay.
 type ServeEventStream struct {

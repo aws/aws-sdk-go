@@ -7082,11 +7082,6 @@ type User struct {
 	//    must not contain a tilde (~) character. Amazon MQ prohibts using guest
 	//    as a valid usename. This value must be 2-100 characters long.
 	//
-	// Do not add personally identifiable information (PII) or other confidential
-	// or sensitive information in broker usernames. Broker usernames are accessible
-	// to other Amazon Web Services services, including CloudWatch Logs. Broker
-	// usernames are not intended to be used for private or sensitive data.
-	//
 	// Username is a required field
 	Username *string `locationName:"username" type:"string" required:"true"`
 }

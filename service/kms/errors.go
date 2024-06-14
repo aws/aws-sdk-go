@@ -425,6 +425,7 @@ const (
 	// ErrCodeXksProxyInvalidResponseException for service response error code
 	// "XksProxyInvalidResponseException".
 	//
+	//
 	// KMS cannot interpret the response it received from the external key store
 	// proxy. The problem might be a poorly constructed response, but it could also
 	// be a transient network issue. If you see this error repeatedly, report it

@@ -3442,6 +3442,7 @@ type PutSessionOutput struct {
 	// Content type as specified in the Accept HTTP header in the request.
 	ContentType *string `location:"header" locationName:"Content-Type" type:"string"`
 
+	//
 	//    * ConfirmIntent - Amazon Lex is expecting a "yes" or "no" response to
 	//    confirm the intent before fulfilling an intent.
 	//

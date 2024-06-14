@@ -123,6 +123,7 @@ func (c *Rekognition) AssociateFacesRequest(input *AssociateFacesInput) (req *re
 //     or deletion of the User caused an inconsistent state. **
 //
 //   - ServiceQuotaExceededException
+//
 //     The size of the collection exceeds the allowed limit. For more information,
 //     see Guidelines and quotas in Amazon Rekognition in the Amazon Rekognition
 //     Developer Guide.
@@ -413,6 +414,7 @@ func (c *Rekognition) CopyProjectVersionRequest(input *CopyProjectVersionInput) 
 //     call again.
 //
 //   - ServiceQuotaExceededException
+//
 //     The size of the collection exceeds the allowed limit. For more information,
 //     see Guidelines and quotas in Amazon Rekognition in the Amazon Rekognition
 //     Developer Guide.
@@ -533,6 +535,7 @@ func (c *Rekognition) CreateCollectionRequest(input *CreateCollectionInput) (req
 //     A resource with the specified ID already exists.
 //
 //   - ServiceQuotaExceededException
+//
 //     The size of the collection exceeds the allowed limit. For more information,
 //     see Guidelines and quotas in Amazon Rekognition in the Amazon Rekognition
 //     Developer Guide.
@@ -1009,6 +1012,7 @@ func (c *Rekognition) CreateProjectVersionRequest(input *CreateProjectVersionInp
 //     this limit, contact Amazon Rekognition.
 //
 //   - ServiceQuotaExceededException
+//
 //     The size of the collection exceeds the allowed limit. For more information,
 //     see Guidelines and quotas in Amazon Rekognition in the Amazon Rekognition
 //     Developer Guide.
@@ -1145,6 +1149,7 @@ func (c *Rekognition) CreateStreamProcessorRequest(input *CreateStreamProcessorI
 //     this limit, contact Amazon Rekognition.
 //
 //   - ServiceQuotaExceededException
+//
 //     The size of the collection exceeds the allowed limit. For more information,
 //     see Guidelines and quotas in Amazon Rekognition in the Amazon Rekognition
 //     Developer Guide.
@@ -1242,6 +1247,7 @@ func (c *Rekognition) CreateUserRequest(input *CreateUserInput) (req *request.Re
 //     The resource specified in the request cannot be found.
 //
 //   - ServiceQuotaExceededException
+//
 //     The size of the collection exceeds the allowed limit. For more information,
 //     see Guidelines and quotas in Amazon Rekognition in the Amazon Rekognition
 //     Developer Guide.
@@ -5832,6 +5838,7 @@ func (c *Rekognition) IndexFacesRequest(input *IndexFacesInput) (req *request.Re
 //     The provided image format is not supported.
 //
 //   - ServiceQuotaExceededException
+//
 //     The size of the collection exceeds the allowed limit. For more information,
 //     see Guidelines and quotas in Amazon Rekognition in the Amazon Rekognition
 //     Developer Guide.
@@ -7339,6 +7346,7 @@ func (c *Rekognition) PutProjectPolicyRequest(input *PutProjectPolicyInput) (req
 //     call again.
 //
 //   - ServiceQuotaExceededException
+//
 //     The size of the collection exceeds the allowed limit. For more information,
 //     see Guidelines and quotas in Amazon Rekognition in the Amazon Rekognition
 //     Developer Guide.
@@ -9585,6 +9593,7 @@ func (c *Rekognition) TagResourceRequest(input *TagResourceInput) (req *request.
 //     the API operation again.
 //
 //   - ServiceQuotaExceededException
+//
 //     The size of the collection exceeds the allowed limit. For more information,
 //     see Guidelines and quotas in Amazon Rekognition in the Amazon Rekognition
 //     Developer Guide.
