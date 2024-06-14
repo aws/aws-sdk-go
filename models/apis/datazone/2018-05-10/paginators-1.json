@@ -30,6 +30,12 @@
       "limit_key": "maxResults",
       "result_key": "items"
     },
+    "ListEnvironmentActions": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults",
+      "result_key": "items"
+    },
     "ListEnvironmentBlueprintConfigurations": {
       "input_token": "nextToken",
       "output_token": "nextToken",

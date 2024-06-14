@@ -52,6 +52,25 @@
       ],
       "idempotent":true
     },
+    "AssociateEnvironmentRole":{
+      "name":"AssociateEnvironmentRole",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/v2/domains/{domainIdentifier}/environments/{environmentIdentifier}/roles/{environmentRoleArn}",
+        "responseCode":200
+      },
+      "input":{"shape":"AssociateEnvironmentRoleInput"},
+      "output":{"shape":"AssociateEnvironmentRoleOutput"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
+        {"shape":"UnauthorizedException"}
+      ]
+    },
     "CancelMetadataGenerationRun":{
       "name":"CancelMetadataGenerationRun",
       "http":{
@@ -202,6 +221,25 @@
       },
       "input":{"shape":"CreateEnvironmentInput"},
       "output":{"shape":"CreateEnvironmentOutput"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
+        {"shape":"UnauthorizedException"}
+      ]
+    },
+    "CreateEnvironmentAction":{
+      "name":"CreateEnvironmentAction",
+      "http":{
+        "method":"POST",
+        "requestUri":"/v2/domains/{domainIdentifier}/environments/{environmentIdentifier}/actions",
+        "responseCode":201
+      },
+      "input":{"shape":"CreateEnvironmentActionInput"},
+      "output":{"shape":"CreateEnvironmentActionOutput"},
       "errors":[
         {"shape":"InternalServerException"},
         {"shape":"ResourceNotFoundException"},
@@ -542,6 +580,25 @@
       ],
       "idempotent":true
     },
+    "DeleteEnvironmentAction":{
+      "name":"DeleteEnvironmentAction",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/v2/domains/{domainIdentifier}/environments/{environmentIdentifier}/actions/{identifier}",
+        "responseCode":204
+      },
+      "input":{"shape":"DeleteEnvironmentActionInput"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
+        {"shape":"UnauthorizedException"}
+      ],
+      "idempotent":true
+    },
     "DeleteEnvironmentBlueprintConfiguration":{
       "name":"DeleteEnvironmentBlueprintConfiguration",
       "http":{
@@ -770,6 +827,25 @@
       ],
       "idempotent":true
     },
+    "DisassociateEnvironmentRole":{
+      "name":"DisassociateEnvironmentRole",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/v2/domains/{domainIdentifier}/environments/{environmentIdentifier}/roles/{environmentRoleArn}",
+        "responseCode":200
+      },
+      "input":{"shape":"DisassociateEnvironmentRoleInput"},
+      "output":{"shape":"DisassociateEnvironmentRoleOutput"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
+        {"shape":"UnauthorizedException"}
+      ]
+    },
     "GetAsset":{
       "name":"GetAsset",
       "http":{
@@ -874,6 +950,24 @@
       },
       "input":{"shape":"GetEnvironmentInput"},
       "output":{"shape":"GetEnvironmentOutput"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"UnauthorizedException"}
+      ]
+    },
+    "GetEnvironmentAction":{
+      "name":"GetEnvironmentAction",
+      "http":{
+        "method":"GET",
+        "requestUri":"/v2/domains/{domainIdentifier}/environments/{environmentIdentifier}/actions/{identifier}",
+        "responseCode":200
+      },
+      "input":{"shape":"GetEnvironmentActionInput"},
+      "output":{"shape":"GetEnvironmentActionOutput"},
       "errors":[
         {"shape":"InternalServerException"},
         {"shape":"ResourceNotFoundException"},
@@ -1284,6 +1378,23 @@
         {"shape":"ThrottlingException"},
         {"shape":"ServiceQuotaExceededException"},
         {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
+        {"shape":"UnauthorizedException"}
+      ]
+    },
+    "ListEnvironmentActions":{
+      "name":"ListEnvironmentActions",
+      "http":{
+        "method":"GET",
+        "requestUri":"/v2/domains/{domainIdentifier}/environments/{environmentIdentifier}/actions",
+        "responseCode":200
+      },
+      "input":{"shape":"ListEnvironmentActionsInput"},
+      "output":{"shape":"ListEnvironmentActionsOutput"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
         {"shape":"ValidationException"},
         {"shape":"UnauthorizedException"}
       ]
@@ -1864,6 +1975,25 @@
         {"shape":"UnauthorizedException"}
       ]
     },
+    "UpdateEnvironmentAction":{
+      "name":"UpdateEnvironmentAction",
+      "http":{
+        "method":"PATCH",
+        "requestUri":"/v2/domains/{domainIdentifier}/environments/{environmentIdentifier}/actions/{identifier}",
+        "responseCode":200
+      },
+      "input":{"shape":"UpdateEnvironmentActionInput"},
+      "output":{"shape":"UpdateEnvironmentActionOutput"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
+        {"shape":"UnauthorizedException"}
+      ]
+    },
     "UpdateEnvironmentProfile":{
       "name":"UpdateEnvironmentProfile",
       "http":{
@@ -2189,6 +2319,13 @@
       "type":"string",
       "sensitive":true
     },
+    "ActionParameters":{
+      "type":"structure",
+      "members":{
+        "awsConsoleLink":{"shape":"AwsConsoleLinkParameters"}
+      },
+      "union":true
+    },
     "ApplicableAssetTypes":{
       "type":"list",
       "member":{"shape":"TypeName"}
@@ -2350,6 +2487,36 @@
         "updatedBy":{"shape":"UpdatedBy"}
       }
     },
+    "AssociateEnvironmentRoleInput":{
+      "type":"structure",
+      "required":[
+        "domainIdentifier",
+        "environmentIdentifier",
+        "environmentRoleArn"
+      ],
+      "members":{
+        "domainIdentifier":{
+          "shape":"DomainId",
+          "location":"uri",
+          "locationName":"domainIdentifier"
+        },
+        "environmentIdentifier":{
+          "shape":"EnvironmentId",
+          "location":"uri",
+          "locationName":"environmentIdentifier"
+        },
+        "environmentRoleArn":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"environmentRoleArn"
+        }
+      }
+    },
+    "AssociateEnvironmentRoleOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "Attribute":{
       "type":"string",
       "max":128,
@@ -2375,6 +2542,12 @@
     "AwsAccountId":{
       "type":"string",
       "pattern":"^\\d{12}$"
+    },
+    "AwsConsoleLinkParameters":{
+      "type":"structure",
+      "members":{
+        "uri":{"shape":"String"}
+      }
     },
     "AwsRegion":{
       "type":"string",
@@ -2790,6 +2963,48 @@
         "tags":{"shape":"Tags"}
       }
     },
+    "CreateEnvironmentActionInput":{
+      "type":"structure",
+      "required":[
+        "domainIdentifier",
+        "environmentIdentifier",
+        "name",
+        "parameters"
+      ],
+      "members":{
+        "description":{"shape":"String"},
+        "domainIdentifier":{
+          "shape":"DomainId",
+          "location":"uri",
+          "locationName":"domainIdentifier"
+        },
+        "environmentIdentifier":{
+          "shape":"EnvironmentId",
+          "location":"uri",
+          "locationName":"environmentIdentifier"
+        },
+        "name":{"shape":"String"},
+        "parameters":{"shape":"ActionParameters"}
+      }
+    },
+    "CreateEnvironmentActionOutput":{
+      "type":"structure",
+      "required":[
+        "domainId",
+        "environmentId",
+        "id",
+        "name",
+        "parameters"
+      ],
+      "members":{
+        "description":{"shape":"String"},
+        "domainId":{"shape":"DomainId"},
+        "environmentId":{"shape":"EnvironmentId"},
+        "id":{"shape":"EnvironmentActionId"},
+        "name":{"shape":"String"},
+        "parameters":{"shape":"ActionParameters"}
+      }
+    },
     "CreateEnvironmentInput":{
       "type":"structure",
       "required":[
@@ -2805,6 +3020,9 @@
           "location":"uri",
           "locationName":"domainIdentifier"
         },
+        "environmentAccountIdentifier":{"shape":"String"},
+        "environmentAccountRegion":{"shape":"String"},
+        "environmentBlueprintIdentifier":{"shape":"String"},
         "environmentProfileIdentifier":{"shape":"EnvironmentProfileId"},
         "glossaryTerms":{"shape":"GlossaryTerms"},
         "name":{"shape":"String"},
@@ -2817,7 +3035,6 @@
       "required":[
         "createdBy",
         "domainId",
-        "environmentProfileId",
         "name",
         "projectId",
         "provider"
@@ -3707,6 +3924,11 @@
           "shape":"DataSourceId",
           "location":"uri",
           "locationName":"identifier"
+        },
+        "retainPermissionsOnRevokeFailure":{
+          "shape":"Boolean",
+          "location":"querystring",
+          "locationName":"retainPermissionsOnRevokeFailure"
         }
       }
     },
@@ -3735,7 +3957,9 @@
         "name":{"shape":"Name"},
         "projectId":{"shape":"ProjectId"},
         "publishOnImport":{"shape":"Boolean"},
+        "retainPermissionsOnRevokeFailure":{"shape":"Boolean"},
         "schedule":{"shape":"ScheduleConfiguration"},
+        "selfGrantStatus":{"shape":"SelfGrantStatusOutput"},
         "status":{"shape":"DataSourceStatus"},
         "type":{"shape":"DataSourceType"},
         "updatedAt":{"shape":"DateTime"}
@@ -3768,6 +3992,31 @@
       "required":["status"],
       "members":{
         "status":{"shape":"DomainStatus"}
+      }
+    },
+    "DeleteEnvironmentActionInput":{
+      "type":"structure",
+      "required":[
+        "domainIdentifier",
+        "environmentIdentifier",
+        "identifier"
+      ],
+      "members":{
+        "domainIdentifier":{
+          "shape":"DomainId",
+          "location":"uri",
+          "locationName":"domainIdentifier"
+        },
+        "environmentIdentifier":{
+          "shape":"EnvironmentId",
+          "location":"uri",
+          "locationName":"environmentIdentifier"
+        },
+        "identifier":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"identifier"
+        }
       }
     },
     "DeleteEnvironmentBlueprintConfigurationInput":{
@@ -4183,6 +4432,36 @@
       "type":"list",
       "member":{"shape":"DetailedGlossaryTerm"}
     },
+    "DisassociateEnvironmentRoleInput":{
+      "type":"structure",
+      "required":[
+        "domainIdentifier",
+        "environmentIdentifier",
+        "environmentRoleArn"
+      ],
+      "members":{
+        "domainIdentifier":{
+          "shape":"DomainId",
+          "location":"uri",
+          "locationName":"domainIdentifier"
+        },
+        "environmentIdentifier":{
+          "shape":"EnvironmentId",
+          "location":"uri",
+          "locationName":"environmentIdentifier"
+        },
+        "environmentRoleArn":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"environmentRoleArn"
+        }
+      }
+    },
+    "DisassociateEnvironmentRoleOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DomainDescription":{
       "type":"string",
       "sensitive":true
@@ -4262,9 +4541,31 @@
       "type":"string",
       "enum":["ASSET"]
     },
+    "EnvironmentActionId":{
+      "type":"string",
+      "pattern":"^[a-zA-Z0-9_-]{1,36}$"
+    },
     "EnvironmentActionList":{
       "type":"list",
       "member":{"shape":"ConfigurableEnvironmentAction"}
+    },
+    "EnvironmentActionSummary":{
+      "type":"structure",
+      "required":[
+        "domainId",
+        "environmentId",
+        "id",
+        "name",
+        "parameters"
+      ],
+      "members":{
+        "description":{"shape":"String"},
+        "domainId":{"shape":"DomainId"},
+        "environmentId":{"shape":"EnvironmentId"},
+        "id":{"shape":"EnvironmentActionId"},
+        "name":{"shape":"String"},
+        "parameters":{"shape":"ActionParameters"}
+      }
     },
     "EnvironmentBlueprintConfigurationItem":{
       "type":"structure",
@@ -4351,7 +4652,7 @@
     },
     "EnvironmentProfileId":{
       "type":"string",
-      "pattern":"^[a-zA-Z0-9_-]{1,36}$"
+      "pattern":"^[a-zA-Z0-9_-]{0,36}$"
     },
     "EnvironmentProfileName":{
       "type":"string",
@@ -4414,7 +4715,6 @@
       "required":[
         "createdBy",
         "domainId",
-        "environmentProfileId",
         "name",
         "projectId",
         "provider"
@@ -4796,6 +5096,7 @@
         "publishOnImport":{"shape":"Boolean"},
         "recommendation":{"shape":"RecommendationConfiguration"},
         "schedule":{"shape":"ScheduleConfiguration"},
+        "selfGrantStatus":{"shape":"SelfGrantStatusOutput"},
         "status":{"shape":"DataSourceStatus"},
         "type":{"shape":"DataSourceType"},
         "updatedAt":{"shape":"DateTime"}
@@ -4879,6 +5180,49 @@
         "singleSignOn":{"shape":"SingleSignOn"},
         "status":{"shape":"DomainStatus"},
         "tags":{"shape":"Tags"}
+      }
+    },
+    "GetEnvironmentActionInput":{
+      "type":"structure",
+      "required":[
+        "domainIdentifier",
+        "environmentIdentifier",
+        "identifier"
+      ],
+      "members":{
+        "domainIdentifier":{
+          "shape":"DomainId",
+          "location":"uri",
+          "locationName":"domainIdentifier"
+        },
+        "environmentIdentifier":{
+          "shape":"EnvironmentId",
+          "location":"uri",
+          "locationName":"environmentIdentifier"
+        },
+        "identifier":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"identifier"
+        }
+      }
+    },
+    "GetEnvironmentActionOutput":{
+      "type":"structure",
+      "required":[
+        "domainId",
+        "environmentId",
+        "id",
+        "name",
+        "parameters"
+      ],
+      "members":{
+        "description":{"shape":"String"},
+        "domainId":{"shape":"DomainId"},
+        "environmentId":{"shape":"EnvironmentId"},
+        "id":{"shape":"EnvironmentActionId"},
+        "name":{"shape":"String"},
+        "parameters":{"shape":"ActionParameters"}
       }
     },
     "GetEnvironmentBlueprintConfigurationInput":{
@@ -4981,7 +5325,6 @@
       "required":[
         "createdBy",
         "domainId",
-        "environmentProfileId",
         "name",
         "projectId",
         "provider"
@@ -5775,6 +6118,13 @@
       "min":4,
       "pattern":"[a-z]{2}-?(iso|gov)?-{1}[a-z]*-{1}[0-9]"
     },
+    "GlueSelfGrantStatusOutput":{
+      "type":"structure",
+      "required":["selfGrantStatusDetails"],
+      "members":{
+        "selfGrantStatusDetails":{"shape":"SelfGrantStatusDetails"}
+      }
+    },
     "GrantedEntity":{
       "type":"structure",
       "members":{
@@ -6102,6 +6452,46 @@
       "required":["items"],
       "members":{
         "items":{"shape":"DomainSummaries"},
+        "nextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "ListEnvironmentActionSummaries":{
+      "type":"list",
+      "member":{"shape":"EnvironmentActionSummary"}
+    },
+    "ListEnvironmentActionsInput":{
+      "type":"structure",
+      "required":[
+        "domainIdentifier",
+        "environmentIdentifier"
+      ],
+      "members":{
+        "domainIdentifier":{
+          "shape":"DomainId",
+          "location":"uri",
+          "locationName":"domainIdentifier"
+        },
+        "environmentIdentifier":{
+          "shape":"EnvironmentId",
+          "location":"uri",
+          "locationName":"environmentIdentifier"
+        },
+        "maxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "nextToken":{
+          "shape":"PaginationToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "ListEnvironmentActionsOutput":{
+      "type":"structure",
+      "members":{
+        "items":{"shape":"ListEnvironmentActionSummaries"},
         "nextToken":{"shape":"PaginationToken"}
       }
     },
@@ -7265,6 +7655,13 @@
       "min":4,
       "pattern":"[a-z]{2}-?(iso|gov)?-{1}[a-z]*-{1}[0-9]"
     },
+    "RedshiftSelfGrantStatusOutput":{
+      "type":"structure",
+      "required":["selfGrantStatusDetails"],
+      "members":{
+        "selfGrantStatusDetails":{"shape":"SelfGrantStatusDetails"}
+      }
+    },
     "RedshiftServerlessStorage":{
       "type":"structure",
       "required":["workgroupName"],
@@ -7774,6 +8171,53 @@
         "nextToken":{"shape":"PaginationToken"}
       }
     },
+    "SelfGrantStatus":{
+      "type":"string",
+      "enum":[
+        "GRANT_PENDING",
+        "REVOKE_PENDING",
+        "GRANT_IN_PROGRESS",
+        "REVOKE_IN_PROGRESS",
+        "GRANTED",
+        "GRANT_FAILED",
+        "REVOKE_FAILED"
+      ]
+    },
+    "SelfGrantStatusDetail":{
+      "type":"structure",
+      "required":[
+        "databaseName",
+        "status"
+      ],
+      "members":{
+        "databaseName":{"shape":"SelfGrantStatusDetailDatabaseNameString"},
+        "failureCause":{"shape":"String"},
+        "schemaName":{"shape":"SelfGrantStatusDetailSchemaNameString"},
+        "status":{"shape":"SelfGrantStatus"}
+      }
+    },
+    "SelfGrantStatusDetailDatabaseNameString":{
+      "type":"string",
+      "max":128,
+      "min":1
+    },
+    "SelfGrantStatusDetailSchemaNameString":{
+      "type":"string",
+      "max":128,
+      "min":1
+    },
+    "SelfGrantStatusDetails":{
+      "type":"list",
+      "member":{"shape":"SelfGrantStatusDetail"}
+    },
+    "SelfGrantStatusOutput":{
+      "type":"structure",
+      "members":{
+        "glueSelfGrantStatus":{"shape":"GlueSelfGrantStatusOutput"},
+        "redshiftSelfGrantStatus":{"shape":"RedshiftSelfGrantStatusOutput"}
+      },
+      "union":true
+    },
     "ServiceQuotaExceededException":{
       "type":"structure",
       "required":["message"],
@@ -7801,7 +8245,7 @@
     },
     "Smithy":{
       "type":"string",
-      "max":10000,
+      "max":100000,
       "min":1
     },
     "SortFieldProject":{
@@ -8585,6 +9029,7 @@
         "name":{"shape":"Name"},
         "publishOnImport":{"shape":"Boolean"},
         "recommendation":{"shape":"RecommendationConfiguration"},
+        "retainPermissionsOnRevokeFailure":{"shape":"Boolean"},
         "schedule":{"shape":"ScheduleConfiguration"}
       }
     },
@@ -8614,7 +9059,9 @@
         "projectId":{"shape":"ProjectId"},
         "publishOnImport":{"shape":"Boolean"},
         "recommendation":{"shape":"RecommendationConfiguration"},
+        "retainPermissionsOnRevokeFailure":{"shape":"Boolean"},
         "schedule":{"shape":"ScheduleConfiguration"},
+        "selfGrantStatus":{"shape":"SelfGrantStatusOutput"},
         "status":{"shape":"DataSourceStatus"},
         "type":{"shape":"DataSourceType"},
         "updatedAt":{"shape":"DateTime"}
@@ -8653,6 +9100,52 @@
         "singleSignOn":{"shape":"SingleSignOn"}
       }
     },
+    "UpdateEnvironmentActionInput":{
+      "type":"structure",
+      "required":[
+        "domainIdentifier",
+        "environmentIdentifier",
+        "identifier"
+      ],
+      "members":{
+        "description":{"shape":"String"},
+        "domainIdentifier":{
+          "shape":"DomainId",
+          "location":"uri",
+          "locationName":"domainIdentifier"
+        },
+        "environmentIdentifier":{
+          "shape":"EnvironmentId",
+          "location":"uri",
+          "locationName":"environmentIdentifier"
+        },
+        "identifier":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"identifier"
+        },
+        "name":{"shape":"String"},
+        "parameters":{"shape":"ActionParameters"}
+      }
+    },
+    "UpdateEnvironmentActionOutput":{
+      "type":"structure",
+      "required":[
+        "domainId",
+        "environmentId",
+        "id",
+        "name",
+        "parameters"
+      ],
+      "members":{
+        "description":{"shape":"String"},
+        "domainId":{"shape":"DomainId"},
+        "environmentId":{"shape":"EnvironmentId"},
+        "id":{"shape":"EnvironmentActionId"},
+        "name":{"shape":"String"},
+        "parameters":{"shape":"ActionParameters"}
+      }
+    },
     "UpdateEnvironmentInput":{
       "type":"structure",
       "required":[
@@ -8680,7 +9173,6 @@
       "required":[
         "createdBy",
         "domainId",
-        "environmentProfileId",
         "name",
         "projectId",
         "provider"

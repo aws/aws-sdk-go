@@ -4,6 +4,7 @@
   "operations": {
     "AcceptPredictions": "<p>Accepts automatically generated business-friendly metadata for your Amazon DataZone assets.</p>",
     "AcceptSubscriptionRequest": "<p>Accepts a subscription request to a specific asset. </p>",
+    "AssociateEnvironmentRole": "<p>Associates the environment role in Amazon DataZone.</p>",
     "CancelMetadataGenerationRun": "<p>Cancels the metadata generation run.</p>",
     "CancelSubscription": "<p>Cancels the subscription to the specified asset.</p>",
     "CreateAsset": "<p>Creates an asset in Amazon DataZone catalog.</p>",
@@ -12,6 +13,7 @@
     "CreateDataSource": "<p>Creates an Amazon DataZone data source.</p>",
     "CreateDomain": "<p>Creates an Amazon DataZone domain.</p>",
     "CreateEnvironment": "<p>Create an Amazon DataZone environment.</p>",
+    "CreateEnvironmentAction": "<p>Creates an action for the environment, for example, creates a console link for an analytics tool that is available in this environment.</p>",
     "CreateEnvironmentProfile": "<p>Creates an Amazon DataZone environment profile.</p>",
     "CreateFormType": "<p>Creates a metadata form type.</p>",
     "CreateGlossary": "<p>Creates an Amazon DataZone business glossary.</p>",
@@ -29,6 +31,7 @@
     "DeleteDataSource": "<p>Deletes a data source in Amazon DataZone.</p>",
     "DeleteDomain": "<p>Deletes a Amazon DataZone domain.</p>",
     "DeleteEnvironment": "<p>Deletes an environment in Amazon DataZone.</p>",
+    "DeleteEnvironmentAction": "<p>Deletes an action for the environment, for example, deletes a console link for an analytics tool that is available in this environment.</p>",
     "DeleteEnvironmentBlueprintConfiguration": "<p>Deletes the blueprint configuration in Amazon DataZone.</p>",
     "DeleteEnvironmentProfile": "<p>Deletes an environment profile in Amazon DataZone.</p>",
     "DeleteFormType": "<p>Delets and metadata form type in Amazon DataZone.</p>",
@@ -41,12 +44,14 @@
     "DeleteSubscriptionRequest": "<p>Deletes a subscription request in Amazon DataZone.</p>",
     "DeleteSubscriptionTarget": "<p>Deletes a subscription target in Amazon DataZone.</p>",
     "DeleteTimeSeriesDataPoints": "<p>Deletes the specified time series form for the specified asset. </p>",
+    "DisassociateEnvironmentRole": "<p>Disassociates the environment role in Amazon DataZone.</p>",
     "GetAsset": "<p>Gets an Amazon DataZone asset.</p>",
     "GetAssetType": "<p>Gets an Amazon DataZone asset type.</p>",
     "GetDataSource": "<p>Gets an Amazon DataZone data source.</p>",
     "GetDataSourceRun": "<p>Gets an Amazon DataZone data source run.</p>",
     "GetDomain": "<p>Gets an Amazon DataZone domain.</p>",
     "GetEnvironment": "<p>Gets an Amazon DataZone environment.</p>",
+    "GetEnvironmentAction": "<p>Gets the specified environment action.</p>",
     "GetEnvironmentBlueprint": "<p>Gets an Amazon DataZone blueprint.</p>",
     "GetEnvironmentBlueprintConfiguration": "<p>Gets the blueprint configuration in Amazon DataZone.</p>",
     "GetEnvironmentProfile": "<p>Gets an evinronment profile in Amazon DataZone.</p>",
@@ -69,6 +74,7 @@
     "ListDataSourceRuns": "<p>Lists data source runs in Amazon DataZone.</p>",
     "ListDataSources": "<p>Lists data sources in Amazon DataZone.</p>",
     "ListDomains": "<p>Lists Amazon DataZone domains.</p>",
+    "ListEnvironmentActions": "<p>Lists existing environment actions.</p>",
     "ListEnvironmentBlueprintConfigurations": "<p>Lists blueprint configurations for a Amazon DataZone environment.</p>",
     "ListEnvironmentBlueprints": "<p>Lists blueprints in an Amazon DataZone environment.</p>",
     "ListEnvironmentProfiles": "<p>Lists Amazon DataZone environment profiles.</p>",
@@ -100,6 +106,7 @@
     "UpdateDataSource": "<p>Updates the specified data source in Amazon DataZone.</p>",
     "UpdateDomain": "<p>Updates a Amazon DataZone domain.</p>",
     "UpdateEnvironment": "<p>Updates the specified environment in Amazon DataZone.</p>",
+    "UpdateEnvironmentAction": "<p>Updates an environment action.</p>",
     "UpdateEnvironmentProfile": "<p>Updates the specified environment profile in Amazon DataZone.</p>",
     "UpdateGlossary": "<p>Updates the business glossary in Amazon DataZone.</p>",
     "UpdateGlossaryTerm": "<p>Updates a business glossary term in Amazon DataZone.</p>",
@@ -176,6 +183,17 @@
       "base": null,
       "refs": {
         "NotificationOutput$actionLink": "<p>The action link included in the notification.</p>"
+      }
+    },
+    "ActionParameters": {
+      "base": "<p>The parameters of the environment action.</p>",
+      "refs": {
+        "CreateEnvironmentActionInput$parameters": "<p>The parameters of the environment action.</p>",
+        "CreateEnvironmentActionOutput$parameters": "<p>The parameters of the environment action.</p>",
+        "EnvironmentActionSummary$parameters": "<p>The parameters of the environment action.</p>",
+        "GetEnvironmentActionOutput$parameters": "<p>The parameters of the environment action.</p>",
+        "UpdateEnvironmentActionInput$parameters": "<p>The parameters of the environment action.</p>",
+        "UpdateEnvironmentActionOutput$parameters": "<p>The parameters of the environment action.</p>"
       }
     },
     "ApplicableAssetTypes": {
@@ -310,6 +328,16 @@
         "SearchTypesResultItem$assetTypeItem": "<p>The asset type included in the results of the <code>SearchTypes</code> action.</p>"
       }
     },
+    "AssociateEnvironmentRoleInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AssociateEnvironmentRoleOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "Attribute": {
       "base": null,
       "refs": {
@@ -358,6 +386,12 @@
         "UpdateEnvironmentProfileOutput$awsAccountId": "<p>The Amazon Web Services account in which a specified environment profile is to be udpated.</p>"
       }
     },
+    "AwsConsoleLinkParameters": {
+      "base": "<p>The parameters of the console link specified as part of the environment action.</p>",
+      "refs": {
+        "ActionParameters$awsConsoleLink": "<p>The console link specified as part of the environment action.</p>"
+      }
+    },
     "AwsRegion": {
       "base": null,
       "refs": {
@@ -384,7 +418,9 @@
         "CreateDataSourceOutput$publishOnImport": "<p>Specifies whether the assets that this data source creates in the inventory are to be also automatically published to the catalog.</p>",
         "CustomParameter$isEditable": "<p>Specifies whether the parameter is editable.</p>",
         "CustomParameter$isOptional": "<p>Specifies whether the custom parameter is optional.</p>",
+        "DeleteDataSourceInput$retainPermissionsOnRevokeFailure": "<p>Specifies that the granted permissions are retained in case of a self-subscribe functionality failure for a data source.</p>",
         "DeleteDataSourceOutput$publishOnImport": "<p>Specifies whether the assets that this data source creates in the inventory are to be also automatically published to the catalog.</p>",
+        "DeleteDataSourceOutput$retainPermissionsOnRevokeFailure": "<p>Specifies that the granted permissions are retained in case of a self-subscribe functionality failure for a data source.</p>",
         "DeleteDomainInput$skipDeletionCheck": "<p>Specifies the optional flag to delete all child entities within the domain.</p>",
         "DeleteProjectInput$skipDeletionCheck": "<p>Specifies the optional flag to delete all child entities within the project.</p>",
         "Deployment$isDeploymentComplete": "<p>Specifies whether the last deployment of the environment is complete.</p>",
@@ -401,7 +437,9 @@
         "SearchTypesInput$managed": "<p>Specifies whether the search is managed.</p>",
         "SubscriptionSummary$retainPermissions": "<p>The retain permissions included in the subscription.</p>",
         "UpdateDataSourceInput$publishOnImport": "<p>The publish on import setting to be updated as part of the <code>UpdateDataSource</code> action.</p>",
-        "UpdateDataSourceOutput$publishOnImport": "<p>The publish on import setting to be updated as part of the <code>UpdateDataSource</code> action.</p>"
+        "UpdateDataSourceInput$retainPermissionsOnRevokeFailure": "<p>Specifies that the granted permissions are retained in case of a self-subscribe functionality failure for a data source.</p>",
+        "UpdateDataSourceOutput$publishOnImport": "<p>The publish on import setting to be updated as part of the <code>UpdateDataSource</code> action.</p>",
+        "UpdateDataSourceOutput$retainPermissionsOnRevokeFailure": "<p>Specifies that the granted permissions are retained in case of a self-subscribe functionality failure for a data source.</p>"
       }
     },
     "BusinessNameGenerationConfiguration": {
@@ -533,6 +571,16 @@
       }
     },
     "CreateDomainOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateEnvironmentActionInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateEnvironmentActionOutput": {
       "base": null,
       "refs": {
       }
@@ -1099,6 +1147,11 @@
       "refs": {
       }
     },
+    "DeleteEnvironmentActionInput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteEnvironmentBlueprintConfigurationInput": {
       "base": null,
       "refs": {
@@ -1323,6 +1376,16 @@
         "SubscribedAssetListing$glossaryTerms": "<p>The glossary terms attached to the published asset for which the subscription grant is created.</p>"
       }
     },
+    "DisassociateEnvironmentRoleInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DisassociateEnvironmentRoleOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DomainDescription": {
       "base": null,
       "refs": {
@@ -1340,6 +1403,7 @@
         "AssetRevision$domainId": "<p>The Amazon DataZone user who created the inventory asset.</p>",
         "AssetTypeItem$domainId": "<p>The identifier of the Amazon DataZone domain where the asset type exists.</p>",
         "AssetTypeItem$originDomainId": "<p>The identifier of the Amazon DataZone domain where the asset type was originally created.</p>",
+        "AssociateEnvironmentRoleInput$domainIdentifier": "<p>The ID of the Amazon DataZone domain in which the environment role is associated.</p>",
         "CancelMetadataGenerationRunInput$domainIdentifier": "<p>The ID of the Amazon DataZone domain in which the metadata generation run is to be cancelled.</p>",
         "CancelSubscriptionInput$domainIdentifier": "<p>The unique identifier of the Amazon DataZone domain where the subscription request is being cancelled.</p>",
         "CancelSubscriptionOutput$domainId": "<p>The unique identifier of the Amazon DataZone domain where the subscription is being cancelled.</p>",
@@ -1353,6 +1417,8 @@
         "CreateDataSourceInput$domainIdentifier": "<p>The ID of the Amazon DataZone domain where the data source is created.</p>",
         "CreateDataSourceOutput$domainId": "<p>The ID of the Amazon DataZone domain in which the data source is created.</p>",
         "CreateDomainOutput$id": "<p>The identifier of the Amazon DataZone domain.</p>",
+        "CreateEnvironmentActionInput$domainIdentifier": "<p>The ID of the Amazon DataZone domain in which the environment action is created.</p>",
+        "CreateEnvironmentActionOutput$domainId": "<p>The ID of the domain in which the environment action is created.</p>",
         "CreateEnvironmentInput$domainIdentifier": "<p>The identifier of the Amazon DataZone domain in which the environment is created.</p>",
         "CreateEnvironmentOutput$domainId": "<p>The identifier of the Amazon DataZone domain in which the environment is created.</p>",
         "CreateEnvironmentProfileInput$domainIdentifier": "<p>The ID of the Amazon DataZone domain in which this environment profile is created.</p>",
@@ -1386,6 +1452,7 @@
         "DeleteDataSourceInput$domainIdentifier": "<p>The ID of the Amazon DataZone domain in which the data source is deleted.</p>",
         "DeleteDataSourceOutput$domainId": "<p>The ID of the Amazon DataZone domain in which the data source is deleted.</p>",
         "DeleteDomainInput$identifier": "<p>The identifier of the Amazon Web Services domain that is to be deleted.</p>",
+        "DeleteEnvironmentActionInput$domainIdentifier": "<p>The ID of the Amazon DataZone domain in which an environment action is deleted.</p>",
         "DeleteEnvironmentBlueprintConfigurationInput$domainIdentifier": "<p>The ID of the Amazon DataZone domain in which the blueprint configuration is deleted.</p>",
         "DeleteEnvironmentInput$domainIdentifier": "<p>The ID of the Amazon DataZone domain in which the environment is deleted.</p>",
         "DeleteEnvironmentProfileInput$domainIdentifier": "<p>The ID of the Amazon DataZone domain in which the environment profile is deleted.</p>",
@@ -1400,7 +1467,9 @@
         "DeleteSubscriptionRequestInput$domainIdentifier": "<p>The ID of the Amazon DataZone domain in which the subscription request is deleted.</p>",
         "DeleteSubscriptionTargetInput$domainIdentifier": "<p>The ID of the Amazon DataZone domain in which the subscription target is deleted.</p>",
         "DeleteTimeSeriesDataPointsInput$domainIdentifier": "<p>The ID of the Amazon DataZone domain that houses the asset for which you want to delete a time series form.</p>",
+        "DisassociateEnvironmentRoleInput$domainIdentifier": "<p>The ID of the Amazon DataZone domain in which an environment role is disassociated.</p>",
         "DomainSummary$id": "<p>The ID of the Amazon DataZone domain.</p>",
+        "EnvironmentActionSummary$domainId": "<p>The Amazon DataZone domain ID of the environment action.</p>",
         "EnvironmentBlueprintConfigurationItem$domainId": "<p>The identifier of the Amazon DataZone domain in which an environment blueprint exists.</p>",
         "EnvironmentProfileSummary$domainId": "<p>The identifier of the Amazon DataZone domain in which the environment profile exists.</p>",
         "EnvironmentSummary$domainId": "<p>The identifier of the Amazon DataZone domain in which the environment exists.</p>",
@@ -1417,6 +1486,8 @@
         "GetDataSourceRunOutput$domainId": "<p>The ID of the domain in which this data source run was performed.</p>",
         "GetDomainInput$identifier": "<p>The identifier of the specified Amazon DataZone domain.</p>",
         "GetDomainOutput$id": "<p>The identifier of the specified Amazon DataZone domain.</p>",
+        "GetEnvironmentActionInput$domainIdentifier": "<p>The ID of the Amazon DataZone domain in which the <code>GetEnvironmentAction</code> API is invoked. </p>",
+        "GetEnvironmentActionOutput$domainId": "<p>The ID of the Amazon DataZone domain in which the environment action lives.</p>",
         "GetEnvironmentBlueprintConfigurationInput$domainIdentifier": "<p>The ID of the Amazon DataZone domain where this blueprint exists.</p>",
         "GetEnvironmentBlueprintConfigurationOutput$domainId": "<p>The ID of the Amazon DataZone domain where this blueprint exists.</p>",
         "GetEnvironmentBlueprintInput$domainIdentifier": "<p>The identifier of the domain in which this blueprint exists.</p>",
@@ -1459,6 +1530,7 @@
         "ListDataSourceRunActivitiesInput$domainIdentifier": "<p>The identifier of the Amazon DataZone domain in which to list data source run activities.</p>",
         "ListDataSourceRunsInput$domainIdentifier": "<p>The identifier of the Amazon DataZone domain in which to invoke the <code>ListDataSourceRuns</code> action.</p>",
         "ListDataSourcesInput$domainIdentifier": "<p>The identifier of the Amazon DataZone domain in which to list the data sources.</p>",
+        "ListEnvironmentActionsInput$domainIdentifier": "<p>The ID of the Amazon DataZone domain in which the environment actions are listed.</p>",
         "ListEnvironmentBlueprintConfigurationsInput$domainIdentifier": "<p>The identifier of the Amazon DataZone domain.</p>",
         "ListEnvironmentBlueprintsInput$domainIdentifier": "<p>The identifier of the Amazon DataZone domain.</p>",
         "ListEnvironmentProfilesInput$domainIdentifier": "<p>The identifier of the Amazon DataZone domain.</p>",
@@ -1502,6 +1574,8 @@
         "UpdateDataSourceOutput$domainId": "<p>The identifier of the Amazon DataZone domain in which a data source is to be updated.</p>",
         "UpdateDomainInput$identifier": "<p>The ID of the Amazon Web Services domain that is to be updated.</p>",
         "UpdateDomainOutput$id": "<p>The identifier of the Amazon DataZone domain.</p>",
+        "UpdateEnvironmentActionInput$domainIdentifier": "<p>The domain ID of the environment action.</p>",
+        "UpdateEnvironmentActionOutput$domainId": "<p>The domain ID of the environment action.</p>",
         "UpdateEnvironmentInput$domainIdentifier": "<p>The identifier of the domain in which the environment is to be updated.</p>",
         "UpdateEnvironmentOutput$domainId": "<p>The identifier of the domain in which the environment is to be updated.</p>",
         "UpdateEnvironmentProfileInput$domainIdentifier": "<p>The identifier of the Amazon DataZone domain in which an environment profile is to be updated.</p>",
@@ -1603,12 +1677,27 @@
         "CreateListingChangeSetInput$entityType": "<p>The type of an entity.</p>"
       }
     },
+    "EnvironmentActionId": {
+      "base": null,
+      "refs": {
+        "CreateEnvironmentActionOutput$id": "<p>The ID of the environment action.</p>",
+        "EnvironmentActionSummary$id": "<p>The ID of the environment action.</p>",
+        "GetEnvironmentActionOutput$id": "<p>The ID of the environment action.</p>",
+        "UpdateEnvironmentActionOutput$id": "<p>The ID of the environment action.</p>"
+      }
+    },
     "EnvironmentActionList": {
       "base": null,
       "refs": {
         "CreateEnvironmentOutput$environmentActions": "<p>The configurable actions of this Amazon DataZone environment.</p>",
         "GetEnvironmentOutput$environmentActions": "<p>The actions of the environment.</p>",
         "UpdateEnvironmentOutput$environmentActions": "<p>The environment actions to be updated as part of the <code>UpdateEnvironment</code> action.</p>"
+      }
+    },
+    "EnvironmentActionSummary": {
+      "base": "<p>The details about the specified action configured for an environment. For example, the details of the specified console links for an analytics tool that is available in this environment.</p>",
+      "refs": {
+        "ListEnvironmentActionSummaries$member": null
       }
     },
     "EnvironmentBlueprintConfigurationItem": {
@@ -1676,25 +1765,36 @@
     "EnvironmentId": {
       "base": null,
       "refs": {
+        "AssociateEnvironmentRoleInput$environmentIdentifier": "<p>The ID of the Amazon DataZone environment.</p>",
         "CreateDataSourceOutput$environmentId": "<p>The unique identifier of the Amazon DataZone environment to which the data source publishes assets. </p>",
+        "CreateEnvironmentActionInput$environmentIdentifier": "<p>The ID of the environment in which the environment action is created.</p>",
+        "CreateEnvironmentActionOutput$environmentId": "<p>The ID of the environment in which the environment is created.</p>",
         "CreateEnvironmentOutput$id": "<p>The ID of this Amazon DataZone environment.</p>",
         "CreateSubscriptionGrantInput$environmentIdentifier": "<p>The ID of the environment in which the subscription grant is created.</p>",
         "CreateSubscriptionTargetInput$environmentIdentifier": "<p>The ID of the environment in which subscription target is created.</p>",
         "CreateSubscriptionTargetOutput$environmentId": "<p>The ID of the environment in which the subscription target was created.</p>",
         "DataSourceSummary$environmentId": "<p>The ID of the environment in which the data source exists.</p>",
         "DeleteDataSourceOutput$environmentId": "<p>The ID of the environemnt associated with this data source.</p>",
+        "DeleteEnvironmentActionInput$environmentIdentifier": "<p>The ID of the environment where an environment action is deleted.</p>",
         "DeleteEnvironmentInput$identifier": "<p>The identifier of the environment that is to be deleted.</p>",
         "DeleteSubscriptionTargetInput$environmentIdentifier": "<p>The ID of the Amazon DataZone environment in which the subscription target is deleted.</p>",
+        "DisassociateEnvironmentRoleInput$environmentIdentifier": "<p>The ID of the environment.</p>",
+        "EnvironmentActionSummary$environmentId": "<p>The environment ID of the environment action.</p>",
         "EnvironmentSummary$id": "<p>The identifier of the environment.</p>",
         "GetDataSourceOutput$environmentId": "<p>The ID of the environment where this data source creates and publishes assets,</p>",
+        "GetEnvironmentActionInput$environmentIdentifier": "<p>The environment ID of the environment action.</p>",
+        "GetEnvironmentActionOutput$environmentId": "<p>The environment ID of the environment action.</p>",
         "GetEnvironmentInput$identifier": "<p>The ID of the Amazon DataZone environment.</p>",
         "GetEnvironmentOutput$id": "<p>The ID of the environment.</p>",
         "GetSubscriptionTargetInput$environmentIdentifier": "<p>The ID of the environment associated with the subscription target.</p>",
         "GetSubscriptionTargetOutput$environmentId": "<p>The ID of the environment associated with the subscription target.</p>",
+        "ListEnvironmentActionsInput$environmentIdentifier": "<p>The ID of the envrironment whose environment actions are listed.</p>",
         "ListSubscriptionGrantsInput$environmentId": "<p>The identifier of the Amazon DataZone environment.</p>",
         "ListSubscriptionTargetsInput$environmentIdentifier": "<p>The identifier of the environment where you want to list subscription targets.</p>",
         "SubscriptionTargetSummary$environmentId": "<p>The identifier of the environment of the subscription target.</p>",
         "UpdateDataSourceOutput$environmentId": "<p>The identifier of the environment in which a data source is to be updated.</p>",
+        "UpdateEnvironmentActionInput$environmentIdentifier": "<p>The environment ID of the environment action.</p>",
+        "UpdateEnvironmentActionOutput$environmentId": "<p>The environment ID of the environment action.</p>",
         "UpdateEnvironmentInput$identifier": "<p>The identifier of the environment that is to be updated.</p>",
         "UpdateEnvironmentOutput$id": "<p>The identifier of the environment that is to be updated.</p>",
         "UpdateSubscriptionTargetInput$environmentIdentifier": "<p>The identifier of the environment in which a subscription target is to be updated.</p>",
@@ -2068,6 +2168,16 @@
       "refs": {
       }
     },
+    "GetEnvironmentActionInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetEnvironmentActionOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetEnvironmentBlueprintConfigurationInput": {
       "base": null,
       "refs": {
@@ -2420,6 +2530,12 @@
         "GlueRunConfigurationOutput$region": "<p>The Amazon Web Services region included in the configuration details of the Amazon Web Services Glue data source. </p>"
       }
     },
+    "GlueSelfGrantStatusOutput": {
+      "base": "<p>The details of the self granting status.</p>",
+      "refs": {
+        "SelfGrantStatusOutput$glueSelfGrantStatus": "<p>The details for the self granting status for a Glue data source.</p>"
+      }
+    },
     "GrantedEntity": {
       "base": "<p>The details of a listing for which a subscription is granted.</p>",
       "refs": {
@@ -2609,6 +2725,22 @@
       }
     },
     "ListDomainsOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListEnvironmentActionSummaries": {
+      "base": null,
+      "refs": {
+        "ListEnvironmentActionsOutput$items": "<p>The results of <code>ListEnvironmentActions</code>.</p>"
+      }
+    },
+    "ListEnvironmentActionsInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListEnvironmentActionsOutput": {
       "base": null,
       "refs": {
       }
@@ -2822,6 +2954,7 @@
         "ListDataSourceRunActivitiesInput$maxResults": "<p>The maximum number of activities to return in a single call to <code>ListDataSourceRunActivities</code>. When the number of activities to be listed is greater than the value of <code>MaxResults</code>, the response contains a <code>NextToken</code> value that you can use in a subsequent call to <code>ListDataSourceRunActivities</code> to list the next set of activities.</p>",
         "ListDataSourceRunsInput$maxResults": "<p>The maximum number of runs to return in a single call to <code>ListDataSourceRuns</code>. When the number of runs to be listed is greater than the value of <code>MaxResults</code>, the response contains a <code>NextToken</code> value that you can use in a subsequent call to <code>ListDataSourceRuns</code> to list the next set of runs.</p>",
         "ListDataSourcesInput$maxResults": "<p>The maximum number of data sources to return in a single call to <code>ListDataSources</code>. When the number of data sources to be listed is greater than the value of <code>MaxResults</code>, the response contains a <code>NextToken</code> value that you can use in a subsequent call to <code>ListDataSources</code> to list the next set of data sources.</p>",
+        "ListEnvironmentActionsInput$maxResults": "<p>The maximum number of environment actions to return in a single call to <code>ListEnvironmentActions</code>. When the number of environment actions to be listed is greater than the value of <code>MaxResults</code>, the response contains a <code>NextToken</code> value that you can use in a subsequent call to <code>ListEnvironmentActions</code> to list the next set of environment actions.</p>",
         "ListEnvironmentBlueprintConfigurationsInput$maxResults": "<p>The maximum number of blueprint configurations to return in a single call to <code>ListEnvironmentBlueprintConfigurations</code>. When the number of configurations to be listed is greater than the value of <code>MaxResults</code>, the response contains a <code>NextToken</code> value that you can use in a subsequent call to <code>ListEnvironmentBlueprintConfigurations</code> to list the next set of configurations.</p>",
         "ListEnvironmentBlueprintsInput$maxResults": "<p>The maximum number of blueprints to return in a single call to <code>ListEnvironmentBlueprints</code>. When the number of blueprints to be listed is greater than the value of <code>MaxResults</code>, the response contains a <code>NextToken</code> value that you can use in a subsequent call to <code>ListEnvironmentBlueprints</code> to list the next set of blueprints.</p>",
         "ListEnvironmentProfilesInput$maxResults": "<p>The maximum number of environment profiles to return in a single call to <code>ListEnvironmentProfiles</code>. When the number of environment profiles to be listed is greater than the value of <code>MaxResults</code>, the response contains a <code>NextToken</code> value that you can use in a subsequent call to <code>ListEnvironmentProfiles</code> to list the next set of environment profiles.</p>",
@@ -3007,6 +3140,8 @@
         "ListDataSourcesOutput$nextToken": "<p>When the number of data sources is greater than the default value for the <code>MaxResults</code> parameter, or if you explicitly specify a value for <code>MaxResults</code> that is less than the number of data sources, the response includes a pagination token named <code>NextToken</code>. You can specify this <code>NextToken</code> value in a subsequent call to <code>ListDataSources</code> to list the next set of data sources.</p>",
         "ListDomainsInput$nextToken": "<p>When the number of domains is greater than the default value for the <code>MaxResults</code> parameter, or if you explicitly specify a value for <code>MaxResults</code> that is less than the number of domains, the response includes a pagination token named <code>NextToken</code>. You can specify this <code>NextToken</code> value in a subsequent call to <code>ListDomains</code> to list the next set of domains.</p>",
         "ListDomainsOutput$nextToken": "<p>When the number of domains is greater than the default value for the <code>MaxResults</code> parameter, or if you explicitly specify a value for <code>MaxResults</code> that is less than the number of domains, the response includes a pagination token named <code>NextToken</code>. You can specify this <code>NextToken</code> value in a subsequent call to <code>ListDomains</code> to list the next set of domains.</p>",
+        "ListEnvironmentActionsInput$nextToken": "<p>When the number of environment actions is greater than the default value for the <code>MaxResults</code> parameter, or if you explicitly specify a value for <code>MaxResults</code> that is less than the number of environment actions, the response includes a pagination token named <code>NextToken</code>. You can specify this <code>NextToken</code> value in a subsequent call to <code>ListEnvironmentActions</code> to list the next set of environment actions.</p>",
+        "ListEnvironmentActionsOutput$nextToken": "<p>When the number of environment actions is greater than the default value for the <code>MaxResults</code> parameter, or if you explicitly specify a value for <code>MaxResults</code> that is less than the number of environment actions, the response includes a pagination token named <code>NextToken</code>. You can specify this <code>NextToken</code> value in a subsequent call to <code>ListEnvironmentActions</code> to list the next set of environment actions.</p>",
         "ListEnvironmentBlueprintConfigurationsInput$nextToken": "<p>When the number of blueprint configurations is greater than the default value for the <code>MaxResults</code> parameter, or if you explicitly specify a value for <code>MaxResults</code> that is less than the number of configurations, the response includes a pagination token named <code>NextToken</code>. You can specify this <code>NextToken</code> value in a subsequent call to <code>ListEnvironmentBlueprintConfigurations</code> to list the next set of configurations.</p>",
         "ListEnvironmentBlueprintConfigurationsOutput$nextToken": "<p>When the number of blueprint configurations is greater than the default value for the <code>MaxResults</code> parameter, or if you explicitly specify a value for <code>MaxResults</code> that is less than the number of configurations, the response includes a pagination token named <code>NextToken</code>. You can specify this <code>NextToken</code> value in a subsequent call to <code>ListEnvironmentBlueprintConfigurations</code> to list the next set of configurations.</p>",
         "ListEnvironmentBlueprintsInput$nextToken": "<p>When the number of blueprints in the environment is greater than the default value for the <code>MaxResults</code> parameter, or if you explicitly specify a value for <code>MaxResults</code> that is less than the number of blueprints in the environment, the response includes a pagination token named <code>NextToken</code>. You can specify this <code>NextToken</code> value in a subsequent call to <code>ListEnvironmentBlueprints</code>to list the next set of blueprints.</p>",
@@ -3289,6 +3424,12 @@
       "base": null,
       "refs": {
         "RedshiftRunConfigurationOutput$region": "<p>The Amazon Web Services region included in the configuration details of the Amazon Redshift data source.</p>"
+      }
+    },
+    "RedshiftSelfGrantStatusOutput": {
+      "base": "<p>The details for the self granting status for an Amazon Redshift data source.</p>",
+      "refs": {
+        "SelfGrantStatusOutput$redshiftSelfGrantStatus": "<p>The details for the self granting status for an Amazon Redshift data source.</p>"
       }
     },
     "RedshiftServerlessStorage": {
@@ -3672,6 +3813,45 @@
       "refs": {
       }
     },
+    "SelfGrantStatus": {
+      "base": null,
+      "refs": {
+        "SelfGrantStatusDetail$status": "<p>The self granting status of the data source.</p>"
+      }
+    },
+    "SelfGrantStatusDetail": {
+      "base": "<p>The details for the self granting status.</p>",
+      "refs": {
+        "SelfGrantStatusDetails$member": null
+      }
+    },
+    "SelfGrantStatusDetailDatabaseNameString": {
+      "base": null,
+      "refs": {
+        "SelfGrantStatusDetail$databaseName": "<p>The name of the database used for the data source.</p>"
+      }
+    },
+    "SelfGrantStatusDetailSchemaNameString": {
+      "base": null,
+      "refs": {
+        "SelfGrantStatusDetail$schemaName": "<p>The name of the schema used in the data source.</p>"
+      }
+    },
+    "SelfGrantStatusDetails": {
+      "base": null,
+      "refs": {
+        "GlueSelfGrantStatusOutput$selfGrantStatusDetails": "<p>The details for the self granting status for a Glue data source.</p>",
+        "RedshiftSelfGrantStatusOutput$selfGrantStatusDetails": "<p>The details for the self granting status for an Amazon Redshift data source.</p>"
+      }
+    },
+    "SelfGrantStatusOutput": {
+      "base": "<p>The details for the self granting status for a data source.</p>",
+      "refs": {
+        "DeleteDataSourceOutput$selfGrantStatus": "<p>Specifies the status of the self-granting functionality.</p>",
+        "GetDataSourceOutput$selfGrantStatus": "<p>Specifies the status of the self-granting functionality.</p>",
+        "UpdateDataSourceOutput$selfGrantStatus": "<p>Specifies the status of the self-granting functionality.</p>"
+      }
+    },
     "ServiceQuotaExceededException": {
       "base": "<p>The request has exceeded the specified service quota.</p>",
       "refs": {
@@ -3763,6 +3943,8 @@
         "AcceptChoice$predictionTarget": "<p>Specifies the target (for example, a column name) where a prediction can be accepted.</p>",
         "AcceptSubscriptionRequestOutput$reviewerId": "<p>Specifes the ID of the Amazon DataZone user who reviewed the subscription request.</p>",
         "AssetTargetNameMap$targetName": "<p>The target name in the asset target name map.</p>",
+        "AssociateEnvironmentRoleInput$environmentRoleArn": "<p>The ARN of the environment role.</p>",
+        "AwsConsoleLinkParameters$uri": "<p>The URI of the console link specified as part of the environment action.</p>",
         "CloudFormationProperties$templateUrl": "<p>The template URL of the cloud formation provisioning properties of the environment blueprint.</p>",
         "ConfigurableActionParameter$key": "<p>The key of the configurable action parameter.</p>",
         "ConfigurableActionParameter$value": "<p>The value of the configurable action parameter.</p>",
@@ -3777,7 +3959,14 @@
         "CreateDomainOutput$description": "<p>The description of the Amazon DataZone domain.</p>",
         "CreateDomainOutput$name": "<p>The name of the Amazon DataZone domain.</p>",
         "CreateDomainOutput$portalUrl": "<p>The URL of the data portal for this Amazon DataZone domain.</p>",
+        "CreateEnvironmentActionInput$description": "<p>The description of the environment action that is being created in the environment.</p>",
+        "CreateEnvironmentActionInput$name": "<p>The name of the environment action.</p>",
+        "CreateEnvironmentActionOutput$description": "<p>The description of the environment action.</p>",
+        "CreateEnvironmentActionOutput$name": "<p>The name of the environment action.</p>",
         "CreateEnvironmentInput$description": "<p>The description of the Amazon DataZone environment.</p>",
+        "CreateEnvironmentInput$environmentAccountIdentifier": "<p>The ID of the account in which the environment is being created.</p>",
+        "CreateEnvironmentInput$environmentAccountRegion": "<p>The region of the account in which the environment is being created.</p>",
+        "CreateEnvironmentInput$environmentBlueprintIdentifier": "<p>The ID of the blueprint with which the environment is being created.</p>",
         "CreateEnvironmentInput$name": "<p>The name of the Amazon DataZone environment.</p>",
         "CreateEnvironmentOutput$createdBy": "<p>The Amazon DataZone user who created this environment.</p>",
         "CreateEnvironmentOutput$provider": "<p>The provider of this Amazon DataZone environment.</p>",
@@ -3801,10 +3990,14 @@
         "DataSourceSummary$type": "<p>The type of the data source.</p>",
         "DeleteDataSourceInput$clientToken": "<p>A unique, case-sensitive identifier that is provided to ensure the idempotency of the request.</p>",
         "DeleteDomainInput$clientToken": "<p>A unique, case-sensitive identifier that is provided to ensure the idempotency of the request.</p>",
+        "DeleteEnvironmentActionInput$identifier": "<p>The ID of the environment action that is deleted.</p>",
         "Deployment$deploymentId": "<p>The identifier of the last deployment of the environment.</p>",
+        "DisassociateEnvironmentRoleInput$environmentRoleArn": "<p>The ARN of the environment role.</p>",
         "DomainSummary$arn": "<p>The ARN of the Amazon DataZone domain.</p>",
         "DomainSummary$managedAccountId": "<p>The identifier of the Amazon Web Services account that manages the domain.</p>",
         "DomainSummary$portalUrl": "<p>The data portal URL for the Amazon DataZone domain.</p>",
+        "EnvironmentActionSummary$description": "<p>The environment action description.</p>",
+        "EnvironmentActionSummary$name": "<p>The name of the environment action.</p>",
         "EnvironmentBlueprintSummary$provider": "<p>The provider of the blueprint.</p>",
         "EnvironmentError$code": "<p>The error code for the failure reason for the environment deployment.</p>",
         "EnvironmentError$message": "<p>The error message for the failure reason for the environment deployment.</p>",
@@ -3820,6 +4013,9 @@
         "GetDomainOutput$description": "<p>The description of the Amazon DataZone domain.</p>",
         "GetDomainOutput$name": "<p>The name of the Amazon DataZone domain.</p>",
         "GetDomainOutput$portalUrl": "<p>The URL of the data portal for this Amazon DataZone domain.</p>",
+        "GetEnvironmentActionInput$identifier": "<p>The ID of the environment action</p>",
+        "GetEnvironmentActionOutput$description": "<p>The description of the environment action.</p>",
+        "GetEnvironmentActionOutput$name": "<p>The name of the environment action.</p>",
         "GetEnvironmentBlueprintOutput$provider": "<p>The provider of this Amazon DataZone blueprint.</p>",
         "GetEnvironmentOutput$createdBy": "<p>The Amazon DataZone user who created the environment.</p>",
         "GetEnvironmentOutput$provider": "<p>The provider of this Amazon DataZone environment.</p>",
@@ -3858,6 +4054,7 @@
         "Resource$type": "<p>The type of a provisioned resource of this Amazon DataZone environment.</p>",
         "Resource$value": "<p>The value of a provisioned resource of this Amazon DataZone environment.</p>",
         "SearchListingsInput$searchText": "<p>Specifies the text for which to search.</p>",
+        "SelfGrantStatusDetail$failureCause": "<p>The reason for why the operation failed.</p>",
         "StartDataSourceRunInput$clientToken": "<p>A unique, case-sensitive identifier that is provided to ensure the idempotency of the request.</p>",
         "StartDataSourceRunOutput$dataSourceConfigurationSnapshot": "<p>The configuration snapshot of the data source that is being run.</p>",
         "SubscribedAsset$targetName": "<p>The target name of the asset for which the subscription grant is created.</p>",
@@ -3875,6 +4072,11 @@
         "UpdateDomainInput$name": "<p>The name to be updated as part of the <code>UpdateDomain</code> action.</p>",
         "UpdateDomainOutput$description": "<p>The description to be updated as part of the <code>UpdateDomain</code> action.</p>",
         "UpdateDomainOutput$name": "<p>The name to be updated as part of the <code>UpdateDomain</code> action.</p>",
+        "UpdateEnvironmentActionInput$description": "<p>The description of the environment action.</p>",
+        "UpdateEnvironmentActionInput$identifier": "<p>The ID of the environment action.</p>",
+        "UpdateEnvironmentActionInput$name": "<p>The name of the environment action.</p>",
+        "UpdateEnvironmentActionOutput$description": "<p>The description of the environment action.</p>",
+        "UpdateEnvironmentActionOutput$name": "<p>The name of the environment action.</p>",
         "UpdateEnvironmentInput$description": "<p>The description to be updated as part of the <code>UpdateEnvironment</code> action.</p>",
         "UpdateEnvironmentInput$name": "<p>The name to be updated as part of the <code>UpdateEnvironment</code> action.</p>",
         "UpdateEnvironmentOutput$createdBy": "<p>The Amazon DataZone user who created the environment.</p>",
@@ -4476,6 +4678,16 @@
       }
     },
     "UpdateDomainOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateEnvironmentActionInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateEnvironmentActionOutput": {
       "base": null,
       "refs": {
       }
