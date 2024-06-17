@@ -200,6 +200,12 @@
       "limit_key": "MaxResults",
       "output_token": "NextToken"
     },
+    "ListUsageProfiles": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "Profiles"
+    },
     "ListWorkflows": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",

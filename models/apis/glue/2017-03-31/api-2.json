@@ -686,6 +686,23 @@
         {"shape":"ConcurrentModificationException"}
       ]
     },
+    "CreateUsageProfile":{
+      "name":"CreateUsageProfile",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateUsageProfileRequest"},
+      "output":{"shape":"CreateUsageProfileResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"AlreadyExistsException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"ResourceNumberLimitExceededException"},
+        {"shape":"OperationNotSupportedException"}
+      ]
+    },
     "CreateUserDefinedFunction":{
       "name":"CreateUserDefinedFunction",
       "http":{
@@ -1084,6 +1101,21 @@
         {"shape":"InternalServiceException"},
         {"shape":"OperationTimeoutException"},
         {"shape":"ConcurrentModificationException"}
+      ]
+    },
+    "DeleteUsageProfile":{
+      "name":"DeleteUsageProfile",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteUsageProfileRequest"},
+      "output":{"shape":"DeleteUsageProfileResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"OperationNotSupportedException"}
       ]
     },
     "DeleteUserDefinedFunction":{
@@ -2062,6 +2094,22 @@
         {"shape":"FederationSourceRetryableException"}
       ]
     },
+    "GetUsageProfile":{
+      "name":"GetUsageProfile",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetUsageProfileRequest"},
+      "output":{"shape":"GetUsageProfileResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"EntityNotFoundException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"OperationNotSupportedException"}
+      ]
+    },
     "GetUserDefinedFunction":{
       "name":"GetUserDefinedFunction",
       "http":{
@@ -2439,6 +2487,21 @@
         {"shape":"InvalidInputException"},
         {"shape":"InternalServiceException"},
         {"shape":"OperationTimeoutException"}
+      ]
+    },
+    "ListUsageProfiles":{
+      "name":"ListUsageProfiles",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListUsageProfilesRequest"},
+      "output":{"shape":"ListUsageProfilesResponse"},
+      "errors":[
+        {"shape":"InternalServiceException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"OperationNotSupportedException"}
       ]
     },
     "ListWorkflows":{
@@ -3294,6 +3357,23 @@
         {"shape":"ConcurrentModificationException"}
       ]
     },
+    "UpdateUsageProfile":{
+      "name":"UpdateUsageProfile",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateUsageProfileRequest"},
+      "output":{"shape":"UpdateUsageProfileResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"EntityNotFoundException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"OperationNotSupportedException"},
+        {"shape":"ConcurrentModificationException"}
+      ]
+    },
     "UpdateUserDefinedFunction":{
       "name":"UpdateUserDefinedFunction",
       "http":{
@@ -3433,6 +3513,10 @@
       "member":{"shape":"AggregateOperation"},
       "max":30,
       "min":1
+    },
+    "AllowedValuesStringList":{
+      "type":"list",
+      "member":{"shape":"ConfigValueString"}
     },
     "AlreadyExistsException":{
       "type":"structure",
@@ -4870,6 +4954,26 @@
       "type":"list",
       "member":{"shape":"Condition"}
     },
+    "ConfigValueString":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"[a-zA-Z0-9_.-]+"
+    },
+    "ConfigurationMap":{
+      "type":"map",
+      "key":{"shape":"NameString"},
+      "value":{"shape":"ConfigurationObject"}
+    },
+    "ConfigurationObject":{
+      "type":"structure",
+      "members":{
+        "DefaultValue":{"shape":"ConfigValueString"},
+        "AllowedValues":{"shape":"AllowedValuesStringList"},
+        "MinValue":{"shape":"ConfigValueString"},
+        "MaxValue":{"shape":"ConfigValueString"}
+      }
+    },
     "ConflictException":{
       "type":"structure",
       "members":{
@@ -5759,6 +5863,25 @@
       }
     },
     "CreateTriggerResponse":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"NameString"}
+      }
+    },
+    "CreateUsageProfileRequest":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Configuration"
+      ],
+      "members":{
+        "Name":{"shape":"NameString"},
+        "Description":{"shape":"DescriptionString"},
+        "Configuration":{"shape":"ProfileConfiguration"},
+        "Tags":{"shape":"TagsMap"}
+      }
+    },
+    "CreateUsageProfileResponse":{
       "type":"structure",
       "members":{
         "Name":{"shape":"NameString"}
@@ -6697,6 +6820,18 @@
       "type":"structure",
       "members":{
         "Name":{"shape":"NameString"}
+      }
+    },
+    "DeleteUsageProfileRequest":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Name":{"shape":"NameString"}
+      }
+    },
+    "DeleteUsageProfileResponse":{
+      "type":"structure",
+      "members":{
       }
     },
     "DeleteUserDefinedFunctionRequest":{
@@ -8527,6 +8662,23 @@
         "RowFilter":{"shape":"PredicateString"}
       }
     },
+    "GetUsageProfileRequest":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Name":{"shape":"NameString"}
+      }
+    },
+    "GetUsageProfileResponse":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"NameString"},
+        "Description":{"shape":"DescriptionString"},
+        "Configuration":{"shape":"ProfileConfiguration"},
+        "CreatedOn":{"shape":"TimestampValue"},
+        "LastModifiedOn":{"shape":"TimestampValue"}
+      }
+    },
     "GetUserDefinedFunctionRequest":{
       "type":"structure",
       "required":[
@@ -9093,7 +9245,8 @@
         "CodeGenConfigurationNodes":{"shape":"CodeGenConfigurationNodes"},
         "ExecutionClass":{"shape":"ExecutionClass"},
         "SourceControlDetails":{"shape":"SourceControlDetails"},
-        "MaintenanceWindow":{"shape":"MaintenanceWindow"}
+        "MaintenanceWindow":{"shape":"MaintenanceWindow"},
+        "ProfileName":{"shape":"NameString"}
       }
     },
     "JobBookmarkEntry":{
@@ -9186,7 +9339,8 @@
         "GlueVersion":{"shape":"GlueVersionString"},
         "DPUSeconds":{"shape":"NullableDouble"},
         "ExecutionClass":{"shape":"ExecutionClass"},
-        "MaintenanceWindow":{"shape":"MaintenanceWindow"}
+        "MaintenanceWindow":{"shape":"MaintenanceWindow"},
+        "ProfileName":{"shape":"NameString"}
       }
     },
     "JobRunList":{
@@ -9752,6 +9906,20 @@
         "NextToken":{"shape":"GenericString"}
       }
     },
+    "ListUsageProfilesRequest":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"OrchestrationToken"},
+        "MaxResults":{"shape":"OrchestrationPageSize200"}
+      }
+    },
+    "ListUsageProfilesResponse":{
+      "type":"structure",
+      "members":{
+        "Profiles":{"shape":"UsageProfileDefinitionList"},
+        "NextToken":{"shape":"OrchestrationToken"}
+      }
+    },
     "ListWorkflowsRequest":{
       "type":"structure",
       "members":{
@@ -10253,6 +10421,13 @@
         "IcebergInput":{"shape":"IcebergInput"}
       }
     },
+    "OperationNotSupportedException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"MessageString"}
+      },
+      "exception":true
+    },
     "OperationTimeoutException":{
       "type":"structure",
       "members":{
@@ -10695,6 +10870,13 @@
       "box":true,
       "max":1,
       "min":0
+    },
+    "ProfileConfiguration":{
+      "type":"structure",
+      "members":{
+        "SessionConfiguration":{"shape":"ConfigurationMap"},
+        "JobConfiguration":{"shape":"ConfigurationMap"}
+      }
     },
     "PropertyPredicate":{
       "type":"structure",
@@ -11765,7 +11947,8 @@
         "CompletedOn":{"shape":"TimestampValue"},
         "ExecutionTime":{"shape":"NullableDouble"},
         "DPUSeconds":{"shape":"NullableDouble"},
-        "IdleTimeout":{"shape":"IdleTimeout"}
+        "IdleTimeout":{"shape":"IdleTimeout"},
+        "ProfileName":{"shape":"NameString"}
       }
     },
     "SessionCommand":{
@@ -13408,6 +13591,24 @@
         "Trigger":{"shape":"Trigger"}
       }
     },
+    "UpdateUsageProfileRequest":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Configuration"
+      ],
+      "members":{
+        "Name":{"shape":"NameString"},
+        "Description":{"shape":"DescriptionString"},
+        "Configuration":{"shape":"ProfileConfiguration"}
+      }
+    },
+    "UpdateUsageProfileResponse":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"NameString"}
+      }
+    },
     "UpdateUserDefinedFunctionRequest":{
       "type":"structure",
       "required":[
@@ -13462,6 +13663,19 @@
       }
     },
     "UriString":{"type":"string"},
+    "UsageProfileDefinition":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"NameString"},
+        "Description":{"shape":"DescriptionString"},
+        "CreatedOn":{"shape":"TimestampValue"},
+        "LastModifiedOn":{"shape":"TimestampValue"}
+      }
+    },
+    "UsageProfileDefinitionList":{
+      "type":"list",
+      "member":{"shape":"UsageProfileDefinition"}
+    },
     "UserDefinedFunction":{
       "type":"structure",
       "members":{

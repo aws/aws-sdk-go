@@ -76,7 +76,7 @@ func (c *ACMPCA) CreateCertificateAuthorityRequest(input *CreateCertificateAutho
 //
 // Amazon Web Services Private CA assets that are stored in Amazon S3 can be
 // protected with encryption. For more information, see Encrypting Your CRLs
-// (https://docs.aws.amazon.com/privateca/latest/userguide/PcaCreateCa.html#crl-encryption).
+// (https://docs.aws.amazon.com/privateca/latest/userguide/crl-planning.html#crl-encryption).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1417,44 +1417,46 @@ func (c *ACMPCA) ImportCertificateAuthorityCertificateRequest(input *ImportCerti
 // Amazon Web Services Private CA allows the following extensions to be marked
 // critical in the imported CA certificate or chain.
 //
-//   - Basic constraints (must be marked critical)
-//
-//   - Subject alternative names
-//
-//   - Key usage
-//
-//   - Extended key usage
-//
 //   - Authority key identifier
 //
-//   - Subject key identifier
-//
-//   - Issuer alternative name
-//
-//   - Subject directory attributes
-//
-//   - Subject information access
+//   - Basic constraints (must be marked critical)
 //
 //   - Certificate policies
 //
-//   - Policy mappings
+//   - Extended key usage
 //
 //   - Inhibit anyPolicy
+//
+//   - Issuer alternative name
+//
+//   - Key usage
+//
+//   - Name constraints
+//
+//   - Policy mappings
+//
+//   - Subject alternative name
+//
+//   - Subject directory attributes
+//
+//   - Subject key identifier
+//
+//   - Subject information access
 //
 // Amazon Web Services Private CA rejects the following extensions when they
 // are marked critical in an imported CA certificate or chain.
 //
-//   - Name constraints
-//
-//   - Policy constraints
+//   - Authority information access
 //
 //   - CRL distribution points
 //
-//   - Authority information access
-//
 //   - Freshest CRL
 //
-//   - Any other extension
+//   - Policy constraints
+//
+// Amazon Web Services Private Certificate Authority will also reject any other
+// extension marked as critical not contained on the preceding list of allowed
+// extensions.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4039,7 +4041,7 @@ func (s CreatePermissionOutput) GoString() string {
 //
 // Amazon Web Services Private CA assets that are stored in Amazon S3 can be
 // protected with encryption. For more information, see Encrypting Your CRLs
-// (https://docs.aws.amazon.com/privateca/latest/userguide/PcaCreateCa.html#crl-encryption).
+// (https://docs.aws.amazon.com/privateca/latest/userguide/crl-planning.html#crl-encryption).
 //
 // Your private CA uses the value in the ExpirationInDays parameter to calculate
 // the nextUpdate field in the CRL. The CRL is refreshed prior to a certificate's

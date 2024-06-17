@@ -166,6 +166,12 @@ const (
 	// There is no applicable schedule.
 	ErrCodeNoScheduleException = "NoScheduleException"
 
+	// ErrCodeOperationNotSupportedException for service response error code
+	// "OperationNotSupportedException".
+	//
+	// The operation is not available in the region.
+	ErrCodeOperationNotSupportedException = "OperationNotSupportedException"
+
 	// ErrCodeOperationTimeoutException for service response error code
 	// "OperationTimeoutException".
 	//
@@ -248,6 +254,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"InvalidStateException":                   newErrorInvalidStateException,
 	"MLTransformNotReadyException":            newErrorMLTransformNotReadyException,
 	"NoScheduleException":                     newErrorNoScheduleException,
+	"OperationNotSupportedException":          newErrorOperationNotSupportedException,
 	"OperationTimeoutException":               newErrorOperationTimeoutException,
 	"PermissionTypeMismatchException":         newErrorPermissionTypeMismatchException,
 	"ResourceNotReadyException":               newErrorResourceNotReadyException,
