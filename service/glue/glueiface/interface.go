@@ -228,6 +228,10 @@ type GlueAPI interface {
 	CreateTriggerWithContext(aws.Context, *glue.CreateTriggerInput, ...request.Option) (*glue.CreateTriggerOutput, error)
 	CreateTriggerRequest(*glue.CreateTriggerInput) (*request.Request, *glue.CreateTriggerOutput)
 
+	CreateUsageProfile(*glue.CreateUsageProfileInput) (*glue.CreateUsageProfileOutput, error)
+	CreateUsageProfileWithContext(aws.Context, *glue.CreateUsageProfileInput, ...request.Option) (*glue.CreateUsageProfileOutput, error)
+	CreateUsageProfileRequest(*glue.CreateUsageProfileInput) (*request.Request, *glue.CreateUsageProfileOutput)
+
 	CreateUserDefinedFunction(*glue.CreateUserDefinedFunctionInput) (*glue.CreateUserDefinedFunctionOutput, error)
 	CreateUserDefinedFunctionWithContext(aws.Context, *glue.CreateUserDefinedFunctionInput, ...request.Option) (*glue.CreateUserDefinedFunctionOutput, error)
 	CreateUserDefinedFunctionRequest(*glue.CreateUserDefinedFunctionInput) (*request.Request, *glue.CreateUserDefinedFunctionOutput)
@@ -331,6 +335,10 @@ type GlueAPI interface {
 	DeleteTrigger(*glue.DeleteTriggerInput) (*glue.DeleteTriggerOutput, error)
 	DeleteTriggerWithContext(aws.Context, *glue.DeleteTriggerInput, ...request.Option) (*glue.DeleteTriggerOutput, error)
 	DeleteTriggerRequest(*glue.DeleteTriggerInput) (*request.Request, *glue.DeleteTriggerOutput)
+
+	DeleteUsageProfile(*glue.DeleteUsageProfileInput) (*glue.DeleteUsageProfileOutput, error)
+	DeleteUsageProfileWithContext(aws.Context, *glue.DeleteUsageProfileInput, ...request.Option) (*glue.DeleteUsageProfileOutput, error)
+	DeleteUsageProfileRequest(*glue.DeleteUsageProfileInput) (*request.Request, *glue.DeleteUsageProfileOutput)
 
 	DeleteUserDefinedFunction(*glue.DeleteUserDefinedFunctionInput) (*glue.DeleteUserDefinedFunctionOutput, error)
 	DeleteUserDefinedFunctionWithContext(aws.Context, *glue.DeleteUserDefinedFunctionInput, ...request.Option) (*glue.DeleteUserDefinedFunctionOutput, error)
@@ -648,6 +656,10 @@ type GlueAPI interface {
 	GetUnfilteredTableMetadataWithContext(aws.Context, *glue.GetUnfilteredTableMetadataInput, ...request.Option) (*glue.GetUnfilteredTableMetadataOutput, error)
 	GetUnfilteredTableMetadataRequest(*glue.GetUnfilteredTableMetadataInput) (*request.Request, *glue.GetUnfilteredTableMetadataOutput)
 
+	GetUsageProfile(*glue.GetUsageProfileInput) (*glue.GetUsageProfileOutput, error)
+	GetUsageProfileWithContext(aws.Context, *glue.GetUsageProfileInput, ...request.Option) (*glue.GetUsageProfileOutput, error)
+	GetUsageProfileRequest(*glue.GetUsageProfileInput) (*request.Request, *glue.GetUsageProfileOutput)
+
 	GetUserDefinedFunction(*glue.GetUserDefinedFunctionInput) (*glue.GetUserDefinedFunctionOutput, error)
 	GetUserDefinedFunctionWithContext(aws.Context, *glue.GetUserDefinedFunctionInput, ...request.Option) (*glue.GetUserDefinedFunctionOutput, error)
 	GetUserDefinedFunctionRequest(*glue.GetUserDefinedFunctionInput) (*request.Request, *glue.GetUserDefinedFunctionOutput)
@@ -808,6 +820,13 @@ type GlueAPI interface {
 
 	ListTriggersPages(*glue.ListTriggersInput, func(*glue.ListTriggersOutput, bool) bool) error
 	ListTriggersPagesWithContext(aws.Context, *glue.ListTriggersInput, func(*glue.ListTriggersOutput, bool) bool, ...request.Option) error
+
+	ListUsageProfiles(*glue.ListUsageProfilesInput) (*glue.ListUsageProfilesOutput, error)
+	ListUsageProfilesWithContext(aws.Context, *glue.ListUsageProfilesInput, ...request.Option) (*glue.ListUsageProfilesOutput, error)
+	ListUsageProfilesRequest(*glue.ListUsageProfilesInput) (*request.Request, *glue.ListUsageProfilesOutput)
+
+	ListUsageProfilesPages(*glue.ListUsageProfilesInput, func(*glue.ListUsageProfilesOutput, bool) bool) error
+	ListUsageProfilesPagesWithContext(aws.Context, *glue.ListUsageProfilesInput, func(*glue.ListUsageProfilesOutput, bool) bool, ...request.Option) error
 
 	ListWorkflows(*glue.ListWorkflowsInput) (*glue.ListWorkflowsOutput, error)
 	ListWorkflowsWithContext(aws.Context, *glue.ListWorkflowsInput, ...request.Option) (*glue.ListWorkflowsOutput, error)
@@ -1026,6 +1045,10 @@ type GlueAPI interface {
 	UpdateTrigger(*glue.UpdateTriggerInput) (*glue.UpdateTriggerOutput, error)
 	UpdateTriggerWithContext(aws.Context, *glue.UpdateTriggerInput, ...request.Option) (*glue.UpdateTriggerOutput, error)
 	UpdateTriggerRequest(*glue.UpdateTriggerInput) (*request.Request, *glue.UpdateTriggerOutput)
+
+	UpdateUsageProfile(*glue.UpdateUsageProfileInput) (*glue.UpdateUsageProfileOutput, error)
+	UpdateUsageProfileWithContext(aws.Context, *glue.UpdateUsageProfileInput, ...request.Option) (*glue.UpdateUsageProfileOutput, error)
+	UpdateUsageProfileRequest(*glue.UpdateUsageProfileInput) (*request.Request, *glue.UpdateUsageProfileOutput)
 
 	UpdateUserDefinedFunction(*glue.UpdateUserDefinedFunctionInput) (*glue.UpdateUserDefinedFunctionOutput, error)
 	UpdateUserDefinedFunctionWithContext(aws.Context, *glue.UpdateUserDefinedFunctionInput, ...request.Option) (*glue.UpdateUserDefinedFunctionOutput, error)

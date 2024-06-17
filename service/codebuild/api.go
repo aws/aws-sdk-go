@@ -8179,6 +8179,12 @@ type CreateWebhookInput struct {
 	//
 	// ProjectName is a required field
 	ProjectName *string `locationName:"projectName" min:"2" type:"string" required:"true"`
+
+	// The scope configuration for global or organization webhooks.
+	//
+	// Global or organization webhooks are only available for GitHub and Github
+	// Enterprise webhooks.
+	ScopeConfiguration *ScopeConfiguration `locationName:"scopeConfiguration" type:"structure"`
 }
 
 // String returns the string representation.
@@ -8207,6 +8213,11 @@ func (s *CreateWebhookInput) Validate() error {
 	}
 	if s.ProjectName != nil && len(*s.ProjectName) < 2 {
 		invalidParams.Add(request.NewErrParamMinLen("ProjectName", 2))
+	}
+	if s.ScopeConfiguration != nil {
+		if err := s.ScopeConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("ScopeConfiguration", err.(request.ErrInvalidParams))
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -8242,6 +8253,12 @@ func (s *CreateWebhookInput) SetManualCreation(v bool) *CreateWebhookInput {
 // SetProjectName sets the ProjectName field's value.
 func (s *CreateWebhookInput) SetProjectName(v string) *CreateWebhookInput {
 	s.ProjectName = &v
+	return s
+}
+
+// SetScopeConfiguration sets the ScopeConfiguration field's value.
+func (s *CreateWebhookInput) SetScopeConfiguration(v *ScopeConfiguration) *CreateWebhookInput {
+	s.ScopeConfiguration = v
 	return s
 }
 
@@ -15125,6 +15142,79 @@ func (s *ScalingConfigurationOutput_) SetTargetTrackingScalingConfigs(v []*Targe
 	return s
 }
 
+// Contains configuration information about the scope for a webhook.
+type ScopeConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The domain of the GitHub Enterprise organization. Note that this parameter
+	// is only required if your project's source type is GITHUB_ENTERPRISE
+	Domain *string `locationName:"domain" type:"string"`
+
+	// The name of either the enterprise or organization that will send webhook
+	// events to CodeBuild, depending on if the webhook is a global or organization
+	// webhook respectively.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true"`
+
+	// The type of scope for a GitHub webhook.
+	//
+	// Scope is a required field
+	Scope *string `locationName:"scope" type:"string" required:"true" enum:"WebhookScopeType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ScopeConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ScopeConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ScopeConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ScopeConfiguration"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Scope == nil {
+		invalidParams.Add(request.NewErrParamRequired("Scope"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDomain sets the Domain field's value.
+func (s *ScopeConfiguration) SetDomain(v string) *ScopeConfiguration {
+	s.Domain = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ScopeConfiguration) SetName(v string) *ScopeConfiguration {
+	s.Name = &v
+	return s
+}
+
+// SetScope sets the Scope field's value.
+func (s *ScopeConfiguration) SetScope(v string) *ScopeConfiguration {
+	s.Scope = &v
+	return s
+}
+
 // Information about the authorization settings for CodeBuild to access the
 // source code to be built.
 //
@@ -17968,6 +18058,12 @@ type Webhook struct {
 	// The CodeBuild endpoint where webhook events are sent.
 	PayloadUrl *string `locationName:"payloadUrl" min:"1" type:"string"`
 
+	// The scope configuration for global or organization webhooks.
+	//
+	// Global or organization webhooks are only available for GitHub and Github
+	// Enterprise webhooks.
+	ScopeConfiguration *ScopeConfiguration `locationName:"scopeConfiguration" type:"structure"`
+
 	// The secret token of the associated repository.
 	//
 	// A Bitbucket webhook does not support secret.
@@ -18028,6 +18124,12 @@ func (s *Webhook) SetManualCreation(v bool) *Webhook {
 // SetPayloadUrl sets the PayloadUrl field's value.
 func (s *Webhook) SetPayloadUrl(v string) *Webhook {
 	s.PayloadUrl = &v
+	return s
+}
+
+// SetScopeConfiguration sets the ScopeConfiguration field's value.
+func (s *Webhook) SetScopeConfiguration(v *ScopeConfiguration) *Webhook {
+	s.ScopeConfiguration = v
 	return s
 }
 
@@ -18110,6 +18212,10 @@ type WebhookFilter struct {
 	//    * RELEASE_NAME A webhook triggers a build when the release name matches
 	//    the regular expression pattern. Works with RELEASED and PRERELEASED events
 	//    only.
+	//
+	//    * REPOSITORY_NAME A webhook triggers a build when the repository name
+	//    matches the regular expression pattern. Works with GitHub global or organization
+	//    webhooks only.
 	//
 	//    * WORKFLOW_NAME A webhook triggers a build when the workflow name matches
 	//    the regular expression pattern. Works with WORKFLOW_JOB_QUEUED events
@@ -19223,5 +19329,21 @@ func WebhookFilterType_Values() []string {
 		WebhookFilterTypeWorkflowName,
 		WebhookFilterTypeTagName,
 		WebhookFilterTypeReleaseName,
+	}
+}
+
+const (
+	// WebhookScopeTypeGithubOrganization is a WebhookScopeType enum value
+	WebhookScopeTypeGithubOrganization = "GITHUB_ORGANIZATION"
+
+	// WebhookScopeTypeGithubGlobal is a WebhookScopeType enum value
+	WebhookScopeTypeGithubGlobal = "GITHUB_GLOBAL"
+)
+
+// WebhookScopeType_Values returns all elements of the WebhookScopeType enum
+func WebhookScopeType_Values() []string {
+	return []string{
+		WebhookScopeTypeGithubOrganization,
+		WebhookScopeTypeGithubGlobal,
 	}
 }

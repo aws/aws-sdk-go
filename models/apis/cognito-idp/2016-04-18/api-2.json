@@ -10,7 +10,8 @@
     "serviceId":"Cognito Identity Provider",
     "signatureVersion":"v4",
     "targetPrefix":"AWSCognitoIdentityProviderService",
-    "uid":"cognito-idp-2016-04-18"
+    "uid":"cognito-idp-2016-04-18",
+    "auth":["aws.auth#sigv4"]
   },
   "operations":{
     "AddCustomAttributes":{
@@ -545,7 +546,8 @@
         {"shape":"SoftwareTokenMFANotFoundException"},
         {"shape":"ForbiddenException"}
       ],
-      "authtype":"none"
+      "authtype":"none",
+      "auth":["smithy.api#noAuth"]
     },
     "ChangePassword":{
       "name":"ChangePassword",
@@ -568,7 +570,8 @@
         {"shape":"InternalErrorException"},
         {"shape":"ForbiddenException"}
       ],
-      "authtype":"none"
+      "authtype":"none",
+      "auth":["smithy.api#noAuth"]
     },
     "ConfirmDevice":{
       "name":"ConfirmDevice",
@@ -593,7 +596,8 @@
         {"shape":"InternalErrorException"},
         {"shape":"ForbiddenException"}
       ],
-      "authtype":"none"
+      "authtype":"none",
+      "auth":["smithy.api#noAuth"]
     },
     "ConfirmForgotPassword":{
       "name":"ConfirmForgotPassword",
@@ -621,7 +625,8 @@
         {"shape":"InternalErrorException"},
         {"shape":"ForbiddenException"}
       ],
-      "authtype":"none"
+      "authtype":"none",
+      "auth":["smithy.api#noAuth"]
     },
     "ConfirmSignUp":{
       "name":"ConfirmSignUp",
@@ -648,7 +653,8 @@
         {"shape":"InternalErrorException"},
         {"shape":"ForbiddenException"}
       ],
-      "authtype":"none"
+      "authtype":"none",
+      "auth":["smithy.api#noAuth"]
     },
     "CreateGroup":{
       "name":"CreateGroup",
@@ -841,7 +847,8 @@
         {"shape":"InternalErrorException"},
         {"shape":"ForbiddenException"}
       ],
-      "authtype":"none"
+      "authtype":"none",
+      "auth":["smithy.api#noAuth"]
     },
     "DeleteUserAttributes":{
       "name":"DeleteUserAttributes",
@@ -862,7 +869,8 @@
         {"shape":"InternalErrorException"},
         {"shape":"ForbiddenException"}
       ],
-      "authtype":"none"
+      "authtype":"none",
+      "auth":["smithy.api#noAuth"]
     },
     "DeleteUserPool":{
       "name":"DeleteUserPool",
@@ -1043,7 +1051,8 @@
         {"shape":"InternalErrorException"},
         {"shape":"ForbiddenException"}
       ],
-      "authtype":"none"
+      "authtype":"none",
+      "auth":["smithy.api#noAuth"]
     },
     "ForgotPassword":{
       "name":"ForgotPassword",
@@ -1070,7 +1079,8 @@
         {"shape":"InternalErrorException"},
         {"shape":"ForbiddenException"}
       ],
-      "authtype":"none"
+      "authtype":"none",
+      "auth":["smithy.api#noAuth"]
     },
     "GetCSVHeader":{
       "name":"GetCSVHeader",
@@ -1108,7 +1118,8 @@
         {"shape":"InternalErrorException"},
         {"shape":"ForbiddenException"}
       ],
-      "authtype":"none"
+      "authtype":"none",
+      "auth":["smithy.api#noAuth"]
     },
     "GetGroup":{
       "name":"GetGroup",
@@ -1207,7 +1218,8 @@
         {"shape":"InternalErrorException"},
         {"shape":"ForbiddenException"}
       ],
-      "authtype":"none"
+      "authtype":"none",
+      "auth":["smithy.api#noAuth"]
     },
     "GetUserAttributeVerificationCode":{
       "name":"GetUserAttributeVerificationCode",
@@ -1236,7 +1248,8 @@
         {"shape":"InternalErrorException"},
         {"shape":"ForbiddenException"}
       ],
-      "authtype":"none"
+      "authtype":"none",
+      "auth":["smithy.api#noAuth"]
     },
     "GetUserPoolMfaConfig":{
       "name":"GetUserPoolMfaConfig",
@@ -1272,7 +1285,8 @@
         {"shape":"InternalErrorException"},
         {"shape":"ForbiddenException"}
       ],
-      "authtype":"none"
+      "authtype":"none",
+      "auth":["smithy.api#noAuth"]
     },
     "InitiateAuth":{
       "name":"InitiateAuth",
@@ -1299,7 +1313,8 @@
         {"shape":"InvalidSmsRoleTrustRelationshipException"},
         {"shape":"ForbiddenException"}
       ],
-      "authtype":"none"
+      "authtype":"none",
+      "auth":["smithy.api#noAuth"]
     },
     "ListDevices":{
       "name":"ListDevices",
@@ -1321,7 +1336,8 @@
         {"shape":"InternalErrorException"},
         {"shape":"ForbiddenException"}
       ],
-      "authtype":"none"
+      "authtype":"none",
+      "auth":["smithy.api#noAuth"]
     },
     "ListGroups":{
       "name":"ListGroups",
@@ -1491,7 +1507,8 @@
         {"shape":"InternalErrorException"},
         {"shape":"ForbiddenException"}
       ],
-      "authtype":"none"
+      "authtype":"none",
+      "auth":["smithy.api#noAuth"]
     },
     "RespondToAuthChallenge":{
       "name":"RespondToAuthChallenge",
@@ -1524,7 +1541,8 @@
         {"shape":"SoftwareTokenMFANotFoundException"},
         {"shape":"ForbiddenException"}
       ],
-      "authtype":"none"
+      "authtype":"none",
+      "auth":["smithy.api#noAuth"]
     },
     "RevokeToken":{
       "name":"RevokeToken",
@@ -1543,7 +1561,8 @@
         {"shape":"UnsupportedTokenTypeException"},
         {"shape":"ForbiddenException"}
       ],
-      "authtype":"none"
+      "authtype":"none",
+      "auth":["smithy.api#noAuth"]
     },
     "SetLogDeliveryConfiguration":{
       "name":"SetLogDeliveryConfiguration",
@@ -1614,7 +1633,8 @@
         {"shape":"InternalErrorException"},
         {"shape":"ForbiddenException"}
       ],
-      "authtype":"none"
+      "authtype":"none",
+      "auth":["smithy.api#noAuth"]
     },
     "SetUserPoolMfaConfig":{
       "name":"SetUserPoolMfaConfig",
@@ -1653,7 +1673,8 @@
         {"shape":"InternalErrorException"},
         {"shape":"ForbiddenException"}
       ],
-      "authtype":"none"
+      "authtype":"none",
+      "auth":["smithy.api#noAuth"]
     },
     "SignUp":{
       "name":"SignUp",
@@ -1681,7 +1702,8 @@
         {"shape":"CodeDeliveryFailureException"},
         {"shape":"ForbiddenException"}
       ],
-      "authtype":"none"
+      "authtype":"none",
+      "auth":["smithy.api#noAuth"]
     },
     "StartUserImportJob":{
       "name":"StartUserImportJob",
@@ -1766,7 +1788,8 @@
         {"shape":"UserPoolAddOnNotEnabledException"},
         {"shape":"InternalErrorException"}
       ],
-      "authtype":"none"
+      "authtype":"none",
+      "auth":["smithy.api#noAuth"]
     },
     "UpdateDeviceStatus":{
       "name":"UpdateDeviceStatus",
@@ -1788,7 +1811,8 @@
         {"shape":"InternalErrorException"},
         {"shape":"ForbiddenException"}
       ],
-      "authtype":"none"
+      "authtype":"none",
+      "auth":["smithy.api#noAuth"]
     },
     "UpdateGroup":{
       "name":"UpdateGroup",
@@ -1869,7 +1893,8 @@
         {"shape":"InternalErrorException"},
         {"shape":"ForbiddenException"}
       ],
-      "authtype":"none"
+      "authtype":"none",
+      "auth":["smithy.api#noAuth"]
     },
     "UpdateUserPool":{
       "name":"UpdateUserPool",
@@ -1952,7 +1977,8 @@
         {"shape":"CodeMismatchException"},
         {"shape":"ForbiddenException"}
       ],
-      "authtype":"none"
+      "authtype":"none",
+      "auth":["smithy.api#noAuth"]
     },
     "VerifyUserAttribute":{
       "name":"VerifyUserAttribute",
@@ -1977,7 +2003,8 @@
         {"shape":"AliasExistsException"},
         {"shape":"ForbiddenException"}
       ],
-      "authtype":"none"
+      "authtype":"none",
+      "auth":["smithy.api#noAuth"]
     }
   },
   "shapes":{

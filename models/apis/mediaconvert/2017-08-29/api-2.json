@@ -9,7 +9,10 @@
     "jsonVersion": "1.1",
     "uid": "mediaconvert-2017-08-29",
     "signatureVersion": "v4",
-    "serviceAbbreviation": "MediaConvert"
+    "serviceAbbreviation": "MediaConvert",
+    "auth": [
+      "aws.auth#sigv4"
+    ]
   },
   "operations": {
     "AssociateCertificate": {
@@ -2585,6 +2588,10 @@
           "shape": "CmafCodecSpecification",
           "locationName": "codecSpecification"
         },
+        "DashIFrameTrickPlayNameModifier": {
+          "shape": "__stringMin1Max256",
+          "locationName": "dashIFrameTrickPlayNameModifier"
+        },
         "DashManifestStyle": {
           "shape": "DashManifestStyle",
           "locationName": "dashManifestStyle"
@@ -3415,6 +3422,10 @@
         "BaseUrl": {
           "shape": "__string",
           "locationName": "baseUrl"
+        },
+        "DashIFrameTrickPlayNameModifier": {
+          "shape": "__stringMin1Max256",
+          "locationName": "dashIFrameTrickPlayNameModifier"
         },
         "DashManifestStyle": {
           "shape": "DashManifestStyle",
@@ -6402,11 +6413,11 @@
       "type": "structure",
       "members": {
         "EndTimecode": {
-          "shape": "__stringPattern010920405090509092",
+          "shape": "__stringPattern010920405090509092090909",
           "locationName": "endTimecode"
         },
         "StartTimecode": {
-          "shape": "__stringPattern010920405090509092",
+          "shape": "__stringPattern010920405090509092090909",
           "locationName": "startTimecode"
         }
       }
@@ -6593,9 +6604,25 @@
     "InputVideoGenerator": {
       "type": "structure",
       "members": {
+        "Channels": {
+          "shape": "__integerMin1Max32",
+          "locationName": "channels"
+        },
         "Duration": {
           "shape": "__integerMin50Max86400000",
           "locationName": "duration"
+        },
+        "FramerateDenominator": {
+          "shape": "__integerMin1Max1001",
+          "locationName": "framerateDenominator"
+        },
+        "FramerateNumerator": {
+          "shape": "__integerMin1Max60000",
+          "locationName": "framerateNumerator"
+        },
+        "SampleRate": {
+          "shape": "__integerMin32000Max48000",
+          "locationName": "sampleRate"
         }
       }
     },
@@ -8911,7 +8938,7 @@
           "locationName": "extension"
         },
         "NameModifier": {
-          "shape": "__stringMin1",
+          "shape": "__stringMin1Max256",
           "locationName": "nameModifier"
         },
         "OutputSettings": {
@@ -12241,6 +12268,10 @@
     "__stringPattern010920405090509092": {
       "type": "string",
       "pattern": "^([01][0-9]|2[0-4]):[0-5][0-9]:[0-5][0-9][:;][0-9]{2}$"
+    },
+    "__stringPattern010920405090509092090909": {
+      "type": "string",
+      "pattern": "^([01][0-9]|2[0-4]):[0-5][0-9]:[0-5][0-9][:;][0-9]{2}(@[0-9]+(\\.[0-9]+)?(:[0-9]+)?)?$"
     },
     "__stringPattern01D20305D205D": {
       "type": "string",

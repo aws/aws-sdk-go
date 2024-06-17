@@ -44,6 +44,7 @@
     "CreateTable": "<p>Creates a new table definition in the Data Catalog.</p>",
     "CreateTableOptimizer": "<p>Creates a new table optimizer for a specific function. <code>compaction</code> is the only currently supported optimizer type.</p>",
     "CreateTrigger": "<p>Creates a new trigger.</p>",
+    "CreateUsageProfile": "<p>Creates an Glue usage profile.</p>",
     "CreateUserDefinedFunction": "<p>Creates a new function definition in the Data Catalog.</p>",
     "CreateWorkflow": "<p>Creates a new workflow.</p>",
     "DeleteBlueprint": "<p>Deletes an existing blueprint.</p>",
@@ -70,6 +71,7 @@
     "DeleteTableOptimizer": "<p>Deletes an optimizer and all associated metadata for a table. The optimization will no longer be performed on the table.</p>",
     "DeleteTableVersion": "<p>Deletes a specified version of a table.</p>",
     "DeleteTrigger": "<p>Deletes a specified trigger. If the trigger is not found, no exception is thrown.</p>",
+    "DeleteUsageProfile": "<p>Deletes the Glue specified usage profile.</p>",
     "DeleteUserDefinedFunction": "<p>Deletes an existing function definition from the Data Catalog.</p>",
     "DeleteWorkflow": "<p>Deletes a workflow.</p>",
     "GetBlueprint": "<p>Retrieves the details of a blueprint.</p>",
@@ -100,7 +102,7 @@
     "GetDevEndpoints": "<p>Retrieves all the development endpoints in this Amazon Web Services account.</p> <note> <p>When you create a development endpoint in a virtual private cloud (VPC), Glue returns only a private IP address and the public IP address field is not populated. When you create a non-VPC development endpoint, Glue returns only a public IP address.</p> </note>",
     "GetJob": "<p>Retrieves an existing job definition.</p>",
     "GetJobBookmark": "<p>Returns information on a job bookmark entry.</p> <p>For more information about enabling and using job bookmarks, see:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/glue/latest/dg/monitor-continuations.html\">Tracking processed data using job bookmarks</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/glue/latest/dg/aws-glue-programming-etl-glue-arguments.html\">Job parameters used by Glue</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/glue/latest/dg/aws-glue-api-jobs-job.html#aws-glue-api-jobs-job-Job\">Job structure</a> </p> </li> </ul>",
-    "GetJobRun": "<p>Retrieves the metadata for a given job run.</p>",
+    "GetJobRun": "<p>Retrieves the metadata for a given job run. Job run history is accessible for 90 days for your workflow and job run.</p>",
     "GetJobRuns": "<p>Retrieves metadata for all runs of a given job definition.</p>",
     "GetJobs": "<p>Retrieves all current job definitions.</p>",
     "GetMLTaskRun": "<p>Gets details for a specific task run on a machine learning transform. Machine learning task runs are asynchronous tasks that Glue runs on your behalf as part of various machine learning workflows. You can check the stats of any task run by calling <code>GetMLTaskRun</code> with the <code>TaskRunID</code> and its parent transform's <code>TransformID</code>.</p>",
@@ -134,10 +136,11 @@
     "GetUnfilteredPartitionMetadata": "<p>Retrieves partition metadata from the Data Catalog that contains unfiltered metadata.</p> <p>For IAM authorization, the public IAM action associated with this API is <code>glue:GetPartition</code>.</p>",
     "GetUnfilteredPartitionsMetadata": "<p>Retrieves partition metadata from the Data Catalog that contains unfiltered metadata.</p> <p>For IAM authorization, the public IAM action associated with this API is <code>glue:GetPartitions</code>.</p>",
     "GetUnfilteredTableMetadata": "<p>Allows a third-party analytical engine to retrieve unfiltered table metadata from the Data Catalog.</p> <p>For IAM authorization, the public IAM action associated with this API is <code>glue:GetTable</code>.</p>",
+    "GetUsageProfile": "<p>Retrieves information about the specified Glue usage profile.</p>",
     "GetUserDefinedFunction": "<p>Retrieves a specified function definition from the Data Catalog.</p>",
     "GetUserDefinedFunctions": "<p>Retrieves multiple function definitions from the Data Catalog.</p>",
     "GetWorkflow": "<p>Retrieves resource metadata for a workflow.</p>",
-    "GetWorkflowRun": "<p>Retrieves the metadata for a given workflow run. </p>",
+    "GetWorkflowRun": "<p>Retrieves the metadata for a given workflow run. Job run history is accessible for 90 days for your workflow and job run.</p>",
     "GetWorkflowRunProperties": "<p>Retrieves the workflow run properties which were set during the run.</p>",
     "GetWorkflowRuns": "<p>Retrieves metadata for all runs of a given workflow.</p>",
     "ImportCatalogToGlue": "<p>Imports an existing Amazon Athena Data Catalog to Glue.</p>",
@@ -160,6 +163,7 @@
     "ListStatements": "<p>Lists statements for the session.</p>",
     "ListTableOptimizerRuns": "<p>Lists the history of previous optimizer runs for a specific table.</p>",
     "ListTriggers": "<p>Retrieves the names of all trigger resources in this Amazon Web Services account, or the resources with the specified tag. This operation allows you to see which resources are available in your account, and their names.</p> <p>This operation takes the optional <code>Tags</code> field, which you can use as a filter on the response so that tagged resources can be retrieved as a group. If you choose to use tags filtering, only resources with the tag are retrieved.</p>",
+    "ListUsageProfiles": "<p>List all the Glue usage profiles.</p>",
     "ListWorkflows": "<p>Lists names of workflows created in the account.</p>",
     "PutDataCatalogEncryptionSettings": "<p>Sets the security configuration for a specified catalog. After the configuration has been set, the specified encryption is applied to every catalog write thereafter.</p>",
     "PutResourcePolicy": "<p>Sets the Data Catalog resource policy for access control.</p>",
@@ -213,6 +217,7 @@
     "UpdateTable": "<p>Updates a metadata table in the Data Catalog.</p>",
     "UpdateTableOptimizer": "<p>Updates the configuration for an existing table optimizer.</p>",
     "UpdateTrigger": "<p>Updates a trigger definition.</p>",
+    "UpdateUsageProfile": "<p>Update an Glue usage profile.</p>",
     "UpdateUserDefinedFunction": "<p>Updates an existing function definition in the Data Catalog.</p>",
     "UpdateWorkflow": "<p>Updates an existing workflow.</p>"
   },
@@ -308,6 +313,12 @@
       "base": null,
       "refs": {
         "Aggregate$Aggs": "<p>Specifies the aggregate functions to be performed on specified fields. </p>"
+      }
+    },
+    "AllowedValuesStringList": {
+      "base": null,
+      "refs": {
+        "ConfigurationObject$AllowedValues": "<p>A list of allowed values for the parameter.</p>"
       }
     },
     "AlreadyExistsException": {
@@ -1546,6 +1557,28 @@
         "Predicate$Conditions": "<p>A list of the conditions that determine when the trigger will fire.</p>"
       }
     },
+    "ConfigValueString": {
+      "base": null,
+      "refs": {
+        "AllowedValuesStringList$member": null,
+        "ConfigurationObject$DefaultValue": "<p>A default value for the parameter.</p>",
+        "ConfigurationObject$MinValue": "<p>A minimum allowed value for the parameter.</p>",
+        "ConfigurationObject$MaxValue": "<p>A maximum allowed value for the parameter.</p>"
+      }
+    },
+    "ConfigurationMap": {
+      "base": null,
+      "refs": {
+        "ProfileConfiguration$SessionConfiguration": "<p>A key-value map of configuration parameters for Glue sessions. </p>",
+        "ProfileConfiguration$JobConfiguration": "<p>A key-value map of configuration parameters for Glue jobs. </p>"
+      }
+    },
+    "ConfigurationObject": {
+      "base": "<p>Specifies the values that an admin sets for each job or session parameter configured in a Glue usage profile.</p>",
+      "refs": {
+        "ConfigurationMap$value": null
+      }
+    },
     "ConflictException": {
       "base": "<p>The <code>CreatePartitions</code> API was called on a table that has indexes enabled. </p>",
       "refs": {
@@ -2034,6 +2067,16 @@
       }
     },
     "CreateTriggerResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateUsageProfileRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateUsageProfileResponse": {
       "base": null,
       "refs": {
       }
@@ -2799,6 +2842,16 @@
       "refs": {
       }
     },
+    "DeleteUsageProfileRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteUsageProfileResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteUserDefinedFunctionRequest": {
       "base": null,
       "refs": {
@@ -2856,6 +2909,7 @@
         "CreateSchemaResponse$Description": "<p>A description of the schema if specified when created.</p>",
         "CreateSessionRequest$Description": "<p>The description of the session. </p>",
         "CreateTriggerRequest$Description": "<p>A description of the new trigger.</p>",
+        "CreateUsageProfileRequest$Description": "<p>A description of the usage profile.</p>",
         "DataQualityRulesetFilterCriteria$Description": "<p>The description of the ruleset filter criteria.</p>",
         "DataQualityRulesetListDetails$Description": "<p>A description of the data quality ruleset.</p>",
         "Database$Description": "<p>A description of the database.</p>",
@@ -2865,6 +2919,7 @@
         "GetMLTransformResponse$Description": "<p>A description of the transform.</p>",
         "GetRegistryResponse$Description": "<p>A description of the registry.</p>",
         "GetSchemaResponse$Description": "<p>A description of schema if specified when created</p>",
+        "GetUsageProfileResponse$Description": "<p>A description of the usage profile.</p>",
         "GlueTableAdditionalOptions$value": null,
         "Job$Description": "<p>A description of the job.</p>",
         "JobUpdate$Description": "<p>Description of the job being defined.</p>",
@@ -2882,7 +2937,9 @@
         "UpdateDataQualityRulesetResponse$Description": "<p>A description of the ruleset.</p>",
         "UpdateMLTransformRequest$Description": "<p>A description of the transform. The default is an empty string.</p>",
         "UpdateRegistryInput$Description": "<p>A description of the registry. If description is not provided, this field will not be updated.</p>",
-        "UpdateSchemaInput$Description": "<p>The new description for the schema.</p>"
+        "UpdateSchemaInput$Description": "<p>The new description for the schema.</p>",
+        "UpdateUsageProfileRequest$Description": "<p>A description of the usage profile.</p>",
+        "UsageProfileDefinition$Description": "<p>A description of the usage profile.</p>"
       }
     },
     "DescriptionStringRemovable": {
@@ -4358,6 +4415,16 @@
       "refs": {
       }
     },
+    "GetUsageProfileRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetUsageProfileResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetUserDefinedFunctionRequest": {
       "base": null,
       "refs": {
@@ -5373,6 +5440,16 @@
       "refs": {
       }
     },
+    "ListUsageProfilesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListUsageProfilesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListWorkflowsRequest": {
       "base": null,
       "refs": {
@@ -5624,6 +5701,7 @@
         "InvalidStateException$Message": "<p>A message describing the problem.</p>",
         "MLTransformNotReadyException$Message": "<p>A message describing the problem.</p>",
         "NoScheduleException$Message": "<p>A message describing the problem.</p>",
+        "OperationNotSupportedException$Message": "<p>A message describing the problem.</p>",
         "OperationTimeoutException$Message": "<p>A message describing the problem.</p>",
         "PermissionTypeMismatchException$Message": "<p>There is a mismatch between the SupportedPermissionType used in the query request and the permissions defined on the target table.</p>",
         "ResourceNotReadyException$Message": "<p>A message describing the problem.</p>",
@@ -5777,6 +5855,7 @@
         "ColumnStatisticsTaskRun$WorkerType": "<p>The type of workers being used for generating stats. The default is <code>g.1x</code>.</p>",
         "Condition$JobName": "<p>The name of the job whose <code>JobRuns</code> this condition applies to, and on which this trigger waits.</p>",
         "Condition$CrawlerName": "<p>The name of the crawler to which this condition applies.</p>",
+        "ConfigurationMap$key": null,
         "Connection$Name": "<p>The name of the connection definition.</p>",
         "Connection$LastUpdatedBy": "<p>The user, group, or role that last updated this connection definition.</p>",
         "ConnectionInput$Name": "<p>The name of the connection.</p>",
@@ -5816,6 +5895,8 @@
         "CreateTriggerRequest$Name": "<p>The name of the trigger.</p>",
         "CreateTriggerRequest$WorkflowName": "<p>The name of the workflow associated with the trigger.</p>",
         "CreateTriggerResponse$Name": "<p>The name of the trigger.</p>",
+        "CreateUsageProfileRequest$Name": "<p>The name of the usage profile.</p>",
+        "CreateUsageProfileResponse$Name": "<p>The name of the usage profile that was created.</p>",
         "CreateUserDefinedFunctionRequest$DatabaseName": "<p>The name of the catalog database in which to create the function.</p>",
         "CreateWorkflowRequest$Name": "<p>The name to be assigned to the workflow. It should be unique within your account.</p>",
         "CreateWorkflowResponse$Name": "<p>The name of the workflow which was provided as part of the request.</p>",
@@ -5876,6 +5957,7 @@
         "DeleteTableVersionRequest$TableName": "<p>The name of the table. For Hive compatibility, this name is entirely lowercase.</p>",
         "DeleteTriggerRequest$Name": "<p>The name of the trigger to delete.</p>",
         "DeleteTriggerResponse$Name": "<p>The name of the trigger that was deleted.</p>",
+        "DeleteUsageProfileRequest$Name": "<p>The name of the usage profile to delete.</p>",
         "DeleteUserDefinedFunctionRequest$DatabaseName": "<p>The name of the catalog database where the function is located.</p>",
         "DeleteUserDefinedFunctionRequest$FunctionName": "<p>The name of the function definition to be deleted.</p>",
         "DeleteWorkflowRequest$Name": "<p>Name of the workflow to be deleted.</p>",
@@ -5943,6 +6025,8 @@
         "GetUnfilteredPartitionsMetadataRequest$TableName": "<p>The name of the table that contains the partition.</p>",
         "GetUnfilteredTableMetadataRequest$DatabaseName": "<p>(Required) Specifies the name of a database that contains the table.</p>",
         "GetUnfilteredTableMetadataRequest$Name": "<p>(Required) Specifies the name of a table for which you are requesting metadata.</p>",
+        "GetUsageProfileRequest$Name": "<p>The name of the usage profile to retrieve.</p>",
+        "GetUsageProfileResponse$Name": "<p>The name of the usage profile.</p>",
         "GetUserDefinedFunctionRequest$DatabaseName": "<p>The name of the catalog database where the function is located.</p>",
         "GetUserDefinedFunctionRequest$FunctionName": "<p>The name of the function.</p>",
         "GetUserDefinedFunctionsRequest$DatabaseName": "<p>The name of the catalog database where the functions are located. If none is provided, functions from all the databases across the catalog will be returned.</p>",
@@ -5959,10 +6043,12 @@
         "GrokClassifier$Name": "<p>The name of the classifier.</p>",
         "Job$Name": "<p>The name you assign to this job definition.</p>",
         "Job$SecurityConfiguration": "<p>The name of the <code>SecurityConfiguration</code> structure to be used with this job.</p>",
+        "Job$ProfileName": "<p>The name of an Glue usage profile associated with the job.</p>",
         "JobNameList$member": null,
         "JobRun$TriggerName": "<p>The name of the trigger that started this job run.</p>",
         "JobRun$JobName": "<p>The name of the job definition being used in this run.</p>",
         "JobRun$SecurityConfiguration": "<p>The name of the <code>SecurityConfiguration</code> structure to be used with this job run.</p>",
+        "JobRun$ProfileName": "<p>The name of an Glue usage profile associated with the job run.</p>",
         "JobUpdate$SecurityConfiguration": "<p>The name of the <code>SecurityConfiguration</code> structure to be used with this job.</p>",
         "JsonClassifier$Name": "<p>The name of the classifier.</p>",
         "KeyList$member": null,
@@ -6001,6 +6087,7 @@
         "SerDeInfo$SerializationLibrary": "<p>Usually the class that implements the SerDe. An example is <code>org.apache.hadoop.hive.serde2.columnar.ColumnarSerDe</code>.</p>",
         "Session$Id": "<p>The ID of the session.</p>",
         "Session$SecurityConfiguration": "<p>The name of the SecurityConfiguration structure to be used with the session.</p>",
+        "Session$ProfileName": "<p>The name of an Glue usage profile associated with the session.</p>",
         "SessionCommand$Name": "<p>Specifies the name of the SessionCommand. Can be 'glueetl' or 'gluestreaming'.</p>",
         "SessionIdList$member": null,
         "StartColumnStatisticsTaskRunRequest$DatabaseName": "<p>The name of the database where the table resides.</p>",
@@ -6076,11 +6163,14 @@
         "UpdateTableOptimizerRequest$TableName": "<p>The name of the table.</p>",
         "UpdateTableRequest$DatabaseName": "<p>The name of the catalog database in which the table resides. For Hive compatibility, this name is entirely lowercase.</p>",
         "UpdateTriggerRequest$Name": "<p>The name of the trigger to update.</p>",
+        "UpdateUsageProfileRequest$Name": "<p>The name of the usage profile.</p>",
+        "UpdateUsageProfileResponse$Name": "<p>The name of the usage profile that was updated.</p>",
         "UpdateUserDefinedFunctionRequest$DatabaseName": "<p>The name of the catalog database where the function to be updated is located.</p>",
         "UpdateUserDefinedFunctionRequest$FunctionName": "<p>The name of the function.</p>",
         "UpdateWorkflowRequest$Name": "<p>Name of the workflow to be updated.</p>",
         "UpdateWorkflowResponse$Name": "<p>The name of the workflow which was specified in input.</p>",
         "UpdateXMLClassifierRequest$Name": "<p>The name of the classifier.</p>",
+        "UsageProfileDefinition$Name": "<p>The name of the usage profile.</p>",
         "UserDefinedFunction$FunctionName": "<p>The name of the function.</p>",
         "UserDefinedFunction$DatabaseName": "<p>The name of the catalog database that contains the function.</p>",
         "UserDefinedFunction$ClassName": "<p>The Java class that contains the function code.</p>",
@@ -6491,6 +6581,11 @@
         "CreateTableRequest$OpenTableFormatInput": "<p>Specifies an <code>OpenTableFormatInput</code> structure when creating an open format table.</p>"
       }
     },
+    "OperationNotSupportedException": {
+      "base": "<p>The operation is not available in the region.</p>",
+      "refs": {
+      }
+    },
     "OperationTimeoutException": {
       "base": "<p>The operation timed out.</p>",
       "refs": {
@@ -6580,7 +6675,8 @@
       "refs": {
         "GetJobRunsRequest$MaxResults": "<p>The maximum size of the response.</p>",
         "GetTriggersRequest$MaxResults": "<p>The maximum size of the response.</p>",
-        "ListTriggersRequest$MaxResults": "<p>The maximum size of a list to return.</p>"
+        "ListTriggersRequest$MaxResults": "<p>The maximum size of a list to return.</p>",
+        "ListUsageProfilesRequest$MaxResults": "<p>The maximum number of usage profiles to return in a single response.</p>"
       }
     },
     "OrchestrationPageSize25": {
@@ -6623,7 +6719,9 @@
         "ListSessionsRequest$NextToken": "<p>The token for the next set of results, or null if there are no more result. </p>",
         "ListSessionsResponse$NextToken": "<p>The token for the next set of results, or null if there are no more result. </p>",
         "ListStatementsRequest$NextToken": "<p>A continuation token, if this is a continuation call.</p>",
-        "ListStatementsResponse$NextToken": "<p>A continuation token, if not all statements have yet been returned.</p>"
+        "ListStatementsResponse$NextToken": "<p>A continuation token, if not all statements have yet been returned.</p>",
+        "ListUsageProfilesRequest$NextToken": "<p>A continuation token, included if this is a continuation call.</p>",
+        "ListUsageProfilesResponse$NextToken": "<p>A continuation token, present if the current list segment is not the last.</p>"
       }
     },
     "Order": {
@@ -6986,6 +7084,14 @@
       "base": null,
       "refs": {
         "Spigot$Prob": "<p>The probability (a decimal value with a maximum value of 1) of picking any given record. A value of 1 indicates that each row read from the dataset should be included in the sample output.</p>"
+      }
+    },
+    "ProfileConfiguration": {
+      "base": "<p>Specifies the job and session values that an admin configures in an Glue usage profile.</p>",
+      "refs": {
+        "CreateUsageProfileRequest$Configuration": "<p>A <code>ProfileConfiguration</code> object specifying the job and session values for the profile.</p>",
+        "GetUsageProfileResponse$Configuration": "<p>A <code>ProfileConfiguration</code> object specifying the job and session values for the profile.</p>",
+        "UpdateUsageProfileRequest$Configuration": "<p>A <code>ProfileConfiguration</code> object specifying the job and session values for the profile.</p>"
       }
     },
     "PropertyPredicate": {
@@ -8428,6 +8534,7 @@
         "CreateSchemaResponse$Tags": "<p>The tags for the schema.</p>",
         "CreateSessionRequest$Tags": "<p>The map of key value pairs (tags) belonging to the session.</p>",
         "CreateTriggerRequest$Tags": "<p>The tags to use with this trigger. You may use tags to limit access to the trigger. For more information about tags in Glue, see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/monitor-tags.html\">Amazon Web Services Tags in Glue</a> in the developer guide. </p>",
+        "CreateUsageProfileRequest$Tags": "<p>A list of tags applied to the usage profile.</p>",
         "CreateWorkflowRequest$Tags": "<p>The tags to be used with this workflow.</p>",
         "GetTagsResponse$Tags": "<p>The requested tags.</p>",
         "ListBlueprintsRequest$Tags": "<p>Filters the list by an Amazon Web Services resource tag.</p>",
@@ -8634,6 +8741,8 @@
         "CreateSecurityConfigurationResponse$CreatedTimestamp": "<p>The time at which the new security configuration was created.</p>",
         "DevEndpoint$CreatedTimestamp": "<p>The point in time at which this DevEndpoint was created.</p>",
         "DevEndpoint$LastModifiedTimestamp": "<p>The point in time at which this <code>DevEndpoint</code> was last modified.</p>",
+        "GetUsageProfileResponse$CreatedOn": "<p>The date and time when the usage profile was created.</p>",
+        "GetUsageProfileResponse$LastModifiedOn": "<p>The date and time when the usage profile was last modified.</p>",
         "Job$CreatedOn": "<p>The time and date that this job definition was created.</p>",
         "Job$LastModifiedOn": "<p>The last point in time when this job definition was modified.</p>",
         "JobRun$StartedOn": "<p>The date and time at which this job run was started.</p>",
@@ -8643,6 +8752,8 @@
         "SecurityConfiguration$CreatedTimeStamp": "<p>The time at which this security configuration was created.</p>",
         "Session$CreatedOn": "<p>The time and date when the session was created.</p>",
         "Session$CompletedOn": "<p>The date and time that this session is completed.</p>",
+        "UsageProfileDefinition$CreatedOn": "<p>The date and time when the usage profile was created.</p>",
+        "UsageProfileDefinition$LastModifiedOn": "<p>The date and time when the usage profile was last modified.</p>",
         "Workflow$CreatedOn": "<p>The date and time when the workflow was created.</p>",
         "Workflow$LastModifiedOn": "<p>The date and time when the workflow was last modified.</p>",
         "WorkflowRun$StartedOn": "<p>The date and time when the workflow run was started.</p>",
@@ -9166,6 +9277,16 @@
       "refs": {
       }
     },
+    "UpdateUsageProfileRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateUsageProfileResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "UpdateUserDefinedFunctionRequest": {
       "base": null,
       "refs": {
@@ -9220,6 +9341,18 @@
         "StartExportLabelsTaskRunRequest$OutputS3Path": "<p>The Amazon S3 path where you export the labels.</p>",
         "StartImportLabelsTaskRunRequest$InputS3Path": "<p>The Amazon Simple Storage Service (Amazon S3) path from where you import the labels.</p>",
         "StartMLLabelingSetGenerationTaskRunRequest$OutputS3Path": "<p>The Amazon Simple Storage Service (Amazon S3) path where you generate the labeling set.</p>"
+      }
+    },
+    "UsageProfileDefinition": {
+      "base": "<p>Describes an Glue usage profile.</p>",
+      "refs": {
+        "UsageProfileDefinitionList$member": null
+      }
+    },
+    "UsageProfileDefinitionList": {
+      "base": null,
+      "refs": {
+        "ListUsageProfilesResponse$Profiles": "<p>A list of usage profile (<code>UsageProfileDefinition</code>) objects.</p>"
       }
     },
     "UserDefinedFunction": {

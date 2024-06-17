@@ -10,7 +10,8 @@
     "serviceId":"CodeBuild",
     "signatureVersion":"v4",
     "targetPrefix":"CodeBuild_20161006",
-    "uid":"codebuild-2016-10-06"
+    "uid":"codebuild-2016-10-06",
+    "auth":["aws.auth#sigv4"]
   },
   "operations":{
     "BatchDeleteBuilds":{
@@ -1205,7 +1206,8 @@
         "branchFilter":{"shape":"String"},
         "filterGroups":{"shape":"FilterGroups"},
         "buildType":{"shape":"WebhookBuildType"},
-        "manualCreation":{"shape":"WrapperBoolean"}
+        "manualCreation":{"shape":"WrapperBoolean"},
+        "scopeConfiguration":{"shape":"ScopeConfiguration"}
       }
     },
     "CreateWebhookOutput":{
@@ -2441,6 +2443,18 @@
         "desiredCapacity":{"shape":"FleetCapacity"}
       }
     },
+    "ScopeConfiguration":{
+      "type":"structure",
+      "required":[
+        "name",
+        "scope"
+      ],
+      "members":{
+        "name":{"shape":"String"},
+        "domain":{"shape":"String"},
+        "scope":{"shape":"WebhookScopeType"}
+      }
+    },
     "SecurityGroupIds":{
       "type":"list",
       "member":{"shape":"NonEmptyString"},
@@ -2848,7 +2862,8 @@
         "filterGroups":{"shape":"FilterGroups"},
         "buildType":{"shape":"WebhookBuildType"},
         "manualCreation":{"shape":"WrapperBoolean"},
-        "lastModifiedSecret":{"shape":"Timestamp"}
+        "lastModifiedSecret":{"shape":"Timestamp"},
+        "scopeConfiguration":{"shape":"ScopeConfiguration"}
       }
     },
     "WebhookBuildType":{
@@ -2882,6 +2897,13 @@
         "WORKFLOW_NAME",
         "TAG_NAME",
         "RELEASE_NAME"
+      ]
+    },
+    "WebhookScopeType":{
+      "type":"string",
+      "enum":[
+        "GITHUB_ORGANIZATION",
+        "GITHUB_GLOBAL"
       ]
     },
     "WrapperBoolean":{"type":"boolean"},

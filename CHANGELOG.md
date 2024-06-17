@@ -1,3 +1,28 @@
+Release v1.54.3 (2024-06-17)
+===
+
+### Service Client Updates
+* `service/acm-pca`: Updates service API and documentation
+* `service/batch`: Updates service API
+  * Add v2 smoke tests and smithy smokeTests trait for SDK testing.
+* `service/codebuild`: Updates service API and documentation
+  * AWS CodeBuild now supports global and organization GitHub webhooks
+* `service/cognito-idp`: Updates service API
+* `service/ds`: Updates service API
+  * Add v2 smoke tests and smithy smokeTests trait for SDK testing.
+* `service/elasticfilesystem`: Updates service API
+  * Add v2 smoke tests and smithy smokeTests trait for SDK testing.
+* `service/glue`: Updates service API, documentation, and paginators
+  * This release introduces a new feature, Usage profiles. Usage profiles allow the AWS Glue admin to create different profiles for various classes of users within the account, enforcing limits and defaults for jobs and sessions.
+* `service/kms`: Updates service examples
+  * Updating SDK example for KMS DeriveSharedSecret API.
+* `service/mediaconvert`: Updates service API and documentation
+  * This release includes support for creating I-frame only video segments for DASH trick play.
+* `service/secretsmanager`: Updates service documentation
+  * Doc only update for Secrets Manager
+* `service/waf`: Updates service API
+  * Add v2 smoke tests and smithy smokeTests trait for SDK testing.
+
 Release v1.54.2 (2024-06-14)
 ===
 
