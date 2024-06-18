@@ -68,8 +68,14 @@ func (c *BedrockRuntime) ConverseRequest(input *ConverseInput) (req *request.Req
 // consistent interface that works with all models that support messages. This
 // allows you to write code once and use it with different models. Should a
 // model have unique inference parameters, you can also pass those unique parameters
-// to the model. For more information, see Run inference (https://docs.aws.amazon.com/bedrock/latest/userguide/api-methods-run.html)
-// in the Bedrock User Guide.
+// to the model.
+//
+// For information about the Converse API, see Use the Converse API in the Amazon
+// Bedrock User Guide. To use a guardrail, see Use a guardrail with the Converse
+// API in the Amazon Bedrock User Guide. To use a tool with a model, see Tool
+// use (Function calling) in the Amazon Bedrock User Guide
+//
+// For example code, see Converse API examples in the Amazon Bedrock User Guide.
 //
 // This operation requires permission for the bedrock:InvokeModel action.
 //
@@ -185,15 +191,18 @@ func (c *BedrockRuntime) ConverseStreamRequest(input *ConverseStreamInput) (req 
 // in a stream. ConverseStream provides a consistent API that works with all
 // Amazon Bedrock models that support messages. This allows you to write code
 // once and use it with different models. Should a model have unique inference
-// parameters, you can also pass those unique parameters to the model. For more
-// information, see Run inference (https://docs.aws.amazon.com/bedrock/latest/userguide/api-methods-run.html)
-// in the Bedrock User Guide.
+// parameters, you can also pass those unique parameters to the model.
 //
 // To find out if a model supports streaming, call GetFoundationModel (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_GetFoundationModel.html)
 // and check the responseStreamingSupported field in the response.
 //
-// For example code, see Invoke model with streaming code example in the Amazon
-// Bedrock User Guide.
+// For information about the Converse API, see Use the Converse API in the Amazon
+// Bedrock User Guide. To use a guardrail, see Use a guardrail with the Converse
+// API in the Amazon Bedrock User Guide. To use a tool with a model, see Tool
+// use (Function calling) in the Amazon Bedrock User Guide
+//
+// For example code, see Conversation streaming example in the Amazon Bedrock
+// User Guide.
 //
 // This operation requires permission for the bedrock:InvokeModelWithResponseStream
 // action.
@@ -861,7 +870,8 @@ func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The model must request at least one tool (no text is generated).
+// The model must request at least one tool (no text is generated). For example,
+// {"any" : {}}.
 type AnyToolChoice struct {
 	_ struct{} `type:"structure"`
 }
@@ -884,8 +894,8 @@ func (s AnyToolChoice) GoString() string {
 	return s.String()
 }
 
-// The Model automatically decides if a tool should be called or to whether
-// to generate text instead.
+// The Model automatically decides if a tool should be called or whether to
+// generate text instead. For example, {"auto" : {}}.
 type AutoToolChoice struct {
 	_ struct{} `type:"structure"`
 }
@@ -908,9 +918,15 @@ func (s AutoToolChoice) GoString() string {
 	return s.String()
 }
 
-// A block of content for a message.
+// A block of content for a message that you pass to, or receive from, a model
+// with the Converse API (Converse and ConverseStream).
 type ContentBlock struct {
 	_ struct{} `type:"structure"`
+
+	// Contains the content to assess with the guardrail. If you don't specify guardContent
+	// in a call to the Converse API, the guardrail (if passed in the Converse API)
+	// assesses the entire message.
+	GuardContent *GuardrailConverseContentBlock `locationName:"guardContent" type:"structure"`
 
 	// Image to include in the message.
 	//
@@ -945,6 +961,11 @@ func (s ContentBlock) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ContentBlock) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ContentBlock"}
+	if s.GuardContent != nil {
+		if err := s.GuardContent.Validate(); err != nil {
+			invalidParams.AddNested("GuardContent", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.Image != nil {
 		if err := s.Image.Validate(); err != nil {
 			invalidParams.AddNested("Image", err.(request.ErrInvalidParams))
@@ -960,6 +981,12 @@ func (s *ContentBlock) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetGuardContent sets the GuardContent field's value.
+func (s *ContentBlock) SetGuardContent(v *GuardrailConverseContentBlock) *ContentBlock {
+	s.GuardContent = v
+	return s
 }
 
 // SetImage sets the Image field's value.
@@ -1268,7 +1295,7 @@ type ConverseInput struct {
 	_ struct{} `type:"structure"`
 
 	// Additional model parameters field paths to return in the response. Converse
-	// returns the requested fields as a JSON Pointer object in the additionalModelResultFields
+	// returns the requested fields as a JSON Pointer object in the additionalModelResponseFields
 	// field. The following is example JSON for additionalModelResponseFieldPaths.
 	//
 	// [ "/stop_sequence" ]
@@ -1280,6 +1307,9 @@ type ConverseInput struct {
 	// with a 400 error code. if the JSON Pointer is valid, but the requested field
 	// is not in the model response, it is ignored by Converse.
 	AdditionalModelResponseFieldPaths []*string `locationName:"additionalModelResponseFieldPaths" type:"list"`
+
+	// Configuration information for a guardrail that you want to use in the request.
+	GuardrailConfig *GuardrailConfiguration `locationName:"guardrailConfig" type:"structure"`
 
 	// Inference parameters to pass to the model. Converse supports a base set of
 	// inference parameters. If you need to pass additional parameters that the
@@ -1354,6 +1384,11 @@ func (s *ConverseInput) Validate() error {
 	if s.ModelId != nil && len(*s.ModelId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ModelId", 1))
 	}
+	if s.GuardrailConfig != nil {
+		if err := s.GuardrailConfig.Validate(); err != nil {
+			invalidParams.AddNested("GuardrailConfig", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.InferenceConfig != nil {
 		if err := s.InferenceConfig.Validate(); err != nil {
 			invalidParams.AddNested("InferenceConfig", err.(request.ErrInvalidParams))
@@ -1394,6 +1429,12 @@ func (s *ConverseInput) Validate() error {
 // SetAdditionalModelResponseFieldPaths sets the AdditionalModelResponseFieldPaths field's value.
 func (s *ConverseInput) SetAdditionalModelResponseFieldPaths(v []*string) *ConverseInput {
 	s.AdditionalModelResponseFieldPaths = v
+	return s
+}
+
+// SetGuardrailConfig sets the GuardrailConfig field's value.
+func (s *ConverseInput) SetGuardrailConfig(v *GuardrailConfiguration) *ConverseInput {
+	s.GuardrailConfig = v
 	return s
 }
 
@@ -1479,6 +1520,9 @@ type ConverseOutput struct {
 	// StopReason is a required field
 	StopReason *string `locationName:"stopReason" type:"string" required:"true" enum:"StopReason"`
 
+	// A trace object that contains information about the Guardrail behavior.
+	Trace *ConverseTrace `locationName:"trace" type:"structure"`
+
 	// The total number of tokens used in the call to Converse. The total includes
 	// the tokens input to the model and the tokens generated by the model.
 	//
@@ -1519,6 +1563,12 @@ func (s *ConverseOutput) SetOutput(v *ConverseOutput_) *ConverseOutput {
 // SetStopReason sets the StopReason field's value.
 func (s *ConverseOutput) SetStopReason(v string) *ConverseOutput {
 	s.StopReason = &v
+	return s
+}
+
+// SetTrace sets the Trace field's value.
+func (s *ConverseOutput) SetTrace(v *ConverseTrace) *ConverseOutput {
+	s.Trace = v
 	return s
 }
 
@@ -1564,7 +1614,7 @@ type ConverseStreamInput struct {
 	_ struct{} `type:"structure"`
 
 	// Additional model parameters field paths to return in the response. ConverseStream
-	// returns the requested fields as a JSON Pointer object in the additionalModelResultFields
+	// returns the requested fields as a JSON Pointer object in the additionalModelResponseFields
 	// field. The following is example JSON for additionalModelResponseFieldPaths.
 	//
 	// [ "/stop_sequence" ]
@@ -1576,6 +1626,9 @@ type ConverseStreamInput struct {
 	// Pointer with a 400 error code. if the JSON Pointer is valid, but the requested
 	// field is not in the model response, it is ignored by ConverseStream.
 	AdditionalModelResponseFieldPaths []*string `locationName:"additionalModelResponseFieldPaths" type:"list"`
+
+	// Configuration information for a guardrail that you want to use in the request.
+	GuardrailConfig *GuardrailStreamConfiguration `locationName:"guardrailConfig" type:"structure"`
 
 	// Inference parameters to pass to the model. ConverseStream supports a base
 	// set of inference parameters. If you need to pass additional parameters that
@@ -1649,6 +1702,11 @@ func (s *ConverseStreamInput) Validate() error {
 	if s.ModelId != nil && len(*s.ModelId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ModelId", 1))
 	}
+	if s.GuardrailConfig != nil {
+		if err := s.GuardrailConfig.Validate(); err != nil {
+			invalidParams.AddNested("GuardrailConfig", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.InferenceConfig != nil {
 		if err := s.InferenceConfig.Validate(); err != nil {
 			invalidParams.AddNested("InferenceConfig", err.(request.ErrInvalidParams))
@@ -1692,6 +1750,12 @@ func (s *ConverseStreamInput) SetAdditionalModelResponseFieldPaths(v []*string) 
 	return s
 }
 
+// SetGuardrailConfig sets the GuardrailConfig field's value.
+func (s *ConverseStreamInput) SetGuardrailConfig(v *GuardrailStreamConfiguration) *ConverseStreamInput {
+	s.GuardrailConfig = v
+	return s
+}
+
 // SetInferenceConfig sets the InferenceConfig field's value.
 func (s *ConverseStreamInput) SetInferenceConfig(v *InferenceConfiguration) *ConverseStreamInput {
 	s.InferenceConfig = v
@@ -1731,6 +1795,10 @@ type ConverseStreamMetadataEvent struct {
 	// Metrics is a required field
 	Metrics *ConverseStreamMetrics `locationName:"metrics" type:"structure" required:"true"`
 
+	// The trace object in the response from ConverseStream that contains information
+	// about the guardrail behavior.
+	Trace *ConverseStreamTrace `locationName:"trace" type:"structure"`
+
 	// Usage information for the conversation stream event.
 	//
 	// Usage is a required field
@@ -1758,6 +1826,12 @@ func (s ConverseStreamMetadataEvent) GoString() string {
 // SetMetrics sets the Metrics field's value.
 func (s *ConverseStreamMetadataEvent) SetMetrics(v *ConverseStreamMetrics) *ConverseStreamMetadataEvent {
 	s.Metrics = v
+	return s
+}
+
+// SetTrace sets the Trace field's value.
+func (s *ConverseStreamMetadataEvent) SetTrace(v *ConverseStreamTrace) *ConverseStreamMetadataEvent {
+	s.Trace = v
 	return s
 }
 
@@ -2039,6 +2113,921 @@ func (e *ConverseStreamOutput_UnknownEvent) UnmarshalEvent(
 	return nil
 }
 
+// The trace object in a response from ConverseStream. Currently, you can only
+// trace guardrails.
+type ConverseStreamTrace struct {
+	_ struct{} `type:"structure"`
+
+	// The guardrail trace object.
+	Guardrail *GuardrailTraceAssessment `locationName:"guardrail" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConverseStreamTrace) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConverseStreamTrace) GoString() string {
+	return s.String()
+}
+
+// SetGuardrail sets the Guardrail field's value.
+func (s *ConverseStreamTrace) SetGuardrail(v *GuardrailTraceAssessment) *ConverseStreamTrace {
+	s.Guardrail = v
+	return s
+}
+
+// The trace object in a response from Converse. Currently, you can only trace
+// guardrails.
+type ConverseTrace struct {
+	_ struct{} `type:"structure"`
+
+	// The guardrail trace object.
+	Guardrail *GuardrailTraceAssessment `locationName:"guardrail" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConverseTrace) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConverseTrace) GoString() string {
+	return s.String()
+}
+
+// SetGuardrail sets the Guardrail field's value.
+func (s *ConverseTrace) SetGuardrail(v *GuardrailTraceAssessment) *ConverseTrace {
+	s.Guardrail = v
+	return s
+}
+
+// A behavior assessment of the guardrail policies used in a call to the Converse
+// API.
+type GuardrailAssessment struct {
+	_ struct{} `type:"structure"`
+
+	// The content policy.
+	ContentPolicy *GuardrailContentPolicyAssessment `locationName:"contentPolicy" type:"structure"`
+
+	// The sensitive information policy.
+	SensitiveInformationPolicy *GuardrailSensitiveInformationPolicyAssessment `locationName:"sensitiveInformationPolicy" type:"structure"`
+
+	// The topic policy.
+	TopicPolicy *GuardrailTopicPolicyAssessment `locationName:"topicPolicy" type:"structure"`
+
+	// The word policy.
+	WordPolicy *GuardrailWordPolicyAssessment `locationName:"wordPolicy" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailAssessment) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailAssessment) GoString() string {
+	return s.String()
+}
+
+// SetContentPolicy sets the ContentPolicy field's value.
+func (s *GuardrailAssessment) SetContentPolicy(v *GuardrailContentPolicyAssessment) *GuardrailAssessment {
+	s.ContentPolicy = v
+	return s
+}
+
+// SetSensitiveInformationPolicy sets the SensitiveInformationPolicy field's value.
+func (s *GuardrailAssessment) SetSensitiveInformationPolicy(v *GuardrailSensitiveInformationPolicyAssessment) *GuardrailAssessment {
+	s.SensitiveInformationPolicy = v
+	return s
+}
+
+// SetTopicPolicy sets the TopicPolicy field's value.
+func (s *GuardrailAssessment) SetTopicPolicy(v *GuardrailTopicPolicyAssessment) *GuardrailAssessment {
+	s.TopicPolicy = v
+	return s
+}
+
+// SetWordPolicy sets the WordPolicy field's value.
+func (s *GuardrailAssessment) SetWordPolicy(v *GuardrailWordPolicyAssessment) *GuardrailAssessment {
+	s.WordPolicy = v
+	return s
+}
+
+// Configuration information for a guardrail that you use with the Converse
+// action.
+type GuardrailConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier for the guardrail.
+	//
+	// GuardrailIdentifier is a required field
+	GuardrailIdentifier *string `locationName:"guardrailIdentifier" type:"string" required:"true"`
+
+	// The version of the guardrail.
+	//
+	// GuardrailVersion is a required field
+	GuardrailVersion *string `locationName:"guardrailVersion" type:"string" required:"true"`
+
+	// The trace behavior for the guardrail.
+	Trace *string `locationName:"trace" type:"string" enum:"GuardrailTrace"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GuardrailConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GuardrailConfiguration"}
+	if s.GuardrailIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("GuardrailIdentifier"))
+	}
+	if s.GuardrailVersion == nil {
+		invalidParams.Add(request.NewErrParamRequired("GuardrailVersion"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetGuardrailIdentifier sets the GuardrailIdentifier field's value.
+func (s *GuardrailConfiguration) SetGuardrailIdentifier(v string) *GuardrailConfiguration {
+	s.GuardrailIdentifier = &v
+	return s
+}
+
+// SetGuardrailVersion sets the GuardrailVersion field's value.
+func (s *GuardrailConfiguration) SetGuardrailVersion(v string) *GuardrailConfiguration {
+	s.GuardrailVersion = &v
+	return s
+}
+
+// SetTrace sets the Trace field's value.
+func (s *GuardrailConfiguration) SetTrace(v string) *GuardrailConfiguration {
+	s.Trace = &v
+	return s
+}
+
+// The content filter for a guardrail.
+type GuardrailContentFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The guardrail action.
+	//
+	// Action is a required field
+	Action *string `locationName:"action" type:"string" required:"true" enum:"GuardrailContentPolicyAction"`
+
+	// The guardrail confidence.
+	//
+	// Confidence is a required field
+	Confidence *string `locationName:"confidence" type:"string" required:"true" enum:"GuardrailContentFilterConfidence"`
+
+	// The guardrail type.
+	//
+	// Type is a required field
+	Type *string `locationName:"type" type:"string" required:"true" enum:"GuardrailContentFilterType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailContentFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailContentFilter) GoString() string {
+	return s.String()
+}
+
+// SetAction sets the Action field's value.
+func (s *GuardrailContentFilter) SetAction(v string) *GuardrailContentFilter {
+	s.Action = &v
+	return s
+}
+
+// SetConfidence sets the Confidence field's value.
+func (s *GuardrailContentFilter) SetConfidence(v string) *GuardrailContentFilter {
+	s.Confidence = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *GuardrailContentFilter) SetType(v string) *GuardrailContentFilter {
+	s.Type = &v
+	return s
+}
+
+// An assessment of a content policy for a guardrail.
+type GuardrailContentPolicyAssessment struct {
+	_ struct{} `type:"structure"`
+
+	// The content policy filters.
+	//
+	// Filters is a required field
+	Filters []*GuardrailContentFilter `locationName:"filters" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailContentPolicyAssessment) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailContentPolicyAssessment) GoString() string {
+	return s.String()
+}
+
+// SetFilters sets the Filters field's value.
+func (s *GuardrailContentPolicyAssessment) SetFilters(v []*GuardrailContentFilter) *GuardrailContentPolicyAssessment {
+	s.Filters = v
+	return s
+}
+
+// A content block for selective guarding with the Converse API (Converse and
+// ConverseStream).
+type GuardrailConverseContentBlock struct {
+	_ struct{} `type:"structure"`
+
+	// The text to guard.
+	Text *GuardrailConverseTextBlock `locationName:"text" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailConverseContentBlock) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailConverseContentBlock) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GuardrailConverseContentBlock) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GuardrailConverseContentBlock"}
+	if s.Text != nil {
+		if err := s.Text.Validate(); err != nil {
+			invalidParams.AddNested("Text", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetText sets the Text field's value.
+func (s *GuardrailConverseContentBlock) SetText(v *GuardrailConverseTextBlock) *GuardrailConverseContentBlock {
+	s.Text = v
+	return s
+}
+
+// A text block that contains text that you want to assess with a guardrail.
+// For more information, see GuardrailConverseContentBlock.
+type GuardrailConverseTextBlock struct {
+	_ struct{} `type:"structure"`
+
+	// The text that you want to guard.
+	//
+	// Text is a required field
+	Text *string `locationName:"text" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailConverseTextBlock) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailConverseTextBlock) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GuardrailConverseTextBlock) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GuardrailConverseTextBlock"}
+	if s.Text == nil {
+		invalidParams.Add(request.NewErrParamRequired("Text"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetText sets the Text field's value.
+func (s *GuardrailConverseTextBlock) SetText(v string) *GuardrailConverseTextBlock {
+	s.Text = &v
+	return s
+}
+
+// A custom word configured in a guardrail.
+type GuardrailCustomWord struct {
+	_ struct{} `type:"structure"`
+
+	// The action for the custom word.
+	//
+	// Action is a required field
+	Action *string `locationName:"action" type:"string" required:"true" enum:"GuardrailWordPolicyAction"`
+
+	// The match for the custom word.
+	//
+	// Match is a required field
+	Match *string `locationName:"match" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailCustomWord) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailCustomWord) GoString() string {
+	return s.String()
+}
+
+// SetAction sets the Action field's value.
+func (s *GuardrailCustomWord) SetAction(v string) *GuardrailCustomWord {
+	s.Action = &v
+	return s
+}
+
+// SetMatch sets the Match field's value.
+func (s *GuardrailCustomWord) SetMatch(v string) *GuardrailCustomWord {
+	s.Match = &v
+	return s
+}
+
+// A managed word configured in a guardrail.
+type GuardrailManagedWord struct {
+	_ struct{} `type:"structure"`
+
+	// The action for the managed word.
+	//
+	// Action is a required field
+	Action *string `locationName:"action" type:"string" required:"true" enum:"GuardrailWordPolicyAction"`
+
+	// The match for the managed word.
+	//
+	// Match is a required field
+	Match *string `locationName:"match" type:"string" required:"true"`
+
+	// The type for the managed word.
+	//
+	// Type is a required field
+	Type *string `locationName:"type" type:"string" required:"true" enum:"GuardrailManagedWordType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailManagedWord) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailManagedWord) GoString() string {
+	return s.String()
+}
+
+// SetAction sets the Action field's value.
+func (s *GuardrailManagedWord) SetAction(v string) *GuardrailManagedWord {
+	s.Action = &v
+	return s
+}
+
+// SetMatch sets the Match field's value.
+func (s *GuardrailManagedWord) SetMatch(v string) *GuardrailManagedWord {
+	s.Match = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *GuardrailManagedWord) SetType(v string) *GuardrailManagedWord {
+	s.Type = &v
+	return s
+}
+
+// A Personally Identifiable Information (PII) entity configured in a guardrail.
+type GuardrailPiiEntityFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The PII entity filter action.
+	//
+	// Action is a required field
+	Action *string `locationName:"action" type:"string" required:"true" enum:"GuardrailSensitiveInformationPolicyAction"`
+
+	// The PII entity filter match.
+	//
+	// Match is a required field
+	Match *string `locationName:"match" type:"string" required:"true"`
+
+	// The PII entity filter type.
+	//
+	// Type is a required field
+	Type *string `locationName:"type" type:"string" required:"true" enum:"GuardrailPiiEntityType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailPiiEntityFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailPiiEntityFilter) GoString() string {
+	return s.String()
+}
+
+// SetAction sets the Action field's value.
+func (s *GuardrailPiiEntityFilter) SetAction(v string) *GuardrailPiiEntityFilter {
+	s.Action = &v
+	return s
+}
+
+// SetMatch sets the Match field's value.
+func (s *GuardrailPiiEntityFilter) SetMatch(v string) *GuardrailPiiEntityFilter {
+	s.Match = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *GuardrailPiiEntityFilter) SetType(v string) *GuardrailPiiEntityFilter {
+	s.Type = &v
+	return s
+}
+
+// A Regex filter configured in a guardrail.
+type GuardrailRegexFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The region filter action.
+	//
+	// Action is a required field
+	Action *string `locationName:"action" type:"string" required:"true" enum:"GuardrailSensitiveInformationPolicyAction"`
+
+	// The regesx filter match.
+	Match *string `locationName:"match" type:"string"`
+
+	// The regex filter name.
+	Name *string `locationName:"name" type:"string"`
+
+	// The regex query.
+	Regex *string `locationName:"regex" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailRegexFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailRegexFilter) GoString() string {
+	return s.String()
+}
+
+// SetAction sets the Action field's value.
+func (s *GuardrailRegexFilter) SetAction(v string) *GuardrailRegexFilter {
+	s.Action = &v
+	return s
+}
+
+// SetMatch sets the Match field's value.
+func (s *GuardrailRegexFilter) SetMatch(v string) *GuardrailRegexFilter {
+	s.Match = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *GuardrailRegexFilter) SetName(v string) *GuardrailRegexFilter {
+	s.Name = &v
+	return s
+}
+
+// SetRegex sets the Regex field's value.
+func (s *GuardrailRegexFilter) SetRegex(v string) *GuardrailRegexFilter {
+	s.Regex = &v
+	return s
+}
+
+// The assessment for aPersonally Identifiable Information (PII) policy.
+type GuardrailSensitiveInformationPolicyAssessment struct {
+	_ struct{} `type:"structure"`
+
+	// The PII entities in the assessment.
+	//
+	// PiiEntities is a required field
+	PiiEntities []*GuardrailPiiEntityFilter `locationName:"piiEntities" type:"list" required:"true"`
+
+	// The regex queries in the assessment.
+	//
+	// Regexes is a required field
+	Regexes []*GuardrailRegexFilter `locationName:"regexes" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailSensitiveInformationPolicyAssessment) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailSensitiveInformationPolicyAssessment) GoString() string {
+	return s.String()
+}
+
+// SetPiiEntities sets the PiiEntities field's value.
+func (s *GuardrailSensitiveInformationPolicyAssessment) SetPiiEntities(v []*GuardrailPiiEntityFilter) *GuardrailSensitiveInformationPolicyAssessment {
+	s.PiiEntities = v
+	return s
+}
+
+// SetRegexes sets the Regexes field's value.
+func (s *GuardrailSensitiveInformationPolicyAssessment) SetRegexes(v []*GuardrailRegexFilter) *GuardrailSensitiveInformationPolicyAssessment {
+	s.Regexes = v
+	return s
+}
+
+// Configuration information for a guardrail that you use with the ConverseStream
+// action.
+type GuardrailStreamConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier for the guardrail.
+	//
+	// GuardrailIdentifier is a required field
+	GuardrailIdentifier *string `locationName:"guardrailIdentifier" type:"string" required:"true"`
+
+	// The version of the guardrail.
+	//
+	// GuardrailVersion is a required field
+	GuardrailVersion *string `locationName:"guardrailVersion" type:"string" required:"true"`
+
+	// The processing mode.
+	//
+	// The processing mode. For more information, see Configure streaming response
+	// behavior in the Amazon Bedrock User Guide.
+	StreamProcessingMode *string `locationName:"streamProcessingMode" type:"string" enum:"GuardrailStreamProcessingMode"`
+
+	// The trace behavior for the guardrail.
+	Trace *string `locationName:"trace" type:"string" enum:"GuardrailTrace"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailStreamConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailStreamConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GuardrailStreamConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GuardrailStreamConfiguration"}
+	if s.GuardrailIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("GuardrailIdentifier"))
+	}
+	if s.GuardrailVersion == nil {
+		invalidParams.Add(request.NewErrParamRequired("GuardrailVersion"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetGuardrailIdentifier sets the GuardrailIdentifier field's value.
+func (s *GuardrailStreamConfiguration) SetGuardrailIdentifier(v string) *GuardrailStreamConfiguration {
+	s.GuardrailIdentifier = &v
+	return s
+}
+
+// SetGuardrailVersion sets the GuardrailVersion field's value.
+func (s *GuardrailStreamConfiguration) SetGuardrailVersion(v string) *GuardrailStreamConfiguration {
+	s.GuardrailVersion = &v
+	return s
+}
+
+// SetStreamProcessingMode sets the StreamProcessingMode field's value.
+func (s *GuardrailStreamConfiguration) SetStreamProcessingMode(v string) *GuardrailStreamConfiguration {
+	s.StreamProcessingMode = &v
+	return s
+}
+
+// SetTrace sets the Trace field's value.
+func (s *GuardrailStreamConfiguration) SetTrace(v string) *GuardrailStreamConfiguration {
+	s.Trace = &v
+	return s
+}
+
+// Information about a topic guardrail.
+type GuardrailTopic struct {
+	_ struct{} `type:"structure"`
+
+	// The action the guardrail should take when it intervenes on a topic.
+	//
+	// Action is a required field
+	Action *string `locationName:"action" type:"string" required:"true" enum:"GuardrailTopicPolicyAction"`
+
+	// The name for the guardrail.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true"`
+
+	// The type behavior that the guardrail should perform when the model detects
+	// the topic.
+	//
+	// Type is a required field
+	Type *string `locationName:"type" type:"string" required:"true" enum:"GuardrailTopicType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailTopic) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailTopic) GoString() string {
+	return s.String()
+}
+
+// SetAction sets the Action field's value.
+func (s *GuardrailTopic) SetAction(v string) *GuardrailTopic {
+	s.Action = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *GuardrailTopic) SetName(v string) *GuardrailTopic {
+	s.Name = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *GuardrailTopic) SetType(v string) *GuardrailTopic {
+	s.Type = &v
+	return s
+}
+
+// A behavior assessment of a topic policy.
+type GuardrailTopicPolicyAssessment struct {
+	_ struct{} `type:"structure"`
+
+	// The topics in the assessment.
+	//
+	// Topics is a required field
+	Topics []*GuardrailTopic `locationName:"topics" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailTopicPolicyAssessment) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailTopicPolicyAssessment) GoString() string {
+	return s.String()
+}
+
+// SetTopics sets the Topics field's value.
+func (s *GuardrailTopicPolicyAssessment) SetTopics(v []*GuardrailTopic) *GuardrailTopicPolicyAssessment {
+	s.Topics = v
+	return s
+}
+
+// A Top level guardrail trace object. For more information, see ConverseTrace.
+type GuardrailTraceAssessment struct {
+	_ struct{} `type:"structure"`
+
+	// The input assessment.
+	InputAssessment map[string]*GuardrailAssessment `locationName:"inputAssessment" type:"map"`
+
+	// The output from the model.
+	ModelOutput []*string `locationName:"modelOutput" type:"list"`
+
+	// the output assessments.
+	OutputAssessments map[string][]*GuardrailAssessment `locationName:"outputAssessments" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailTraceAssessment) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailTraceAssessment) GoString() string {
+	return s.String()
+}
+
+// SetInputAssessment sets the InputAssessment field's value.
+func (s *GuardrailTraceAssessment) SetInputAssessment(v map[string]*GuardrailAssessment) *GuardrailTraceAssessment {
+	s.InputAssessment = v
+	return s
+}
+
+// SetModelOutput sets the ModelOutput field's value.
+func (s *GuardrailTraceAssessment) SetModelOutput(v []*string) *GuardrailTraceAssessment {
+	s.ModelOutput = v
+	return s
+}
+
+// SetOutputAssessments sets the OutputAssessments field's value.
+func (s *GuardrailTraceAssessment) SetOutputAssessments(v map[string][]*GuardrailAssessment) *GuardrailTraceAssessment {
+	s.OutputAssessments = v
+	return s
+}
+
+// The word policy assessment.
+type GuardrailWordPolicyAssessment struct {
+	_ struct{} `type:"structure"`
+
+	// Custom words in the assessment.
+	//
+	// CustomWords is a required field
+	CustomWords []*GuardrailCustomWord `locationName:"customWords" type:"list" required:"true"`
+
+	// Managed word lists in the assessment.
+	//
+	// ManagedWordLists is a required field
+	ManagedWordLists []*GuardrailManagedWord `locationName:"managedWordLists" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailWordPolicyAssessment) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailWordPolicyAssessment) GoString() string {
+	return s.String()
+}
+
+// SetCustomWords sets the CustomWords field's value.
+func (s *GuardrailWordPolicyAssessment) SetCustomWords(v []*GuardrailCustomWord) *GuardrailWordPolicyAssessment {
+	s.CustomWords = v
+	return s
+}
+
+// SetManagedWordLists sets the ManagedWordLists field's value.
+func (s *GuardrailWordPolicyAssessment) SetManagedWordLists(v []*GuardrailManagedWord) *GuardrailWordPolicyAssessment {
+	s.ManagedWordLists = v
+	return s
+}
+
 // Image content for a message.
 type ImageBlock struct {
 	_ struct{} `type:"structure"`
@@ -2164,19 +3153,7 @@ type InferenceConfiguration struct {
 
 	// The maximum number of tokens to allow in the generated response. The default
 	// value is the maximum allowed value for the model that you are using. For
-	// more information, see Inference parameters for foundatio{ "messages": [ {
-	// "role": "user", "content": [ { "text": "what's the weather in Queens, NY
-	// and Austin, TX?" } ] }, { "role": "assistant", "content": [ { "toolUse":
-	// { "toolUseId": "1", "name": "get_weather", "input": { "city": "Queens", "state":
-	// "NY" } } }, { "toolUse": { "toolUseId": "2", "name": "get_weather", "input":
-	// { "city": "Austin", "state": "TX" } } } ] }, { "role": "user", "content":
-	// [ { "toolResult": { "toolUseId": "2", "content": [ { "json": { "weather":
-	// "40" } } ] } }, { "text": "..." }, { "toolResult": { "toolUseId": "1", "content":
-	// [ { "text": "result text" } ] } } ] } ], "toolConfig": { "tools": [ { "name":
-	// "get_weather", "description": "Get weather", "inputSchema": { "type": "object",
-	// "properties": { "city": { "type": "string", "description": "City of location"
-	// }, "state": { "type": "string", "description": "State of location" } }, "required":
-	// ["city", "state"] } } ] } } n models (https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters.html).
+	// more information, see Inference parameters for foundation models (https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters.html).
 	MaxTokens *int64 `locationName:"maxTokens" min:"1" type:"integer"`
 
 	// A list of stop sequences. A stop sequence is a sequence of characters that
@@ -2361,8 +3338,9 @@ type InvokeModelInput struct {
 	Accept *string `location:"header" locationName:"Accept" type:"string"`
 
 	// The prompt and inference parameters in the format specified in the contentType
-	// in the header. To see the format and content of the request and response
-	// bodies for different models, refer to Inference parameters (https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters.html).
+	// in the header. You must provide the body in JSON format. To see the format
+	// and content of the request and response bodies for different models, refer
+	// to Inference parameters (https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters.html).
 	// For more information, see Run inference (https://docs.aws.amazon.com/bedrock/latest/userguide/api-methods-run.html)
 	// in the Bedrock User Guide.
 	//
@@ -2373,7 +3351,7 @@ type InvokeModelInput struct {
 	// Body is a required field
 	Body []byte `locationName:"body" type:"blob" required:"true" sensitive:"true"`
 
-	// The MIME type of the input data in the request. The default value is application/json.
+	// The MIME type of the input data in the request. You must specify application/json.
 	ContentType *string `location:"header" locationName:"Content-Type" type:"string"`
 
 	// The unique identifier of the guardrail that you want to use. If you don't
@@ -2556,8 +3534,9 @@ type InvokeModelWithResponseStreamInput struct {
 	Accept *string `location:"header" locationName:"X-Amzn-Bedrock-Accept" type:"string"`
 
 	// The prompt and inference parameters in the format specified in the contentType
-	// in the header. To see the format and content of the request and response
-	// bodies for different models, refer to Inference parameters (https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters.html).
+	// in the header. You must provide the body in JSON format. To see the format
+	// and content of the request and response bodies for different models, refer
+	// to Inference parameters (https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters.html).
 	// For more information, see Run inference (https://docs.aws.amazon.com/bedrock/latest/userguide/api-methods-run.html)
 	// in the Bedrock User Guide.
 	//
@@ -2568,7 +3547,7 @@ type InvokeModelWithResponseStreamInput struct {
 	// Body is a required field
 	Body []byte `locationName:"body" type:"blob" required:"true" sensitive:"true"`
 
-	// The MIME type of the input data in the request. The default value is application/json.
+	// The MIME type of the input data in the request. You must specify application/json.
 	ContentType *string `location:"header" locationName:"Content-Type" type:"string"`
 
 	// The unique identifier of the guardrail that you want to use. If you don't
@@ -2733,8 +3712,8 @@ func (s *InvokeModelWithResponseStreamOutput) GetStream() *InvokeModelWithRespon
 	return s.eventStream
 }
 
-// A message in the Message (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_runtime_Message.html)
-// field. Use to send a message in a call to Converse (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_runtime_Converse.html).
+// A message input, or returned from, a call to Converse (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_runtime_Converse.html)
+// or ConverseStream (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_runtime_ConverseStream.html).
 type Message struct {
 	_ struct{} `type:"structure"`
 
@@ -3619,7 +4598,8 @@ func (s *ServiceQuotaExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The model must request a specific tool.
+// The model must request a specific tool. For example, {"tool" : {"name" :
+// "Your tool name"}}.
 //
 // This field is only supported by Anthropic Claude 3 models.
 type SpecificToolChoice struct {
@@ -3671,9 +4651,16 @@ func (s *SpecificToolChoice) SetName(v string) *SpecificToolChoice {
 	return s
 }
 
-// A system content block
+// A system content block.
 type SystemContentBlock struct {
 	_ struct{} `type:"structure"`
+
+	// A content block to assess with the guardrail. Use with the Converse API (Converse
+	// and ConverseStream).
+	//
+	// For more information, see Use a guardrail with the Converse API in the Amazon
+	// Bedrock User Guide.
+	GuardContent *GuardrailConverseContentBlock `locationName:"guardContent" type:"structure"`
 
 	// A system prompt for the model.
 	Text *string `locationName:"text" min:"1" type:"string"`
@@ -3703,11 +4690,22 @@ func (s *SystemContentBlock) Validate() error {
 	if s.Text != nil && len(*s.Text) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Text", 1))
 	}
+	if s.GuardContent != nil {
+		if err := s.GuardContent.Validate(); err != nil {
+			invalidParams.AddNested("GuardContent", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetGuardContent sets the GuardContent field's value.
+func (s *SystemContentBlock) SetGuardContent(v *GuardrailConverseContentBlock) *SystemContentBlock {
+	s.GuardContent = v
+	return s
 }
 
 // SetText sets the Text field's value.
@@ -3915,18 +4913,21 @@ func (s *Tool) SetToolSpec(v *ToolSpecification) *Tool {
 	return s
 }
 
-// Forces a model to use a tool.
+// Determines which tools the model should request in a call to Converse or
+// ConverseStream. ToolChoice is only supported by Anthropic Claude 3 models
+// and by Mistral AI Mistral Large.
 type ToolChoice struct {
 	_ struct{} `type:"structure"`
 
 	// The model must request at least one tool (no text is generated).
 	Any *AnyToolChoice `locationName:"any" type:"structure"`
 
-	// The Model automatically decides if a tool should be called or to whether
-	// to generate text instead.
+	// (Default). The Model automatically decides if a tool should be called or
+	// whether to generate text instead.
 	Auto *AutoToolChoice `locationName:"auto" type:"structure"`
 
-	// The Model must request the specified tool.
+	// The Model must request the specified tool. Only supported by Anthropic Claude
+	// 3 models.
 	Tool *SpecificToolChoice `locationName:"tool" type:"structure"`
 }
 
@@ -4493,6 +5494,302 @@ func ConversationRole_Values() []string {
 }
 
 const (
+	// GuardrailContentFilterConfidenceNone is a GuardrailContentFilterConfidence enum value
+	GuardrailContentFilterConfidenceNone = "NONE"
+
+	// GuardrailContentFilterConfidenceLow is a GuardrailContentFilterConfidence enum value
+	GuardrailContentFilterConfidenceLow = "LOW"
+
+	// GuardrailContentFilterConfidenceMedium is a GuardrailContentFilterConfidence enum value
+	GuardrailContentFilterConfidenceMedium = "MEDIUM"
+
+	// GuardrailContentFilterConfidenceHigh is a GuardrailContentFilterConfidence enum value
+	GuardrailContentFilterConfidenceHigh = "HIGH"
+)
+
+// GuardrailContentFilterConfidence_Values returns all elements of the GuardrailContentFilterConfidence enum
+func GuardrailContentFilterConfidence_Values() []string {
+	return []string{
+		GuardrailContentFilterConfidenceNone,
+		GuardrailContentFilterConfidenceLow,
+		GuardrailContentFilterConfidenceMedium,
+		GuardrailContentFilterConfidenceHigh,
+	}
+}
+
+const (
+	// GuardrailContentFilterTypeInsults is a GuardrailContentFilterType enum value
+	GuardrailContentFilterTypeInsults = "INSULTS"
+
+	// GuardrailContentFilterTypeHate is a GuardrailContentFilterType enum value
+	GuardrailContentFilterTypeHate = "HATE"
+
+	// GuardrailContentFilterTypeSexual is a GuardrailContentFilterType enum value
+	GuardrailContentFilterTypeSexual = "SEXUAL"
+
+	// GuardrailContentFilterTypeViolence is a GuardrailContentFilterType enum value
+	GuardrailContentFilterTypeViolence = "VIOLENCE"
+
+	// GuardrailContentFilterTypeMisconduct is a GuardrailContentFilterType enum value
+	GuardrailContentFilterTypeMisconduct = "MISCONDUCT"
+
+	// GuardrailContentFilterTypePromptAttack is a GuardrailContentFilterType enum value
+	GuardrailContentFilterTypePromptAttack = "PROMPT_ATTACK"
+)
+
+// GuardrailContentFilterType_Values returns all elements of the GuardrailContentFilterType enum
+func GuardrailContentFilterType_Values() []string {
+	return []string{
+		GuardrailContentFilterTypeInsults,
+		GuardrailContentFilterTypeHate,
+		GuardrailContentFilterTypeSexual,
+		GuardrailContentFilterTypeViolence,
+		GuardrailContentFilterTypeMisconduct,
+		GuardrailContentFilterTypePromptAttack,
+	}
+}
+
+const (
+	// GuardrailContentPolicyActionBlocked is a GuardrailContentPolicyAction enum value
+	GuardrailContentPolicyActionBlocked = "BLOCKED"
+)
+
+// GuardrailContentPolicyAction_Values returns all elements of the GuardrailContentPolicyAction enum
+func GuardrailContentPolicyAction_Values() []string {
+	return []string{
+		GuardrailContentPolicyActionBlocked,
+	}
+}
+
+const (
+	// GuardrailManagedWordTypeProfanity is a GuardrailManagedWordType enum value
+	GuardrailManagedWordTypeProfanity = "PROFANITY"
+)
+
+// GuardrailManagedWordType_Values returns all elements of the GuardrailManagedWordType enum
+func GuardrailManagedWordType_Values() []string {
+	return []string{
+		GuardrailManagedWordTypeProfanity,
+	}
+}
+
+const (
+	// GuardrailPiiEntityTypeAddress is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeAddress = "ADDRESS"
+
+	// GuardrailPiiEntityTypeAge is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeAge = "AGE"
+
+	// GuardrailPiiEntityTypeAwsAccessKey is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeAwsAccessKey = "AWS_ACCESS_KEY"
+
+	// GuardrailPiiEntityTypeAwsSecretKey is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeAwsSecretKey = "AWS_SECRET_KEY"
+
+	// GuardrailPiiEntityTypeCaHealthNumber is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeCaHealthNumber = "CA_HEALTH_NUMBER"
+
+	// GuardrailPiiEntityTypeCaSocialInsuranceNumber is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeCaSocialInsuranceNumber = "CA_SOCIAL_INSURANCE_NUMBER"
+
+	// GuardrailPiiEntityTypeCreditDebitCardCvv is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeCreditDebitCardCvv = "CREDIT_DEBIT_CARD_CVV"
+
+	// GuardrailPiiEntityTypeCreditDebitCardExpiry is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeCreditDebitCardExpiry = "CREDIT_DEBIT_CARD_EXPIRY"
+
+	// GuardrailPiiEntityTypeCreditDebitCardNumber is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeCreditDebitCardNumber = "CREDIT_DEBIT_CARD_NUMBER"
+
+	// GuardrailPiiEntityTypeDriverId is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeDriverId = "DRIVER_ID"
+
+	// GuardrailPiiEntityTypeEmail is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeEmail = "EMAIL"
+
+	// GuardrailPiiEntityTypeInternationalBankAccountNumber is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeInternationalBankAccountNumber = "INTERNATIONAL_BANK_ACCOUNT_NUMBER"
+
+	// GuardrailPiiEntityTypeIpAddress is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeIpAddress = "IP_ADDRESS"
+
+	// GuardrailPiiEntityTypeLicensePlate is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeLicensePlate = "LICENSE_PLATE"
+
+	// GuardrailPiiEntityTypeMacAddress is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeMacAddress = "MAC_ADDRESS"
+
+	// GuardrailPiiEntityTypeName is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeName = "NAME"
+
+	// GuardrailPiiEntityTypePassword is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypePassword = "PASSWORD"
+
+	// GuardrailPiiEntityTypePhone is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypePhone = "PHONE"
+
+	// GuardrailPiiEntityTypePin is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypePin = "PIN"
+
+	// GuardrailPiiEntityTypeSwiftCode is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeSwiftCode = "SWIFT_CODE"
+
+	// GuardrailPiiEntityTypeUkNationalHealthServiceNumber is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeUkNationalHealthServiceNumber = "UK_NATIONAL_HEALTH_SERVICE_NUMBER"
+
+	// GuardrailPiiEntityTypeUkNationalInsuranceNumber is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeUkNationalInsuranceNumber = "UK_NATIONAL_INSURANCE_NUMBER"
+
+	// GuardrailPiiEntityTypeUkUniqueTaxpayerReferenceNumber is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeUkUniqueTaxpayerReferenceNumber = "UK_UNIQUE_TAXPAYER_REFERENCE_NUMBER"
+
+	// GuardrailPiiEntityTypeUrl is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeUrl = "URL"
+
+	// GuardrailPiiEntityTypeUsername is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeUsername = "USERNAME"
+
+	// GuardrailPiiEntityTypeUsBankAccountNumber is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeUsBankAccountNumber = "US_BANK_ACCOUNT_NUMBER"
+
+	// GuardrailPiiEntityTypeUsBankRoutingNumber is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeUsBankRoutingNumber = "US_BANK_ROUTING_NUMBER"
+
+	// GuardrailPiiEntityTypeUsIndividualTaxIdentificationNumber is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeUsIndividualTaxIdentificationNumber = "US_INDIVIDUAL_TAX_IDENTIFICATION_NUMBER"
+
+	// GuardrailPiiEntityTypeUsPassportNumber is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeUsPassportNumber = "US_PASSPORT_NUMBER"
+
+	// GuardrailPiiEntityTypeUsSocialSecurityNumber is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeUsSocialSecurityNumber = "US_SOCIAL_SECURITY_NUMBER"
+
+	// GuardrailPiiEntityTypeVehicleIdentificationNumber is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeVehicleIdentificationNumber = "VEHICLE_IDENTIFICATION_NUMBER"
+)
+
+// GuardrailPiiEntityType_Values returns all elements of the GuardrailPiiEntityType enum
+func GuardrailPiiEntityType_Values() []string {
+	return []string{
+		GuardrailPiiEntityTypeAddress,
+		GuardrailPiiEntityTypeAge,
+		GuardrailPiiEntityTypeAwsAccessKey,
+		GuardrailPiiEntityTypeAwsSecretKey,
+		GuardrailPiiEntityTypeCaHealthNumber,
+		GuardrailPiiEntityTypeCaSocialInsuranceNumber,
+		GuardrailPiiEntityTypeCreditDebitCardCvv,
+		GuardrailPiiEntityTypeCreditDebitCardExpiry,
+		GuardrailPiiEntityTypeCreditDebitCardNumber,
+		GuardrailPiiEntityTypeDriverId,
+		GuardrailPiiEntityTypeEmail,
+		GuardrailPiiEntityTypeInternationalBankAccountNumber,
+		GuardrailPiiEntityTypeIpAddress,
+		GuardrailPiiEntityTypeLicensePlate,
+		GuardrailPiiEntityTypeMacAddress,
+		GuardrailPiiEntityTypeName,
+		GuardrailPiiEntityTypePassword,
+		GuardrailPiiEntityTypePhone,
+		GuardrailPiiEntityTypePin,
+		GuardrailPiiEntityTypeSwiftCode,
+		GuardrailPiiEntityTypeUkNationalHealthServiceNumber,
+		GuardrailPiiEntityTypeUkNationalInsuranceNumber,
+		GuardrailPiiEntityTypeUkUniqueTaxpayerReferenceNumber,
+		GuardrailPiiEntityTypeUrl,
+		GuardrailPiiEntityTypeUsername,
+		GuardrailPiiEntityTypeUsBankAccountNumber,
+		GuardrailPiiEntityTypeUsBankRoutingNumber,
+		GuardrailPiiEntityTypeUsIndividualTaxIdentificationNumber,
+		GuardrailPiiEntityTypeUsPassportNumber,
+		GuardrailPiiEntityTypeUsSocialSecurityNumber,
+		GuardrailPiiEntityTypeVehicleIdentificationNumber,
+	}
+}
+
+const (
+	// GuardrailSensitiveInformationPolicyActionAnonymized is a GuardrailSensitiveInformationPolicyAction enum value
+	GuardrailSensitiveInformationPolicyActionAnonymized = "ANONYMIZED"
+
+	// GuardrailSensitiveInformationPolicyActionBlocked is a GuardrailSensitiveInformationPolicyAction enum value
+	GuardrailSensitiveInformationPolicyActionBlocked = "BLOCKED"
+)
+
+// GuardrailSensitiveInformationPolicyAction_Values returns all elements of the GuardrailSensitiveInformationPolicyAction enum
+func GuardrailSensitiveInformationPolicyAction_Values() []string {
+	return []string{
+		GuardrailSensitiveInformationPolicyActionAnonymized,
+		GuardrailSensitiveInformationPolicyActionBlocked,
+	}
+}
+
+const (
+	// GuardrailStreamProcessingModeSync is a GuardrailStreamProcessingMode enum value
+	GuardrailStreamProcessingModeSync = "sync"
+
+	// GuardrailStreamProcessingModeAsync is a GuardrailStreamProcessingMode enum value
+	GuardrailStreamProcessingModeAsync = "async"
+)
+
+// GuardrailStreamProcessingMode_Values returns all elements of the GuardrailStreamProcessingMode enum
+func GuardrailStreamProcessingMode_Values() []string {
+	return []string{
+		GuardrailStreamProcessingModeSync,
+		GuardrailStreamProcessingModeAsync,
+	}
+}
+
+const (
+	// GuardrailTopicPolicyActionBlocked is a GuardrailTopicPolicyAction enum value
+	GuardrailTopicPolicyActionBlocked = "BLOCKED"
+)
+
+// GuardrailTopicPolicyAction_Values returns all elements of the GuardrailTopicPolicyAction enum
+func GuardrailTopicPolicyAction_Values() []string {
+	return []string{
+		GuardrailTopicPolicyActionBlocked,
+	}
+}
+
+const (
+	// GuardrailTopicTypeDeny is a GuardrailTopicType enum value
+	GuardrailTopicTypeDeny = "DENY"
+)
+
+// GuardrailTopicType_Values returns all elements of the GuardrailTopicType enum
+func GuardrailTopicType_Values() []string {
+	return []string{
+		GuardrailTopicTypeDeny,
+	}
+}
+
+const (
+	// GuardrailTraceEnabled is a GuardrailTrace enum value
+	GuardrailTraceEnabled = "enabled"
+
+	// GuardrailTraceDisabled is a GuardrailTrace enum value
+	GuardrailTraceDisabled = "disabled"
+)
+
+// GuardrailTrace_Values returns all elements of the GuardrailTrace enum
+func GuardrailTrace_Values() []string {
+	return []string{
+		GuardrailTraceEnabled,
+		GuardrailTraceDisabled,
+	}
+}
+
+const (
+	// GuardrailWordPolicyActionBlocked is a GuardrailWordPolicyAction enum value
+	GuardrailWordPolicyActionBlocked = "BLOCKED"
+)
+
+// GuardrailWordPolicyAction_Values returns all elements of the GuardrailWordPolicyAction enum
+func GuardrailWordPolicyAction_Values() []string {
+	return []string{
+		GuardrailWordPolicyActionBlocked,
+	}
+}
+
+const (
 	// ImageFormatPng is a ImageFormat enum value
 	ImageFormatPng = "png"
 
@@ -4529,6 +5826,9 @@ const (
 	// StopReasonStopSequence is a StopReason enum value
 	StopReasonStopSequence = "stop_sequence"
 
+	// StopReasonGuardrailIntervened is a StopReason enum value
+	StopReasonGuardrailIntervened = "guardrail_intervened"
+
 	// StopReasonContentFiltered is a StopReason enum value
 	StopReasonContentFiltered = "content_filtered"
 )
@@ -4540,6 +5840,7 @@ func StopReason_Values() []string {
 		StopReasonToolUse,
 		StopReasonMaxTokens,
 		StopReasonStopSequence,
+		StopReasonGuardrailIntervened,
 		StopReasonContentFiltered,
 	}
 }

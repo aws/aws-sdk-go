@@ -211,6 +211,9 @@
     },
     "ContentBlock": {
       "members": {
+        "guardContent": {
+          "shape": "GuardrailConverseContentBlock"
+        },
         "image": {
           "shape": "ImageBlock"
         },
@@ -333,6 +336,9 @@
         "additionalModelResponseFieldPaths": {
           "shape": "ConverseRequestAdditionalModelResponseFieldPathsList"
         },
+        "guardrailConfig": {
+          "shape": "GuardrailConfiguration"
+        },
         "inferenceConfig": {
           "shape": "InferenceConfiguration"
         },
@@ -381,6 +387,9 @@
         "stopReason": {
           "shape": "StopReason"
         },
+        "trace": {
+          "shape": "ConverseTrace"
+        },
         "usage": {
           "shape": "TokenUsage"
         }
@@ -398,6 +407,9 @@
       "members": {
         "metrics": {
           "shape": "ConverseStreamMetrics"
+        },
+        "trace": {
+          "shape": "ConverseStreamTrace"
         },
         "usage": {
           "shape": "TokenUsage"
@@ -461,6 +473,9 @@
         "additionalModelResponseFieldPaths": {
           "shape": "ConverseStreamRequestAdditionalModelResponseFieldPathsList"
         },
+        "guardrailConfig": {
+          "shape": "GuardrailStreamConfiguration"
+        },
         "inferenceConfig": {
           "shape": "InferenceConfiguration"
         },
@@ -507,15 +522,454 @@
       "payload": "stream",
       "type": "structure"
     },
+    "ConverseStreamTrace": {
+      "members": {
+        "guardrail": {
+          "shape": "GuardrailTraceAssessment"
+        }
+      },
+      "type": "structure"
+    },
+    "ConverseTrace": {
+      "members": {
+        "guardrail": {
+          "shape": "GuardrailTraceAssessment"
+        }
+      },
+      "type": "structure"
+    },
+    "GuardrailAssessment": {
+      "members": {
+        "contentPolicy": {
+          "shape": "GuardrailContentPolicyAssessment"
+        },
+        "sensitiveInformationPolicy": {
+          "shape": "GuardrailSensitiveInformationPolicyAssessment"
+        },
+        "topicPolicy": {
+          "shape": "GuardrailTopicPolicyAssessment"
+        },
+        "wordPolicy": {
+          "shape": "GuardrailWordPolicyAssessment"
+        }
+      },
+      "type": "structure"
+    },
+    "GuardrailAssessmentList": {
+      "member": {
+        "shape": "GuardrailAssessment"
+      },
+      "type": "list"
+    },
+    "GuardrailAssessmentListMap": {
+      "key": {
+        "shape": "String"
+      },
+      "type": "map",
+      "value": {
+        "shape": "GuardrailAssessmentList"
+      }
+    },
+    "GuardrailAssessmentMap": {
+      "key": {
+        "shape": "String"
+      },
+      "type": "map",
+      "value": {
+        "shape": "GuardrailAssessment"
+      }
+    },
+    "GuardrailConfiguration": {
+      "members": {
+        "guardrailIdentifier": {
+          "shape": "GuardrailIdentifier"
+        },
+        "guardrailVersion": {
+          "shape": "GuardrailVersion"
+        },
+        "trace": {
+          "shape": "GuardrailTrace"
+        }
+      },
+      "required": [
+        "guardrailIdentifier",
+        "guardrailVersion"
+      ],
+      "type": "structure"
+    },
+    "GuardrailContentFilter": {
+      "members": {
+        "action": {
+          "shape": "GuardrailContentPolicyAction"
+        },
+        "confidence": {
+          "shape": "GuardrailContentFilterConfidence"
+        },
+        "type": {
+          "shape": "GuardrailContentFilterType"
+        }
+      },
+      "required": [
+        "type",
+        "confidence",
+        "action"
+      ],
+      "type": "structure"
+    },
+    "GuardrailContentFilterConfidence": {
+      "enum": [
+        "NONE",
+        "LOW",
+        "MEDIUM",
+        "HIGH"
+      ],
+      "type": "string"
+    },
+    "GuardrailContentFilterList": {
+      "member": {
+        "shape": "GuardrailContentFilter"
+      },
+      "type": "list"
+    },
+    "GuardrailContentFilterType": {
+      "enum": [
+        "INSULTS",
+        "HATE",
+        "SEXUAL",
+        "VIOLENCE",
+        "MISCONDUCT",
+        "PROMPT_ATTACK"
+      ],
+      "type": "string"
+    },
+    "GuardrailContentPolicyAction": {
+      "enum": [
+        "BLOCKED"
+      ],
+      "type": "string"
+    },
+    "GuardrailContentPolicyAssessment": {
+      "members": {
+        "filters": {
+          "shape": "GuardrailContentFilterList"
+        }
+      },
+      "required": [
+        "filters"
+      ],
+      "type": "structure"
+    },
+    "GuardrailConverseContentBlock": {
+      "members": {
+        "text": {
+          "shape": "GuardrailConverseTextBlock"
+        }
+      },
+      "type": "structure",
+      "union": true
+    },
+    "GuardrailConverseTextBlock": {
+      "members": {
+        "text": {
+          "shape": "String"
+        }
+      },
+      "required": [
+        "text"
+      ],
+      "type": "structure"
+    },
+    "GuardrailCustomWord": {
+      "members": {
+        "action": {
+          "shape": "GuardrailWordPolicyAction"
+        },
+        "match": {
+          "shape": "String"
+        }
+      },
+      "required": [
+        "match",
+        "action"
+      ],
+      "type": "structure"
+    },
+    "GuardrailCustomWordList": {
+      "member": {
+        "shape": "GuardrailCustomWord"
+      },
+      "type": "list"
+    },
     "GuardrailIdentifier": {
       "max": 2048,
       "min": 0,
       "pattern": "(([a-z0-9]+)|(arn:aws(-[^:]+)?:bedrock:[a-z0-9-]{1,20}:[0-9]{12}:guardrail/[a-z0-9]+))",
       "type": "string"
     },
+    "GuardrailManagedWord": {
+      "members": {
+        "action": {
+          "shape": "GuardrailWordPolicyAction"
+        },
+        "match": {
+          "shape": "String"
+        },
+        "type": {
+          "shape": "GuardrailManagedWordType"
+        }
+      },
+      "required": [
+        "match",
+        "type",
+        "action"
+      ],
+      "type": "structure"
+    },
+    "GuardrailManagedWordList": {
+      "member": {
+        "shape": "GuardrailManagedWord"
+      },
+      "type": "list"
+    },
+    "GuardrailManagedWordType": {
+      "enum": [
+        "PROFANITY"
+      ],
+      "type": "string"
+    },
+    "GuardrailOutputText": {
+      "type": "string"
+    },
+    "GuardrailPiiEntityFilter": {
+      "members": {
+        "action": {
+          "shape": "GuardrailSensitiveInformationPolicyAction"
+        },
+        "match": {
+          "shape": "String"
+        },
+        "type": {
+          "shape": "GuardrailPiiEntityType"
+        }
+      },
+      "required": [
+        "match",
+        "type",
+        "action"
+      ],
+      "type": "structure"
+    },
+    "GuardrailPiiEntityFilterList": {
+      "member": {
+        "shape": "GuardrailPiiEntityFilter"
+      },
+      "type": "list"
+    },
+    "GuardrailPiiEntityType": {
+      "enum": [
+        "ADDRESS",
+        "AGE",
+        "AWS_ACCESS_KEY",
+        "AWS_SECRET_KEY",
+        "CA_HEALTH_NUMBER",
+        "CA_SOCIAL_INSURANCE_NUMBER",
+        "CREDIT_DEBIT_CARD_CVV",
+        "CREDIT_DEBIT_CARD_EXPIRY",
+        "CREDIT_DEBIT_CARD_NUMBER",
+        "DRIVER_ID",
+        "EMAIL",
+        "INTERNATIONAL_BANK_ACCOUNT_NUMBER",
+        "IP_ADDRESS",
+        "LICENSE_PLATE",
+        "MAC_ADDRESS",
+        "NAME",
+        "PASSWORD",
+        "PHONE",
+        "PIN",
+        "SWIFT_CODE",
+        "UK_NATIONAL_HEALTH_SERVICE_NUMBER",
+        "UK_NATIONAL_INSURANCE_NUMBER",
+        "UK_UNIQUE_TAXPAYER_REFERENCE_NUMBER",
+        "URL",
+        "USERNAME",
+        "US_BANK_ACCOUNT_NUMBER",
+        "US_BANK_ROUTING_NUMBER",
+        "US_INDIVIDUAL_TAX_IDENTIFICATION_NUMBER",
+        "US_PASSPORT_NUMBER",
+        "US_SOCIAL_SECURITY_NUMBER",
+        "VEHICLE_IDENTIFICATION_NUMBER"
+      ],
+      "type": "string"
+    },
+    "GuardrailRegexFilter": {
+      "members": {
+        "action": {
+          "shape": "GuardrailSensitiveInformationPolicyAction"
+        },
+        "match": {
+          "shape": "String"
+        },
+        "name": {
+          "shape": "String"
+        },
+        "regex": {
+          "shape": "String"
+        }
+      },
+      "required": [
+        "action"
+      ],
+      "type": "structure"
+    },
+    "GuardrailRegexFilterList": {
+      "member": {
+        "shape": "GuardrailRegexFilter"
+      },
+      "type": "list"
+    },
+    "GuardrailSensitiveInformationPolicyAction": {
+      "enum": [
+        "ANONYMIZED",
+        "BLOCKED"
+      ],
+      "type": "string"
+    },
+    "GuardrailSensitiveInformationPolicyAssessment": {
+      "members": {
+        "piiEntities": {
+          "shape": "GuardrailPiiEntityFilterList"
+        },
+        "regexes": {
+          "shape": "GuardrailRegexFilterList"
+        }
+      },
+      "required": [
+        "piiEntities",
+        "regexes"
+      ],
+      "type": "structure"
+    },
+    "GuardrailStreamConfiguration": {
+      "members": {
+        "guardrailIdentifier": {
+          "shape": "GuardrailIdentifier"
+        },
+        "guardrailVersion": {
+          "shape": "GuardrailVersion"
+        },
+        "streamProcessingMode": {
+          "shape": "GuardrailStreamProcessingMode"
+        },
+        "trace": {
+          "shape": "GuardrailTrace"
+        }
+      },
+      "required": [
+        "guardrailIdentifier",
+        "guardrailVersion"
+      ],
+      "type": "structure"
+    },
+    "GuardrailStreamProcessingMode": {
+      "enum": [
+        "sync",
+        "async"
+      ],
+      "type": "string"
+    },
+    "GuardrailTopic": {
+      "members": {
+        "action": {
+          "shape": "GuardrailTopicPolicyAction"
+        },
+        "name": {
+          "shape": "String"
+        },
+        "type": {
+          "shape": "GuardrailTopicType"
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "action"
+      ],
+      "type": "structure"
+    },
+    "GuardrailTopicList": {
+      "member": {
+        "shape": "GuardrailTopic"
+      },
+      "type": "list"
+    },
+    "GuardrailTopicPolicyAction": {
+      "enum": [
+        "BLOCKED"
+      ],
+      "type": "string"
+    },
+    "GuardrailTopicPolicyAssessment": {
+      "members": {
+        "topics": {
+          "shape": "GuardrailTopicList"
+        }
+      },
+      "required": [
+        "topics"
+      ],
+      "type": "structure"
+    },
+    "GuardrailTopicType": {
+      "enum": [
+        "DENY"
+      ],
+      "type": "string"
+    },
+    "GuardrailTrace": {
+      "enum": [
+        "enabled",
+        "disabled"
+      ],
+      "type": "string"
+    },
+    "GuardrailTraceAssessment": {
+      "members": {
+        "inputAssessment": {
+          "shape": "GuardrailAssessmentMap"
+        },
+        "modelOutput": {
+          "shape": "ModelOutputs"
+        },
+        "outputAssessments": {
+          "shape": "GuardrailAssessmentListMap"
+        }
+      },
+      "type": "structure"
+    },
     "GuardrailVersion": {
       "pattern": "(([1-9][0-9]{0,7})|(DRAFT))",
       "type": "string"
+    },
+    "GuardrailWordPolicyAction": {
+      "enum": [
+        "BLOCKED"
+      ],
+      "type": "string"
+    },
+    "GuardrailWordPolicyAssessment": {
+      "members": {
+        "customWords": {
+          "shape": "GuardrailCustomWordList"
+        },
+        "managedWordLists": {
+          "shape": "GuardrailManagedWordList"
+        }
+      },
+      "required": [
+        "customWords",
+        "managedWordLists"
+      ],
+      "type": "structure"
     },
     "ImageBlock": {
       "members": {
@@ -821,6 +1275,12 @@
       },
       "type": "structure"
     },
+    "ModelOutputs": {
+      "member": {
+        "shape": "GuardrailOutputText"
+      },
+      "type": "list"
+    },
     "ModelStreamErrorException": {
       "error": {
         "httpStatusCode": 424,
@@ -955,6 +1415,7 @@
         "tool_use",
         "max_tokens",
         "stop_sequence",
+        "guardrail_intervened",
         "content_filtered"
       ],
       "type": "string"
@@ -964,6 +1425,9 @@
     },
     "SystemContentBlock": {
       "members": {
+        "guardContent": {
+          "shape": "GuardrailConverseContentBlock"
+        },
         "text": {
           "shape": "NonEmptyString"
         }

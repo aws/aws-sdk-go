@@ -1,3 +1,25 @@
+Release v1.54.4 (2024-06-18)
+===
+
+### Service Client Updates
+* `service/bedrock-runtime`: Updates service API and documentation
+* `service/cloudtrail`: Updates service API
+  * Add v2 smoke tests and smithy smokeTests trait for SDK testing.
+* `service/config`: Updates service API
+* `service/eks`: Updates service API and documentation
+* `service/lightsail`: Updates service API
+  * Add v2 smoke tests and smithy smokeTests trait for SDK testing.
+* `service/polly`: Updates service API
+  * Add v2 smoke tests and smithy smokeTests trait for SDK testing.
+* `service/rekognition`: Updates service API
+  * Add v2 smoke tests and smithy smokeTests trait for SDK testing.
+* `service/sagemaker`: Updates service API, documentation, and paginators
+  * Launched a new feature in SageMaker to provide managed MLflow Tracking Servers for customers to track ML experiments. This release also adds a new capability of attaching additional storage to SageMaker HyperPod cluster instances.
+* `service/shield`: Updates service API
+  * Add v2 smoke tests and smithy smokeTests trait for SDK testing.
+* `service/snowball`: Updates service API
+  * Add v2 smoke tests and smithy smokeTests trait for SDK testing.
+
 Release v1.54.3 (2024-06-17)
 ===
 

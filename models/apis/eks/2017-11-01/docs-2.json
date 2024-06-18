@@ -857,6 +857,30 @@
         "DescribeFargateProfileResponse$fargateProfile": "<p>The full description of your Fargate profile.</p>"
       }
     },
+    "FargateProfileHealth": {
+      "base": "<p>The health status of the Fargate profile. If there are issues with your Fargate profile's health, they are listed here.</p>",
+      "refs": {
+        "FargateProfile$health": "<p>The health status of the Fargate profile. If there are issues with your Fargate profile's health, they are listed here.</p>"
+      }
+    },
+    "FargateProfileIssue": {
+      "base": "<p>An issue that is associated with the Fargate profile.</p>",
+      "refs": {
+        "FargateProfileIssueList$member": null
+      }
+    },
+    "FargateProfileIssueCode": {
+      "base": null,
+      "refs": {
+        "FargateProfileIssue$code": "<p>A brief description of the error.</p>"
+      }
+    },
+    "FargateProfileIssueList": {
+      "base": null,
+      "refs": {
+        "FargateProfileHealth$issues": "<p>Any issues that are associated with the Fargate profile.</p>"
+      }
+    },
     "FargateProfileLabel": {
       "base": null,
       "refs": {
@@ -1608,6 +1632,7 @@
         "FargateProfile$fargateProfileArn": "<p>The full Amazon Resource Name (ARN) of the Fargate profile.</p>",
         "FargateProfile$clusterName": "<p>The name of your cluster.</p>",
         "FargateProfile$podExecutionRoleArn": "<p>The Amazon Resource Name (ARN) of the <code>Pod</code> execution role to use for any <code>Pod</code> that matches the selectors in the Fargate profile. For more information, see <a href=\"https://docs.aws.amazon.com/eks/latest/userguide/pod-execution-role.html\"> <code>Pod</code> execution role</a> in the <i>Amazon EKS User Guide</i>.</p>",
+        "FargateProfileIssue$message": "<p>The error message associated with the issue.</p>",
         "FargateProfileLabel$key": null,
         "FargateProfileLabel$value": null,
         "FargateProfileSelector$namespace": "<p>The Kubernetes <code>namespace</code> that the selector should match.</p>",
@@ -1813,6 +1838,7 @@
         "EncryptionConfig$resources": "<p>Specifies the resources to be encrypted. The only supported value is <code>secrets</code>.</p>",
         "ErrorDetail$resourceIds": "<p>An optional field that contains the resource IDs associated with the error.</p>",
         "FargateProfile$subnets": "<p>The IDs of subnets to launch a <code>Pod</code> into.</p>",
+        "FargateProfileIssue$resourceIds": "<p>The Amazon Web Services resources that are affected by this issue.</p>",
         "InsightsFilter$kubernetesVersions": "<p>The Kubernetes versions to use to filter the insights.</p>",
         "Issue$resourceIds": "<p>The Amazon Web Services resources that are afflicted by this issue.</p>",
         "ListAccessEntriesResponse$accessEntries": "<p>The list of access entries that exist for the cluster.</p>",
