@@ -2,8 +2,8 @@
   "version": "2.0",
   "service": "<p>Describes the API operations for running inference using Amazon Bedrock models.</p>",
   "operations": {
-    "Converse": "<p>Sends messages to the specified Amazon Bedrock model. <code>Converse</code> provides a consistent interface that works with all models that support messages. This allows you to write code once and use it with different models. Should a model have unique inference parameters, you can also pass those unique parameters to the model. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/api-methods-run.html\">Run inference</a> in the Bedrock User Guide.</p> <p>This operation requires permission for the <code>bedrock:InvokeModel</code> action. </p>",
-    "ConverseStream": "<p>Sends messages to the specified Amazon Bedrock model and returns the response in a stream. <code>ConverseStream</code> provides a consistent API that works with all Amazon Bedrock models that support messages. This allows you to write code once and use it with different models. Should a model have unique inference parameters, you can also pass those unique parameters to the model. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/api-methods-run.html\">Run inference</a> in the Bedrock User Guide.</p> <p>To find out if a model supports streaming, call <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_GetFoundationModel.html\">GetFoundationModel</a> and check the <code>responseStreamingSupported</code> field in the response.</p> <p>For example code, see <i>Invoke model with streaming code example</i> in the <i>Amazon Bedrock User Guide</i>. </p> <p>This operation requires permission for the <code>bedrock:InvokeModelWithResponseStream</code> action.</p>",
+    "Converse": "<p>Sends messages to the specified Amazon Bedrock model. <code>Converse</code> provides a consistent interface that works with all models that support messages. This allows you to write code once and use it with different models. Should a model have unique inference parameters, you can also pass those unique parameters to the model.</p> <p>For information about the Converse API, see <i>Use the Converse API</i> in the <i>Amazon Bedrock User Guide</i>. To use a guardrail, see <i>Use a guardrail with the Converse API</i> in the <i>Amazon Bedrock User Guide</i>. To use a tool with a model, see <i>Tool use (Function calling)</i> in the <i>Amazon Bedrock User Guide</i> </p> <p>For example code, see <i>Converse API examples</i> in the <i>Amazon Bedrock User Guide</i>. </p> <p>This operation requires permission for the <code>bedrock:InvokeModel</code> action. </p>",
+    "ConverseStream": "<p>Sends messages to the specified Amazon Bedrock model and returns the response in a stream. <code>ConverseStream</code> provides a consistent API that works with all Amazon Bedrock models that support messages. This allows you to write code once and use it with different models. Should a model have unique inference parameters, you can also pass those unique parameters to the model. </p> <p>To find out if a model supports streaming, call <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_GetFoundationModel.html\">GetFoundationModel</a> and check the <code>responseStreamingSupported</code> field in the response.</p> <p>For information about the Converse API, see <i>Use the Converse API</i> in the <i>Amazon Bedrock User Guide</i>. To use a guardrail, see <i>Use a guardrail with the Converse API</i> in the <i>Amazon Bedrock User Guide</i>. To use a tool with a model, see <i>Tool use (Function calling)</i> in the <i>Amazon Bedrock User Guide</i> </p> <p>For example code, see <i>Conversation streaming example</i> in the <i>Amazon Bedrock User Guide</i>. </p> <p>This operation requires permission for the <code>bedrock:InvokeModelWithResponseStream</code> action.</p>",
     "InvokeModel": "<p>Invokes the specified Amazon Bedrock model to run inference using the prompt and inference parameters provided in the request body. You use model inference to generate text, images, and embeddings.</p> <p>For example code, see <i>Invoke model code examples</i> in the <i>Amazon Bedrock User Guide</i>. </p> <p>This operation requires permission for the <code>bedrock:InvokeModel</code> action.</p>",
     "InvokeModelWithResponseStream": "<p>Invoke the specified Amazon Bedrock model to run inference using the prompt and inference parameters provided in the request body. The response is returned in a stream.</p> <p>To see if a model supports streaming, call <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_GetFoundationModel.html\">GetFoundationModel</a> and check the <code>responseStreamingSupported</code> field in the response.</p> <note> <p>The CLI doesn't support <code>InvokeModelWithResponseStream</code>.</p> </note> <p>For example code, see <i>Invoke model with streaming code example</i> in the <i>Amazon Bedrock User Guide</i>. </p> <p>This operation requires permissions to perform the <code>bedrock:InvokeModelWithResponseStream</code> action. </p>"
   },
@@ -14,27 +14,27 @@
       }
     },
     "AnyToolChoice": {
-      "base": "<p>The model must request at least one tool (no text is generated).</p>",
+      "base": "<p>The model must request at least one tool (no text is generated). For example, <code>{\"any\" : {}}</code>.</p>",
       "refs": {
         "ToolChoice$any": "<p>The model must request at least one tool (no text is generated).</p>"
       }
     },
     "AutoToolChoice": {
-      "base": "<p>The Model automatically decides if a tool should be called or to whether to generate text instead.</p>",
+      "base": "<p>The Model automatically decides if a tool should be called or whether to generate text instead. For example, <code>{\"auto\" : {}}</code>.</p>",
       "refs": {
-        "ToolChoice$auto": "<p>The Model automatically decides if a tool should be called or to whether to generate text instead.</p>"
+        "ToolChoice$auto": "<p>(Default). The Model automatically decides if a tool should be called or whether to generate text instead. </p>"
       }
     },
     "Body": {
       "base": null,
       "refs": {
-        "InvokeModelRequest$body": "<p>The prompt and inference parameters in the format specified in the <code>contentType</code> in the header. To see the format and content of the request and response bodies for different models, refer to <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters.html\">Inference parameters</a>. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/api-methods-run.html\">Run inference</a> in the Bedrock User Guide.</p>",
+        "InvokeModelRequest$body": "<p>The prompt and inference parameters in the format specified in the <code>contentType</code> in the header. You must provide the body in JSON format. To see the format and content of the request and response bodies for different models, refer to <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters.html\">Inference parameters</a>. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/api-methods-run.html\">Run inference</a> in the Bedrock User Guide.</p>",
         "InvokeModelResponse$body": "<p>Inference response from the model in the format specified in the <code>contentType</code> header. To see the format and content of the request and response bodies for different models, refer to <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters.html\">Inference parameters</a>.</p>",
-        "InvokeModelWithResponseStreamRequest$body": "<p>The prompt and inference parameters in the format specified in the <code>contentType</code> in the header. To see the format and content of the request and response bodies for different models, refer to <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters.html\">Inference parameters</a>. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/api-methods-run.html\">Run inference</a> in the Bedrock User Guide.</p>"
+        "InvokeModelWithResponseStreamRequest$body": "<p>The prompt and inference parameters in the format specified in the <code>contentType</code> in the header. You must provide the body in JSON format. To see the format and content of the request and response bodies for different models, refer to <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters.html\">Inference parameters</a>. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/api-methods-run.html\">Run inference</a> in the Bedrock User Guide.</p>"
       }
     },
     "ContentBlock": {
-      "base": "<p>A block of content for a message.</p>",
+      "base": "<p>A block of content for a message that you pass to, or receive from, a model with the Converse API (<a>Converse</a> and <a>ConverseStream</a>).</p>",
       "refs": {
         "ContentBlocks$member": null
       }
@@ -109,7 +109,7 @@
     "ConverseRequestAdditionalModelResponseFieldPathsList": {
       "base": null,
       "refs": {
-        "ConverseRequest$additionalModelResponseFieldPaths": "<p>Additional model parameters field paths to return in the response. <code>Converse</code> returns the requested fields as a JSON Pointer object in the <code>additionalModelResultFields</code> field. The following is example JSON for <code>additionalModelResponseFieldPaths</code>.</p> <p> <code>[ \"/stop_sequence\" ]</code> </p> <p>For information about the JSON Pointer syntax, see the <a href=\"https://datatracker.ietf.org/doc/html/rfc6901\">Internet Engineering Task Force (IETF)</a> documentation.</p> <p> <code>Converse</code> rejects an empty JSON Pointer or incorrectly structured JSON Pointer with a <code>400</code> error code. if the JSON Pointer is valid, but the requested field is not in the model response, it is ignored by <code>Converse</code>.</p>"
+        "ConverseRequest$additionalModelResponseFieldPaths": "<p>Additional model parameters field paths to return in the response. <code>Converse</code> returns the requested fields as a JSON Pointer object in the <code>additionalModelResponseFields</code> field. The following is example JSON for <code>additionalModelResponseFieldPaths</code>.</p> <p> <code>[ \"/stop_sequence\" ]</code> </p> <p>For information about the JSON Pointer syntax, see the <a href=\"https://datatracker.ietf.org/doc/html/rfc6901\">Internet Engineering Task Force (IETF)</a> documentation.</p> <p> <code>Converse</code> rejects an empty JSON Pointer or incorrectly structured JSON Pointer with a <code>400</code> error code. if the JSON Pointer is valid, but the requested field is not in the model response, it is ignored by <code>Converse</code>.</p>"
       }
     },
     "ConverseRequestAdditionalModelResponseFieldPathsListMemberString": {
@@ -149,7 +149,7 @@
     "ConverseStreamRequestAdditionalModelResponseFieldPathsList": {
       "base": null,
       "refs": {
-        "ConverseStreamRequest$additionalModelResponseFieldPaths": "<p>Additional model parameters field paths to return in the response. <code>ConverseStream</code> returns the requested fields as a JSON Pointer object in the <code>additionalModelResultFields</code> field. The following is example JSON for <code>additionalModelResponseFieldPaths</code>.</p> <p> <code>[ \"/stop_sequence\" ]</code> </p> <p>For information about the JSON Pointer syntax, see the <a href=\"https://datatracker.ietf.org/doc/html/rfc6901\">Internet Engineering Task Force (IETF)</a> documentation.</p> <p> <code>ConverseStream</code> rejects an empty JSON Pointer or incorrectly structured JSON Pointer with a <code>400</code> error code. if the JSON Pointer is valid, but the requested field is not in the model response, it is ignored by <code>ConverseStream</code>.</p>"
+        "ConverseStreamRequest$additionalModelResponseFieldPaths": "<p>Additional model parameters field paths to return in the response. <code>ConverseStream</code> returns the requested fields as a JSON Pointer object in the <code>additionalModelResponseFields</code> field. The following is example JSON for <code>additionalModelResponseFieldPaths</code>.</p> <p> <code>[ \"/stop_sequence\" ]</code> </p> <p>For information about the JSON Pointer syntax, see the <a href=\"https://datatracker.ietf.org/doc/html/rfc6901\">Internet Engineering Task Force (IETF)</a> documentation.</p> <p> <code>ConverseStream</code> rejects an empty JSON Pointer or incorrectly structured JSON Pointer with a <code>400</code> error code. if the JSON Pointer is valid, but the requested field is not in the model response, it is ignored by <code>ConverseStream</code>.</p>"
       }
     },
     "ConverseStreamRequestAdditionalModelResponseFieldPathsListMemberString": {
@@ -161,6 +161,18 @@
     "ConverseStreamResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "ConverseStreamTrace": {
+      "base": "<p>The trace object in a response from <a>ConverseStream</a>. Currently, you can only trace guardrails.</p>",
+      "refs": {
+        "ConverseStreamMetadataEvent$trace": "<p>The trace object in the response from <a>ConverseStream</a> that contains information about the guardrail behavior.</p>"
+      }
+    },
+    "ConverseTrace": {
+      "base": "<p>The trace object in a response from <a>Converse</a>. Currently, you can only trace guardrails.</p>",
+      "refs": {
+        "ConverseResponse$trace": "<p>A trace object that contains information about the Guardrail behavior.</p>"
       }
     },
     "Document": {
@@ -175,18 +187,250 @@
         "ToolUseBlock$input": "<p>The input to pass to the tool. </p>"
       }
     },
+    "GuardrailAssessment": {
+      "base": "<p>A behavior assessment of the guardrail policies used in a call to the Converse API. </p>",
+      "refs": {
+        "GuardrailAssessmentList$member": null,
+        "GuardrailAssessmentMap$value": null
+      }
+    },
+    "GuardrailAssessmentList": {
+      "base": null,
+      "refs": {
+        "GuardrailAssessmentListMap$value": null
+      }
+    },
+    "GuardrailAssessmentListMap": {
+      "base": null,
+      "refs": {
+        "GuardrailTraceAssessment$outputAssessments": "<p>the output assessments.</p>"
+      }
+    },
+    "GuardrailAssessmentMap": {
+      "base": null,
+      "refs": {
+        "GuardrailTraceAssessment$inputAssessment": "<p>The input assessment.</p>"
+      }
+    },
+    "GuardrailConfiguration": {
+      "base": "<p>Configuration information for a guardrail that you use with the <a>Converse</a> action.</p>",
+      "refs": {
+        "ConverseRequest$guardrailConfig": "<p>Configuration information for a guardrail that you want to use in the request. </p>"
+      }
+    },
+    "GuardrailContentFilter": {
+      "base": "<p>The content filter for a guardrail.</p>",
+      "refs": {
+        "GuardrailContentFilterList$member": null
+      }
+    },
+    "GuardrailContentFilterConfidence": {
+      "base": null,
+      "refs": {
+        "GuardrailContentFilter$confidence": "<p>The guardrail confidence.</p>"
+      }
+    },
+    "GuardrailContentFilterList": {
+      "base": null,
+      "refs": {
+        "GuardrailContentPolicyAssessment$filters": "<p>The content policy filters.</p>"
+      }
+    },
+    "GuardrailContentFilterType": {
+      "base": null,
+      "refs": {
+        "GuardrailContentFilter$type": "<p>The guardrail type.</p>"
+      }
+    },
+    "GuardrailContentPolicyAction": {
+      "base": null,
+      "refs": {
+        "GuardrailContentFilter$action": "<p>The guardrail action.</p>"
+      }
+    },
+    "GuardrailContentPolicyAssessment": {
+      "base": "<p>An assessment of a content policy for a guardrail.</p>",
+      "refs": {
+        "GuardrailAssessment$contentPolicy": "<p>The content policy.</p>"
+      }
+    },
+    "GuardrailConverseContentBlock": {
+      "base": "<p/> <p>A content block for selective guarding with the Converse API (<a>Converse</a> and <a>ConverseStream</a>). </p>",
+      "refs": {
+        "ContentBlock$guardContent": "<p>Contains the content to assess with the guardrail. If you don't specify <code>guardContent</code> in a call to the Converse API, the guardrail (if passed in the Converse API) assesses the entire message.</p> <p>For more information, see <i>Use a guardrail with the Converse API</i> in the <i>Amazon Bedrock User Guide</i>. <pre><code> &lt;/p&gt; </code></pre>",
+        "SystemContentBlock$guardContent": "<p>A content block to assess with the guardrail. Use with the Converse API (<a>Converse</a> and <a>ConverseStream</a>). </p> <p>For more information, see <i>Use a guardrail with the Converse API</i> in the <i>Amazon Bedrock User Guide</i>.</p>"
+      }
+    },
+    "GuardrailConverseTextBlock": {
+      "base": "<p>A text block that contains text that you want to assess with a guardrail. For more information, see <a>GuardrailConverseContentBlock</a>.</p>",
+      "refs": {
+        "GuardrailConverseContentBlock$text": "<p>The text to guard.</p>"
+      }
+    },
+    "GuardrailCustomWord": {
+      "base": "<p>A custom word configured in a guardrail.</p>",
+      "refs": {
+        "GuardrailCustomWordList$member": null
+      }
+    },
+    "GuardrailCustomWordList": {
+      "base": null,
+      "refs": {
+        "GuardrailWordPolicyAssessment$customWords": "<p>Custom words in the assessment.</p>"
+      }
+    },
     "GuardrailIdentifier": {
       "base": null,
       "refs": {
+        "GuardrailConfiguration$guardrailIdentifier": "<p>The identifier for the guardrail.</p>",
+        "GuardrailStreamConfiguration$guardrailIdentifier": "<p>The identifier for the guardrail.</p>",
         "InvokeModelRequest$guardrailIdentifier": "<p>The unique identifier of the guardrail that you want to use. If you don't provide a value, no guardrail is applied to the invocation.</p> <p>An error will be thrown in the following situations.</p> <ul> <li> <p>You don't provide a guardrail identifier but you specify the <code>amazon-bedrock-guardrailConfig</code> field in the request body.</p> </li> <li> <p>You enable the guardrail but the <code>contentType</code> isn't <code>application/json</code>.</p> </li> <li> <p>You provide a guardrail identifier, but <code>guardrailVersion</code> isn't specified.</p> </li> </ul>",
         "InvokeModelWithResponseStreamRequest$guardrailIdentifier": "<p>The unique identifier of the guardrail that you want to use. If you don't provide a value, no guardrail is applied to the invocation.</p> <p>An error is thrown in the following situations.</p> <ul> <li> <p>You don't provide a guardrail identifier but you specify the <code>amazon-bedrock-guardrailConfig</code> field in the request body.</p> </li> <li> <p>You enable the guardrail but the <code>contentType</code> isn't <code>application/json</code>.</p> </li> <li> <p>You provide a guardrail identifier, but <code>guardrailVersion</code> isn't specified.</p> </li> </ul>"
+      }
+    },
+    "GuardrailManagedWord": {
+      "base": "<p>A managed word configured in a guardrail.</p>",
+      "refs": {
+        "GuardrailManagedWordList$member": null
+      }
+    },
+    "GuardrailManagedWordList": {
+      "base": null,
+      "refs": {
+        "GuardrailWordPolicyAssessment$managedWordLists": "<p>Managed word lists in the assessment.</p>"
+      }
+    },
+    "GuardrailManagedWordType": {
+      "base": null,
+      "refs": {
+        "GuardrailManagedWord$type": "<p>The type for the managed word.</p>"
+      }
+    },
+    "GuardrailOutputText": {
+      "base": null,
+      "refs": {
+        "ModelOutputs$member": null
+      }
+    },
+    "GuardrailPiiEntityFilter": {
+      "base": "<p>A Personally Identifiable Information (PII) entity configured in a guardrail.</p>",
+      "refs": {
+        "GuardrailPiiEntityFilterList$member": null
+      }
+    },
+    "GuardrailPiiEntityFilterList": {
+      "base": null,
+      "refs": {
+        "GuardrailSensitiveInformationPolicyAssessment$piiEntities": "<p>The PII entities in the assessment.</p>"
+      }
+    },
+    "GuardrailPiiEntityType": {
+      "base": null,
+      "refs": {
+        "GuardrailPiiEntityFilter$type": "<p>The PII entity filter type.</p>"
+      }
+    },
+    "GuardrailRegexFilter": {
+      "base": "<p>A Regex filter configured in a guardrail.</p>",
+      "refs": {
+        "GuardrailRegexFilterList$member": null
+      }
+    },
+    "GuardrailRegexFilterList": {
+      "base": null,
+      "refs": {
+        "GuardrailSensitiveInformationPolicyAssessment$regexes": "<p>The regex queries in the assessment.</p>"
+      }
+    },
+    "GuardrailSensitiveInformationPolicyAction": {
+      "base": null,
+      "refs": {
+        "GuardrailPiiEntityFilter$action": "<p>The PII entity filter action.</p>",
+        "GuardrailRegexFilter$action": "<p>The region filter action.</p>"
+      }
+    },
+    "GuardrailSensitiveInformationPolicyAssessment": {
+      "base": "<p>The assessment for aPersonally Identifiable Information (PII) policy. </p>",
+      "refs": {
+        "GuardrailAssessment$sensitiveInformationPolicy": "<p>The sensitive information policy.</p>"
+      }
+    },
+    "GuardrailStreamConfiguration": {
+      "base": "<p>Configuration information for a guardrail that you use with the <a>ConverseStream</a> action. </p>",
+      "refs": {
+        "ConverseStreamRequest$guardrailConfig": "<p>Configuration information for a guardrail that you want to use in the request. </p>"
+      }
+    },
+    "GuardrailStreamProcessingMode": {
+      "base": null,
+      "refs": {
+        "GuardrailStreamConfiguration$streamProcessingMode": "<p>The processing mode. </p> <p>The processing mode. For more information, see <i>Configure streaming response behavior</i> in the <i>Amazon Bedrock User Guide</i>. </p>"
+      }
+    },
+    "GuardrailTopic": {
+      "base": "<p>Information about a topic guardrail.</p>",
+      "refs": {
+        "GuardrailTopicList$member": null
+      }
+    },
+    "GuardrailTopicList": {
+      "base": null,
+      "refs": {
+        "GuardrailTopicPolicyAssessment$topics": "<p>The topics in the assessment.</p>"
+      }
+    },
+    "GuardrailTopicPolicyAction": {
+      "base": null,
+      "refs": {
+        "GuardrailTopic$action": "<p>The action the guardrail should take when it intervenes on a topic.</p>"
+      }
+    },
+    "GuardrailTopicPolicyAssessment": {
+      "base": "<p>A behavior assessment of a topic policy.</p>",
+      "refs": {
+        "GuardrailAssessment$topicPolicy": "<p>The topic policy.</p>"
+      }
+    },
+    "GuardrailTopicType": {
+      "base": null,
+      "refs": {
+        "GuardrailTopic$type": "<p>The type behavior that the guardrail should perform when the model detects the topic.</p>"
+      }
+    },
+    "GuardrailTrace": {
+      "base": null,
+      "refs": {
+        "GuardrailConfiguration$trace": "<p>The trace behavior for the guardrail.</p>",
+        "GuardrailStreamConfiguration$trace": "<p>The trace behavior for the guardrail.</p>"
+      }
+    },
+    "GuardrailTraceAssessment": {
+      "base": "<p>A Top level guardrail trace object. For more information, see <a>ConverseTrace</a>.</p>",
+      "refs": {
+        "ConverseStreamTrace$guardrail": "<p>The guardrail trace object. </p>",
+        "ConverseTrace$guardrail": "<p>The guardrail trace object. </p>"
       }
     },
     "GuardrailVersion": {
       "base": null,
       "refs": {
+        "GuardrailConfiguration$guardrailVersion": "<p>The version of the guardrail.</p>",
+        "GuardrailStreamConfiguration$guardrailVersion": "<p>The version of the guardrail.</p>",
         "InvokeModelRequest$guardrailVersion": "<p>The version number for the guardrail. The value can also be <code>DRAFT</code>.</p>",
         "InvokeModelWithResponseStreamRequest$guardrailVersion": "<p>The version number for the guardrail. The value can also be <code>DRAFT</code>.</p>"
+      }
+    },
+    "GuardrailWordPolicyAction": {
+      "base": null,
+      "refs": {
+        "GuardrailCustomWord$action": "<p>The action for the custom word.</p>",
+        "GuardrailManagedWord$action": "<p>The action for the managed word.</p>"
+      }
+    },
+    "GuardrailWordPolicyAssessment": {
+      "base": "<p>The word policy assessment.</p>",
+      "refs": {
+        "GuardrailAssessment$wordPolicy": "<p>The word policy.</p>"
       }
     },
     "ImageBlock": {
@@ -224,7 +468,7 @@
     "InferenceConfigurationMaxTokensInteger": {
       "base": null,
       "refs": {
-        "InferenceConfiguration$maxTokens": "<p>The maximum number of tokens to allow in the generated response. The default value is the maximum allowed value for the model that you are using. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters.html\">Inference parameters for foundatio{ \"messages\": [ { \"role\": \"user\", \"content\": [ { \"text\": \"what's the weather in Queens, NY and Austin, TX?\" } ] }, { \"role\": \"assistant\", \"content\": [ { \"toolUse\": { \"toolUseId\": \"1\", \"name\": \"get_weather\", \"input\": { \"city\": \"Queens\", \"state\": \"NY\" } } }, { \"toolUse\": { \"toolUseId\": \"2\", \"name\": \"get_weather\", \"input\": { \"city\": \"Austin\", \"state\": \"TX\" } } } ] }, { \"role\": \"user\", \"content\": [ { \"toolResult\": { \"toolUseId\": \"2\", \"content\": [ { \"json\": { \"weather\": \"40\" } } ] } }, { \"text\": \"...\" }, { \"toolResult\": { \"toolUseId\": \"1\", \"content\": [ { \"text\": \"result text\" } ] } } ] } ], \"toolConfig\": { \"tools\": [ { \"name\": \"get_weather\", \"description\": \"Get weather\", \"inputSchema\": { \"type\": \"object\", \"properties\": { \"city\": { \"type\": \"string\", \"description\": \"City of location\" }, \"state\": { \"type\": \"string\", \"description\": \"State of location\" } }, \"required\": [\"city\", \"state\"] } } ] } } n models</a>. </p>"
+        "InferenceConfiguration$maxTokens": "<p>The maximum number of tokens to allow in the generated response. The default value is the maximum allowed value for the model that you are using. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters.html\">Inference parameters for foundation models</a>. </p>"
       }
     },
     "InferenceConfigurationStopSequencesList": {
@@ -287,7 +531,7 @@
       }
     },
     "Message": {
-      "base": "<p>A message in the <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_runtime_Message.html\">Message</a> field. Use to send a message in a call to <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_runtime_Converse.html\">Converse</a>. </p>",
+      "base": "<p>A message input, or returned from, a call to <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_runtime_Converse.html\">Converse</a> or <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_runtime_ConverseStream.html\">ConverseStream</a>.</p>",
       "refs": {
         "ConverseOutput$message": "<p>The message that the model generates.</p>",
         "Messages$member": null
@@ -315,10 +559,10 @@
     "MimeType": {
       "base": null,
       "refs": {
-        "InvokeModelRequest$contentType": "<p>The MIME type of the input data in the request. The default value is <code>application/json</code>.</p>",
+        "InvokeModelRequest$contentType": "<p>The MIME type of the input data in the request. You must specify <code>application/json</code>.</p>",
         "InvokeModelRequest$accept": "<p>The desired MIME type of the inference body in the response. The default value is <code>application/json</code>.</p>",
         "InvokeModelResponse$contentType": "<p>The MIME type of the inference result.</p>",
-        "InvokeModelWithResponseStreamRequest$contentType": "<p>The MIME type of the input data in the request. The default value is <code>application/json</code>.</p>",
+        "InvokeModelWithResponseStreamRequest$contentType": "<p>The MIME type of the input data in the request. You must specify <code>application/json</code>.</p>",
         "InvokeModelWithResponseStreamRequest$accept": "<p>The desired MIME type of the inference body in the response. The default value is <code>application/json</code>.</p>",
         "InvokeModelWithResponseStreamResponse$contentType": "<p>The MIME type of the inference result.</p>"
       }
@@ -331,6 +575,12 @@
     "ModelNotReadyException": {
       "base": "<p>The model specified in the request is not ready to serve inference requests.</p>",
       "refs": {
+      }
+    },
+    "ModelOutputs": {
+      "base": null,
+      "refs": {
+        "GuardrailTraceAssessment$modelOutput": "<p>The output from the model.</p>"
       }
     },
     "ModelStreamErrorException": {
@@ -408,9 +658,9 @@
       }
     },
     "SpecificToolChoice": {
-      "base": "<p>The model must request a specific tool.</p> <note> <p>This field is only supported by Anthropic Claude 3 models.</p> </note>",
+      "base": "<p>The model must request a specific tool. For example, <code>{\"tool\" : {\"name\" : \"Your tool name\"}}</code>.</p> <note> <p>This field is only supported by Anthropic Claude 3 models.</p> </note>",
       "refs": {
-        "ToolChoice$tool": "<p>The Model must request the specified tool.</p>"
+        "ToolChoice$tool": "<p>The Model must request the specified tool. Only supported by Anthropic Claude 3 models. </p>"
       }
     },
     "StatusCode": {
@@ -432,12 +682,22 @@
       "refs": {
         "ContentBlock$text": "<p>Text to include in the message.</p>",
         "ContentBlockDelta$text": "<p>The content text.</p>",
+        "GuardrailAssessmentListMap$key": null,
+        "GuardrailAssessmentMap$key": null,
+        "GuardrailConverseTextBlock$text": "<p>The text that you want to guard.</p>",
+        "GuardrailCustomWord$match": "<p>The match for the custom word.</p>",
+        "GuardrailManagedWord$match": "<p>The match for the managed word.</p>",
+        "GuardrailPiiEntityFilter$match": "<p>The PII entity filter match.</p>",
+        "GuardrailRegexFilter$name": "<p>The regex filter name.</p>",
+        "GuardrailRegexFilter$match": "<p>The regesx filter match.</p>",
+        "GuardrailRegexFilter$regex": "<p>The regex query.</p>",
+        "GuardrailTopic$name": "<p>The name for the guardrail.</p>",
         "ToolResultContentBlock$text": "<p>A tool result that is text.</p>",
         "ToolUseBlockDelta$input": "<p>The input for a requested tool.</p>"
       }
     },
     "SystemContentBlock": {
-      "base": "<p>A system content block</p>",
+      "base": "<p>A system content block.</p>",
       "refs": {
         "SystemContentBlocks$member": null
       }
@@ -488,7 +748,7 @@
       }
     },
     "ToolChoice": {
-      "base": "<p>Forces a model to use a tool.</p>",
+      "base": "<p>Determines which tools the model should request in a call to <code>Converse</code> or <code>ConverseStream</code>. <code>ToolChoice</code> is only supported by Anthropic Claude 3 models and by Mistral AI Mistral Large.</p>",
       "refs": {
         "ToolConfiguration$toolChoice": "<p>If supported by model, forces the model to request a tool.</p>"
       }

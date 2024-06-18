@@ -11,7 +11,8 @@
     "serviceId":"EKS",
     "signatureVersion":"v4",
     "signingName":"eks",
-    "uid":"eks-2017-11-01"
+    "uid":"eks-2017-11-01",
+    "auth":["aws.auth#sigv4"]
   },
   "operations":{
     "AssociateAccessPolicy":{
@@ -2321,8 +2322,36 @@
         "subnets":{"shape":"StringList"},
         "selectors":{"shape":"FargateProfileSelectors"},
         "status":{"shape":"FargateProfileStatus"},
-        "tags":{"shape":"TagMap"}
+        "tags":{"shape":"TagMap"},
+        "health":{"shape":"FargateProfileHealth"}
       }
+    },
+    "FargateProfileHealth":{
+      "type":"structure",
+      "members":{
+        "issues":{"shape":"FargateProfileIssueList"}
+      }
+    },
+    "FargateProfileIssue":{
+      "type":"structure",
+      "members":{
+        "code":{"shape":"FargateProfileIssueCode"},
+        "message":{"shape":"String"},
+        "resourceIds":{"shape":"StringList"}
+      }
+    },
+    "FargateProfileIssueCode":{
+      "type":"string",
+      "enum":[
+        "PodExecutionRoleAlreadyInUse",
+        "AccessDenied",
+        "ClusterUnreachable",
+        "InternalFailure"
+      ]
+    },
+    "FargateProfileIssueList":{
+      "type":"list",
+      "member":{"shape":"FargateProfileIssue"}
     },
     "FargateProfileLabel":{
       "type":"map",

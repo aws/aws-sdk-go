@@ -216,6 +216,12 @@
       "limit_key": "MaxResults",
       "result_key": "LineageGroupSummaries"
     },
+    "ListMlflowTrackingServers": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults",
+      "result_key": "TrackingServerSummaries"
+    },
     "ListModelBiasJobDefinitions": {
       "input_token": "NextToken",
       "output_token": "NextToken",

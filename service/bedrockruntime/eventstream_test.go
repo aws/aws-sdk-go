@@ -254,6 +254,1369 @@ func mockConverseStreamReadEvents() (
 			Metrics: &ConverseStreamMetrics{
 				LatencyMs: aws.Int64(1234),
 			},
+			Trace: &ConverseStreamTrace{
+				Guardrail: &GuardrailTraceAssessment{
+					InputAssessment: map[string]*GuardrailAssessment{
+						"a": {
+							ContentPolicy: &GuardrailContentPolicyAssessment{
+								Filters: []*GuardrailContentFilter{
+									{
+										Action:     aws.String("string value goes here"),
+										Confidence: aws.String("string value goes here"),
+										Type:       aws.String("string value goes here"),
+									},
+									{
+										Action:     aws.String("string value goes here"),
+										Confidence: aws.String("string value goes here"),
+										Type:       aws.String("string value goes here"),
+									},
+									{
+										Action:     aws.String("string value goes here"),
+										Confidence: aws.String("string value goes here"),
+										Type:       aws.String("string value goes here"),
+									},
+								},
+							},
+							SensitiveInformationPolicy: &GuardrailSensitiveInformationPolicyAssessment{
+								PiiEntities: []*GuardrailPiiEntityFilter{
+									{
+										Action: aws.String("string value goes here"),
+										Match:  aws.String("string value goes here"),
+										Type:   aws.String("string value goes here"),
+									},
+									{
+										Action: aws.String("string value goes here"),
+										Match:  aws.String("string value goes here"),
+										Type:   aws.String("string value goes here"),
+									},
+									{
+										Action: aws.String("string value goes here"),
+										Match:  aws.String("string value goes here"),
+										Type:   aws.String("string value goes here"),
+									},
+								},
+								Regexes: []*GuardrailRegexFilter{
+									{
+										Action: aws.String("string value goes here"),
+										Match:  aws.String("string value goes here"),
+										Name:   aws.String("string value goes here"),
+										Regex:  aws.String("string value goes here"),
+									},
+									{
+										Action: aws.String("string value goes here"),
+										Match:  aws.String("string value goes here"),
+										Name:   aws.String("string value goes here"),
+										Regex:  aws.String("string value goes here"),
+									},
+									{
+										Action: aws.String("string value goes here"),
+										Match:  aws.String("string value goes here"),
+										Name:   aws.String("string value goes here"),
+										Regex:  aws.String("string value goes here"),
+									},
+								},
+							},
+							TopicPolicy: &GuardrailTopicPolicyAssessment{
+								Topics: []*GuardrailTopic{
+									{
+										Action: aws.String("string value goes here"),
+										Name:   aws.String("string value goes here"),
+										Type:   aws.String("string value goes here"),
+									},
+									{
+										Action: aws.String("string value goes here"),
+										Name:   aws.String("string value goes here"),
+										Type:   aws.String("string value goes here"),
+									},
+									{
+										Action: aws.String("string value goes here"),
+										Name:   aws.String("string value goes here"),
+										Type:   aws.String("string value goes here"),
+									},
+								},
+							},
+							WordPolicy: &GuardrailWordPolicyAssessment{
+								CustomWords: []*GuardrailCustomWord{
+									{
+										Action: aws.String("string value goes here"),
+										Match:  aws.String("string value goes here"),
+									},
+									{
+										Action: aws.String("string value goes here"),
+										Match:  aws.String("string value goes here"),
+									},
+									{
+										Action: aws.String("string value goes here"),
+										Match:  aws.String("string value goes here"),
+									},
+								},
+								ManagedWordLists: []*GuardrailManagedWord{
+									{
+										Action: aws.String("string value goes here"),
+										Match:  aws.String("string value goes here"),
+										Type:   aws.String("string value goes here"),
+									},
+									{
+										Action: aws.String("string value goes here"),
+										Match:  aws.String("string value goes here"),
+										Type:   aws.String("string value goes here"),
+									},
+									{
+										Action: aws.String("string value goes here"),
+										Match:  aws.String("string value goes here"),
+										Type:   aws.String("string value goes here"),
+									},
+								},
+							},
+						},
+						"b": {
+							ContentPolicy: &GuardrailContentPolicyAssessment{
+								Filters: []*GuardrailContentFilter{
+									{
+										Action:     aws.String("string value goes here"),
+										Confidence: aws.String("string value goes here"),
+										Type:       aws.String("string value goes here"),
+									},
+									{
+										Action:     aws.String("string value goes here"),
+										Confidence: aws.String("string value goes here"),
+										Type:       aws.String("string value goes here"),
+									},
+									{
+										Action:     aws.String("string value goes here"),
+										Confidence: aws.String("string value goes here"),
+										Type:       aws.String("string value goes here"),
+									},
+								},
+							},
+							SensitiveInformationPolicy: &GuardrailSensitiveInformationPolicyAssessment{
+								PiiEntities: []*GuardrailPiiEntityFilter{
+									{
+										Action: aws.String("string value goes here"),
+										Match:  aws.String("string value goes here"),
+										Type:   aws.String("string value goes here"),
+									},
+									{
+										Action: aws.String("string value goes here"),
+										Match:  aws.String("string value goes here"),
+										Type:   aws.String("string value goes here"),
+									},
+									{
+										Action: aws.String("string value goes here"),
+										Match:  aws.String("string value goes here"),
+										Type:   aws.String("string value goes here"),
+									},
+								},
+								Regexes: []*GuardrailRegexFilter{
+									{
+										Action: aws.String("string value goes here"),
+										Match:  aws.String("string value goes here"),
+										Name:   aws.String("string value goes here"),
+										Regex:  aws.String("string value goes here"),
+									},
+									{
+										Action: aws.String("string value goes here"),
+										Match:  aws.String("string value goes here"),
+										Name:   aws.String("string value goes here"),
+										Regex:  aws.String("string value goes here"),
+									},
+									{
+										Action: aws.String("string value goes here"),
+										Match:  aws.String("string value goes here"),
+										Name:   aws.String("string value goes here"),
+										Regex:  aws.String("string value goes here"),
+									},
+								},
+							},
+							TopicPolicy: &GuardrailTopicPolicyAssessment{
+								Topics: []*GuardrailTopic{
+									{
+										Action: aws.String("string value goes here"),
+										Name:   aws.String("string value goes here"),
+										Type:   aws.String("string value goes here"),
+									},
+									{
+										Action: aws.String("string value goes here"),
+										Name:   aws.String("string value goes here"),
+										Type:   aws.String("string value goes here"),
+									},
+									{
+										Action: aws.String("string value goes here"),
+										Name:   aws.String("string value goes here"),
+										Type:   aws.String("string value goes here"),
+									},
+								},
+							},
+							WordPolicy: &GuardrailWordPolicyAssessment{
+								CustomWords: []*GuardrailCustomWord{
+									{
+										Action: aws.String("string value goes here"),
+										Match:  aws.String("string value goes here"),
+									},
+									{
+										Action: aws.String("string value goes here"),
+										Match:  aws.String("string value goes here"),
+									},
+									{
+										Action: aws.String("string value goes here"),
+										Match:  aws.String("string value goes here"),
+									},
+								},
+								ManagedWordLists: []*GuardrailManagedWord{
+									{
+										Action: aws.String("string value goes here"),
+										Match:  aws.String("string value goes here"),
+										Type:   aws.String("string value goes here"),
+									},
+									{
+										Action: aws.String("string value goes here"),
+										Match:  aws.String("string value goes here"),
+										Type:   aws.String("string value goes here"),
+									},
+									{
+										Action: aws.String("string value goes here"),
+										Match:  aws.String("string value goes here"),
+										Type:   aws.String("string value goes here"),
+									},
+								},
+							},
+						},
+						"c": {
+							ContentPolicy: &GuardrailContentPolicyAssessment{
+								Filters: []*GuardrailContentFilter{
+									{
+										Action:     aws.String("string value goes here"),
+										Confidence: aws.String("string value goes here"),
+										Type:       aws.String("string value goes here"),
+									},
+									{
+										Action:     aws.String("string value goes here"),
+										Confidence: aws.String("string value goes here"),
+										Type:       aws.String("string value goes here"),
+									},
+									{
+										Action:     aws.String("string value goes here"),
+										Confidence: aws.String("string value goes here"),
+										Type:       aws.String("string value goes here"),
+									},
+								},
+							},
+							SensitiveInformationPolicy: &GuardrailSensitiveInformationPolicyAssessment{
+								PiiEntities: []*GuardrailPiiEntityFilter{
+									{
+										Action: aws.String("string value goes here"),
+										Match:  aws.String("string value goes here"),
+										Type:   aws.String("string value goes here"),
+									},
+									{
+										Action: aws.String("string value goes here"),
+										Match:  aws.String("string value goes here"),
+										Type:   aws.String("string value goes here"),
+									},
+									{
+										Action: aws.String("string value goes here"),
+										Match:  aws.String("string value goes here"),
+										Type:   aws.String("string value goes here"),
+									},
+								},
+								Regexes: []*GuardrailRegexFilter{
+									{
+										Action: aws.String("string value goes here"),
+										Match:  aws.String("string value goes here"),
+										Name:   aws.String("string value goes here"),
+										Regex:  aws.String("string value goes here"),
+									},
+									{
+										Action: aws.String("string value goes here"),
+										Match:  aws.String("string value goes here"),
+										Name:   aws.String("string value goes here"),
+										Regex:  aws.String("string value goes here"),
+									},
+									{
+										Action: aws.String("string value goes here"),
+										Match:  aws.String("string value goes here"),
+										Name:   aws.String("string value goes here"),
+										Regex:  aws.String("string value goes here"),
+									},
+								},
+							},
+							TopicPolicy: &GuardrailTopicPolicyAssessment{
+								Topics: []*GuardrailTopic{
+									{
+										Action: aws.String("string value goes here"),
+										Name:   aws.String("string value goes here"),
+										Type:   aws.String("string value goes here"),
+									},
+									{
+										Action: aws.String("string value goes here"),
+										Name:   aws.String("string value goes here"),
+										Type:   aws.String("string value goes here"),
+									},
+									{
+										Action: aws.String("string value goes here"),
+										Name:   aws.String("string value goes here"),
+										Type:   aws.String("string value goes here"),
+									},
+								},
+							},
+							WordPolicy: &GuardrailWordPolicyAssessment{
+								CustomWords: []*GuardrailCustomWord{
+									{
+										Action: aws.String("string value goes here"),
+										Match:  aws.String("string value goes here"),
+									},
+									{
+										Action: aws.String("string value goes here"),
+										Match:  aws.String("string value goes here"),
+									},
+									{
+										Action: aws.String("string value goes here"),
+										Match:  aws.String("string value goes here"),
+									},
+								},
+								ManagedWordLists: []*GuardrailManagedWord{
+									{
+										Action: aws.String("string value goes here"),
+										Match:  aws.String("string value goes here"),
+										Type:   aws.String("string value goes here"),
+									},
+									{
+										Action: aws.String("string value goes here"),
+										Match:  aws.String("string value goes here"),
+										Type:   aws.String("string value goes here"),
+									},
+									{
+										Action: aws.String("string value goes here"),
+										Match:  aws.String("string value goes here"),
+										Type:   aws.String("string value goes here"),
+									},
+								},
+							},
+						},
+					},
+					ModelOutput: []*string{
+						aws.String("string value goes here"),
+						aws.String("string value goes here"),
+						aws.String("string value goes here"),
+					},
+					OutputAssessments: map[string][]*GuardrailAssessment{
+						"a": {
+							{
+								ContentPolicy: &GuardrailContentPolicyAssessment{
+									Filters: []*GuardrailContentFilter{
+										{
+											Action:     aws.String("string value goes here"),
+											Confidence: aws.String("string value goes here"),
+											Type:       aws.String("string value goes here"),
+										},
+										{
+											Action:     aws.String("string value goes here"),
+											Confidence: aws.String("string value goes here"),
+											Type:       aws.String("string value goes here"),
+										},
+										{
+											Action:     aws.String("string value goes here"),
+											Confidence: aws.String("string value goes here"),
+											Type:       aws.String("string value goes here"),
+										},
+									},
+								},
+								SensitiveInformationPolicy: &GuardrailSensitiveInformationPolicyAssessment{
+									PiiEntities: []*GuardrailPiiEntityFilter{
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+									},
+									Regexes: []*GuardrailRegexFilter{
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Name:   aws.String("string value goes here"),
+											Regex:  aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Name:   aws.String("string value goes here"),
+											Regex:  aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Name:   aws.String("string value goes here"),
+											Regex:  aws.String("string value goes here"),
+										},
+									},
+								},
+								TopicPolicy: &GuardrailTopicPolicyAssessment{
+									Topics: []*GuardrailTopic{
+										{
+											Action: aws.String("string value goes here"),
+											Name:   aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Name:   aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Name:   aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+									},
+								},
+								WordPolicy: &GuardrailWordPolicyAssessment{
+									CustomWords: []*GuardrailCustomWord{
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+										},
+									},
+									ManagedWordLists: []*GuardrailManagedWord{
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+									},
+								},
+							},
+							{
+								ContentPolicy: &GuardrailContentPolicyAssessment{
+									Filters: []*GuardrailContentFilter{
+										{
+											Action:     aws.String("string value goes here"),
+											Confidence: aws.String("string value goes here"),
+											Type:       aws.String("string value goes here"),
+										},
+										{
+											Action:     aws.String("string value goes here"),
+											Confidence: aws.String("string value goes here"),
+											Type:       aws.String("string value goes here"),
+										},
+										{
+											Action:     aws.String("string value goes here"),
+											Confidence: aws.String("string value goes here"),
+											Type:       aws.String("string value goes here"),
+										},
+									},
+								},
+								SensitiveInformationPolicy: &GuardrailSensitiveInformationPolicyAssessment{
+									PiiEntities: []*GuardrailPiiEntityFilter{
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+									},
+									Regexes: []*GuardrailRegexFilter{
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Name:   aws.String("string value goes here"),
+											Regex:  aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Name:   aws.String("string value goes here"),
+											Regex:  aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Name:   aws.String("string value goes here"),
+											Regex:  aws.String("string value goes here"),
+										},
+									},
+								},
+								TopicPolicy: &GuardrailTopicPolicyAssessment{
+									Topics: []*GuardrailTopic{
+										{
+											Action: aws.String("string value goes here"),
+											Name:   aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Name:   aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Name:   aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+									},
+								},
+								WordPolicy: &GuardrailWordPolicyAssessment{
+									CustomWords: []*GuardrailCustomWord{
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+										},
+									},
+									ManagedWordLists: []*GuardrailManagedWord{
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+									},
+								},
+							},
+							{
+								ContentPolicy: &GuardrailContentPolicyAssessment{
+									Filters: []*GuardrailContentFilter{
+										{
+											Action:     aws.String("string value goes here"),
+											Confidence: aws.String("string value goes here"),
+											Type:       aws.String("string value goes here"),
+										},
+										{
+											Action:     aws.String("string value goes here"),
+											Confidence: aws.String("string value goes here"),
+											Type:       aws.String("string value goes here"),
+										},
+										{
+											Action:     aws.String("string value goes here"),
+											Confidence: aws.String("string value goes here"),
+											Type:       aws.String("string value goes here"),
+										},
+									},
+								},
+								SensitiveInformationPolicy: &GuardrailSensitiveInformationPolicyAssessment{
+									PiiEntities: []*GuardrailPiiEntityFilter{
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+									},
+									Regexes: []*GuardrailRegexFilter{
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Name:   aws.String("string value goes here"),
+											Regex:  aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Name:   aws.String("string value goes here"),
+											Regex:  aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Name:   aws.String("string value goes here"),
+											Regex:  aws.String("string value goes here"),
+										},
+									},
+								},
+								TopicPolicy: &GuardrailTopicPolicyAssessment{
+									Topics: []*GuardrailTopic{
+										{
+											Action: aws.String("string value goes here"),
+											Name:   aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Name:   aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Name:   aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+									},
+								},
+								WordPolicy: &GuardrailWordPolicyAssessment{
+									CustomWords: []*GuardrailCustomWord{
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+										},
+									},
+									ManagedWordLists: []*GuardrailManagedWord{
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+									},
+								},
+							},
+						},
+						"b": {
+							{
+								ContentPolicy: &GuardrailContentPolicyAssessment{
+									Filters: []*GuardrailContentFilter{
+										{
+											Action:     aws.String("string value goes here"),
+											Confidence: aws.String("string value goes here"),
+											Type:       aws.String("string value goes here"),
+										},
+										{
+											Action:     aws.String("string value goes here"),
+											Confidence: aws.String("string value goes here"),
+											Type:       aws.String("string value goes here"),
+										},
+										{
+											Action:     aws.String("string value goes here"),
+											Confidence: aws.String("string value goes here"),
+											Type:       aws.String("string value goes here"),
+										},
+									},
+								},
+								SensitiveInformationPolicy: &GuardrailSensitiveInformationPolicyAssessment{
+									PiiEntities: []*GuardrailPiiEntityFilter{
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+									},
+									Regexes: []*GuardrailRegexFilter{
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Name:   aws.String("string value goes here"),
+											Regex:  aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Name:   aws.String("string value goes here"),
+											Regex:  aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Name:   aws.String("string value goes here"),
+											Regex:  aws.String("string value goes here"),
+										},
+									},
+								},
+								TopicPolicy: &GuardrailTopicPolicyAssessment{
+									Topics: []*GuardrailTopic{
+										{
+											Action: aws.String("string value goes here"),
+											Name:   aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Name:   aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Name:   aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+									},
+								},
+								WordPolicy: &GuardrailWordPolicyAssessment{
+									CustomWords: []*GuardrailCustomWord{
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+										},
+									},
+									ManagedWordLists: []*GuardrailManagedWord{
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+									},
+								},
+							},
+							{
+								ContentPolicy: &GuardrailContentPolicyAssessment{
+									Filters: []*GuardrailContentFilter{
+										{
+											Action:     aws.String("string value goes here"),
+											Confidence: aws.String("string value goes here"),
+											Type:       aws.String("string value goes here"),
+										},
+										{
+											Action:     aws.String("string value goes here"),
+											Confidence: aws.String("string value goes here"),
+											Type:       aws.String("string value goes here"),
+										},
+										{
+											Action:     aws.String("string value goes here"),
+											Confidence: aws.String("string value goes here"),
+											Type:       aws.String("string value goes here"),
+										},
+									},
+								},
+								SensitiveInformationPolicy: &GuardrailSensitiveInformationPolicyAssessment{
+									PiiEntities: []*GuardrailPiiEntityFilter{
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+									},
+									Regexes: []*GuardrailRegexFilter{
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Name:   aws.String("string value goes here"),
+											Regex:  aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Name:   aws.String("string value goes here"),
+											Regex:  aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Name:   aws.String("string value goes here"),
+											Regex:  aws.String("string value goes here"),
+										},
+									},
+								},
+								TopicPolicy: &GuardrailTopicPolicyAssessment{
+									Topics: []*GuardrailTopic{
+										{
+											Action: aws.String("string value goes here"),
+											Name:   aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Name:   aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Name:   aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+									},
+								},
+								WordPolicy: &GuardrailWordPolicyAssessment{
+									CustomWords: []*GuardrailCustomWord{
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+										},
+									},
+									ManagedWordLists: []*GuardrailManagedWord{
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+									},
+								},
+							},
+							{
+								ContentPolicy: &GuardrailContentPolicyAssessment{
+									Filters: []*GuardrailContentFilter{
+										{
+											Action:     aws.String("string value goes here"),
+											Confidence: aws.String("string value goes here"),
+											Type:       aws.String("string value goes here"),
+										},
+										{
+											Action:     aws.String("string value goes here"),
+											Confidence: aws.String("string value goes here"),
+											Type:       aws.String("string value goes here"),
+										},
+										{
+											Action:     aws.String("string value goes here"),
+											Confidence: aws.String("string value goes here"),
+											Type:       aws.String("string value goes here"),
+										},
+									},
+								},
+								SensitiveInformationPolicy: &GuardrailSensitiveInformationPolicyAssessment{
+									PiiEntities: []*GuardrailPiiEntityFilter{
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+									},
+									Regexes: []*GuardrailRegexFilter{
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Name:   aws.String("string value goes here"),
+											Regex:  aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Name:   aws.String("string value goes here"),
+											Regex:  aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Name:   aws.String("string value goes here"),
+											Regex:  aws.String("string value goes here"),
+										},
+									},
+								},
+								TopicPolicy: &GuardrailTopicPolicyAssessment{
+									Topics: []*GuardrailTopic{
+										{
+											Action: aws.String("string value goes here"),
+											Name:   aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Name:   aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Name:   aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+									},
+								},
+								WordPolicy: &GuardrailWordPolicyAssessment{
+									CustomWords: []*GuardrailCustomWord{
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+										},
+									},
+									ManagedWordLists: []*GuardrailManagedWord{
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+									},
+								},
+							},
+						},
+						"c": {
+							{
+								ContentPolicy: &GuardrailContentPolicyAssessment{
+									Filters: []*GuardrailContentFilter{
+										{
+											Action:     aws.String("string value goes here"),
+											Confidence: aws.String("string value goes here"),
+											Type:       aws.String("string value goes here"),
+										},
+										{
+											Action:     aws.String("string value goes here"),
+											Confidence: aws.String("string value goes here"),
+											Type:       aws.String("string value goes here"),
+										},
+										{
+											Action:     aws.String("string value goes here"),
+											Confidence: aws.String("string value goes here"),
+											Type:       aws.String("string value goes here"),
+										},
+									},
+								},
+								SensitiveInformationPolicy: &GuardrailSensitiveInformationPolicyAssessment{
+									PiiEntities: []*GuardrailPiiEntityFilter{
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+									},
+									Regexes: []*GuardrailRegexFilter{
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Name:   aws.String("string value goes here"),
+											Regex:  aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Name:   aws.String("string value goes here"),
+											Regex:  aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Name:   aws.String("string value goes here"),
+											Regex:  aws.String("string value goes here"),
+										},
+									},
+								},
+								TopicPolicy: &GuardrailTopicPolicyAssessment{
+									Topics: []*GuardrailTopic{
+										{
+											Action: aws.String("string value goes here"),
+											Name:   aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Name:   aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Name:   aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+									},
+								},
+								WordPolicy: &GuardrailWordPolicyAssessment{
+									CustomWords: []*GuardrailCustomWord{
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+										},
+									},
+									ManagedWordLists: []*GuardrailManagedWord{
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+									},
+								},
+							},
+							{
+								ContentPolicy: &GuardrailContentPolicyAssessment{
+									Filters: []*GuardrailContentFilter{
+										{
+											Action:     aws.String("string value goes here"),
+											Confidence: aws.String("string value goes here"),
+											Type:       aws.String("string value goes here"),
+										},
+										{
+											Action:     aws.String("string value goes here"),
+											Confidence: aws.String("string value goes here"),
+											Type:       aws.String("string value goes here"),
+										},
+										{
+											Action:     aws.String("string value goes here"),
+											Confidence: aws.String("string value goes here"),
+											Type:       aws.String("string value goes here"),
+										},
+									},
+								},
+								SensitiveInformationPolicy: &GuardrailSensitiveInformationPolicyAssessment{
+									PiiEntities: []*GuardrailPiiEntityFilter{
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+									},
+									Regexes: []*GuardrailRegexFilter{
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Name:   aws.String("string value goes here"),
+											Regex:  aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Name:   aws.String("string value goes here"),
+											Regex:  aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Name:   aws.String("string value goes here"),
+											Regex:  aws.String("string value goes here"),
+										},
+									},
+								},
+								TopicPolicy: &GuardrailTopicPolicyAssessment{
+									Topics: []*GuardrailTopic{
+										{
+											Action: aws.String("string value goes here"),
+											Name:   aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Name:   aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Name:   aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+									},
+								},
+								WordPolicy: &GuardrailWordPolicyAssessment{
+									CustomWords: []*GuardrailCustomWord{
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+										},
+									},
+									ManagedWordLists: []*GuardrailManagedWord{
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+									},
+								},
+							},
+							{
+								ContentPolicy: &GuardrailContentPolicyAssessment{
+									Filters: []*GuardrailContentFilter{
+										{
+											Action:     aws.String("string value goes here"),
+											Confidence: aws.String("string value goes here"),
+											Type:       aws.String("string value goes here"),
+										},
+										{
+											Action:     aws.String("string value goes here"),
+											Confidence: aws.String("string value goes here"),
+											Type:       aws.String("string value goes here"),
+										},
+										{
+											Action:     aws.String("string value goes here"),
+											Confidence: aws.String("string value goes here"),
+											Type:       aws.String("string value goes here"),
+										},
+									},
+								},
+								SensitiveInformationPolicy: &GuardrailSensitiveInformationPolicyAssessment{
+									PiiEntities: []*GuardrailPiiEntityFilter{
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+									},
+									Regexes: []*GuardrailRegexFilter{
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Name:   aws.String("string value goes here"),
+											Regex:  aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Name:   aws.String("string value goes here"),
+											Regex:  aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Name:   aws.String("string value goes here"),
+											Regex:  aws.String("string value goes here"),
+										},
+									},
+								},
+								TopicPolicy: &GuardrailTopicPolicyAssessment{
+									Topics: []*GuardrailTopic{
+										{
+											Action: aws.String("string value goes here"),
+											Name:   aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Name:   aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Name:   aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+									},
+								},
+								WordPolicy: &GuardrailWordPolicyAssessment{
+									CustomWords: []*GuardrailCustomWord{
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+										},
+									},
+									ManagedWordLists: []*GuardrailManagedWord{
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+										{
+											Action: aws.String("string value goes here"),
+											Match:  aws.String("string value goes here"),
+											Type:   aws.String("string value goes here"),
+										},
+									},
+								},
+							},
+						},
+					},
+				},
+			},
 			Usage: &TokenUsage{
 				InputTokens:  aws.Int64(123),
 				OutputTokens: aws.Int64(123),

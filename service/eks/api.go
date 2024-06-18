@@ -12569,6 +12569,10 @@ type FargateProfile struct {
 	// The name of the Fargate profile.
 	FargateProfileName *string `locationName:"fargateProfileName" type:"string"`
 
+	// The health status of the Fargate profile. If there are issues with your Fargate
+	// profile's health, they are listed here.
+	Health *FargateProfileHealth `locationName:"health" type:"structure"`
+
 	// The Amazon Resource Name (ARN) of the Pod execution role to use for any Pod
 	// that matches the selectors in the Fargate profile. For more information,
 	// see Pod execution role (https://docs.aws.amazon.com/eks/latest/userguide/pod-execution-role.html)
@@ -12632,6 +12636,12 @@ func (s *FargateProfile) SetFargateProfileName(v string) *FargateProfile {
 	return s
 }
 
+// SetHealth sets the Health field's value.
+func (s *FargateProfile) SetHealth(v *FargateProfileHealth) *FargateProfile {
+	s.Health = v
+	return s
+}
+
 // SetPodExecutionRoleArn sets the PodExecutionRoleArn field's value.
 func (s *FargateProfile) SetPodExecutionRoleArn(v string) *FargateProfile {
 	s.PodExecutionRoleArn = &v
@@ -12659,6 +12669,89 @@ func (s *FargateProfile) SetSubnets(v []*string) *FargateProfile {
 // SetTags sets the Tags field's value.
 func (s *FargateProfile) SetTags(v map[string]*string) *FargateProfile {
 	s.Tags = v
+	return s
+}
+
+// The health status of the Fargate profile. If there are issues with your Fargate
+// profile's health, they are listed here.
+type FargateProfileHealth struct {
+	_ struct{} `type:"structure"`
+
+	// Any issues that are associated with the Fargate profile.
+	Issues []*FargateProfileIssue `locationName:"issues" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FargateProfileHealth) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FargateProfileHealth) GoString() string {
+	return s.String()
+}
+
+// SetIssues sets the Issues field's value.
+func (s *FargateProfileHealth) SetIssues(v []*FargateProfileIssue) *FargateProfileHealth {
+	s.Issues = v
+	return s
+}
+
+// An issue that is associated with the Fargate profile.
+type FargateProfileIssue struct {
+	_ struct{} `type:"structure"`
+
+	// A brief description of the error.
+	Code *string `locationName:"code" type:"string" enum:"FargateProfileIssueCode"`
+
+	// The error message associated with the issue.
+	Message *string `locationName:"message" type:"string"`
+
+	// The Amazon Web Services resources that are affected by this issue.
+	ResourceIds []*string `locationName:"resourceIds" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FargateProfileIssue) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FargateProfileIssue) GoString() string {
+	return s.String()
+}
+
+// SetCode sets the Code field's value.
+func (s *FargateProfileIssue) SetCode(v string) *FargateProfileIssue {
+	s.Code = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *FargateProfileIssue) SetMessage(v string) *FargateProfileIssue {
+	s.Message = &v
+	return s
+}
+
+// SetResourceIds sets the ResourceIds field's value.
+func (s *FargateProfileIssue) SetResourceIds(v []*string) *FargateProfileIssue {
+	s.ResourceIds = v
 	return s
 }
 
@@ -19845,6 +19938,30 @@ func ErrorCode_Values() []string {
 		ErrorCodeAdmissionRequestDenied,
 		ErrorCodeUnsupportedAddonModification,
 		ErrorCodeK8sResourceNotFound,
+	}
+}
+
+const (
+	// FargateProfileIssueCodePodExecutionRoleAlreadyInUse is a FargateProfileIssueCode enum value
+	FargateProfileIssueCodePodExecutionRoleAlreadyInUse = "PodExecutionRoleAlreadyInUse"
+
+	// FargateProfileIssueCodeAccessDenied is a FargateProfileIssueCode enum value
+	FargateProfileIssueCodeAccessDenied = "AccessDenied"
+
+	// FargateProfileIssueCodeClusterUnreachable is a FargateProfileIssueCode enum value
+	FargateProfileIssueCodeClusterUnreachable = "ClusterUnreachable"
+
+	// FargateProfileIssueCodeInternalFailure is a FargateProfileIssueCode enum value
+	FargateProfileIssueCodeInternalFailure = "InternalFailure"
+)
+
+// FargateProfileIssueCode_Values returns all elements of the FargateProfileIssueCode enum
+func FargateProfileIssueCode_Values() []string {
+	return []string{
+		FargateProfileIssueCodePodExecutionRoleAlreadyInUse,
+		FargateProfileIssueCodeAccessDenied,
+		FargateProfileIssueCodeClusterUnreachable,
+		FargateProfileIssueCodeInternalFailure,
 	}
 }
 
