@@ -8,7 +8,8 @@
     "serviceFullName":"Amazon OpenSearch Service",
     "serviceId":"OpenSearch",
     "signatureVersion":"v4",
-    "uid":"opensearch-2021-01-01"
+    "uid":"opensearch-2021-01-01",
+    "auth":["aws.auth#sigv4"]
   },
   "operations":{
     "AcceptInboundConnection":{
@@ -1148,6 +1149,7 @@
         "Enabled":{"shape":"Boolean"},
         "InternalUserDatabaseEnabled":{"shape":"Boolean"},
         "SAMLOptions":{"shape":"SAMLOptionsOutput"},
+        "JWTOptions":{"shape":"JWTOptionsOutput"},
         "AnonymousAuthDisableDate":{"shape":"DisableTimestamp"},
         "AnonymousAuthEnabled":{"shape":"Boolean"}
       }
@@ -1159,6 +1161,7 @@
         "InternalUserDatabaseEnabled":{"shape":"Boolean"},
         "MasterUserOptions":{"shape":"MasterUserOptions"},
         "SAMLOptions":{"shape":"SAMLOptionsInput"},
+        "JWTOptions":{"shape":"JWTOptionsInput"},
         "AnonymousAuthEnabled":{"shape":"Boolean"}
       }
     },
@@ -2907,6 +2910,24 @@
       "type":"list",
       "member":{"shape":"Issue"}
     },
+    "JWTOptionsInput":{
+      "type":"structure",
+      "members":{
+        "Enabled":{"shape":"Boolean"},
+        "SubjectKey":{"shape":"SubjectKey"},
+        "RolesKey":{"shape":"RolesKey"},
+        "PublicKey":{"shape":"String"}
+      }
+    },
+    "JWTOptionsOutput":{
+      "type":"structure",
+      "members":{
+        "Enabled":{"shape":"Boolean"},
+        "SubjectKey":{"shape":"String"},
+        "RolesKey":{"shape":"String"},
+        "PublicKey":{"shape":"String"}
+      }
+    },
     "KmsKeyId":{
       "type":"string",
       "max":500,
@@ -3906,6 +3927,11 @@
       "min":20,
       "pattern":"arn:(aws|aws\\-cn|aws\\-us\\-gov|aws\\-iso|aws\\-iso\\-b):iam::[0-9]+:role\\/.*"
     },
+    "RolesKey":{
+      "type":"string",
+      "max":64,
+      "min":1
+    },
     "RollbackOnDisable":{
       "type":"string",
       "enum":[
@@ -4177,6 +4203,11 @@
     "StringList":{
       "type":"list",
       "member":{"shape":"String"}
+    },
+    "SubjectKey":{
+      "type":"string",
+      "max":64,
+      "min":1
     },
     "TLSSecurityPolicy":{
       "type":"string",

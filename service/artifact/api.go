@@ -1593,6 +1593,9 @@ func (s *ReportDetail) SetVersion(v int64) *ReportDetail {
 type ReportSummary struct {
 	_ struct{} `type:"structure"`
 
+	// Acceptance type for report.
+	AcceptanceType *string `locationName:"acceptanceType" type:"string" enum:"AcceptanceType"`
+
 	// ARN for the report resource.
 	Arn *string `locationName:"arn" min:"1" type:"string"`
 
@@ -1652,6 +1655,12 @@ func (s ReportSummary) String() string {
 // value will be replaced with "sensitive".
 func (s ReportSummary) GoString() string {
 	return s.String()
+}
+
+// SetAcceptanceType sets the AcceptanceType field's value.
+func (s *ReportSummary) SetAcceptanceType(v string) *ReportSummary {
+	s.AcceptanceType = &v
+	return s
 }
 
 // SetArn sets the Arn field's value.

@@ -7281,6 +7281,10 @@ type AdvancedSecurityOptions struct {
 	// True if the internal user database is enabled.
 	InternalUserDatabaseEnabled *bool `type:"boolean"`
 
+	// Container for information about the JWT configuration of the Amazon OpenSearch
+	// Service.
+	JWTOptions *JWTOptionsOutput_ `type:"structure"`
+
 	// Container for information about the SAML configuration for OpenSearch Dashboards.
 	SAMLOptions *SAMLOptionsOutput_ `type:"structure"`
 }
@@ -7327,6 +7331,12 @@ func (s *AdvancedSecurityOptions) SetInternalUserDatabaseEnabled(v bool) *Advanc
 	return s
 }
 
+// SetJWTOptions sets the JWTOptions field's value.
+func (s *AdvancedSecurityOptions) SetJWTOptions(v *JWTOptionsOutput_) *AdvancedSecurityOptions {
+	s.JWTOptions = v
+	return s
+}
+
 // SetSAMLOptions sets the SAMLOptions field's value.
 func (s *AdvancedSecurityOptions) SetSAMLOptions(v *SAMLOptionsOutput_) *AdvancedSecurityOptions {
 	s.SAMLOptions = v
@@ -7349,6 +7359,10 @@ type AdvancedSecurityOptionsInput_ struct {
 
 	// True to enable the internal user database.
 	InternalUserDatabaseEnabled *bool `type:"boolean"`
+
+	// Container for information about the JWT configuration of the Amazon OpenSearch
+	// Service.
+	JWTOptions *JWTOptionsInput_ `type:"structure"`
 
 	// Container for information about the master user.
 	MasterUserOptions *MasterUserOptions `type:"structure"`
@@ -7378,6 +7392,11 @@ func (s AdvancedSecurityOptionsInput_) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *AdvancedSecurityOptionsInput_) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "AdvancedSecurityOptionsInput_"}
+	if s.JWTOptions != nil {
+		if err := s.JWTOptions.Validate(); err != nil {
+			invalidParams.AddNested("JWTOptions", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.MasterUserOptions != nil {
 		if err := s.MasterUserOptions.Validate(); err != nil {
 			invalidParams.AddNested("MasterUserOptions", err.(request.ErrInvalidParams))
@@ -7410,6 +7429,12 @@ func (s *AdvancedSecurityOptionsInput_) SetEnabled(v bool) *AdvancedSecurityOpti
 // SetInternalUserDatabaseEnabled sets the InternalUserDatabaseEnabled field's value.
 func (s *AdvancedSecurityOptionsInput_) SetInternalUserDatabaseEnabled(v bool) *AdvancedSecurityOptionsInput_ {
 	s.InternalUserDatabaseEnabled = &v
+	return s
+}
+
+// SetJWTOptions sets the JWTOptions field's value.
+func (s *AdvancedSecurityOptionsInput_) SetJWTOptions(v *JWTOptionsInput_) *AdvancedSecurityOptionsInput_ {
+	s.JWTOptions = v
 	return s
 }
 
@@ -14512,7 +14537,7 @@ type GetDataSourceOutput struct {
 	// The name of the data source.
 	Name *string `min:"3" type:"string"`
 
-	// The status of the data source response.
+	// The status of the data source.
 	Status *string `type:"string" enum:"DataSourceStatus"`
 }
 
@@ -15580,6 +15605,141 @@ func (s *InvalidTypeException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *InvalidTypeException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// The JWT authentication and authorization configuration for an Amazon OpenSearch
+// Service domain.
+type JWTOptionsInput_ struct {
+	_ struct{} `type:"structure"`
+
+	// True to enable JWT authentication and authorization for a domain.
+	Enabled *bool `type:"boolean"`
+
+	// Element of the JWT assertion used by the cluster to verify JWT signatures.
+	PublicKey *string `type:"string"`
+
+	// Element of the JWT assertion to use for roles.
+	RolesKey *string `min:"1" type:"string"`
+
+	// Element of the JWT assertion to use for the user name.
+	SubjectKey *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s JWTOptionsInput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s JWTOptionsInput_) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *JWTOptionsInput_) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "JWTOptionsInput_"}
+	if s.RolesKey != nil && len(*s.RolesKey) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RolesKey", 1))
+	}
+	if s.SubjectKey != nil && len(*s.SubjectKey) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SubjectKey", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *JWTOptionsInput_) SetEnabled(v bool) *JWTOptionsInput_ {
+	s.Enabled = &v
+	return s
+}
+
+// SetPublicKey sets the PublicKey field's value.
+func (s *JWTOptionsInput_) SetPublicKey(v string) *JWTOptionsInput_ {
+	s.PublicKey = &v
+	return s
+}
+
+// SetRolesKey sets the RolesKey field's value.
+func (s *JWTOptionsInput_) SetRolesKey(v string) *JWTOptionsInput_ {
+	s.RolesKey = &v
+	return s
+}
+
+// SetSubjectKey sets the SubjectKey field's value.
+func (s *JWTOptionsInput_) SetSubjectKey(v string) *JWTOptionsInput_ {
+	s.SubjectKey = &v
+	return s
+}
+
+// Describes the JWT options configured for the domain.
+type JWTOptionsOutput_ struct {
+	_ struct{} `type:"structure"`
+
+	// True if JWT use is enabled.
+	Enabled *bool `type:"boolean"`
+
+	// The key used to verify the signature of incoming JWT requests.
+	PublicKey *string `type:"string"`
+
+	// The key used for matching the JWT roles attribute.
+	RolesKey *string `type:"string"`
+
+	// The key used for matching the JWT subject attribute.
+	SubjectKey *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s JWTOptionsOutput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s JWTOptionsOutput_) GoString() string {
+	return s.String()
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *JWTOptionsOutput_) SetEnabled(v bool) *JWTOptionsOutput_ {
+	s.Enabled = &v
+	return s
+}
+
+// SetPublicKey sets the PublicKey field's value.
+func (s *JWTOptionsOutput_) SetPublicKey(v string) *JWTOptionsOutput_ {
+	s.PublicKey = &v
+	return s
+}
+
+// SetRolesKey sets the RolesKey field's value.
+func (s *JWTOptionsOutput_) SetRolesKey(v string) *JWTOptionsOutput_ {
+	s.RolesKey = &v
+	return s
+}
+
+// SetSubjectKey sets the SubjectKey field's value.
+func (s *JWTOptionsOutput_) SetSubjectKey(v string) *JWTOptionsOutput_ {
+	s.SubjectKey = &v
+	return s
 }
 
 // An exception for trying to create more than the allowed number of resources
@@ -19967,7 +20127,7 @@ type UpdateDataSourceInput struct {
 	// Name is a required field
 	Name *string `location:"uri" locationName:"DataSourceName" min:"3" type:"string" required:"true"`
 
-	// The status of the data source update request.
+	// The status of the data source update.
 	Status *string `type:"string" enum:"DataSourceStatus"`
 }
 

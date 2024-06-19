@@ -388,6 +388,8 @@
         "InstanceTypeDetails$AppLogsEnabled": "<p>Whether logging is supported for the instance type.</p>",
         "InstanceTypeDetails$AdvancedSecurityEnabled": "<p>Whether fine-grained access control is supported for the instance type.</p>",
         "InstanceTypeDetails$WarmEnabled": "<p>Whether UltraWarm is supported for the instance type.</p>",
+        "JWTOptionsInput$Enabled": "<p>True to enable JWT authentication and authorization for a domain.</p>",
+        "JWTOptionsOutput$Enabled": "<p>True if JWT use is enabled.</p>",
         "ListInstanceTypeDetailsRequest$RetrieveAZs": "<p>An optional parameter that specifies the Availability Zones for the domain.</p>",
         "LogPublishingOption$Enabled": "<p>Whether the log should be published.</p>",
         "NodeToNodeEncryptionOptions$Enabled": "<p>True to enable node-to-node encryption.</p>",
@@ -687,8 +689,8 @@
       "base": null,
       "refs": {
         "DataSourceDetails$Status": "<p>The status of the data source.</p>",
-        "GetDataSourceResponse$Status": "<p>The status of the data source response.</p>",
-        "UpdateDataSourceRequest$Status": "<p>The status of the data source update request.</p>"
+        "GetDataSourceResponse$Status": "<p>The status of the data source.</p>",
+        "UpdateDataSourceRequest$Status": "<p>The status of the data source update.</p>"
       }
     },
     "DataSourceType": {
@@ -1585,6 +1587,18 @@
         "UpgradeStepItem$Issues": "<p>A list of strings containing detailed information about the errors encountered in a particular step.</p>"
       }
     },
+    "JWTOptionsInput": {
+      "base": "<p>The JWT authentication and authorization configuration for an Amazon OpenSearch Service domain.</p>",
+      "refs": {
+        "AdvancedSecurityOptionsInput$JWTOptions": "<p>Container for information about the JWT configuration of the Amazon OpenSearch Service. </p>"
+      }
+    },
+    "JWTOptionsOutput": {
+      "base": "<p>Describes the JWT options configured for the domain.</p>",
+      "refs": {
+        "AdvancedSecurityOptions$JWTOptions": "<p>Container for information about the JWT configuration of the Amazon OpenSearch Service.</p>"
+      }
+    },
     "KmsKeyId": {
       "base": null,
       "refs": {
@@ -2355,6 +2369,12 @@
         "S3GlueDataCatalog$RoleArn": "<p>&gt;The Amazon Resource Name (ARN) for the S3 Glue Data Catalog.</p>"
       }
     },
+    "RolesKey": {
+      "base": null,
+      "refs": {
+        "JWTOptionsInput$RolesKey": "<p>Element of the JWT assertion to use for roles.</p>"
+      }
+    },
     "RollbackOnDisable": {
       "base": "<p>The rollback state while disabling Auto-Tune for the domain.</p>",
       "refs": {
@@ -2626,6 +2646,10 @@
         "EndpointsMap$key": null,
         "GetPackageVersionHistoryResponse$NextToken": "<p>When <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. Send the request again using the returned token to retrieve the next page.</p>",
         "GetUpgradeHistoryResponse$NextToken": "<p>When <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. Send the request again using the returned token to retrieve the next page.</p>",
+        "JWTOptionsInput$PublicKey": "<p>Element of the JWT assertion used by the cluster to verify JWT signatures.</p>",
+        "JWTOptionsOutput$SubjectKey": "<p>The key used for matching the JWT subject attribute.</p>",
+        "JWTOptionsOutput$RolesKey": "<p>The key used for matching the JWT roles attribute.</p>",
+        "JWTOptionsOutput$PublicKey": "<p>The key used to verify the signature of incoming JWT requests.</p>",
         "ListDomainsForPackageResponse$NextToken": "<p>When <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. Send the request again using the returned token to retrieve the next page.</p>",
         "ListPackagesForDomainResponse$NextToken": "<p>When <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. Send the request again using the returned token to retrieve the next page.</p>",
         "ModifyingProperties$Name": "<p>The name of the property that is currently being modified.</p>",
@@ -2667,6 +2691,12 @@
         "VPCDerivedInfo$SecurityGroupIds": "<p>The list of security group IDs associated with the VPC endpoints for the domain.</p>",
         "VPCOptions$SubnetIds": "<p>A list of subnet IDs associated with the VPC endpoints for the domain. If your domain uses multiple Availability Zones, you need to provide two subnet IDs, one per zone. Otherwise, provide only one.</p>",
         "VPCOptions$SecurityGroupIds": "<p>The list of security group IDs associated with the VPC endpoints for the domain. If you do not provide a security group ID, OpenSearch Service uses the default security group for the VPC.</p>"
+      }
+    },
+    "SubjectKey": {
+      "base": null,
+      "refs": {
+        "JWTOptionsInput$SubjectKey": "<p>Element of the JWT assertion to use for the user name.</p>"
       }
     },
     "TLSSecurityPolicy": {

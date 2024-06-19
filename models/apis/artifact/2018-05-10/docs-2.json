@@ -13,7 +13,8 @@
     "AcceptanceType": {
       "base": null,
       "refs": {
-        "ReportDetail$acceptanceType": "<p>Acceptance type for report.</p>"
+        "ReportDetail$acceptanceType": "<p>Acceptance type for report.</p>",
+        "ReportSummary$acceptanceType": "<p>Acceptance type for report.</p>"
       }
     },
     "AccessDeniedException": {
@@ -110,8 +111,8 @@
     "LongStringAttribute": {
       "base": null,
       "refs": {
-        "ReportDetail$arn": "<p>ARN for the report resource.</p>",
         "ReportDetail$description": "<p>Description for the report resource.</p>",
+        "ReportDetail$arn": "<p>ARN for the report resource.</p>",
         "ReportDetail$termArn": "<p>Unique resource ARN for term resource.</p>",
         "ReportSummary$arn": "<p>ARN for the report resource.</p>",
         "ReportSummary$description": "<p>Description for the report resource.</p>"
@@ -202,16 +203,16 @@
       "base": null,
       "refs": {
         "GetReportRequest$termToken": "<p>Unique download token provided by GetTermForReport API.</p>",
+        "ReportDetail$name": "<p>Name for the report resource.</p>",
+        "ReportDetail$series": "<p>Series for the report resource.</p>",
         "ReportDetail$category": "<p>Category for the report resource.</p>",
         "ReportDetail$companyName": "<p>Associated company name for the report resource.</p>",
-        "ReportDetail$name": "<p>Name for the report resource.</p>",
         "ReportDetail$productName": "<p>Associated product name for the report resource.</p>",
-        "ReportDetail$series": "<p>Series for the report resource.</p>",
+        "ReportSummary$name": "<p>Name for the report resource.</p>",
+        "ReportSummary$series": "<p>Series for the report resource.</p>",
         "ReportSummary$category": "<p>Category for the report resource.</p>",
         "ReportSummary$companyName": "<p>Associated company name for the report resource.</p>",
-        "ReportSummary$name": "<p>Name for the report resource.</p>",
-        "ReportSummary$productName": "<p>Associated product name for the report resource.</p>",
-        "ReportSummary$series": "<p>Series for the report resource.</p>"
+        "ReportSummary$productName": "<p>Associated product name for the report resource.</p>"
       }
     },
     "StatusMessage": {
@@ -234,16 +235,16 @@
         "ResourceNotFoundException$resourceId": "<p>Identifier of the affected resource.</p>",
         "ResourceNotFoundException$resourceType": "<p>Type of the affected resource.</p>",
         "ServiceQuotaExceededException$message": null,
-        "ServiceQuotaExceededException$quotaCode": "<p>Code for the affected quota.</p>",
         "ServiceQuotaExceededException$resourceId": "<p>Identifier of the affected resource.</p>",
         "ServiceQuotaExceededException$resourceType": "<p>Type of the affected resource.</p>",
         "ServiceQuotaExceededException$serviceCode": "<p>Code for the affected service.</p>",
+        "ServiceQuotaExceededException$quotaCode": "<p>Code for the affected quota.</p>",
         "ThrottlingException$message": null,
-        "ThrottlingException$quotaCode": "<p>Code for the affected quota.</p>",
         "ThrottlingException$serviceCode": "<p>Code for the affected service.</p>",
+        "ThrottlingException$quotaCode": "<p>Code for the affected quota.</p>",
         "ValidationException$message": null,
-        "ValidationExceptionField$message": "<p>Message describing why the field failed validation.</p>",
-        "ValidationExceptionField$name": "<p>Name of validation exception.</p>"
+        "ValidationExceptionField$name": "<p>Name of validation exception.</p>",
+        "ValidationExceptionField$message": "<p>Message describing why the field failed validation.</p>"
       }
     },
     "ThrottlingException": {
@@ -254,13 +255,13 @@
     "TimestampAttribute": {
       "base": null,
       "refs": {
-        "ReportDetail$createdAt": "<p>Timestamp indicating when the report resource was created.</p>",
-        "ReportDetail$deletedAt": "<p>Timestamp indicating when the report resource was deleted.</p>",
-        "ReportDetail$lastModifiedAt": "<p>Timestamp indicating when the report resource was last modified.</p>",
-        "ReportDetail$periodEnd": "<p>Timestamp indicating the report resource effective end.</p>",
         "ReportDetail$periodStart": "<p>Timestamp indicating the report resource effective start.</p>",
-        "ReportSummary$periodEnd": "<p>Timestamp indicating the report resource effective end.</p>",
-        "ReportSummary$periodStart": "<p>Timestamp indicating the report resource effective start.</p>"
+        "ReportDetail$periodEnd": "<p>Timestamp indicating the report resource effective end.</p>",
+        "ReportDetail$createdAt": "<p>Timestamp indicating when the report resource was created.</p>",
+        "ReportDetail$lastModifiedAt": "<p>Timestamp indicating when the report resource was last modified.</p>",
+        "ReportDetail$deletedAt": "<p>Timestamp indicating when the report resource was deleted.</p>",
+        "ReportSummary$periodStart": "<p>Timestamp indicating the report resource effective start.</p>",
+        "ReportSummary$periodEnd": "<p>Timestamp indicating the report resource effective end.</p>"
       }
     },
     "UploadState": {

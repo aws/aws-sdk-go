@@ -169,7 +169,7 @@
                                         {
                                             "conditions": [],
                                             "endpoint": {
-                                                "url": "https://directconnect-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                "url": "https://elastictranscoder-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
                                                 "properties": {},
                                                 "headers": {}
                                             },
@@ -221,7 +221,7 @@
                                         {
                                             "conditions": [],
                                             "endpoint": {
-                                                "url": "https://directconnect-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                "url": "https://elastictranscoder-fips.{Region}.{PartitionResult#dnsSuffix}",
                                                 "properties": {},
                                                 "headers": {}
                                             },
@@ -273,7 +273,7 @@
                                         {
                                             "conditions": [],
                                             "endpoint": {
-                                                "url": "https://directconnect.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                "url": "https://elastictranscoder.{Region}.{PartitionResult#dualStackDnsSuffix}",
                                                 "properties": {},
                                                 "headers": {}
                                             },
@@ -293,7 +293,7 @@
                         {
                             "conditions": [],
                             "endpoint": {
-                                "url": "https://directconnect.{Region}.{PartitionResult#dnsSuffix}",
+                                "url": "https://elastictranscoder.{Region}.{PartitionResult#dnsSuffix}",
                                 "properties": {},
                                 "headers": {}
                             },
