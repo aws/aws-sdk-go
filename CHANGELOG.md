@@ -1,3 +1,18 @@
+Release v1.54.5 (2024-06-19)
+===
+
+### Service Client Updates
+* `service/artifact`: Updates service API, documentation, waiters, and examples
+* `service/athena`: Updates service API
+  * Add v2 smoke tests and smithy smokeTests trait for SDK testing.
+* `service/cur`: Updates service API
+  * Add v2 smoke tests and smithy smokeTests trait for SDK testing.
+* `service/directconnect`: Updates service API
+  * Add v2 smoke tests and smithy smokeTests trait for SDK testing.
+* `service/elastictranscoder`: Updates service API
+  * Add v2 smoke tests and smithy smokeTests trait for SDK testing.
+* `service/opensearch`: Updates service API and documentation
+
 Release v1.54.4 (2024-06-18)
 ===
 

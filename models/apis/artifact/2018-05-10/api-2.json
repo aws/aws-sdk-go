@@ -2,9 +2,10 @@
   "version":"2.0",
   "metadata":{
     "apiVersion":"2018-05-10",
+    "auth":["aws.auth#sigv4"],
     "endpointPrefix":"artifact",
-    "jsonVersion":"1.1",
     "protocol":"rest-json",
+    "protocols":["rest-json"],
     "serviceFullName":"AWS Artifact",
     "serviceId":"Artifact",
     "signatureVersion":"v4",
@@ -304,15 +305,15 @@
     "ListReportsResponse":{
       "type":"structure",
       "members":{
-        "nextToken":{"shape":"NextTokenAttribute"},
-        "reports":{"shape":"ReportsList"}
+        "reports":{"shape":"ReportsList"},
+        "nextToken":{"shape":"NextTokenAttribute"}
       }
     },
     "LongStringAttribute":{
       "type":"string",
       "max":1024,
       "min":1,
-      "pattern":"^[^<>]*$"
+      "pattern":"[^<>]*"
     },
     "MaxResultsAttribute":{
       "type":"integer",
@@ -354,49 +355,50 @@
     "ReportDetail":{
       "type":"structure",
       "members":{
-        "acceptanceType":{"shape":"AcceptanceType"},
+        "id":{"shape":"ReportId"},
+        "name":{"shape":"ShortStringAttribute"},
+        "description":{"shape":"LongStringAttribute"},
+        "periodStart":{"shape":"TimestampAttribute"},
+        "periodEnd":{"shape":"TimestampAttribute"},
+        "createdAt":{"shape":"TimestampAttribute"},
+        "lastModifiedAt":{"shape":"TimestampAttribute"},
+        "deletedAt":{"shape":"TimestampAttribute"},
+        "state":{"shape":"PublishedState"},
         "arn":{"shape":"LongStringAttribute"},
+        "series":{"shape":"ShortStringAttribute"},
         "category":{"shape":"ShortStringAttribute"},
         "companyName":{"shape":"ShortStringAttribute"},
-        "createdAt":{"shape":"TimestampAttribute"},
-        "deletedAt":{"shape":"TimestampAttribute"},
-        "description":{"shape":"LongStringAttribute"},
-        "id":{"shape":"ReportId"},
-        "lastModifiedAt":{"shape":"TimestampAttribute"},
-        "name":{"shape":"ShortStringAttribute"},
-        "periodEnd":{"shape":"TimestampAttribute"},
-        "periodStart":{"shape":"TimestampAttribute"},
         "productName":{"shape":"ShortStringAttribute"},
-        "sequenceNumber":{"shape":"SequenceNumberAttribute"},
-        "series":{"shape":"ShortStringAttribute"},
-        "state":{"shape":"PublishedState"},
-        "statusMessage":{"shape":"StatusMessage"},
         "termArn":{"shape":"LongStringAttribute"},
+        "version":{"shape":"VersionAttribute"},
+        "acceptanceType":{"shape":"AcceptanceType"},
+        "sequenceNumber":{"shape":"SequenceNumberAttribute"},
         "uploadState":{"shape":"UploadState"},
-        "version":{"shape":"VersionAttribute"}
+        "statusMessage":{"shape":"StatusMessage"}
       }
     },
     "ReportId":{
       "type":"string",
-      "pattern":"^report-[a-zA-Z0-9]{16}$"
+      "pattern":"report-[a-zA-Z0-9]{16}"
     },
     "ReportSummary":{
       "type":"structure",
       "members":{
-        "arn":{"shape":"LongStringAttribute"},
-        "category":{"shape":"ShortStringAttribute"},
-        "companyName":{"shape":"ShortStringAttribute"},
-        "description":{"shape":"LongStringAttribute"},
         "id":{"shape":"ReportId"},
         "name":{"shape":"ShortStringAttribute"},
-        "periodEnd":{"shape":"TimestampAttribute"},
-        "periodStart":{"shape":"TimestampAttribute"},
-        "productName":{"shape":"ShortStringAttribute"},
-        "series":{"shape":"ShortStringAttribute"},
         "state":{"shape":"PublishedState"},
-        "statusMessage":{"shape":"StatusMessage"},
+        "arn":{"shape":"LongStringAttribute"},
+        "version":{"shape":"VersionAttribute"},
         "uploadState":{"shape":"UploadState"},
-        "version":{"shape":"VersionAttribute"}
+        "description":{"shape":"LongStringAttribute"},
+        "periodStart":{"shape":"TimestampAttribute"},
+        "periodEnd":{"shape":"TimestampAttribute"},
+        "series":{"shape":"ShortStringAttribute"},
+        "category":{"shape":"ShortStringAttribute"},
+        "companyName":{"shape":"ShortStringAttribute"},
+        "productName":{"shape":"ShortStringAttribute"},
+        "statusMessage":{"shape":"StatusMessage"},
+        "acceptanceType":{"shape":"AcceptanceType"}
       }
     },
     "ReportsList":{
@@ -430,17 +432,17 @@
       "type":"structure",
       "required":[
         "message",
-        "quotaCode",
         "resourceId",
         "resourceType",
-        "serviceCode"
+        "serviceCode",
+        "quotaCode"
       ],
       "members":{
         "message":{"shape":"String"},
-        "quotaCode":{"shape":"String"},
         "resourceId":{"shape":"String"},
         "resourceType":{"shape":"String"},
-        "serviceCode":{"shape":"String"}
+        "serviceCode":{"shape":"String"},
+        "quotaCode":{"shape":"String"}
       },
       "error":{
         "httpStatusCode":402,
@@ -452,7 +454,7 @@
       "type":"string",
       "max":256,
       "min":1,
-      "pattern":"^[a-zA-Z0-9_\\-\\s]*$"
+      "pattern":"[a-zA-Z0-9_\\-\\s]*"
     },
     "StatusMessage":{"type":"string"},
     "String":{"type":"string"},
@@ -461,13 +463,13 @@
       "required":["message"],
       "members":{
         "message":{"shape":"String"},
+        "serviceCode":{"shape":"String"},
         "quotaCode":{"shape":"String"},
         "retryAfterSeconds":{
           "shape":"Integer",
           "location":"header",
           "locationName":"Retry-After"
-        },
-        "serviceCode":{"shape":"String"}
+        }
       },
       "error":{
         "httpStatusCode":429,
@@ -496,9 +498,9 @@
         "reason"
       ],
       "members":{
-        "fieldList":{"shape":"ValidationExceptionFieldList"},
         "message":{"shape":"String"},
-        "reason":{"shape":"ValidationExceptionReason"}
+        "reason":{"shape":"ValidationExceptionReason"},
+        "fieldList":{"shape":"ValidationExceptionFieldList"}
       },
       "error":{
         "httpStatusCode":400,
@@ -509,12 +511,12 @@
     "ValidationExceptionField":{
       "type":"structure",
       "required":[
-        "message",
-        "name"
+        "name",
+        "message"
       ],
       "members":{
-        "message":{"shape":"String"},
-        "name":{"shape":"String"}
+        "name":{"shape":"String"},
+        "message":{"shape":"String"}
       }
     },
     "ValidationExceptionFieldList":{
