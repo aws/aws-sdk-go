@@ -28,7 +28,8 @@
     "CreateExperiment": "<p>Creates a SageMaker <i>experiment</i>. An experiment is a collection of <i>trials</i> that are observed, compared and evaluated as a group. A trial is a set of steps, called <i>trial components</i>, that produce a machine learning model.</p> <note> <p>In the Studio UI, trials are referred to as <i>run groups</i> and trial components are referred to as <i>runs</i>.</p> </note> <p>The goal of an experiment is to determine the components that produce the best model. Multiple trials are performed, each one isolating and measuring the impact of a change to one or more inputs, while keeping the remaining inputs constant.</p> <p>When you use SageMaker Studio or the SageMaker Python SDK, all experiments, trials, and trial components are automatically tracked, logged, and indexed. When you use the Amazon Web Services SDK for Python (Boto), you must use the logging APIs provided by the SDK.</p> <p>You can add tags to experiments, trials, trial components and then use the <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_Search.html\">Search</a> API to search for the tags.</p> <p>To add a description to an experiment, specify the optional <code>Description</code> parameter. To add a description later, or to change the description, call the <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_UpdateExperiment.html\">UpdateExperiment</a> API.</p> <p>To get a list of all your experiments, call the <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_ListExperiments.html\">ListExperiments</a> API. To view an experiment's properties, call the <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeExperiment.html\">DescribeExperiment</a> API. To get a list of all the trials associated with an experiment, call the <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_ListTrials.html\">ListTrials</a> API. To create a trial call the <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateTrial.html\">CreateTrial</a> API.</p>",
     "CreateFeatureGroup": "<p>Create a new <code>FeatureGroup</code>. A <code>FeatureGroup</code> is a group of <code>Features</code> defined in the <code>FeatureStore</code> to describe a <code>Record</code>. </p> <p>The <code>FeatureGroup</code> defines the schema and features contained in the <code>FeatureGroup</code>. A <code>FeatureGroup</code> definition is composed of a list of <code>Features</code>, a <code>RecordIdentifierFeatureName</code>, an <code>EventTimeFeatureName</code> and configurations for its <code>OnlineStore</code> and <code>OfflineStore</code>. Check <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html\">Amazon Web Services service quotas</a> to see the <code>FeatureGroup</code>s quota for your Amazon Web Services account.</p> <p>Note that it can take approximately 10-15 minutes to provision an <code>OnlineStore</code> <code>FeatureGroup</code> with the <code>InMemory</code> <code>StorageType</code>.</p> <important> <p>You must include at least one of <code>OnlineStoreConfig</code> and <code>OfflineStoreConfig</code> to create a <code>FeatureGroup</code>.</p> </important>",
     "CreateFlowDefinition": "<p>Creates a flow definition.</p>",
-    "CreateHub": "<p>Create a hub.</p> <note> <p>Hub APIs are only callable through SageMaker Studio.</p> </note>",
+    "CreateHub": "<p>Create a hub.</p>",
+    "CreateHubContentReference": "<p>Create a hub content reference in order to add a model in the JumpStart public hub to a private hub.</p>",
     "CreateHumanTaskUi": "<p>Defines the settings you will use for the human review workflow user interface. Reviewers will see a three-panel interface with an instruction area, the item to review, and an input area.</p>",
     "CreateHyperParameterTuningJob": "<p>Starts a hyperparameter tuning job. A hyperparameter tuning job finds the best version of a model by running many training jobs on your dataset using the algorithm you choose and values for hyperparameters within ranges that you specify. It then chooses the hyperparameter values that result in a model that performs the best, as measured by an objective metric that you choose.</p> <p>A hyperparameter tuning job automatically creates Amazon SageMaker experiments, trials, and trial components for each training job that it runs. You can view these entities in Amazon SageMaker Studio. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/experiments-view-compare.html#experiments-view\">View Experiments, Trials, and Trial Components</a>.</p> <important> <p>Do not include any security-sensitive information including account access IDs, secrets or tokens in any hyperparameter field. If the use of security-sensitive credentials are detected, SageMaker will reject your training job request and return an exception error.</p> </important>",
     "CreateImage": "<p>Creates a custom SageMaker image. A SageMaker image is a set of image versions. Each image version represents a container image stored in Amazon ECR. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/studio-byoi.html\">Bring your own SageMaker image</a>.</p>",
@@ -84,8 +85,9 @@
     "DeleteExperiment": "<p>Deletes an SageMaker experiment. All trials associated with the experiment must be deleted first. Use the <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_ListTrials.html\">ListTrials</a> API to get a list of the trials associated with the experiment.</p>",
     "DeleteFeatureGroup": "<p>Delete the <code>FeatureGroup</code> and any data that was written to the <code>OnlineStore</code> of the <code>FeatureGroup</code>. Data cannot be accessed from the <code>OnlineStore</code> immediately after <code>DeleteFeatureGroup</code> is called. </p> <p>Data written into the <code>OfflineStore</code> will not be deleted. The Amazon Web Services Glue database and tables that are automatically created for your <code>OfflineStore</code> are not deleted. </p> <p>Note that it can take approximately 10-15 minutes to delete an <code>OnlineStore</code> <code>FeatureGroup</code> with the <code>InMemory</code> <code>StorageType</code>.</p>",
     "DeleteFlowDefinition": "<p>Deletes the specified flow definition.</p>",
-    "DeleteHub": "<p>Delete a hub.</p> <note> <p>Hub APIs are only callable through SageMaker Studio.</p> </note>",
-    "DeleteHubContent": "<p>Delete the contents of a hub.</p> <note> <p>Hub APIs are only callable through SageMaker Studio.</p> </note>",
+    "DeleteHub": "<p>Delete a hub.</p>",
+    "DeleteHubContent": "<p>Delete the contents of a hub.</p>",
+    "DeleteHubContentReference": "<p>Delete a hub content reference in order to remove a model from a private hub.</p>",
     "DeleteHumanTaskUi": "<p>Use this operation to delete a human task user interface (worker task template).</p> <p> To see a list of human task user interfaces (work task templates) in your account, use <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_ListHumanTaskUis.html\">ListHumanTaskUis</a>. When you delete a worker task template, it no longer appears when you call <code>ListHumanTaskUis</code>.</p>",
     "DeleteHyperParameterTuningJob": "<p>Deletes a hyperparameter tuning job. The <code>DeleteHyperParameterTuningJob</code> API deletes only the tuning job entry that was created in SageMaker when you called the <code>CreateHyperParameterTuningJob</code> API. It does not delete training jobs, artifacts, or the IAM role that you specified when creating the model.</p>",
     "DeleteImage": "<p>Deletes a SageMaker image and all versions of the image. The container images aren't deleted.</p>",
@@ -139,8 +141,8 @@
     "DescribeFeatureGroup": "<p>Use this operation to describe a <code>FeatureGroup</code>. The response includes information on the creation time, <code>FeatureGroup</code> name, the unique identifier for each <code>FeatureGroup</code>, and more.</p>",
     "DescribeFeatureMetadata": "<p>Shows the metadata for a feature within a feature group.</p>",
     "DescribeFlowDefinition": "<p>Returns information about the specified flow definition.</p>",
-    "DescribeHub": "<p>Describe a hub.</p> <note> <p>Hub APIs are only callable through SageMaker Studio.</p> </note>",
-    "DescribeHubContent": "<p>Describe the content of a hub.</p> <note> <p>Hub APIs are only callable through SageMaker Studio.</p> </note>",
+    "DescribeHub": "<p>Describes a hub.</p>",
+    "DescribeHubContent": "<p>Describe the content of a hub.</p>",
     "DescribeHumanTaskUi": "<p>Returns information about the requested human task user interface (worker task template).</p>",
     "DescribeHyperParameterTuningJob": "<p>Returns a description of a hyperparameter tuning job, depending on the fields selected. These fields can include the name, Amazon Resource Name (ARN), job status of your tuning job and more.</p>",
     "DescribeImage": "<p>Describes a SageMaker image.</p>",
@@ -186,7 +188,7 @@
     "GetSagemakerServicecatalogPortfolioStatus": "<p>Gets the status of Service Catalog in SageMaker. Service Catalog is used to create SageMaker projects.</p>",
     "GetScalingConfigurationRecommendation": "<p>Starts an Amazon SageMaker Inference Recommender autoscaling recommendation job. Returns recommendations for autoscaling policies that you can apply to your SageMaker endpoint.</p>",
     "GetSearchSuggestions": "<p>An auto-complete API for the search functionality in the SageMaker console. It returns suggestions of possible matches for the property name to use in <code>Search</code> queries. Provides suggestions for <code>HyperParameters</code>, <code>Tags</code>, and <code>Metrics</code>.</p>",
-    "ImportHubContent": "<p>Import hub content.</p> <note> <p>Hub APIs are only callable through SageMaker Studio.</p> </note>",
+    "ImportHubContent": "<p>Import hub content.</p>",
     "ListActions": "<p>Lists the actions in your account and their properties.</p>",
     "ListAlgorithms": "<p>Lists the machine learning algorithms that have been created.</p>",
     "ListAliases": "<p>Lists the aliases of a specified image or image version.</p>",
@@ -212,9 +214,9 @@
     "ListExperiments": "<p>Lists all the experiments in your account. The list can be filtered to show only experiments that were created in a specific time range. The list can be sorted by experiment name or creation time.</p>",
     "ListFeatureGroups": "<p>List <code>FeatureGroup</code>s based on given filter and order.</p>",
     "ListFlowDefinitions": "<p>Returns information about the flow definitions in your account.</p>",
-    "ListHubContentVersions": "<p>List hub content versions.</p> <note> <p>Hub APIs are only callable through SageMaker Studio.</p> </note>",
-    "ListHubContents": "<p>List the contents of a hub.</p> <note> <p>Hub APIs are only callable through SageMaker Studio.</p> </note>",
-    "ListHubs": "<p>List all existing hubs.</p> <note> <p>Hub APIs are only callable through SageMaker Studio.</p> </note>",
+    "ListHubContentVersions": "<p>List hub content versions.</p>",
+    "ListHubContents": "<p>List the contents of a hub.</p>",
+    "ListHubs": "<p>List all existing hubs.</p>",
     "ListHumanTaskUis": "<p>Returns information about the human task user interfaces in your account.</p>",
     "ListHyperParameterTuningJobs": "<p>Gets a list of <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_HyperParameterTuningJobSummary.html\">HyperParameterTuningJobSummary</a> objects that describe the hyperparameter tuning jobs launched in your account.</p>",
     "ListImageVersions": "<p>Lists the versions of a specified image and their properties. The list can be filtered by creation time or modified time.</p>",
@@ -307,7 +309,7 @@
     "UpdateExperiment": "<p>Adds, updates, or removes the description of an experiment. Updates the display name of an experiment.</p>",
     "UpdateFeatureGroup": "<p>Updates the feature group by either adding features or updating the online store configuration. Use one of the following request parameters at a time while using the <code>UpdateFeatureGroup</code> API.</p> <p>You can add features for your feature group using the <code>FeatureAdditions</code> request parameter. Features cannot be removed from a feature group.</p> <p>You can update the online store configuration by using the <code>OnlineStoreConfig</code> request parameter. If a <code>TtlDuration</code> is specified, the default <code>TtlDuration</code> applies for all records added to the feature group <i>after the feature group is updated</i>. If a record level <code>TtlDuration</code> exists from using the <code>PutRecord</code> API, the record level <code>TtlDuration</code> applies to that record instead of the default <code>TtlDuration</code>. To remove the default <code>TtlDuration</code> from an existing feature group, use the <code>UpdateFeatureGroup</code> API and set the <code>TtlDuration</code> <code>Unit</code> and <code>Value</code> to <code>null</code>.</p>",
     "UpdateFeatureMetadata": "<p>Updates the description and parameters of the feature group.</p>",
-    "UpdateHub": "<p>Update a hub.</p> <note> <p>Hub APIs are only callable through SageMaker Studio.</p> </note>",
+    "UpdateHub": "<p>Update a hub.</p>",
     "UpdateImage": "<p>Updates the properties of a SageMaker image. To change the image's tags, use the <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_AddTags.html\">AddTags</a> and <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DeleteTags.html\">DeleteTags</a> APIs.</p>",
     "UpdateImageVersion": "<p>Updates the properties of a SageMaker image version.</p>",
     "UpdateInferenceComponent": "<p>Updates an inference component.</p>",
@@ -2874,6 +2876,16 @@
       "refs": {
       }
     },
+    "CreateHubContentReferenceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateHubContentReferenceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreateHubRequest": {
       "base": null,
       "refs": {
@@ -3697,6 +3709,11 @@
       }
     },
     "DeleteFlowDefinitionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteHubContentReferenceRequest": {
       "base": null,
       "refs": {
       }
@@ -6527,6 +6544,7 @@
     "HubArn": {
       "base": null,
       "refs": {
+        "CreateHubContentReferenceResponse$HubArn": "<p>The ARN of the hub that the hub content reference was added to.</p>",
         "CreateHubResponse$HubArn": "<p>The Amazon Resource Name (ARN) of the hub.</p>",
         "DescribeHubContentResponse$HubArn": "<p>The Amazon Resource Name (ARN) of the hub that contains the content. </p>",
         "DescribeHubResponse$HubArn": "<p>The Amazon Resource Name (ARN) of the hub.</p>",
@@ -6538,9 +6556,11 @@
     "HubContentArn": {
       "base": null,
       "refs": {
+        "CreateHubContentReferenceResponse$HubContentArn": "<p>The ARN of the hub content.</p>",
         "DescribeHubContentResponse$HubContentArn": "<p>The Amazon Resource Name (ARN) of the hub content.</p>",
         "HubContentInfo$HubContentArn": "<p>The Amazon Resource Name (ARN) of the hub content.</p>",
-        "ImportHubContentResponse$HubContentArn": "<p>The ARN of the hub content that was imported.</p>"
+        "ImportHubContentResponse$HubContentArn": "<p>The ARN of the hub content that was imported.</p>",
+        "InferenceHubAccessConfig$HubContentArn": "<p>The ARN of the hub content for which deployment access is allowed.</p>"
       }
     },
     "HubContentDependency": {
@@ -6601,6 +6621,8 @@
     "HubContentName": {
       "base": null,
       "refs": {
+        "CreateHubContentReferenceRequest$HubContentName": "<p>The name of the hub content to reference.</p>",
+        "DeleteHubContentReferenceRequest$HubContentName": "<p>The name of the hub content to delete.</p>",
         "DeleteHubContentRequest$HubContentName": "<p>The name of the content that you want to delete from a hub.</p>",
         "DescribeHubContentRequest$HubContentName": "<p>The name of the content to describe.</p>",
         "DescribeHubContentResponse$HubContentName": "<p>The name of the hub content.</p>",
@@ -6631,9 +6653,17 @@
         "HubContentInfo$HubContentStatus": "<p>The status of the hub content.</p>"
       }
     },
+    "HubContentSupportStatus": {
+      "base": null,
+      "refs": {
+        "DescribeHubContentResponse$SupportStatus": "<p>The support status of the hub content.</p>",
+        "HubContentInfo$SupportStatus": "<p>The support status of the hub content.</p>"
+      }
+    },
     "HubContentType": {
       "base": null,
       "refs": {
+        "DeleteHubContentReferenceRequest$HubContentType": "<p>The type of hub content to delete.</p>",
         "DeleteHubContentRequest$HubContentType": "<p>The type of content that you want to delete from a hub.</p>",
         "DescribeHubContentRequest$HubContentType": "<p>The type of content in the hub.</p>",
         "DescribeHubContentResponse$HubContentType": "<p>The type of hub content.</p>",
@@ -6646,6 +6676,7 @@
     "HubContentVersion": {
       "base": null,
       "refs": {
+        "CreateHubContentReferenceRequest$MinVersion": "<p>The minimum version of the hub content to reference.</p>",
         "DeleteHubContentRequest$HubContentVersion": "<p>The version of the content that you want to delete from a hub.</p>",
         "DescribeHubContentRequest$HubContentVersion": "<p>The version of the content to describe.</p>",
         "DescribeHubContentResponse$HubContentVersion": "<p>The version of the hub content.</p>",
@@ -6688,13 +6719,20 @@
       "base": null,
       "refs": {
         "CreateHubRequest$HubName": "<p>The name of the hub to create.</p>",
+        "DescribeHubContentResponse$HubName": "<p>The name of the hub that contains the content.</p>",
+        "DescribeHubResponse$HubName": "<p>The name of the hub.</p>",
+        "HubInfo$HubName": "<p>The name of the hub.</p>"
+      }
+    },
+    "HubNameOrArn": {
+      "base": null,
+      "refs": {
+        "CreateHubContentReferenceRequest$HubName": "<p>The name of the hub to add the hub content reference to.</p>",
+        "DeleteHubContentReferenceRequest$HubName": "<p>The name of the hub to delete the hub content reference from.</p>",
         "DeleteHubContentRequest$HubName": "<p>The name of the hub that you want to delete content in.</p>",
         "DeleteHubRequest$HubName": "<p>The name of the hub to delete.</p>",
         "DescribeHubContentRequest$HubName": "<p>The name of the hub that contains the content to describe.</p>",
-        "DescribeHubContentResponse$HubName": "<p>The name of the hub that contains the content.</p>",
         "DescribeHubRequest$HubName": "<p>The name of the hub to describe.</p>",
-        "DescribeHubResponse$HubName": "<p>The name of the hub.</p>",
-        "HubInfo$HubName": "<p>The name of the hub.</p>",
         "ImportHubContentRequest$HubName": "<p>The name of the hub to import content into.</p>",
         "ListHubContentVersionsRequest$HubName": "<p>The name of the hub to list the content versions of.</p>",
         "ListHubContentsRequest$HubName": "<p>The name of the hub to list the contents of.</p>",
@@ -7566,6 +7604,12 @@
         "DescribeInferenceExperimentResponse$Type": "<p>The type of the inference experiment.</p>",
         "InferenceExperimentSummary$Type": "<p>The type of the inference experiment.</p>",
         "ListInferenceExperimentsRequest$Type": "<p> Selects inference experiments of this type. For the possible types of inference experiments, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateInferenceExperiment.html\">CreateInferenceExperiment</a>. </p>"
+      }
+    },
+    "InferenceHubAccessConfig": {
+      "base": "<p>Configuration information specifying which hub contents have accessible deployment options.</p>",
+      "refs": {
+        "S3ModelDataSource$HubAccessConfig": "<p>Configuration information for hub access.</p>"
       }
     },
     "InferenceImage": {
@@ -12836,6 +12880,12 @@
         "RedshiftDatasetDefinition$DbUser": null
       }
     },
+    "ReferenceMinVersion": {
+      "base": null,
+      "refs": {
+        "DescribeHubContentResponse$ReferenceMinVersion": "<p>The minimum version of the hub content.</p>"
+      }
+    },
     "RegisterDevicesRequest": {
       "base": null,
       "refs": {
@@ -13367,6 +13417,14 @@
         "ListAliasesResponse$SageMakerImageVersionAliases": "<p>A list of SageMaker image version aliases.</p>",
         "UpdateImageVersionRequest$AliasesToAdd": "<p>A list of aliases to add.</p>",
         "UpdateImageVersionRequest$AliasesToDelete": "<p>A list of aliases to delete.</p>"
+      }
+    },
+    "SageMakerPublicHubContentArn": {
+      "base": null,
+      "refs": {
+        "CreateHubContentReferenceRequest$SageMakerPublicHubContentArn": "<p>The ARN of the public hub content to reference.</p>",
+        "DescribeHubContentResponse$SageMakerPublicHubContentArn": "<p>The ARN of the public hub content.</p>",
+        "HubContentInfo$SageMakerPublicHubContentArn": "<p>The ARN of the public hub content.</p>"
       }
     },
     "SagemakerServicecatalogStatus": {
@@ -14606,6 +14664,7 @@
         "CreateExperimentRequest$Tags": "<p>A list of tags to associate with the experiment. You can use <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_Search.html\">Search</a> API to search on the tags.</p>",
         "CreateFeatureGroupRequest$Tags": "<p>Tags used to identify <code>Features</code> in each <code>FeatureGroup</code>.</p>",
         "CreateFlowDefinitionRequest$Tags": "<p>An array of key-value pairs that contain metadata to help you categorize and organize a flow definition. Each tag consists of a key and a value, both of which you define.</p>",
+        "CreateHubContentReferenceRequest$Tags": "<p>Any tags associated with the hub content to reference.</p>",
         "CreateHubRequest$Tags": "<p>Any tags to associate with the hub.</p>",
         "CreateHumanTaskUiRequest$Tags": "<p>An array of key-value pairs that contain metadata to help you categorize and organize a human review workflow user interface. Each tag consists of a key and a value, both of which you define.</p>",
         "CreateHyperParameterTuningJobRequest$Tags": "<p>An array of key-value pairs. You can use tags to categorize your Amazon Web Services resources in different ways, for example, by purpose, owner, or environment. For more information, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html\">Tagging Amazon Web Services Resources</a>.</p> <p>Tags that you specify for the tuning job are also added to all training jobs that the tuning job launches.</p>",
@@ -15065,6 +15124,7 @@
         "FlowDefinitionSummary$CreationTime": "<p>The timestamp when SageMaker created the flow definition.</p>",
         "GetDeviceFleetReportResponse$ReportGenerated": "<p>Timestamp of when the report was generated.</p>",
         "HubContentInfo$CreationTime": "<p>The date and time that the hub content was created.</p>",
+        "HubContentInfo$OriginalCreationTime": "<p>The date and time when the hub content was originally created, before any updates or revisions.</p>",
         "HubInfo$CreationTime": "<p>The date and time that the hub was created.</p>",
         "HubInfo$LastModifiedTime": "<p>The date and time that the hub was last modified.</p>",
         "HumanTaskUiSummary$CreationTime": "<p>A timestamp when SageMaker created the human task user interface.</p>",

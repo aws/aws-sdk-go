@@ -10,6 +10,7 @@
     "ExportECSServiceRecommendations": "<p> Exports optimization recommendations for Amazon ECS services on Fargate. </p> <p>Recommendations are exported in a CSV file, and its metadata in a JSON file, to an existing Amazon Simple Storage Service (Amazon S3) bucket that you specify. For more information, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/exporting-recommendations.html\">Exporting Recommendations</a> in the <i>Compute Optimizer User Guide</i>.</p> <p>You can only have one Amazon ECS service export job in progress per Amazon Web Services Region.</p>",
     "ExportLambdaFunctionRecommendations": "<p>Exports optimization recommendations for Lambda functions.</p> <p>Recommendations are exported in a comma-separated values (.csv) file, and its metadata in a JavaScript Object Notation (JSON) (.json) file, to an existing Amazon Simple Storage Service (Amazon S3) bucket that you specify. For more information, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/exporting-recommendations.html\">Exporting Recommendations</a> in the <i>Compute Optimizer User Guide</i>.</p> <p>You can have only one Lambda function export job in progress per Amazon Web Services Region.</p>",
     "ExportLicenseRecommendations": "<p> Export optimization recommendations for your licenses. </p> <p>Recommendations are exported in a comma-separated values (CSV) file, and its metadata in a JavaScript Object Notation (JSON) file, to an existing Amazon Simple Storage Service (Amazon S3) bucket that you specify. For more information, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/exporting-recommendations.html\">Exporting Recommendations</a> in the <i>Compute Optimizer User Guide</i>.</p> <p>You can have only one license export job in progress per Amazon Web Services Region.</p>",
+    "ExportRDSDatabaseRecommendations": "<p> Export optimization recommendations for your Amazon Relational Database Service (Amazon RDS). </p> <p>Recommendations are exported in a comma-separated values (CSV) file, and its metadata in a JavaScript Object Notation (JSON) file, to an existing Amazon Simple Storage Service (Amazon S3) bucket that you specify. For more information, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/exporting-recommendations.html\">Exporting Recommendations</a> in the <i>Compute Optimizer User Guide</i>.</p> <p>You can have only one Amazon RDS export job in progress per Amazon Web Services Region.</p>",
     "GetAutoScalingGroupRecommendations": "<p>Returns Auto Scaling group recommendations.</p> <p>Compute Optimizer generates recommendations for Amazon EC2 Auto Scaling groups that meet a specific set of requirements. For more information, see the <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/requirements.html\">Supported resources and requirements</a> in the <i>Compute Optimizer User Guide</i>.</p>",
     "GetEBSVolumeRecommendations": "<p>Returns Amazon Elastic Block Store (Amazon EBS) volume recommendations.</p> <p>Compute Optimizer generates recommendations for Amazon EBS volumes that meet a specific set of requirements. For more information, see the <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/requirements.html\">Supported resources and requirements</a> in the <i>Compute Optimizer User Guide</i>.</p>",
     "GetEC2InstanceRecommendations": "<p>Returns Amazon EC2 instance recommendations.</p> <p>Compute Optimizer generates recommendations for Amazon Elastic Compute Cloud (Amazon EC2) instances that meet a specific set of requirements. For more information, see the <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/requirements.html\">Supported resources and requirements</a> in the <i>Compute Optimizer User Guide</i>.</p>",
@@ -21,6 +22,8 @@
     "GetEnrollmentStatusesForOrganization": "<p>Returns the Compute Optimizer enrollment (opt-in) status of organization member accounts, if your account is an organization management account.</p> <p>To get the enrollment status of standalone accounts, use the <a>GetEnrollmentStatus</a> action.</p>",
     "GetLambdaFunctionRecommendations": "<p>Returns Lambda function recommendations.</p> <p>Compute Optimizer generates recommendations for functions that meet a specific set of requirements. For more information, see the <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/requirements.html\">Supported resources and requirements</a> in the <i>Compute Optimizer User Guide</i>.</p>",
     "GetLicenseRecommendations": "<p>Returns license recommendations for Amazon EC2 instances that run on a specific license.</p> <p>Compute Optimizer generates recommendations for licenses that meet a specific set of requirements. For more information, see the <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/requirements.html\">Supported resources and requirements</a> in the <i>Compute Optimizer User Guide</i>.</p>",
+    "GetRDSDatabaseRecommendationProjectedMetrics": "<p> Returns the projected metrics of Amazon RDS recommendations. </p>",
+    "GetRDSDatabaseRecommendations": "<p> Returns Amazon RDS recommendations. </p> <p>Compute Optimizer generates recommendations for Amazon RDS that meet a specific set of requirements. For more information, see the <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/requirements.html\">Supported resources and requirements</a> in the <i>Compute Optimizer User Guide</i>.</p>",
     "GetRecommendationPreferences": "<p>Returns existing recommendation preferences, such as enhanced infrastructure metrics.</p> <p>Use the <code>scope</code> parameter to specify which preferences to return. You can specify to return preferences for an organization, a specific account ID, or a specific EC2 instance or Auto Scaling group Amazon Resource Name (ARN).</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/enhanced-infrastructure-metrics.html\">Activating enhanced infrastructure metrics</a> in the <i>Compute Optimizer User Guide</i>.</p>",
     "GetRecommendationSummaries": "<p>Returns the optimization findings for an account.</p> <p>It returns the number of:</p> <ul> <li> <p>Amazon EC2 instances in an account that are <code>Underprovisioned</code>, <code>Overprovisioned</code>, or <code>Optimized</code>.</p> </li> <li> <p>Auto Scaling groups in an account that are <code>NotOptimized</code>, or <code>Optimized</code>.</p> </li> <li> <p>Amazon EBS volumes in an account that are <code>NotOptimized</code>, or <code>Optimized</code>.</p> </li> <li> <p>Lambda functions in an account that are <code>NotOptimized</code>, or <code>Optimized</code>.</p> </li> <li> <p>Amazon ECS services in an account that are <code>Underprovisioned</code>, <code>Overprovisioned</code>, or <code>Optimized</code>.</p> </li> </ul>",
     "PutRecommendationPreferences": "<p>Creates a new recommendation preference or updates an existing recommendation preference, such as enhanced infrastructure metrics.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/enhanced-infrastructure-metrics.html\">Activating enhanced infrastructure metrics</a> in the <i>Compute Optimizer User Guide</i>.</p>",
@@ -54,6 +57,7 @@
         "InstanceRecommendation$accountId": "<p>The Amazon Web Services account ID of the instance.</p>",
         "LambdaFunctionRecommendation$accountId": "<p>The Amazon Web Services account ID of the function.</p>",
         "LicenseRecommendation$accountId": "<p> The Amazon Web Services account ID of the license. </p>",
+        "RDSDBRecommendation$accountId": "<p> The Amazon Web Services account ID of the Amazon RDS. </p>",
         "RecommendationSummary$accountId": "<p>The Amazon Web Services account ID of the recommendation summary.</p>",
         "VolumeRecommendation$accountId": "<p>The Amazon Web Services account ID of the volume.</p>"
       }
@@ -67,13 +71,21 @@
         "ExportECSServiceRecommendationsRequest$accountIds": "<p> The Amazon Web Services account IDs for the export Amazon ECS service recommendations. </p> <p>If your account is the management account or the delegated administrator of an organization, use this parameter to specify the member account you want to export recommendations to.</p> <p>This parameter can't be specified together with the include member accounts parameter. The parameters are mutually exclusive.</p> <p>If this parameter or the include member accounts parameter is omitted, the recommendations for member accounts aren't included in the export.</p> <p>You can specify multiple account IDs per request.</p>",
         "ExportLambdaFunctionRecommendationsRequest$accountIds": "<p>The IDs of the Amazon Web Services accounts for which to export Lambda function recommendations.</p> <p>If your account is the management account of an organization, use this parameter to specify the member account for which you want to export recommendations.</p> <p>This parameter cannot be specified together with the include member accounts parameter. The parameters are mutually exclusive.</p> <p>Recommendations for member accounts are not included in the export if this parameter, or the include member accounts parameter, is omitted.</p> <p>You can specify multiple account IDs per request.</p>",
         "ExportLicenseRecommendationsRequest$accountIds": "<p>The IDs of the Amazon Web Services accounts for which to export license recommendations.</p> <p>If your account is the management account of an organization, use this parameter to specify the member account for which you want to export recommendations.</p> <p>This parameter can't be specified together with the include member accounts parameter. The parameters are mutually exclusive.</p> <p>If this parameter is omitted, recommendations for member accounts aren't included in the export.</p> <p>You can specify multiple account IDs per request.</p>",
+        "ExportRDSDatabaseRecommendationsRequest$accountIds": "<p> The Amazon Web Services account IDs for the export Amazon RDS recommendations. </p> <p>If your account is the management account or the delegated administrator of an organization, use this parameter to specify the member account you want to export recommendations to.</p> <p>This parameter can't be specified together with the include member accounts parameter. The parameters are mutually exclusive.</p> <p>If this parameter or the include member accounts parameter is omitted, the recommendations for member accounts aren't included in the export.</p> <p>You can specify multiple account IDs per request.</p>",
         "GetAutoScalingGroupRecommendationsRequest$accountIds": "<p>The ID of the Amazon Web Services account for which to return Auto Scaling group recommendations.</p> <p>If your account is the management account of an organization, use this parameter to specify the member account for which you want to return Auto Scaling group recommendations.</p> <p>Only one account ID can be specified per request.</p>",
         "GetEBSVolumeRecommendationsRequest$accountIds": "<p>The ID of the Amazon Web Services account for which to return volume recommendations.</p> <p>If your account is the management account of an organization, use this parameter to specify the member account for which you want to return volume recommendations.</p> <p>Only one account ID can be specified per request.</p>",
         "GetEC2InstanceRecommendationsRequest$accountIds": "<p>The ID of the Amazon Web Services account for which to return instance recommendations.</p> <p>If your account is the management account of an organization, use this parameter to specify the member account for which you want to return instance recommendations.</p> <p>Only one account ID can be specified per request.</p>",
         "GetECSServiceRecommendationsRequest$accountIds": "<p> Return the Amazon ECS service recommendations to the specified Amazon Web Services account IDs. </p> <p>If your account is the management account or the delegated administrator of an organization, use this parameter to return the Amazon ECS service recommendations to specific member accounts.</p> <p>You can only specify one account ID per request.</p>",
         "GetLambdaFunctionRecommendationsRequest$accountIds": "<p>The ID of the Amazon Web Services account for which to return function recommendations.</p> <p>If your account is the management account of an organization, use this parameter to specify the member account for which you want to return function recommendations.</p> <p>Only one account ID can be specified per request.</p>",
         "GetLicenseRecommendationsRequest$accountIds": "<p>The ID of the Amazon Web Services account for which to return license recommendations.</p> <p>If your account is the management account of an organization, use this parameter to specify the member account for which you want to return license recommendations.</p> <p>Only one account ID can be specified per request.</p>",
+        "GetRDSDatabaseRecommendationsRequest$accountIds": "<p> Return the Amazon RDS recommendations to the specified Amazon Web Services account IDs. </p> <p>If your account is the management account or the delegated administrator of an organization, use this parameter to return the Amazon RDS recommendations to specific member accounts.</p> <p>You can only specify one account ID per request.</p>",
         "GetRecommendationSummariesRequest$accountIds": "<p>The ID of the Amazon Web Services account for which to return recommendation summaries.</p> <p>If your account is the management account of an organization, use this parameter to specify the member account for which you want to return recommendation summaries.</p> <p>Only one account ID can be specified per request.</p>"
+      }
+    },
+    "AllocatedStorage": {
+      "base": null,
+      "refs": {
+        "DBStorageConfiguration$allocatedStorage": "<p> The size of the RDS storage in gigabytes (GB). </p>"
       }
     },
     "AutoScalingConfiguration": {
@@ -196,8 +208,9 @@
     "CpuVendorArchitectures": {
       "base": null,
       "refs": {
-        "EffectiveRecommendationPreferences$cpuVendorArchitectures": "<p>Describes the CPU vendor and architecture for an instance or Auto Scaling group recommendations.</p> <p>For example, when you specify <code>AWS_ARM64</code> with:</p> <ul> <li> <p>A <a>GetEC2InstanceRecommendations</a> or <a>GetAutoScalingGroupRecommendations</a> request, Compute Optimizer returns recommendations that consist of Graviton2 instance types only.</p> </li> <li> <p>A <a>GetEC2RecommendationProjectedMetrics</a> request, Compute Optimizer returns projected utilization metrics for Graviton2 instance type recommendations only.</p> </li> <li> <p>A <a>ExportEC2InstanceRecommendations</a> or <a>ExportAutoScalingGroupRecommendations</a> request, Compute Optimizer exports recommendations that consist of Graviton2 instance types only.</p> </li> </ul>",
-        "RecommendationPreferences$cpuVendorArchitectures": "<p>Specifies the CPU vendor and architecture for Amazon EC2 instance and Auto Scaling group recommendations.</p> <p>For example, when you specify <code>AWS_ARM64</code> with:</p> <ul> <li> <p>A <a>GetEC2InstanceRecommendations</a> or <a>GetAutoScalingGroupRecommendations</a> request, Compute Optimizer returns recommendations that consist of Graviton2 instance types only.</p> </li> <li> <p>A <a>GetEC2RecommendationProjectedMetrics</a> request, Compute Optimizer returns projected utilization metrics for Graviton2 instance type recommendations only.</p> </li> <li> <p>A <a>ExportEC2InstanceRecommendations</a> or <a>ExportAutoScalingGroupRecommendations</a> request, Compute Optimizer exports recommendations that consist of Graviton2 instance types only.</p> </li> </ul>"
+        "EffectiveRecommendationPreferences$cpuVendorArchitectures": "<p>Describes the CPU vendor and architecture for an instance or Auto Scaling group recommendations.</p> <p>For example, when you specify <code>AWS_ARM64</code> with:</p> <ul> <li> <p>A <a>GetEC2InstanceRecommendations</a> or <a>GetAutoScalingGroupRecommendations</a> request, Compute Optimizer returns recommendations that consist of Graviton instance types only.</p> </li> <li> <p>A <a>GetEC2RecommendationProjectedMetrics</a> request, Compute Optimizer returns projected utilization metrics for Graviton instance type recommendations only.</p> </li> <li> <p>A <a>ExportEC2InstanceRecommendations</a> or <a>ExportAutoScalingGroupRecommendations</a> request, Compute Optimizer exports recommendations that consist of Graviton instance types only.</p> </li> </ul>",
+        "RDSEffectiveRecommendationPreferences$cpuVendorArchitectures": "<p> Describes the CPU vendor and architecture for Amazon RDS recommendations. </p>",
+        "RecommendationPreferences$cpuVendorArchitectures": "<p>Specifies the CPU vendor and architecture for Amazon EC2 instance and Auto Scaling group recommendations.</p> <p>For example, when you specify <code>AWS_ARM64</code> with:</p> <ul> <li> <p>A <a>GetEC2InstanceRecommendations</a> or <a>GetAutoScalingGroupRecommendations</a> request, Compute Optimizer returns recommendations that consist of Graviton instance types only.</p> </li> <li> <p>A <a>GetEC2RecommendationProjectedMetrics</a> request, Compute Optimizer returns projected utilization metrics for Graviton instance type recommendations only.</p> </li> <li> <p>A <a>ExportEC2InstanceRecommendations</a> or <a>ExportAutoScalingGroupRecommendations</a> request, Compute Optimizer exports recommendations that consist of Graviton instance types only.</p> </li> </ul>"
       }
     },
     "CreationTimestamp": {
@@ -214,7 +227,15 @@
         "ECSEstimatedMonthlySavings$currency": "<p> The currency of the estimated monthly savings. </p>",
         "EstimatedMonthlySavings$currency": "<p>The currency of the estimated monthly savings.</p>",
         "InstanceEstimatedMonthlySavings$currency": "<p> The currency of the estimated monthly savings. </p>",
-        "LambdaEstimatedMonthlySavings$currency": "<p> The currency of the estimated monthly savings. </p>"
+        "LambdaEstimatedMonthlySavings$currency": "<p> The currency of the estimated monthly savings. </p>",
+        "RDSInstanceEstimatedMonthlySavings$currency": "<p> The currency of the estimated monthly savings. </p>",
+        "RDSStorageEstimatedMonthlySavings$currency": "<p> The currency of the estimated monthly savings. </p>"
+      }
+    },
+    "CurrentDBInstanceClass": {
+      "base": null,
+      "refs": {
+        "RDSDBRecommendation$currentDBInstanceClass": "<p> The DB instance class of the current RDS instance. </p>"
       }
     },
     "CurrentInstanceType": {
@@ -261,6 +282,19 @@
       "base": null,
       "refs": {
         "CustomizableMetricParameters$threshold": "<p> The threshold value used for the specified metric parameter. </p> <note> <p>You can only specify the threshold value for CPU utilization.</p> </note>"
+      }
+    },
+    "DBInstanceClass": {
+      "base": null,
+      "refs": {
+        "RDSDBInstanceRecommendationOption$dbInstanceClass": "<p> Describes the DB instance class recommendation option for your Amazon RDS instance. </p>"
+      }
+    },
+    "DBStorageConfiguration": {
+      "base": "<p> The configuration of the recommended RDS storage. </p>",
+      "refs": {
+        "RDSDBRecommendation$currentStorageConfiguration": "<p> The configuration of the current RDS storage. </p>",
+        "RDSDBStorageRecommendationOption$storageConfiguration": "<p> The recommended storage configuration. </p>"
       }
     },
     "DeleteRecommendationPreferencesRequest": {
@@ -562,12 +596,25 @@
         "InstanceRecommendation$effectiveRecommendationPreferences": "<p>An object that describes the effective recommendation preferences for the instance.</p>"
       }
     },
+    "Engine": {
+      "base": null,
+      "refs": {
+        "RDSDBRecommendation$engine": "<p> The engine of the RDS instance. </p>"
+      }
+    },
+    "EngineVersion": {
+      "base": null,
+      "refs": {
+        "RDSDBRecommendation$engineVersion": "<p> The database engine version. </p>"
+      }
+    },
     "EnhancedInfrastructureMetrics": {
       "base": null,
       "refs": {
         "EffectiveRecommendationPreferences$enhancedInfrastructureMetrics": "<p>Describes the activation status of the enhanced infrastructure metrics preference.</p> <p>A status of <code>Active</code> confirms that the preference is applied in the latest recommendation refresh, and a status of <code>Inactive</code> confirms that it's not yet applied to recommendations.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/enhanced-infrastructure-metrics.html\">Enhanced infrastructure metrics</a> in the <i>Compute Optimizer User Guide</i>.</p>",
         "GetEffectiveRecommendationPreferencesResponse$enhancedInfrastructureMetrics": "<p>The status of the enhanced infrastructure metrics recommendation preference. Considers all applicable preferences that you might have set at the resource, account, and organization level.</p> <p>A status of <code>Active</code> confirms that the preference is applied in the latest recommendation refresh, and a status of <code>Inactive</code> confirms that it's not yet applied to recommendations.</p> <p>To validate whether the preference is applied to your last generated set of recommendations, review the <code>effectiveRecommendationPreferences</code> value in the response of the <a>GetAutoScalingGroupRecommendations</a> and <a>GetEC2InstanceRecommendations</a> actions.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/enhanced-infrastructure-metrics.html\">Enhanced infrastructure metrics</a> in the <i>Compute Optimizer User Guide</i>.</p>",
         "PutRecommendationPreferencesRequest$enhancedInfrastructureMetrics": "<p>The status of the enhanced infrastructure metrics recommendation preference to create or update.</p> <p>Specify the <code>Active</code> status to activate the preference, or specify <code>Inactive</code> to deactivate the preference.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/enhanced-infrastructure-metrics.html\">Enhanced infrastructure metrics</a> in the <i>Compute Optimizer User Guide</i>.</p>",
+        "RDSEffectiveRecommendationPreferences$enhancedInfrastructureMetrics": "<p>Describes the activation status of the enhanced infrastructure metrics preference. </p> <p>A status of <code>Active</code> confirms that the preference is applied in the latest recommendation refresh, and a status of <code>Inactive</code> confirms that it's not yet applied to recommendations. </p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/enhanced-infrastructure-metrics.html\">Enhanced infrastructure metrics</a> in the <i>Compute Optimizer User Guide</i>. </p>",
         "RecommendationPreferencesDetail$enhancedInfrastructureMetrics": "<p>The status of the enhanced infrastructure metrics recommendation preference.</p> <p>When the recommendations page is refreshed, a status of <code>Active</code> confirms that the preference is applied to the recommendations, and a status of <code>Inactive</code> confirms that the preference isn't yet applied to recommendations.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/enhanced-infrastructure-metrics.html\">Enhanced infrastructure metrics</a> in the <i>Compute Optimizer User Guide</i>.</p>"
       }
     },
@@ -676,6 +723,16 @@
       "refs": {
       }
     },
+    "ExportRDSDatabaseRecommendationsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ExportRDSDatabaseRecommendationsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ExportableAutoScalingGroupField": {
       "base": null,
       "refs": {
@@ -734,6 +791,18 @@
       "base": null,
       "refs": {
         "ExportLicenseRecommendationsRequest$fieldsToExport": "<p>The recommendations data to include in the export file. For more information about the fields that can be exported, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/exporting-recommendations.html#exported-files\">Exported files</a> in the <i>Compute Optimizer User Guide</i>.</p>"
+      }
+    },
+    "ExportableRDSDBField": {
+      "base": null,
+      "refs": {
+        "ExportableRDSDBFields$member": null
+      }
+    },
+    "ExportableRDSDBFields": {
+      "base": null,
+      "refs": {
+        "ExportRDSDatabaseRecommendationsRequest$fieldsToExport": "<p>The recommendations data to include in the export file. For more information about the fields that can be exported, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/exporting-recommendations.html#exported-files\">Exported files</a> in the <i>Compute Optimizer User Guide</i>.</p>"
       }
     },
     "ExportableVolumeField": {
@@ -795,7 +864,8 @@
         "ExportEC2InstanceRecommendationsRequest$fileFormat": "<p>The format of the export file.</p> <p>The only export file format currently supported is <code>Csv</code>.</p>",
         "ExportECSServiceRecommendationsRequest$fileFormat": "<p> The format of the export file. </p> <p>The CSV file is the only export file format currently supported.</p>",
         "ExportLambdaFunctionRecommendationsRequest$fileFormat": "<p>The format of the export file.</p> <p>The only export file format currently supported is <code>Csv</code>.</p>",
-        "ExportLicenseRecommendationsRequest$fileFormat": "<p>The format of the export file.</p> <p>A CSV file is the only export format currently supported.</p>"
+        "ExportLicenseRecommendationsRequest$fileFormat": "<p>The format of the export file.</p> <p>A CSV file is the only export format currently supported.</p>",
+        "ExportRDSDatabaseRecommendationsRequest$fileFormat": "<p> The format of the export file. </p> <p>The CSV file is the only export file format currently supported.</p>"
       }
     },
     "Filter": {
@@ -825,7 +895,8 @@
         "Filter$values": "<p>The value of the filter.</p> <p>The valid values for this parameter are as follows, depending on what you specify for the <code>name</code> parameter and the resource type that you wish to filter results for:</p> <ul> <li> <p>Specify <code>Optimized</code> or <code>NotOptimized</code> if you specify the <code>name</code> parameter as <code>Finding</code> and you want to filter results for Auto Scaling groups.</p> </li> <li> <p>Specify <code>Underprovisioned</code>, <code>Overprovisioned</code>, or <code>Optimized</code> if you specify the <code>name</code> parameter as <code>Finding</code> and you want to filter results for EC2 instances.</p> </li> <li> <p>Specify <code>Ec2Instance</code> or <code>AutoScalingGroup</code> if you specify the <code>name</code> parameter as <code>RecommendationSourceType</code>.</p> </li> <li> <p>Specify one of the following options if you specify the <code>name</code> parameter as <code>FindingReasonCodes</code>:</p> <ul> <li> <p> <b> <code>CPUOverprovisioned</code> </b> — The instance’s CPU configuration can be sized down while still meeting the performance requirements of your workload.</p> </li> <li> <p> <b> <code>CPUUnderprovisioned</code> </b> — The instance’s CPU configuration doesn't meet the performance requirements of your workload and there is an alternative instance type that provides better CPU performance.</p> </li> <li> <p> <b> <code>MemoryOverprovisioned</code> </b> — The instance’s memory configuration can be sized down while still meeting the performance requirements of your workload.</p> </li> <li> <p> <b> <code>MemoryUnderprovisioned</code> </b> — The instance’s memory configuration doesn't meet the performance requirements of your workload and there is an alternative instance type that provides better memory performance.</p> </li> <li> <p> <b> <code>EBSThroughputOverprovisioned</code> </b> — The instance’s EBS throughput configuration can be sized down while still meeting the performance requirements of your workload.</p> </li> <li> <p> <b> <code>EBSThroughputUnderprovisioned</code> </b> — The instance’s EBS throughput configuration doesn't meet the performance requirements of your workload and there is an alternative instance type that provides better EBS throughput performance.</p> </li> <li> <p> <b> <code>EBSIOPSOverprovisioned</code> </b> — The instance’s EBS IOPS configuration can be sized down while still meeting the performance requirements of your workload.</p> </li> <li> <p> <b> <code>EBSIOPSUnderprovisioned</code> </b> — The instance’s EBS IOPS configuration doesn't meet the performance requirements of your workload and there is an alternative instance type that provides better EBS IOPS performance.</p> </li> <li> <p> <b> <code>NetworkBandwidthOverprovisioned</code> </b> — The instance’s network bandwidth configuration can be sized down while still meeting the performance requirements of your workload.</p> </li> <li> <p> <b> <code>NetworkBandwidthUnderprovisioned</code> </b> — The instance’s network bandwidth configuration doesn't meet the performance requirements of your workload and there is an alternative instance type that provides better network bandwidth performance. This finding reason happens when the <code>NetworkIn</code> or <code>NetworkOut</code> performance of an instance is impacted.</p> </li> <li> <p> <b> <code>NetworkPPSOverprovisioned</code> </b> — The instance’s network PPS (packets per second) configuration can be sized down while still meeting the performance requirements of your workload.</p> </li> <li> <p> <b> <code>NetworkPPSUnderprovisioned</code> </b> — The instance’s network PPS (packets per second) configuration doesn't meet the performance requirements of your workload and there is an alternative instance type that provides better network PPS performance.</p> </li> <li> <p> <b> <code>DiskIOPSOverprovisioned</code> </b> — The instance’s disk IOPS configuration can be sized down while still meeting the performance requirements of your workload.</p> </li> <li> <p> <b> <code>DiskIOPSUnderprovisioned</code> </b> — The instance’s disk IOPS configuration doesn't meet the performance requirements of your workload and there is an alternative instance type that provides better disk IOPS performance.</p> </li> <li> <p> <b> <code>DiskThroughputOverprovisioned</code> </b> — The instance’s disk throughput configuration can be sized down while still meeting the performance requirements of your workload.</p> </li> <li> <p> <b> <code>DiskThroughputUnderprovisioned</code> </b> — The instance’s disk throughput configuration doesn't meet the performance requirements of your workload and there is an alternative instance type that provides better disk throughput performance.</p> </li> </ul> </li> </ul>",
         "JobFilter$values": "<p>The value of the filter.</p> <p>The valid values for this parameter are as follows, depending on what you specify for the <code>name</code> parameter:</p> <ul> <li> <p>Specify <code>Ec2Instance</code> or <code>AutoScalingGroup</code> if you specify the <code>name</code> parameter as <code>ResourceType</code>. There is no filter for EBS volumes because volume recommendations cannot be exported at this time.</p> </li> <li> <p>Specify <code>Queued</code>, <code>InProgress</code>, <code>Complete</code>, or <code>Failed</code> if you specify the <code>name</code> parameter as <code>JobStatus</code>.</p> </li> </ul>",
         "LambdaFunctionRecommendationFilter$values": "<p>The value of the filter.</p> <p>The valid values for this parameter are as follows, depending on what you specify for the <code>name</code> parameter:</p> <ul> <li> <p>Specify <code>Optimized</code>, <code>NotOptimized</code>, or <code>Unavailable</code> if you specify the <code>name</code> parameter as <code>Finding</code>.</p> </li> <li> <p>Specify <code>MemoryOverprovisioned</code>, <code>MemoryUnderprovisioned</code>, <code>InsufficientData</code>, or <code>Inconclusive</code> if you specify the <code>name</code> parameter as <code>FindingReasonCode</code>.</p> </li> </ul>",
-        "LicenseRecommendationFilter$values": "<p>The value of the filter.</p> <p>The valid values for this parameter are as follows, depending on what you specify for the <code>name</code> parameter:</p> <ul> <li> <p>If you specify the <code>name</code> parameter as <code>Finding</code>, then specify <code>Optimized</code>, <code>NotOptimized</code>, or <code>InsufficentMetrics</code>.</p> </li> <li> <p>If you specify the <code>name</code> parameter as <code>FindingReasonCode</code>, then specify <code>Optimized</code>, <code>LicenseOverprovisioned</code>, <code>InvalidCloudwatchApplicationInsights</code>, or <code>CloudwatchApplicationInsightsError</code>.</p> </li> </ul>"
+        "LicenseRecommendationFilter$values": "<p>The value of the filter.</p> <p>The valid values for this parameter are as follows, depending on what you specify for the <code>name</code> parameter:</p> <ul> <li> <p>If you specify the <code>name</code> parameter as <code>Finding</code>, then specify <code>Optimized</code>, <code>NotOptimized</code>, or <code>InsufficentMetrics</code>.</p> </li> <li> <p>If you specify the <code>name</code> parameter as <code>FindingReasonCode</code>, then specify <code>Optimized</code>, <code>LicenseOverprovisioned</code>, <code>InvalidCloudwatchApplicationInsights</code>, or <code>CloudwatchApplicationInsightsError</code>.</p> </li> </ul>",
+        "RDSDBRecommendationFilter$values": "<p> The value of the filter. </p>"
       }
     },
     "Filters": {
@@ -841,7 +912,7 @@
       "base": null,
       "refs": {
         "AutoScalingGroupRecommendation$finding": "<p>The finding classification of the Auto Scaling group.</p> <p>Findings for Auto Scaling groups include:</p> <ul> <li> <p> <b> <code>NotOptimized</code> </b>—An Auto Scaling group is considered not optimized when Compute Optimizer identifies a recommendation that can provide better performance for your workload.</p> </li> <li> <p> <b> <code>Optimized</code> </b>—An Auto Scaling group is considered optimized when Compute Optimizer determines that the group is correctly provisioned to run your workload based on the chosen instance type. For optimized resources, Compute Optimizer might recommend a new generation instance type.</p> </li> </ul>",
-        "InstanceRecommendation$finding": "<p>The finding classification of the instance.</p> <p>Findings for instances include:</p> <ul> <li> <p> <b> <code>Underprovisioned</code> </b>—An instance is considered under-provisioned when at least one specification of your instance, such as CPU, memory, or network, does not meet the performance requirements of your workload. Under-provisioned instances may lead to poor application performance.</p> </li> <li> <p> <b> <code>Overprovisioned</code> </b>—An instance is considered over-provisioned when at least one specification of your instance, such as CPU, memory, or network, can be sized down while still meeting the performance requirements of your workload, and no specification is under-provisioned. Over-provisioned instances may lead to unnecessary infrastructure cost.</p> </li> <li> <p> <b> <code>Optimized</code> </b>—An instance is considered optimized when all specifications of your instance, such as CPU, memory, and network, meet the performance requirements of your workload and is not over provisioned. For optimized resources, Compute Optimizer might recommend a new generation instance type.</p> </li> </ul>",
+        "InstanceRecommendation$finding": "<p>The finding classification of the instance.</p> <p>Findings for instances include:</p> <ul> <li> <p> <b> <code>Underprovisioned</code> </b>—An instance is considered under-provisioned when at least one specification of your instance, such as CPU, memory, or network, does not meet the performance requirements of your workload. Under-provisioned instances may lead to poor application performance.</p> </li> <li> <p> <b> <code>Overprovisioned</code> </b>—An instance is considered over-provisioned when at least one specification of your instance, such as CPU, memory, or network, can be sized down while still meeting the performance requirements of your workload, and no specification is under-provisioned. Over-provisioned instances may lead to unnecessary infrastructure cost.</p> </li> <li> <p> <b> <code>Optimized</code> </b>—An instance is considered optimized when all specifications of your instance, such as CPU, memory, and network, meet the performance requirements of your workload and is not over provisioned. For optimized resources, Compute Optimizer might recommend a new generation instance type.</p> </li> </ul> <note> <p>The valid values in your API responses appear as OVER_PROVISIONED, UNDER_PROVISIONED, or OPTIMIZED.</p> </note>",
         "Summary$name": "<p>The finding classification of the recommendation.</p>"
       }
     },
@@ -980,6 +1051,26 @@
       "refs": {
       }
     },
+    "GetRDSDatabaseRecommendationProjectedMetricsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetRDSDatabaseRecommendationProjectedMetricsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetRDSDatabaseRecommendationsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetRDSDatabaseRecommendationsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetRecommendationError": {
       "base": "<p>Describes an error experienced when getting recommendations.</p> <p>For example, an error is returned if you request recommendations for an unsupported Auto Scaling group, or if you request recommendations for an instance of an unsupported instance family.</p>",
       "refs": {
@@ -993,7 +1084,8 @@
         "GetEBSVolumeRecommendationsResponse$errors": "<p>An array of objects that describe errors of the request.</p> <p>For example, an error is returned if you request recommendations for an unsupported volume.</p>",
         "GetEC2InstanceRecommendationsResponse$errors": "<p>An array of objects that describe errors of the request.</p> <p>For example, an error is returned if you request recommendations for an instance of an unsupported instance family.</p>",
         "GetECSServiceRecommendationsResponse$errors": "<p> An array of objects that describe errors of the request. </p>",
-        "GetLicenseRecommendationsResponse$errors": "<p> An array of objects that describe errors of the request. </p>"
+        "GetLicenseRecommendationsResponse$errors": "<p> An array of objects that describe errors of the request. </p>",
+        "GetRDSDatabaseRecommendationsResponse$errors": "<p> An array of objects that describe errors of the request. </p>"
       }
     },
     "GetRecommendationPreferencesRequest": {
@@ -1061,6 +1153,12 @@
         "GetRecommendationError$identifier": "<p>The ID of the error.</p>"
       }
     },
+    "Idle": {
+      "base": null,
+      "refs": {
+        "RDSDBRecommendation$idle": "<p> This indicates if the RDS instance is idle or not. </p>"
+      }
+    },
     "IncludeMemberAccounts": {
       "base": null,
       "refs": {
@@ -1070,6 +1168,7 @@
         "ExportECSServiceRecommendationsRequest$includeMemberAccounts": "<p>If your account is the management account or the delegated administrator of an organization, this parameter indicates whether to include recommendations for resources in all member accounts of the organization.</p> <p>The member accounts must also be opted in to Compute Optimizer, and trusted access for Compute Optimizer must be enabled in the organization account. For more information, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/security-iam.html#trusted-service-access\">Compute Optimizer and Amazon Web Services Organizations trusted access</a> in the <i>Compute Optimizer User Guide</i>.</p> <p>If this parameter is omitted, recommendations for member accounts of the organization aren't included in the export file.</p> <p>If this parameter or the account ID parameter is omitted, recommendations for member accounts aren't included in the export.</p>",
         "ExportLambdaFunctionRecommendationsRequest$includeMemberAccounts": "<p>Indicates whether to include recommendations for resources in all member accounts of the organization if your account is the management account of an organization.</p> <p>The member accounts must also be opted in to Compute Optimizer, and trusted access for Compute Optimizer must be enabled in the organization account. For more information, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/security-iam.html#trusted-service-access\">Compute Optimizer and Amazon Web Services Organizations trusted access</a> in the <i>Compute Optimizer User Guide</i>.</p> <p>Recommendations for member accounts of the organization are not included in the export file if this parameter is omitted.</p> <p>This parameter cannot be specified together with the account IDs parameter. The parameters are mutually exclusive.</p> <p>Recommendations for member accounts are not included in the export if this parameter, or the account IDs parameter, is omitted.</p>",
         "ExportLicenseRecommendationsRequest$includeMemberAccounts": "<p>Indicates whether to include recommendations for resources in all member accounts of the organization if your account is the management account of an organization.</p> <p>The member accounts must also be opted in to Compute Optimizer, and trusted access for Compute Optimizer must be enabled in the organization account. For more information, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/security-iam.html#trusted-service-access\">Compute Optimizer and Amazon Web Services Organizations trusted access</a> in the <i>Compute Optimizer User Guide</i>.</p> <p>If this parameter is omitted, recommendations for member accounts of the organization aren't included in the export file .</p> <p>This parameter cannot be specified together with the account IDs parameter. The parameters are mutually exclusive.</p>",
+        "ExportRDSDatabaseRecommendationsRequest$includeMemberAccounts": "<p>If your account is the management account or the delegated administrator of an organization, this parameter indicates whether to include recommendations for resources in all member accounts of the organization.</p> <p>The member accounts must also be opted in to Compute Optimizer, and trusted access for Compute Optimizer must be enabled in the organization account. For more information, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/security-iam.html#trusted-service-access\">Compute Optimizer and Amazon Web Services Organizations trusted access</a> in the <i>Compute Optimizer User Guide</i>.</p> <p>If this parameter is omitted, recommendations for member accounts of the organization aren't included in the export file.</p> <p>If this parameter or the account ID parameter is omitted, recommendations for member accounts aren't included in the export.</p>",
         "UpdateEnrollmentStatusRequest$includeMemberAccounts": "<p>Indicates whether to enroll member accounts of the organization if the account is the management account of an organization.</p>"
       }
     },
@@ -1238,6 +1337,7 @@
         "ExportECSServiceRecommendationsResponse$jobId": "<p> The identification number of the export job. </p> <p>To view the status of an export job, use the <a>DescribeRecommendationExportJobs</a> action and specify the job ID. </p>",
         "ExportLambdaFunctionRecommendationsResponse$jobId": "<p>The identification number of the export job.</p> <p>Use the <a>DescribeRecommendationExportJobs</a> action, and specify the job ID to view the status of an export job.</p>",
         "ExportLicenseRecommendationsResponse$jobId": "<p> The identification number of the export job. </p> <p>To view the status of an export job, use the <a>DescribeRecommendationExportJobs</a> action and specify the job ID.</p>",
+        "ExportRDSDatabaseRecommendationsResponse$jobId": "<p> The identification number of the export job. </p> <p>To view the status of an export job, use the <a>DescribeRecommendationExportJobs</a> action and specify the job ID. </p>",
         "JobIds$member": null,
         "RecommendationExportJob$jobId": "<p>The identification number of the export job.</p>"
       }
@@ -1401,6 +1501,7 @@
         "InstanceRecommendation$lastRefreshTimestamp": "<p>The timestamp of when the instance recommendation was last generated.</p>",
         "LambdaFunctionRecommendation$lastRefreshTimestamp": "<p>The timestamp of when the function recommendation was last generated.</p>",
         "LicenseRecommendation$lastRefreshTimestamp": "<p> The timestamp of when the license recommendation was last generated. </p>",
+        "RDSDBRecommendation$lastRefreshTimestamp": "<p> The timestamp of when the Amazon RDS recommendation was last generated. </p>",
         "VolumeRecommendation$lastRefreshTimestamp": "<p>The timestamp of when the volume recommendation was last generated.</p>"
       }
     },
@@ -1518,6 +1619,7 @@
         "InstanceRecommendation$lookBackPeriodInDays": "<p>The number of days for which utilization metrics were analyzed for the instance.</p>",
         "LambdaFunctionRecommendation$lookbackPeriodInDays": "<p>The number of days for which utilization metrics were analyzed for the function.</p>",
         "LicenseRecommendation$lookbackPeriodInDays": "<p> The number of days for which utilization metrics were analyzed for an instance that runs on a license. </p>",
+        "RDSDBRecommendation$lookbackPeriodInDays": "<p> The number of days the Amazon RDS utilization metrics were analyzed. </p>",
         "VolumeRecommendation$lookBackPeriodInDays": "<p>The number of days for which utilization metrics were analyzed for the volume.</p>"
       }
     },
@@ -1527,6 +1629,7 @@
         "EffectiveRecommendationPreferences$lookBackPeriod": "<p> The number of days the utilization metrics of the Amazon Web Services resource are analyzed. </p>",
         "GetEffectiveRecommendationPreferencesResponse$lookBackPeriod": "<p> The number of days the utilization metrics of the Amazon Web Services resource are analyzed. </p> <p>To validate that the preference is applied to your last generated set of recommendations, review the <code>effectiveRecommendationPreferences</code> value in the response of the GetAutoScalingGroupRecommendations or GetEC2InstanceRecommendations actions.</p>",
         "PutRecommendationPreferencesRequest$lookBackPeriod": "<p> The preference to control the number of days the utilization metrics of the Amazon Web Services resource are analyzed. When this preference isn't specified, we use the default value <code>DAYS_14</code>. </p> <note> <p>You can only set this preference for the Amazon EC2 instance and Auto Scaling group resource types.</p> </note>",
+        "RDSEffectiveRecommendationPreferences$lookBackPeriod": "<p> The number of days the utilization metrics of the Amazon RDS are analyzed. </p>",
         "RecommendationPreferencesDetail$lookBackPeriod": "<p> The preference to control the number of days the utilization metrics of the Amazon Web Services resource are analyzed. If the preference isn’t set, this object is null. </p>"
       }
     },
@@ -1553,6 +1656,7 @@
         "GetEnrollmentStatusesForOrganizationRequest$maxResults": "<p>The maximum number of account enrollment statuses to return with a single request. You can specify up to 100 statuses to return with each request.</p> <p>To retrieve the remaining results, make another request with the returned <code>nextToken</code> value.</p>",
         "GetLambdaFunctionRecommendationsRequest$maxResults": "<p>The maximum number of function recommendations to return with a single request.</p> <p>To retrieve the remaining results, make another request with the returned <code>nextToken</code> value.</p>",
         "GetLicenseRecommendationsRequest$maxResults": "<p> The maximum number of license recommendations to return with a single request. </p> <p> To retrieve the remaining results, make another request with the returned <code>nextToken</code> value. </p>",
+        "GetRDSDatabaseRecommendationsRequest$maxResults": "<p>The maximum number of Amazon RDS recommendations to return with a single request.</p> <p>To retrieve the remaining results, make another request with the returned <code>nextToken</code> value.</p>",
         "GetRecommendationPreferencesRequest$maxResults": "<p>The maximum number of recommendation preferences to return with a single request.</p> <p>To retrieve the remaining results, make another request with the returned <code>nextToken</code> value.</p>",
         "GetRecommendationSummariesRequest$maxResults": "<p>The maximum number of recommendation summaries to return with a single request.</p> <p>To retrieve the remaining results, make another request with the returned <code>nextToken</code> value.</p>"
       }
@@ -1633,6 +1737,7 @@
         "EBSUtilizationMetric$statistic": "<p>The statistic of the utilization metric.</p> <p>The Compute Optimizer API, Command Line Interface (CLI), and SDKs return utilization metrics using only the <code>Maximum</code> statistic, which is the highest value observed during the specified period.</p> <p>The Compute Optimizer console displays graphs for some utilization metrics using the <code>Average</code> statistic, which is the value of <code>Sum</code> / <code>SampleCount</code> during the specified period. For more information, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/viewing-recommendations.html\">Viewing resource recommendations</a> in the <i>Compute Optimizer User Guide</i>. You can also get averaged utilization metric data for your resources using Amazon CloudWatch. For more information, see the <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html\">Amazon CloudWatch User Guide</a>.</p>",
         "GetEC2RecommendationProjectedMetricsRequest$stat": "<p>The statistic of the projected metrics.</p>",
         "GetECSServiceRecommendationProjectedMetricsRequest$stat": "<p> The statistic of the projected metrics. </p>",
+        "GetRDSDatabaseRecommendationProjectedMetricsRequest$stat": "<p> The statistic of the projected metrics. </p>",
         "UtilizationMetric$statistic": "<p>The statistic of the utilization metric.</p> <p>The Compute Optimizer API, Command Line Interface (CLI), and SDKs return utilization metrics using only the <code>Maximum</code> statistic, which is the highest value observed during the specified period.</p> <p>The Compute Optimizer console displays graphs for some utilization metrics using the <code>Average</code> statistic, which is the value of <code>Sum</code> / <code>SampleCount</code> during the specified period. For more information, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/viewing-recommendations.html\">Viewing resource recommendations</a> in the <i>Compute Optimizer User Guide</i>. You can also get averaged utilization metric data for your resources using Amazon CloudWatch. For more information, see the <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html\">Amazon CloudWatch User Guide</a>.</p>"
       }
     },
@@ -1644,6 +1749,7 @@
         "LambdaFunctionMemoryProjectedMetric$value": "<p>The values of the projected utilization metrics.</p>",
         "LambdaFunctionUtilizationMetric$value": "<p>The value of the utilization metric.</p>",
         "MetricValues$member": null,
+        "RDSDBUtilizationMetric$value": "<p> The value of the utilization metric. </p>",
         "UtilizationMetric$value": "<p>The value of the utilization metric.</p>"
       }
     },
@@ -1652,7 +1758,8 @@
       "refs": {
         "ECSServiceProjectedMetric$upperBoundValues": "<p> The upper bound values for the projected metric. </p>",
         "ECSServiceProjectedMetric$lowerBoundValues": "<p> The lower bound values for the projected metric. </p>",
-        "ProjectedMetric$values": "<p>The values of the projected utilization metrics.</p>"
+        "ProjectedMetric$values": "<p>The values of the projected utilization metrics.</p>",
+        "RDSDatabaseProjectedMetric$values": "<p> The values for the projected metric. </p>"
       }
     },
     "MetricsSource": {
@@ -1698,6 +1805,8 @@
         "GetLambdaFunctionRecommendationsResponse$nextToken": "<p>The token to use to advance to the next page of function recommendations.</p> <p>This value is null when there are no more pages of function recommendations to return.</p>",
         "GetLicenseRecommendationsRequest$nextToken": "<p> The token to advance to the next page of license recommendations. </p>",
         "GetLicenseRecommendationsResponse$nextToken": "<p> The token to use to advance to the next page of license recommendations. </p>",
+        "GetRDSDatabaseRecommendationsRequest$nextToken": "<p> The token to advance to the next page of Amazon RDS recommendations. </p>",
+        "GetRDSDatabaseRecommendationsResponse$nextToken": "<p> The token to advance to the next page of Amazon RDS recommendations. </p>",
         "GetRecommendationPreferencesRequest$nextToken": "<p>The token to advance to the next page of recommendation preferences.</p>",
         "GetRecommendationPreferencesResponse$nextToken": "<p>The token to use to advance to the next page of recommendation preferences.</p> <p>This value is null when there are no more pages of recommendation preferences to return.</p>",
         "GetRecommendationSummariesRequest$nextToken": "<p>The token to advance to the next page of recommendation summaries.</p>",
@@ -1713,6 +1822,18 @@
         "ServiceConfiguration$cpu": "<p> The number of CPU units used by the tasks in the Amazon ECS service. </p>"
       }
     },
+    "NullableIOPS": {
+      "base": null,
+      "refs": {
+        "DBStorageConfiguration$iops": "<p> The provisioned IOPs of the RDS storage. </p>"
+      }
+    },
+    "NullableMaxAllocatedStorage": {
+      "base": null,
+      "refs": {
+        "DBStorageConfiguration$maxAllocatedStorage": "<p> The maximum limit in gibibytes (GiB) to which Amazon RDS can automatically scale the storage of the RDS instance. </p>"
+      }
+    },
     "NullableMemory": {
       "base": null,
       "refs": {
@@ -1725,6 +1846,12 @@
       "base": null,
       "refs": {
         "MemorySizeConfiguration$memoryReservation": "<p> The limit of memory reserve for the container. </p>"
+      }
+    },
+    "NullableStorageThroughput": {
+      "base": null,
+      "refs": {
+        "DBStorageConfiguration$storageThroughput": "<p> The storage throughput of the RDS storage. </p>"
       }
     },
     "NumberOfCores": {
@@ -1762,6 +1889,7 @@
       "refs": {
         "AutoScalingGroupRecommendationOption$performanceRisk": "<p>The performance risk of the Auto Scaling group configuration recommendation.</p> <p>Performance risk indicates the likelihood of the recommended instance type not meeting the resource needs of your workload. Compute Optimizer calculates an individual performance risk score for each specification of the recommended instance, including CPU, memory, EBS throughput, EBS IOPS, disk throughput, disk IOPS, network throughput, and network PPS. The performance risk of the recommended instance is calculated as the maximum performance risk score across the analyzed resource specifications.</p> <p>The value ranges from <code>0</code> - <code>4</code>, with <code>0</code> meaning that the recommended resource is predicted to always provide enough hardware capability. The higher the performance risk is, the more likely you should validate whether the recommendation will meet the performance requirements of your workload before migrating your resource.</p>",
         "InstanceRecommendationOption$performanceRisk": "<p>The performance risk of the instance recommendation option.</p> <p>Performance risk indicates the likelihood of the recommended instance type not meeting the resource needs of your workload. Compute Optimizer calculates an individual performance risk score for each specification of the recommended instance, including CPU, memory, EBS throughput, EBS IOPS, disk throughput, disk IOPS, network throughput, and network PPS. The performance risk of the recommended instance is calculated as the maximum performance risk score across the analyzed resource specifications.</p> <p>The value ranges from <code>0</code> - <code>4</code>, with <code>0</code> meaning that the recommended resource is predicted to always provide enough hardware capability. The higher the performance risk is, the more likely you should validate whether the recommendation will meet the performance requirements of your workload before migrating your resource.</p>",
+        "RDSDBInstanceRecommendationOption$performanceRisk": "<p> The performance risk of the RDS instance recommendation option. </p>",
         "VolumeRecommendationOption$performanceRisk": "<p>The performance risk of the volume recommendation option.</p> <p>Performance risk is the likelihood of the recommended volume type meeting the performance requirement of your workload.</p> <p>The value ranges from <code>0</code> - <code>4</code>, with <code>0</code> meaning that the recommended resource is predicted to always provide enough hardware capability. The higher the performance risk is, the more likely you should validate whether the recommendation will meet the performance requirements of your workload before migrating your resource.</p>"
       }
     },
@@ -1769,7 +1897,8 @@
       "base": null,
       "refs": {
         "GetEC2RecommendationProjectedMetricsRequest$period": "<p>The granularity, in seconds, of the projected metrics data points.</p>",
-        "GetECSServiceRecommendationProjectedMetricsRequest$period": "<p> The granularity, in seconds, of the projected metrics data points. </p>"
+        "GetECSServiceRecommendationProjectedMetricsRequest$period": "<p> The granularity, in seconds, of the projected metrics data points. </p>",
+        "GetRDSDatabaseRecommendationProjectedMetricsRequest$period": "<p> The granularity, in seconds, of the projected metrics data points. </p>"
       }
     },
     "PlatformDifference": {
@@ -1848,6 +1977,195 @@
       "refs": {
       }
     },
+    "RDSDBInstanceRecommendationOption": {
+      "base": "<p> Describes the recommendation options for an Amazon RDS instance. </p>",
+      "refs": {
+        "RDSDBInstanceRecommendationOptions$member": null
+      }
+    },
+    "RDSDBInstanceRecommendationOptions": {
+      "base": null,
+      "refs": {
+        "RDSDBRecommendation$instanceRecommendationOptions": "<p> An array of objects that describe the recommendation options for the Amazon RDS instance. </p>"
+      }
+    },
+    "RDSDBMetricName": {
+      "base": null,
+      "refs": {
+        "RDSDBUtilizationMetric$name": "<p> The name of the utilization metric. </p>",
+        "RDSDatabaseProjectedMetric$name": "<p> The name of the projected metric. </p>"
+      }
+    },
+    "RDSDBMetricStatistic": {
+      "base": null,
+      "refs": {
+        "RDSDBUtilizationMetric$statistic": "<p> The statistic of the utilization metric. </p> <p>The Compute Optimizer API, Command Line Interface (CLI), and SDKs return utilization metrics using only the <code>Maximum</code> statistic, which is the highest value observed during the specified period.</p> <p>The Compute Optimizer console displays graphs for some utilization metrics using the <code>Average</code> statistic, which is the value of <code>Sum</code> / <code>SampleCount</code> during the specified period. For more information, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/viewing-recommendations.html\">Viewing resource recommendations</a> in the <i>Compute Optimizer User Guide</i>. You can also get averaged utilization metric data for your resources using Amazon CloudWatch. For more information, see the <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html\">Amazon CloudWatch User Guide</a>.</p>"
+      }
+    },
+    "RDSDBProjectedUtilizationMetrics": {
+      "base": null,
+      "refs": {
+        "RDSDBInstanceRecommendationOption$projectedUtilizationMetrics": "<p> An array of objects that describe the projected utilization metrics of the RDS instance recommendation option. </p>"
+      }
+    },
+    "RDSDBRecommendation": {
+      "base": "<p> Describes an Amazon RDS recommendation. </p>",
+      "refs": {
+        "RDSDBRecommendations$member": null
+      }
+    },
+    "RDSDBRecommendationFilter": {
+      "base": "<p> Describes a filter that returns a more specific list of Amazon RDS recommendations. Use this filter with the <a>GetECSServiceRecommendations</a> action. </p>",
+      "refs": {
+        "RDSDBRecommendationFilters$member": null
+      }
+    },
+    "RDSDBRecommendationFilterName": {
+      "base": null,
+      "refs": {
+        "RDSDBRecommendationFilter$name": "<p> The name of the filter. </p> <p> Specify <code>Finding</code> to return recommendations with a specific finding classification. </p> <p>You can filter your Amazon RDS recommendations by <code>tag:key</code> and <code>tag-key</code> tags.</p> <p>A <code>tag:key</code> is a key and value combination of a tag assigned to your Amazon RDS recommendations. Use the tag key in the filter name and the tag value as the filter value. For example, to find all Amazon RDS service recommendations that have a tag with the key of <code>Owner</code> and the value of <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p> <p>A <code>tag-key</code> is the key of a tag assigned to your Amazon RDS recommendations. Use this filter to find all of your Amazon RDS recommendations that have a tag with a specific key. This doesn’t consider the tag value. For example, you can find your Amazon RDS service recommendations with a tag key value of <code>Owner</code> or without any tag keys assigned.</p>"
+      }
+    },
+    "RDSDBRecommendationFilters": {
+      "base": null,
+      "refs": {
+        "ExportRDSDatabaseRecommendationsRequest$filters": "<p> An array of objects to specify a filter that exports a more specific set of Amazon RDS recommendations. </p>",
+        "GetRDSDatabaseRecommendationsRequest$filters": "<p> An array of objects to specify a filter that returns a more specific list of Amazon RDS recommendations. </p>"
+      }
+    },
+    "RDSDBRecommendations": {
+      "base": null,
+      "refs": {
+        "GetRDSDatabaseRecommendationsResponse$rdsDBRecommendations": "<p> An array of objects that describe the Amazon RDS recommendations. </p>"
+      }
+    },
+    "RDSDBStorageRecommendationOption": {
+      "base": "<p> Describes the recommendation options for Amazon RDS storage. </p>",
+      "refs": {
+        "RDSDBStorageRecommendationOptions$member": null
+      }
+    },
+    "RDSDBStorageRecommendationOptions": {
+      "base": null,
+      "refs": {
+        "RDSDBRecommendation$storageRecommendationOptions": "<p> An array of objects that describe the recommendation options for Amazon RDS storage. </p>"
+      }
+    },
+    "RDSDBUtilizationMetric": {
+      "base": "<p> Describes the utilization metric of an Amazon RDS. </p> <p> To determine the performance difference between your current Amazon RDS and the recommended option, compare the utilization metric data of your service against its projected utilization metric data. </p>",
+      "refs": {
+        "RDSDBProjectedUtilizationMetrics$member": null,
+        "RDSDBUtilizationMetrics$member": null
+      }
+    },
+    "RDSDBUtilizationMetrics": {
+      "base": null,
+      "refs": {
+        "RDSDBRecommendation$utilizationMetrics": "<p> An array of objects that describe the utilization metrics of the Amazon RDS. </p>"
+      }
+    },
+    "RDSDatabaseProjectedMetric": {
+      "base": "<p> Describes the projected metrics of an Amazon RDS recommendation option. </p> <p> To determine the performance difference between your current Amazon RDS and the recommended option, compare the metric data of your service against its projected metric data. </p>",
+      "refs": {
+        "RDSDatabaseProjectedMetrics$member": null
+      }
+    },
+    "RDSDatabaseProjectedMetrics": {
+      "base": null,
+      "refs": {
+        "RDSDatabaseRecommendedOptionProjectedMetric$projectedMetrics": "<p> An array of objects that describe the projected metric. </p>"
+      }
+    },
+    "RDSDatabaseRecommendedOptionProjectedMetric": {
+      "base": "<p> Describes the projected metrics of an Amazon RDS recommendation option. </p> <p> To determine the performance difference between your current Amazon RDS and the recommended option, compare the metric data of your service against its projected metric data. </p>",
+      "refs": {
+        "RDSDatabaseRecommendedOptionProjectedMetrics$member": null
+      }
+    },
+    "RDSDatabaseRecommendedOptionProjectedMetrics": {
+      "base": null,
+      "refs": {
+        "GetRDSDatabaseRecommendationProjectedMetricsResponse$recommendedOptionProjectedMetrics": "<p> An array of objects that describes the projected metrics. </p>"
+      }
+    },
+    "RDSEffectiveRecommendationPreferences": {
+      "base": "<p> Describes the effective recommendation preferences for Amazon RDS. </p>",
+      "refs": {
+        "RDSDBRecommendation$effectiveRecommendationPreferences": "<p> Describes the effective recommendation preferences for Amazon RDS. </p>"
+      }
+    },
+    "RDSInstanceEstimatedMonthlySavings": {
+      "base": "<p> Describes the estimated monthly savings possible for Amazon RDS instances by adopting Compute Optimizer recommendations. This is based on Amazon RDS pricing after applying Savings Plans discounts. </p>",
+      "refs": {
+        "RDSInstanceSavingsOpportunityAfterDiscounts$estimatedMonthlySavings": "<p> The estimated monthly savings possible by adopting Compute Optimizer’s Amazon RDS instance recommendations. This includes any applicable Savings Plans discounts. </p>"
+      }
+    },
+    "RDSInstanceFinding": {
+      "base": null,
+      "refs": {
+        "RDSDBRecommendation$instanceFinding": "<p> The finding classification of an Amazon RDS instance. </p> <p>Findings for Amazon RDS instance include:</p> <ul> <li> <p> <b> <code>Underprovisioned</code> </b> — When Compute Optimizer detects that there’s not enough resource specifications, an Amazon RDS is considered under-provisioned.</p> </li> <li> <p> <b> <code>Overprovisioned</code> </b> — When Compute Optimizer detects that there’s excessive resource specifications, an Amazon RDS is considered over-provisioned.</p> </li> <li> <p> <b> <code>Optimized</code> </b> — When the specifications of your Amazon RDS instance meet the performance requirements of your workload, the service is considered optimized.</p> </li> </ul>"
+      }
+    },
+    "RDSInstanceFindingReasonCode": {
+      "base": null,
+      "refs": {
+        "RDSInstanceFindingReasonCodes$member": null
+      }
+    },
+    "RDSInstanceFindingReasonCodes": {
+      "base": null,
+      "refs": {
+        "RDSDBRecommendation$instanceFindingReasonCodes": "<p> The reason for the finding classification of an Amazon RDS instance. </p>"
+      }
+    },
+    "RDSInstanceSavingsOpportunityAfterDiscounts": {
+      "base": "<p> Describes the savings opportunity for Amazon RDS instance recommendations after applying Savings Plans discounts. </p> <p> Savings opportunity represents the estimated monthly savings after applying Savings Plans discounts. You can achieve this by implementing a given Compute Optimizer recommendation. </p>",
+      "refs": {
+        "RDSDBInstanceRecommendationOption$savingsOpportunityAfterDiscounts": "<p> Describes the savings opportunity for Amazon RDS recommendations or for the recommendation option. </p> <p>Savings opportunity represents the estimated monthly savings after applying Savings Plans discounts. You can achieve this by implementing a given Compute Optimizer recommendation.</p>"
+      }
+    },
+    "RDSSavingsEstimationMode": {
+      "base": "<p> Describes the savings estimation mode used for calculating savings opportunity for Amazon RDS. </p>",
+      "refs": {
+        "RDSEffectiveRecommendationPreferences$savingsEstimationMode": "<p> Describes the savings estimation mode preference applied for calculating savings opportunity for Amazon RDS. </p>"
+      }
+    },
+    "RDSSavingsEstimationModeSource": {
+      "base": null,
+      "refs": {
+        "RDSSavingsEstimationMode$source": "<p> Describes the source for calculating the savings opportunity for Amazon RDS. </p>"
+      }
+    },
+    "RDSStorageEstimatedMonthlySavings": {
+      "base": "<p> Describes the estimated monthly savings possible for Amazon RDS storage by adopting Compute Optimizer recommendations. This is based on Amazon RDS pricing after applying Savings Plans discounts. </p>",
+      "refs": {
+        "RDSStorageSavingsOpportunityAfterDiscounts$estimatedMonthlySavings": "<p> The estimated monthly savings possible by adopting Compute Optimizer’s Amazon RDS storage recommendations. This includes any applicable Savings Plans discounts. </p>"
+      }
+    },
+    "RDSStorageFinding": {
+      "base": null,
+      "refs": {
+        "RDSDBRecommendation$storageFinding": "<p> The finding classification of Amazon RDS storage. </p> <p>Findings for Amazon RDS instance include:</p> <ul> <li> <p> <b> <code>Underprovisioned</code> </b> — When Compute Optimizer detects that there’s not enough storage, an Amazon RDS is considered under-provisioned.</p> </li> <li> <p> <b> <code>Overprovisioned</code> </b> — When Compute Optimizer detects that there’s excessive storage, an Amazon RDS is considered over-provisioned.</p> </li> <li> <p> <b> <code>Optimized</code> </b> — When the storage of your Amazon RDS meet the performance requirements of your workload, the service is considered optimized.</p> </li> </ul>"
+      }
+    },
+    "RDSStorageFindingReasonCode": {
+      "base": null,
+      "refs": {
+        "RDSStorageFindingReasonCodes$member": null
+      }
+    },
+    "RDSStorageFindingReasonCodes": {
+      "base": null,
+      "refs": {
+        "RDSDBRecommendation$storageFindingReasonCodes": "<p> The reason for the finding classification of Amazon RDS storage. </p>"
+      }
+    },
+    "RDSStorageSavingsOpportunityAfterDiscounts": {
+      "base": "<p> Describes the savings opportunity for Amazon RDS storage recommendations after applying Savings Plans discounts. </p> <p> Savings opportunity represents the estimated monthly savings after applying Savings Plans discounts. You can achieve this by implementing a given Compute Optimizer recommendation. </p>",
+      "refs": {
+        "RDSDBStorageRecommendationOption$savingsOpportunityAfterDiscounts": "<p> Describes the savings opportunity for Amazon RDS storage recommendations or for the recommendation option. </p> <p> Savings opportunity represents the estimated monthly savings after applying Savings Plans discounts. You can achieve this by implementing a given Compute Optimizer recommendation. </p>"
+      }
+    },
     "Rank": {
       "base": null,
       "refs": {
@@ -1855,6 +2173,9 @@
         "InstanceRecommendationOption$rank": "<p>The rank of the instance recommendation option.</p> <p>The top recommendation option is ranked as <code>1</code>.</p>",
         "LambdaFunctionMemoryRecommendationOption$rank": "<p>The rank of the function recommendation option.</p> <p>The top recommendation option is ranked as <code>1</code>.</p>",
         "LicenseRecommendationOption$rank": "<p> The rank of the license recommendation option. </p> <p> The top recommendation option is ranked as <code>1</code>. </p>",
+        "RDSDBInstanceRecommendationOption$rank": "<p> The rank identifier of the RDS instance recommendation option. </p>",
+        "RDSDBStorageRecommendationOption$rank": "<p> The rank identifier of the RDS storage recommendation option. </p>",
+        "RDSDatabaseRecommendedOptionProjectedMetric$rank": "<p> The rank identifier of the RDS instance recommendation option. </p>",
         "RecommendedOptionProjectedMetric$rank": "<p>The rank of the recommendation option projected metric.</p> <p>The top recommendation option is ranked as <code>1</code>.</p> <p>The projected metric rank correlates to the recommendation option rank. For example, the projected metric ranked as <code>1</code> is related to the recommendation option that is also ranked as <code>1</code> in the same response.</p>",
         "VolumeRecommendationOption$rank": "<p>The rank of the volume recommendation option.</p> <p>The top recommendation option is ranked as <code>1</code>.</p>"
       }
@@ -1902,13 +2223,16 @@
       }
     },
     "RecommendationPreferences": {
-      "base": "<p>Describes the recommendation preferences to return in the response of a <a>GetAutoScalingGroupRecommendations</a>, <a>GetEC2InstanceRecommendations</a>, and <a>GetEC2RecommendationProjectedMetrics</a> request.</p>",
+      "base": "<p>Describes the recommendation preferences to return in the response of a <a>GetAutoScalingGroupRecommendations</a>, <a>GetEC2InstanceRecommendations</a>, <a>GetEC2RecommendationProjectedMetrics</a>, <a>GetRDSDatabaseRecommendations</a>, and <a>GetRDSDatabaseRecommendationProjectedMetrics</a> request.</p>",
       "refs": {
         "ExportAutoScalingGroupRecommendationsRequest$recommendationPreferences": "<p>An object to specify the preferences for the Auto Scaling group recommendations to export.</p>",
         "ExportEC2InstanceRecommendationsRequest$recommendationPreferences": "<p>An object to specify the preferences for the Amazon EC2 instance recommendations to export.</p>",
+        "ExportRDSDatabaseRecommendationsRequest$recommendationPreferences": null,
         "GetAutoScalingGroupRecommendationsRequest$recommendationPreferences": "<p>An object to specify the preferences for the Auto Scaling group recommendations to return in the response.</p>",
         "GetEC2InstanceRecommendationsRequest$recommendationPreferences": "<p>An object to specify the preferences for the Amazon EC2 instance recommendations to return in the response.</p>",
-        "GetEC2RecommendationProjectedMetricsRequest$recommendationPreferences": "<p>An object to specify the preferences for the Amazon EC2 recommendation projected metrics to return in the response.</p>"
+        "GetEC2RecommendationProjectedMetricsRequest$recommendationPreferences": "<p>An object to specify the preferences for the Amazon EC2 recommendation projected metrics to return in the response.</p>",
+        "GetRDSDatabaseRecommendationProjectedMetricsRequest$recommendationPreferences": null,
+        "GetRDSDatabaseRecommendationsRequest$recommendationPreferences": null
       }
     },
     "RecommendationPreferencesDetail": {
@@ -1960,6 +2284,12 @@
         "RecommendationSummaries$member": null
       }
     },
+    "RecommendedDBInstanceClass": {
+      "base": null,
+      "refs": {
+        "RDSDatabaseRecommendedOptionProjectedMetric$recommendedDBInstanceClass": "<p> The recommended DB instance class for the Amazon RDS. </p>"
+      }
+    },
     "RecommendedInstanceType": {
       "base": null,
       "refs": {
@@ -1982,14 +2312,17 @@
       "base": null,
       "refs": {
         "GetEffectiveRecommendationPreferencesRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the resource for which to confirm effective recommendation preferences. Only EC2 instance and Auto Scaling group ARNs are currently supported.</p>",
+        "GetRDSDatabaseRecommendationProjectedMetricsRequest$resourceArn": "<p> The ARN that identifies the Amazon RDS. </p> <p> The following is the format of the ARN: </p> <p> <code>arn:aws:rds:{region}:{accountId}:db:{resourceName}</code> </p>",
         "LicenseRecommendation$resourceArn": "<p> The ARN that identifies the Amazon EC2 instance. </p>",
+        "RDSDBRecommendation$resourceArn": "<p> The ARN of the current Amazon RDS. </p> <p> The following is the format of the ARN: </p> <p> <code>arn:aws:rds:{region}:{accountId}:db:{resourceName}</code> </p>",
         "ResourceArns$member": null
       }
     },
     "ResourceArns": {
       "base": null,
       "refs": {
-        "GetLicenseRecommendationsRequest$resourceArns": "<p> The ARN that identifies the Amazon EC2 instance. </p> <p> The following is the format of the ARN: </p> <p> <code>arn:aws:ec2:region:aws_account_id:instance/instance-id</code> </p>"
+        "GetLicenseRecommendationsRequest$resourceArns": "<p> The ARN that identifies the Amazon EC2 instance. </p> <p> The following is the format of the ARN: </p> <p> <code>arn:aws:ec2:region:aws_account_id:instance/instance-id</code> </p>",
+        "GetRDSDatabaseRecommendationsRequest$resourceArns": "<p> The ARN that identifies the Amazon RDS. </p> <p> The following is the format of the ARN: </p> <p> <code>arn:aws:rds:{region}:{accountId}:db:{resourceName}</code> </p> <p> The following is the format of a DB Cluster ARN: </p> <p> <code>arn:aws:rds:{region}:{accountId}:cluster:{resourceName}</code> </p>"
       }
     },
     "ResourceNotFoundException": {
@@ -2000,9 +2333,9 @@
     "ResourceType": {
       "base": null,
       "refs": {
-        "DeleteRecommendationPreferencesRequest$resourceType": "<p>The target resource type of the recommendation preference to delete.</p> <p>The <code>Ec2Instance</code> option encompasses standalone instances and instances that are part of Auto Scaling groups. The <code>AutoScalingGroup</code> option encompasses only instances that are part of an Auto Scaling group.</p> <note> <p>The valid values for this parameter are <code>Ec2Instance</code> and <code>AutoScalingGroup</code>.</p> </note>",
-        "GetRecommendationPreferencesRequest$resourceType": "<p>The target resource type of the recommendation preference for which to return preferences.</p> <p>The <code>Ec2Instance</code> option encompasses standalone instances and instances that are part of Auto Scaling groups. The <code>AutoScalingGroup</code> option encompasses only instances that are part of an Auto Scaling group.</p> <note> <p>The valid values for this parameter are <code>Ec2Instance</code> and <code>AutoScalingGroup</code>.</p> </note>",
-        "PutRecommendationPreferencesRequest$resourceType": "<p>The target resource type of the recommendation preference to create.</p> <p>The <code>Ec2Instance</code> option encompasses standalone instances and instances that are part of Auto Scaling groups. The <code>AutoScalingGroup</code> option encompasses only instances that are part of an Auto Scaling group.</p> <note> <p>The valid values for this parameter are <code>Ec2Instance</code> and <code>AutoScalingGroup</code>.</p> </note>",
+        "DeleteRecommendationPreferencesRequest$resourceType": "<p>The target resource type of the recommendation preference to delete.</p> <p>The <code>Ec2Instance</code> option encompasses standalone instances and instances that are part of Auto Scaling groups. The <code>AutoScalingGroup</code> option encompasses only instances that are part of an Auto Scaling group.</p>",
+        "GetRecommendationPreferencesRequest$resourceType": "<p>The target resource type of the recommendation preference for which to return preferences.</p> <p>The <code>Ec2Instance</code> option encompasses standalone instances and instances that are part of Auto Scaling groups. The <code>AutoScalingGroup</code> option encompasses only instances that are part of an Auto Scaling group.</p>",
+        "PutRecommendationPreferencesRequest$resourceType": "<p>The target resource type of the recommendation preference to create.</p> <p>The <code>Ec2Instance</code> option encompasses standalone instances and instances that are part of Auto Scaling groups. The <code>AutoScalingGroup</code> option encompasses only instances that are part of an Auto Scaling group.</p>",
         "RecommendationExportJob$resourceType": "<p>The resource type of the exported recommendations.</p>",
         "RecommendationPreferencesDetail$resourceType": "<p>The target resource type of the recommendation preference to create.</p> <p>The <code>Ec2Instance</code> option encompasses standalone instances and instances that are part of Auto Scaling groups. The <code>AutoScalingGroup</code> option encompasses only instances that are part of an Auto Scaling group.</p>"
       }
@@ -2022,7 +2355,8 @@
         "ExportEC2InstanceRecommendationsResponse$s3Destination": "<p>An object that describes the destination Amazon S3 bucket of a recommendations export file.</p>",
         "ExportECSServiceRecommendationsResponse$s3Destination": null,
         "ExportLambdaFunctionRecommendationsResponse$s3Destination": null,
-        "ExportLicenseRecommendationsResponse$s3Destination": null
+        "ExportLicenseRecommendationsResponse$s3Destination": null,
+        "ExportRDSDatabaseRecommendationsResponse$s3Destination": null
       }
     },
     "S3DestinationConfig": {
@@ -2033,7 +2367,8 @@
         "ExportEC2InstanceRecommendationsRequest$s3DestinationConfig": "<p>An object to specify the destination Amazon Simple Storage Service (Amazon S3) bucket name and key prefix for the export job.</p> <p>You must create the destination Amazon S3 bucket for your recommendations export before you create the export job. Compute Optimizer does not create the S3 bucket for you. After you create the S3 bucket, ensure that it has the required permissions policy to allow Compute Optimizer to write the export file to it. If you plan to specify an object prefix when you create the export job, you must include the object prefix in the policy that you add to the S3 bucket. For more information, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/create-s3-bucket-policy-for-compute-optimizer.html\">Amazon S3 Bucket Policy for Compute Optimizer</a> in the <i>Compute Optimizer User Guide</i>.</p>",
         "ExportECSServiceRecommendationsRequest$s3DestinationConfig": null,
         "ExportLambdaFunctionRecommendationsRequest$s3DestinationConfig": null,
-        "ExportLicenseRecommendationsRequest$s3DestinationConfig": null
+        "ExportLicenseRecommendationsRequest$s3DestinationConfig": null,
+        "ExportRDSDatabaseRecommendationsRequest$s3DestinationConfig": null
       }
     },
     "SavingsEstimationMode": {
@@ -2051,6 +2386,8 @@
         "InstanceRecommendationOption$savingsOpportunity": "<p>An object that describes the savings opportunity for the instance recommendation option. Savings opportunity includes the estimated monthly savings amount and percentage.</p>",
         "LambdaFunctionMemoryRecommendationOption$savingsOpportunity": "<p>An object that describes the savings opportunity for the Lambda function recommendation option. Savings opportunity includes the estimated monthly savings amount and percentage.</p>",
         "LicenseRecommendationOption$savingsOpportunity": null,
+        "RDSDBInstanceRecommendationOption$savingsOpportunity": null,
+        "RDSDBStorageRecommendationOption$savingsOpportunity": null,
         "RecommendationSummary$savingsOpportunity": "<p>An object that describes the savings opportunity for a given resource type. Savings opportunity includes the estimated monthly savings amount and percentage.</p>",
         "VolumeRecommendationOption$savingsOpportunity": "<p>An object that describes the savings opportunity for the EBS volume recommendation option. Savings opportunity includes the estimated monthly savings amount and percentage.</p>"
       }
@@ -2063,6 +2400,8 @@
         "ECSSavingsOpportunityAfterDiscounts$savingsOpportunityPercentage": "<p> The estimated monthly savings possible as a percentage of monthly cost by adopting Compute Optimizer’s Amazon ECS service recommendations. This includes any applicable Savings Plans discounts. </p>",
         "InstanceSavingsOpportunityAfterDiscounts$savingsOpportunityPercentage": "<p> The estimated monthly savings possible as a percentage of monthly cost after applying the Savings Plans and Reserved Instances discounts. This saving can be achieved by adopting Compute Optimizer’s EC2 instance recommendations. </p>",
         "LambdaSavingsOpportunityAfterDiscounts$savingsOpportunityPercentage": "<p> The estimated monthly savings possible as a percentage of monthly cost by adopting Compute Optimizer’s Lambda function recommendations. This includes any applicable Savings Plans discounts. </p>",
+        "RDSInstanceSavingsOpportunityAfterDiscounts$savingsOpportunityPercentage": "<p> The estimated monthly savings possible as a percentage of monthly cost by adopting Compute Optimizer’s Amazon RDS instance recommendations. This includes any applicable Savings Plans discounts. </p>",
+        "RDSStorageSavingsOpportunityAfterDiscounts$savingsOpportunityPercentage": "<p> The estimated monthly savings possible as a percentage of monthly cost by adopting Compute Optimizer’s Amazon RDS storage recommendations. This includes any applicable Savings Plans discounts. </p>",
         "SavingsOpportunity$savingsOpportunityPercentage": "<p>The estimated monthly savings possible as a percentage of monthly cost by adopting Compute Optimizer recommendations for a given resource.</p>"
       }
     },
@@ -2129,6 +2468,12 @@
         "UpdateEnrollmentStatusResponse$statusReason": "<p>The reason for the enrollment status of the account. For example, an account might show a status of <code>Pending</code> because member accounts of an organization require more time to be enrolled in the service.</p>"
       }
     },
+    "StorageType": {
+      "base": null,
+      "refs": {
+        "DBStorageConfiguration$storageType": "<p> The type of RDS storage. </p>"
+      }
+    },
     "Summaries": {
       "base": null,
       "refs": {
@@ -2173,6 +2518,7 @@
         "InstanceRecommendation$tags": "<p> A list of tags assigned to your Amazon EC2 instance recommendations. </p>",
         "LambdaFunctionRecommendation$tags": "<p> A list of tags assigned to your Lambda function recommendations. </p>",
         "LicenseRecommendation$tags": "<p> A list of tags assigned to an EC2 instance. </p>",
+        "RDSDBRecommendation$tags": "<p> A list of tags assigned to your Amazon RDS recommendations. </p>",
         "VolumeRecommendation$tags": "<p> A list of tags assigned to your Amazon EBS volume recommendations. </p>"
       }
     },
@@ -2194,6 +2540,8 @@
         "GetEC2RecommendationProjectedMetricsRequest$endTime": "<p>The timestamp of the last projected metrics data point to return.</p>",
         "GetECSServiceRecommendationProjectedMetricsRequest$startTime": "<p> The timestamp of the first projected metrics data point to return. </p>",
         "GetECSServiceRecommendationProjectedMetricsRequest$endTime": "<p> The timestamp of the last projected metrics data point to return. </p>",
+        "GetRDSDatabaseRecommendationProjectedMetricsRequest$startTime": "<p> The timestamp of the first projected metrics data point to return. </p>",
+        "GetRDSDatabaseRecommendationProjectedMetricsRequest$endTime": "<p> The timestamp of the last projected metrics data point to return. </p>",
         "Timestamps$member": null
       }
     },
@@ -2201,7 +2549,8 @@
       "base": null,
       "refs": {
         "ECSServiceProjectedMetric$timestamps": "<p> The timestamps of the projected metric. </p>",
-        "ProjectedMetric$timestamps": "<p>The timestamps of the projected utilization metric.</p>"
+        "ProjectedMetric$timestamps": "<p>The timestamps of the projected utilization metric.</p>",
+        "RDSDatabaseProjectedMetric$timestamps": "<p> The timestamps of the projected metric. </p>"
       }
     },
     "UpdateEnrollmentStatusRequest": {
@@ -2235,7 +2584,7 @@
       }
     },
     "UtilizationPreference": {
-      "base": "<p> The preference to control the resource’s CPU utilization thresholds - threshold and headroom. </p> <note> <p>This preference is only available for the Amazon EC2 instance resource type.</p> </note>",
+      "base": "<p> The preference to control the resource’s CPU utilization threshold, CPU utilization headroom, and memory utilization headroom. </p> <note> <p>This preference is only available for the Amazon EC2 instance resource type.</p> </note>",
       "refs": {
         "UtilizationPreferences$member": null
       }
@@ -2257,7 +2606,9 @@
         "ECSEstimatedMonthlySavings$value": "<p> The value of the estimated monthly savings for Amazon ECS services. </p>",
         "EstimatedMonthlySavings$value": "<p>The value of the estimated monthly savings.</p>",
         "InstanceEstimatedMonthlySavings$value": "<p> The value of the estimated monthly savings. </p>",
-        "LambdaEstimatedMonthlySavings$value": "<p> The value of the estimated monthly savings. </p>"
+        "LambdaEstimatedMonthlySavings$value": "<p> The value of the estimated monthly savings. </p>",
+        "RDSInstanceEstimatedMonthlySavings$value": "<p> The value of the estimated monthly savings for Amazon RDS instances. </p>",
+        "RDSStorageEstimatedMonthlySavings$value": "<p> The value of the estimated monthly savings for Amazon RDS storage. </p>"
       }
     },
     "VeryLow": {

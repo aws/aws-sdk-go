@@ -338,6 +338,20 @@
         {"shape":"ResourceLimitExceeded"}
       ]
     },
+    "CreateHubContentReference":{
+      "name":"CreateHubContentReference",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateHubContentReferenceRequest"},
+      "output":{"shape":"CreateHubContentReferenceResponse"},
+      "errors":[
+        {"shape":"ResourceNotFound"},
+        {"shape":"ResourceInUse"},
+        {"shape":"ResourceLimitExceeded"}
+      ]
+    },
     "CreateHumanTaskUi":{
       "name":"CreateHumanTaskUi",
       "http":{
@@ -1023,6 +1037,17 @@
       "input":{"shape":"DeleteHubContentRequest"},
       "errors":[
         {"shape":"ResourceInUse"},
+        {"shape":"ResourceNotFound"}
+      ]
+    },
+    "DeleteHubContentReference":{
+      "name":"DeleteHubContentReference",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteHubContentReferenceRequest"},
+      "errors":[
         {"shape":"ResourceNotFound"}
       ]
     },
@@ -6980,6 +7005,31 @@
         "FlowDefinitionArn":{"shape":"FlowDefinitionArn"}
       }
     },
+    "CreateHubContentReferenceRequest":{
+      "type":"structure",
+      "required":[
+        "HubName",
+        "SageMakerPublicHubContentArn"
+      ],
+      "members":{
+        "HubName":{"shape":"HubNameOrArn"},
+        "SageMakerPublicHubContentArn":{"shape":"SageMakerPublicHubContentArn"},
+        "HubContentName":{"shape":"HubContentName"},
+        "MinVersion":{"shape":"HubContentVersion"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "CreateHubContentReferenceResponse":{
+      "type":"structure",
+      "required":[
+        "HubArn",
+        "HubContentArn"
+      ],
+      "members":{
+        "HubArn":{"shape":"HubArn"},
+        "HubContentArn":{"shape":"HubContentArn"}
+      }
+    },
     "CreateHubRequest":{
       "type":"structure",
       "required":[
@@ -8397,6 +8447,19 @@
       "members":{
       }
     },
+    "DeleteHubContentReferenceRequest":{
+      "type":"structure",
+      "required":[
+        "HubName",
+        "HubContentType",
+        "HubContentName"
+      ],
+      "members":{
+        "HubName":{"shape":"HubNameOrArn"},
+        "HubContentType":{"shape":"HubContentType"},
+        "HubContentName":{"shape":"HubContentName"}
+      }
+    },
     "DeleteHubContentRequest":{
       "type":"structure",
       "required":[
@@ -8406,7 +8469,7 @@
         "HubContentVersion"
       ],
       "members":{
-        "HubName":{"shape":"HubName"},
+        "HubName":{"shape":"HubNameOrArn"},
         "HubContentType":{"shape":"HubContentType"},
         "HubContentName":{"shape":"HubContentName"},
         "HubContentVersion":{"shape":"HubContentVersion"}
@@ -8416,7 +8479,7 @@
       "type":"structure",
       "required":["HubName"],
       "members":{
-        "HubName":{"shape":"HubName"}
+        "HubName":{"shape":"HubNameOrArn"}
       }
     },
     "DeleteHumanTaskUiRequest":{
@@ -9532,7 +9595,7 @@
         "HubContentName"
       ],
       "members":{
-        "HubName":{"shape":"HubName"},
+        "HubName":{"shape":"HubNameOrArn"},
         "HubContentType":{"shape":"HubContentType"},
         "HubContentName":{"shape":"HubContentName"},
         "HubContentVersion":{"shape":"HubContentVersion"}
@@ -9564,6 +9627,9 @@
         "HubContentDescription":{"shape":"HubContentDescription"},
         "HubContentMarkdown":{"shape":"HubContentMarkdown"},
         "HubContentDocument":{"shape":"HubContentDocument"},
+        "SageMakerPublicHubContentArn":{"shape":"SageMakerPublicHubContentArn"},
+        "ReferenceMinVersion":{"shape":"ReferenceMinVersion"},
+        "SupportStatus":{"shape":"HubContentSupportStatus"},
         "HubContentSearchKeywords":{"shape":"HubContentSearchKeywordList"},
         "HubContentDependencies":{"shape":"HubContentDependencyList"},
         "HubContentStatus":{"shape":"HubContentStatus"},
@@ -9575,7 +9641,7 @@
       "type":"structure",
       "required":["HubName"],
       "members":{
-        "HubName":{"shape":"HubName"}
+        "HubName":{"shape":"HubNameOrArn"}
       }
     },
     "DescribeHubResponse":{
@@ -12437,14 +12503,17 @@
       "members":{
         "HubContentName":{"shape":"HubContentName"},
         "HubContentArn":{"shape":"HubContentArn"},
+        "SageMakerPublicHubContentArn":{"shape":"SageMakerPublicHubContentArn"},
         "HubContentVersion":{"shape":"HubContentVersion"},
         "HubContentType":{"shape":"HubContentType"},
         "DocumentSchemaVersion":{"shape":"DocumentSchemaVersion"},
         "HubContentDisplayName":{"shape":"HubContentDisplayName"},
         "HubContentDescription":{"shape":"HubContentDescription"},
+        "SupportStatus":{"shape":"HubContentSupportStatus"},
         "HubContentSearchKeywords":{"shape":"HubContentSearchKeywordList"},
         "HubContentStatus":{"shape":"HubContentStatus"},
-        "CreationTime":{"shape":"Timestamp"}
+        "CreationTime":{"shape":"Timestamp"},
+        "OriginalCreationTime":{"shape":"Timestamp"}
       }
     },
     "HubContentInfoList":{
@@ -12453,8 +12522,7 @@
     },
     "HubContentMarkdown":{
       "type":"string",
-      "max":65535,
-      "pattern":".*"
+      "max":65535
     },
     "HubContentName":{
       "type":"string",
@@ -12484,11 +12552,19 @@
         "DeleteFailed"
       ]
     },
+    "HubContentSupportStatus":{
+      "type":"string",
+      "enum":[
+        "Supported",
+        "Deprecated"
+      ]
+    },
     "HubContentType":{
       "type":"string",
       "enum":[
         "Model",
-        "Notebook"
+        "Notebook",
+        "ModelReference"
       ]
     },
     "HubContentVersion":{
@@ -12535,6 +12611,10 @@
       "type":"string",
       "max":63,
       "pattern":"^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}"
+    },
+    "HubNameOrArn":{
+      "type":"string",
+      "pattern":"^(arn:[a-z0-9-\\.]{1,63}:sagemaker:\\w+(?:-\\w+)+:(\\d{12}|aws):hub\\/)?[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$"
     },
     "HubS3StorageConfig":{
       "type":"structure",
@@ -13284,7 +13364,7 @@
         "HubContentVersion":{"shape":"HubContentVersion"},
         "HubContentType":{"shape":"HubContentType"},
         "DocumentSchemaVersion":{"shape":"DocumentSchemaVersion"},
-        "HubName":{"shape":"HubName"},
+        "HubName":{"shape":"HubNameOrArn"},
         "HubContentDisplayName":{"shape":"HubContentDisplayName"},
         "HubContentDescription":{"shape":"HubContentDescription"},
         "HubContentMarkdown":{"shape":"HubContentMarkdown"},
@@ -13534,6 +13614,13 @@
       "type":"string",
       "enum":["ShadowMode"]
     },
+    "InferenceHubAccessConfig":{
+      "type":"structure",
+      "required":["HubContentArn"],
+      "members":{
+        "HubContentArn":{"shape":"HubContentArn"}
+      }
+    },
     "InferenceImage":{
       "type":"string",
       "max":256
@@ -13552,7 +13639,6 @@
     "InferenceRecommendation":{
       "type":"structure",
       "required":[
-        "Metrics",
         "EndpointConfiguration",
         "ModelConfiguration"
       ],
@@ -14930,7 +15016,7 @@
         "HubContentName"
       ],
       "members":{
-        "HubName":{"shape":"HubName"},
+        "HubName":{"shape":"HubNameOrArn"},
         "HubContentType":{"shape":"HubContentType"},
         "HubContentName":{"shape":"HubContentName"},
         "MinVersion":{"shape":"HubContentVersion"},
@@ -14958,7 +15044,7 @@
         "HubContentType"
       ],
       "members":{
-        "HubName":{"shape":"HubName"},
+        "HubName":{"shape":"HubNameOrArn"},
         "HubContentType":{"shape":"HubContentType"},
         "NameContains":{"shape":"NameContains"},
         "MaxSchemaVersion":{"shape":"DocumentSchemaVersion"},
@@ -19775,12 +19861,6 @@
     },
     "RecommendationMetrics":{
       "type":"structure",
-      "required":[
-        "CostPerHour",
-        "CostPerInference",
-        "MaxInvocations",
-        "ModelLatency"
-      ],
       "members":{
         "CostPerHour":{"shape":"Float"},
         "CostPerInference":{"shape":"Float"},
@@ -19874,6 +19954,12 @@
       "max":128,
       "min":1,
       "pattern":".*"
+    },
+    "ReferenceMinVersion":{
+      "type":"string",
+      "max":14,
+      "min":5,
+      "pattern":"^\\d{1,4}.\\d{1,4}.\\d{1,4}$"
     },
     "RegisterDevicesRequest":{
       "type":"structure",
@@ -20286,7 +20372,8 @@
         "S3Uri":{"shape":"S3ModelUri"},
         "S3DataType":{"shape":"S3ModelDataType"},
         "CompressionType":{"shape":"ModelCompressionType"},
-        "ModelAccessConfig":{"shape":"ModelAccessConfig"}
+        "ModelAccessConfig":{"shape":"ModelAccessConfig"},
+        "HubAccessConfig":{"shape":"InferenceHubAccessConfig"}
       }
     },
     "S3ModelDataType":{
@@ -20335,6 +20422,11 @@
     "SageMakerImageVersionAliases":{
       "type":"list",
       "member":{"shape":"SageMakerImageVersionAlias"}
+    },
+    "SageMakerPublicHubContentArn":{
+      "type":"string",
+      "max":255,
+      "pattern":"^arn:[a-z0-9-\\.]{1,63}:sagemaker:\\w+(?:-\\w+)+:aws:hub-content\\/[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}\\/Model\\/[a-zA-Z0-9](-*[a-zA-Z0-9]){0,63}$"
     },
     "SagemakerServicecatalogStatus":{
       "type":"string",
@@ -23024,7 +23116,7 @@
       "type":"structure",
       "required":["HubName"],
       "members":{
-        "HubName":{"shape":"HubName"},
+        "HubName":{"shape":"HubNameOrArn"},
         "HubDescription":{"shape":"HubDescription"},
         "HubDisplayName":{"shape":"HubDisplayName"},
         "HubSearchKeywords":{"shape":"HubSearchKeywordList"}

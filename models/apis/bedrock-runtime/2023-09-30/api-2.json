@@ -211,6 +211,9 @@
     },
     "ContentBlock": {
       "members": {
+        "document": {
+          "shape": "DocumentBlock"
+        },
         "guardContent": {
           "shape": "GuardrailConverseContentBlock"
         },
@@ -537,6 +540,57 @@
         }
       },
       "type": "structure"
+    },
+    "DocumentBlock": {
+      "members": {
+        "format": {
+          "shape": "DocumentFormat"
+        },
+        "name": {
+          "shape": "DocumentBlockNameString"
+        },
+        "source": {
+          "shape": "DocumentSource"
+        }
+      },
+      "required": [
+        "format",
+        "name",
+        "source"
+      ],
+      "type": "structure"
+    },
+    "DocumentBlockNameString": {
+      "max": 64,
+      "min": 1,
+      "type": "string"
+    },
+    "DocumentFormat": {
+      "enum": [
+        "pdf",
+        "csv",
+        "doc",
+        "docx",
+        "xls",
+        "xlsx",
+        "html",
+        "txt",
+        "md"
+      ],
+      "type": "string"
+    },
+    "DocumentSource": {
+      "members": {
+        "bytes": {
+          "shape": "DocumentSourceBytesBlob"
+        }
+      },
+      "type": "structure",
+      "union": true
+    },
+    "DocumentSourceBytesBlob": {
+      "min": 1,
+      "type": "blob"
     },
     "GuardrailAssessment": {
       "members": {
@@ -1564,6 +1618,9 @@
     },
     "ToolResultContentBlock": {
       "members": {
+        "document": {
+          "shape": "DocumentBlock"
+        },
         "image": {
           "shape": "ImageBlock"
         },

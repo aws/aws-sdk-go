@@ -939,6 +939,117 @@ func (c *ComputeOptimizer) ExportLicenseRecommendationsWithContext(ctx aws.Conte
 	return out, req.Send()
 }
 
+const opExportRDSDatabaseRecommendations = "ExportRDSDatabaseRecommendations"
+
+// ExportRDSDatabaseRecommendationsRequest generates a "aws/request.Request" representing the
+// client's request for the ExportRDSDatabaseRecommendations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ExportRDSDatabaseRecommendations for more information on using the ExportRDSDatabaseRecommendations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ExportRDSDatabaseRecommendationsRequest method.
+//	req, resp := client.ExportRDSDatabaseRecommendationsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/compute-optimizer-2019-11-01/ExportRDSDatabaseRecommendations
+func (c *ComputeOptimizer) ExportRDSDatabaseRecommendationsRequest(input *ExportRDSDatabaseRecommendationsInput) (req *request.Request, output *ExportRDSDatabaseRecommendationsOutput) {
+	op := &request.Operation{
+		Name:       opExportRDSDatabaseRecommendations,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ExportRDSDatabaseRecommendationsInput{}
+	}
+
+	output = &ExportRDSDatabaseRecommendationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ExportRDSDatabaseRecommendations API operation for AWS Compute Optimizer.
+//
+// Export optimization recommendations for your Amazon Relational Database Service
+// (Amazon RDS).
+//
+// Recommendations are exported in a comma-separated values (CSV) file, and
+// its metadata in a JavaScript Object Notation (JSON) file, to an existing
+// Amazon Simple Storage Service (Amazon S3) bucket that you specify. For more
+// information, see Exporting Recommendations (https://docs.aws.amazon.com/compute-optimizer/latest/ug/exporting-recommendations.html)
+// in the Compute Optimizer User Guide.
+//
+// You can have only one Amazon RDS export job in progress per Amazon Web Services
+// Region.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Compute Optimizer's
+// API operation ExportRDSDatabaseRecommendations for usage and error information.
+//
+// Returned Error Types:
+//
+//   - OptInRequiredException
+//     The account is not opted in to Compute Optimizer.
+//
+//   - InternalServerException
+//     An internal error has occurred. Try your call again.
+//
+//   - ServiceUnavailableException
+//     The request has failed due to a temporary failure of the server.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - InvalidParameterValueException
+//     The value supplied for the input parameter is out of range or not valid.
+//
+//   - MissingAuthenticationToken
+//     The request must contain either a valid (registered) Amazon Web Services
+//     access key ID or X.509 certificate.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - LimitExceededException
+//     The request exceeds a limit of the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/compute-optimizer-2019-11-01/ExportRDSDatabaseRecommendations
+func (c *ComputeOptimizer) ExportRDSDatabaseRecommendations(input *ExportRDSDatabaseRecommendationsInput) (*ExportRDSDatabaseRecommendationsOutput, error) {
+	req, out := c.ExportRDSDatabaseRecommendationsRequest(input)
+	return out, req.Send()
+}
+
+// ExportRDSDatabaseRecommendationsWithContext is the same as ExportRDSDatabaseRecommendations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ExportRDSDatabaseRecommendations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ComputeOptimizer) ExportRDSDatabaseRecommendationsWithContext(ctx aws.Context, input *ExportRDSDatabaseRecommendationsInput, opts ...request.Option) (*ExportRDSDatabaseRecommendationsOutput, error) {
+	req, out := c.ExportRDSDatabaseRecommendationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetAutoScalingGroupRecommendations = "GetAutoScalingGroupRecommendations"
 
 // GetAutoScalingGroupRecommendationsRequest generates a "aws/request.Request" representing the
@@ -2200,6 +2311,213 @@ func (c *ComputeOptimizer) GetLicenseRecommendations(input *GetLicenseRecommenda
 // for more information on using Contexts.
 func (c *ComputeOptimizer) GetLicenseRecommendationsWithContext(ctx aws.Context, input *GetLicenseRecommendationsInput, opts ...request.Option) (*GetLicenseRecommendationsOutput, error) {
 	req, out := c.GetLicenseRecommendationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetRDSDatabaseRecommendationProjectedMetrics = "GetRDSDatabaseRecommendationProjectedMetrics"
+
+// GetRDSDatabaseRecommendationProjectedMetricsRequest generates a "aws/request.Request" representing the
+// client's request for the GetRDSDatabaseRecommendationProjectedMetrics operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetRDSDatabaseRecommendationProjectedMetrics for more information on using the GetRDSDatabaseRecommendationProjectedMetrics
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetRDSDatabaseRecommendationProjectedMetricsRequest method.
+//	req, resp := client.GetRDSDatabaseRecommendationProjectedMetricsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/compute-optimizer-2019-11-01/GetRDSDatabaseRecommendationProjectedMetrics
+func (c *ComputeOptimizer) GetRDSDatabaseRecommendationProjectedMetricsRequest(input *GetRDSDatabaseRecommendationProjectedMetricsInput) (req *request.Request, output *GetRDSDatabaseRecommendationProjectedMetricsOutput) {
+	op := &request.Operation{
+		Name:       opGetRDSDatabaseRecommendationProjectedMetrics,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetRDSDatabaseRecommendationProjectedMetricsInput{}
+	}
+
+	output = &GetRDSDatabaseRecommendationProjectedMetricsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetRDSDatabaseRecommendationProjectedMetrics API operation for AWS Compute Optimizer.
+//
+// Returns the projected metrics of Amazon RDS recommendations.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Compute Optimizer's
+// API operation GetRDSDatabaseRecommendationProjectedMetrics for usage and error information.
+//
+// Returned Error Types:
+//
+//   - OptInRequiredException
+//     The account is not opted in to Compute Optimizer.
+//
+//   - InternalServerException
+//     An internal error has occurred. Try your call again.
+//
+//   - ServiceUnavailableException
+//     The request has failed due to a temporary failure of the server.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - InvalidParameterValueException
+//     The value supplied for the input parameter is out of range or not valid.
+//
+//   - ResourceNotFoundException
+//     A resource that is required for the action doesn't exist.
+//
+//   - MissingAuthenticationToken
+//     The request must contain either a valid (registered) Amazon Web Services
+//     access key ID or X.509 certificate.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/compute-optimizer-2019-11-01/GetRDSDatabaseRecommendationProjectedMetrics
+func (c *ComputeOptimizer) GetRDSDatabaseRecommendationProjectedMetrics(input *GetRDSDatabaseRecommendationProjectedMetricsInput) (*GetRDSDatabaseRecommendationProjectedMetricsOutput, error) {
+	req, out := c.GetRDSDatabaseRecommendationProjectedMetricsRequest(input)
+	return out, req.Send()
+}
+
+// GetRDSDatabaseRecommendationProjectedMetricsWithContext is the same as GetRDSDatabaseRecommendationProjectedMetrics with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetRDSDatabaseRecommendationProjectedMetrics for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ComputeOptimizer) GetRDSDatabaseRecommendationProjectedMetricsWithContext(ctx aws.Context, input *GetRDSDatabaseRecommendationProjectedMetricsInput, opts ...request.Option) (*GetRDSDatabaseRecommendationProjectedMetricsOutput, error) {
+	req, out := c.GetRDSDatabaseRecommendationProjectedMetricsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetRDSDatabaseRecommendations = "GetRDSDatabaseRecommendations"
+
+// GetRDSDatabaseRecommendationsRequest generates a "aws/request.Request" representing the
+// client's request for the GetRDSDatabaseRecommendations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetRDSDatabaseRecommendations for more information on using the GetRDSDatabaseRecommendations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetRDSDatabaseRecommendationsRequest method.
+//	req, resp := client.GetRDSDatabaseRecommendationsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/compute-optimizer-2019-11-01/GetRDSDatabaseRecommendations
+func (c *ComputeOptimizer) GetRDSDatabaseRecommendationsRequest(input *GetRDSDatabaseRecommendationsInput) (req *request.Request, output *GetRDSDatabaseRecommendationsOutput) {
+	op := &request.Operation{
+		Name:       opGetRDSDatabaseRecommendations,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetRDSDatabaseRecommendationsInput{}
+	}
+
+	output = &GetRDSDatabaseRecommendationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetRDSDatabaseRecommendations API operation for AWS Compute Optimizer.
+//
+// Returns Amazon RDS recommendations.
+//
+// Compute Optimizer generates recommendations for Amazon RDS that meet a specific
+// set of requirements. For more information, see the Supported resources and
+// requirements (https://docs.aws.amazon.com/compute-optimizer/latest/ug/requirements.html)
+// in the Compute Optimizer User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Compute Optimizer's
+// API operation GetRDSDatabaseRecommendations for usage and error information.
+//
+// Returned Error Types:
+//
+//   - OptInRequiredException
+//     The account is not opted in to Compute Optimizer.
+//
+//   - InternalServerException
+//     An internal error has occurred. Try your call again.
+//
+//   - ServiceUnavailableException
+//     The request has failed due to a temporary failure of the server.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - InvalidParameterValueException
+//     The value supplied for the input parameter is out of range or not valid.
+//
+//   - ResourceNotFoundException
+//     A resource that is required for the action doesn't exist.
+//
+//   - MissingAuthenticationToken
+//     The request must contain either a valid (registered) Amazon Web Services
+//     access key ID or X.509 certificate.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/compute-optimizer-2019-11-01/GetRDSDatabaseRecommendations
+func (c *ComputeOptimizer) GetRDSDatabaseRecommendations(input *GetRDSDatabaseRecommendationsInput) (*GetRDSDatabaseRecommendationsOutput, error) {
+	req, out := c.GetRDSDatabaseRecommendationsRequest(input)
+	return out, req.Send()
+}
+
+// GetRDSDatabaseRecommendationsWithContext is the same as GetRDSDatabaseRecommendations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetRDSDatabaseRecommendations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ComputeOptimizer) GetRDSDatabaseRecommendationsWithContext(ctx aws.Context, input *GetRDSDatabaseRecommendationsInput, opts ...request.Option) (*GetRDSDatabaseRecommendationsOutput, error) {
+	req, out := c.GetRDSDatabaseRecommendationsRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3563,6 +3881,75 @@ func (s *CustomizableMetricParameters) SetThreshold(v string) *CustomizableMetri
 	return s
 }
 
+// The configuration of the recommended RDS storage.
+type DBStorageConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The size of the RDS storage in gigabytes (GB).
+	AllocatedStorage *int64 `locationName:"allocatedStorage" type:"integer"`
+
+	// The provisioned IOPs of the RDS storage.
+	Iops *int64 `locationName:"iops" type:"integer"`
+
+	// The maximum limit in gibibytes (GiB) to which Amazon RDS can automatically
+	// scale the storage of the RDS instance.
+	MaxAllocatedStorage *int64 `locationName:"maxAllocatedStorage" type:"integer"`
+
+	// The storage throughput of the RDS storage.
+	StorageThroughput *int64 `locationName:"storageThroughput" type:"integer"`
+
+	// The type of RDS storage.
+	StorageType *string `locationName:"storageType" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DBStorageConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DBStorageConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetAllocatedStorage sets the AllocatedStorage field's value.
+func (s *DBStorageConfiguration) SetAllocatedStorage(v int64) *DBStorageConfiguration {
+	s.AllocatedStorage = &v
+	return s
+}
+
+// SetIops sets the Iops field's value.
+func (s *DBStorageConfiguration) SetIops(v int64) *DBStorageConfiguration {
+	s.Iops = &v
+	return s
+}
+
+// SetMaxAllocatedStorage sets the MaxAllocatedStorage field's value.
+func (s *DBStorageConfiguration) SetMaxAllocatedStorage(v int64) *DBStorageConfiguration {
+	s.MaxAllocatedStorage = &v
+	return s
+}
+
+// SetStorageThroughput sets the StorageThroughput field's value.
+func (s *DBStorageConfiguration) SetStorageThroughput(v int64) *DBStorageConfiguration {
+	s.StorageThroughput = &v
+	return s
+}
+
+// SetStorageType sets the StorageType field's value.
+func (s *DBStorageConfiguration) SetStorageType(v string) *DBStorageConfiguration {
+	s.StorageType = &v
+	return s
+}
+
 type DeleteRecommendationPreferencesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3576,8 +3963,6 @@ type DeleteRecommendationPreferencesInput struct {
 	// The Ec2Instance option encompasses standalone instances and instances that
 	// are part of Auto Scaling groups. The AutoScalingGroup option encompasses
 	// only instances that are part of an Auto Scaling group.
-	//
-	// The valid values for this parameter are Ec2Instance and AutoScalingGroup.
 	//
 	// ResourceType is a required field
 	ResourceType *string `locationName:"resourceType" type:"string" required:"true" enum:"ResourceType"`
@@ -4951,15 +5336,15 @@ type EffectiveRecommendationPreferences struct {
 	// For example, when you specify AWS_ARM64 with:
 	//
 	//    * A GetEC2InstanceRecommendations or GetAutoScalingGroupRecommendations
-	//    request, Compute Optimizer returns recommendations that consist of Graviton2
+	//    request, Compute Optimizer returns recommendations that consist of Graviton
 	//    instance types only.
 	//
 	//    * A GetEC2RecommendationProjectedMetrics request, Compute Optimizer returns
-	//    projected utilization metrics for Graviton2 instance type recommendations
+	//    projected utilization metrics for Graviton instance type recommendations
 	//    only.
 	//
 	//    * A ExportEC2InstanceRecommendations or ExportAutoScalingGroupRecommendations
-	//    request, Compute Optimizer exports recommendations that consist of Graviton2
+	//    request, Compute Optimizer exports recommendations that consist of Graviton
 	//    instance types only.
 	CpuVendorArchitectures []*string `locationName:"cpuVendorArchitectures" type:"list" enum:"CpuVendorArchitecture"`
 
@@ -6291,6 +6676,195 @@ func (s *ExportLicenseRecommendationsOutput) SetJobId(v string) *ExportLicenseRe
 
 // SetS3Destination sets the S3Destination field's value.
 func (s *ExportLicenseRecommendationsOutput) SetS3Destination(v *S3Destination) *ExportLicenseRecommendationsOutput {
+	s.S3Destination = v
+	return s
+}
+
+type ExportRDSDatabaseRecommendationsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Web Services account IDs for the export Amazon RDS recommendations.
+	//
+	// If your account is the management account or the delegated administrator
+	// of an organization, use this parameter to specify the member account you
+	// want to export recommendations to.
+	//
+	// This parameter can't be specified together with the include member accounts
+	// parameter. The parameters are mutually exclusive.
+	//
+	// If this parameter or the include member accounts parameter is omitted, the
+	// recommendations for member accounts aren't included in the export.
+	//
+	// You can specify multiple account IDs per request.
+	AccountIds []*string `locationName:"accountIds" type:"list"`
+
+	// The recommendations data to include in the export file. For more information
+	// about the fields that can be exported, see Exported files (https://docs.aws.amazon.com/compute-optimizer/latest/ug/exporting-recommendations.html#exported-files)
+	// in the Compute Optimizer User Guide.
+	FieldsToExport []*string `locationName:"fieldsToExport" type:"list" enum:"ExportableRDSDBField"`
+
+	// The format of the export file.
+	//
+	// The CSV file is the only export file format currently supported.
+	FileFormat *string `locationName:"fileFormat" type:"string" enum:"FileFormat"`
+
+	// An array of objects to specify a filter that exports a more specific set
+	// of Amazon RDS recommendations.
+	Filters []*RDSDBRecommendationFilter `locationName:"filters" type:"list"`
+
+	// If your account is the management account or the delegated administrator
+	// of an organization, this parameter indicates whether to include recommendations
+	// for resources in all member accounts of the organization.
+	//
+	// The member accounts must also be opted in to Compute Optimizer, and trusted
+	// access for Compute Optimizer must be enabled in the organization account.
+	// For more information, see Compute Optimizer and Amazon Web Services Organizations
+	// trusted access (https://docs.aws.amazon.com/compute-optimizer/latest/ug/security-iam.html#trusted-service-access)
+	// in the Compute Optimizer User Guide.
+	//
+	// If this parameter is omitted, recommendations for member accounts of the
+	// organization aren't included in the export file.
+	//
+	// If this parameter or the account ID parameter is omitted, recommendations
+	// for member accounts aren't included in the export.
+	IncludeMemberAccounts *bool `locationName:"includeMemberAccounts" type:"boolean"`
+
+	// Describes the recommendation preferences to return in the response of a GetAutoScalingGroupRecommendations,
+	// GetEC2InstanceRecommendations, GetEC2RecommendationProjectedMetrics, GetRDSDatabaseRecommendations,
+	// and GetRDSDatabaseRecommendationProjectedMetrics request.
+	RecommendationPreferences *RecommendationPreferences `locationName:"recommendationPreferences" type:"structure"`
+
+	// Describes the destination Amazon Simple Storage Service (Amazon S3) bucket
+	// name and key prefix for a recommendations export job.
+	//
+	// You must create the destination Amazon S3 bucket for your recommendations
+	// export before you create the export job. Compute Optimizer does not create
+	// the S3 bucket for you. After you create the S3 bucket, ensure that it has
+	// the required permission policy to allow Compute Optimizer to write the export
+	// file to it. If you plan to specify an object prefix when you create the export
+	// job, you must include the object prefix in the policy that you add to the
+	// S3 bucket. For more information, see Amazon S3 Bucket Policy for Compute
+	// Optimizer (https://docs.aws.amazon.com/compute-optimizer/latest/ug/create-s3-bucket-policy-for-compute-optimizer.html)
+	// in the Compute Optimizer User Guide.
+	//
+	// S3DestinationConfig is a required field
+	S3DestinationConfig *S3DestinationConfig `locationName:"s3DestinationConfig" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExportRDSDatabaseRecommendationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExportRDSDatabaseRecommendationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ExportRDSDatabaseRecommendationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ExportRDSDatabaseRecommendationsInput"}
+	if s.S3DestinationConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3DestinationConfig"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountIds sets the AccountIds field's value.
+func (s *ExportRDSDatabaseRecommendationsInput) SetAccountIds(v []*string) *ExportRDSDatabaseRecommendationsInput {
+	s.AccountIds = v
+	return s
+}
+
+// SetFieldsToExport sets the FieldsToExport field's value.
+func (s *ExportRDSDatabaseRecommendationsInput) SetFieldsToExport(v []*string) *ExportRDSDatabaseRecommendationsInput {
+	s.FieldsToExport = v
+	return s
+}
+
+// SetFileFormat sets the FileFormat field's value.
+func (s *ExportRDSDatabaseRecommendationsInput) SetFileFormat(v string) *ExportRDSDatabaseRecommendationsInput {
+	s.FileFormat = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *ExportRDSDatabaseRecommendationsInput) SetFilters(v []*RDSDBRecommendationFilter) *ExportRDSDatabaseRecommendationsInput {
+	s.Filters = v
+	return s
+}
+
+// SetIncludeMemberAccounts sets the IncludeMemberAccounts field's value.
+func (s *ExportRDSDatabaseRecommendationsInput) SetIncludeMemberAccounts(v bool) *ExportRDSDatabaseRecommendationsInput {
+	s.IncludeMemberAccounts = &v
+	return s
+}
+
+// SetRecommendationPreferences sets the RecommendationPreferences field's value.
+func (s *ExportRDSDatabaseRecommendationsInput) SetRecommendationPreferences(v *RecommendationPreferences) *ExportRDSDatabaseRecommendationsInput {
+	s.RecommendationPreferences = v
+	return s
+}
+
+// SetS3DestinationConfig sets the S3DestinationConfig field's value.
+func (s *ExportRDSDatabaseRecommendationsInput) SetS3DestinationConfig(v *S3DestinationConfig) *ExportRDSDatabaseRecommendationsInput {
+	s.S3DestinationConfig = v
+	return s
+}
+
+type ExportRDSDatabaseRecommendationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The identification number of the export job.
+	//
+	// To view the status of an export job, use the DescribeRecommendationExportJobs
+	// action and specify the job ID.
+	JobId *string `locationName:"jobId" type:"string"`
+
+	// Describes the destination Amazon Simple Storage Service (Amazon S3) bucket
+	// name and object keys of a recommendations export file, and its associated
+	// metadata file.
+	S3Destination *S3Destination `locationName:"s3Destination" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExportRDSDatabaseRecommendationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExportRDSDatabaseRecommendationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetJobId sets the JobId field's value.
+func (s *ExportRDSDatabaseRecommendationsOutput) SetJobId(v string) *ExportRDSDatabaseRecommendationsOutput {
+	s.JobId = &v
+	return s
+}
+
+// SetS3Destination sets the S3Destination field's value.
+func (s *ExportRDSDatabaseRecommendationsOutput) SetS3Destination(v *S3Destination) *ExportRDSDatabaseRecommendationsOutput {
 	s.S3Destination = v
 	return s
 }
@@ -7945,6 +8519,301 @@ func (s *GetLicenseRecommendationsOutput) SetNextToken(v string) *GetLicenseReco
 	return s
 }
 
+type GetRDSDatabaseRecommendationProjectedMetricsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The timestamp of the last projected metrics data point to return.
+	//
+	// EndTime is a required field
+	EndTime *time.Time `locationName:"endTime" type:"timestamp" required:"true"`
+
+	// The granularity, in seconds, of the projected metrics data points.
+	//
+	// Period is a required field
+	Period *int64 `locationName:"period" type:"integer" required:"true"`
+
+	// Describes the recommendation preferences to return in the response of a GetAutoScalingGroupRecommendations,
+	// GetEC2InstanceRecommendations, GetEC2RecommendationProjectedMetrics, GetRDSDatabaseRecommendations,
+	// and GetRDSDatabaseRecommendationProjectedMetrics request.
+	RecommendationPreferences *RecommendationPreferences `locationName:"recommendationPreferences" type:"structure"`
+
+	// The ARN that identifies the Amazon RDS.
+	//
+	// The following is the format of the ARN:
+	//
+	// arn:aws:rds:{region}:{accountId}:db:{resourceName}
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `locationName:"resourceArn" type:"string" required:"true"`
+
+	// The timestamp of the first projected metrics data point to return.
+	//
+	// StartTime is a required field
+	StartTime *time.Time `locationName:"startTime" type:"timestamp" required:"true"`
+
+	// The statistic of the projected metrics.
+	//
+	// Stat is a required field
+	Stat *string `locationName:"stat" type:"string" required:"true" enum:"MetricStatistic"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetRDSDatabaseRecommendationProjectedMetricsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetRDSDatabaseRecommendationProjectedMetricsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetRDSDatabaseRecommendationProjectedMetricsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetRDSDatabaseRecommendationProjectedMetricsInput"}
+	if s.EndTime == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndTime"))
+	}
+	if s.Period == nil {
+		invalidParams.Add(request.NewErrParamRequired("Period"))
+	}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.StartTime == nil {
+		invalidParams.Add(request.NewErrParamRequired("StartTime"))
+	}
+	if s.Stat == nil {
+		invalidParams.Add(request.NewErrParamRequired("Stat"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *GetRDSDatabaseRecommendationProjectedMetricsInput) SetEndTime(v time.Time) *GetRDSDatabaseRecommendationProjectedMetricsInput {
+	s.EndTime = &v
+	return s
+}
+
+// SetPeriod sets the Period field's value.
+func (s *GetRDSDatabaseRecommendationProjectedMetricsInput) SetPeriod(v int64) *GetRDSDatabaseRecommendationProjectedMetricsInput {
+	s.Period = &v
+	return s
+}
+
+// SetRecommendationPreferences sets the RecommendationPreferences field's value.
+func (s *GetRDSDatabaseRecommendationProjectedMetricsInput) SetRecommendationPreferences(v *RecommendationPreferences) *GetRDSDatabaseRecommendationProjectedMetricsInput {
+	s.RecommendationPreferences = v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *GetRDSDatabaseRecommendationProjectedMetricsInput) SetResourceArn(v string) *GetRDSDatabaseRecommendationProjectedMetricsInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *GetRDSDatabaseRecommendationProjectedMetricsInput) SetStartTime(v time.Time) *GetRDSDatabaseRecommendationProjectedMetricsInput {
+	s.StartTime = &v
+	return s
+}
+
+// SetStat sets the Stat field's value.
+func (s *GetRDSDatabaseRecommendationProjectedMetricsInput) SetStat(v string) *GetRDSDatabaseRecommendationProjectedMetricsInput {
+	s.Stat = &v
+	return s
+}
+
+type GetRDSDatabaseRecommendationProjectedMetricsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An array of objects that describes the projected metrics.
+	RecommendedOptionProjectedMetrics []*RDSDatabaseRecommendedOptionProjectedMetric `locationName:"recommendedOptionProjectedMetrics" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetRDSDatabaseRecommendationProjectedMetricsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetRDSDatabaseRecommendationProjectedMetricsOutput) GoString() string {
+	return s.String()
+}
+
+// SetRecommendedOptionProjectedMetrics sets the RecommendedOptionProjectedMetrics field's value.
+func (s *GetRDSDatabaseRecommendationProjectedMetricsOutput) SetRecommendedOptionProjectedMetrics(v []*RDSDatabaseRecommendedOptionProjectedMetric) *GetRDSDatabaseRecommendationProjectedMetricsOutput {
+	s.RecommendedOptionProjectedMetrics = v
+	return s
+}
+
+type GetRDSDatabaseRecommendationsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Return the Amazon RDS recommendations to the specified Amazon Web Services
+	// account IDs.
+	//
+	// If your account is the management account or the delegated administrator
+	// of an organization, use this parameter to return the Amazon RDS recommendations
+	// to specific member accounts.
+	//
+	// You can only specify one account ID per request.
+	AccountIds []*string `locationName:"accountIds" type:"list"`
+
+	// An array of objects to specify a filter that returns a more specific list
+	// of Amazon RDS recommendations.
+	Filters []*RDSDBRecommendationFilter `locationName:"filters" type:"list"`
+
+	// The maximum number of Amazon RDS recommendations to return with a single
+	// request.
+	//
+	// To retrieve the remaining results, make another request with the returned
+	// nextToken value.
+	MaxResults *int64 `locationName:"maxResults" type:"integer"`
+
+	// The token to advance to the next page of Amazon RDS recommendations.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// Describes the recommendation preferences to return in the response of a GetAutoScalingGroupRecommendations,
+	// GetEC2InstanceRecommendations, GetEC2RecommendationProjectedMetrics, GetRDSDatabaseRecommendations,
+	// and GetRDSDatabaseRecommendationProjectedMetrics request.
+	RecommendationPreferences *RecommendationPreferences `locationName:"recommendationPreferences" type:"structure"`
+
+	// The ARN that identifies the Amazon RDS.
+	//
+	// The following is the format of the ARN:
+	//
+	// arn:aws:rds:{region}:{accountId}:db:{resourceName}
+	//
+	// The following is the format of a DB Cluster ARN:
+	//
+	// arn:aws:rds:{region}:{accountId}:cluster:{resourceName}
+	ResourceArns []*string `locationName:"resourceArns" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetRDSDatabaseRecommendationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetRDSDatabaseRecommendationsInput) GoString() string {
+	return s.String()
+}
+
+// SetAccountIds sets the AccountIds field's value.
+func (s *GetRDSDatabaseRecommendationsInput) SetAccountIds(v []*string) *GetRDSDatabaseRecommendationsInput {
+	s.AccountIds = v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *GetRDSDatabaseRecommendationsInput) SetFilters(v []*RDSDBRecommendationFilter) *GetRDSDatabaseRecommendationsInput {
+	s.Filters = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *GetRDSDatabaseRecommendationsInput) SetMaxResults(v int64) *GetRDSDatabaseRecommendationsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetRDSDatabaseRecommendationsInput) SetNextToken(v string) *GetRDSDatabaseRecommendationsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRecommendationPreferences sets the RecommendationPreferences field's value.
+func (s *GetRDSDatabaseRecommendationsInput) SetRecommendationPreferences(v *RecommendationPreferences) *GetRDSDatabaseRecommendationsInput {
+	s.RecommendationPreferences = v
+	return s
+}
+
+// SetResourceArns sets the ResourceArns field's value.
+func (s *GetRDSDatabaseRecommendationsInput) SetResourceArns(v []*string) *GetRDSDatabaseRecommendationsInput {
+	s.ResourceArns = v
+	return s
+}
+
+type GetRDSDatabaseRecommendationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An array of objects that describe errors of the request.
+	Errors []*GetRecommendationError `locationName:"errors" type:"list"`
+
+	// The token to advance to the next page of Amazon RDS recommendations.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// An array of objects that describe the Amazon RDS recommendations.
+	RdsDBRecommendations []*RDSDBRecommendation `locationName:"rdsDBRecommendations" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetRDSDatabaseRecommendationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetRDSDatabaseRecommendationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetErrors sets the Errors field's value.
+func (s *GetRDSDatabaseRecommendationsOutput) SetErrors(v []*GetRecommendationError) *GetRDSDatabaseRecommendationsOutput {
+	s.Errors = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetRDSDatabaseRecommendationsOutput) SetNextToken(v string) *GetRDSDatabaseRecommendationsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRdsDBRecommendations sets the RdsDBRecommendations field's value.
+func (s *GetRDSDatabaseRecommendationsOutput) SetRdsDBRecommendations(v []*RDSDBRecommendation) *GetRDSDatabaseRecommendationsOutput {
+	s.RdsDBRecommendations = v
+	return s
+}
+
 // Describes an error experienced when getting recommendations.
 //
 // For example, an error is returned if you request recommendations for an unsupported
@@ -8018,8 +8887,6 @@ type GetRecommendationPreferencesInput struct {
 	// The Ec2Instance option encompasses standalone instances and instances that
 	// are part of Auto Scaling groups. The AutoScalingGroup option encompasses
 	// only instances that are part of an Auto Scaling group.
-	//
-	// The valid values for this parameter are Ec2Instance and AutoScalingGroup.
 	//
 	// ResourceType is a required field
 	ResourceType *string `locationName:"resourceType" type:"string" required:"true" enum:"ResourceType"`
@@ -8467,6 +9334,9 @@ type InstanceRecommendation struct {
 	//    requirements of your workload and is not over provisioned. For optimized
 	//    resources, Compute Optimizer might recommend a new generation instance
 	//    type.
+	//
+	// The valid values in your API responses appear as OVER_PROVISIONED, UNDER_PROVISIONED,
+	// or OPTIMIZED.
 	Finding *string `locationName:"finding" type:"string" enum:"Finding"`
 
 	// The reason for the finding classification of the instance.
@@ -10769,8 +11639,6 @@ type PutRecommendationPreferencesInput struct {
 	// are part of Auto Scaling groups. The AutoScalingGroup option encompasses
 	// only instances that are part of an Auto Scaling group.
 	//
-	// The valid values for this parameter are Ec2Instance and AutoScalingGroup.
-	//
 	// ResourceType is a required field
 	ResourceType *string `locationName:"resourceType" type:"string" required:"true" enum:"ResourceType"`
 
@@ -10933,6 +11801,916 @@ func (s PutRecommendationPreferencesOutput) GoString() string {
 	return s.String()
 }
 
+// Describes the recommendation options for an Amazon RDS instance.
+type RDSDBInstanceRecommendationOption struct {
+	_ struct{} `type:"structure"`
+
+	// Describes the DB instance class recommendation option for your Amazon RDS
+	// instance.
+	DbInstanceClass *string `locationName:"dbInstanceClass" type:"string"`
+
+	// The performance risk of the RDS instance recommendation option.
+	PerformanceRisk *float64 `locationName:"performanceRisk" type:"double"`
+
+	// An array of objects that describe the projected utilization metrics of the
+	// RDS instance recommendation option.
+	ProjectedUtilizationMetrics []*RDSDBUtilizationMetric `locationName:"projectedUtilizationMetrics" type:"list"`
+
+	// The rank identifier of the RDS instance recommendation option.
+	Rank *int64 `locationName:"rank" type:"integer"`
+
+	// Describes the savings opportunity for recommendations of a given resource
+	// type or for the recommendation option of an individual resource.
+	//
+	// Savings opportunity represents the estimated monthly savings you can achieve
+	// by implementing a given Compute Optimizer recommendation.
+	//
+	// Savings opportunity data requires that you opt in to Cost Explorer, as well
+	// as activate Receive Amazon EC2 resource recommendations in the Cost Explorer
+	// preferences page. That creates a connection between Cost Explorer and Compute
+	// Optimizer. With this connection, Cost Explorer generates savings estimates
+	// considering the price of existing resources, the price of recommended resources,
+	// and historical usage data. Estimated monthly savings reflects the projected
+	// dollar savings associated with each of the recommendations generated. For
+	// more information, see Enabling Cost Explorer (https://docs.aws.amazon.com/cost-management/latest/userguide/ce-enable.html)
+	// and Optimizing your cost with Rightsizing Recommendations (https://docs.aws.amazon.com/cost-management/latest/userguide/ce-rightsizing.html)
+	// in the Cost Management User Guide.
+	SavingsOpportunity *SavingsOpportunity `locationName:"savingsOpportunity" type:"structure"`
+
+	// Describes the savings opportunity for Amazon RDS recommendations or for the
+	// recommendation option.
+	//
+	// Savings opportunity represents the estimated monthly savings after applying
+	// Savings Plans discounts. You can achieve this by implementing a given Compute
+	// Optimizer recommendation.
+	SavingsOpportunityAfterDiscounts *RDSInstanceSavingsOpportunityAfterDiscounts `locationName:"savingsOpportunityAfterDiscounts" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RDSDBInstanceRecommendationOption) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RDSDBInstanceRecommendationOption) GoString() string {
+	return s.String()
+}
+
+// SetDbInstanceClass sets the DbInstanceClass field's value.
+func (s *RDSDBInstanceRecommendationOption) SetDbInstanceClass(v string) *RDSDBInstanceRecommendationOption {
+	s.DbInstanceClass = &v
+	return s
+}
+
+// SetPerformanceRisk sets the PerformanceRisk field's value.
+func (s *RDSDBInstanceRecommendationOption) SetPerformanceRisk(v float64) *RDSDBInstanceRecommendationOption {
+	s.PerformanceRisk = &v
+	return s
+}
+
+// SetProjectedUtilizationMetrics sets the ProjectedUtilizationMetrics field's value.
+func (s *RDSDBInstanceRecommendationOption) SetProjectedUtilizationMetrics(v []*RDSDBUtilizationMetric) *RDSDBInstanceRecommendationOption {
+	s.ProjectedUtilizationMetrics = v
+	return s
+}
+
+// SetRank sets the Rank field's value.
+func (s *RDSDBInstanceRecommendationOption) SetRank(v int64) *RDSDBInstanceRecommendationOption {
+	s.Rank = &v
+	return s
+}
+
+// SetSavingsOpportunity sets the SavingsOpportunity field's value.
+func (s *RDSDBInstanceRecommendationOption) SetSavingsOpportunity(v *SavingsOpportunity) *RDSDBInstanceRecommendationOption {
+	s.SavingsOpportunity = v
+	return s
+}
+
+// SetSavingsOpportunityAfterDiscounts sets the SavingsOpportunityAfterDiscounts field's value.
+func (s *RDSDBInstanceRecommendationOption) SetSavingsOpportunityAfterDiscounts(v *RDSInstanceSavingsOpportunityAfterDiscounts) *RDSDBInstanceRecommendationOption {
+	s.SavingsOpportunityAfterDiscounts = v
+	return s
+}
+
+// Describes an Amazon RDS recommendation.
+type RDSDBRecommendation struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Web Services account ID of the Amazon RDS.
+	AccountId *string `locationName:"accountId" type:"string"`
+
+	// The DB instance class of the current RDS instance.
+	CurrentDBInstanceClass *string `locationName:"currentDBInstanceClass" type:"string"`
+
+	// The configuration of the current RDS storage.
+	CurrentStorageConfiguration *DBStorageConfiguration `locationName:"currentStorageConfiguration" type:"structure"`
+
+	// Describes the effective recommendation preferences for Amazon RDS.
+	EffectiveRecommendationPreferences *RDSEffectiveRecommendationPreferences `locationName:"effectiveRecommendationPreferences" type:"structure"`
+
+	// The engine of the RDS instance.
+	Engine *string `locationName:"engine" type:"string"`
+
+	// The database engine version.
+	EngineVersion *string `locationName:"engineVersion" type:"string"`
+
+	// This indicates if the RDS instance is idle or not.
+	Idle *string `locationName:"idle" type:"string" enum:"Idle"`
+
+	// The finding classification of an Amazon RDS instance.
+	//
+	// Findings for Amazon RDS instance include:
+	//
+	//    * Underprovisioned — When Compute Optimizer detects that there’s not
+	//    enough resource specifications, an Amazon RDS is considered under-provisioned.
+	//
+	//    * Overprovisioned — When Compute Optimizer detects that there’s excessive
+	//    resource specifications, an Amazon RDS is considered over-provisioned.
+	//
+	//    * Optimized — When the specifications of your Amazon RDS instance meet
+	//    the performance requirements of your workload, the service is considered
+	//    optimized.
+	InstanceFinding *string `locationName:"instanceFinding" type:"string" enum:"RDSInstanceFinding"`
+
+	// The reason for the finding classification of an Amazon RDS instance.
+	InstanceFindingReasonCodes []*string `locationName:"instanceFindingReasonCodes" type:"list" enum:"RDSInstanceFindingReasonCode"`
+
+	// An array of objects that describe the recommendation options for the Amazon
+	// RDS instance.
+	InstanceRecommendationOptions []*RDSDBInstanceRecommendationOption `locationName:"instanceRecommendationOptions" type:"list"`
+
+	// The timestamp of when the Amazon RDS recommendation was last generated.
+	LastRefreshTimestamp *time.Time `locationName:"lastRefreshTimestamp" type:"timestamp"`
+
+	// The number of days the Amazon RDS utilization metrics were analyzed.
+	LookbackPeriodInDays *float64 `locationName:"lookbackPeriodInDays" type:"double"`
+
+	// The ARN of the current Amazon RDS.
+	//
+	// The following is the format of the ARN:
+	//
+	// arn:aws:rds:{region}:{accountId}:db:{resourceName}
+	ResourceArn *string `locationName:"resourceArn" type:"string"`
+
+	// The finding classification of Amazon RDS storage.
+	//
+	// Findings for Amazon RDS instance include:
+	//
+	//    * Underprovisioned — When Compute Optimizer detects that there’s not
+	//    enough storage, an Amazon RDS is considered under-provisioned.
+	//
+	//    * Overprovisioned — When Compute Optimizer detects that there’s excessive
+	//    storage, an Amazon RDS is considered over-provisioned.
+	//
+	//    * Optimized — When the storage of your Amazon RDS meet the performance
+	//    requirements of your workload, the service is considered optimized.
+	StorageFinding *string `locationName:"storageFinding" type:"string" enum:"RDSStorageFinding"`
+
+	// The reason for the finding classification of Amazon RDS storage.
+	StorageFindingReasonCodes []*string `locationName:"storageFindingReasonCodes" type:"list" enum:"RDSStorageFindingReasonCode"`
+
+	// An array of objects that describe the recommendation options for Amazon RDS
+	// storage.
+	StorageRecommendationOptions []*RDSDBStorageRecommendationOption `locationName:"storageRecommendationOptions" type:"list"`
+
+	// A list of tags assigned to your Amazon RDS recommendations.
+	Tags []*Tag `locationName:"tags" type:"list"`
+
+	// An array of objects that describe the utilization metrics of the Amazon RDS.
+	UtilizationMetrics []*RDSDBUtilizationMetric `locationName:"utilizationMetrics" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RDSDBRecommendation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RDSDBRecommendation) GoString() string {
+	return s.String()
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *RDSDBRecommendation) SetAccountId(v string) *RDSDBRecommendation {
+	s.AccountId = &v
+	return s
+}
+
+// SetCurrentDBInstanceClass sets the CurrentDBInstanceClass field's value.
+func (s *RDSDBRecommendation) SetCurrentDBInstanceClass(v string) *RDSDBRecommendation {
+	s.CurrentDBInstanceClass = &v
+	return s
+}
+
+// SetCurrentStorageConfiguration sets the CurrentStorageConfiguration field's value.
+func (s *RDSDBRecommendation) SetCurrentStorageConfiguration(v *DBStorageConfiguration) *RDSDBRecommendation {
+	s.CurrentStorageConfiguration = v
+	return s
+}
+
+// SetEffectiveRecommendationPreferences sets the EffectiveRecommendationPreferences field's value.
+func (s *RDSDBRecommendation) SetEffectiveRecommendationPreferences(v *RDSEffectiveRecommendationPreferences) *RDSDBRecommendation {
+	s.EffectiveRecommendationPreferences = v
+	return s
+}
+
+// SetEngine sets the Engine field's value.
+func (s *RDSDBRecommendation) SetEngine(v string) *RDSDBRecommendation {
+	s.Engine = &v
+	return s
+}
+
+// SetEngineVersion sets the EngineVersion field's value.
+func (s *RDSDBRecommendation) SetEngineVersion(v string) *RDSDBRecommendation {
+	s.EngineVersion = &v
+	return s
+}
+
+// SetIdle sets the Idle field's value.
+func (s *RDSDBRecommendation) SetIdle(v string) *RDSDBRecommendation {
+	s.Idle = &v
+	return s
+}
+
+// SetInstanceFinding sets the InstanceFinding field's value.
+func (s *RDSDBRecommendation) SetInstanceFinding(v string) *RDSDBRecommendation {
+	s.InstanceFinding = &v
+	return s
+}
+
+// SetInstanceFindingReasonCodes sets the InstanceFindingReasonCodes field's value.
+func (s *RDSDBRecommendation) SetInstanceFindingReasonCodes(v []*string) *RDSDBRecommendation {
+	s.InstanceFindingReasonCodes = v
+	return s
+}
+
+// SetInstanceRecommendationOptions sets the InstanceRecommendationOptions field's value.
+func (s *RDSDBRecommendation) SetInstanceRecommendationOptions(v []*RDSDBInstanceRecommendationOption) *RDSDBRecommendation {
+	s.InstanceRecommendationOptions = v
+	return s
+}
+
+// SetLastRefreshTimestamp sets the LastRefreshTimestamp field's value.
+func (s *RDSDBRecommendation) SetLastRefreshTimestamp(v time.Time) *RDSDBRecommendation {
+	s.LastRefreshTimestamp = &v
+	return s
+}
+
+// SetLookbackPeriodInDays sets the LookbackPeriodInDays field's value.
+func (s *RDSDBRecommendation) SetLookbackPeriodInDays(v float64) *RDSDBRecommendation {
+	s.LookbackPeriodInDays = &v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *RDSDBRecommendation) SetResourceArn(v string) *RDSDBRecommendation {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetStorageFinding sets the StorageFinding field's value.
+func (s *RDSDBRecommendation) SetStorageFinding(v string) *RDSDBRecommendation {
+	s.StorageFinding = &v
+	return s
+}
+
+// SetStorageFindingReasonCodes sets the StorageFindingReasonCodes field's value.
+func (s *RDSDBRecommendation) SetStorageFindingReasonCodes(v []*string) *RDSDBRecommendation {
+	s.StorageFindingReasonCodes = v
+	return s
+}
+
+// SetStorageRecommendationOptions sets the StorageRecommendationOptions field's value.
+func (s *RDSDBRecommendation) SetStorageRecommendationOptions(v []*RDSDBStorageRecommendationOption) *RDSDBRecommendation {
+	s.StorageRecommendationOptions = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *RDSDBRecommendation) SetTags(v []*Tag) *RDSDBRecommendation {
+	s.Tags = v
+	return s
+}
+
+// SetUtilizationMetrics sets the UtilizationMetrics field's value.
+func (s *RDSDBRecommendation) SetUtilizationMetrics(v []*RDSDBUtilizationMetric) *RDSDBRecommendation {
+	s.UtilizationMetrics = v
+	return s
+}
+
+// Describes a filter that returns a more specific list of Amazon RDS recommendations.
+// Use this filter with the GetECSServiceRecommendations action.
+type RDSDBRecommendationFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the filter.
+	//
+	// Specify Finding to return recommendations with a specific finding classification.
+	//
+	// You can filter your Amazon RDS recommendations by tag:key and tag-key tags.
+	//
+	// A tag:key is a key and value combination of a tag assigned to your Amazon
+	// RDS recommendations. Use the tag key in the filter name and the tag value
+	// as the filter value. For example, to find all Amazon RDS service recommendations
+	// that have a tag with the key of Owner and the value of TeamA, specify tag:Owner
+	// for the filter name and TeamA for the filter value.
+	//
+	// A tag-key is the key of a tag assigned to your Amazon RDS recommendations.
+	// Use this filter to find all of your Amazon RDS recommendations that have
+	// a tag with a specific key. This doesn’t consider the tag value. For example,
+	// you can find your Amazon RDS service recommendations with a tag key value
+	// of Owner or without any tag keys assigned.
+	Name *string `locationName:"name" type:"string" enum:"RDSDBRecommendationFilterName"`
+
+	// The value of the filter.
+	Values []*string `locationName:"values" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RDSDBRecommendationFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RDSDBRecommendationFilter) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *RDSDBRecommendationFilter) SetName(v string) *RDSDBRecommendationFilter {
+	s.Name = &v
+	return s
+}
+
+// SetValues sets the Values field's value.
+func (s *RDSDBRecommendationFilter) SetValues(v []*string) *RDSDBRecommendationFilter {
+	s.Values = v
+	return s
+}
+
+// Describes the recommendation options for Amazon RDS storage.
+type RDSDBStorageRecommendationOption struct {
+	_ struct{} `type:"structure"`
+
+	// The rank identifier of the RDS storage recommendation option.
+	Rank *int64 `locationName:"rank" type:"integer"`
+
+	// Describes the savings opportunity for recommendations of a given resource
+	// type or for the recommendation option of an individual resource.
+	//
+	// Savings opportunity represents the estimated monthly savings you can achieve
+	// by implementing a given Compute Optimizer recommendation.
+	//
+	// Savings opportunity data requires that you opt in to Cost Explorer, as well
+	// as activate Receive Amazon EC2 resource recommendations in the Cost Explorer
+	// preferences page. That creates a connection between Cost Explorer and Compute
+	// Optimizer. With this connection, Cost Explorer generates savings estimates
+	// considering the price of existing resources, the price of recommended resources,
+	// and historical usage data. Estimated monthly savings reflects the projected
+	// dollar savings associated with each of the recommendations generated. For
+	// more information, see Enabling Cost Explorer (https://docs.aws.amazon.com/cost-management/latest/userguide/ce-enable.html)
+	// and Optimizing your cost with Rightsizing Recommendations (https://docs.aws.amazon.com/cost-management/latest/userguide/ce-rightsizing.html)
+	// in the Cost Management User Guide.
+	SavingsOpportunity *SavingsOpportunity `locationName:"savingsOpportunity" type:"structure"`
+
+	// Describes the savings opportunity for Amazon RDS storage recommendations
+	// or for the recommendation option.
+	//
+	// Savings opportunity represents the estimated monthly savings after applying
+	// Savings Plans discounts. You can achieve this by implementing a given Compute
+	// Optimizer recommendation.
+	SavingsOpportunityAfterDiscounts *RDSStorageSavingsOpportunityAfterDiscounts `locationName:"savingsOpportunityAfterDiscounts" type:"structure"`
+
+	// The recommended storage configuration.
+	StorageConfiguration *DBStorageConfiguration `locationName:"storageConfiguration" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RDSDBStorageRecommendationOption) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RDSDBStorageRecommendationOption) GoString() string {
+	return s.String()
+}
+
+// SetRank sets the Rank field's value.
+func (s *RDSDBStorageRecommendationOption) SetRank(v int64) *RDSDBStorageRecommendationOption {
+	s.Rank = &v
+	return s
+}
+
+// SetSavingsOpportunity sets the SavingsOpportunity field's value.
+func (s *RDSDBStorageRecommendationOption) SetSavingsOpportunity(v *SavingsOpportunity) *RDSDBStorageRecommendationOption {
+	s.SavingsOpportunity = v
+	return s
+}
+
+// SetSavingsOpportunityAfterDiscounts sets the SavingsOpportunityAfterDiscounts field's value.
+func (s *RDSDBStorageRecommendationOption) SetSavingsOpportunityAfterDiscounts(v *RDSStorageSavingsOpportunityAfterDiscounts) *RDSDBStorageRecommendationOption {
+	s.SavingsOpportunityAfterDiscounts = v
+	return s
+}
+
+// SetStorageConfiguration sets the StorageConfiguration field's value.
+func (s *RDSDBStorageRecommendationOption) SetStorageConfiguration(v *DBStorageConfiguration) *RDSDBStorageRecommendationOption {
+	s.StorageConfiguration = v
+	return s
+}
+
+// Describes the utilization metric of an Amazon RDS.
+//
+// To determine the performance difference between your current Amazon RDS and
+// the recommended option, compare the utilization metric data of your service
+// against its projected utilization metric data.
+type RDSDBUtilizationMetric struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the utilization metric.
+	Name *string `locationName:"name" type:"string" enum:"RDSDBMetricName"`
+
+	// The statistic of the utilization metric.
+	//
+	// The Compute Optimizer API, Command Line Interface (CLI), and SDKs return
+	// utilization metrics using only the Maximum statistic, which is the highest
+	// value observed during the specified period.
+	//
+	// The Compute Optimizer console displays graphs for some utilization metrics
+	// using the Average statistic, which is the value of Sum / SampleCount during
+	// the specified period. For more information, see Viewing resource recommendations
+	// (https://docs.aws.amazon.com/compute-optimizer/latest/ug/viewing-recommendations.html)
+	// in the Compute Optimizer User Guide. You can also get averaged utilization
+	// metric data for your resources using Amazon CloudWatch. For more information,
+	// see the Amazon CloudWatch User Guide (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html).
+	Statistic *string `locationName:"statistic" type:"string" enum:"RDSDBMetricStatistic"`
+
+	// The value of the utilization metric.
+	Value *float64 `locationName:"value" type:"double"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RDSDBUtilizationMetric) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RDSDBUtilizationMetric) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *RDSDBUtilizationMetric) SetName(v string) *RDSDBUtilizationMetric {
+	s.Name = &v
+	return s
+}
+
+// SetStatistic sets the Statistic field's value.
+func (s *RDSDBUtilizationMetric) SetStatistic(v string) *RDSDBUtilizationMetric {
+	s.Statistic = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *RDSDBUtilizationMetric) SetValue(v float64) *RDSDBUtilizationMetric {
+	s.Value = &v
+	return s
+}
+
+// Describes the projected metrics of an Amazon RDS recommendation option.
+//
+// To determine the performance difference between your current Amazon RDS and
+// the recommended option, compare the metric data of your service against its
+// projected metric data.
+type RDSDatabaseProjectedMetric struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the projected metric.
+	Name *string `locationName:"name" type:"string" enum:"RDSDBMetricName"`
+
+	// The timestamps of the projected metric.
+	Timestamps []*time.Time `locationName:"timestamps" type:"list"`
+
+	// The values for the projected metric.
+	Values []*float64 `locationName:"values" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RDSDatabaseProjectedMetric) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RDSDatabaseProjectedMetric) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *RDSDatabaseProjectedMetric) SetName(v string) *RDSDatabaseProjectedMetric {
+	s.Name = &v
+	return s
+}
+
+// SetTimestamps sets the Timestamps field's value.
+func (s *RDSDatabaseProjectedMetric) SetTimestamps(v []*time.Time) *RDSDatabaseProjectedMetric {
+	s.Timestamps = v
+	return s
+}
+
+// SetValues sets the Values field's value.
+func (s *RDSDatabaseProjectedMetric) SetValues(v []*float64) *RDSDatabaseProjectedMetric {
+	s.Values = v
+	return s
+}
+
+// Describes the projected metrics of an Amazon RDS recommendation option.
+//
+// To determine the performance difference between your current Amazon RDS and
+// the recommended option, compare the metric data of your service against its
+// projected metric data.
+type RDSDatabaseRecommendedOptionProjectedMetric struct {
+	_ struct{} `type:"structure"`
+
+	// An array of objects that describe the projected metric.
+	ProjectedMetrics []*RDSDatabaseProjectedMetric `locationName:"projectedMetrics" type:"list"`
+
+	// The rank identifier of the RDS instance recommendation option.
+	Rank *int64 `locationName:"rank" type:"integer"`
+
+	// The recommended DB instance class for the Amazon RDS.
+	RecommendedDBInstanceClass *string `locationName:"recommendedDBInstanceClass" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RDSDatabaseRecommendedOptionProjectedMetric) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RDSDatabaseRecommendedOptionProjectedMetric) GoString() string {
+	return s.String()
+}
+
+// SetProjectedMetrics sets the ProjectedMetrics field's value.
+func (s *RDSDatabaseRecommendedOptionProjectedMetric) SetProjectedMetrics(v []*RDSDatabaseProjectedMetric) *RDSDatabaseRecommendedOptionProjectedMetric {
+	s.ProjectedMetrics = v
+	return s
+}
+
+// SetRank sets the Rank field's value.
+func (s *RDSDatabaseRecommendedOptionProjectedMetric) SetRank(v int64) *RDSDatabaseRecommendedOptionProjectedMetric {
+	s.Rank = &v
+	return s
+}
+
+// SetRecommendedDBInstanceClass sets the RecommendedDBInstanceClass field's value.
+func (s *RDSDatabaseRecommendedOptionProjectedMetric) SetRecommendedDBInstanceClass(v string) *RDSDatabaseRecommendedOptionProjectedMetric {
+	s.RecommendedDBInstanceClass = &v
+	return s
+}
+
+// Describes the effective recommendation preferences for Amazon RDS.
+type RDSEffectiveRecommendationPreferences struct {
+	_ struct{} `type:"structure"`
+
+	// Describes the CPU vendor and architecture for Amazon RDS recommendations.
+	CpuVendorArchitectures []*string `locationName:"cpuVendorArchitectures" type:"list" enum:"CpuVendorArchitecture"`
+
+	// Describes the activation status of the enhanced infrastructure metrics preference.
+	//
+	// A status of Active confirms that the preference is applied in the latest
+	// recommendation refresh, and a status of Inactive confirms that it's not yet
+	// applied to recommendations.
+	//
+	// For more information, see Enhanced infrastructure metrics (https://docs.aws.amazon.com/compute-optimizer/latest/ug/enhanced-infrastructure-metrics.html)
+	// in the Compute Optimizer User Guide.
+	EnhancedInfrastructureMetrics *string `locationName:"enhancedInfrastructureMetrics" type:"string" enum:"EnhancedInfrastructureMetrics"`
+
+	// The number of days the utilization metrics of the Amazon RDS are analyzed.
+	LookBackPeriod *string `locationName:"lookBackPeriod" type:"string" enum:"LookBackPeriodPreference"`
+
+	// Describes the savings estimation mode preference applied for calculating
+	// savings opportunity for Amazon RDS.
+	SavingsEstimationMode *RDSSavingsEstimationMode `locationName:"savingsEstimationMode" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RDSEffectiveRecommendationPreferences) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RDSEffectiveRecommendationPreferences) GoString() string {
+	return s.String()
+}
+
+// SetCpuVendorArchitectures sets the CpuVendorArchitectures field's value.
+func (s *RDSEffectiveRecommendationPreferences) SetCpuVendorArchitectures(v []*string) *RDSEffectiveRecommendationPreferences {
+	s.CpuVendorArchitectures = v
+	return s
+}
+
+// SetEnhancedInfrastructureMetrics sets the EnhancedInfrastructureMetrics field's value.
+func (s *RDSEffectiveRecommendationPreferences) SetEnhancedInfrastructureMetrics(v string) *RDSEffectiveRecommendationPreferences {
+	s.EnhancedInfrastructureMetrics = &v
+	return s
+}
+
+// SetLookBackPeriod sets the LookBackPeriod field's value.
+func (s *RDSEffectiveRecommendationPreferences) SetLookBackPeriod(v string) *RDSEffectiveRecommendationPreferences {
+	s.LookBackPeriod = &v
+	return s
+}
+
+// SetSavingsEstimationMode sets the SavingsEstimationMode field's value.
+func (s *RDSEffectiveRecommendationPreferences) SetSavingsEstimationMode(v *RDSSavingsEstimationMode) *RDSEffectiveRecommendationPreferences {
+	s.SavingsEstimationMode = v
+	return s
+}
+
+// Describes the estimated monthly savings possible for Amazon RDS instances
+// by adopting Compute Optimizer recommendations. This is based on Amazon RDS
+// pricing after applying Savings Plans discounts.
+type RDSInstanceEstimatedMonthlySavings struct {
+	_ struct{} `type:"structure"`
+
+	// The currency of the estimated monthly savings.
+	Currency *string `locationName:"currency" type:"string" enum:"Currency"`
+
+	// The value of the estimated monthly savings for Amazon RDS instances.
+	Value *float64 `locationName:"value" type:"double"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RDSInstanceEstimatedMonthlySavings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RDSInstanceEstimatedMonthlySavings) GoString() string {
+	return s.String()
+}
+
+// SetCurrency sets the Currency field's value.
+func (s *RDSInstanceEstimatedMonthlySavings) SetCurrency(v string) *RDSInstanceEstimatedMonthlySavings {
+	s.Currency = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *RDSInstanceEstimatedMonthlySavings) SetValue(v float64) *RDSInstanceEstimatedMonthlySavings {
+	s.Value = &v
+	return s
+}
+
+// Describes the savings opportunity for Amazon RDS instance recommendations
+// after applying Savings Plans discounts.
+//
+// Savings opportunity represents the estimated monthly savings after applying
+// Savings Plans discounts. You can achieve this by implementing a given Compute
+// Optimizer recommendation.
+type RDSInstanceSavingsOpportunityAfterDiscounts struct {
+	_ struct{} `type:"structure"`
+
+	// The estimated monthly savings possible by adopting Compute Optimizer’s
+	// Amazon RDS instance recommendations. This includes any applicable Savings
+	// Plans discounts.
+	EstimatedMonthlySavings *RDSInstanceEstimatedMonthlySavings `locationName:"estimatedMonthlySavings" type:"structure"`
+
+	// The estimated monthly savings possible as a percentage of monthly cost by
+	// adopting Compute Optimizer’s Amazon RDS instance recommendations. This
+	// includes any applicable Savings Plans discounts.
+	SavingsOpportunityPercentage *float64 `locationName:"savingsOpportunityPercentage" type:"double"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RDSInstanceSavingsOpportunityAfterDiscounts) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RDSInstanceSavingsOpportunityAfterDiscounts) GoString() string {
+	return s.String()
+}
+
+// SetEstimatedMonthlySavings sets the EstimatedMonthlySavings field's value.
+func (s *RDSInstanceSavingsOpportunityAfterDiscounts) SetEstimatedMonthlySavings(v *RDSInstanceEstimatedMonthlySavings) *RDSInstanceSavingsOpportunityAfterDiscounts {
+	s.EstimatedMonthlySavings = v
+	return s
+}
+
+// SetSavingsOpportunityPercentage sets the SavingsOpportunityPercentage field's value.
+func (s *RDSInstanceSavingsOpportunityAfterDiscounts) SetSavingsOpportunityPercentage(v float64) *RDSInstanceSavingsOpportunityAfterDiscounts {
+	s.SavingsOpportunityPercentage = &v
+	return s
+}
+
+// Describes the savings estimation mode used for calculating savings opportunity
+// for Amazon RDS.
+type RDSSavingsEstimationMode struct {
+	_ struct{} `type:"structure"`
+
+	// Describes the source for calculating the savings opportunity for Amazon RDS.
+	Source *string `locationName:"source" type:"string" enum:"RDSSavingsEstimationModeSource"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RDSSavingsEstimationMode) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RDSSavingsEstimationMode) GoString() string {
+	return s.String()
+}
+
+// SetSource sets the Source field's value.
+func (s *RDSSavingsEstimationMode) SetSource(v string) *RDSSavingsEstimationMode {
+	s.Source = &v
+	return s
+}
+
+// Describes the estimated monthly savings possible for Amazon RDS storage by
+// adopting Compute Optimizer recommendations. This is based on Amazon RDS pricing
+// after applying Savings Plans discounts.
+type RDSStorageEstimatedMonthlySavings struct {
+	_ struct{} `type:"structure"`
+
+	// The currency of the estimated monthly savings.
+	Currency *string `locationName:"currency" type:"string" enum:"Currency"`
+
+	// The value of the estimated monthly savings for Amazon RDS storage.
+	Value *float64 `locationName:"value" type:"double"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RDSStorageEstimatedMonthlySavings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RDSStorageEstimatedMonthlySavings) GoString() string {
+	return s.String()
+}
+
+// SetCurrency sets the Currency field's value.
+func (s *RDSStorageEstimatedMonthlySavings) SetCurrency(v string) *RDSStorageEstimatedMonthlySavings {
+	s.Currency = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *RDSStorageEstimatedMonthlySavings) SetValue(v float64) *RDSStorageEstimatedMonthlySavings {
+	s.Value = &v
+	return s
+}
+
+// Describes the savings opportunity for Amazon RDS storage recommendations
+// after applying Savings Plans discounts.
+//
+// Savings opportunity represents the estimated monthly savings after applying
+// Savings Plans discounts. You can achieve this by implementing a given Compute
+// Optimizer recommendation.
+type RDSStorageSavingsOpportunityAfterDiscounts struct {
+	_ struct{} `type:"structure"`
+
+	// The estimated monthly savings possible by adopting Compute Optimizer’s
+	// Amazon RDS storage recommendations. This includes any applicable Savings
+	// Plans discounts.
+	EstimatedMonthlySavings *RDSStorageEstimatedMonthlySavings `locationName:"estimatedMonthlySavings" type:"structure"`
+
+	// The estimated monthly savings possible as a percentage of monthly cost by
+	// adopting Compute Optimizer’s Amazon RDS storage recommendations. This includes
+	// any applicable Savings Plans discounts.
+	SavingsOpportunityPercentage *float64 `locationName:"savingsOpportunityPercentage" type:"double"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RDSStorageSavingsOpportunityAfterDiscounts) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RDSStorageSavingsOpportunityAfterDiscounts) GoString() string {
+	return s.String()
+}
+
+// SetEstimatedMonthlySavings sets the EstimatedMonthlySavings field's value.
+func (s *RDSStorageSavingsOpportunityAfterDiscounts) SetEstimatedMonthlySavings(v *RDSStorageEstimatedMonthlySavings) *RDSStorageSavingsOpportunityAfterDiscounts {
+	s.EstimatedMonthlySavings = v
+	return s
+}
+
+// SetSavingsOpportunityPercentage sets the SavingsOpportunityPercentage field's value.
+func (s *RDSStorageSavingsOpportunityAfterDiscounts) SetSavingsOpportunityPercentage(v float64) *RDSStorageSavingsOpportunityAfterDiscounts {
+	s.SavingsOpportunityPercentage = &v
+	return s
+}
+
 // A summary of a finding reason code.
 type ReasonCodeSummary struct {
 	_ struct{} `type:"structure"`
@@ -11067,7 +12845,8 @@ func (s *RecommendationExportJob) SetStatus(v string) *RecommendationExportJob {
 }
 
 // Describes the recommendation preferences to return in the response of a GetAutoScalingGroupRecommendations,
-// GetEC2InstanceRecommendations, and GetEC2RecommendationProjectedMetrics request.
+// GetEC2InstanceRecommendations, GetEC2RecommendationProjectedMetrics, GetRDSDatabaseRecommendations,
+// and GetRDSDatabaseRecommendationProjectedMetrics request.
 type RecommendationPreferences struct {
 	_ struct{} `type:"structure"`
 
@@ -11077,15 +12856,15 @@ type RecommendationPreferences struct {
 	// For example, when you specify AWS_ARM64 with:
 	//
 	//    * A GetEC2InstanceRecommendations or GetAutoScalingGroupRecommendations
-	//    request, Compute Optimizer returns recommendations that consist of Graviton2
+	//    request, Compute Optimizer returns recommendations that consist of Graviton
 	//    instance types only.
 	//
 	//    * A GetEC2RecommendationProjectedMetrics request, Compute Optimizer returns
-	//    projected utilization metrics for Graviton2 instance type recommendations
+	//    projected utilization metrics for Graviton instance type recommendations
 	//    only.
 	//
 	//    * A ExportEC2InstanceRecommendations or ExportAutoScalingGroupRecommendations
-	//    request, Compute Optimizer exports recommendations that consist of Graviton2
+	//    request, Compute Optimizer exports recommendations that consist of Graviton
 	//    instance types only.
 	CpuVendorArchitectures []*string `locationName:"cpuVendorArchitectures" type:"list" enum:"CpuVendorArchitecture"`
 }
@@ -12317,8 +14096,8 @@ func (s *UtilizationMetric) SetValue(v float64) *UtilizationMetric {
 	return s
 }
 
-// The preference to control the resource’s CPU utilization thresholds - threshold
-// and headroom.
+// The preference to control the resource’s CPU utilization threshold, CPU
+// utilization headroom, and memory utilization headroom.
 //
 // This preference is only available for the Amazon EC2 instance resource type.
 type UtilizationPreference struct {
@@ -13188,6 +14967,12 @@ const (
 	// ExportableAutoScalingGroupFieldEffectiveRecommendationPreferencesInferredWorkloadTypes is a ExportableAutoScalingGroupField enum value
 	ExportableAutoScalingGroupFieldEffectiveRecommendationPreferencesInferredWorkloadTypes = "EffectiveRecommendationPreferencesInferredWorkloadTypes"
 
+	// ExportableAutoScalingGroupFieldEffectiveRecommendationPreferencesPreferredResources is a ExportableAutoScalingGroupField enum value
+	ExportableAutoScalingGroupFieldEffectiveRecommendationPreferencesPreferredResources = "EffectiveRecommendationPreferencesPreferredResources"
+
+	// ExportableAutoScalingGroupFieldEffectiveRecommendationPreferencesLookBackPeriod is a ExportableAutoScalingGroupField enum value
+	ExportableAutoScalingGroupFieldEffectiveRecommendationPreferencesLookBackPeriod = "EffectiveRecommendationPreferencesLookBackPeriod"
+
 	// ExportableAutoScalingGroupFieldInferredWorkloadTypes is a ExportableAutoScalingGroupField enum value
 	ExportableAutoScalingGroupFieldInferredWorkloadTypes = "InferredWorkloadTypes"
 
@@ -13223,12 +15008,6 @@ const (
 
 	// ExportableAutoScalingGroupFieldRecommendationOptionsEstimatedMonthlySavingsValueAfterDiscounts is a ExportableAutoScalingGroupField enum value
 	ExportableAutoScalingGroupFieldRecommendationOptionsEstimatedMonthlySavingsValueAfterDiscounts = "RecommendationOptionsEstimatedMonthlySavingsValueAfterDiscounts"
-
-	// ExportableAutoScalingGroupFieldEffectiveRecommendationPreferencesPreferredResources is a ExportableAutoScalingGroupField enum value
-	ExportableAutoScalingGroupFieldEffectiveRecommendationPreferencesPreferredResources = "EffectiveRecommendationPreferencesPreferredResources"
-
-	// ExportableAutoScalingGroupFieldEffectiveRecommendationPreferencesLookBackPeriod is a ExportableAutoScalingGroupField enum value
-	ExportableAutoScalingGroupFieldEffectiveRecommendationPreferencesLookBackPeriod = "EffectiveRecommendationPreferencesLookBackPeriod"
 )
 
 // ExportableAutoScalingGroupField_Values returns all elements of the ExportableAutoScalingGroupField enum
@@ -13286,6 +15065,8 @@ func ExportableAutoScalingGroupField_Values() []string {
 		ExportableAutoScalingGroupFieldEffectiveRecommendationPreferencesCpuVendorArchitectures,
 		ExportableAutoScalingGroupFieldEffectiveRecommendationPreferencesEnhancedInfrastructureMetrics,
 		ExportableAutoScalingGroupFieldEffectiveRecommendationPreferencesInferredWorkloadTypes,
+		ExportableAutoScalingGroupFieldEffectiveRecommendationPreferencesPreferredResources,
+		ExportableAutoScalingGroupFieldEffectiveRecommendationPreferencesLookBackPeriod,
 		ExportableAutoScalingGroupFieldInferredWorkloadTypes,
 		ExportableAutoScalingGroupFieldRecommendationOptionsMigrationEffort,
 		ExportableAutoScalingGroupFieldCurrentInstanceGpuInfo,
@@ -13298,8 +15079,6 @@ func ExportableAutoScalingGroupField_Values() []string {
 		ExportableAutoScalingGroupFieldRecommendationOptionsSavingsOpportunityAfterDiscountsPercentage,
 		ExportableAutoScalingGroupFieldRecommendationOptionsEstimatedMonthlySavingsCurrencyAfterDiscounts,
 		ExportableAutoScalingGroupFieldRecommendationOptionsEstimatedMonthlySavingsValueAfterDiscounts,
-		ExportableAutoScalingGroupFieldEffectiveRecommendationPreferencesPreferredResources,
-		ExportableAutoScalingGroupFieldEffectiveRecommendationPreferencesLookBackPeriod,
 	}
 }
 
@@ -13583,11 +15362,11 @@ const (
 	// ExportableInstanceFieldEffectiveRecommendationPreferencesExternalMetricsSource is a ExportableInstanceField enum value
 	ExportableInstanceFieldEffectiveRecommendationPreferencesExternalMetricsSource = "EffectiveRecommendationPreferencesExternalMetricsSource"
 
-	// ExportableInstanceFieldInstanceState is a ExportableInstanceField enum value
-	ExportableInstanceFieldInstanceState = "InstanceState"
-
 	// ExportableInstanceFieldTags is a ExportableInstanceField enum value
 	ExportableInstanceFieldTags = "Tags"
+
+	// ExportableInstanceFieldInstanceState is a ExportableInstanceField enum value
+	ExportableInstanceFieldInstanceState = "InstanceState"
 
 	// ExportableInstanceFieldExternalMetricStatusCode is a ExportableInstanceField enum value
 	ExportableInstanceFieldExternalMetricStatusCode = "ExternalMetricStatusCode"
@@ -13694,8 +15473,8 @@ func ExportableInstanceField_Values() []string {
 		ExportableInstanceFieldInferredWorkloadTypes,
 		ExportableInstanceFieldRecommendationOptionsMigrationEffort,
 		ExportableInstanceFieldEffectiveRecommendationPreferencesExternalMetricsSource,
-		ExportableInstanceFieldInstanceState,
 		ExportableInstanceFieldTags,
+		ExportableInstanceFieldInstanceState,
 		ExportableInstanceFieldExternalMetricStatusCode,
 		ExportableInstanceFieldExternalMetricStatusReason,
 		ExportableInstanceFieldCurrentInstanceGpuInfo,
@@ -13940,6 +15719,250 @@ func ExportableLicenseField_Values() []string {
 }
 
 const (
+	// ExportableRDSDBFieldResourceArn is a ExportableRDSDBField enum value
+	ExportableRDSDBFieldResourceArn = "ResourceArn"
+
+	// ExportableRDSDBFieldAccountId is a ExportableRDSDBField enum value
+	ExportableRDSDBFieldAccountId = "AccountId"
+
+	// ExportableRDSDBFieldEngine is a ExportableRDSDBField enum value
+	ExportableRDSDBFieldEngine = "Engine"
+
+	// ExportableRDSDBFieldEngineVersion is a ExportableRDSDBField enum value
+	ExportableRDSDBFieldEngineVersion = "EngineVersion"
+
+	// ExportableRDSDBFieldIdle is a ExportableRDSDBField enum value
+	ExportableRDSDBFieldIdle = "Idle"
+
+	// ExportableRDSDBFieldMultiAzdbinstance is a ExportableRDSDBField enum value
+	ExportableRDSDBFieldMultiAzdbinstance = "MultiAZDBInstance"
+
+	// ExportableRDSDBFieldCurrentDbinstanceClass is a ExportableRDSDBField enum value
+	ExportableRDSDBFieldCurrentDbinstanceClass = "CurrentDBInstanceClass"
+
+	// ExportableRDSDBFieldCurrentStorageConfigurationStorageType is a ExportableRDSDBField enum value
+	ExportableRDSDBFieldCurrentStorageConfigurationStorageType = "CurrentStorageConfigurationStorageType"
+
+	// ExportableRDSDBFieldCurrentStorageConfigurationAllocatedStorage is a ExportableRDSDBField enum value
+	ExportableRDSDBFieldCurrentStorageConfigurationAllocatedStorage = "CurrentStorageConfigurationAllocatedStorage"
+
+	// ExportableRDSDBFieldCurrentStorageConfigurationMaxAllocatedStorage is a ExportableRDSDBField enum value
+	ExportableRDSDBFieldCurrentStorageConfigurationMaxAllocatedStorage = "CurrentStorageConfigurationMaxAllocatedStorage"
+
+	// ExportableRDSDBFieldCurrentStorageConfigurationIops is a ExportableRDSDBField enum value
+	ExportableRDSDBFieldCurrentStorageConfigurationIops = "CurrentStorageConfigurationIOPS"
+
+	// ExportableRDSDBFieldCurrentStorageConfigurationStorageThroughput is a ExportableRDSDBField enum value
+	ExportableRDSDBFieldCurrentStorageConfigurationStorageThroughput = "CurrentStorageConfigurationStorageThroughput"
+
+	// ExportableRDSDBFieldCurrentInstanceOnDemandHourlyPrice is a ExportableRDSDBField enum value
+	ExportableRDSDBFieldCurrentInstanceOnDemandHourlyPrice = "CurrentInstanceOnDemandHourlyPrice"
+
+	// ExportableRDSDBFieldCurrentStorageOnDemandMonthlyPrice is a ExportableRDSDBField enum value
+	ExportableRDSDBFieldCurrentStorageOnDemandMonthlyPrice = "CurrentStorageOnDemandMonthlyPrice"
+
+	// ExportableRDSDBFieldLookbackPeriodInDays is a ExportableRDSDBField enum value
+	ExportableRDSDBFieldLookbackPeriodInDays = "LookbackPeriodInDays"
+
+	// ExportableRDSDBFieldUtilizationMetricsCpuMaximum is a ExportableRDSDBField enum value
+	ExportableRDSDBFieldUtilizationMetricsCpuMaximum = "UtilizationMetricsCpuMaximum"
+
+	// ExportableRDSDBFieldUtilizationMetricsMemoryMaximum is a ExportableRDSDBField enum value
+	ExportableRDSDBFieldUtilizationMetricsMemoryMaximum = "UtilizationMetricsMemoryMaximum"
+
+	// ExportableRDSDBFieldUtilizationMetricsEbsvolumeStorageSpaceUtilizationMaximum is a ExportableRDSDBField enum value
+	ExportableRDSDBFieldUtilizationMetricsEbsvolumeStorageSpaceUtilizationMaximum = "UtilizationMetricsEBSVolumeStorageSpaceUtilizationMaximum"
+
+	// ExportableRDSDBFieldUtilizationMetricsNetworkReceiveThroughputMaximum is a ExportableRDSDBField enum value
+	ExportableRDSDBFieldUtilizationMetricsNetworkReceiveThroughputMaximum = "UtilizationMetricsNetworkReceiveThroughputMaximum"
+
+	// ExportableRDSDBFieldUtilizationMetricsNetworkTransmitThroughputMaximum is a ExportableRDSDBField enum value
+	ExportableRDSDBFieldUtilizationMetricsNetworkTransmitThroughputMaximum = "UtilizationMetricsNetworkTransmitThroughputMaximum"
+
+	// ExportableRDSDBFieldUtilizationMetricsEbsvolumeReadIopsmaximum is a ExportableRDSDBField enum value
+	ExportableRDSDBFieldUtilizationMetricsEbsvolumeReadIopsmaximum = "UtilizationMetricsEBSVolumeReadIOPSMaximum"
+
+	// ExportableRDSDBFieldUtilizationMetricsEbsvolumeWriteIopsmaximum is a ExportableRDSDBField enum value
+	ExportableRDSDBFieldUtilizationMetricsEbsvolumeWriteIopsmaximum = "UtilizationMetricsEBSVolumeWriteIOPSMaximum"
+
+	// ExportableRDSDBFieldUtilizationMetricsEbsvolumeReadThroughputMaximum is a ExportableRDSDBField enum value
+	ExportableRDSDBFieldUtilizationMetricsEbsvolumeReadThroughputMaximum = "UtilizationMetricsEBSVolumeReadThroughputMaximum"
+
+	// ExportableRDSDBFieldUtilizationMetricsEbsvolumeWriteThroughputMaximum is a ExportableRDSDBField enum value
+	ExportableRDSDBFieldUtilizationMetricsEbsvolumeWriteThroughputMaximum = "UtilizationMetricsEBSVolumeWriteThroughputMaximum"
+
+	// ExportableRDSDBFieldUtilizationMetricsDatabaseConnectionsMaximum is a ExportableRDSDBField enum value
+	ExportableRDSDBFieldUtilizationMetricsDatabaseConnectionsMaximum = "UtilizationMetricsDatabaseConnectionsMaximum"
+
+	// ExportableRDSDBFieldInstanceFinding is a ExportableRDSDBField enum value
+	ExportableRDSDBFieldInstanceFinding = "InstanceFinding"
+
+	// ExportableRDSDBFieldInstanceFindingReasonCodes is a ExportableRDSDBField enum value
+	ExportableRDSDBFieldInstanceFindingReasonCodes = "InstanceFindingReasonCodes"
+
+	// ExportableRDSDBFieldStorageFinding is a ExportableRDSDBField enum value
+	ExportableRDSDBFieldStorageFinding = "StorageFinding"
+
+	// ExportableRDSDBFieldStorageFindingReasonCodes is a ExportableRDSDBField enum value
+	ExportableRDSDBFieldStorageFindingReasonCodes = "StorageFindingReasonCodes"
+
+	// ExportableRDSDBFieldInstanceRecommendationOptionsDbinstanceClass is a ExportableRDSDBField enum value
+	ExportableRDSDBFieldInstanceRecommendationOptionsDbinstanceClass = "InstanceRecommendationOptionsDBInstanceClass"
+
+	// ExportableRDSDBFieldInstanceRecommendationOptionsRank is a ExportableRDSDBField enum value
+	ExportableRDSDBFieldInstanceRecommendationOptionsRank = "InstanceRecommendationOptionsRank"
+
+	// ExportableRDSDBFieldInstanceRecommendationOptionsPerformanceRisk is a ExportableRDSDBField enum value
+	ExportableRDSDBFieldInstanceRecommendationOptionsPerformanceRisk = "InstanceRecommendationOptionsPerformanceRisk"
+
+	// ExportableRDSDBFieldInstanceRecommendationOptionsProjectedUtilizationMetricsCpuMaximum is a ExportableRDSDBField enum value
+	ExportableRDSDBFieldInstanceRecommendationOptionsProjectedUtilizationMetricsCpuMaximum = "InstanceRecommendationOptionsProjectedUtilizationMetricsCpuMaximum"
+
+	// ExportableRDSDBFieldStorageRecommendationOptionsStorageType is a ExportableRDSDBField enum value
+	ExportableRDSDBFieldStorageRecommendationOptionsStorageType = "StorageRecommendationOptionsStorageType"
+
+	// ExportableRDSDBFieldStorageRecommendationOptionsAllocatedStorage is a ExportableRDSDBField enum value
+	ExportableRDSDBFieldStorageRecommendationOptionsAllocatedStorage = "StorageRecommendationOptionsAllocatedStorage"
+
+	// ExportableRDSDBFieldStorageRecommendationOptionsMaxAllocatedStorage is a ExportableRDSDBField enum value
+	ExportableRDSDBFieldStorageRecommendationOptionsMaxAllocatedStorage = "StorageRecommendationOptionsMaxAllocatedStorage"
+
+	// ExportableRDSDBFieldStorageRecommendationOptionsIops is a ExportableRDSDBField enum value
+	ExportableRDSDBFieldStorageRecommendationOptionsIops = "StorageRecommendationOptionsIOPS"
+
+	// ExportableRDSDBFieldStorageRecommendationOptionsStorageThroughput is a ExportableRDSDBField enum value
+	ExportableRDSDBFieldStorageRecommendationOptionsStorageThroughput = "StorageRecommendationOptionsStorageThroughput"
+
+	// ExportableRDSDBFieldStorageRecommendationOptionsRank is a ExportableRDSDBField enum value
+	ExportableRDSDBFieldStorageRecommendationOptionsRank = "StorageRecommendationOptionsRank"
+
+	// ExportableRDSDBFieldInstanceRecommendationOptionsInstanceOnDemandHourlyPrice is a ExportableRDSDBField enum value
+	ExportableRDSDBFieldInstanceRecommendationOptionsInstanceOnDemandHourlyPrice = "InstanceRecommendationOptionsInstanceOnDemandHourlyPrice"
+
+	// ExportableRDSDBFieldInstanceRecommendationOptionsSavingsOpportunityPercentage is a ExportableRDSDBField enum value
+	ExportableRDSDBFieldInstanceRecommendationOptionsSavingsOpportunityPercentage = "InstanceRecommendationOptionsSavingsOpportunityPercentage"
+
+	// ExportableRDSDBFieldInstanceRecommendationOptionsEstimatedMonthlySavingsCurrency is a ExportableRDSDBField enum value
+	ExportableRDSDBFieldInstanceRecommendationOptionsEstimatedMonthlySavingsCurrency = "InstanceRecommendationOptionsEstimatedMonthlySavingsCurrency"
+
+	// ExportableRDSDBFieldInstanceRecommendationOptionsEstimatedMonthlySavingsValue is a ExportableRDSDBField enum value
+	ExportableRDSDBFieldInstanceRecommendationOptionsEstimatedMonthlySavingsValue = "InstanceRecommendationOptionsEstimatedMonthlySavingsValue"
+
+	// ExportableRDSDBFieldInstanceRecommendationOptionsSavingsOpportunityAfterDiscountsPercentage is a ExportableRDSDBField enum value
+	ExportableRDSDBFieldInstanceRecommendationOptionsSavingsOpportunityAfterDiscountsPercentage = "InstanceRecommendationOptionsSavingsOpportunityAfterDiscountsPercentage"
+
+	// ExportableRDSDBFieldInstanceRecommendationOptionsEstimatedMonthlySavingsCurrencyAfterDiscounts is a ExportableRDSDBField enum value
+	ExportableRDSDBFieldInstanceRecommendationOptionsEstimatedMonthlySavingsCurrencyAfterDiscounts = "InstanceRecommendationOptionsEstimatedMonthlySavingsCurrencyAfterDiscounts"
+
+	// ExportableRDSDBFieldInstanceRecommendationOptionsEstimatedMonthlySavingsValueAfterDiscounts is a ExportableRDSDBField enum value
+	ExportableRDSDBFieldInstanceRecommendationOptionsEstimatedMonthlySavingsValueAfterDiscounts = "InstanceRecommendationOptionsEstimatedMonthlySavingsValueAfterDiscounts"
+
+	// ExportableRDSDBFieldStorageRecommendationOptionsOnDemandMonthlyPrice is a ExportableRDSDBField enum value
+	ExportableRDSDBFieldStorageRecommendationOptionsOnDemandMonthlyPrice = "StorageRecommendationOptionsOnDemandMonthlyPrice"
+
+	// ExportableRDSDBFieldStorageRecommendationOptionsSavingsOpportunityPercentage is a ExportableRDSDBField enum value
+	ExportableRDSDBFieldStorageRecommendationOptionsSavingsOpportunityPercentage = "StorageRecommendationOptionsSavingsOpportunityPercentage"
+
+	// ExportableRDSDBFieldStorageRecommendationOptionsEstimatedMonthlySavingsCurrency is a ExportableRDSDBField enum value
+	ExportableRDSDBFieldStorageRecommendationOptionsEstimatedMonthlySavingsCurrency = "StorageRecommendationOptionsEstimatedMonthlySavingsCurrency"
+
+	// ExportableRDSDBFieldStorageRecommendationOptionsEstimatedMonthlySavingsValue is a ExportableRDSDBField enum value
+	ExportableRDSDBFieldStorageRecommendationOptionsEstimatedMonthlySavingsValue = "StorageRecommendationOptionsEstimatedMonthlySavingsValue"
+
+	// ExportableRDSDBFieldStorageRecommendationOptionsSavingsOpportunityAfterDiscountsPercentage is a ExportableRDSDBField enum value
+	ExportableRDSDBFieldStorageRecommendationOptionsSavingsOpportunityAfterDiscountsPercentage = "StorageRecommendationOptionsSavingsOpportunityAfterDiscountsPercentage"
+
+	// ExportableRDSDBFieldStorageRecommendationOptionsEstimatedMonthlySavingsCurrencyAfterDiscounts is a ExportableRDSDBField enum value
+	ExportableRDSDBFieldStorageRecommendationOptionsEstimatedMonthlySavingsCurrencyAfterDiscounts = "StorageRecommendationOptionsEstimatedMonthlySavingsCurrencyAfterDiscounts"
+
+	// ExportableRDSDBFieldStorageRecommendationOptionsEstimatedMonthlySavingsValueAfterDiscounts is a ExportableRDSDBField enum value
+	ExportableRDSDBFieldStorageRecommendationOptionsEstimatedMonthlySavingsValueAfterDiscounts = "StorageRecommendationOptionsEstimatedMonthlySavingsValueAfterDiscounts"
+
+	// ExportableRDSDBFieldEffectiveRecommendationPreferencesCpuVendorArchitectures is a ExportableRDSDBField enum value
+	ExportableRDSDBFieldEffectiveRecommendationPreferencesCpuVendorArchitectures = "EffectiveRecommendationPreferencesCpuVendorArchitectures"
+
+	// ExportableRDSDBFieldEffectiveRecommendationPreferencesEnhancedInfrastructureMetrics is a ExportableRDSDBField enum value
+	ExportableRDSDBFieldEffectiveRecommendationPreferencesEnhancedInfrastructureMetrics = "EffectiveRecommendationPreferencesEnhancedInfrastructureMetrics"
+
+	// ExportableRDSDBFieldEffectiveRecommendationPreferencesLookBackPeriod is a ExportableRDSDBField enum value
+	ExportableRDSDBFieldEffectiveRecommendationPreferencesLookBackPeriod = "EffectiveRecommendationPreferencesLookBackPeriod"
+
+	// ExportableRDSDBFieldEffectiveRecommendationPreferencesSavingsEstimationMode is a ExportableRDSDBField enum value
+	ExportableRDSDBFieldEffectiveRecommendationPreferencesSavingsEstimationMode = "EffectiveRecommendationPreferencesSavingsEstimationMode"
+
+	// ExportableRDSDBFieldLastRefreshTimestamp is a ExportableRDSDBField enum value
+	ExportableRDSDBFieldLastRefreshTimestamp = "LastRefreshTimestamp"
+
+	// ExportableRDSDBFieldTags is a ExportableRDSDBField enum value
+	ExportableRDSDBFieldTags = "Tags"
+)
+
+// ExportableRDSDBField_Values returns all elements of the ExportableRDSDBField enum
+func ExportableRDSDBField_Values() []string {
+	return []string{
+		ExportableRDSDBFieldResourceArn,
+		ExportableRDSDBFieldAccountId,
+		ExportableRDSDBFieldEngine,
+		ExportableRDSDBFieldEngineVersion,
+		ExportableRDSDBFieldIdle,
+		ExportableRDSDBFieldMultiAzdbinstance,
+		ExportableRDSDBFieldCurrentDbinstanceClass,
+		ExportableRDSDBFieldCurrentStorageConfigurationStorageType,
+		ExportableRDSDBFieldCurrentStorageConfigurationAllocatedStorage,
+		ExportableRDSDBFieldCurrentStorageConfigurationMaxAllocatedStorage,
+		ExportableRDSDBFieldCurrentStorageConfigurationIops,
+		ExportableRDSDBFieldCurrentStorageConfigurationStorageThroughput,
+		ExportableRDSDBFieldCurrentInstanceOnDemandHourlyPrice,
+		ExportableRDSDBFieldCurrentStorageOnDemandMonthlyPrice,
+		ExportableRDSDBFieldLookbackPeriodInDays,
+		ExportableRDSDBFieldUtilizationMetricsCpuMaximum,
+		ExportableRDSDBFieldUtilizationMetricsMemoryMaximum,
+		ExportableRDSDBFieldUtilizationMetricsEbsvolumeStorageSpaceUtilizationMaximum,
+		ExportableRDSDBFieldUtilizationMetricsNetworkReceiveThroughputMaximum,
+		ExportableRDSDBFieldUtilizationMetricsNetworkTransmitThroughputMaximum,
+		ExportableRDSDBFieldUtilizationMetricsEbsvolumeReadIopsmaximum,
+		ExportableRDSDBFieldUtilizationMetricsEbsvolumeWriteIopsmaximum,
+		ExportableRDSDBFieldUtilizationMetricsEbsvolumeReadThroughputMaximum,
+		ExportableRDSDBFieldUtilizationMetricsEbsvolumeWriteThroughputMaximum,
+		ExportableRDSDBFieldUtilizationMetricsDatabaseConnectionsMaximum,
+		ExportableRDSDBFieldInstanceFinding,
+		ExportableRDSDBFieldInstanceFindingReasonCodes,
+		ExportableRDSDBFieldStorageFinding,
+		ExportableRDSDBFieldStorageFindingReasonCodes,
+		ExportableRDSDBFieldInstanceRecommendationOptionsDbinstanceClass,
+		ExportableRDSDBFieldInstanceRecommendationOptionsRank,
+		ExportableRDSDBFieldInstanceRecommendationOptionsPerformanceRisk,
+		ExportableRDSDBFieldInstanceRecommendationOptionsProjectedUtilizationMetricsCpuMaximum,
+		ExportableRDSDBFieldStorageRecommendationOptionsStorageType,
+		ExportableRDSDBFieldStorageRecommendationOptionsAllocatedStorage,
+		ExportableRDSDBFieldStorageRecommendationOptionsMaxAllocatedStorage,
+		ExportableRDSDBFieldStorageRecommendationOptionsIops,
+		ExportableRDSDBFieldStorageRecommendationOptionsStorageThroughput,
+		ExportableRDSDBFieldStorageRecommendationOptionsRank,
+		ExportableRDSDBFieldInstanceRecommendationOptionsInstanceOnDemandHourlyPrice,
+		ExportableRDSDBFieldInstanceRecommendationOptionsSavingsOpportunityPercentage,
+		ExportableRDSDBFieldInstanceRecommendationOptionsEstimatedMonthlySavingsCurrency,
+		ExportableRDSDBFieldInstanceRecommendationOptionsEstimatedMonthlySavingsValue,
+		ExportableRDSDBFieldInstanceRecommendationOptionsSavingsOpportunityAfterDiscountsPercentage,
+		ExportableRDSDBFieldInstanceRecommendationOptionsEstimatedMonthlySavingsCurrencyAfterDiscounts,
+		ExportableRDSDBFieldInstanceRecommendationOptionsEstimatedMonthlySavingsValueAfterDiscounts,
+		ExportableRDSDBFieldStorageRecommendationOptionsOnDemandMonthlyPrice,
+		ExportableRDSDBFieldStorageRecommendationOptionsSavingsOpportunityPercentage,
+		ExportableRDSDBFieldStorageRecommendationOptionsEstimatedMonthlySavingsCurrency,
+		ExportableRDSDBFieldStorageRecommendationOptionsEstimatedMonthlySavingsValue,
+		ExportableRDSDBFieldStorageRecommendationOptionsSavingsOpportunityAfterDiscountsPercentage,
+		ExportableRDSDBFieldStorageRecommendationOptionsEstimatedMonthlySavingsCurrencyAfterDiscounts,
+		ExportableRDSDBFieldStorageRecommendationOptionsEstimatedMonthlySavingsValueAfterDiscounts,
+		ExportableRDSDBFieldEffectiveRecommendationPreferencesCpuVendorArchitectures,
+		ExportableRDSDBFieldEffectiveRecommendationPreferencesEnhancedInfrastructureMetrics,
+		ExportableRDSDBFieldEffectiveRecommendationPreferencesLookBackPeriod,
+		ExportableRDSDBFieldEffectiveRecommendationPreferencesSavingsEstimationMode,
+		ExportableRDSDBFieldLastRefreshTimestamp,
+		ExportableRDSDBFieldTags,
+	}
+}
+
+const (
 	// ExportableVolumeFieldAccountId is a ExportableVolumeField enum value
 	ExportableVolumeFieldAccountId = "AccountId"
 
@@ -14024,11 +16047,11 @@ const (
 	// ExportableVolumeFieldRecommendationOptionsEstimatedMonthlySavingsValue is a ExportableVolumeField enum value
 	ExportableVolumeFieldRecommendationOptionsEstimatedMonthlySavingsValue = "RecommendationOptionsEstimatedMonthlySavingsValue"
 
-	// ExportableVolumeFieldRootVolume is a ExportableVolumeField enum value
-	ExportableVolumeFieldRootVolume = "RootVolume"
-
 	// ExportableVolumeFieldTags is a ExportableVolumeField enum value
 	ExportableVolumeFieldTags = "Tags"
+
+	// ExportableVolumeFieldRootVolume is a ExportableVolumeField enum value
+	ExportableVolumeFieldRootVolume = "RootVolume"
 
 	// ExportableVolumeFieldCurrentConfigurationRootVolume is a ExportableVolumeField enum value
 	ExportableVolumeFieldCurrentConfigurationRootVolume = "CurrentConfigurationRootVolume"
@@ -14077,8 +16100,8 @@ func ExportableVolumeField_Values() []string {
 		ExportableVolumeFieldRecommendationOptionsSavingsOpportunityPercentage,
 		ExportableVolumeFieldRecommendationOptionsEstimatedMonthlySavingsCurrency,
 		ExportableVolumeFieldRecommendationOptionsEstimatedMonthlySavingsValue,
-		ExportableVolumeFieldRootVolume,
 		ExportableVolumeFieldTags,
+		ExportableVolumeFieldRootVolume,
 		ExportableVolumeFieldCurrentConfigurationRootVolume,
 		ExportableVolumeFieldEffectiveRecommendationPreferencesSavingsEstimationMode,
 		ExportableVolumeFieldRecommendationOptionsSavingsOpportunityAfterDiscountsPercentage,
@@ -14232,6 +16255,22 @@ func FindingReasonCode_Values() []string {
 	return []string{
 		FindingReasonCodeMemoryOverprovisioned,
 		FindingReasonCodeMemoryUnderprovisioned,
+	}
+}
+
+const (
+	// IdleTrue is a Idle enum value
+	IdleTrue = "True"
+
+	// IdleFalse is a Idle enum value
+	IdleFalse = "False"
+)
+
+// Idle_Values returns all elements of the Idle enum
+func Idle_Values() []string {
+	return []string{
+		IdleTrue,
+		IdleFalse,
 	}
 }
 
@@ -14940,6 +16979,234 @@ func PreferredResourceName_Values() []string {
 }
 
 const (
+	// RDSDBMetricNameCpu is a RDSDBMetricName enum value
+	RDSDBMetricNameCpu = "CPU"
+
+	// RDSDBMetricNameMemory is a RDSDBMetricName enum value
+	RDSDBMetricNameMemory = "Memory"
+
+	// RDSDBMetricNameEbsvolumeStorageSpaceUtilization is a RDSDBMetricName enum value
+	RDSDBMetricNameEbsvolumeStorageSpaceUtilization = "EBSVolumeStorageSpaceUtilization"
+
+	// RDSDBMetricNameNetworkReceiveThroughput is a RDSDBMetricName enum value
+	RDSDBMetricNameNetworkReceiveThroughput = "NetworkReceiveThroughput"
+
+	// RDSDBMetricNameNetworkTransmitThroughput is a RDSDBMetricName enum value
+	RDSDBMetricNameNetworkTransmitThroughput = "NetworkTransmitThroughput"
+
+	// RDSDBMetricNameEbsvolumeReadIops is a RDSDBMetricName enum value
+	RDSDBMetricNameEbsvolumeReadIops = "EBSVolumeReadIOPS"
+
+	// RDSDBMetricNameEbsvolumeWriteIops is a RDSDBMetricName enum value
+	RDSDBMetricNameEbsvolumeWriteIops = "EBSVolumeWriteIOPS"
+
+	// RDSDBMetricNameEbsvolumeReadThroughput is a RDSDBMetricName enum value
+	RDSDBMetricNameEbsvolumeReadThroughput = "EBSVolumeReadThroughput"
+
+	// RDSDBMetricNameEbsvolumeWriteThroughput is a RDSDBMetricName enum value
+	RDSDBMetricNameEbsvolumeWriteThroughput = "EBSVolumeWriteThroughput"
+
+	// RDSDBMetricNameDatabaseConnections is a RDSDBMetricName enum value
+	RDSDBMetricNameDatabaseConnections = "DatabaseConnections"
+)
+
+// RDSDBMetricName_Values returns all elements of the RDSDBMetricName enum
+func RDSDBMetricName_Values() []string {
+	return []string{
+		RDSDBMetricNameCpu,
+		RDSDBMetricNameMemory,
+		RDSDBMetricNameEbsvolumeStorageSpaceUtilization,
+		RDSDBMetricNameNetworkReceiveThroughput,
+		RDSDBMetricNameNetworkTransmitThroughput,
+		RDSDBMetricNameEbsvolumeReadIops,
+		RDSDBMetricNameEbsvolumeWriteIops,
+		RDSDBMetricNameEbsvolumeReadThroughput,
+		RDSDBMetricNameEbsvolumeWriteThroughput,
+		RDSDBMetricNameDatabaseConnections,
+	}
+}
+
+const (
+	// RDSDBMetricStatisticMaximum is a RDSDBMetricStatistic enum value
+	RDSDBMetricStatisticMaximum = "Maximum"
+
+	// RDSDBMetricStatisticMinimum is a RDSDBMetricStatistic enum value
+	RDSDBMetricStatisticMinimum = "Minimum"
+
+	// RDSDBMetricStatisticAverage is a RDSDBMetricStatistic enum value
+	RDSDBMetricStatisticAverage = "Average"
+)
+
+// RDSDBMetricStatistic_Values returns all elements of the RDSDBMetricStatistic enum
+func RDSDBMetricStatistic_Values() []string {
+	return []string{
+		RDSDBMetricStatisticMaximum,
+		RDSDBMetricStatisticMinimum,
+		RDSDBMetricStatisticAverage,
+	}
+}
+
+const (
+	// RDSDBRecommendationFilterNameInstanceFinding is a RDSDBRecommendationFilterName enum value
+	RDSDBRecommendationFilterNameInstanceFinding = "InstanceFinding"
+
+	// RDSDBRecommendationFilterNameInstanceFindingReasonCode is a RDSDBRecommendationFilterName enum value
+	RDSDBRecommendationFilterNameInstanceFindingReasonCode = "InstanceFindingReasonCode"
+
+	// RDSDBRecommendationFilterNameStorageFinding is a RDSDBRecommendationFilterName enum value
+	RDSDBRecommendationFilterNameStorageFinding = "StorageFinding"
+
+	// RDSDBRecommendationFilterNameStorageFindingReasonCode is a RDSDBRecommendationFilterName enum value
+	RDSDBRecommendationFilterNameStorageFindingReasonCode = "StorageFindingReasonCode"
+
+	// RDSDBRecommendationFilterNameIdle is a RDSDBRecommendationFilterName enum value
+	RDSDBRecommendationFilterNameIdle = "Idle"
+)
+
+// RDSDBRecommendationFilterName_Values returns all elements of the RDSDBRecommendationFilterName enum
+func RDSDBRecommendationFilterName_Values() []string {
+	return []string{
+		RDSDBRecommendationFilterNameInstanceFinding,
+		RDSDBRecommendationFilterNameInstanceFindingReasonCode,
+		RDSDBRecommendationFilterNameStorageFinding,
+		RDSDBRecommendationFilterNameStorageFindingReasonCode,
+		RDSDBRecommendationFilterNameIdle,
+	}
+}
+
+const (
+	// RDSInstanceFindingOptimized is a RDSInstanceFinding enum value
+	RDSInstanceFindingOptimized = "Optimized"
+
+	// RDSInstanceFindingUnderprovisioned is a RDSInstanceFinding enum value
+	RDSInstanceFindingUnderprovisioned = "Underprovisioned"
+
+	// RDSInstanceFindingOverprovisioned is a RDSInstanceFinding enum value
+	RDSInstanceFindingOverprovisioned = "Overprovisioned"
+)
+
+// RDSInstanceFinding_Values returns all elements of the RDSInstanceFinding enum
+func RDSInstanceFinding_Values() []string {
+	return []string{
+		RDSInstanceFindingOptimized,
+		RDSInstanceFindingUnderprovisioned,
+		RDSInstanceFindingOverprovisioned,
+	}
+}
+
+const (
+	// RDSInstanceFindingReasonCodeCpuoverprovisioned is a RDSInstanceFindingReasonCode enum value
+	RDSInstanceFindingReasonCodeCpuoverprovisioned = "CPUOverprovisioned"
+
+	// RDSInstanceFindingReasonCodeNetworkBandwidthOverprovisioned is a RDSInstanceFindingReasonCode enum value
+	RDSInstanceFindingReasonCodeNetworkBandwidthOverprovisioned = "NetworkBandwidthOverprovisioned"
+
+	// RDSInstanceFindingReasonCodeEbsiopsoverprovisioned is a RDSInstanceFindingReasonCode enum value
+	RDSInstanceFindingReasonCodeEbsiopsoverprovisioned = "EBSIOPSOverprovisioned"
+
+	// RDSInstanceFindingReasonCodeEbsthroughputOverprovisioned is a RDSInstanceFindingReasonCode enum value
+	RDSInstanceFindingReasonCodeEbsthroughputOverprovisioned = "EBSThroughputOverprovisioned"
+
+	// RDSInstanceFindingReasonCodeCpuunderprovisioned is a RDSInstanceFindingReasonCode enum value
+	RDSInstanceFindingReasonCodeCpuunderprovisioned = "CPUUnderprovisioned"
+
+	// RDSInstanceFindingReasonCodeNetworkBandwidthUnderprovisioned is a RDSInstanceFindingReasonCode enum value
+	RDSInstanceFindingReasonCodeNetworkBandwidthUnderprovisioned = "NetworkBandwidthUnderprovisioned"
+
+	// RDSInstanceFindingReasonCodeEbsthroughputUnderprovisioned is a RDSInstanceFindingReasonCode enum value
+	RDSInstanceFindingReasonCodeEbsthroughputUnderprovisioned = "EBSThroughputUnderprovisioned"
+
+	// RDSInstanceFindingReasonCodeNewGenerationDbinstanceClassAvailable is a RDSInstanceFindingReasonCode enum value
+	RDSInstanceFindingReasonCodeNewGenerationDbinstanceClassAvailable = "NewGenerationDBInstanceClassAvailable"
+
+	// RDSInstanceFindingReasonCodeNewEngineVersionAvailable is a RDSInstanceFindingReasonCode enum value
+	RDSInstanceFindingReasonCodeNewEngineVersionAvailable = "NewEngineVersionAvailable"
+)
+
+// RDSInstanceFindingReasonCode_Values returns all elements of the RDSInstanceFindingReasonCode enum
+func RDSInstanceFindingReasonCode_Values() []string {
+	return []string{
+		RDSInstanceFindingReasonCodeCpuoverprovisioned,
+		RDSInstanceFindingReasonCodeNetworkBandwidthOverprovisioned,
+		RDSInstanceFindingReasonCodeEbsiopsoverprovisioned,
+		RDSInstanceFindingReasonCodeEbsthroughputOverprovisioned,
+		RDSInstanceFindingReasonCodeCpuunderprovisioned,
+		RDSInstanceFindingReasonCodeNetworkBandwidthUnderprovisioned,
+		RDSInstanceFindingReasonCodeEbsthroughputUnderprovisioned,
+		RDSInstanceFindingReasonCodeNewGenerationDbinstanceClassAvailable,
+		RDSInstanceFindingReasonCodeNewEngineVersionAvailable,
+	}
+}
+
+const (
+	// RDSSavingsEstimationModeSourcePublicPricing is a RDSSavingsEstimationModeSource enum value
+	RDSSavingsEstimationModeSourcePublicPricing = "PublicPricing"
+
+	// RDSSavingsEstimationModeSourceCostExplorerRightsizing is a RDSSavingsEstimationModeSource enum value
+	RDSSavingsEstimationModeSourceCostExplorerRightsizing = "CostExplorerRightsizing"
+
+	// RDSSavingsEstimationModeSourceCostOptimizationHub is a RDSSavingsEstimationModeSource enum value
+	RDSSavingsEstimationModeSourceCostOptimizationHub = "CostOptimizationHub"
+)
+
+// RDSSavingsEstimationModeSource_Values returns all elements of the RDSSavingsEstimationModeSource enum
+func RDSSavingsEstimationModeSource_Values() []string {
+	return []string{
+		RDSSavingsEstimationModeSourcePublicPricing,
+		RDSSavingsEstimationModeSourceCostExplorerRightsizing,
+		RDSSavingsEstimationModeSourceCostOptimizationHub,
+	}
+}
+
+const (
+	// RDSStorageFindingOptimized is a RDSStorageFinding enum value
+	RDSStorageFindingOptimized = "Optimized"
+
+	// RDSStorageFindingUnderprovisioned is a RDSStorageFinding enum value
+	RDSStorageFindingUnderprovisioned = "Underprovisioned"
+
+	// RDSStorageFindingOverprovisioned is a RDSStorageFinding enum value
+	RDSStorageFindingOverprovisioned = "Overprovisioned"
+)
+
+// RDSStorageFinding_Values returns all elements of the RDSStorageFinding enum
+func RDSStorageFinding_Values() []string {
+	return []string{
+		RDSStorageFindingOptimized,
+		RDSStorageFindingUnderprovisioned,
+		RDSStorageFindingOverprovisioned,
+	}
+}
+
+const (
+	// RDSStorageFindingReasonCodeEbsvolumeAllocatedStorageUnderprovisioned is a RDSStorageFindingReasonCode enum value
+	RDSStorageFindingReasonCodeEbsvolumeAllocatedStorageUnderprovisioned = "EBSVolumeAllocatedStorageUnderprovisioned"
+
+	// RDSStorageFindingReasonCodeEbsvolumeThroughputUnderprovisioned is a RDSStorageFindingReasonCode enum value
+	RDSStorageFindingReasonCodeEbsvolumeThroughputUnderprovisioned = "EBSVolumeThroughputUnderprovisioned"
+
+	// RDSStorageFindingReasonCodeEbsvolumeIopsoverprovisioned is a RDSStorageFindingReasonCode enum value
+	RDSStorageFindingReasonCodeEbsvolumeIopsoverprovisioned = "EBSVolumeIOPSOverprovisioned"
+
+	// RDSStorageFindingReasonCodeEbsvolumeThroughputOverprovisioned is a RDSStorageFindingReasonCode enum value
+	RDSStorageFindingReasonCodeEbsvolumeThroughputOverprovisioned = "EBSVolumeThroughputOverprovisioned"
+
+	// RDSStorageFindingReasonCodeNewGenerationStorageTypeAvailable is a RDSStorageFindingReasonCode enum value
+	RDSStorageFindingReasonCodeNewGenerationStorageTypeAvailable = "NewGenerationStorageTypeAvailable"
+)
+
+// RDSStorageFindingReasonCode_Values returns all elements of the RDSStorageFindingReasonCode enum
+func RDSStorageFindingReasonCode_Values() []string {
+	return []string{
+		RDSStorageFindingReasonCodeEbsvolumeAllocatedStorageUnderprovisioned,
+		RDSStorageFindingReasonCodeEbsvolumeThroughputUnderprovisioned,
+		RDSStorageFindingReasonCodeEbsvolumeIopsoverprovisioned,
+		RDSStorageFindingReasonCodeEbsvolumeThroughputOverprovisioned,
+		RDSStorageFindingReasonCodeNewGenerationStorageTypeAvailable,
+	}
+}
+
+const (
 	// RecommendationPreferenceNameEnhancedInfrastructureMetrics is a RecommendationPreferenceName enum value
 	RecommendationPreferenceNameEnhancedInfrastructureMetrics = "EnhancedInfrastructureMetrics"
 
@@ -14989,6 +17256,12 @@ const (
 
 	// RecommendationSourceTypeLicense is a RecommendationSourceType enum value
 	RecommendationSourceTypeLicense = "License"
+
+	// RecommendationSourceTypeRdsDbinstance is a RecommendationSourceType enum value
+	RecommendationSourceTypeRdsDbinstance = "RdsDBInstance"
+
+	// RecommendationSourceTypeRdsDbinstanceStorage is a RecommendationSourceType enum value
+	RecommendationSourceTypeRdsDbinstanceStorage = "RdsDBInstanceStorage"
 )
 
 // RecommendationSourceType_Values returns all elements of the RecommendationSourceType enum
@@ -15000,6 +17273,8 @@ func RecommendationSourceType_Values() []string {
 		RecommendationSourceTypeLambdaFunction,
 		RecommendationSourceTypeEcsService,
 		RecommendationSourceTypeLicense,
+		RecommendationSourceTypeRdsDbinstance,
+		RecommendationSourceTypeRdsDbinstanceStorage,
 	}
 }
 
@@ -15024,6 +17299,9 @@ const (
 
 	// ResourceTypeLicense is a ResourceType enum value
 	ResourceTypeLicense = "License"
+
+	// ResourceTypeRdsDbinstance is a ResourceType enum value
+	ResourceTypeRdsDbinstance = "RdsDBInstance"
 )
 
 // ResourceType_Values returns all elements of the ResourceType enum
@@ -15036,6 +17314,7 @@ func ResourceType_Values() []string {
 		ResourceTypeNotApplicable,
 		ResourceTypeEcsService,
 		ResourceTypeLicense,
+		ResourceTypeRdsDbinstance,
 	}
 }
 

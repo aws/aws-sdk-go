@@ -5,11 +5,13 @@
     "endpointPrefix":"codeartifact",
     "jsonVersion":"1.1",
     "protocol":"rest-json",
+    "protocols":["rest-json"],
     "serviceFullName":"CodeArtifact",
     "serviceId":"codeartifact",
     "signatureVersion":"v4",
     "signingName":"codeartifact",
-    "uid":"codeartifact-2018-09-22"
+    "uid":"codeartifact-2018-09-22",
+    "auth":["aws.auth#sigv4"]
   },
   "operations":{
     "AssociateExternalConnection":{
@@ -2621,7 +2623,8 @@
         "nuget",
         "generic",
         "ruby",
-        "swift"
+        "swift",
+        "cargo"
       ]
     },
     "PackageGroupAllowedRepository":{

@@ -168,6 +168,10 @@ type SageMakerAPI interface {
 	CreateHubWithContext(aws.Context, *sagemaker.CreateHubInput, ...request.Option) (*sagemaker.CreateHubOutput, error)
 	CreateHubRequest(*sagemaker.CreateHubInput) (*request.Request, *sagemaker.CreateHubOutput)
 
+	CreateHubContentReference(*sagemaker.CreateHubContentReferenceInput) (*sagemaker.CreateHubContentReferenceOutput, error)
+	CreateHubContentReferenceWithContext(aws.Context, *sagemaker.CreateHubContentReferenceInput, ...request.Option) (*sagemaker.CreateHubContentReferenceOutput, error)
+	CreateHubContentReferenceRequest(*sagemaker.CreateHubContentReferenceInput) (*request.Request, *sagemaker.CreateHubContentReferenceOutput)
+
 	CreateHumanTaskUi(*sagemaker.CreateHumanTaskUiInput) (*sagemaker.CreateHumanTaskUiOutput, error)
 	CreateHumanTaskUiWithContext(aws.Context, *sagemaker.CreateHumanTaskUiInput, ...request.Option) (*sagemaker.CreateHumanTaskUiOutput, error)
 	CreateHumanTaskUiRequest(*sagemaker.CreateHumanTaskUiInput) (*request.Request, *sagemaker.CreateHumanTaskUiOutput)
@@ -395,6 +399,10 @@ type SageMakerAPI interface {
 	DeleteHubContent(*sagemaker.DeleteHubContentInput) (*sagemaker.DeleteHubContentOutput, error)
 	DeleteHubContentWithContext(aws.Context, *sagemaker.DeleteHubContentInput, ...request.Option) (*sagemaker.DeleteHubContentOutput, error)
 	DeleteHubContentRequest(*sagemaker.DeleteHubContentInput) (*request.Request, *sagemaker.DeleteHubContentOutput)
+
+	DeleteHubContentReference(*sagemaker.DeleteHubContentReferenceInput) (*sagemaker.DeleteHubContentReferenceOutput, error)
+	DeleteHubContentReferenceWithContext(aws.Context, *sagemaker.DeleteHubContentReferenceInput, ...request.Option) (*sagemaker.DeleteHubContentReferenceOutput, error)
+	DeleteHubContentReferenceRequest(*sagemaker.DeleteHubContentReferenceInput) (*request.Request, *sagemaker.DeleteHubContentReferenceOutput)
 
 	DeleteHumanTaskUi(*sagemaker.DeleteHumanTaskUiInput) (*sagemaker.DeleteHumanTaskUiOutput, error)
 	DeleteHumanTaskUiWithContext(aws.Context, *sagemaker.DeleteHumanTaskUiInput, ...request.Option) (*sagemaker.DeleteHumanTaskUiOutput, error)
