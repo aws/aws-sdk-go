@@ -95,6 +95,10 @@ type ComputeOptimizerAPI interface {
 	ExportLicenseRecommendationsWithContext(aws.Context, *computeoptimizer.ExportLicenseRecommendationsInput, ...request.Option) (*computeoptimizer.ExportLicenseRecommendationsOutput, error)
 	ExportLicenseRecommendationsRequest(*computeoptimizer.ExportLicenseRecommendationsInput) (*request.Request, *computeoptimizer.ExportLicenseRecommendationsOutput)
 
+	ExportRDSDatabaseRecommendations(*computeoptimizer.ExportRDSDatabaseRecommendationsInput) (*computeoptimizer.ExportRDSDatabaseRecommendationsOutput, error)
+	ExportRDSDatabaseRecommendationsWithContext(aws.Context, *computeoptimizer.ExportRDSDatabaseRecommendationsInput, ...request.Option) (*computeoptimizer.ExportRDSDatabaseRecommendationsOutput, error)
+	ExportRDSDatabaseRecommendationsRequest(*computeoptimizer.ExportRDSDatabaseRecommendationsInput) (*request.Request, *computeoptimizer.ExportRDSDatabaseRecommendationsOutput)
+
 	GetAutoScalingGroupRecommendations(*computeoptimizer.GetAutoScalingGroupRecommendationsInput) (*computeoptimizer.GetAutoScalingGroupRecommendationsOutput, error)
 	GetAutoScalingGroupRecommendationsWithContext(aws.Context, *computeoptimizer.GetAutoScalingGroupRecommendationsInput, ...request.Option) (*computeoptimizer.GetAutoScalingGroupRecommendationsOutput, error)
 	GetAutoScalingGroupRecommendationsRequest(*computeoptimizer.GetAutoScalingGroupRecommendationsInput) (*request.Request, *computeoptimizer.GetAutoScalingGroupRecommendationsOutput)
@@ -144,6 +148,14 @@ type ComputeOptimizerAPI interface {
 	GetLicenseRecommendations(*computeoptimizer.GetLicenseRecommendationsInput) (*computeoptimizer.GetLicenseRecommendationsOutput, error)
 	GetLicenseRecommendationsWithContext(aws.Context, *computeoptimizer.GetLicenseRecommendationsInput, ...request.Option) (*computeoptimizer.GetLicenseRecommendationsOutput, error)
 	GetLicenseRecommendationsRequest(*computeoptimizer.GetLicenseRecommendationsInput) (*request.Request, *computeoptimizer.GetLicenseRecommendationsOutput)
+
+	GetRDSDatabaseRecommendationProjectedMetrics(*computeoptimizer.GetRDSDatabaseRecommendationProjectedMetricsInput) (*computeoptimizer.GetRDSDatabaseRecommendationProjectedMetricsOutput, error)
+	GetRDSDatabaseRecommendationProjectedMetricsWithContext(aws.Context, *computeoptimizer.GetRDSDatabaseRecommendationProjectedMetricsInput, ...request.Option) (*computeoptimizer.GetRDSDatabaseRecommendationProjectedMetricsOutput, error)
+	GetRDSDatabaseRecommendationProjectedMetricsRequest(*computeoptimizer.GetRDSDatabaseRecommendationProjectedMetricsInput) (*request.Request, *computeoptimizer.GetRDSDatabaseRecommendationProjectedMetricsOutput)
+
+	GetRDSDatabaseRecommendations(*computeoptimizer.GetRDSDatabaseRecommendationsInput) (*computeoptimizer.GetRDSDatabaseRecommendationsOutput, error)
+	GetRDSDatabaseRecommendationsWithContext(aws.Context, *computeoptimizer.GetRDSDatabaseRecommendationsInput, ...request.Option) (*computeoptimizer.GetRDSDatabaseRecommendationsOutput, error)
+	GetRDSDatabaseRecommendationsRequest(*computeoptimizer.GetRDSDatabaseRecommendationsInput) (*request.Request, *computeoptimizer.GetRDSDatabaseRecommendationsOutput)
 
 	GetRecommendationPreferences(*computeoptimizer.GetRecommendationPreferencesInput) (*computeoptimizer.GetRecommendationPreferencesOutput, error)
 	GetRecommendationPreferencesWithContext(aws.Context, *computeoptimizer.GetRecommendationPreferencesInput, ...request.Option) (*computeoptimizer.GetRecommendationPreferencesOutput, error)

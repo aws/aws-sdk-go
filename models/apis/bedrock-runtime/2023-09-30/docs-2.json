@@ -187,6 +187,37 @@
         "ToolUseBlock$input": "<p>The input to pass to the tool. </p>"
       }
     },
+    "DocumentBlock": {
+      "base": "<p>A document to include in a message when sending a <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_runtime_Converse.html\">Converse</a> or <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_runtime_ConverseStream.html\">ConverseStream</a> request. You can include up to 5 documents in a request. The maximum document size is 50 MB.</p>",
+      "refs": {
+        "ContentBlock$document": "<p>A document to include in the message.</p>",
+        "ToolResultContentBlock$document": "<p>A tool result that is a document.</p>"
+      }
+    },
+    "DocumentBlockNameString": {
+      "base": null,
+      "refs": {
+        "DocumentBlock$name": "<p>A name for the document.</p>"
+      }
+    },
+    "DocumentFormat": {
+      "base": null,
+      "refs": {
+        "DocumentBlock$format": "<p>The format of a document, or its extension.</p>"
+      }
+    },
+    "DocumentSource": {
+      "base": "<p>Contains the content of the document included in a message when sending a <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_runtime_Converse.html\">Converse</a> or <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_runtime_ConverseStream.html\">ConverseStream</a> request or in the response.</p>",
+      "refs": {
+        "DocumentBlock$source": "<p>Contains the content of the document.</p>"
+      }
+    },
+    "DocumentSourceBytesBlob": {
+      "base": null,
+      "refs": {
+        "DocumentSource$bytes": "<p>A base64-encoded string of a UTF-8 encoded file, that is the document to include in the message.</p>"
+      }
+    },
     "GuardrailAssessment": {
       "base": "<p>A behavior assessment of the guardrail policies used in a call to the Converse API. </p>",
       "refs": {

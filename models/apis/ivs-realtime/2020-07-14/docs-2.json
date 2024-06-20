@@ -44,6 +44,20 @@
         "PipConfiguration$pipParticipantAttribute": "<p>Identifies the PiP slot. A participant with this attribute set to <code>\"true\"</code> (as a string value) in <a>ParticipantTokenConfiguration</a> is placed in the PiP slot.</p>"
       }
     },
+    "AutoParticipantRecordingConfiguration": {
+      "base": "<p>Object specifying an auto-participant-recording configuration.</p>",
+      "refs": {
+        "CreateStageRequest$autoParticipantRecordingConfiguration": "<p>Auto participant recording configuration object attached to the stage.</p>",
+        "Stage$autoParticipantRecordingConfiguration": "<p>Auto-participant-recording configuration object attached to the stage.</p>",
+        "UpdateStageRequest$autoParticipantRecordingConfiguration": "<p>Auto-participant-recording configuration object to attach to the stage. Auto-participant-recording configuration cannot be updated while recording is active.</p>"
+      }
+    },
+    "AutoParticipantRecordingStorageConfigurationArn": {
+      "base": null,
+      "refs": {
+        "AutoParticipantRecordingConfiguration$storageConfigurationArn": "<p>ARN of the <a>StorageConfiguration</a> resource to use for auto participant recording. Default: \"\" (empty string, no storage configuration is specified). Individual participant recording cannot be started unless a storage configuration is specified, when a <a>Stage</a> is created or updated.</p>"
+      }
+    },
     "Bitrate": {
       "base": null,
       "refs": {
@@ -579,11 +593,11 @@
     "ParticipantClientAttribute": {
       "base": null,
       "refs": {
-        "Participant$browserName": "<p>The participant’s browser.</p>",
-        "Participant$browserVersion": "<p>The participant’s browser version.</p>",
         "Participant$ispName": "<p>The participant’s Internet Service Provider.</p>",
         "Participant$osName": "<p>The participant’s operating system.</p>",
         "Participant$osVersion": "<p>The participant’s operating system version.</p>",
+        "Participant$browserName": "<p>The participant’s browser.</p>",
+        "Participant$browserVersion": "<p>The participant’s browser version.</p>",
         "Participant$sdkVersion": "<p>The participant’s SDK version.</p>"
       }
     },
@@ -604,10 +618,47 @@
         "ListParticipantsResponse$participants": "<p>List of the matching participants (summary information only).</p>"
       }
     },
+    "ParticipantRecordingFilterByRecordingState": {
+      "base": null,
+      "refs": {
+        "ListParticipantsRequest$filterByRecordingState": "<p>Filters the response list to only show participants with the specified recording state. Only one of <code>filterByUserId</code>, <code>filterByPublished</code>, <code>filterByState</code>, or <code>filterByRecordingState</code> can be provided per request.</p>"
+      }
+    },
+    "ParticipantRecordingMediaType": {
+      "base": null,
+      "refs": {
+        "ParticipantRecordingMediaTypeList$member": null
+      }
+    },
+    "ParticipantRecordingMediaTypeList": {
+      "base": null,
+      "refs": {
+        "AutoParticipantRecordingConfiguration$mediaTypes": "<p>Types of media to be recorded. Default: <code>AUDIO_VIDEO</code>.</p>"
+      }
+    },
+    "ParticipantRecordingS3BucketName": {
+      "base": null,
+      "refs": {
+        "Participant$recordingS3BucketName": "<p>Name of the S3 bucket to where the participant is being recorded, if individual participant recording is enabled, or \"\" (empty string), if recording is not enabled.</p>"
+      }
+    },
+    "ParticipantRecordingS3Prefix": {
+      "base": null,
+      "refs": {
+        "Participant$recordingS3Prefix": "<p>S3 prefix of the S3 bucket to where the participant is being recorded, if individual participant recording is enabled, or \"\" (empty string), if recording is not enabled.</p>"
+      }
+    },
+    "ParticipantRecordingState": {
+      "base": null,
+      "refs": {
+        "Participant$recordingState": "<p>Participant’s recording state.</p>",
+        "ParticipantSummary$recordingState": "<p>Participant’s recording state.</p>"
+      }
+    },
     "ParticipantState": {
       "base": null,
       "refs": {
-        "ListParticipantsRequest$filterByState": "<p>Filters the response list to only show participants in the specified state. Only one of <code>filterByUserId</code>, <code>filterByPublished</code>, or <code>filterByState</code> can be provided per request.</p>",
+        "ListParticipantsRequest$filterByState": "<p>Filters the response list to only show participants in the specified state. Only one of <code>filterByUserId</code>, <code>filterByPublished</code>, <code>filterByState</code>, or <code>filterByRecordingState</code> can be provided per request.</p>",
         "Participant$state": "<p>Whether the participant is connected to or disconnected from the stage.</p>",
         "ParticipantSummary$state": "<p>Whether the participant is connected to or disconnected from the stage.</p>"
       }
@@ -744,7 +795,7 @@
     "Published": {
       "base": null,
       "refs": {
-        "ListParticipantsRequest$filterByPublished": "<p>Filters the response list to only show participants who published during the stage session. Only one of <code>filterByUserId</code>, <code>filterByPublished</code>, or <code>filterByState</code> can be provided per request.</p>",
+        "ListParticipantsRequest$filterByPublished": "<p>Filters the response list to only show participants who published during the stage session. Only one of <code>filterByUserId</code>, <code>filterByPublished</code>, <code>filterByState</code>, or <code>filterByRecordingState</code> can be provided per request.</p>",
         "Participant$published": "<p>Whether the participant ever published to the stage session.</p>",
         "ParticipantSummary$published": "<p>Whether the participant ever published to the stage session.</p>"
       }
@@ -1006,21 +1057,21 @@
     "Time": {
       "base": null,
       "refs": {
-        "Composition$endTime": "<p>UTC time of the Composition end. This is an ISO 8601 timestamp; <i>note that this is returned as a string</i>.</p>",
         "Composition$startTime": "<p>UTC time of the Composition start. This is an ISO 8601 timestamp; <i>note that this is returned as a string</i>.</p>",
-        "CompositionSummary$endTime": "<p>UTC time of the Composition end. This is an ISO 8601 timestamp; <i>note that this is returned as a string</i>.</p>",
+        "Composition$endTime": "<p>UTC time of the Composition end. This is an ISO 8601 timestamp; <i>note that this is returned as a string</i>.</p>",
         "CompositionSummary$startTime": "<p>UTC time of the Composition start. This is an ISO 8601 timestamp; <i>note that this is returned as a string</i>.</p>",
-        "Destination$endTime": "<p>UTC time of the destination end. This is an ISO 8601 timestamp; <i>note that this is returned as a string</i>.</p>",
+        "CompositionSummary$endTime": "<p>UTC time of the Composition end. This is an ISO 8601 timestamp; <i>note that this is returned as a string</i>.</p>",
         "Destination$startTime": "<p>UTC time of the destination start. This is an ISO 8601 timestamp; <i>note that this is returned as a string</i>.</p>",
-        "DestinationSummary$endTime": "<p>UTC time of the destination end. This is an ISO 8601 timestamp; <i>note that this is returned as a string</i>.</p>",
+        "Destination$endTime": "<p>UTC time of the destination end. This is an ISO 8601 timestamp; <i>note that this is returned as a string</i>.</p>",
         "DestinationSummary$startTime": "<p>UTC time of the destination start. This is an ISO 8601 timestamp; <i>note that this is returned as a string</i>.</p>",
+        "DestinationSummary$endTime": "<p>UTC time of the destination end. This is an ISO 8601 timestamp; <i>note that this is returned as a string</i>.</p>",
         "Event$eventTime": "<p>ISO 8601 timestamp (returned as a string) for when the event occurred.</p>",
         "Participant$firstJoinTime": "<p>ISO 8601 timestamp (returned as a string) when the participant first joined the stage session.</p>",
         "ParticipantSummary$firstJoinTime": "<p>ISO 8601 timestamp (returned as a string) when the participant first joined the stage session.</p>",
-        "StageSession$endTime": "<p>ISO 8601 timestamp (returned as a string) when the stage session ended. This is null if the stage is active.</p>",
         "StageSession$startTime": "<p> ISO 8601 timestamp (returned as a string) when this stage session began.</p>",
-        "StageSessionSummary$endTime": "<p>ISO 8601 timestamp (returned as a string) when the stage session ended. This is null if the stage is active.</p>",
-        "StageSessionSummary$startTime": "<p> ISO 8601 timestamp (returned as a string) when this stage session began.</p>"
+        "StageSession$endTime": "<p>ISO 8601 timestamp (returned as a string) when the stage session ended. This is null if the stage is active.</p>",
+        "StageSessionSummary$startTime": "<p> ISO 8601 timestamp (returned as a string) when this stage session began.</p>",
+        "StageSessionSummary$endTime": "<p>ISO 8601 timestamp (returned as a string) when the stage session ended. This is null if the stage is active.</p>"
       }
     },
     "UntagResourceRequest": {
@@ -1046,7 +1097,7 @@
     "UserId": {
       "base": null,
       "refs": {
-        "ListParticipantsRequest$filterByUserId": "<p>Filters the response list to match the specified user ID. Only one of <code>filterByUserId</code>, <code>filterByPublished</code>, or <code>filterByState</code> can be provided per request. A <code>userId</code> is a customer-assigned name to help identify the token; this can be used to link a participant to a user in the customer’s own systems.</p>",
+        "ListParticipantsRequest$filterByUserId": "<p>Filters the response list to match the specified user ID. Only one of <code>filterByUserId</code>, <code>filterByPublished</code>, <code>filterByState</code>, or <code>filterByRecordingState</code> can be provided per request. A <code>userId</code> is a customer-assigned name to help identify the token; this can be used to link a participant to a user in the customer’s own systems.</p>",
         "Participant$userId": "<p>Customer-assigned name to help identify the token; this can be used to link a participant to a user in the customer’s own systems. This can be any UTF-8 encoded text. <i>This field is exposed to all stage participants and should not be used for personally identifying, confidential, or sensitive information</i>.</p>",
         "ParticipantSummary$userId": "<p>Customer-assigned name to help identify the token; this can be used to link a participant to a user in the customer’s own systems. This can be any UTF-8 encoded text. <i>This field is exposed to all stage participants and should not be used for personally identifying, confidential, or sensitive information</i>.</p>"
       }

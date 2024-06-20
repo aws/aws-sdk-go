@@ -10,7 +10,8 @@
     "serviceId":"SecurityHub",
     "signatureVersion":"v4",
     "signingName":"securityhub",
-    "uid":"securityhub-2018-10-26"
+    "uid":"securityhub-2018-10-26",
+    "auth":["aws.auth#sigv4"]
   },
   "operations":{
     "AcceptAdministratorInvitation":{

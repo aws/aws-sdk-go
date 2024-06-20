@@ -1,3 +1,20 @@
+Release v1.54.6 (2024-06-20)
+===
+
+### Service Client Updates
+* `service/bedrock-runtime`: Updates service API and documentation
+* `service/codeartifact`: Updates service API and documentation
+* `service/compute-optimizer`: Updates service API and documentation
+* `service/cost-optimization-hub`: Updates service API, documentation, and waiters
+* `service/dynamodb`: Updates service API, documentation, waiters, paginators, and examples
+  * Doc-only update for DynamoDB. Fixed Important note in 6 Global table APIs - CreateGlobalTable, DescribeGlobalTable, DescribeGlobalTableSettings, ListGlobalTables, UpdateGlobalTable, and UpdateGlobalTableSettings.
+* `service/glue`: Updates service paginators
+  * Fix Glue paginators for Jobs, JobRuns, Triggers, Blueprints and Workflows.
+* `service/ivs-realtime`: Updates service API, documentation, and waiters
+* `service/sagemaker`: Updates service API and documentation
+  * Adds support for model references in Hub service, and adds support for cross-account access of Hubs
+* `service/securityhub`: Updates service API and documentation
+
 Release v1.54.5 (2024-06-19)
 ===
 

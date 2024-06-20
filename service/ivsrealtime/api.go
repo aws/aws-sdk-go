@@ -2820,6 +2820,65 @@ func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Object specifying an auto-participant-recording configuration.
+type AutoParticipantRecordingConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Types of media to be recorded. Default: AUDIO_VIDEO.
+	MediaTypes []*string `locationName:"mediaTypes" type:"list" enum:"ParticipantRecordingMediaType"`
+
+	// ARN of the StorageConfiguration resource to use for auto participant recording.
+	// Default: "" (empty string, no storage configuration is specified). Individual
+	// participant recording cannot be started unless a storage configuration is
+	// specified, when a Stage is created or updated.
+	//
+	// StorageConfigurationArn is a required field
+	StorageConfigurationArn *string `locationName:"storageConfigurationArn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AutoParticipantRecordingConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AutoParticipantRecordingConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AutoParticipantRecordingConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AutoParticipantRecordingConfiguration"}
+	if s.StorageConfigurationArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("StorageConfigurationArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMediaTypes sets the MediaTypes field's value.
+func (s *AutoParticipantRecordingConfiguration) SetMediaTypes(v []*string) *AutoParticipantRecordingConfiguration {
+	s.MediaTypes = v
+	return s
+}
+
+// SetStorageConfigurationArn sets the StorageConfigurationArn field's value.
+func (s *AutoParticipantRecordingConfiguration) SetStorageConfigurationArn(v string) *AutoParticipantRecordingConfiguration {
+	s.StorageConfigurationArn = &v
+	return s
+}
+
 // Object specifying a channel as a destination.
 type ChannelDestinationConfiguration struct {
 	_ struct{} `type:"structure"`
@@ -3392,6 +3451,9 @@ func (s *CreateParticipantTokenOutput) SetParticipantToken(v *ParticipantToken) 
 type CreateStageInput struct {
 	_ struct{} `type:"structure"`
 
+	// Auto participant recording configuration object attached to the stage.
+	AutoParticipantRecordingConfiguration *AutoParticipantRecordingConfiguration `locationName:"autoParticipantRecordingConfiguration" type:"structure"`
+
 	// Optional name that can be specified for the stage being created.
 	Name *string `locationName:"name" type:"string"`
 
@@ -3427,6 +3489,11 @@ func (s CreateStageInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CreateStageInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateStageInput"}
+	if s.AutoParticipantRecordingConfiguration != nil {
+		if err := s.AutoParticipantRecordingConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("AutoParticipantRecordingConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.ParticipantTokenConfigurations != nil {
 		for i, v := range s.ParticipantTokenConfigurations {
 			if v == nil {
@@ -3442,6 +3509,12 @@ func (s *CreateStageInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAutoParticipantRecordingConfiguration sets the AutoParticipantRecordingConfiguration field's value.
+func (s *CreateStageInput) SetAutoParticipantRecordingConfiguration(v *AutoParticipantRecordingConfiguration) *CreateStageInput {
+	s.AutoParticipantRecordingConfiguration = v
+	return s
 }
 
 // SetName sets the Name field's value.
@@ -5466,19 +5539,25 @@ type ListParticipantsInput struct {
 	_ struct{} `type:"structure"`
 
 	// Filters the response list to only show participants who published during
-	// the stage session. Only one of filterByUserId, filterByPublished, or filterByState
-	// can be provided per request.
+	// the stage session. Only one of filterByUserId, filterByPublished, filterByState,
+	// or filterByRecordingState can be provided per request.
 	FilterByPublished *bool `locationName:"filterByPublished" type:"boolean"`
 
+	// Filters the response list to only show participants with the specified recording
+	// state. Only one of filterByUserId, filterByPublished, filterByState, or filterByRecordingState
+	// can be provided per request.
+	FilterByRecordingState *string `locationName:"filterByRecordingState" type:"string" enum:"ParticipantRecordingFilterByRecordingState"`
+
 	// Filters the response list to only show participants in the specified state.
-	// Only one of filterByUserId, filterByPublished, or filterByState can be provided
-	// per request.
+	// Only one of filterByUserId, filterByPublished, filterByState, or filterByRecordingState
+	// can be provided per request.
 	FilterByState *string `locationName:"filterByState" type:"string" enum:"ParticipantState"`
 
 	// Filters the response list to match the specified user ID. Only one of filterByUserId,
-	// filterByPublished, or filterByState can be provided per request. A userId
-	// is a customer-assigned name to help identify the token; this can be used
-	// to link a participant to a user in the customer’s own systems.
+	// filterByPublished, filterByState, or filterByRecordingState can be provided
+	// per request. A userId is a customer-assigned name to help identify the token;
+	// this can be used to link a participant to a user in the customer’s own
+	// systems.
 	FilterByUserId *string `locationName:"filterByUserId" type:"string"`
 
 	// Maximum number of results to return. Default: 50.
@@ -5545,6 +5624,12 @@ func (s *ListParticipantsInput) Validate() error {
 // SetFilterByPublished sets the FilterByPublished field's value.
 func (s *ListParticipantsInput) SetFilterByPublished(v bool) *ListParticipantsInput {
 	s.FilterByPublished = &v
+	return s
+}
+
+// SetFilterByRecordingState sets the FilterByRecordingState field's value.
+func (s *ListParticipantsInput) SetFilterByRecordingState(v string) *ListParticipantsInput {
+	s.FilterByRecordingState = &v
 	return s
 }
 
@@ -6055,6 +6140,19 @@ type Participant struct {
 	// Whether the participant ever published to the stage session.
 	Published *bool `locationName:"published" type:"boolean"`
 
+	// Name of the S3 bucket to where the participant is being recorded, if individual
+	// participant recording is enabled, or "" (empty string), if recording is not
+	// enabled.
+	RecordingS3BucketName *string `locationName:"recordingS3BucketName" type:"string"`
+
+	// S3 prefix of the S3 bucket to where the participant is being recorded, if
+	// individual participant recording is enabled, or "" (empty string), if recording
+	// is not enabled.
+	RecordingS3Prefix *string `locationName:"recordingS3Prefix" type:"string"`
+
+	// Participant’s recording state.
+	RecordingState *string `locationName:"recordingState" type:"string" enum:"ParticipantRecordingState"`
+
 	// The participant’s SDK version.
 	SdkVersion *string `locationName:"sdkVersion" type:"string"`
 
@@ -6140,6 +6238,24 @@ func (s *Participant) SetPublished(v bool) *Participant {
 	return s
 }
 
+// SetRecordingS3BucketName sets the RecordingS3BucketName field's value.
+func (s *Participant) SetRecordingS3BucketName(v string) *Participant {
+	s.RecordingS3BucketName = &v
+	return s
+}
+
+// SetRecordingS3Prefix sets the RecordingS3Prefix field's value.
+func (s *Participant) SetRecordingS3Prefix(v string) *Participant {
+	s.RecordingS3Prefix = &v
+	return s
+}
+
+// SetRecordingState sets the RecordingState field's value.
+func (s *Participant) SetRecordingState(v string) *Participant {
+	s.RecordingState = &v
+	return s
+}
+
 // SetSdkVersion sets the SdkVersion field's value.
 func (s *Participant) SetSdkVersion(v string) *Participant {
 	s.SdkVersion = &v
@@ -6171,6 +6287,9 @@ type ParticipantSummary struct {
 
 	// Whether the participant ever published to the stage session.
 	Published *bool `locationName:"published" type:"boolean"`
+
+	// Participant’s recording state.
+	RecordingState *string `locationName:"recordingState" type:"string" enum:"ParticipantRecordingState"`
 
 	// Whether the participant is connected to or disconnected from the stage.
 	State *string `locationName:"state" type:"string" enum:"ParticipantState"`
@@ -6215,6 +6334,12 @@ func (s *ParticipantSummary) SetParticipantId(v string) *ParticipantSummary {
 // SetPublished sets the Published field's value.
 func (s *ParticipantSummary) SetPublished(v bool) *ParticipantSummary {
 	s.Published = &v
+	return s
+}
+
+// SetRecordingState sets the RecordingState field's value.
+func (s *ParticipantSummary) SetRecordingState(v string) *ParticipantSummary {
+	s.RecordingState = &v
 	return s
 }
 
@@ -6958,6 +7083,9 @@ type Stage struct {
 	// Arn is a required field
 	Arn *string `locationName:"arn" min:"1" type:"string" required:"true"`
 
+	// Auto-participant-recording configuration object attached to the stage.
+	AutoParticipantRecordingConfiguration *AutoParticipantRecordingConfiguration `locationName:"autoParticipantRecordingConfiguration" type:"structure"`
+
 	// Stage name.
 	Name *string `locationName:"name" type:"string"`
 
@@ -6996,6 +7124,12 @@ func (s *Stage) SetActiveSessionId(v string) *Stage {
 // SetArn sets the Arn field's value.
 func (s *Stage) SetArn(v string) *Stage {
 	s.Arn = &v
+	return s
+}
+
+// SetAutoParticipantRecordingConfiguration sets the AutoParticipantRecordingConfiguration field's value.
+func (s *Stage) SetAutoParticipantRecordingConfiguration(v *AutoParticipantRecordingConfiguration) *Stage {
+	s.AutoParticipantRecordingConfiguration = v
 	return s
 }
 
@@ -7714,6 +7848,10 @@ type UpdateStageInput struct {
 	// Arn is a required field
 	Arn *string `locationName:"arn" min:"1" type:"string" required:"true"`
 
+	// Auto-participant-recording configuration object to attach to the stage. Auto-participant-recording
+	// configuration cannot be updated while recording is active.
+	AutoParticipantRecordingConfiguration *AutoParticipantRecordingConfiguration `locationName:"autoParticipantRecordingConfiguration" type:"structure"`
+
 	// Name of the stage to be updated.
 	Name *string `locationName:"name" type:"string"`
 }
@@ -7745,6 +7883,11 @@ func (s *UpdateStageInput) Validate() error {
 	if s.Arn != nil && len(*s.Arn) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Arn", 1))
 	}
+	if s.AutoParticipantRecordingConfiguration != nil {
+		if err := s.AutoParticipantRecordingConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("AutoParticipantRecordingConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -7755,6 +7898,12 @@ func (s *UpdateStageInput) Validate() error {
 // SetArn sets the Arn field's value.
 func (s *UpdateStageInput) SetArn(v string) *UpdateStageInput {
 	s.Arn = &v
+	return s
+}
+
+// SetAutoParticipantRecordingConfiguration sets the AutoParticipantRecordingConfiguration field's value.
+func (s *UpdateStageInput) SetAutoParticipantRecordingConfiguration(v *AutoParticipantRecordingConfiguration) *UpdateStageInput {
+	s.AutoParticipantRecordingConfiguration = v
 	return s
 }
 
@@ -8068,6 +8217,82 @@ func EventName_Values() []string {
 		EventNamePublishError,
 		EventNameSubscribeError,
 		EventNameJoinError,
+	}
+}
+
+const (
+	// ParticipantRecordingFilterByRecordingStateStarting is a ParticipantRecordingFilterByRecordingState enum value
+	ParticipantRecordingFilterByRecordingStateStarting = "STARTING"
+
+	// ParticipantRecordingFilterByRecordingStateActive is a ParticipantRecordingFilterByRecordingState enum value
+	ParticipantRecordingFilterByRecordingStateActive = "ACTIVE"
+
+	// ParticipantRecordingFilterByRecordingStateStopping is a ParticipantRecordingFilterByRecordingState enum value
+	ParticipantRecordingFilterByRecordingStateStopping = "STOPPING"
+
+	// ParticipantRecordingFilterByRecordingStateStopped is a ParticipantRecordingFilterByRecordingState enum value
+	ParticipantRecordingFilterByRecordingStateStopped = "STOPPED"
+
+	// ParticipantRecordingFilterByRecordingStateFailed is a ParticipantRecordingFilterByRecordingState enum value
+	ParticipantRecordingFilterByRecordingStateFailed = "FAILED"
+)
+
+// ParticipantRecordingFilterByRecordingState_Values returns all elements of the ParticipantRecordingFilterByRecordingState enum
+func ParticipantRecordingFilterByRecordingState_Values() []string {
+	return []string{
+		ParticipantRecordingFilterByRecordingStateStarting,
+		ParticipantRecordingFilterByRecordingStateActive,
+		ParticipantRecordingFilterByRecordingStateStopping,
+		ParticipantRecordingFilterByRecordingStateStopped,
+		ParticipantRecordingFilterByRecordingStateFailed,
+	}
+}
+
+const (
+	// ParticipantRecordingMediaTypeAudioVideo is a ParticipantRecordingMediaType enum value
+	ParticipantRecordingMediaTypeAudioVideo = "AUDIO_VIDEO"
+
+	// ParticipantRecordingMediaTypeAudioOnly is a ParticipantRecordingMediaType enum value
+	ParticipantRecordingMediaTypeAudioOnly = "AUDIO_ONLY"
+)
+
+// ParticipantRecordingMediaType_Values returns all elements of the ParticipantRecordingMediaType enum
+func ParticipantRecordingMediaType_Values() []string {
+	return []string{
+		ParticipantRecordingMediaTypeAudioVideo,
+		ParticipantRecordingMediaTypeAudioOnly,
+	}
+}
+
+const (
+	// ParticipantRecordingStateStarting is a ParticipantRecordingState enum value
+	ParticipantRecordingStateStarting = "STARTING"
+
+	// ParticipantRecordingStateActive is a ParticipantRecordingState enum value
+	ParticipantRecordingStateActive = "ACTIVE"
+
+	// ParticipantRecordingStateStopping is a ParticipantRecordingState enum value
+	ParticipantRecordingStateStopping = "STOPPING"
+
+	// ParticipantRecordingStateStopped is a ParticipantRecordingState enum value
+	ParticipantRecordingStateStopped = "STOPPED"
+
+	// ParticipantRecordingStateFailed is a ParticipantRecordingState enum value
+	ParticipantRecordingStateFailed = "FAILED"
+
+	// ParticipantRecordingStateDisabled is a ParticipantRecordingState enum value
+	ParticipantRecordingStateDisabled = "DISABLED"
+)
+
+// ParticipantRecordingState_Values returns all elements of the ParticipantRecordingState enum
+func ParticipantRecordingState_Values() []string {
+	return []string{
+		ParticipantRecordingStateStarting,
+		ParticipantRecordingStateActive,
+		ParticipantRecordingStateStopping,
+		ParticipantRecordingStateStopped,
+		ParticipantRecordingStateFailed,
+		ParticipantRecordingStateDisabled,
 	}
 }
 

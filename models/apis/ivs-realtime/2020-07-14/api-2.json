@@ -478,7 +478,21 @@
       "type":"string",
       "max":128,
       "min":0,
-      "pattern":"^[a-zA-Z0-9-_]*$"
+      "pattern":"[a-zA-Z0-9-_]*"
+    },
+    "AutoParticipantRecordingConfiguration":{
+      "type":"structure",
+      "required":["storageConfigurationArn"],
+      "members":{
+        "storageConfigurationArn":{"shape":"AutoParticipantRecordingStorageConfigurationArn"},
+        "mediaTypes":{"shape":"ParticipantRecordingMediaTypeList"}
+      }
+    },
+    "AutoParticipantRecordingStorageConfigurationArn":{
+      "type":"string",
+      "max":128,
+      "min":0,
+      "pattern":"^$|^arn:aws:ivs:[a-z0-9-]+:[0-9]+:storage-configuration/[a-zA-Z0-9-]+$"
     },
     "Bitrate":{
       "type":"integer",
@@ -490,7 +504,7 @@
       "type":"string",
       "max":128,
       "min":1,
-      "pattern":"^arn:aws:ivs:[a-z0-9-]+:[0-9]+:channel/[a-zA-Z0-9-]+$"
+      "pattern":"arn:aws:ivs:[a-z0-9-]+:[0-9]+:channel/[a-zA-Z0-9-]+"
     },
     "ChannelDestinationConfiguration":{
       "type":"structure",
@@ -504,33 +518,33 @@
       "type":"structure",
       "required":[
         "arn",
-        "destinations",
-        "layout",
         "stageArn",
-        "state"
+        "state",
+        "layout",
+        "destinations"
       ],
       "members":{
         "arn":{"shape":"CompositionArn"},
-        "destinations":{"shape":"DestinationList"},
-        "endTime":{"shape":"Time"},
-        "layout":{"shape":"LayoutConfiguration"},
         "stageArn":{"shape":"StageArn"},
-        "startTime":{"shape":"Time"},
         "state":{"shape":"CompositionState"},
-        "tags":{"shape":"Tags"}
+        "layout":{"shape":"LayoutConfiguration"},
+        "destinations":{"shape":"DestinationList"},
+        "tags":{"shape":"Tags"},
+        "startTime":{"shape":"Time"},
+        "endTime":{"shape":"Time"}
       }
     },
     "CompositionArn":{
       "type":"string",
       "max":128,
       "min":1,
-      "pattern":"^arn:aws:ivs:[a-z0-9-]+:[0-9]+:composition/[a-zA-Z0-9-]+$"
+      "pattern":"arn:aws:ivs:[a-z0-9-]+:[0-9]+:composition/[a-zA-Z0-9-]+"
     },
     "CompositionClientToken":{
       "type":"string",
       "max":64,
       "min":1,
-      "pattern":"^[a-zA-Z0-9-_]*$"
+      "pattern":"[a-zA-Z0-9-_]*"
     },
     "CompositionState":{
       "type":"string",
@@ -546,18 +560,18 @@
       "type":"structure",
       "required":[
         "arn",
-        "destinations",
         "stageArn",
+        "destinations",
         "state"
       ],
       "members":{
         "arn":{"shape":"CompositionArn"},
-        "destinations":{"shape":"DestinationSummaryList"},
-        "endTime":{"shape":"Time"},
         "stageArn":{"shape":"StageArn"},
-        "startTime":{"shape":"Time"},
+        "destinations":{"shape":"DestinationSummaryList"},
         "state":{"shape":"CompositionState"},
-        "tags":{"shape":"Tags"}
+        "tags":{"shape":"Tags"},
+        "startTime":{"shape":"Time"},
+        "endTime":{"shape":"Time"}
       }
     },
     "CompositionSummaryList":{
@@ -579,8 +593,8 @@
       "type":"structure",
       "members":{
         "name":{"shape":"EncoderConfigurationName"},
-        "tags":{"shape":"Tags"},
-        "video":{"shape":"Video"}
+        "video":{"shape":"Video"},
+        "tags":{"shape":"Tags"}
       }
     },
     "CreateEncoderConfigurationResponse":{
@@ -593,11 +607,11 @@
       "type":"structure",
       "required":["stageArn"],
       "members":{
-        "attributes":{"shape":"ParticipantTokenAttributes"},
-        "capabilities":{"shape":"ParticipantTokenCapabilities"},
-        "duration":{"shape":"ParticipantTokenDurationMinutes"},
         "stageArn":{"shape":"StageArn"},
-        "userId":{"shape":"ParticipantTokenUserId"}
+        "duration":{"shape":"ParticipantTokenDurationMinutes"},
+        "userId":{"shape":"ParticipantTokenUserId"},
+        "attributes":{"shape":"ParticipantTokenAttributes"},
+        "capabilities":{"shape":"ParticipantTokenCapabilities"}
       }
     },
     "CreateParticipantTokenResponse":{
@@ -611,14 +625,15 @@
       "members":{
         "name":{"shape":"StageName"},
         "participantTokenConfigurations":{"shape":"ParticipantTokenConfigurations"},
-        "tags":{"shape":"Tags"}
+        "tags":{"shape":"Tags"},
+        "autoParticipantRecordingConfiguration":{"shape":"AutoParticipantRecordingConfiguration"}
       }
     },
     "CreateStageResponse":{
       "type":"structure",
       "members":{
-        "participantTokens":{"shape":"ParticipantTokenList"},
-        "stage":{"shape":"Stage"}
+        "stage":{"shape":"Stage"},
+        "participantTokens":{"shape":"ParticipantTokenList"}
       }
     },
     "CreateStorageConfigurationRequest":{
@@ -675,24 +690,24 @@
     "Destination":{
       "type":"structure",
       "required":[
-        "configuration",
         "id",
-        "state"
+        "state",
+        "configuration"
       ],
       "members":{
-        "configuration":{"shape":"DestinationConfiguration"},
-        "detail":{"shape":"DestinationDetail"},
-        "endTime":{"shape":"Time"},
         "id":{"shape":"String"},
+        "state":{"shape":"DestinationState"},
         "startTime":{"shape":"Time"},
-        "state":{"shape":"DestinationState"}
+        "endTime":{"shape":"Time"},
+        "configuration":{"shape":"DestinationConfiguration"},
+        "detail":{"shape":"DestinationDetail"}
       }
     },
     "DestinationConfiguration":{
       "type":"structure",
       "members":{
-        "channel":{"shape":"ChannelDestinationConfiguration"},
         "name":{"shape":"DestinationConfigurationName"},
+        "channel":{"shape":"ChannelDestinationConfiguration"},
         "s3":{"shape":"S3DestinationConfiguration"}
       }
     },
@@ -706,7 +721,7 @@
       "type":"string",
       "max":128,
       "min":0,
-      "pattern":"^[a-zA-Z0-9-_]*$"
+      "pattern":"[a-zA-Z0-9-_]*"
     },
     "DestinationDetail":{
       "type":"structure",
@@ -738,10 +753,10 @@
         "state"
       ],
       "members":{
-        "endTime":{"shape":"Time"},
         "id":{"shape":"String"},
+        "state":{"shape":"DestinationState"},
         "startTime":{"shape":"Time"},
-        "state":{"shape":"DestinationState"}
+        "endTime":{"shape":"Time"}
       }
     },
     "DestinationSummaryList":{
@@ -758,13 +773,13 @@
     "DisconnectParticipantRequest":{
       "type":"structure",
       "required":[
-        "participantId",
-        "stageArn"
+        "stageArn",
+        "participantId"
       ],
       "members":{
+        "stageArn":{"shape":"StageArn"},
         "participantId":{"shape":"ParticipantTokenId"},
-        "reason":{"shape":"DisconnectParticipantReason"},
-        "stageArn":{"shape":"StageArn"}
+        "reason":{"shape":"DisconnectParticipantReason"}
       }
     },
     "DisconnectParticipantResponse":{
@@ -778,15 +793,15 @@
       "members":{
         "arn":{"shape":"EncoderConfigurationArn"},
         "name":{"shape":"EncoderConfigurationName"},
-        "tags":{"shape":"Tags"},
-        "video":{"shape":"Video"}
+        "video":{"shape":"Video"},
+        "tags":{"shape":"Tags"}
       }
     },
     "EncoderConfigurationArn":{
       "type":"string",
       "max":128,
       "min":1,
-      "pattern":"^arn:aws:ivs:[a-z0-9-]+:[0-9]+:encoder-configuration/[a-zA-Z0-9-]+$"
+      "pattern":"arn:aws:ivs:[a-z0-9-]+:[0-9]+:encoder-configuration/[a-zA-Z0-9-]+"
     },
     "EncoderConfigurationArnList":{
       "type":"list",
@@ -798,7 +813,7 @@
       "type":"string",
       "max":128,
       "min":0,
-      "pattern":"^[a-zA-Z0-9-_]*$"
+      "pattern":"[a-zA-Z0-9-_]*"
     },
     "EncoderConfigurationSummary":{
       "type":"structure",
@@ -816,11 +831,11 @@
     "Event":{
       "type":"structure",
       "members":{
-        "errorCode":{"shape":"EventErrorCode"},
-        "eventTime":{"shape":"Time"},
         "name":{"shape":"EventName"},
         "participantId":{"shape":"ParticipantId"},
-        "remoteParticipantId":{"shape":"ParticipantId"}
+        "eventTime":{"shape":"Time"},
+        "remoteParticipantId":{"shape":"ParticipantId"},
+        "errorCode":{"shape":"EventErrorCode"}
       }
     },
     "EventErrorCode":{
@@ -884,14 +899,14 @@
     "GetParticipantRequest":{
       "type":"structure",
       "required":[
-        "participantId",
+        "stageArn",
         "sessionId",
-        "stageArn"
+        "participantId"
       ],
       "members":{
-        "participantId":{"shape":"ParticipantId"},
+        "stageArn":{"shape":"StageArn"},
         "sessionId":{"shape":"StageSessionId"},
-        "stageArn":{"shape":"StageArn"}
+        "participantId":{"shape":"ParticipantId"}
       }
     },
     "GetParticipantResponse":{
@@ -916,12 +931,12 @@
     "GetStageSessionRequest":{
       "type":"structure",
       "required":[
-        "sessionId",
-        "stageArn"
+        "stageArn",
+        "sessionId"
       ],
       "members":{
-        "sessionId":{"shape":"StageSessionId"},
-        "stageArn":{"shape":"StageArn"}
+        "stageArn":{"shape":"StageArn"},
+        "sessionId":{"shape":"StageSessionId"}
       }
     },
     "GetStageSessionResponse":{
@@ -947,10 +962,10 @@
       "type":"structure",
       "members":{
         "featuredParticipantAttribute":{"shape":"AttributeKey"},
-        "gridGap":{"shape":"GridGap"},
         "omitStoppedVideo":{"shape":"OmitStoppedVideo"},
         "videoAspectRatio":{"shape":"VideoAspectRatio"},
-        "videoFillMode":{"shape":"VideoFillMode"}
+        "videoFillMode":{"shape":"VideoFillMode"},
+        "gridGap":{"shape":"GridGap"}
       }
     },
     "GridGap":{
@@ -982,10 +997,10 @@
     "ListCompositionsRequest":{
       "type":"structure",
       "members":{
-        "filterByEncoderConfigurationArn":{"shape":"EncoderConfigurationArn"},
         "filterByStageArn":{"shape":"StageArn"},
-        "maxResults":{"shape":"MaxCompositionResults"},
-        "nextToken":{"shape":"PaginationToken"}
+        "filterByEncoderConfigurationArn":{"shape":"EncoderConfigurationArn"},
+        "nextToken":{"shape":"PaginationToken"},
+        "maxResults":{"shape":"MaxCompositionResults"}
       }
     },
     "ListCompositionsResponse":{
@@ -999,8 +1014,8 @@
     "ListEncoderConfigurationsRequest":{
       "type":"structure",
       "members":{
-        "maxResults":{"shape":"MaxEncoderConfigurationResults"},
-        "nextToken":{"shape":"PaginationToken"}
+        "nextToken":{"shape":"PaginationToken"},
+        "maxResults":{"shape":"MaxEncoderConfigurationResults"}
       }
     },
     "ListEncoderConfigurationsResponse":{
@@ -1014,16 +1029,16 @@
     "ListParticipantEventsRequest":{
       "type":"structure",
       "required":[
-        "participantId",
+        "stageArn",
         "sessionId",
-        "stageArn"
+        "participantId"
       ],
       "members":{
-        "maxResults":{"shape":"MaxParticipantEventResults"},
-        "nextToken":{"shape":"PaginationToken"},
-        "participantId":{"shape":"ParticipantId"},
+        "stageArn":{"shape":"StageArn"},
         "sessionId":{"shape":"StageSessionId"},
-        "stageArn":{"shape":"StageArn"}
+        "participantId":{"shape":"ParticipantId"},
+        "nextToken":{"shape":"PaginationToken"},
+        "maxResults":{"shape":"MaxParticipantEventResults"}
       }
     },
     "ListParticipantEventsResponse":{
@@ -1037,72 +1052,73 @@
     "ListParticipantsRequest":{
       "type":"structure",
       "required":[
-        "sessionId",
-        "stageArn"
+        "stageArn",
+        "sessionId"
       ],
       "members":{
+        "stageArn":{"shape":"StageArn"},
+        "sessionId":{"shape":"StageSessionId"},
+        "filterByUserId":{"shape":"UserId"},
         "filterByPublished":{"shape":"Published"},
         "filterByState":{"shape":"ParticipantState"},
-        "filterByUserId":{"shape":"UserId"},
-        "maxResults":{"shape":"MaxParticipantResults"},
         "nextToken":{"shape":"PaginationToken"},
-        "sessionId":{"shape":"StageSessionId"},
-        "stageArn":{"shape":"StageArn"}
+        "maxResults":{"shape":"MaxParticipantResults"},
+        "filterByRecordingState":{"shape":"ParticipantRecordingFilterByRecordingState"}
       }
     },
     "ListParticipantsResponse":{
       "type":"structure",
       "required":["participants"],
       "members":{
-        "nextToken":{"shape":"PaginationToken"},
-        "participants":{"shape":"ParticipantList"}
+        "participants":{"shape":"ParticipantList"},
+        "nextToken":{"shape":"PaginationToken"}
       }
     },
     "ListStageSessionsRequest":{
       "type":"structure",
       "required":["stageArn"],
       "members":{
-        "maxResults":{"shape":"MaxStageSessionResults"},
+        "stageArn":{"shape":"StageArn"},
         "nextToken":{"shape":"PaginationToken"},
-        "stageArn":{"shape":"StageArn"}
+        "maxResults":{"shape":"MaxStageSessionResults"}
       }
     },
     "ListStageSessionsResponse":{
       "type":"structure",
       "required":["stageSessions"],
       "members":{
-        "nextToken":{"shape":"PaginationToken"},
-        "stageSessions":{"shape":"StageSessionList"}
+        "stageSessions":{"shape":"StageSessionList"},
+        "nextToken":{"shape":"PaginationToken"}
       }
     },
     "ListStagesRequest":{
       "type":"structure",
       "members":{
-        "maxResults":{"shape":"MaxStageResults"},
-        "nextToken":{"shape":"PaginationToken"}
+        "nextToken":{"shape":"PaginationToken"},
+        "maxResults":{"shape":"MaxStageResults"}
       }
     },
     "ListStagesResponse":{
       "type":"structure",
       "required":["stages"],
       "members":{
-        "nextToken":{"shape":"PaginationToken"},
-        "stages":{"shape":"StageSummaryList"}
+        "stages":{"shape":"StageSummaryList"},
+        "nextToken":{"shape":"PaginationToken"}
       }
     },
     "ListStorageConfigurationsRequest":{
       "type":"structure",
       "members":{
-        "maxResults":{"shape":"MaxStorageConfigurationResults"},
-        "nextToken":{"shape":"PaginationToken"}
+        "nextToken":{"shape":"PaginationToken"},
+        "maxResults":{"shape":"MaxStorageConfigurationResults"}
       }
     },
     "ListStorageConfigurationsResponse":{
       "type":"structure",
       "required":["storageConfigurations"],
       "members":{
-        "nextToken":{"shape":"PaginationToken"},
-        "storageConfigurations":{"shape":"StorageConfigurationSummaryList"}
+        "storageConfigurations":{"shape":"StorageConfigurationSummaryList"},
+        "nextToken":{"shape":"PaginationToken"}
       }
     },
     "ListTagsForResourceRequest":{
@@ -1170,23 +1186,26 @@
       "type":"string",
       "max":1024,
       "min":0,
-      "pattern":"^[a-zA-Z0-9+/=_-]*$"
+      "pattern":"[a-zA-Z0-9+/=_-]*"
     },
     "Participant":{
       "type":"structure",
       "members":{
-        "attributes":{"shape":"ParticipantAttributes"},
-        "browserName":{"shape":"ParticipantClientAttribute"},
-        "browserVersion":{"shape":"ParticipantClientAttribute"},
+        "participantId":{"shape":"ParticipantId"},
+        "userId":{"shape":"UserId"},
+        "state":{"shape":"ParticipantState"},
         "firstJoinTime":{"shape":"Time"},
+        "attributes":{"shape":"ParticipantAttributes"},
+        "published":{"shape":"Published"},
         "ispName":{"shape":"ParticipantClientAttribute"},
         "osName":{"shape":"ParticipantClientAttribute"},
         "osVersion":{"shape":"ParticipantClientAttribute"},
-        "participantId":{"shape":"ParticipantId"},
-        "published":{"shape":"Published"},
+        "browserName":{"shape":"ParticipantClientAttribute"},
+        "browserVersion":{"shape":"ParticipantClientAttribute"},
         "sdkVersion":{"shape":"ParticipantClientAttribute"},
-        "state":{"shape":"ParticipantState"},
-        "userId":{"shape":"UserId"}
+        "recordingS3BucketName":{"shape":"ParticipantRecordingS3BucketName"},
+        "recordingS3Prefix":{"shape":"ParticipantRecordingS3Prefix"},
+        "recordingState":{"shape":"ParticipantRecordingState"}
       }
     },
     "ParticipantAttributes":{
@@ -1198,17 +1217,63 @@
       "type":"string",
       "max":128,
       "min":0,
-      "pattern":"^[a-zA-Z0-9-_.,:;\\s]*$"
+      "pattern":"[a-zA-Z0-9-_.,:;\\s]*"
     },
     "ParticipantId":{
       "type":"string",
       "max":64,
       "min":0,
-      "pattern":"^[a-zA-Z0-9-]*$"
+      "pattern":"[a-zA-Z0-9-]*"
     },
     "ParticipantList":{
       "type":"list",
       "member":{"shape":"ParticipantSummary"}
+    },
+    "ParticipantRecordingFilterByRecordingState":{
+      "type":"string",
+      "enum":[
+        "STARTING",
+        "ACTIVE",
+        "STOPPING",
+        "STOPPED",
+        "FAILED"
+      ]
+    },
+    "ParticipantRecordingMediaType":{
+      "type":"string",
+      "enum":[
+        "AUDIO_VIDEO",
+        "AUDIO_ONLY"
+      ]
+    },
+    "ParticipantRecordingMediaTypeList":{
+      "type":"list",
+      "member":{"shape":"ParticipantRecordingMediaType"},
+      "max":1,
+      "min":0
+    },
+    "ParticipantRecordingS3BucketName":{
+      "type":"string",
+      "max":63,
+      "min":0,
+      "pattern":"[a-z0-9-.]*"
+    },
+    "ParticipantRecordingS3Prefix":{
+      "type":"string",
+      "max":256,
+      "min":0,
+      "pattern":"[a-zA-Z0-9-]*"
+    },
+    "ParticipantRecordingState":{
+      "type":"string",
+      "enum":[
+        "STARTING",
+        "ACTIVE",
+        "STOPPING",
+        "STOPPED",
+        "FAILED",
+        "DISABLED"
+      ]
     },
     "ParticipantState":{
       "type":"string",
@@ -1220,23 +1285,24 @@
     "ParticipantSummary":{
       "type":"structure",
       "members":{
-        "firstJoinTime":{"shape":"Time"},
         "participantId":{"shape":"ParticipantId"},
-        "published":{"shape":"Published"},
+        "userId":{"shape":"UserId"},
         "state":{"shape":"ParticipantState"},
-        "userId":{"shape":"UserId"}
+        "firstJoinTime":{"shape":"Time"},
+        "published":{"shape":"Published"},
+        "recordingState":{"shape":"ParticipantRecordingState"}
       }
     },
     "ParticipantToken":{
       "type":"structure",
       "members":{
-        "attributes":{"shape":"ParticipantTokenAttributes"},
-        "capabilities":{"shape":"ParticipantTokenCapabilities"},
-        "duration":{"shape":"ParticipantTokenDurationMinutes"},
-        "expirationTime":{"shape":"ParticipantTokenExpirationTime"},
         "participantId":{"shape":"ParticipantTokenId"},
         "token":{"shape":"ParticipantTokenString"},
-        "userId":{"shape":"ParticipantTokenUserId"}
+        "userId":{"shape":"ParticipantTokenUserId"},
+        "attributes":{"shape":"ParticipantTokenAttributes"},
+        "duration":{"shape":"ParticipantTokenDurationMinutes"},
+        "capabilities":{"shape":"ParticipantTokenCapabilities"},
+        "expirationTime":{"shape":"ParticipantTokenExpirationTime"}
       }
     },
     "ParticipantTokenAttributes":{
@@ -1260,10 +1326,10 @@
     "ParticipantTokenConfiguration":{
       "type":"structure",
       "members":{
-        "attributes":{"shape":"ParticipantTokenAttributes"},
-        "capabilities":{"shape":"ParticipantTokenCapabilities"},
         "duration":{"shape":"ParticipantTokenDurationMinutes"},
-        "userId":{"shape":"ParticipantTokenUserId"}
+        "userId":{"shape":"ParticipantTokenUserId"},
+        "attributes":{"shape":"ParticipantTokenAttributes"},
+        "capabilities":{"shape":"ParticipantTokenCapabilities"}
       }
     },
     "ParticipantTokenConfigurations":{
@@ -1318,15 +1384,15 @@
       "type":"structure",
       "members":{
         "featuredParticipantAttribute":{"shape":"AttributeKey"},
-        "gridGap":{"shape":"GridGap"},
         "omitStoppedVideo":{"shape":"OmitStoppedVideo"},
-        "pipBehavior":{"shape":"PipBehavior"},
-        "pipHeight":{"shape":"PipHeight"},
-        "pipOffset":{"shape":"PipOffset"},
+        "videoFillMode":{"shape":"VideoFillMode"},
+        "gridGap":{"shape":"GridGap"},
         "pipParticipantAttribute":{"shape":"AttributeKey"},
+        "pipBehavior":{"shape":"PipBehavior"},
+        "pipOffset":{"shape":"PipOffset"},
         "pipPosition":{"shape":"PipPosition"},
         "pipWidth":{"shape":"PipWidth"},
-        "videoFillMode":{"shape":"VideoFillMode"}
+        "pipHeight":{"shape":"PipHeight"}
       }
     },
     "PipHeight":{
@@ -1367,7 +1433,7 @@
       "type":"string",
       "max":128,
       "min":1,
-      "pattern":"^arn:aws:ivs:[a-z0-9-]+:[0-9]+:[a-z-]/[a-zA-Z0-9-]+$"
+      "pattern":"arn:aws:ivs:[a-z0-9-]+:[0-9]+:[a-z-]/[a-zA-Z0-9-]+"
     },
     "ResourceNotFoundException":{
       "type":"structure",
@@ -1384,18 +1450,18 @@
       "type":"string",
       "max":63,
       "min":3,
-      "pattern":"^[a-z0-9-.]+$"
+      "pattern":"[a-z0-9-.]+"
     },
     "S3DestinationConfiguration":{
       "type":"structure",
       "required":[
-        "encoderConfigurationArns",
-        "storageConfigurationArn"
+        "storageConfigurationArn",
+        "encoderConfigurationArns"
       ],
       "members":{
+        "storageConfigurationArn":{"shape":"StorageConfigurationArn"},
         "encoderConfigurationArns":{"shape":"EncoderConfigurationArnList"},
-        "recordingConfiguration":{"shape":"RecordingConfiguration"},
-        "storageConfigurationArn":{"shape":"StorageConfigurationArn"}
+        "recordingConfiguration":{"shape":"RecordingConfiguration"}
       }
     },
     "S3Detail":{
@@ -1427,37 +1493,38 @@
       "type":"structure",
       "required":["arn"],
       "members":{
-        "activeSessionId":{"shape":"StageSessionId"},
         "arn":{"shape":"StageArn"},
         "name":{"shape":"StageName"},
-        "tags":{"shape":"Tags"}
+        "activeSessionId":{"shape":"StageSessionId"},
+        "tags":{"shape":"Tags"},
+        "autoParticipantRecordingConfiguration":{"shape":"AutoParticipantRecordingConfiguration"}
       }
     },
     "StageArn":{
       "type":"string",
       "max":128,
       "min":1,
-      "pattern":"^arn:aws:ivs:[a-z0-9-]+:[0-9]+:stage/[a-zA-Z0-9-]+$"
+      "pattern":"arn:aws:ivs:[a-z0-9-]+:[0-9]+:stage/[a-zA-Z0-9-]+"
     },
     "StageName":{
       "type":"string",
       "max":128,
       "min":0,
-      "pattern":"^[a-zA-Z0-9-_]*$"
+      "pattern":"[a-zA-Z0-9-_]*"
     },
     "StageSession":{
       "type":"structure",
       "members":{
-        "endTime":{"shape":"Time"},
         "sessionId":{"shape":"StageSessionId"},
-        "startTime":{"shape":"Time"}
+        "startTime":{"shape":"Time"},
+        "endTime":{"shape":"Time"}
       }
     },
     "StageSessionId":{
       "type":"string",
       "max":16,
       "min":16,
-      "pattern":"^st-[a-zA-Z0-9]+$"
+      "pattern":"st-[a-zA-Z0-9]+"
     },
     "StageSessionList":{
       "type":"list",
@@ -1466,18 +1533,18 @@
     "StageSessionSummary":{
       "type":"structure",
       "members":{
-        "endTime":{"shape":"Time"},
         "sessionId":{"shape":"StageSessionId"},
-        "startTime":{"shape":"Time"}
+        "startTime":{"shape":"Time"},
+        "endTime":{"shape":"Time"}
       }
     },
     "StageSummary":{
       "type":"structure",
       "required":["arn"],
       "members":{
-        "activeSessionId":{"shape":"StageSessionId"},
         "arn":{"shape":"StageArn"},
         "name":{"shape":"StageName"},
+        "activeSessionId":{"shape":"StageSessionId"},
         "tags":{"shape":"Tags"}
       }
     },
@@ -1488,17 +1555,17 @@
     "StartCompositionRequest":{
       "type":"structure",
       "required":[
-        "destinations",
-        "stageArn"
+        "stageArn",
+        "destinations"
       ],
       "members":{
-        "destinations":{"shape":"DestinationConfigurationList"},
+        "stageArn":{"shape":"StageArn"},
         "idempotencyToken":{
           "shape":"CompositionClientToken",
           "idempotencyToken":true
         },
         "layout":{"shape":"LayoutConfiguration"},
-        "stageArn":{"shape":"StageArn"},
+        "destinations":{"shape":"DestinationConfigurationList"},
         "tags":{"shape":"Tags"}
       }
     },
@@ -1534,13 +1601,13 @@
       "type":"string",
       "max":128,
       "min":1,
-      "pattern":"^arn:aws:ivs:[a-z0-9-]+:[0-9]+:storage-configuration/[a-zA-Z0-9-]+$"
+      "pattern":"arn:aws:ivs:[a-z0-9-]+:[0-9]+:storage-configuration/[a-zA-Z0-9-]+"
     },
     "StorageConfigurationName":{
       "type":"string",
       "max":128,
       "min":0,
-      "pattern":"^[a-zA-Z0-9-_]*$"
+      "pattern":"[a-zA-Z0-9-_]*"
     },
     "StorageConfigurationSummary":{
       "type":"structure",
@@ -1633,7 +1700,8 @@
       "required":["arn"],
       "members":{
         "arn":{"shape":"StageArn"},
-        "name":{"shape":"StageName"}
+        "name":{"shape":"StageName"},
+        "autoParticipantRecordingConfiguration":{"shape":"AutoParticipantRecordingConfiguration"}
       }
     },
     "UpdateStageResponse":{
@@ -1661,10 +1729,10 @@
     "Video":{
       "type":"structure",
       "members":{
-        "bitrate":{"shape":"Bitrate"},
-        "framerate":{"shape":"Framerate"},
+        "width":{"shape":"Width"},
         "height":{"shape":"Height"},
-        "width":{"shape":"Width"}
+        "framerate":{"shape":"Framerate"},
+        "bitrate":{"shape":"Bitrate"}
       }
     },
     "VideoAspectRatio":{

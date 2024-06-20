@@ -43,12 +43,14 @@
     "GetJobRuns": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",
-      "output_token": "NextToken"
+      "output_token": "NextToken",
+      "result_key": "JobRuns"
     },
     "GetJobs": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",
-      "output_token": "NextToken"
+      "output_token": "NextToken",
+      "result_key": "Jobs"
     },
     "GetMLTaskRuns": {
       "input_token": "NextToken",
@@ -95,7 +97,8 @@
     "GetTriggers": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",
-      "output_token": "NextToken"
+      "output_token": "NextToken",
+      "result_key": "Triggers"
     },
     "GetUnfilteredPartitionsMetadata": {
       "input_token": "NextToken",
@@ -110,12 +113,14 @@
     "GetWorkflowRuns": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",
-      "output_token": "NextToken"
+      "output_token": "NextToken",
+      "result_key": "Runs"
     },
     "ListBlueprints": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",
-      "output_token": "NextToken"
+      "output_token": "NextToken",
+      "result_key": "Blueprints"
     },
     "ListColumnStatisticsTaskRuns": {
       "input_token": "NextToken",
@@ -160,7 +165,8 @@
     "ListJobs": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",
-      "output_token": "NextToken"
+      "output_token": "NextToken",
+      "result_key": "JobNames"
     },
     "ListMLTransforms": {
       "input_token": "NextToken",
@@ -198,7 +204,8 @@
     "ListTriggers": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",
-      "output_token": "NextToken"
+      "output_token": "NextToken",
+      "result_key": "TriggerNames"
     },
     "ListUsageProfiles": {
       "input_token": "NextToken",
@@ -209,7 +216,8 @@
     "ListWorkflows": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",
-      "output_token": "NextToken"
+      "output_token": "NextToken",
+      "result_key": "Workflows"
     },
     "SearchTables": {
       "input_token": "NextToken",

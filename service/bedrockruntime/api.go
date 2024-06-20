@@ -923,6 +923,9 @@ func (s AutoToolChoice) GoString() string {
 type ContentBlock struct {
 	_ struct{} `type:"structure"`
 
+	// A document to include in the message.
+	Document *DocumentBlock `locationName:"document" type:"structure"`
+
 	// Contains the content to assess with the guardrail. If you don't specify guardContent
 	// in a call to the Converse API, the guardrail (if passed in the Converse API)
 	// assesses the entire message.
@@ -961,6 +964,11 @@ func (s ContentBlock) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ContentBlock) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ContentBlock"}
+	if s.Document != nil {
+		if err := s.Document.Validate(); err != nil {
+			invalidParams.AddNested("Document", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.GuardContent != nil {
 		if err := s.GuardContent.Validate(); err != nil {
 			invalidParams.AddNested("GuardContent", err.(request.ErrInvalidParams))
@@ -981,6 +989,12 @@ func (s *ContentBlock) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDocument sets the Document field's value.
+func (s *ContentBlock) SetDocument(v *DocumentBlock) *ContentBlock {
+	s.Document = v
+	return s
 }
 
 // SetGuardContent sets the GuardContent field's value.
@@ -2176,6 +2190,142 @@ func (s ConverseTrace) GoString() string {
 // SetGuardrail sets the Guardrail field's value.
 func (s *ConverseTrace) SetGuardrail(v *GuardrailTraceAssessment) *ConverseTrace {
 	s.Guardrail = v
+	return s
+}
+
+// A document to include in a message when sending a Converse (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_runtime_Converse.html)
+// or ConverseStream (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_runtime_ConverseStream.html)
+// request. You can include up to 5 documents in a request. The maximum document
+// size is 50 MB.
+type DocumentBlock struct {
+	_ struct{} `type:"structure"`
+
+	// The format of a document, or its extension.
+	//
+	// Format is a required field
+	Format *string `locationName:"format" type:"string" required:"true" enum:"DocumentFormat"`
+
+	// A name for the document.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// Contains the content of the document.
+	//
+	// Source is a required field
+	Source *DocumentSource `locationName:"source" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DocumentBlock) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DocumentBlock) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DocumentBlock) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DocumentBlock"}
+	if s.Format == nil {
+		invalidParams.Add(request.NewErrParamRequired("Format"))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Source == nil {
+		invalidParams.Add(request.NewErrParamRequired("Source"))
+	}
+	if s.Source != nil {
+		if err := s.Source.Validate(); err != nil {
+			invalidParams.AddNested("Source", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFormat sets the Format field's value.
+func (s *DocumentBlock) SetFormat(v string) *DocumentBlock {
+	s.Format = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *DocumentBlock) SetName(v string) *DocumentBlock {
+	s.Name = &v
+	return s
+}
+
+// SetSource sets the Source field's value.
+func (s *DocumentBlock) SetSource(v *DocumentSource) *DocumentBlock {
+	s.Source = v
+	return s
+}
+
+// Contains the content of the document included in a message when sending a
+// Converse (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_runtime_Converse.html)
+// or ConverseStream (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_runtime_ConverseStream.html)
+// request or in the response.
+type DocumentSource struct {
+	_ struct{} `type:"structure"`
+
+	// A base64-encoded string of a UTF-8 encoded file, that is the document to
+	// include in the message.
+	// Bytes is automatically base64 encoded/decoded by the SDK.
+	Bytes []byte `locationName:"bytes" min:"1" type:"blob"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DocumentSource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DocumentSource) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DocumentSource) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DocumentSource"}
+	if s.Bytes != nil && len(s.Bytes) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Bytes", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBytes sets the Bytes field's value.
+func (s *DocumentSource) SetBytes(v []byte) *DocumentSource {
+	s.Bytes = v
 	return s
 }
 
@@ -5172,6 +5322,9 @@ func (s *ToolResultBlock) SetToolUseId(v string) *ToolResultBlock {
 type ToolResultContentBlock struct {
 	_ struct{} `type:"structure"`
 
+	// A tool result that is a document.
+	Document *DocumentBlock `locationName:"document" type:"structure"`
+
 	// A tool result that is an image.
 	//
 	// This field is only supported by Anthropic Claude 3 models.
@@ -5202,6 +5355,11 @@ func (s ToolResultContentBlock) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ToolResultContentBlock) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ToolResultContentBlock"}
+	if s.Document != nil {
+		if err := s.Document.Validate(); err != nil {
+			invalidParams.AddNested("Document", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.Image != nil {
 		if err := s.Image.Validate(); err != nil {
 			invalidParams.AddNested("Image", err.(request.ErrInvalidParams))
@@ -5212,6 +5370,12 @@ func (s *ToolResultContentBlock) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDocument sets the Document field's value.
+func (s *ToolResultContentBlock) SetDocument(v *DocumentBlock) *ToolResultContentBlock {
+	s.Document = v
+	return s
 }
 
 // SetImage sets the Image field's value.
@@ -5490,6 +5654,50 @@ func ConversationRole_Values() []string {
 	return []string{
 		ConversationRoleUser,
 		ConversationRoleAssistant,
+	}
+}
+
+const (
+	// DocumentFormatPdf is a DocumentFormat enum value
+	DocumentFormatPdf = "pdf"
+
+	// DocumentFormatCsv is a DocumentFormat enum value
+	DocumentFormatCsv = "csv"
+
+	// DocumentFormatDoc is a DocumentFormat enum value
+	DocumentFormatDoc = "doc"
+
+	// DocumentFormatDocx is a DocumentFormat enum value
+	DocumentFormatDocx = "docx"
+
+	// DocumentFormatXls is a DocumentFormat enum value
+	DocumentFormatXls = "xls"
+
+	// DocumentFormatXlsx is a DocumentFormat enum value
+	DocumentFormatXlsx = "xlsx"
+
+	// DocumentFormatHtml is a DocumentFormat enum value
+	DocumentFormatHtml = "html"
+
+	// DocumentFormatTxt is a DocumentFormat enum value
+	DocumentFormatTxt = "txt"
+
+	// DocumentFormatMd is a DocumentFormat enum value
+	DocumentFormatMd = "md"
+)
+
+// DocumentFormat_Values returns all elements of the DocumentFormat enum
+func DocumentFormat_Values() []string {
+	return []string{
+		DocumentFormatPdf,
+		DocumentFormatCsv,
+		DocumentFormatDoc,
+		DocumentFormatDocx,
+		DocumentFormatXls,
+		DocumentFormatXlsx,
+		DocumentFormatHtml,
+		DocumentFormatTxt,
+		DocumentFormatMd,
 	}
 }
 
