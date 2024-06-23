@@ -229,7 +229,7 @@ func parseRFC3339(v string) (rfc3339, error) {
 
 // MarshalJSON encode rfc3339 to JSON format time
 func (r *rfc3339) MarshalJSON() ([]byte, error) {
-	value := time.Time(*r).Format(time.RFC3339)
+	value := time.Time(*r).UTC().Format(time.RFC3339)
 
 	// Use JSON unmarshal to unescape the quoted value making use of JSON's
 	// quoting rules.
