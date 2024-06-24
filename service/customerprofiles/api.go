@@ -264,6 +264,14 @@ func (c *CustomerProfiles) CreateDomainRequest(input *CreateDomainInput) (req *r
 // confused deputy prevention (https://docs.aws.amazon.com/connect/latest/adminguide/cross-service-confused-deputy-prevention.html)
 // for sample policies that you should apply.
 //
+// It is not possible to associate a Customer Profiles domain with an Amazon
+// Connect Instance directly from the API. If you would like to create a domain
+// and associate a Customer Profiles domain, use the Amazon Connect admin website.
+// For more information, see Enable Customer Profiles (https://docs.aws.amazon.com/connect/latest/adminguide/enable-customer-profiles.html#enable-customer-profiles-step1).
+//
+// Each Amazon Connect instance can be associated with only one domain. Multiple
+// Amazon Connect instances can be associated with one domain.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -7312,7 +7320,7 @@ func (s *CreateIntegrationWorkflowOutput) SetWorkflowId(v string) *CreateIntegra
 type CreateProfileInput struct {
 	_ struct{} `type:"structure"`
 
-	// A unique account number that you have given to the customer.
+	// An account number that you have given to the customer.
 	//
 	// AccountNumber is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CreateProfileInput's
@@ -11038,6 +11046,12 @@ type GetProfileObjectTypeOutput struct {
 	// The timestamp of when the domain was most recently edited.
 	LastUpdatedAt *time.Time `type:"timestamp"`
 
+	// The amount of provisioned profile object max count available.
+	MaxAvailableProfileObjectCount *int64 `type:"integer"`
+
+	// The amount of profile object max count assigned to the object type.
+	MaxProfileObjectCount *int64 `min:"1" type:"integer"`
+
 	// The name of the profile object type.
 	//
 	// ObjectTypeName is a required field
@@ -11116,6 +11130,18 @@ func (s *GetProfileObjectTypeOutput) SetKeys(v map[string][]*ObjectTypeKey) *Get
 // SetLastUpdatedAt sets the LastUpdatedAt field's value.
 func (s *GetProfileObjectTypeOutput) SetLastUpdatedAt(v time.Time) *GetProfileObjectTypeOutput {
 	s.LastUpdatedAt = &v
+	return s
+}
+
+// SetMaxAvailableProfileObjectCount sets the MaxAvailableProfileObjectCount field's value.
+func (s *GetProfileObjectTypeOutput) SetMaxAvailableProfileObjectCount(v int64) *GetProfileObjectTypeOutput {
+	s.MaxAvailableProfileObjectCount = &v
+	return s
+}
+
+// SetMaxProfileObjectCount sets the MaxProfileObjectCount field's value.
+func (s *GetProfileObjectTypeOutput) SetMaxProfileObjectCount(v int64) *GetProfileObjectTypeOutput {
+	s.MaxProfileObjectCount = &v
 	return s
 }
 
@@ -13335,6 +13361,12 @@ type ListProfileObjectTypeItem struct {
 	// The timestamp of when the domain was most recently edited.
 	LastUpdatedAt *time.Time `type:"timestamp"`
 
+	// The amount of provisioned profile object max count available.
+	MaxAvailableProfileObjectCount *int64 `type:"integer"`
+
+	// The amount of profile object max count assigned to the object type.
+	MaxProfileObjectCount *int64 `min:"1" type:"integer"`
+
 	// The name of the profile object type.
 	//
 	// ObjectTypeName is a required field
@@ -13377,6 +13409,18 @@ func (s *ListProfileObjectTypeItem) SetDescription(v string) *ListProfileObjectT
 // SetLastUpdatedAt sets the LastUpdatedAt field's value.
 func (s *ListProfileObjectTypeItem) SetLastUpdatedAt(v time.Time) *ListProfileObjectTypeItem {
 	s.LastUpdatedAt = &v
+	return s
+}
+
+// SetMaxAvailableProfileObjectCount sets the MaxAvailableProfileObjectCount field's value.
+func (s *ListProfileObjectTypeItem) SetMaxAvailableProfileObjectCount(v int64) *ListProfileObjectTypeItem {
+	s.MaxAvailableProfileObjectCount = &v
+	return s
+}
+
+// SetMaxProfileObjectCount sets the MaxProfileObjectCount field's value.
+func (s *ListProfileObjectTypeItem) SetMaxProfileObjectCount(v int64) *ListProfileObjectTypeItem {
+	s.MaxProfileObjectCount = &v
 	return s
 }
 
@@ -14957,7 +15001,7 @@ func (s *ObjectTypeKey) SetStandardIdentifiers(v []*string) *ObjectTypeKey {
 type Profile struct {
 	_ struct{} `type:"structure"`
 
-	// A unique account number that you have given to the customer.
+	// An account number that you have given to the customer.
 	//
 	// AccountNumber is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by Profile's
@@ -15714,6 +15758,9 @@ type PutProfileObjectTypeInput struct {
 	// String and GoString methods.
 	Keys map[string][]*ObjectTypeKey `type:"map" sensitive:"true"`
 
+	// The amount of profile object max count assigned to the object type
+	MaxProfileObjectCount *int64 `min:"1" type:"integer"`
+
 	// The name of the profile object type.
 	//
 	// ObjectTypeName is a required field
@@ -15769,6 +15816,9 @@ func (s *PutProfileObjectTypeInput) Validate() error {
 	}
 	if s.ExpirationDays != nil && *s.ExpirationDays < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("ExpirationDays", 1))
+	}
+	if s.MaxProfileObjectCount != nil && *s.MaxProfileObjectCount < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxProfileObjectCount", 1))
 	}
 	if s.ObjectTypeName == nil {
 		invalidParams.Add(request.NewErrParamRequired("ObjectTypeName"))
@@ -15844,6 +15894,12 @@ func (s *PutProfileObjectTypeInput) SetKeys(v map[string][]*ObjectTypeKey) *PutP
 	return s
 }
 
+// SetMaxProfileObjectCount sets the MaxProfileObjectCount field's value.
+func (s *PutProfileObjectTypeInput) SetMaxProfileObjectCount(v int64) *PutProfileObjectTypeInput {
+	s.MaxProfileObjectCount = &v
+	return s
+}
+
 // SetObjectTypeName sets the ObjectTypeName field's value.
 func (s *PutProfileObjectTypeInput) SetObjectTypeName(v string) *PutProfileObjectTypeInput {
 	s.ObjectTypeName = &v
@@ -15914,6 +15970,12 @@ type PutProfileObjectTypeOutput struct {
 
 	// The timestamp of when the domain was most recently edited.
 	LastUpdatedAt *time.Time `type:"timestamp"`
+
+	// The amount of provisioned profile object max count available.
+	MaxAvailableProfileObjectCount *int64 `type:"integer"`
+
+	// The amount of profile object max count assigned to the object type.
+	MaxProfileObjectCount *int64 `min:"1" type:"integer"`
 
 	// The name of the profile object type.
 	//
@@ -15995,6 +16057,18 @@ func (s *PutProfileObjectTypeOutput) SetKeys(v map[string][]*ObjectTypeKey) *Put
 // SetLastUpdatedAt sets the LastUpdatedAt field's value.
 func (s *PutProfileObjectTypeOutput) SetLastUpdatedAt(v time.Time) *PutProfileObjectTypeOutput {
 	s.LastUpdatedAt = &v
+	return s
+}
+
+// SetMaxAvailableProfileObjectCount sets the MaxAvailableProfileObjectCount field's value.
+func (s *PutProfileObjectTypeOutput) SetMaxAvailableProfileObjectCount(v int64) *PutProfileObjectTypeOutput {
+	s.MaxAvailableProfileObjectCount = &v
+	return s
+}
+
+// SetMaxProfileObjectCount sets the MaxProfileObjectCount field's value.
+func (s *PutProfileObjectTypeOutput) SetMaxProfileObjectCount(v int64) *PutProfileObjectTypeOutput {
+	s.MaxProfileObjectCount = &v
 	return s
 }
 
@@ -18316,7 +18390,7 @@ func (s *UpdateDomainOutput) SetTags(v map[string]*string) *UpdateDomainOutput {
 type UpdateProfileInput struct {
 	_ struct{} `type:"structure"`
 
-	// A unique account number that you have given to the customer.
+	// An account number that you have given to the customer.
 	//
 	// AccountNumber is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by UpdateProfileInput's

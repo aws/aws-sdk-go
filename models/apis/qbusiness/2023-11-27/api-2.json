@@ -1,6 +1,9 @@
 {
   "metadata": {
     "apiVersion": "2023-11-27",
+    "auth": [
+      "aws.auth#sigv4"
+    ],
     "endpointPrefix": "qbusiness",
     "protocol": "rest-json",
     "protocolSettings": {
@@ -2803,6 +2806,9 @@
         "identityCenterInstanceArn": {
           "shape": "InstanceArn"
         },
+        "qAppsConfiguration": {
+          "shape": "QAppsConfiguration"
+        },
         "roleArn": {
           "shape": "RoleArn"
         },
@@ -3972,6 +3978,9 @@
         },
         "identityCenterApplicationArn": {
           "shape": "IdcApplicationArn"
+        },
+        "qAppsConfiguration": {
+          "shape": "QAppsConfiguration"
         },
         "roleArn": {
           "shape": "RoleArn"
@@ -5712,6 +5721,24 @@
       "members": {},
       "type": "structure"
     },
+    "QAppsConfiguration": {
+      "members": {
+        "qAppsControlMode": {
+          "shape": "QAppsControlMode"
+        }
+      },
+      "required": [
+        "qAppsControlMode"
+      ],
+      "type": "structure"
+    },
+    "QAppsControlMode": {
+      "enum": [
+        "ENABLED",
+        "DISABLED"
+      ],
+      "type": "string"
+    },
     "ReadAccessType": {
       "enum": [
         "ALLOW",
@@ -6395,6 +6422,9 @@
         },
         "identityCenterInstanceArn": {
           "shape": "InstanceArn"
+        },
+        "qAppsConfiguration": {
+          "shape": "QAppsConfiguration"
         },
         "roleArn": {
           "shape": "RoleArn"

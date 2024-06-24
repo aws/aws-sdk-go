@@ -1,3 +1,16 @@
+Release v1.54.7 (2024-06-24)
+===
+
+### Service Client Updates
+* `service/bedrock-runtime`: Updates service API
+* `service/customer-profiles`: Updates service API and documentation
+* `service/ec2`: Updates service API
+  * Fix EC2 multi-protocol info in models.
+* `service/qbusiness`: Updates service API and documentation
+* `service/ssm`: Updates service API
+  * Add sensitive trait to SSM IPAddress property for CloudTrail redaction
+* `service/workspaces-web`: Updates service API and documentation
+
 Release v1.54.6 (2024-06-20)
 ===
 

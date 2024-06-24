@@ -1,10 +1,10 @@
 {
   "version": "2.0",
-  "service": "<fullname>Amazon Connect Customer Profiles</fullname> <p>Amazon Connect Customer Profiles is a unified customer profile for your contact center that has pre-built connectors powered by AppFlow that make it easy to combine customer information from third party applications, such as Salesforce (CRM), ServiceNow (ITSM), and your enterprise resource planning (ERP), with contact history from your Amazon Connect contact center. If you're new to Amazon Connect, you might find it helpful to review the <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/\">Amazon Connect Administrator Guide</a>.</p>",
+  "service": "<fullname>Amazon Connect Customer Profiles</fullname> <p>Amazon Connect Customer Profiles is a unified customer profile for your contact center that has pre-built connectors powered by AppFlow that make it easy to combine customer information from third party applications, such as Salesforce (CRM), ServiceNow (ITSM), and your enterprise resource planning (ERP), with contact history from your Amazon Connect contact center. </p> <p>For more information about the Amazon Connect Customer Profiles feature, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/customer-profiles.html\">Use Customer Profiles</a> in the <i>Amazon Connect Administrator's Guide</i>. </p>",
   "operations": {
     "AddProfileKey": "<p>Associates a new key value with a specific profile, such as a Contact Record ContactId.</p> <p>A profile object can have a single unique key and any number of additional keys that can be used to identify the profile that it belongs to.</p>",
     "CreateCalculatedAttributeDefinition": "<p>Creates a new calculated attribute definition. After creation, new object data ingested into Customer Profiles will be included in the calculated attribute, which can be retrieved for a profile using the <a href=\"https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_GetCalculatedAttributeForProfile.html\">GetCalculatedAttributeForProfile</a> API. Defining a calculated attribute makes it available for all profiles within a domain. Each calculated attribute can only reference one <code>ObjectType</code> and at most, two fields from that <code>ObjectType</code>.</p>",
-    "CreateDomain": "<p>Creates a domain, which is a container for all customer data, such as customer profile attributes, object types, profile keys, and encryption keys. You can create multiple domains, and each domain can have multiple third-party integrations.</p> <p>Each Amazon Connect instance can be associated with only one domain. Multiple Amazon Connect instances can be associated with one domain.</p> <p>Use this API or <a href=\"https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_UpdateDomain.html\">UpdateDomain</a> to enable <a href=\"https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_GetMatches.html\">identity resolution</a>: set <code>Matching</code> to true.</p> <p>To prevent cross-service impersonation when you call this API, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/cross-service-confused-deputy-prevention.html\">Cross-service confused deputy prevention</a> for sample policies that you should apply. </p>",
+    "CreateDomain": "<p>Creates a domain, which is a container for all customer data, such as customer profile attributes, object types, profile keys, and encryption keys. You can create multiple domains, and each domain can have multiple third-party integrations.</p> <p>Each Amazon Connect instance can be associated with only one domain. Multiple Amazon Connect instances can be associated with one domain.</p> <p>Use this API or <a href=\"https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_UpdateDomain.html\">UpdateDomain</a> to enable <a href=\"https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_GetMatches.html\">identity resolution</a>: set <code>Matching</code> to true.</p> <p>To prevent cross-service impersonation when you call this API, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/cross-service-confused-deputy-prevention.html\">Cross-service confused deputy prevention</a> for sample policies that you should apply. </p> <note> <p>It is not possible to associate a Customer Profiles domain with an Amazon Connect Instance directly from the API. If you would like to create a domain and associate a Customer Profiles domain, use the Amazon Connect admin website. For more information, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/enable-customer-profiles.html#enable-customer-profiles-step1\">Enable Customer Profiles</a>.</p> <p>Each Amazon Connect instance can be associated with only one domain. Multiple Amazon Connect instances can be associated with one domain.</p> </note>",
     "CreateEventStream": "<p>Creates an event stream, which is a subscription to real-time events, such as when profiles are created and updated through Amazon Connect Customer Profiles.</p> <p>Each event stream can be associated with only one Kinesis Data Stream destination in the same region and Amazon Web Services account as the customer profiles domain</p>",
     "CreateIntegrationWorkflow": "<p> Creates an integration workflow. An integration workflow is an async process which ingests historic data and sets up an integration for ongoing updates. The supported Amazon AppFlow sources are Salesforce, ServiceNow, and Marketo. </p>",
     "CreateProfile": "<p>Creates a standard profile.</p> <p>A standard profile represents the following attributes for a customer profile in a domain.</p>",
@@ -1900,6 +1900,23 @@
         "ThrottlingException$Message": null
       }
     },
+    "minSize0": {
+      "base": null,
+      "refs": {
+        "GetProfileObjectTypeResponse$MaxAvailableProfileObjectCount": "<p>The amount of provisioned profile object max count available.</p>",
+        "ListProfileObjectTypeItem$MaxAvailableProfileObjectCount": "<p>The amount of provisioned profile object max count available.</p>",
+        "PutProfileObjectTypeResponse$MaxAvailableProfileObjectCount": "<p>The amount of provisioned profile object max count available.</p>"
+      }
+    },
+    "minSize1": {
+      "base": null,
+      "refs": {
+        "GetProfileObjectTypeResponse$MaxProfileObjectCount": "<p>The amount of profile object max count assigned to the object type.</p>",
+        "ListProfileObjectTypeItem$MaxProfileObjectCount": "<p>The amount of profile object max count assigned to the object type.</p>",
+        "PutProfileObjectTypeRequest$MaxProfileObjectCount": "<p>The amount of profile object max count assigned to the object type</p>",
+        "PutProfileObjectTypeResponse$MaxProfileObjectCount": "<p>The amount of profile object max count assigned to the object type.</p>"
+      }
+    },
     "optionalBoolean": {
       "base": null,
       "refs": {
@@ -1955,7 +1972,7 @@
     "sensitiveString0To255": {
       "base": null,
       "refs": {
-        "UpdateProfileRequest$AccountNumber": "<p>A unique account number that you have given to the customer.</p>",
+        "UpdateProfileRequest$AccountNumber": "<p>An account number that you have given to the customer.</p>",
         "UpdateProfileRequest$BusinessName": "<p>The name of the customer’s business.</p>",
         "UpdateProfileRequest$FirstName": "<p>The customer’s first name.</p>",
         "UpdateProfileRequest$MiddleName": "<p>The customer’s middle name.</p>",
@@ -1982,7 +1999,7 @@
     "sensitiveString1To255": {
       "base": null,
       "refs": {
-        "CreateProfileRequest$AccountNumber": "<p>A unique account number that you have given to the customer.</p>",
+        "CreateProfileRequest$AccountNumber": "<p>An account number that you have given to the customer.</p>",
         "CreateProfileRequest$BusinessName": "<p>The name of the customer’s business.</p>",
         "CreateProfileRequest$FirstName": "<p>The customer’s first name.</p>",
         "CreateProfileRequest$MiddleName": "<p>The customer’s middle name.</p>",
@@ -1997,7 +2014,7 @@
         "CreateProfileRequest$BusinessEmailAddress": "<p>The customer’s business email address.</p>",
         "CreateProfileRequest$PartyTypeString": "<p>An alternative to <code>PartyType</code> which accepts any string as input.</p>",
         "CreateProfileRequest$GenderString": "<p>An alternative to <code>Gender</code> which accepts any string as input.</p>",
-        "Profile$AccountNumber": "<p>A unique account number that you have given to the customer.</p>",
+        "Profile$AccountNumber": "<p>An account number that you have given to the customer.</p>",
         "Profile$BusinessName": "<p>The name of the customer’s business.</p>",
         "Profile$FirstName": "<p>The customer’s first name.</p>",
         "Profile$MiddleName": "<p>The customer’s middle name.</p>",

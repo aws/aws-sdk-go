@@ -364,6 +364,9 @@ func (c *WorkSpacesWeb) AssociateTrustStoreRequest(input *AssociateTrustStoreInp
 //   - ValidationException
 //     There is a validation error.
 //
+//   - ConflictException
+//     There is a conflict.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/AssociateTrustStore
 func (c *WorkSpacesWeb) AssociateTrustStore(input *AssociateTrustStoreInput) (*AssociateTrustStoreOutput, error) {
 	req, out := c.AssociateTrustStoreRequest(input)
@@ -2155,6 +2158,9 @@ func (c *WorkSpacesWeb) DisassociateBrowserSettingsRequest(input *DisassociateBr
 //   - ValidationException
 //     There is a validation error.
 //
+//   - ConflictException
+//     There is a conflict.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/DisassociateBrowserSettings
 func (c *WorkSpacesWeb) DisassociateBrowserSettings(input *DisassociateBrowserSettingsInput) (*DisassociateBrowserSettingsOutput, error) {
 	req, out := c.DisassociateBrowserSettingsRequest(input)
@@ -2246,6 +2252,9 @@ func (c *WorkSpacesWeb) DisassociateIpAccessSettingsRequest(input *DisassociateI
 //
 //   - ValidationException
 //     There is a validation error.
+//
+//   - ConflictException
+//     There is a conflict.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/DisassociateIpAccessSettings
 func (c *WorkSpacesWeb) DisassociateIpAccessSettings(input *DisassociateIpAccessSettingsInput) (*DisassociateIpAccessSettingsOutput, error) {
@@ -2339,6 +2348,9 @@ func (c *WorkSpacesWeb) DisassociateNetworkSettingsRequest(input *DisassociateNe
 //   - ValidationException
 //     There is a validation error.
 //
+//   - ConflictException
+//     There is a conflict.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/DisassociateNetworkSettings
 func (c *WorkSpacesWeb) DisassociateNetworkSettings(input *DisassociateNetworkSettingsInput) (*DisassociateNetworkSettingsOutput, error) {
 	req, out := c.DisassociateNetworkSettingsRequest(input)
@@ -2430,6 +2442,9 @@ func (c *WorkSpacesWeb) DisassociateTrustStoreRequest(input *DisassociateTrustSt
 //
 //   - ValidationException
 //     There is a validation error.
+//
+//   - ConflictException
+//     There is a conflict.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/DisassociateTrustStore
 func (c *WorkSpacesWeb) DisassociateTrustStore(input *DisassociateTrustStoreInput) (*DisassociateTrustStoreOutput, error) {
@@ -2523,6 +2538,9 @@ func (c *WorkSpacesWeb) DisassociateUserAccessLoggingSettingsRequest(input *Disa
 //   - ValidationException
 //     There is a validation error.
 //
+//   - ConflictException
+//     There is a conflict.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/DisassociateUserAccessLoggingSettings
 func (c *WorkSpacesWeb) DisassociateUserAccessLoggingSettings(input *DisassociateUserAccessLoggingSettingsInput) (*DisassociateUserAccessLoggingSettingsOutput, error) {
 	req, out := c.DisassociateUserAccessLoggingSettingsRequest(input)
@@ -2614,6 +2632,9 @@ func (c *WorkSpacesWeb) DisassociateUserSettingsRequest(input *DisassociateUserS
 //
 //   - ValidationException
 //     There is a validation error.
+//
+//   - ConflictException
+//     There is a conflict.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/DisassociateUserSettings
 func (c *WorkSpacesWeb) DisassociateUserSettings(input *DisassociateUserSettingsInput) (*DisassociateUserSettingsOutput, error) {
@@ -7282,6 +7303,9 @@ type CreateIdentityProviderInput struct {
 	//
 	// PortalArn is a required field
 	PortalArn *string `locationName:"portalArn" min:"20" type:"string" required:"true"`
+
+	// The tags to add to the identity provider resource. A tag is a key-value pair.
+	Tags []*Tag `locationName:"tags" type:"list"`
 }
 
 // String returns the string representation.
@@ -7326,6 +7350,16 @@ func (s *CreateIdentityProviderInput) Validate() error {
 	if s.PortalArn != nil && len(*s.PortalArn) < 20 {
 		invalidParams.Add(request.NewErrParamMinLen("PortalArn", 20))
 	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -7360,6 +7394,12 @@ func (s *CreateIdentityProviderInput) SetIdentityProviderType(v string) *CreateI
 // SetPortalArn sets the PortalArn field's value.
 func (s *CreateIdentityProviderInput) SetPortalArn(v string) *CreateIdentityProviderInput {
 	s.PortalArn = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateIdentityProviderInput) SetTags(v []*Tag) *CreateIdentityProviderInput {
+	s.Tags = v
 	return s
 }
 
@@ -7438,7 +7478,8 @@ type CreateIpAccessSettingsInput struct {
 	// IpRules is a required field
 	IpRules []*IpRule `locationName:"ipRules" min:"1" type:"list" required:"true" sensitive:"true"`
 
-	// The tags to add to the browser settings resource. A tag is a key-value pair.
+	// The tags to add to the IP access settings resource. A tag is a key-value
+	// pair.
 	Tags []*Tag `locationName:"tags" type:"list"`
 }
 
@@ -8205,6 +8246,10 @@ type CreateUserSettingsInput struct {
 	// settings.
 	CustomerManagedKey *string `locationName:"customerManagedKey" min:"20" type:"string"`
 
+	// Specifies whether the user can use deep links that open automatically when
+	// connecting to a session.
+	DeepLinkAllowed *string `locationName:"deepLinkAllowed" type:"string" enum:"EnabledType"`
+
 	// The amount of time that a streaming session remains active after users disconnect.
 	DisconnectTimeoutInMinutes *int64 `locationName:"disconnectTimeoutInMinutes" min:"1" type:"integer"`
 
@@ -8333,6 +8378,12 @@ func (s *CreateUserSettingsInput) SetCopyAllowed(v string) *CreateUserSettingsIn
 // SetCustomerManagedKey sets the CustomerManagedKey field's value.
 func (s *CreateUserSettingsInput) SetCustomerManagedKey(v string) *CreateUserSettingsInput {
 	s.CustomerManagedKey = &v
+	return s
+}
+
+// SetDeepLinkAllowed sets the DeepLinkAllowed field's value.
+func (s *CreateUserSettingsInput) SetDeepLinkAllowed(v string) *CreateUserSettingsInput {
+	s.DeepLinkAllowed = &v
 	return s
 }
 
@@ -13815,6 +13866,10 @@ type UpdateUserSettingsInput struct {
 	// local device.
 	CopyAllowed *string `locationName:"copyAllowed" type:"string" enum:"EnabledType"`
 
+	// Specifies whether the user can use deep links that open automatically when
+	// connecting to a session.
+	DeepLinkAllowed *string `locationName:"deepLinkAllowed" type:"string" enum:"EnabledType"`
+
 	// The amount of time that a streaming session remains active after users disconnect.
 	DisconnectTimeoutInMinutes *int64 `locationName:"disconnectTimeoutInMinutes" min:"1" type:"integer"`
 
@@ -13903,6 +13958,12 @@ func (s *UpdateUserSettingsInput) SetCookieSynchronizationConfiguration(v *Cooki
 // SetCopyAllowed sets the CopyAllowed field's value.
 func (s *UpdateUserSettingsInput) SetCopyAllowed(v string) *UpdateUserSettingsInput {
 	s.CopyAllowed = &v
+	return s
+}
+
+// SetDeepLinkAllowed sets the DeepLinkAllowed field's value.
+func (s *UpdateUserSettingsInput) SetDeepLinkAllowed(v string) *UpdateUserSettingsInput {
+	s.DeepLinkAllowed = &v
 	return s
 }
 
@@ -14106,6 +14167,10 @@ type UserSettings struct {
 	// settings.
 	CustomerManagedKey *string `locationName:"customerManagedKey" min:"20" type:"string"`
 
+	// Specifies whether the user can use deep links that open automatically when
+	// connecting to a session.
+	DeepLinkAllowed *string `locationName:"deepLinkAllowed" type:"string" enum:"EnabledType"`
+
 	// The amount of time that a streaming session remains active after users disconnect.
 	DisconnectTimeoutInMinutes *int64 `locationName:"disconnectTimeoutInMinutes" min:"1" type:"integer"`
 
@@ -14182,6 +14247,12 @@ func (s *UserSettings) SetCustomerManagedKey(v string) *UserSettings {
 	return s
 }
 
+// SetDeepLinkAllowed sets the DeepLinkAllowed field's value.
+func (s *UserSettings) SetDeepLinkAllowed(v string) *UserSettings {
+	s.DeepLinkAllowed = &v
+	return s
+}
+
 // SetDisconnectTimeoutInMinutes sets the DisconnectTimeoutInMinutes field's value.
 func (s *UserSettings) SetDisconnectTimeoutInMinutes(v int64) *UserSettings {
 	s.DisconnectTimeoutInMinutes = &v
@@ -14240,6 +14311,10 @@ type UserSettingsSummary struct {
 	// local device.
 	CopyAllowed *string `locationName:"copyAllowed" type:"string" enum:"EnabledType"`
 
+	// Specifies whether the user can use deep links that open automatically when
+	// connecting to a session.
+	DeepLinkAllowed *string `locationName:"deepLinkAllowed" type:"string" enum:"EnabledType"`
+
 	// The amount of time that a streaming session remains active after users disconnect.
 	DisconnectTimeoutInMinutes *int64 `locationName:"disconnectTimeoutInMinutes" min:"1" type:"integer"`
 
@@ -14295,6 +14370,12 @@ func (s *UserSettingsSummary) SetCookieSynchronizationConfiguration(v *CookieSyn
 // SetCopyAllowed sets the CopyAllowed field's value.
 func (s *UserSettingsSummary) SetCopyAllowed(v string) *UserSettingsSummary {
 	s.CopyAllowed = &v
+	return s
+}
+
+// SetDeepLinkAllowed sets the DeepLinkAllowed field's value.
+func (s *UserSettingsSummary) SetDeepLinkAllowed(v string) *UserSettingsSummary {
+	s.DeepLinkAllowed = &v
 	return s
 }
 

@@ -6,7 +6,7 @@
     "BatchPutDocument": "<p>Adds one or more documents to an Amazon Q Business index.</p> <p>You use this API to:</p> <ul> <li> <p>ingest your structured and unstructured documents and documents stored in an Amazon S3 bucket into an Amazon Q Business index.</p> </li> <li> <p>add custom attributes to documents in an Amazon Q Business index.</p> </li> <li> <p>attach an access control list to the documents added to an Amazon Q Business index.</p> </li> </ul> <p>You can see the progress of the deletion, and any error messages related to the process, by using CloudWatch.</p>",
     "Chat": "<p>Starts or continues a streaming Amazon Q Business conversation.</p>",
     "ChatSync": "<p>Starts or continues a non-streaming Amazon Q Business conversation.</p>",
-    "CreateApplication": "<p>Creates an Amazon Q Business application.</p> <note> <p>There are new tiers for Amazon Q Business. Not all features in Amazon Q Business Pro are also available in Amazon Q Business Lite. For information on what's included in Amazon Q Business Lite and what's included in Amazon Q Business Pro, see <a href=\"https://docs.aws.amazon.com/amazonq/latest/qbusiness-ug/what-is.html#tiers\">Amazon Q Business tiers</a>. You must use the Amazon Q Business console to assign subscription tiers to users.</p> </note>",
+    "CreateApplication": "<p>Creates an Amazon Q Business application.</p> <note> <p>There are new tiers for Amazon Q Business. Not all features in Amazon Q Business Pro are also available in Amazon Q Business Lite. For information on what's included in Amazon Q Business Lite and what's included in Amazon Q Business Pro, see <a href=\"https://docs.aws.amazon.com/amazonq/latest/qbusiness-ug/tiers.html#user-sub-tiers\">Amazon Q Business tiers</a>. You must use the Amazon Q Business console to assign subscription tiers to users.</p> </note>",
     "CreateDataSource": "<p>Creates a data source connector for an Amazon Q Business application.</p> <p> <code>CreateDataSource</code> is a synchronous operation. The operation returns 200 if the data source was successfully created. Otherwise, an exception is raised.</p>",
     "CreateIndex": "<p>Creates an Amazon Q Business index.</p> <p>To determine if index creation has completed, check the <code>Status</code> field returned from a call to <code>DescribeIndex</code>. The <code>Status</code> field is set to <code>ACTIVE</code> when the index is ready to use.</p> <p>Once the index is active, you can index your documents using the <a href=\"https://docs.aws.amazon.com/amazonq/latest/api-reference/API_BatchPutDocument.html\"> <code>BatchPutDocument</code> </a> API or the <a href=\"https://docs.aws.amazon.com/amazonq/latest/api-reference/API_CreateDataSource.html\"> <code>CreateDataSource</code> </a> API.</p>",
     "CreatePlugin": "<p>Creates an Amazon Q Business plugin.</p>",
@@ -987,7 +987,7 @@
       "refs": {
         "AttributeFilter$equalsTo": "<p>Performs an equals operation on two document attributes or metadata fields. Supported for the following <a href=\"https://docs.aws.amazon.com/amazonq/latest/api-reference/API_DocumentAttributeValue.html\">document attribute value types</a>: <code>dateValue</code>, <code>longValue</code>, <code>stringListValue</code> and <code>stringValue</code>.</p>",
         "AttributeFilter$containsAll": "<p>Returns <code>true</code> when a document contains all the specified document attributes or metadata fields. Supported for the following <a href=\"https://docs.aws.amazon.com/amazonq/latest/api-reference/API_DocumentAttributeValue.html\">document attribute value types</a>: <code>stringListValue</code>.</p>",
-        "AttributeFilter$containsAny": "<p>Returns <code>true</code> when a document contains any of the specified document attributes or metadata fields. Supported for the following <a href=\"https://docs.aws.amazon.com/amazonq/latest/api-reference/API_DocumentAttributeValue.html\">document attribute value types</a>: <code>dateValue</code>, <code>longValue</code>, <code>stringListValue</code> and <code>stringValue</code>.</p>",
+        "AttributeFilter$containsAny": "<p>Returns <code>true</code> when a document contains any of the specified document attributes or metadata fields. Supported for the following <a href=\"https://docs.aws.amazon.com/amazonq/latest/api-reference/API_DocumentAttributeValue.html\">document attribute value types</a>: <code>stringListValue</code>.</p>",
         "AttributeFilter$greaterThan": "<p>Performs a greater than operation on two document attributes or metadata fields. Supported for the following <a href=\"https://docs.aws.amazon.com/amazonq/latest/api-reference/API_DocumentAttributeValue.html\">document attribute value types</a>: <code>dateValue</code> and <code>longValue</code>.</p>",
         "AttributeFilter$greaterThanOrEquals": "<p>Performs a greater or equals than operation on two document attributes or metadata fields. Supported for the following <a href=\"https://docs.aws.amazon.com/amazonq/latest/api-reference/API_DocumentAttributeValue.html\">document attribute value types</a>: <code>dateValue</code> and <code>longValue</code>. </p>",
         "AttributeFilter$lessThan": "<p>Performs a less than operation on two document attributes or metadata fields. Supported for the following <a href=\"https://docs.aws.amazon.com/amazonq/latest/api-reference/API_DocumentAttributeValue.html\">document attribute value types</a>: <code>dateValue</code> and <code>longValue</code>.</p>",
@@ -1474,7 +1474,7 @@
     "IndexType": {
       "base": null,
       "refs": {
-        "CreateIndexRequest$type": "<p>The index type that's suitable for your needs. For more information on what's included in each type of index or index tier, see <a href=\"https://docs.aws.amazon.com/amazonq/latest/qbusiness-ug/what-is.html#tiers\">Amazon Q Business tiers</a>.</p>",
+        "CreateIndexRequest$type": "<p>The index type that's suitable for your needs. For more information on what's included in each type of index, see <a href=\"https://docs.aws.amazon.com/amazonq/latest/qbusiness-ug/tiers.html#index-tiers\">Amazon Q Business tiers</a>.</p>",
         "GetIndexResponse$type": "<p>The type of index attached to your Amazon Q Business application.</p>"
       }
     },
@@ -1815,7 +1815,7 @@
         "ActionReviewEvent$userMessageId": "<p>The identifier of the conversation with which the plugin action is associated.</p>",
         "ActionReviewEvent$systemMessageId": "<p>The identifier of an Amazon Q Business AI generated associated with the action review event.</p>",
         "ChatInput$parentMessageId": "<p>The identifier used to associate a user message with a AI generated response.</p>",
-        "ChatSyncInput$parentMessageId": "<p>The identifier of the previous end user text input message in a conversation.</p>",
+        "ChatSyncInput$parentMessageId": "<p>The identifier of the previous system message in a conversation.</p>",
         "ChatSyncOutput$systemMessageId": "<p>The identifier of an Amazon Q Business AI generated message within the conversation.</p>",
         "ChatSyncOutput$userMessageId": "<p>The identifier of an Amazon Q Business end user text input message within the conversation.</p>",
         "FailedAttachmentEvent$userMessageId": "<p>The identifier of the end user chat message associated with the file upload.</p>",
@@ -2070,6 +2070,20 @@
     "PutGroupResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "QAppsConfiguration": {
+      "base": "<p>Configuration information about Amazon Q Apps. (preview feature)</p>",
+      "refs": {
+        "CreateApplicationRequest$qAppsConfiguration": "<p>An option to allow end users to create and use Amazon Q Apps in the web experience.</p>",
+        "GetApplicationResponse$qAppsConfiguration": "<p>Settings for whether end users can create and use Amazon Q Apps in the web experience.</p>",
+        "UpdateApplicationRequest$qAppsConfiguration": "<p>An option to allow end users to create and use Amazon Q Apps in the web experience.</p>"
+      }
+    },
+    "QAppsControlMode": {
+      "base": null,
+      "refs": {
+        "QAppsConfiguration$qAppsControlMode": "<p>Status information about whether end users can create and use Amazon Q Apps in the web experience.</p>"
       }
     },
     "ReadAccessType": {

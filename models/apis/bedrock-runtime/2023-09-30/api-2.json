@@ -561,7 +561,7 @@
       "type": "structure"
     },
     "DocumentBlockNameString": {
-      "max": 64,
+      "max": 200,
       "min": 1,
       "type": "string"
     },
