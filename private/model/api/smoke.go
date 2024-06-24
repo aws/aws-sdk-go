@@ -31,9 +31,15 @@ var smokeTestsCustomizations = map[string]func(*SmokeTestSuite) error{
 	"waf":          wafSmokeTestCustomization,
 	"wafregional":  wafRegionalSmokeTestCustomization,
 	"iotdataplane": iotDataPlaneSmokeTestCustomization,
+	"opsworks":     removeSmokeTests,
 }
 
 func iotDataPlaneSmokeTestCustomization(suite *SmokeTestSuite) error {
+	suite.TestCases = []SmokeTestCase{}
+	return nil
+}
+
+func removeSmokeTests(suite *SmokeTestSuite) error {
 	suite.TestCases = []SmokeTestCase{}
 	return nil
 }
