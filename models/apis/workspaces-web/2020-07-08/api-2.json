@@ -83,7 +83,8 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ThrottlingException"},
-        {"shape":"ValidationException"}
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"}
       ],
       "idempotent":true
     },
@@ -430,7 +431,8 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ThrottlingException"},
-        {"shape":"ValidationException"}
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"}
       ],
       "idempotent":true
     },
@@ -448,7 +450,8 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ThrottlingException"},
-        {"shape":"ValidationException"}
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"}
       ],
       "idempotent":true
     },
@@ -466,7 +469,8 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ThrottlingException"},
-        {"shape":"ValidationException"}
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"}
       ],
       "idempotent":true
     },
@@ -484,7 +488,8 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ThrottlingException"},
-        {"shape":"ValidationException"}
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"}
       ],
       "idempotent":true
     },
@@ -502,7 +507,8 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ThrottlingException"},
-        {"shape":"ValidationException"}
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"}
       ],
       "idempotent":true
     },
@@ -520,7 +526,8 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ThrottlingException"},
-        {"shape":"ValidationException"}
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"}
       ],
       "idempotent":true
     },
@@ -1420,7 +1427,8 @@
         "identityProviderDetails":{"shape":"IdentityProviderDetails"},
         "identityProviderName":{"shape":"IdentityProviderName"},
         "identityProviderType":{"shape":"IdentityProviderType"},
-        "portalArn":{"shape":"ARN"}
+        "portalArn":{"shape":"ARN"},
+        "tags":{"shape":"TagList"}
       }
     },
     "CreateIdentityProviderResponse":{
@@ -1561,6 +1569,7 @@
         "cookieSynchronizationConfiguration":{"shape":"CookieSynchronizationConfiguration"},
         "copyAllowed":{"shape":"EnabledType"},
         "customerManagedKey":{"shape":"keyArn"},
+        "deepLinkAllowed":{"shape":"EnabledType"},
         "disconnectTimeoutInMinutes":{"shape":"DisconnectTimeoutInMinutes"},
         "downloadAllowed":{"shape":"EnabledType"},
         "idleDisconnectTimeoutInMinutes":{"shape":"IdleDisconnectTimeoutInMinutes"},
@@ -2877,6 +2886,7 @@
         },
         "cookieSynchronizationConfiguration":{"shape":"CookieSynchronizationConfiguration"},
         "copyAllowed":{"shape":"EnabledType"},
+        "deepLinkAllowed":{"shape":"EnabledType"},
         "disconnectTimeoutInMinutes":{"shape":"DisconnectTimeoutInMinutes"},
         "downloadAllowed":{"shape":"EnabledType"},
         "idleDisconnectTimeoutInMinutes":{"shape":"IdleDisconnectTimeoutInMinutes"},
@@ -2927,6 +2937,7 @@
         "cookieSynchronizationConfiguration":{"shape":"CookieSynchronizationConfiguration"},
         "copyAllowed":{"shape":"EnabledType"},
         "customerManagedKey":{"shape":"keyArn"},
+        "deepLinkAllowed":{"shape":"EnabledType"},
         "disconnectTimeoutInMinutes":{"shape":"DisconnectTimeoutInMinutes"},
         "downloadAllowed":{"shape":"EnabledType"},
         "idleDisconnectTimeoutInMinutes":{"shape":"IdleDisconnectTimeoutInMinutes"},
@@ -2946,6 +2957,7 @@
       "members":{
         "cookieSynchronizationConfiguration":{"shape":"CookieSynchronizationConfiguration"},
         "copyAllowed":{"shape":"EnabledType"},
+        "deepLinkAllowed":{"shape":"EnabledType"},
         "disconnectTimeoutInMinutes":{"shape":"DisconnectTimeoutInMinutes"},
         "downloadAllowed":{"shape":"EnabledType"},
         "idleDisconnectTimeoutInMinutes":{"shape":"IdleDisconnectTimeoutInMinutes"},

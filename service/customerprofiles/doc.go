@@ -7,9 +7,11 @@
 // center that has pre-built connectors powered by AppFlow that make it easy
 // to combine customer information from third party applications, such as Salesforce
 // (CRM), ServiceNow (ITSM), and your enterprise resource planning (ERP), with
-// contact history from your Amazon Connect contact center. If you're new to
-// Amazon Connect, you might find it helpful to review the Amazon Connect Administrator
-// Guide (https://docs.aws.amazon.com/connect/latest/adminguide/).
+// contact history from your Amazon Connect contact center.
+//
+// For more information about the Amazon Connect Customer Profiles feature,
+// see Use Customer Profiles (https://docs.aws.amazon.com/connect/latest/adminguide/customer-profiles.html)
+// in the Amazon Connect Administrator's Guide.
 //
 // See https://docs.aws.amazon.com/goto/WebAPI/customer-profiles-2020-08-15 for more information on this service.
 //

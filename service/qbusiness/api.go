@@ -792,7 +792,7 @@ func (c *QBusiness) CreateApplicationRequest(input *CreateApplicationInput) (req
 // There are new tiers for Amazon Q Business. Not all features in Amazon Q Business
 // Pro are also available in Amazon Q Business Lite. For information on what's
 // included in Amazon Q Business Lite and what's included in Amazon Q Business
-// Pro, see Amazon Q Business tiers (https://docs.aws.amazon.com/amazonq/latest/qbusiness-ug/what-is.html#tiers).
+// Pro, see Amazon Q Business tiers (https://docs.aws.amazon.com/amazonq/latest/qbusiness-ug/tiers.html#user-sub-tiers).
 // You must use the Amazon Q Business console to assign subscription tiers to
 // users.
 //
@@ -7552,7 +7552,7 @@ type AttributeFilter struct {
 	// Returns true when a document contains any of the specified document attributes
 	// or metadata fields. Supported for the following document attribute value
 	// types (https://docs.aws.amazon.com/amazonq/latest/api-reference/API_DocumentAttributeValue.html):
-	// dateValue, longValue, stringListValue and stringValue.
+	// stringListValue.
 	ContainsAny *DocumentAttribute `locationName:"containsAny" type:"structure"`
 
 	// Performs an equals operation on two document attributes or metadata fields.
@@ -8854,7 +8854,7 @@ type ChatSyncInput struct {
 	// The identifier of the Amazon Q Business conversation.
 	ConversationId *string `locationName:"conversationId" min:"36" type:"string"`
 
-	// The identifier of the previous end user text input message in a conversation.
+	// The identifier of the previous system message in a conversation.
 	ParentMessageId *string `locationName:"parentMessageId" min:"36" type:"string"`
 
 	// The groups that a user associated with the chat input belongs to.
@@ -9453,6 +9453,9 @@ type CreateApplicationInput struct {
 	// either creating for—or connecting to—your Amazon Q Business application.
 	IdentityCenterInstanceArn *string `locationName:"identityCenterInstanceArn" min:"10" type:"string"`
 
+	// An option to allow end users to create and use Amazon Q Apps in the web experience.
+	QAppsConfiguration *QAppsConfiguration `locationName:"qAppsConfiguration" type:"structure"`
+
 	// The Amazon Resource Name (ARN) of an IAM role with permissions to access
 	// your Amazon CloudWatch logs and metrics.
 	RoleArn *string `locationName:"roleArn" type:"string"`
@@ -9507,6 +9510,11 @@ func (s *CreateApplicationInput) Validate() error {
 			invalidParams.AddNested("EncryptionConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.QAppsConfiguration != nil {
+		if err := s.QAppsConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("QAppsConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.Tags != nil {
 		for i, v := range s.Tags {
 			if v == nil {
@@ -9557,6 +9565,12 @@ func (s *CreateApplicationInput) SetEncryptionConfiguration(v *EncryptionConfigu
 // SetIdentityCenterInstanceArn sets the IdentityCenterInstanceArn field's value.
 func (s *CreateApplicationInput) SetIdentityCenterInstanceArn(v string) *CreateApplicationInput {
 	s.IdentityCenterInstanceArn = &v
+	return s
+}
+
+// SetQAppsConfiguration sets the QAppsConfiguration field's value.
+func (s *CreateApplicationInput) SetQAppsConfiguration(v *QAppsConfiguration) *CreateApplicationInput {
+	s.QAppsConfiguration = v
 	return s
 }
 
@@ -9644,8 +9658,7 @@ type CreateIndexInput struct {
 	Tags []*Tag `locationName:"tags" type:"list"`
 
 	// The index type that's suitable for your needs. For more information on what's
-	// included in each type of index or index tier, see Amazon Q Business tiers
-	// (https://docs.aws.amazon.com/amazonq/latest/qbusiness-ug/what-is.html#tiers).
+	// included in each type of index, see Amazon Q Business tiers (https://docs.aws.amazon.com/amazonq/latest/qbusiness-ug/tiers.html#index-tiers).
 	Type *string `locationName:"type" type:"string" enum:"IndexType"`
 }
 
@@ -13235,6 +13248,10 @@ type GetApplicationOutput struct {
 	// to your Amazon Q Business application.
 	IdentityCenterApplicationArn *string `locationName:"identityCenterApplicationArn" min:"10" type:"string"`
 
+	// Settings for whether end users can create and use Amazon Q Apps in the web
+	// experience.
+	QAppsConfiguration *QAppsConfiguration `locationName:"qAppsConfiguration" type:"structure"`
+
 	// The Amazon Resource Name (ARN) of the IAM with permissions to access your
 	// CloudWatch logs and metrics.
 	RoleArn *string `locationName:"roleArn" type:"string"`
@@ -13315,6 +13332,12 @@ func (s *GetApplicationOutput) SetError(v *ErrorDetail) *GetApplicationOutput {
 // SetIdentityCenterApplicationArn sets the IdentityCenterApplicationArn field's value.
 func (s *GetApplicationOutput) SetIdentityCenterApplicationArn(v string) *GetApplicationOutput {
 	s.IdentityCenterApplicationArn = &v
+	return s
+}
+
+// SetQAppsConfiguration sets the QAppsConfiguration field's value.
+func (s *GetApplicationOutput) SetQAppsConfiguration(v *QAppsConfiguration) *GetApplicationOutput {
+	s.QAppsConfiguration = v
 	return s
 }
 
@@ -18355,6 +18378,54 @@ func (s PutGroupOutput) GoString() string {
 	return s.String()
 }
 
+// Configuration information about Amazon Q Apps. (preview feature)
+type QAppsConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Status information about whether end users can create and use Amazon Q Apps
+	// in the web experience.
+	//
+	// QAppsControlMode is a required field
+	QAppsControlMode *string `locationName:"qAppsControlMode" type:"string" required:"true" enum:"QAppsControlMode"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s QAppsConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s QAppsConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *QAppsConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "QAppsConfiguration"}
+	if s.QAppsControlMode == nil {
+		invalidParams.Add(request.NewErrParamRequired("QAppsControlMode"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetQAppsControlMode sets the QAppsControlMode field's value.
+func (s *QAppsConfiguration) SetQAppsControlMode(v string) *QAppsConfiguration {
+	s.QAppsControlMode = &v
+	return s
+}
+
 // The resource you want to use doesn’t exist. Make sure you have provided
 // the correct resource and try again.
 type ResourceNotFoundException struct {
@@ -20080,6 +20151,9 @@ type UpdateApplicationInput struct {
 	// either creating for—or connecting to—your Amazon Q Business application.
 	IdentityCenterInstanceArn *string `locationName:"identityCenterInstanceArn" min:"10" type:"string"`
 
+	// An option to allow end users to create and use Amazon Q Apps in the web experience.
+	QAppsConfiguration *QAppsConfiguration `locationName:"qAppsConfiguration" type:"structure"`
+
 	// An Amazon Web Services Identity and Access Management (IAM) role that gives
 	// Amazon Q Business permission to access Amazon CloudWatch logs and metrics.
 	RoleArn *string `locationName:"roleArn" type:"string"`
@@ -20123,6 +20197,11 @@ func (s *UpdateApplicationInput) Validate() error {
 			invalidParams.AddNested("AttachmentsConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.QAppsConfiguration != nil {
+		if err := s.QAppsConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("QAppsConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -20157,6 +20236,12 @@ func (s *UpdateApplicationInput) SetDisplayName(v string) *UpdateApplicationInpu
 // SetIdentityCenterInstanceArn sets the IdentityCenterInstanceArn field's value.
 func (s *UpdateApplicationInput) SetIdentityCenterInstanceArn(v string) *UpdateApplicationInput {
 	s.IdentityCenterInstanceArn = &v
+	return s
+}
+
+// SetQAppsConfiguration sets the QAppsConfiguration field's value.
+func (s *UpdateApplicationInput) SetQAppsConfiguration(v *QAppsConfiguration) *UpdateApplicationInput {
+	s.QAppsConfiguration = v
 	return s
 }
 
@@ -22338,6 +22423,22 @@ func PluginType_Values() []string {
 		PluginTypeJira,
 		PluginTypeZendesk,
 		PluginTypeCustom,
+	}
+}
+
+const (
+	// QAppsControlModeEnabled is a QAppsControlMode enum value
+	QAppsControlModeEnabled = "ENABLED"
+
+	// QAppsControlModeDisabled is a QAppsControlMode enum value
+	QAppsControlModeDisabled = "DISABLED"
+)
+
+// QAppsControlMode_Values returns all elements of the QAppsControlMode enum
+func QAppsControlMode_Values() []string {
+	return []string{
+		QAppsControlModeEnabled,
+		QAppsControlModeDisabled,
 	}
 }
 

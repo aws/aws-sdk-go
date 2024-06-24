@@ -5,12 +5,14 @@
     "endpointPrefix":"profile",
     "jsonVersion":"1.1",
     "protocol":"rest-json",
+    "protocols":["rest-json"],
     "serviceAbbreviation":"Customer Profiles",
     "serviceFullName":"Amazon Connect Customer Profiles",
     "serviceId":"Customer Profiles",
     "signatureVersion":"v4",
     "signingName":"profile",
-    "uid":"customer-profiles-2020-08-15"
+    "uid":"customer-profiles-2020-08-15",
+    "auth":["aws.auth#sigv4"]
   },
   "operations":{
     "AddProfileKey":{
@@ -2054,6 +2056,8 @@
         "EncryptionKey":{"shape":"encryptionKey"},
         "AllowProfileCreation":{"shape":"boolean"},
         "SourceLastUpdatedTimestampFormat":{"shape":"string1To255"},
+        "MaxAvailableProfileObjectCount":{"shape":"minSize0"},
+        "MaxProfileObjectCount":{"shape":"minSize1"},
         "Fields":{"shape":"FieldMap"},
         "Keys":{"shape":"KeyMap"},
         "CreatedAt":{"shape":"timestamp"},
@@ -2566,6 +2570,8 @@
         "Description":{"shape":"text"},
         "CreatedAt":{"shape":"timestamp"},
         "LastUpdatedAt":{"shape":"timestamp"},
+        "MaxProfileObjectCount":{"shape":"minSize1"},
+        "MaxAvailableProfileObjectCount":{"shape":"minSize0"},
         "Tags":{"shape":"TagMap"}
       }
     },
@@ -3142,6 +3148,7 @@
         "EncryptionKey":{"shape":"encryptionKey"},
         "AllowProfileCreation":{"shape":"boolean"},
         "SourceLastUpdatedTimestampFormat":{"shape":"string1To255"},
+        "MaxProfileObjectCount":{"shape":"minSize1"},
         "Fields":{"shape":"FieldMap"},
         "Keys":{"shape":"KeyMap"},
         "Tags":{"shape":"TagMap"}
@@ -3161,6 +3168,8 @@
         "EncryptionKey":{"shape":"encryptionKey"},
         "AllowProfileCreation":{"shape":"boolean"},
         "SourceLastUpdatedTimestampFormat":{"shape":"string1To255"},
+        "MaxProfileObjectCount":{"shape":"minSize1"},
+        "MaxAvailableProfileObjectCount":{"shape":"minSize0"},
         "Fields":{"shape":"FieldMap"},
         "Keys":{"shape":"KeyMap"},
         "CreatedAt":{"shape":"timestamp"},
@@ -3899,6 +3908,14 @@
       "min":1
     },
     "message":{"type":"string"},
+    "minSize0":{
+      "type":"integer",
+      "min":0
+    },
+    "minSize1":{
+      "type":"integer",
+      "min":1
+    },
     "optionalBoolean":{"type":"boolean"},
     "requestValueList":{
       "type":"list",
