@@ -141,6 +141,26 @@
         "GetDeviceResponse$device": "<p>Describes an device.</p>"
       }
     },
+    "DeviceCreationTagKey": {
+      "base": null,
+      "refs": {
+        "DeviceCreationTagsMap$key": null
+      }
+    },
+    "DeviceCreationTagValue": {
+      "base": null,
+      "refs": {
+        "DeviceCreationTagsMap$value": null
+      }
+    },
+    "DeviceCreationTagsMap": {
+      "base": null,
+      "refs": {
+        "CreateEnvironmentRequest$deviceCreationTags": "<p>A map of the key-value pairs of the tag or tags to assign to the newly created devices for this environment.</p>",
+        "Environment$deviceCreationTags": "<p>\"The tag keys and optional values for the newly created devices for this environment.\"</p>",
+        "UpdateEnvironmentRequest$deviceCreationTags": "<p>A map of the key-value pairs of the tag or tags to assign to the newly created devices for this environment.</p>"
+      }
+    },
     "DeviceId": {
       "base": null,
       "refs": {

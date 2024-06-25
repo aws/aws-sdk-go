@@ -1872,6 +1872,14 @@ type CreateEnvironmentInput struct {
 	// String and GoString methods.
 	DesktopEndpoint *string `locationName:"desktopEndpoint" min:"1" type:"string" sensitive:"true"`
 
+	// A map of the key-value pairs of the tag or tags to assign to the newly created
+	// devices for this environment.
+	//
+	// DeviceCreationTags is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateEnvironmentInput's
+	// String and GoString methods.
+	DeviceCreationTags map[string]*string `locationName:"deviceCreationTags" type:"map" sensitive:"true"`
+
 	// The Amazon Resource Name (ARN) of the Key Management Service key to use to
 	// encrypt the environment.
 	KmsKeyArn *string `locationName:"kmsKeyArn" min:"20" type:"string"`
@@ -1970,6 +1978,12 @@ func (s *CreateEnvironmentInput) SetDesktopArn(v string) *CreateEnvironmentInput
 // SetDesktopEndpoint sets the DesktopEndpoint field's value.
 func (s *CreateEnvironmentInput) SetDesktopEndpoint(v string) *CreateEnvironmentInput {
 	s.DesktopEndpoint = &v
+	return s
+}
+
+// SetDeviceCreationTags sets the DeviceCreationTags field's value.
+func (s *CreateEnvironmentInput) SetDeviceCreationTags(v map[string]*string) *CreateEnvironmentInput {
+	s.DeviceCreationTags = v
 	return s
 }
 
@@ -2748,6 +2762,14 @@ type Environment struct {
 	// The type of streaming desktop for the environment.
 	DesktopType *string `locationName:"desktopType" type:"string" enum:"DesktopType"`
 
+	// "The tag keys and optional values for the newly created devices for this
+	// environment."
+	//
+	// DeviceCreationTags is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Environment's
+	// String and GoString methods.
+	DeviceCreationTags map[string]*string `locationName:"deviceCreationTags" type:"map" sensitive:"true"`
+
 	// The ID of the environment.
 	Id *string `locationName:"id" type:"string"`
 
@@ -2853,6 +2875,12 @@ func (s *Environment) SetDesktopEndpoint(v string) *Environment {
 // SetDesktopType sets the DesktopType field's value.
 func (s *Environment) SetDesktopType(v string) *Environment {
 	s.DesktopType = &v
+	return s
+}
+
+// SetDeviceCreationTags sets the DeviceCreationTags field's value.
+func (s *Environment) SetDeviceCreationTags(v map[string]*string) *Environment {
+	s.DeviceCreationTags = v
 	return s
 }
 
@@ -4641,6 +4669,14 @@ type UpdateEnvironmentInput struct {
 	// String and GoString methods.
 	DesktopEndpoint *string `locationName:"desktopEndpoint" min:"1" type:"string" sensitive:"true"`
 
+	// A map of the key-value pairs of the tag or tags to assign to the newly created
+	// devices for this environment.
+	//
+	// DeviceCreationTags is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateEnvironmentInput's
+	// String and GoString methods.
+	DeviceCreationTags map[string]*string `locationName:"deviceCreationTags" type:"map" sensitive:"true"`
+
 	// The ID of the environment to update.
 	//
 	// Id is a required field
@@ -4724,6 +4760,12 @@ func (s *UpdateEnvironmentInput) SetDesktopArn(v string) *UpdateEnvironmentInput
 // SetDesktopEndpoint sets the DesktopEndpoint field's value.
 func (s *UpdateEnvironmentInput) SetDesktopEndpoint(v string) *UpdateEnvironmentInput {
 	s.DesktopEndpoint = &v
+	return s
+}
+
+// SetDeviceCreationTags sets the DeviceCreationTags field's value.
+func (s *UpdateEnvironmentInput) SetDeviceCreationTags(v map[string]*string) *UpdateEnvironmentInput {
+	s.DeviceCreationTags = v
 	return s
 }
 

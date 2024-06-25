@@ -1,3 +1,14 @@
+Release v1.54.8 (2024-06-25)
+===
+
+### Service Client Updates
+* `service/autoscaling`: Updates service API and documentation
+  * Doc only update for Auto Scaling's TargetTrackingMetricDataQuery
+* `service/ec2`: Updates service API
+  * This release is for the launch of the new u7ib-12tb.224xlarge, R8g, c7gn.metal and mac2-m1ultra.metal instance types
+* `service/networkmanager`: Updates service API and documentation
+* `service/workspaces-thin-client`: Updates service API and documentation
+
 Release v1.54.7 (2024-06-24)
 ===
 

@@ -203,6 +203,24 @@
         "VpcAttachment$Attachment": "<p>Provides details about the VPC attachment.</p>"
       }
     },
+    "AttachmentError": {
+      "base": "<p>Describes the error associated with an attachment request.</p>",
+      "refs": {
+        "AttachmentErrorList$member": null
+      }
+    },
+    "AttachmentErrorCode": {
+      "base": null,
+      "refs": {
+        "AttachmentError$Code": "<p>The error code for the attachment request. </p>"
+      }
+    },
+    "AttachmentErrorList": {
+      "base": null,
+      "refs": {
+        "Attachment$LastModificationErrors": "<p>Describes the error associated with the attachment request.</p>"
+      }
+    },
     "AttachmentId": {
       "base": null,
       "refs": {
@@ -374,6 +392,24 @@
       "base": "<p>Describes a core network Connect peer configuration.</p>",
       "refs": {
         "ConnectPeer$Configuration": "<p>The configuration of the Connect peer.</p>"
+      }
+    },
+    "ConnectPeerError": {
+      "base": "<p>Describes an error associated with a Connect peer request</p>",
+      "refs": {
+        "ConnectPeerErrorList$member": null
+      }
+    },
+    "ConnectPeerErrorCode": {
+      "base": null,
+      "refs": {
+        "ConnectPeerError$Code": "<p>The error code for the Connect peer request.</p>"
+      }
+    },
+    "ConnectPeerErrorList": {
+      "base": null,
+      "refs": {
+        "ConnectPeer$LastModificationErrors": "<p>Describes the error associated with the attachment request.</p>"
       }
     },
     "ConnectPeerId": {
@@ -2084,6 +2120,24 @@
         "TransitGatewayPeering$Peering": "<p>Describes a transit gateway peer connection.</p>"
       }
     },
+    "PeeringError": {
+      "base": "<p>Describes an error associated with a peering request.</p>",
+      "refs": {
+        "PeeringErrorList$member": null
+      }
+    },
+    "PeeringErrorCode": {
+      "base": null,
+      "refs": {
+        "PeeringError$Code": "<p>The error code for the peering request.</p>"
+      }
+    },
+    "PeeringErrorList": {
+      "base": null,
+      "refs": {
+        "Peering$LastModificationErrors": "<p>Describes the error associated with the Connect peer request.</p>"
+      }
+    },
     "PeeringId": {
       "base": null,
       "refs": {
@@ -2112,6 +2166,12 @@
       "refs": {
         "ListPeeringsRequest$PeeringType": "<p>Returns a list of a peering requests.</p>",
         "Peering$PeeringType": "<p>The type of peering. This will be <code>TRANSIT_GATEWAY</code>.</p>"
+      }
+    },
+    "PermissionsErrorContext": {
+      "base": "<p>Describes additional information about missing permissions. </p>",
+      "refs": {
+        "PeeringError$MissingPermissionsContext": "<p>Provides additional information about missing permissions for the peering error.</p>"
       }
     },
     "ProposedNetworkFunctionGroupChange": {
@@ -2200,6 +2260,8 @@
       "base": null,
       "refs": {
         "Attachment$ResourceArn": "<p>The attachment resource ARN.</p>",
+        "AttachmentError$ResourceArn": "<p>The ARN of the requested attachment resource.</p>",
+        "ConnectPeerError$ResourceArn": "<p>The ARN of the requested Connect peer resource.</p>",
         "DeleteResourcePolicyRequest$ResourceArn": "<p>The ARN of the policy to delete.</p>",
         "GetNetworkResourceRelationshipsRequest$RegisteredGatewayArn": "<p>The ARN of the registered gateway.</p>",
         "GetNetworkResourceRelationshipsRequest$ResourceArn": "<p>The ARN of the gateway.</p>",
@@ -2217,6 +2279,7 @@
         "NetworkTelemetry$RegisteredGatewayArn": "<p>The ARN of the gateway.</p>",
         "NetworkTelemetry$ResourceArn": "<p>The ARN of the resource.</p>",
         "Peering$ResourceArn": "<p>The resource ARN of the peer.</p>",
+        "PeeringError$ResourceArn": "<p>The ARN of the requested peering resource.</p>",
         "PutResourcePolicyRequest$ResourceArn": "<p>The ARN of the resource policy. </p>",
         "TagResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
         "UntagResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
@@ -2366,14 +2429,21 @@
       "base": null,
       "refs": {
         "AccessDeniedException$Message": null,
+        "AttachmentError$Message": "<p>The message associated with the error <code>code</code>.</p>",
+        "AttachmentError$RequestId": "<p>The ID of the attachment request.</p>",
         "ConflictException$Message": null,
         "ConflictException$ResourceId": "<p>The ID of the resource.</p>",
         "ConflictException$ResourceType": "<p>The resource type.</p>",
+        "ConnectPeerError$Message": "<p>The message associated with the error <code>code</code>.</p>",
+        "ConnectPeerError$RequestId": "<p>The ID of the Connect peer request.</p>",
         "CoreNetworkPolicyError$ErrorCode": "<p>The error code associated with a core network policy error.</p>",
         "CoreNetworkPolicyError$Message": "<p>The message associated with a core network policy error code.</p>",
         "CoreNetworkPolicyError$Path": "<p>The JSON path where the error was discovered in the policy document.</p>",
         "CoreNetworkPolicyException$Message": null,
         "InternalServerException$Message": null,
+        "PeeringError$Message": "<p>The message associated with the error <code>code</code>.</p>",
+        "PeeringError$RequestId": "<p>The ID of the Peering request.</p>",
+        "PermissionsErrorContext$MissingPermission": "<p>The missing permissions.</p>",
         "ResourceNotFoundException$Message": null,
         "ResourceNotFoundException$ResourceId": "<p>The ID of the resource.</p>",
         "ResourceNotFoundException$ResourceType": "<p>The resource type.</p>",

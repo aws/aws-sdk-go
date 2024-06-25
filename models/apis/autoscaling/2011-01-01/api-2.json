@@ -4,11 +4,13 @@
     "apiVersion":"2011-01-01",
     "endpointPrefix":"autoscaling",
     "protocol":"query",
+    "protocols":["query"],
     "serviceFullName":"Auto Scaling",
     "serviceId":"Auto Scaling",
     "signatureVersion":"v4",
     "uid":"autoscaling-2011-01-01",
-    "xmlNamespace":"http://autoscaling.amazonaws.com/doc/2011-01-01/"
+    "xmlNamespace":"http://autoscaling.amazonaws.com/doc/2011-01-01/",
+    "auth":["aws.auth#sigv4"]
   },
   "operations":{
     "AttachInstances":{
@@ -3451,7 +3453,7 @@
       "type":"structure",
       "required":["Id"],
       "members":{
-        "Id":{"shape":"XmlStringMaxLen255"},
+        "Id":{"shape":"XmlStringMaxLen64"},
         "Expression":{"shape":"XmlStringMaxLen2047"},
         "MetricStat":{"shape":"TargetTrackingMetricStat"},
         "Label":{"shape":"XmlStringMetricLabel"},

@@ -9962,6 +9962,9 @@ type Attachment struct {
 	// The Region where the edge is located.
 	EdgeLocation *string `min:"1" type:"string"`
 
+	// Describes the error associated with the attachment request.
+	LastModificationErrors []*AttachmentError `type:"list"`
+
 	// The name of the network function group.
 	NetworkFunctionGroupName *string `type:"string"`
 
@@ -10051,6 +10054,12 @@ func (s *Attachment) SetEdgeLocation(v string) *Attachment {
 	return s
 }
 
+// SetLastModificationErrors sets the LastModificationErrors field's value.
+func (s *Attachment) SetLastModificationErrors(v []*AttachmentError) *Attachment {
+	s.LastModificationErrors = v
+	return s
+}
+
 // SetNetworkFunctionGroupName sets the NetworkFunctionGroupName field's value.
 func (s *Attachment) SetNetworkFunctionGroupName(v string) *Attachment {
 	s.NetworkFunctionGroupName = &v
@@ -10102,6 +10111,65 @@ func (s *Attachment) SetTags(v []*Tag) *Attachment {
 // SetUpdatedAt sets the UpdatedAt field's value.
 func (s *Attachment) SetUpdatedAt(v time.Time) *Attachment {
 	s.UpdatedAt = &v
+	return s
+}
+
+// Describes the error associated with an attachment request.
+type AttachmentError struct {
+	_ struct{} `type:"structure"`
+
+	// The error code for the attachment request.
+	Code *string `type:"string" enum:"AttachmentErrorCode"`
+
+	// The message associated with the error code.
+	Message *string `type:"string"`
+
+	// The ID of the attachment request.
+	RequestId *string `type:"string"`
+
+	// The ARN of the requested attachment resource.
+	ResourceArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AttachmentError) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AttachmentError) GoString() string {
+	return s.String()
+}
+
+// SetCode sets the Code field's value.
+func (s *AttachmentError) SetCode(v string) *AttachmentError {
+	s.Code = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *AttachmentError) SetMessage(v string) *AttachmentError {
+	s.Message = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *AttachmentError) SetRequestId(v string) *AttachmentError {
+	s.RequestId = &v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *AttachmentError) SetResourceArn(v string) *AttachmentError {
+	s.ResourceArn = &v
 	return s
 }
 
@@ -10357,6 +10425,9 @@ type ConnectPeer struct {
 	// The Connect peer Regions where edges are located.
 	EdgeLocation *string `min:"1" type:"string"`
 
+	// Describes the error associated with the attachment request.
+	LastModificationErrors []*ConnectPeerError `type:"list"`
+
 	// The state of the Connect peer.
 	State *string `type:"string" enum:"ConnectPeerState"`
 
@@ -10419,6 +10490,12 @@ func (s *ConnectPeer) SetCreatedAt(v time.Time) *ConnectPeer {
 // SetEdgeLocation sets the EdgeLocation field's value.
 func (s *ConnectPeer) SetEdgeLocation(v string) *ConnectPeer {
 	s.EdgeLocation = &v
+	return s
+}
+
+// SetLastModificationErrors sets the LastModificationErrors field's value.
+func (s *ConnectPeer) SetLastModificationErrors(v []*ConnectPeerError) *ConnectPeer {
+	s.LastModificationErrors = v
 	return s
 }
 
@@ -10632,6 +10709,65 @@ func (s *ConnectPeerConfiguration) SetPeerAddress(v string) *ConnectPeerConfigur
 // SetProtocol sets the Protocol field's value.
 func (s *ConnectPeerConfiguration) SetProtocol(v string) *ConnectPeerConfiguration {
 	s.Protocol = &v
+	return s
+}
+
+// Describes an error associated with a Connect peer request
+type ConnectPeerError struct {
+	_ struct{} `type:"structure"`
+
+	// The error code for the Connect peer request.
+	Code *string `type:"string" enum:"ConnectPeerErrorCode"`
+
+	// The message associated with the error code.
+	Message *string `type:"string"`
+
+	// The ID of the Connect peer request.
+	RequestId *string `type:"string"`
+
+	// The ARN of the requested Connect peer resource.
+	ResourceArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConnectPeerError) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConnectPeerError) GoString() string {
+	return s.String()
+}
+
+// SetCode sets the Code field's value.
+func (s *ConnectPeerError) SetCode(v string) *ConnectPeerError {
+	s.Code = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *ConnectPeerError) SetMessage(v string) *ConnectPeerError {
+	s.Message = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *ConnectPeerError) SetRequestId(v string) *ConnectPeerError {
+	s.RequestId = &v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *ConnectPeerError) SetResourceArn(v string) *ConnectPeerError {
+	s.ResourceArn = &v
 	return s
 }
 
@@ -20438,6 +20574,9 @@ type Peering struct {
 	// The edge location for the peer.
 	EdgeLocation *string `min:"1" type:"string"`
 
+	// Describes the error associated with the Connect peer request.
+	LastModificationErrors []*PeeringError `type:"list"`
+
 	// The ID of the account owner.
 	OwnerAccountId *string `min:"12" type:"string"`
 
@@ -20499,6 +20638,12 @@ func (s *Peering) SetEdgeLocation(v string) *Peering {
 	return s
 }
 
+// SetLastModificationErrors sets the LastModificationErrors field's value.
+func (s *Peering) SetLastModificationErrors(v []*PeeringError) *Peering {
+	s.LastModificationErrors = v
+	return s
+}
+
 // SetOwnerAccountId sets the OwnerAccountId field's value.
 func (s *Peering) SetOwnerAccountId(v string) *Peering {
 	s.OwnerAccountId = &v
@@ -20532,6 +20677,107 @@ func (s *Peering) SetState(v string) *Peering {
 // SetTags sets the Tags field's value.
 func (s *Peering) SetTags(v []*Tag) *Peering {
 	s.Tags = v
+	return s
+}
+
+// Describes an error associated with a peering request.
+type PeeringError struct {
+	_ struct{} `type:"structure"`
+
+	// The error code for the peering request.
+	Code *string `type:"string" enum:"PeeringErrorCode"`
+
+	// The message associated with the error code.
+	Message *string `type:"string"`
+
+	// Provides additional information about missing permissions for the peering
+	// error.
+	MissingPermissionsContext *PermissionsErrorContext `type:"structure"`
+
+	// The ID of the Peering request.
+	RequestId *string `type:"string"`
+
+	// The ARN of the requested peering resource.
+	ResourceArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PeeringError) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PeeringError) GoString() string {
+	return s.String()
+}
+
+// SetCode sets the Code field's value.
+func (s *PeeringError) SetCode(v string) *PeeringError {
+	s.Code = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *PeeringError) SetMessage(v string) *PeeringError {
+	s.Message = &v
+	return s
+}
+
+// SetMissingPermissionsContext sets the MissingPermissionsContext field's value.
+func (s *PeeringError) SetMissingPermissionsContext(v *PermissionsErrorContext) *PeeringError {
+	s.MissingPermissionsContext = v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *PeeringError) SetRequestId(v string) *PeeringError {
+	s.RequestId = &v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *PeeringError) SetResourceArn(v string) *PeeringError {
+	s.ResourceArn = &v
+	return s
+}
+
+// Describes additional information about missing permissions.
+type PermissionsErrorContext struct {
+	_ struct{} `type:"structure"`
+
+	// The missing permissions.
+	MissingPermission *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PermissionsErrorContext) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PermissionsErrorContext) GoString() string {
+	return s.String()
+}
+
+// SetMissingPermission sets the MissingPermission field's value.
+func (s *PermissionsErrorContext) SetMissingPermission(v string) *PermissionsErrorContext {
+	s.MissingPermission = &v
 	return s
 }
 
@@ -24001,6 +24247,46 @@ func (s *WhenSentTo) SetWhenSentToSegmentsList(v []*string) *WhenSentTo {
 }
 
 const (
+	// AttachmentErrorCodeVpcNotFound is a AttachmentErrorCode enum value
+	AttachmentErrorCodeVpcNotFound = "VPC_NOT_FOUND"
+
+	// AttachmentErrorCodeSubnetNotFound is a AttachmentErrorCode enum value
+	AttachmentErrorCodeSubnetNotFound = "SUBNET_NOT_FOUND"
+
+	// AttachmentErrorCodeSubnetDuplicatedInAvailabilityZone is a AttachmentErrorCode enum value
+	AttachmentErrorCodeSubnetDuplicatedInAvailabilityZone = "SUBNET_DUPLICATED_IN_AVAILABILITY_ZONE"
+
+	// AttachmentErrorCodeSubnetNoFreeAddresses is a AttachmentErrorCode enum value
+	AttachmentErrorCodeSubnetNoFreeAddresses = "SUBNET_NO_FREE_ADDRESSES"
+
+	// AttachmentErrorCodeSubnetUnsupportedAvailabilityZone is a AttachmentErrorCode enum value
+	AttachmentErrorCodeSubnetUnsupportedAvailabilityZone = "SUBNET_UNSUPPORTED_AVAILABILITY_ZONE"
+
+	// AttachmentErrorCodeSubnetNoIpv6Cidrs is a AttachmentErrorCode enum value
+	AttachmentErrorCodeSubnetNoIpv6Cidrs = "SUBNET_NO_IPV6_CIDRS"
+
+	// AttachmentErrorCodeVpnConnectionNotFound is a AttachmentErrorCode enum value
+	AttachmentErrorCodeVpnConnectionNotFound = "VPN_CONNECTION_NOT_FOUND"
+
+	// AttachmentErrorCodeMaximumNoEncapLimitExceeded is a AttachmentErrorCode enum value
+	AttachmentErrorCodeMaximumNoEncapLimitExceeded = "MAXIMUM_NO_ENCAP_LIMIT_EXCEEDED"
+)
+
+// AttachmentErrorCode_Values returns all elements of the AttachmentErrorCode enum
+func AttachmentErrorCode_Values() []string {
+	return []string{
+		AttachmentErrorCodeVpcNotFound,
+		AttachmentErrorCodeSubnetNotFound,
+		AttachmentErrorCodeSubnetDuplicatedInAvailabilityZone,
+		AttachmentErrorCodeSubnetNoFreeAddresses,
+		AttachmentErrorCodeSubnetUnsupportedAvailabilityZone,
+		AttachmentErrorCodeSubnetNoIpv6Cidrs,
+		AttachmentErrorCodeVpnConnectionNotFound,
+		AttachmentErrorCodeMaximumNoEncapLimitExceeded,
+	}
+}
+
+const (
 	// AttachmentStateRejected is a AttachmentState enum value
 	AttachmentStateRejected = "REJECTED"
 
@@ -24213,6 +24499,38 @@ func ConnectPeerAssociationState_Values() []string {
 		ConnectPeerAssociationStateAvailable,
 		ConnectPeerAssociationStateDeleting,
 		ConnectPeerAssociationStateDeleted,
+	}
+}
+
+const (
+	// ConnectPeerErrorCodeEdgeLocationNoFreeIps is a ConnectPeerErrorCode enum value
+	ConnectPeerErrorCodeEdgeLocationNoFreeIps = "EDGE_LOCATION_NO_FREE_IPS"
+
+	// ConnectPeerErrorCodeEdgeLocationPeerDuplicate is a ConnectPeerErrorCode enum value
+	ConnectPeerErrorCodeEdgeLocationPeerDuplicate = "EDGE_LOCATION_PEER_DUPLICATE"
+
+	// ConnectPeerErrorCodeSubnetNotFound is a ConnectPeerErrorCode enum value
+	ConnectPeerErrorCodeSubnetNotFound = "SUBNET_NOT_FOUND"
+
+	// ConnectPeerErrorCodeIpOutsideSubnetCidrRange is a ConnectPeerErrorCode enum value
+	ConnectPeerErrorCodeIpOutsideSubnetCidrRange = "IP_OUTSIDE_SUBNET_CIDR_RANGE"
+
+	// ConnectPeerErrorCodeInvalidInsideCidrBlock is a ConnectPeerErrorCode enum value
+	ConnectPeerErrorCodeInvalidInsideCidrBlock = "INVALID_INSIDE_CIDR_BLOCK"
+
+	// ConnectPeerErrorCodeNoAssociatedCidrBlock is a ConnectPeerErrorCode enum value
+	ConnectPeerErrorCodeNoAssociatedCidrBlock = "NO_ASSOCIATED_CIDR_BLOCK"
+)
+
+// ConnectPeerErrorCode_Values returns all elements of the ConnectPeerErrorCode enum
+func ConnectPeerErrorCode_Values() []string {
+	return []string{
+		ConnectPeerErrorCodeEdgeLocationNoFreeIps,
+		ConnectPeerErrorCodeEdgeLocationPeerDuplicate,
+		ConnectPeerErrorCodeSubnetNotFound,
+		ConnectPeerErrorCodeIpOutsideSubnetCidrRange,
+		ConnectPeerErrorCodeInvalidInsideCidrBlock,
+		ConnectPeerErrorCodeNoAssociatedCidrBlock,
 	}
 }
 
@@ -24453,6 +24771,38 @@ func LinkState_Values() []string {
 		LinkStateAvailable,
 		LinkStateDeleting,
 		LinkStateUpdating,
+	}
+}
+
+const (
+	// PeeringErrorCodeTransitGatewayNotFound is a PeeringErrorCode enum value
+	PeeringErrorCodeTransitGatewayNotFound = "TRANSIT_GATEWAY_NOT_FOUND"
+
+	// PeeringErrorCodeTransitGatewayPeersLimitExceeded is a PeeringErrorCode enum value
+	PeeringErrorCodeTransitGatewayPeersLimitExceeded = "TRANSIT_GATEWAY_PEERS_LIMIT_EXCEEDED"
+
+	// PeeringErrorCodeMissingPermissions is a PeeringErrorCode enum value
+	PeeringErrorCodeMissingPermissions = "MISSING_PERMISSIONS"
+
+	// PeeringErrorCodeInternalError is a PeeringErrorCode enum value
+	PeeringErrorCodeInternalError = "INTERNAL_ERROR"
+
+	// PeeringErrorCodeEdgeLocationPeerDuplicate is a PeeringErrorCode enum value
+	PeeringErrorCodeEdgeLocationPeerDuplicate = "EDGE_LOCATION_PEER_DUPLICATE"
+
+	// PeeringErrorCodeInvalidTransitGatewayState is a PeeringErrorCode enum value
+	PeeringErrorCodeInvalidTransitGatewayState = "INVALID_TRANSIT_GATEWAY_STATE"
+)
+
+// PeeringErrorCode_Values returns all elements of the PeeringErrorCode enum
+func PeeringErrorCode_Values() []string {
+	return []string{
+		PeeringErrorCodeTransitGatewayNotFound,
+		PeeringErrorCodeTransitGatewayPeersLimitExceeded,
+		PeeringErrorCodeMissingPermissions,
+		PeeringErrorCodeInternalError,
+		PeeringErrorCodeEdgeLocationPeerDuplicate,
+		PeeringErrorCodeInvalidTransitGatewayState,
 	}
 }
 

@@ -1601,8 +1601,37 @@
         "ProposedSegmentChange":{"shape":"ProposedSegmentChange"},
         "ProposedNetworkFunctionGroupChange":{"shape":"ProposedNetworkFunctionGroupChange"},
         "CreatedAt":{"shape":"DateTime"},
-        "UpdatedAt":{"shape":"DateTime"}
+        "UpdatedAt":{"shape":"DateTime"},
+        "LastModificationErrors":{"shape":"AttachmentErrorList"}
       }
+    },
+    "AttachmentError":{
+      "type":"structure",
+      "members":{
+        "Code":{"shape":"AttachmentErrorCode"},
+        "Message":{"shape":"ServerSideString"},
+        "ResourceArn":{"shape":"ResourceArn"},
+        "RequestId":{"shape":"ServerSideString"}
+      }
+    },
+    "AttachmentErrorCode":{
+      "type":"string",
+      "enum":[
+        "VPC_NOT_FOUND",
+        "SUBNET_NOT_FOUND",
+        "SUBNET_DUPLICATED_IN_AVAILABILITY_ZONE",
+        "SUBNET_NO_FREE_ADDRESSES",
+        "SUBNET_UNSUPPORTED_AVAILABILITY_ZONE",
+        "SUBNET_NO_IPV6_CIDRS",
+        "VPN_CONNECTION_NOT_FOUND",
+        "MAXIMUM_NO_ENCAP_LIMIT_EXCEEDED"
+      ]
+    },
+    "AttachmentErrorList":{
+      "type":"list",
+      "member":{"shape":"AttachmentError"},
+      "max":20,
+      "min":0
     },
     "AttachmentId":{
       "type":"string",
@@ -1740,7 +1769,8 @@
         "CreatedAt":{"shape":"DateTime"},
         "Configuration":{"shape":"ConnectPeerConfiguration"},
         "Tags":{"shape":"TagList"},
-        "SubnetArn":{"shape":"SubnetArn"}
+        "SubnetArn":{"shape":"SubnetArn"},
+        "LastModificationErrors":{"shape":"ConnectPeerErrorList"}
       }
     },
     "ConnectPeerAssociation":{
@@ -1788,6 +1818,32 @@
         "Protocol":{"shape":"TunnelProtocol"},
         "BgpConfigurations":{"shape":"ConnectPeerBgpConfigurationList"}
       }
+    },
+    "ConnectPeerError":{
+      "type":"structure",
+      "members":{
+        "Code":{"shape":"ConnectPeerErrorCode"},
+        "Message":{"shape":"ServerSideString"},
+        "ResourceArn":{"shape":"ResourceArn"},
+        "RequestId":{"shape":"ServerSideString"}
+      }
+    },
+    "ConnectPeerErrorCode":{
+      "type":"string",
+      "enum":[
+        "EDGE_LOCATION_NO_FREE_IPS",
+        "EDGE_LOCATION_PEER_DUPLICATE",
+        "SUBNET_NOT_FOUND",
+        "IP_OUTSIDE_SUBNET_CIDR_RANGE",
+        "INVALID_INSIDE_CIDR_BLOCK",
+        "NO_ASSOCIATED_CIDR_BLOCK"
+      ]
+    },
+    "ConnectPeerErrorList":{
+      "type":"list",
+      "member":{"shape":"ConnectPeerError"},
+      "max":20,
+      "min":0
     },
     "ConnectPeerId":{
       "type":"string",
@@ -4285,8 +4341,36 @@
         "EdgeLocation":{"shape":"ExternalRegionCode"},
         "ResourceArn":{"shape":"ResourceArn"},
         "Tags":{"shape":"TagList"},
-        "CreatedAt":{"shape":"DateTime"}
+        "CreatedAt":{"shape":"DateTime"},
+        "LastModificationErrors":{"shape":"PeeringErrorList"}
       }
+    },
+    "PeeringError":{
+      "type":"structure",
+      "members":{
+        "Code":{"shape":"PeeringErrorCode"},
+        "Message":{"shape":"ServerSideString"},
+        "ResourceArn":{"shape":"ResourceArn"},
+        "RequestId":{"shape":"ServerSideString"},
+        "MissingPermissionsContext":{"shape":"PermissionsErrorContext"}
+      }
+    },
+    "PeeringErrorCode":{
+      "type":"string",
+      "enum":[
+        "TRANSIT_GATEWAY_NOT_FOUND",
+        "TRANSIT_GATEWAY_PEERS_LIMIT_EXCEEDED",
+        "MISSING_PERMISSIONS",
+        "INTERNAL_ERROR",
+        "EDGE_LOCATION_PEER_DUPLICATE",
+        "INVALID_TRANSIT_GATEWAY_STATE"
+      ]
+    },
+    "PeeringErrorList":{
+      "type":"list",
+      "member":{"shape":"PeeringError"},
+      "max":20,
+      "min":0
     },
     "PeeringId":{
       "type":"string",
@@ -4310,6 +4394,12 @@
     "PeeringType":{
       "type":"string",
       "enum":["TRANSIT_GATEWAY"]
+    },
+    "PermissionsErrorContext":{
+      "type":"structure",
+      "members":{
+        "MissingPermission":{"shape":"ServerSideString"}
+      }
     },
     "ProposedNetworkFunctionGroupChange":{
       "type":"structure",
