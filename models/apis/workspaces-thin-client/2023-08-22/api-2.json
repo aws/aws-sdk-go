@@ -3,8 +3,8 @@
   "metadata":{
     "apiVersion":"2023-08-22",
     "endpointPrefix":"thinclient",
-    "jsonVersion":"1.1",
     "protocol":"rest-json",
+    "protocols":["rest-json"],
     "serviceFullName":"Amazon WorkSpaces Thin Client",
     "serviceId":"WorkSpaces Thin Client",
     "signatureVersion":"v4",
@@ -375,7 +375,8 @@
           "shape":"ClientToken",
           "idempotencyToken":true
         },
-        "tags":{"shape":"TagsMap"}
+        "tags":{"shape":"TagsMap"},
+        "deviceCreationTags":{"shape":"DeviceCreationTagsMap"}
       }
     },
     "CreateEnvironmentResponse":{
@@ -508,6 +509,26 @@
         "tags":{"shape":"TagsMap"}
       }
     },
+    "DeviceCreationTagKey":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"(?!aws:)[A-Za-z0-9 _=@:.+-/]+"
+    },
+    "DeviceCreationTagValue":{
+      "type":"string",
+      "max":256,
+      "min":0,
+      "pattern":"[A-Za-z0-9 _=@:.+-/]+"
+    },
+    "DeviceCreationTagsMap":{
+      "type":"map",
+      "key":{"shape":"DeviceCreationTagKey"},
+      "value":{"shape":"DeviceCreationTagValue"},
+      "max":50,
+      "min":0,
+      "sensitive":true
+    },
     "DeviceId":{
       "type":"string",
       "pattern":"[a-zA-Z0-9]{24}"
@@ -579,7 +600,8 @@
         "updatedAt":{"shape":"Timestamp"},
         "arn":{"shape":"Arn"},
         "kmsKeyArn":{"shape":"KmsKeyArn"},
-        "tags":{"shape":"TagsMap"}
+        "tags":{"shape":"TagsMap"},
+        "deviceCreationTags":{"shape":"DeviceCreationTagsMap"}
       }
     },
     "EnvironmentId":{
@@ -1054,7 +1076,8 @@
         "softwareSetUpdateSchedule":{"shape":"SoftwareSetUpdateSchedule"},
         "maintenanceWindow":{"shape":"MaintenanceWindow"},
         "softwareSetUpdateMode":{"shape":"SoftwareSetUpdateMode"},
-        "desiredSoftwareSetId":{"shape":"SoftwareSetIdOrEmptyString"}
+        "desiredSoftwareSetId":{"shape":"SoftwareSetIdOrEmptyString"},
+        "deviceCreationTags":{"shape":"DeviceCreationTagsMap"}
       }
     },
     "UpdateEnvironmentResponse":{
