@@ -132,6 +132,13 @@ type ControlTowerAPI interface {
 	ListEnabledControlsPages(*controltower.ListEnabledControlsInput, func(*controltower.ListEnabledControlsOutput, bool) bool) error
 	ListEnabledControlsPagesWithContext(aws.Context, *controltower.ListEnabledControlsInput, func(*controltower.ListEnabledControlsOutput, bool) bool, ...request.Option) error
 
+	ListLandingZoneOperations(*controltower.ListLandingZoneOperationsInput) (*controltower.ListLandingZoneOperationsOutput, error)
+	ListLandingZoneOperationsWithContext(aws.Context, *controltower.ListLandingZoneOperationsInput, ...request.Option) (*controltower.ListLandingZoneOperationsOutput, error)
+	ListLandingZoneOperationsRequest(*controltower.ListLandingZoneOperationsInput) (*request.Request, *controltower.ListLandingZoneOperationsOutput)
+
+	ListLandingZoneOperationsPages(*controltower.ListLandingZoneOperationsInput, func(*controltower.ListLandingZoneOperationsOutput, bool) bool) error
+	ListLandingZoneOperationsPagesWithContext(aws.Context, *controltower.ListLandingZoneOperationsInput, func(*controltower.ListLandingZoneOperationsOutput, bool) bool, ...request.Option) error
+
 	ListLandingZones(*controltower.ListLandingZonesInput) (*controltower.ListLandingZonesOutput, error)
 	ListLandingZonesWithContext(aws.Context, *controltower.ListLandingZonesInput, ...request.Option) (*controltower.ListLandingZonesOutput, error)
 	ListLandingZonesRequest(*controltower.ListLandingZonesInput) (*request.Request, *controltower.ListLandingZonesOutput)

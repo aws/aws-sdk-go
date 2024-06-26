@@ -5,6 +5,7 @@
     "endpointPrefix":"kinesisanalytics",
     "jsonVersion":"1.1",
     "protocol":"json",
+    "protocols":["json"],
     "serviceAbbreviation":"Kinesis Analytics V2",
     "serviceFullName":"Amazon Kinesis Analytics",
     "serviceId":"Kinesis Analytics V2",
@@ -292,6 +293,20 @@
         {"shape":"InvalidRequestException"}
       ]
     },
+    "DescribeApplicationOperation":{
+      "name":"DescribeApplicationOperation",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeApplicationOperationRequest"},
+      "output":{"shape":"DescribeApplicationOperationResponse"},
+      "errors":[
+        {"shape":"InvalidArgumentException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"UnsupportedOperationException"}
+      ]
+    },
     "DescribeApplicationSnapshot":{
       "name":"DescribeApplicationSnapshot",
       "http":{
@@ -334,6 +349,20 @@
         {"shape":"ResourceProvisionedThroughputExceededException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"InvalidRequestException"},
+        {"shape":"UnsupportedOperationException"}
+      ]
+    },
+    "ListApplicationOperations":{
+      "name":"ListApplicationOperations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListApplicationOperationsRequest"},
+      "output":{"shape":"ListApplicationOperationsResponse"},
+      "errors":[
+        {"shape":"InvalidArgumentException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"UnsupportedOperationException"}
       ]
     },
@@ -527,7 +556,8 @@
       "members":{
         "ApplicationARN":{"shape":"ResourceARN"},
         "ApplicationVersionId":{"shape":"ApplicationVersionId"},
-        "CloudWatchLoggingOptionDescriptions":{"shape":"CloudWatchLoggingOptionDescriptions"}
+        "CloudWatchLoggingOptionDescriptions":{"shape":"CloudWatchLoggingOptionDescriptions"},
+        "OperationId":{"shape":"OperationId"}
       }
     },
     "AddApplicationInputProcessingConfigurationRequest":{
@@ -635,7 +665,8 @@
       "members":{
         "ApplicationARN":{"shape":"ResourceARN"},
         "ApplicationVersionId":{"shape":"ApplicationVersionId"},
-        "VpcConfigurationDescription":{"shape":"VpcConfigurationDescription"}
+        "VpcConfigurationDescription":{"shape":"VpcConfigurationDescription"},
+        "OperationId":{"shape":"OperationId"}
       }
     },
     "ApplicationCodeConfiguration":{
@@ -669,6 +700,7 @@
         "EnvironmentProperties":{"shape":"EnvironmentProperties"},
         "ApplicationCodeConfiguration":{"shape":"ApplicationCodeConfiguration"},
         "ApplicationSnapshotConfiguration":{"shape":"ApplicationSnapshotConfiguration"},
+        "ApplicationSystemRollbackConfiguration":{"shape":"ApplicationSystemRollbackConfiguration"},
         "VpcConfigurations":{"shape":"VpcConfigurations"},
         "ZeppelinApplicationConfiguration":{"shape":"ZeppelinApplicationConfiguration"}
       }
@@ -682,6 +714,7 @@
         "FlinkApplicationConfigurationDescription":{"shape":"FlinkApplicationConfigurationDescription"},
         "EnvironmentPropertyDescriptions":{"shape":"EnvironmentPropertyDescriptions"},
         "ApplicationSnapshotConfigurationDescription":{"shape":"ApplicationSnapshotConfigurationDescription"},
+        "ApplicationSystemRollbackConfigurationDescription":{"shape":"ApplicationSystemRollbackConfigurationDescription"},
         "VpcConfigurationDescriptions":{"shape":"VpcConfigurationDescriptions"},
         "ZeppelinApplicationConfigurationDescription":{"shape":"ZeppelinApplicationConfigurationDescription"}
       }
@@ -694,6 +727,7 @@
         "FlinkApplicationConfigurationUpdate":{"shape":"FlinkApplicationConfigurationUpdate"},
         "EnvironmentPropertyUpdates":{"shape":"EnvironmentPropertyUpdates"},
         "ApplicationSnapshotConfigurationUpdate":{"shape":"ApplicationSnapshotConfigurationUpdate"},
+        "ApplicationSystemRollbackConfigurationUpdate":{"shape":"ApplicationSystemRollbackConfigurationUpdate"},
         "VpcConfigurationUpdates":{"shape":"VpcConfigurationUpdates"},
         "ZeppelinApplicationConfigurationUpdate":{"shape":"ZeppelinApplicationConfigurationUpdate"}
       }
@@ -727,6 +761,7 @@
         "ApplicationMaintenanceConfigurationDescription":{"shape":"ApplicationMaintenanceConfigurationDescription"},
         "ApplicationVersionUpdatedFrom":{"shape":"ApplicationVersionId"},
         "ApplicationVersionRolledBackFrom":{"shape":"ApplicationVersionId"},
+        "ApplicationVersionCreateTimestamp":{"shape":"Timestamp"},
         "ConditionalToken":{"shape":"ConditionalToken"},
         "ApplicationVersionRolledBackTo":{"shape":"ApplicationVersionId"},
         "ApplicationMode":{"shape":"ApplicationMode"}
@@ -774,6 +809,37 @@
       "max":128,
       "min":1,
       "pattern":"[a-zA-Z0-9_.-]+"
+    },
+    "ApplicationOperationInfo":{
+      "type":"structure",
+      "members":{
+        "Operation":{"shape":"Operation"},
+        "OperationId":{"shape":"OperationId"},
+        "StartTime":{"shape":"Timestamp"},
+        "EndTime":{"shape":"Timestamp"},
+        "OperationStatus":{"shape":"OperationStatus"}
+      }
+    },
+    "ApplicationOperationInfoDetails":{
+      "type":"structure",
+      "required":[
+        "Operation",
+        "StartTime",
+        "EndTime",
+        "OperationStatus"
+      ],
+      "members":{
+        "Operation":{"shape":"Operation"},
+        "StartTime":{"shape":"Timestamp"},
+        "EndTime":{"shape":"Timestamp"},
+        "OperationStatus":{"shape":"OperationStatus"},
+        "ApplicationVersionChangeDetails":{"shape":"ApplicationVersionChangeDetails"},
+        "OperationFailureDetails":{"shape":"OperationFailureDetails"}
+      }
+    },
+    "ApplicationOperationInfoList":{
+      "type":"list",
+      "member":{"shape":"ApplicationOperationInfo"}
     },
     "ApplicationRestoreConfiguration":{
       "type":"structure",
@@ -848,6 +914,38 @@
         "ApplicationVersionId":{"shape":"ApplicationVersionId"},
         "RuntimeEnvironment":{"shape":"RuntimeEnvironment"},
         "ApplicationMode":{"shape":"ApplicationMode"}
+      }
+    },
+    "ApplicationSystemRollbackConfiguration":{
+      "type":"structure",
+      "required":["RollbackEnabled"],
+      "members":{
+        "RollbackEnabled":{"shape":"BooleanObject"}
+      }
+    },
+    "ApplicationSystemRollbackConfigurationDescription":{
+      "type":"structure",
+      "required":["RollbackEnabled"],
+      "members":{
+        "RollbackEnabled":{"shape":"BooleanObject"}
+      }
+    },
+    "ApplicationSystemRollbackConfigurationUpdate":{
+      "type":"structure",
+      "required":["RollbackEnabledUpdate"],
+      "members":{
+        "RollbackEnabledUpdate":{"shape":"BooleanObject"}
+      }
+    },
+    "ApplicationVersionChangeDetails":{
+      "type":"structure",
+      "required":[
+        "ApplicationVersionUpdatedFrom",
+        "ApplicationVersionUpdatedTo"
+      ],
+      "members":{
+        "ApplicationVersionUpdatedFrom":{"shape":"ApplicationVersionId"},
+        "ApplicationVersionUpdatedTo":{"shape":"ApplicationVersionId"}
       }
     },
     "ApplicationVersionId":{
@@ -1174,7 +1272,8 @@
       "members":{
         "ApplicationARN":{"shape":"ResourceARN"},
         "ApplicationVersionId":{"shape":"ApplicationVersionId"},
-        "CloudWatchLoggingOptionDescriptions":{"shape":"CloudWatchLoggingOptionDescriptions"}
+        "CloudWatchLoggingOptionDescriptions":{"shape":"CloudWatchLoggingOptionDescriptions"},
+        "OperationId":{"shape":"OperationId"}
       }
     },
     "DeleteApplicationInputProcessingConfigurationRequest":{
@@ -1288,7 +1387,8 @@
       "type":"structure",
       "members":{
         "ApplicationARN":{"shape":"ResourceARN"},
-        "ApplicationVersionId":{"shape":"ApplicationVersionId"}
+        "ApplicationVersionId":{"shape":"ApplicationVersionId"},
+        "OperationId":{"shape":"OperationId"}
       }
     },
     "DeployAsApplicationConfiguration":{
@@ -1309,6 +1409,23 @@
       "type":"structure",
       "members":{
         "S3ContentLocationUpdate":{"shape":"S3ContentBaseLocationUpdate"}
+      }
+    },
+    "DescribeApplicationOperationRequest":{
+      "type":"structure",
+      "required":[
+        "ApplicationName",
+        "OperationId"
+      ],
+      "members":{
+        "ApplicationName":{"shape":"ApplicationName"},
+        "OperationId":{"shape":"OperationId"}
+      }
+    },
+    "DescribeApplicationOperationResponse":{
+      "type":"structure",
+      "members":{
+        "ApplicationOperationInfoDetails":{"shape":"ApplicationOperationInfoDetails"}
       }
     },
     "DescribeApplicationRequest":{
@@ -1408,7 +1525,18 @@
         "PropertyGroups":{"shape":"PropertyGroups"}
       }
     },
+    "ErrorInfo":{
+      "type":"structure",
+      "members":{
+        "ErrorString":{"shape":"ErrorString"}
+      }
+    },
     "ErrorMessage":{"type":"string"},
+    "ErrorString":{
+      "type":"string",
+      "max":512,
+      "min":1
+    },
     "FileKey":{
       "type":"string",
       "max":1024,
@@ -1775,6 +1903,29 @@
       },
       "exception":true
     },
+    "ListApplicationOperationsInputLimit":{
+      "type":"integer",
+      "max":50,
+      "min":1
+    },
+    "ListApplicationOperationsRequest":{
+      "type":"structure",
+      "required":["ApplicationName"],
+      "members":{
+        "ApplicationName":{"shape":"ApplicationName"},
+        "Limit":{"shape":"ListApplicationOperationsInputLimit"},
+        "NextToken":{"shape":"NextToken"},
+        "Operation":{"shape":"Operation"},
+        "OperationStatus":{"shape":"OperationStatus"}
+      }
+    },
+    "ListApplicationOperationsResponse":{
+      "type":"structure",
+      "members":{
+        "ApplicationOperationInfoList":{"shape":"ApplicationOperationInfoList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
     "ListApplicationSnapshotsRequest":{
       "type":"structure",
       "required":["ApplicationName"],
@@ -1950,6 +2101,32 @@
       "type":"string",
       "max":1024,
       "min":0
+    },
+    "Operation":{
+      "type":"string",
+      "max":64,
+      "min":1
+    },
+    "OperationFailureDetails":{
+      "type":"structure",
+      "members":{
+        "RollbackOperationId":{"shape":"OperationId"},
+        "ErrorInfo":{"shape":"ErrorInfo"}
+      }
+    },
+    "OperationId":{
+      "type":"string",
+      "max":64,
+      "min":1
+    },
+    "OperationStatus":{
+      "type":"string",
+      "enum":[
+        "IN_PROGRESS",
+        "CANCELLED",
+        "SUCCESSFUL",
+        "FAILED"
+      ]
     },
     "Output":{
       "type":"structure",
@@ -2256,7 +2433,8 @@
       "type":"structure",
       "required":["ApplicationDetail"],
       "members":{
-        "ApplicationDetail":{"shape":"ApplicationDetail"}
+        "ApplicationDetail":{"shape":"ApplicationDetail"},
+        "OperationId":{"shape":"OperationId"}
       }
     },
     "RunConfiguration":{
@@ -2504,6 +2682,7 @@
     "StartApplicationResponse":{
       "type":"structure",
       "members":{
+        "OperationId":{"shape":"OperationId"}
       }
     },
     "StopApplicationRequest":{
@@ -2517,6 +2696,7 @@
     "StopApplicationResponse":{
       "type":"structure",
       "members":{
+        "OperationId":{"shape":"OperationId"}
       }
     },
     "SubnetId":{"type":"string"},
@@ -2653,7 +2833,8 @@
       "type":"structure",
       "required":["ApplicationDetail"],
       "members":{
-        "ApplicationDetail":{"shape":"ApplicationDetail"}
+        "ApplicationDetail":{"shape":"ApplicationDetail"},
+        "OperationId":{"shape":"OperationId"}
       }
     },
     "UrlType":{

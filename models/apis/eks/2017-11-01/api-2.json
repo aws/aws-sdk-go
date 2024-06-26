@@ -1502,7 +1502,8 @@
         "tags":{"shape":"TagMap"},
         "encryptionConfig":{"shape":"EncryptionConfigList"},
         "outpostConfig":{"shape":"OutpostConfigRequest"},
-        "accessConfig":{"shape":"CreateAccessConfigRequest"}
+        "accessConfig":{"shape":"CreateAccessConfigRequest"},
+        "bootstrapSelfManagedAddons":{"shape":"BoxedBoolean"}
       }
     },
     "CreateClusterResponse":{

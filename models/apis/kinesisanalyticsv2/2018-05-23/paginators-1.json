@@ -1,4 +1,28 @@
 {
   "pagination": {
+    "ListApplicationOperations": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "Limit",
+      "result_key": "ApplicationOperationInfoList"
+    },
+    "ListApplicationSnapshots": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "Limit",
+      "result_key": "SnapshotSummaries"
+    },
+    "ListApplicationVersions": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "Limit",
+      "result_key": "ApplicationVersionSummaries"
+    },
+    "ListApplications": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "Limit",
+      "result_key": "ApplicationSummaries"
+    }
   }
 }

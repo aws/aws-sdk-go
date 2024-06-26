@@ -80,6 +80,10 @@ type IVSRealTimeAPI interface {
 	DeleteEncoderConfigurationWithContext(aws.Context, *ivsrealtime.DeleteEncoderConfigurationInput, ...request.Option) (*ivsrealtime.DeleteEncoderConfigurationOutput, error)
 	DeleteEncoderConfigurationRequest(*ivsrealtime.DeleteEncoderConfigurationInput) (*request.Request, *ivsrealtime.DeleteEncoderConfigurationOutput)
 
+	DeletePublicKey(*ivsrealtime.DeletePublicKeyInput) (*ivsrealtime.DeletePublicKeyOutput, error)
+	DeletePublicKeyWithContext(aws.Context, *ivsrealtime.DeletePublicKeyInput, ...request.Option) (*ivsrealtime.DeletePublicKeyOutput, error)
+	DeletePublicKeyRequest(*ivsrealtime.DeletePublicKeyInput) (*request.Request, *ivsrealtime.DeletePublicKeyOutput)
+
 	DeleteStage(*ivsrealtime.DeleteStageInput) (*ivsrealtime.DeleteStageOutput, error)
 	DeleteStageWithContext(aws.Context, *ivsrealtime.DeleteStageInput, ...request.Option) (*ivsrealtime.DeleteStageOutput, error)
 	DeleteStageRequest(*ivsrealtime.DeleteStageInput) (*request.Request, *ivsrealtime.DeleteStageOutput)
@@ -104,6 +108,10 @@ type IVSRealTimeAPI interface {
 	GetParticipantWithContext(aws.Context, *ivsrealtime.GetParticipantInput, ...request.Option) (*ivsrealtime.GetParticipantOutput, error)
 	GetParticipantRequest(*ivsrealtime.GetParticipantInput) (*request.Request, *ivsrealtime.GetParticipantOutput)
 
+	GetPublicKey(*ivsrealtime.GetPublicKeyInput) (*ivsrealtime.GetPublicKeyOutput, error)
+	GetPublicKeyWithContext(aws.Context, *ivsrealtime.GetPublicKeyInput, ...request.Option) (*ivsrealtime.GetPublicKeyOutput, error)
+	GetPublicKeyRequest(*ivsrealtime.GetPublicKeyInput) (*request.Request, *ivsrealtime.GetPublicKeyOutput)
+
 	GetStage(*ivsrealtime.GetStageInput) (*ivsrealtime.GetStageOutput, error)
 	GetStageWithContext(aws.Context, *ivsrealtime.GetStageInput, ...request.Option) (*ivsrealtime.GetStageOutput, error)
 	GetStageRequest(*ivsrealtime.GetStageInput) (*request.Request, *ivsrealtime.GetStageOutput)
@@ -115,6 +123,10 @@ type IVSRealTimeAPI interface {
 	GetStorageConfiguration(*ivsrealtime.GetStorageConfigurationInput) (*ivsrealtime.GetStorageConfigurationOutput, error)
 	GetStorageConfigurationWithContext(aws.Context, *ivsrealtime.GetStorageConfigurationInput, ...request.Option) (*ivsrealtime.GetStorageConfigurationOutput, error)
 	GetStorageConfigurationRequest(*ivsrealtime.GetStorageConfigurationInput) (*request.Request, *ivsrealtime.GetStorageConfigurationOutput)
+
+	ImportPublicKey(*ivsrealtime.ImportPublicKeyInput) (*ivsrealtime.ImportPublicKeyOutput, error)
+	ImportPublicKeyWithContext(aws.Context, *ivsrealtime.ImportPublicKeyInput, ...request.Option) (*ivsrealtime.ImportPublicKeyOutput, error)
+	ImportPublicKeyRequest(*ivsrealtime.ImportPublicKeyInput) (*request.Request, *ivsrealtime.ImportPublicKeyOutput)
 
 	ListCompositions(*ivsrealtime.ListCompositionsInput) (*ivsrealtime.ListCompositionsOutput, error)
 	ListCompositionsWithContext(aws.Context, *ivsrealtime.ListCompositionsInput, ...request.Option) (*ivsrealtime.ListCompositionsOutput, error)
@@ -143,6 +155,13 @@ type IVSRealTimeAPI interface {
 
 	ListParticipantsPages(*ivsrealtime.ListParticipantsInput, func(*ivsrealtime.ListParticipantsOutput, bool) bool) error
 	ListParticipantsPagesWithContext(aws.Context, *ivsrealtime.ListParticipantsInput, func(*ivsrealtime.ListParticipantsOutput, bool) bool, ...request.Option) error
+
+	ListPublicKeys(*ivsrealtime.ListPublicKeysInput) (*ivsrealtime.ListPublicKeysOutput, error)
+	ListPublicKeysWithContext(aws.Context, *ivsrealtime.ListPublicKeysInput, ...request.Option) (*ivsrealtime.ListPublicKeysOutput, error)
+	ListPublicKeysRequest(*ivsrealtime.ListPublicKeysInput) (*request.Request, *ivsrealtime.ListPublicKeysOutput)
+
+	ListPublicKeysPages(*ivsrealtime.ListPublicKeysInput, func(*ivsrealtime.ListPublicKeysOutput, bool) bool) error
+	ListPublicKeysPagesWithContext(aws.Context, *ivsrealtime.ListPublicKeysInput, func(*ivsrealtime.ListPublicKeysOutput, bool) bool, ...request.Option) error
 
 	ListStageSessions(*ivsrealtime.ListStageSessionsInput) (*ivsrealtime.ListStageSessionsOutput, error)
 	ListStageSessionsWithContext(aws.Context, *ivsrealtime.ListStageSessionsInput, ...request.Option) (*ivsrealtime.ListStageSessionsOutput, error)

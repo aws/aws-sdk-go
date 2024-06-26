@@ -460,6 +460,95 @@ func (c *IVSRealTime) DeleteEncoderConfigurationWithContext(ctx aws.Context, inp
 	return out, req.Send()
 }
 
+const opDeletePublicKey = "DeletePublicKey"
+
+// DeletePublicKeyRequest generates a "aws/request.Request" representing the
+// client's request for the DeletePublicKey operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeletePublicKey for more information on using the DeletePublicKey
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeletePublicKeyRequest method.
+//	req, resp := client.DeletePublicKeyRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-realtime-2020-07-14/DeletePublicKey
+func (c *IVSRealTime) DeletePublicKeyRequest(input *DeletePublicKeyInput) (req *request.Request, output *DeletePublicKeyOutput) {
+	op := &request.Operation{
+		Name:       opDeletePublicKey,
+		HTTPMethod: "POST",
+		HTTPPath:   "/DeletePublicKey",
+	}
+
+	if input == nil {
+		input = &DeletePublicKeyInput{}
+	}
+
+	output = &DeletePublicKeyOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeletePublicKey API operation for Amazon Interactive Video Service RealTime.
+//
+// Deletes the specified public key used to sign stage participant tokens. This
+// invalidates future participant tokens generated using the key pair’s private
+// key.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Interactive Video Service RealTime's
+// API operation DeletePublicKey for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//
+//   - ValidationException
+//
+//   - AccessDeniedException
+//
+//   - ConflictException
+//
+//   - PendingVerification
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-realtime-2020-07-14/DeletePublicKey
+func (c *IVSRealTime) DeletePublicKey(input *DeletePublicKeyInput) (*DeletePublicKeyOutput, error) {
+	req, out := c.DeletePublicKeyRequest(input)
+	return out, req.Send()
+}
+
+// DeletePublicKeyWithContext is the same as DeletePublicKey with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeletePublicKey for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IVSRealTime) DeletePublicKeyWithContext(ctx aws.Context, input *DeletePublicKeyInput, opts ...request.Option) (*DeletePublicKeyOutput, error) {
+	req, out := c.DeletePublicKeyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteStage = "DeleteStage"
 
 // DeleteStageRequest generates a "aws/request.Request" representing the
@@ -985,6 +1074,88 @@ func (c *IVSRealTime) GetParticipantWithContext(ctx aws.Context, input *GetParti
 	return out, req.Send()
 }
 
+const opGetPublicKey = "GetPublicKey"
+
+// GetPublicKeyRequest generates a "aws/request.Request" representing the
+// client's request for the GetPublicKey operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetPublicKey for more information on using the GetPublicKey
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetPublicKeyRequest method.
+//	req, resp := client.GetPublicKeyRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-realtime-2020-07-14/GetPublicKey
+func (c *IVSRealTime) GetPublicKeyRequest(input *GetPublicKeyInput) (req *request.Request, output *GetPublicKeyOutput) {
+	op := &request.Operation{
+		Name:       opGetPublicKey,
+		HTTPMethod: "POST",
+		HTTPPath:   "/GetPublicKey",
+	}
+
+	if input == nil {
+		input = &GetPublicKeyInput{}
+	}
+
+	output = &GetPublicKeyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetPublicKey API operation for Amazon Interactive Video Service RealTime.
+//
+// Gets information for the specified public key.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Interactive Video Service RealTime's
+// API operation GetPublicKey for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//
+//   - ValidationException
+//
+//   - AccessDeniedException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-realtime-2020-07-14/GetPublicKey
+func (c *IVSRealTime) GetPublicKey(input *GetPublicKeyInput) (*GetPublicKeyOutput, error) {
+	req, out := c.GetPublicKeyRequest(input)
+	return out, req.Send()
+}
+
+// GetPublicKeyWithContext is the same as GetPublicKey with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetPublicKey for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IVSRealTime) GetPublicKeyWithContext(ctx aws.Context, input *GetPublicKeyInput, opts ...request.Option) (*GetPublicKeyOutput, error) {
+	req, out := c.GetPublicKeyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetStage = "GetStage"
 
 // GetStageRequest generates a "aws/request.Request" representing the
@@ -1232,6 +1403,92 @@ func (c *IVSRealTime) GetStorageConfiguration(input *GetStorageConfigurationInpu
 // for more information on using Contexts.
 func (c *IVSRealTime) GetStorageConfigurationWithContext(ctx aws.Context, input *GetStorageConfigurationInput, opts ...request.Option) (*GetStorageConfigurationOutput, error) {
 	req, out := c.GetStorageConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opImportPublicKey = "ImportPublicKey"
+
+// ImportPublicKeyRequest generates a "aws/request.Request" representing the
+// client's request for the ImportPublicKey operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ImportPublicKey for more information on using the ImportPublicKey
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ImportPublicKeyRequest method.
+//	req, resp := client.ImportPublicKeyRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-realtime-2020-07-14/ImportPublicKey
+func (c *IVSRealTime) ImportPublicKeyRequest(input *ImportPublicKeyInput) (req *request.Request, output *ImportPublicKeyOutput) {
+	op := &request.Operation{
+		Name:       opImportPublicKey,
+		HTTPMethod: "POST",
+		HTTPPath:   "/ImportPublicKey",
+	}
+
+	if input == nil {
+		input = &ImportPublicKeyInput{}
+	}
+
+	output = &ImportPublicKeyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ImportPublicKey API operation for Amazon Interactive Video Service RealTime.
+//
+// Import a public key to be used for signing stage participant tokens.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Interactive Video Service RealTime's
+// API operation ImportPublicKey for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//
+//   - AccessDeniedException
+//
+//   - ServiceQuotaExceededException
+//
+//   - ConflictException
+//
+//   - PendingVerification
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-realtime-2020-07-14/ImportPublicKey
+func (c *IVSRealTime) ImportPublicKey(input *ImportPublicKeyInput) (*ImportPublicKeyOutput, error) {
+	req, out := c.ImportPublicKeyRequest(input)
+	return out, req.Send()
+}
+
+// ImportPublicKeyWithContext is the same as ImportPublicKey with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ImportPublicKey for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IVSRealTime) ImportPublicKeyWithContext(ctx aws.Context, input *ImportPublicKeyInput, opts ...request.Option) (*ImportPublicKeyOutput, error) {
+	req, out := c.ImportPublicKeyRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1793,6 +2050,144 @@ func (c *IVSRealTime) ListParticipantsPagesWithContext(ctx aws.Context, input *L
 
 	for p.Next() {
 		if !fn(p.Page().(*ListParticipantsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListPublicKeys = "ListPublicKeys"
+
+// ListPublicKeysRequest generates a "aws/request.Request" representing the
+// client's request for the ListPublicKeys operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListPublicKeys for more information on using the ListPublicKeys
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListPublicKeysRequest method.
+//	req, resp := client.ListPublicKeysRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-realtime-2020-07-14/ListPublicKeys
+func (c *IVSRealTime) ListPublicKeysRequest(input *ListPublicKeysInput) (req *request.Request, output *ListPublicKeysOutput) {
+	op := &request.Operation{
+		Name:       opListPublicKeys,
+		HTTPMethod: "POST",
+		HTTPPath:   "/ListPublicKeys",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListPublicKeysInput{}
+	}
+
+	output = &ListPublicKeysOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListPublicKeys API operation for Amazon Interactive Video Service RealTime.
+//
+// Gets summary information about all public keys in your account, in the AWS
+// region where the API request is processed.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Interactive Video Service RealTime's
+// API operation ListPublicKeys for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//
+//   - AccessDeniedException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-realtime-2020-07-14/ListPublicKeys
+func (c *IVSRealTime) ListPublicKeys(input *ListPublicKeysInput) (*ListPublicKeysOutput, error) {
+	req, out := c.ListPublicKeysRequest(input)
+	return out, req.Send()
+}
+
+// ListPublicKeysWithContext is the same as ListPublicKeys with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListPublicKeys for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IVSRealTime) ListPublicKeysWithContext(ctx aws.Context, input *ListPublicKeysInput, opts ...request.Option) (*ListPublicKeysOutput, error) {
+	req, out := c.ListPublicKeysRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListPublicKeysPages iterates over the pages of a ListPublicKeys operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListPublicKeys method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListPublicKeys operation.
+//	pageNum := 0
+//	err := client.ListPublicKeysPages(params,
+//	    func(page *ivsrealtime.ListPublicKeysOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *IVSRealTime) ListPublicKeysPages(input *ListPublicKeysInput, fn func(*ListPublicKeysOutput, bool) bool) error {
+	return c.ListPublicKeysPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListPublicKeysPagesWithContext same as ListPublicKeysPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IVSRealTime) ListPublicKeysPagesWithContext(ctx aws.Context, input *ListPublicKeysInput, fn func(*ListPublicKeysOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListPublicKeysInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListPublicKeysRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListPublicKeysOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -2820,17 +3215,17 @@ func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Object specifying an auto-participant-recording configuration.
+// Object specifying a configuration for individual participant recording.
 type AutoParticipantRecordingConfiguration struct {
 	_ struct{} `type:"structure"`
 
 	// Types of media to be recorded. Default: AUDIO_VIDEO.
 	MediaTypes []*string `locationName:"mediaTypes" type:"list" enum:"ParticipantRecordingMediaType"`
 
-	// ARN of the StorageConfiguration resource to use for auto participant recording.
-	// Default: "" (empty string, no storage configuration is specified). Individual
-	// participant recording cannot be started unless a storage configuration is
-	// specified, when a Stage is created or updated.
+	// ARN of the StorageConfiguration resource to use for individual participant
+	// recording. Default: "" (empty string, no storage configuration is specified).
+	// Individual participant recording cannot be started unless a storage configuration
+	// is specified, when a Stage is created or updated.
 	//
 	// StorageConfigurationArn is a required field
 	StorageConfigurationArn *string `locationName:"storageConfigurationArn" type:"string" required:"true"`
@@ -3451,7 +3846,8 @@ func (s *CreateParticipantTokenOutput) SetParticipantToken(v *ParticipantToken) 
 type CreateStageInput struct {
 	_ struct{} `type:"structure"`
 
-	// Auto participant recording configuration object attached to the stage.
+	// Configuration object for individual participant recording, to attach to the
+	// new stage.
 	AutoParticipantRecordingConfiguration *AutoParticipantRecordingConfiguration `locationName:"autoParticipantRecordingConfiguration" type:"structure"`
 
 	// Optional name that can be specified for the stage being created.
@@ -3749,6 +4145,77 @@ func (s DeleteEncoderConfigurationOutput) String() string {
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
 func (s DeleteEncoderConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+type DeletePublicKeyInput struct {
+	_ struct{} `type:"structure"`
+
+	// ARN of the public key to be deleted.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeletePublicKeyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeletePublicKeyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeletePublicKeyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeletePublicKeyInput"}
+	if s.Arn == nil {
+		invalidParams.Add(request.NewErrParamRequired("Arn"))
+	}
+	if s.Arn != nil && len(*s.Arn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Arn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetArn sets the Arn field's value.
+func (s *DeletePublicKeyInput) SetArn(v string) *DeletePublicKeyInput {
+	s.Arn = &v
+	return s
+}
+
+type DeletePublicKeyOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeletePublicKeyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeletePublicKeyOutput) GoString() string {
 	return s.String()
 }
 
@@ -4717,6 +5184,86 @@ func (s *GetParticipantOutput) SetParticipant(v *Participant) *GetParticipantOut
 	return s
 }
 
+type GetPublicKeyInput struct {
+	_ struct{} `type:"structure"`
+
+	// ARN of the public key for which the information is to be retrieved.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetPublicKeyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetPublicKeyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetPublicKeyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetPublicKeyInput"}
+	if s.Arn == nil {
+		invalidParams.Add(request.NewErrParamRequired("Arn"))
+	}
+	if s.Arn != nil && len(*s.Arn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Arn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetArn sets the Arn field's value.
+func (s *GetPublicKeyInput) SetArn(v string) *GetPublicKeyInput {
+	s.Arn = &v
+	return s
+}
+
+type GetPublicKeyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The public key that is returned.
+	PublicKey *PublicKey `locationName:"publicKey" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetPublicKeyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetPublicKeyOutput) GoString() string {
+	return s.String()
+}
+
+// SetPublicKey sets the PublicKey field's value.
+func (s *GetPublicKeyOutput) SetPublicKey(v *PublicKey) *GetPublicKeyOutput {
+	s.PublicKey = v
+	return s
+}
+
 type GetStageInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4981,7 +5528,7 @@ type GridConfiguration struct {
 
 	// This attribute name identifies the featured slot. A participant with this
 	// attribute set to "true" (as a string value) in ParticipantTokenConfiguration
-	// is placed in the featured slot.
+	// is placed in the featured slot. Default: "" (no featured participant).
 	FeaturedParticipantAttribute *string `locationName:"featuredParticipantAttribute" type:"string"`
 
 	// Specifies the spacing between participant tiles in pixels. Default: 2.
@@ -4991,12 +5538,15 @@ type GridConfiguration struct {
 	// Default: false.
 	OmitStoppedVideo *bool `locationName:"omitStoppedVideo" type:"boolean"`
 
-	// Sets the non-featured participant display mode. Default: VIDEO.
+	// Sets the non-featured participant display mode, to control the aspect ratio
+	// of video tiles. VIDEO is 16:9, SQUARE is 1:1, and PORTRAIT is 3:4. Default:
+	// VIDEO.
 	VideoAspectRatio *string `locationName:"videoAspectRatio" type:"string" enum:"VideoAspectRatio"`
 
-	// Defines how video fits within the participant tile. When not set, videoFillMode
-	// defaults to COVER fill mode for participants in the grid and to CONTAIN fill
-	// mode for featured participants.
+	// Defines how video content fits within the participant tile: FILL (stretched),
+	// COVER (cropped), or CONTAIN (letterboxed). When not set, videoFillMode defaults
+	// to COVER fill mode for participants in the grid and to CONTAIN fill mode
+	// for featured participants.
 	VideoFillMode *string `locationName:"videoFillMode" type:"string" enum:"VideoFillMode"`
 }
 
@@ -5045,6 +5595,105 @@ func (s *GridConfiguration) SetVideoAspectRatio(v string) *GridConfiguration {
 // SetVideoFillMode sets the VideoFillMode field's value.
 func (s *GridConfiguration) SetVideoFillMode(v string) *GridConfiguration {
 	s.VideoFillMode = &v
+	return s
+}
+
+type ImportPublicKeyInput struct {
+	_ struct{} `type:"structure"`
+
+	// Name of the public key to be imported.
+	Name *string `locationName:"name" type:"string"`
+
+	// The content of the public key to be imported.
+	//
+	// PublicKeyMaterial is a required field
+	PublicKeyMaterial *string `locationName:"publicKeyMaterial" type:"string" required:"true"`
+
+	// Tags attached to the resource. Array of maps, each of the form string:string
+	// (key:value). See Tagging AWS Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+	// for details, including restrictions that apply to tags and "Tag naming limits
+	// and requirements"; Amazon IVS has no constraints on tags beyond what is documented
+	// there.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportPublicKeyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportPublicKeyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ImportPublicKeyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ImportPublicKeyInput"}
+	if s.PublicKeyMaterial == nil {
+		invalidParams.Add(request.NewErrParamRequired("PublicKeyMaterial"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *ImportPublicKeyInput) SetName(v string) *ImportPublicKeyInput {
+	s.Name = &v
+	return s
+}
+
+// SetPublicKeyMaterial sets the PublicKeyMaterial field's value.
+func (s *ImportPublicKeyInput) SetPublicKeyMaterial(v string) *ImportPublicKeyInput {
+	s.PublicKeyMaterial = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *ImportPublicKeyInput) SetTags(v map[string]*string) *ImportPublicKeyInput {
+	s.Tags = v
+	return s
+}
+
+type ImportPublicKeyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The public key that was imported.
+	PublicKey *PublicKey `locationName:"publicKey" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportPublicKeyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportPublicKeyOutput) GoString() string {
+	return s.String()
+}
+
+// SetPublicKey sets the PublicKey field's value.
+func (s *ImportPublicKeyOutput) SetPublicKey(v *PublicKey) *ImportPublicKeyOutput {
+	s.PublicKey = v
 	return s
 }
 
@@ -5712,6 +6361,103 @@ func (s *ListParticipantsOutput) SetParticipants(v []*ParticipantSummary) *ListP
 	return s
 }
 
+type ListPublicKeysInput struct {
+	_ struct{} `type:"structure"`
+
+	// Maximum number of results to return. Default: 50.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// The first public key to retrieve. This is used for pagination; see the nextToken
+	// response field.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListPublicKeysInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListPublicKeysInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListPublicKeysInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListPublicKeysInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListPublicKeysInput) SetMaxResults(v int64) *ListPublicKeysInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListPublicKeysInput) SetNextToken(v string) *ListPublicKeysInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListPublicKeysOutput struct {
+	_ struct{} `type:"structure"`
+
+	// If there are more public keys than maxResults, use nextToken in the request
+	// to get the next set.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// List of the matching public keys (summary information only).
+	//
+	// PublicKeys is a required field
+	PublicKeys []*PublicKeySummary `locationName:"publicKeys" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListPublicKeysOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListPublicKeysOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListPublicKeysOutput) SetNextToken(v string) *ListPublicKeysOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetPublicKeys sets the PublicKeys field's value.
+func (s *ListPublicKeysOutput) SetPublicKeys(v []*PublicKeySummary) *ListPublicKeysOutput {
+	s.PublicKeys = v
+	return s
+}
+
 type ListStageSessionsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6145,12 +6891,12 @@ type Participant struct {
 	// enabled.
 	RecordingS3BucketName *string `locationName:"recordingS3BucketName" type:"string"`
 
-	// S3 prefix of the S3 bucket to where the participant is being recorded, if
-	// individual participant recording is enabled, or "" (empty string), if recording
-	// is not enabled.
+	// S3 prefix of the S3 bucket where the participant is being recorded, if individual
+	// participant recording is enabled, or "" (empty string), if recording is not
+	// enabled.
 	RecordingS3Prefix *string `locationName:"recordingS3Prefix" type:"string"`
 
-	// Participant’s recording state.
+	// The participant’s recording state.
 	RecordingState *string `locationName:"recordingState" type:"string" enum:"ParticipantRecordingState"`
 
 	// The participant’s SDK version.
@@ -6288,7 +7034,7 @@ type ParticipantSummary struct {
 	// Whether the participant ever published to the stage session.
 	Published *bool `locationName:"published" type:"boolean"`
 
-	// Participant’s recording state.
+	// The participant’s recording state.
 	RecordingState *string `locationName:"recordingState" type:"string" enum:"ParticipantRecordingState"`
 
 	// Whether the participant is connected to or disconnected from the stage.
@@ -6607,7 +7353,7 @@ type PipConfiguration struct {
 
 	// This attribute name identifies the featured slot. A participant with this
 	// attribute set to "true" (as a string value) in ParticipantTokenConfiguration
-	// is placed in the featured slot.
+	// is placed in the featured slot. Default: "" (no featured participant).
 	FeaturedParticipantAttribute *string `locationName:"featuredParticipantAttribute" type:"string"`
 
 	// Specifies the spacing between participant tiles in pixels. Default: 0.
@@ -6617,7 +7363,8 @@ type PipConfiguration struct {
 	// Default: false.
 	OmitStoppedVideo *bool `locationName:"omitStoppedVideo" type:"boolean"`
 
-	// Defines PiP behavior when all participants have left. Default: STATIC.
+	// Defines PiP behavior when all participants have left: STATIC (maintains original
+	// position/size) or DYNAMIC (expands to full composition). Default: STATIC.
 	PipBehavior *string `locationName:"pipBehavior" type:"string" enum:"PipBehavior"`
 
 	// Specifies the height of the PiP window in pixels. When this is not set explicitly,
@@ -6629,9 +7376,9 @@ type PipConfiguration struct {
 	// determined by PipPosition. Default: 0.
 	PipOffset *int64 `locationName:"pipOffset" type:"integer"`
 
-	// Identifies the PiP slot. A participant with this attribute set to "true"
-	// (as a string value) in ParticipantTokenConfiguration is placed in the PiP
-	// slot.
+	// Specifies the participant for the PiP window. A participant with this attribute
+	// set to "true" (as a string value) in ParticipantTokenConfiguration is placed
+	// in the PiP slot. Default: "" (no PiP participant).
 	PipParticipantAttribute *string `locationName:"pipParticipantAttribute" type:"string"`
 
 	// Determines the corner position of the PiP window. Default: BOTTOM_RIGHT.
@@ -6642,7 +7389,8 @@ type PipConfiguration struct {
 	// ratio of the participant’s video.
 	PipWidth *int64 `locationName:"pipWidth" min:"1" type:"integer"`
 
-	// Defines how video fits within the participant tile. Default: COVER.
+	// Defines how video content fits within the participant tile: FILL (stretched),
+	// COVER (cropped), or CONTAIN (letterboxed). Default: COVER.
 	VideoFillMode *string `locationName:"videoFillMode" type:"string" enum:"VideoFillMode"`
 }
 
@@ -6737,6 +7485,133 @@ func (s *PipConfiguration) SetPipWidth(v int64) *PipConfiguration {
 // SetVideoFillMode sets the VideoFillMode field's value.
 func (s *PipConfiguration) SetVideoFillMode(v string) *PipConfiguration {
 	s.VideoFillMode = &v
+	return s
+}
+
+// Object specifying a public key used to sign stage participant tokens.
+type PublicKey struct {
+	_ struct{} `type:"structure"`
+
+	// Public key ARN.
+	Arn *string `locationName:"arn" min:"1" type:"string"`
+
+	// The public key fingerprint, a short string used to identify or verify the
+	// full public key.
+	Fingerprint *string `locationName:"fingerprint" type:"string"`
+
+	// Public key name.
+	Name *string `locationName:"name" type:"string"`
+
+	// Public key material.
+	PublicKeyMaterial *string `locationName:"publicKeyMaterial" type:"string"`
+
+	// Tags attached to the resource. Array of maps, each of the form string:string
+	// (key:value). See Tagging AWS Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+	// for details, including restrictions that apply to tags and "Tag naming limits
+	// and requirements"; Amazon IVS has no constraints on tags beyond what is documented
+	// there.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PublicKey) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PublicKey) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *PublicKey) SetArn(v string) *PublicKey {
+	s.Arn = &v
+	return s
+}
+
+// SetFingerprint sets the Fingerprint field's value.
+func (s *PublicKey) SetFingerprint(v string) *PublicKey {
+	s.Fingerprint = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *PublicKey) SetName(v string) *PublicKey {
+	s.Name = &v
+	return s
+}
+
+// SetPublicKeyMaterial sets the PublicKeyMaterial field's value.
+func (s *PublicKey) SetPublicKeyMaterial(v string) *PublicKey {
+	s.PublicKeyMaterial = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *PublicKey) SetTags(v map[string]*string) *PublicKey {
+	s.Tags = v
+	return s
+}
+
+// Summary information about a public key.
+type PublicKeySummary struct {
+	_ struct{} `type:"structure"`
+
+	// Public key ARN.
+	Arn *string `locationName:"arn" min:"1" type:"string"`
+
+	// Public key name.
+	Name *string `locationName:"name" type:"string"`
+
+	// Tags attached to the resource. Array of maps, each of the form string:string
+	// (key:value). See Tagging AWS Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+	// for details, including restrictions that apply to tags and "Tag naming limits
+	// and requirements"; Amazon IVS has no constraints on tags beyond what is documented
+	// there.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PublicKeySummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PublicKeySummary) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *PublicKeySummary) SetArn(v string) *PublicKeySummary {
+	s.Arn = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *PublicKeySummary) SetName(v string) *PublicKeySummary {
+	s.Name = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *PublicKeySummary) SetTags(v map[string]*string) *PublicKeySummary {
+	s.Tags = v
 	return s
 }
 
@@ -7083,8 +7958,12 @@ type Stage struct {
 	// Arn is a required field
 	Arn *string `locationName:"arn" min:"1" type:"string" required:"true"`
 
-	// Auto-participant-recording configuration object attached to the stage.
+	// Configuration object for individual participant recording, attached to the
+	// stage.
 	AutoParticipantRecordingConfiguration *AutoParticipantRecordingConfiguration `locationName:"autoParticipantRecordingConfiguration" type:"structure"`
+
+	// Summary information about various endpoints for a stage.
+	Endpoints *StageEndpoints `locationName:"endpoints" type:"structure"`
 
 	// Stage name.
 	Name *string `locationName:"name" type:"string"`
@@ -7133,6 +8012,12 @@ func (s *Stage) SetAutoParticipantRecordingConfiguration(v *AutoParticipantRecor
 	return s
 }
 
+// SetEndpoints sets the Endpoints field's value.
+func (s *Stage) SetEndpoints(v *StageEndpoints) *Stage {
+	s.Endpoints = v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *Stage) SetName(v string) *Stage {
 	s.Name = &v
@@ -7142,6 +8027,47 @@ func (s *Stage) SetName(v string) *Stage {
 // SetTags sets the Tags field's value.
 func (s *Stage) SetTags(v map[string]*string) *Stage {
 	s.Tags = v
+	return s
+}
+
+// Summary information about various endpoints for a stage.
+type StageEndpoints struct {
+	_ struct{} `type:"structure"`
+
+	// Events endpoint.
+	Events *string `locationName:"events" type:"string"`
+
+	// WHIP endpoint.
+	Whip *string `locationName:"whip" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StageEndpoints) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StageEndpoints) GoString() string {
+	return s.String()
+}
+
+// SetEvents sets the Events field's value.
+func (s *StageEndpoints) SetEvents(v string) *StageEndpoints {
+	s.Events = &v
+	return s
+}
+
+// SetWhip sets the Whip field's value.
+func (s *StageEndpoints) SetWhip(v string) *StageEndpoints {
+	s.Whip = &v
 	return s
 }
 
@@ -7848,8 +8774,8 @@ type UpdateStageInput struct {
 	// Arn is a required field
 	Arn *string `locationName:"arn" min:"1" type:"string" required:"true"`
 
-	// Auto-participant-recording configuration object to attach to the stage. Auto-participant-recording
-	// configuration cannot be updated while recording is active.
+	// Configuration object for individual participant recording, to attach to the
+	// stage. Note that this cannot be updated while recording is active.
 	AutoParticipantRecordingConfiguration *AutoParticipantRecordingConfiguration `locationName:"autoParticipantRecordingConfiguration" type:"structure"`
 
 	// Name of the stage to be updated.

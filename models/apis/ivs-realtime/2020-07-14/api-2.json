@@ -3,8 +3,8 @@
   "metadata":{
     "apiVersion":"2020-07-14",
     "endpointPrefix":"ivsrealtime",
-    "jsonVersion":"1.1",
     "protocol":"rest-json",
+    "protocols":["rest-json"],
     "serviceAbbreviation":"ivsrealtime",
     "serviceFullName":"Amazon Interactive Video Service RealTime",
     "serviceId":"IVS RealTime",
@@ -100,6 +100,23 @@
         {"shape":"InternalServerException"},
         {"shape":"ServiceQuotaExceededException"},
         {"shape":"ConflictException"}
+      ]
+    },
+    "DeletePublicKey":{
+      "name":"DeletePublicKey",
+      "http":{
+        "method":"POST",
+        "requestUri":"/DeletePublicKey",
+        "responseCode":200
+      },
+      "input":{"shape":"DeletePublicKeyRequest"},
+      "output":{"shape":"DeletePublicKeyResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
+        {"shape":"PendingVerification"}
       ]
     },
     "DeleteStage":{
@@ -204,6 +221,21 @@
         {"shape":"AccessDeniedException"}
       ]
     },
+    "GetPublicKey":{
+      "name":"GetPublicKey",
+      "http":{
+        "method":"POST",
+        "requestUri":"/GetPublicKey",
+        "responseCode":200
+      },
+      "input":{"shape":"GetPublicKeyRequest"},
+      "output":{"shape":"GetPublicKeyResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
     "GetStage":{
       "name":"GetStage",
       "http":{
@@ -250,6 +282,23 @@
         {"shape":"InternalServerException"},
         {"shape":"ServiceQuotaExceededException"},
         {"shape":"ConflictException"}
+      ]
+    },
+    "ImportPublicKey":{
+      "name":"ImportPublicKey",
+      "http":{
+        "method":"POST",
+        "requestUri":"/ImportPublicKey",
+        "responseCode":200
+      },
+      "input":{"shape":"ImportPublicKeyRequest"},
+      "output":{"shape":"ImportPublicKeyResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ConflictException"},
+        {"shape":"PendingVerification"}
       ]
     },
     "ListCompositions":{
@@ -309,6 +358,20 @@
       },
       "input":{"shape":"ListParticipantsRequest"},
       "output":{"shape":"ListParticipantsResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "ListPublicKeys":{
+      "name":"ListPublicKeys",
+      "http":{
+        "method":"POST",
+        "requestUri":"/ListPublicKeys",
+        "responseCode":200
+      },
+      "input":{"shape":"ListPublicKeysRequest"},
+      "output":{"shape":"ListPublicKeysResponse"},
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"}
@@ -663,6 +726,18 @@
       "members":{
       }
     },
+    "DeletePublicKeyRequest":{
+      "type":"structure",
+      "required":["arn"],
+      "members":{
+        "arn":{"shape":"PublicKeyArn"}
+      }
+    },
+    "DeletePublicKeyResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DeleteStageRequest":{
       "type":"structure",
       "required":["arn"],
@@ -915,6 +990,19 @@
         "participant":{"shape":"Participant"}
       }
     },
+    "GetPublicKeyRequest":{
+      "type":"structure",
+      "required":["arn"],
+      "members":{
+        "arn":{"shape":"PublicKeyArn"}
+      }
+    },
+    "GetPublicKeyResponse":{
+      "type":"structure",
+      "members":{
+        "publicKey":{"shape":"PublicKey"}
+      }
+    },
     "GetStageRequest":{
       "type":"structure",
       "required":["arn"],
@@ -977,6 +1065,21 @@
       "box":true,
       "max":1920,
       "min":1
+    },
+    "ImportPublicKeyRequest":{
+      "type":"structure",
+      "required":["publicKeyMaterial"],
+      "members":{
+        "publicKeyMaterial":{"shape":"PublicKeyMaterial"},
+        "name":{"shape":"PublicKeyName"},
+        "tags":{"shape":"Tags"}
+      }
+    },
+    "ImportPublicKeyResponse":{
+      "type":"structure",
+      "members":{
+        "publicKey":{"shape":"PublicKey"}
+      }
     },
     "InternalServerException":{
       "type":"structure",
@@ -1074,6 +1177,21 @@
         "nextToken":{"shape":"PaginationToken"}
       }
     },
+    "ListPublicKeysRequest":{
+      "type":"structure",
+      "members":{
+        "nextToken":{"shape":"PaginationToken"},
+        "maxResults":{"shape":"MaxPublicKeyResults"}
+      }
+    },
+    "ListPublicKeysResponse":{
+      "type":"structure",
+      "required":["publicKeys"],
+      "members":{
+        "publicKeys":{"shape":"PublicKeyList"},
+        "nextToken":{"shape":"PaginationToken"}
+      }
+    },
     "ListStageSessionsRequest":{
       "type":"structure",
       "required":["stageArn"],
@@ -1158,6 +1276,12 @@
       "min":1
     },
     "MaxParticipantResults":{
+      "type":"integer",
+      "box":true,
+      "max":100,
+      "min":1
+    },
+    "MaxPublicKeyResults":{
       "type":"integer",
       "box":true,
       "max":100,
@@ -1418,6 +1542,45 @@
       "box":true,
       "min":1
     },
+    "PublicKey":{
+      "type":"structure",
+      "members":{
+        "arn":{"shape":"PublicKeyArn"},
+        "name":{"shape":"PublicKeyName"},
+        "publicKeyMaterial":{"shape":"PublicKeyMaterial"},
+        "fingerprint":{"shape":"PublicKeyFingerprint"},
+        "tags":{"shape":"Tags"}
+      }
+    },
+    "PublicKeyArn":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"arn:aws:ivs:[a-z0-9-]+:[0-9]+:public-key/[a-zA-Z0-9-]+"
+    },
+    "PublicKeyFingerprint":{"type":"string"},
+    "PublicKeyList":{
+      "type":"list",
+      "member":{"shape":"PublicKeySummary"}
+    },
+    "PublicKeyMaterial":{
+      "type":"string",
+      "pattern":".*-----BEGIN PUBLIC KEY-----\\r?\\n([a-zA-Z0-9+/=\\r\\n]+)\\r?\\n-----END PUBLIC KEY-----(\\r?\\n)?.*"
+    },
+    "PublicKeyName":{
+      "type":"string",
+      "max":128,
+      "min":0,
+      "pattern":"[a-zA-Z0-9-_]*"
+    },
+    "PublicKeySummary":{
+      "type":"structure",
+      "members":{
+        "arn":{"shape":"PublicKeyArn"},
+        "name":{"shape":"PublicKeyName"},
+        "tags":{"shape":"Tags"}
+      }
+    },
     "Published":{"type":"boolean"},
     "RecordingConfiguration":{
       "type":"structure",
@@ -1497,7 +1660,8 @@
         "name":{"shape":"StageName"},
         "activeSessionId":{"shape":"StageSessionId"},
         "tags":{"shape":"Tags"},
-        "autoParticipantRecordingConfiguration":{"shape":"AutoParticipantRecordingConfiguration"}
+        "autoParticipantRecordingConfiguration":{"shape":"AutoParticipantRecordingConfiguration"},
+        "endpoints":{"shape":"StageEndpoints"}
       }
     },
     "StageArn":{
@@ -1505,6 +1669,18 @@
       "max":128,
       "min":1,
       "pattern":"arn:aws:ivs:[a-z0-9-]+:[0-9]+:stage/[a-zA-Z0-9-]+"
+    },
+    "StageEndpoint":{
+      "type":"string",
+      "max":2048,
+      "min":0
+    },
+    "StageEndpoints":{
+      "type":"structure",
+      "members":{
+        "events":{"shape":"StageEndpoint"},
+        "whip":{"shape":"StageEndpoint"}
+      }
     },
     "StageName":{
       "type":"string",
