@@ -8951,6 +8951,15 @@ type CreateClusterInput struct {
 	// The access configuration for the cluster.
 	AccessConfig *CreateAccessConfigRequest `locationName:"accessConfig" type:"structure"`
 
+	// If you set this value to False when creating a cluster, the default networking
+	// add-ons will not be installed.
+	//
+	// The default networking addons include vpc-cni, coredns, and kube-proxy.
+	//
+	// Use this option when you plan to install third-party alternative add-ons
+	// or self-manage the default networking add-ons.
+	BootstrapSelfManagedAddons *bool `locationName:"bootstrapSelfManagedAddons" type:"boolean"`
+
 	// A unique, case-sensitive identifier that you provide to ensure the idempotency
 	// of the request.
 	ClientRequestToken *string `locationName:"clientRequestToken" type:"string" idempotencyToken:"true"`
@@ -9068,6 +9077,12 @@ func (s *CreateClusterInput) Validate() error {
 // SetAccessConfig sets the AccessConfig field's value.
 func (s *CreateClusterInput) SetAccessConfig(v *CreateAccessConfigRequest) *CreateClusterInput {
 	s.AccessConfig = v
+	return s
+}
+
+// SetBootstrapSelfManagedAddons sets the BootstrapSelfManagedAddons field's value.
+func (s *CreateClusterInput) SetBootstrapSelfManagedAddons(v bool) *CreateClusterInput {
+	s.BootstrapSelfManagedAddons = &v
 	return s
 }
 

@@ -1,3 +1,13 @@
+Release v1.54.9 (2024-06-26)
+===
+
+### Service Client Updates
+* `service/controltower`: Updates service API, documentation, and paginators
+* `service/eks`: Updates service API and documentation
+* `service/ivs-realtime`: Updates service API, documentation, and paginators
+* `service/kinesisanalyticsv2`: Updates service API, documentation, and paginators
+* `service/opensearch`: Updates service API and documentation
+
 Release v1.54.8 (2024-06-25)
 ===
 

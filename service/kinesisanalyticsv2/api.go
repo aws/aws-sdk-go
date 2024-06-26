@@ -1690,6 +1690,93 @@ func (c *KinesisAnalyticsV2) DescribeApplicationWithContext(ctx aws.Context, inp
 	return out, req.Send()
 }
 
+const opDescribeApplicationOperation = "DescribeApplicationOperation"
+
+// DescribeApplicationOperationRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeApplicationOperation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeApplicationOperation for more information on using the DescribeApplicationOperation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeApplicationOperationRequest method.
+//	req, resp := client.DescribeApplicationOperationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisanalyticsv2-2018-05-23/DescribeApplicationOperation
+func (c *KinesisAnalyticsV2) DescribeApplicationOperationRequest(input *DescribeApplicationOperationInput) (req *request.Request, output *DescribeApplicationOperationOutput) {
+	op := &request.Operation{
+		Name:       opDescribeApplicationOperation,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeApplicationOperationInput{}
+	}
+
+	output = &DescribeApplicationOperationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeApplicationOperation API operation for Amazon Kinesis Analytics.
+//
+// Returns information about a specific operation performed on a Managed Service
+// for Apache Flink application
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Kinesis Analytics's
+// API operation DescribeApplicationOperation for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidArgumentException
+//     The specified input parameter value is not valid.
+//
+//   - ResourceNotFoundException
+//     Specified application can't be found.
+//
+//   - UnsupportedOperationException
+//     The request was rejected because a specified parameter is not supported or
+//     a specified resource is not valid for this operation.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisanalyticsv2-2018-05-23/DescribeApplicationOperation
+func (c *KinesisAnalyticsV2) DescribeApplicationOperation(input *DescribeApplicationOperationInput) (*DescribeApplicationOperationOutput, error) {
+	req, out := c.DescribeApplicationOperationRequest(input)
+	return out, req.Send()
+}
+
+// DescribeApplicationOperationWithContext is the same as DescribeApplicationOperation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeApplicationOperation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *KinesisAnalyticsV2) DescribeApplicationOperationWithContext(ctx aws.Context, input *DescribeApplicationOperationInput, opts ...request.Option) (*DescribeApplicationOperationOutput, error) {
+	req, out := c.DescribeApplicationOperationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeApplicationSnapshot = "DescribeApplicationSnapshot"
 
 // DescribeApplicationSnapshotRequest generates a "aws/request.Request" representing the
@@ -1974,6 +2061,150 @@ func (c *KinesisAnalyticsV2) DiscoverInputSchemaWithContext(ctx aws.Context, inp
 	return out, req.Send()
 }
 
+const opListApplicationOperations = "ListApplicationOperations"
+
+// ListApplicationOperationsRequest generates a "aws/request.Request" representing the
+// client's request for the ListApplicationOperations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListApplicationOperations for more information on using the ListApplicationOperations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListApplicationOperationsRequest method.
+//	req, resp := client.ListApplicationOperationsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisanalyticsv2-2018-05-23/ListApplicationOperations
+func (c *KinesisAnalyticsV2) ListApplicationOperationsRequest(input *ListApplicationOperationsInput) (req *request.Request, output *ListApplicationOperationsOutput) {
+	op := &request.Operation{
+		Name:       opListApplicationOperations,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "Limit",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListApplicationOperationsInput{}
+	}
+
+	output = &ListApplicationOperationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListApplicationOperations API operation for Amazon Kinesis Analytics.
+//
+// Lists information about operations performed on a Managed Service for Apache
+// Flink application
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Kinesis Analytics's
+// API operation ListApplicationOperations for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidArgumentException
+//     The specified input parameter value is not valid.
+//
+//   - ResourceNotFoundException
+//     Specified application can't be found.
+//
+//   - UnsupportedOperationException
+//     The request was rejected because a specified parameter is not supported or
+//     a specified resource is not valid for this operation.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisanalyticsv2-2018-05-23/ListApplicationOperations
+func (c *KinesisAnalyticsV2) ListApplicationOperations(input *ListApplicationOperationsInput) (*ListApplicationOperationsOutput, error) {
+	req, out := c.ListApplicationOperationsRequest(input)
+	return out, req.Send()
+}
+
+// ListApplicationOperationsWithContext is the same as ListApplicationOperations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListApplicationOperations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *KinesisAnalyticsV2) ListApplicationOperationsWithContext(ctx aws.Context, input *ListApplicationOperationsInput, opts ...request.Option) (*ListApplicationOperationsOutput, error) {
+	req, out := c.ListApplicationOperationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListApplicationOperationsPages iterates over the pages of a ListApplicationOperations operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListApplicationOperations method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListApplicationOperations operation.
+//	pageNum := 0
+//	err := client.ListApplicationOperationsPages(params,
+//	    func(page *kinesisanalyticsv2.ListApplicationOperationsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *KinesisAnalyticsV2) ListApplicationOperationsPages(input *ListApplicationOperationsInput, fn func(*ListApplicationOperationsOutput, bool) bool) error {
+	return c.ListApplicationOperationsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListApplicationOperationsPagesWithContext same as ListApplicationOperationsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *KinesisAnalyticsV2) ListApplicationOperationsPagesWithContext(ctx aws.Context, input *ListApplicationOperationsInput, fn func(*ListApplicationOperationsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListApplicationOperationsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListApplicationOperationsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListApplicationOperationsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListApplicationSnapshots = "ListApplicationSnapshots"
 
 // ListApplicationSnapshotsRequest generates a "aws/request.Request" representing the
@@ -2004,6 +2235,12 @@ func (c *KinesisAnalyticsV2) ListApplicationSnapshotsRequest(input *ListApplicat
 		Name:       opListApplicationSnapshots,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "Limit",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -2057,6 +2294,57 @@ func (c *KinesisAnalyticsV2) ListApplicationSnapshotsWithContext(ctx aws.Context
 	return out, req.Send()
 }
 
+// ListApplicationSnapshotsPages iterates over the pages of a ListApplicationSnapshots operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListApplicationSnapshots method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListApplicationSnapshots operation.
+//	pageNum := 0
+//	err := client.ListApplicationSnapshotsPages(params,
+//	    func(page *kinesisanalyticsv2.ListApplicationSnapshotsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *KinesisAnalyticsV2) ListApplicationSnapshotsPages(input *ListApplicationSnapshotsInput, fn func(*ListApplicationSnapshotsOutput, bool) bool) error {
+	return c.ListApplicationSnapshotsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListApplicationSnapshotsPagesWithContext same as ListApplicationSnapshotsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *KinesisAnalyticsV2) ListApplicationSnapshotsPagesWithContext(ctx aws.Context, input *ListApplicationSnapshotsInput, fn func(*ListApplicationSnapshotsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListApplicationSnapshotsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListApplicationSnapshotsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListApplicationSnapshotsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListApplicationVersions = "ListApplicationVersions"
 
 // ListApplicationVersionsRequest generates a "aws/request.Request" representing the
@@ -2087,6 +2375,12 @@ func (c *KinesisAnalyticsV2) ListApplicationVersionsRequest(input *ListApplicati
 		Name:       opListApplicationVersions,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "Limit",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -2150,6 +2444,57 @@ func (c *KinesisAnalyticsV2) ListApplicationVersionsWithContext(ctx aws.Context,
 	return out, req.Send()
 }
 
+// ListApplicationVersionsPages iterates over the pages of a ListApplicationVersions operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListApplicationVersions method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListApplicationVersions operation.
+//	pageNum := 0
+//	err := client.ListApplicationVersionsPages(params,
+//	    func(page *kinesisanalyticsv2.ListApplicationVersionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *KinesisAnalyticsV2) ListApplicationVersionsPages(input *ListApplicationVersionsInput, fn func(*ListApplicationVersionsOutput, bool) bool) error {
+	return c.ListApplicationVersionsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListApplicationVersionsPagesWithContext same as ListApplicationVersionsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *KinesisAnalyticsV2) ListApplicationVersionsPagesWithContext(ctx aws.Context, input *ListApplicationVersionsInput, fn func(*ListApplicationVersionsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListApplicationVersionsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListApplicationVersionsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListApplicationVersionsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListApplications = "ListApplications"
 
 // ListApplicationsRequest generates a "aws/request.Request" representing the
@@ -2180,6 +2525,12 @@ func (c *KinesisAnalyticsV2) ListApplicationsRequest(input *ListApplicationsInpu
 		Name:       opListApplications,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "Limit",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -2230,6 +2581,57 @@ func (c *KinesisAnalyticsV2) ListApplicationsWithContext(ctx aws.Context, input 
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ListApplicationsPages iterates over the pages of a ListApplications operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListApplications method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListApplications operation.
+//	pageNum := 0
+//	err := client.ListApplicationsPages(params,
+//	    func(page *kinesisanalyticsv2.ListApplicationsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *KinesisAnalyticsV2) ListApplicationsPages(input *ListApplicationsInput, fn func(*ListApplicationsOutput, bool) bool) error {
+	return c.ListApplicationsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListApplicationsPagesWithContext same as ListApplicationsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *KinesisAnalyticsV2) ListApplicationsPagesWithContext(ctx aws.Context, input *ListApplicationsInput, fn func(*ListApplicationsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListApplicationsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListApplicationsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListApplicationsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opListTagsForResource = "ListTagsForResource"
@@ -2364,17 +2766,15 @@ func (c *KinesisAnalyticsV2) RollbackApplicationRequest(input *RollbackApplicati
 // RollbackApplication API operation for Amazon Kinesis Analytics.
 //
 // Reverts the application to the previous running version. You can roll back
-// an application if you suspect it is stuck in a transient status.
+// an application if you suspect it is stuck in a transient status or in the
+// running status.
 //
-// You can roll back an application only if it is in the UPDATING or AUTOSCALING
-// status.
+// You can roll back an application only if it is in the UPDATING, AUTOSCALING,
+// or RUNNING statuses.
 //
 // When you rollback an application, it loads state data from the last successful
 // snapshot. If the application has no snapshots, Managed Service for Apache
 // Flink rejects the rollback request.
-//
-// This action is not supported for Managed Service for Apache Flink for SQL
-// applications.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2466,7 +2866,6 @@ func (c *KinesisAnalyticsV2) StartApplicationRequest(input *StartApplicationInpu
 
 	output = &StartApplicationOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2560,7 +2959,6 @@ func (c *KinesisAnalyticsV2) StopApplicationRequest(input *StopApplicationInput)
 
 	output = &StopApplicationOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -3156,6 +3554,9 @@ type AddApplicationCloudWatchLoggingOptionOutput struct {
 	// The descriptions of the current CloudWatch logging options for the SQL-based
 	// Kinesis Data Analytics application.
 	CloudWatchLoggingOptionDescriptions []*CloudWatchLoggingOptionDescription `type:"list"`
+
+	// Operation ID for tracking AddApplicationCloudWatchLoggingOption request
+	OperationId *string `min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -3191,6 +3592,12 @@ func (s *AddApplicationCloudWatchLoggingOptionOutput) SetApplicationVersionId(v 
 // SetCloudWatchLoggingOptionDescriptions sets the CloudWatchLoggingOptionDescriptions field's value.
 func (s *AddApplicationCloudWatchLoggingOptionOutput) SetCloudWatchLoggingOptionDescriptions(v []*CloudWatchLoggingOptionDescription) *AddApplicationCloudWatchLoggingOptionOutput {
 	s.CloudWatchLoggingOptionDescriptions = v
+	return s
+}
+
+// SetOperationId sets the OperationId field's value.
+func (s *AddApplicationCloudWatchLoggingOptionOutput) SetOperationId(v string) *AddApplicationCloudWatchLoggingOptionOutput {
+	s.OperationId = &v
 	return s
 }
 
@@ -3895,6 +4302,9 @@ type AddApplicationVpcConfigurationOutput struct {
 	// updates the ApplicationVersionId each time you update the application.
 	ApplicationVersionId *int64 `min:"1" type:"long"`
 
+	// Operation ID for tracking AddApplicationVpcConfiguration request
+	OperationId *string `min:"1" type:"string"`
+
 	// The parameters of the new VPC configuration.
 	VpcConfigurationDescription *VpcConfigurationDescription `type:"structure"`
 }
@@ -3926,6 +4336,12 @@ func (s *AddApplicationVpcConfigurationOutput) SetApplicationARN(v string) *AddA
 // SetApplicationVersionId sets the ApplicationVersionId field's value.
 func (s *AddApplicationVpcConfigurationOutput) SetApplicationVersionId(v int64) *AddApplicationVpcConfigurationOutput {
 	s.ApplicationVersionId = &v
+	return s
+}
+
+// SetOperationId sets the OperationId field's value.
+func (s *AddApplicationVpcConfigurationOutput) SetOperationId(v string) *AddApplicationVpcConfigurationOutput {
+	s.OperationId = &v
 	return s
 }
 
@@ -4110,6 +4526,10 @@ type ApplicationConfiguration struct {
 	// Flink application.
 	ApplicationSnapshotConfiguration *ApplicationSnapshotConfiguration `type:"structure"`
 
+	// Describes system rollback configuration for a Managed Service for Apache
+	// Flink application
+	ApplicationSystemRollbackConfiguration *ApplicationSystemRollbackConfiguration `type:"structure"`
+
 	// Describes execution properties for a Managed Service for Apache Flink application.
 	EnvironmentProperties *EnvironmentProperties `type:"structure"`
 
@@ -4158,6 +4578,11 @@ func (s *ApplicationConfiguration) Validate() error {
 	if s.ApplicationSnapshotConfiguration != nil {
 		if err := s.ApplicationSnapshotConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("ApplicationSnapshotConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ApplicationSystemRollbackConfiguration != nil {
+		if err := s.ApplicationSystemRollbackConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("ApplicationSystemRollbackConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.EnvironmentProperties != nil {
@@ -4209,6 +4634,12 @@ func (s *ApplicationConfiguration) SetApplicationSnapshotConfiguration(v *Applic
 	return s
 }
 
+// SetApplicationSystemRollbackConfiguration sets the ApplicationSystemRollbackConfiguration field's value.
+func (s *ApplicationConfiguration) SetApplicationSystemRollbackConfiguration(v *ApplicationSystemRollbackConfiguration) *ApplicationConfiguration {
+	s.ApplicationSystemRollbackConfiguration = v
+	return s
+}
+
 // SetEnvironmentProperties sets the EnvironmentProperties field's value.
 func (s *ApplicationConfiguration) SetEnvironmentProperties(v *EnvironmentProperties) *ApplicationConfiguration {
 	s.EnvironmentProperties = v
@@ -4251,6 +4682,10 @@ type ApplicationConfigurationDescription struct {
 	// Describes whether snapshots are enabled for a Managed Service for Apache
 	// Flink application.
 	ApplicationSnapshotConfigurationDescription *ApplicationSnapshotConfigurationDescription `type:"structure"`
+
+	// Describes system rollback configuration for a Managed Service for Apache
+	// Flink application
+	ApplicationSystemRollbackConfigurationDescription *ApplicationSystemRollbackConfigurationDescription `type:"structure"`
 
 	// Describes execution properties for a Managed Service for Apache Flink application.
 	EnvironmentPropertyDescriptions *EnvironmentPropertyDescriptions `type:"structure"`
@@ -4304,6 +4739,12 @@ func (s *ApplicationConfigurationDescription) SetApplicationSnapshotConfiguratio
 	return s
 }
 
+// SetApplicationSystemRollbackConfigurationDescription sets the ApplicationSystemRollbackConfigurationDescription field's value.
+func (s *ApplicationConfigurationDescription) SetApplicationSystemRollbackConfigurationDescription(v *ApplicationSystemRollbackConfigurationDescription) *ApplicationConfigurationDescription {
+	s.ApplicationSystemRollbackConfigurationDescription = v
+	return s
+}
+
 // SetEnvironmentPropertyDescriptions sets the EnvironmentPropertyDescriptions field's value.
 func (s *ApplicationConfigurationDescription) SetEnvironmentPropertyDescriptions(v *EnvironmentPropertyDescriptions) *ApplicationConfigurationDescription {
 	s.EnvironmentPropertyDescriptions = v
@@ -4350,6 +4791,10 @@ type ApplicationConfigurationUpdate struct {
 	// Describes whether snapshots are enabled for a Managed Service for Apache
 	// Flink application.
 	ApplicationSnapshotConfigurationUpdate *ApplicationSnapshotConfigurationUpdate `type:"structure"`
+
+	// Describes system rollback configuration for a Managed Service for Apache
+	// Flink application
+	ApplicationSystemRollbackConfigurationUpdate *ApplicationSystemRollbackConfigurationUpdate `type:"structure"`
 
 	// Describes updates to the environment properties for a Managed Service for
 	// Apache Flink application.
@@ -4401,6 +4846,11 @@ func (s *ApplicationConfigurationUpdate) Validate() error {
 			invalidParams.AddNested("ApplicationSnapshotConfigurationUpdate", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.ApplicationSystemRollbackConfigurationUpdate != nil {
+		if err := s.ApplicationSystemRollbackConfigurationUpdate.Validate(); err != nil {
+			invalidParams.AddNested("ApplicationSystemRollbackConfigurationUpdate", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.EnvironmentPropertyUpdates != nil {
 		if err := s.EnvironmentPropertyUpdates.Validate(); err != nil {
 			invalidParams.AddNested("EnvironmentPropertyUpdates", err.(request.ErrInvalidParams))
@@ -4447,6 +4897,12 @@ func (s *ApplicationConfigurationUpdate) SetApplicationCodeConfigurationUpdate(v
 // SetApplicationSnapshotConfigurationUpdate sets the ApplicationSnapshotConfigurationUpdate field's value.
 func (s *ApplicationConfigurationUpdate) SetApplicationSnapshotConfigurationUpdate(v *ApplicationSnapshotConfigurationUpdate) *ApplicationConfigurationUpdate {
 	s.ApplicationSnapshotConfigurationUpdate = v
+	return s
+}
+
+// SetApplicationSystemRollbackConfigurationUpdate sets the ApplicationSystemRollbackConfigurationUpdate field's value.
+func (s *ApplicationConfigurationUpdate) SetApplicationSystemRollbackConfigurationUpdate(v *ApplicationSystemRollbackConfigurationUpdate) *ApplicationConfigurationUpdate {
+	s.ApplicationSystemRollbackConfigurationUpdate = v
 	return s
 }
 
@@ -4514,6 +4970,9 @@ type ApplicationDetail struct {
 	//
 	// ApplicationStatus is a required field
 	ApplicationStatus *string `type:"string" required:"true" enum:"ApplicationStatus"`
+
+	// The current timestamp when the application version was created.
+	ApplicationVersionCreateTimestamp *time.Time `type:"timestamp"`
 
 	// Provides the current application version. Managed Service for Apache Flink
 	// updates the ApplicationVersionId each time you update the application.
@@ -4610,6 +5069,12 @@ func (s *ApplicationDetail) SetApplicationName(v string) *ApplicationDetail {
 // SetApplicationStatus sets the ApplicationStatus field's value.
 func (s *ApplicationDetail) SetApplicationStatus(v string) *ApplicationDetail {
 	s.ApplicationStatus = &v
+	return s
+}
+
+// SetApplicationVersionCreateTimestamp sets the ApplicationVersionCreateTimestamp field's value.
+func (s *ApplicationDetail) SetApplicationVersionCreateTimestamp(v time.Time) *ApplicationDetail {
+	s.ApplicationVersionCreateTimestamp = &v
 	return s
 }
 
@@ -4765,6 +5230,159 @@ func (s *ApplicationMaintenanceConfigurationUpdate) Validate() error {
 // SetApplicationMaintenanceWindowStartTimeUpdate sets the ApplicationMaintenanceWindowStartTimeUpdate field's value.
 func (s *ApplicationMaintenanceConfigurationUpdate) SetApplicationMaintenanceWindowStartTimeUpdate(v string) *ApplicationMaintenanceConfigurationUpdate {
 	s.ApplicationMaintenanceWindowStartTimeUpdate = &v
+	return s
+}
+
+// Provides a description of the operation, such as the type and status of operation
+type ApplicationOperationInfo struct {
+	_ struct{} `type:"structure"`
+
+	// The timestamp at which the operation finished for the application
+	EndTime *time.Time `type:"timestamp"`
+
+	// Type of operation performed on an application
+	Operation *string `min:"1" type:"string"`
+
+	// Identifier of the Operation
+	OperationId *string `min:"1" type:"string"`
+
+	// Status of the operation performed on an application
+	OperationStatus *string `type:"string" enum:"OperationStatus"`
+
+	// The timestamp at which the operation was created
+	StartTime *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ApplicationOperationInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ApplicationOperationInfo) GoString() string {
+	return s.String()
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *ApplicationOperationInfo) SetEndTime(v time.Time) *ApplicationOperationInfo {
+	s.EndTime = &v
+	return s
+}
+
+// SetOperation sets the Operation field's value.
+func (s *ApplicationOperationInfo) SetOperation(v string) *ApplicationOperationInfo {
+	s.Operation = &v
+	return s
+}
+
+// SetOperationId sets the OperationId field's value.
+func (s *ApplicationOperationInfo) SetOperationId(v string) *ApplicationOperationInfo {
+	s.OperationId = &v
+	return s
+}
+
+// SetOperationStatus sets the OperationStatus field's value.
+func (s *ApplicationOperationInfo) SetOperationStatus(v string) *ApplicationOperationInfo {
+	s.OperationStatus = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *ApplicationOperationInfo) SetStartTime(v time.Time) *ApplicationOperationInfo {
+	s.StartTime = &v
+	return s
+}
+
+// Provides a description of the operation, such as the operation-type and status
+type ApplicationOperationInfoDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Contains information about the application version changes due to an operation
+	ApplicationVersionChangeDetails *ApplicationVersionChangeDetails `type:"structure"`
+
+	// The timestamp at which the operation finished for the application
+	//
+	// EndTime is a required field
+	EndTime *time.Time `type:"timestamp" required:"true"`
+
+	// Type of operation performed on an application
+	//
+	// Operation is a required field
+	Operation *string `min:"1" type:"string" required:"true"`
+
+	// Provides a description of the operation failure
+	OperationFailureDetails *OperationFailureDetails `type:"structure"`
+
+	// Status of the operation performed on an application
+	//
+	// OperationStatus is a required field
+	OperationStatus *string `type:"string" required:"true" enum:"OperationStatus"`
+
+	// The timestamp at which the operation was created
+	//
+	// StartTime is a required field
+	StartTime *time.Time `type:"timestamp" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ApplicationOperationInfoDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ApplicationOperationInfoDetails) GoString() string {
+	return s.String()
+}
+
+// SetApplicationVersionChangeDetails sets the ApplicationVersionChangeDetails field's value.
+func (s *ApplicationOperationInfoDetails) SetApplicationVersionChangeDetails(v *ApplicationVersionChangeDetails) *ApplicationOperationInfoDetails {
+	s.ApplicationVersionChangeDetails = v
+	return s
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *ApplicationOperationInfoDetails) SetEndTime(v time.Time) *ApplicationOperationInfoDetails {
+	s.EndTime = &v
+	return s
+}
+
+// SetOperation sets the Operation field's value.
+func (s *ApplicationOperationInfoDetails) SetOperation(v string) *ApplicationOperationInfoDetails {
+	s.Operation = &v
+	return s
+}
+
+// SetOperationFailureDetails sets the OperationFailureDetails field's value.
+func (s *ApplicationOperationInfoDetails) SetOperationFailureDetails(v *OperationFailureDetails) *ApplicationOperationInfoDetails {
+	s.OperationFailureDetails = v
+	return s
+}
+
+// SetOperationStatus sets the OperationStatus field's value.
+func (s *ApplicationOperationInfoDetails) SetOperationStatus(v string) *ApplicationOperationInfoDetails {
+	s.OperationStatus = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *ApplicationOperationInfoDetails) SetStartTime(v time.Time) *ApplicationOperationInfoDetails {
+	s.StartTime = &v
 	return s
 }
 
@@ -5049,6 +5667,186 @@ func (s *ApplicationSummary) SetApplicationVersionId(v int64) *ApplicationSummar
 // SetRuntimeEnvironment sets the RuntimeEnvironment field's value.
 func (s *ApplicationSummary) SetRuntimeEnvironment(v string) *ApplicationSummary {
 	s.RuntimeEnvironment = &v
+	return s
+}
+
+// Describes system rollback configuration for a Managed Service for Apache
+// Flink application
+type ApplicationSystemRollbackConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Describes whether system rollbacks are enabled for a Managed Service for
+	// Apache Flink application
+	//
+	// RollbackEnabled is a required field
+	RollbackEnabled *bool `type:"boolean" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ApplicationSystemRollbackConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ApplicationSystemRollbackConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ApplicationSystemRollbackConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ApplicationSystemRollbackConfiguration"}
+	if s.RollbackEnabled == nil {
+		invalidParams.Add(request.NewErrParamRequired("RollbackEnabled"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRollbackEnabled sets the RollbackEnabled field's value.
+func (s *ApplicationSystemRollbackConfiguration) SetRollbackEnabled(v bool) *ApplicationSystemRollbackConfiguration {
+	s.RollbackEnabled = &v
+	return s
+}
+
+// Describes system rollback configuration for a Managed Service for Apache
+// Flink application
+type ApplicationSystemRollbackConfigurationDescription struct {
+	_ struct{} `type:"structure"`
+
+	// Describes whether system rollbacks are enabled for a Managed Service for
+	// Apache Flink application
+	//
+	// RollbackEnabled is a required field
+	RollbackEnabled *bool `type:"boolean" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ApplicationSystemRollbackConfigurationDescription) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ApplicationSystemRollbackConfigurationDescription) GoString() string {
+	return s.String()
+}
+
+// SetRollbackEnabled sets the RollbackEnabled field's value.
+func (s *ApplicationSystemRollbackConfigurationDescription) SetRollbackEnabled(v bool) *ApplicationSystemRollbackConfigurationDescription {
+	s.RollbackEnabled = &v
+	return s
+}
+
+// Describes system rollback configuration for a Managed Service for Apache
+// Flink application
+type ApplicationSystemRollbackConfigurationUpdate struct {
+	_ struct{} `type:"structure"`
+
+	// Describes whether system rollbacks are enabled for a Managed Service for
+	// Apache Flink application
+	//
+	// RollbackEnabledUpdate is a required field
+	RollbackEnabledUpdate *bool `type:"boolean" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ApplicationSystemRollbackConfigurationUpdate) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ApplicationSystemRollbackConfigurationUpdate) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ApplicationSystemRollbackConfigurationUpdate) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ApplicationSystemRollbackConfigurationUpdate"}
+	if s.RollbackEnabledUpdate == nil {
+		invalidParams.Add(request.NewErrParamRequired("RollbackEnabledUpdate"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRollbackEnabledUpdate sets the RollbackEnabledUpdate field's value.
+func (s *ApplicationSystemRollbackConfigurationUpdate) SetRollbackEnabledUpdate(v bool) *ApplicationSystemRollbackConfigurationUpdate {
+	s.RollbackEnabledUpdate = &v
+	return s
+}
+
+// Contains information about the application version changes due to an operation
+type ApplicationVersionChangeDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The operation was performed on this version of the application
+	//
+	// ApplicationVersionUpdatedFrom is a required field
+	ApplicationVersionUpdatedFrom *int64 `min:"1" type:"long" required:"true"`
+
+	// The operation execution resulted in the transition to the following version
+	// of the application
+	//
+	// ApplicationVersionUpdatedTo is a required field
+	ApplicationVersionUpdatedTo *int64 `min:"1" type:"long" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ApplicationVersionChangeDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ApplicationVersionChangeDetails) GoString() string {
+	return s.String()
+}
+
+// SetApplicationVersionUpdatedFrom sets the ApplicationVersionUpdatedFrom field's value.
+func (s *ApplicationVersionChangeDetails) SetApplicationVersionUpdatedFrom(v int64) *ApplicationVersionChangeDetails {
+	s.ApplicationVersionUpdatedFrom = &v
+	return s
+}
+
+// SetApplicationVersionUpdatedTo sets the ApplicationVersionUpdatedTo field's value.
+func (s *ApplicationVersionChangeDetails) SetApplicationVersionUpdatedTo(v int64) *ApplicationVersionChangeDetails {
+	s.ApplicationVersionUpdatedTo = &v
 	return s
 }
 
@@ -6746,6 +7544,9 @@ type DeleteApplicationCloudWatchLoggingOptionOutput struct {
 
 	// The descriptions of the remaining CloudWatch logging options for the application.
 	CloudWatchLoggingOptionDescriptions []*CloudWatchLoggingOptionDescription `type:"list"`
+
+	// Operation ID for tracking DeleteApplicationCloudWatchLoggingOption request
+	OperationId *string `min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -6781,6 +7582,12 @@ func (s *DeleteApplicationCloudWatchLoggingOptionOutput) SetApplicationVersionId
 // SetCloudWatchLoggingOptionDescriptions sets the CloudWatchLoggingOptionDescriptions field's value.
 func (s *DeleteApplicationCloudWatchLoggingOptionOutput) SetCloudWatchLoggingOptionDescriptions(v []*CloudWatchLoggingOptionDescription) *DeleteApplicationCloudWatchLoggingOptionOutput {
 	s.CloudWatchLoggingOptionDescriptions = v
+	return s
+}
+
+// SetOperationId sets the OperationId field's value.
+func (s *DeleteApplicationCloudWatchLoggingOptionOutput) SetOperationId(v string) *DeleteApplicationCloudWatchLoggingOptionOutput {
+	s.OperationId = &v
 	return s
 }
 
@@ -7462,6 +8269,9 @@ type DeleteApplicationVpcConfigurationOutput struct {
 
 	// The updated version ID of the application.
 	ApplicationVersionId *int64 `min:"1" type:"long"`
+
+	// Operation ID for tracking DeleteApplicationVpcConfiguration request
+	OperationId *string `min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -7491,6 +8301,12 @@ func (s *DeleteApplicationVpcConfigurationOutput) SetApplicationARN(v string) *D
 // SetApplicationVersionId sets the ApplicationVersionId field's value.
 func (s *DeleteApplicationVpcConfigurationOutput) SetApplicationVersionId(v int64) *DeleteApplicationVpcConfigurationOutput {
 	s.ApplicationVersionId = &v
+	return s
+}
+
+// SetOperationId sets the OperationId field's value.
+func (s *DeleteApplicationVpcConfigurationOutput) SetOperationId(v string) *DeleteApplicationVpcConfigurationOutput {
+	s.OperationId = &v
 	return s
 }
 
@@ -7691,6 +8507,107 @@ func (s *DescribeApplicationInput) SetApplicationName(v string) *DescribeApplica
 // SetIncludeAdditionalDetails sets the IncludeAdditionalDetails field's value.
 func (s *DescribeApplicationInput) SetIncludeAdditionalDetails(v bool) *DescribeApplicationInput {
 	s.IncludeAdditionalDetails = &v
+	return s
+}
+
+// Request for information about a specific operation performed on a Managed
+// Service for Apache Flink application
+type DescribeApplicationOperationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the application
+	//
+	// ApplicationName is a required field
+	ApplicationName *string `min:"1" type:"string" required:"true"`
+
+	// Identifier of the Operation
+	//
+	// OperationId is a required field
+	OperationId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeApplicationOperationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeApplicationOperationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeApplicationOperationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeApplicationOperationInput"}
+	if s.ApplicationName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ApplicationName"))
+	}
+	if s.ApplicationName != nil && len(*s.ApplicationName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ApplicationName", 1))
+	}
+	if s.OperationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("OperationId"))
+	}
+	if s.OperationId != nil && len(*s.OperationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("OperationId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetApplicationName sets the ApplicationName field's value.
+func (s *DescribeApplicationOperationInput) SetApplicationName(v string) *DescribeApplicationOperationInput {
+	s.ApplicationName = &v
+	return s
+}
+
+// SetOperationId sets the OperationId field's value.
+func (s *DescribeApplicationOperationInput) SetOperationId(v string) *DescribeApplicationOperationInput {
+	s.OperationId = &v
+	return s
+}
+
+// Provides details of the operation corresponding to the operation-ID on a
+// Managed Service for Apache Flink application
+type DescribeApplicationOperationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Provides a description of the operation, such as the operation-type and status
+	ApplicationOperationInfoDetails *ApplicationOperationInfoDetails `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeApplicationOperationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeApplicationOperationOutput) GoString() string {
+	return s.String()
+}
+
+// SetApplicationOperationInfoDetails sets the ApplicationOperationInfoDetails field's value.
+func (s *DescribeApplicationOperationOutput) SetApplicationOperationInfoDetails(v *ApplicationOperationInfoDetails) *DescribeApplicationOperationOutput {
+	s.ApplicationOperationInfoDetails = v
 	return s
 }
 
@@ -8279,6 +9196,38 @@ func (s *EnvironmentPropertyUpdates) Validate() error {
 // SetPropertyGroups sets the PropertyGroups field's value.
 func (s *EnvironmentPropertyUpdates) SetPropertyGroups(v []*PropertyGroup) *EnvironmentPropertyUpdates {
 	s.PropertyGroups = v
+	return s
+}
+
+// Provides a description of the operation failure error
+type ErrorInfo struct {
+	_ struct{} `type:"structure"`
+
+	// Error message resulting in failure of the operation
+	ErrorString *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ErrorInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ErrorInfo) GoString() string {
+	return s.String()
+}
+
+// SetErrorString sets the ErrorString field's value.
+func (s *ErrorInfo) SetErrorString(v string) *ErrorInfo {
+	s.ErrorString = &v
 	return s
 }
 
@@ -10688,6 +11637,144 @@ func (s *LimitExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Request to list operations performed on an application
+type ListApplicationOperationsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the application
+	//
+	// ApplicationName is a required field
+	ApplicationName *string `min:"1" type:"string" required:"true"`
+
+	// Limit on the number of records returned in the response
+	Limit *int64 `min:"1" type:"integer"`
+
+	// If a previous command returned a pagination token, pass it into this value
+	// to retrieve the next set of results
+	NextToken *string `min:"1" type:"string"`
+
+	// Type of operation performed on an application
+	Operation *string `min:"1" type:"string"`
+
+	// Status of the operation performed on an application
+	OperationStatus *string `type:"string" enum:"OperationStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListApplicationOperationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListApplicationOperationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListApplicationOperationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListApplicationOperationsInput"}
+	if s.ApplicationName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ApplicationName"))
+	}
+	if s.ApplicationName != nil && len(*s.ApplicationName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ApplicationName", 1))
+	}
+	if s.Limit != nil && *s.Limit < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Limit", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.Operation != nil && len(*s.Operation) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Operation", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetApplicationName sets the ApplicationName field's value.
+func (s *ListApplicationOperationsInput) SetApplicationName(v string) *ListApplicationOperationsInput {
+	s.ApplicationName = &v
+	return s
+}
+
+// SetLimit sets the Limit field's value.
+func (s *ListApplicationOperationsInput) SetLimit(v int64) *ListApplicationOperationsInput {
+	s.Limit = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListApplicationOperationsInput) SetNextToken(v string) *ListApplicationOperationsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetOperation sets the Operation field's value.
+func (s *ListApplicationOperationsInput) SetOperation(v string) *ListApplicationOperationsInput {
+	s.Operation = &v
+	return s
+}
+
+// SetOperationStatus sets the OperationStatus field's value.
+func (s *ListApplicationOperationsInput) SetOperationStatus(v string) *ListApplicationOperationsInput {
+	s.OperationStatus = &v
+	return s
+}
+
+// Response with the list of operations for an application
+type ListApplicationOperationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// List of ApplicationOperationInfo for an application
+	ApplicationOperationInfoList []*ApplicationOperationInfo `type:"list"`
+
+	// If a previous command returned a pagination token, pass it into this value
+	// to retrieve the next set of results
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListApplicationOperationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListApplicationOperationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetApplicationOperationInfoList sets the ApplicationOperationInfoList field's value.
+func (s *ListApplicationOperationsOutput) SetApplicationOperationInfoList(v []*ApplicationOperationInfo) *ListApplicationOperationsOutput {
+	s.ApplicationOperationInfoList = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListApplicationOperationsOutput) SetNextToken(v string) *ListApplicationOperationsOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListApplicationSnapshotsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11435,6 +12522,48 @@ func (s *MonitoringConfigurationUpdate) SetLogLevelUpdate(v string) *MonitoringC
 // SetMetricsLevelUpdate sets the MetricsLevelUpdate field's value.
 func (s *MonitoringConfigurationUpdate) SetMetricsLevelUpdate(v string) *MonitoringConfigurationUpdate {
 	s.MetricsLevelUpdate = &v
+	return s
+}
+
+// Provides a description of the operation failure
+type OperationFailureDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Provides a description of the operation failure error
+	ErrorInfo *ErrorInfo `type:"structure"`
+
+	// Provides the operation ID of a system-rollback operation executed due to
+	// failure in the current operation
+	RollbackOperationId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OperationFailureDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OperationFailureDetails) GoString() string {
+	return s.String()
+}
+
+// SetErrorInfo sets the ErrorInfo field's value.
+func (s *OperationFailureDetails) SetErrorInfo(v *ErrorInfo) *OperationFailureDetails {
+	s.ErrorInfo = v
+	return s
+}
+
+// SetRollbackOperationId sets the RollbackOperationId field's value.
+func (s *OperationFailureDetails) SetRollbackOperationId(v string) *OperationFailureDetails {
+	s.RollbackOperationId = &v
 	return s
 }
 
@@ -12777,6 +13906,9 @@ type RollbackApplicationOutput struct {
 	//
 	// ApplicationDetail is a required field
 	ApplicationDetail *ApplicationDetail `type:"structure" required:"true"`
+
+	// Operation ID for tracking RollbackApplication request
+	OperationId *string `min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -12800,6 +13932,12 @@ func (s RollbackApplicationOutput) GoString() string {
 // SetApplicationDetail sets the ApplicationDetail field's value.
 func (s *RollbackApplicationOutput) SetApplicationDetail(v *ApplicationDetail) *RollbackApplicationOutput {
 	s.ApplicationDetail = v
+	return s
+}
+
+// SetOperationId sets the OperationId field's value.
+func (s *RollbackApplicationOutput) SetOperationId(v string) *RollbackApplicationOutput {
+	s.OperationId = &v
 	return s
 }
 
@@ -14202,6 +15340,9 @@ func (s *StartApplicationInput) SetRunConfiguration(v *RunConfiguration) *StartA
 
 type StartApplicationOutput struct {
 	_ struct{} `type:"structure"`
+
+	// Operation ID for tracking StartApplication request
+	OperationId *string `min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -14220,6 +15361,12 @@ func (s StartApplicationOutput) String() string {
 // value will be replaced with "sensitive".
 func (s StartApplicationOutput) GoString() string {
 	return s.String()
+}
+
+// SetOperationId sets the OperationId field's value.
+func (s *StartApplicationOutput) SetOperationId(v string) *StartApplicationOutput {
+	s.OperationId = &v
+	return s
 }
 
 type StopApplicationInput struct {
@@ -14293,6 +15440,9 @@ func (s *StopApplicationInput) SetForce(v bool) *StopApplicationInput {
 
 type StopApplicationOutput struct {
 	_ struct{} `type:"structure"`
+
+	// Operation ID for tracking StopApplication request
+	OperationId *string `min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -14311,6 +15461,12 @@ func (s StopApplicationOutput) String() string {
 // value will be replaced with "sensitive".
 func (s StopApplicationOutput) GoString() string {
 	return s.String()
+}
+
+// SetOperationId sets the OperationId field's value.
+func (s *StopApplicationOutput) SetOperationId(v string) *StopApplicationOutput {
+	s.OperationId = &v
+	return s
 }
 
 // A key-value pair (the value is optional) that you can define and assign to
@@ -15040,6 +16196,9 @@ type UpdateApplicationOutput struct {
 	//
 	// ApplicationDetail is a required field
 	ApplicationDetail *ApplicationDetail `type:"structure" required:"true"`
+
+	// Operation ID for tracking UpdateApplication request
+	OperationId *string `min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -15063,6 +16222,12 @@ func (s UpdateApplicationOutput) GoString() string {
 // SetApplicationDetail sets the ApplicationDetail field's value.
 func (s *UpdateApplicationOutput) SetApplicationDetail(v *ApplicationDetail) *UpdateApplicationOutput {
 	s.ApplicationDetail = v
+	return s
+}
+
+// SetOperationId sets the OperationId field's value.
+func (s *UpdateApplicationOutput) SetOperationId(v string) *UpdateApplicationOutput {
+	s.OperationId = &v
 	return s
 }
 
@@ -15871,6 +17036,31 @@ func MetricsLevel_Values() []string {
 		MetricsLevelTask,
 		MetricsLevelOperator,
 		MetricsLevelParallelism,
+	}
+}
+
+// Status of the operation performed on an application
+const (
+	// OperationStatusInProgress is a OperationStatus enum value
+	OperationStatusInProgress = "IN_PROGRESS"
+
+	// OperationStatusCancelled is a OperationStatus enum value
+	OperationStatusCancelled = "CANCELLED"
+
+	// OperationStatusSuccessful is a OperationStatus enum value
+	OperationStatusSuccessful = "SUCCESSFUL"
+
+	// OperationStatusFailed is a OperationStatus enum value
+	OperationStatusFailed = "FAILED"
+)
+
+// OperationStatus_Values returns all elements of the OperationStatus enum
+func OperationStatus_Values() []string {
+	return []string{
+		OperationStatusInProgress,
+		OperationStatusCancelled,
+		OperationStatusSuccessful,
+		OperationStatusFailed,
 	}
 }
 

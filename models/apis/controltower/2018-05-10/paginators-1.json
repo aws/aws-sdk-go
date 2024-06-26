@@ -24,6 +24,12 @@
       "limit_key": "maxResults",
       "result_key": "enabledControls"
     },
+    "ListLandingZoneOperations": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults",
+      "result_key": "landingZoneOperations"
+    },
     "ListLandingZones": {
       "input_token": "nextToken",
       "output_token": "nextToken",

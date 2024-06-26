@@ -19,14 +19,16 @@
     "DeleteApplicationSnapshot": "<p>Deletes a snapshot of application state.</p>",
     "DeleteApplicationVpcConfiguration": "<p>Removes a VPC configuration from a Managed Service for Apache Flink application.</p>",
     "DescribeApplication": "<p>Returns information about a specific Managed Service for Apache Flink application.</p> <p>If you want to retrieve a list of all applications in your account, use the <a>ListApplications</a> operation.</p>",
+    "DescribeApplicationOperation": "Returns information about a specific operation performed on a Managed Service for Apache Flink application",
     "DescribeApplicationSnapshot": "<p>Returns information about a snapshot of application state data.</p>",
     "DescribeApplicationVersion": "<p>Provides a detailed description of a specified version of the application. To see a list of all the versions of an application, invoke the <a>ListApplicationVersions</a> operation.</p> <note> <p>This operation is supported only for Managed Service for Apache Flink.</p> </note>",
     "DiscoverInputSchema": "<p>Infers a schema for a SQL-based Kinesis Data Analytics application by evaluating sample records on the specified streaming source (Kinesis data stream or Kinesis Data Firehose delivery stream) or Amazon S3 object. In the response, the operation returns the inferred schema and also the sample records that the operation used to infer the schema.</p> <p> You can use the inferred schema when configuring a streaming source for your application. When you create an application using the Kinesis Data Analytics console, the console uses this operation to infer a schema and show it in the console user interface. </p>",
+    "ListApplicationOperations": "Lists information about operations performed on a Managed Service for Apache Flink application",
     "ListApplicationSnapshots": "<p>Lists information about the current application snapshots.</p>",
     "ListApplicationVersions": "<p>Lists all the versions for the specified application, including versions that were rolled back. The response also includes a summary of the configuration associated with each version.</p> <p>To get the complete description of a specific application version, invoke the <a>DescribeApplicationVersion</a> operation.</p> <note> <p>This operation is supported only for Managed Service for Apache Flink.</p> </note>",
     "ListApplications": "<p>Returns a list of Managed Service for Apache Flink applications in your account. For each application, the response includes the application name, Amazon Resource Name (ARN), and status. </p> <p>If you want detailed information about a specific application, use <a>DescribeApplication</a>.</p>",
     "ListTagsForResource": "<p>Retrieves the list of key-value tags assigned to the application. For more information, see <a href=\"https://docs.aws.amazon.com/kinesisanalytics/latest/java/how-tagging.html\">Using Tagging</a>.</p>",
-    "RollbackApplication": "<p>Reverts the application to the previous running version. You can roll back an application if you suspect it is stuck in a transient status. </p> <p>You can roll back an application only if it is in the <code>UPDATING</code> or <code>AUTOSCALING</code> status.</p> <p>When you rollback an application, it loads state data from the last successful snapshot. If the application has no snapshots, Managed Service for Apache Flink rejects the rollback request.</p> <p>This action is not supported for Managed Service for Apache Flink for SQL applications.</p>",
+    "RollbackApplication": "<p>Reverts the application to the previous running version. You can roll back an application if you suspect it is stuck in a transient status or in the running status. </p> <p>You can roll back an application only if it is in the <code>UPDATING</code>, <code>AUTOSCALING</code>, or <code>RUNNING</code> statuses.</p> <p>When you rollback an application, it loads state data from the last successful snapshot. If the application has no snapshots, Managed Service for Apache Flink rejects the rollback request.</p>",
     "StartApplication": "<p>Starts the specified Managed Service for Apache Flink application. After creating an application, you must exclusively call this operation to start your application.</p>",
     "StopApplication": "<p>Stops the application from processing data. You can stop an application only if it is in the running status, unless you set the <code>Force</code> parameter to <code>true</code>.</p> <p>You can use the <a>DescribeApplication</a> operation to find the application status. </p> <p>Managed Service for Apache Flink takes a snapshot when the application is stopped, unless <code>Force</code> is set to <code>true</code>.</p>",
     "TagResource": "<p>Adds one or more key-value tags to a Managed Service for Apache Flink application. Note that the maximum number of application tags includes system tags. The maximum number of user-defined application tags is 50. For more information, see <a href=\"https://docs.aws.amazon.com/kinesisanalytics/latest/java/how-tagging.html\">Using Tagging</a>.</p>",
@@ -183,7 +185,7 @@
       }
     },
     "ApplicationName": {
-      "base": null,
+      "base": "The name of the application",
       "refs": {
         "AddApplicationCloudWatchLoggingOptionRequest$ApplicationName": "<p>The Kinesis Data Analytics application name.</p>",
         "AddApplicationInputProcessingConfigurationRequest$ApplicationName": "<p>The name of the application to which you want to add the input processing configuration.</p>",
@@ -203,9 +205,11 @@
         "DeleteApplicationRequest$ApplicationName": "<p>The name of the application to delete.</p>",
         "DeleteApplicationSnapshotRequest$ApplicationName": "<p>The name of an existing application.</p>",
         "DeleteApplicationVpcConfigurationRequest$ApplicationName": "<p>The name of an existing application.</p>",
+        "DescribeApplicationOperationRequest$ApplicationName": null,
         "DescribeApplicationRequest$ApplicationName": "<p>The name of the application.</p>",
         "DescribeApplicationSnapshotRequest$ApplicationName": "<p>The name of an existing application.</p>",
         "DescribeApplicationVersionRequest$ApplicationName": "<p>The name of the application for which you want to get the version description.</p>",
+        "ListApplicationOperationsRequest$ApplicationName": null,
         "ListApplicationSnapshotsRequest$ApplicationName": "<p>The name of an existing application.</p>",
         "ListApplicationVersionsRequest$ApplicationName": "<p>The name of the application for which you want to list all versions.</p>",
         "ListApplicationsRequest$NextToken": "<p>If a previous command returned a pagination token, pass it into this value to retrieve the next set of results. For more information about pagination, see <a href=\"https://docs.aws.amazon.com/cli/latest/userguide/pagination.html\">Using the Amazon Command Line Interface's Pagination Options</a>.</p>",
@@ -215,6 +219,24 @@
         "StopApplicationRequest$ApplicationName": "<p>The name of the running application to stop.</p>",
         "UpdateApplicationMaintenanceConfigurationRequest$ApplicationName": "<p>The name of the application for which you want to update the maintenance configuration.</p>",
         "UpdateApplicationRequest$ApplicationName": "<p>The name of the application to update.</p>"
+      }
+    },
+    "ApplicationOperationInfo": {
+      "base": "Provides a description of the operation, such as the type and status of operation",
+      "refs": {
+        "ApplicationOperationInfoList$member": null
+      }
+    },
+    "ApplicationOperationInfoDetails": {
+      "base": "Provides a description of the operation, such as the operation-type and status",
+      "refs": {
+        "DescribeApplicationOperationResponse$ApplicationOperationInfoDetails": null
+      }
+    },
+    "ApplicationOperationInfoList": {
+      "base": "List of ApplicationOperationInfo for an application",
+      "refs": {
+        "ListApplicationOperationsResponse$ApplicationOperationInfoList": null
       }
     },
     "ApplicationRestoreConfiguration": {
@@ -269,6 +291,30 @@
         "ApplicationSummaries$member": null
       }
     },
+    "ApplicationSystemRollbackConfiguration": {
+      "base": "Describes system rollback configuration for a Managed Service for Apache Flink application",
+      "refs": {
+        "ApplicationConfiguration$ApplicationSystemRollbackConfiguration": null
+      }
+    },
+    "ApplicationSystemRollbackConfigurationDescription": {
+      "base": "Describes system rollback configuration for a Managed Service for Apache Flink application",
+      "refs": {
+        "ApplicationConfigurationDescription$ApplicationSystemRollbackConfigurationDescription": null
+      }
+    },
+    "ApplicationSystemRollbackConfigurationUpdate": {
+      "base": "Describes system rollback configuration for a Managed Service for Apache Flink application",
+      "refs": {
+        "ApplicationConfigurationUpdate$ApplicationSystemRollbackConfigurationUpdate": null
+      }
+    },
+    "ApplicationVersionChangeDetails": {
+      "base": "Contains information about the application version changes due to an operation",
+      "refs": {
+        "ApplicationOperationInfoDetails$ApplicationVersionChangeDetails": null
+      }
+    },
     "ApplicationVersionId": {
       "base": null,
       "refs": {
@@ -289,6 +335,8 @@
         "ApplicationDetail$ApplicationVersionRolledBackFrom": "<p>If you reverted the application using <a>RollbackApplication</a>, the application version when <code>RollbackApplication</code> was called.</p>",
         "ApplicationDetail$ApplicationVersionRolledBackTo": "<p>The version to which you want to roll back the application.</p>",
         "ApplicationSummary$ApplicationVersionId": "<p>Provides the current application version.</p>",
+        "ApplicationVersionChangeDetails$ApplicationVersionUpdatedFrom": "The operation was performed on this version of the application",
+        "ApplicationVersionChangeDetails$ApplicationVersionUpdatedTo": "The operation execution resulted in the transition to the following version of the application",
         "ApplicationVersionSummary$ApplicationVersionId": "<p>The ID of the application version. Managed Service for Apache Flink updates the <code>ApplicationVersionId</code> each time you update the application.</p>",
         "DeleteApplicationCloudWatchLoggingOptionRequest$CurrentApplicationVersionId": "<p>The version ID of the application. You must provide the <code>CurrentApplicationVersionId</code> or the <code>ConditionalToken</code>. You can retrieve the application version ID using <a>DescribeApplication</a>. For better concurrency support, use the <code>ConditionalToken</code> parameter instead of <code>CurrentApplicationVersionId</code>.</p>",
         "DeleteApplicationCloudWatchLoggingOptionResponse$ApplicationVersionId": "<p>The version ID of the application. Kinesis Data Analytics updates the <code>ApplicationVersionId</code> each time you change the CloudWatch logging options.</p>",
@@ -345,6 +393,9 @@
         "ApplicationSnapshotConfiguration$SnapshotsEnabled": "<p>Describes whether snapshots are enabled for a Managed Service for Apache Flink application.</p>",
         "ApplicationSnapshotConfigurationDescription$SnapshotsEnabled": "<p>Describes whether snapshots are enabled for a Managed Service for Apache Flink application.</p>",
         "ApplicationSnapshotConfigurationUpdate$SnapshotsEnabledUpdate": "<p>Describes updates to whether snapshots are enabled for an application.</p>",
+        "ApplicationSystemRollbackConfiguration$RollbackEnabled": "Describes whether system rollbacks are enabled for a Managed Service for Apache Flink application",
+        "ApplicationSystemRollbackConfigurationDescription$RollbackEnabled": "Describes whether system rollbacks are enabled for a Managed Service for Apache Flink application",
+        "ApplicationSystemRollbackConfigurationUpdate$RollbackEnabledUpdate": "Describes whether system rollbacks are enabled for a Managed Service for Apache Flink application",
         "CheckpointConfiguration$CheckpointingEnabled": "<p>Describes whether checkpointing is enabled for a Managed Service for Apache Flink application.</p> <note> <p>If <code>CheckpointConfiguration.ConfigurationType</code> is <code>DEFAULT</code>, the application will use a <code>CheckpointingEnabled</code> value of <code>true</code>, even if this value is set to another value using this API or in application code.</p> </note>",
         "CheckpointConfigurationDescription$CheckpointingEnabled": "<p>Describes whether checkpointing is enabled for a Managed Service for Apache Flink application.</p> <note> <p>If <code>CheckpointConfiguration.ConfigurationType</code> is <code>DEFAULT</code>, the application will use a <code>CheckpointingEnabled</code> value of <code>true</code>, even if this value is set to another value using this API or in application code.</p> </note>",
         "CheckpointConfigurationUpdate$CheckpointingEnabledUpdate": "<p>Describes updates to whether checkpointing is enabled for an application.</p> <note> <p>If <code>CheckpointConfiguration.ConfigurationType</code> is <code>DEFAULT</code>, the application will use a <code>CheckpointingEnabled</code> value of <code>true</code>, even if this value is set to another value using this API or in application code.</p> </note>",
@@ -684,6 +735,16 @@
         "ZeppelinApplicationConfigurationUpdate$DeployAsApplicationConfigurationUpdate": null
       }
     },
+    "DescribeApplicationOperationRequest": {
+      "base": "Request for information about a specific operation performed on a Managed Service for Apache Flink application",
+      "refs": {
+      }
+    },
+    "DescribeApplicationOperationResponse": {
+      "base": "Provides details of the operation corresponding to the operation-ID on a Managed Service for Apache Flink application",
+      "refs": {
+      }
+    },
     "DescribeApplicationRequest": {
       "base": null,
       "refs": {
@@ -750,6 +811,12 @@
         "ApplicationConfigurationUpdate$EnvironmentPropertyUpdates": "<p>Describes updates to the environment properties for a Managed Service for Apache Flink application.</p>"
       }
     },
+    "ErrorInfo": {
+      "base": "Provides a description of the operation failure error",
+      "refs": {
+        "OperationFailureDetails$ErrorInfo": null
+      }
+    },
     "ErrorMessage": {
       "base": null,
       "refs": {
@@ -766,6 +833,12 @@
         "TooManyTagsException$message": null,
         "UnableToDetectSchemaException$Message": null,
         "UnsupportedOperationException$Message": null
+      }
+    },
+    "ErrorString": {
+      "base": "Error message resulting in failure of the operation",
+      "refs": {
+        "ErrorInfo$ErrorString": null
       }
     },
     "FileKey": {
@@ -1121,6 +1194,22 @@
       "refs": {
       }
     },
+    "ListApplicationOperationsInputLimit": {
+      "base": "Limit on the number of records returned in the response",
+      "refs": {
+        "ListApplicationOperationsRequest$Limit": null
+      }
+    },
+    "ListApplicationOperationsRequest": {
+      "base": "Request to list operations performed on an application",
+      "refs": {
+      }
+    },
+    "ListApplicationOperationsResponse": {
+      "base": "Response with the list of operations for an application",
+      "refs": {
+      }
+    },
     "ListApplicationSnapshotsRequest": {
       "base": null,
       "refs": {
@@ -1264,8 +1353,10 @@
       }
     },
     "NextToken": {
-      "base": null,
+      "base": "If a previous command returned a pagination token, pass it into this value to retrieve the next set of results",
       "refs": {
+        "ListApplicationOperationsRequest$NextToken": null,
+        "ListApplicationOperationsResponse$NextToken": null,
         "ListApplicationSnapshotsRequest$NextToken": "<p>Use this parameter if you receive a <code>NextToken</code> response in a previous request that indicates that there is more output available. Set it to the value of the previous call's <code>NextToken</code> response to indicate where the output should continue from. </p>",
         "ListApplicationSnapshotsResponse$NextToken": "<p>The token for the next set of results, or <code>null</code> if there are no additional results.</p>",
         "ListApplicationVersionsRequest$NextToken": "<p>If a previous invocation of this operation returned a pagination token, pass it into this value to retrieve the next set of results. For more information about pagination, see <a href=\"https://docs.aws.amazon.com/cli/latest/userguide/pagination.html\">Using the Amazon Command Line Interface's Pagination Options</a>.</p>",
@@ -1278,6 +1369,44 @@
         "S3ApplicationCodeLocationDescription$ObjectVersion": "<p>The version of the object containing the application code.</p>",
         "S3ContentLocation$ObjectVersion": "<p>The version of the object containing the application code.</p>",
         "S3ContentLocationUpdate$ObjectVersionUpdate": "<p>The new version of the object containing the application code.</p>"
+      }
+    },
+    "Operation": {
+      "base": "Type of operation performed on an application",
+      "refs": {
+        "ApplicationOperationInfo$Operation": null,
+        "ApplicationOperationInfoDetails$Operation": null,
+        "ListApplicationOperationsRequest$Operation": null
+      }
+    },
+    "OperationFailureDetails": {
+      "base": "Provides a description of the operation failure",
+      "refs": {
+        "ApplicationOperationInfoDetails$OperationFailureDetails": null
+      }
+    },
+    "OperationId": {
+      "base": "Identifier of the Operation",
+      "refs": {
+        "AddApplicationCloudWatchLoggingOptionResponse$OperationId": "Operation ID for tracking AddApplicationCloudWatchLoggingOption request",
+        "AddApplicationVpcConfigurationResponse$OperationId": "Operation ID for tracking AddApplicationVpcConfiguration request",
+        "ApplicationOperationInfo$OperationId": null,
+        "DeleteApplicationCloudWatchLoggingOptionResponse$OperationId": "Operation ID for tracking DeleteApplicationCloudWatchLoggingOption request",
+        "DeleteApplicationVpcConfigurationResponse$OperationId": "Operation ID for tracking DeleteApplicationVpcConfiguration request",
+        "DescribeApplicationOperationRequest$OperationId": null,
+        "OperationFailureDetails$RollbackOperationId": "Provides the operation ID of a system-rollback operation executed due to failure in the current operation",
+        "RollbackApplicationResponse$OperationId": "Operation ID for tracking RollbackApplication request",
+        "StartApplicationResponse$OperationId": "Operation ID for tracking StartApplication request",
+        "StopApplicationResponse$OperationId": "Operation ID for tracking StopApplication request",
+        "UpdateApplicationResponse$OperationId": "Operation ID for tracking UpdateApplication request"
+      }
+    },
+    "OperationStatus": {
+      "base": "Status of the operation performed on an application",
+      "refs": {
+        "ApplicationOperationInfo$OperationStatus": null,
+        "ApplicationOperationInfoDetails$OperationStatus": null,
+        "ListApplicationOperationsRequest$OperationStatus": null
       }
     },
     "Output": {
@@ -1892,6 +2021,11 @@
       "refs": {
         "ApplicationDetail$CreateTimestamp": "<p>The current timestamp when the application was created.</p>",
         "ApplicationDetail$LastUpdateTimestamp": "<p>The current timestamp when the application was last updated.</p>",
+        "ApplicationDetail$ApplicationVersionCreateTimestamp": "The current timestamp when the application version was created.",
+        "ApplicationOperationInfo$StartTime": "The timestamp at which the operation was created",
+        "ApplicationOperationInfo$EndTime": "The timestamp at which the operation finished for the application",
+        "ApplicationOperationInfoDetails$StartTime": "The timestamp at which the operation was created",
+        "ApplicationOperationInfoDetails$EndTime": "The timestamp at which the operation finished for the application",
         "DeleteApplicationRequest$CreateTimestamp": "<p>Use the <code>DescribeApplication</code> operation to get this value.</p>",
         "DeleteApplicationSnapshotRequest$SnapshotCreationTimestamp": "<p>The creation timestamp of the application snapshot to delete. You can retrieve this value using or .</p>",
         "SnapshotDetails$SnapshotCreationTimestamp": "<p>The timestamp of the application snapshot.</p>"
