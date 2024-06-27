@@ -5,18 +5,21 @@
     "CreateAssistant": "<p>Creates an Amazon Q in Connect assistant.</p>",
     "CreateAssistantAssociation": "<p>Creates an association between an Amazon Q in Connect assistant and another resource. Currently, the only supported association is with a knowledge base. An assistant can have only a single association.</p>",
     "CreateContent": "<p>Creates Amazon Q in Connect content. Before to calling this API, use <a href=\"https://docs.aws.amazon.com/amazon-q-connect/latest/APIReference/API_StartContentUpload.html\">StartContentUpload</a> to upload an asset.</p>",
+    "CreateContentAssociation": "<p>Creates an association between a content resource in a knowledge base and <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/step-by-step-guided-experiences.html\">step-by-step guides</a>. Step-by-step guides offer instructions to agents for resolving common customer issues. You create a content association to integrate Amazon Q in Connect and step-by-step guides. </p> <p>After you integrate Amazon Q and step-by-step guides, when Amazon Q provides a recommendation to an agent based on the intent that it's detected, it also provides them with the option to start the step-by-step guide that you have associated with the content.</p> <p>Note the following limitations:</p> <ul> <li> <p>You can create only one content association for each content resource in a knowledge base.</p> </li> <li> <p>You can associate a step-by-step guide with multiple content resources.</p> </li> </ul> <p>For more information, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/integrate-q-with-guides.html\">Integrate Amazon Q in Connect with step-by-step guides</a> in the <i>Amazon Connect Administrator Guide</i>. </p>",
     "CreateKnowledgeBase": "<p>Creates a knowledge base.</p> <note> <p>When using this API, you cannot reuse <a href=\"https://docs.aws.amazon.com/appintegrations/latest/APIReference/Welcome.html\">Amazon AppIntegrations</a> DataIntegrations with external knowledge bases such as Salesforce and ServiceNow. If you do, you'll get an <code>InvalidRequestException</code> error. </p> <p>For example, you're programmatically managing your external knowledge base, and you want to add or remove one of the fields that is being ingested from Salesforce. Do the following:</p> <ol> <li> <p>Call <a href=\"https://docs.aws.amazon.com/amazon-q-connect/latest/APIReference/API_DeleteKnowledgeBase.html\">DeleteKnowledgeBase</a>.</p> </li> <li> <p>Call <a href=\"https://docs.aws.amazon.com/appintegrations/latest/APIReference/API_DeleteDataIntegration.html\">DeleteDataIntegration</a>.</p> </li> <li> <p>Call <a href=\"https://docs.aws.amazon.com/appintegrations/latest/APIReference/API_CreateDataIntegration.html\">CreateDataIntegration</a> to recreate the DataIntegration or a create different one.</p> </li> <li> <p>Call CreateKnowledgeBase.</p> </li> </ol> </note>",
     "CreateQuickResponse": "<p>Creates an Amazon Q in Connect quick response.</p>",
     "CreateSession": "<p>Creates a session. A session is a contextual container used for generating recommendations. Amazon Connect creates a new Amazon Q in Connect session for each contact on which Amazon Q in Connect is enabled.</p>",
     "DeleteAssistant": "<p>Deletes an assistant.</p>",
     "DeleteAssistantAssociation": "<p>Deletes an assistant association.</p>",
     "DeleteContent": "<p>Deletes the content.</p>",
+    "DeleteContentAssociation": "<p>Deletes the content association. </p> <p>For more information about content associations--what they are and when they are used--see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/integrate-q-with-guides.html\">Integrate Amazon Q in Connect with step-by-step guides</a> in the <i>Amazon Connect Administrator Guide</i>. </p>",
     "DeleteImportJob": "<p>Deletes the quick response import job.</p>",
     "DeleteKnowledgeBase": "<p>Deletes the knowledge base.</p> <note> <p>When you use this API to delete an external knowledge base such as Salesforce or ServiceNow, you must also delete the <a href=\"https://docs.aws.amazon.com/appintegrations/latest/APIReference/Welcome.html\">Amazon AppIntegrations</a> DataIntegration. This is because you can't reuse the DataIntegration after it's been associated with an external knowledge base. However, you can delete and recreate it. See <a href=\"https://docs.aws.amazon.com/appintegrations/latest/APIReference/API_DeleteDataIntegration.html\">DeleteDataIntegration</a> and <a href=\"https://docs.aws.amazon.com/appintegrations/latest/APIReference/API_CreateDataIntegration.html\">CreateDataIntegration</a> in the <i>Amazon AppIntegrations API Reference</i>.</p> </note>",
     "DeleteQuickResponse": "<p>Deletes a quick response.</p>",
     "GetAssistant": "<p>Retrieves information about an assistant.</p>",
     "GetAssistantAssociation": "<p>Retrieves information about an assistant association.</p>",
     "GetContent": "<p>Retrieves content, including a pre-signed URL to download the content.</p>",
+    "GetContentAssociation": "<p>Returns the content association.</p> <p>For more information about content associations--what they are and when they are used--see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/integrate-q-with-guides.html\">Integrate Amazon Q in Connect with step-by-step guides</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
     "GetContentSummary": "<p>Retrieves summary information about the content.</p>",
     "GetImportJob": "<p>Retrieves the started import job.</p>",
     "GetKnowledgeBase": "<p>Retrieves information about the knowledge base.</p>",
@@ -25,6 +28,7 @@
     "GetSession": "<p>Retrieves information for a specified session.</p>",
     "ListAssistantAssociations": "<p>Lists information about assistant associations.</p>",
     "ListAssistants": "<p>Lists information about assistants.</p>",
+    "ListContentAssociations": "<p>Lists the content associations.</p> <p>For more information about content associations--what they are and when they are used--see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/integrate-q-with-guides.html\">Integrate Amazon Q in Connect with step-by-step guides</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
     "ListContents": "<p>Lists the content.</p>",
     "ListImportJobs": "<p>Lists information about import jobs.</p>",
     "ListKnowledgeBases": "<p>Lists the knowledge bases.</p>",
@@ -52,6 +56,12 @@
       "refs": {
       }
     },
+    "AmazonConnectGuideAssociationData": {
+      "base": "<p>Content association data for a <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/step-by-step-guided-experiences.html\">step-by-step guide</a>.</p>",
+      "refs": {
+        "ContentAssociationContents$amazonConnectGuideAssociation": "<p>The data of the step-by-step guide association.</p>"
+      }
+    },
     "AndConditions": {
       "base": null,
       "refs": {
@@ -74,6 +84,12 @@
         "AssistantAssociationSummary$assistantAssociationArn": "<p>The Amazon Resource Name (ARN) of the assistant association.</p>",
         "AssistantData$assistantArn": "<p>The Amazon Resource Name (ARN) of the Amazon Q in Connect assistant.</p>",
         "AssistantSummary$assistantArn": "<p>The Amazon Resource Name (ARN) of the Amazon Q in Connect assistant.</p>",
+        "ContentAssociationData$contentArn": "<p>The Amazon Resource Name (ARN) of the content.</p>",
+        "ContentAssociationData$contentAssociationArn": "<p>The Amazon Resource Name (ARN) of the content association.</p>",
+        "ContentAssociationData$knowledgeBaseArn": "<p>The Amazon Resource Name (ARN) of the knowledge base.</p>",
+        "ContentAssociationSummary$contentArn": "<p>The Amazon Resource Name (ARN) of the content.</p>",
+        "ContentAssociationSummary$contentAssociationArn": "<p>The Amazon Resource Name (ARN) of the content association.</p>",
+        "ContentAssociationSummary$knowledgeBaseArn": "<p>The Amazon Resource Name (ARN) of the knowledge base.</p>",
         "ContentData$contentArn": "<p>The Amazon Resource Name (ARN) of the content.</p>",
         "ContentData$knowledgeBaseArn": "<p>The Amazon Resource Name (ARN) of the knowledge base.</p>",
         "ContentReference$contentArn": "<p>The Amazon Resource Name (ARN) of the content.</p>",
@@ -230,6 +246,7 @@
       "refs": {
         "CreateAssistantAssociationRequest$clientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If not provided, the Amazon Web Services SDK populates this field. For more information about idempotency, see <a href=\"https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/\">Making retries safe with idempotent APIs</a>.</p>",
         "CreateAssistantRequest$clientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If not provided, the Amazon Web Services SDK populates this field. For more information about idempotency, see <a href=\"https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/\">Making retries safe with idempotent APIs</a>.</p>",
+        "CreateContentAssociationRequest$clientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If not provided, the Amazon Web Services SDK populates this field. For more information about idempotency, see <a href=\"https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/\">Making retries safe with idempotent APIs</a>.</p>",
         "CreateSessionRequest$clientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If not provided, the Amazon Web Services SDK populates this field. For more information about idempotency, see <a href=\"https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/\">Making retries safe with idempotent APIs</a>.</p>"
       }
     },
@@ -274,6 +291,41 @@
       "base": null,
       "refs": {
         "SearchQuickResponsesRequest$attributes": "<p>The <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/connect-attrib-list.html#user-defined-attributes\">user-defined Amazon Connect contact attributes</a> to be resolved when search results are returned.</p>"
+      }
+    },
+    "ContentAssociationContents": {
+      "base": "<p>The contents of a content association.</p>",
+      "refs": {
+        "ContentAssociationData$associationData": "<p>The content association.</p>",
+        "ContentAssociationSummary$associationData": "<p>The content association.</p>",
+        "CreateContentAssociationRequest$association": "<p>The identifier of the associated resource.</p>"
+      }
+    },
+    "ContentAssociationData": {
+      "base": "<p>Information about the content association.</p>",
+      "refs": {
+        "CreateContentAssociationResponse$contentAssociation": "<p>The association between Amazon Q in Connect content and another resource.</p>",
+        "GetContentAssociationResponse$contentAssociation": "<p>The association between Amazon Q in Connect content and another resource.</p>"
+      }
+    },
+    "ContentAssociationSummary": {
+      "base": "<p>Summary information about a content association.</p>",
+      "refs": {
+        "ContentAssociationSummaryList$member": null
+      }
+    },
+    "ContentAssociationSummaryList": {
+      "base": null,
+      "refs": {
+        "ListContentAssociationsResponse$contentAssociationSummaries": "<p>Summary information about content associations.</p>"
+      }
+    },
+    "ContentAssociationType": {
+      "base": null,
+      "refs": {
+        "ContentAssociationData$associationType": "<p>The type of association.</p>",
+        "ContentAssociationSummary$associationType": "<p>The type of association.</p>",
+        "CreateContentAssociationRequest$associationType": "<p>The type of association.</p>"
       }
     },
     "ContentData": {
@@ -374,6 +426,16 @@
       "refs": {
       }
     },
+    "CreateContentAssociationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateContentAssociationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreateContentRequest": {
       "base": null,
       "refs": {
@@ -456,6 +518,16 @@
       }
     },
     "DeleteAssistantResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteContentAssociationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteContentAssociationResponse": {
       "base": null,
       "refs": {
       }
@@ -589,6 +661,7 @@
     "GenericArn": {
       "base": null,
       "refs": {
+        "AmazonConnectGuideAssociationData$flowId": "<p> The Amazon Resource Name (ARN) of an Amazon Connect flow. Step-by-step guides are a type of flow.</p>",
         "AppIntegrationsConfiguration$appIntegrationArn": "<p>The Amazon Resource Name (ARN) of the AppIntegrations DataIntegration to use for ingesting content.</p> <ul> <li> <p> For <a href=\"https://developer.salesforce.com/docs/atlas.en-us.knowledge_dev.meta/knowledge_dev/sforce_api_objects_knowledge__kav.htm\"> Salesforce</a>, your AppIntegrations DataIntegration must have an ObjectConfiguration if objectFields is not provided, including at least <code>Id</code>, <code>ArticleNumber</code>, <code>VersionNumber</code>, <code>Title</code>, <code>PublishStatus</code>, and <code>IsDeleted</code> as source fields. </p> </li> <li> <p> For <a href=\"https://developer.servicenow.com/dev.do#!/reference/api/rome/rest/knowledge-management-api\"> ServiceNow</a>, your AppIntegrations DataIntegration must have an ObjectConfiguration if objectFields is not provided, including at least <code>number</code>, <code>short_description</code>, <code>sys_mod_count</code>, <code>workflow_state</code>, and <code>active</code> as source fields. </p> </li> <li> <p> For <a href=\"https://developer.zendesk.com/api-reference/help_center/help-center-api/articles/\"> Zendesk</a>, your AppIntegrations DataIntegration must have an ObjectConfiguration if <code>objectFields</code> is not provided, including at least <code>id</code>, <code>title</code>, <code>updated_at</code>, and <code>draft</code> as source fields. </p> </li> <li> <p> For <a href=\"https://learn.microsoft.com/en-us/sharepoint/dev/sp-add-ins/sharepoint-net-server-csom-jsom-and-rest-api-index\">SharePoint</a>, your AppIntegrations DataIntegration must have a FileConfiguration, including only file extensions that are among <code>docx</code>, <code>pdf</code>, <code>html</code>, <code>htm</code>, and <code>txt</code>. </p> </li> <li> <p> For <a href=\"https://aws.amazon.com/s3/\">Amazon S3</a>, the ObjectConfiguration and FileConfiguration of your AppIntegrations DataIntegration must be null. The <code>SourceURI</code> of your DataIntegration must use the following format: <code>s3://your_s3_bucket_name</code>.</p> <important> <p>The bucket policy of the corresponding S3 bucket must allow the Amazon Web Services principal <code>app-integrations.amazonaws.com</code> to perform <code>s3:ListBucket</code>, <code>s3:GetObject</code>, and <code>s3:GetBucketLocation</code> against the bucket.</p> </important> </li> </ul>",
         "AssistantIntegrationConfiguration$topicIntegrationArn": "<p>The Amazon Resource Name (ARN) of the integrated Amazon SNS topic used for streaming chat messages.</p>",
         "QuickResponseData$lastModifiedBy": "<p>The Amazon Resource Name (ARN) of the user who last updated the quick response data.</p>",
@@ -613,6 +686,16 @@
       }
     },
     "GetAssistantResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetContentAssociationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetContentAssociationResponse": {
       "base": null,
       "refs": {
       }
@@ -843,6 +926,16 @@
       "refs": {
       }
     },
+    "ListContentAssociationsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListContentAssociationsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListContentsRequest": {
       "base": null,
       "refs": {
@@ -905,6 +998,7 @@
         "GetRecommendationsRequest$maxResults": "<p>The maximum number of results to return per page.</p>",
         "ListAssistantAssociationsRequest$maxResults": "<p>The maximum number of results to return per page.</p>",
         "ListAssistantsRequest$maxResults": "<p>The maximum number of results to return per page.</p>",
+        "ListContentAssociationsRequest$maxResults": "<p>The maximum number of results to return per page.</p>",
         "ListContentsRequest$maxResults": "<p>The maximum number of results to return per page.</p>",
         "ListImportJobsRequest$maxResults": "<p>The maximum number of results to return per page.</p>",
         "ListKnowledgeBasesRequest$maxResults": "<p>The maximum number of results to return per page.</p>",
@@ -938,6 +1032,8 @@
         "ListAssistantAssociationsResponse$nextToken": "<p>If there are additional results, this is the token for the next set of results.</p>",
         "ListAssistantsRequest$nextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
         "ListAssistantsResponse$nextToken": "<p>If there are additional results, this is the token for the next set of results.</p>",
+        "ListContentAssociationsRequest$nextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
+        "ListContentAssociationsResponse$nextToken": "<p>If there are additional results, this is the token for the next set of results.</p>",
         "ListContentsRequest$nextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
         "ListContentsResponse$nextToken": "<p>If there are additional results, this is the token for the next set of results.</p>",
         "QueryAssistantRequest$nextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
@@ -1560,6 +1656,7 @@
         "ResourceNotFoundException$message": null,
         "ResourceNotFoundException$resourceName": "<p>The specified resource name.</p>",
         "ServiceQuotaExceededException$message": null,
+        "ThrottlingException$message": null,
         "TooManyTagsException$message": null,
         "TooManyTagsException$resourceName": "<p>The specified resource name.</p>",
         "ValidationException$message": null
@@ -1638,10 +1735,13 @@
         "AssistantAssociationSummary$tags": "<p>The tags used to organize, track, or control access for this resource.</p>",
         "AssistantData$tags": "<p>The tags used to organize, track, or control access for this resource.</p>",
         "AssistantSummary$tags": "<p>The tags used to organize, track, or control access for this resource.</p>",
+        "ContentAssociationData$tags": "<p>The tags used to organize, track, or control access for this resource.</p>",
+        "ContentAssociationSummary$tags": "<p>The tags used to organize, track, or control access for this resource.</p>",
         "ContentData$tags": "<p>The tags used to organize, track, or control access for this resource.</p>",
         "ContentSummary$tags": "<p>The tags used to organize, track, or control access for this resource.</p>",
         "CreateAssistantAssociationRequest$tags": "<p>The tags used to organize, track, or control access for this resource.</p>",
         "CreateAssistantRequest$tags": "<p>The tags used to organize, track, or control access for this resource.</p>",
+        "CreateContentAssociationRequest$tags": "<p>The tags used to organize, track, or control access for this resource.</p>",
         "CreateContentRequest$tags": "<p>The tags used to organize, track, or control access for this resource.</p>",
         "CreateKnowledgeBaseRequest$tags": "<p>The tags used to organize, track, or control access for this resource.</p>",
         "CreateQuickResponseRequest$tags": "<p>The tags used to organize, track, or control access for this resource.</p>",
@@ -1668,6 +1768,11 @@
       "refs": {
         "ContentDataDetails$textData": "<p>Details about the content text data.</p>",
         "SourceContentDataDetails$textData": "<p> Details about the source content text data.</p>"
+      }
+    },
+    "ThrottlingException": {
+      "base": "<p>The throttling limit has been exceeded.</p>",
+      "refs": {
       }
     },
     "TimeToLive": {
@@ -1756,7 +1861,7 @@
       "base": null,
       "refs": {
         "ContentData$url": "<p>The URL of the content.</p>",
-        "ImportJobData$failedRecordReport": "<p>The link to donwload the information of resource data that failed to be imported.</p>",
+        "ImportJobData$failedRecordReport": "<p>The link to download the information of resource data that failed to be imported.</p>",
         "ImportJobData$url": "<p>The download link to the resource file that is uploaded to the import job.</p>",
         "StartContentUploadResponse$url": "<p>The URL of the upload.</p>"
       }
@@ -1771,6 +1876,12 @@
         "AssistantAssociationSummary$assistantId": "<p>The identifier of the Amazon Q in Connect assistant.</p>",
         "AssistantData$assistantId": "<p>The identifier of the Amazon Q in Connect assistant.</p>",
         "AssistantSummary$assistantId": "<p>The identifier of the Amazon Q in Connect assistant.</p>",
+        "ContentAssociationData$contentAssociationId": "<p>The identifier of the content association. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
+        "ContentAssociationData$contentId": "<p>The identifier of the content.</p>",
+        "ContentAssociationData$knowledgeBaseId": "<p>The identifier of the knowledge base.</p>",
+        "ContentAssociationSummary$contentAssociationId": "<p>The identifier of the content association. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
+        "ContentAssociationSummary$contentId": "<p>The identifier of the content.</p>",
+        "ContentAssociationSummary$knowledgeBaseId": "<p>The identifier of the knowledge base.</p>",
         "ContentData$contentId": "<p>The identifier of the content.</p>",
         "ContentData$knowledgeBaseId": "<p>The identifier of the knowledge base.</p>",
         "ContentReference$contentId": "<p>The identifier of the content.</p>",
@@ -1808,12 +1919,17 @@
       "base": null,
       "refs": {
         "CreateAssistantAssociationRequest$assistantId": "<p>The identifier of the Amazon Q in Connect assistant. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
+        "CreateContentAssociationRequest$contentId": "<p>The identifier of the content.</p>",
+        "CreateContentAssociationRequest$knowledgeBaseId": "<p>The identifier of the knowledge base.</p>",
         "CreateContentRequest$knowledgeBaseId": "<p>The identifier of the knowledge base. This should not be a QUICK_RESPONSES type knowledge base. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
         "CreateQuickResponseRequest$knowledgeBaseId": "<p>The identifier of the knowledge base. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
         "CreateSessionRequest$assistantId": "<p>The identifier of the Amazon Q in Connect assistant. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
         "DeleteAssistantAssociationRequest$assistantAssociationId": "<p>The identifier of the assistant association. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
         "DeleteAssistantAssociationRequest$assistantId": "<p>The identifier of the Amazon Q in Connect assistant. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
         "DeleteAssistantRequest$assistantId": "<p>The identifier of the Amazon Q in Connect assistant. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
+        "DeleteContentAssociationRequest$contentAssociationId": "<p>The identifier of the content association. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
+        "DeleteContentAssociationRequest$contentId": "<p>The identifier of the content.</p>",
+        "DeleteContentAssociationRequest$knowledgeBaseId": "<p>The identifier of the knowledge base.</p>",
         "DeleteContentRequest$contentId": "<p>The identifier of the content. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
         "DeleteContentRequest$knowledgeBaseId": "<p>The identifier of the knowledge base. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
         "DeleteImportJobRequest$knowledgeBaseId": "<p>The identifier of the knowledge base.</p>",
@@ -1823,6 +1939,9 @@
         "GetAssistantAssociationRequest$assistantAssociationId": "<p>The identifier of the assistant association. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
         "GetAssistantAssociationRequest$assistantId": "<p>The identifier of the Amazon Q in Connect assistant. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
         "GetAssistantRequest$assistantId": "<p>The identifier of the Amazon Q in Connect assistant. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
+        "GetContentAssociationRequest$contentAssociationId": "<p>The identifier of the content association. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
+        "GetContentAssociationRequest$contentId": "<p>The identifier of the content.</p>",
+        "GetContentAssociationRequest$knowledgeBaseId": "<p>The identifier of the knowledge base.</p>",
         "GetContentRequest$contentId": "<p>The identifier of the content. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
         "GetContentRequest$knowledgeBaseId": "<p>The identifier of the knowledge base. This should not be a QUICK_RESPONSES type knowledge base. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
         "GetContentSummaryRequest$contentId": "<p>The identifier of the content. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
@@ -1836,6 +1955,8 @@
         "GetSessionRequest$assistantId": "<p>The identifier of the Amazon Q in Connect assistant. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
         "GetSessionRequest$sessionId": "<p>The identifier of the session. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
         "ListAssistantAssociationsRequest$assistantId": "<p>The identifier of the Amazon Q in Connect assistant. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
+        "ListContentAssociationsRequest$contentId": "<p>The identifier of the content.</p>",
+        "ListContentAssociationsRequest$knowledgeBaseId": "<p>The identifier of the knowledge base.</p>",
         "ListContentsRequest$knowledgeBaseId": "<p>The identifier of the knowledge base. This should not be a QUICK_RESPONSES type knowledge base. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
         "ListImportJobsRequest$knowledgeBaseId": "<p>The identifier of the knowledge base. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
         "ListQuickResponsesRequest$knowledgeBaseId": "<p>The identifier of the knowledge base. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",

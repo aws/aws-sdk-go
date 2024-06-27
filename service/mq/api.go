@@ -2585,8 +2585,11 @@ type Configuration struct {
 	// EngineType is a required field
 	EngineType *string `locationName:"engineType" type:"string" required:"true" enum:"EngineType"`
 
-	// Required. The broker engine's version. For a list of supported engine versions,
-	// see, Supported engines (https://docs.aws.amazon.com//amazon-mq/latest/developer-guide/broker-engine.html).
+	// The broker engine version. Defaults to the latest available version for the
+	// specified broker engine type. For a list of supported engine versions, see
+	// the ActiveMQ version management (https://docs.aws.amazon.com//amazon-mq/latest/developer-guide/activemq-version-management.html)
+	// and the RabbitMQ version management (https://docs.aws.amazon.com//amazon-mq/latest/developer-guide/rabbitmq-version-management.html)
+	// sections in the Amazon MQ Developer Guide.
 	//
 	// EngineVersion is a required field
 	EngineVersion *string `locationName:"engineVersion" type:"string" required:"true"`
@@ -2923,8 +2926,7 @@ type CreateBrokerRequest struct {
 	// is SIMPLE.
 	AuthenticationStrategy *string `locationName:"authenticationStrategy" type:"string" enum:"AuthenticationStrategy"`
 
-	// AutoMinorVersionUpgrade is a required field
-	AutoMinorVersionUpgrade *bool `locationName:"autoMinorVersionUpgrade" type:"boolean" required:"true"`
+	AutoMinorVersionUpgrade *bool `locationName:"autoMinorVersionUpgrade" type:"boolean"`
 
 	// BrokerName is a required field
 	BrokerName *string `locationName:"brokerName" type:"string" required:"true"`
@@ -2952,8 +2954,7 @@ type CreateBrokerRequest struct {
 	// EngineType is a required field
 	EngineType *string `locationName:"engineType" type:"string" required:"true" enum:"EngineType"`
 
-	// EngineVersion is a required field
-	EngineVersion *string `locationName:"engineVersion" type:"string" required:"true"`
+	EngineVersion *string `locationName:"engineVersion" type:"string"`
 
 	// HostInstanceType is a required field
 	HostInstanceType *string `locationName:"hostInstanceType" type:"string" required:"true"`
@@ -3010,9 +3011,6 @@ func (s CreateBrokerRequest) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CreateBrokerRequest) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateBrokerRequest"}
-	if s.AutoMinorVersionUpgrade == nil {
-		invalidParams.Add(request.NewErrParamRequired("AutoMinorVersionUpgrade"))
-	}
 	if s.BrokerName == nil {
 		invalidParams.Add(request.NewErrParamRequired("BrokerName"))
 	}
@@ -3021,9 +3019,6 @@ func (s *CreateBrokerRequest) Validate() error {
 	}
 	if s.EngineType == nil {
 		invalidParams.Add(request.NewErrParamRequired("EngineType"))
-	}
-	if s.EngineVersion == nil {
-		invalidParams.Add(request.NewErrParamRequired("EngineVersion"))
 	}
 	if s.HostInstanceType == nil {
 		invalidParams.Add(request.NewErrParamRequired("HostInstanceType"))
@@ -3247,8 +3242,7 @@ type CreateConfigurationRequest struct {
 	// EngineType is a required field
 	EngineType *string `locationName:"engineType" type:"string" required:"true" enum:"EngineType"`
 
-	// EngineVersion is a required field
-	EngineVersion *string `locationName:"engineVersion" type:"string" required:"true"`
+	EngineVersion *string `locationName:"engineVersion" type:"string"`
 
 	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true"`
@@ -3279,9 +3273,6 @@ func (s *CreateConfigurationRequest) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateConfigurationRequest"}
 	if s.EngineType == nil {
 		invalidParams.Add(request.NewErrParamRequired("EngineType"))
-	}
-	if s.EngineVersion == nil {
-		invalidParams.Add(request.NewErrParamRequired("EngineVersion"))
 	}
 	if s.Name == nil {
 		invalidParams.Add(request.NewErrParamRequired("Name"))

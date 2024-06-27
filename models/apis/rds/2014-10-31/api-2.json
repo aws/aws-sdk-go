@@ -10,7 +10,8 @@
     "serviceId":"RDS",
     "signatureVersion":"v4",
     "uid":"rds-2014-10-31",
-    "xmlNamespace":"http://rds.amazonaws.com/doc/2014-10-31/"
+    "xmlNamespace":"http://rds.amazonaws.com/doc/2014-10-31/",
+    "auth":["aws.auth#sigv4"]
   },
   "operations":{
     "AddRoleToDBCluster":{

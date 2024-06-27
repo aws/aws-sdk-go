@@ -7,12 +7,12 @@
     "CreateMediaInsightsPipeline": "<p>Creates a media insights pipeline.</p>",
     "CreateMediaInsightsPipelineConfiguration": "<p>A structure that contains the static configurations for a media insights pipeline.</p>",
     "CreateMediaLiveConnectorPipeline": "<p>Creates a media live connector pipeline in an Amazon Chime SDK meeting.</p>",
-    "CreateMediaPipelineKinesisVideoStreamPool": "<p>Creates an Kinesis video stream pool for the media pipeline.</p>",
+    "CreateMediaPipelineKinesisVideoStreamPool": "<p>Creates an Amazon Kinesis Video Stream pool for use with media stream pipelines.</p> <note> <p>If a meeting uses an opt-in Region as its <a href=\"https://docs.aws.amazon.com/chime-sdk/latest/APIReference/API_meeting-chime_CreateMeeting.html#chimesdk-meeting-chime_CreateMeeting-request-MediaRegion\">MediaRegion</a>, the KVS stream must be in that same Region. For example, if a meeting uses the <code>af-south-1</code> Region, the KVS stream must also be in <code>af-south-1</code>. However, if the meeting uses a Region that AWS turns on by default, the KVS stream can be in any available Region, including an opt-in Region. For example, if the meeting uses <code>ca-central-1</code>, the KVS stream can be in <code>eu-west-2</code>, <code>us-east-1</code>, <code>af-south-1</code>, or any other Region that the Amazon Chime SDK supports.</p> <p>To learn which AWS Region a meeting uses, call the <a href=\"https://docs.aws.amazon.com/chime-sdk/latest/APIReference/API_meeting-chime_GetMeeting.html\">GetMeeting</a> API and use the <a href=\"https://docs.aws.amazon.com/chime-sdk/latest/APIReference/API_meeting-chime_CreateMeeting.html#chimesdk-meeting-chime_CreateMeeting-request-MediaRegion\">MediaRegion</a> parameter from the response.</p> <p>For more information about opt-in Regions, refer to <a href=\"https://docs.aws.amazon.com/chime-sdk/latest/dg/sdk-available-regions.html\">Available Regions</a> in the <i>Amazon Chime SDK Developer Guide</i>, and <a href=\"https://docs.aws.amazon.com/accounts/latest/reference/manage-acct-regions.html#rande-manage-enable.html\">Specify which AWS Regions your account can use</a>, in the <i>AWS Account Management Reference Guide</i>.</p> </note>",
     "CreateMediaStreamPipeline": "<p>Creates a streaming media pipeline.</p>",
     "DeleteMediaCapturePipeline": "<p>Deletes the media pipeline.</p>",
     "DeleteMediaInsightsPipelineConfiguration": "<p>Deletes the specified configuration settings.</p>",
     "DeleteMediaPipeline": "<p>Deletes the media pipeline.</p>",
-    "DeleteMediaPipelineKinesisVideoStreamPool": "<p>Deletes an Kinesis video stream pool.</p>",
+    "DeleteMediaPipelineKinesisVideoStreamPool": "<p>Deletes an Amazon Kinesis Video Stream pool.</p>",
     "GetMediaCapturePipeline": "<p>Gets an existing media pipeline.</p>",
     "GetMediaInsightsPipelineConfiguration": "<p>Gets the configuration settings for a media insights pipeline.</p>",
     "GetMediaPipeline": "<p>Gets an existing media pipeline.</p>",
@@ -32,7 +32,7 @@
     "UntagResource": "<p>Removes any tags from a media pipeline.</p>",
     "UpdateMediaInsightsPipelineConfiguration": "<p>Updates the media insights pipeline's configuration settings.</p>",
     "UpdateMediaInsightsPipelineStatus": "<p>Updates the status of a media insights pipeline.</p>",
-    "UpdateMediaPipelineKinesisVideoStreamPool": "<p>Updates an Kinesis video stream pool in a media pipeline.</p>"
+    "UpdateMediaPipelineKinesisVideoStreamPool": "<p>Updates an Amazon Kinesis Video Stream pool in a media pipeline.</p>"
   },
   "shapes": {
     "ActiveSpeakerOnlyConfiguration": {
@@ -68,7 +68,7 @@
       }
     },
     "AmazonTranscribeProcessorConfiguration": {
-      "base": "<p>A structure that contains the configuration settings for an Amazon Transcribe processor.</p>",
+      "base": "<p>A structure that contains the configuration settings for an Amazon Transcribe processor.</p> <note> <p>Calls to this API must include a <code>LanguageCode</code>, <code>IdentifyLanguage</code>, or <code>IdentifyMultipleLanguages</code> parameter. If you include more than one of those parameters, your transcription job fails.</p> </note>",
       "refs": {
         "MediaInsightsPipelineConfigurationElement$AmazonTranscribeProcessorConfiguration": "<p>The transcription processor configuration settings in a media insights pipeline configuration element.</p>"
       }
@@ -93,8 +93,8 @@
         "MediaInsightsPipelineConfiguration$MediaInsightsPipelineConfigurationArn": "<p>The ARN of the configuration.</p>",
         "MediaInsightsPipelineConfiguration$ResourceAccessRoleArn": "<p>The ARN of the role used by the service to access Amazon Web Services resources.</p>",
         "MediaInsightsPipelineConfigurationSummary$MediaInsightsPipelineConfigurationArn": "<p>The ARN of the media insights pipeline configuration.</p>",
-        "MediaStreamSink$SinkArn": "<p>The ARN of the media stream sink.</p>",
-        "MediaStreamSource$SourceArn": "<p>The ARN of the media stream source. </p>",
+        "MediaStreamSink$SinkArn": "<p>The ARN of the Kinesis Video Stream pool returned by the <a>CreateMediaPipelineKinesisVideoStreamPool</a> API.</p>",
+        "MediaStreamSource$SourceArn": "<p>The ARN of the meeting.</p>",
         "S3BucketSinkConfiguration$Destination": "<p>The destination URL of the S3 bucket.</p>",
         "S3RecordingSinkConfiguration$Destination": "<p>The default URI of the Amazon S3 bucket used as the recording sink.</p>",
         "S3RecordingSinkRuntimeConfiguration$Destination": "<p>The URI of the S3 bucket used as the sink.</p>",
@@ -196,6 +196,7 @@
         "AmazonTranscribeProcessorConfiguration$EnablePartialResultsStabilization": "<p>Enables partial result stabilization for your transcription. Partial result stabilization can reduce latency in your output, but may impact accuracy.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/transcribe/latest/dg/streaming.html#streaming-partial-result-stabilization\">Partial-result stabilization</a> in the <i>Amazon Transcribe Developer Guide</i>.</p>",
         "AmazonTranscribeProcessorConfiguration$FilterPartialResults": "<p>If true, <code>TranscriptEvents</code> with <code>IsPartial: true</code> are filtered out of the insights target.</p>",
         "AmazonTranscribeProcessorConfiguration$IdentifyLanguage": "<p>Turns language identification on or off.</p>",
+        "AmazonTranscribeProcessorConfiguration$IdentifyMultipleLanguages": "<p>Turns language identification on or off for multiple languages.</p>",
         "KeywordMatchConfiguration$Negate": "<p>Matches keywords or phrases on their presence or absence. If set to <code>TRUE</code>, the rule matches when all the specified keywords or phrases are absent. Default: <code>FALSE</code>.</p>",
         "RealTimeAlertConfiguration$Disabled": "<p>Turns off real-time alerts.</p>",
         "VoiceEnhancementSinkConfiguration$Disabled": "<p>Disables the <code>VoiceEnhancementSinkConfiguration</code> element.</p>"
@@ -720,9 +721,9 @@
       }
     },
     "KinesisVideoStreamConfiguration": {
-      "base": "<p>The configuration of an Kinesis video stream.</p>",
+      "base": "<p>The configuration of an Kinesis video stream.</p> <note> <p>If a meeting uses an opt-in Region as its <a href=\"https://docs.aws.amazon.com/chime-sdk/latest/APIReference/API_meeting-chime_CreateMeeting.html#chimesdk-meeting-chime_CreateMeeting-request-MediaRegion\">MediaRegion</a>, the KVS stream must be in that same Region. For example, if a meeting uses the <code>af-south-1</code> Region, the KVS stream must also be in <code>af-south-1</code>. However, if the meeting uses a Region that AWS turns on by default, the KVS stream can be in any available Region, including an opt-in Region. For example, if the meeting uses <code>ca-central-1</code>, the KVS stream can be in <code>eu-west-2</code>, <code>us-east-1</code>, <code>af-south-1</code>, or any other Region that the Amazon Chime SDK supports.</p> <p>To learn which AWS Region a meeting uses, call the <a href=\"https://docs.aws.amazon.com/chime-sdk/latest/APIReference/API_meeting-chime_GetMeeting.html\">GetMeeting</a> API and use the <a href=\"https://docs.aws.amazon.com/chime-sdk/latest/APIReference/API_meeting-chime_CreateMeeting.html#chimesdk-meeting-chime_CreateMeeting-request-MediaRegion\">MediaRegion</a> parameter from the response.</p> <p>For more information about opt-in Regions, refer to <a href=\"https://docs.aws.amazon.com/chime-sdk/latest/dg/sdk-available-regions.html\">Available Regions</a> in the <i>Amazon Chime SDK Developer Guide</i>, and <a href=\"https://docs.aws.amazon.com/accounts/latest/reference/manage-acct-regions.html#rande-manage-enable.html\">Specify which AWS Regions your account can use</a>, in the <i>AWS Account Management Reference Guide</i>.</p> </note>",
       "refs": {
-        "CreateMediaPipelineKinesisVideoStreamPoolRequest$StreamConfiguration": "<p>The configuration settings for the video stream.</p>",
+        "CreateMediaPipelineKinesisVideoStreamPoolRequest$StreamConfiguration": "<p>The configuration settings for the stream.</p>",
         "KinesisVideoStreamPoolConfiguration$StreamConfiguration": "<p>The Kinesis video stream pool configuration object.</p>"
       }
     },
@@ -735,7 +736,7 @@
     "KinesisVideoStreamPoolConfiguration": {
       "base": "<p>The video stream pool configuration object.</p>",
       "refs": {
-        "CreateMediaPipelineKinesisVideoStreamPoolResponse$KinesisVideoStreamPoolConfiguration": "<p>The configuration for the Kinesis video stream pool.</p>",
+        "CreateMediaPipelineKinesisVideoStreamPoolResponse$KinesisVideoStreamPoolConfiguration": "<p>The configuration for applying the streams to the pool.</p> <note> <p/> </note>",
         "GetMediaPipelineKinesisVideoStreamPoolResponse$KinesisVideoStreamPoolConfiguration": "<p>The video stream pool configuration object.</p>",
         "UpdateMediaPipelineKinesisVideoStreamPoolResponse$KinesisVideoStreamPoolConfiguration": "<p>The video stream pool configuration object.</p>"
       }
@@ -750,7 +751,7 @@
     "KinesisVideoStreamPoolName": {
       "base": null,
       "refs": {
-        "CreateMediaPipelineKinesisVideoStreamPoolRequest$PoolName": "<p>The name of the video stream pool.</p>",
+        "CreateMediaPipelineKinesisVideoStreamPoolRequest$PoolName": "<p>The name of the pool.</p>",
         "KinesisVideoStreamPoolConfiguration$PoolName": "<p>The name of the video stream pool configuration.</p>",
         "KinesisVideoStreamPoolSummary$PoolName": "<p>The name of the video stream pool.</p>"
       }
@@ -1169,9 +1170,9 @@
       "base": null,
       "refs": {
         "DeleteMediaInsightsPipelineConfigurationRequest$Identifier": "<p>The unique identifier of the resource to be deleted. Valid values include the name and ARN of the media insights pipeline configuration.</p>",
-        "DeleteMediaPipelineKinesisVideoStreamPoolRequest$Identifier": "<p>The ID of the pool being deleted.</p>",
+        "DeleteMediaPipelineKinesisVideoStreamPoolRequest$Identifier": "<p>The unique identifier of the requested resource. Valid values include the name and ARN of the media pipeline Kinesis Video Stream pool.</p>",
         "GetMediaInsightsPipelineConfigurationRequest$Identifier": "<p>The unique identifier of the requested resource. Valid values include the name and ARN of the media insights pipeline configuration.</p>",
-        "GetMediaPipelineKinesisVideoStreamPoolRequest$Identifier": "<p>The ID of the video stream pool.</p>",
+        "GetMediaPipelineKinesisVideoStreamPoolRequest$Identifier": "<p>The unique identifier of the requested resource. Valid values include the name and ARN of the media pipeline Kinesis Video Stream pool.</p>",
         "GetSpeakerSearchTaskRequest$Identifier": "<p>The unique identifier of the resource to be updated. Valid values include the ID and ARN of the media insights pipeline.</p>",
         "GetVoiceToneAnalysisTaskRequest$Identifier": "<p>The unique identifier of the resource to be updated. Valid values include the ID and ARN of the media insights pipeline.</p>",
         "MediaInsightsRuntimeMetadata$key": null,
@@ -1181,7 +1182,7 @@
         "StopVoiceToneAnalysisTaskRequest$Identifier": "<p>The unique identifier of the resource to be updated. Valid values include the ID and ARN of the media insights pipeline.</p>",
         "UpdateMediaInsightsPipelineConfigurationRequest$Identifier": "<p>The unique identifier for the resource to be updated. Valid values include the name and ARN of the media insights pipeline configuration.</p>",
         "UpdateMediaInsightsPipelineStatusRequest$Identifier": "<p>The unique identifier of the resource to be updated. Valid values include the ID and ARN of the media insights pipeline.</p>",
-        "UpdateMediaPipelineKinesisVideoStreamPoolRequest$Identifier": "<p>The ID of the video stream pool.</p>"
+        "UpdateMediaPipelineKinesisVideoStreamPoolRequest$Identifier": "<p>The unique identifier of the requested resource. Valid values include the name and ARN of the media pipeline Kinesis Video Stream pool.</p>"
       }
     },
     "NotFoundException": {
@@ -1507,7 +1508,7 @@
         "CreateMediaInsightsPipelineConfigurationRequest$Tags": "<p>The tags assigned to the media insights pipeline configuration.</p>",
         "CreateMediaInsightsPipelineRequest$Tags": "<p>The tags assigned to the media insights pipeline.</p>",
         "CreateMediaLiveConnectorPipelineRequest$Tags": "<p>The tags associated with the media live connector pipeline.</p>",
-        "CreateMediaPipelineKinesisVideoStreamPoolRequest$Tags": "<p>The tags assigned to the video stream pool.</p>",
+        "CreateMediaPipelineKinesisVideoStreamPoolRequest$Tags": "<p>The tags assigned to the stream pool.</p>",
         "CreateMediaStreamPipelineRequest$Tags": "<p>The tags assigned to the media pipeline.</p>",
         "ListTagsForResourceResponse$Tags": "<p>The tags associated with the specified media pipeline.</p>",
         "TagResourceRequest$Tags": "<p>The tags associated with the specified media pipeline.</p>"

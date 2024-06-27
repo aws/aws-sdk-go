@@ -72,6 +72,10 @@ type QConnectAPI interface {
 	CreateContentWithContext(aws.Context, *qconnect.CreateContentInput, ...request.Option) (*qconnect.CreateContentOutput, error)
 	CreateContentRequest(*qconnect.CreateContentInput) (*request.Request, *qconnect.CreateContentOutput)
 
+	CreateContentAssociation(*qconnect.CreateContentAssociationInput) (*qconnect.CreateContentAssociationOutput, error)
+	CreateContentAssociationWithContext(aws.Context, *qconnect.CreateContentAssociationInput, ...request.Option) (*qconnect.CreateContentAssociationOutput, error)
+	CreateContentAssociationRequest(*qconnect.CreateContentAssociationInput) (*request.Request, *qconnect.CreateContentAssociationOutput)
+
 	CreateKnowledgeBase(*qconnect.CreateKnowledgeBaseInput) (*qconnect.CreateKnowledgeBaseOutput, error)
 	CreateKnowledgeBaseWithContext(aws.Context, *qconnect.CreateKnowledgeBaseInput, ...request.Option) (*qconnect.CreateKnowledgeBaseOutput, error)
 	CreateKnowledgeBaseRequest(*qconnect.CreateKnowledgeBaseInput) (*request.Request, *qconnect.CreateKnowledgeBaseOutput)
@@ -96,6 +100,10 @@ type QConnectAPI interface {
 	DeleteContentWithContext(aws.Context, *qconnect.DeleteContentInput, ...request.Option) (*qconnect.DeleteContentOutput, error)
 	DeleteContentRequest(*qconnect.DeleteContentInput) (*request.Request, *qconnect.DeleteContentOutput)
 
+	DeleteContentAssociation(*qconnect.DeleteContentAssociationInput) (*qconnect.DeleteContentAssociationOutput, error)
+	DeleteContentAssociationWithContext(aws.Context, *qconnect.DeleteContentAssociationInput, ...request.Option) (*qconnect.DeleteContentAssociationOutput, error)
+	DeleteContentAssociationRequest(*qconnect.DeleteContentAssociationInput) (*request.Request, *qconnect.DeleteContentAssociationOutput)
+
 	DeleteImportJob(*qconnect.DeleteImportJobInput) (*qconnect.DeleteImportJobOutput, error)
 	DeleteImportJobWithContext(aws.Context, *qconnect.DeleteImportJobInput, ...request.Option) (*qconnect.DeleteImportJobOutput, error)
 	DeleteImportJobRequest(*qconnect.DeleteImportJobInput) (*request.Request, *qconnect.DeleteImportJobOutput)
@@ -119,6 +127,10 @@ type QConnectAPI interface {
 	GetContent(*qconnect.GetContentInput) (*qconnect.GetContentOutput, error)
 	GetContentWithContext(aws.Context, *qconnect.GetContentInput, ...request.Option) (*qconnect.GetContentOutput, error)
 	GetContentRequest(*qconnect.GetContentInput) (*request.Request, *qconnect.GetContentOutput)
+
+	GetContentAssociation(*qconnect.GetContentAssociationInput) (*qconnect.GetContentAssociationOutput, error)
+	GetContentAssociationWithContext(aws.Context, *qconnect.GetContentAssociationInput, ...request.Option) (*qconnect.GetContentAssociationOutput, error)
+	GetContentAssociationRequest(*qconnect.GetContentAssociationInput) (*request.Request, *qconnect.GetContentAssociationOutput)
 
 	GetContentSummary(*qconnect.GetContentSummaryInput) (*qconnect.GetContentSummaryOutput, error)
 	GetContentSummaryWithContext(aws.Context, *qconnect.GetContentSummaryInput, ...request.Option) (*qconnect.GetContentSummaryOutput, error)
@@ -157,6 +169,13 @@ type QConnectAPI interface {
 
 	ListAssistantsPages(*qconnect.ListAssistantsInput, func(*qconnect.ListAssistantsOutput, bool) bool) error
 	ListAssistantsPagesWithContext(aws.Context, *qconnect.ListAssistantsInput, func(*qconnect.ListAssistantsOutput, bool) bool, ...request.Option) error
+
+	ListContentAssociations(*qconnect.ListContentAssociationsInput) (*qconnect.ListContentAssociationsOutput, error)
+	ListContentAssociationsWithContext(aws.Context, *qconnect.ListContentAssociationsInput, ...request.Option) (*qconnect.ListContentAssociationsOutput, error)
+	ListContentAssociationsRequest(*qconnect.ListContentAssociationsInput) (*request.Request, *qconnect.ListContentAssociationsOutput)
+
+	ListContentAssociationsPages(*qconnect.ListContentAssociationsInput, func(*qconnect.ListContentAssociationsOutput, bool) bool) error
+	ListContentAssociationsPagesWithContext(aws.Context, *qconnect.ListContentAssociationsInput, func(*qconnect.ListContentAssociationsOutput, bool) bool, ...request.Option) error
 
 	ListContents(*qconnect.ListContentsInput) (*qconnect.ListContentsOutput, error)
 	ListContentsWithContext(aws.Context, *qconnect.ListContentsInput, ...request.Option) (*qconnect.ListContentsOutput, error)

@@ -12,6 +12,12 @@
       "limit_key": "maxResults",
       "result_key": "assistantSummaries"
     },
+    "ListContentAssociations": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults",
+      "result_key": "contentAssociationSummaries"
+    },
     "ListContents": {
       "input_token": "nextToken",
       "output_token": "nextToken",

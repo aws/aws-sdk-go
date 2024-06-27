@@ -1,3 +1,26 @@
+Release v1.54.10 (2024-06-27)
+===
+
+### Service Client Updates
+* `service/application-autoscaling`: Updates service API and documentation
+* `service/chime-sdk-media-pipelines`: Updates service API and documentation
+* `service/cloudfront`: Updates service API and documentation
+  * Doc only update for CloudFront that fixes customer-reported issue
+* `service/datazone`: Updates service API, documentation, and paginators
+* `service/elasticache`: Updates service API
+  * Add v2 smoke tests and smithy smokeTests trait for SDK testing.
+* `service/mq`: Updates service API and documentation
+  * This release makes the EngineVersion field optional for both broker and configuration and uses the latest available version by default. The AutoMinorVersionUpgrade field is also now optional for broker creation and defaults to 'true'.
+* `service/qconnect`: Updates service API, documentation, and paginators
+* `service/quicksight`: Updates service API and documentation
+  * Adding support for Repeating Sections, Nested Filters
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * Updates Amazon RDS documentation for TAZ export to S3.
+* `service/sagemaker`: Updates service API and documentation
+  * Add capability for Admins to customize Studio experience for the user by showing or hiding Apps and MLTools.
+* `service/workspaces`: Updates service API and documentation
+  * Added support for WorkSpaces Pools.
+
 Release v1.54.9 (2024-06-26)
 ===
 

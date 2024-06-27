@@ -1791,6 +1791,56 @@
         "BodySectionConfiguration$Content": "<p>The configuration of content in a body section.</p>"
       }
     },
+    "BodySectionDynamicCategoryDimensionConfiguration": {
+      "base": "<p>Describes the <b>Category</b> dataset column and constraints for the dynamic values used to repeat the contents of a section.</p>",
+      "refs": {
+        "BodySectionRepeatDimensionConfiguration$DynamicCategoryDimensionConfiguration": "<p>Describes the <b>Category</b> dataset column and constraints around the dynamic values that will be used in repeating the section contents.</p>"
+      }
+    },
+    "BodySectionDynamicDimensionLimit": {
+      "base": null,
+      "refs": {
+        "BodySectionDynamicCategoryDimensionConfiguration$Limit": "<p>Number of values to use from the column for repetition.</p>",
+        "BodySectionDynamicNumericDimensionConfiguration$Limit": "<p>Number of values to use from the column for repetition.</p>"
+      }
+    },
+    "BodySectionDynamicDimensionSortConfigurationList": {
+      "base": null,
+      "refs": {
+        "BodySectionDynamicCategoryDimensionConfiguration$SortByMetrics": "<p>Sort criteria on the column values that you use for repetition. </p>",
+        "BodySectionDynamicNumericDimensionConfiguration$SortByMetrics": "<p>Sort criteria on the column values that you use for repetition. </p>"
+      }
+    },
+    "BodySectionDynamicNumericDimensionConfiguration": {
+      "base": "<p>Describes the <b>Numeric</b> dataset column and constraints for the dynamic values used to repeat the contents of a section.</p>",
+      "refs": {
+        "BodySectionRepeatDimensionConfiguration$DynamicNumericDimensionConfiguration": "<p>Describes the <b>Numeric</b> dataset column and constraints around the dynamic values used to repeat the contents of a section.</p>"
+      }
+    },
+    "BodySectionRepeatConfiguration": {
+      "base": "<p>Describes the configurations that are required to declare a section as repeating.</p>",
+      "refs": {
+        "BodySectionConfiguration$RepeatConfiguration": "<p>Describes the configurations that are required to declare a section as repeating.</p>"
+      }
+    },
+    "BodySectionRepeatDimensionConfiguration": {
+      "base": "<p>Describes the dataset column and constraints for the dynamic values used to repeat the contents of a section. The dataset column is either <b>Category</b> or <b>Numeric</b> column configuration</p>",
+      "refs": {
+        "BodySectionRepeatDimensionConfigurationList$member": null
+      }
+    },
+    "BodySectionRepeatDimensionConfigurationList": {
+      "base": null,
+      "refs": {
+        "BodySectionRepeatConfiguration$DimensionConfigurations": "<p>List of <code>BodySectionRepeatDimensionConfiguration</code> values that describe the dataset column and constraints for the column used to repeat the contents of a section.</p>"
+      }
+    },
+    "BodySectionRepeatPageBreakConfiguration": {
+      "base": "<p>The page break configuration to apply for each repeating instance.</p>",
+      "refs": {
+        "BodySectionRepeatConfiguration$PageBreakConfiguration": "<p>Page break configuration to apply for each repeating instance.</p>"
+      }
+    },
     "BookmarksConfigurations": {
       "base": "<p>The bookmarks configuration of an embedded dashboard.</p>",
       "refs": {
@@ -1829,6 +1879,7 @@
         "IdentityCenterConfiguration$EnableIdentityPropagation": "<p>A Boolean option that controls whether Trusted Identity Propagation should be used.</p>",
         "JoinKeyProperties$UniqueKey": "<p>A value that indicates that a row in a table is uniquely identified by the columns in a join key. This is used by Amazon QuickSight to optimize query performance.</p>",
         "MarginStyle$Show": "<p>This Boolean value controls whether to display sheet margins.</p>",
+        "NestedFilter$IncludeInnerSet": "<p>A boolean condition to include or exclude the subset that is defined by the values of the nested inner filter.</p>",
         "NumericRangeFilter$IncludeMinimum": "<p>Determines whether the minimum value in the filter value range should be included in the filtered results.</p>",
         "NumericRangeFilter$IncludeMaximum": "<p>Determines whether the maximum value in the filter value range should be included in the filtered results.</p>",
         "RedshiftIAMParameters$AutoCreateDatabaseUser": "<p>Automatically creates a database user. If your database doesn't have a <code>DatabaseUser</code>, set this parameter to <code>True</code>. If there is no <code>DatabaseUser</code>, Amazon QuickSight can't connect to your cluster. The <code>RoleArn</code> that you use for this operation must grant access to <code>redshift:CreateClusterUser</code> to successfully create the user.</p>",
@@ -2052,7 +2103,8 @@
     "CategoryFilterConfiguration": {
       "base": "<p>The configuration for a <code>CategoryFilter</code>.</p> <p>This is a union type structure. For this structure to be valid, only one of the attributes can be defined.</p>",
       "refs": {
-        "CategoryFilter$Configuration": "<p>The configuration for a <code>CategoryFilter</code>.</p>"
+        "CategoryFilter$Configuration": "<p>The configuration for a <code>CategoryFilter</code>.</p>",
+        "CategoryInnerFilter$Configuration": null
       }
     },
     "CategoryFilterFunction": {
@@ -2081,6 +2133,12 @@
       "base": null,
       "refs": {
         "TopicCategoryFilter$CategoryFilterType": "<p>The category filter type. This element is used to specify whether a filter is a simple category filter or an inverse category filter.</p>"
+      }
+    },
+    "CategoryInnerFilter": {
+      "base": "<p>A <code>CategoryInnerFilter</code> filters text values for the <code>NestedFilter</code>.</p>",
+      "refs": {
+        "InnerFilter$CategoryInnerFilter": "<p>A <code>CategoryInnerFilter</code> filters text values for the <code>NestedFilter</code>.</p>"
       }
     },
     "CategoryValue": {
@@ -2331,11 +2389,14 @@
       "refs": {
         "AggregationSortConfiguration$Column": "<p>The column that determines the sort order of aggregated values.</p>",
         "AxisLabelReferenceOptions$Column": "<p>The column that the axis label is targeted to.</p>",
+        "BodySectionDynamicCategoryDimensionConfiguration$Column": null,
+        "BodySectionDynamicNumericDimensionConfiguration$Column": null,
         "CascadingControlSource$ColumnToMatch": "<p>The column identifier that determines which column to look up for the source sheet control.</p>",
         "CategoricalDimensionField$Column": "<p>The column that is used in the <code>CategoricalDimensionField</code>.</p>",
         "CategoricalMeasureField$Column": "<p>The column that is used in the <code>CategoricalMeasureField</code>.</p>",
         "CategoryDrillDownFilter$Column": "<p>The column that the filter is applied to.</p>",
         "CategoryFilter$Column": "<p>The column that the filter is applied to.</p>",
+        "CategoryInnerFilter$Column": null,
         "ColumnConfiguration$Column": "<p>The column.</p>",
         "ColumnSort$SortBy": null,
         "ColumnTooltipItem$Column": "<p>The target column of the tooltip item.</p>",
@@ -2348,6 +2409,7 @@
         "DynamicDefaultValue$GroupNameColumn": "<p>The column that contains the group name.</p>",
         "DynamicDefaultValue$DefaultValueColumn": "<p>The column that contains the default value of each user or group.</p>",
         "ExplicitHierarchyColumnList$member": null,
+        "NestedFilter$Column": "<p>The column that the filter is applied to.</p>",
         "NumericEqualityDrillDownFilter$Column": "<p>The column that the filter is applied to.</p>",
         "NumericEqualityFilter$Column": "<p>The column that the filter is applied to.</p>",
         "NumericRangeFilter$Column": "<p>The column that the filter is applied to.</p>",
@@ -2433,6 +2495,7 @@
     "ColumnSort": {
       "base": "<p>The sort configuration for a column that is not used in a field well.</p>",
       "refs": {
+        "BodySectionDynamicDimensionSortConfigurationList$member": null,
         "FieldSortOptions$ColumnSort": "<p>The sort configuration for a column that is not used in a field well.</p>",
         "PivotTableSortBy$Column": "<p>The column sort (field id, direction) for the pivot table sort by options.</p>"
       }
@@ -3870,6 +3933,7 @@
       "base": "<p>The default configuration for all dependent controls of the filter.</p>",
       "refs": {
         "CategoryFilter$DefaultFilterControlConfiguration": "<p>The default configurations for the associated controls. This applies only for filters that are scoped to multiple sheets.</p>",
+        "CategoryInnerFilter$DefaultFilterControlConfiguration": null,
         "NumericEqualityFilter$DefaultFilterControlConfiguration": "<p>The default configurations for the associated controls. This applies only for filters that are scoped to multiple sheets.</p>",
         "NumericRangeFilter$DefaultFilterControlConfiguration": "<p>The default configurations for the associated controls. This applies only for filters that are scoped to multiple sheets.</p>",
         "RelativeDatesFilter$DefaultFilterControlConfiguration": "<p>The default configurations for the associated controls. This applies only for filters that are scoped to multiple sheets.</p>",
@@ -6384,6 +6448,12 @@
         "ListIngestionsResponse$Ingestions": "<p>A list of the ingestions.</p>"
       }
     },
+    "InnerFilter": {
+      "base": "<p>The <code>InnerFilter</code> defines the subset of data to be used with the <code>NestedFilter</code>.</p>",
+      "refs": {
+        "NestedFilter$InnerFilter": "<p>The <code>InnerFilter</code> defines the subset of data to be used with the <code>NestedFilter</code>.</p>"
+      }
+    },
     "InputColumn": {
       "base": "<p>Metadata for a column that is used as the input of a transform operation.</p>",
       "refs": {
@@ -7692,6 +7762,12 @@
         "NegativeValueConfiguration$DisplayMode": "<p>Determines the display mode of the negative value configuration.</p>"
       }
     },
+    "NestedFilter": {
+      "base": "<p>A <code>NestedFilter</code> filters data with a subset of data that is defined by the nested inner filter.</p>",
+      "refs": {
+        "Filter$NestedFilter": "<p>A <code>NestedFilter</code> filters data with a subset of data that is defined by the nested inner filter.</p>"
+      }
+    },
     "NetworkInterface": {
       "base": "<p>The structure that contains information about a network interface.</p>",
       "refs": {
@@ -7758,6 +7834,12 @@
         "TemplateError$Message": "<p>Description of the error type.</p>",
         "ThemeError$Message": "<p>The error message.</p>",
         "UpdateKeyRegistrationResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>"
+      }
+    },
+    "NonRepeatingVisualsList": {
+      "base": null,
+      "refs": {
+        "BodySectionRepeatConfiguration$NonRepeatingVisuals": "<p>List of visuals to exclude from repetition in repeating sections. The visuals will render identically, and ignore the repeating configurations in all repeating instances.</p>"
       }
     },
     "NullString": {
@@ -9534,6 +9616,7 @@
     "SectionAfterPageBreak": {
       "base": "<p>The configuration of a page break after a section.</p>",
       "refs": {
+        "BodySectionRepeatPageBreakConfiguration$After": null,
         "SectionPageBreakConfiguration$After": "<p>The configuration of a page break after a section.</p>"
       }
     },
@@ -10154,6 +10237,8 @@
         "LocalNavigationConfiguration$TargetSheetId": "<p>The sheet that is targeted for navigation in the same analysis.</p>",
         "MaximumMinimumComputation$ComputationId": "<p>The ID for a computation.</p>",
         "MetricComparisonComputation$ComputationId": "<p>The ID for a computation.</p>",
+        "NestedFilter$FilterId": "<p>An identifier that uniquely identifies a filter within a dashboard, analysis, or template.</p>",
+        "NonRepeatingVisualsList$member": null,
         "NumericEqualityFilter$FilterId": "<p>An identifier that uniquely identifies a filter within a dashboard, analysis, or template.</p>",
         "NumericRangeFilter$FilterId": "<p>An identifier that uniquely identifies a filter within a dashboard, analysis, or template.</p>",
         "ParameterDateTimePickerControl$ParameterControlId": "<p>The ID of the <code>ParameterDateTimePickerControl</code>.</p>",

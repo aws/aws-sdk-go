@@ -27111,6 +27111,9 @@ type BodySectionConfiguration struct {
 	// The configuration of a page break for a section.
 	PageBreakConfiguration *SectionPageBreakConfiguration `type:"structure"`
 
+	// Describes the configurations that are required to declare a section as repeating.
+	RepeatConfiguration *BodySectionRepeatConfiguration `type:"structure"`
+
 	// The unique identifier of a body section.
 	//
 	// SectionId is a required field
@@ -27155,6 +27158,11 @@ func (s *BodySectionConfiguration) Validate() error {
 			invalidParams.AddNested("Content", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.RepeatConfiguration != nil {
+		if err := s.RepeatConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("RepeatConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -27171,6 +27179,12 @@ func (s *BodySectionConfiguration) SetContent(v *BodySectionContent) *BodySectio
 // SetPageBreakConfiguration sets the PageBreakConfiguration field's value.
 func (s *BodySectionConfiguration) SetPageBreakConfiguration(v *SectionPageBreakConfiguration) *BodySectionConfiguration {
 	s.PageBreakConfiguration = v
+	return s
+}
+
+// SetRepeatConfiguration sets the RepeatConfiguration field's value.
+func (s *BodySectionConfiguration) SetRepeatConfiguration(v *BodySectionRepeatConfiguration) *BodySectionConfiguration {
+	s.RepeatConfiguration = v
 	return s
 }
 
@@ -27230,6 +27244,345 @@ func (s *BodySectionContent) Validate() error {
 // SetLayout sets the Layout field's value.
 func (s *BodySectionContent) SetLayout(v *SectionLayoutConfiguration) *BodySectionContent {
 	s.Layout = v
+	return s
+}
+
+// Describes the Category dataset column and constraints for the dynamic values
+// used to repeat the contents of a section.
+type BodySectionDynamicCategoryDimensionConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// A column of a data set.
+	//
+	// Column is a required field
+	Column *ColumnIdentifier `type:"structure" required:"true"`
+
+	// Number of values to use from the column for repetition.
+	Limit *int64 `min:"1" type:"integer"`
+
+	// Sort criteria on the column values that you use for repetition.
+	SortByMetrics []*ColumnSort `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BodySectionDynamicCategoryDimensionConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BodySectionDynamicCategoryDimensionConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BodySectionDynamicCategoryDimensionConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BodySectionDynamicCategoryDimensionConfiguration"}
+	if s.Column == nil {
+		invalidParams.Add(request.NewErrParamRequired("Column"))
+	}
+	if s.Limit != nil && *s.Limit < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Limit", 1))
+	}
+	if s.Column != nil {
+		if err := s.Column.Validate(); err != nil {
+			invalidParams.AddNested("Column", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SortByMetrics != nil {
+		for i, v := range s.SortByMetrics {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "SortByMetrics", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetColumn sets the Column field's value.
+func (s *BodySectionDynamicCategoryDimensionConfiguration) SetColumn(v *ColumnIdentifier) *BodySectionDynamicCategoryDimensionConfiguration {
+	s.Column = v
+	return s
+}
+
+// SetLimit sets the Limit field's value.
+func (s *BodySectionDynamicCategoryDimensionConfiguration) SetLimit(v int64) *BodySectionDynamicCategoryDimensionConfiguration {
+	s.Limit = &v
+	return s
+}
+
+// SetSortByMetrics sets the SortByMetrics field's value.
+func (s *BodySectionDynamicCategoryDimensionConfiguration) SetSortByMetrics(v []*ColumnSort) *BodySectionDynamicCategoryDimensionConfiguration {
+	s.SortByMetrics = v
+	return s
+}
+
+// Describes the Numeric dataset column and constraints for the dynamic values
+// used to repeat the contents of a section.
+type BodySectionDynamicNumericDimensionConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// A column of a data set.
+	//
+	// Column is a required field
+	Column *ColumnIdentifier `type:"structure" required:"true"`
+
+	// Number of values to use from the column for repetition.
+	Limit *int64 `min:"1" type:"integer"`
+
+	// Sort criteria on the column values that you use for repetition.
+	SortByMetrics []*ColumnSort `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BodySectionDynamicNumericDimensionConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BodySectionDynamicNumericDimensionConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BodySectionDynamicNumericDimensionConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BodySectionDynamicNumericDimensionConfiguration"}
+	if s.Column == nil {
+		invalidParams.Add(request.NewErrParamRequired("Column"))
+	}
+	if s.Limit != nil && *s.Limit < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Limit", 1))
+	}
+	if s.Column != nil {
+		if err := s.Column.Validate(); err != nil {
+			invalidParams.AddNested("Column", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SortByMetrics != nil {
+		for i, v := range s.SortByMetrics {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "SortByMetrics", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetColumn sets the Column field's value.
+func (s *BodySectionDynamicNumericDimensionConfiguration) SetColumn(v *ColumnIdentifier) *BodySectionDynamicNumericDimensionConfiguration {
+	s.Column = v
+	return s
+}
+
+// SetLimit sets the Limit field's value.
+func (s *BodySectionDynamicNumericDimensionConfiguration) SetLimit(v int64) *BodySectionDynamicNumericDimensionConfiguration {
+	s.Limit = &v
+	return s
+}
+
+// SetSortByMetrics sets the SortByMetrics field's value.
+func (s *BodySectionDynamicNumericDimensionConfiguration) SetSortByMetrics(v []*ColumnSort) *BodySectionDynamicNumericDimensionConfiguration {
+	s.SortByMetrics = v
+	return s
+}
+
+// Describes the configurations that are required to declare a section as repeating.
+type BodySectionRepeatConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// List of BodySectionRepeatDimensionConfiguration values that describe the
+	// dataset column and constraints for the column used to repeat the contents
+	// of a section.
+	DimensionConfigurations []*BodySectionRepeatDimensionConfiguration `type:"list"`
+
+	// List of visuals to exclude from repetition in repeating sections. The visuals
+	// will render identically, and ignore the repeating configurations in all repeating
+	// instances.
+	NonRepeatingVisuals []*string `type:"list"`
+
+	// Page break configuration to apply for each repeating instance.
+	PageBreakConfiguration *BodySectionRepeatPageBreakConfiguration `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BodySectionRepeatConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BodySectionRepeatConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BodySectionRepeatConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BodySectionRepeatConfiguration"}
+	if s.DimensionConfigurations != nil {
+		for i, v := range s.DimensionConfigurations {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "DimensionConfigurations", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDimensionConfigurations sets the DimensionConfigurations field's value.
+func (s *BodySectionRepeatConfiguration) SetDimensionConfigurations(v []*BodySectionRepeatDimensionConfiguration) *BodySectionRepeatConfiguration {
+	s.DimensionConfigurations = v
+	return s
+}
+
+// SetNonRepeatingVisuals sets the NonRepeatingVisuals field's value.
+func (s *BodySectionRepeatConfiguration) SetNonRepeatingVisuals(v []*string) *BodySectionRepeatConfiguration {
+	s.NonRepeatingVisuals = v
+	return s
+}
+
+// SetPageBreakConfiguration sets the PageBreakConfiguration field's value.
+func (s *BodySectionRepeatConfiguration) SetPageBreakConfiguration(v *BodySectionRepeatPageBreakConfiguration) *BodySectionRepeatConfiguration {
+	s.PageBreakConfiguration = v
+	return s
+}
+
+// Describes the dataset column and constraints for the dynamic values used
+// to repeat the contents of a section. The dataset column is either Category
+// or Numeric column configuration
+type BodySectionRepeatDimensionConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Describes the Category dataset column and constraints around the dynamic
+	// values that will be used in repeating the section contents.
+	DynamicCategoryDimensionConfiguration *BodySectionDynamicCategoryDimensionConfiguration `type:"structure"`
+
+	// Describes the Numeric dataset column and constraints around the dynamic values
+	// used to repeat the contents of a section.
+	DynamicNumericDimensionConfiguration *BodySectionDynamicNumericDimensionConfiguration `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BodySectionRepeatDimensionConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BodySectionRepeatDimensionConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BodySectionRepeatDimensionConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BodySectionRepeatDimensionConfiguration"}
+	if s.DynamicCategoryDimensionConfiguration != nil {
+		if err := s.DynamicCategoryDimensionConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("DynamicCategoryDimensionConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.DynamicNumericDimensionConfiguration != nil {
+		if err := s.DynamicNumericDimensionConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("DynamicNumericDimensionConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDynamicCategoryDimensionConfiguration sets the DynamicCategoryDimensionConfiguration field's value.
+func (s *BodySectionRepeatDimensionConfiguration) SetDynamicCategoryDimensionConfiguration(v *BodySectionDynamicCategoryDimensionConfiguration) *BodySectionRepeatDimensionConfiguration {
+	s.DynamicCategoryDimensionConfiguration = v
+	return s
+}
+
+// SetDynamicNumericDimensionConfiguration sets the DynamicNumericDimensionConfiguration field's value.
+func (s *BodySectionRepeatDimensionConfiguration) SetDynamicNumericDimensionConfiguration(v *BodySectionDynamicNumericDimensionConfiguration) *BodySectionRepeatDimensionConfiguration {
+	s.DynamicNumericDimensionConfiguration = v
+	return s
+}
+
+// The page break configuration to apply for each repeating instance.
+type BodySectionRepeatPageBreakConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The configuration of a page break after a section.
+	After *SectionAfterPageBreak `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BodySectionRepeatPageBreakConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BodySectionRepeatPageBreakConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetAfter sets the After field's value.
+func (s *BodySectionRepeatPageBreakConfiguration) SetAfter(v *SectionAfterPageBreak) *BodySectionRepeatPageBreakConfiguration {
+	s.After = v
 	return s
 }
 
@@ -28927,6 +29280,94 @@ func (s *CategoryFilterConfiguration) SetCustomFilterListConfiguration(v *Custom
 // SetFilterListConfiguration sets the FilterListConfiguration field's value.
 func (s *CategoryFilterConfiguration) SetFilterListConfiguration(v *FilterListConfiguration) *CategoryFilterConfiguration {
 	s.FilterListConfiguration = v
+	return s
+}
+
+// A CategoryInnerFilter filters text values for the NestedFilter.
+type CategoryInnerFilter struct {
+	_ struct{} `type:"structure"`
+
+	// A column of a data set.
+	//
+	// Column is a required field
+	Column *ColumnIdentifier `type:"structure" required:"true"`
+
+	// The configuration for a CategoryFilter.
+	//
+	// This is a union type structure. For this structure to be valid, only one
+	// of the attributes can be defined.
+	//
+	// Configuration is a required field
+	Configuration *CategoryFilterConfiguration `type:"structure" required:"true"`
+
+	// The default configuration for all dependent controls of the filter.
+	DefaultFilterControlConfiguration *DefaultFilterControlConfiguration `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CategoryInnerFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CategoryInnerFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CategoryInnerFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CategoryInnerFilter"}
+	if s.Column == nil {
+		invalidParams.Add(request.NewErrParamRequired("Column"))
+	}
+	if s.Configuration == nil {
+		invalidParams.Add(request.NewErrParamRequired("Configuration"))
+	}
+	if s.Column != nil {
+		if err := s.Column.Validate(); err != nil {
+			invalidParams.AddNested("Column", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Configuration != nil {
+		if err := s.Configuration.Validate(); err != nil {
+			invalidParams.AddNested("Configuration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.DefaultFilterControlConfiguration != nil {
+		if err := s.DefaultFilterControlConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("DefaultFilterControlConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetColumn sets the Column field's value.
+func (s *CategoryInnerFilter) SetColumn(v *ColumnIdentifier) *CategoryInnerFilter {
+	s.Column = v
+	return s
+}
+
+// SetConfiguration sets the Configuration field's value.
+func (s *CategoryInnerFilter) SetConfiguration(v *CategoryFilterConfiguration) *CategoryInnerFilter {
+	s.Configuration = v
+	return s
+}
+
+// SetDefaultFilterControlConfiguration sets the DefaultFilterControlConfiguration field's value.
+func (s *CategoryInnerFilter) SetDefaultFilterControlConfiguration(v *DefaultFilterControlConfiguration) *CategoryInnerFilter {
+	s.DefaultFilterControlConfiguration = v
 	return s
 }
 
@@ -56228,6 +56669,10 @@ type Filter struct {
 	// in the Amazon QuickSight User Guide.
 	CategoryFilter *CategoryFilter `type:"structure"`
 
+	// A NestedFilter filters data with a subset of data that is defined by the
+	// nested inner filter.
+	NestedFilter *NestedFilter `type:"structure"`
+
 	// A NumericEqualityFilter filters numeric values that equal or do not equal
 	// a given numeric value.
 	NumericEqualityFilter *NumericEqualityFilter `type:"structure"`
@@ -56277,6 +56722,11 @@ func (s *Filter) Validate() error {
 			invalidParams.AddNested("CategoryFilter", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.NestedFilter != nil {
+		if err := s.NestedFilter.Validate(); err != nil {
+			invalidParams.AddNested("NestedFilter", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.NumericEqualityFilter != nil {
 		if err := s.NumericEqualityFilter.Validate(); err != nil {
 			invalidParams.AddNested("NumericEqualityFilter", err.(request.ErrInvalidParams))
@@ -56317,6 +56767,12 @@ func (s *Filter) Validate() error {
 // SetCategoryFilter sets the CategoryFilter field's value.
 func (s *Filter) SetCategoryFilter(v *CategoryFilter) *Filter {
 	s.CategoryFilter = v
+	return s
+}
+
+// SetNestedFilter sets the NestedFilter field's value.
+func (s *Filter) SetNestedFilter(v *NestedFilter) *Filter {
+	s.NestedFilter = v
 	return s
 }
 
@@ -64359,6 +64815,53 @@ func (s *Ingestion) SetRequestType(v string) *Ingestion {
 // SetRowInfo sets the RowInfo field's value.
 func (s *Ingestion) SetRowInfo(v *RowInfo) *Ingestion {
 	s.RowInfo = v
+	return s
+}
+
+// The InnerFilter defines the subset of data to be used with the NestedFilter.
+type InnerFilter struct {
+	_ struct{} `type:"structure"`
+
+	// A CategoryInnerFilter filters text values for the NestedFilter.
+	CategoryInnerFilter *CategoryInnerFilter `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InnerFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InnerFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *InnerFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "InnerFilter"}
+	if s.CategoryInnerFilter != nil {
+		if err := s.CategoryInnerFilter.Validate(); err != nil {
+			invalidParams.AddNested("CategoryInnerFilter", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCategoryInnerFilter sets the CategoryInnerFilter field's value.
+func (s *InnerFilter) SetCategoryInnerFilter(v *CategoryInnerFilter) *InnerFilter {
+	s.CategoryInnerFilter = v
 	return s
 }
 
@@ -73796,6 +74299,111 @@ func (s *NegativeValueConfiguration) Validate() error {
 // SetDisplayMode sets the DisplayMode field's value.
 func (s *NegativeValueConfiguration) SetDisplayMode(v string) *NegativeValueConfiguration {
 	s.DisplayMode = &v
+	return s
+}
+
+// A NestedFilter filters data with a subset of data that is defined by the
+// nested inner filter.
+type NestedFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The column that the filter is applied to.
+	//
+	// Column is a required field
+	Column *ColumnIdentifier `type:"structure" required:"true"`
+
+	// An identifier that uniquely identifies a filter within a dashboard, analysis,
+	// or template.
+	//
+	// FilterId is a required field
+	FilterId *string `min:"1" type:"string" required:"true"`
+
+	// A boolean condition to include or exclude the subset that is defined by the
+	// values of the nested inner filter.
+	//
+	// IncludeInnerSet is a required field
+	IncludeInnerSet *bool `type:"boolean" required:"true"`
+
+	// The InnerFilter defines the subset of data to be used with the NestedFilter.
+	//
+	// InnerFilter is a required field
+	InnerFilter *InnerFilter `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NestedFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NestedFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *NestedFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "NestedFilter"}
+	if s.Column == nil {
+		invalidParams.Add(request.NewErrParamRequired("Column"))
+	}
+	if s.FilterId == nil {
+		invalidParams.Add(request.NewErrParamRequired("FilterId"))
+	}
+	if s.FilterId != nil && len(*s.FilterId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FilterId", 1))
+	}
+	if s.IncludeInnerSet == nil {
+		invalidParams.Add(request.NewErrParamRequired("IncludeInnerSet"))
+	}
+	if s.InnerFilter == nil {
+		invalidParams.Add(request.NewErrParamRequired("InnerFilter"))
+	}
+	if s.Column != nil {
+		if err := s.Column.Validate(); err != nil {
+			invalidParams.AddNested("Column", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.InnerFilter != nil {
+		if err := s.InnerFilter.Validate(); err != nil {
+			invalidParams.AddNested("InnerFilter", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetColumn sets the Column field's value.
+func (s *NestedFilter) SetColumn(v *ColumnIdentifier) *NestedFilter {
+	s.Column = v
+	return s
+}
+
+// SetFilterId sets the FilterId field's value.
+func (s *NestedFilter) SetFilterId(v string) *NestedFilter {
+	s.FilterId = &v
+	return s
+}
+
+// SetIncludeInnerSet sets the IncludeInnerSet field's value.
+func (s *NestedFilter) SetIncludeInnerSet(v bool) *NestedFilter {
+	s.IncludeInnerSet = &v
+	return s
+}
+
+// SetInnerFilter sets the InnerFilter field's value.
+func (s *NestedFilter) SetInnerFilter(v *InnerFilter) *NestedFilter {
+	s.InnerFilter = v
 	return s
 }
 

@@ -10,7 +10,8 @@
     "serviceFullName":"Amazon CloudFront",
     "serviceId":"CloudFront",
     "signatureVersion":"v4",
-    "uid":"cloudfront-2020-05-31"
+    "uid":"cloudfront-2020-05-31",
+    "auth":["aws.auth#sigv4"]
   },
   "operations":{
     "AssociateAlias":{

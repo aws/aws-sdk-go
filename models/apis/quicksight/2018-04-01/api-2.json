@@ -9,7 +9,8 @@
     "serviceFullName":"Amazon QuickSight",
     "serviceId":"QuickSight",
     "signatureVersion":"v4",
-    "uid":"quicksight-2018-04-01"
+    "uid":"quicksight-2018-04-01",
+    "auth":["aws.auth#sigv4"]
   },
   "operations":{
     "CancelIngestion":{
@@ -4595,7 +4596,8 @@
         "SectionId":{"shape":"ShortRestrictiveResourceId"},
         "Content":{"shape":"BodySectionContent"},
         "Style":{"shape":"SectionStyle"},
-        "PageBreakConfiguration":{"shape":"SectionPageBreakConfiguration"}
+        "PageBreakConfiguration":{"shape":"SectionPageBreakConfiguration"},
+        "RepeatConfiguration":{"shape":"BodySectionRepeatConfiguration"}
       }
     },
     "BodySectionConfigurationList":{
@@ -4607,6 +4609,66 @@
       "type":"structure",
       "members":{
         "Layout":{"shape":"SectionLayoutConfiguration"}
+      }
+    },
+    "BodySectionDynamicCategoryDimensionConfiguration":{
+      "type":"structure",
+      "required":["Column"],
+      "members":{
+        "Column":{"shape":"ColumnIdentifier"},
+        "Limit":{
+          "shape":"BodySectionDynamicDimensionLimit",
+          "box":true
+        },
+        "SortByMetrics":{"shape":"BodySectionDynamicDimensionSortConfigurationList"}
+      }
+    },
+    "BodySectionDynamicDimensionLimit":{
+      "type":"integer",
+      "max":1000,
+      "min":1
+    },
+    "BodySectionDynamicDimensionSortConfigurationList":{
+      "type":"list",
+      "member":{"shape":"ColumnSort"},
+      "max":100
+    },
+    "BodySectionDynamicNumericDimensionConfiguration":{
+      "type":"structure",
+      "required":["Column"],
+      "members":{
+        "Column":{"shape":"ColumnIdentifier"},
+        "Limit":{
+          "shape":"BodySectionDynamicDimensionLimit",
+          "box":true
+        },
+        "SortByMetrics":{"shape":"BodySectionDynamicDimensionSortConfigurationList"}
+      }
+    },
+    "BodySectionRepeatConfiguration":{
+      "type":"structure",
+      "members":{
+        "DimensionConfigurations":{"shape":"BodySectionRepeatDimensionConfigurationList"},
+        "PageBreakConfiguration":{"shape":"BodySectionRepeatPageBreakConfiguration"},
+        "NonRepeatingVisuals":{"shape":"NonRepeatingVisualsList"}
+      }
+    },
+    "BodySectionRepeatDimensionConfiguration":{
+      "type":"structure",
+      "members":{
+        "DynamicCategoryDimensionConfiguration":{"shape":"BodySectionDynamicCategoryDimensionConfiguration"},
+        "DynamicNumericDimensionConfiguration":{"shape":"BodySectionDynamicNumericDimensionConfiguration"}
+      }
+    },
+    "BodySectionRepeatDimensionConfigurationList":{
+      "type":"list",
+      "member":{"shape":"BodySectionRepeatDimensionConfiguration"},
+      "max":3
+    },
+    "BodySectionRepeatPageBreakConfiguration":{
+      "type":"structure",
+      "members":{
+        "After":{"shape":"SectionAfterPageBreak"}
       }
     },
     "BookmarksConfigurations":{
@@ -4932,6 +4994,18 @@
         "CUSTOM_FILTER_LIST",
         "FILTER_LIST"
       ]
+    },
+    "CategoryInnerFilter":{
+      "type":"structure",
+      "required":[
+        "Column",
+        "Configuration"
+      ],
+      "members":{
+        "Column":{"shape":"ColumnIdentifier"},
+        "Configuration":{"shape":"CategoryFilterConfiguration"},
+        "DefaultFilterControlConfiguration":{"shape":"DefaultFilterControlConfiguration"}
+      }
     },
     "CategoryValue":{
       "type":"string",
@@ -10647,7 +10721,8 @@
         "TimeEqualityFilter":{"shape":"TimeEqualityFilter"},
         "TimeRangeFilter":{"shape":"TimeRangeFilter"},
         "RelativeDatesFilter":{"shape":"RelativeDatesFilter"},
-        "TopBottomFilter":{"shape":"TopBottomFilter"}
+        "TopBottomFilter":{"shape":"TopBottomFilter"},
+        "NestedFilter":{"shape":"NestedFilter"}
       }
     },
     "FilterClass":{
@@ -12252,6 +12327,12 @@
     "Ingestions":{
       "type":"list",
       "member":{"shape":"Ingestion"}
+    },
+    "InnerFilter":{
+      "type":"structure",
+      "members":{
+        "CategoryInnerFilter":{"shape":"CategoryInnerFilter"}
+      }
     },
     "InputColumn":{
       "type":"structure",
@@ -14432,6 +14513,21 @@
         "NEGATIVE"
       ]
     },
+    "NestedFilter":{
+      "type":"structure",
+      "required":[
+        "FilterId",
+        "Column",
+        "IncludeInnerSet",
+        "InnerFilter"
+      ],
+      "members":{
+        "FilterId":{"shape":"ShortRestrictiveResourceId"},
+        "Column":{"shape":"ColumnIdentifier"},
+        "IncludeInnerSet":{"shape":"Boolean"},
+        "InnerFilter":{"shape":"InnerFilter"}
+      }
+    },
     "NetworkInterface":{
       "type":"structure",
       "members":{
@@ -14478,6 +14574,11 @@
     "NonEmptyString":{
       "type":"string",
       "pattern":".*\\S.*"
+    },
+    "NonRepeatingVisualsList":{
+      "type":"list",
+      "member":{"shape":"ShortRestrictiveResourceId"},
+      "max":20
     },
     "NullString":{
       "type":"string",
