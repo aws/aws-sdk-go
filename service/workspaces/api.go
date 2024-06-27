@@ -1570,6 +1570,100 @@ func (c *WorkSpaces) CreateWorkspacesWithContext(ctx aws.Context, input *CreateW
 	return out, req.Send()
 }
 
+const opCreateWorkspacesPool = "CreateWorkspacesPool"
+
+// CreateWorkspacesPoolRequest generates a "aws/request.Request" representing the
+// client's request for the CreateWorkspacesPool operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateWorkspacesPool for more information on using the CreateWorkspacesPool
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateWorkspacesPoolRequest method.
+//	req, resp := client.CreateWorkspacesPoolRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/CreateWorkspacesPool
+func (c *WorkSpaces) CreateWorkspacesPoolRequest(input *CreateWorkspacesPoolInput) (req *request.Request, output *CreateWorkspacesPoolOutput) {
+	op := &request.Operation{
+		Name:       opCreateWorkspacesPool,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateWorkspacesPoolInput{}
+	}
+
+	output = &CreateWorkspacesPoolOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateWorkspacesPool API operation for Amazon WorkSpaces.
+//
+// Creates a pool of WorkSpaces.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkSpaces's
+// API operation CreateWorkspacesPool for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceLimitExceededException
+//     Your resource limits have been exceeded.
+//
+//   - ResourceNotFoundException
+//     The resource could not be found.
+//
+//   - InvalidParameterValuesException
+//     One or more parameter values are not valid.
+//
+//   - ResourceAlreadyExistsException
+//     The specified resource already exists.
+//
+//   - OperationNotSupportedException
+//     This operation is not supported.
+//
+//   - AccessDeniedException
+//     The user is not authorized to access a resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/CreateWorkspacesPool
+func (c *WorkSpaces) CreateWorkspacesPool(input *CreateWorkspacesPoolInput) (*CreateWorkspacesPoolOutput, error) {
+	req, out := c.CreateWorkspacesPoolRequest(input)
+	return out, req.Send()
+}
+
+// CreateWorkspacesPoolWithContext is the same as CreateWorkspacesPool with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateWorkspacesPool for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkSpaces) CreateWorkspacesPoolWithContext(ctx aws.Context, input *CreateWorkspacesPoolInput, opts ...request.Option) (*CreateWorkspacesPoolOutput, error) {
+	req, out := c.CreateWorkspacesPoolRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteAccountLinkInvitation = "DeleteAccountLinkInvitation"
 
 // DeleteAccountLinkInvitationRequest generates a "aws/request.Request" representing the
@@ -4553,6 +4647,177 @@ func (c *WorkSpaces) DescribeWorkspacesConnectionStatusWithContext(ctx aws.Conte
 	return out, req.Send()
 }
 
+const opDescribeWorkspacesPoolSessions = "DescribeWorkspacesPoolSessions"
+
+// DescribeWorkspacesPoolSessionsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeWorkspacesPoolSessions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeWorkspacesPoolSessions for more information on using the DescribeWorkspacesPoolSessions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeWorkspacesPoolSessionsRequest method.
+//	req, resp := client.DescribeWorkspacesPoolSessionsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/DescribeWorkspacesPoolSessions
+func (c *WorkSpaces) DescribeWorkspacesPoolSessionsRequest(input *DescribeWorkspacesPoolSessionsInput) (req *request.Request, output *DescribeWorkspacesPoolSessionsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeWorkspacesPoolSessions,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeWorkspacesPoolSessionsInput{}
+	}
+
+	output = &DescribeWorkspacesPoolSessionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeWorkspacesPoolSessions API operation for Amazon WorkSpaces.
+//
+// Retrieves a list that describes the streaming sessions for a specified WorkSpaces
+// pool.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkSpaces's
+// API operation DescribeWorkspacesPoolSessions for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidParameterValuesException
+//     One or more parameter values are not valid.
+//
+//   - ResourceNotFoundException
+//     The resource could not be found.
+//
+//   - AccessDeniedException
+//     The user is not authorized to access a resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/DescribeWorkspacesPoolSessions
+func (c *WorkSpaces) DescribeWorkspacesPoolSessions(input *DescribeWorkspacesPoolSessionsInput) (*DescribeWorkspacesPoolSessionsOutput, error) {
+	req, out := c.DescribeWorkspacesPoolSessionsRequest(input)
+	return out, req.Send()
+}
+
+// DescribeWorkspacesPoolSessionsWithContext is the same as DescribeWorkspacesPoolSessions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeWorkspacesPoolSessions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkSpaces) DescribeWorkspacesPoolSessionsWithContext(ctx aws.Context, input *DescribeWorkspacesPoolSessionsInput, opts ...request.Option) (*DescribeWorkspacesPoolSessionsOutput, error) {
+	req, out := c.DescribeWorkspacesPoolSessionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeWorkspacesPools = "DescribeWorkspacesPools"
+
+// DescribeWorkspacesPoolsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeWorkspacesPools operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeWorkspacesPools for more information on using the DescribeWorkspacesPools
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeWorkspacesPoolsRequest method.
+//	req, resp := client.DescribeWorkspacesPoolsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/DescribeWorkspacesPools
+func (c *WorkSpaces) DescribeWorkspacesPoolsRequest(input *DescribeWorkspacesPoolsInput) (req *request.Request, output *DescribeWorkspacesPoolsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeWorkspacesPools,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeWorkspacesPoolsInput{}
+	}
+
+	output = &DescribeWorkspacesPoolsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeWorkspacesPools API operation for Amazon WorkSpaces.
+//
+// Describes the specified WorkSpaces pool.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkSpaces's
+// API operation DescribeWorkspacesPools for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidParameterValuesException
+//     One or more parameter values are not valid.
+//
+//   - ResourceNotFoundException
+//     The resource could not be found.
+//
+//   - AccessDeniedException
+//     The user is not authorized to access a resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/DescribeWorkspacesPools
+func (c *WorkSpaces) DescribeWorkspacesPools(input *DescribeWorkspacesPoolsInput) (*DescribeWorkspacesPoolsOutput, error) {
+	req, out := c.DescribeWorkspacesPoolsRequest(input)
+	return out, req.Send()
+}
+
+// DescribeWorkspacesPoolsWithContext is the same as DescribeWorkspacesPools with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeWorkspacesPools for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkSpaces) DescribeWorkspacesPoolsWithContext(ctx aws.Context, input *DescribeWorkspacesPoolsInput, opts ...request.Option) (*DescribeWorkspacesPoolsOutput, error) {
+	req, out := c.DescribeWorkspacesPoolsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDisassociateConnectionAlias = "DisassociateConnectionAlias"
 
 // DisassociateConnectionAliasRequest generates a "aws/request.Request" representing the
@@ -4717,6 +4982,9 @@ func (c *WorkSpaces) DisassociateIpGroupsRequest(input *DisassociateIpGroupsInpu
 //
 //   - AccessDeniedException
 //     The user is not authorized to access a resource.
+//
+//   - OperationNotSupportedException
+//     This operation is not supported.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/DisassociateIpGroups
 func (c *WorkSpaces) DisassociateIpGroups(input *DisassociateIpGroupsInput) (*DisassociateIpGroupsOutput, error) {
@@ -5713,6 +5981,9 @@ func (c *WorkSpaces) ModifyClientPropertiesRequest(input *ModifyClientProperties
 //   - AccessDeniedException
 //     The user is not authorized to access a resource.
 //
+//   - OperationNotSupportedException
+//     This operation is not supported.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/ModifyClientProperties
 func (c *WorkSpaces) ModifyClientProperties(input *ModifyClientPropertiesInput) (*ModifyClientPropertiesOutput, error) {
 	req, out := c.ModifyClientPropertiesRequest(input)
@@ -5892,6 +6163,9 @@ func (c *WorkSpaces) ModifySelfservicePermissionsRequest(input *ModifySelfservic
 //   - ResourceNotFoundException
 //     The resource could not be found.
 //
+//   - OperationNotSupportedException
+//     This operation is not supported.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/ModifySelfservicePermissions
 func (c *WorkSpaces) ModifySelfservicePermissions(input *ModifySelfservicePermissionsInput) (*ModifySelfservicePermissionsOutput, error) {
 	req, out := c.ModifySelfservicePermissionsRequest(input)
@@ -5909,6 +6183,95 @@ func (c *WorkSpaces) ModifySelfservicePermissions(input *ModifySelfservicePermis
 // for more information on using Contexts.
 func (c *WorkSpaces) ModifySelfservicePermissionsWithContext(ctx aws.Context, input *ModifySelfservicePermissionsInput, opts ...request.Option) (*ModifySelfservicePermissionsOutput, error) {
 	req, out := c.ModifySelfservicePermissionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opModifyStreamingProperties = "ModifyStreamingProperties"
+
+// ModifyStreamingPropertiesRequest generates a "aws/request.Request" representing the
+// client's request for the ModifyStreamingProperties operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ModifyStreamingProperties for more information on using the ModifyStreamingProperties
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ModifyStreamingPropertiesRequest method.
+//	req, resp := client.ModifyStreamingPropertiesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/ModifyStreamingProperties
+func (c *WorkSpaces) ModifyStreamingPropertiesRequest(input *ModifyStreamingPropertiesInput) (req *request.Request, output *ModifyStreamingPropertiesOutput) {
+	op := &request.Operation{
+		Name:       opModifyStreamingProperties,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ModifyStreamingPropertiesInput{}
+	}
+
+	output = &ModifyStreamingPropertiesOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// ModifyStreamingProperties API operation for Amazon WorkSpaces.
+//
+// Modifies the specified streaming properties.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkSpaces's
+// API operation ModifyStreamingProperties for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     The user is not authorized to access a resource.
+//
+//   - InvalidParameterValuesException
+//     One or more parameter values are not valid.
+//
+//   - ResourceNotFoundException
+//     The resource could not be found.
+//
+//   - OperationNotSupportedException
+//     This operation is not supported.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/ModifyStreamingProperties
+func (c *WorkSpaces) ModifyStreamingProperties(input *ModifyStreamingPropertiesInput) (*ModifyStreamingPropertiesOutput, error) {
+	req, out := c.ModifyStreamingPropertiesRequest(input)
+	return out, req.Send()
+}
+
+// ModifyStreamingPropertiesWithContext is the same as ModifyStreamingProperties with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ModifyStreamingProperties for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkSpaces) ModifyStreamingPropertiesWithContext(ctx aws.Context, input *ModifyStreamingPropertiesInput, opts ...request.Option) (*ModifyStreamingPropertiesOutput, error) {
+	req, out := c.ModifyStreamingPropertiesRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -6498,7 +6861,6 @@ func (c *WorkSpaces) RegisterWorkspaceDirectoryRequest(input *RegisterWorkspaceD
 
 	output = &RegisterWorkspaceDirectoryOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -6548,6 +6910,9 @@ func (c *WorkSpaces) RegisterWorkspaceDirectoryRequest(input *RegisterWorkspaceD
 //
 //   - OperationNotSupportedException
 //     This operation is not supported.
+//
+//   - ResourceAlreadyExistsException
+//     The specified resource already exists.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/RegisterWorkspaceDirectory
 func (c *WorkSpaces) RegisterWorkspaceDirectory(input *RegisterWorkspaceDirectoryInput) (*RegisterWorkspaceDirectoryOutput, error) {
@@ -6926,6 +7291,108 @@ func (c *WorkSpaces) StartWorkspacesWithContext(ctx aws.Context, input *StartWor
 	return out, req.Send()
 }
 
+const opStartWorkspacesPool = "StartWorkspacesPool"
+
+// StartWorkspacesPoolRequest generates a "aws/request.Request" representing the
+// client's request for the StartWorkspacesPool operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartWorkspacesPool for more information on using the StartWorkspacesPool
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StartWorkspacesPoolRequest method.
+//	req, resp := client.StartWorkspacesPoolRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/StartWorkspacesPool
+func (c *WorkSpaces) StartWorkspacesPoolRequest(input *StartWorkspacesPoolInput) (req *request.Request, output *StartWorkspacesPoolOutput) {
+	op := &request.Operation{
+		Name:       opStartWorkspacesPool,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &StartWorkspacesPoolInput{}
+	}
+
+	output = &StartWorkspacesPoolOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// StartWorkspacesPool API operation for Amazon WorkSpaces.
+//
+// Starts the specified WorkSpaces pool.
+//
+// You cannot start a WorkSpace pool unless it has a running mode of AutoStop
+// and a state of STOPPED.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkSpaces's
+// API operation StartWorkspacesPool for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidParameterValuesException
+//     One or more parameter values are not valid.
+//
+//   - InvalidResourceStateException
+//     The state of the resource is not valid for this operation.
+//
+//   - ResourceLimitExceededException
+//     Your resource limits have been exceeded.
+//
+//   - ResourceNotFoundException
+//     The resource could not be found.
+//
+//   - OperationNotSupportedException
+//     This operation is not supported.
+//
+//   - OperationInProgressException
+//     The properties of this WorkSpace are currently being modified. Try again
+//     in a moment.
+//
+//   - AccessDeniedException
+//     The user is not authorized to access a resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/StartWorkspacesPool
+func (c *WorkSpaces) StartWorkspacesPool(input *StartWorkspacesPoolInput) (*StartWorkspacesPoolOutput, error) {
+	req, out := c.StartWorkspacesPoolRequest(input)
+	return out, req.Send()
+}
+
+// StartWorkspacesPoolWithContext is the same as StartWorkspacesPool with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartWorkspacesPool for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkSpaces) StartWorkspacesPoolWithContext(ctx aws.Context, input *StartWorkspacesPoolInput, opts ...request.Option) (*StartWorkspacesPoolOutput, error) {
+	req, out := c.StartWorkspacesPoolRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opStopWorkspaces = "StopWorkspaces"
 
 // StopWorkspacesRequest generates a "aws/request.Request" representing the
@@ -6997,6 +7464,102 @@ func (c *WorkSpaces) StopWorkspaces(input *StopWorkspacesInput) (*StopWorkspaces
 // for more information on using Contexts.
 func (c *WorkSpaces) StopWorkspacesWithContext(ctx aws.Context, input *StopWorkspacesInput, opts ...request.Option) (*StopWorkspacesOutput, error) {
 	req, out := c.StopWorkspacesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStopWorkspacesPool = "StopWorkspacesPool"
+
+// StopWorkspacesPoolRequest generates a "aws/request.Request" representing the
+// client's request for the StopWorkspacesPool operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StopWorkspacesPool for more information on using the StopWorkspacesPool
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StopWorkspacesPoolRequest method.
+//	req, resp := client.StopWorkspacesPoolRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/StopWorkspacesPool
+func (c *WorkSpaces) StopWorkspacesPoolRequest(input *StopWorkspacesPoolInput) (req *request.Request, output *StopWorkspacesPoolOutput) {
+	op := &request.Operation{
+		Name:       opStopWorkspacesPool,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &StopWorkspacesPoolInput{}
+	}
+
+	output = &StopWorkspacesPoolOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// StopWorkspacesPool API operation for Amazon WorkSpaces.
+//
+// Stops the specifiedWorkSpaces pool.
+//
+// You cannot stop a WorkSpace pool unless it has a running mode of AutoStop
+// and a state of AVAILABLE, IMPAIRED, UNHEALTHY, or ERROR.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkSpaces's
+// API operation StopWorkspacesPool for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidParameterValuesException
+//     One or more parameter values are not valid.
+//
+//   - InvalidResourceStateException
+//     The state of the resource is not valid for this operation.
+//
+//   - ResourceNotFoundException
+//     The resource could not be found.
+//
+//   - OperationInProgressException
+//     The properties of this WorkSpace are currently being modified. Try again
+//     in a moment.
+//
+//   - AccessDeniedException
+//     The user is not authorized to access a resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/StopWorkspacesPool
+func (c *WorkSpaces) StopWorkspacesPool(input *StopWorkspacesPoolInput) (*StopWorkspacesPoolOutput, error) {
+	req, out := c.StopWorkspacesPoolRequest(input)
+	return out, req.Send()
+}
+
+// StopWorkspacesPoolWithContext is the same as StopWorkspacesPool with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StopWorkspacesPool for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkSpaces) StopWorkspacesPoolWithContext(ctx aws.Context, input *StopWorkspacesPoolInput, opts ...request.Option) (*StopWorkspacesPoolOutput, error) {
+	req, out := c.StopWorkspacesPoolRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -7095,6 +7658,192 @@ func (c *WorkSpaces) TerminateWorkspaces(input *TerminateWorkspacesInput) (*Term
 // for more information on using Contexts.
 func (c *WorkSpaces) TerminateWorkspacesWithContext(ctx aws.Context, input *TerminateWorkspacesInput, opts ...request.Option) (*TerminateWorkspacesOutput, error) {
 	req, out := c.TerminateWorkspacesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opTerminateWorkspacesPool = "TerminateWorkspacesPool"
+
+// TerminateWorkspacesPoolRequest generates a "aws/request.Request" representing the
+// client's request for the TerminateWorkspacesPool operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See TerminateWorkspacesPool for more information on using the TerminateWorkspacesPool
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the TerminateWorkspacesPoolRequest method.
+//	req, resp := client.TerminateWorkspacesPoolRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/TerminateWorkspacesPool
+func (c *WorkSpaces) TerminateWorkspacesPoolRequest(input *TerminateWorkspacesPoolInput) (req *request.Request, output *TerminateWorkspacesPoolOutput) {
+	op := &request.Operation{
+		Name:       opTerminateWorkspacesPool,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &TerminateWorkspacesPoolInput{}
+	}
+
+	output = &TerminateWorkspacesPoolOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// TerminateWorkspacesPool API operation for Amazon WorkSpaces.
+//
+// Terminates the specified WorkSpaces pool.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkSpaces's
+// API operation TerminateWorkspacesPool for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidParameterValuesException
+//     One or more parameter values are not valid.
+//
+//   - InvalidResourceStateException
+//     The state of the resource is not valid for this operation.
+//
+//   - ResourceNotFoundException
+//     The resource could not be found.
+//
+//   - OperationInProgressException
+//     The properties of this WorkSpace are currently being modified. Try again
+//     in a moment.
+//
+//   - AccessDeniedException
+//     The user is not authorized to access a resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/TerminateWorkspacesPool
+func (c *WorkSpaces) TerminateWorkspacesPool(input *TerminateWorkspacesPoolInput) (*TerminateWorkspacesPoolOutput, error) {
+	req, out := c.TerminateWorkspacesPoolRequest(input)
+	return out, req.Send()
+}
+
+// TerminateWorkspacesPoolWithContext is the same as TerminateWorkspacesPool with the addition of
+// the ability to pass a context and additional request options.
+//
+// See TerminateWorkspacesPool for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkSpaces) TerminateWorkspacesPoolWithContext(ctx aws.Context, input *TerminateWorkspacesPoolInput, opts ...request.Option) (*TerminateWorkspacesPoolOutput, error) {
+	req, out := c.TerminateWorkspacesPoolRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opTerminateWorkspacesPoolSession = "TerminateWorkspacesPoolSession"
+
+// TerminateWorkspacesPoolSessionRequest generates a "aws/request.Request" representing the
+// client's request for the TerminateWorkspacesPoolSession operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See TerminateWorkspacesPoolSession for more information on using the TerminateWorkspacesPoolSession
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the TerminateWorkspacesPoolSessionRequest method.
+//	req, resp := client.TerminateWorkspacesPoolSessionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/TerminateWorkspacesPoolSession
+func (c *WorkSpaces) TerminateWorkspacesPoolSessionRequest(input *TerminateWorkspacesPoolSessionInput) (req *request.Request, output *TerminateWorkspacesPoolSessionOutput) {
+	op := &request.Operation{
+		Name:       opTerminateWorkspacesPoolSession,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &TerminateWorkspacesPoolSessionInput{}
+	}
+
+	output = &TerminateWorkspacesPoolSessionOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// TerminateWorkspacesPoolSession API operation for Amazon WorkSpaces.
+//
+// Terminates the WorkSpaces pool session.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkSpaces's
+// API operation TerminateWorkspacesPoolSession for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidParameterValuesException
+//     One or more parameter values are not valid.
+//
+//   - ResourceNotFoundException
+//     The resource could not be found.
+//
+//   - OperationNotSupportedException
+//     This operation is not supported.
+//
+//   - OperationInProgressException
+//     The properties of this WorkSpace are currently being modified. Try again
+//     in a moment.
+//
+//   - AccessDeniedException
+//     The user is not authorized to access a resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/TerminateWorkspacesPoolSession
+func (c *WorkSpaces) TerminateWorkspacesPoolSession(input *TerminateWorkspacesPoolSessionInput) (*TerminateWorkspacesPoolSessionOutput, error) {
+	req, out := c.TerminateWorkspacesPoolSessionRequest(input)
+	return out, req.Send()
+}
+
+// TerminateWorkspacesPoolSessionWithContext is the same as TerminateWorkspacesPoolSession with the addition of
+// the ability to pass a context and additional request options.
+//
+// See TerminateWorkspacesPoolSession for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkSpaces) TerminateWorkspacesPoolSessionWithContext(ctx aws.Context, input *TerminateWorkspacesPoolSessionInput, opts ...request.Option) (*TerminateWorkspacesPoolSessionOutput, error) {
+	req, out := c.TerminateWorkspacesPoolSessionRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -7605,6 +8354,104 @@ func (c *WorkSpaces) UpdateWorkspaceImagePermissionWithContext(ctx aws.Context, 
 	return out, req.Send()
 }
 
+const opUpdateWorkspacesPool = "UpdateWorkspacesPool"
+
+// UpdateWorkspacesPoolRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateWorkspacesPool operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateWorkspacesPool for more information on using the UpdateWorkspacesPool
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateWorkspacesPoolRequest method.
+//	req, resp := client.UpdateWorkspacesPoolRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/UpdateWorkspacesPool
+func (c *WorkSpaces) UpdateWorkspacesPoolRequest(input *UpdateWorkspacesPoolInput) (req *request.Request, output *UpdateWorkspacesPoolOutput) {
+	op := &request.Operation{
+		Name:       opUpdateWorkspacesPool,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateWorkspacesPoolInput{}
+	}
+
+	output = &UpdateWorkspacesPoolOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateWorkspacesPool API operation for Amazon WorkSpaces.
+//
+// Updates the specified WorkSpaces pool.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkSpaces's
+// API operation UpdateWorkspacesPool for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidParameterValuesException
+//     One or more parameter values are not valid.
+//
+//   - InvalidResourceStateException
+//     The state of the resource is not valid for this operation.
+//
+//   - ResourceNotFoundException
+//     The resource could not be found.
+//
+//   - ResourceLimitExceededException
+//     Your resource limits have been exceeded.
+//
+//   - OperationNotSupportedException
+//     This operation is not supported.
+//
+//   - OperationInProgressException
+//     The properties of this WorkSpace are currently being modified. Try again
+//     in a moment.
+//
+//   - AccessDeniedException
+//     The user is not authorized to access a resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/UpdateWorkspacesPool
+func (c *WorkSpaces) UpdateWorkspacesPool(input *UpdateWorkspacesPoolInput) (*UpdateWorkspacesPoolOutput, error) {
+	req, out := c.UpdateWorkspacesPoolRequest(input)
+	return out, req.Send()
+}
+
+// UpdateWorkspacesPoolWithContext is the same as UpdateWorkspacesPool with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateWorkspacesPool for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkSpaces) UpdateWorkspacesPoolWithContext(ctx aws.Context, input *UpdateWorkspacesPoolInput, opts ...request.Option) (*UpdateWorkspacesPoolOutput, error) {
+	req, out := c.UpdateWorkspacesPoolRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 type AcceptAccountLinkInvitationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7895,6 +8742,67 @@ func (s *AccountModification) SetStartTime(v time.Time) *AccountModification {
 	return s
 }
 
+// Information about the Active Directory config.
+type ActiveDirectoryConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the domain.
+	//
+	// DomainName is a required field
+	DomainName *string `type:"string" required:"true"`
+
+	// Indicates the secret ARN on the service account.
+	//
+	// ServiceAccountSecretArn is a required field
+	ServiceAccountSecretArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ActiveDirectoryConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ActiveDirectoryConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ActiveDirectoryConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ActiveDirectoryConfig"}
+	if s.DomainName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainName"))
+	}
+	if s.ServiceAccountSecretArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServiceAccountSecretArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDomainName sets the DomainName field's value.
+func (s *ActiveDirectoryConfig) SetDomainName(v string) *ActiveDirectoryConfig {
+	s.DomainName = &v
+	return s
+}
+
+// SetServiceAccountSecretArn sets the ServiceAccountSecretArn field's value.
+func (s *ActiveDirectoryConfig) SetServiceAccountSecretArn(v string) *ActiveDirectoryConfig {
+	s.ServiceAccountSecretArn = &v
+	return s
+}
+
 // The specified application is not supported.
 type ApplicationNotSupportedException struct {
 	_            struct{}                  `type:"structure"`
@@ -8042,6 +8950,123 @@ func (s *ApplicationResourceAssociation) SetState(v string) *ApplicationResource
 // SetStateReason sets the StateReason field's value.
 func (s *ApplicationResourceAssociation) SetStateReason(v *AssociationStateReason) *ApplicationResourceAssociation {
 	s.StateReason = v
+	return s
+}
+
+// The persistent application settings for users of a WorkSpaces pool.
+type ApplicationSettingsRequest struct {
+	_ struct{} `type:"structure"`
+
+	// The path prefix for the S3 bucket where users’ persistent application settings
+	// are stored. You can allow the same persistent application settings to be
+	// used across multiple pools by specifying the same settings group for each
+	// pool.
+	SettingsGroup *string `type:"string"`
+
+	// Enables or disables persistent application settings for users during their
+	// pool sessions.
+	//
+	// Status is a required field
+	Status *string `type:"string" required:"true" enum:"ApplicationSettingsStatusEnum"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ApplicationSettingsRequest) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ApplicationSettingsRequest) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ApplicationSettingsRequest) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ApplicationSettingsRequest"}
+	if s.Status == nil {
+		invalidParams.Add(request.NewErrParamRequired("Status"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSettingsGroup sets the SettingsGroup field's value.
+func (s *ApplicationSettingsRequest) SetSettingsGroup(v string) *ApplicationSettingsRequest {
+	s.SettingsGroup = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ApplicationSettingsRequest) SetStatus(v string) *ApplicationSettingsRequest {
+	s.Status = &v
+	return s
+}
+
+// Describes the persistent application settings for users of a WorkSpaces pool.
+type ApplicationSettingsResponse struct {
+	_ struct{} `type:"structure"`
+
+	// The S3 bucket where users’ persistent application settings are stored.
+	// When persistent application settings are enabled for the first time for an
+	// account in an Amazon Web Services Region, an S3 bucket is created. The bucket
+	// is unique to the Amazon Web Services account and the Region.
+	S3BucketName *string `min:"3" type:"string"`
+
+	// The path prefix for the S3 bucket where users’ persistent application settings
+	// are stored.
+	SettingsGroup *string `type:"string"`
+
+	// Specifies whether persistent application settings are enabled for users during
+	// their pool sessions.
+	//
+	// Status is a required field
+	Status *string `type:"string" required:"true" enum:"ApplicationSettingsStatusEnum"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ApplicationSettingsResponse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ApplicationSettingsResponse) GoString() string {
+	return s.String()
+}
+
+// SetS3BucketName sets the S3BucketName field's value.
+func (s *ApplicationSettingsResponse) SetS3BucketName(v string) *ApplicationSettingsResponse {
+	s.S3BucketName = &v
+	return s
+}
+
+// SetSettingsGroup sets the SettingsGroup field's value.
+func (s *ApplicationSettingsResponse) SetSettingsGroup(v string) *ApplicationSettingsResponse {
+	s.SettingsGroup = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ApplicationSettingsResponse) SetStatus(v string) *ApplicationSettingsResponse {
+	s.Status = &v
 	return s
 }
 
@@ -8528,6 +9553,125 @@ func (s *BundleResourceAssociation) SetState(v string) *BundleResourceAssociatio
 // SetStateReason sets the StateReason field's value.
 func (s *BundleResourceAssociation) SetStateReason(v *AssociationStateReason) *BundleResourceAssociation {
 	s.StateReason = v
+	return s
+}
+
+// Describes the user capacity for a WorkSpaces pool.
+type Capacity struct {
+	_ struct{} `type:"structure"`
+
+	// The desired number of user sessions for a multi-session pool. This is not
+	// allowed for single-session pools.
+	//
+	// DesiredUserSessions is a required field
+	DesiredUserSessions *int64 `type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Capacity) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Capacity) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Capacity) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Capacity"}
+	if s.DesiredUserSessions == nil {
+		invalidParams.Add(request.NewErrParamRequired("DesiredUserSessions"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDesiredUserSessions sets the DesiredUserSessions field's value.
+func (s *Capacity) SetDesiredUserSessions(v int64) *Capacity {
+	s.DesiredUserSessions = &v
+	return s
+}
+
+// Describes the capacity status for a WorkSpaces pool
+type CapacityStatus struct {
+	_ struct{} `type:"structure"`
+
+	// The number of user sessions currently being used for pool sessions. This
+	// only applies to multi-session pools.
+	//
+	// ActiveUserSessions is a required field
+	ActiveUserSessions *int64 `type:"integer" required:"true"`
+
+	// The total number of session slots that are available for WorkSpaces pools.
+	//
+	// ActualUserSessions is a required field
+	ActualUserSessions *int64 `type:"integer" required:"true"`
+
+	// The number of user sessions currently being used for pool sessions. This
+	// only applies to multi-session pools.
+	//
+	// AvailableUserSessions is a required field
+	AvailableUserSessions *int64 `type:"integer" required:"true"`
+
+	// The total number of sessions slots that are either running or pending. This
+	// represents the total number of concurrent streaming sessions your pool can
+	// support in a steady state.
+	//
+	// DesiredUserSessions is a required field
+	DesiredUserSessions *int64 `type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CapacityStatus) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CapacityStatus) GoString() string {
+	return s.String()
+}
+
+// SetActiveUserSessions sets the ActiveUserSessions field's value.
+func (s *CapacityStatus) SetActiveUserSessions(v int64) *CapacityStatus {
+	s.ActiveUserSessions = &v
+	return s
+}
+
+// SetActualUserSessions sets the ActualUserSessions field's value.
+func (s *CapacityStatus) SetActualUserSessions(v int64) *CapacityStatus {
+	s.ActualUserSessions = &v
+	return s
+}
+
+// SetAvailableUserSessions sets the AvailableUserSessions field's value.
+func (s *CapacityStatus) SetAvailableUserSessions(v int64) *CapacityStatus {
+	s.AvailableUserSessions = &v
+	return s
+}
+
+// SetDesiredUserSessions sets the DesiredUserSessions field's value.
+func (s *CapacityStatus) SetDesiredUserSessions(v int64) *CapacityStatus {
+	s.DesiredUserSessions = &v
 	return s
 }
 
@@ -10480,6 +11624,197 @@ func (s *CreateWorkspacesOutput) SetPendingRequests(v []*Workspace) *CreateWorks
 	return s
 }
 
+type CreateWorkspacesPoolInput struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates the application settings of the WorkSpaces pool.
+	ApplicationSettings *ApplicationSettingsRequest `type:"structure"`
+
+	// The identifier of the bundle for the WorkSpaces pool.
+	//
+	// BundleId is a required field
+	BundleId *string `type:"string" required:"true"`
+
+	// The user capacity of the WorkSpaces pool.
+	//
+	// Capacity is a required field
+	Capacity *Capacity `type:"structure" required:"true"`
+
+	// The WorkSpaces pool description.
+	//
+	// Description is a required field
+	Description *string `min:"1" type:"string" required:"true"`
+
+	// The identifier of the directory for the WorkSpaces pool.
+	//
+	// DirectoryId is a required field
+	DirectoryId *string `min:"10" type:"string" required:"true"`
+
+	// The name of the WorkSpaces pool.
+	//
+	// PoolName is a required field
+	PoolName *string `type:"string" required:"true"`
+
+	// The tags for the WorkSpaces pool.
+	Tags []*Tag `type:"list"`
+
+	// Indicates the timeout settings of the WorkSpaces pool.
+	TimeoutSettings *TimeoutSettings `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateWorkspacesPoolInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateWorkspacesPoolInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateWorkspacesPoolInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateWorkspacesPoolInput"}
+	if s.BundleId == nil {
+		invalidParams.Add(request.NewErrParamRequired("BundleId"))
+	}
+	if s.Capacity == nil {
+		invalidParams.Add(request.NewErrParamRequired("Capacity"))
+	}
+	if s.Description == nil {
+		invalidParams.Add(request.NewErrParamRequired("Description"))
+	}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.DirectoryId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DirectoryId"))
+	}
+	if s.DirectoryId != nil && len(*s.DirectoryId) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("DirectoryId", 10))
+	}
+	if s.PoolName == nil {
+		invalidParams.Add(request.NewErrParamRequired("PoolName"))
+	}
+	if s.ApplicationSettings != nil {
+		if err := s.ApplicationSettings.Validate(); err != nil {
+			invalidParams.AddNested("ApplicationSettings", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Capacity != nil {
+		if err := s.Capacity.Validate(); err != nil {
+			invalidParams.AddNested("Capacity", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.TimeoutSettings != nil {
+		if err := s.TimeoutSettings.Validate(); err != nil {
+			invalidParams.AddNested("TimeoutSettings", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetApplicationSettings sets the ApplicationSettings field's value.
+func (s *CreateWorkspacesPoolInput) SetApplicationSettings(v *ApplicationSettingsRequest) *CreateWorkspacesPoolInput {
+	s.ApplicationSettings = v
+	return s
+}
+
+// SetBundleId sets the BundleId field's value.
+func (s *CreateWorkspacesPoolInput) SetBundleId(v string) *CreateWorkspacesPoolInput {
+	s.BundleId = &v
+	return s
+}
+
+// SetCapacity sets the Capacity field's value.
+func (s *CreateWorkspacesPoolInput) SetCapacity(v *Capacity) *CreateWorkspacesPoolInput {
+	s.Capacity = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateWorkspacesPoolInput) SetDescription(v string) *CreateWorkspacesPoolInput {
+	s.Description = &v
+	return s
+}
+
+// SetDirectoryId sets the DirectoryId field's value.
+func (s *CreateWorkspacesPoolInput) SetDirectoryId(v string) *CreateWorkspacesPoolInput {
+	s.DirectoryId = &v
+	return s
+}
+
+// SetPoolName sets the PoolName field's value.
+func (s *CreateWorkspacesPoolInput) SetPoolName(v string) *CreateWorkspacesPoolInput {
+	s.PoolName = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateWorkspacesPoolInput) SetTags(v []*Tag) *CreateWorkspacesPoolInput {
+	s.Tags = v
+	return s
+}
+
+// SetTimeoutSettings sets the TimeoutSettings field's value.
+func (s *CreateWorkspacesPoolInput) SetTimeoutSettings(v *TimeoutSettings) *CreateWorkspacesPoolInput {
+	s.TimeoutSettings = v
+	return s
+}
+
+type CreateWorkspacesPoolOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates the WorkSpaces pool to create.
+	WorkspacesPool *WorkspacesPool `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateWorkspacesPoolOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateWorkspacesPoolOutput) GoString() string {
+	return s.String()
+}
+
+// SetWorkspacesPool sets the WorkspacesPool field's value.
+func (s *CreateWorkspacesPoolOutput) SetWorkspacesPool(v *WorkspacesPool) *CreateWorkspacesPoolOutput {
+	s.WorkspacesPool = v
+	return s
+}
+
 // Describes the data replication settings.
 type DataReplicationSettings struct {
 	_ struct{} `type:"structure"`
@@ -10760,6 +12095,9 @@ type DefaultWorkspaceCreationProperties struct {
 	// Specifies whether the directory is enabled for Amazon WorkDocs.
 	EnableWorkDocs *bool `type:"boolean"`
 
+	// Indicates the IAM role ARN of the instance.
+	InstanceIamRoleArn *string `type:"string"`
+
 	// Specifies whether WorkSpace users are local administrators on their WorkSpaces.
 	UserEnabledAsLocalAdministrator *bool `type:"boolean"`
 }
@@ -10809,6 +12147,12 @@ func (s *DefaultWorkspaceCreationProperties) SetEnableMaintenanceMode(v bool) *D
 // SetEnableWorkDocs sets the EnableWorkDocs field's value.
 func (s *DefaultWorkspaceCreationProperties) SetEnableWorkDocs(v bool) *DefaultWorkspaceCreationProperties {
 	s.EnableWorkDocs = &v
+	return s
+}
+
+// SetInstanceIamRoleArn sets the InstanceIamRoleArn field's value.
+func (s *DefaultWorkspaceCreationProperties) SetInstanceIamRoleArn(v string) *DefaultWorkspaceCreationProperties {
+	s.InstanceIamRoleArn = &v
 	return s
 }
 
@@ -13180,6 +14524,9 @@ type DescribeWorkspaceDirectoriesInput struct {
 	// If you received a NextToken from a previous call that was paginated, provide
 	// this token to receive the next set of results.
 	NextToken *string `min:"1" type:"string"`
+
+	// The names of the WorkSpace directories.
+	WorkspaceDirectoryNames []*string `min:"1" type:"list"`
 }
 
 // String returns the string representation.
@@ -13212,6 +14559,9 @@ func (s *DescribeWorkspaceDirectoriesInput) Validate() error {
 	if s.NextToken != nil && len(*s.NextToken) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
 	}
+	if s.WorkspaceDirectoryNames != nil && len(s.WorkspaceDirectoryNames) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkspaceDirectoryNames", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -13234,6 +14584,12 @@ func (s *DescribeWorkspaceDirectoriesInput) SetLimit(v int64) *DescribeWorkspace
 // SetNextToken sets the NextToken field's value.
 func (s *DescribeWorkspaceDirectoriesInput) SetNextToken(v string) *DescribeWorkspaceDirectoriesInput {
 	s.NextToken = &v
+	return s
+}
+
+// SetWorkspaceDirectoryNames sets the WorkspaceDirectoryNames field's value.
+func (s *DescribeWorkspaceDirectoriesInput) SetWorkspaceDirectoryNames(v []*string) *DescribeWorkspaceDirectoriesInput {
+	s.WorkspaceDirectoryNames = v
 	return s
 }
 
@@ -13865,6 +15221,340 @@ func (s *DescribeWorkspacesOutput) SetNextToken(v string) *DescribeWorkspacesOut
 // SetWorkspaces sets the Workspaces field's value.
 func (s *DescribeWorkspacesOutput) SetWorkspaces(v []*Workspace) *DescribeWorkspacesOutput {
 	s.Workspaces = v
+	return s
+}
+
+type DescribeWorkspacesPoolSessionsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of items to return.
+	Limit *int64 `min:"1" type:"integer"`
+
+	// If you received a NextToken from a previous call that was paginated, provide
+	// this token to receive the next set of results.
+	NextToken *string `min:"1" type:"string"`
+
+	// The identifier of the WorkSpaces pool.
+	//
+	// PoolId is a required field
+	PoolId *string `type:"string" required:"true"`
+
+	// The identifier of the user.
+	UserId *string `min:"2" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeWorkspacesPoolSessionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeWorkspacesPoolSessionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeWorkspacesPoolSessionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeWorkspacesPoolSessionsInput"}
+	if s.Limit != nil && *s.Limit < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Limit", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.PoolId == nil {
+		invalidParams.Add(request.NewErrParamRequired("PoolId"))
+	}
+	if s.UserId != nil && len(*s.UserId) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("UserId", 2))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLimit sets the Limit field's value.
+func (s *DescribeWorkspacesPoolSessionsInput) SetLimit(v int64) *DescribeWorkspacesPoolSessionsInput {
+	s.Limit = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeWorkspacesPoolSessionsInput) SetNextToken(v string) *DescribeWorkspacesPoolSessionsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetPoolId sets the PoolId field's value.
+func (s *DescribeWorkspacesPoolSessionsInput) SetPoolId(v string) *DescribeWorkspacesPoolSessionsInput {
+	s.PoolId = &v
+	return s
+}
+
+// SetUserId sets the UserId field's value.
+func (s *DescribeWorkspacesPoolSessionsInput) SetUserId(v string) *DescribeWorkspacesPoolSessionsInput {
+	s.UserId = &v
+	return s
+}
+
+type DescribeWorkspacesPoolSessionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// If you received a NextToken from a previous call that was paginated, provide
+	// this token to receive the next set of results.
+	NextToken *string `min:"1" type:"string"`
+
+	// Describes the WorkSpaces pool sessions.
+	Sessions []*WorkspacesPoolSession `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeWorkspacesPoolSessionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeWorkspacesPoolSessionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeWorkspacesPoolSessionsOutput) SetNextToken(v string) *DescribeWorkspacesPoolSessionsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSessions sets the Sessions field's value.
+func (s *DescribeWorkspacesPoolSessionsOutput) SetSessions(v []*WorkspacesPoolSession) *DescribeWorkspacesPoolSessionsOutput {
+	s.Sessions = v
+	return s
+}
+
+// Describes the filter conditions for the WorkSpaces pool to return.
+type DescribeWorkspacesPoolsFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the pool to filter.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true" enum:"DescribeWorkspacesPoolsFilterName"`
+
+	// The operator values for filtering WorkSpaces pools.
+	//
+	// Operator is a required field
+	Operator *string `type:"string" required:"true" enum:"DescribeWorkspacesPoolsFilterOperator"`
+
+	// The values for filtering WorkSpaces pools.
+	//
+	// Values is a required field
+	Values []*string `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeWorkspacesPoolsFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeWorkspacesPoolsFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeWorkspacesPoolsFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeWorkspacesPoolsFilter"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Operator == nil {
+		invalidParams.Add(request.NewErrParamRequired("Operator"))
+	}
+	if s.Values == nil {
+		invalidParams.Add(request.NewErrParamRequired("Values"))
+	}
+	if s.Values != nil && len(s.Values) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Values", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *DescribeWorkspacesPoolsFilter) SetName(v string) *DescribeWorkspacesPoolsFilter {
+	s.Name = &v
+	return s
+}
+
+// SetOperator sets the Operator field's value.
+func (s *DescribeWorkspacesPoolsFilter) SetOperator(v string) *DescribeWorkspacesPoolsFilter {
+	s.Operator = &v
+	return s
+}
+
+// SetValues sets the Values field's value.
+func (s *DescribeWorkspacesPoolsFilter) SetValues(v []*string) *DescribeWorkspacesPoolsFilter {
+	s.Values = v
+	return s
+}
+
+type DescribeWorkspacesPoolsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The filter conditions for the WorkSpaces pool to return.
+	Filters []*DescribeWorkspacesPoolsFilter `min:"1" type:"list"`
+
+	// The maximum number of items to return.
+	Limit *int64 `min:"1" type:"integer"`
+
+	// If you received a NextToken from a previous call that was paginated, provide
+	// this token to receive the next set of results.
+	NextToken *string `min:"1" type:"string"`
+
+	// The identifier of the WorkSpaces pool.
+	PoolIds []*string `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeWorkspacesPoolsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeWorkspacesPoolsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeWorkspacesPoolsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeWorkspacesPoolsInput"}
+	if s.Filters != nil && len(s.Filters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Filters", 1))
+	}
+	if s.Limit != nil && *s.Limit < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Limit", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.PoolIds != nil && len(s.PoolIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PoolIds", 1))
+	}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeWorkspacesPoolsInput) SetFilters(v []*DescribeWorkspacesPoolsFilter) *DescribeWorkspacesPoolsInput {
+	s.Filters = v
+	return s
+}
+
+// SetLimit sets the Limit field's value.
+func (s *DescribeWorkspacesPoolsInput) SetLimit(v int64) *DescribeWorkspacesPoolsInput {
+	s.Limit = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeWorkspacesPoolsInput) SetNextToken(v string) *DescribeWorkspacesPoolsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetPoolIds sets the PoolIds field's value.
+func (s *DescribeWorkspacesPoolsInput) SetPoolIds(v []*string) *DescribeWorkspacesPoolsInput {
+	s.PoolIds = v
+	return s
+}
+
+type DescribeWorkspacesPoolsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// If you received a NextToken from a previous call that was paginated, provide
+	// this token to receive the next set of results.
+	NextToken *string `min:"1" type:"string"`
+
+	// Information about the WorkSpaces pools.
+	WorkspacesPools []*WorkspacesPool `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeWorkspacesPoolsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeWorkspacesPoolsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeWorkspacesPoolsOutput) SetNextToken(v string) *DescribeWorkspacesPoolsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetWorkspacesPools sets the WorkspacesPools field's value.
+func (s *DescribeWorkspacesPoolsOutput) SetWorkspacesPools(v []*WorkspacesPool) *DescribeWorkspacesPoolsOutput {
+	s.WorkspacesPools = v
 	return s
 }
 
@@ -16317,6 +18007,91 @@ func (s ModifySelfservicePermissionsOutput) GoString() string {
 	return s.String()
 }
 
+type ModifyStreamingPropertiesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the resource.
+	//
+	// ResourceId is a required field
+	ResourceId *string `min:"10" type:"string" required:"true"`
+
+	// The streaming properties to configure.
+	StreamingProperties *StreamingProperties `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModifyStreamingPropertiesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModifyStreamingPropertiesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ModifyStreamingPropertiesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ModifyStreamingPropertiesInput"}
+	if s.ResourceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceId"))
+	}
+	if s.ResourceId != nil && len(*s.ResourceId) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceId", 10))
+	}
+	if s.StreamingProperties != nil {
+		if err := s.StreamingProperties.Validate(); err != nil {
+			invalidParams.AddNested("StreamingProperties", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceId sets the ResourceId field's value.
+func (s *ModifyStreamingPropertiesInput) SetResourceId(v string) *ModifyStreamingPropertiesInput {
+	s.ResourceId = &v
+	return s
+}
+
+// SetStreamingProperties sets the StreamingProperties field's value.
+func (s *ModifyStreamingPropertiesInput) SetStreamingProperties(v *StreamingProperties) *ModifyStreamingPropertiesInput {
+	s.StreamingProperties = v
+	return s
+}
+
+type ModifyStreamingPropertiesOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModifyStreamingPropertiesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModifyStreamingPropertiesOutput) GoString() string {
+	return s.String()
+}
+
 type ModifyWorkspaceAccessPropertiesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -16658,6 +18433,50 @@ func (s ModifyWorkspaceStateOutput) String() string {
 // value will be replaced with "sensitive".
 func (s ModifyWorkspaceStateOutput) GoString() string {
 	return s.String()
+}
+
+// Describes the network details of a WorkSpaces pool.
+type NetworkAccessConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The resource identifier of the elastic network interface that is attached
+	// to instances in your VPC. All network interfaces have the eni-xxxxxxxx resource
+	// identifier.
+	EniId *string `min:"1" type:"string"`
+
+	// The private IP address of the elastic network interface that is attached
+	// to instances in your VPC.
+	EniPrivateIpAddress *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NetworkAccessConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NetworkAccessConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetEniId sets the EniId field's value.
+func (s *NetworkAccessConfiguration) SetEniId(v string) *NetworkAccessConfiguration {
+	s.EniId = &v
+	return s
+}
+
+// SetEniPrivateIpAddress sets the EniPrivateIpAddress field's value.
+func (s *NetworkAccessConfiguration) SetEniPrivateIpAddress(v string) *NetworkAccessConfiguration {
+	s.EniPrivateIpAddress = &v
+	return s
 }
 
 // The operating system that the image is running.
@@ -17230,15 +19049,16 @@ func (s *RebuildWorkspacesOutput) SetFailedRequests(v []*FailedWorkspaceChangeRe
 type RegisterWorkspaceDirectoryInput struct {
 	_ struct{} `type:"structure"`
 
+	// The active directory config of the directory.
+	ActiveDirectoryConfig *ActiveDirectoryConfig `type:"structure"`
+
 	// The identifier of the directory. You cannot register a directory if it does
 	// not have a status of Active. If the directory does not have a status of Active,
 	// you will receive an InvalidResourceStateException error. If you have already
 	// registered the maximum number of directories that you can register with Amazon
 	// WorkSpaces, you will receive a ResourceLimitExceededException error. Deregister
 	// directories that you are not using for WorkSpaces, and try again.
-	//
-	// DirectoryId is a required field
-	DirectoryId *string `min:"10" type:"string" required:"true"`
+	DirectoryId *string `min:"10" type:"string"`
 
 	// Indicates whether self-service capabilities are enabled or disabled.
 	EnableSelfService *bool `type:"boolean"`
@@ -17247,9 +19067,7 @@ type RegisterWorkspaceDirectoryInput struct {
 	// this parameter and WorkDocs is not available in the Region, you will receive
 	// an OperationNotSupportedException error. Set EnableWorkDocs to disabled,
 	// and try again.
-	//
-	// EnableWorkDocs is a required field
-	EnableWorkDocs *bool `type:"boolean" required:"true"`
+	EnableWorkDocs *bool `type:"boolean"`
 
 	// The identifiers of the subnets for your virtual private cloud (VPC). Make
 	// sure that the subnets are in supported Availability Zones. The subnets must
@@ -17267,6 +19085,18 @@ type RegisterWorkspaceDirectoryInput struct {
 	// error. For more information about BYOL images, see Bring Your Own Windows
 	// Desktop Images (https://docs.aws.amazon.com/workspaces/latest/adminguide/byol-windows-images.html).
 	Tenancy *string `type:"string" enum:"Tenancy"`
+
+	// The type of identity management the user is using.
+	UserIdentityType *string `type:"string" enum:"UserIdentityType"`
+
+	// Description of the directory to register.
+	WorkspaceDirectoryDescription *string `type:"string"`
+
+	// The name of the directory to register.
+	WorkspaceDirectoryName *string `type:"string"`
+
+	// Indicates whether the directory's WorkSpace type is personal or pools.
+	WorkspaceType *string `type:"string" enum:"WorkspaceType"`
 }
 
 // String returns the string representation.
@@ -17290,14 +19120,13 @@ func (s RegisterWorkspaceDirectoryInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *RegisterWorkspaceDirectoryInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "RegisterWorkspaceDirectoryInput"}
-	if s.DirectoryId == nil {
-		invalidParams.Add(request.NewErrParamRequired("DirectoryId"))
-	}
 	if s.DirectoryId != nil && len(*s.DirectoryId) < 10 {
 		invalidParams.Add(request.NewErrParamMinLen("DirectoryId", 10))
 	}
-	if s.EnableWorkDocs == nil {
-		invalidParams.Add(request.NewErrParamRequired("EnableWorkDocs"))
+	if s.ActiveDirectoryConfig != nil {
+		if err := s.ActiveDirectoryConfig.Validate(); err != nil {
+			invalidParams.AddNested("ActiveDirectoryConfig", err.(request.ErrInvalidParams))
+		}
 	}
 	if s.Tags != nil {
 		for i, v := range s.Tags {
@@ -17314,6 +19143,12 @@ func (s *RegisterWorkspaceDirectoryInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetActiveDirectoryConfig sets the ActiveDirectoryConfig field's value.
+func (s *RegisterWorkspaceDirectoryInput) SetActiveDirectoryConfig(v *ActiveDirectoryConfig) *RegisterWorkspaceDirectoryInput {
+	s.ActiveDirectoryConfig = v
+	return s
 }
 
 // SetDirectoryId sets the DirectoryId field's value.
@@ -17352,8 +19187,38 @@ func (s *RegisterWorkspaceDirectoryInput) SetTenancy(v string) *RegisterWorkspac
 	return s
 }
 
+// SetUserIdentityType sets the UserIdentityType field's value.
+func (s *RegisterWorkspaceDirectoryInput) SetUserIdentityType(v string) *RegisterWorkspaceDirectoryInput {
+	s.UserIdentityType = &v
+	return s
+}
+
+// SetWorkspaceDirectoryDescription sets the WorkspaceDirectoryDescription field's value.
+func (s *RegisterWorkspaceDirectoryInput) SetWorkspaceDirectoryDescription(v string) *RegisterWorkspaceDirectoryInput {
+	s.WorkspaceDirectoryDescription = &v
+	return s
+}
+
+// SetWorkspaceDirectoryName sets the WorkspaceDirectoryName field's value.
+func (s *RegisterWorkspaceDirectoryInput) SetWorkspaceDirectoryName(v string) *RegisterWorkspaceDirectoryInput {
+	s.WorkspaceDirectoryName = &v
+	return s
+}
+
+// SetWorkspaceType sets the WorkspaceType field's value.
+func (s *RegisterWorkspaceDirectoryInput) SetWorkspaceType(v string) *RegisterWorkspaceDirectoryInput {
+	s.WorkspaceType = &v
+	return s
+}
+
 type RegisterWorkspaceDirectoryOutput struct {
 	_ struct{} `type:"structure"`
+
+	// The identifier of the directory.
+	DirectoryId *string `min:"10" type:"string"`
+
+	// The registration status of the WorkSpace directory.
+	State *string `type:"string" enum:"WorkspaceDirectoryState"`
 }
 
 // String returns the string representation.
@@ -17372,6 +19237,18 @@ func (s RegisterWorkspaceDirectoryOutput) String() string {
 // value will be replaced with "sensitive".
 func (s RegisterWorkspaceDirectoryOutput) GoString() string {
 	return s.String()
+}
+
+// SetDirectoryId sets the DirectoryId field's value.
+func (s *RegisterWorkspaceDirectoryOutput) SetDirectoryId(v string) *RegisterWorkspaceDirectoryOutput {
+	s.DirectoryId = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *RegisterWorkspaceDirectoryOutput) SetState(v string) *RegisterWorkspaceDirectoryOutput {
+	s.State = &v
+	return s
 }
 
 type RejectAccountLinkInvitationInput struct {
@@ -18636,6 +20513,74 @@ func (s *StartWorkspacesOutput) SetFailedRequests(v []*FailedWorkspaceChangeRequ
 	return s
 }
 
+type StartWorkspacesPoolInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the WorkSpaces pool.
+	//
+	// PoolId is a required field
+	PoolId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartWorkspacesPoolInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartWorkspacesPoolInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartWorkspacesPoolInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartWorkspacesPoolInput"}
+	if s.PoolId == nil {
+		invalidParams.Add(request.NewErrParamRequired("PoolId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPoolId sets the PoolId field's value.
+func (s *StartWorkspacesPoolInput) SetPoolId(v string) *StartWorkspacesPoolInput {
+	s.PoolId = &v
+	return s
+}
+
+type StartWorkspacesPoolOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartWorkspacesPoolOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartWorkspacesPoolOutput) GoString() string {
+	return s.String()
+}
+
 // Describes the information used to stop a WorkSpace.
 type StopRequest struct {
 	_ struct{} `type:"structure"`
@@ -18745,6 +20690,221 @@ func (s StopWorkspacesOutput) GoString() string {
 // SetFailedRequests sets the FailedRequests field's value.
 func (s *StopWorkspacesOutput) SetFailedRequests(v []*FailedWorkspaceChangeRequest) *StopWorkspacesOutput {
 	s.FailedRequests = v
+	return s
+}
+
+type StopWorkspacesPoolInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the WorkSpaces pool.
+	//
+	// PoolId is a required field
+	PoolId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopWorkspacesPoolInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopWorkspacesPoolInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StopWorkspacesPoolInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StopWorkspacesPoolInput"}
+	if s.PoolId == nil {
+		invalidParams.Add(request.NewErrParamRequired("PoolId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPoolId sets the PoolId field's value.
+func (s *StopWorkspacesPoolInput) SetPoolId(v string) *StopWorkspacesPoolInput {
+	s.PoolId = &v
+	return s
+}
+
+type StopWorkspacesPoolOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopWorkspacesPoolOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopWorkspacesPoolOutput) GoString() string {
+	return s.String()
+}
+
+// Describes the storage connector.
+type StorageConnector struct {
+	_ struct{} `type:"structure"`
+
+	// The type of connector used to save user files.
+	//
+	// ConnectorType is a required field
+	ConnectorType *string `type:"string" required:"true" enum:"StorageConnectorTypeEnum"`
+
+	// Indicates if the storage connetor is enabled or disabled.
+	//
+	// Status is a required field
+	Status *string `type:"string" required:"true" enum:"StorageConnectorStatusEnum"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StorageConnector) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StorageConnector) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StorageConnector) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StorageConnector"}
+	if s.ConnectorType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConnectorType"))
+	}
+	if s.Status == nil {
+		invalidParams.Add(request.NewErrParamRequired("Status"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConnectorType sets the ConnectorType field's value.
+func (s *StorageConnector) SetConnectorType(v string) *StorageConnector {
+	s.ConnectorType = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *StorageConnector) SetStatus(v string) *StorageConnector {
+	s.Status = &v
+	return s
+}
+
+// Describes the streaming properties.
+type StreamingProperties struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates the storage connector used
+	StorageConnectors []*StorageConnector `min:"1" type:"list"`
+
+	// Indicates the type of preferred protocol for the streaming experience.
+	StreamingExperiencePreferredProtocol *string `type:"string" enum:"StreamingExperiencePreferredProtocolEnum"`
+
+	// Indicates the permission settings asscoiated with the user.
+	UserSettings []*UserSetting `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StreamingProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StreamingProperties) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StreamingProperties) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StreamingProperties"}
+	if s.StorageConnectors != nil && len(s.StorageConnectors) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StorageConnectors", 1))
+	}
+	if s.UserSettings != nil && len(s.UserSettings) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserSettings", 1))
+	}
+	if s.StorageConnectors != nil {
+		for i, v := range s.StorageConnectors {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "StorageConnectors", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.UserSettings != nil {
+		for i, v := range s.UserSettings {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "UserSettings", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetStorageConnectors sets the StorageConnectors field's value.
+func (s *StreamingProperties) SetStorageConnectors(v []*StorageConnector) *StreamingProperties {
+	s.StorageConnectors = v
+	return s
+}
+
+// SetStreamingExperiencePreferredProtocol sets the StreamingExperiencePreferredProtocol field's value.
+func (s *StreamingProperties) SetStreamingExperiencePreferredProtocol(v string) *StreamingProperties {
+	s.StreamingExperiencePreferredProtocol = &v
+	return s
+}
+
+// SetUserSettings sets the UserSettings field's value.
+func (s *StreamingProperties) SetUserSettings(v []*UserSetting) *StreamingProperties {
+	s.UserSettings = v
 	return s
 }
 
@@ -18941,6 +21101,219 @@ func (s TerminateWorkspacesOutput) GoString() string {
 // SetFailedRequests sets the FailedRequests field's value.
 func (s *TerminateWorkspacesOutput) SetFailedRequests(v []*FailedWorkspaceChangeRequest) *TerminateWorkspacesOutput {
 	s.FailedRequests = v
+	return s
+}
+
+type TerminateWorkspacesPoolInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the WorkSpaces pool.
+	//
+	// PoolId is a required field
+	PoolId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TerminateWorkspacesPoolInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TerminateWorkspacesPoolInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TerminateWorkspacesPoolInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TerminateWorkspacesPoolInput"}
+	if s.PoolId == nil {
+		invalidParams.Add(request.NewErrParamRequired("PoolId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPoolId sets the PoolId field's value.
+func (s *TerminateWorkspacesPoolInput) SetPoolId(v string) *TerminateWorkspacesPoolInput {
+	s.PoolId = &v
+	return s
+}
+
+type TerminateWorkspacesPoolOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TerminateWorkspacesPoolOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TerminateWorkspacesPoolOutput) GoString() string {
+	return s.String()
+}
+
+type TerminateWorkspacesPoolSessionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the WorkSpaces pool session.
+	//
+	// SessionId is a required field
+	SessionId *string `min:"36" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TerminateWorkspacesPoolSessionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TerminateWorkspacesPoolSessionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TerminateWorkspacesPoolSessionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TerminateWorkspacesPoolSessionInput"}
+	if s.SessionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SessionId"))
+	}
+	if s.SessionId != nil && len(*s.SessionId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("SessionId", 36))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSessionId sets the SessionId field's value.
+func (s *TerminateWorkspacesPoolSessionInput) SetSessionId(v string) *TerminateWorkspacesPoolSessionInput {
+	s.SessionId = &v
+	return s
+}
+
+type TerminateWorkspacesPoolSessionOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TerminateWorkspacesPoolSessionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TerminateWorkspacesPoolSessionOutput) GoString() string {
+	return s.String()
+}
+
+// Describes the timeout settings for a WorkSpaces pool.
+type TimeoutSettings struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the amount of time, in seconds, that a streaming session remains
+	// active after users disconnect. If users try to reconnect to the streaming
+	// session after a disconnection or network interruption within the time set,
+	// they are connected to their previous session. Otherwise, they are connected
+	// to a new session with a new streaming instance.
+	DisconnectTimeoutInSeconds *int64 `min:"60" type:"integer"`
+
+	// The amount of time in seconds a connection will stay active while idle.
+	IdleDisconnectTimeoutInSeconds *int64 `type:"integer"`
+
+	// Specifies the maximum amount of time, in seconds, that a streaming session
+	// can remain active. If users are still connected to a streaming instance five
+	// minutes before this limit is reached, they are prompted to save any open
+	// documents before being disconnected. After this time elapses, the instance
+	// is terminated and replaced by a new instance.
+	MaxUserDurationInSeconds *int64 `min:"600" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TimeoutSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TimeoutSettings) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TimeoutSettings) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TimeoutSettings"}
+	if s.DisconnectTimeoutInSeconds != nil && *s.DisconnectTimeoutInSeconds < 60 {
+		invalidParams.Add(request.NewErrParamMinValue("DisconnectTimeoutInSeconds", 60))
+	}
+	if s.MaxUserDurationInSeconds != nil && *s.MaxUserDurationInSeconds < 600 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxUserDurationInSeconds", 600))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDisconnectTimeoutInSeconds sets the DisconnectTimeoutInSeconds field's value.
+func (s *TimeoutSettings) SetDisconnectTimeoutInSeconds(v int64) *TimeoutSettings {
+	s.DisconnectTimeoutInSeconds = &v
+	return s
+}
+
+// SetIdleDisconnectTimeoutInSeconds sets the IdleDisconnectTimeoutInSeconds field's value.
+func (s *TimeoutSettings) SetIdleDisconnectTimeoutInSeconds(v int64) *TimeoutSettings {
+	s.IdleDisconnectTimeoutInSeconds = &v
+	return s
+}
+
+// SetMaxUserDurationInSeconds sets the MaxUserDurationInSeconds field's value.
+func (s *TimeoutSettings) SetMaxUserDurationInSeconds(v int64) *TimeoutSettings {
+	s.MaxUserDurationInSeconds = &v
 	return s
 }
 
@@ -19570,6 +21943,228 @@ func (s UpdateWorkspaceImagePermissionOutput) String() string {
 // value will be replaced with "sensitive".
 func (s UpdateWorkspaceImagePermissionOutput) GoString() string {
 	return s.String()
+}
+
+type UpdateWorkspacesPoolInput struct {
+	_ struct{} `type:"structure"`
+
+	// The persistent application settings for users in the pool.
+	ApplicationSettings *ApplicationSettingsRequest `type:"structure"`
+
+	// The identifier of the bundle.
+	BundleId *string `type:"string"`
+
+	// The desired capacity for the WorkSpaces pool.
+	Capacity *Capacity `type:"structure"`
+
+	// Describes the specified WorkSpaces pool to update.
+	Description *string `min:"1" type:"string"`
+
+	// The identifier of the directory.
+	DirectoryId *string `min:"10" type:"string"`
+
+	// The identifier of the specified WorkSpaces pool to update.
+	//
+	// PoolId is a required field
+	PoolId *string `type:"string" required:"true"`
+
+	// Indicates the timeout settings of the specified WorkSpaces pool.
+	TimeoutSettings *TimeoutSettings `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateWorkspacesPoolInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateWorkspacesPoolInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateWorkspacesPoolInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateWorkspacesPoolInput"}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.DirectoryId != nil && len(*s.DirectoryId) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("DirectoryId", 10))
+	}
+	if s.PoolId == nil {
+		invalidParams.Add(request.NewErrParamRequired("PoolId"))
+	}
+	if s.ApplicationSettings != nil {
+		if err := s.ApplicationSettings.Validate(); err != nil {
+			invalidParams.AddNested("ApplicationSettings", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Capacity != nil {
+		if err := s.Capacity.Validate(); err != nil {
+			invalidParams.AddNested("Capacity", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.TimeoutSettings != nil {
+		if err := s.TimeoutSettings.Validate(); err != nil {
+			invalidParams.AddNested("TimeoutSettings", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetApplicationSettings sets the ApplicationSettings field's value.
+func (s *UpdateWorkspacesPoolInput) SetApplicationSettings(v *ApplicationSettingsRequest) *UpdateWorkspacesPoolInput {
+	s.ApplicationSettings = v
+	return s
+}
+
+// SetBundleId sets the BundleId field's value.
+func (s *UpdateWorkspacesPoolInput) SetBundleId(v string) *UpdateWorkspacesPoolInput {
+	s.BundleId = &v
+	return s
+}
+
+// SetCapacity sets the Capacity field's value.
+func (s *UpdateWorkspacesPoolInput) SetCapacity(v *Capacity) *UpdateWorkspacesPoolInput {
+	s.Capacity = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateWorkspacesPoolInput) SetDescription(v string) *UpdateWorkspacesPoolInput {
+	s.Description = &v
+	return s
+}
+
+// SetDirectoryId sets the DirectoryId field's value.
+func (s *UpdateWorkspacesPoolInput) SetDirectoryId(v string) *UpdateWorkspacesPoolInput {
+	s.DirectoryId = &v
+	return s
+}
+
+// SetPoolId sets the PoolId field's value.
+func (s *UpdateWorkspacesPoolInput) SetPoolId(v string) *UpdateWorkspacesPoolInput {
+	s.PoolId = &v
+	return s
+}
+
+// SetTimeoutSettings sets the TimeoutSettings field's value.
+func (s *UpdateWorkspacesPoolInput) SetTimeoutSettings(v *TimeoutSettings) *UpdateWorkspacesPoolInput {
+	s.TimeoutSettings = v
+	return s
+}
+
+type UpdateWorkspacesPoolOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Describes the specified WorkSpaces pool.
+	WorkspacesPool *WorkspacesPool `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateWorkspacesPoolOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateWorkspacesPoolOutput) GoString() string {
+	return s.String()
+}
+
+// SetWorkspacesPool sets the WorkspacesPool field's value.
+func (s *UpdateWorkspacesPoolOutput) SetWorkspacesPool(v *WorkspacesPool) *UpdateWorkspacesPoolOutput {
+	s.WorkspacesPool = v
+	return s
+}
+
+// Information about the user's permission settings.
+type UserSetting struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates the type of action.
+	//
+	// Action is a required field
+	Action *string `type:"string" required:"true" enum:"UserSettingActionEnum"`
+
+	// Indicates the maximum character length for the specified user setting.
+	MaximumLength *int64 `type:"integer"`
+
+	// Indicates if the setting is enabled or disabled.
+	//
+	// Permission is a required field
+	Permission *string `type:"string" required:"true" enum:"UserSettingPermissionEnum"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UserSetting) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UserSetting) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UserSetting) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UserSetting"}
+	if s.Action == nil {
+		invalidParams.Add(request.NewErrParamRequired("Action"))
+	}
+	if s.Permission == nil {
+		invalidParams.Add(request.NewErrParamRequired("Permission"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAction sets the Action field's value.
+func (s *UserSetting) SetAction(v string) *UserSetting {
+	s.Action = &v
+	return s
+}
+
+// SetMaximumLength sets the MaximumLength field's value.
+func (s *UserSetting) SetMaximumLength(v int64) *UserSetting {
+	s.MaximumLength = &v
+	return s
+}
+
+// SetPermission sets the Permission field's value.
+func (s *UserSetting) SetPermission(v string) *UserSetting {
+	s.Permission = &v
+	return s
 }
 
 // Describes the user volume for a WorkSpace bundle.
@@ -20395,6 +22990,9 @@ type WorkspaceCreationProperties struct {
 	// will have WorkDocs enabled.
 	EnableWorkDocs *bool `type:"boolean"`
 
+	// Indicates the IAM role ARN of the instance.
+	InstanceIamRoleArn *string `type:"string"`
+
 	// Indicates whether users are local administrators of their WorkSpaces.
 	UserEnabledAsLocalAdministrator *bool `type:"boolean"`
 }
@@ -20460,6 +23058,12 @@ func (s *WorkspaceCreationProperties) SetEnableWorkDocs(v bool) *WorkspaceCreati
 	return s
 }
 
+// SetInstanceIamRoleArn sets the InstanceIamRoleArn field's value.
+func (s *WorkspaceCreationProperties) SetInstanceIamRoleArn(v string) *WorkspaceCreationProperties {
+	s.InstanceIamRoleArn = &v
+	return s
+}
+
 // SetUserEnabledAsLocalAdministrator sets the UserEnabledAsLocalAdministrator field's value.
 func (s *WorkspaceCreationProperties) SetUserEnabledAsLocalAdministrator(v bool) *WorkspaceCreationProperties {
 	s.UserEnabledAsLocalAdministrator = &v
@@ -20469,6 +23073,9 @@ func (s *WorkspaceCreationProperties) SetUserEnabledAsLocalAdministrator(v bool)
 // Describes a directory that is used with Amazon WorkSpaces.
 type WorkspaceDirectory struct {
 	_ struct{} `type:"structure"`
+
+	// Information about the Active Directory config.
+	ActiveDirectoryConfig *ActiveDirectoryConfig `type:"structure"`
 
 	// The directory alias.
 	Alias *string `type:"string"`
@@ -20492,6 +23099,9 @@ type WorkspaceDirectory struct {
 
 	// The IP addresses of the DNS servers for the directory.
 	DnsIpAddresses []*string `type:"list"`
+
+	// The error message returned.
+	ErrorMessage *string `type:"string"`
 
 	// The identifier of the IAM role. This is the role that allows Amazon WorkSpaces
 	// to make calls to other services, such as Amazon EC2, on your behalf.
@@ -20520,6 +23130,9 @@ type WorkspaceDirectory struct {
 	// deregistered.
 	State *string `type:"string" enum:"WorkspaceDirectoryState"`
 
+	// The streaming properties to configure.
+	StreamingProperties *StreamingProperties `type:"structure"`
+
 	// The identifiers of the subnets used with the directory.
 	SubnetIds []*string `type:"list"`
 
@@ -20528,14 +23141,26 @@ type WorkspaceDirectory struct {
 	// see Bring Your Own Windows Desktop Images (https://docs.aws.amazon.com/workspaces/latest/adminguide/byol-windows-images.html).
 	Tenancy *string `type:"string" enum:"Tenancy"`
 
+	// Indicates the identity type of the specifired user.
+	UserIdentityType *string `type:"string" enum:"UserIdentityType"`
+
 	// The devices and operating systems that users can use to access WorkSpaces.
 	WorkspaceAccessProperties *WorkspaceAccessProperties `type:"structure"`
 
 	// The default creation properties for all WorkSpaces in the directory.
 	WorkspaceCreationProperties *DefaultWorkspaceCreationProperties `type:"structure"`
 
+	// The description of the WorkSpace directory
+	WorkspaceDirectoryDescription *string `type:"string"`
+
+	// The name fo the WorkSpace directory.
+	WorkspaceDirectoryName *string `type:"string"`
+
 	// The identifier of the security group that is assigned to new WorkSpaces.
 	WorkspaceSecurityGroupId *string `min:"11" type:"string"`
+
+	// Indicates whether the directory's WorkSpace type is personal or pools.
+	WorkspaceType *string `type:"string" enum:"WorkspaceType"`
 }
 
 // String returns the string representation.
@@ -20554,6 +23179,12 @@ func (s WorkspaceDirectory) String() string {
 // value will be replaced with "sensitive".
 func (s WorkspaceDirectory) GoString() string {
 	return s.String()
+}
+
+// SetActiveDirectoryConfig sets the ActiveDirectoryConfig field's value.
+func (s *WorkspaceDirectory) SetActiveDirectoryConfig(v *ActiveDirectoryConfig) *WorkspaceDirectory {
+	s.ActiveDirectoryConfig = v
+	return s
 }
 
 // SetAlias sets the Alias field's value.
@@ -20598,6 +23229,12 @@ func (s *WorkspaceDirectory) SetDnsIpAddresses(v []*string) *WorkspaceDirectory 
 	return s
 }
 
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *WorkspaceDirectory) SetErrorMessage(v string) *WorkspaceDirectory {
+	s.ErrorMessage = &v
+	return s
+}
+
 // SetIamRoleId sets the IamRoleId field's value.
 func (s *WorkspaceDirectory) SetIamRoleId(v string) *WorkspaceDirectory {
 	s.IamRoleId = &v
@@ -20634,6 +23271,12 @@ func (s *WorkspaceDirectory) SetState(v string) *WorkspaceDirectory {
 	return s
 }
 
+// SetStreamingProperties sets the StreamingProperties field's value.
+func (s *WorkspaceDirectory) SetStreamingProperties(v *StreamingProperties) *WorkspaceDirectory {
+	s.StreamingProperties = v
+	return s
+}
+
 // SetSubnetIds sets the SubnetIds field's value.
 func (s *WorkspaceDirectory) SetSubnetIds(v []*string) *WorkspaceDirectory {
 	s.SubnetIds = v
@@ -20643,6 +23286,12 @@ func (s *WorkspaceDirectory) SetSubnetIds(v []*string) *WorkspaceDirectory {
 // SetTenancy sets the Tenancy field's value.
 func (s *WorkspaceDirectory) SetTenancy(v string) *WorkspaceDirectory {
 	s.Tenancy = &v
+	return s
+}
+
+// SetUserIdentityType sets the UserIdentityType field's value.
+func (s *WorkspaceDirectory) SetUserIdentityType(v string) *WorkspaceDirectory {
+	s.UserIdentityType = &v
 	return s
 }
 
@@ -20658,9 +23307,27 @@ func (s *WorkspaceDirectory) SetWorkspaceCreationProperties(v *DefaultWorkspaceC
 	return s
 }
 
+// SetWorkspaceDirectoryDescription sets the WorkspaceDirectoryDescription field's value.
+func (s *WorkspaceDirectory) SetWorkspaceDirectoryDescription(v string) *WorkspaceDirectory {
+	s.WorkspaceDirectoryDescription = &v
+	return s
+}
+
+// SetWorkspaceDirectoryName sets the WorkspaceDirectoryName field's value.
+func (s *WorkspaceDirectory) SetWorkspaceDirectoryName(v string) *WorkspaceDirectory {
+	s.WorkspaceDirectoryName = &v
+	return s
+}
+
 // SetWorkspaceSecurityGroupId sets the WorkspaceSecurityGroupId field's value.
 func (s *WorkspaceDirectory) SetWorkspaceSecurityGroupId(v string) *WorkspaceDirectory {
 	s.WorkspaceSecurityGroupId = &v
+	return s
+}
+
+// SetWorkspaceType sets the WorkspaceType field's value.
+func (s *WorkspaceDirectory) SetWorkspaceType(v string) *WorkspaceDirectory {
+	s.WorkspaceType = &v
 	return s
 }
 
@@ -21205,6 +23872,308 @@ func (s *WorkspacesDefaultRoleNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Describes a WorkSpaces pool.
+type WorkspacesPool struct {
+	_ struct{} `type:"structure"`
+
+	// The persistent application settings for users of the pool.
+	ApplicationSettings *ApplicationSettingsResponse `type:"structure"`
+
+	// The identifier of the bundle used by the pool.
+	//
+	// BundleId is a required field
+	BundleId *string `type:"string" required:"true"`
+
+	// The capacity status for the pool
+	//
+	// CapacityStatus is a required field
+	CapacityStatus *CapacityStatus `type:"structure" required:"true"`
+
+	// The time the pool was created.
+	//
+	// CreatedAt is a required field
+	CreatedAt *time.Time `type:"timestamp" required:"true"`
+
+	// The description of the pool.
+	Description *string `min:"1" type:"string"`
+
+	// The identifier of the directory used by the pool.
+	//
+	// DirectoryId is a required field
+	DirectoryId *string `min:"10" type:"string" required:"true"`
+
+	// The pool errors.
+	Errors []*WorkspacesPoolError `type:"list"`
+
+	// The Amazon Resource Name (ARN) for the WorkSpaces pool.
+	//
+	// PoolArn is a required field
+	PoolArn *string `type:"string" required:"true"`
+
+	// The identifier of a WorkSpaces pool.
+	//
+	// PoolId is a required field
+	PoolId *string `type:"string" required:"true"`
+
+	// The name of the pool,
+	//
+	// PoolName is a required field
+	PoolName *string `type:"string" required:"true"`
+
+	// The current state of the pool.
+	//
+	// State is a required field
+	State *string `type:"string" required:"true" enum:"WorkspacesPoolState"`
+
+	// The amount of time that a pool session remains active after users disconnect.
+	// If they try to reconnect to the pool session after a disconnection or network
+	// interruption within this time interval, they are connected to their previous
+	// session. Otherwise, they are connected to a new session with a new pool instance.
+	TimeoutSettings *TimeoutSettings `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WorkspacesPool) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WorkspacesPool) GoString() string {
+	return s.String()
+}
+
+// SetApplicationSettings sets the ApplicationSettings field's value.
+func (s *WorkspacesPool) SetApplicationSettings(v *ApplicationSettingsResponse) *WorkspacesPool {
+	s.ApplicationSettings = v
+	return s
+}
+
+// SetBundleId sets the BundleId field's value.
+func (s *WorkspacesPool) SetBundleId(v string) *WorkspacesPool {
+	s.BundleId = &v
+	return s
+}
+
+// SetCapacityStatus sets the CapacityStatus field's value.
+func (s *WorkspacesPool) SetCapacityStatus(v *CapacityStatus) *WorkspacesPool {
+	s.CapacityStatus = v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *WorkspacesPool) SetCreatedAt(v time.Time) *WorkspacesPool {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *WorkspacesPool) SetDescription(v string) *WorkspacesPool {
+	s.Description = &v
+	return s
+}
+
+// SetDirectoryId sets the DirectoryId field's value.
+func (s *WorkspacesPool) SetDirectoryId(v string) *WorkspacesPool {
+	s.DirectoryId = &v
+	return s
+}
+
+// SetErrors sets the Errors field's value.
+func (s *WorkspacesPool) SetErrors(v []*WorkspacesPoolError) *WorkspacesPool {
+	s.Errors = v
+	return s
+}
+
+// SetPoolArn sets the PoolArn field's value.
+func (s *WorkspacesPool) SetPoolArn(v string) *WorkspacesPool {
+	s.PoolArn = &v
+	return s
+}
+
+// SetPoolId sets the PoolId field's value.
+func (s *WorkspacesPool) SetPoolId(v string) *WorkspacesPool {
+	s.PoolId = &v
+	return s
+}
+
+// SetPoolName sets the PoolName field's value.
+func (s *WorkspacesPool) SetPoolName(v string) *WorkspacesPool {
+	s.PoolName = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *WorkspacesPool) SetState(v string) *WorkspacesPool {
+	s.State = &v
+	return s
+}
+
+// SetTimeoutSettings sets the TimeoutSettings field's value.
+func (s *WorkspacesPool) SetTimeoutSettings(v *TimeoutSettings) *WorkspacesPool {
+	s.TimeoutSettings = v
+	return s
+}
+
+// Describes a WorkSpaces pool error.
+type WorkspacesPoolError struct {
+	_ struct{} `type:"structure"`
+
+	// The error code.
+	ErrorCode *string `type:"string" enum:"WorkspacesPoolErrorCode"`
+
+	// The error message.
+	ErrorMessage *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WorkspacesPoolError) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WorkspacesPoolError) GoString() string {
+	return s.String()
+}
+
+// SetErrorCode sets the ErrorCode field's value.
+func (s *WorkspacesPoolError) SetErrorCode(v string) *WorkspacesPoolError {
+	s.ErrorCode = &v
+	return s
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *WorkspacesPoolError) SetErrorMessage(v string) *WorkspacesPoolError {
+	s.ErrorMessage = &v
+	return s
+}
+
+// Describes a WorkSpaces pool session.
+type WorkspacesPoolSession struct {
+	_ struct{} `type:"structure"`
+
+	// The authentication method. The user is authenticated using a WorkSpaces pool
+	// URL (API) or SAML 2.0 federation (SAML).
+	AuthenticationType *string `type:"string" enum:"AuthenticationType"`
+
+	// Specifies whether a user is connected to the pool session.
+	ConnectionState *string `type:"string" enum:"SessionConnectionState"`
+
+	// The time that the pool session ended.
+	ExpirationTime *time.Time `type:"timestamp"`
+
+	// The identifier for the instance hosting the session.
+	InstanceId *string `type:"string"`
+
+	// Describes the network details of the pool.
+	NetworkAccessConfiguration *NetworkAccessConfiguration `type:"structure"`
+
+	// The identifier of the pool.
+	//
+	// PoolId is a required field
+	PoolId *string `type:"string" required:"true"`
+
+	// The identifier of the session.
+	//
+	// SessionId is a required field
+	SessionId *string `min:"36" type:"string" required:"true"`
+
+	// The time that the pool sission started.
+	StartTime *time.Time `type:"timestamp"`
+
+	// The identifier of the user.
+	//
+	// UserId is a required field
+	UserId *string `min:"2" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WorkspacesPoolSession) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WorkspacesPoolSession) GoString() string {
+	return s.String()
+}
+
+// SetAuthenticationType sets the AuthenticationType field's value.
+func (s *WorkspacesPoolSession) SetAuthenticationType(v string) *WorkspacesPoolSession {
+	s.AuthenticationType = &v
+	return s
+}
+
+// SetConnectionState sets the ConnectionState field's value.
+func (s *WorkspacesPoolSession) SetConnectionState(v string) *WorkspacesPoolSession {
+	s.ConnectionState = &v
+	return s
+}
+
+// SetExpirationTime sets the ExpirationTime field's value.
+func (s *WorkspacesPoolSession) SetExpirationTime(v time.Time) *WorkspacesPoolSession {
+	s.ExpirationTime = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *WorkspacesPoolSession) SetInstanceId(v string) *WorkspacesPoolSession {
+	s.InstanceId = &v
+	return s
+}
+
+// SetNetworkAccessConfiguration sets the NetworkAccessConfiguration field's value.
+func (s *WorkspacesPoolSession) SetNetworkAccessConfiguration(v *NetworkAccessConfiguration) *WorkspacesPoolSession {
+	s.NetworkAccessConfiguration = v
+	return s
+}
+
+// SetPoolId sets the PoolId field's value.
+func (s *WorkspacesPoolSession) SetPoolId(v string) *WorkspacesPoolSession {
+	s.PoolId = &v
+	return s
+}
+
+// SetSessionId sets the SessionId field's value.
+func (s *WorkspacesPoolSession) SetSessionId(v string) *WorkspacesPoolSession {
+	s.SessionId = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *WorkspacesPoolSession) SetStartTime(v time.Time) *WorkspacesPoolSession {
+	s.StartTime = &v
+	return s
+}
+
+// SetUserId sets the UserId field's value.
+func (s *WorkspacesPoolSession) SetUserId(v string) *WorkspacesPoolSession {
+	s.UserId = &v
+	return s
+}
+
 const (
 	// AccessPropertyValueAllow is a AccessPropertyValue enum value
 	AccessPropertyValueAllow = "ALLOW"
@@ -21282,6 +24251,22 @@ func ApplicationAssociatedResourceType_Values() []string {
 		ApplicationAssociatedResourceTypeWorkspace,
 		ApplicationAssociatedResourceTypeBundle,
 		ApplicationAssociatedResourceTypeImage,
+	}
+}
+
+const (
+	// ApplicationSettingsStatusEnumDisabled is a ApplicationSettingsStatusEnum enum value
+	ApplicationSettingsStatusEnumDisabled = "DISABLED"
+
+	// ApplicationSettingsStatusEnumEnabled is a ApplicationSettingsStatusEnum enum value
+	ApplicationSettingsStatusEnumEnabled = "ENABLED"
+)
+
+// ApplicationSettingsStatusEnum_Values returns all elements of the ApplicationSettingsStatusEnum enum
+func ApplicationSettingsStatusEnum_Values() []string {
+	return []string{
+		ApplicationSettingsStatusEnumDisabled,
+		ApplicationSettingsStatusEnumEnabled,
 	}
 }
 
@@ -21382,6 +24367,18 @@ func AssociationStatus_Values() []string {
 		AssociationStatusAssociatedWithSharedAccount,
 		AssociationStatusPendingAssociation,
 		AssociationStatusPendingDisassociation,
+	}
+}
+
+const (
+	// AuthenticationTypeSaml is a AuthenticationType enum value
+	AuthenticationTypeSaml = "SAML"
+)
+
+// AuthenticationType_Values returns all elements of the AuthenticationType enum
+func AuthenticationType_Values() []string {
+	return []string{
+		AuthenticationTypeSaml,
 	}
 }
 
@@ -21654,6 +24651,42 @@ func DeletableSamlProperty_Values() []string {
 }
 
 const (
+	// DescribeWorkspacesPoolsFilterNamePoolName is a DescribeWorkspacesPoolsFilterName enum value
+	DescribeWorkspacesPoolsFilterNamePoolName = "PoolName"
+)
+
+// DescribeWorkspacesPoolsFilterName_Values returns all elements of the DescribeWorkspacesPoolsFilterName enum
+func DescribeWorkspacesPoolsFilterName_Values() []string {
+	return []string{
+		DescribeWorkspacesPoolsFilterNamePoolName,
+	}
+}
+
+const (
+	// DescribeWorkspacesPoolsFilterOperatorEquals is a DescribeWorkspacesPoolsFilterOperator enum value
+	DescribeWorkspacesPoolsFilterOperatorEquals = "EQUALS"
+
+	// DescribeWorkspacesPoolsFilterOperatorNotequals is a DescribeWorkspacesPoolsFilterOperator enum value
+	DescribeWorkspacesPoolsFilterOperatorNotequals = "NOTEQUALS"
+
+	// DescribeWorkspacesPoolsFilterOperatorContains is a DescribeWorkspacesPoolsFilterOperator enum value
+	DescribeWorkspacesPoolsFilterOperatorContains = "CONTAINS"
+
+	// DescribeWorkspacesPoolsFilterOperatorNotcontains is a DescribeWorkspacesPoolsFilterOperator enum value
+	DescribeWorkspacesPoolsFilterOperatorNotcontains = "NOTCONTAINS"
+)
+
+// DescribeWorkspacesPoolsFilterOperator_Values returns all elements of the DescribeWorkspacesPoolsFilterOperator enum
+func DescribeWorkspacesPoolsFilterOperator_Values() []string {
+	return []string{
+		DescribeWorkspacesPoolsFilterOperatorEquals,
+		DescribeWorkspacesPoolsFilterOperatorNotequals,
+		DescribeWorkspacesPoolsFilterOperatorContains,
+		DescribeWorkspacesPoolsFilterOperatorNotcontains,
+	}
+}
+
+const (
 	// ImageAssociatedResourceTypeApplication is a ImageAssociatedResourceType enum value
 	ImageAssociatedResourceTypeApplication = "APPLICATION"
 )
@@ -21874,6 +24907,22 @@ func SamlStatusEnum_Values() []string {
 }
 
 const (
+	// SessionConnectionStateConnected is a SessionConnectionState enum value
+	SessionConnectionStateConnected = "CONNECTED"
+
+	// SessionConnectionStateNotConnected is a SessionConnectionState enum value
+	SessionConnectionStateNotConnected = "NOT_CONNECTED"
+)
+
+// SessionConnectionState_Values returns all elements of the SessionConnectionState enum
+func SessionConnectionState_Values() []string {
+	return []string{
+		SessionConnectionStateConnected,
+		SessionConnectionStateNotConnected,
+	}
+}
+
+const (
 	// StandbyWorkspaceRelationshipTypePrimary is a StandbyWorkspaceRelationshipType enum value
 	StandbyWorkspaceRelationshipTypePrimary = "PRIMARY"
 
@@ -21886,6 +24935,50 @@ func StandbyWorkspaceRelationshipType_Values() []string {
 	return []string{
 		StandbyWorkspaceRelationshipTypePrimary,
 		StandbyWorkspaceRelationshipTypeStandby,
+	}
+}
+
+const (
+	// StorageConnectorStatusEnumEnabled is a StorageConnectorStatusEnum enum value
+	StorageConnectorStatusEnumEnabled = "ENABLED"
+
+	// StorageConnectorStatusEnumDisabled is a StorageConnectorStatusEnum enum value
+	StorageConnectorStatusEnumDisabled = "DISABLED"
+)
+
+// StorageConnectorStatusEnum_Values returns all elements of the StorageConnectorStatusEnum enum
+func StorageConnectorStatusEnum_Values() []string {
+	return []string{
+		StorageConnectorStatusEnumEnabled,
+		StorageConnectorStatusEnumDisabled,
+	}
+}
+
+const (
+	// StorageConnectorTypeEnumHomeFolder is a StorageConnectorTypeEnum enum value
+	StorageConnectorTypeEnumHomeFolder = "HOME_FOLDER"
+)
+
+// StorageConnectorTypeEnum_Values returns all elements of the StorageConnectorTypeEnum enum
+func StorageConnectorTypeEnum_Values() []string {
+	return []string{
+		StorageConnectorTypeEnumHomeFolder,
+	}
+}
+
+const (
+	// StreamingExperiencePreferredProtocolEnumTcp is a StreamingExperiencePreferredProtocolEnum enum value
+	StreamingExperiencePreferredProtocolEnumTcp = "TCP"
+
+	// StreamingExperiencePreferredProtocolEnumUdp is a StreamingExperiencePreferredProtocolEnum enum value
+	StreamingExperiencePreferredProtocolEnumUdp = "UDP"
+)
+
+// StreamingExperiencePreferredProtocolEnum_Values returns all elements of the StreamingExperiencePreferredProtocolEnum enum
+func StreamingExperiencePreferredProtocolEnum_Values() []string {
+	return []string{
+		StreamingExperiencePreferredProtocolEnumTcp,
+		StreamingExperiencePreferredProtocolEnumUdp,
 	}
 }
 
@@ -21918,6 +25011,62 @@ func Tenancy_Values() []string {
 	return []string{
 		TenancyDedicated,
 		TenancyShared,
+	}
+}
+
+const (
+	// UserIdentityTypeCustomerManaged is a UserIdentityType enum value
+	UserIdentityTypeCustomerManaged = "CUSTOMER_MANAGED"
+
+	// UserIdentityTypeAwsDirectoryService is a UserIdentityType enum value
+	UserIdentityTypeAwsDirectoryService = "AWS_DIRECTORY_SERVICE"
+)
+
+// UserIdentityType_Values returns all elements of the UserIdentityType enum
+func UserIdentityType_Values() []string {
+	return []string{
+		UserIdentityTypeCustomerManaged,
+		UserIdentityTypeAwsDirectoryService,
+	}
+}
+
+const (
+	// UserSettingActionEnumClipboardCopyFromLocalDevice is a UserSettingActionEnum enum value
+	UserSettingActionEnumClipboardCopyFromLocalDevice = "CLIPBOARD_COPY_FROM_LOCAL_DEVICE"
+
+	// UserSettingActionEnumClipboardCopyToLocalDevice is a UserSettingActionEnum enum value
+	UserSettingActionEnumClipboardCopyToLocalDevice = "CLIPBOARD_COPY_TO_LOCAL_DEVICE"
+
+	// UserSettingActionEnumPrintingToLocalDevice is a UserSettingActionEnum enum value
+	UserSettingActionEnumPrintingToLocalDevice = "PRINTING_TO_LOCAL_DEVICE"
+
+	// UserSettingActionEnumSmartCard is a UserSettingActionEnum enum value
+	UserSettingActionEnumSmartCard = "SMART_CARD"
+)
+
+// UserSettingActionEnum_Values returns all elements of the UserSettingActionEnum enum
+func UserSettingActionEnum_Values() []string {
+	return []string{
+		UserSettingActionEnumClipboardCopyFromLocalDevice,
+		UserSettingActionEnumClipboardCopyToLocalDevice,
+		UserSettingActionEnumPrintingToLocalDevice,
+		UserSettingActionEnumSmartCard,
+	}
+}
+
+const (
+	// UserSettingPermissionEnumEnabled is a UserSettingPermissionEnum enum value
+	UserSettingPermissionEnumEnabled = "ENABLED"
+
+	// UserSettingPermissionEnumDisabled is a UserSettingPermissionEnum enum value
+	UserSettingPermissionEnumDisabled = "DISABLED"
+)
+
+// UserSettingPermissionEnum_Values returns all elements of the UserSettingPermissionEnum enum
+func UserSettingPermissionEnum_Values() []string {
+	return []string{
+		UserSettingPermissionEnumEnabled,
+		UserSettingPermissionEnumDisabled,
 	}
 }
 
@@ -22027,6 +25176,9 @@ const (
 
 	// WorkspaceDirectoryTypeAdConnector is a WorkspaceDirectoryType enum value
 	WorkspaceDirectoryTypeAdConnector = "AD_CONNECTOR"
+
+	// WorkspaceDirectoryTypeCustomerManaged is a WorkspaceDirectoryType enum value
+	WorkspaceDirectoryTypeCustomerManaged = "CUSTOMER_MANAGED"
 )
 
 // WorkspaceDirectoryType_Values returns all elements of the WorkspaceDirectoryType enum
@@ -22034,6 +25186,7 @@ func WorkspaceDirectoryType_Values() []string {
 	return []string{
 		WorkspaceDirectoryTypeSimpleAd,
 		WorkspaceDirectoryTypeAdConnector,
+		WorkspaceDirectoryTypeCustomerManaged,
 	}
 }
 
@@ -22294,5 +25447,225 @@ func WorkspaceState_Values() []string {
 		WorkspaceStateStopping,
 		WorkspaceStateStopped,
 		WorkspaceStateError,
+	}
+}
+
+const (
+	// WorkspaceTypePersonal is a WorkspaceType enum value
+	WorkspaceTypePersonal = "PERSONAL"
+
+	// WorkspaceTypePools is a WorkspaceType enum value
+	WorkspaceTypePools = "POOLS"
+)
+
+// WorkspaceType_Values returns all elements of the WorkspaceType enum
+func WorkspaceType_Values() []string {
+	return []string{
+		WorkspaceTypePersonal,
+		WorkspaceTypePools,
+	}
+}
+
+const (
+	// WorkspacesPoolErrorCodeIamServiceRoleIsMissing is a WorkspacesPoolErrorCode enum value
+	WorkspacesPoolErrorCodeIamServiceRoleIsMissing = "IAM_SERVICE_ROLE_IS_MISSING"
+
+	// WorkspacesPoolErrorCodeIamServiceRoleMissingEniDescribeAction is a WorkspacesPoolErrorCode enum value
+	WorkspacesPoolErrorCodeIamServiceRoleMissingEniDescribeAction = "IAM_SERVICE_ROLE_MISSING_ENI_DESCRIBE_ACTION"
+
+	// WorkspacesPoolErrorCodeIamServiceRoleMissingEniCreateAction is a WorkspacesPoolErrorCode enum value
+	WorkspacesPoolErrorCodeIamServiceRoleMissingEniCreateAction = "IAM_SERVICE_ROLE_MISSING_ENI_CREATE_ACTION"
+
+	// WorkspacesPoolErrorCodeIamServiceRoleMissingEniDeleteAction is a WorkspacesPoolErrorCode enum value
+	WorkspacesPoolErrorCodeIamServiceRoleMissingEniDeleteAction = "IAM_SERVICE_ROLE_MISSING_ENI_DELETE_ACTION"
+
+	// WorkspacesPoolErrorCodeNetworkInterfaceLimitExceeded is a WorkspacesPoolErrorCode enum value
+	WorkspacesPoolErrorCodeNetworkInterfaceLimitExceeded = "NETWORK_INTERFACE_LIMIT_EXCEEDED"
+
+	// WorkspacesPoolErrorCodeInternalServiceError is a WorkspacesPoolErrorCode enum value
+	WorkspacesPoolErrorCodeInternalServiceError = "INTERNAL_SERVICE_ERROR"
+
+	// WorkspacesPoolErrorCodeMachineRoleIsMissing is a WorkspacesPoolErrorCode enum value
+	WorkspacesPoolErrorCodeMachineRoleIsMissing = "MACHINE_ROLE_IS_MISSING"
+
+	// WorkspacesPoolErrorCodeStsDisabledInRegion is a WorkspacesPoolErrorCode enum value
+	WorkspacesPoolErrorCodeStsDisabledInRegion = "STS_DISABLED_IN_REGION"
+
+	// WorkspacesPoolErrorCodeSubnetHasInsufficientIpAddresses is a WorkspacesPoolErrorCode enum value
+	WorkspacesPoolErrorCodeSubnetHasInsufficientIpAddresses = "SUBNET_HAS_INSUFFICIENT_IP_ADDRESSES"
+
+	// WorkspacesPoolErrorCodeIamServiceRoleMissingDescribeSubnetAction is a WorkspacesPoolErrorCode enum value
+	WorkspacesPoolErrorCodeIamServiceRoleMissingDescribeSubnetAction = "IAM_SERVICE_ROLE_MISSING_DESCRIBE_SUBNET_ACTION"
+
+	// WorkspacesPoolErrorCodeSubnetNotFound is a WorkspacesPoolErrorCode enum value
+	WorkspacesPoolErrorCodeSubnetNotFound = "SUBNET_NOT_FOUND"
+
+	// WorkspacesPoolErrorCodeImageNotFound is a WorkspacesPoolErrorCode enum value
+	WorkspacesPoolErrorCodeImageNotFound = "IMAGE_NOT_FOUND"
+
+	// WorkspacesPoolErrorCodeInvalidSubnetConfiguration is a WorkspacesPoolErrorCode enum value
+	WorkspacesPoolErrorCodeInvalidSubnetConfiguration = "INVALID_SUBNET_CONFIGURATION"
+
+	// WorkspacesPoolErrorCodeSecurityGroupsNotFound is a WorkspacesPoolErrorCode enum value
+	WorkspacesPoolErrorCodeSecurityGroupsNotFound = "SECURITY_GROUPS_NOT_FOUND"
+
+	// WorkspacesPoolErrorCodeIgwNotAttached is a WorkspacesPoolErrorCode enum value
+	WorkspacesPoolErrorCodeIgwNotAttached = "IGW_NOT_ATTACHED"
+
+	// WorkspacesPoolErrorCodeIamServiceRoleMissingDescribeSecurityGroupsAction is a WorkspacesPoolErrorCode enum value
+	WorkspacesPoolErrorCodeIamServiceRoleMissingDescribeSecurityGroupsAction = "IAM_SERVICE_ROLE_MISSING_DESCRIBE_SECURITY_GROUPS_ACTION"
+
+	// WorkspacesPoolErrorCodeWorkspacesPoolStopped is a WorkspacesPoolErrorCode enum value
+	WorkspacesPoolErrorCodeWorkspacesPoolStopped = "WORKSPACES_POOL_STOPPED"
+
+	// WorkspacesPoolErrorCodeWorkspacesPoolInstanceProvisioningFailure is a WorkspacesPoolErrorCode enum value
+	WorkspacesPoolErrorCodeWorkspacesPoolInstanceProvisioningFailure = "WORKSPACES_POOL_INSTANCE_PROVISIONING_FAILURE"
+
+	// WorkspacesPoolErrorCodeDomainJoinErrorFileNotFound is a WorkspacesPoolErrorCode enum value
+	WorkspacesPoolErrorCodeDomainJoinErrorFileNotFound = "DOMAIN_JOIN_ERROR_FILE_NOT_FOUND"
+
+	// WorkspacesPoolErrorCodeDomainJoinErrorAccessDenied is a WorkspacesPoolErrorCode enum value
+	WorkspacesPoolErrorCodeDomainJoinErrorAccessDenied = "DOMAIN_JOIN_ERROR_ACCESS_DENIED"
+
+	// WorkspacesPoolErrorCodeDomainJoinErrorLogonFailure is a WorkspacesPoolErrorCode enum value
+	WorkspacesPoolErrorCodeDomainJoinErrorLogonFailure = "DOMAIN_JOIN_ERROR_LOGON_FAILURE"
+
+	// WorkspacesPoolErrorCodeDomainJoinErrorInvalidParameter is a WorkspacesPoolErrorCode enum value
+	WorkspacesPoolErrorCodeDomainJoinErrorInvalidParameter = "DOMAIN_JOIN_ERROR_INVALID_PARAMETER"
+
+	// WorkspacesPoolErrorCodeDomainJoinErrorMoreData is a WorkspacesPoolErrorCode enum value
+	WorkspacesPoolErrorCodeDomainJoinErrorMoreData = "DOMAIN_JOIN_ERROR_MORE_DATA"
+
+	// WorkspacesPoolErrorCodeDomainJoinErrorNoSuchDomain is a WorkspacesPoolErrorCode enum value
+	WorkspacesPoolErrorCodeDomainJoinErrorNoSuchDomain = "DOMAIN_JOIN_ERROR_NO_SUCH_DOMAIN"
+
+	// WorkspacesPoolErrorCodeDomainJoinErrorNotSupported is a WorkspacesPoolErrorCode enum value
+	WorkspacesPoolErrorCodeDomainJoinErrorNotSupported = "DOMAIN_JOIN_ERROR_NOT_SUPPORTED"
+
+	// WorkspacesPoolErrorCodeDomainJoinNerrInvalidWorkgroupName is a WorkspacesPoolErrorCode enum value
+	WorkspacesPoolErrorCodeDomainJoinNerrInvalidWorkgroupName = "DOMAIN_JOIN_NERR_INVALID_WORKGROUP_NAME"
+
+	// WorkspacesPoolErrorCodeDomainJoinNerrWorkstationNotStarted is a WorkspacesPoolErrorCode enum value
+	WorkspacesPoolErrorCodeDomainJoinNerrWorkstationNotStarted = "DOMAIN_JOIN_NERR_WORKSTATION_NOT_STARTED"
+
+	// WorkspacesPoolErrorCodeDomainJoinErrorDsMachineAccountQuotaExceeded is a WorkspacesPoolErrorCode enum value
+	WorkspacesPoolErrorCodeDomainJoinErrorDsMachineAccountQuotaExceeded = "DOMAIN_JOIN_ERROR_DS_MACHINE_ACCOUNT_QUOTA_EXCEEDED"
+
+	// WorkspacesPoolErrorCodeDomainJoinNerrPasswordExpired is a WorkspacesPoolErrorCode enum value
+	WorkspacesPoolErrorCodeDomainJoinNerrPasswordExpired = "DOMAIN_JOIN_NERR_PASSWORD_EXPIRED"
+
+	// WorkspacesPoolErrorCodeDomainJoinInternalServiceError is a WorkspacesPoolErrorCode enum value
+	WorkspacesPoolErrorCodeDomainJoinInternalServiceError = "DOMAIN_JOIN_INTERNAL_SERVICE_ERROR"
+
+	// WorkspacesPoolErrorCodeDomainJoinErrorSecretActionPermissionIsMissing is a WorkspacesPoolErrorCode enum value
+	WorkspacesPoolErrorCodeDomainJoinErrorSecretActionPermissionIsMissing = "DOMAIN_JOIN_ERROR_SECRET_ACTION_PERMISSION_IS_MISSING"
+
+	// WorkspacesPoolErrorCodeDomainJoinErrorSecretDecryptionFailure is a WorkspacesPoolErrorCode enum value
+	WorkspacesPoolErrorCodeDomainJoinErrorSecretDecryptionFailure = "DOMAIN_JOIN_ERROR_SECRET_DECRYPTION_FAILURE"
+
+	// WorkspacesPoolErrorCodeDomainJoinErrorSecretStateInvalid is a WorkspacesPoolErrorCode enum value
+	WorkspacesPoolErrorCodeDomainJoinErrorSecretStateInvalid = "DOMAIN_JOIN_ERROR_SECRET_STATE_INVALID"
+
+	// WorkspacesPoolErrorCodeDomainJoinErrorSecretNotFound is a WorkspacesPoolErrorCode enum value
+	WorkspacesPoolErrorCodeDomainJoinErrorSecretNotFound = "DOMAIN_JOIN_ERROR_SECRET_NOT_FOUND"
+
+	// WorkspacesPoolErrorCodeDomainJoinErrorSecretValueKeyNotFound is a WorkspacesPoolErrorCode enum value
+	WorkspacesPoolErrorCodeDomainJoinErrorSecretValueKeyNotFound = "DOMAIN_JOIN_ERROR_SECRET_VALUE_KEY_NOT_FOUND"
+
+	// WorkspacesPoolErrorCodeDomainJoinErrorSecretInvalid is a WorkspacesPoolErrorCode enum value
+	WorkspacesPoolErrorCodeDomainJoinErrorSecretInvalid = "DOMAIN_JOIN_ERROR_SECRET_INVALID"
+
+	// WorkspacesPoolErrorCodeBundleNotFound is a WorkspacesPoolErrorCode enum value
+	WorkspacesPoolErrorCodeBundleNotFound = "BUNDLE_NOT_FOUND"
+
+	// WorkspacesPoolErrorCodeDirectoryNotFound is a WorkspacesPoolErrorCode enum value
+	WorkspacesPoolErrorCodeDirectoryNotFound = "DIRECTORY_NOT_FOUND"
+
+	// WorkspacesPoolErrorCodeInsufficientPermissionsError is a WorkspacesPoolErrorCode enum value
+	WorkspacesPoolErrorCodeInsufficientPermissionsError = "INSUFFICIENT_PERMISSIONS_ERROR"
+
+	// WorkspacesPoolErrorCodeDefaultOuIsMissing is a WorkspacesPoolErrorCode enum value
+	WorkspacesPoolErrorCodeDefaultOuIsMissing = "DEFAULT_OU_IS_MISSING"
+)
+
+// WorkspacesPoolErrorCode_Values returns all elements of the WorkspacesPoolErrorCode enum
+func WorkspacesPoolErrorCode_Values() []string {
+	return []string{
+		WorkspacesPoolErrorCodeIamServiceRoleIsMissing,
+		WorkspacesPoolErrorCodeIamServiceRoleMissingEniDescribeAction,
+		WorkspacesPoolErrorCodeIamServiceRoleMissingEniCreateAction,
+		WorkspacesPoolErrorCodeIamServiceRoleMissingEniDeleteAction,
+		WorkspacesPoolErrorCodeNetworkInterfaceLimitExceeded,
+		WorkspacesPoolErrorCodeInternalServiceError,
+		WorkspacesPoolErrorCodeMachineRoleIsMissing,
+		WorkspacesPoolErrorCodeStsDisabledInRegion,
+		WorkspacesPoolErrorCodeSubnetHasInsufficientIpAddresses,
+		WorkspacesPoolErrorCodeIamServiceRoleMissingDescribeSubnetAction,
+		WorkspacesPoolErrorCodeSubnetNotFound,
+		WorkspacesPoolErrorCodeImageNotFound,
+		WorkspacesPoolErrorCodeInvalidSubnetConfiguration,
+		WorkspacesPoolErrorCodeSecurityGroupsNotFound,
+		WorkspacesPoolErrorCodeIgwNotAttached,
+		WorkspacesPoolErrorCodeIamServiceRoleMissingDescribeSecurityGroupsAction,
+		WorkspacesPoolErrorCodeWorkspacesPoolStopped,
+		WorkspacesPoolErrorCodeWorkspacesPoolInstanceProvisioningFailure,
+		WorkspacesPoolErrorCodeDomainJoinErrorFileNotFound,
+		WorkspacesPoolErrorCodeDomainJoinErrorAccessDenied,
+		WorkspacesPoolErrorCodeDomainJoinErrorLogonFailure,
+		WorkspacesPoolErrorCodeDomainJoinErrorInvalidParameter,
+		WorkspacesPoolErrorCodeDomainJoinErrorMoreData,
+		WorkspacesPoolErrorCodeDomainJoinErrorNoSuchDomain,
+		WorkspacesPoolErrorCodeDomainJoinErrorNotSupported,
+		WorkspacesPoolErrorCodeDomainJoinNerrInvalidWorkgroupName,
+		WorkspacesPoolErrorCodeDomainJoinNerrWorkstationNotStarted,
+		WorkspacesPoolErrorCodeDomainJoinErrorDsMachineAccountQuotaExceeded,
+		WorkspacesPoolErrorCodeDomainJoinNerrPasswordExpired,
+		WorkspacesPoolErrorCodeDomainJoinInternalServiceError,
+		WorkspacesPoolErrorCodeDomainJoinErrorSecretActionPermissionIsMissing,
+		WorkspacesPoolErrorCodeDomainJoinErrorSecretDecryptionFailure,
+		WorkspacesPoolErrorCodeDomainJoinErrorSecretStateInvalid,
+		WorkspacesPoolErrorCodeDomainJoinErrorSecretNotFound,
+		WorkspacesPoolErrorCodeDomainJoinErrorSecretValueKeyNotFound,
+		WorkspacesPoolErrorCodeDomainJoinErrorSecretInvalid,
+		WorkspacesPoolErrorCodeBundleNotFound,
+		WorkspacesPoolErrorCodeDirectoryNotFound,
+		WorkspacesPoolErrorCodeInsufficientPermissionsError,
+		WorkspacesPoolErrorCodeDefaultOuIsMissing,
+	}
+}
+
+const (
+	// WorkspacesPoolStateCreating is a WorkspacesPoolState enum value
+	WorkspacesPoolStateCreating = "CREATING"
+
+	// WorkspacesPoolStateDeleting is a WorkspacesPoolState enum value
+	WorkspacesPoolStateDeleting = "DELETING"
+
+	// WorkspacesPoolStateRunning is a WorkspacesPoolState enum value
+	WorkspacesPoolStateRunning = "RUNNING"
+
+	// WorkspacesPoolStateStarting is a WorkspacesPoolState enum value
+	WorkspacesPoolStateStarting = "STARTING"
+
+	// WorkspacesPoolStateStopped is a WorkspacesPoolState enum value
+	WorkspacesPoolStateStopped = "STOPPED"
+
+	// WorkspacesPoolStateStopping is a WorkspacesPoolState enum value
+	WorkspacesPoolStateStopping = "STOPPING"
+
+	// WorkspacesPoolStateUpdating is a WorkspacesPoolState enum value
+	WorkspacesPoolStateUpdating = "UPDATING"
+)
+
+// WorkspacesPoolState_Values returns all elements of the WorkspacesPoolState enum
+func WorkspacesPoolState_Values() []string {
+	return []string{
+		WorkspacesPoolStateCreating,
+		WorkspacesPoolStateDeleting,
+		WorkspacesPoolStateRunning,
+		WorkspacesPoolStateStarting,
+		WorkspacesPoolStateStopped,
+		WorkspacesPoolStateStopping,
+		WorkspacesPoolStateUpdating,
 	}
 }

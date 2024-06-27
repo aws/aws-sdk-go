@@ -548,7 +548,24 @@ func (c *ChimeSDKMediaPipelines) CreateMediaPipelineKinesisVideoStreamPoolReques
 
 // CreateMediaPipelineKinesisVideoStreamPool API operation for Amazon Chime SDK Media Pipelines.
 //
-// Creates an Kinesis video stream pool for the media pipeline.
+// Creates an Amazon Kinesis Video Stream pool for use with media stream pipelines.
+//
+// If a meeting uses an opt-in Region as its MediaRegion (https://docs.aws.amazon.com/chime-sdk/latest/APIReference/API_meeting-chime_CreateMeeting.html#chimesdk-meeting-chime_CreateMeeting-request-MediaRegion),
+// the KVS stream must be in that same Region. For example, if a meeting uses
+// the af-south-1 Region, the KVS stream must also be in af-south-1. However,
+// if the meeting uses a Region that AWS turns on by default, the KVS stream
+// can be in any available Region, including an opt-in Region. For example,
+// if the meeting uses ca-central-1, the KVS stream can be in eu-west-2, us-east-1,
+// af-south-1, or any other Region that the Amazon Chime SDK supports.
+//
+// To learn which AWS Region a meeting uses, call the GetMeeting (https://docs.aws.amazon.com/chime-sdk/latest/APIReference/API_meeting-chime_GetMeeting.html)
+// API and use the MediaRegion (https://docs.aws.amazon.com/chime-sdk/latest/APIReference/API_meeting-chime_CreateMeeting.html#chimesdk-meeting-chime_CreateMeeting-request-MediaRegion)
+// parameter from the response.
+//
+// For more information about opt-in Regions, refer to Available Regions (https://docs.aws.amazon.com/chime-sdk/latest/dg/sdk-available-regions.html)
+// in the Amazon Chime SDK Developer Guide, and Specify which AWS Regions your
+// account can use (https://docs.aws.amazon.com/accounts/latest/reference/manage-acct-regions.html#rande-manage-enable.html),
+// in the AWS Account Management Reference Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1052,7 +1069,7 @@ func (c *ChimeSDKMediaPipelines) DeleteMediaPipelineKinesisVideoStreamPoolReques
 
 // DeleteMediaPipelineKinesisVideoStreamPool API operation for Amazon Chime SDK Media Pipelines.
 //
-// Deletes an Kinesis video stream pool.
+// Deletes an Amazon Kinesis Video Stream pool.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3266,7 +3283,7 @@ func (c *ChimeSDKMediaPipelines) UpdateMediaPipelineKinesisVideoStreamPoolReques
 
 // UpdateMediaPipelineKinesisVideoStreamPool API operation for Amazon Chime SDK Media Pipelines.
 //
-// Updates an Kinesis video stream pool in a media pipeline.
+// Updates an Amazon Kinesis Video Stream pool in a media pipeline.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3614,6 +3631,10 @@ func (s *AmazonTranscribeCallAnalyticsProcessorConfiguration) SetVocabularyName(
 
 // A structure that contains the configuration settings for an Amazon Transcribe
 // processor.
+//
+// Calls to this API must include a LanguageCode, IdentifyLanguage, or IdentifyMultipleLanguages
+// parameter. If you include more than one of those parameters, your transcription
+// job fails.
 type AmazonTranscribeProcessorConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -3657,6 +3678,9 @@ type AmazonTranscribeProcessorConfiguration struct {
 
 	// Turns language identification on or off.
 	IdentifyLanguage *bool `type:"boolean"`
+
+	// Turns language identification on or off for multiple languages.
+	IdentifyMultipleLanguages *bool `type:"boolean"`
 
 	// The language code that represents the language spoken in your audio.
 	//
@@ -3817,6 +3841,12 @@ func (s *AmazonTranscribeProcessorConfiguration) SetFilterPartialResults(v bool)
 // SetIdentifyLanguage sets the IdentifyLanguage field's value.
 func (s *AmazonTranscribeProcessorConfiguration) SetIdentifyLanguage(v bool) *AmazonTranscribeProcessorConfiguration {
 	s.IdentifyLanguage = &v
+	return s
+}
+
+// SetIdentifyMultipleLanguages sets the IdentifyMultipleLanguages field's value.
+func (s *AmazonTranscribeProcessorConfiguration) SetIdentifyMultipleLanguages(v bool) *AmazonTranscribeProcessorConfiguration {
+	s.IdentifyMultipleLanguages = &v
 	return s
 }
 
@@ -5890,17 +5920,17 @@ type CreateMediaPipelineKinesisVideoStreamPoolInput struct {
 	// String and GoString methods.
 	ClientRequestToken *string `min:"2" type:"string" idempotencyToken:"true" sensitive:"true"`
 
-	// The name of the video stream pool.
+	// The name of the pool.
 	//
 	// PoolName is a required field
 	PoolName *string `min:"1" type:"string" required:"true"`
 
-	// The configuration settings for the video stream.
+	// The configuration settings for the stream.
 	//
 	// StreamConfiguration is a required field
 	StreamConfiguration *KinesisVideoStreamConfiguration `type:"structure" required:"true"`
 
-	// The tags assigned to the video stream pool.
+	// The tags assigned to the stream pool.
 	Tags []*Tag `min:"1" type:"list"`
 }
 
@@ -5989,7 +6019,7 @@ func (s *CreateMediaPipelineKinesisVideoStreamPoolInput) SetTags(v []*Tag) *Crea
 type CreateMediaPipelineKinesisVideoStreamPoolOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The configuration for the Kinesis video stream pool.
+	// The configuration for applying the streams to the pool.
 	KinesisVideoStreamPoolConfiguration *KinesisVideoStreamPoolConfiguration `type:"structure"`
 }
 
@@ -6414,7 +6444,8 @@ func (s *DeleteMediaPipelineInput) SetMediaPipelineId(v string) *DeleteMediaPipe
 type DeleteMediaPipelineKinesisVideoStreamPoolInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The ID of the pool being deleted.
+	// The unique identifier of the requested resource. Valid values include the
+	// name and ARN of the media pipeline Kinesis Video Stream pool.
 	//
 	// Identifier is a required field
 	Identifier *string `location:"uri" locationName:"identifier" type:"string" required:"true"`
@@ -6869,7 +6900,8 @@ func (s *GetMediaPipelineInput) SetMediaPipelineId(v string) *GetMediaPipelineIn
 type GetMediaPipelineKinesisVideoStreamPoolInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The ID of the video stream pool.
+	// The unique identifier of the requested resource. Valid values include the
+	// name and ARN of the media pipeline Kinesis Video Stream pool.
 	//
 	// Identifier is a required field
 	Identifier *string `location:"uri" locationName:"identifier" type:"string" required:"true"`
@@ -7541,6 +7573,23 @@ func (s *KinesisDataStreamSinkConfiguration) SetInsightsTarget(v string) *Kinesi
 }
 
 // The configuration of an Kinesis video stream.
+//
+// If a meeting uses an opt-in Region as its MediaRegion (https://docs.aws.amazon.com/chime-sdk/latest/APIReference/API_meeting-chime_CreateMeeting.html#chimesdk-meeting-chime_CreateMeeting-request-MediaRegion),
+// the KVS stream must be in that same Region. For example, if a meeting uses
+// the af-south-1 Region, the KVS stream must also be in af-south-1. However,
+// if the meeting uses a Region that AWS turns on by default, the KVS stream
+// can be in any available Region, including an opt-in Region. For example,
+// if the meeting uses ca-central-1, the KVS stream can be in eu-west-2, us-east-1,
+// af-south-1, or any other Region that the Amazon Chime SDK supports.
+//
+// To learn which AWS Region a meeting uses, call the GetMeeting (https://docs.aws.amazon.com/chime-sdk/latest/APIReference/API_meeting-chime_GetMeeting.html)
+// API and use the MediaRegion (https://docs.aws.amazon.com/chime-sdk/latest/APIReference/API_meeting-chime_CreateMeeting.html#chimesdk-meeting-chime_CreateMeeting-request-MediaRegion)
+// parameter from the response.
+//
+// For more information about opt-in Regions, refer to Available Regions (https://docs.aws.amazon.com/chime-sdk/latest/dg/sdk-available-regions.html)
+// in the Amazon Chime SDK Developer Guide, and Specify which AWS Regions your
+// account can use (https://docs.aws.amazon.com/accounts/latest/reference/manage-acct-regions.html#rande-manage-enable.html),
+// in the AWS Account Management Reference Guide.
 type KinesisVideoStreamConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -7811,7 +7860,7 @@ type KinesisVideoStreamRecordingSourceRuntimeConfiguration struct {
 	// The stream or streams to be recorded.
 	//
 	// Streams is a required field
-	Streams []*RecordingStreamConfiguration `min:"2" type:"list" required:"true"`
+	Streams []*RecordingStreamConfiguration `min:"1" type:"list" required:"true"`
 }
 
 // String returns the string representation.
@@ -7841,8 +7890,8 @@ func (s *KinesisVideoStreamRecordingSourceRuntimeConfiguration) Validate() error
 	if s.Streams == nil {
 		invalidParams.Add(request.NewErrParamRequired("Streams"))
 	}
-	if s.Streams != nil && len(s.Streams) < 2 {
-		invalidParams.Add(request.NewErrParamMinLen("Streams", 2))
+	if s.Streams != nil && len(s.Streams) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Streams", 1))
 	}
 	if s.FragmentSelector != nil {
 		if err := s.FragmentSelector.Validate(); err != nil {
@@ -9884,7 +9933,8 @@ type MediaStreamSink struct {
 	// ReservedStreamCapacity is a required field
 	ReservedStreamCapacity *int64 `min:"1" type:"integer" required:"true"`
 
-	// The ARN of the media stream sink.
+	// The ARN of the Kinesis Video Stream pool returned by the CreateMediaPipelineKinesisVideoStreamPool
+	// API.
 	//
 	// SinkArn is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by MediaStreamSink's
@@ -9973,7 +10023,7 @@ func (s *MediaStreamSink) SetSinkType(v string) *MediaStreamSink {
 type MediaStreamSource struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the media stream source.
+	// The ARN of the meeting.
 	//
 	// SourceArn is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by MediaStreamSource's
@@ -12531,7 +12581,8 @@ func (s UpdateMediaInsightsPipelineStatusOutput) GoString() string {
 type UpdateMediaPipelineKinesisVideoStreamPoolInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the video stream pool.
+	// The unique identifier of the requested resource. Valid values include the
+	// name and ARN of the media pipeline Kinesis Video Stream pool.
 	//
 	// Identifier is a required field
 	Identifier *string `location:"uri" locationName:"identifier" type:"string" required:"true"`

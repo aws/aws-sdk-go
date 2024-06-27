@@ -302,6 +302,125 @@ func (c *QConnect) CreateContentWithContext(ctx aws.Context, input *CreateConten
 	return out, req.Send()
 }
 
+const opCreateContentAssociation = "CreateContentAssociation"
+
+// CreateContentAssociationRequest generates a "aws/request.Request" representing the
+// client's request for the CreateContentAssociation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateContentAssociation for more information on using the CreateContentAssociation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateContentAssociationRequest method.
+//	req, resp := client.CreateContentAssociationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/qconnect-2020-10-19/CreateContentAssociation
+func (c *QConnect) CreateContentAssociationRequest(input *CreateContentAssociationInput) (req *request.Request, output *CreateContentAssociationOutput) {
+	op := &request.Operation{
+		Name:       opCreateContentAssociation,
+		HTTPMethod: "POST",
+		HTTPPath:   "/knowledgeBases/{knowledgeBaseId}/contents/{contentId}/associations",
+	}
+
+	if input == nil {
+		input = &CreateContentAssociationInput{}
+	}
+
+	output = &CreateContentAssociationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateContentAssociation API operation for Amazon Q Connect.
+//
+// Creates an association between a content resource in a knowledge base and
+// step-by-step guides (https://docs.aws.amazon.com/connect/latest/adminguide/step-by-step-guided-experiences.html).
+// Step-by-step guides offer instructions to agents for resolving common customer
+// issues. You create a content association to integrate Amazon Q in Connect
+// and step-by-step guides.
+//
+// After you integrate Amazon Q and step-by-step guides, when Amazon Q provides
+// a recommendation to an agent based on the intent that it's detected, it also
+// provides them with the option to start the step-by-step guide that you have
+// associated with the content.
+//
+// Note the following limitations:
+//
+//   - You can create only one content association for each content resource
+//     in a knowledge base.
+//
+//   - You can associate a step-by-step guide with multiple content resources.
+//
+// For more information, see Integrate Amazon Q in Connect with step-by-step
+// guides (https://docs.aws.amazon.com/connect/latest/adminguide/integrate-q-with-guides.html)
+// in the Amazon Connect Administrator Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Q Connect's
+// API operation CreateContentAssociation for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ConflictException
+//     The request could not be processed because of conflict in the current state
+//     of the resource. For example, if you're using a Create API (such as CreateAssistant)
+//     that accepts name, a conflicting resource (usually with the same name) is
+//     being created or mutated.
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by a service.
+//
+//   - ServiceQuotaExceededException
+//     You've exceeded your service quota. To perform the requested action, remove
+//     some of the relevant resources, or use service quotas to request a service
+//     quota increase.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ResourceNotFoundException
+//     The specified resource does not exist.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/qconnect-2020-10-19/CreateContentAssociation
+func (c *QConnect) CreateContentAssociation(input *CreateContentAssociationInput) (*CreateContentAssociationOutput, error) {
+	req, out := c.CreateContentAssociationRequest(input)
+	return out, req.Send()
+}
+
+// CreateContentAssociationWithContext is the same as CreateContentAssociation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateContentAssociation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QConnect) CreateContentAssociationWithContext(ctx aws.Context, input *CreateContentAssociationInput, opts ...request.Option) (*CreateContentAssociationOutput, error) {
+	req, out := c.CreateContentAssociationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateKnowledgeBase = "CreateKnowledgeBase"
 
 // CreateKnowledgeBaseRequest generates a "aws/request.Request" representing the
@@ -859,6 +978,96 @@ func (c *QConnect) DeleteContentWithContext(ctx aws.Context, input *DeleteConten
 	return out, req.Send()
 }
 
+const opDeleteContentAssociation = "DeleteContentAssociation"
+
+// DeleteContentAssociationRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteContentAssociation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteContentAssociation for more information on using the DeleteContentAssociation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteContentAssociationRequest method.
+//	req, resp := client.DeleteContentAssociationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/qconnect-2020-10-19/DeleteContentAssociation
+func (c *QConnect) DeleteContentAssociationRequest(input *DeleteContentAssociationInput) (req *request.Request, output *DeleteContentAssociationOutput) {
+	op := &request.Operation{
+		Name:       opDeleteContentAssociation,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/knowledgeBases/{knowledgeBaseId}/contents/{contentId}/associations/{contentAssociationId}",
+	}
+
+	if input == nil {
+		input = &DeleteContentAssociationInput{}
+	}
+
+	output = &DeleteContentAssociationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteContentAssociation API operation for Amazon Q Connect.
+//
+// Deletes the content association.
+//
+// For more information about content associations--what they are and when they
+// are used--see Integrate Amazon Q in Connect with step-by-step guides (https://docs.aws.amazon.com/connect/latest/adminguide/integrate-q-with-guides.html)
+// in the Amazon Connect Administrator Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Q Connect's
+// API operation DeleteContentAssociation for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by a service.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ResourceNotFoundException
+//     The specified resource does not exist.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/qconnect-2020-10-19/DeleteContentAssociation
+func (c *QConnect) DeleteContentAssociation(input *DeleteContentAssociationInput) (*DeleteContentAssociationOutput, error) {
+	req, out := c.DeleteContentAssociationRequest(input)
+	return out, req.Send()
+}
+
+// DeleteContentAssociationWithContext is the same as DeleteContentAssociation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteContentAssociation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QConnect) DeleteContentAssociationWithContext(ctx aws.Context, input *DeleteContentAssociationInput, opts ...request.Option) (*DeleteContentAssociationOutput, error) {
+	req, out := c.DeleteContentAssociationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteImportJob = "DeleteImportJob"
 
 // DeleteImportJobRequest generates a "aws/request.Request" representing the
@@ -1387,6 +1596,95 @@ func (c *QConnect) GetContent(input *GetContentInput) (*GetContentOutput, error)
 // for more information on using Contexts.
 func (c *QConnect) GetContentWithContext(ctx aws.Context, input *GetContentInput, opts ...request.Option) (*GetContentOutput, error) {
 	req, out := c.GetContentRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetContentAssociation = "GetContentAssociation"
+
+// GetContentAssociationRequest generates a "aws/request.Request" representing the
+// client's request for the GetContentAssociation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetContentAssociation for more information on using the GetContentAssociation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetContentAssociationRequest method.
+//	req, resp := client.GetContentAssociationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/qconnect-2020-10-19/GetContentAssociation
+func (c *QConnect) GetContentAssociationRequest(input *GetContentAssociationInput) (req *request.Request, output *GetContentAssociationOutput) {
+	op := &request.Operation{
+		Name:       opGetContentAssociation,
+		HTTPMethod: "GET",
+		HTTPPath:   "/knowledgeBases/{knowledgeBaseId}/contents/{contentId}/associations/{contentAssociationId}",
+	}
+
+	if input == nil {
+		input = &GetContentAssociationInput{}
+	}
+
+	output = &GetContentAssociationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetContentAssociation API operation for Amazon Q Connect.
+//
+// Returns the content association.
+//
+// For more information about content associations--what they are and when they
+// are used--see Integrate Amazon Q in Connect with step-by-step guides (https://docs.aws.amazon.com/connect/latest/adminguide/integrate-q-with-guides.html)
+// in the Amazon Connect Administrator Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Q Connect's
+// API operation GetContentAssociation for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by a service.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ResourceNotFoundException
+//     The specified resource does not exist.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/qconnect-2020-10-19/GetContentAssociation
+func (c *QConnect) GetContentAssociation(input *GetContentAssociationInput) (*GetContentAssociationOutput, error) {
+	req, out := c.GetContentAssociationRequest(input)
+	return out, req.Send()
+}
+
+// GetContentAssociationWithContext is the same as GetContentAssociation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetContentAssociation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QConnect) GetContentAssociationWithContext(ctx aws.Context, input *GetContentAssociationInput, opts ...request.Option) (*GetContentAssociationOutput, error) {
+	req, out := c.GetContentAssociationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2196,6 +2494,152 @@ func (c *QConnect) ListAssistantsPagesWithContext(ctx aws.Context, input *ListAs
 
 	for p.Next() {
 		if !fn(p.Page().(*ListAssistantsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListContentAssociations = "ListContentAssociations"
+
+// ListContentAssociationsRequest generates a "aws/request.Request" representing the
+// client's request for the ListContentAssociations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListContentAssociations for more information on using the ListContentAssociations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListContentAssociationsRequest method.
+//	req, resp := client.ListContentAssociationsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/qconnect-2020-10-19/ListContentAssociations
+func (c *QConnect) ListContentAssociationsRequest(input *ListContentAssociationsInput) (req *request.Request, output *ListContentAssociationsOutput) {
+	op := &request.Operation{
+		Name:       opListContentAssociations,
+		HTTPMethod: "GET",
+		HTTPPath:   "/knowledgeBases/{knowledgeBaseId}/contents/{contentId}/associations",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListContentAssociationsInput{}
+	}
+
+	output = &ListContentAssociationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListContentAssociations API operation for Amazon Q Connect.
+//
+// Lists the content associations.
+//
+// For more information about content associations--what they are and when they
+// are used--see Integrate Amazon Q in Connect with step-by-step guides (https://docs.aws.amazon.com/connect/latest/adminguide/integrate-q-with-guides.html)
+// in the Amazon Connect Administrator Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Q Connect's
+// API operation ListContentAssociations for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by a service.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ResourceNotFoundException
+//     The specified resource does not exist.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/qconnect-2020-10-19/ListContentAssociations
+func (c *QConnect) ListContentAssociations(input *ListContentAssociationsInput) (*ListContentAssociationsOutput, error) {
+	req, out := c.ListContentAssociationsRequest(input)
+	return out, req.Send()
+}
+
+// ListContentAssociationsWithContext is the same as ListContentAssociations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListContentAssociations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QConnect) ListContentAssociationsWithContext(ctx aws.Context, input *ListContentAssociationsInput, opts ...request.Option) (*ListContentAssociationsOutput, error) {
+	req, out := c.ListContentAssociationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListContentAssociationsPages iterates over the pages of a ListContentAssociations operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListContentAssociations method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListContentAssociations operation.
+//	pageNum := 0
+//	err := client.ListContentAssociationsPages(params,
+//	    func(page *qconnect.ListContentAssociationsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *QConnect) ListContentAssociationsPages(input *ListContentAssociationsInput, fn func(*ListContentAssociationsOutput, bool) bool) error {
+	return c.ListContentAssociationsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListContentAssociationsPagesWithContext same as ListContentAssociationsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QConnect) ListContentAssociationsPagesWithContext(ctx aws.Context, input *ListContentAssociationsInput, fn func(*ListContentAssociationsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListContentAssociationsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListContentAssociationsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListContentAssociationsOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -4485,6 +4929,52 @@ func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Content association data for a step-by-step guide (https://docs.aws.amazon.com/connect/latest/adminguide/step-by-step-guided-experiences.html).
+type AmazonConnectGuideAssociationData struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of an Amazon Connect flow. Step-by-step guides
+	// are a type of flow.
+	FlowId *string `locationName:"flowId" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AmazonConnectGuideAssociationData) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AmazonConnectGuideAssociationData) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AmazonConnectGuideAssociationData) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AmazonConnectGuideAssociationData"}
+	if s.FlowId != nil && len(*s.FlowId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FlowId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFlowId sets the FlowId field's value.
+func (s *AmazonConnectGuideAssociationData) SetFlowId(v string) *AmazonConnectGuideAssociationData {
+	s.FlowId = &v
+	return s
+}
+
 // Configuration information for Amazon AppIntegrations to automatically ingest
 // content.
 type AppIntegrationsConfiguration struct {
@@ -5343,6 +5833,295 @@ func (s *ConnectConfiguration) SetInstanceId(v string) *ConnectConfiguration {
 	return s
 }
 
+// The contents of a content association.
+type ContentAssociationContents struct {
+	_ struct{} `type:"structure"`
+
+	// The data of the step-by-step guide association.
+	AmazonConnectGuideAssociation *AmazonConnectGuideAssociationData `locationName:"amazonConnectGuideAssociation" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContentAssociationContents) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContentAssociationContents) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ContentAssociationContents) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ContentAssociationContents"}
+	if s.AmazonConnectGuideAssociation != nil {
+		if err := s.AmazonConnectGuideAssociation.Validate(); err != nil {
+			invalidParams.AddNested("AmazonConnectGuideAssociation", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAmazonConnectGuideAssociation sets the AmazonConnectGuideAssociation field's value.
+func (s *ContentAssociationContents) SetAmazonConnectGuideAssociation(v *AmazonConnectGuideAssociationData) *ContentAssociationContents {
+	s.AmazonConnectGuideAssociation = v
+	return s
+}
+
+// Information about the content association.
+type ContentAssociationData struct {
+	_ struct{} `type:"structure"`
+
+	// The content association.
+	//
+	// AssociationData is a required field
+	AssociationData *ContentAssociationContents `locationName:"associationData" type:"structure" required:"true"`
+
+	// The type of association.
+	//
+	// AssociationType is a required field
+	AssociationType *string `locationName:"associationType" type:"string" required:"true" enum:"ContentAssociationType"`
+
+	// The Amazon Resource Name (ARN) of the content.
+	//
+	// ContentArn is a required field
+	ContentArn *string `locationName:"contentArn" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the content association.
+	//
+	// ContentAssociationArn is a required field
+	ContentAssociationArn *string `locationName:"contentAssociationArn" type:"string" required:"true"`
+
+	// The identifier of the content association. Can be either the ID or the ARN.
+	// URLs cannot contain the ARN.
+	//
+	// ContentAssociationId is a required field
+	ContentAssociationId *string `locationName:"contentAssociationId" type:"string" required:"true"`
+
+	// The identifier of the content.
+	//
+	// ContentId is a required field
+	ContentId *string `locationName:"contentId" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the knowledge base.
+	//
+	// KnowledgeBaseArn is a required field
+	KnowledgeBaseArn *string `locationName:"knowledgeBaseArn" type:"string" required:"true"`
+
+	// The identifier of the knowledge base.
+	//
+	// KnowledgeBaseId is a required field
+	KnowledgeBaseId *string `locationName:"knowledgeBaseId" type:"string" required:"true"`
+
+	// The tags used to organize, track, or control access for this resource.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContentAssociationData) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContentAssociationData) GoString() string {
+	return s.String()
+}
+
+// SetAssociationData sets the AssociationData field's value.
+func (s *ContentAssociationData) SetAssociationData(v *ContentAssociationContents) *ContentAssociationData {
+	s.AssociationData = v
+	return s
+}
+
+// SetAssociationType sets the AssociationType field's value.
+func (s *ContentAssociationData) SetAssociationType(v string) *ContentAssociationData {
+	s.AssociationType = &v
+	return s
+}
+
+// SetContentArn sets the ContentArn field's value.
+func (s *ContentAssociationData) SetContentArn(v string) *ContentAssociationData {
+	s.ContentArn = &v
+	return s
+}
+
+// SetContentAssociationArn sets the ContentAssociationArn field's value.
+func (s *ContentAssociationData) SetContentAssociationArn(v string) *ContentAssociationData {
+	s.ContentAssociationArn = &v
+	return s
+}
+
+// SetContentAssociationId sets the ContentAssociationId field's value.
+func (s *ContentAssociationData) SetContentAssociationId(v string) *ContentAssociationData {
+	s.ContentAssociationId = &v
+	return s
+}
+
+// SetContentId sets the ContentId field's value.
+func (s *ContentAssociationData) SetContentId(v string) *ContentAssociationData {
+	s.ContentId = &v
+	return s
+}
+
+// SetKnowledgeBaseArn sets the KnowledgeBaseArn field's value.
+func (s *ContentAssociationData) SetKnowledgeBaseArn(v string) *ContentAssociationData {
+	s.KnowledgeBaseArn = &v
+	return s
+}
+
+// SetKnowledgeBaseId sets the KnowledgeBaseId field's value.
+func (s *ContentAssociationData) SetKnowledgeBaseId(v string) *ContentAssociationData {
+	s.KnowledgeBaseId = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *ContentAssociationData) SetTags(v map[string]*string) *ContentAssociationData {
+	s.Tags = v
+	return s
+}
+
+// Summary information about a content association.
+type ContentAssociationSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The content association.
+	//
+	// AssociationData is a required field
+	AssociationData *ContentAssociationContents `locationName:"associationData" type:"structure" required:"true"`
+
+	// The type of association.
+	//
+	// AssociationType is a required field
+	AssociationType *string `locationName:"associationType" type:"string" required:"true" enum:"ContentAssociationType"`
+
+	// The Amazon Resource Name (ARN) of the content.
+	//
+	// ContentArn is a required field
+	ContentArn *string `locationName:"contentArn" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the content association.
+	//
+	// ContentAssociationArn is a required field
+	ContentAssociationArn *string `locationName:"contentAssociationArn" type:"string" required:"true"`
+
+	// The identifier of the content association. Can be either the ID or the ARN.
+	// URLs cannot contain the ARN.
+	//
+	// ContentAssociationId is a required field
+	ContentAssociationId *string `locationName:"contentAssociationId" type:"string" required:"true"`
+
+	// The identifier of the content.
+	//
+	// ContentId is a required field
+	ContentId *string `locationName:"contentId" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the knowledge base.
+	//
+	// KnowledgeBaseArn is a required field
+	KnowledgeBaseArn *string `locationName:"knowledgeBaseArn" type:"string" required:"true"`
+
+	// The identifier of the knowledge base.
+	//
+	// KnowledgeBaseId is a required field
+	KnowledgeBaseId *string `locationName:"knowledgeBaseId" type:"string" required:"true"`
+
+	// The tags used to organize, track, or control access for this resource.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContentAssociationSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContentAssociationSummary) GoString() string {
+	return s.String()
+}
+
+// SetAssociationData sets the AssociationData field's value.
+func (s *ContentAssociationSummary) SetAssociationData(v *ContentAssociationContents) *ContentAssociationSummary {
+	s.AssociationData = v
+	return s
+}
+
+// SetAssociationType sets the AssociationType field's value.
+func (s *ContentAssociationSummary) SetAssociationType(v string) *ContentAssociationSummary {
+	s.AssociationType = &v
+	return s
+}
+
+// SetContentArn sets the ContentArn field's value.
+func (s *ContentAssociationSummary) SetContentArn(v string) *ContentAssociationSummary {
+	s.ContentArn = &v
+	return s
+}
+
+// SetContentAssociationArn sets the ContentAssociationArn field's value.
+func (s *ContentAssociationSummary) SetContentAssociationArn(v string) *ContentAssociationSummary {
+	s.ContentAssociationArn = &v
+	return s
+}
+
+// SetContentAssociationId sets the ContentAssociationId field's value.
+func (s *ContentAssociationSummary) SetContentAssociationId(v string) *ContentAssociationSummary {
+	s.ContentAssociationId = &v
+	return s
+}
+
+// SetContentId sets the ContentId field's value.
+func (s *ContentAssociationSummary) SetContentId(v string) *ContentAssociationSummary {
+	s.ContentId = &v
+	return s
+}
+
+// SetKnowledgeBaseArn sets the KnowledgeBaseArn field's value.
+func (s *ContentAssociationSummary) SetKnowledgeBaseArn(v string) *ContentAssociationSummary {
+	s.KnowledgeBaseArn = &v
+	return s
+}
+
+// SetKnowledgeBaseId sets the KnowledgeBaseId field's value.
+func (s *ContentAssociationSummary) SetKnowledgeBaseId(v string) *ContentAssociationSummary {
+	s.KnowledgeBaseId = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *ContentAssociationSummary) SetTags(v map[string]*string) *ContentAssociationSummary {
+	s.Tags = v
+	return s
+}
+
 // Information about the content.
 type ContentData struct {
 	_ struct{} `type:"structure"`
@@ -6104,6 +6883,160 @@ func (s CreateAssistantOutput) GoString() string {
 // SetAssistant sets the Assistant field's value.
 func (s *CreateAssistantOutput) SetAssistant(v *AssistantData) *CreateAssistantOutput {
 	s.Assistant = v
+	return s
+}
+
+type CreateContentAssociationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the associated resource.
+	//
+	// Association is a required field
+	Association *ContentAssociationContents `locationName:"association" type:"structure" required:"true"`
+
+	// The type of association.
+	//
+	// AssociationType is a required field
+	AssociationType *string `locationName:"associationType" type:"string" required:"true" enum:"ContentAssociationType"`
+
+	// A unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request. If not provided, the Amazon Web Services SDK populates this
+	// field. For more information about idempotency, see Making retries safe with
+	// idempotent APIs (https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/).
+	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
+
+	// The identifier of the content.
+	//
+	// ContentId is a required field
+	ContentId *string `location:"uri" locationName:"contentId" type:"string" required:"true"`
+
+	// The identifier of the knowledge base.
+	//
+	// KnowledgeBaseId is a required field
+	KnowledgeBaseId *string `location:"uri" locationName:"knowledgeBaseId" type:"string" required:"true"`
+
+	// The tags used to organize, track, or control access for this resource.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateContentAssociationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateContentAssociationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateContentAssociationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateContentAssociationInput"}
+	if s.Association == nil {
+		invalidParams.Add(request.NewErrParamRequired("Association"))
+	}
+	if s.AssociationType == nil {
+		invalidParams.Add(request.NewErrParamRequired("AssociationType"))
+	}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.ContentId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContentId"))
+	}
+	if s.ContentId != nil && len(*s.ContentId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContentId", 1))
+	}
+	if s.KnowledgeBaseId == nil {
+		invalidParams.Add(request.NewErrParamRequired("KnowledgeBaseId"))
+	}
+	if s.KnowledgeBaseId != nil && len(*s.KnowledgeBaseId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KnowledgeBaseId", 1))
+	}
+	if s.Association != nil {
+		if err := s.Association.Validate(); err != nil {
+			invalidParams.AddNested("Association", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAssociation sets the Association field's value.
+func (s *CreateContentAssociationInput) SetAssociation(v *ContentAssociationContents) *CreateContentAssociationInput {
+	s.Association = v
+	return s
+}
+
+// SetAssociationType sets the AssociationType field's value.
+func (s *CreateContentAssociationInput) SetAssociationType(v string) *CreateContentAssociationInput {
+	s.AssociationType = &v
+	return s
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *CreateContentAssociationInput) SetClientToken(v string) *CreateContentAssociationInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetContentId sets the ContentId field's value.
+func (s *CreateContentAssociationInput) SetContentId(v string) *CreateContentAssociationInput {
+	s.ContentId = &v
+	return s
+}
+
+// SetKnowledgeBaseId sets the KnowledgeBaseId field's value.
+func (s *CreateContentAssociationInput) SetKnowledgeBaseId(v string) *CreateContentAssociationInput {
+	s.KnowledgeBaseId = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateContentAssociationInput) SetTags(v map[string]*string) *CreateContentAssociationInput {
+	s.Tags = v
+	return s
+}
+
+type CreateContentAssociationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The association between Amazon Q in Connect content and another resource.
+	ContentAssociation *ContentAssociationData `locationName:"contentAssociation" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateContentAssociationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateContentAssociationOutput) GoString() string {
+	return s.String()
+}
+
+// SetContentAssociation sets the ContentAssociation field's value.
+func (s *CreateContentAssociationOutput) SetContentAssociation(v *ContentAssociationData) *CreateContentAssociationOutput {
+	s.ContentAssociation = v
 	return s
 }
 
@@ -7144,6 +8077,112 @@ func (s DeleteAssistantOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteContentAssociationInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The identifier of the content association. Can be either the ID or the ARN.
+	// URLs cannot contain the ARN.
+	//
+	// ContentAssociationId is a required field
+	ContentAssociationId *string `location:"uri" locationName:"contentAssociationId" type:"string" required:"true"`
+
+	// The identifier of the content.
+	//
+	// ContentId is a required field
+	ContentId *string `location:"uri" locationName:"contentId" type:"string" required:"true"`
+
+	// The identifier of the knowledge base.
+	//
+	// KnowledgeBaseId is a required field
+	KnowledgeBaseId *string `location:"uri" locationName:"knowledgeBaseId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteContentAssociationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteContentAssociationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteContentAssociationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteContentAssociationInput"}
+	if s.ContentAssociationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContentAssociationId"))
+	}
+	if s.ContentAssociationId != nil && len(*s.ContentAssociationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContentAssociationId", 1))
+	}
+	if s.ContentId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContentId"))
+	}
+	if s.ContentId != nil && len(*s.ContentId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContentId", 1))
+	}
+	if s.KnowledgeBaseId == nil {
+		invalidParams.Add(request.NewErrParamRequired("KnowledgeBaseId"))
+	}
+	if s.KnowledgeBaseId != nil && len(*s.KnowledgeBaseId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KnowledgeBaseId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContentAssociationId sets the ContentAssociationId field's value.
+func (s *DeleteContentAssociationInput) SetContentAssociationId(v string) *DeleteContentAssociationInput {
+	s.ContentAssociationId = &v
+	return s
+}
+
+// SetContentId sets the ContentId field's value.
+func (s *DeleteContentAssociationInput) SetContentId(v string) *DeleteContentAssociationInput {
+	s.ContentId = &v
+	return s
+}
+
+// SetKnowledgeBaseId sets the KnowledgeBaseId field's value.
+func (s *DeleteContentAssociationInput) SetKnowledgeBaseId(v string) *DeleteContentAssociationInput {
+	s.KnowledgeBaseId = &v
+	return s
+}
+
+type DeleteContentAssociationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteContentAssociationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteContentAssociationOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteContentInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -8052,6 +9091,121 @@ func (s *GetAssistantOutput) SetAssistant(v *AssistantData) *GetAssistantOutput 
 	return s
 }
 
+type GetContentAssociationInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The identifier of the content association. Can be either the ID or the ARN.
+	// URLs cannot contain the ARN.
+	//
+	// ContentAssociationId is a required field
+	ContentAssociationId *string `location:"uri" locationName:"contentAssociationId" type:"string" required:"true"`
+
+	// The identifier of the content.
+	//
+	// ContentId is a required field
+	ContentId *string `location:"uri" locationName:"contentId" type:"string" required:"true"`
+
+	// The identifier of the knowledge base.
+	//
+	// KnowledgeBaseId is a required field
+	KnowledgeBaseId *string `location:"uri" locationName:"knowledgeBaseId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetContentAssociationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetContentAssociationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetContentAssociationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetContentAssociationInput"}
+	if s.ContentAssociationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContentAssociationId"))
+	}
+	if s.ContentAssociationId != nil && len(*s.ContentAssociationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContentAssociationId", 1))
+	}
+	if s.ContentId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContentId"))
+	}
+	if s.ContentId != nil && len(*s.ContentId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContentId", 1))
+	}
+	if s.KnowledgeBaseId == nil {
+		invalidParams.Add(request.NewErrParamRequired("KnowledgeBaseId"))
+	}
+	if s.KnowledgeBaseId != nil && len(*s.KnowledgeBaseId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KnowledgeBaseId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContentAssociationId sets the ContentAssociationId field's value.
+func (s *GetContentAssociationInput) SetContentAssociationId(v string) *GetContentAssociationInput {
+	s.ContentAssociationId = &v
+	return s
+}
+
+// SetContentId sets the ContentId field's value.
+func (s *GetContentAssociationInput) SetContentId(v string) *GetContentAssociationInput {
+	s.ContentId = &v
+	return s
+}
+
+// SetKnowledgeBaseId sets the KnowledgeBaseId field's value.
+func (s *GetContentAssociationInput) SetKnowledgeBaseId(v string) *GetContentAssociationInput {
+	s.KnowledgeBaseId = &v
+	return s
+}
+
+type GetContentAssociationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The association between Amazon Q in Connect content and another resource.
+	ContentAssociation *ContentAssociationData `locationName:"contentAssociation" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetContentAssociationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetContentAssociationOutput) GoString() string {
+	return s.String()
+}
+
+// SetContentAssociation sets the ContentAssociation field's value.
+func (s *GetContentAssociationOutput) SetContentAssociation(v *ContentAssociationData) *GetContentAssociationOutput {
+	s.ContentAssociation = v
+	return s
+}
+
 type GetContentInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -8884,7 +10038,7 @@ type ImportJobData struct {
 	// The configuration information of the external data source.
 	ExternalSourceConfiguration *ExternalSourceConfiguration `locationName:"externalSourceConfiguration" type:"structure"`
 
-	// The link to donwload the information of resource data that failed to be imported.
+	// The link to download the information of resource data that failed to be imported.
 	//
 	// FailedRecordReport is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by ImportJobData's
@@ -9696,6 +10850,139 @@ func (s *ListAssistantsOutput) SetAssistantSummaries(v []*AssistantSummary) *Lis
 
 // SetNextToken sets the NextToken field's value.
 func (s *ListAssistantsOutput) SetNextToken(v string) *ListAssistantsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListContentAssociationsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The identifier of the content.
+	//
+	// ContentId is a required field
+	ContentId *string `location:"uri" locationName:"contentId" type:"string" required:"true"`
+
+	// The identifier of the knowledge base.
+	//
+	// KnowledgeBaseId is a required field
+	KnowledgeBaseId *string `location:"uri" locationName:"knowledgeBaseId" type:"string" required:"true"`
+
+	// The maximum number of results to return per page.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token for the next set of results. Use the value returned in the previous
+	// response in the next request to retrieve the next set of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListContentAssociationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListContentAssociationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListContentAssociationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListContentAssociationsInput"}
+	if s.ContentId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContentId"))
+	}
+	if s.ContentId != nil && len(*s.ContentId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContentId", 1))
+	}
+	if s.KnowledgeBaseId == nil {
+		invalidParams.Add(request.NewErrParamRequired("KnowledgeBaseId"))
+	}
+	if s.KnowledgeBaseId != nil && len(*s.KnowledgeBaseId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KnowledgeBaseId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContentId sets the ContentId field's value.
+func (s *ListContentAssociationsInput) SetContentId(v string) *ListContentAssociationsInput {
+	s.ContentId = &v
+	return s
+}
+
+// SetKnowledgeBaseId sets the KnowledgeBaseId field's value.
+func (s *ListContentAssociationsInput) SetKnowledgeBaseId(v string) *ListContentAssociationsInput {
+	s.KnowledgeBaseId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListContentAssociationsInput) SetMaxResults(v int64) *ListContentAssociationsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListContentAssociationsInput) SetNextToken(v string) *ListContentAssociationsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListContentAssociationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Summary information about content associations.
+	//
+	// ContentAssociationSummaries is a required field
+	ContentAssociationSummaries []*ContentAssociationSummary `locationName:"contentAssociationSummaries" type:"list" required:"true"`
+
+	// If there are additional results, this is the token for the next set of results.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListContentAssociationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListContentAssociationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetContentAssociationSummaries sets the ContentAssociationSummaries field's value.
+func (s *ListContentAssociationsOutput) SetContentAssociationSummaries(v []*ContentAssociationSummary) *ListContentAssociationsOutput {
+	s.ContentAssociationSummaries = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListContentAssociationsOutput) SetNextToken(v string) *ListContentAssociationsOutput {
 	s.NextToken = &v
 	return s
 }
@@ -14228,6 +15515,70 @@ func (s *TextData) SetTitle(v *DocumentText) *TextData {
 	return s
 }
 
+// The throttling limit has been exceeded.
+type ThrottlingException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ThrottlingException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ThrottlingException) GoString() string {
+	return s.String()
+}
+
+func newErrorThrottlingException(v protocol.ResponseMetadata) error {
+	return &ThrottlingException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ThrottlingException) Code() string {
+	return "ThrottlingException"
+}
+
+// Message returns the exception's message.
+func (s *ThrottlingException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ThrottlingException) OrigErr() error {
+	return nil
+}
+
+func (s *ThrottlingException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ThrottlingException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ThrottlingException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // Amazon Q in Connect throws this exception if you have too many tags in your
 // tag set.
 type TooManyTagsException struct {
@@ -15154,6 +16505,18 @@ const (
 func AssociationType_Values() []string {
 	return []string{
 		AssociationTypeKnowledgeBase,
+	}
+}
+
+const (
+	// ContentAssociationTypeAmazonConnectGuide is a ContentAssociationType enum value
+	ContentAssociationTypeAmazonConnectGuide = "AMAZON_CONNECT_GUIDE"
+)
+
+// ContentAssociationType_Values returns all elements of the ContentAssociationType enum
+func ContentAssociationType_Values() []string {
+	return []string{
+		ContentAssociationTypeAmazonConnectGuide,
 	}
 }
 

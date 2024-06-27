@@ -53,6 +53,12 @@ const (
 	// quota increase.
 	ErrCodeServiceQuotaExceededException = "ServiceQuotaExceededException"
 
+	// ErrCodeThrottlingException for service response error code
+	// "ThrottlingException".
+	//
+	// The throttling limit has been exceeded.
+	ErrCodeThrottlingException = "ThrottlingException"
+
 	// ErrCodeTooManyTagsException for service response error code
 	// "TooManyTagsException".
 	//
@@ -74,6 +80,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"RequestTimeoutException":       newErrorRequestTimeoutException,
 	"ResourceNotFoundException":     newErrorResourceNotFoundException,
 	"ServiceQuotaExceededException": newErrorServiceQuotaExceededException,
+	"ThrottlingException":           newErrorThrottlingException,
 	"TooManyTagsException":          newErrorTooManyTagsException,
 	"ValidationException":           newErrorValidationException,
 }

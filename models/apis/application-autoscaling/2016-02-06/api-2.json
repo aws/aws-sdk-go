@@ -11,7 +11,8 @@
     "signatureVersion":"v4",
     "signingName":"application-autoscaling",
     "targetPrefix":"AnyScaleFrontendService",
-    "uid":"application-autoscaling-2016-02-06"
+    "uid":"application-autoscaling-2016-02-06",
+    "auth":["aws.auth#sigv4"]
   },
   "operations":{
     "DeleteScalingPolicy":{
@@ -512,7 +513,8 @@
         "NeptuneReaderAverageCPUUtilization",
         "SageMakerVariantProvisionedConcurrencyUtilization",
         "ElastiCacheDatabaseCapacityUsageCountedForEvictPercentage",
-        "SageMakerInferenceComponentInvocationsPerCopy"
+        "SageMakerInferenceComponentInvocationsPerCopy",
+        "WorkSpacesAverageUserSessionsCapacityUtilization"
       ]
     },
     "MetricUnit":{"type":"string"},
@@ -688,7 +690,8 @@
         "elasticache:replication-group:Replicas",
         "neptune:cluster:ReadReplicaCount",
         "sagemaker:variant:DesiredProvisionedConcurrency",
-        "sagemaker:inference-component:DesiredCopyCount"
+        "sagemaker:inference-component:DesiredCopyCount",
+        "workspaces:workspacespool:DesiredUserSessions"
       ]
     },
     "ScalableTarget":{
@@ -847,7 +850,8 @@
         "cassandra",
         "kafka",
         "elasticache",
-        "neptune"
+        "neptune",
+        "workspaces"
       ]
     },
     "StepAdjustment":{

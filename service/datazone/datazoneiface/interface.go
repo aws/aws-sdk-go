@@ -292,6 +292,10 @@ type DataZoneAPI interface {
 	GetIamPortalLoginUrlWithContext(aws.Context, *datazone.GetIamPortalLoginUrlInput, ...request.Option) (*datazone.GetIamPortalLoginUrlOutput, error)
 	GetIamPortalLoginUrlRequest(*datazone.GetIamPortalLoginUrlInput) (*request.Request, *datazone.GetIamPortalLoginUrlOutput)
 
+	GetLineageNode(*datazone.GetLineageNodeInput) (*datazone.GetLineageNodeOutput, error)
+	GetLineageNodeWithContext(aws.Context, *datazone.GetLineageNodeInput, ...request.Option) (*datazone.GetLineageNodeOutput, error)
+	GetLineageNodeRequest(*datazone.GetLineageNodeInput) (*request.Request, *datazone.GetLineageNodeOutput)
+
 	GetListing(*datazone.GetListingInput) (*datazone.GetListingOutput, error)
 	GetListingWithContext(aws.Context, *datazone.GetListingInput, ...request.Option) (*datazone.GetListingOutput, error)
 	GetListingRequest(*datazone.GetListingInput) (*request.Request, *datazone.GetListingOutput)
@@ -398,6 +402,13 @@ type DataZoneAPI interface {
 	ListEnvironmentsPages(*datazone.ListEnvironmentsInput, func(*datazone.ListEnvironmentsOutput, bool) bool) error
 	ListEnvironmentsPagesWithContext(aws.Context, *datazone.ListEnvironmentsInput, func(*datazone.ListEnvironmentsOutput, bool) bool, ...request.Option) error
 
+	ListLineageNodeHistory(*datazone.ListLineageNodeHistoryInput) (*datazone.ListLineageNodeHistoryOutput, error)
+	ListLineageNodeHistoryWithContext(aws.Context, *datazone.ListLineageNodeHistoryInput, ...request.Option) (*datazone.ListLineageNodeHistoryOutput, error)
+	ListLineageNodeHistoryRequest(*datazone.ListLineageNodeHistoryInput) (*request.Request, *datazone.ListLineageNodeHistoryOutput)
+
+	ListLineageNodeHistoryPages(*datazone.ListLineageNodeHistoryInput, func(*datazone.ListLineageNodeHistoryOutput, bool) bool) error
+	ListLineageNodeHistoryPagesWithContext(aws.Context, *datazone.ListLineageNodeHistoryInput, func(*datazone.ListLineageNodeHistoryOutput, bool) bool, ...request.Option) error
+
 	ListMetadataGenerationRuns(*datazone.ListMetadataGenerationRunsInput) (*datazone.ListMetadataGenerationRunsOutput, error)
 	ListMetadataGenerationRunsWithContext(aws.Context, *datazone.ListMetadataGenerationRunsInput, ...request.Option) (*datazone.ListMetadataGenerationRunsOutput, error)
 	ListMetadataGenerationRunsRequest(*datazone.ListMetadataGenerationRunsInput) (*request.Request, *datazone.ListMetadataGenerationRunsOutput)
@@ -464,6 +475,10 @@ type DataZoneAPI interface {
 
 	ListTimeSeriesDataPointsPages(*datazone.ListTimeSeriesDataPointsInput, func(*datazone.ListTimeSeriesDataPointsOutput, bool) bool) error
 	ListTimeSeriesDataPointsPagesWithContext(aws.Context, *datazone.ListTimeSeriesDataPointsInput, func(*datazone.ListTimeSeriesDataPointsOutput, bool) bool, ...request.Option) error
+
+	PostLineageEvent(*datazone.PostLineageEventInput) (*datazone.PostLineageEventOutput, error)
+	PostLineageEventWithContext(aws.Context, *datazone.PostLineageEventInput, ...request.Option) (*datazone.PostLineageEventOutput, error)
+	PostLineageEventRequest(*datazone.PostLineageEventInput) (*request.Request, *datazone.PostLineageEventOutput)
 
 	PostTimeSeriesDataPoints(*datazone.PostTimeSeriesDataPointsInput) (*datazone.PostTimeSeriesDataPointsOutput, error)
 	PostTimeSeriesDataPointsWithContext(aws.Context, *datazone.PostTimeSeriesDataPointsInput, ...request.Option) (*datazone.PostTimeSeriesDataPointsOutput, error)

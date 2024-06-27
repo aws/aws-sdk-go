@@ -12432,6 +12432,14 @@
       "max":10,
       "min":1
     },
+    "HiddenAppTypesList":{
+      "type":"list",
+      "member":{"shape":"AppType"}
+    },
+    "HiddenMlToolsList":{
+      "type":"list",
+      "member":{"shape":"MlTools"}
+    },
     "HolidayConfig":{
       "type":"list",
       "member":{"shape":"HolidayConfigAttributes"},
@@ -16383,6 +16391,24 @@
       "type":"string",
       "max":1,
       "pattern":"1|2"
+    },
+    "MlTools":{
+      "type":"string",
+      "enum":[
+        "DataWrangler",
+        "FeatureStore",
+        "EmrClusters",
+        "AutoMl",
+        "Experiments",
+        "Training",
+        "ModelEvaluation",
+        "Pipelines",
+        "Models",
+        "JumpStart",
+        "InferenceRecommender",
+        "Endpoints",
+        "Projects"
+      ]
     },
     "MlflowVersion":{
       "type":"string",
@@ -21463,6 +21489,13 @@
         "DISABLED"
       ]
     },
+    "StudioWebPortalSettings":{
+      "type":"structure",
+      "members":{
+        "HiddenMlTools":{"shape":"HiddenMlToolsList"},
+        "HiddenAppTypes":{"shape":"HiddenAppTypesList"}
+      }
+    },
     "SubnetId":{
       "type":"string",
       "max":32,
@@ -23612,7 +23645,8 @@
         "DefaultLandingUri":{"shape":"LandingUri"},
         "StudioWebPortal":{"shape":"StudioWebPortal"},
         "CustomPosixUserConfig":{"shape":"CustomPosixUserConfig"},
-        "CustomFileSystemConfigs":{"shape":"CustomFileSystemConfigs"}
+        "CustomFileSystemConfigs":{"shape":"CustomFileSystemConfigs"},
+        "StudioWebPortalSettings":{"shape":"StudioWebPortalSettings"}
       }
     },
     "UsersPerStep":{

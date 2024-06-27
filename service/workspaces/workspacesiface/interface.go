@@ -124,6 +124,10 @@ type WorkSpacesAPI interface {
 	CreateWorkspacesWithContext(aws.Context, *workspaces.CreateWorkspacesInput, ...request.Option) (*workspaces.CreateWorkspacesOutput, error)
 	CreateWorkspacesRequest(*workspaces.CreateWorkspacesInput) (*request.Request, *workspaces.CreateWorkspacesOutput)
 
+	CreateWorkspacesPool(*workspaces.CreateWorkspacesPoolInput) (*workspaces.CreateWorkspacesPoolOutput, error)
+	CreateWorkspacesPoolWithContext(aws.Context, *workspaces.CreateWorkspacesPoolInput, ...request.Option) (*workspaces.CreateWorkspacesPoolOutput, error)
+	CreateWorkspacesPoolRequest(*workspaces.CreateWorkspacesPoolInput) (*request.Request, *workspaces.CreateWorkspacesPoolOutput)
+
 	DeleteAccountLinkInvitation(*workspaces.DeleteAccountLinkInvitationInput) (*workspaces.DeleteAccountLinkInvitationOutput, error)
 	DeleteAccountLinkInvitationWithContext(aws.Context, *workspaces.DeleteAccountLinkInvitationInput, ...request.Option) (*workspaces.DeleteAccountLinkInvitationOutput, error)
 	DeleteAccountLinkInvitationRequest(*workspaces.DeleteAccountLinkInvitationInput) (*request.Request, *workspaces.DeleteAccountLinkInvitationOutput)
@@ -263,6 +267,14 @@ type WorkSpacesAPI interface {
 	DescribeWorkspacesConnectionStatusWithContext(aws.Context, *workspaces.DescribeWorkspacesConnectionStatusInput, ...request.Option) (*workspaces.DescribeWorkspacesConnectionStatusOutput, error)
 	DescribeWorkspacesConnectionStatusRequest(*workspaces.DescribeWorkspacesConnectionStatusInput) (*request.Request, *workspaces.DescribeWorkspacesConnectionStatusOutput)
 
+	DescribeWorkspacesPoolSessions(*workspaces.DescribeWorkspacesPoolSessionsInput) (*workspaces.DescribeWorkspacesPoolSessionsOutput, error)
+	DescribeWorkspacesPoolSessionsWithContext(aws.Context, *workspaces.DescribeWorkspacesPoolSessionsInput, ...request.Option) (*workspaces.DescribeWorkspacesPoolSessionsOutput, error)
+	DescribeWorkspacesPoolSessionsRequest(*workspaces.DescribeWorkspacesPoolSessionsInput) (*request.Request, *workspaces.DescribeWorkspacesPoolSessionsOutput)
+
+	DescribeWorkspacesPools(*workspaces.DescribeWorkspacesPoolsInput) (*workspaces.DescribeWorkspacesPoolsOutput, error)
+	DescribeWorkspacesPoolsWithContext(aws.Context, *workspaces.DescribeWorkspacesPoolsInput, ...request.Option) (*workspaces.DescribeWorkspacesPoolsOutput, error)
+	DescribeWorkspacesPoolsRequest(*workspaces.DescribeWorkspacesPoolsInput) (*request.Request, *workspaces.DescribeWorkspacesPoolsOutput)
+
 	DisassociateConnectionAlias(*workspaces.DisassociateConnectionAliasInput) (*workspaces.DisassociateConnectionAliasOutput, error)
 	DisassociateConnectionAliasWithContext(aws.Context, *workspaces.DisassociateConnectionAliasInput, ...request.Option) (*workspaces.DisassociateConnectionAliasOutput, error)
 	DisassociateConnectionAliasRequest(*workspaces.DisassociateConnectionAliasInput) (*request.Request, *workspaces.DisassociateConnectionAliasOutput)
@@ -322,6 +334,10 @@ type WorkSpacesAPI interface {
 	ModifySelfservicePermissionsWithContext(aws.Context, *workspaces.ModifySelfservicePermissionsInput, ...request.Option) (*workspaces.ModifySelfservicePermissionsOutput, error)
 	ModifySelfservicePermissionsRequest(*workspaces.ModifySelfservicePermissionsInput) (*request.Request, *workspaces.ModifySelfservicePermissionsOutput)
 
+	ModifyStreamingProperties(*workspaces.ModifyStreamingPropertiesInput) (*workspaces.ModifyStreamingPropertiesOutput, error)
+	ModifyStreamingPropertiesWithContext(aws.Context, *workspaces.ModifyStreamingPropertiesInput, ...request.Option) (*workspaces.ModifyStreamingPropertiesOutput, error)
+	ModifyStreamingPropertiesRequest(*workspaces.ModifyStreamingPropertiesInput) (*request.Request, *workspaces.ModifyStreamingPropertiesOutput)
+
 	ModifyWorkspaceAccessProperties(*workspaces.ModifyWorkspaceAccessPropertiesInput) (*workspaces.ModifyWorkspaceAccessPropertiesOutput, error)
 	ModifyWorkspaceAccessPropertiesWithContext(aws.Context, *workspaces.ModifyWorkspaceAccessPropertiesInput, ...request.Option) (*workspaces.ModifyWorkspaceAccessPropertiesOutput, error)
 	ModifyWorkspaceAccessPropertiesRequest(*workspaces.ModifyWorkspaceAccessPropertiesInput) (*request.Request, *workspaces.ModifyWorkspaceAccessPropertiesOutput)
@@ -366,13 +382,29 @@ type WorkSpacesAPI interface {
 	StartWorkspacesWithContext(aws.Context, *workspaces.StartWorkspacesInput, ...request.Option) (*workspaces.StartWorkspacesOutput, error)
 	StartWorkspacesRequest(*workspaces.StartWorkspacesInput) (*request.Request, *workspaces.StartWorkspacesOutput)
 
+	StartWorkspacesPool(*workspaces.StartWorkspacesPoolInput) (*workspaces.StartWorkspacesPoolOutput, error)
+	StartWorkspacesPoolWithContext(aws.Context, *workspaces.StartWorkspacesPoolInput, ...request.Option) (*workspaces.StartWorkspacesPoolOutput, error)
+	StartWorkspacesPoolRequest(*workspaces.StartWorkspacesPoolInput) (*request.Request, *workspaces.StartWorkspacesPoolOutput)
+
 	StopWorkspaces(*workspaces.StopWorkspacesInput) (*workspaces.StopWorkspacesOutput, error)
 	StopWorkspacesWithContext(aws.Context, *workspaces.StopWorkspacesInput, ...request.Option) (*workspaces.StopWorkspacesOutput, error)
 	StopWorkspacesRequest(*workspaces.StopWorkspacesInput) (*request.Request, *workspaces.StopWorkspacesOutput)
 
+	StopWorkspacesPool(*workspaces.StopWorkspacesPoolInput) (*workspaces.StopWorkspacesPoolOutput, error)
+	StopWorkspacesPoolWithContext(aws.Context, *workspaces.StopWorkspacesPoolInput, ...request.Option) (*workspaces.StopWorkspacesPoolOutput, error)
+	StopWorkspacesPoolRequest(*workspaces.StopWorkspacesPoolInput) (*request.Request, *workspaces.StopWorkspacesPoolOutput)
+
 	TerminateWorkspaces(*workspaces.TerminateWorkspacesInput) (*workspaces.TerminateWorkspacesOutput, error)
 	TerminateWorkspacesWithContext(aws.Context, *workspaces.TerminateWorkspacesInput, ...request.Option) (*workspaces.TerminateWorkspacesOutput, error)
 	TerminateWorkspacesRequest(*workspaces.TerminateWorkspacesInput) (*request.Request, *workspaces.TerminateWorkspacesOutput)
+
+	TerminateWorkspacesPool(*workspaces.TerminateWorkspacesPoolInput) (*workspaces.TerminateWorkspacesPoolOutput, error)
+	TerminateWorkspacesPoolWithContext(aws.Context, *workspaces.TerminateWorkspacesPoolInput, ...request.Option) (*workspaces.TerminateWorkspacesPoolOutput, error)
+	TerminateWorkspacesPoolRequest(*workspaces.TerminateWorkspacesPoolInput) (*request.Request, *workspaces.TerminateWorkspacesPoolOutput)
+
+	TerminateWorkspacesPoolSession(*workspaces.TerminateWorkspacesPoolSessionInput) (*workspaces.TerminateWorkspacesPoolSessionOutput, error)
+	TerminateWorkspacesPoolSessionWithContext(aws.Context, *workspaces.TerminateWorkspacesPoolSessionInput, ...request.Option) (*workspaces.TerminateWorkspacesPoolSessionOutput, error)
+	TerminateWorkspacesPoolSessionRequest(*workspaces.TerminateWorkspacesPoolSessionInput) (*request.Request, *workspaces.TerminateWorkspacesPoolSessionOutput)
 
 	UpdateConnectClientAddIn(*workspaces.UpdateConnectClientAddInInput) (*workspaces.UpdateConnectClientAddInOutput, error)
 	UpdateConnectClientAddInWithContext(aws.Context, *workspaces.UpdateConnectClientAddInInput, ...request.Option) (*workspaces.UpdateConnectClientAddInOutput, error)
@@ -393,6 +425,10 @@ type WorkSpacesAPI interface {
 	UpdateWorkspaceImagePermission(*workspaces.UpdateWorkspaceImagePermissionInput) (*workspaces.UpdateWorkspaceImagePermissionOutput, error)
 	UpdateWorkspaceImagePermissionWithContext(aws.Context, *workspaces.UpdateWorkspaceImagePermissionInput, ...request.Option) (*workspaces.UpdateWorkspaceImagePermissionOutput, error)
 	UpdateWorkspaceImagePermissionRequest(*workspaces.UpdateWorkspaceImagePermissionInput) (*request.Request, *workspaces.UpdateWorkspaceImagePermissionOutput)
+
+	UpdateWorkspacesPool(*workspaces.UpdateWorkspacesPoolInput) (*workspaces.UpdateWorkspacesPoolOutput, error)
+	UpdateWorkspacesPoolWithContext(aws.Context, *workspaces.UpdateWorkspacesPoolInput, ...request.Option) (*workspaces.UpdateWorkspacesPoolOutput, error)
+	UpdateWorkspacesPoolRequest(*workspaces.UpdateWorkspacesPoolInput) (*request.Request, *workspaces.UpdateWorkspacesPoolOutput)
 }
 
 var _ WorkSpacesAPI = (*workspaces.WorkSpaces)(nil)

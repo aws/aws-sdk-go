@@ -5687,6 +5687,101 @@ func (c *DataZone) GetIamPortalLoginUrlWithContext(ctx aws.Context, input *GetIa
 	return out, req.Send()
 }
 
+const opGetLineageNode = "GetLineageNode"
+
+// GetLineageNodeRequest generates a "aws/request.Request" representing the
+// client's request for the GetLineageNode operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetLineageNode for more information on using the GetLineageNode
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetLineageNodeRequest method.
+//	req, resp := client.GetLineageNodeRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/GetLineageNode
+func (c *DataZone) GetLineageNodeRequest(input *GetLineageNodeInput) (req *request.Request, output *GetLineageNodeOutput) {
+	op := &request.Operation{
+		Name:       opGetLineageNode,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v2/domains/{domainIdentifier}/lineage/nodes/{identifier}",
+	}
+
+	if input == nil {
+		input = &GetLineageNodeInput{}
+	}
+
+	output = &GetLineageNodeOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetLineageNode API operation for Amazon DataZone.
+//
+// Gets the data lineage node.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon DataZone's
+// API operation GetLineageNode for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     The request has failed because of an unknown error, exception or failure.
+//
+//   - ResourceNotFoundException
+//     The specified resource cannot be found.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by the Amazon Web Services
+//     service.
+//
+//   - UnauthorizedException
+//     You do not have permission to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/GetLineageNode
+func (c *DataZone) GetLineageNode(input *GetLineageNodeInput) (*GetLineageNodeOutput, error) {
+	req, out := c.GetLineageNodeRequest(input)
+	return out, req.Send()
+}
+
+// GetLineageNodeWithContext is the same as GetLineageNode with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetLineageNode for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataZone) GetLineageNodeWithContext(ctx aws.Context, input *GetLineageNodeInput, opts ...request.Option) (*GetLineageNodeOutput, error) {
+	req, out := c.GetLineageNodeRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetListing = "GetListing"
 
 // GetListingRequest generates a "aws/request.Request" representing the
@@ -8077,6 +8172,158 @@ func (c *DataZone) ListEnvironmentsPagesWithContext(ctx aws.Context, input *List
 	return p.Err()
 }
 
+const opListLineageNodeHistory = "ListLineageNodeHistory"
+
+// ListLineageNodeHistoryRequest generates a "aws/request.Request" representing the
+// client's request for the ListLineageNodeHistory operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListLineageNodeHistory for more information on using the ListLineageNodeHistory
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListLineageNodeHistoryRequest method.
+//	req, resp := client.ListLineageNodeHistoryRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/ListLineageNodeHistory
+func (c *DataZone) ListLineageNodeHistoryRequest(input *ListLineageNodeHistoryInput) (req *request.Request, output *ListLineageNodeHistoryOutput) {
+	op := &request.Operation{
+		Name:       opListLineageNodeHistory,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v2/domains/{domainIdentifier}/lineage/nodes/{identifier}/history",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListLineageNodeHistoryInput{}
+	}
+
+	output = &ListLineageNodeHistoryOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListLineageNodeHistory API operation for Amazon DataZone.
+//
+// Lists the history of the specified data lineage node.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon DataZone's
+// API operation ListLineageNodeHistory for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     The request has failed because of an unknown error, exception or failure.
+//
+//   - ResourceNotFoundException
+//     The specified resource cannot be found.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by the Amazon Web Services
+//     service.
+//
+//   - UnauthorizedException
+//     You do not have permission to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/ListLineageNodeHistory
+func (c *DataZone) ListLineageNodeHistory(input *ListLineageNodeHistoryInput) (*ListLineageNodeHistoryOutput, error) {
+	req, out := c.ListLineageNodeHistoryRequest(input)
+	return out, req.Send()
+}
+
+// ListLineageNodeHistoryWithContext is the same as ListLineageNodeHistory with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListLineageNodeHistory for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataZone) ListLineageNodeHistoryWithContext(ctx aws.Context, input *ListLineageNodeHistoryInput, opts ...request.Option) (*ListLineageNodeHistoryOutput, error) {
+	req, out := c.ListLineageNodeHistoryRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListLineageNodeHistoryPages iterates over the pages of a ListLineageNodeHistory operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListLineageNodeHistory method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListLineageNodeHistory operation.
+//	pageNum := 0
+//	err := client.ListLineageNodeHistoryPages(params,
+//	    func(page *datazone.ListLineageNodeHistoryOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *DataZone) ListLineageNodeHistoryPages(input *ListLineageNodeHistoryInput, fn func(*ListLineageNodeHistoryOutput, bool) bool) error {
+	return c.ListLineageNodeHistoryPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListLineageNodeHistoryPagesWithContext same as ListLineageNodeHistoryPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataZone) ListLineageNodeHistoryPagesWithContext(ctx aws.Context, input *ListLineageNodeHistoryInput, fn func(*ListLineageNodeHistoryOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListLineageNodeHistoryInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListLineageNodeHistoryRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListLineageNodeHistoryOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListMetadataGenerationRuns = "ListMetadataGenerationRuns"
 
 // ListMetadataGenerationRunsRequest generates a "aws/request.Request" representing the
@@ -9535,6 +9782,108 @@ func (c *DataZone) ListTimeSeriesDataPointsPagesWithContext(ctx aws.Context, inp
 	}
 
 	return p.Err()
+}
+
+const opPostLineageEvent = "PostLineageEvent"
+
+// PostLineageEventRequest generates a "aws/request.Request" representing the
+// client's request for the PostLineageEvent operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PostLineageEvent for more information on using the PostLineageEvent
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the PostLineageEventRequest method.
+//	req, resp := client.PostLineageEventRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/PostLineageEvent
+func (c *DataZone) PostLineageEventRequest(input *PostLineageEventInput) (req *request.Request, output *PostLineageEventOutput) {
+	op := &request.Operation{
+		Name:       opPostLineageEvent,
+		HTTPMethod: "POST",
+		HTTPPath:   "/v2/domains/{domainIdentifier}/lineage/events",
+	}
+
+	if input == nil {
+		input = &PostLineageEventInput{}
+	}
+
+	output = &PostLineageEventOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// PostLineageEvent API operation for Amazon DataZone.
+//
+// Posts a data lineage event.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon DataZone's
+// API operation PostLineageEvent for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     The request has failed because of an unknown error, exception or failure.
+//
+//   - ResourceNotFoundException
+//     The specified resource cannot be found.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - ServiceQuotaExceededException
+//     The request has exceeded the specified service quota.
+//
+//   - ConflictException
+//     There is a conflict while performing this action.
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by the Amazon Web Services
+//     service.
+//
+//   - UnauthorizedException
+//     You do not have permission to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/PostLineageEvent
+func (c *DataZone) PostLineageEvent(input *PostLineageEventInput) (*PostLineageEventOutput, error) {
+	req, out := c.PostLineageEventRequest(input)
+	return out, req.Send()
+}
+
+// PostLineageEventWithContext is the same as PostLineageEvent with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PostLineageEvent for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataZone) PostLineageEventWithContext(ctx aws.Context, input *PostLineageEventInput, opts ...request.Option) (*PostLineageEventOutput, error) {
+	req, out := c.PostLineageEventRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opPostTimeSeriesDataPoints = "PostTimeSeriesDataPoints"
@@ -27432,6 +27781,249 @@ func (s *GetIamPortalLoginUrlOutput) SetUserProfileId(v string) *GetIamPortalLog
 	return s
 }
 
+type GetLineageNodeInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID of the domain in which you want to get the data lineage node.
+	//
+	// DomainIdentifier is a required field
+	DomainIdentifier *string `location:"uri" locationName:"domainIdentifier" type:"string" required:"true"`
+
+	// The event time stamp for which you want to get the data lineage node.
+	EventTimestamp *time.Time `location:"querystring" locationName:"timestamp" type:"timestamp"`
+
+	// The ID of the data lineage node that you want to get.
+	//
+	// Both, a lineage node identifier generated by Amazon DataZone and a sourceIdentifier
+	// of the lineage node are supported. If sourceIdentifier is greater than 1800
+	// characters, you can use lineage node identifier generated by Amazon DataZone
+	// to get the node details.
+	//
+	// Identifier is a required field
+	Identifier *string `location:"uri" locationName:"identifier" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetLineageNodeInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetLineageNodeInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetLineageNodeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetLineageNodeInput"}
+	if s.DomainIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainIdentifier"))
+	}
+	if s.DomainIdentifier != nil && len(*s.DomainIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainIdentifier", 1))
+	}
+	if s.Identifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("Identifier"))
+	}
+	if s.Identifier != nil && len(*s.Identifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Identifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDomainIdentifier sets the DomainIdentifier field's value.
+func (s *GetLineageNodeInput) SetDomainIdentifier(v string) *GetLineageNodeInput {
+	s.DomainIdentifier = &v
+	return s
+}
+
+// SetEventTimestamp sets the EventTimestamp field's value.
+func (s *GetLineageNodeInput) SetEventTimestamp(v time.Time) *GetLineageNodeInput {
+	s.EventTimestamp = &v
+	return s
+}
+
+// SetIdentifier sets the Identifier field's value.
+func (s *GetLineageNodeInput) SetIdentifier(v string) *GetLineageNodeInput {
+	s.Identifier = &v
+	return s
+}
+
+type GetLineageNodeOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The timestamp at which the data lineage node was created.
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp"`
+
+	// The user who created the data lineage node.
+	CreatedBy *string `locationName:"createdBy" type:"string"`
+
+	// The description of the data lineage node.
+	Description *string `locationName:"description" type:"string"`
+
+	// The ID of the domain where you're getting the data lineage node.
+	//
+	// DomainId is a required field
+	DomainId *string `locationName:"domainId" type:"string" required:"true"`
+
+	// The downsteam nodes of the specified data lineage node.
+	DownstreamNodes []*LineageNodeReference `locationName:"downstreamNodes" type:"list"`
+
+	// The timestamp of the event described in the data lineage node.
+	EventTimestamp *time.Time `locationName:"eventTimestamp" type:"timestamp"`
+
+	// The metadata of the specified data lineage node.
+	FormsOutput []*FormOutput_ `locationName:"formsOutput" type:"list"`
+
+	// The ID of the data lineage node.
+	//
+	// Id is a required field
+	Id *string `locationName:"id" type:"string" required:"true"`
+
+	// The name of the data lineage node.
+	Name *string `locationName:"name" type:"string"`
+
+	// The source identifier of the data lineage node.
+	SourceIdentifier *string `locationName:"sourceIdentifier" type:"string"`
+
+	// The name of the type of the specified data lineage node.
+	//
+	// TypeName is a required field
+	TypeName *string `locationName:"typeName" type:"string" required:"true"`
+
+	// The revision type of the specified data lineage node.
+	TypeRevision *string `locationName:"typeRevision" min:"1" type:"string"`
+
+	// The timestamp at which the data lineage node was updated.
+	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp"`
+
+	// The user who updated the data lineage node.
+	UpdatedBy *string `locationName:"updatedBy" type:"string"`
+
+	// The upstream nodes of the specified data lineage node.
+	UpstreamNodes []*LineageNodeReference `locationName:"upstreamNodes" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetLineageNodeOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetLineageNodeOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *GetLineageNodeOutput) SetCreatedAt(v time.Time) *GetLineageNodeOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetCreatedBy sets the CreatedBy field's value.
+func (s *GetLineageNodeOutput) SetCreatedBy(v string) *GetLineageNodeOutput {
+	s.CreatedBy = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *GetLineageNodeOutput) SetDescription(v string) *GetLineageNodeOutput {
+	s.Description = &v
+	return s
+}
+
+// SetDomainId sets the DomainId field's value.
+func (s *GetLineageNodeOutput) SetDomainId(v string) *GetLineageNodeOutput {
+	s.DomainId = &v
+	return s
+}
+
+// SetDownstreamNodes sets the DownstreamNodes field's value.
+func (s *GetLineageNodeOutput) SetDownstreamNodes(v []*LineageNodeReference) *GetLineageNodeOutput {
+	s.DownstreamNodes = v
+	return s
+}
+
+// SetEventTimestamp sets the EventTimestamp field's value.
+func (s *GetLineageNodeOutput) SetEventTimestamp(v time.Time) *GetLineageNodeOutput {
+	s.EventTimestamp = &v
+	return s
+}
+
+// SetFormsOutput sets the FormsOutput field's value.
+func (s *GetLineageNodeOutput) SetFormsOutput(v []*FormOutput_) *GetLineageNodeOutput {
+	s.FormsOutput = v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *GetLineageNodeOutput) SetId(v string) *GetLineageNodeOutput {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *GetLineageNodeOutput) SetName(v string) *GetLineageNodeOutput {
+	s.Name = &v
+	return s
+}
+
+// SetSourceIdentifier sets the SourceIdentifier field's value.
+func (s *GetLineageNodeOutput) SetSourceIdentifier(v string) *GetLineageNodeOutput {
+	s.SourceIdentifier = &v
+	return s
+}
+
+// SetTypeName sets the TypeName field's value.
+func (s *GetLineageNodeOutput) SetTypeName(v string) *GetLineageNodeOutput {
+	s.TypeName = &v
+	return s
+}
+
+// SetTypeRevision sets the TypeRevision field's value.
+func (s *GetLineageNodeOutput) SetTypeRevision(v string) *GetLineageNodeOutput {
+	s.TypeRevision = &v
+	return s
+}
+
+// SetUpdatedAt sets the UpdatedAt field's value.
+func (s *GetLineageNodeOutput) SetUpdatedAt(v time.Time) *GetLineageNodeOutput {
+	s.UpdatedAt = &v
+	return s
+}
+
+// SetUpdatedBy sets the UpdatedBy field's value.
+func (s *GetLineageNodeOutput) SetUpdatedBy(v string) *GetLineageNodeOutput {
+	s.UpdatedBy = &v
+	return s
+}
+
+// SetUpstreamNodes sets the UpstreamNodes field's value.
+func (s *GetLineageNodeOutput) SetUpstreamNodes(v []*LineageNodeReference) *GetLineageNodeOutput {
+	s.UpstreamNodes = v
+	return s
+}
+
 type GetListingInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -30031,6 +30623,294 @@ func (s *InternalServerException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The reference details for the data lineage node.
+type LineageNodeReference struct {
+	_ struct{} `type:"structure"`
+
+	// The event timestamp of the data lineage node.
+	EventTimestamp *time.Time `locationName:"eventTimestamp" type:"timestamp"`
+
+	// The ID of the data lineage node.
+	Id *string `locationName:"id" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LineageNodeReference) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LineageNodeReference) GoString() string {
+	return s.String()
+}
+
+// SetEventTimestamp sets the EventTimestamp field's value.
+func (s *LineageNodeReference) SetEventTimestamp(v time.Time) *LineageNodeReference {
+	s.EventTimestamp = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *LineageNodeReference) SetId(v string) *LineageNodeReference {
+	s.Id = &v
+	return s
+}
+
+// The summary of the data lineage node.
+type LineageNodeSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The timestamp at which the data lineage node was created.
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp"`
+
+	// The user who created the data lineage node.
+	CreatedBy *string `locationName:"createdBy" type:"string"`
+
+	// The description of the data lineage node.
+	Description *string `locationName:"description" type:"string"`
+
+	// The ID of the domain of the data lineage node.
+	//
+	// DomainId is a required field
+	DomainId *string `locationName:"domainId" type:"string" required:"true"`
+
+	// The event timestamp of the data lineage node.
+	EventTimestamp *time.Time `locationName:"eventTimestamp" type:"timestamp"`
+
+	// The ID of the data lineage node.
+	//
+	// Id is a required field
+	Id *string `locationName:"id" type:"string" required:"true"`
+
+	// The name of the data lineage node.
+	Name *string `locationName:"name" type:"string"`
+
+	// The alternate ID of the data lineage node.
+	SourceIdentifier *string `locationName:"sourceIdentifier" type:"string"`
+
+	// The name of the type of the data lineage node.
+	//
+	// TypeName is a required field
+	TypeName *string `locationName:"typeName" type:"string" required:"true"`
+
+	// The type of the revision of the data lineage node.
+	TypeRevision *string `locationName:"typeRevision" min:"1" type:"string"`
+
+	// The timestamp at which the data lineage node was updated.
+	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp"`
+
+	// The user who updated the data lineage node.
+	UpdatedBy *string `locationName:"updatedBy" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LineageNodeSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LineageNodeSummary) GoString() string {
+	return s.String()
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *LineageNodeSummary) SetCreatedAt(v time.Time) *LineageNodeSummary {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetCreatedBy sets the CreatedBy field's value.
+func (s *LineageNodeSummary) SetCreatedBy(v string) *LineageNodeSummary {
+	s.CreatedBy = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *LineageNodeSummary) SetDescription(v string) *LineageNodeSummary {
+	s.Description = &v
+	return s
+}
+
+// SetDomainId sets the DomainId field's value.
+func (s *LineageNodeSummary) SetDomainId(v string) *LineageNodeSummary {
+	s.DomainId = &v
+	return s
+}
+
+// SetEventTimestamp sets the EventTimestamp field's value.
+func (s *LineageNodeSummary) SetEventTimestamp(v time.Time) *LineageNodeSummary {
+	s.EventTimestamp = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *LineageNodeSummary) SetId(v string) *LineageNodeSummary {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *LineageNodeSummary) SetName(v string) *LineageNodeSummary {
+	s.Name = &v
+	return s
+}
+
+// SetSourceIdentifier sets the SourceIdentifier field's value.
+func (s *LineageNodeSummary) SetSourceIdentifier(v string) *LineageNodeSummary {
+	s.SourceIdentifier = &v
+	return s
+}
+
+// SetTypeName sets the TypeName field's value.
+func (s *LineageNodeSummary) SetTypeName(v string) *LineageNodeSummary {
+	s.TypeName = &v
+	return s
+}
+
+// SetTypeRevision sets the TypeRevision field's value.
+func (s *LineageNodeSummary) SetTypeRevision(v string) *LineageNodeSummary {
+	s.TypeRevision = &v
+	return s
+}
+
+// SetUpdatedAt sets the UpdatedAt field's value.
+func (s *LineageNodeSummary) SetUpdatedAt(v time.Time) *LineageNodeSummary {
+	s.UpdatedAt = &v
+	return s
+}
+
+// SetUpdatedBy sets the UpdatedBy field's value.
+func (s *LineageNodeSummary) SetUpdatedBy(v string) *LineageNodeSummary {
+	s.UpdatedBy = &v
+	return s
+}
+
+// The details of a data lineage node type.
+type LineageNodeTypeItem struct {
+	_ struct{} `type:"structure"`
+
+	// The timestamp at which the data lineage node type was created.
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp"`
+
+	// The user who created the data lineage node type.
+	CreatedBy *string `locationName:"createdBy" type:"string"`
+
+	// The description of the data lineage node type.
+	Description *string `locationName:"description" type:"string"`
+
+	// The ID of the domain where the data lineage node type lives.
+	//
+	// DomainId is a required field
+	DomainId *string `locationName:"domainId" type:"string" required:"true"`
+
+	// The forms output of the data lineage node type.
+	//
+	// FormsOutput is a required field
+	FormsOutput map[string]*FormEntryOutput_ `locationName:"formsOutput" type:"map" required:"true"`
+
+	// The name of the data lineage node type.
+	Name *string `locationName:"name" type:"string"`
+
+	// The revision of the data lineage node type.
+	//
+	// Revision is a required field
+	Revision *string `locationName:"revision" min:"1" type:"string" required:"true"`
+
+	// The timestamp at which the data lineage node type was updated.
+	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp"`
+
+	// The user who updated the data lineage node type.
+	UpdatedBy *string `locationName:"updatedBy" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LineageNodeTypeItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LineageNodeTypeItem) GoString() string {
+	return s.String()
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *LineageNodeTypeItem) SetCreatedAt(v time.Time) *LineageNodeTypeItem {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetCreatedBy sets the CreatedBy field's value.
+func (s *LineageNodeTypeItem) SetCreatedBy(v string) *LineageNodeTypeItem {
+	s.CreatedBy = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *LineageNodeTypeItem) SetDescription(v string) *LineageNodeTypeItem {
+	s.Description = &v
+	return s
+}
+
+// SetDomainId sets the DomainId field's value.
+func (s *LineageNodeTypeItem) SetDomainId(v string) *LineageNodeTypeItem {
+	s.DomainId = &v
+	return s
+}
+
+// SetFormsOutput sets the FormsOutput field's value.
+func (s *LineageNodeTypeItem) SetFormsOutput(v map[string]*FormEntryOutput_) *LineageNodeTypeItem {
+	s.FormsOutput = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *LineageNodeTypeItem) SetName(v string) *LineageNodeTypeItem {
+	s.Name = &v
+	return s
+}
+
+// SetRevision sets the Revision field's value.
+func (s *LineageNodeTypeItem) SetRevision(v string) *LineageNodeTypeItem {
+	s.Revision = &v
+	return s
+}
+
+// SetUpdatedAt sets the UpdatedAt field's value.
+func (s *LineageNodeTypeItem) SetUpdatedAt(v time.Time) *LineageNodeTypeItem {
+	s.UpdatedAt = &v
+	return s
+}
+
+// SetUpdatedBy sets the UpdatedBy field's value.
+func (s *LineageNodeTypeItem) SetUpdatedBy(v string) *LineageNodeTypeItem {
+	s.UpdatedBy = &v
+	return s
+}
+
 type ListAssetRevisionsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -31583,6 +32463,188 @@ func (s *ListEnvironmentsOutput) SetItems(v []*EnvironmentSummary) *ListEnvironm
 // SetNextToken sets the NextToken field's value.
 func (s *ListEnvironmentsOutput) SetNextToken(v string) *ListEnvironmentsOutput {
 	s.NextToken = &v
+	return s
+}
+
+type ListLineageNodeHistoryInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The direction of the data lineage node refers to the lineage node having
+	// neighbors in that direction. For example, if direction is UPSTREAM, the ListLineageNodeHistory
+	// API responds with historical versions with upstream neighbors only.
+	Direction *string `location:"querystring" locationName:"direction" type:"string" enum:"EdgeDirection"`
+
+	// The ID of the domain where you want to list the history of the specified
+	// data lineage node.
+	//
+	// DomainIdentifier is a required field
+	DomainIdentifier *string `location:"uri" locationName:"domainIdentifier" type:"string" required:"true"`
+
+	// Specifies whether the action is to return data lineage node history from
+	// the time after the event timestamp.
+	EventTimestampGTE *time.Time `location:"querystring" locationName:"timestampGTE" type:"timestamp"`
+
+	// Specifies whether the action is to return data lineage node history from
+	// the time prior of the event timestamp.
+	EventTimestampLTE *time.Time `location:"querystring" locationName:"timestampLTE" type:"timestamp"`
+
+	// The ID of the data lineage node whose history you want to list.
+	//
+	// Identifier is a required field
+	Identifier *string `location:"uri" locationName:"identifier" min:"1" type:"string" required:"true"`
+
+	// The maximum number of history items to return in a single call to ListLineageNodeHistory.
+	// When the number of memberships to be listed is greater than the value of
+	// MaxResults, the response contains a NextToken value that you can use in a
+	// subsequent call to ListLineageNodeHistory to list the next set of items.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// When the number of history items is greater than the default value for the
+	// MaxResults parameter, or if you explicitly specify a value for MaxResults
+	// that is less than the number of items, the response includes a pagination
+	// token named NextToken. You can specify this NextToken value in a subsequent
+	// call to ListLineageNodeHistory to list the next set of items.
+	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
+
+	// The order by which you want data lineage node history to be sorted.
+	SortOrder *string `location:"querystring" locationName:"sortOrder" type:"string" enum:"SortOrder"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListLineageNodeHistoryInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListLineageNodeHistoryInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListLineageNodeHistoryInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListLineageNodeHistoryInput"}
+	if s.DomainIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainIdentifier"))
+	}
+	if s.DomainIdentifier != nil && len(*s.DomainIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainIdentifier", 1))
+	}
+	if s.Identifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("Identifier"))
+	}
+	if s.Identifier != nil && len(*s.Identifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Identifier", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDirection sets the Direction field's value.
+func (s *ListLineageNodeHistoryInput) SetDirection(v string) *ListLineageNodeHistoryInput {
+	s.Direction = &v
+	return s
+}
+
+// SetDomainIdentifier sets the DomainIdentifier field's value.
+func (s *ListLineageNodeHistoryInput) SetDomainIdentifier(v string) *ListLineageNodeHistoryInput {
+	s.DomainIdentifier = &v
+	return s
+}
+
+// SetEventTimestampGTE sets the EventTimestampGTE field's value.
+func (s *ListLineageNodeHistoryInput) SetEventTimestampGTE(v time.Time) *ListLineageNodeHistoryInput {
+	s.EventTimestampGTE = &v
+	return s
+}
+
+// SetEventTimestampLTE sets the EventTimestampLTE field's value.
+func (s *ListLineageNodeHistoryInput) SetEventTimestampLTE(v time.Time) *ListLineageNodeHistoryInput {
+	s.EventTimestampLTE = &v
+	return s
+}
+
+// SetIdentifier sets the Identifier field's value.
+func (s *ListLineageNodeHistoryInput) SetIdentifier(v string) *ListLineageNodeHistoryInput {
+	s.Identifier = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListLineageNodeHistoryInput) SetMaxResults(v int64) *ListLineageNodeHistoryInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListLineageNodeHistoryInput) SetNextToken(v string) *ListLineageNodeHistoryInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSortOrder sets the SortOrder field's value.
+func (s *ListLineageNodeHistoryInput) SetSortOrder(v string) *ListLineageNodeHistoryInput {
+	s.SortOrder = &v
+	return s
+}
+
+type ListLineageNodeHistoryOutput struct {
+	_ struct{} `type:"structure"`
+
+	// When the number of history items is greater than the default value for the
+	// MaxResults parameter, or if you explicitly specify a value for MaxResults
+	// that is less than the number of items, the response includes a pagination
+	// token named NextToken. You can specify this NextToken value in a subsequent
+	// call to ListLineageNodeHistory to list the next set of items.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+
+	// The nodes returned by the ListLineageNodeHistory action.
+	Nodes []*LineageNodeSummary `locationName:"nodes" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListLineageNodeHistoryOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListLineageNodeHistoryOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListLineageNodeHistoryOutput) SetNextToken(v string) *ListLineageNodeHistoryOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetNodes sets the Nodes field's value.
+func (s *ListLineageNodeHistoryOutput) SetNodes(v []*LineageNodeSummary) *ListLineageNodeHistoryOutput {
+	s.Nodes = v
 	return s
 }
 
@@ -33873,6 +34935,109 @@ func (s *NotificationResource) SetName(v string) *NotificationResource {
 func (s *NotificationResource) SetType(v string) *NotificationResource {
 	s.Type = &v
 	return s
+}
+
+type PostLineageEventInput struct {
+	_ struct{} `type:"structure" payload:"Event"`
+
+	// A unique, case-sensitive identifier that is provided to ensure the idempotency
+	// of the request.
+	ClientToken *string `location:"querystring" locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
+
+	// The ID of the domain where you want to post a data lineage event.
+	//
+	// DomainIdentifier is a required field
+	DomainIdentifier *string `location:"uri" locationName:"domainIdentifier" type:"string" required:"true"`
+
+	// The data lineage event that you want to post. Only open-lineage run event
+	// are supported as events.
+	//
+	// Event is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by PostLineageEventInput's
+	// String and GoString methods.
+	//
+	// Event is a required field
+	Event []byte `locationName:"event" type:"blob" required:"true" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PostLineageEventInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PostLineageEventInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PostLineageEventInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PostLineageEventInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.DomainIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainIdentifier"))
+	}
+	if s.DomainIdentifier != nil && len(*s.DomainIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainIdentifier", 1))
+	}
+	if s.Event == nil {
+		invalidParams.Add(request.NewErrParamRequired("Event"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *PostLineageEventInput) SetClientToken(v string) *PostLineageEventInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetDomainIdentifier sets the DomainIdentifier field's value.
+func (s *PostLineageEventInput) SetDomainIdentifier(v string) *PostLineageEventInput {
+	s.DomainIdentifier = &v
+	return s
+}
+
+// SetEvent sets the Event field's value.
+func (s *PostLineageEventInput) SetEvent(v []byte) *PostLineageEventInput {
+	s.Event = v
+	return s
+}
+
+type PostLineageEventOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PostLineageEventOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PostLineageEventOutput) GoString() string {
+	return s.String()
 }
 
 type PostTimeSeriesDataPointsInput struct {
@@ -37077,6 +38242,9 @@ type SearchTypesResultItem struct {
 
 	// The form type included in the results of the SearchTypes action.
 	FormTypeItem *FormTypeData `locationName:"formTypeItem" type:"structure"`
+
+	// The details of a data lineage node type.
+	LineageNodeTypeItem *LineageNodeTypeItem `locationName:"lineageNodeTypeItem" type:"structure"`
 }
 
 // String returns the string representation.
@@ -37106,6 +38274,12 @@ func (s *SearchTypesResultItem) SetAssetTypeItem(v *AssetTypeItem) *SearchTypesR
 // SetFormTypeItem sets the FormTypeItem field's value.
 func (s *SearchTypesResultItem) SetFormTypeItem(v *FormTypeData) *SearchTypesResultItem {
 	s.FormTypeItem = v
+	return s
+}
+
+// SetLineageNodeTypeItem sets the LineageNodeTypeItem field's value.
+func (s *SearchTypesResultItem) SetLineageNodeTypeItem(v *LineageNodeTypeItem) *SearchTypesResultItem {
+	s.LineageNodeTypeItem = v
 	return s
 }
 
@@ -43605,6 +44779,22 @@ func DomainStatus_Values() []string {
 }
 
 const (
+	// EdgeDirectionUpstream is a EdgeDirection enum value
+	EdgeDirectionUpstream = "UPSTREAM"
+
+	// EdgeDirectionDownstream is a EdgeDirection enum value
+	EdgeDirectionDownstream = "DOWNSTREAM"
+)
+
+// EdgeDirection_Values returns all elements of the EdgeDirection enum
+func EdgeDirection_Values() []string {
+	return []string{
+		EdgeDirectionUpstream,
+		EdgeDirectionDownstream,
+	}
+}
+
+const (
 	// EnableSettingEnabled is a EnableSetting enum value
 	EnableSettingEnabled = "ENABLED"
 
@@ -44486,6 +45676,9 @@ const (
 
 	// TypesSearchScopeFormType is a TypesSearchScope enum value
 	TypesSearchScopeFormType = "FORM_TYPE"
+
+	// TypesSearchScopeLineageNodeType is a TypesSearchScope enum value
+	TypesSearchScopeLineageNodeType = "LINEAGE_NODE_TYPE"
 )
 
 // TypesSearchScope_Values returns all elements of the TypesSearchScope enum
@@ -44493,6 +45686,7 @@ func TypesSearchScope_Values() []string {
 	return []string{
 		TypesSearchScopeAssetType,
 		TypesSearchScopeFormType,
+		TypesSearchScopeLineageNodeType,
 	}
 }
 

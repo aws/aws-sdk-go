@@ -1122,6 +1122,24 @@
         {"shape":"UnauthorizedException"}
       ]
     },
+    "GetLineageNode":{
+      "name":"GetLineageNode",
+      "http":{
+        "method":"GET",
+        "requestUri":"/v2/domains/{domainIdentifier}/lineage/nodes/{identifier}",
+        "responseCode":200
+      },
+      "input":{"shape":"GetLineageNodeInput"},
+      "output":{"shape":"GetLineageNodeOutput"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"UnauthorizedException"}
+      ]
+    },
     "GetListing":{
       "name":"GetListing",
       "http":{
@@ -1469,6 +1487,24 @@
         {"shape":"UnauthorizedException"}
       ]
     },
+    "ListLineageNodeHistory":{
+      "name":"ListLineageNodeHistory",
+      "http":{
+        "method":"GET",
+        "requestUri":"/v2/domains/{domainIdentifier}/lineage/nodes/{identifier}/history",
+        "responseCode":200
+      },
+      "input":{"shape":"ListLineageNodeHistoryInput"},
+      "output":{"shape":"ListLineageNodeHistoryOutput"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"UnauthorizedException"}
+      ]
+    },
     "ListMetadataGenerationRuns":{
       "name":"ListMetadataGenerationRuns",
       "http":{
@@ -1647,6 +1683,27 @@
         {"shape":"ValidationException"},
         {"shape":"UnauthorizedException"}
       ]
+    },
+    "PostLineageEvent":{
+      "name":"PostLineageEvent",
+      "http":{
+        "method":"POST",
+        "requestUri":"/v2/domains/{domainIdentifier}/lineage/events",
+        "responseCode":200
+      },
+      "input":{"shape":"PostLineageEventInput"},
+      "output":{"shape":"PostLineageEventOutput"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
+        {"shape":"UnauthorizedException"}
+      ],
+      "idempotent":true
     },
     "PostTimeSeriesDataPoints":{
       "name":"PostTimeSeriesDataPoints",
@@ -4511,6 +4568,13 @@
         "status":{"shape":"DomainStatus"}
       }
     },
+    "EdgeDirection":{
+      "type":"string",
+      "enum":[
+        "UPSTREAM",
+        "DOWNSTREAM"
+      ]
+    },
     "EditedValue":{
       "type":"string",
       "max":5000,
@@ -4855,7 +4919,7 @@
     },
     "FormInputContentString":{
       "type":"string",
-      "max":150000,
+      "max":300000,
       "min":0
     },
     "FormInputList":{
@@ -5574,6 +5638,55 @@
         "userProfileId":{"shape":"String"}
       }
     },
+    "GetLineageNodeInput":{
+      "type":"structure",
+      "required":[
+        "domainIdentifier",
+        "identifier"
+      ],
+      "members":{
+        "domainIdentifier":{
+          "shape":"DomainId",
+          "location":"uri",
+          "locationName":"domainIdentifier"
+        },
+        "eventTimestamp":{
+          "shape":"Timestamp",
+          "location":"querystring",
+          "locationName":"timestamp"
+        },
+        "identifier":{
+          "shape":"LineageNodeIdentifier",
+          "location":"uri",
+          "locationName":"identifier"
+        }
+      }
+    },
+    "GetLineageNodeOutput":{
+      "type":"structure",
+      "required":[
+        "domainId",
+        "id",
+        "typeName"
+      ],
+      "members":{
+        "createdAt":{"shape":"CreatedAt"},
+        "createdBy":{"shape":"CreatedBy"},
+        "description":{"shape":"String"},
+        "domainId":{"shape":"DomainId"},
+        "downstreamNodes":{"shape":"LineageNodeReferenceList"},
+        "eventTimestamp":{"shape":"Timestamp"},
+        "formsOutput":{"shape":"FormOutputList"},
+        "id":{"shape":"LineageNodeId"},
+        "name":{"shape":"String"},
+        "sourceIdentifier":{"shape":"String"},
+        "typeName":{"shape":"String"},
+        "typeRevision":{"shape":"Revision"},
+        "updatedAt":{"shape":"UpdatedAt"},
+        "updatedBy":{"shape":"UpdatedBy"},
+        "upstreamNodes":{"shape":"LineageNodeReferenceList"}
+      }
+    },
     "GetListingInput":{
       "type":"structure",
       "required":[
@@ -6250,6 +6363,79 @@
       "type":"string",
       "sensitive":true
     },
+    "LineageEvent":{
+      "type":"blob",
+      "max":300000,
+      "min":0,
+      "sensitive":true
+    },
+    "LineageNodeId":{
+      "type":"string",
+      "pattern":"^[a-zA-Z0-9_-]{1,36}$"
+    },
+    "LineageNodeIdentifier":{
+      "type":"string",
+      "max":2086,
+      "min":1
+    },
+    "LineageNodeReference":{
+      "type":"structure",
+      "members":{
+        "eventTimestamp":{"shape":"Timestamp"},
+        "id":{"shape":"LineageNodeId"}
+      }
+    },
+    "LineageNodeReferenceList":{
+      "type":"list",
+      "member":{"shape":"LineageNodeReference"},
+      "max":100,
+      "min":0
+    },
+    "LineageNodeSummaries":{
+      "type":"list",
+      "member":{"shape":"LineageNodeSummary"}
+    },
+    "LineageNodeSummary":{
+      "type":"structure",
+      "required":[
+        "domainId",
+        "id",
+        "typeName"
+      ],
+      "members":{
+        "createdAt":{"shape":"CreatedAt"},
+        "createdBy":{"shape":"CreatedBy"},
+        "description":{"shape":"String"},
+        "domainId":{"shape":"DomainId"},
+        "eventTimestamp":{"shape":"Timestamp"},
+        "id":{"shape":"LineageNodeId"},
+        "name":{"shape":"String"},
+        "sourceIdentifier":{"shape":"String"},
+        "typeName":{"shape":"String"},
+        "typeRevision":{"shape":"Revision"},
+        "updatedAt":{"shape":"UpdatedAt"},
+        "updatedBy":{"shape":"UpdatedBy"}
+      }
+    },
+    "LineageNodeTypeItem":{
+      "type":"structure",
+      "required":[
+        "domainId",
+        "formsOutput",
+        "revision"
+      ],
+      "members":{
+        "createdAt":{"shape":"CreatedAt"},
+        "createdBy":{"shape":"CreatedBy"},
+        "description":{"shape":"String"},
+        "domainId":{"shape":"DomainId"},
+        "formsOutput":{"shape":"FormsOutputMap"},
+        "name":{"shape":"String"},
+        "revision":{"shape":"Revision"},
+        "updatedAt":{"shape":"UpdatedAt"},
+        "updatedBy":{"shape":"UpdatedBy"}
+      }
+    },
     "ListAssetRevisionsInput":{
       "type":"structure",
       "required":[
@@ -6686,6 +6872,62 @@
       "members":{
         "items":{"shape":"EnvironmentSummaries"},
         "nextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "ListLineageNodeHistoryInput":{
+      "type":"structure",
+      "required":[
+        "domainIdentifier",
+        "identifier"
+      ],
+      "members":{
+        "direction":{
+          "shape":"EdgeDirection",
+          "location":"querystring",
+          "locationName":"direction"
+        },
+        "domainIdentifier":{
+          "shape":"DomainId",
+          "location":"uri",
+          "locationName":"domainIdentifier"
+        },
+        "eventTimestampGTE":{
+          "shape":"Timestamp",
+          "location":"querystring",
+          "locationName":"timestampGTE"
+        },
+        "eventTimestampLTE":{
+          "shape":"Timestamp",
+          "location":"querystring",
+          "locationName":"timestampLTE"
+        },
+        "identifier":{
+          "shape":"LineageNodeIdentifier",
+          "location":"uri",
+          "locationName":"identifier"
+        },
+        "maxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "nextToken":{
+          "shape":"PaginationToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "sortOrder":{
+          "shape":"SortOrder",
+          "location":"querystring",
+          "locationName":"sortOrder"
+        }
+      }
+    },
+    "ListLineageNodeHistoryOutput":{
+      "type":"structure",
+      "members":{
+        "nextToken":{"shape":"PaginationToken"},
+        "nodes":{"shape":"LineageNodeSummaries"}
       }
     },
     "ListMetadataGenerationRunsInput":{
@@ -7409,6 +7651,33 @@
       "type":"string",
       "max":8192,
       "min":1
+    },
+    "PostLineageEventInput":{
+      "type":"structure",
+      "required":[
+        "domainIdentifier",
+        "event"
+      ],
+      "members":{
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true,
+          "location":"querystring",
+          "locationName":"clientToken"
+        },
+        "domainIdentifier":{
+          "shape":"DomainId",
+          "location":"uri",
+          "locationName":"domainIdentifier"
+        },
+        "event":{"shape":"LineageEvent"}
+      },
+      "payload":"event"
+    },
+    "PostLineageEventOutput":{
+      "type":"structure",
+      "members":{
+      }
     },
     "PostTimeSeriesDataPointsInput":{
       "type":"structure",
@@ -8138,7 +8407,8 @@
       "type":"structure",
       "members":{
         "assetTypeItem":{"shape":"AssetTypeItem"},
-        "formTypeItem":{"shape":"FormTypeData"}
+        "formTypeItem":{"shape":"FormTypeData"},
+        "lineageNodeTypeItem":{"shape":"LineageNodeTypeItem"}
       },
       "union":true
     },
@@ -8966,7 +9236,8 @@
       "type":"string",
       "enum":[
         "ASSET_TYPE",
-        "FORM_TYPE"
+        "FORM_TYPE",
+        "LINEAGE_NODE_TYPE"
       ]
     },
     "UnauthorizedException":{

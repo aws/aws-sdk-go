@@ -9386,7 +9386,9 @@ func (c *CloudFront) ListTagsForResourceRequest(input *ListTagsForResourceInput)
 
 // ListTagsForResource API operation for Amazon CloudFront.
 //
-// List tags for a CloudFront resource.
+// List tags for a CloudFront resource. For more information, see Tagging a
+// distribution (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/tagging.html)
+// in the Amazon CloudFront Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -9575,7 +9577,9 @@ func (c *CloudFront) TagResourceRequest(input *TagResourceInput) (req *request.R
 
 // TagResource API operation for Amazon CloudFront.
 //
-// Add tags to a CloudFront resource.
+// Add tags to a CloudFront resource. For more information, see Tagging a distribution
+// (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/tagging.html)
+// in the Amazon CloudFront Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -9767,7 +9771,9 @@ func (c *CloudFront) UntagResourceRequest(input *UntagResourceInput) (req *reque
 
 // UntagResource API operation for Amazon CloudFront.
 //
-// Remove tags from a CloudFront resource.
+// Remove tags from a CloudFront resource. For more information, see Tagging
+// a distribution (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/tagging.html)
+// in the Amazon CloudFront Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -12459,8 +12465,8 @@ func (s AssociateAliasOutput) GoString() string {
 // in the Amazon CloudFront Developer Guide.
 //
 // If you don't want to specify any cache behaviors, include only an empty CacheBehaviors
-// element. For more information, see CacheBehaviors (https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_CacheBehaviors.html).
-// Don't include an empty CacheBehavior element because this is invalid.
+// element. Don't specify an empty individual CacheBehavior element, because
+// this is invalid. For more information, see CacheBehaviors (https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_CacheBehaviors.html).
 //
 // To delete all cache behaviors in an existing distribution, update the distribution
 // configuration and include only an empty CacheBehaviors element.
@@ -13531,7 +13537,9 @@ type CachedMethods struct {
 	_ struct{} `type:"structure"`
 
 	// A complex type that contains the HTTP methods that you want CloudFront to
-	// cache responses to.
+	// cache responses to. Valid values for CachedMethods include GET, HEAD, and
+	// OPTIONS, depending on which caching option you choose. For more information,
+	// see the preceding section.
 	//
 	// Items is a required field
 	Items []*string `locationNameList:"Method" type:"list" required:"true" enum:"Method"`

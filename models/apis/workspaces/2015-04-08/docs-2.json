@@ -18,6 +18,7 @@
     "CreateWorkspaceBundle": "<p>Creates the specified WorkSpace bundle. For more information about creating WorkSpace bundles, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/create-custom-bundle.html\"> Create a Custom WorkSpaces Image and Bundle</a>.</p>",
     "CreateWorkspaceImage": "<p>Creates a new WorkSpace image from an existing WorkSpace.</p>",
     "CreateWorkspaces": "<p>Creates one or more WorkSpaces.</p> <p>This operation is asynchronous and returns before the WorkSpaces are created.</p> <note> <ul> <li> <p>The <code>MANUAL</code> running mode value is only supported by Amazon WorkSpaces Core. Contact your account team to be allow-listed to use this value. For more information, see <a href=\"http://aws.amazon.com/workspaces/core/\">Amazon WorkSpaces Core</a>.</p> </li> <li> <p>You don't need to specify the <code>PCOIP</code> protocol for Linux bundles because <code>WSP</code> is the default protocol for those bundles.</p> </li> <li> <p>User-decoupled WorkSpaces are only supported by Amazon WorkSpaces Core.</p> </li> </ul> </note>",
+    "CreateWorkspacesPool": "<p>Creates a pool of WorkSpaces.</p>",
     "DeleteAccountLinkInvitation": "<p>Deletes the account link invitation.</p>",
     "DeleteClientBranding": "<p>Deletes customized client branding. Client branding allows you to customize your WorkSpace's client login portal. You can tailor your login portal company logo, the support email address, support link, link to reset password, and a custom message for users trying to sign in.</p> <p>After you delete your customized client branding, your login portal reverts to the default client branding.</p>",
     "DeleteConnectClientAddIn": "<p>Deletes a client-add-in for Amazon Connect that is configured within a directory.</p>",
@@ -49,6 +50,8 @@
     "DescribeWorkspaceSnapshots": "<p>Describes the snapshots for the specified WorkSpace.</p>",
     "DescribeWorkspaces": "<p>Describes the specified WorkSpaces.</p> <p>You can filter the results by using the bundle identifier, directory identifier, or owner, but you can specify only one filter at a time.</p>",
     "DescribeWorkspacesConnectionStatus": "<p>Describes the connection status of the specified WorkSpaces.</p>",
+    "DescribeWorkspacesPoolSessions": "<p>Retrieves a list that describes the streaming sessions for a specified WorkSpaces pool.</p>",
+    "DescribeWorkspacesPools": "<p>Describes the specified WorkSpaces pool.</p>",
     "DisassociateConnectionAlias": "<p>Disassociates a connection alias from a directory. Disassociating a connection alias disables cross-Region redirection between two directories in different Regions. For more information, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/cross-region-redirection.html\"> Cross-Region Redirection for Amazon WorkSpaces</a>.</p> <note> <p>Before performing this operation, call <a href=\"https://docs.aws.amazon.com/workspaces/latest/api/API_DescribeConnectionAliases.html\"> DescribeConnectionAliases</a> to make sure that the current state of the connection alias is <code>CREATED</code>.</p> </note>",
     "DisassociateIpGroups": "<p>Disassociates the specified IP access control group from the specified directory.</p>",
     "DisassociateWorkspaceApplication": "<p>Disassociates the specified application from a WorkSpace.</p>",
@@ -63,6 +66,7 @@
     "ModifyClientProperties": "<p>Modifies the properties of the specified Amazon WorkSpaces clients.</p>",
     "ModifySamlProperties": "<p>Modifies multiple properties related to SAML 2.0 authentication, including the enablement status, user access URL, and relay state parameter name that are used for configuring federation with an SAML 2.0 identity provider.</p>",
     "ModifySelfservicePermissions": "<p>Modifies the self-service WorkSpace management capabilities for your users. For more information, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/enable-user-self-service-workspace-management.html\">Enable Self-Service WorkSpace Management Capabilities for Your Users</a>.</p>",
+    "ModifyStreamingProperties": "<p>Modifies the specified streaming properties.</p>",
     "ModifyWorkspaceAccessProperties": "<p>Specifies which devices and operating systems users can use to access their WorkSpaces. For more information, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/update-directory-details.html#control-device-access\"> Control Device Access</a>.</p>",
     "ModifyWorkspaceCreationProperties": "<p>Modify the default properties used to create WorkSpaces.</p>",
     "ModifyWorkspaceProperties": "<p>Modifies the specified WorkSpace properties. For important information about how to modify the size of the root and user volumes, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/modify-workspaces.html\"> Modify a WorkSpace</a>. </p> <note> <p>The <code>MANUAL</code> running mode value is only supported by Amazon WorkSpaces Core. Contact your account team to be allow-listed to use this value. For more information, see <a href=\"http://aws.amazon.com/workspaces/core/\">Amazon WorkSpaces Core</a>.</p> </note>",
@@ -74,19 +78,27 @@
     "RestoreWorkspace": "<p>Restores the specified WorkSpace to its last known healthy state.</p> <p>You cannot restore a WorkSpace unless its state is <code> AVAILABLE</code>, <code>ERROR</code>, <code>UNHEALTHY</code>, or <code>STOPPED</code>.</p> <p>Restoring a WorkSpace is a potentially destructive action that can result in the loss of data. For more information, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/restore-workspace.html\">Restore a WorkSpace</a>.</p> <p>This operation is asynchronous and returns before the WorkSpace is completely restored.</p>",
     "RevokeIpRules": "<p>Removes one or more rules from the specified IP access control group.</p>",
     "StartWorkspaces": "<p>Starts the specified WorkSpaces.</p> <p>You cannot start a WorkSpace unless it has a running mode of <code>AutoStop</code> and a state of <code>STOPPED</code>.</p>",
+    "StartWorkspacesPool": "<p>Starts the specified WorkSpaces pool.</p> <p>You cannot start a WorkSpace pool unless it has a running mode of <code>AutoStop</code> and a state of <code>STOPPED</code>.</p>",
     "StopWorkspaces": "<p> Stops the specified WorkSpaces.</p> <p>You cannot stop a WorkSpace unless it has a running mode of <code>AutoStop</code> and a state of <code>AVAILABLE</code>, <code>IMPAIRED</code>, <code>UNHEALTHY</code>, or <code>ERROR</code>.</p>",
+    "StopWorkspacesPool": "<p>Stops the specifiedWorkSpaces pool.</p> <p>You cannot stop a WorkSpace pool unless it has a running mode of <code>AutoStop</code> and a state of <code>AVAILABLE</code>, <code>IMPAIRED</code>, <code>UNHEALTHY</code>, or <code>ERROR</code>.</p>",
     "TerminateWorkspaces": "<p>Terminates the specified WorkSpaces.</p> <important> <p>Terminating a WorkSpace is a permanent action and cannot be undone. The user's data is destroyed. If you need to archive any user data, contact Amazon Web Services Support before terminating the WorkSpace.</p> </important> <p>You can terminate a WorkSpace that is in any state except <code>SUSPENDED</code>.</p> <p>This operation is asynchronous and returns before the WorkSpaces have been completely terminated. After a WorkSpace is terminated, the <code>TERMINATED</code> state is returned only briefly before the WorkSpace directory metadata is cleaned up, so this state is rarely returned. To confirm that a WorkSpace is terminated, check for the WorkSpace ID by using <a href=\"https://docs.aws.amazon.com/workspaces/latest/api/API_DescribeWorkspaces.html\"> DescribeWorkSpaces</a>. If the WorkSpace ID isn't returned, then the WorkSpace has been successfully terminated.</p> <note> <p>Simple AD and AD Connector are made available to you free of charge to use with WorkSpaces. If there are no WorkSpaces being used with your Simple AD or AD Connector directory for 30 consecutive days, this directory will be automatically deregistered for use with Amazon WorkSpaces, and you will be charged for this directory as per the <a href=\"http://aws.amazon.com/directoryservice/pricing/\">Directory Service pricing terms</a>.</p> <p>To delete empty directories, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/delete-workspaces-directory.html\"> Delete the Directory for Your WorkSpaces</a>. If you delete your Simple AD or AD Connector directory, you can always create a new one when you want to start using WorkSpaces again.</p> </note>",
+    "TerminateWorkspacesPool": "<p>Terminates the specified WorkSpaces pool.</p>",
+    "TerminateWorkspacesPoolSession": "<p>Terminates the WorkSpaces pool session.</p>",
     "UpdateConnectClientAddIn": "<p>Updates a Amazon Connect client add-in. Use this action to update the name and endpoint URL of a Amazon Connect client add-in.</p>",
     "UpdateConnectionAliasPermission": "<p>Shares or unshares a connection alias with one account by specifying whether that account has permission to associate the connection alias with a directory. If the association permission is granted, the connection alias is shared with that account. If the association permission is revoked, the connection alias is unshared with the account. For more information, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/cross-region-redirection.html\"> Cross-Region Redirection for Amazon WorkSpaces</a>.</p> <note> <ul> <li> <p>Before performing this operation, call <a href=\"https://docs.aws.amazon.com/workspaces/latest/api/API_DescribeConnectionAliases.html\"> DescribeConnectionAliases</a> to make sure that the current state of the connection alias is <code>CREATED</code>.</p> </li> <li> <p>To delete a connection alias that has been shared, the shared account must first disassociate the connection alias from any directories it has been associated with. Then you must unshare the connection alias from the account it has been shared with. You can delete a connection alias only after it is no longer shared with any accounts or associated with any directories.</p> </li> </ul> </note>",
     "UpdateRulesOfIpGroup": "<p>Replaces the current rules of the specified IP access control group with the specified rules.</p>",
     "UpdateWorkspaceBundle": "<p>Updates a WorkSpace bundle with a new image. For more information about updating WorkSpace bundles, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/update-custom-bundle.html\"> Update a Custom WorkSpaces Bundle</a>.</p> <important> <p>Existing WorkSpaces aren't automatically updated when you update the bundle that they're based on. To update existing WorkSpaces that are based on a bundle that you've updated, you must either rebuild the WorkSpaces or delete and recreate them.</p> </important>",
-    "UpdateWorkspaceImagePermission": "<p>Shares or unshares an image with one account in the same Amazon Web Services Region by specifying whether that account has permission to copy the image. If the copy image permission is granted, the image is shared with that account. If the copy image permission is revoked, the image is unshared with the account.</p> <p>After an image has been shared, the recipient account can copy the image to other Regions as needed.</p> <p>In the China (Ningxia) Region, you can copy images only within the same Region.</p> <p>In Amazon Web Services GovCloud (US), to copy images to and from other Regions, contact Amazon Web Services Support.</p> <p>For more information about sharing images, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/share-custom-image.html\"> Share or Unshare a Custom WorkSpaces Image</a>.</p> <note> <ul> <li> <p>To delete an image that has been shared, you must unshare the image before you delete it.</p> </li> <li> <p>Sharing Bring Your Own License (BYOL) images across Amazon Web Services accounts isn't supported at this time in Amazon Web Services GovCloud (US). To share BYOL images across accounts in Amazon Web Services GovCloud (US), contact Amazon Web Services Support.</p> </li> </ul> </note>"
+    "UpdateWorkspaceImagePermission": "<p>Shares or unshares an image with one account in the same Amazon Web Services Region by specifying whether that account has permission to copy the image. If the copy image permission is granted, the image is shared with that account. If the copy image permission is revoked, the image is unshared with the account.</p> <p>After an image has been shared, the recipient account can copy the image to other Regions as needed.</p> <p>In the China (Ningxia) Region, you can copy images only within the same Region.</p> <p>In Amazon Web Services GovCloud (US), to copy images to and from other Regions, contact Amazon Web Services Support.</p> <p>For more information about sharing images, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/share-custom-image.html\"> Share or Unshare a Custom WorkSpaces Image</a>.</p> <note> <ul> <li> <p>To delete an image that has been shared, you must unshare the image before you delete it.</p> </li> <li> <p>Sharing Bring Your Own License (BYOL) images across Amazon Web Services accounts isn't supported at this time in Amazon Web Services GovCloud (US). To share BYOL images across accounts in Amazon Web Services GovCloud (US), contact Amazon Web Services Support.</p> </li> </ul> </note>",
+    "UpdateWorkspacesPool": "<p>Updates the specified WorkSpaces pool.</p>"
   },
   "shapes": {
     "ARN": {
       "base": null,
       "refs": {
-        "WorkspaceDirectory$IamRoleId": "<p>The identifier of the IAM role. This is the role that allows Amazon WorkSpaces to make calls to other services, such as Amazon EC2, on your behalf.</p>"
+        "DefaultWorkspaceCreationProperties$InstanceIamRoleArn": "<p>Indicates the IAM role ARN of the instance.</p>",
+        "WorkspaceCreationProperties$InstanceIamRoleArn": "<p>Indicates the IAM role ARN of the instance.</p>",
+        "WorkspaceDirectory$IamRoleId": "<p>The identifier of the IAM role. This is the role that allows Amazon WorkSpaces to make calls to other services, such as Amazon EC2, on your behalf.</p>",
+        "WorkspacesPool$PoolArn": "<p>The Amazon Resource Name (ARN) for the WorkSpaces pool.</p>"
       }
     },
     "AcceptAccountLinkInvitationRequest": {
@@ -153,6 +165,25 @@
         "DescribeAccountModificationsResult$AccountModifications": "<p>The list of modifications to the configuration of BYOL.</p>"
       }
     },
+    "ActiveDirectoryConfig": {
+      "base": "<p>Information about the Active Directory config.</p>",
+      "refs": {
+        "RegisterWorkspaceDirectoryRequest$ActiveDirectoryConfig": "<p>The active directory config of the directory.</p>",
+        "WorkspaceDirectory$ActiveDirectoryConfig": "<p>Information about the Active Directory config.</p>"
+      }
+    },
+    "ActiveUserSessions": {
+      "base": null,
+      "refs": {
+        "CapacityStatus$ActiveUserSessions": "<p>The number of user sessions currently being used for pool sessions. This only applies to multi-session pools.</p>"
+      }
+    },
+    "ActualUserSessions": {
+      "base": null,
+      "refs": {
+        "CapacityStatus$ActualUserSessions": "<p>The total number of session slots that are available for WorkSpaces pools.</p>"
+      }
+    },
     "AddInName": {
       "base": null,
       "refs": {
@@ -181,7 +212,9 @@
         "ConnectClientAddIn$AddInId": "<p>The client add-in identifier.</p>",
         "CreateConnectClientAddInResult$AddInId": "<p>The client add-in identifier.</p>",
         "DeleteConnectClientAddInRequest$AddInId": "<p>The identifier of the client add-in to delete.</p>",
-        "UpdateConnectClientAddInRequest$AddInId": "<p>The identifier of the client add-in to update.</p>"
+        "TerminateWorkspacesPoolSessionRequest$SessionId": "<p>The identifier of the WorkSpaces pool session.</p>",
+        "UpdateConnectClientAddInRequest$AddInId": "<p>The identifier of the client add-in to update.</p>",
+        "WorkspacesPoolSession$SessionId": "<p>The identifier of the session.</p>"
       }
     },
     "Application": {
@@ -224,6 +257,26 @@
       "base": null,
       "refs": {
         "DescribeApplicationAssociationsResult$Associations": "<p>List of associations and information about them.</p>"
+      }
+    },
+    "ApplicationSettingsRequest": {
+      "base": "<p>The persistent application settings for users of a WorkSpaces pool.</p>",
+      "refs": {
+        "CreateWorkspacesPoolRequest$ApplicationSettings": "<p>Indicates the application settings of the WorkSpaces pool.</p>",
+        "UpdateWorkspacesPoolRequest$ApplicationSettings": "<p>The persistent application settings for users in the pool.</p>"
+      }
+    },
+    "ApplicationSettingsResponse": {
+      "base": "<p>Describes the persistent application settings for users of a WorkSpaces pool.</p>",
+      "refs": {
+        "WorkspacesPool$ApplicationSettings": "<p>The persistent application settings for users of the pool.</p>"
+      }
+    },
+    "ApplicationSettingsStatusEnum": {
+      "base": null,
+      "refs": {
+        "ApplicationSettingsRequest$Status": "<p>Enables or disables persistent application settings for users during their pool sessions.</p>",
+        "ApplicationSettingsResponse$Status": "<p>Specifies whether persistent application settings are enabled for users during their pool sessions.</p>"
       }
     },
     "AssociateConnectionAliasRequest": {
@@ -286,6 +339,12 @@
         "ConnectionAliasAssociation$AssociationStatus": "<p>The association status of the connection alias.</p>"
       }
     },
+    "AuthenticationType": {
+      "base": null,
+      "refs": {
+        "WorkspacesPoolSession$AuthenticationType": "<p>The authentication method. The user is authenticated using a WorkSpaces pool URL (API) or SAML 2.0 federation (SAML).</p>"
+      }
+    },
     "AuthorizeIpRulesRequest": {
       "base": null,
       "refs": {
@@ -294,6 +353,12 @@
     "AuthorizeIpRulesResult": {
       "base": null,
       "refs": {
+      }
+    },
+    "AvailableUserSessions": {
+      "base": null,
+      "refs": {
+        "CapacityStatus$AvailableUserSessions": "<p>The number of user sessions currently being used for pool sessions. This only applies to multi-session pools.</p>"
       }
     },
     "AwsAccount": {
@@ -353,14 +418,17 @@
       "refs": {
         "BundleIdList$member": null,
         "BundleResourceAssociation$BundleId": "<p>The identifier of the bundle.</p>",
+        "CreateWorkspacesPoolRequest$BundleId": "<p>The identifier of the bundle for the WorkSpaces pool.</p>",
         "DeleteWorkspaceBundleRequest$BundleId": "<p>The identifier of the bundle.</p>",
         "DescribeBundleAssociationsRequest$BundleId": "<p>The identifier of the bundle.</p>",
         "DescribeWorkspacesRequest$BundleId": "<p>The identifier of the bundle. All WorkSpaces that are created from this bundle are retrieved. You cannot combine this parameter with any other filter.</p>",
         "MigrateWorkspaceRequest$BundleId": "<p>The identifier of the target bundle type to migrate the WorkSpace to.</p>",
         "UpdateWorkspaceBundleRequest$BundleId": "<p>The identifier of the bundle.</p>",
+        "UpdateWorkspacesPoolRequest$BundleId": "<p>The identifier of the bundle.</p>",
         "Workspace$BundleId": "<p>The identifier of the bundle used to create the WorkSpace.</p>",
         "WorkspaceBundle$BundleId": "<p>The identifier of the bundle.</p>",
-        "WorkspaceRequest$BundleId": "<p>The identifier of the bundle for the WorkSpace. You can use <a>DescribeWorkspaceBundles</a> to list the available bundles.</p>"
+        "WorkspaceRequest$BundleId": "<p>The identifier of the bundle for the WorkSpace. You can use <a>DescribeWorkspaceBundles</a> to list the available bundles.</p>",
+        "WorkspacesPool$BundleId": "<p>The identifier of the bundle used by the pool.</p>"
       }
     },
     "BundleIdList": {
@@ -398,6 +466,19 @@
       "base": null,
       "refs": {
         "WorkspaceBundle$BundleType": "<p>The type of WorkSpace bundle.</p>"
+      }
+    },
+    "Capacity": {
+      "base": "<p>Describes the user capacity for a WorkSpaces pool.</p>",
+      "refs": {
+        "CreateWorkspacesPoolRequest$Capacity": "<p>The user capacity of the WorkSpaces pool.</p>",
+        "UpdateWorkspacesPoolRequest$Capacity": "<p>The desired capacity for the WorkSpaces pool.</p>"
+      }
+    },
+    "CapacityStatus": {
+      "base": "<p>Describes the capacity status for a WorkSpaces pool</p>",
+      "refs": {
+        "WorkspacesPool$CapacityStatus": "<p>The capacity status for the pool</p>"
       }
     },
     "CertificateAuthorityArn": {
@@ -726,6 +807,16 @@
       }
     },
     "CreateWorkspaceImageResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateWorkspacesPoolRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateWorkspacesPoolResult": {
       "base": null,
       "refs": {
       }
@@ -1163,6 +1254,62 @@
       "refs": {
       }
     },
+    "DescribeWorkspacesPoolSessionsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeWorkspacesPoolSessionsResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeWorkspacesPoolsFilter": {
+      "base": "<p>Describes the filter conditions for the WorkSpaces pool to return.</p>",
+      "refs": {
+        "DescribeWorkspacesPoolsFilters$member": null
+      }
+    },
+    "DescribeWorkspacesPoolsFilterName": {
+      "base": null,
+      "refs": {
+        "DescribeWorkspacesPoolsFilter$Name": "<p>The name of the pool to filter.</p>"
+      }
+    },
+    "DescribeWorkspacesPoolsFilterOperator": {
+      "base": null,
+      "refs": {
+        "DescribeWorkspacesPoolsFilter$Operator": "<p>The operator values for filtering WorkSpaces pools.</p>"
+      }
+    },
+    "DescribeWorkspacesPoolsFilterValue": {
+      "base": null,
+      "refs": {
+        "DescribeWorkspacesPoolsFilterValues$member": null
+      }
+    },
+    "DescribeWorkspacesPoolsFilterValues": {
+      "base": null,
+      "refs": {
+        "DescribeWorkspacesPoolsFilter$Values": "<p>The values for filtering WorkSpaces pools.</p>"
+      }
+    },
+    "DescribeWorkspacesPoolsFilters": {
+      "base": null,
+      "refs": {
+        "DescribeWorkspacesPoolsRequest$Filters": "<p>The filter conditions for the WorkSpaces pool to return.</p>"
+      }
+    },
+    "DescribeWorkspacesPoolsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeWorkspacesPoolsResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeWorkspacesRequest": {
       "base": null,
       "refs": {
@@ -1183,7 +1330,15 @@
         "FailedWorkspaceChangeRequest$ErrorMessage": "<p>The text of the error message that is returned if the WorkSpace cannot be rebooted.</p>",
         "Workspace$ErrorMessage": "<p>The text of the error message that is returned if the WorkSpace cannot be created.</p>",
         "WorkspaceBundle$Description": "<p>The description of the bundle.</p>",
+        "WorkspaceDirectory$ErrorMessage": "<p>The error message returned.</p>",
         "WorkspaceImage$ErrorMessage": "<p>The text of the error message that is returned for the image.</p>"
+      }
+    },
+    "DesiredUserSessions": {
+      "base": null,
+      "refs": {
+        "Capacity$DesiredUserSessions": "<p>The desired number of user sessions for a multi-session pool. This is not allowed for single-session pools.</p>",
+        "CapacityStatus$DesiredUserSessions": "<p>The total number of sessions slots that are either running or pending. This represents the total number of concurrent streaming sessions your pool can support in a steady state.</p>"
       }
     },
     "DirectoryId": {
@@ -1192,6 +1347,7 @@
         "AssociateIpGroupsRequest$DirectoryId": "<p>The identifier of the directory.</p>",
         "ConnectClientAddIn$ResourceId": "<p>The directory identifier for which the client add-in is configured.</p>",
         "CreateConnectClientAddInRequest$ResourceId": "<p>The directory identifier for which to configure the client add-in.</p>",
+        "CreateWorkspacesPoolRequest$DirectoryId": "<p>The identifier of the directory for the WorkSpaces pool.</p>",
         "DeleteClientBrandingRequest$ResourceId": "<p>The directory identifier of the WorkSpace for which you want to delete client branding.</p>",
         "DeleteConnectClientAddInRequest$ResourceId": "<p>The directory identifier for which the client add-in is configured.</p>",
         "DeregisterWorkspaceDirectoryRequest$DirectoryId": "<p>The identifier of the directory. If any WorkSpaces are registered to this directory, you must remove them before you deregister the directory, or you will receive an OperationNotSupportedException error.</p>",
@@ -1204,15 +1360,19 @@
         "ModifyCertificateBasedAuthPropertiesRequest$ResourceId": "<p>The resource identifiers, in the form of directory IDs.</p>",
         "ModifySamlPropertiesRequest$ResourceId": "<p>The directory identifier for which you want to configure SAML properties.</p>",
         "ModifySelfservicePermissionsRequest$ResourceId": "<p>The identifier of the directory.</p>",
+        "ModifyStreamingPropertiesRequest$ResourceId": "<p>The identifier of the resource.</p>",
         "ModifyWorkspaceAccessPropertiesRequest$ResourceId": "<p>The identifier of the directory.</p>",
         "ModifyWorkspaceCreationPropertiesRequest$ResourceId": "<p>The identifier of the directory.</p>",
         "PendingCreateStandbyWorkspacesRequest$DirectoryId": "<p>The identifier of the directory for the standby WorkSpace.</p>",
         "RegisterWorkspaceDirectoryRequest$DirectoryId": "<p>The identifier of the directory. You cannot register a directory if it does not have a status of Active. If the directory does not have a status of Active, you will receive an InvalidResourceStateException error. If you have already registered the maximum number of directories that you can register with Amazon WorkSpaces, you will receive a ResourceLimitExceededException error. Deregister directories that you are not using for WorkSpaces, and try again.</p>",
+        "RegisterWorkspaceDirectoryResult$DirectoryId": "<p>The identifier of the directory.</p>",
         "StandbyWorkspace$DirectoryId": "<p>The identifier of the directory for the standby WorkSpace.</p>",
         "UpdateConnectClientAddInRequest$ResourceId": "<p>The directory identifier for which the client add-in is configured.</p>",
+        "UpdateWorkspacesPoolRequest$DirectoryId": "<p>The identifier of the directory.</p>",
         "Workspace$DirectoryId": "<p>The identifier of the Directory Service directory for the WorkSpace.</p>",
         "WorkspaceDirectory$DirectoryId": "<p>The directory identifier.</p>",
-        "WorkspaceRequest$DirectoryId": "<p>The identifier of the Directory Service directory for the WorkSpace. You can use <a>DescribeWorkspaceDirectories</a> to list the available directories.</p>"
+        "WorkspaceRequest$DirectoryId": "<p>The identifier of the Directory Service directory for the WorkSpace. You can use <a>DescribeWorkspaceDirectories</a> to list the available directories.</p>",
+        "WorkspacesPool$DirectoryId": "<p>The identifier of the directory used by the pool.</p>"
       }
     },
     "DirectoryIdList": {
@@ -1263,10 +1423,22 @@
       "refs": {
       }
     },
+    "DisconnectTimeoutInSeconds": {
+      "base": null,
+      "refs": {
+        "TimeoutSettings$DisconnectTimeoutInSeconds": "<p>Specifies the amount of time, in seconds, that a streaming session remains active after users disconnect. If users try to reconnect to the streaming session after a disconnection or network interruption within the time set, they are connected to their previous session. Otherwise, they are connected to a new session with a new streaming instance.</p>"
+      }
+    },
     "DnsIpAddresses": {
       "base": null,
       "refs": {
         "WorkspaceDirectory$DnsIpAddresses": "<p>The IP addresses of the DNS servers for the directory.</p>"
+      }
+    },
+    "DomainName": {
+      "base": null,
+      "refs": {
+        "ActiveDirectoryConfig$DomainName": "<p>The name of the domain.</p>"
       }
     },
     "Ec2ImageId": {
@@ -1285,6 +1457,12 @@
       "base": null,
       "refs": {
         "WorkspaceImage$ErrorDetails": "<p>Additional details of the error returned for the image, including the possible causes of the errors and troubleshooting information.</p>"
+      }
+    },
+    "ErrorMessage": {
+      "base": null,
+      "refs": {
+        "WorkspacesPoolError$ErrorMessage": "<p>The error message.</p>"
       }
     },
     "ErrorType": {
@@ -1395,6 +1573,12 @@
     "GetAccountLinkResult": {
       "base": null,
       "refs": {
+      }
+    },
+    "IdleDisconnectTimeoutInSeconds": {
+      "base": null,
+      "refs": {
+        "TimeoutSettings$IdleDisconnectTimeoutInSeconds": "<p>The amount of time in seconds a connection will stay active while idle.</p>"
       }
     },
     "ImageAssociatedResourceType": {
@@ -1599,8 +1783,15 @@
         "DescribeWorkspaceDirectoriesRequest$Limit": "<p>The maximum number of directories to return.</p>",
         "DescribeWorkspaceImagePermissionsRequest$MaxResults": "<p>The maximum number of items to return.</p>",
         "DescribeWorkspaceImagesRequest$MaxResults": "<p>The maximum number of items to return.</p>",
+        "DescribeWorkspacesPoolsRequest$Limit": "<p>The maximum number of items to return.</p>",
         "DescribeWorkspacesRequest$Limit": "<p>The maximum number of items to return.</p>",
         "ListAccountLinksRequest$MaxResults": "<p>The maximum number of accounts to return.</p>"
+      }
+    },
+    "Limit50": {
+      "base": null,
+      "refs": {
+        "DescribeWorkspacesPoolSessionsRequest$Limit": "<p>The maximum number of items to return.</p>"
       }
     },
     "LinkId": {
@@ -1664,6 +1855,18 @@
       "base": null,
       "refs": {
         "ListAvailableManagementCidrRangesRequest$MaxResults": "<p>The maximum number of items to return.</p>"
+      }
+    },
+    "MaxUserDurationInSeconds": {
+      "base": null,
+      "refs": {
+        "TimeoutSettings$MaxUserDurationInSeconds": "<p>Specifies the maximum amount of time, in seconds, that a streaming session can remain active. If users are still connected to a streaming instance five minutes before this limit is reached, they are prompted to save any open documents before being disconnected. After this time elapses, the instance is terminated and replaced by a new instance.</p>"
+      }
+    },
+    "MaximumLength": {
+      "base": null,
+      "refs": {
+        "UserSetting$MaximumLength": "<p>Indicates the maximum character length for the specified user setting.</p>"
       }
     },
     "MigrateWorkspaceRequest": {
@@ -1750,6 +1953,16 @@
       "refs": {
       }
     },
+    "ModifyStreamingPropertiesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ModifyStreamingPropertiesResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ModifyWorkspaceAccessPropertiesRequest": {
       "base": null,
       "refs": {
@@ -1790,6 +2003,12 @@
       "refs": {
       }
     },
+    "NetworkAccessConfiguration": {
+      "base": "<p>Describes the network details of a WorkSpaces pool.</p>",
+      "refs": {
+        "WorkspacesPoolSession$NetworkAccessConfiguration": "<p>Describes the network details of the pool.</p>"
+      }
+    },
     "NonEmptyString": {
       "base": null,
       "refs": {
@@ -1804,6 +2023,8 @@
         "DescribeTagsRequest$ResourceId": "<p>The identifier of the WorkSpaces resource. The supported resource types are WorkSpaces, registered directories, images, custom bundles, IP access control groups, and connection aliases.</p>",
         "ImageResourceAssociation$AssociatedResourceId": "<p>The identifier of the associated resource.</p>",
         "ModifyClientPropertiesRequest$ResourceId": "<p>The resource identifiers, in the form of directory IDs.</p>",
+        "NetworkAccessConfiguration$EniPrivateIpAddress": "<p>The private IP address of the elastic network interface that is attached to instances in your VPC.</p>",
+        "NetworkAccessConfiguration$EniId": "<p>The resource identifier of the elastic network interface that is attached to instances in your VPC. All network interfaces have the eni-xxxxxxxx resource identifier.</p>",
         "ResourceIdList$member": null,
         "ResourceInUseException$ResourceId": "<p>The ID of the resource that is in use.</p>",
         "ResourceNotFoundException$ResourceId": "<p>The ID of the resource that could not be found.</p>",
@@ -1886,6 +2107,10 @@
         "DescribeWorkspaceImagesResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is null when there are no more results to return. </p>",
         "DescribeWorkspacesConnectionStatusRequest$NextToken": "<p>If you received a <code>NextToken</code> from a previous call that was paginated, provide this token to receive the next set of results.</p>",
         "DescribeWorkspacesConnectionStatusResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is null when there are no more results to return. </p>",
+        "DescribeWorkspacesPoolSessionsRequest$NextToken": "<p>If you received a <code>NextToken</code> from a previous call that was paginated, provide this token to receive the next set of results.</p>",
+        "DescribeWorkspacesPoolSessionsResult$NextToken": "<p>If you received a <code>NextToken</code> from a previous call that was paginated, provide this token to receive the next set of results.</p>",
+        "DescribeWorkspacesPoolsRequest$NextToken": "<p>If you received a <code>NextToken</code> from a previous call that was paginated, provide this token to receive the next set of results.</p>",
+        "DescribeWorkspacesPoolsResult$NextToken": "<p>If you received a <code>NextToken</code> from a previous call that was paginated, provide this token to receive the next set of results.</p>",
         "DescribeWorkspacesRequest$NextToken": "<p>If you received a <code>NextToken</code> from a previous call that was paginated, provide this token to receive the next set of results.</p>",
         "DescribeWorkspacesResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is null when there are no more results to return. </p>",
         "ListAccountLinksRequest$NextToken": "<p>The token to use to retrieve the next page of results. This value is null when there are no more results to return.</p>",
@@ -2105,6 +2330,12 @@
         "WorkspaceProperties$RunningModeAutoStopTimeoutInMinutes": "<p>The time after a user logs off when WorkSpaces are automatically stopped. Configured in 60-minute intervals.</p>"
       }
     },
+    "S3BucketName": {
+      "base": null,
+      "refs": {
+        "ApplicationSettingsResponse$S3BucketName": "<p>The S3 bucket where users’ persistent application settings are stored. When persistent application settings are enabled for the first time for an account in an Amazon Web Services Region, an S3 bucket is created. The bucket is unique to the Amazon Web Services account and the Region.</p>"
+      }
+    },
     "SamlProperties": {
       "base": "<p>Describes the enablement status, user access URL, and relay state parameter name that are used for configuring federation with an SAML 2.0 identity provider.</p>",
       "refs": {
@@ -2124,6 +2355,12 @@
         "SamlProperties$UserAccessUrl": "<p>The SAML 2.0 identity provider (IdP) user access URL is the URL a user would navigate to in their web browser in order to federate from the IdP and directly access the application, without any SAML 2.0 service provider (SP) bindings.</p>"
       }
     },
+    "SecretsManagerArn": {
+      "base": null,
+      "refs": {
+        "ActiveDirectoryConfig$ServiceAccountSecretArn": "<p>Indicates the secret ARN on the service account.</p>"
+      }
+    },
     "SecurityGroupId": {
       "base": null,
       "refs": {
@@ -2137,6 +2374,25 @@
       "refs": {
         "ModifySelfservicePermissionsRequest$SelfservicePermissions": "<p>The permissions to enable or disable self-service capabilities.</p>",
         "WorkspaceDirectory$SelfservicePermissions": "<p>The default self-service permissions for WorkSpaces in the directory.</p>"
+      }
+    },
+    "SessionConnectionState": {
+      "base": null,
+      "refs": {
+        "WorkspacesPoolSession$ConnectionState": "<p>Specifies whether a user is connected to the pool session.</p>"
+      }
+    },
+    "SessionInstanceId": {
+      "base": null,
+      "refs": {
+        "WorkspacesPoolSession$InstanceId": "<p>The identifier for the instance hosting the session.</p>"
+      }
+    },
+    "SettingsGroup": {
+      "base": null,
+      "refs": {
+        "ApplicationSettingsRequest$SettingsGroup": "<p>The path prefix for the S3 bucket where users’ persistent application settings are stored. You can allow the same persistent application settings to be used across multiple pools by specifying the same settings group for each pool.</p>",
+        "ApplicationSettingsResponse$SettingsGroup": "<p>The path prefix for the S3 bucket where users’ persistent application settings are stored.</p>"
       }
     },
     "Snapshot": {
@@ -2195,6 +2451,16 @@
         "StartWorkspacesRequest$StartWorkspaceRequests": "<p>The WorkSpaces to start. You can specify up to 25 WorkSpaces.</p>"
       }
     },
+    "StartWorkspacesPoolRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartWorkspacesPoolResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "StartWorkspacesRequest": {
       "base": null,
       "refs": {
@@ -2217,6 +2483,16 @@
         "StopWorkspacesRequest$StopWorkspaceRequests": "<p>The WorkSpaces to stop. You can specify up to 25 WorkSpaces.</p>"
       }
     },
+    "StopWorkspacesPoolRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StopWorkspacesPoolResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "StopWorkspacesRequest": {
       "base": null,
       "refs": {
@@ -2225,6 +2501,43 @@
     "StopWorkspacesResult": {
       "base": null,
       "refs": {
+      }
+    },
+    "StorageConnector": {
+      "base": "<p>Describes the storage connector.</p>",
+      "refs": {
+        "StorageConnectors$member": null
+      }
+    },
+    "StorageConnectorStatusEnum": {
+      "base": null,
+      "refs": {
+        "StorageConnector$Status": "<p>Indicates if the storage connetor is enabled or disabled.</p>"
+      }
+    },
+    "StorageConnectorTypeEnum": {
+      "base": null,
+      "refs": {
+        "StorageConnector$ConnectorType": "<p>The type of connector used to save user files.</p>"
+      }
+    },
+    "StorageConnectors": {
+      "base": null,
+      "refs": {
+        "StreamingProperties$StorageConnectors": "<p>Indicates the storage connector used </p>"
+      }
+    },
+    "StreamingExperiencePreferredProtocolEnum": {
+      "base": null,
+      "refs": {
+        "StreamingProperties$StreamingExperiencePreferredProtocol": "<p>Indicates the type of preferred protocol for the streaming experience.</p>"
+      }
+    },
+    "StreamingProperties": {
+      "base": "<p>Describes the streaming properties.</p>",
+      "refs": {
+        "ModifyStreamingPropertiesRequest$StreamingProperties": "<p>The streaming properties to configure.</p>",
+        "WorkspaceDirectory$StreamingProperties": "<p>The streaming properties to configure.</p>"
       }
     },
     "String2048": {
@@ -2276,6 +2589,7 @@
         "CreateUpdatedWorkspaceImageRequest$Tags": "<p>The tags that you want to add to the new updated WorkSpace image.</p> <note> <p>To add tags at the same time when you're creating the updated image, you must create an IAM policy that grants your IAM user permissions to use <code>workspaces:CreateTags</code>. </p> </note>",
         "CreateWorkspaceBundleRequest$Tags": "<p>The tags associated with the bundle.</p> <note> <p>To add tags at the same time when you're creating the bundle, you must create an IAM policy that grants your IAM user permissions to use <code>workspaces:CreateTags</code>. </p> </note>",
         "CreateWorkspaceImageRequest$Tags": "<p>The tags that you want to add to the new WorkSpace image. To add tags when you're creating the image, you must create an IAM policy that grants your IAM user permission to use <code>workspaces:CreateTags</code>.</p>",
+        "CreateWorkspacesPoolRequest$Tags": "<p>The tags for the WorkSpaces pool.</p>",
         "DescribeTagsResult$TagList": "<p>The tags.</p>",
         "ImportWorkspaceImageRequest$Tags": "<p>The tags. Each WorkSpaces resource can have a maximum of 50 tags.</p>",
         "RegisterWorkspaceDirectoryRequest$Tags": "<p>The tags associated with the directory.</p>",
@@ -2314,6 +2628,26 @@
         "TerminateWorkspacesRequest$TerminateWorkspaceRequests": "<p>The WorkSpaces to terminate. You can specify up to 25 WorkSpaces.</p>"
       }
     },
+    "TerminateWorkspacesPoolRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TerminateWorkspacesPoolResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TerminateWorkspacesPoolSessionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TerminateWorkspacesPoolSessionResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "TerminateWorkspacesRequest": {
       "base": null,
       "refs": {
@@ -2322,6 +2656,14 @@
     "TerminateWorkspacesResult": {
       "base": null,
       "refs": {
+      }
+    },
+    "TimeoutSettings": {
+      "base": "<p>Describes the timeout settings for a WorkSpaces pool.</p>",
+      "refs": {
+        "CreateWorkspacesPoolRequest$TimeoutSettings": "<p>Indicates the timeout settings of the WorkSpaces pool.</p>",
+        "UpdateWorkspacesPoolRequest$TimeoutSettings": "<p>Indicates the timeout settings of the specified WorkSpaces pool.</p>",
+        "WorkspacesPool$TimeoutSettings": "<p>The amount of time that a pool session remains active after users disconnect. If they try to reconnect to the pool session after a disconnection or network interruption within this time interval, they are connected to their previous session. Otherwise, they are connected to a new session with a new pool instance.</p>"
       }
     },
     "Timestamp": {
@@ -2345,7 +2687,10 @@
         "WorkspaceConnectionStatus$LastKnownUserConnectionTimestamp": "<p>The timestamp of the last known user connection.</p>",
         "WorkspaceImage$Created": "<p>The date when the image was created. If the image has been shared, the Amazon Web Services account that the image has been shared with sees the original creation date of the image.</p>",
         "WorkspaceResourceAssociation$Created": "<p>The time the association is created.</p>",
-        "WorkspaceResourceAssociation$LastUpdatedTime": "<p>The time the association status was last updated.</p>"
+        "WorkspaceResourceAssociation$LastUpdatedTime": "<p>The time the association status was last updated.</p>",
+        "WorkspacesPool$CreatedAt": "<p>The time the pool was created.</p>",
+        "WorkspacesPoolSession$ExpirationTime": "<p>The time that the pool session ended.</p>",
+        "WorkspacesPoolSession$StartTime": "<p>The time that the pool sission started.</p>"
       }
     },
     "UnsupportedNetworkConfigurationException": {
@@ -2381,7 +2726,10 @@
     "UpdateDescription": {
       "base": null,
       "refs": {
-        "UpdateResult$Description": "<p>A description of whether updates for the WorkSpace image are pending or available.</p>"
+        "CreateWorkspacesPoolRequest$Description": "<p>The WorkSpaces pool description.</p>",
+        "UpdateResult$Description": "<p>A description of whether updates for the WorkSpace image are pending or available.</p>",
+        "UpdateWorkspacesPoolRequest$Description": "<p>Describes the specified WorkSpaces pool to update.</p>",
+        "WorkspacesPool$Description": "<p>The description of the pool.</p>"
       }
     },
     "UpdateResult": {
@@ -2420,6 +2768,23 @@
       "refs": {
       }
     },
+    "UpdateWorkspacesPoolRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateWorkspacesPoolResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UserIdentityType": {
+      "base": null,
+      "refs": {
+        "RegisterWorkspaceDirectoryRequest$UserIdentityType": "<p>The type of identity management the user is using.</p>",
+        "WorkspaceDirectory$UserIdentityType": "<p>Indicates the identity type of the specifired user.</p>"
+      }
+    },
     "UserName": {
       "base": null,
       "refs": {
@@ -2428,6 +2793,30 @@
         "Workspace$UserName": "<p>The user for the WorkSpace.</p>",
         "WorkspaceDirectory$CustomerUserName": "<p>The user name for the service account.</p>",
         "WorkspaceRequest$UserName": "<p>The user name of the user for the WorkSpace. This user name must exist in the Directory Service directory for the WorkSpace.</p> <p>The reserved keyword, <code>[UNDEFINED]</code>, is used when creating user-decoupled WorkSpaces.</p>"
+      }
+    },
+    "UserSetting": {
+      "base": "<p>Information about the user's permission settings.</p>",
+      "refs": {
+        "UserSettings$member": null
+      }
+    },
+    "UserSettingActionEnum": {
+      "base": null,
+      "refs": {
+        "UserSetting$Action": "<p>Indicates the type of action.</p>"
+      }
+    },
+    "UserSettingPermissionEnum": {
+      "base": null,
+      "refs": {
+        "UserSetting$Permission": "<p>Indicates if the setting is enabled or disabled.</p>"
+      }
+    },
+    "UserSettings": {
+      "base": null,
+      "refs": {
+        "StreamingProperties$UserSettings": "<p>Indicates the permission settings asscoiated with the user.</p>"
       }
     },
     "UserStorage": {
@@ -2586,9 +2975,31 @@
         "DirectoryList$member": null
       }
     },
+    "WorkspaceDirectoryDescription": {
+      "base": null,
+      "refs": {
+        "RegisterWorkspaceDirectoryRequest$WorkspaceDirectoryDescription": "<p>Description of the directory to register.</p>",
+        "WorkspaceDirectory$WorkspaceDirectoryDescription": "<p>The description of the WorkSpace directory</p>"
+      }
+    },
+    "WorkspaceDirectoryName": {
+      "base": null,
+      "refs": {
+        "RegisterWorkspaceDirectoryRequest$WorkspaceDirectoryName": "<p>The name of the directory to register.</p>",
+        "WorkspaceDirectory$WorkspaceDirectoryName": "<p>The name fo the WorkSpace directory.</p>",
+        "WorkspaceDirectoryNameList$member": null
+      }
+    },
+    "WorkspaceDirectoryNameList": {
+      "base": null,
+      "refs": {
+        "DescribeWorkspaceDirectoriesRequest$WorkspaceDirectoryNames": "<p>The names of the WorkSpace directories.</p>"
+      }
+    },
     "WorkspaceDirectoryState": {
       "base": null,
       "refs": {
+        "RegisterWorkspaceDirectoryResult$State": "<p>The registration status of the WorkSpace directory.</p>",
         "WorkspaceDirectory$State": "<p>The state of the directory's registration with Amazon WorkSpaces. After a directory is deregistered, the <code>DEREGISTERED</code> state is returned very briefly before the directory metadata is cleaned up, so this state is rarely returned. To confirm that a directory is deregistered, check for the directory ID by using <a href=\"https://docs.aws.amazon.com/workspaces/latest/api/API_DescribeWorkspaceDirectories.html\"> DescribeWorkspaceDirectories</a>. If the directory ID isn't returned, then the directory has been successfully deregistered.</p>"
       }
     },
@@ -2797,6 +3208,13 @@
         "Workspace$State": "<p>The operational state of the WorkSpace.</p> <ul> <li> <p> <code>PENDING</code> – The WorkSpace is in a waiting state (for example, the WorkSpace is being created).</p> </li> <li> <p> <code>AVAILABLE</code> – The WorkSpace is running and has passed the health checks.</p> </li> <li> <p> <code>IMPAIRED</code> – Refer to <code>UNHEALTHY</code> state.</p> </li> <li> <p> <code>UNHEALTHY</code> – The WorkSpace is not responding to health checks.</p> </li> <li> <p> <code>REBOOTING</code> – The WorkSpace is being rebooted (restarted).</p> </li> <li> <p> <code>STARTING</code> – The WorkSpace is starting up and health checks are being run.</p> </li> <li> <p> <code>REBUILDING</code> – The WorkSpace is being rebuilt.</p> </li> <li> <p> <code>RESTORING</code> – The WorkSpace is being restored.</p> </li> <li> <p> <code>MAINTENANCE</code> – The WorkSpace is undergoing scheduled maintenance by Amazon Web Services.</p> </li> <li> <p> <code>ADMIN_MAINTENANCE</code> – The WorkSpace is undergoing maintenance by the WorkSpaces administrator.</p> </li> <li> <p> <code>TERMINATING</code> – The WorkSpace is being deleted.</p> </li> <li> <p> <code>TERMINATED</code> – The WorkSpace has been deleted.</p> </li> <li> <p> <code>SUSPENDED</code> – The WorkSpace has been suspended for image creation.</p> </li> <li> <p> <code>UPDATING</code> – The WorkSpace is undergoing an update.</p> </li> <li> <p> <code>STOPPING</code> – The WorkSpace is being stopped.</p> </li> <li> <p> <code>STOPPED</code> – The WorkSpace has been stopped.</p> </li> <li> <p> <code>ERROR </code> – The WorkSpace is an error state (for example, an error occurred during startup).</p> </li> </ul> <note> <p>After a WorkSpace is terminated, the <code>TERMINATED</code> state is returned only briefly before the WorkSpace directory metadata is cleaned up, so this state is rarely returned. To confirm that a WorkSpace is terminated, check for the WorkSpace ID by using <a href=\"https://docs.aws.amazon.com/workspaces/latest/api/API_DescribeWorkspaces.html\"> DescribeWorkSpaces</a>. If the WorkSpace ID isn't returned, then the WorkSpace has been successfully terminated.</p> </note>"
       }
     },
+    "WorkspaceType": {
+      "base": null,
+      "refs": {
+        "RegisterWorkspaceDirectoryRequest$WorkspaceType": "<p>Indicates whether the directory's WorkSpace type is personal or pools.</p>",
+        "WorkspaceDirectory$WorkspaceType": "<p>Indicates whether the directory's WorkSpace type is personal or pools.</p>"
+      }
+    },
     "WorkspacesDefaultRoleNotFoundException": {
       "base": "<p>The workspaces_DefaultRole role could not be found. If this is the first time you are registering a directory, you will need to create the workspaces_DefaultRole role before you can register a directory. For more information, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/workspaces-access-control.html#create-default-role\">Creating the workspaces_DefaultRole Role</a>.</p>",
       "refs": {
@@ -2812,6 +3230,89 @@
       "base": null,
       "refs": {
         "DescribeIpGroupsResult$Result": "<p>Information about the IP access control groups.</p>"
+      }
+    },
+    "WorkspacesPool": {
+      "base": "<p>Describes a WorkSpaces pool.</p>",
+      "refs": {
+        "CreateWorkspacesPoolResult$WorkspacesPool": "<p>Indicates the WorkSpaces pool to create.</p>",
+        "UpdateWorkspacesPoolResult$WorkspacesPool": "<p>Describes the specified WorkSpaces pool.</p>",
+        "WorkspacesPools$member": null
+      }
+    },
+    "WorkspacesPoolError": {
+      "base": "<p>Describes a WorkSpaces pool error.</p>",
+      "refs": {
+        "WorkspacesPoolErrors$member": null
+      }
+    },
+    "WorkspacesPoolErrorCode": {
+      "base": null,
+      "refs": {
+        "WorkspacesPoolError$ErrorCode": "<p>The error code.</p>"
+      }
+    },
+    "WorkspacesPoolErrors": {
+      "base": null,
+      "refs": {
+        "WorkspacesPool$Errors": "<p>The pool errors.</p>"
+      }
+    },
+    "WorkspacesPoolId": {
+      "base": null,
+      "refs": {
+        "DescribeWorkspacesPoolSessionsRequest$PoolId": "<p>The identifier of the WorkSpaces pool.</p>",
+        "StartWorkspacesPoolRequest$PoolId": "<p>The identifier of the WorkSpaces pool.</p>",
+        "StopWorkspacesPoolRequest$PoolId": "<p>The identifier of the WorkSpaces pool.</p>",
+        "TerminateWorkspacesPoolRequest$PoolId": "<p>The identifier of the WorkSpaces pool.</p>",
+        "UpdateWorkspacesPoolRequest$PoolId": "<p>The identifier of the specified WorkSpaces pool to update.</p>",
+        "WorkspacesPool$PoolId": "<p>The identifier of a WorkSpaces pool.</p>",
+        "WorkspacesPoolIds$member": null,
+        "WorkspacesPoolSession$PoolId": "<p>The identifier of the pool.</p>"
+      }
+    },
+    "WorkspacesPoolIds": {
+      "base": null,
+      "refs": {
+        "DescribeWorkspacesPoolsRequest$PoolIds": "<p>The identifier of the WorkSpaces pool.</p>"
+      }
+    },
+    "WorkspacesPoolName": {
+      "base": null,
+      "refs": {
+        "CreateWorkspacesPoolRequest$PoolName": "<p>The name of the WorkSpaces pool.</p>",
+        "WorkspacesPool$PoolName": "<p>The name of the pool,</p>"
+      }
+    },
+    "WorkspacesPoolSession": {
+      "base": "<p>Describes a WorkSpaces pool session.</p>",
+      "refs": {
+        "WorkspacesPoolSessions$member": null
+      }
+    },
+    "WorkspacesPoolSessions": {
+      "base": null,
+      "refs": {
+        "DescribeWorkspacesPoolSessionsResult$Sessions": "<p>Describes the WorkSpaces pool sessions.</p>"
+      }
+    },
+    "WorkspacesPoolState": {
+      "base": null,
+      "refs": {
+        "WorkspacesPool$State": "<p>The current state of the pool.</p>"
+      }
+    },
+    "WorkspacesPoolUserId": {
+      "base": null,
+      "refs": {
+        "DescribeWorkspacesPoolSessionsRequest$UserId": "<p>The identifier of the user.</p>",
+        "WorkspacesPoolSession$UserId": "<p>The identifier of the user.</p>"
+      }
+    },
+    "WorkspacesPools": {
+      "base": null,
+      "refs": {
+        "DescribeWorkspacesPoolsResult$WorkspacesPools": "<p>Information about the WorkSpaces pools.</p>"
       }
     }
   }

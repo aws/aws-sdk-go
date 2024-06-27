@@ -60,6 +60,12 @@
       "limit_key": "maxResults",
       "result_key": "items"
     },
+    "ListLineageNodeHistory": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults",
+      "result_key": "nodes"
+    },
     "ListMetadataGenerationRuns": {
       "input_token": "nextToken",
       "output_token": "nextToken",

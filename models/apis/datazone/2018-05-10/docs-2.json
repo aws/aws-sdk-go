@@ -60,6 +60,7 @@
     "GetGlossaryTerm": "<p>Gets a business glossary term in Amazon DataZone.</p>",
     "GetGroupProfile": "<p>Gets a group profile in Amazon DataZone.</p>",
     "GetIamPortalLoginUrl": "<p>Gets the data portal URL for the specified Amazon DataZone domain.</p>",
+    "GetLineageNode": "<p>Gets the data lineage node.</p>",
     "GetListing": "<p>Gets a listing (a record of an asset at a given time).</p>",
     "GetMetadataGenerationRun": "<p>Gets a metadata generation run in Amazon DataZone.</p>",
     "GetProject": "<p>Gets a project in Amazon DataZone.</p>",
@@ -79,6 +80,7 @@
     "ListEnvironmentBlueprints": "<p>Lists blueprints in an Amazon DataZone environment.</p>",
     "ListEnvironmentProfiles": "<p>Lists Amazon DataZone environment profiles.</p>",
     "ListEnvironments": "<p>Lists Amazon DataZone environments.</p>",
+    "ListLineageNodeHistory": "<p>Lists the history of the specified data lineage node.</p>",
     "ListMetadataGenerationRuns": "<p>Lists all metadata generation runs.</p>",
     "ListNotifications": "<p>Lists all Amazon DataZone notifications.</p>",
     "ListProjectMemberships": "<p>Lists all members of the specified project.</p>",
@@ -89,6 +91,7 @@
     "ListSubscriptions": "<p>Lists subscriptions in Amazon DataZone.</p>",
     "ListTagsForResource": "<p>Lists tags for the specified resource in Amazon DataZone.</p>",
     "ListTimeSeriesDataPoints": "<p>Lists time series data points.</p>",
+    "PostLineageEvent": "<p>Posts a data lineage event.</p>",
     "PostTimeSeriesDataPoints": "<p>Posts time series data points to Amazon DataZone for the specified asset.</p>",
     "PutEnvironmentBlueprintConfiguration": "<p>Writes the configuration for the specified environment blueprint in Amazon DataZone.</p>",
     "RejectPredictions": "<p>Rejects automatically generated business-friendly metadata for your Amazon DataZone assets.</p>",
@@ -484,6 +487,7 @@
         "CreateGlossaryTermInput$clientToken": "<p>A unique, case-sensitive identifier that is provided to ensure the idempotency of the request.</p>",
         "CreateListingChangeSetInput$clientToken": "<p>A unique, case-sensitive identifier that is provided to ensure the idempotency of the request.</p>",
         "DeleteTimeSeriesDataPointsInput$clientToken": "<p>A unique, case-sensitive identifier to ensure idempotency of the request. This field is automatically populated if not provided.</p>",
+        "PostLineageEventInput$clientToken": "<p>A unique, case-sensitive identifier that is provided to ensure the idempotency of the request.</p>",
         "PostTimeSeriesDataPointsInput$clientToken": "<p>A unique, case-sensitive identifier that is provided to ensure the idempotency of the request.</p>",
         "RejectPredictionsInput$clientToken": "<p>A unique, case-sensitive identifier that is provided to ensure the idempotency of the request.</p>",
         "StartMetadataGenerationRunInput$clientToken": "<p>A unique, case-sensitive identifier to ensure idempotency of the request. This field is automatically populated if not provided.</p>",
@@ -757,6 +761,7 @@
         "GetFormTypeOutput$createdAt": "<p>The timestamp of when this metadata form type was created.</p>",
         "GetGlossaryOutput$createdAt": "<p>The timestamp of when this business glossary was created.</p>",
         "GetGlossaryTermOutput$createdAt": "<p>The timestamp of when the business glossary term was created.</p>",
+        "GetLineageNodeOutput$createdAt": "<p>The timestamp at which the data lineage node was created.</p>",
         "GetListingOutput$createdAt": "<p>The timestamp of when the listing was created.</p>",
         "GetMetadataGenerationRunOutput$createdAt": "<p>The timestamp of when the metadata generation run was start.</p>",
         "GetSubscriptionGrantOutput$createdAt": "<p>The timestamp of when the subscription grant is created.</p>",
@@ -765,6 +770,8 @@
         "GetSubscriptionTargetOutput$createdAt": "<p>The timestamp of when the subscription target was created.</p>",
         "GlossaryItem$createdAt": "<p>The timestamp of when the glossary was created.</p>",
         "GlossaryTermItem$createdAt": "<p>The timestamp of when a business glossary term was created.</p>",
+        "LineageNodeSummary$createdAt": "<p>The timestamp at which the data lineage node was created.</p>",
+        "LineageNodeTypeItem$createdAt": "<p>The timestamp at which the data lineage node type was created.</p>",
         "MetadataGenerationRunItem$createdAt": "<p>The timestamp at which the metadata generation run was created.</p>",
         "RejectSubscriptionRequestOutput$createdAt": "<p>The timestamp of when the subscription request was rejected.</p>",
         "RevokeSubscriptionOutput$createdAt": "<p>The timestamp of when the subscription was revoked.</p>",
@@ -806,6 +813,7 @@
         "GetFormTypeOutput$createdBy": "<p>The Amazon DataZone user who created this metadata form type.</p>",
         "GetGlossaryOutput$createdBy": "<p>The Amazon DataZone user who created this business glossary.</p>",
         "GetGlossaryTermOutput$createdBy": "<p>The Amazon DataZone user who created the business glossary.</p>",
+        "GetLineageNodeOutput$createdBy": "<p>The user who created the data lineage node.</p>",
         "GetListingOutput$createdBy": "<p>The Amazon DataZone user who created the listing.</p>",
         "GetMetadataGenerationRunOutput$createdBy": "<p>The Amazon DataZone user who started the metadata generation run.</p>",
         "GetProjectOutput$createdBy": "<p>The Amazon DataZone user who created the project.</p>",
@@ -815,6 +823,8 @@
         "GetSubscriptionTargetOutput$createdBy": "<p>The Amazon DataZone user who created the subscription target.</p>",
         "GlossaryItem$createdBy": "<p>The Amazon DataZone user who created the glossary.</p>",
         "GlossaryTermItem$createdBy": "<p>The Amazon DataZone user who created the business glossary.</p>",
+        "LineageNodeSummary$createdBy": "<p>The user who created the data lineage node.</p>",
+        "LineageNodeTypeItem$createdBy": "<p>The user who created the data lineage node type.</p>",
         "MetadataGenerationRunItem$createdBy": "<p>The user who created the metadata generation run.</p>",
         "ProjectSummary$createdBy": "<p>The Amazon DataZone user who created the project.</p>",
         "RejectSubscriptionRequestOutput$createdBy": "<p>The timestamp of when the subscription request was rejected.</p>",
@@ -1505,6 +1515,8 @@
         "GetGroupProfileInput$domainIdentifier": "<p>The identifier of the Amazon DataZone domain in which the group profile exists.</p>",
         "GetGroupProfileOutput$domainId": "<p>The identifier of the Amazon DataZone domain in which the group profile exists.</p>",
         "GetIamPortalLoginUrlInput$domainIdentifier": "<p>the ID of the Amazon DataZone domain the data portal of which you want to get.</p>",
+        "GetLineageNodeInput$domainIdentifier": "<p>The ID of the domain in which you want to get the data lineage node.</p>",
+        "GetLineageNodeOutput$domainId": "<p>The ID of the domain where you're getting the data lineage node.</p>",
         "GetListingInput$domainIdentifier": "<p>The ID of the Amazon DataZone domain.</p>",
         "GetListingOutput$domainId": "<p>The ID of the Amazon DataZone domain.</p>",
         "GetMetadataGenerationRunInput$domainIdentifier": "<p>The ID of the Amazon DataZone domain the metadata generation run of which you want to get.</p>",
@@ -1526,6 +1538,8 @@
         "GlossaryItem$domainId": "<p>The identifier of the Amazon DataZone domain in which the business glossary exists.</p>",
         "GlossaryTermItem$domainId": "<p>The identifier of the Amazon DataZone domain in which the business glossary exists.</p>",
         "GroupProfileSummary$domainId": "<p>The ID of the Amazon DataZone domain of a group profile.</p>",
+        "LineageNodeSummary$domainId": "<p>The ID of the domain of the data lineage node.</p>",
+        "LineageNodeTypeItem$domainId": "<p>The ID of the domain where the data lineage node type lives.</p>",
         "ListAssetRevisionsInput$domainIdentifier": "<p>The identifier of the domain.</p>",
         "ListDataSourceRunActivitiesInput$domainIdentifier": "<p>The identifier of the Amazon DataZone domain in which to list data source run activities.</p>",
         "ListDataSourceRunsInput$domainIdentifier": "<p>The identifier of the Amazon DataZone domain in which to invoke the <code>ListDataSourceRuns</code> action.</p>",
@@ -1535,6 +1549,7 @@
         "ListEnvironmentBlueprintsInput$domainIdentifier": "<p>The identifier of the Amazon DataZone domain.</p>",
         "ListEnvironmentProfilesInput$domainIdentifier": "<p>The identifier of the Amazon DataZone domain.</p>",
         "ListEnvironmentsInput$domainIdentifier": "<p>The identifier of the Amazon DataZone domain.</p>",
+        "ListLineageNodeHistoryInput$domainIdentifier": "<p>The ID of the domain where you want to list the history of the specified data lineage node.</p>",
         "ListMetadataGenerationRunsInput$domainIdentifier": "<p>The ID of the Amazon DataZone domain where you want to list metadata generation runs.</p>",
         "ListNotificationsInput$domainIdentifier": "<p>The identifier of the Amazon DataZone domain.</p>",
         "ListProjectMembershipsInput$domainIdentifier": "<p>The identifier of the Amazon DataZone domain in which you want to list project memberships.</p>",
@@ -1546,6 +1561,7 @@
         "ListTimeSeriesDataPointsInput$domainIdentifier": "<p>The ID of the Amazon DataZone domain that houses the assets for which you want to list time series data points.</p>",
         "MetadataGenerationRunItem$domainId": "<p>The ID of the Amazon DataZone domain in which the metadata generation run was created.</p>",
         "NotificationOutput$domainIdentifier": "<p>The identifier of a Amazon DataZone domain in which the notification exists.</p>",
+        "PostLineageEventInput$domainIdentifier": "<p>The ID of the domain where you want to post a data lineage event.</p>",
         "PostTimeSeriesDataPointsInput$domainIdentifier": "<p>The ID of the Amazon DataZone domain in which you want to post time series data points.</p>",
         "PostTimeSeriesDataPointsOutput$domainId": "<p>The ID of the Amazon DataZone domain in which you want to post time series data points.</p>",
         "ProjectSummary$domainId": "<p>The identifier of a Amazon DataZone domain where the project exists.</p>",
@@ -1625,6 +1641,12 @@
       "base": "<p>A summary of a Amazon DataZone domain.</p>",
       "refs": {
         "DomainSummaries$member": null
+      }
+    },
+    "EdgeDirection": {
+      "base": null,
+      "refs": {
+        "ListLineageNodeHistoryInput$direction": "<p>The direction of the data lineage node refers to the lineage node having neighbors in that direction. For example, if direction is <code>UPSTREAM</code>, the <code>ListLineageNodeHistory</code> API responds with historical versions with upstream neighbors only.</p>"
       }
     },
     "EditedValue": {
@@ -2055,6 +2077,7 @@
         "GetAssetOutput$formsOutput": "<p>The metadata forms attached to the asset.</p>",
         "GetAssetOutput$readOnlyFormsOutput": "<p>The read-only metadata forms attached to the asset.</p>",
         "GetDataSourceOutput$assetFormsOutput": "<p>The metadata forms attached to the assets created by this data source.</p>",
+        "GetLineageNodeOutput$formsOutput": "<p>The metadata of the specified data lineage node.</p>",
         "UpdateDataSourceOutput$assetFormsOutput": "<p>The asset forms to be updated as part of the <code>UpdateDataSource</code> action.</p>"
       }
     },
@@ -2115,7 +2138,8 @@
       "refs": {
         "AssetTypeItem$formsOutput": "<p>The forms included in the details of the asset type.</p>",
         "CreateAssetTypeOutput$formsOutput": "<p>The metadata forms that are attached to the asset type.</p>",
-        "GetAssetTypeOutput$formsOutput": "<p>The metadata forms attached to the asset type.</p>"
+        "GetAssetTypeOutput$formsOutput": "<p>The metadata forms attached to the asset type.</p>",
+        "LineageNodeTypeItem$formsOutput": "<p>The forms output of the data lineage node type.</p>"
       }
     },
     "GetAssetInput": {
@@ -2264,6 +2288,16 @@
       }
     },
     "GetIamPortalLoginUrlOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetLineageNodeInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetLineageNodeOutput": {
       "base": null,
       "refs": {
       }
@@ -2679,6 +2713,58 @@
         "SsoUserProfileDetails$lastName": "<p>The last name included in the single sign-on details of the user profile.</p>"
       }
     },
+    "LineageEvent": {
+      "base": null,
+      "refs": {
+        "PostLineageEventInput$event": "<p>The data lineage event that you want to post. Only open-lineage run event are supported as events. </p>"
+      }
+    },
+    "LineageNodeId": {
+      "base": null,
+      "refs": {
+        "GetLineageNodeOutput$id": "<p>The ID of the data lineage node.</p>",
+        "LineageNodeReference$id": "<p>The ID of the data lineage node.</p>",
+        "LineageNodeSummary$id": "<p>The ID of the data lineage node.</p>"
+      }
+    },
+    "LineageNodeIdentifier": {
+      "base": null,
+      "refs": {
+        "GetLineageNodeInput$identifier": "<p>The ID of the data lineage node that you want to get.</p> <p>Both, a lineage node identifier generated by Amazon DataZone and a <code>sourceIdentifier</code> of the lineage node are supported. If <code>sourceIdentifier</code> is greater than 1800 characters, you can use lineage node identifier generated by Amazon DataZone to get the node details.</p>",
+        "ListLineageNodeHistoryInput$identifier": "<p>The ID of the data lineage node whose history you want to list.</p>"
+      }
+    },
+    "LineageNodeReference": {
+      "base": "<p>The reference details for the data lineage node.</p>",
+      "refs": {
+        "LineageNodeReferenceList$member": null
+      }
+    },
+    "LineageNodeReferenceList": {
+      "base": null,
+      "refs": {
+        "GetLineageNodeOutput$downstreamNodes": "<p>The downsteam nodes of the specified data lineage node.</p>",
+        "GetLineageNodeOutput$upstreamNodes": "<p>The upstream nodes of the specified data lineage node.</p>"
+      }
+    },
+    "LineageNodeSummaries": {
+      "base": null,
+      "refs": {
+        "ListLineageNodeHistoryOutput$nodes": "<p>The nodes returned by the ListLineageNodeHistory action.</p>"
+      }
+    },
+    "LineageNodeSummary": {
+      "base": "<p>The summary of the data lineage node.</p>",
+      "refs": {
+        "LineageNodeSummaries$member": null
+      }
+    },
+    "LineageNodeTypeItem": {
+      "base": "<p>The details of a data lineage node type.</p>",
+      "refs": {
+        "SearchTypesResultItem$lineageNodeTypeItem": "<p>The details of a data lineage node type.</p>"
+      }
+    },
     "ListAssetRevisionsInput": {
       "base": null,
       "refs": {
@@ -2781,6 +2867,16 @@
       }
     },
     "ListEnvironmentsOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListLineageNodeHistoryInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListLineageNodeHistoryOutput": {
       "base": null,
       "refs": {
       }
@@ -2959,6 +3055,7 @@
         "ListEnvironmentBlueprintsInput$maxResults": "<p>The maximum number of blueprints to return in a single call to <code>ListEnvironmentBlueprints</code>. When the number of blueprints to be listed is greater than the value of <code>MaxResults</code>, the response contains a <code>NextToken</code> value that you can use in a subsequent call to <code>ListEnvironmentBlueprints</code> to list the next set of blueprints.</p>",
         "ListEnvironmentProfilesInput$maxResults": "<p>The maximum number of environment profiles to return in a single call to <code>ListEnvironmentProfiles</code>. When the number of environment profiles to be listed is greater than the value of <code>MaxResults</code>, the response contains a <code>NextToken</code> value that you can use in a subsequent call to <code>ListEnvironmentProfiles</code> to list the next set of environment profiles.</p>",
         "ListEnvironmentsInput$maxResults": "<p>The maximum number of environments to return in a single call to <code>ListEnvironments</code>. When the number of environments to be listed is greater than the value of <code>MaxResults</code>, the response contains a <code>NextToken</code> value that you can use in a subsequent call to <code>ListEnvironments</code> to list the next set of environments.</p>",
+        "ListLineageNodeHistoryInput$maxResults": "<p>The maximum number of history items to return in a single call to ListLineageNodeHistory. When the number of memberships to be listed is greater than the value of MaxResults, the response contains a NextToken value that you can use in a subsequent call to ListLineageNodeHistory to list the next set of items.</p>",
         "ListMetadataGenerationRunsInput$maxResults": "<p>The maximum number of metadata generation runs to return in a single call to ListMetadataGenerationRuns. When the number of metadata generation runs to be listed is greater than the value of MaxResults, the response contains a NextToken value that you can use in a subsequent call to ListMetadataGenerationRuns to list the next set of revisions.</p>",
         "ListNotificationsInput$maxResults": "<p>The maximum number of notifications to return in a single call to <code>ListNotifications</code>. When the number of notifications to be listed is greater than the value of <code>MaxResults</code>, the response contains a <code>NextToken</code> value that you can use in a subsequent call to <code>ListNotifications</code> to list the next set of notifications.</p>",
         "ListProjectMembershipsInput$maxResults": "<p>The maximum number of memberships to return in a single call to <code>ListProjectMemberships</code>. When the number of memberships to be listed is greater than the value of <code>MaxResults</code>, the response contains a <code>NextToken</code> value that you can use in a subsequent call to <code>ListProjectMemberships</code> to list the next set of memberships.</p>",
@@ -3150,6 +3247,8 @@
         "ListEnvironmentProfilesOutput$nextToken": "<p>When the number of environment profiles is greater than the default value for the <code>MaxResults</code> parameter, or if you explicitly specify a value for <code>MaxResults</code> that is less than the number of environment profiles, the response includes a pagination token named <code>NextToken</code>. You can specify this <code>NextToken</code> value in a subsequent call to <code>ListEnvironmentProfiles</code> to list the next set of environment profiles.</p>",
         "ListEnvironmentsInput$nextToken": "<p>When the number of environments is greater than the default value for the <code>MaxResults</code> parameter, or if you explicitly specify a value for <code>MaxResults</code> that is less than the number of environments, the response includes a pagination token named <code>NextToken</code>. You can specify this <code>NextToken</code> value in a subsequent call to <code>ListEnvironments</code> to list the next set of environments.</p>",
         "ListEnvironmentsOutput$nextToken": "<p>When the number of environments is greater than the default value for the <code>MaxResults</code> parameter, or if you explicitly specify a value for <code>MaxResults</code> that is less than the number of environments, the response includes a pagination token named <code>NextToken</code>. You can specify this <code>NextToken</code> value in a subsequent call to <code>ListEnvironments</code> to list the next set of environments.</p>",
+        "ListLineageNodeHistoryInput$nextToken": "<p>When the number of history items is greater than the default value for the MaxResults parameter, or if you explicitly specify a value for MaxResults that is less than the number of items, the response includes a pagination token named NextToken. You can specify this NextToken value in a subsequent call to ListLineageNodeHistory to list the next set of items.</p>",
+        "ListLineageNodeHistoryOutput$nextToken": "<p>When the number of history items is greater than the default value for the MaxResults parameter, or if you explicitly specify a value for MaxResults that is less than the number of items, the response includes a pagination token named NextToken. You can specify this NextToken value in a subsequent call to ListLineageNodeHistory to list the next set of items.</p>",
         "ListMetadataGenerationRunsInput$nextToken": "<p>When the number of metadata generation runs is greater than the default value for the MaxResults parameter, or if you explicitly specify a value for MaxResults that is less than the number of metadata generation runs, the response includes a pagination token named NextToken. You can specify this NextToken value in a subsequent call to ListMetadataGenerationRuns to list the next set of revisions.</p>",
         "ListMetadataGenerationRunsOutput$nextToken": "<p>When the number of metadata generation runs is greater than the default value for the MaxResults parameter, or if you explicitly specify a value for MaxResults that is less than the number of metadata generation runs, the response includes a pagination token named NextToken. You can specify this NextToken value in a subsequent call to ListMetadataGenerationRuns to list the next set of revisions.</p>",
         "ListNotificationsInput$nextToken": "<p>When the number of notifications is greater than the default value for the <code>MaxResults</code> parameter, or if you explicitly specify a value for <code>MaxResults</code> that is less than the number of notifications, the response includes a pagination token named <code>NextToken</code>. You can specify this <code>NextToken</code> value in a subsequent call to <code>ListNotifications</code> to list the next set of notifications.</p>",
@@ -3178,6 +3277,16 @@
         "SearchTypesOutput$nextToken": "<p>When the number of results is greater than the default value for the <code>MaxResults</code> parameter, or if you explicitly specify a value for <code>MaxResults</code> that is less than the number of results, the response includes a pagination token named <code>NextToken</code>. You can specify this <code>NextToken</code> value in a subsequent call to <code>SearchTypes</code> to list the next set of results.</p>",
         "SearchUserProfilesInput$nextToken": "<p>When the number of results is greater than the default value for the <code>MaxResults</code> parameter, or if you explicitly specify a value for <code>MaxResults</code> that is less than the number of results, the response includes a pagination token named <code>NextToken</code>. You can specify this <code>NextToken</code> value in a subsequent call to <code>SearchUserProfiles</code> to list the next set of results.</p>",
         "SearchUserProfilesOutput$nextToken": "<p>When the number of results is greater than the default value for the <code>MaxResults</code> parameter, or if you explicitly specify a value for <code>MaxResults</code> that is less than the number of results, the response includes a pagination token named <code>NextToken</code>. You can specify this <code>NextToken</code> value in a subsequent call to <code>SearchUserProfiles</code> to list the next set of results.</p>"
+      }
+    },
+    "PostLineageEventInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PostLineageEventOutput": {
+      "base": null,
+      "refs": {
       }
     },
     "PostTimeSeriesDataPointsInput": {
@@ -3621,9 +3730,12 @@
         "GetAssetTypeOutput$revision": "<p>The revision of the asset type.</p>",
         "GetFormTypeInput$revision": "<p>The revision of this metadata form type.</p>",
         "GetFormTypeOutput$revision": "<p>The revision of the metadata form type.</p>",
+        "GetLineageNodeOutput$typeRevision": "<p>The revision type of the specified data lineage node.</p>",
         "GetListingInput$listingRevision": "<p>The revision of the listing.</p>",
         "GetListingOutput$listingRevision": "<p>The revision of a listing.</p>",
         "Import$revision": "<p>The revision of the import.</p>",
+        "LineageNodeSummary$typeRevision": "<p>The type of the revision of the data lineage node.</p>",
+        "LineageNodeTypeItem$revision": "<p>The revision of the data lineage node type.</p>",
         "ListingRevision$revision": "<p>The details of a revision of an asset published in a Amazon DataZone catalog.</p>",
         "ListingRevisionInput$revision": "<p>The details of a revision to be made to an asset published in a Amazon DataZone catalog.</p>",
         "MetadataGenerationRunTarget$revision": "<p>The revision of the asset for which metadata was generated.</p>",
@@ -3903,6 +4015,7 @@
     "SortOrder": {
       "base": null,
       "refs": {
+        "ListLineageNodeHistoryInput$sortOrder": "<p>The order by which you want data lineage node history to be sorted.</p>",
         "ListProjectMembershipsInput$sortOrder": "<p>The sort order of the project memberships.</p>",
         "ListSubscriptionGrantsInput$sortOrder": "<p>Specifies the sort order of this action.</p>",
         "ListSubscriptionRequestsInput$sortOrder": "<p>Specifies the sort order for the results of this action.</p>",
@@ -4022,12 +4135,22 @@
         "GetEnvironmentProfileOutput$createdBy": "<p>The Amazon DataZone user who created this environment profile.</p>",
         "GetIamPortalLoginUrlOutput$authCodeUrl": "<p>The data portal URL of the specified Amazon DataZone domain.</p>",
         "GetIamPortalLoginUrlOutput$userProfileId": "<p>The ID of the user profile.</p>",
+        "GetLineageNodeOutput$description": "<p>The description of the data lineage node.</p>",
+        "GetLineageNodeOutput$name": "<p>The name of the data lineage node.</p>",
+        "GetLineageNodeOutput$sourceIdentifier": "<p>The source identifier of the data lineage node.</p>",
+        "GetLineageNodeOutput$typeName": "<p>The name of the type of the specified data lineage node.</p>",
         "GetSubscriptionRequestDetailsOutput$reviewerId": "<p>The identifier of the Amazon DataZone user who reviewed the subscription request.</p>",
         "GetSubscriptionTargetOutput$manageAccessRole": "<p>The manage access role with which the subscription target was created.</p>",
         "GetSubscriptionTargetOutput$provider": "<p>The provider of the subscription target.</p>",
         "GetSubscriptionTargetOutput$type": "<p>The type of the subscription target.</p>",
         "GroupDetails$groupId": "<p>The identifier of the group in Amazon DataZone.</p>",
         "IamUserProfileDetails$arn": "<p>The ARN of an IAM user profile in Amazon DataZone.</p>",
+        "LineageNodeSummary$description": "<p>The description of the data lineage node.</p>",
+        "LineageNodeSummary$name": "<p>The name of the data lineage node.</p>",
+        "LineageNodeSummary$sourceIdentifier": "<p>The alternate ID of the data lineage node.</p>",
+        "LineageNodeSummary$typeName": "<p>The name of the type of the data lineage node.</p>",
+        "LineageNodeTypeItem$description": "<p>The description of the data lineage node type.</p>",
+        "LineageNodeTypeItem$name": "<p>The name of the data lineage node type.</p>",
         "ListDataSourcesInput$environmentIdentifier": "<p>The identifier of the environment in which to list the data sources.</p>",
         "ListDataSourcesInput$projectIdentifier": "<p>The identifier of the project in which to list data sources.</p>",
         "ListEnvironmentsInput$name": "<p>The name of the environment.</p>",
@@ -4597,6 +4720,12 @@
     "Timestamp": {
       "base": null,
       "refs": {
+        "GetLineageNodeInput$eventTimestamp": "<p>The event time stamp for which you want to get the data lineage node.</p>",
+        "GetLineageNodeOutput$eventTimestamp": "<p>The timestamp of the event described in the data lineage node.</p>",
+        "LineageNodeReference$eventTimestamp": "<p>The event timestamp of the data lineage node.</p>",
+        "LineageNodeSummary$eventTimestamp": "<p>The event timestamp of the data lineage node.</p>",
+        "ListLineageNodeHistoryInput$eventTimestampGTE": "<p>Specifies whether the action is to return data lineage node history from the time after the event timestamp.</p>",
+        "ListLineageNodeHistoryInput$eventTimestampLTE": "<p>Specifies whether the action is to return data lineage node history from the time prior of the event timestamp.</p>",
         "ListNotificationsInput$afterTimestamp": "<p>The time after which you want to list notifications.</p>",
         "ListNotificationsInput$beforeTimestamp": "<p>The time before which you want to list notifications.</p>",
         "ListTimeSeriesDataPointsInput$endedAt": "<p>The timestamp at which the data points that you wanted to list ended.</p>",
@@ -4821,6 +4950,7 @@
         "GetDomainOutput$lastUpdatedAt": "<p>The timestamp of when the Amazon DataZone domain was last updated.</p>",
         "GetGlossaryOutput$updatedAt": "<p>The timestamp of when the business glossary was updated.</p>",
         "GetGlossaryTermOutput$updatedAt": "<p>The timestamp of when the business glossary term was updated.</p>",
+        "GetLineageNodeOutput$updatedAt": "<p>The timestamp at which the data lineage node was updated.</p>",
         "GetListingOutput$updatedAt": "<p>The timestamp of when the listing was updated.</p>",
         "GetSubscriptionGrantOutput$updatedAt": "<p>The timestamp of when the subscription grant was upated.</p>",
         "GetSubscriptionOutput$updatedAt": "<p>The timestamp of when the subscription was updated.</p>",
@@ -4828,6 +4958,8 @@
         "GetSubscriptionTargetOutput$updatedAt": "<p>The timestamp of when the subscription target was updated.</p>",
         "GlossaryItem$updatedAt": "<p>The timestamp of when the business glossary was updated.</p>",
         "GlossaryTermItem$updatedAt": "<p>The timestamp of when a business glossary term was updated.</p>",
+        "LineageNodeSummary$updatedAt": "<p>The timestamp at which the data lineage node was updated.</p>",
+        "LineageNodeTypeItem$updatedAt": "<p>The timestamp at which the data lineage node type was updated.</p>",
         "RejectSubscriptionRequestOutput$updatedAt": "<p>The timestamp of when the subscription request was updated.</p>",
         "RevokeSubscriptionOutput$updatedAt": "<p>The timestamp of when the subscription was revoked.</p>",
         "SubscriptionGrantSummary$updatedAt": "<p>The timestampf of when the subscription grant was updated.</p>",
@@ -4856,6 +4988,7 @@
         "GetAssetTypeOutput$updatedBy": "<p>The Amazon DataZone user that updated the asset type.</p>",
         "GetGlossaryOutput$updatedBy": "<p>The Amazon DataZone user who updated the business glossary.</p>",
         "GetGlossaryTermOutput$updatedBy": "<p>The Amazon DataZone user who updated the business glossary term.</p>",
+        "GetLineageNodeOutput$updatedBy": "<p>The user who updated the data lineage node.</p>",
         "GetListingOutput$updatedBy": "<p>The Amazon DataZone user who updated the listing.</p>",
         "GetSubscriptionGrantOutput$updatedBy": "<p>The Amazon DataZone user who updated the subscription grant.</p>",
         "GetSubscriptionOutput$updatedBy": "<p>The Amazon DataZone user who updated the subscription.</p>",
@@ -4863,6 +4996,8 @@
         "GetSubscriptionTargetOutput$updatedBy": "<p>The Amazon DataZone user who updated the subscription target.</p>",
         "GlossaryItem$updatedBy": "<p>The Amazon DataZone user who updated the business glossary.</p>",
         "GlossaryTermItem$updatedBy": "<p>The Amazon DataZone user who updated the business glossary term.</p>",
+        "LineageNodeSummary$updatedBy": "<p>The user who updated the data lineage node.</p>",
+        "LineageNodeTypeItem$updatedBy": "<p>The user who updated the data lineage node type.</p>",
         "RejectSubscriptionRequestOutput$updatedBy": "<p>The Amazon DataZone user who updated the subscription request.</p>",
         "RevokeSubscriptionOutput$updatedBy": "<p>The Amazon DataZone user who revoked the subscription.</p>",
         "SubscriptionGrantSummary$updatedBy": "<p>The Amazon DataZone user who updated the subscription grant.</p>",

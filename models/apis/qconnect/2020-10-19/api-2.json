@@ -65,6 +65,24 @@
       ],
       "idempotent":true
     },
+    "CreateContentAssociation":{
+      "name":"CreateContentAssociation",
+      "http":{
+        "method":"POST",
+        "requestUri":"/knowledgeBases/{knowledgeBaseId}/contents/{contentId}/associations",
+        "responseCode":200
+      },
+      "input":{"shape":"CreateContentAssociationRequest"},
+      "output":{"shape":"CreateContentAssociationResponse"},
+      "errors":[
+        {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
     "CreateKnowledgeBase":{
       "name":"CreateKnowledgeBase",
       "http":{
@@ -165,6 +183,22 @@
       ],
       "idempotent":true
     },
+    "DeleteContentAssociation":{
+      "name":"DeleteContentAssociation",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/knowledgeBases/{knowledgeBaseId}/contents/{contentId}/associations/{contentAssociationId}",
+        "responseCode":204
+      },
+      "input":{"shape":"DeleteContentAssociationRequest"},
+      "output":{"shape":"DeleteContentAssociationResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"}
+      ],
+      "idempotent":true
+    },
     "DeleteImportJob":{
       "name":"DeleteImportJob",
       "http":{
@@ -254,6 +288,21 @@
       },
       "input":{"shape":"GetContentRequest"},
       "output":{"shape":"GetContentResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "GetContentAssociation":{
+      "name":"GetContentAssociation",
+      "http":{
+        "method":"GET",
+        "requestUri":"/knowledgeBases/{knowledgeBaseId}/contents/{contentId}/associations/{contentAssociationId}",
+        "responseCode":200
+      },
+      "input":{"shape":"GetContentAssociationRequest"},
+      "output":{"shape":"GetContentAssociationResponse"},
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
@@ -379,6 +428,21 @@
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"}
+      ]
+    },
+    "ListContentAssociations":{
+      "name":"ListContentAssociations",
+      "http":{
+        "method":"GET",
+        "requestUri":"/knowledgeBases/{knowledgeBaseId}/contents/{contentId}/associations",
+        "responseCode":200
+      },
+      "input":{"shape":"ListContentAssociationsRequest"},
+      "output":{"shape":"ListContentAssociationsResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "ListContents":{
@@ -701,6 +765,12 @@
       },
       "exception":true
     },
+    "AmazonConnectGuideAssociationData":{
+      "type":"structure",
+      "members":{
+        "flowId":{"shape":"GenericArn"}
+      }
+    },
     "AndConditions":{
       "type":"list",
       "member":{"shape":"TagCondition"}
@@ -715,7 +785,7 @@
     },
     "Arn":{
       "type":"string",
-      "pattern":"^arn:[a-z-]*?:wisdom:[a-z0-9-]*?:[0-9]{12}:[a-z-]*?/[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}(?:/[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})?$"
+      "pattern":"^arn:[a-z-]*?:wisdom:[a-z0-9-]*?:[0-9]{12}:[a-z-]*?/[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}(?:/[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}){0,2}$"
     },
     "AssistantAssociationData":{
       "type":"structure",
@@ -917,6 +987,69 @@
       "value":{"shape":"ContactAttributeValue"},
       "sensitive":true
     },
+    "ContentAssociationContents":{
+      "type":"structure",
+      "members":{
+        "amazonConnectGuideAssociation":{"shape":"AmazonConnectGuideAssociationData"}
+      },
+      "union":true
+    },
+    "ContentAssociationData":{
+      "type":"structure",
+      "required":[
+        "associationData",
+        "associationType",
+        "contentArn",
+        "contentAssociationArn",
+        "contentAssociationId",
+        "contentId",
+        "knowledgeBaseArn",
+        "knowledgeBaseId"
+      ],
+      "members":{
+        "associationData":{"shape":"ContentAssociationContents"},
+        "associationType":{"shape":"ContentAssociationType"},
+        "contentArn":{"shape":"Arn"},
+        "contentAssociationArn":{"shape":"Arn"},
+        "contentAssociationId":{"shape":"Uuid"},
+        "contentId":{"shape":"Uuid"},
+        "knowledgeBaseArn":{"shape":"Arn"},
+        "knowledgeBaseId":{"shape":"Uuid"},
+        "tags":{"shape":"Tags"}
+      }
+    },
+    "ContentAssociationSummary":{
+      "type":"structure",
+      "required":[
+        "associationData",
+        "associationType",
+        "contentArn",
+        "contentAssociationArn",
+        "contentAssociationId",
+        "contentId",
+        "knowledgeBaseArn",
+        "knowledgeBaseId"
+      ],
+      "members":{
+        "associationData":{"shape":"ContentAssociationContents"},
+        "associationType":{"shape":"ContentAssociationType"},
+        "contentArn":{"shape":"Arn"},
+        "contentAssociationArn":{"shape":"Arn"},
+        "contentAssociationId":{"shape":"Uuid"},
+        "contentId":{"shape":"Uuid"},
+        "knowledgeBaseArn":{"shape":"Arn"},
+        "knowledgeBaseId":{"shape":"Uuid"},
+        "tags":{"shape":"Tags"}
+      }
+    },
+    "ContentAssociationSummaryList":{
+      "type":"list",
+      "member":{"shape":"ContentAssociationSummary"}
+    },
+    "ContentAssociationType":{
+      "type":"string",
+      "enum":["AMAZON_CONNECT_GUIDE"]
+    },
     "ContentData":{
       "type":"structure",
       "required":[
@@ -1087,6 +1220,40 @@
       "type":"structure",
       "members":{
         "assistant":{"shape":"AssistantData"}
+      }
+    },
+    "CreateContentAssociationRequest":{
+      "type":"structure",
+      "required":[
+        "association",
+        "associationType",
+        "contentId",
+        "knowledgeBaseId"
+      ],
+      "members":{
+        "association":{"shape":"ContentAssociationContents"},
+        "associationType":{"shape":"ContentAssociationType"},
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        },
+        "contentId":{
+          "shape":"UuidOrArn",
+          "location":"uri",
+          "locationName":"contentId"
+        },
+        "knowledgeBaseId":{
+          "shape":"UuidOrArn",
+          "location":"uri",
+          "locationName":"knowledgeBaseId"
+        },
+        "tags":{"shape":"Tags"}
+      }
+    },
+    "CreateContentAssociationResponse":{
+      "type":"structure",
+      "members":{
+        "contentAssociation":{"shape":"ContentAssociationData"}
       }
     },
     "CreateContentRequest":{
@@ -1277,6 +1444,36 @@
       }
     },
     "DeleteAssistantResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DeleteContentAssociationRequest":{
+      "type":"structure",
+      "required":[
+        "contentAssociationId",
+        "contentId",
+        "knowledgeBaseId"
+      ],
+      "members":{
+        "contentAssociationId":{
+          "shape":"UuidOrArn",
+          "location":"uri",
+          "locationName":"contentAssociationId"
+        },
+        "contentId":{
+          "shape":"UuidOrArn",
+          "location":"uri",
+          "locationName":"contentId"
+        },
+        "knowledgeBaseId":{
+          "shape":"UuidOrArn",
+          "location":"uri",
+          "locationName":"knowledgeBaseId"
+        }
+      }
+    },
+    "DeleteContentAssociationResponse":{
       "type":"structure",
       "members":{
       }
@@ -1504,6 +1701,37 @@
       "type":"structure",
       "members":{
         "assistant":{"shape":"AssistantData"}
+      }
+    },
+    "GetContentAssociationRequest":{
+      "type":"structure",
+      "required":[
+        "contentAssociationId",
+        "contentId",
+        "knowledgeBaseId"
+      ],
+      "members":{
+        "contentAssociationId":{
+          "shape":"UuidOrArn",
+          "location":"uri",
+          "locationName":"contentAssociationId"
+        },
+        "contentId":{
+          "shape":"UuidOrArn",
+          "location":"uri",
+          "locationName":"contentId"
+        },
+        "knowledgeBaseId":{
+          "shape":"UuidOrArn",
+          "location":"uri",
+          "locationName":"knowledgeBaseId"
+        }
+      }
+    },
+    "GetContentAssociationResponse":{
+      "type":"structure",
+      "members":{
+        "contentAssociation":{"shape":"ContentAssociationData"}
       }
     },
     "GetContentRequest":{
@@ -1928,6 +2156,43 @@
       "required":["assistantSummaries"],
       "members":{
         "assistantSummaries":{"shape":"AssistantList"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListContentAssociationsRequest":{
+      "type":"structure",
+      "required":[
+        "contentId",
+        "knowledgeBaseId"
+      ],
+      "members":{
+        "contentId":{
+          "shape":"UuidOrArn",
+          "location":"uri",
+          "locationName":"contentId"
+        },
+        "knowledgeBaseId":{
+          "shape":"UuidOrArn",
+          "location":"uri",
+          "locationName":"knowledgeBaseId"
+        },
+        "maxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "nextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "ListContentAssociationsResponse":{
+      "type":"structure",
+      "required":["contentAssociationSummaries"],
+      "members":{
+        "contentAssociationSummaries":{"shape":"ContentAssociationSummaryList"},
         "nextToken":{"shape":"NextToken"}
       }
     },
@@ -3045,6 +3310,18 @@
         "title":{"shape":"DocumentText"}
       }
     },
+    "ThrottlingException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"String"}
+      },
+      "error":{
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true,
+      "retryable":{"throttling":false}
+    },
     "TimeToLive":{
       "type":"integer",
       "box":true,
@@ -3225,7 +3502,7 @@
     },
     "UuidOrArn":{
       "type":"string",
-      "pattern":"^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$|^arn:[a-z-]*?:wisdom:[a-z0-9-]*?:[0-9]{12}:[a-z-]*?/[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}(?:/[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})?$"
+      "pattern":"^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$|^arn:[a-z-]*?:wisdom:[a-z0-9-]*?:[0-9]{12}:[a-z-]*?/[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}(?:/[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}){0,2}$"
     },
     "ValidationException":{
       "type":"structure",

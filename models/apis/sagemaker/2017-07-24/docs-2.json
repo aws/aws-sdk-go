@@ -712,6 +712,7 @@
         "DeleteAppRequest$AppType": "<p>The type of app.</p>",
         "DescribeAppRequest$AppType": "<p>The type of app.</p>",
         "DescribeAppResponse$AppType": "<p>The type of app.</p>",
+        "HiddenAppTypesList$member": null,
         "SpaceSettings$AppType": "<p>The type of app created within the space.</p>",
         "SpaceSettingsSummary$AppType": "<p>The type of app created within the space.</p>"
       }
@@ -2030,7 +2031,7 @@
       }
     },
     "ClusterEbsVolumeConfig": {
-      "base": "<p>Defines the configuration for attaching an additional Amazon Elastic Block Store (EBS) volume to each instance of the SageMaker HyperPod cluster instance group.</p>",
+      "base": "<p>Defines the configuration for attaching an additional Amazon Elastic Block Store (EBS) volume to each instance of the SageMaker HyperPod cluster instance group. To learn more, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-hyperpod-release-notes.html#sagemaker-hyperpod-release-notes-20240620\">SageMaker HyperPod release notes: June 20, 2024</a>.</p>",
       "refs": {
         "ClusterInstanceStorageConfig$EbsVolumeConfig": "<p>Defines the configuration for attaching additional Amazon Elastic Block Store (EBS) volumes to the instances in the SageMaker HyperPod cluster instance group. The additional EBS volume is attached to each instance within the SageMaker HyperPod cluster instance group and mounted to <code>/opt/sagemaker</code>.</p>"
       }
@@ -2103,7 +2104,7 @@
       }
     },
     "ClusterInstanceStorageConfig": {
-      "base": "<p>Defines the configuration for attaching additional storage to the instances in the SageMaker HyperPod cluster instance group.</p>",
+      "base": "<p>Defines the configuration for attaching additional storage to the instances in the SageMaker HyperPod cluster instance group. To learn more, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-hyperpod-release-notes.html#sagemaker-hyperpod-release-notes-20240620\">SageMaker HyperPod release notes: June 20, 2024</a>.</p>",
       "refs": {
         "ClusterInstanceStorageConfigs$member": null
       }
@@ -6515,6 +6516,18 @@
         "OidcMemberDefinition$Groups": "<p>A list of comma seperated strings that identifies user groups in your OIDC IdP. Each user group is made up of a group of private workers.</p>"
       }
     },
+    "HiddenAppTypesList": {
+      "base": null,
+      "refs": {
+        "StudioWebPortalSettings$HiddenAppTypes": "<p>The <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/studio-updated-apps.html\">Applications supported in Studio</a> that are hidden from the Studio left navigation pane.</p>"
+      }
+    },
+    "HiddenMlToolsList": {
+      "base": null,
+      "refs": {
+        "StudioWebPortalSettings$HiddenMlTools": "<p>The machine learning tools that are hidden from the Studio left navigation pane.</p>"
+      }
+    },
     "HolidayConfig": {
       "base": null,
       "refs": {
@@ -6663,7 +6676,7 @@
     "HubContentType": {
       "base": null,
       "refs": {
-        "DeleteHubContentReferenceRequest$HubContentType": "<p>The type of hub content to delete.</p>",
+        "DeleteHubContentReferenceRequest$HubContentType": "<p>The type of hub content reference to delete. The only supported type of hub content reference to delete is <code>ModelReference</code>.</p>",
         "DeleteHubContentRequest$HubContentType": "<p>The type of content that you want to delete from a hub.</p>",
         "DescribeHubContentRequest$HubContentType": "<p>The type of content in the hub.</p>",
         "DescribeHubContentResponse$HubContentType": "<p>The type of hub content.</p>",
@@ -9577,6 +9590,12 @@
       "base": null,
       "refs": {
         "InstanceMetadataServiceConfiguration$MinimumInstanceMetadataServiceVersion": "<p>Indicates the minimum IMDS version that the notebook instance supports. When passed as part of <code>CreateNotebookInstance</code>, if no value is selected, then it defaults to IMDSv1. This means that both IMDSv1 and IMDSv2 are supported. If passed as part of <code>UpdateNotebookInstance</code>, there is no default.</p>"
+      }
+    },
+    "MlTools": {
+      "base": null,
+      "refs": {
+        "HiddenMlToolsList$member": null
       }
     },
     "MlflowVersion": {
@@ -14551,6 +14570,12 @@
       "base": null,
       "refs": {
         "UserSettings$StudioWebPortal": "<p>Whether the user can access Studio. If this value is set to <code>DISABLED</code>, the user cannot access Studio, even if that is the default experience for the domain.</p>"
+      }
+    },
+    "StudioWebPortalSettings": {
+      "base": "<p>Studio settings. If these settings are applied on a user level, they take priority over the settings applied on a domain level.</p>",
+      "refs": {
+        "UserSettings$StudioWebPortalSettings": "<p>Studio settings. If these settings are applied on a user level, they take priority over the settings applied on a domain level.</p>"
       }
     },
     "SubnetId": {

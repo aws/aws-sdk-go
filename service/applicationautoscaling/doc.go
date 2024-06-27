@@ -30,11 +30,13 @@
 //
 //   - Amazon SageMaker endpoint variants
 //
-//   - Amazon SageMaker Serverless endpoint provisioned concurrency
-//
 //   - Amazon SageMaker inference components
 //
+//   - Amazon SageMaker serverless endpoint provisioned concurrency
+//
 //   - Spot Fleets (Amazon EC2)
+//
+//   - WorkSpaces pools
 //
 //   - Custom resources provided by your own applications or services
 //

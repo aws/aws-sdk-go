@@ -4,11 +4,13 @@
     "apiVersion":"2021-07-15",
     "endpointPrefix":"media-pipelines-chime",
     "protocol":"rest-json",
+    "protocols":["rest-json"],
     "serviceFullName":"Amazon Chime SDK Media Pipelines",
     "serviceId":"Chime SDK Media Pipelines",
     "signatureVersion":"v4",
     "signingName":"chime",
-    "uid":"chime-sdk-media-pipelines-2021-07-15"
+    "uid":"chime-sdk-media-pipelines-2021-07-15",
+    "auth":["aws.auth#sigv4"]
   },
   "operations":{
     "CreateMediaCapturePipeline":{
@@ -665,6 +667,7 @@
         "LanguageModelName":{"shape":"ModelName"},
         "FilterPartialResults":{"shape":"Boolean"},
         "IdentifyLanguage":{"shape":"Boolean"},
+        "IdentifyMultipleLanguages":{"shape":"Boolean"},
         "LanguageOptions":{"shape":"LanguageOptions"},
         "PreferredLanguage":{"shape":"CallAnalyticsLanguageCode"},
         "VocabularyNames":{"shape":"VocabularyNames"},
@@ -2199,7 +2202,7 @@
       "type":"list",
       "member":{"shape":"RecordingStreamConfiguration"},
       "max":2,
-      "min":2
+      "min":1
     },
     "ReservedStreamCapacity":{
       "type":"integer",
