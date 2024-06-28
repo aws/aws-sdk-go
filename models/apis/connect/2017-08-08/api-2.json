@@ -11,7 +11,8 @@
     "serviceId":"Connect",
     "signatureVersion":"v4",
     "signingName":"connect",
-    "uid":"connect-2017-08-08"
+    "uid":"connect-2017-08-08",
+    "auth":["aws.auth#sigv4"]
   },
   "operations":{
     "ActivateEvaluationForm":{
@@ -4193,6 +4194,14 @@
         "L5Ids":{"shape":"HierarchyGroupIdList"}
       }
     },
+    "AgentId":{
+      "type":"string",
+      "max":256
+    },
+    "AgentIds":{
+      "type":"list",
+      "member":{"shape":"AgentId"}
+    },
     "AgentInfo":{
       "type":"structure",
       "members":{
@@ -4309,6 +4318,12 @@
       "type":"string",
       "max":100,
       "min":1
+    },
+    "AgentsCriteria":{
+      "type":"structure",
+      "members":{
+        "AgentIds":{"shape":"AgentIds"}
+      }
     },
     "AgentsMinOneMaxHundred":{
       "type":"list",
@@ -4792,7 +4807,8 @@
       "members":{
         "Name":{"shape":"PredefinedAttributeName"},
         "Value":{"shape":"ProficiencyValue"},
-        "ProficiencyLevel":{"shape":"ProficiencyLevel"},
+        "ProficiencyLevel":{"shape":"NullableProficiencyLevel"},
+        "MatchCriteria":{"shape":"MatchCriteria"},
         "ComparisonOperator":{"shape":"ComparisonOperator"}
       }
     },
@@ -11258,6 +11274,12 @@
       }
     },
     "Long":{"type":"long"},
+    "MatchCriteria":{
+      "type":"structure",
+      "members":{
+        "AgentsCriteria":{"shape":"AgentsCriteria"}
+      }
+    },
     "MaxResult10":{
       "type":"integer",
       "max":10,
@@ -11518,6 +11540,11 @@
         "UserTags":{"shape":"UserTagMap"},
         "UserIds":{"shape":"UserIdList"}
       }
+    },
+    "NullableProficiencyLevel":{
+      "type":"float",
+      "max":5.0,
+      "min":1.0
     },
     "NumberReference":{
       "type":"structure",

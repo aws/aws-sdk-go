@@ -12071,6 +12071,11 @@ type InstanceTypeConfig struct {
 	// InstanceType is a required field
 	InstanceType *string `min:"1" type:"string" required:"true"`
 
+	// The priority at which Amazon EMR launches the Amazon EC2 instances with this
+	// instance type. Priority starts at 0, which is the highest priority. Amazon
+	// EMR considers the highest priority first.
+	Priority *float64 `type:"double"`
+
 	// The number of units that a provisioned instance of this type provides toward
 	// fulfilling the target capacities defined in InstanceFleetConfig. This value
 	// is 1 for a master instance fleet, and must be 1 or greater for core and task
@@ -12153,6 +12158,12 @@ func (s *InstanceTypeConfig) SetInstanceType(v string) *InstanceTypeConfig {
 	return s
 }
 
+// SetPriority sets the Priority field's value.
+func (s *InstanceTypeConfig) SetPriority(v float64) *InstanceTypeConfig {
+	s.Priority = &v
+	return s
+}
+
 // SetWeightedCapacity sets the WeightedCapacity field's value.
 func (s *InstanceTypeConfig) SetWeightedCapacity(v int64) *InstanceTypeConfig {
 	s.WeightedCapacity = &v
@@ -12192,6 +12203,11 @@ type InstanceTypeSpecification struct {
 
 	// The Amazon EC2 instance type, for example m3.xlarge.
 	InstanceType *string `min:"1" type:"string"`
+
+	// The priority at which Amazon EMR launches the Amazon EC2 instances with this
+	// instance type. Priority starts at 0, which is the highest priority. Amazon
+	// EMR considers the highest priority first.
+	Priority *float64 `type:"double"`
 
 	// The number of units that a provisioned instance of this type provides toward
 	// fulfilling the target capacities defined in InstanceFleetConfig. Capacity
@@ -12257,6 +12273,12 @@ func (s *InstanceTypeSpecification) SetEbsOptimized(v bool) *InstanceTypeSpecifi
 // SetInstanceType sets the InstanceType field's value.
 func (s *InstanceTypeSpecification) SetInstanceType(v string) *InstanceTypeSpecification {
 	s.InstanceType = &v
+	return s
+}
+
+// SetPriority sets the Priority field's value.
+func (s *InstanceTypeSpecification) SetPriority(v float64) *InstanceTypeSpecification {
+	s.Priority = &v
 	return s
 }
 
@@ -15457,9 +15479,11 @@ func (s *OnDemandCapacityReservationOptions) SetUsageStrategy(v string) *OnDeman
 type OnDemandProvisioningSpecification struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies the strategy to use in launching On-Demand instance fleets. Currently,
-	// the only option is lowest-price (the default), which launches the lowest
-	// price first.
+	// Specifies the strategy to use in launching On-Demand instance fleets. Available
+	// options are lowest-price and prioritized. lowest-price specifies to launch
+	// the instances with the lowest price first, and prioritized specifies that
+	// Amazon EMR should launch the instances with the highest priority first. The
+	// default is lowest-price.
 	//
 	// AllocationStrategy is a required field
 	AllocationStrategy *string `type:"string" required:"true" enum:"OnDemandProvisioningAllocationStrategy"`
@@ -18185,9 +18209,9 @@ type SpotProvisioningSpecification struct {
 	_ struct{} `type:"structure"`
 
 	// Specifies one of the following strategies to launch Spot Instance fleets:
-	// price-capacity-optimized, capacity-optimized, lowest-price, or diversified.
-	// For more information on the provisioning strategies, see Allocation strategies
-	// for Spot Instances (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-fleet-allocation-strategy.html)
+	// capacity-optimized, price-capacity-optimized, lowest-price, or diversified,
+	// and capacity-optimized-prioritized. For more information on the provisioning
+	// strategies, see Allocation strategies for Spot Instances (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-fleet-allocation-strategy.html)
 	// in the Amazon EC2 User Guide for Linux Instances.
 	//
 	// When you launch a Spot Instance fleet with the old console, it automatically
@@ -20814,12 +20838,16 @@ func OnDemandCapacityReservationUsageStrategy_Values() []string {
 const (
 	// OnDemandProvisioningAllocationStrategyLowestPrice is a OnDemandProvisioningAllocationStrategy enum value
 	OnDemandProvisioningAllocationStrategyLowestPrice = "lowest-price"
+
+	// OnDemandProvisioningAllocationStrategyPrioritized is a OnDemandProvisioningAllocationStrategy enum value
+	OnDemandProvisioningAllocationStrategyPrioritized = "prioritized"
 )
 
 // OnDemandProvisioningAllocationStrategy_Values returns all elements of the OnDemandProvisioningAllocationStrategy enum
 func OnDemandProvisioningAllocationStrategy_Values() []string {
 	return []string{
 		OnDemandProvisioningAllocationStrategyLowestPrice,
+		OnDemandProvisioningAllocationStrategyPrioritized,
 	}
 }
 
@@ -20919,6 +20947,9 @@ const (
 
 	// SpotProvisioningAllocationStrategyDiversified is a SpotProvisioningAllocationStrategy enum value
 	SpotProvisioningAllocationStrategyDiversified = "diversified"
+
+	// SpotProvisioningAllocationStrategyCapacityOptimizedPrioritized is a SpotProvisioningAllocationStrategy enum value
+	SpotProvisioningAllocationStrategyCapacityOptimizedPrioritized = "capacity-optimized-prioritized"
 )
 
 // SpotProvisioningAllocationStrategy_Values returns all elements of the SpotProvisioningAllocationStrategy enum
@@ -20928,6 +20959,7 @@ func SpotProvisioningAllocationStrategy_Values() []string {
 		SpotProvisioningAllocationStrategyPriceCapacityOptimized,
 		SpotProvisioningAllocationStrategyLowestPrice,
 		SpotProvisioningAllocationStrategyDiversified,
+		SpotProvisioningAllocationStrategyCapacityOptimizedPrioritized,
 	}
 }
 

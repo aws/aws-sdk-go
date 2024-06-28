@@ -9135,6 +9135,9 @@ const (
 
 	// KeyAlgorithmEcSecp384r1 is a KeyAlgorithm enum value
 	KeyAlgorithmEcSecp384r1 = "EC_secp384r1"
+
+	// KeyAlgorithmSm2 is a KeyAlgorithm enum value
+	KeyAlgorithmSm2 = "SM2"
 )
 
 // KeyAlgorithm_Values returns all elements of the KeyAlgorithm enum
@@ -9144,6 +9147,7 @@ func KeyAlgorithm_Values() []string {
 		KeyAlgorithmRsa4096,
 		KeyAlgorithmEcPrime256v1,
 		KeyAlgorithmEcSecp384r1,
+		KeyAlgorithmSm2,
 	}
 }
 
@@ -9153,6 +9157,9 @@ const (
 
 	// KeyStorageSecurityStandardFips1402Level3OrHigher is a KeyStorageSecurityStandard enum value
 	KeyStorageSecurityStandardFips1402Level3OrHigher = "FIPS_140_2_LEVEL_3_OR_HIGHER"
+
+	// KeyStorageSecurityStandardCcpcLevel1OrHigher is a KeyStorageSecurityStandard enum value
+	KeyStorageSecurityStandardCcpcLevel1OrHigher = "CCPC_LEVEL_1_OR_HIGHER"
 )
 
 // KeyStorageSecurityStandard_Values returns all elements of the KeyStorageSecurityStandard enum
@@ -9160,6 +9167,7 @@ func KeyStorageSecurityStandard_Values() []string {
 	return []string{
 		KeyStorageSecurityStandardFips1402Level2OrHigher,
 		KeyStorageSecurityStandardFips1402Level3OrHigher,
+		KeyStorageSecurityStandardCcpcLevel1OrHigher,
 	}
 }
 
@@ -9265,6 +9273,9 @@ const (
 
 	// SigningAlgorithmSha512withrsa is a SigningAlgorithm enum value
 	SigningAlgorithmSha512withrsa = "SHA512WITHRSA"
+
+	// SigningAlgorithmSm3withsm2 is a SigningAlgorithm enum value
+	SigningAlgorithmSm3withsm2 = "SM3WITHSM2"
 )
 
 // SigningAlgorithm_Values returns all elements of the SigningAlgorithm enum
@@ -9276,6 +9287,7 @@ func SigningAlgorithm_Values() []string {
 		SigningAlgorithmSha256withrsa,
 		SigningAlgorithmSha384withrsa,
 		SigningAlgorithmSha512withrsa,
+		SigningAlgorithmSm3withsm2,
 	}
 }
 

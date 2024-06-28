@@ -6124,8 +6124,8 @@ func (s *CatalogConfigurationUpdate) SetGlueDataCatalogConfigurationUpdate(v *Gl
 
 // Describes an application's checkpointing configuration. Checkpointing is
 // the process of persisting application state for fault tolerance. For more
-// information, see Checkpoints for Fault Tolerance (https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/dev/datastream/fault-tolerance/checkpointing/#enabling-and-configuring-checkpointing)
-// in the Apache Flink Documentation (https://nightlies.apache.org/flink/flink-docs-release-1.18/).
+// information, see Checkpoints for Fault Tolerance (https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/dev/datastream/fault-tolerance/checkpointing/#enabling-and-configuring-checkpointing)
+// in the Apache Flink Documentation (https://nightlies.apache.org/flink/flink-docs-release-1.19/).
 type CheckpointConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -6164,8 +6164,8 @@ type CheckpointConfiguration struct {
 	// Describes the minimum time in milliseconds after a checkpoint operation completes
 	// that a new checkpoint operation can start. If a checkpoint operation takes
 	// longer than the CheckpointInterval, the application otherwise performs continual
-	// checkpoint operations. For more information, see Tuning Checkpointing (https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/ops/state/large_state_tuning/#tuning-checkpointing)
-	// in the Apache Flink Documentation (https://nightlies.apache.org/flink/flink-docs-release-1.18/).
+	// checkpoint operations. For more information, see Tuning Checkpointing (https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/ops/state/large_state_tuning/#tuning-checkpointing)
+	// in the Apache Flink Documentation (https://nightlies.apache.org/flink/flink-docs-release-1.19/).
 	//
 	// If CheckpointConfiguration.ConfigurationType is DEFAULT, the application
 	// will use a MinPauseBetweenCheckpoints value of 5000, even if this value is
@@ -9238,8 +9238,8 @@ type FlinkApplicationConfiguration struct {
 
 	// Describes an application's checkpointing configuration. Checkpointing is
 	// the process of persisting application state for fault tolerance. For more
-	// information, see Checkpoints for Fault Tolerance (https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/dev/datastream/fault-tolerance/checkpointing/#enabling-and-configuring-checkpointing)
-	// in the Apache Flink Documentation (https://nightlies.apache.org/flink/flink-docs-release-1.18/).
+	// information, see Checkpoints for Fault Tolerance (https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/dev/datastream/fault-tolerance/checkpointing/#enabling-and-configuring-checkpointing)
+	// in the Apache Flink Documentation (https://nightlies.apache.org/flink/flink-docs-release-1.19/).
 	CheckpointConfiguration *CheckpointConfiguration `type:"structure"`
 
 	// Describes configuration parameters for Amazon CloudWatch logging for an application.
@@ -9320,8 +9320,8 @@ type FlinkApplicationConfigurationDescription struct {
 	CheckpointConfigurationDescription *CheckpointConfigurationDescription `type:"structure"`
 
 	// The job plan for an application. For more information about the job plan,
-	// see Jobs and Scheduling (https://nightlies.apache.org/flink/flink-docs-release-1.18/internals/job_scheduling.html)
-	// in the Apache Flink Documentation (https://nightlies.apache.org/flink/flink-docs-release-1.18/).
+	// see Jobs and Scheduling (https://nightlies.apache.org/flink/flink-docs-release-1.19/internals/job_scheduling.html)
+	// in the Apache Flink Documentation (https://nightlies.apache.org/flink/flink-docs-release-1.19/).
 	// To retrieve the job plan for the application, use the DescribeApplicationRequest$IncludeAdditionalDetails
 	// parameter of the DescribeApplication operation.
 	JobPlanDescription *string `type:"string"`
@@ -9458,8 +9458,8 @@ type FlinkRunConfiguration struct {
 	// to skip a state that cannot be mapped to the new program. This will happen
 	// if the program is updated between snapshots to remove stateful parameters,
 	// and state data in the snapshot no longer corresponds to valid application
-	// data. For more information, see Allowing Non-Restored State (https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/ops/state/savepoints/#allowing-non-restored-state)
-	// in the Apache Flink documentation (https://nightlies.apache.org/flink/flink-docs-release-1.18/).
+	// data. For more information, see Allowing Non-Restored State (https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/ops/state/savepoints/#allowing-non-restored-state)
+	// in the Apache Flink documentation (https://nightlies.apache.org/flink/flink-docs-release-1.19/).
 	//
 	// This value defaults to false. If you update your application without specifying
 	// this parameter, AllowNonRestoredState will be set to false, even if it was
@@ -12887,8 +12887,8 @@ func (s *OutputUpdate) SetOutputId(v string) *OutputUpdate {
 
 // Describes parameters for how a Managed Service for Apache Flink application
 // executes multiple tasks simultaneously. For more information about parallelism,
-// see Parallel Execution (https://nightlies.apache.org/flink/flink-docs-release-1.18/dev/parallel.html)
-// in the Apache Flink Documentation (https://nightlies.apache.org/flink/flink-docs-release-1.18/).
+// see Parallel Execution (https://nightlies.apache.org/flink/flink-docs-release-1.19/dev/parallel.html)
+// in the Apache Flink Documentation (https://nightlies.apache.org/flink/flink-docs-release-1.19/).
 type ParallelismConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -17110,6 +17110,9 @@ const (
 
 	// RuntimeEnvironmentFlink118 is a RuntimeEnvironment enum value
 	RuntimeEnvironmentFlink118 = "FLINK-1_18"
+
+	// RuntimeEnvironmentFlink119 is a RuntimeEnvironment enum value
+	RuntimeEnvironmentFlink119 = "FLINK-1_19"
 )
 
 // RuntimeEnvironment_Values returns all elements of the RuntimeEnvironment enum
@@ -17125,6 +17128,7 @@ func RuntimeEnvironment_Values() []string {
 		RuntimeEnvironmentFlink115,
 		RuntimeEnvironmentZeppelinFlink30,
 		RuntimeEnvironmentFlink118,
+		RuntimeEnvironmentFlink119,
 	}
 }
 

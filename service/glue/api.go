@@ -47213,6 +47213,10 @@ func (s *GetDatabaseOutput) SetDatabase(v *Database) *GetDatabaseOutput {
 type GetDatabasesInput struct {
 	_ struct{} `type:"structure"`
 
+	// Specifies the database fields returned by the GetDatabases call. This parameter
+	// doesn’t accept an empty list. The request must include the NAME.
+	AttributesToGet []*string `type:"list" enum:"DatabaseAttributes"`
+
 	// The ID of the Data Catalog from which to retrieve Databases. If none is provided,
 	// the Amazon Web Services account ID is used by default.
 	CatalogId *string `min:"1" type:"string"`
@@ -47268,6 +47272,12 @@ func (s *GetDatabasesInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAttributesToGet sets the AttributesToGet field's value.
+func (s *GetDatabasesInput) SetAttributesToGet(v []*string) *GetDatabasesInput {
+	s.AttributesToGet = v
+	return s
 }
 
 // SetCatalogId sets the CatalogId field's value.
@@ -81192,6 +81202,18 @@ func DataQualityRuleResultStatus_Values() []string {
 		DataQualityRuleResultStatusPass,
 		DataQualityRuleResultStatusFail,
 		DataQualityRuleResultStatusError,
+	}
+}
+
+const (
+	// DatabaseAttributesName is a DatabaseAttributes enum value
+	DatabaseAttributesName = "NAME"
+)
+
+// DatabaseAttributes_Values returns all elements of the DatabaseAttributes enum
+func DatabaseAttributes_Values() []string {
+	return []string{
+		DatabaseAttributesName,
 	}
 }
 

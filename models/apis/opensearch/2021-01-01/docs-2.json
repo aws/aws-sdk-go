@@ -67,26 +67,6 @@
     "UpgradeDomain": "<p>Allows you to either upgrade your Amazon OpenSearch Service domain or perform an upgrade eligibility check to a compatible version of OpenSearch or Elasticsearch.</p>"
   },
   "shapes": {
-    "AIMLOptionsInput": {
-      "base": "<p>Container for parameters required to enable all machine learning features.</p>",
-      "refs": {
-        "CreateDomainRequest$AIMLOptions": "<p>Options for all machine learning features for the specified domain.</p>",
-        "UpdateDomainConfigRequest$AIMLOptions": "<p>Options for all machine learning features for the specified domain.</p>"
-      }
-    },
-    "AIMLOptionsOutput": {
-      "base": "<p>Container for parameters representing the state of machine learning features on the specified domain.</p>",
-      "refs": {
-        "AIMLOptionsStatus$Options": "<p>Machine learning options on the specified domain.</p>",
-        "DomainStatus$AIMLOptions": "<p>Container for parameters required to enable all machine learning features.</p>"
-      }
-    },
-    "AIMLOptionsStatus": {
-      "base": "<p>The status of machine learning options on the specified domain.</p>",
-      "refs": {
-        "DomainConfig$AIMLOptions": "<p>Container for parameters required to enable all machine learning features.</p>"
-      }
-    },
     "ARN": {
       "base": "<p>The Amazon Resource Name (ARN) of the domain. See <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/index.html\">Identifiers for IAM Entities </a> in <i>Using Amazon Web Services Identity and Access Management</i> for more information. </p>",
       "refs": {
@@ -1914,31 +1894,6 @@
         "DomainStatus$ModifyingProperties": "<p>Information about the domain properties that are currently being modified.</p>"
       }
     },
-    "NaturalLanguageQueryGenerationCurrentState": {
-      "base": null,
-      "refs": {
-        "NaturalLanguageQueryGenerationOptionsOutput$CurrentState": "<p>The current state of the natural language query generation feature, indicating completion, in progress, or failure.</p>"
-      }
-    },
-    "NaturalLanguageQueryGenerationDesiredState": {
-      "base": null,
-      "refs": {
-        "NaturalLanguageQueryGenerationOptionsInput$DesiredState": "<p>The desired state of the natural language query generation feature. Valid values are ENABLED and DISABLED.</p>",
-        "NaturalLanguageQueryGenerationOptionsOutput$DesiredState": "<p>The desired state of the natural language query generation feature. Valid values are ENABLED and DISABLED.</p>"
-      }
-    },
-    "NaturalLanguageQueryGenerationOptionsInput": {
-      "base": "<p>Container for parameters required to enable the natural language query generation feature.</p>",
-      "refs": {
-        "AIMLOptionsInput$NaturalLanguageQueryGenerationOptions": "<p>Container for parameters required for natural language query generation on the specified domain.</p>"
-      }
-    },
-    "NaturalLanguageQueryGenerationOptionsOutput": {
-      "base": "<p>Container for parameters representing the state of the natural language query generation feature on the specified domain.</p>",
-      "refs": {
-        "AIMLOptionsOutput$NaturalLanguageQueryGenerationOptions": "<p>Container for parameters required for natural language query generation on the specified domain.</p>"
-      }
-    },
     "NextToken": {
       "base": "<p>When <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. Send the request again using the returned token to retrieve the next page.</p>",
       "refs": {
@@ -2090,7 +2045,6 @@
     "OptionStatus": {
       "base": "<p>Provides the current status of an entity.</p>",
       "refs": {
-        "AIMLOptionsStatus$Status": null,
         "AccessPoliciesStatus$Status": "<p>The status of the access policy for the domain.</p>",
         "AdvancedOptionsStatus$Status": "<p>The status of advanced options for the specified domain.</p>",
         "AdvancedSecurityOptionsStatus$Status": "<p>Status of the fine-grained access control settings for a domain.</p>",

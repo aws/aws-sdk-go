@@ -12,7 +12,8 @@
     "signatureVersion":"v4",
     "signingName":"kinesisanalytics",
     "targetPrefix":"KinesisAnalytics_20180523",
-    "uid":"kinesisanalyticsv2-2018-05-23"
+    "uid":"kinesisanalyticsv2-2018-05-23",
+    "auth":["aws.auth#sigv4"]
   },
   "operations":{
     "AddApplicationCloudWatchLoggingOption":{
@@ -2471,7 +2472,8 @@
         "ZEPPELIN-FLINK-2_0",
         "FLINK-1_15",
         "ZEPPELIN-FLINK-3_0",
-        "FLINK-1_18"
+        "FLINK-1_18",
+        "FLINK-1_19"
       ]
     },
     "S3ApplicationCodeLocationDescription":{

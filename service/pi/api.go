@@ -1962,6 +1962,8 @@ type DescribeDimensionKeysInput struct {
 	//    or Partition parameters.
 	//
 	//    * A single filter for any other dimension in this dimension group.
+	//
+	// The db.sql.db_id filter isn't available for RDS for SQL Server DB instances.
 	Filter map[string]*string `type:"map"`
 
 	// A specification for how to aggregate the data points from a query result.
@@ -4314,6 +4316,8 @@ type MetricQuery struct {
 	//    parameter.
 	//
 	//    * A single filter for any other dimension in this dimension group.
+	//
+	// The db.sql.db_id filter isn't available for RDS for SQL Server DB instances.
 	Filter map[string]*string `type:"map"`
 
 	// A specification for how to aggregate the data points from a query result.

@@ -1000,25 +1000,6 @@
     }
   },
   "shapes":{
-    "AIMLOptionsInput":{
-      "type":"structure",
-      "members":{
-        "NaturalLanguageQueryGenerationOptions":{"shape":"NaturalLanguageQueryGenerationOptionsInput"}
-      }
-    },
-    "AIMLOptionsOutput":{
-      "type":"structure",
-      "members":{
-        "NaturalLanguageQueryGenerationOptions":{"shape":"NaturalLanguageQueryGenerationOptionsOutput"}
-      }
-    },
-    "AIMLOptionsStatus":{
-      "type":"structure",
-      "members":{
-        "Options":{"shape":"AIMLOptionsOutput"},
-        "Status":{"shape":"OptionStatus"}
-      }
-    },
     "ARN":{
       "type":"string",
       "max":2048,
@@ -1638,8 +1619,7 @@
         "TagList":{"shape":"TagList"},
         "AutoTuneOptions":{"shape":"AutoTuneOptionsInput"},
         "OffPeakWindowOptions":{"shape":"OffPeakWindowOptions"},
-        "SoftwareUpdateOptions":{"shape":"SoftwareUpdateOptions"},
-        "AIMLOptions":{"shape":"AIMLOptionsInput"}
+        "SoftwareUpdateOptions":{"shape":"SoftwareUpdateOptions"}
       }
     },
     "CreateDomainResponse":{
@@ -2298,8 +2278,7 @@
         "ChangeProgressDetails":{"shape":"ChangeProgressDetails"},
         "OffPeakWindowOptions":{"shape":"OffPeakWindowOptionsStatus"},
         "SoftwareUpdateOptions":{"shape":"SoftwareUpdateOptionsStatus"},
-        "ModifyingProperties":{"shape":"ModifyingPropertiesList"},
-        "AIMLOptions":{"shape":"AIMLOptionsStatus"}
+        "ModifyingProperties":{"shape":"ModifyingPropertiesList"}
       }
     },
     "DomainEndpointOptions":{
@@ -2492,8 +2471,7 @@
         "OffPeakWindowOptions":{"shape":"OffPeakWindowOptions"},
         "SoftwareUpdateOptions":{"shape":"SoftwareUpdateOptions"},
         "DomainProcessingStatus":{"shape":"DomainProcessingStatusType"},
-        "ModifyingProperties":{"shape":"ModifyingPropertiesList"},
-        "AIMLOptions":{"shape":"AIMLOptionsOutput"}
+        "ModifyingProperties":{"shape":"ModifyingPropertiesList"}
       }
     },
     "DomainStatusList":{
@@ -3386,38 +3364,6 @@
     "ModifyingPropertiesList":{
       "type":"list",
       "member":{"shape":"ModifyingProperties"}
-    },
-    "NaturalLanguageQueryGenerationCurrentState":{
-      "type":"string",
-      "enum":[
-        "NOT_ENABLED",
-        "ENABLE_COMPLETE",
-        "ENABLE_IN_PROGRESS",
-        "ENABLE_FAILED",
-        "DISABLE_COMPLETE",
-        "DISABLE_IN_PROGRESS",
-        "DISABLE_FAILED"
-      ]
-    },
-    "NaturalLanguageQueryGenerationDesiredState":{
-      "type":"string",
-      "enum":[
-        "ENABLED",
-        "DISABLED"
-      ]
-    },
-    "NaturalLanguageQueryGenerationOptionsInput":{
-      "type":"structure",
-      "members":{
-        "DesiredState":{"shape":"NaturalLanguageQueryGenerationDesiredState"}
-      }
-    },
-    "NaturalLanguageQueryGenerationOptionsOutput":{
-      "type":"structure",
-      "members":{
-        "DesiredState":{"shape":"NaturalLanguageQueryGenerationDesiredState"},
-        "CurrentState":{"shape":"NaturalLanguageQueryGenerationCurrentState"}
-      }
     },
     "NextToken":{"type":"string"},
     "NodeId":{
@@ -4363,8 +4309,7 @@
         "DryRun":{"shape":"DryRun"},
         "DryRunMode":{"shape":"DryRunMode"},
         "OffPeakWindowOptions":{"shape":"OffPeakWindowOptions"},
-        "SoftwareUpdateOptions":{"shape":"SoftwareUpdateOptions"},
-        "AIMLOptions":{"shape":"AIMLOptionsInput"}
+        "SoftwareUpdateOptions":{"shape":"SoftwareUpdateOptions"}
       }
     },
     "UpdateDomainConfigResponse":{

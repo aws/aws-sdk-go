@@ -1,3 +1,21 @@
+Release v1.54.11 (2024-06-28)
+===
+
+### Service Client Updates
+* `service/acm-pca`: Updates service API
+* `service/cloudhsmv2`: Updates service API and documentation
+  * Added 3 new APIs to support backup sharing: GetResourcePolicy, PutResourcePolicy, and DeleteResourcePolicy. Added BackupArn to the output of the DescribeBackups API. Added support for BackupArn in the CreateCluster API.
+* `service/connect`: Updates service API and documentation
+* `service/elasticmapreduce`: Updates service API and documentation
+  * This release provides the support for new allocation strategies i.e. CAPACITY_OPTIMIZED_PRIORITIZED for Spot and PRIORITIZED for On-Demand by taking input of priority value for each instance type for instance fleet clusters.
+* `service/glue`: Updates service API and documentation
+  * Added AttributesToGet parameter to Glue GetDatabases, allowing caller to limit output to include only the database name.
+* `service/kinesisanalyticsv2`: Updates service API and documentation
+* `service/opensearch`: Updates service API and documentation
+* `service/pi`: Updates service API and documentation
+* `service/workspaces`: Updates service API and documentation
+  * Added support for Red Hat Enterprise Linux 8 on Amazon WorkSpaces Personal.
+
 Release v1.54.10 (2024-06-27)
 ===
 

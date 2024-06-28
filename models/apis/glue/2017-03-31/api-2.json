@@ -6375,6 +6375,14 @@
         "FederatedDatabase":{"shape":"FederatedDatabase"}
       }
     },
+    "DatabaseAttributes":{
+      "type":"string",
+      "enum":["NAME"]
+    },
+    "DatabaseAttributesList":{
+      "type":"list",
+      "member":{"shape":"DatabaseAttributes"}
+    },
     "DatabaseIdentifier":{
       "type":"structure",
       "members":{
@@ -7900,7 +7908,8 @@
         "CatalogId":{"shape":"CatalogIdString"},
         "NextToken":{"shape":"Token"},
         "MaxResults":{"shape":"CatalogGetterPageSize"},
-        "ResourceShareType":{"shape":"ResourceShareType"}
+        "ResourceShareType":{"shape":"ResourceShareType"},
+        "AttributesToGet":{"shape":"DatabaseAttributesList"}
       }
     },
     "GetDatabasesResponse":{

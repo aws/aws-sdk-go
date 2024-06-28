@@ -56,7 +56,10 @@ func (c *CloudHSMV2) CopyBackupToRegionRequest(input *CopyBackupToRegionInput) (
 
 // CopyBackupToRegion API operation for AWS CloudHSM V2.
 //
-// Copy an AWS CloudHSM cluster backup to a different region.
+// Copy an CloudHSM cluster backup to a different region.
+//
+// Cross-account use: No. You cannot perform this operation on an CloudHSM backup
+// in a different Amazon Web Services account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -72,8 +75,8 @@ func (c *CloudHSMV2) CopyBackupToRegionRequest(input *CopyBackupToRegionInput) (
 //     perform the requested operation.
 //
 //   - CloudHsmInternalFailureException
-//     The request was rejected because of an AWS CloudHSM internal failure. The
-//     request can be retried.
+//     The request was rejected because of an CloudHSM internal failure. The request
+//     can be retried.
 //
 //   - CloudHsmInvalidRequestException
 //     The request was rejected because it is not a valid request.
@@ -153,7 +156,11 @@ func (c *CloudHSMV2) CreateClusterRequest(input *CreateClusterInput) (req *reque
 
 // CreateCluster API operation for AWS CloudHSM V2.
 //
-// Creates a new AWS CloudHSM cluster.
+// Creates a new CloudHSM cluster.
+//
+// Cross-account use: Yes. To perform this operation with an CloudHSM backup
+// in a different AWS account, specify the full backup ARN in the value of the
+// SourceBackupId parameter.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -169,8 +176,8 @@ func (c *CloudHSMV2) CreateClusterRequest(input *CreateClusterInput) (req *reque
 //     perform the requested operation.
 //
 //   - CloudHsmInternalFailureException
-//     The request was rejected because of an AWS CloudHSM internal failure. The
-//     request can be retried.
+//     The request was rejected because of an CloudHSM internal failure. The request
+//     can be retried.
 //
 //   - CloudHsmInvalidRequestException
 //     The request was rejected because it is not a valid request.
@@ -250,8 +257,10 @@ func (c *CloudHSMV2) CreateHsmRequest(input *CreateHsmInput) (req *request.Reque
 
 // CreateHsm API operation for AWS CloudHSM V2.
 //
-// Creates a new hardware security module (HSM) in the specified AWS CloudHSM
-// cluster.
+// Creates a new hardware security module (HSM) in the specified CloudHSM cluster.
+//
+// Cross-account use: No. You cannot perform this operation on an CloudHSM cluster
+// in a different Amazon Web Service account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -263,8 +272,8 @@ func (c *CloudHSMV2) CreateHsmRequest(input *CreateHsmInput) (req *request.Reque
 // Returned Error Types:
 //
 //   - CloudHsmInternalFailureException
-//     The request was rejected because of an AWS CloudHSM internal failure. The
-//     request can be retried.
+//     The request was rejected because of an CloudHSM internal failure. The request
+//     can be retried.
 //
 //   - CloudHsmServiceException
 //     The request was rejected because an error occurred.
@@ -344,9 +353,12 @@ func (c *CloudHSMV2) DeleteBackupRequest(input *DeleteBackupInput) (req *request
 
 // DeleteBackup API operation for AWS CloudHSM V2.
 //
-// Deletes a specified AWS CloudHSM backup. A backup can be restored up to 7
-// days after the DeleteBackup request is made. For more information on restoring
+// Deletes a specified CloudHSM backup. A backup can be restored up to 7 days
+// after the DeleteBackup request is made. For more information on restoring
 // a backup, see RestoreBackup.
+//
+// Cross-account use: No. You cannot perform this operation on an CloudHSM backup
+// in a different Amazon Web Services account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -362,8 +374,8 @@ func (c *CloudHSMV2) DeleteBackupRequest(input *DeleteBackupInput) (req *request
 //     perform the requested operation.
 //
 //   - CloudHsmInternalFailureException
-//     The request was rejected because of an AWS CloudHSM internal failure. The
-//     request can be retried.
+//     The request was rejected because of an CloudHSM internal failure. The request
+//     can be retried.
 //
 //   - CloudHsmInvalidRequestException
 //     The request was rejected because it is not a valid request.
@@ -439,9 +451,12 @@ func (c *CloudHSMV2) DeleteClusterRequest(input *DeleteClusterInput) (req *reque
 
 // DeleteCluster API operation for AWS CloudHSM V2.
 //
-// Deletes the specified AWS CloudHSM cluster. Before you can delete a cluster,
+// Deletes the specified CloudHSM cluster. Before you can delete a cluster,
 // you must delete all HSMs in the cluster. To see if the cluster contains any
 // HSMs, use DescribeClusters. To delete an HSM, use DeleteHsm.
+//
+// Cross-account use: No. You cannot perform this operation on an CloudHSM cluster
+// in a different Amazon Web Services account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -457,8 +472,8 @@ func (c *CloudHSMV2) DeleteClusterRequest(input *DeleteClusterInput) (req *reque
 //     perform the requested operation.
 //
 //   - CloudHsmInternalFailureException
-//     The request was rejected because of an AWS CloudHSM internal failure. The
-//     request can be retried.
+//     The request was rejected because of an CloudHSM internal failure. The request
+//     can be retried.
 //
 //   - CloudHsmInvalidRequestException
 //     The request was rejected because it is not a valid request.
@@ -543,6 +558,9 @@ func (c *CloudHSMV2) DeleteHsmRequest(input *DeleteHsmInput) (req *request.Reque
 // ID of the HSM's ENI. You need to specify only one of these values. To find
 // these values, use DescribeClusters.
 //
+// Cross-account use: No. You cannot perform this operation on an CloudHSM hsm
+// in a different Amazon Web Services account.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -553,8 +571,8 @@ func (c *CloudHSMV2) DeleteHsmRequest(input *DeleteHsmInput) (req *request.Reque
 // Returned Error Types:
 //
 //   - CloudHsmInternalFailureException
-//     The request was rejected because of an AWS CloudHSM internal failure. The
-//     request can be retried.
+//     The request was rejected because of an CloudHSM internal failure. The request
+//     can be retried.
 //
 //   - CloudHsmServiceException
 //     The request was rejected because an error occurred.
@@ -586,6 +604,105 @@ func (c *CloudHSMV2) DeleteHsm(input *DeleteHsmInput) (*DeleteHsmOutput, error) 
 // for more information on using Contexts.
 func (c *CloudHSMV2) DeleteHsmWithContext(ctx aws.Context, input *DeleteHsmInput, opts ...request.Option) (*DeleteHsmOutput, error) {
 	req, out := c.DeleteHsmRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteResourcePolicy = "DeleteResourcePolicy"
+
+// DeleteResourcePolicyRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteResourcePolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteResourcePolicy for more information on using the DeleteResourcePolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteResourcePolicyRequest method.
+//	req, resp := client.DeleteResourcePolicyRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudhsmv2-2017-04-28/DeleteResourcePolicy
+func (c *CloudHSMV2) DeleteResourcePolicyRequest(input *DeleteResourcePolicyInput) (req *request.Request, output *DeleteResourcePolicyOutput) {
+	op := &request.Operation{
+		Name:       opDeleteResourcePolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteResourcePolicyInput{}
+	}
+
+	output = &DeleteResourcePolicyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteResourcePolicy API operation for AWS CloudHSM V2.
+//
+// Deletes an CloudHSM resource policy. Deleting a resource policy will result
+// in the resource being unshared and removed from any RAM resource shares.
+// Deleting the resource policy attached to a backup will not impact any clusters
+// created from that backup.
+//
+// Cross-account use: No. You cannot perform this operation on an CloudHSM resource
+// in a different Amazon Web Services account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CloudHSM V2's
+// API operation DeleteResourcePolicy for usage and error information.
+//
+// Returned Error Types:
+//
+//   - CloudHsmInternalFailureException
+//     The request was rejected because of an CloudHSM internal failure. The request
+//     can be retried.
+//
+//   - CloudHsmServiceException
+//     The request was rejected because an error occurred.
+//
+//   - CloudHsmInvalidRequestException
+//     The request was rejected because it is not a valid request.
+//
+//   - CloudHsmResourceNotFoundException
+//     The request was rejected because it refers to a resource that cannot be found.
+//
+//   - CloudHsmAccessDeniedException
+//     The request was rejected because the requester does not have permission to
+//     perform the requested operation.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudhsmv2-2017-04-28/DeleteResourcePolicy
+func (c *CloudHSMV2) DeleteResourcePolicy(input *DeleteResourcePolicyInput) (*DeleteResourcePolicyOutput, error) {
+	req, out := c.DeleteResourcePolicyRequest(input)
+	return out, req.Send()
+}
+
+// DeleteResourcePolicyWithContext is the same as DeleteResourcePolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteResourcePolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudHSMV2) DeleteResourcePolicyWithContext(ctx aws.Context, input *DeleteResourcePolicyInput, opts ...request.Option) (*DeleteResourcePolicyOutput, error) {
+	req, out := c.DeleteResourcePolicyRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -640,7 +757,8 @@ func (c *CloudHSMV2) DescribeBackupsRequest(input *DescribeBackupsInput) (req *r
 
 // DescribeBackups API operation for AWS CloudHSM V2.
 //
-// Gets information about backups of AWS CloudHSM clusters.
+// Gets information about backups of CloudHSM clusters. Lists either the backups
+// you own or the backups shared with you when the Shared parameter is true.
 //
 // This is a paginated operation, which means that each response might contain
 // only a subset of all the backups. When the response contains only a subset
@@ -648,6 +766,9 @@ func (c *CloudHSMV2) DescribeBackupsRequest(input *DescribeBackupsInput) (req *r
 // DescribeBackups request to get more backups. When you receive a response
 // with no NextToken (or an empty or null value), that means there are no more
 // backups to get.
+//
+// Cross-account use: Yes. Customers can describe backups in other Amazon Web
+// Services accounts that are shared with them.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -663,8 +784,8 @@ func (c *CloudHSMV2) DescribeBackupsRequest(input *DescribeBackupsInput) (req *r
 //     perform the requested operation.
 //
 //   - CloudHsmInternalFailureException
-//     The request was rejected because of an AWS CloudHSM internal failure. The
-//     request can be retried.
+//     The request was rejected because of an CloudHSM internal failure. The request
+//     can be retried.
 //
 //   - CloudHsmInvalidRequestException
 //     The request was rejected because it is not a valid request.
@@ -801,7 +922,7 @@ func (c *CloudHSMV2) DescribeClustersRequest(input *DescribeClustersInput) (req 
 
 // DescribeClusters API operation for AWS CloudHSM V2.
 //
-// Gets information about AWS CloudHSM clusters.
+// Gets information about CloudHSM clusters.
 //
 // This is a paginated operation, which means that each response might contain
 // only a subset of all the clusters. When the response contains only a subset
@@ -809,6 +930,9 @@ func (c *CloudHSMV2) DescribeClustersRequest(input *DescribeClustersInput) (req 
 // DescribeClusters request to get more clusters. When you receive a response
 // with no NextToken (or an empty or null value), that means there are no more
 // clusters to get.
+//
+// Cross-account use: No. You cannot perform this operation on CloudHSM clusters
+// in a different Amazon Web Services account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -824,8 +948,8 @@ func (c *CloudHSMV2) DescribeClustersRequest(input *DescribeClustersInput) (req 
 //     perform the requested operation.
 //
 //   - CloudHsmInternalFailureException
-//     The request was rejected because of an AWS CloudHSM internal failure. The
-//     request can be retried.
+//     The request was rejected because of an CloudHSM internal failure. The request
+//     can be retried.
 //
 //   - CloudHsmInvalidRequestException
 //     The request was rejected because it is not a valid request.
@@ -910,6 +1034,102 @@ func (c *CloudHSMV2) DescribeClustersPagesWithContext(ctx aws.Context, input *De
 	return p.Err()
 }
 
+const opGetResourcePolicy = "GetResourcePolicy"
+
+// GetResourcePolicyRequest generates a "aws/request.Request" representing the
+// client's request for the GetResourcePolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetResourcePolicy for more information on using the GetResourcePolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetResourcePolicyRequest method.
+//	req, resp := client.GetResourcePolicyRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudhsmv2-2017-04-28/GetResourcePolicy
+func (c *CloudHSMV2) GetResourcePolicyRequest(input *GetResourcePolicyInput) (req *request.Request, output *GetResourcePolicyOutput) {
+	op := &request.Operation{
+		Name:       opGetResourcePolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetResourcePolicyInput{}
+	}
+
+	output = &GetResourcePolicyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetResourcePolicy API operation for AWS CloudHSM V2.
+//
+// Retrieves the resource policy document attached to a given resource.
+//
+// Cross-account use: No. You cannot perform this operation on an CloudHSM resource
+// in a different Amazon Web Services account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CloudHSM V2's
+// API operation GetResourcePolicy for usage and error information.
+//
+// Returned Error Types:
+//
+//   - CloudHsmInternalFailureException
+//     The request was rejected because of an CloudHSM internal failure. The request
+//     can be retried.
+//
+//   - CloudHsmServiceException
+//     The request was rejected because an error occurred.
+//
+//   - CloudHsmInvalidRequestException
+//     The request was rejected because it is not a valid request.
+//
+//   - CloudHsmResourceNotFoundException
+//     The request was rejected because it refers to a resource that cannot be found.
+//
+//   - CloudHsmAccessDeniedException
+//     The request was rejected because the requester does not have permission to
+//     perform the requested operation.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudhsmv2-2017-04-28/GetResourcePolicy
+func (c *CloudHSMV2) GetResourcePolicy(input *GetResourcePolicyInput) (*GetResourcePolicyOutput, error) {
+	req, out := c.GetResourcePolicyRequest(input)
+	return out, req.Send()
+}
+
+// GetResourcePolicyWithContext is the same as GetResourcePolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetResourcePolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudHSMV2) GetResourcePolicyWithContext(ctx aws.Context, input *GetResourcePolicyInput, opts ...request.Option) (*GetResourcePolicyOutput, error) {
+	req, out := c.GetResourcePolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opInitializeCluster = "InitializeCluster"
 
 // InitializeClusterRequest generates a "aws/request.Request" representing the
@@ -953,10 +1173,13 @@ func (c *CloudHSMV2) InitializeClusterRequest(input *InitializeClusterInput) (re
 
 // InitializeCluster API operation for AWS CloudHSM V2.
 //
-// Claims an AWS CloudHSM cluster by submitting the cluster certificate issued
-// by your issuing certificate authority (CA) and the CA's root certificate.
-// Before you can claim a cluster, you must sign the cluster's certificate signing
+// Claims an CloudHSM cluster by submitting the cluster certificate issued by
+// your issuing certificate authority (CA) and the CA's root certificate. Before
+// you can claim a cluster, you must sign the cluster's certificate signing
 // request (CSR) with your issuing CA. To get the cluster's CSR, use DescribeClusters.
+//
+// Cross-account use: No. You cannot perform this operation on an CloudHSM cluster
+// in a different Amazon Web Services account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -972,8 +1195,8 @@ func (c *CloudHSMV2) InitializeClusterRequest(input *InitializeClusterInput) (re
 //     perform the requested operation.
 //
 //   - CloudHsmInternalFailureException
-//     The request was rejected because of an AWS CloudHSM internal failure. The
-//     request can be retried.
+//     The request was rejected because of an CloudHSM internal failure. The request
+//     can be retried.
 //
 //   - CloudHsmInvalidRequestException
 //     The request was rejected because it is not a valid request.
@@ -1055,13 +1278,16 @@ func (c *CloudHSMV2) ListTagsRequest(input *ListTagsInput) (req *request.Request
 
 // ListTags API operation for AWS CloudHSM V2.
 //
-// Gets a list of tags for the specified AWS CloudHSM cluster.
+// Gets a list of tags for the specified CloudHSM cluster.
 //
 // This is a paginated operation, which means that each response might contain
 // only a subset of all the tags. When the response contains only a subset of
 // tags, it includes a NextToken value. Use this value in a subsequent ListTags
 // request to get more tags. When you receive a response with no NextToken (or
 // an empty or null value), that means there are no more tags to get.
+//
+// Cross-account use: No. You cannot perform this operation on an CloudHSM resource
+// in a different Amazon Web Services account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1077,8 +1303,8 @@ func (c *CloudHSMV2) ListTagsRequest(input *ListTagsInput) (req *request.Request
 //     perform the requested operation.
 //
 //   - CloudHsmInternalFailureException
-//     The request was rejected because of an AWS CloudHSM internal failure. The
-//     request can be retried.
+//     The request was rejected because of an CloudHSM internal failure. The request
+//     can be retried.
 //
 //   - CloudHsmInvalidRequestException
 //     The request was rejected because it is not a valid request.
@@ -1209,7 +1435,10 @@ func (c *CloudHSMV2) ModifyBackupAttributesRequest(input *ModifyBackupAttributes
 
 // ModifyBackupAttributes API operation for AWS CloudHSM V2.
 //
-// Modifies attributes for AWS CloudHSM backup.
+// Modifies attributes for CloudHSM backup.
+//
+// Cross-account use: No. You cannot perform this operation on an CloudHSM backup
+// in a different Amazon Web Services account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1225,8 +1454,8 @@ func (c *CloudHSMV2) ModifyBackupAttributesRequest(input *ModifyBackupAttributes
 //     perform the requested operation.
 //
 //   - CloudHsmInternalFailureException
-//     The request was rejected because of an AWS CloudHSM internal failure. The
-//     request can be retried.
+//     The request was rejected because of an CloudHSM internal failure. The request
+//     can be retried.
 //
 //   - CloudHsmInvalidRequestException
 //     The request was rejected because it is not a valid request.
@@ -1302,7 +1531,10 @@ func (c *CloudHSMV2) ModifyClusterRequest(input *ModifyClusterInput) (req *reque
 
 // ModifyCluster API operation for AWS CloudHSM V2.
 //
-// Modifies AWS CloudHSM cluster.
+// Modifies CloudHSM cluster.
+//
+// Cross-account use: No. You cannot perform this operation on an CloudHSM cluster
+// in a different Amazon Web Services account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1318,8 +1550,8 @@ func (c *CloudHSMV2) ModifyClusterRequest(input *ModifyClusterInput) (req *reque
 //     perform the requested operation.
 //
 //   - CloudHsmInternalFailureException
-//     The request was rejected because of an AWS CloudHSM internal failure. The
-//     request can be retried.
+//     The request was rejected because of an CloudHSM internal failure. The request
+//     can be retried.
 //
 //   - CloudHsmInvalidRequestException
 //     The request was rejected because it is not a valid request.
@@ -1347,6 +1579,121 @@ func (c *CloudHSMV2) ModifyCluster(input *ModifyClusterInput) (*ModifyClusterOut
 // for more information on using Contexts.
 func (c *CloudHSMV2) ModifyClusterWithContext(ctx aws.Context, input *ModifyClusterInput, opts ...request.Option) (*ModifyClusterOutput, error) {
 	req, out := c.ModifyClusterRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opPutResourcePolicy = "PutResourcePolicy"
+
+// PutResourcePolicyRequest generates a "aws/request.Request" representing the
+// client's request for the PutResourcePolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutResourcePolicy for more information on using the PutResourcePolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the PutResourcePolicyRequest method.
+//	req, resp := client.PutResourcePolicyRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudhsmv2-2017-04-28/PutResourcePolicy
+func (c *CloudHSMV2) PutResourcePolicyRequest(input *PutResourcePolicyInput) (req *request.Request, output *PutResourcePolicyOutput) {
+	op := &request.Operation{
+		Name:       opPutResourcePolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &PutResourcePolicyInput{}
+	}
+
+	output = &PutResourcePolicyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// PutResourcePolicy API operation for AWS CloudHSM V2.
+//
+// Creates or updates an CloudHSM resource policy. A resource policy helps you
+// to define the IAM entity (for example, an Amazon Web Services account) that
+// can manage your CloudHSM resources. The following resources support CloudHSM
+// resource policies:
+//
+//   - Backup - The resource policy allows you to describe the backup and restore
+//     a cluster from the backup in another Amazon Web Services account.
+//
+// In order to share a backup, it must be in a 'READY' state and you must own
+// it.
+//
+// While you can share a backup using the CloudHSM PutResourcePolicy operation,
+// we recommend using Resource Access Manager (RAM) instead. Using RAM provides
+// multiple benefits as it creates the policy for you, allows multiple resources
+// to be shared at one time, and increases the discoverability of shared resources.
+// If you use PutResourcePolicy and want consumers to be able to describe the
+// backups you share with them, you must promote the backup to a standard RAM
+// Resource Share using the RAM PromoteResourceShareCreatedFromPolicy API operation.
+// For more information, see Working with shared backups (https://docs.aws.amazon.com/cloudhsm/latest/userguide/sharing.html)
+// in the CloudHSM User Guide
+//
+// Cross-account use: No. You cannot perform this operation on an CloudHSM resource
+// in a different Amazon Web Services account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CloudHSM V2's
+// API operation PutResourcePolicy for usage and error information.
+//
+// Returned Error Types:
+//
+//   - CloudHsmInternalFailureException
+//     The request was rejected because of an CloudHSM internal failure. The request
+//     can be retried.
+//
+//   - CloudHsmServiceException
+//     The request was rejected because an error occurred.
+//
+//   - CloudHsmInvalidRequestException
+//     The request was rejected because it is not a valid request.
+//
+//   - CloudHsmResourceNotFoundException
+//     The request was rejected because it refers to a resource that cannot be found.
+//
+//   - CloudHsmAccessDeniedException
+//     The request was rejected because the requester does not have permission to
+//     perform the requested operation.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudhsmv2-2017-04-28/PutResourcePolicy
+func (c *CloudHSMV2) PutResourcePolicy(input *PutResourcePolicyInput) (*PutResourcePolicyOutput, error) {
+	req, out := c.PutResourcePolicyRequest(input)
+	return out, req.Send()
+}
+
+// PutResourcePolicyWithContext is the same as PutResourcePolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutResourcePolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudHSMV2) PutResourcePolicyWithContext(ctx aws.Context, input *PutResourcePolicyInput, opts ...request.Option) (*PutResourcePolicyOutput, error) {
+	req, out := c.PutResourcePolicyRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1395,8 +1742,11 @@ func (c *CloudHSMV2) RestoreBackupRequest(input *RestoreBackupInput) (req *reque
 
 // RestoreBackup API operation for AWS CloudHSM V2.
 //
-// Restores a specified AWS CloudHSM backup that is in the PENDING_DELETION
-// state. For mor information on deleting a backup, see DeleteBackup.
+// Restores a specified CloudHSM backup that is in the PENDING_DELETION state.
+// For more information on deleting a backup, see DeleteBackup.
+//
+// Cross-account use: No. You cannot perform this operation on an CloudHSM backup
+// in a different Amazon Web Services account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1412,8 +1762,8 @@ func (c *CloudHSMV2) RestoreBackupRequest(input *RestoreBackupInput) (req *reque
 //     perform the requested operation.
 //
 //   - CloudHsmInternalFailureException
-//     The request was rejected because of an AWS CloudHSM internal failure. The
-//     request can be retried.
+//     The request was rejected because of an CloudHSM internal failure. The request
+//     can be retried.
 //
 //   - CloudHsmInvalidRequestException
 //     The request was rejected because it is not a valid request.
@@ -1490,7 +1840,10 @@ func (c *CloudHSMV2) TagResourceRequest(input *TagResourceInput) (req *request.R
 
 // TagResource API operation for AWS CloudHSM V2.
 //
-// Adds or overwrites one or more tags for the specified AWS CloudHSM cluster.
+// Adds or overwrites one or more tags for the specified CloudHSM cluster.
+//
+// Cross-account use: No. You cannot perform this operation on an CloudHSM resource
+// in a different Amazon Web Services account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1506,8 +1859,8 @@ func (c *CloudHSMV2) TagResourceRequest(input *TagResourceInput) (req *request.R
 //     perform the requested operation.
 //
 //   - CloudHsmInternalFailureException
-//     The request was rejected because of an AWS CloudHSM internal failure. The
-//     request can be retried.
+//     The request was rejected because of an CloudHSM internal failure. The request
+//     can be retried.
 //
 //   - CloudHsmInvalidRequestException
 //     The request was rejected because it is not a valid request.
@@ -1588,7 +1941,10 @@ func (c *CloudHSMV2) UntagResourceRequest(input *UntagResourceInput) (req *reque
 
 // UntagResource API operation for AWS CloudHSM V2.
 //
-// Removes the specified tag or tags from the specified AWS CloudHSM cluster.
+// Removes the specified tag or tags from the specified CloudHSM cluster.
+//
+// Cross-account use: No. You cannot perform this operation on an CloudHSM resource
+// in a different Amazon Web Services account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1604,8 +1960,8 @@ func (c *CloudHSMV2) UntagResourceRequest(input *UntagResourceInput) (req *reque
 //     perform the requested operation.
 //
 //   - CloudHsmInternalFailureException
-//     The request was rejected because of an AWS CloudHSM internal failure. The
-//     request can be retried.
+//     The request was rejected because of an CloudHSM internal failure. The request
+//     can be retried.
 //
 //   - CloudHsmInvalidRequestException
 //     The request was rejected because it is not a valid request.
@@ -1642,14 +1998,16 @@ func (c *CloudHSMV2) UntagResourceWithContext(ctx aws.Context, input *UntagResou
 	return out, req.Send()
 }
 
-// Contains information about a backup of an AWS CloudHSM cluster. All backup
-// objects contain the BackupId, BackupState, ClusterId, and CreateTimestamp
-// parameters. Backups that were copied into a destination region additionally
-// contain the CopyTimestamp, SourceBackup, SourceCluster, and SourceRegion
-// parameters. A backup that is pending deletion will include the DeleteTimestamp
-// parameter.
+// Contains information about a backup of an CloudHSM cluster. All backup objects
+// contain the BackupId, BackupState, ClusterId, and CreateTimestamp parameters.
+// Backups that were copied into a destination region additionally contain the
+// CopyTimestamp, SourceBackup, SourceCluster, and SourceRegion parameters.
+// A backup that is pending deletion will include the DeleteTimestamp parameter.
 type Backup struct {
 	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the backup.
+	BackupArn *string `type:"string"`
 
 	// The identifier (ID) of the backup.
 	//
@@ -1671,7 +2029,7 @@ type Backup struct {
 	// The date and time when the backup will be permanently deleted.
 	DeleteTimestamp *time.Time `type:"timestamp"`
 
-	// The HSM type of the cluster that was backed up.
+	// The HSM type used to create the backup.
 	HsmType *string `type:"string"`
 
 	// The mode of the cluster that was backed up.
@@ -1713,6 +2071,12 @@ func (s Backup) String() string {
 // value will be replaced with "sensitive".
 func (s Backup) GoString() string {
 	return s.String()
+}
+
+// SetBackupArn sets the BackupArn field's value.
+func (s *Backup) SetBackupArn(v string) *Backup {
+	s.BackupArn = &v
+	return s
 }
 
 // SetBackupId sets the BackupId field's value.
@@ -1852,7 +2216,7 @@ func (s *BackupRetentionPolicy) SetValue(v string) *BackupRetentionPolicy {
 type Certificates struct {
 	_ struct{} `type:"structure"`
 
-	// The HSM hardware certificate issued (signed) by AWS CloudHSM.
+	// The HSM hardware certificate issued (signed) by CloudHSM.
 	AwsHardwareCertificate *string `type:"string"`
 
 	// The cluster certificate issued (signed) by the issuing certificate authority
@@ -1983,8 +2347,8 @@ func (s *CloudHsmAccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The request was rejected because of an AWS CloudHSM internal failure. The
-// request can be retried.
+// The request was rejected because of an CloudHSM internal failure. The request
+// can be retried.
 type CloudHsmInternalFailureException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -2305,7 +2669,7 @@ func (s *CloudHsmTagException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Contains information about an AWS CloudHSM cluster.
+// Contains information about an CloudHSM cluster.
 type Cluster struct {
 	_ struct{} `type:"structure"`
 
@@ -2613,9 +2977,10 @@ type CreateClusterInput struct {
 	// The mode to use in the cluster. The allowed values are FIPS and NON_FIPS.
 	Mode *string `type:"string" enum:"ClusterMode"`
 
-	// The identifier (ID) of the cluster backup to restore. Use this value to restore
-	// the cluster from a backup instead of creating a new cluster. To find the
-	// backup ID, use DescribeBackups.
+	// The identifier (ID) or the Amazon Resource Name (ARN) of the cluster backup
+	// to restore. Use this value to restore the cluster from a backup instead of
+	// creating a new cluster. To find the backup ID or ARN, use DescribeBackups.
+	// If using a backup in another account, the full ARN must be supplied.
 	SourceBackupId *string `type:"string"`
 
 	// The identifiers (IDs) of the subnets where you are creating the cluster.
@@ -3121,6 +3486,78 @@ func (s *DeleteHsmOutput) SetHsmId(v string) *DeleteHsmOutput {
 	return s
 }
 
+type DeleteResourcePolicyInput struct {
+	_ struct{} `type:"structure"`
+
+	// Amazon Resource Name (ARN) of the resource from which the policy will be
+	// removed.
+	ResourceArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteResourcePolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteResourcePolicyInput) GoString() string {
+	return s.String()
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *DeleteResourcePolicyInput) SetResourceArn(v string) *DeleteResourcePolicyInput {
+	s.ResourceArn = &v
+	return s
+}
+
+type DeleteResourcePolicyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The policy previously attached to the resource.
+	Policy *string `min:"1" type:"string"`
+
+	// Amazon Resource Name (ARN) of the resource from which the policy was deleted.
+	ResourceArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteResourcePolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteResourcePolicyOutput) GoString() string {
+	return s.String()
+}
+
+// SetPolicy sets the Policy field's value.
+func (s *DeleteResourcePolicyOutput) SetPolicy(v string) *DeleteResourcePolicyOutput {
+	s.Policy = &v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *DeleteResourcePolicyOutput) SetResourceArn(v string) *DeleteResourcePolicyOutput {
+	s.ResourceArn = &v
+	return s
+}
+
 type DescribeBackupsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3151,6 +3588,18 @@ type DescribeBackupsInput struct {
 	// The NextToken value that you received in the previous response. Use this
 	// value to get more backups.
 	NextToken *string `type:"string"`
+
+	// Describe backups that are shared with you.
+	//
+	// By default when using this option, the command returns backups that have
+	// been shared using a standard Resource Access Manager resource share. In order
+	// for a backup that was shared using the PutResourcePolicy command to be returned,
+	// the share must be promoted to a standard resource share using the RAM PromoteResourceShareCreatedFromPolicy
+	// (https://docs.aws.amazon.com/cli/latest/reference/ram/promote-resource-share-created-from-policy.html)
+	// API operation. For more information about sharing backups, see Working with
+	// shared backups (https://docs.aws.amazon.com/cloudhsm/latest/userguide/sharing.html)
+	// in the CloudHSM User Guide.
+	Shared *bool `type:"boolean"`
 
 	// Designates whether or not to sort the return backups by ascending chronological
 	// order of generation.
@@ -3203,6 +3652,12 @@ func (s *DescribeBackupsInput) SetMaxResults(v int64) *DescribeBackupsInput {
 // SetNextToken sets the NextToken field's value.
 func (s *DescribeBackupsInput) SetNextToken(v string) *DescribeBackupsInput {
 	s.NextToken = &v
+	return s
+}
+
+// SetShared sets the Shared field's value.
+func (s *DescribeBackupsInput) SetShared(v bool) *DescribeBackupsInput {
+	s.Shared = &v
 	return s
 }
 
@@ -3431,7 +3886,69 @@ func (s *DestinationBackup) SetSourceRegion(v string) *DestinationBackup {
 	return s
 }
 
-// Contains information about a hardware security module (HSM) in an AWS CloudHSM
+type GetResourcePolicyInput struct {
+	_ struct{} `type:"structure"`
+
+	// Amazon Resource Name (ARN) of the resource to which a policy is attached.
+	ResourceArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetResourcePolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetResourcePolicyInput) GoString() string {
+	return s.String()
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *GetResourcePolicyInput) SetResourceArn(v string) *GetResourcePolicyInput {
+	s.ResourceArn = &v
+	return s
+}
+
+type GetResourcePolicyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The policy attached to a resource.
+	Policy *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetResourcePolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetResourcePolicyOutput) GoString() string {
+	return s.String()
+}
+
+// SetPolicy sets the Policy field's value.
+func (s *GetResourcePolicyOutput) SetPolicy(v string) *GetResourcePolicyOutput {
+	s.Policy = &v
+	return s
+}
+
+// Contains information about a hardware security module (HSM) in an CloudHSM
 // cluster.
 type Hsm struct {
 	_ struct{} `type:"structure"`
@@ -3829,12 +4346,11 @@ func (s *ModifyBackupAttributesInput) SetNeverExpires(v bool) *ModifyBackupAttri
 type ModifyBackupAttributesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Contains information about a backup of an AWS CloudHSM cluster. All backup
-	// objects contain the BackupId, BackupState, ClusterId, and CreateTimestamp
-	// parameters. Backups that were copied into a destination region additionally
-	// contain the CopyTimestamp, SourceBackup, SourceCluster, and SourceRegion
-	// parameters. A backup that is pending deletion will include the DeleteTimestamp
-	// parameter.
+	// Contains information about a backup of an CloudHSM cluster. All backup objects
+	// contain the BackupId, BackupState, ClusterId, and CreateTimestamp parameters.
+	// Backups that were copied into a destination region additionally contain the
+	// CopyTimestamp, SourceBackup, SourceCluster, and SourceRegion parameters.
+	// A backup that is pending deletion will include the DeleteTimestamp parameter.
 	Backup *Backup `type:"structure"`
 }
 
@@ -3931,7 +4447,7 @@ func (s *ModifyClusterInput) SetClusterId(v string) *ModifyClusterInput {
 type ModifyClusterOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Contains information about an AWS CloudHSM cluster.
+	// Contains information about an CloudHSM cluster.
 	Cluster *Cluster `type:"structure"`
 }
 
@@ -3956,6 +4472,103 @@ func (s ModifyClusterOutput) GoString() string {
 // SetCluster sets the Cluster field's value.
 func (s *ModifyClusterOutput) SetCluster(v *Cluster) *ModifyClusterOutput {
 	s.Cluster = v
+	return s
+}
+
+type PutResourcePolicyInput struct {
+	_ struct{} `type:"structure"`
+
+	// The policy you want to associate with a resource.
+	//
+	// For an example policy, see Working with shared backups (https://docs.aws.amazon.com/cloudhsm/latest/userguide/sharing.html)
+	// in the CloudHSM User Guide
+	Policy *string `min:"1" type:"string"`
+
+	// Amazon Resource Name (ARN) of the resource to which you want to attach a
+	// policy.
+	ResourceArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutResourcePolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutResourcePolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutResourcePolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutResourcePolicyInput"}
+	if s.Policy != nil && len(*s.Policy) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Policy", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPolicy sets the Policy field's value.
+func (s *PutResourcePolicyInput) SetPolicy(v string) *PutResourcePolicyInput {
+	s.Policy = &v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *PutResourcePolicyInput) SetResourceArn(v string) *PutResourcePolicyInput {
+	s.ResourceArn = &v
+	return s
+}
+
+type PutResourcePolicyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The policy attached to a resource.
+	Policy *string `min:"1" type:"string"`
+
+	// Amazon Resource Name (ARN) of the resource to which a policy is attached.
+	ResourceArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutResourcePolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutResourcePolicyOutput) GoString() string {
+	return s.String()
+}
+
+// SetPolicy sets the Policy field's value.
+func (s *PutResourcePolicyOutput) SetPolicy(v string) *PutResourcePolicyOutput {
+	s.Policy = &v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *PutResourcePolicyOutput) SetResourceArn(v string) *PutResourcePolicyOutput {
+	s.ResourceArn = &v
 	return s
 }
 
