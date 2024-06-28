@@ -4690,8 +4690,7 @@ func (c *WorkSpaces) DescribeWorkspacesPoolSessionsRequest(input *DescribeWorksp
 
 // DescribeWorkspacesPoolSessions API operation for Amazon WorkSpaces.
 //
-// Retrieves a list that describes the streaming sessions for a specified WorkSpaces
-// pool.
+// Retrieves a list that describes the streaming sessions for a specified pool.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4776,7 +4775,7 @@ func (c *WorkSpaces) DescribeWorkspacesPoolsRequest(input *DescribeWorkspacesPoo
 
 // DescribeWorkspacesPools API operation for Amazon WorkSpaces.
 //
-// Describes the specified WorkSpaces pool.
+// Describes the specified WorkSpaces Pools.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7335,10 +7334,10 @@ func (c *WorkSpaces) StartWorkspacesPoolRequest(input *StartWorkspacesPoolInput)
 
 // StartWorkspacesPool API operation for Amazon WorkSpaces.
 //
-// Starts the specified WorkSpaces pool.
+// Starts the specified pool.
 //
-// You cannot start a WorkSpace pool unless it has a running mode of AutoStop
-// and a state of STOPPED.
+// You cannot start a pool unless it has a running mode of AutoStop and a state
+// of STOPPED.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7513,7 +7512,7 @@ func (c *WorkSpaces) StopWorkspacesPoolRequest(input *StopWorkspacesPoolInput) (
 
 // StopWorkspacesPool API operation for Amazon WorkSpaces.
 //
-// Stops the specifiedWorkSpaces pool.
+// Stops the specified pool.
 //
 // You cannot stop a WorkSpace pool unless it has a running mode of AutoStop
 // and a state of AVAILABLE, IMPAIRED, UNHEALTHY, or ERROR.
@@ -7707,7 +7706,7 @@ func (c *WorkSpaces) TerminateWorkspacesPoolRequest(input *TerminateWorkspacesPo
 
 // TerminateWorkspacesPool API operation for Amazon WorkSpaces.
 //
-// Terminates the specified WorkSpaces pool.
+// Terminates the specified pool.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7800,7 +7799,7 @@ func (c *WorkSpaces) TerminateWorkspacesPoolSessionRequest(input *TerminateWorks
 
 // TerminateWorkspacesPoolSession API operation for Amazon WorkSpaces.
 //
-// Terminates the WorkSpaces pool session.
+// Terminates the pool session.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -8397,7 +8396,7 @@ func (c *WorkSpaces) UpdateWorkspacesPoolRequest(input *UpdateWorkspacesPoolInpu
 
 // UpdateWorkspacesPool API operation for Amazon WorkSpaces.
 //
-// Updates the specified WorkSpaces pool.
+// Updates the specified pool.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -8953,7 +8952,7 @@ func (s *ApplicationResourceAssociation) SetStateReason(v *AssociationStateReaso
 	return s
 }
 
-// The persistent application settings for users of a WorkSpaces pool.
+// The persistent application settings for WorkSpaces Pools users.
 type ApplicationSettingsRequest struct {
 	_ struct{} `type:"structure"`
 
@@ -9013,7 +9012,7 @@ func (s *ApplicationSettingsRequest) SetStatus(v string) *ApplicationSettingsReq
 	return s
 }
 
-// Describes the persistent application settings for users of a WorkSpaces pool.
+// Describes the persistent application settings for WorkSpaces Pools users.
 type ApplicationSettingsResponse struct {
 	_ struct{} `type:"structure"`
 
@@ -9556,7 +9555,7 @@ func (s *BundleResourceAssociation) SetStateReason(v *AssociationStateReason) *B
 	return s
 }
 
-// Describes the user capacity for a WorkSpaces pool.
+// Describes the user capacity for a pool of WorkSpaces.
 type Capacity struct {
 	_ struct{} `type:"structure"`
 
@@ -9604,7 +9603,7 @@ func (s *Capacity) SetDesiredUserSessions(v int64) *Capacity {
 	return s
 }
 
-// Describes the capacity status for a WorkSpaces pool
+// Describes the capacity status for a pool of WorkSpaces.
 type CapacityStatus struct {
 	_ struct{} `type:"structure"`
 
@@ -9614,7 +9613,7 @@ type CapacityStatus struct {
 	// ActiveUserSessions is a required field
 	ActiveUserSessions *int64 `type:"integer" required:"true"`
 
-	// The total number of session slots that are available for WorkSpaces pools.
+	// The total number of session slots that are available for a pool of WorkSpaces.
 	//
 	// ActualUserSessions is a required field
 	ActualUserSessions *int64 `type:"integer" required:"true"`
@@ -11627,38 +11626,38 @@ func (s *CreateWorkspacesOutput) SetPendingRequests(v []*Workspace) *CreateWorks
 type CreateWorkspacesPoolInput struct {
 	_ struct{} `type:"structure"`
 
-	// Indicates the application settings of the WorkSpaces pool.
+	// Indicates the application settings of the pool.
 	ApplicationSettings *ApplicationSettingsRequest `type:"structure"`
 
-	// The identifier of the bundle for the WorkSpaces pool.
+	// The identifier of the bundle for the pool.
 	//
 	// BundleId is a required field
 	BundleId *string `type:"string" required:"true"`
 
-	// The user capacity of the WorkSpaces pool.
+	// The user capacity of the pool.
 	//
 	// Capacity is a required field
 	Capacity *Capacity `type:"structure" required:"true"`
 
-	// The WorkSpaces pool description.
+	// The pool description.
 	//
 	// Description is a required field
 	Description *string `min:"1" type:"string" required:"true"`
 
-	// The identifier of the directory for the WorkSpaces pool.
+	// The identifier of the directory for the pool.
 	//
 	// DirectoryId is a required field
 	DirectoryId *string `min:"10" type:"string" required:"true"`
 
-	// The name of the WorkSpaces pool.
+	// The name of the pool.
 	//
 	// PoolName is a required field
 	PoolName *string `type:"string" required:"true"`
 
-	// The tags for the WorkSpaces pool.
+	// The tags for the pool.
 	Tags []*Tag `type:"list"`
 
-	// Indicates the timeout settings of the WorkSpaces pool.
+	// Indicates the timeout settings of the pool.
 	TimeoutSettings *TimeoutSettings `type:"structure"`
 }
 
@@ -11787,7 +11786,7 @@ func (s *CreateWorkspacesPoolInput) SetTimeoutSettings(v *TimeoutSettings) *Crea
 type CreateWorkspacesPoolOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Indicates the WorkSpaces pool to create.
+	// Indicates the pool to create.
 	WorkspacesPool *WorkspacesPool `type:"structure"`
 }
 
@@ -15234,7 +15233,7 @@ type DescribeWorkspacesPoolSessionsInput struct {
 	// this token to receive the next set of results.
 	NextToken *string `min:"1" type:"string"`
 
-	// The identifier of the WorkSpaces pool.
+	// The identifier of the pool.
 	//
 	// PoolId is a required field
 	PoolId *string `type:"string" required:"true"`
@@ -15314,7 +15313,7 @@ type DescribeWorkspacesPoolSessionsOutput struct {
 	// this token to receive the next set of results.
 	NextToken *string `min:"1" type:"string"`
 
-	// Describes the WorkSpaces pool sessions.
+	// Describes the pool sessions.
 	Sessions []*WorkspacesPoolSession `type:"list"`
 }
 
@@ -15348,7 +15347,7 @@ func (s *DescribeWorkspacesPoolSessionsOutput) SetSessions(v []*WorkspacesPoolSe
 	return s
 }
 
-// Describes the filter conditions for the WorkSpaces pool to return.
+// Describes the filter conditions for WorkSpaces Pools to return.
 type DescribeWorkspacesPoolsFilter struct {
 	_ struct{} `type:"structure"`
 
@@ -15357,12 +15356,12 @@ type DescribeWorkspacesPoolsFilter struct {
 	// Name is a required field
 	Name *string `type:"string" required:"true" enum:"DescribeWorkspacesPoolsFilterName"`
 
-	// The operator values for filtering WorkSpaces pools.
+	// The operator values for filtering WorkSpaces Pools.
 	//
 	// Operator is a required field
 	Operator *string `type:"string" required:"true" enum:"DescribeWorkspacesPoolsFilterOperator"`
 
-	// The values for filtering WorkSpaces pools.
+	// The values for filtering WorkSpaces Pools.
 	//
 	// Values is a required field
 	Values []*string `min:"1" type:"list" required:"true"`
@@ -15429,7 +15428,7 @@ func (s *DescribeWorkspacesPoolsFilter) SetValues(v []*string) *DescribeWorkspac
 type DescribeWorkspacesPoolsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The filter conditions for the WorkSpaces pool to return.
+	// The filter conditions for the WorkSpaces Pool to return.
 	Filters []*DescribeWorkspacesPoolsFilter `min:"1" type:"list"`
 
 	// The maximum number of items to return.
@@ -15439,7 +15438,7 @@ type DescribeWorkspacesPoolsInput struct {
 	// this token to receive the next set of results.
 	NextToken *string `min:"1" type:"string"`
 
-	// The identifier of the WorkSpaces pool.
+	// The identifier of the WorkSpaces Pools.
 	PoolIds []*string `min:"1" type:"list"`
 }
 
@@ -15524,7 +15523,7 @@ type DescribeWorkspacesPoolsOutput struct {
 	// this token to receive the next set of results.
 	NextToken *string `min:"1" type:"string"`
 
-	// Information about the WorkSpaces pools.
+	// Information about the WorkSpaces Pools.
 	WorkspacesPools []*WorkspacesPool `type:"list"`
 }
 
@@ -18435,7 +18434,7 @@ func (s ModifyWorkspaceStateOutput) GoString() string {
 	return s.String()
 }
 
-// Describes the network details of a WorkSpaces pool.
+// Describes the network details of a WorkSpaces Pool.
 type NetworkAccessConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -20516,7 +20515,7 @@ func (s *StartWorkspacesOutput) SetFailedRequests(v []*FailedWorkspaceChangeRequ
 type StartWorkspacesPoolInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the WorkSpaces pool.
+	// The identifier of the pool.
 	//
 	// PoolId is a required field
 	PoolId *string `type:"string" required:"true"`
@@ -20696,7 +20695,7 @@ func (s *StopWorkspacesOutput) SetFailedRequests(v []*FailedWorkspaceChangeReque
 type StopWorkspacesPoolInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the WorkSpaces pool.
+	// The identifier of the pool.
 	//
 	// PoolId is a required field
 	PoolId *string `type:"string" required:"true"`
@@ -21107,7 +21106,7 @@ func (s *TerminateWorkspacesOutput) SetFailedRequests(v []*FailedWorkspaceChange
 type TerminateWorkspacesPoolInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the WorkSpaces pool.
+	// The identifier of the pool.
 	//
 	// PoolId is a required field
 	PoolId *string `type:"string" required:"true"`
@@ -21175,7 +21174,7 @@ func (s TerminateWorkspacesPoolOutput) GoString() string {
 type TerminateWorkspacesPoolSessionInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the WorkSpaces pool session.
+	// The identifier of the pool session.
 	//
 	// SessionId is a required field
 	SessionId *string `min:"36" type:"string" required:"true"`
@@ -21243,7 +21242,7 @@ func (s TerminateWorkspacesPoolSessionOutput) GoString() string {
 	return s.String()
 }
 
-// Describes the timeout settings for a WorkSpaces pool.
+// Describes the timeout settings for a pool of WorkSpaces.
 type TimeoutSettings struct {
 	_ struct{} `type:"structure"`
 
@@ -21954,21 +21953,21 @@ type UpdateWorkspacesPoolInput struct {
 	// The identifier of the bundle.
 	BundleId *string `type:"string"`
 
-	// The desired capacity for the WorkSpaces pool.
+	// The desired capacity for the pool.
 	Capacity *Capacity `type:"structure"`
 
-	// Describes the specified WorkSpaces pool to update.
+	// Describes the specified pool to update.
 	Description *string `min:"1" type:"string"`
 
 	// The identifier of the directory.
 	DirectoryId *string `min:"10" type:"string"`
 
-	// The identifier of the specified WorkSpaces pool to update.
+	// The identifier of the specified pool to update.
 	//
 	// PoolId is a required field
 	PoolId *string `type:"string" required:"true"`
 
-	// Indicates the timeout settings of the specified WorkSpaces pool.
+	// Indicates the timeout settings of the specified pool.
 	TimeoutSettings *TimeoutSettings `type:"structure"`
 }
 
@@ -22069,7 +22068,7 @@ func (s *UpdateWorkspacesPoolInput) SetTimeoutSettings(v *TimeoutSettings) *Upda
 type UpdateWorkspacesPoolOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Describes the specified WorkSpaces pool.
+	// Describes the specified pool.
 	WorkspacesPool *WorkspacesPool `type:"structure"`
 }
 
@@ -23872,7 +23871,7 @@ func (s *WorkspacesDefaultRoleNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Describes a WorkSpaces pool.
+// Describes a pool of WorkSpaces.
 type WorkspacesPool struct {
 	_ struct{} `type:"structure"`
 
@@ -23905,12 +23904,12 @@ type WorkspacesPool struct {
 	// The pool errors.
 	Errors []*WorkspacesPoolError `type:"list"`
 
-	// The Amazon Resource Name (ARN) for the WorkSpaces pool.
+	// The Amazon Resource Name (ARN) for the pool.
 	//
 	// PoolArn is a required field
 	PoolArn *string `type:"string" required:"true"`
 
-	// The identifier of a WorkSpaces pool.
+	// The identifier of a pool.
 	//
 	// PoolId is a required field
 	PoolId *string `type:"string" required:"true"`
@@ -24022,7 +24021,7 @@ func (s *WorkspacesPool) SetTimeoutSettings(v *TimeoutSettings) *WorkspacesPool 
 	return s
 }
 
-// Describes a WorkSpaces pool error.
+// Describes a pool error.
 type WorkspacesPoolError struct {
 	_ struct{} `type:"structure"`
 
@@ -24063,11 +24062,11 @@ func (s *WorkspacesPoolError) SetErrorMessage(v string) *WorkspacesPoolError {
 	return s
 }
 
-// Describes a WorkSpaces pool session.
+// Describes a pool session.
 type WorkspacesPoolSession struct {
 	_ struct{} `type:"structure"`
 
-	// The authentication method. The user is authenticated using a WorkSpaces pool
+	// The authentication method. The user is authenticated using a WorkSpaces Pools
 	// URL (API) or SAML 2.0 federation (SAML).
 	AuthenticationType *string `type:"string" enum:"AuthenticationType"`
 
@@ -24799,6 +24798,9 @@ const (
 
 	// OperatingSystemNameWindowsServer2022 is a OperatingSystemName enum value
 	OperatingSystemNameWindowsServer2022 = "WINDOWS_SERVER_2022"
+
+	// OperatingSystemNameRhel8 is a OperatingSystemName enum value
+	OperatingSystemNameRhel8 = "RHEL_8"
 )
 
 // OperatingSystemName_Values returns all elements of the OperatingSystemName enum
@@ -24815,6 +24817,7 @@ func OperatingSystemName_Values() []string {
 		OperatingSystemNameWindowsServer2016,
 		OperatingSystemNameWindowsServer2019,
 		OperatingSystemNameWindowsServer2022,
+		OperatingSystemNameRhel8,
 	}
 }
 

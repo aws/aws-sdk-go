@@ -495,8 +495,8 @@
     "MetricQueryFilterMap": {
       "base": null,
       "refs": {
-        "DescribeDimensionKeysRequest$Filter": "<p>One or more filters to apply in the request. Restrictions:</p> <ul> <li> <p>Any number of filters by the same dimension, as specified in the <code>GroupBy</code> or <code>Partition</code> parameters.</p> </li> <li> <p>A single filter for any other dimension in this dimension group.</p> </li> </ul>",
-        "MetricQuery$Filter": "<p>One or more filters to apply in the request. Restrictions:</p> <ul> <li> <p>Any number of filters by the same dimension, as specified in the <code>GroupBy</code> parameter.</p> </li> <li> <p>A single filter for any other dimension in this dimension group.</p> </li> </ul>"
+        "DescribeDimensionKeysRequest$Filter": "<p>One or more filters to apply in the request. Restrictions:</p> <ul> <li> <p>Any number of filters by the same dimension, as specified in the <code>GroupBy</code> or <code>Partition</code> parameters.</p> </li> <li> <p>A single filter for any other dimension in this dimension group.</p> </li> </ul> <note> <p>The <code>db.sql.db_id</code> filter isn't available for RDS for SQL Server DB instances.</p> </note>",
+        "MetricQuery$Filter": "<p>One or more filters to apply in the request. Restrictions:</p> <ul> <li> <p>Any number of filters by the same dimension, as specified in the <code>GroupBy</code> parameter.</p> </li> <li> <p>A single filter for any other dimension in this dimension group.</p> </li> </ul> <note> <p>The <code>db.sql.db_id</code> filter isn't available for RDS for SQL Server DB instances.</p> </note>"
       }
     },
     "MetricQueryList": {

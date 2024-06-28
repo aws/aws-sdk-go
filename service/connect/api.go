@@ -11751,6 +11751,27 @@ func (c *Connect) ImportPhoneNumberRequest(input *ImportPhoneNumberInput) (req *
 // into an Amazon Connect instance. You can call this API only in the same Amazon
 // Web Services Region where the Amazon Connect instance was created.
 //
+// Call the DescribePhoneNumber (https://docs.aws.amazon.com/connect/latest/APIReference/API_DescribePhoneNumber.html)
+// API to verify the status of a previous ImportPhoneNumber operation.
+//
+// If you plan to claim or import numbers and then release numbers frequently,
+// contact us for a service quota exception. Otherwise, it is possible you will
+// be blocked from claiming and releasing any more numbers until up to 180 days
+// past the oldest number released has expired.
+//
+// By default you can claim or import and then release up to 200% of your maximum
+// number of active phone numbers. If you claim or import and then release phone
+// numbers using the UI or API during a rolling 180 day cycle that exceeds 200%
+// of your phone number service level quota, you will be blocked from claiming
+// or importing any more numbers until 180 days past the oldest number released
+// has expired.
+//
+// For example, if you already have 99 claimed or imported numbers and a service
+// level quota of 99 phone numbers, and in any 180 day period you release 99,
+// claim 99, and then release 99, you will have exceeded the 200% limit. At
+// that point you are blocked from claiming any more numbers until you open
+// an Amazon Web Services Support ticket.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -21360,8 +21381,12 @@ func (c *Connect) StartChatContactRequest(input *StartChatContactInput) (req *re
 // account may not support the ability to configure custom chat durations. For
 // more information, contact Amazon Web Services Support.
 //
-// For more information about chat, see Chat (https://docs.aws.amazon.com/connect/latest/adminguide/chat.html)
-// in the Amazon Connect Administrator Guide.
+// For more information about chat, see the following topics in the Amazon Connect
+// Administrator Guide:
+//
+//   - Concepts: Web and mobile messaging capabilities in Amazon Connect (https://docs.aws.amazon.com/connect/latest/adminguide/web-and-mobile-chat.html)
+//
+//   - Amazon Connect Chat security best practices (https://docs.aws.amazon.com/connect/latest/adminguide/security-best-practices.html#bp-security-chat)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -21665,6 +21690,13 @@ func (c *Connect) StartContactStreamingRequest(input *StartContactStreamingInput
 // For more information about message streaming, see Enable real-time chat message
 // streaming (https://docs.aws.amazon.com/connect/latest/adminguide/chat-message-streaming.html)
 // in the Amazon Connect Administrator Guide.
+//
+// For more information about chat, see the following topics in the Amazon Connect
+// Administrator Guide:
+//
+//   - Concepts: Web and mobile messaging capabilities in Amazon Connect (https://docs.aws.amazon.com/connect/latest/adminguide/web-and-mobile-chat.html)
+//
+//   - Amazon Connect Chat security best practices (https://docs.aws.amazon.com/connect/latest/adminguide/security-best-practices.html#bp-security-chat)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -28340,6 +28372,40 @@ func (s *AgentStatusSummary) SetType(v string) *AgentStatusSummary {
 	return s
 }
 
+// Can be used to define a list of preferred agents to target the contact within
+// the queue. Note that agents must have the queue in their routing profile
+// in order to be offered the contact.
+type AgentsCriteria struct {
+	_ struct{} `type:"structure"`
+
+	// An object to specify a list of agents, by Agent ID.
+	AgentIds []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AgentsCriteria) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AgentsCriteria) GoString() string {
+	return s.String()
+}
+
+// SetAgentIds sets the AgentIds field's value.
+func (s *AgentsCriteria) SetAgentIds(v []*string) *AgentsCriteria {
+	s.AgentIds = v
+	return s
+}
+
 // Information about the capabilities enabled for participants of the contact.
 type AllowedCapabilities struct {
 	_ struct{} `type:"structure"`
@@ -30444,6 +30510,9 @@ type AttributeCondition struct {
 	// The operator of the condition.
 	ComparisonOperator *string `min:"1" type:"string"`
 
+	// An object to define AgentsCriteria.
+	MatchCriteria *MatchCriteria `type:"structure"`
+
 	// The name of predefined attribute.
 	Name *string `min:"1" type:"string"`
 
@@ -30475,6 +30544,12 @@ func (s AttributeCondition) GoString() string {
 // SetComparisonOperator sets the ComparisonOperator field's value.
 func (s *AttributeCondition) SetComparisonOperator(v string) *AttributeCondition {
 	s.ComparisonOperator = &v
+	return s
+}
+
+// SetMatchCriteria sets the MatchCriteria field's value.
+func (s *AttributeCondition) SetMatchCriteria(v *MatchCriteria) *AttributeCondition {
+	s.MatchCriteria = v
 	return s
 }
 
@@ -47233,7 +47308,7 @@ type FieldValueUnion struct {
 	// A Boolean number value type.
 	BooleanValue *bool `type:"boolean"`
 
-	// a Double number value type.
+	// A Double number value type.
 	DoubleValue *float64 `type:"double"`
 
 	// An empty value.
@@ -49391,45 +49466,6 @@ type GetMetricDataV2Input struct {
 	//
 	// UI name: Cases created (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html##cases-created-historical)
 	//
-	// CONTACTS_ABANDONED
-	//
-	// Unit: Count
-	//
-	// Metric filter:
-	//
-	//    * Valid values: API| Incoming | Outbound | Transfer | Callback | Queue_Transfer|
-	//    Disconnect
-	//
-	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
-	// Hierarchy, contact/segmentAttributes/connect:Subtype, RoutingStepExpression,
-	// Q in Connect
-	//
-	// UI name: Contact abandoned (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#contacts-abandoned-historical)
-	//
-	// CONTACTS_ABANDONED_IN_X
-	//
-	// Unit: Count
-	//
-	// Valid groupings and filters: Queue, Channel, Routing Profile, contact/segmentAttributes/connect:Subtype,
-	// Q in Connect
-	//
-	// Threshold: For ThresholdValue, enter any whole number from 1 to 604800 (inclusive),
-	// in seconds. For Comparison, you must enter LT (for "Less than").
-	//
-	// UI name: Contacts abandoned in X seconds (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#contacts-abandoned-x-historical)
-	//
-	// CONTACTS_ANSWERED_IN_X
-	//
-	// Unit: Count
-	//
-	// Valid groupings and filters: Queue, Channel, Routing Profile, contact/segmentAttributes/connect:Subtype,
-	// Q in Connect
-	//
-	// Threshold: For ThresholdValue, enter any whole number from 1 to 604800 (inclusive),
-	// in seconds. For Comparison, you must enter LT (for "Less than").
-	//
-	// UI name: Contacts answered in X seconds (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#contacts-answered-x-historical)
-	//
 	// CONTACTS_CREATED
 	//
 	// Unit: Count
@@ -49538,6 +49574,17 @@ type GetMetricDataV2Input struct {
 	// Valid groupings and filters: Queue, Channel, Agent, Agent Hierarchy, contact/segmentAttributes/connect:Subtype
 	//
 	// UI name: Contacts queued (enqueue timestamp) (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#contacts-queued-by-enqueue-historical)
+	//
+	// CONTACTS_REMOVED_FROM_QUEUE_IN_X
+	//
+	// Unit: Count
+	//
+	// Valid groupings and filters: Queue, Channel, Routing Profile, Q in Connect
+	//
+	// Threshold: For ThresholdValue, enter any whole number from 1 to 604800 (inclusive),
+	// in seconds. For Comparison, you must enter LT (for "Less than").
+	//
+	// UI name: This metric is not available in Amazon Connect admin website.
 	//
 	// CONTACTS_RESOLVED_IN_X
 	//
@@ -49658,7 +49705,8 @@ type GetMetricDataV2Input struct {
 	//
 	// Valid groupings and filters: Queue, RoutingStepExpression
 	//
-	// UI name: Not available
+	// UI name: This metric is available in Real-time Metrics UI but not on the
+	// Historical Metrics UI.
 	//
 	// PERCENT_CONTACTS_STEP_JOINED
 	//
@@ -49666,7 +49714,8 @@ type GetMetricDataV2Input struct {
 	//
 	// Valid groupings and filters: Queue, RoutingStepExpression
 	//
-	// UI name: Not available
+	// UI name: This metric is available in Real-time Metrics UI but not on the
+	// Historical Metrics UI.
 	//
 	// PERCENT_FLOWS_OUTCOME
 	//
@@ -49749,7 +49798,7 @@ type GetMetricDataV2Input struct {
 	//
 	// Valid groupings and filters: CASE_TEMPLATE_ARN, CASE_STATUS
 	//
-	// UI name: Cases resolved (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#cases-resolved-historicall)
+	// UI name: Cases resolved (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#cases-resolved-historical)
 	//
 	// SERVICE_LEVEL
 	//
@@ -49770,7 +49819,8 @@ type GetMetricDataV2Input struct {
 	//
 	// Valid groupings and filters: Queue, RoutingStepExpression
 	//
-	// UI name: Not available
+	// UI name: This metric is available in Real-time Metrics UI but not on the
+	// Historical Metrics UI.
 	//
 	// SUM_AFTER_CONTACT_WORK_TIME
 	//
@@ -49796,6 +49846,45 @@ type GetMetricDataV2Input struct {
 	//
 	// The Negate key in Metric Level Filters is not applicable for this metric.
 	//
+	// SUM_CONTACTS_ABANDONED
+	//
+	// Unit: Count
+	//
+	// Metric filter:
+	//
+	//    * Valid values: API| Incoming | Outbound | Transfer | Callback | Queue_Transfer|
+	//    Disconnect
+	//
+	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
+	// Hierarchy, contact/segmentAttributes/connect:Subtype, RoutingStepExpression,
+	// Q in Connect
+	//
+	// UI name: Contact abandoned (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#contacts-abandoned-historical)
+	//
+	// SUM_CONTACTS_ABANDONED_IN_X
+	//
+	// Unit: Count
+	//
+	// Valid groupings and filters: Queue, Channel, Routing Profile, contact/segmentAttributes/connect:Subtype,
+	// Q in Connect
+	//
+	// Threshold: For ThresholdValue, enter any whole number from 1 to 604800 (inclusive),
+	// in seconds. For Comparison, you must enter LT (for "Less than").
+	//
+	// UI name: Contacts abandoned in X seconds (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#contacts-abandoned-x-historical)
+	//
+	// SUM_CONTACTS_ANSWERED_IN_X
+	//
+	// Unit: Count
+	//
+	// Valid groupings and filters: Queue, Channel, Routing Profile, contact/segmentAttributes/connect:Subtype,
+	// Q in Connect
+	//
+	// Threshold: For ThresholdValue, enter any whole number from 1 to 604800 (inclusive),
+	// in seconds. For Comparison, you must enter LT (for "Less than").
+	//
+	// UI name: Contacts answered in X seconds (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#contacts-answered-x-historical)
+	//
 	// SUM_CONTACT_FLOW_TIME
 	//
 	// Unit: Seconds
@@ -49809,8 +49898,7 @@ type GetMetricDataV2Input struct {
 	//
 	// Unit: Seconds
 	//
-	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
-	// Hierarchy
+	// Valid groupings and filters: Routing Profile, Agent, Agent Hierarchy
 	//
 	// UI name: Agent on contact time (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#agent-on-contact-time-historical)
 	//
@@ -49829,8 +49917,7 @@ type GetMetricDataV2Input struct {
 	//
 	// Unit: Seconds
 	//
-	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
-	// Hierarchy
+	// Valid groupings and filters: Routing Profile, Agent, Agent Hierarchy
 	//
 	// UI name: Error status time (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#error-status-time-historical)
 	//
@@ -59077,6 +59164,38 @@ func (s *ListViewsOutput) SetViewsSummaryList(v []*ViewSummary) *ListViewsOutput
 	return s
 }
 
+// An object to define AgentsCriteria.
+type MatchCriteria struct {
+	_ struct{} `type:"structure"`
+
+	// An object to define AgentIds.
+	AgentsCriteria *AgentsCriteria `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MatchCriteria) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MatchCriteria) GoString() string {
+	return s.String()
+}
+
+// SetAgentsCriteria sets the AgentsCriteria field's value.
+func (s *MatchCriteria) SetAgentsCriteria(v *AgentsCriteria) *MatchCriteria {
+	s.AgentsCriteria = v
+	return s
+}
+
 // Maximum number (1000) of tags have been returned with current request. Consider
 // changing request parameters to get more tags.
 type MaximumResultReturnedException struct {
@@ -66234,7 +66353,7 @@ type SearchCriteria struct {
 	QueueIds []*string `type:"list"`
 
 	// The search criteria based on user-defined contact attributes that have been
-	// configured for contact search. For more information, see Search by customer
+	// configured for contact search. For more information, see Search by custom
 	// contact attributes (https://docs.aws.amazon.com/connect/latest/adminguide/search-custom-attributes.html)
 	// in the Amazon Connect Administrator Guide.
 	//
@@ -68912,7 +69031,7 @@ func (s *SingleSelectQuestionRuleCategoryAutomation) SetOptionRefId(v string) *S
 	return s
 }
 
-// A structure that defineds the field name to sort by and a sort order.
+// A structure that defines the field name to sort by and a sort order.
 type Sort struct {
 	_ struct{} `type:"structure"`
 

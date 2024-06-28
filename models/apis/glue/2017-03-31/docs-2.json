@@ -2534,6 +2534,18 @@
         "GetDatabaseResponse$Database": "<p>The definition of the specified database in the Data Catalog.</p>"
       }
     },
+    "DatabaseAttributes": {
+      "base": null,
+      "refs": {
+        "DatabaseAttributesList$member": null
+      }
+    },
+    "DatabaseAttributesList": {
+      "base": null,
+      "refs": {
+        "GetDatabasesRequest$AttributesToGet": "<p>Specifies the database fields returned by the <code>GetDatabases</code> call. This parameter doesn’t accept an empty list. The request must include the <code>NAME</code>.</p>"
+      }
+    },
     "DatabaseIdentifier": {
       "base": "<p>A structure that describes a target database for resource linking.</p>",
       "refs": {

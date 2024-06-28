@@ -84,6 +84,10 @@ type CloudHSMV2API interface {
 	DeleteHsmWithContext(aws.Context, *cloudhsmv2.DeleteHsmInput, ...request.Option) (*cloudhsmv2.DeleteHsmOutput, error)
 	DeleteHsmRequest(*cloudhsmv2.DeleteHsmInput) (*request.Request, *cloudhsmv2.DeleteHsmOutput)
 
+	DeleteResourcePolicy(*cloudhsmv2.DeleteResourcePolicyInput) (*cloudhsmv2.DeleteResourcePolicyOutput, error)
+	DeleteResourcePolicyWithContext(aws.Context, *cloudhsmv2.DeleteResourcePolicyInput, ...request.Option) (*cloudhsmv2.DeleteResourcePolicyOutput, error)
+	DeleteResourcePolicyRequest(*cloudhsmv2.DeleteResourcePolicyInput) (*request.Request, *cloudhsmv2.DeleteResourcePolicyOutput)
+
 	DescribeBackups(*cloudhsmv2.DescribeBackupsInput) (*cloudhsmv2.DescribeBackupsOutput, error)
 	DescribeBackupsWithContext(aws.Context, *cloudhsmv2.DescribeBackupsInput, ...request.Option) (*cloudhsmv2.DescribeBackupsOutput, error)
 	DescribeBackupsRequest(*cloudhsmv2.DescribeBackupsInput) (*request.Request, *cloudhsmv2.DescribeBackupsOutput)
@@ -97,6 +101,10 @@ type CloudHSMV2API interface {
 
 	DescribeClustersPages(*cloudhsmv2.DescribeClustersInput, func(*cloudhsmv2.DescribeClustersOutput, bool) bool) error
 	DescribeClustersPagesWithContext(aws.Context, *cloudhsmv2.DescribeClustersInput, func(*cloudhsmv2.DescribeClustersOutput, bool) bool, ...request.Option) error
+
+	GetResourcePolicy(*cloudhsmv2.GetResourcePolicyInput) (*cloudhsmv2.GetResourcePolicyOutput, error)
+	GetResourcePolicyWithContext(aws.Context, *cloudhsmv2.GetResourcePolicyInput, ...request.Option) (*cloudhsmv2.GetResourcePolicyOutput, error)
+	GetResourcePolicyRequest(*cloudhsmv2.GetResourcePolicyInput) (*request.Request, *cloudhsmv2.GetResourcePolicyOutput)
 
 	InitializeCluster(*cloudhsmv2.InitializeClusterInput) (*cloudhsmv2.InitializeClusterOutput, error)
 	InitializeClusterWithContext(aws.Context, *cloudhsmv2.InitializeClusterInput, ...request.Option) (*cloudhsmv2.InitializeClusterOutput, error)
@@ -116,6 +124,10 @@ type CloudHSMV2API interface {
 	ModifyCluster(*cloudhsmv2.ModifyClusterInput) (*cloudhsmv2.ModifyClusterOutput, error)
 	ModifyClusterWithContext(aws.Context, *cloudhsmv2.ModifyClusterInput, ...request.Option) (*cloudhsmv2.ModifyClusterOutput, error)
 	ModifyClusterRequest(*cloudhsmv2.ModifyClusterInput) (*request.Request, *cloudhsmv2.ModifyClusterOutput)
+
+	PutResourcePolicy(*cloudhsmv2.PutResourcePolicyInput) (*cloudhsmv2.PutResourcePolicyOutput, error)
+	PutResourcePolicyWithContext(aws.Context, *cloudhsmv2.PutResourcePolicyInput, ...request.Option) (*cloudhsmv2.PutResourcePolicyOutput, error)
+	PutResourcePolicyRequest(*cloudhsmv2.PutResourcePolicyInput) (*request.Request, *cloudhsmv2.PutResourcePolicyOutput)
 
 	RestoreBackup(*cloudhsmv2.RestoreBackupInput) (*cloudhsmv2.RestoreBackupOutput, error)
 	RestoreBackupWithContext(aws.Context, *cloudhsmv2.RestoreBackupInput, ...request.Option) (*cloudhsmv2.RestoreBackupOutput, error)

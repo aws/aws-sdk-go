@@ -18,8 +18,8 @@ const (
 	// ErrCodeCloudHsmInternalFailureException for service response error code
 	// "CloudHsmInternalFailureException".
 	//
-	// The request was rejected because of an AWS CloudHSM internal failure. The
-	// request can be retried.
+	// The request was rejected because of an CloudHSM internal failure. The request
+	// can be retried.
 	ErrCodeCloudHsmInternalFailureException = "CloudHsmInternalFailureException"
 
 	// ErrCodeCloudHsmInvalidRequestException for service response error code

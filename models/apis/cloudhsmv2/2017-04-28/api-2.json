@@ -12,7 +12,8 @@
     "signatureVersion":"v4",
     "signingName":"cloudhsm",
     "targetPrefix":"BaldrApiService",
-    "uid":"cloudhsmv2-2017-04-28"
+    "uid":"cloudhsmv2-2017-04-28",
+    "auth":["aws.auth#sigv4"]
   },
   "operations":{
     "CopyBackupToRegion":{
@@ -114,6 +115,22 @@
         {"shape":"CloudHsmAccessDeniedException"}
       ]
     },
+    "DeleteResourcePolicy":{
+      "name":"DeleteResourcePolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteResourcePolicyRequest"},
+      "output":{"shape":"DeleteResourcePolicyResponse"},
+      "errors":[
+        {"shape":"CloudHsmInternalFailureException"},
+        {"shape":"CloudHsmServiceException"},
+        {"shape":"CloudHsmInvalidRequestException"},
+        {"shape":"CloudHsmResourceNotFoundException"},
+        {"shape":"CloudHsmAccessDeniedException"}
+      ]
+    },
     "DescribeBackups":{
       "name":"DescribeBackups",
       "http":{
@@ -145,6 +162,22 @@
         {"shape":"CloudHsmInvalidRequestException"},
         {"shape":"CloudHsmServiceException"},
         {"shape":"CloudHsmTagException"}
+      ]
+    },
+    "GetResourcePolicy":{
+      "name":"GetResourcePolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetResourcePolicyRequest"},
+      "output":{"shape":"GetResourcePolicyResponse"},
+      "errors":[
+        {"shape":"CloudHsmInternalFailureException"},
+        {"shape":"CloudHsmServiceException"},
+        {"shape":"CloudHsmInvalidRequestException"},
+        {"shape":"CloudHsmResourceNotFoundException"},
+        {"shape":"CloudHsmAccessDeniedException"}
       ]
     },
     "InitializeCluster":{
@@ -212,6 +245,22 @@
         {"shape":"CloudHsmServiceException"}
       ]
     },
+    "PutResourcePolicy":{
+      "name":"PutResourcePolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutResourcePolicyRequest"},
+      "output":{"shape":"PutResourcePolicyResponse"},
+      "errors":[
+        {"shape":"CloudHsmInternalFailureException"},
+        {"shape":"CloudHsmServiceException"},
+        {"shape":"CloudHsmInvalidRequestException"},
+        {"shape":"CloudHsmResourceNotFoundException"},
+        {"shape":"CloudHsmAccessDeniedException"}
+      ]
+    },
     "RestoreBackup":{
       "name":"RestoreBackup",
       "http":{
@@ -269,6 +318,7 @@
       "required":["BackupId"],
       "members":{
         "BackupId":{"shape":"BackupId"},
+        "BackupArn":{"shape":"BackupArn"},
         "BackupState":{"shape":"BackupState"},
         "ClusterId":{"shape":"ClusterId"},
         "CreateTimestamp":{"shape":"Timestamp"},
@@ -282,6 +332,10 @@
         "HsmType":{"shape":"HsmType"},
         "Mode":{"shape":"ClusterMode"}
       }
+    },
+    "BackupArn":{
+      "type":"string",
+      "pattern":"^(arn:aws(-(us-gov))?:cloudhsm:([a-z]{2}(-(gov|isob|iso))?-(east|west|north|south|central){1,2}-[0-9]{1}):[0-9]{12}:backup/)?backup-[2-7a-zA-Z]{11,16}"
     },
     "BackupId":{
       "type":"string",
@@ -348,6 +402,10 @@
         "Message":{"shape":"errorMessage"}
       },
       "exception":true
+    },
+    "CloudHsmArn":{
+      "type":"string",
+      "pattern":"arn:aws(-(us-gov))?:cloudhsm:([a-z]{2}(-(gov|isob|iso))?-(east|west|north|south|central){1,2}-[0-9]{1}):[0-9]{12}:(backup/backup|cluster/cluster|hsm/hsm)-[2-7a-zA-Z]{11,16}"
     },
     "CloudHsmInternalFailureException":{
       "type":"structure",
@@ -467,7 +525,7 @@
       "members":{
         "BackupRetentionPolicy":{"shape":"BackupRetentionPolicy"},
         "HsmType":{"shape":"HsmType"},
-        "SourceBackupId":{"shape":"BackupId"},
+        "SourceBackupId":{"shape":"BackupArn"},
         "SubnetIds":{"shape":"SubnetIds"},
         "TagList":{"shape":"TagList"},
         "Mode":{"shape":"ClusterMode"}
@@ -539,12 +597,26 @@
         "HsmId":{"shape":"HsmId"}
       }
     },
+    "DeleteResourcePolicyRequest":{
+      "type":"structure",
+      "members":{
+        "ResourceArn":{"shape":"CloudHsmArn"}
+      }
+    },
+    "DeleteResourcePolicyResponse":{
+      "type":"structure",
+      "members":{
+        "ResourceArn":{"shape":"CloudHsmArn"},
+        "Policy":{"shape":"ResourcePolicy"}
+      }
+    },
     "DescribeBackupsRequest":{
       "type":"structure",
       "members":{
         "NextToken":{"shape":"NextToken"},
         "MaxResults":{"shape":"BackupsMaxSize"},
         "Filters":{"shape":"Filters"},
+        "Shared":{"shape":"Boolean"},
         "SortAscending":{"shape":"Boolean"}
       }
     },
@@ -601,6 +673,18 @@
       "key":{"shape":"Field"},
       "value":{"shape":"Strings"},
       "max":30
+    },
+    "GetResourcePolicyRequest":{
+      "type":"structure",
+      "members":{
+        "ResourceArn":{"shape":"CloudHsmArn"}
+      }
+    },
+    "GetResourcePolicyResponse":{
+      "type":"structure",
+      "members":{
+        "Policy":{"shape":"ResourcePolicy"}
+      }
     },
     "Hsm":{
       "type":"structure",
@@ -729,6 +813,20 @@
       "max":32,
       "min":7
     },
+    "PutResourcePolicyRequest":{
+      "type":"structure",
+      "members":{
+        "ResourceArn":{"shape":"CloudHsmArn"},
+        "Policy":{"shape":"ResourcePolicy"}
+      }
+    },
+    "PutResourcePolicyResponse":{
+      "type":"structure",
+      "members":{
+        "ResourceArn":{"shape":"CloudHsmArn"},
+        "Policy":{"shape":"ResourcePolicy"}
+      }
+    },
     "Region":{
       "type":"string",
       "pattern":"[a-z]{2}(-(gov))?-(east|west|north|south|central){1,2}-\\d"
@@ -736,6 +834,11 @@
     "ResourceId":{
       "type":"string",
       "pattern":"(?:cluster|backup)-[2-7a-zA-Z]{11,16}"
+    },
+    "ResourcePolicy":{
+      "type":"string",
+      "max":20000,
+      "min":1
     },
     "RestoreBackupRequest":{
       "type":"structure",

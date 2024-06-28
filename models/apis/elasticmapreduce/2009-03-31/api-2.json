@@ -5,12 +5,14 @@
     "endpointPrefix":"elasticmapreduce",
     "jsonVersion":"1.1",
     "protocol":"json",
+    "protocols":["json"],
     "serviceAbbreviation":"Amazon EMR",
     "serviceFullName":"Amazon EMR",
     "serviceId":"EMR",
     "signatureVersion":"v4",
     "targetPrefix":"ElasticMapReduce",
-    "uid":"elasticmapreduce-2009-03-31"
+    "uid":"elasticmapreduce-2009-03-31",
+    "auth":["aws.auth#sigv4"]
   },
   "operations":{
     "AddInstanceFleet":{
@@ -1964,7 +1966,8 @@
         "BidPriceAsPercentageOfOnDemandPrice":{"shape":"NonNegativeDouble"},
         "EbsConfiguration":{"shape":"EbsConfiguration"},
         "Configurations":{"shape":"ConfigurationList"},
-        "CustomAmiId":{"shape":"XmlStringMaxLen256"}
+        "CustomAmiId":{"shape":"XmlStringMaxLen256"},
+        "Priority":{"shape":"NonNegativeDouble"}
       }
     },
     "InstanceTypeConfigList":{
@@ -1981,7 +1984,8 @@
         "Configurations":{"shape":"ConfigurationList"},
         "EbsBlockDevices":{"shape":"EbsBlockDeviceList"},
         "EbsOptimized":{"shape":"BooleanObject"},
-        "CustomAmiId":{"shape":"XmlStringMaxLen256"}
+        "CustomAmiId":{"shape":"XmlStringMaxLen256"},
+        "Priority":{"shape":"NonNegativeDouble"}
       }
     },
     "InstanceTypeSpecificationList":{
@@ -2502,7 +2506,10 @@
     },
     "OnDemandProvisioningAllocationStrategy":{
       "type":"string",
-      "enum":["lowest-price"]
+      "enum":[
+        "lowest-price",
+        "prioritized"
+      ]
     },
     "OnDemandProvisioningSpecification":{
       "type":"structure",
@@ -2953,7 +2960,8 @@
         "capacity-optimized",
         "price-capacity-optimized",
         "lowest-price",
-        "diversified"
+        "diversified",
+        "capacity-optimized-prioritized"
       ]
     },
     "SpotProvisioningSpecification":{
