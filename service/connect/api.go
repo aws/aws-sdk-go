@@ -6952,6 +6952,100 @@ func (c *Connect) DescribeAgentStatusWithContext(ctx aws.Context, input *Describ
 	return out, req.Send()
 }
 
+const opDescribeAuthenticationProfile = "DescribeAuthenticationProfile"
+
+// DescribeAuthenticationProfileRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeAuthenticationProfile operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeAuthenticationProfile for more information on using the DescribeAuthenticationProfile
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeAuthenticationProfileRequest method.
+//	req, resp := client.DescribeAuthenticationProfileRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeAuthenticationProfile
+func (c *Connect) DescribeAuthenticationProfileRequest(input *DescribeAuthenticationProfileInput) (req *request.Request, output *DescribeAuthenticationProfileOutput) {
+	op := &request.Operation{
+		Name:       opDescribeAuthenticationProfile,
+		HTTPMethod: "GET",
+		HTTPPath:   "/authentication-profiles/{InstanceId}/{AuthenticationProfileId}",
+	}
+
+	if input == nil {
+		input = &DescribeAuthenticationProfileInput{}
+	}
+
+	output = &DescribeAuthenticationProfileOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeAuthenticationProfile API operation for Amazon Connect Service.
+//
+// This API is in preview release for Amazon Connect and is subject to change.
+// To request access to this API, contact Amazon Web Services Support.
+//
+// Describes the target authentication profile.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation DescribeAuthenticationProfile for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeAuthenticationProfile
+func (c *Connect) DescribeAuthenticationProfile(input *DescribeAuthenticationProfileInput) (*DescribeAuthenticationProfileOutput, error) {
+	req, out := c.DescribeAuthenticationProfileRequest(input)
+	return out, req.Send()
+}
+
+// DescribeAuthenticationProfileWithContext is the same as DescribeAuthenticationProfile with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeAuthenticationProfile for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) DescribeAuthenticationProfileWithContext(ctx aws.Context, input *DescribeAuthenticationProfileInput, opts ...request.Option) (*DescribeAuthenticationProfileOutput, error) {
+	req, out := c.DescribeAuthenticationProfileRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeContact = "DescribeContact"
 
 // DescribeContactRequest generates a "aws/request.Request" representing the
@@ -12208,6 +12302,158 @@ func (c *Connect) ListApprovedOriginsPagesWithContext(ctx aws.Context, input *Li
 
 	for p.Next() {
 		if !fn(p.Page().(*ListApprovedOriginsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListAuthenticationProfiles = "ListAuthenticationProfiles"
+
+// ListAuthenticationProfilesRequest generates a "aws/request.Request" representing the
+// client's request for the ListAuthenticationProfiles operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListAuthenticationProfiles for more information on using the ListAuthenticationProfiles
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListAuthenticationProfilesRequest method.
+//	req, resp := client.ListAuthenticationProfilesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListAuthenticationProfiles
+func (c *Connect) ListAuthenticationProfilesRequest(input *ListAuthenticationProfilesInput) (req *request.Request, output *ListAuthenticationProfilesOutput) {
+	op := &request.Operation{
+		Name:       opListAuthenticationProfiles,
+		HTTPMethod: "GET",
+		HTTPPath:   "/authentication-profiles-summary/{InstanceId}",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListAuthenticationProfilesInput{}
+	}
+
+	output = &ListAuthenticationProfilesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListAuthenticationProfiles API operation for Amazon Connect Service.
+//
+// This API is in preview release for Amazon Connect and is subject to change.
+// To request access to this API, contact Amazon Web Services Support.
+//
+// Provides summary information about the authentication profiles in a specified
+// Amazon Connect instance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation ListAuthenticationProfiles for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListAuthenticationProfiles
+func (c *Connect) ListAuthenticationProfiles(input *ListAuthenticationProfilesInput) (*ListAuthenticationProfilesOutput, error) {
+	req, out := c.ListAuthenticationProfilesRequest(input)
+	return out, req.Send()
+}
+
+// ListAuthenticationProfilesWithContext is the same as ListAuthenticationProfiles with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListAuthenticationProfiles for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ListAuthenticationProfilesWithContext(ctx aws.Context, input *ListAuthenticationProfilesInput, opts ...request.Option) (*ListAuthenticationProfilesOutput, error) {
+	req, out := c.ListAuthenticationProfilesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListAuthenticationProfilesPages iterates over the pages of a ListAuthenticationProfiles operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListAuthenticationProfiles method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListAuthenticationProfiles operation.
+//	pageNum := 0
+//	err := client.ListAuthenticationProfilesPages(params,
+//	    func(page *connect.ListAuthenticationProfilesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Connect) ListAuthenticationProfilesPages(input *ListAuthenticationProfilesInput, fn func(*ListAuthenticationProfilesOutput, bool) bool) error {
+	return c.ListAuthenticationProfilesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListAuthenticationProfilesPagesWithContext same as ListAuthenticationProfilesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ListAuthenticationProfilesPagesWithContext(ctx aws.Context, input *ListAuthenticationProfilesInput, fn func(*ListAuthenticationProfilesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListAuthenticationProfilesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListAuthenticationProfilesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListAuthenticationProfilesOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -21265,7 +21511,8 @@ func (c *Connect) StartAttachedFileUploadRequest(input *StartAttachedFileUploadI
 //
 // Provides a pre-signed Amazon S3 URL in response for uploading your content.
 //
-// You may only use this API to upload attachments to a Connect Case (https://docs.aws.amazon.com/connect/latest/APIReference/API_connect-cases_CreateCase.html).
+// You may only use this API to upload attachments to an Amazon Connect Case
+// (https://docs.aws.amazon.com/connect/latest/APIReference/API_connect-cases_CreateCase.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -23150,6 +23397,101 @@ func (c *Connect) UpdateAgentStatus(input *UpdateAgentStatusInput) (*UpdateAgent
 // for more information on using Contexts.
 func (c *Connect) UpdateAgentStatusWithContext(ctx aws.Context, input *UpdateAgentStatusInput, opts ...request.Option) (*UpdateAgentStatusOutput, error) {
 	req, out := c.UpdateAgentStatusRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateAuthenticationProfile = "UpdateAuthenticationProfile"
+
+// UpdateAuthenticationProfileRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateAuthenticationProfile operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateAuthenticationProfile for more information on using the UpdateAuthenticationProfile
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateAuthenticationProfileRequest method.
+//	req, resp := client.UpdateAuthenticationProfileRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateAuthenticationProfile
+func (c *Connect) UpdateAuthenticationProfileRequest(input *UpdateAuthenticationProfileInput) (req *request.Request, output *UpdateAuthenticationProfileOutput) {
+	op := &request.Operation{
+		Name:       opUpdateAuthenticationProfile,
+		HTTPMethod: "POST",
+		HTTPPath:   "/authentication-profiles/{InstanceId}/{AuthenticationProfileId}",
+	}
+
+	if input == nil {
+		input = &UpdateAuthenticationProfileInput{}
+	}
+
+	output = &UpdateAuthenticationProfileOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateAuthenticationProfile API operation for Amazon Connect Service.
+//
+// This API is in preview release for Amazon Connect and is subject to change.
+// To request access to this API, contact Amazon Web Services Support.
+//
+// Updates the selected authentication profile.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation UpdateAuthenticationProfile for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateAuthenticationProfile
+func (c *Connect) UpdateAuthenticationProfile(input *UpdateAuthenticationProfileInput) (*UpdateAuthenticationProfileOutput, error) {
+	req, out := c.UpdateAuthenticationProfileRequest(input)
+	return out, req.Send()
+}
+
+// UpdateAuthenticationProfileWithContext is the same as UpdateAuthenticationProfile with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateAuthenticationProfile for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) UpdateAuthenticationProfileWithContext(ctx aws.Context, input *UpdateAuthenticationProfileInput, opts ...request.Option) (*UpdateAuthenticationProfileOutput, error) {
+	req, out := c.UpdateAuthenticationProfileRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -30647,6 +30989,245 @@ func (s *AudioQualityMetricsInfo) SetQualityScore(v float64) *AudioQualityMetric
 	return s
 }
 
+// This API is in preview release for Amazon Connect and is subject to change.
+// To request access to this API, contact Amazon Web Services Support.
+//
+// Information about an authentication profile. An authentication profile is
+// a resource that stores the authentication settings for users in your contact
+// center. You use authentication profiles to set up IP address range restrictions
+// and session timeouts. For more information, see Set IP address restrictions
+// or session timeouts (https://docs.aws.amazon.com/connect/latest/adminguide/authentication-profiles.html).
+type AuthenticationProfile struct {
+	_ struct{} `type:"structure"`
+
+	// A list of IP address range strings that are allowed to access the Amazon
+	// Connect instance. For more information about how to configure IP addresses,
+	// see Configure IP address based access control (https://docs.aws.amazon.com/connect/latest/adminguide/authentication-profiles.html#configure-ip-based-ac)
+	// in the Amazon Connect Administrator Guide.
+	AllowedIps []*string `type:"list"`
+
+	// The Amazon Resource Name (ARN) for the authentication profile.
+	Arn *string `type:"string"`
+
+	// A list of IP address range strings that are blocked from accessing the Amazon
+	// Connect instance. For more information about how to configure IP addresses,
+	// see Configure IP address based access control (https://docs.aws.amazon.com/connect/latest/adminguide/authentication-profiles.html#configure-ip-based-ac)
+	// in the Amazon Connect Administrator Guide.
+	BlockedIps []*string `type:"list"`
+
+	// The timestamp when the authentication profile was created.
+	CreatedTime *time.Time `type:"timestamp"`
+
+	// The description for the authentication profile.
+	Description *string `min:"1" type:"string"`
+
+	// A unique identifier for the authentication profile.
+	Id *string `min:"1" type:"string"`
+
+	// Shows whether the authentication profile is the default authentication profile
+	// for the Amazon Connect instance. The default authentication profile applies
+	// to all agents in an Amazon Connect instance, unless overridden by another
+	// authentication profile.
+	IsDefault *bool `type:"boolean"`
+
+	// The Amazon Web Services Region where the authentication profile was last
+	// modified.
+	LastModifiedRegion *string `type:"string"`
+
+	// The timestamp when the authentication profile was last modified.
+	LastModifiedTime *time.Time `type:"timestamp"`
+
+	// The long lived session duration for users logged in to Amazon Connect, in
+	// minutes. After this time period, users must log in again. For more information,
+	// see Configure the session duration (https://docs.aws.amazon.com/connect/latest/adminguide/authentication-profiles.html#configure-session-timeouts)
+	// in the Amazon Connect Administrator Guide.
+	MaxSessionDuration *int64 `min:"360" type:"integer"`
+
+	// The name for the authentication profile.
+	Name *string `min:"1" type:"string"`
+
+	// The short lived session duration configuration for users logged in to Amazon
+	// Connect, in minutes. This value determines the maximum possible time before
+	// an agent is authenticated. For more information, see Configure the session
+	// duration (https://docs.aws.amazon.com/connect/latest/adminguide/authentication-profiles.html#configure-session-timeouts)
+	// in the Amazon Connect Administrator Guide.
+	PeriodicSessionDuration *int64 `min:"10" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AuthenticationProfile) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AuthenticationProfile) GoString() string {
+	return s.String()
+}
+
+// SetAllowedIps sets the AllowedIps field's value.
+func (s *AuthenticationProfile) SetAllowedIps(v []*string) *AuthenticationProfile {
+	s.AllowedIps = v
+	return s
+}
+
+// SetArn sets the Arn field's value.
+func (s *AuthenticationProfile) SetArn(v string) *AuthenticationProfile {
+	s.Arn = &v
+	return s
+}
+
+// SetBlockedIps sets the BlockedIps field's value.
+func (s *AuthenticationProfile) SetBlockedIps(v []*string) *AuthenticationProfile {
+	s.BlockedIps = v
+	return s
+}
+
+// SetCreatedTime sets the CreatedTime field's value.
+func (s *AuthenticationProfile) SetCreatedTime(v time.Time) *AuthenticationProfile {
+	s.CreatedTime = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *AuthenticationProfile) SetDescription(v string) *AuthenticationProfile {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *AuthenticationProfile) SetId(v string) *AuthenticationProfile {
+	s.Id = &v
+	return s
+}
+
+// SetIsDefault sets the IsDefault field's value.
+func (s *AuthenticationProfile) SetIsDefault(v bool) *AuthenticationProfile {
+	s.IsDefault = &v
+	return s
+}
+
+// SetLastModifiedRegion sets the LastModifiedRegion field's value.
+func (s *AuthenticationProfile) SetLastModifiedRegion(v string) *AuthenticationProfile {
+	s.LastModifiedRegion = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *AuthenticationProfile) SetLastModifiedTime(v time.Time) *AuthenticationProfile {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetMaxSessionDuration sets the MaxSessionDuration field's value.
+func (s *AuthenticationProfile) SetMaxSessionDuration(v int64) *AuthenticationProfile {
+	s.MaxSessionDuration = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *AuthenticationProfile) SetName(v string) *AuthenticationProfile {
+	s.Name = &v
+	return s
+}
+
+// SetPeriodicSessionDuration sets the PeriodicSessionDuration field's value.
+func (s *AuthenticationProfile) SetPeriodicSessionDuration(v int64) *AuthenticationProfile {
+	s.PeriodicSessionDuration = &v
+	return s
+}
+
+// This API is in preview release for Amazon Connect and is subject to change.
+// To request access to this API, contact Amazon Web Services Support.
+//
+// A summary of a given authentication profile.
+type AuthenticationProfileSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the authentication profile summary.
+	Arn *string `type:"string"`
+
+	// The unique identifier of the authentication profile.
+	Id *string `min:"1" type:"string"`
+
+	// Shows whether the authentication profile is the default authentication profile
+	// for the Amazon Connect instance. The default authentication profile applies
+	// to all agents in an Amazon Connect instance, unless overridden by another
+	// authentication profile.
+	IsDefault *bool `type:"boolean"`
+
+	// The Amazon Web Services Region when the authentication profile summary was
+	// last modified.
+	LastModifiedRegion *string `type:"string"`
+
+	// The timestamp when the authentication profile summary was last modified.
+	LastModifiedTime *time.Time `type:"timestamp"`
+
+	// The name of the authentication profile summary.
+	Name *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AuthenticationProfileSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AuthenticationProfileSummary) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *AuthenticationProfileSummary) SetArn(v string) *AuthenticationProfileSummary {
+	s.Arn = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *AuthenticationProfileSummary) SetId(v string) *AuthenticationProfileSummary {
+	s.Id = &v
+	return s
+}
+
+// SetIsDefault sets the IsDefault field's value.
+func (s *AuthenticationProfileSummary) SetIsDefault(v bool) *AuthenticationProfileSummary {
+	s.IsDefault = &v
+	return s
+}
+
+// SetLastModifiedRegion sets the LastModifiedRegion field's value.
+func (s *AuthenticationProfileSummary) SetLastModifiedRegion(v string) *AuthenticationProfileSummary {
+	s.LastModifiedRegion = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *AuthenticationProfileSummary) SetLastModifiedTime(v time.Time) *AuthenticationProfileSummary {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *AuthenticationProfileSummary) SetName(v string) *AuthenticationProfileSummary {
+	s.Name = &v
+	return s
+}
+
 // Information about available phone numbers.
 type AvailableNumberSummary struct {
 	_ struct{} `type:"structure"`
@@ -31944,7 +32525,7 @@ type CompleteAttachedFileUploadInput struct {
 	// FileId is a required field
 	FileId *string `location:"uri" locationName:"FileId" min:"1" type:"string" required:"true"`
 
-	// The unique identifier of the Connect instance.
+	// The unique identifier of the Amazon Connect instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -40722,6 +41303,105 @@ func (s DescribeAgentStatusOutput) GoString() string {
 // SetAgentStatus sets the AgentStatus field's value.
 func (s *DescribeAgentStatusOutput) SetAgentStatus(v *AgentStatus) *DescribeAgentStatusOutput {
 	s.AgentStatus = v
+	return s
+}
+
+type DescribeAuthenticationProfileInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// A unique identifier for the authentication profile.
+	//
+	// AuthenticationProfileId is a required field
+	AuthenticationProfileId *string `location:"uri" locationName:"AuthenticationProfileId" min:"1" type:"string" required:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeAuthenticationProfileInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeAuthenticationProfileInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeAuthenticationProfileInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeAuthenticationProfileInput"}
+	if s.AuthenticationProfileId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AuthenticationProfileId"))
+	}
+	if s.AuthenticationProfileId != nil && len(*s.AuthenticationProfileId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AuthenticationProfileId", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAuthenticationProfileId sets the AuthenticationProfileId field's value.
+func (s *DescribeAuthenticationProfileInput) SetAuthenticationProfileId(v string) *DescribeAuthenticationProfileInput {
+	s.AuthenticationProfileId = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *DescribeAuthenticationProfileInput) SetInstanceId(v string) *DescribeAuthenticationProfileInput {
+	s.InstanceId = &v
+	return s
+}
+
+type DescribeAuthenticationProfileOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The authentication profile object being described.
+	AuthenticationProfile *AuthenticationProfile `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeAuthenticationProfileOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeAuthenticationProfileOutput) GoString() string {
+	return s.String()
+}
+
+// SetAuthenticationProfile sets the AuthenticationProfile field's value.
+func (s *DescribeAuthenticationProfileOutput) SetAuthenticationProfile(v *AuthenticationProfile) *DescribeAuthenticationProfileOutput {
+	s.AuthenticationProfile = v
 	return s
 }
 
@@ -53878,6 +54558,119 @@ func (s *ListApprovedOriginsOutput) SetOrigins(v []*string) *ListApprovedOrigins
 	return s
 }
 
+type ListAuthenticationProfilesInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The maximum number of results to return per page.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token for the next set of results. Use the value returned in the previous
+	// response in the next request to retrieve the next set of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAuthenticationProfilesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAuthenticationProfilesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListAuthenticationProfilesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListAuthenticationProfilesInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *ListAuthenticationProfilesInput) SetInstanceId(v string) *ListAuthenticationProfilesInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListAuthenticationProfilesInput) SetMaxResults(v int64) *ListAuthenticationProfilesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAuthenticationProfilesInput) SetNextToken(v string) *ListAuthenticationProfilesInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListAuthenticationProfilesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A summary of a given authentication profile.
+	AuthenticationProfileSummaryList []*AuthenticationProfileSummary `type:"list"`
+
+	// If there are additional results, this is the token for the next set of results.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAuthenticationProfilesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAuthenticationProfilesOutput) GoString() string {
+	return s.String()
+}
+
+// SetAuthenticationProfileSummaryList sets the AuthenticationProfileSummaryList field's value.
+func (s *ListAuthenticationProfilesOutput) SetAuthenticationProfileSummaryList(v []*AuthenticationProfileSummary) *ListAuthenticationProfilesOutput {
+	s.AuthenticationProfileSummaryList = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAuthenticationProfilesOutput) SetNextToken(v string) *ListAuthenticationProfilesOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListBotsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -66039,7 +66832,7 @@ type SearchContactFlowsOutput struct {
 	// The total number of contact flows which matched your search query.
 	ApproximateTotalCount *int64 `type:"long"`
 
-	// Information about the contact flows.
+	// Information about the flows.
 	ContactFlows []*ContactFlow `type:"list"`
 
 	// If there are additional results, this is the token for the next set of results.
@@ -69127,7 +69920,7 @@ type StartAttachedFileUploadInput struct {
 	// FileUseCaseType is a required field
 	FileUseCaseType *string `type:"string" required:"true" enum:"FileUseCaseType"`
 
-	// The unique identifier of the Connect instance.
+	// The unique identifier of the Amazon Connect instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -70552,10 +71345,10 @@ type StartWebRTCContactInput struct {
 	ClientToken *string `type:"string" idempotencyToken:"true"`
 
 	// The identifier of the flow for the call. To see the ContactFlowId in the
-	// Amazon Connect admin website, on the navigation menu go to Routing, Contact
-	// Flows. Choose the flow. On the flow page, under the name of the flow, choose
-	// Show additional flow information. The ContactFlowId is the last part of the
-	// ARN, shown here in bold:
+	// Amazon Connect admin website, on the navigation menu go to Routing, Flows.
+	// Choose the flow. On the flow page, under the name of the flow, choose Show
+	// additional flow information. The ContactFlowId is the last part of the ARN,
+	// shown here in bold:
 	//
 	// arn:aws:connect:us-west-2:xxxxxxxxxxxx:instance/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/contact-flow/846ec553-a005-41c0-8341-xxxxxxxxxxxx
 	//
@@ -73589,6 +74382,160 @@ func (s UpdateAgentStatusOutput) String() string {
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
 func (s UpdateAgentStatusOutput) GoString() string {
+	return s.String()
+}
+
+type UpdateAuthenticationProfileInput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of IP address range strings that are allowed to access the instance.
+	// For more information on how to configure IP addresses, seeConfigure session
+	// timeouts (https://docs.aws.amazon.com/connect/latest/adminguide/authentication-profiles.html#configure-session-timeouts)
+	// in the Amazon Connect Administrator Guide.
+	AllowedIps []*string `type:"list"`
+
+	// A unique identifier for the authentication profile.
+	//
+	// AuthenticationProfileId is a required field
+	AuthenticationProfileId *string `location:"uri" locationName:"AuthenticationProfileId" min:"1" type:"string" required:"true"`
+
+	// A list of IP address range strings that are blocked from accessing the instance.
+	// For more information on how to configure IP addresses, For more information
+	// on how to configure IP addresses, see Configure IP-based access control (https://docs.aws.amazon.com/connect/latest/adminguide/authentication-profiles.html#configure-ip-based-ac)
+	// in the Amazon Connect Administrator Guide.
+	BlockedIps []*string `type:"list"`
+
+	// The description for the authentication profile.
+	Description *string `min:"1" type:"string"`
+
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The name for the authentication profile.
+	Name *string `min:"1" type:"string"`
+
+	// The short lived session duration configuration for users logged in to Amazon
+	// Connect, in minutes. This value determines the maximum possible time before
+	// an agent is authenticated. For more information, For more information on
+	// how to configure IP addresses, see Configure session timeouts (https://docs.aws.amazon.com/connect/latest/adminguide/authentication-profiles.html#configure-session-timeouts)
+	// in the Amazon Connect Administrator Guide.
+	PeriodicSessionDuration *int64 `min:"10" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateAuthenticationProfileInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateAuthenticationProfileInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateAuthenticationProfileInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateAuthenticationProfileInput"}
+	if s.AuthenticationProfileId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AuthenticationProfileId"))
+	}
+	if s.AuthenticationProfileId != nil && len(*s.AuthenticationProfileId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AuthenticationProfileId", 1))
+	}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.PeriodicSessionDuration != nil && *s.PeriodicSessionDuration < 10 {
+		invalidParams.Add(request.NewErrParamMinValue("PeriodicSessionDuration", 10))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAllowedIps sets the AllowedIps field's value.
+func (s *UpdateAuthenticationProfileInput) SetAllowedIps(v []*string) *UpdateAuthenticationProfileInput {
+	s.AllowedIps = v
+	return s
+}
+
+// SetAuthenticationProfileId sets the AuthenticationProfileId field's value.
+func (s *UpdateAuthenticationProfileInput) SetAuthenticationProfileId(v string) *UpdateAuthenticationProfileInput {
+	s.AuthenticationProfileId = &v
+	return s
+}
+
+// SetBlockedIps sets the BlockedIps field's value.
+func (s *UpdateAuthenticationProfileInput) SetBlockedIps(v []*string) *UpdateAuthenticationProfileInput {
+	s.BlockedIps = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateAuthenticationProfileInput) SetDescription(v string) *UpdateAuthenticationProfileInput {
+	s.Description = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *UpdateAuthenticationProfileInput) SetInstanceId(v string) *UpdateAuthenticationProfileInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateAuthenticationProfileInput) SetName(v string) *UpdateAuthenticationProfileInput {
+	s.Name = &v
+	return s
+}
+
+// SetPeriodicSessionDuration sets the PeriodicSessionDuration field's value.
+func (s *UpdateAuthenticationProfileInput) SetPeriodicSessionDuration(v int64) *UpdateAuthenticationProfileInput {
+	s.PeriodicSessionDuration = &v
+	return s
+}
+
+type UpdateAuthenticationProfileOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateAuthenticationProfileOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateAuthenticationProfileOutput) GoString() string {
 	return s.String()
 }
 

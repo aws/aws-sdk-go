@@ -1205,6 +1205,22 @@
         {"shape":"InternalServiceException"}
       ]
     },
+    "DescribeAuthenticationProfile":{
+      "name":"DescribeAuthenticationProfile",
+      "http":{
+        "method":"GET",
+        "requestUri":"/authentication-profiles/{InstanceId}/{AuthenticationProfileId}"
+      },
+      "input":{"shape":"DescribeAuthenticationProfileRequest"},
+      "output":{"shape":"DescribeAuthenticationProfileResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
     "DescribeContact":{
       "name":"DescribeContact",
       "http":{
@@ -2027,6 +2043,22 @@
         {"shape":"InvalidRequestException"},
         {"shape":"InvalidParameterException"},
         {"shape":"ThrottlingException"}
+      ]
+    },
+    "ListAuthenticationProfiles":{
+      "name":"ListAuthenticationProfiles",
+      "http":{
+        "method":"GET",
+        "requestUri":"/authentication-profiles-summary/{InstanceId}"
+      },
+      "input":{"shape":"ListAuthenticationProfilesRequest"},
+      "output":{"shape":"ListAuthenticationProfilesResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceException"}
       ]
     },
     "ListBots":{
@@ -3347,6 +3379,21 @@
         {"shape":"InternalServiceException"}
       ]
     },
+    "UpdateAuthenticationProfile":{
+      "name":"UpdateAuthenticationProfile",
+      "http":{
+        "method":"POST",
+        "requestUri":"/authentication-profiles/{InstanceId}/{AuthenticationProfileId}"
+      },
+      "input":{"shape":"UpdateAuthenticationProfileRequest"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
     "UpdateContact":{
       "name":"UpdateContact",
       "http":{
@@ -4079,6 +4126,12 @@
       },
       "error":{"httpStatusCode":403},
       "exception":true
+    },
+    "AccessTokenDuration":{
+      "type":"integer",
+      "box":true,
+      "max":60,
+      "min":10
     },
     "ActionSummaries":{
       "type":"list",
@@ -4849,6 +4902,53 @@
       }
     },
     "AudioQualityScore":{"type":"float"},
+    "AuthenticationProfile":{
+      "type":"structure",
+      "members":{
+        "Id":{"shape":"AuthenticationProfileId"},
+        "Arn":{"shape":"ARN"},
+        "Name":{"shape":"AuthenticationProfileName"},
+        "Description":{"shape":"AuthenticationProfileDescription"},
+        "AllowedIps":{"shape":"IpCidrList"},
+        "BlockedIps":{"shape":"IpCidrList"},
+        "IsDefault":{"shape":"Boolean"},
+        "CreatedTime":{"shape":"Timestamp"},
+        "LastModifiedTime":{"shape":"Timestamp"},
+        "LastModifiedRegion":{"shape":"RegionName"},
+        "PeriodicSessionDuration":{"shape":"AccessTokenDuration"},
+        "MaxSessionDuration":{"shape":"RefreshTokenDuration"}
+      }
+    },
+    "AuthenticationProfileDescription":{
+      "type":"string",
+      "max":250,
+      "min":1
+    },
+    "AuthenticationProfileId":{
+      "type":"string",
+      "max":100,
+      "min":1
+    },
+    "AuthenticationProfileName":{
+      "type":"string",
+      "max":128,
+      "min":1
+    },
+    "AuthenticationProfileSummary":{
+      "type":"structure",
+      "members":{
+        "Id":{"shape":"AuthenticationProfileId"},
+        "Arn":{"shape":"ARN"},
+        "Name":{"shape":"AuthenticationProfileName"},
+        "IsDefault":{"shape":"Boolean"},
+        "LastModifiedTime":{"shape":"Timestamp"},
+        "LastModifiedRegion":{"shape":"RegionName"}
+      }
+    },
+    "AuthenticationProfileSummaryList":{
+      "type":"list",
+      "member":{"shape":"AuthenticationProfileSummary"}
+    },
     "AutoAccept":{"type":"boolean"},
     "AvailableNumberSummary":{
       "type":"structure",
@@ -7014,6 +7114,31 @@
       "type":"structure",
       "members":{
         "AgentStatus":{"shape":"AgentStatus"}
+      }
+    },
+    "DescribeAuthenticationProfileRequest":{
+      "type":"structure",
+      "required":[
+        "AuthenticationProfileId",
+        "InstanceId"
+      ],
+      "members":{
+        "AuthenticationProfileId":{
+          "shape":"AuthenticationProfileId",
+          "location":"uri",
+          "locationName":"AuthenticationProfileId"
+        },
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        }
+      }
+    },
+    "DescribeAuthenticationProfileResponse":{
+      "type":"structure",
+      "members":{
+        "AuthenticationProfile":{"shape":"AuthenticationProfile"}
       }
     },
     "DescribeContactEvaluationRequest":{
@@ -9729,6 +9854,16 @@
       "type":"list",
       "member":{"shape":"InvisibleFieldInfo"}
     },
+    "IpCidr":{
+      "type":"string",
+      "max":50,
+      "min":2,
+      "pattern":"^[A-Za-z0-9:/]*$"
+    },
+    "IpCidrList":{
+      "type":"list",
+      "member":{"shape":"IpCidr"}
+    },
     "JoinToken":{
       "type":"string",
       "sensitive":true
@@ -9914,6 +10049,35 @@
       "type":"structure",
       "members":{
         "Origins":{"shape":"OriginsList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListAuthenticationProfilesRequest":{
+      "type":"structure",
+      "required":["InstanceId"],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "MaxResults":{
+          "shape":"MaxResult1000",
+          "box":true,
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "ListAuthenticationProfilesResponse":{
+      "type":"structure",
+      "members":{
+        "AuthenticationProfileSummaryList":{"shape":"AuthenticationProfileSummaryList"},
         "NextToken":{"shape":"NextToken"}
       }
     },
@@ -12917,6 +13081,12 @@
       "max":4096,
       "min":0
     },
+    "RefreshTokenDuration":{
+      "type":"integer",
+      "box":true,
+      "max":720,
+      "min":360
+    },
     "RegionName":{
       "type":"string",
       "pattern":"[a-z]{2}(-[a-z]+){1,2}(-[0-9])?"
@@ -15066,6 +15236,33 @@
           "box":true
         },
         "ResetOrderNumber":{"shape":"Boolean"}
+      }
+    },
+    "UpdateAuthenticationProfileRequest":{
+      "type":"structure",
+      "required":[
+        "AuthenticationProfileId",
+        "InstanceId"
+      ],
+      "members":{
+        "AuthenticationProfileId":{
+          "shape":"AuthenticationProfileId",
+          "location":"uri",
+          "locationName":"AuthenticationProfileId"
+        },
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "Name":{"shape":"AuthenticationProfileName"},
+        "Description":{"shape":"AuthenticationProfileDescription"},
+        "AllowedIps":{"shape":"IpCidrList"},
+        "BlockedIps":{"shape":"IpCidrList"},
+        "PeriodicSessionDuration":{
+          "shape":"AccessTokenDuration",
+          "box":true
+        }
       }
     },
     "UpdateCaseActionDefinition":{

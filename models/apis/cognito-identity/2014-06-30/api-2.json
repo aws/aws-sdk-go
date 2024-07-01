@@ -5,11 +5,13 @@
     "endpointPrefix":"cognito-identity",
     "jsonVersion":"1.1",
     "protocol":"json",
+    "protocols":["json"],
     "serviceFullName":"Amazon Cognito Identity",
     "serviceId":"Cognito Identity",
     "signatureVersion":"v4",
     "targetPrefix":"AWSCognitoIdentityService",
-    "uid":"cognito-identity-2014-06-30"
+    "uid":"cognito-identity-2014-06-30",
+    "auth":["aws.auth#sigv4"]
   },
   "operations":{
     "CreateIdentityPool":{
@@ -108,7 +110,8 @@
         {"shape":"InternalErrorException"},
         {"shape":"ExternalServiceException"}
       ],
-      "authtype":"none"
+      "authtype":"none",
+      "auth":["smithy.api#noAuth"]
     },
     "GetId":{
       "name":"GetId",
@@ -128,7 +131,8 @@
         {"shape":"LimitExceededException"},
         {"shape":"ExternalServiceException"}
       ],
-      "authtype":"none"
+      "authtype":"none",
+      "auth":["smithy.api#noAuth"]
     },
     "GetIdentityPoolRoles":{
       "name":"GetIdentityPoolRoles",
@@ -164,7 +168,8 @@
         {"shape":"InternalErrorException"},
         {"shape":"ExternalServiceException"}
       ],
-      "authtype":"none"
+      "authtype":"none",
+      "auth":["smithy.api#noAuth"]
     },
     "GetOpenIdTokenForDeveloperIdentity":{
       "name":"GetOpenIdTokenForDeveloperIdentity",
@@ -363,7 +368,8 @@
         {"shape":"InternalErrorException"},
         {"shape":"ExternalServiceException"}
       ],
-      "authtype":"none"
+      "authtype":"none",
+      "auth":["smithy.api#noAuth"]
     },
     "UntagResource":{
       "name":"UntagResource",

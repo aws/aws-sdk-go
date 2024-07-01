@@ -11,7 +11,8 @@
     "serviceId":"WAFV2",
     "signatureVersion":"v4",
     "targetPrefix":"AWSWAF_20190729",
-    "uid":"wafv2-2019-07-29"
+    "uid":"wafv2-2019-07-29",
+    "auth":["aws.auth#sigv4"]
   },
   "operations":{
     "AssociateWebACL":{

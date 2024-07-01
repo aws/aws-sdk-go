@@ -4940,8 +4940,12 @@ type ImportTr31KeyBlock struct {
 
 	// The TR-31 wrapped key block to import.
 	//
+	// WrappedKeyBlock is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ImportTr31KeyBlock's
+	// String and GoString methods.
+	//
 	// WrappedKeyBlock is a required field
-	WrappedKeyBlock *string `min:"56" type:"string" required:"true"`
+	WrappedKeyBlock *string `min:"56" type:"string" required:"true" sensitive:"true"`
 
 	// The KeyARN of the key that will decrypt or unwrap a TR-31 key block during
 	// import.
