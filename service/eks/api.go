@@ -19622,6 +19622,9 @@ const (
 
 	// CapacityTypesSpot is a CapacityTypes enum value
 	CapacityTypesSpot = "SPOT"
+
+	// CapacityTypesCapacityBlock is a CapacityTypes enum value
+	CapacityTypesCapacityBlock = "CAPACITY_BLOCK"
 )
 
 // CapacityTypes_Values returns all elements of the CapacityTypes enum
@@ -19629,6 +19632,7 @@ func CapacityTypes_Values() []string {
 	return []string{
 		CapacityTypesOnDemand,
 		CapacityTypesSpot,
+		CapacityTypesCapacityBlock,
 	}
 }
 

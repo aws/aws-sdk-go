@@ -1,3 +1,22 @@
+Release v1.54.12 (2024-07-01)
+===
+
+### Service Client Updates
+* `service/apigateway`: Updates service API
+  * Add v2 smoke tests and smithy smokeTests trait for SDK testing.
+* `service/cognito-identity`: Updates service API
+* `service/connect`: Updates service API, documentation, and paginators
+* `service/docdb`: Updates service API
+  * Add v2 smoke tests and smithy smokeTests trait for SDK testing.
+* `service/eks`: Updates service API
+* `service/payment-cryptography`: Updates service API and documentation
+* `service/payment-cryptography-data`: Updates service API, documentation, and waiters
+* `service/states`: Updates service API
+  * Add v2 smoke tests and smithy smokeTests trait for SDK testing.
+* `service/swf`: Updates service API
+  * Add v2 smoke tests and smithy smokeTests trait for SDK testing.
+* `service/wafv2`: Updates service API and documentation
+
 Release v1.54.11 (2024-06-28)
 ===
 

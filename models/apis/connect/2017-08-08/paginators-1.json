@@ -32,6 +32,12 @@
       "output_token": "NextToken",
       "result_key": "Origins"
     },
+    "ListAuthenticationProfiles": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "AuthenticationProfileSummaryList"
+    },
     "ListBots": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",

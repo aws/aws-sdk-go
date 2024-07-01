@@ -2,9 +2,11 @@
   "version":"2.0",
   "metadata":{
     "apiVersion":"2021-09-14",
+    "auth":["aws.auth#sigv4"],
     "endpointPrefix":"controlplane.payment-cryptography",
     "jsonVersion":"1.0",
     "protocol":"json",
+    "protocols":["json"],
     "serviceFullName":"Payment Cryptography Control Plane",
     "serviceId":"Payment Cryptography",
     "signatureVersion":"v4",
@@ -493,6 +495,12 @@
         "Key":{"shape":"Key"}
       }
     },
+    "EvenHexLengthBetween16And32":{
+      "type":"string",
+      "max":32,
+      "min":16,
+      "pattern":"(?:[0-9a-fA-F][0-9a-fA-F])+"
+    },
     "ExportAttributes":{
       "type":"structure",
       "members":{
@@ -571,7 +579,7 @@
         "WrappingKeyCertificate":{"shape":"CertificateType"},
         "ExportToken":{"shape":"ExportTokenId"},
         "KeyBlockFormat":{"shape":"Tr34KeyBlockFormat"},
-        "RandomNonce":{"shape":"HexLength16"},
+        "RandomNonce":{"shape":"EvenHexLengthBetween16And32"},
         "KeyBlockHeaders":{"shape":"KeyBlockHeaders"}
       }
     },
@@ -677,12 +685,6 @@
         "KeyCertificateChain":{"shape":"CertificateType"}
       }
     },
-    "HexLength16":{
-      "type":"string",
-      "max":16,
-      "min":16,
-      "pattern":"[0-9A-F]+"
-    },
     "HexLength20Or24":{
       "type":"string",
       "max":24,
@@ -763,7 +765,7 @@
         "ImportToken":{"shape":"ImportTokenId"},
         "WrappedKeyBlock":{"shape":"Tr34WrappedKeyBlock"},
         "KeyBlockFormat":{"shape":"Tr34KeyBlockFormat"},
-        "RandomNonce":{"shape":"HexLength16"}
+        "RandomNonce":{"shape":"EvenHexLengthBetween16And32"}
       }
     },
     "InternalServerException":{
@@ -1204,7 +1206,8 @@
       "type":"string",
       "max":9984,
       "min":56,
-      "pattern":"[0-9A-Z]+"
+      "pattern":"[0-9A-Z]+",
+      "sensitive":true
     },
     "Tr34KeyBlockFormat":{
       "type":"string",

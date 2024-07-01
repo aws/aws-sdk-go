@@ -134,6 +134,13 @@
       "refs": {
       }
     },
+    "EvenHexLengthBetween16And32": {
+      "base": null,
+      "refs": {
+        "ExportTr34KeyBlock$RandomNonce": "<p>A random number value that is unique to the TR-34 key block generated using 2 pass. The operation will fail, if a random nonce value is not provided for a TR-34 key block generated using 2 pass.</p>",
+        "ImportTr34KeyBlock$RandomNonce": "<p>A random number value that is unique to the TR-34 key block generated using 2 pass. The operation will fail, if a random nonce value is not provided for a TR-34 key block generated using 2 pass.</p>"
+      }
+    },
     "ExportAttributes": {
       "base": "<p>The attributes for IPEK generation during export.</p>",
       "refs": {
@@ -235,13 +242,6 @@
     "GetPublicKeyCertificateOutput": {
       "base": null,
       "refs": {
-      }
-    },
-    "HexLength16": {
-      "base": null,
-      "refs": {
-        "ExportTr34KeyBlock$RandomNonce": "<p>A random number value that is unique to the TR-34 key block generated using 2 pass. The operation will fail, if a random nonce value is not provided for a TR-34 key block generated using 2 pass.</p>",
-        "ImportTr34KeyBlock$RandomNonce": "<p>A random number value that is unique to the TR-34 key block generated using 2 pass. The operation will fail, if a random nonce value is not provided for a TR-34 key block generated using 2 pass.</p>"
       }
     },
     "HexLength20Or24": {

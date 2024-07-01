@@ -1,0 +1,16 @@
+{
+    "version": 2,
+    "testCases": [
+        {
+            "id": "ListActivitiesSuccess",
+            "operationName": "ListActivities",
+            "input": {},
+            "expectation": {
+                "success": {}
+            },
+            "config": {
+                "region": "us-west-2"
+            }
+        }
+    ]
+}

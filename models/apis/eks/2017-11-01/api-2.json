@@ -1229,7 +1229,8 @@
       "type":"string",
       "enum":[
         "ON_DEMAND",
-        "SPOT"
+        "SPOT",
+        "CAPACITY_BLOCK"
       ]
     },
     "Category":{

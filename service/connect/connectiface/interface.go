@@ -344,6 +344,10 @@ type ConnectAPI interface {
 	DescribeAgentStatusWithContext(aws.Context, *connect.DescribeAgentStatusInput, ...request.Option) (*connect.DescribeAgentStatusOutput, error)
 	DescribeAgentStatusRequest(*connect.DescribeAgentStatusInput) (*request.Request, *connect.DescribeAgentStatusOutput)
 
+	DescribeAuthenticationProfile(*connect.DescribeAuthenticationProfileInput) (*connect.DescribeAuthenticationProfileOutput, error)
+	DescribeAuthenticationProfileWithContext(aws.Context, *connect.DescribeAuthenticationProfileInput, ...request.Option) (*connect.DescribeAuthenticationProfileOutput, error)
+	DescribeAuthenticationProfileRequest(*connect.DescribeAuthenticationProfileInput) (*request.Request, *connect.DescribeAuthenticationProfileOutput)
+
 	DescribeContact(*connect.DescribeContactInput) (*connect.DescribeContactOutput, error)
 	DescribeContactWithContext(aws.Context, *connect.DescribeContactInput, ...request.Option) (*connect.DescribeContactOutput, error)
 	DescribeContactRequest(*connect.DescribeContactInput) (*request.Request, *connect.DescribeContactOutput)
@@ -569,6 +573,13 @@ type ConnectAPI interface {
 
 	ListApprovedOriginsPages(*connect.ListApprovedOriginsInput, func(*connect.ListApprovedOriginsOutput, bool) bool) error
 	ListApprovedOriginsPagesWithContext(aws.Context, *connect.ListApprovedOriginsInput, func(*connect.ListApprovedOriginsOutput, bool) bool, ...request.Option) error
+
+	ListAuthenticationProfiles(*connect.ListAuthenticationProfilesInput) (*connect.ListAuthenticationProfilesOutput, error)
+	ListAuthenticationProfilesWithContext(aws.Context, *connect.ListAuthenticationProfilesInput, ...request.Option) (*connect.ListAuthenticationProfilesOutput, error)
+	ListAuthenticationProfilesRequest(*connect.ListAuthenticationProfilesInput) (*request.Request, *connect.ListAuthenticationProfilesOutput)
+
+	ListAuthenticationProfilesPages(*connect.ListAuthenticationProfilesInput, func(*connect.ListAuthenticationProfilesOutput, bool) bool) error
+	ListAuthenticationProfilesPagesWithContext(aws.Context, *connect.ListAuthenticationProfilesInput, func(*connect.ListAuthenticationProfilesOutput, bool) bool, ...request.Option) error
 
 	ListBots(*connect.ListBotsInput) (*connect.ListBotsOutput, error)
 	ListBotsWithContext(aws.Context, *connect.ListBotsInput, ...request.Option) (*connect.ListBotsOutput, error)
@@ -1059,6 +1070,10 @@ type ConnectAPI interface {
 	UpdateAgentStatus(*connect.UpdateAgentStatusInput) (*connect.UpdateAgentStatusOutput, error)
 	UpdateAgentStatusWithContext(aws.Context, *connect.UpdateAgentStatusInput, ...request.Option) (*connect.UpdateAgentStatusOutput, error)
 	UpdateAgentStatusRequest(*connect.UpdateAgentStatusInput) (*request.Request, *connect.UpdateAgentStatusOutput)
+
+	UpdateAuthenticationProfile(*connect.UpdateAuthenticationProfileInput) (*connect.UpdateAuthenticationProfileOutput, error)
+	UpdateAuthenticationProfileWithContext(aws.Context, *connect.UpdateAuthenticationProfileInput, ...request.Option) (*connect.UpdateAuthenticationProfileOutput, error)
+	UpdateAuthenticationProfileRequest(*connect.UpdateAuthenticationProfileInput) (*request.Request, *connect.UpdateAuthenticationProfileOutput)
 
 	UpdateContact(*connect.UpdateContactInput) (*connect.UpdateContactOutput, error)
 	UpdateContactWithContext(aws.Context, *connect.UpdateContactInput, ...request.Option) (*connect.UpdateContactOutput, error)
