@@ -25182,6 +25182,7 @@
     "HostTenancy":{
       "type":"string",
       "enum":[
+        "default",
         "dedicated",
         "host"
       ]

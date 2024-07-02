@@ -1,3 +1,13 @@
+Release v1.54.13 (2024-07-02)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API and documentation
+  * Documentation updates for Elastic Compute Cloud (EC2).
+* `service/fms`: Updates service API
+* `service/s3`: Updates service API, documentation, and examples
+  * Added response overrides to Head Object requests.
+
 Release v1.54.12 (2024-07-01)
 ===
 
