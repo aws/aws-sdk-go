@@ -11,7 +11,8 @@
     "serviceFullName":"Amazon Simple Storage Service",
     "serviceId":"S3",
     "signatureVersion":"s3",
-    "uid":"s3-2006-03-01"
+    "uid":"s3-2006-03-01",
+    "auth":["aws.auth#sigv4"]
   },
   "operations":{
     "AbortMultipartUpload":{
@@ -1301,7 +1302,8 @@
       },
       "staticContextParams":{
         "UseObjectLambdaEndpoint":{"value":true}
-      }
+      },
+      "unsignedPayload":true
     }
   },
   "shapes":{
@@ -4818,6 +4820,36 @@
           "shape":"Range",
           "location":"header",
           "locationName":"Range"
+        },
+        "ResponseCacheControl":{
+          "shape":"ResponseCacheControl",
+          "location":"querystring",
+          "locationName":"response-cache-control"
+        },
+        "ResponseContentDisposition":{
+          "shape":"ResponseContentDisposition",
+          "location":"querystring",
+          "locationName":"response-content-disposition"
+        },
+        "ResponseContentEncoding":{
+          "shape":"ResponseContentEncoding",
+          "location":"querystring",
+          "locationName":"response-content-encoding"
+        },
+        "ResponseContentLanguage":{
+          "shape":"ResponseContentLanguage",
+          "location":"querystring",
+          "locationName":"response-content-language"
+        },
+        "ResponseContentType":{
+          "shape":"ResponseContentType",
+          "location":"querystring",
+          "locationName":"response-content-type"
+        },
+        "ResponseExpires":{
+          "shape":"ResponseExpires",
+          "location":"querystring",
+          "locationName":"response-expires"
         },
         "VersionId":{
           "shape":"ObjectVersionId",
