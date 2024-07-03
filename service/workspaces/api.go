@@ -20011,7 +20011,9 @@ type RootStorage struct {
 	_ struct{} `type:"structure"`
 
 	// The size of the root volume.
-	Capacity *string `min:"1" type:"string"`
+	//
+	// Capacity is a required field
+	Capacity *string `min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -20035,6 +20037,9 @@ func (s RootStorage) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *RootStorage) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "RootStorage"}
+	if s.Capacity == nil {
+		invalidParams.Add(request.NewErrParamRequired("Capacity"))
+	}
 	if s.Capacity != nil && len(*s.Capacity) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Capacity", 1))
 	}
@@ -22171,7 +22176,9 @@ type UserStorage struct {
 	_ struct{} `type:"structure"`
 
 	// The size of the user volume.
-	Capacity *string `min:"1" type:"string"`
+	//
+	// Capacity is a required field
+	Capacity *string `min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -22195,6 +22202,9 @@ func (s UserStorage) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *UserStorage) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UserStorage"}
+	if s.Capacity == nil {
+		invalidParams.Add(request.NewErrParamRequired("Capacity"))
+	}
 	if s.Capacity != nil && len(*s.Capacity) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Capacity", 1))
 	}

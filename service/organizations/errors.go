@@ -190,9 +190,8 @@ const (
 	//    * MASTER_ACCOUNT_ADDRESS_DOES_NOT_MATCH_MARKETPLACE: To create an account
 	//    in this organization, you first must migrate the organization's management
 	//    account to the marketplace that corresponds to the management account's
-	//    address. For example, accounts with India addresses must be associated
-	//    with the AISPL marketplace. All accounts in an organization must be associated
-	//    with the same marketplace.
+	//    address. All accounts in an organization must be associated with the same
+	//    marketplace.
 	//
 	//    * MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the Amazon
 	//    Web Services Regions in China. To create an organization, the master must

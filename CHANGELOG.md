@@ -1,3 +1,17 @@
+Release v1.54.14 (2024-07-03)
+===
+
+### Service Client Updates
+* `service/application-autoscaling`: Updates service documentation
+* `service/directconnect`: Updates service documentation
+  * This update includes documentation for support of new native 400 GBps ports for Direct Connect.
+* `service/organizations`: Updates service API and documentation
+  * Added a new reason under ConstraintViolationException in RegisterDelegatedAdministrator API to prevent registering suspended accounts as delegated administrator of a service.
+* `service/rekognition`: Updates service API and documentation
+  * This release adds support for tagging projects and datasets with the CreateProject and CreateDataset APIs.
+* `service/workspaces`: Updates service API
+  * Fix create workspace bundle RootStorage/UserStorage to accept non null values
+
 Release v1.54.13 (2024-07-02)
 ===
 

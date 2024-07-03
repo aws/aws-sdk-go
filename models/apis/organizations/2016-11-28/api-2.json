@@ -5,12 +5,14 @@
     "endpointPrefix":"organizations",
     "jsonVersion":"1.1",
     "protocol":"json",
+    "protocols":["json"],
     "serviceAbbreviation":"Organizations",
     "serviceFullName":"AWS Organizations",
     "serviceId":"Organizations",
     "signatureVersion":"v4",
     "targetPrefix":"AWSOrganizationsV20161128",
-    "uid":"organizations-2016-11-28"
+    "uid":"organizations-2016-11-28",
+    "auth":["aws.auth#sigv4"]
   },
   "operations":{
     "AcceptHandshake":{
@@ -1299,7 +1301,8 @@
         "CLOSE_ACCOUNT_REQUESTS_LIMIT_EXCEEDED",
         "SERVICE_ACCESS_NOT_ENABLED",
         "INVALID_PAYMENT_INSTRUMENT",
-        "ACCOUNT_CREATION_NOT_COMPLETE"
+        "ACCOUNT_CREATION_NOT_COMPLETE",
+        "CANNOT_REGISTER_SUSPENDED_ACCOUNT_AS_DELEGATED_ADMINISTRATOR"
       ]
     },
     "CreateAccountFailureReason":{

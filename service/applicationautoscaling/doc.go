@@ -36,7 +36,7 @@
 //
 //   - Spot Fleets (Amazon EC2)
 //
-//   - WorkSpaces pools
+//   - Pool of WorkSpaces
 //
 //   - Custom resources provided by your own applications or services
 //

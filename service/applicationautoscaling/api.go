@@ -1914,7 +1914,7 @@ type DeleteScalingPolicyInput struct {
 	//    * SageMaker inference component - The resource type is inference-component
 	//    and the unique identifier is the resource ID. Example: inference-component/my-inference-component.
 	//
-	//    * Amazon WorkSpaces - The resource type is workspacespool and the unique
+	//    * Pool of WorkSpaces - The resource type is workspacespool and the unique
 	//    identifier is the pool ID. Example: workspacespool/wspool-123456.
 	//
 	// ResourceId is a required field
@@ -1989,8 +1989,8 @@ type DeleteScalingPolicyInput struct {
 	//    * sagemaker:inference-component:DesiredCopyCount - The number of copies
 	//    across an endpoint for a SageMaker inference component.
 	//
-	//    * workspaces:workspacespool:DesiredUserSessions - The capacity of a WorkSpaces
-	//    pool.
+	//    * workspaces:workspacespool:DesiredUserSessions - The number of user sessions
+	//    for the WorkSpaces in the pool.
 	//
 	// ScalableDimension is a required field
 	ScalableDimension *string `type:"string" required:"true" enum:"ScalableDimension"`
@@ -2159,7 +2159,7 @@ type DeleteScheduledActionInput struct {
 	//    * SageMaker inference component - The resource type is inference-component
 	//    and the unique identifier is the resource ID. Example: inference-component/my-inference-component.
 	//
-	//    * Amazon WorkSpaces - The resource type is workspacespool and the unique
+	//    * Pool of WorkSpaces - The resource type is workspacespool and the unique
 	//    identifier is the pool ID. Example: workspacespool/wspool-123456.
 	//
 	// ResourceId is a required field
@@ -2234,8 +2234,8 @@ type DeleteScheduledActionInput struct {
 	//    * sagemaker:inference-component:DesiredCopyCount - The number of copies
 	//    across an endpoint for a SageMaker inference component.
 	//
-	//    * workspaces:workspacespool:DesiredUserSessions - The capacity of a WorkSpaces
-	//    pool.
+	//    * workspaces:workspacespool:DesiredUserSessions - The number of user sessions
+	//    for the WorkSpaces in the pool.
 	//
 	// ScalableDimension is a required field
 	ScalableDimension *string `type:"string" required:"true" enum:"ScalableDimension"`
@@ -2409,7 +2409,7 @@ type DeregisterScalableTargetInput struct {
 	//    * SageMaker inference component - The resource type is inference-component
 	//    and the unique identifier is the resource ID. Example: inference-component/my-inference-component.
 	//
-	//    * Amazon WorkSpaces - The resource type is workspacespool and the unique
+	//    * Pool of WorkSpaces - The resource type is workspacespool and the unique
 	//    identifier is the pool ID. Example: workspacespool/wspool-123456.
 	//
 	// ResourceId is a required field
@@ -2484,8 +2484,8 @@ type DeregisterScalableTargetInput struct {
 	//    * sagemaker:inference-component:DesiredCopyCount - The number of copies
 	//    across an endpoint for a SageMaker inference component.
 	//
-	//    * workspaces:workspacespool:DesiredUserSessions - The capacity of a WorkSpaces
-	//    pool.
+	//    * workspaces:workspacespool:DesiredUserSessions - The number of user sessions
+	//    for the WorkSpaces in the pool.
 	//
 	// ScalableDimension is a required field
 	ScalableDimension *string `type:"string" required:"true" enum:"ScalableDimension"`
@@ -2654,7 +2654,7 @@ type DescribeScalableTargetsInput struct {
 	//    * SageMaker inference component - The resource type is inference-component
 	//    and the unique identifier is the resource ID. Example: inference-component/my-inference-component.
 	//
-	//    * Amazon WorkSpaces - The resource type is workspacespool and the unique
+	//    * Pool of WorkSpaces - The resource type is workspacespool and the unique
 	//    identifier is the pool ID. Example: workspacespool/wspool-123456.
 	ResourceIds []*string `type:"list"`
 
@@ -2728,8 +2728,8 @@ type DescribeScalableTargetsInput struct {
 	//    * sagemaker:inference-component:DesiredCopyCount - The number of copies
 	//    across an endpoint for a SageMaker inference component.
 	//
-	//    * workspaces:workspacespool:DesiredUserSessions - The capacity of a WorkSpaces
-	//    pool.
+	//    * workspaces:workspacespool:DesiredUserSessions - The number of user sessions
+	//    for the WorkSpaces in the pool.
 	ScalableDimension *string `type:"string" enum:"ScalableDimension"`
 
 	// The namespace of the Amazon Web Services service that provides the resource.
@@ -2925,7 +2925,7 @@ type DescribeScalingActivitiesInput struct {
 	//    * SageMaker inference component - The resource type is inference-component
 	//    and the unique identifier is the resource ID. Example: inference-component/my-inference-component.
 	//
-	//    * Amazon WorkSpaces - The resource type is workspacespool and the unique
+	//    * Pool of WorkSpaces - The resource type is workspacespool and the unique
 	//    identifier is the pool ID. Example: workspacespool/wspool-123456.
 	ResourceId *string `min:"1" type:"string"`
 
@@ -2999,8 +2999,8 @@ type DescribeScalingActivitiesInput struct {
 	//    * sagemaker:inference-component:DesiredCopyCount - The number of copies
 	//    across an endpoint for a SageMaker inference component.
 	//
-	//    * workspaces:workspacespool:DesiredUserSessions - The capacity of a WorkSpaces
-	//    pool.
+	//    * workspaces:workspacespool:DesiredUserSessions - The number of user sessions
+	//    for the WorkSpaces in the pool.
 	ScalableDimension *string `type:"string" enum:"ScalableDimension"`
 
 	// The namespace of the Amazon Web Services service that provides the resource.
@@ -3201,7 +3201,7 @@ type DescribeScalingPoliciesInput struct {
 	//    * SageMaker inference component - The resource type is inference-component
 	//    and the unique identifier is the resource ID. Example: inference-component/my-inference-component.
 	//
-	//    * Amazon WorkSpaces - The resource type is workspacespool and the unique
+	//    * Pool of WorkSpaces - The resource type is workspacespool and the unique
 	//    identifier is the pool ID. Example: workspacespool/wspool-123456.
 	ResourceId *string `min:"1" type:"string"`
 
@@ -3275,8 +3275,8 @@ type DescribeScalingPoliciesInput struct {
 	//    * sagemaker:inference-component:DesiredCopyCount - The number of copies
 	//    across an endpoint for a SageMaker inference component.
 	//
-	//    * workspaces:workspacespool:DesiredUserSessions - The capacity of a WorkSpaces
-	//    pool.
+	//    * workspaces:workspacespool:DesiredUserSessions - The number of user sessions
+	//    for the WorkSpaces in the pool.
 	ScalableDimension *string `type:"string" enum:"ScalableDimension"`
 
 	// The namespace of the Amazon Web Services service that provides the resource.
@@ -3474,7 +3474,7 @@ type DescribeScheduledActionsInput struct {
 	//    * SageMaker inference component - The resource type is inference-component
 	//    and the unique identifier is the resource ID. Example: inference-component/my-inference-component.
 	//
-	//    * Amazon WorkSpaces - The resource type is workspacespool and the unique
+	//    * Pool of WorkSpaces - The resource type is workspacespool and the unique
 	//    identifier is the pool ID. Example: workspacespool/wspool-123456.
 	ResourceId *string `min:"1" type:"string"`
 
@@ -3548,8 +3548,8 @@ type DescribeScheduledActionsInput struct {
 	//    * sagemaker:inference-component:DesiredCopyCount - The number of copies
 	//    across an endpoint for a SageMaker inference component.
 	//
-	//    * workspaces:workspacespool:DesiredUserSessions - The capacity of a WorkSpaces
-	//    pool.
+	//    * workspaces:workspacespool:DesiredUserSessions - The number of user sessions
+	//    for the WorkSpaces in the pool.
 	ScalableDimension *string `type:"string" enum:"ScalableDimension"`
 
 	// The names of the scheduled actions to describe.
@@ -4401,7 +4401,7 @@ type PutScalingPolicyInput struct {
 	//    * SageMaker inference component - The resource type is inference-component
 	//    and the unique identifier is the resource ID. Example: inference-component/my-inference-component.
 	//
-	//    * Amazon WorkSpaces - The resource type is workspacespool and the unique
+	//    * Pool of WorkSpaces - The resource type is workspacespool and the unique
 	//    identifier is the pool ID. Example: workspacespool/wspool-123456.
 	//
 	// ResourceId is a required field
@@ -4476,8 +4476,8 @@ type PutScalingPolicyInput struct {
 	//    * sagemaker:inference-component:DesiredCopyCount - The number of copies
 	//    across an endpoint for a SageMaker inference component.
 	//
-	//    * workspaces:workspacespool:DesiredUserSessions - The capacity of a WorkSpaces
-	//    pool.
+	//    * workspaces:workspacespool:DesiredUserSessions - The number of user sessions
+	//    for the WorkSpaces in the pool.
 	//
 	// ScalableDimension is a required field
 	ScalableDimension *string `type:"string" required:"true" enum:"ScalableDimension"`
@@ -4710,7 +4710,7 @@ type PutScheduledActionInput struct {
 	//    * SageMaker inference component - The resource type is inference-component
 	//    and the unique identifier is the resource ID. Example: inference-component/my-inference-component.
 	//
-	//    * Amazon WorkSpaces - The resource type is workspacespool and the unique
+	//    * Pool of WorkSpaces - The resource type is workspacespool and the unique
 	//    identifier is the pool ID. Example: workspacespool/wspool-123456.
 	//
 	// ResourceId is a required field
@@ -4785,8 +4785,8 @@ type PutScheduledActionInput struct {
 	//    * sagemaker:inference-component:DesiredCopyCount - The number of copies
 	//    across an endpoint for a SageMaker inference component.
 	//
-	//    * workspaces:workspacespool:DesiredUserSessions - The capacity of a WorkSpaces
-	//    pool.
+	//    * workspaces:workspacespool:DesiredUserSessions - The number of user sessions
+	//    for the WorkSpaces in the pool.
 	//
 	// ScalableDimension is a required field
 	ScalableDimension *string `type:"string" required:"true" enum:"ScalableDimension"`
@@ -5092,7 +5092,7 @@ type RegisterScalableTargetInput struct {
 	//    * SageMaker inference component - The resource type is inference-component
 	//    and the unique identifier is the resource ID. Example: inference-component/my-inference-component.
 	//
-	//    * Amazon WorkSpaces - The resource type is workspacespool and the unique
+	//    * Pool of WorkSpaces - The resource type is workspacespool and the unique
 	//    identifier is the pool ID. Example: workspacespool/wspool-123456.
 	//
 	// ResourceId is a required field
@@ -5176,8 +5176,8 @@ type RegisterScalableTargetInput struct {
 	//    * sagemaker:inference-component:DesiredCopyCount - The number of copies
 	//    across an endpoint for a SageMaker inference component.
 	//
-	//    * workspaces:workspacespool:DesiredUserSessions - The capacity of a WorkSpaces
-	//    pool.
+	//    * workspaces:workspacespool:DesiredUserSessions - The number of user sessions
+	//    for the WorkSpaces in the pool.
 	//
 	// ScalableDimension is a required field
 	ScalableDimension *string `type:"string" required:"true" enum:"ScalableDimension"`
@@ -5493,7 +5493,7 @@ type ScalableTarget struct {
 	//    * SageMaker inference component - The resource type is inference-component
 	//    and the unique identifier is the resource ID. Example: inference-component/my-inference-component.
 	//
-	//    * Amazon WorkSpaces - The resource type is workspacespool and the unique
+	//    * Pool of WorkSpaces - The resource type is workspacespool and the unique
 	//    identifier is the pool ID. Example: workspacespool/wspool-123456.
 	//
 	// ResourceId is a required field
@@ -5574,8 +5574,8 @@ type ScalableTarget struct {
 	//    * sagemaker:inference-component:DesiredCopyCount - The number of copies
 	//    across an endpoint for a SageMaker inference component.
 	//
-	//    * workspaces:workspacespool:DesiredUserSessions - The capacity of a WorkSpaces
-	//    pool.
+	//    * workspaces:workspacespool:DesiredUserSessions - The number of user sessions
+	//    for the WorkSpaces in the pool.
 	//
 	// ScalableDimension is a required field
 	ScalableDimension *string `type:"string" required:"true" enum:"ScalableDimension"`
@@ -5810,7 +5810,7 @@ type ScalingActivity struct {
 	//    * SageMaker inference component - The resource type is inference-component
 	//    and the unique identifier is the resource ID. Example: inference-component/my-inference-component.
 	//
-	//    * Amazon WorkSpaces - The resource type is workspacespool and the unique
+	//    * Pool of WorkSpaces - The resource type is workspacespool and the unique
 	//    identifier is the pool ID. Example: workspacespool/wspool-123456.
 	//
 	// ResourceId is a required field
@@ -5885,8 +5885,8 @@ type ScalingActivity struct {
 	//    * sagemaker:inference-component:DesiredCopyCount - The number of copies
 	//    across an endpoint for a SageMaker inference component.
 	//
-	//    * workspaces:workspacespool:DesiredUserSessions - The capacity of a WorkSpaces
-	//    pool.
+	//    * workspaces:workspacespool:DesiredUserSessions - The number of user sessions
+	//    for the WorkSpaces in the pool.
 	//
 	// ScalableDimension is a required field
 	ScalableDimension *string `type:"string" required:"true" enum:"ScalableDimension"`
@@ -6101,7 +6101,7 @@ type ScalingPolicy struct {
 	//    * SageMaker inference component - The resource type is inference-component
 	//    and the unique identifier is the resource ID. Example: inference-component/my-inference-component.
 	//
-	//    * Amazon WorkSpaces - The resource type is workspacespool and the unique
+	//    * Pool of WorkSpaces - The resource type is workspacespool and the unique
 	//    identifier is the pool ID. Example: workspacespool/wspool-123456.
 	//
 	// ResourceId is a required field
@@ -6176,8 +6176,8 @@ type ScalingPolicy struct {
 	//    * sagemaker:inference-component:DesiredCopyCount - The number of copies
 	//    across an endpoint for a SageMaker inference component.
 	//
-	//    * workspaces:workspacespool:DesiredUserSessions - The capacity of a WorkSpaces
-	//    pool.
+	//    * workspaces:workspacespool:DesiredUserSessions - The number of user sessions
+	//    for the WorkSpaces in the pool.
 	//
 	// ScalableDimension is a required field
 	ScalableDimension *string `type:"string" required:"true" enum:"ScalableDimension"`
@@ -6346,7 +6346,7 @@ type ScheduledAction struct {
 	//    * SageMaker inference component - The resource type is inference-component
 	//    and the unique identifier is the resource ID. Example: inference-component/my-inference-component.
 	//
-	//    * Amazon WorkSpaces - The resource type is workspacespool and the unique
+	//    * Pool of WorkSpaces - The resource type is workspacespool and the unique
 	//    identifier is the pool ID. Example: workspacespool/wspool-123456.
 	//
 	// ResourceId is a required field
@@ -6421,8 +6421,8 @@ type ScheduledAction struct {
 	//    * sagemaker:inference-component:DesiredCopyCount - The number of copies
 	//    across an endpoint for a SageMaker inference component.
 	//
-	//    * workspaces:workspacespool:DesiredUserSessions - The capacity of a WorkSpaces
-	//    pool.
+	//    * workspaces:workspacespool:DesiredUserSessions - The number of user sessions
+	//    for the WorkSpaces in the pool.
 	ScalableDimension *string `type:"string" enum:"ScalableDimension"`
 
 	// The new minimum and maximum capacity. You can set both values or just one.
