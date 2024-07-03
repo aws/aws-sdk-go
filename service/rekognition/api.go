@@ -4911,6 +4911,10 @@ func (c *Rekognition) GetLabelDetectionRequest(input *GetLabelDetectionInput) (r
 // the NextToken request parameter with the token value returned from the previous
 // call to GetLabelDetection.
 //
+// If you are retrieving results while using the Amazon Simple Notification
+// Service, note that you will receive an "ERROR" notification if the job encounters
+// an issue.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -11920,6 +11924,9 @@ type CreateDatasetInput struct {
 	//
 	// ProjectArn is a required field
 	ProjectArn *string `min:"20" type:"string" required:"true"`
+
+	// A set of tags (key-value pairs) that you want to attach to the dataset.
+	Tags map[string]*string `type:"map"`
 }
 
 // String returns the string representation.
@@ -11979,6 +11986,12 @@ func (s *CreateDatasetInput) SetDatasetType(v string) *CreateDatasetInput {
 // SetProjectArn sets the ProjectArn field's value.
 func (s *CreateDatasetInput) SetProjectArn(v string) *CreateDatasetInput {
 	s.ProjectArn = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateDatasetInput) SetTags(v map[string]*string) *CreateDatasetInput {
+	s.Tags = v
 	return s
 }
 
@@ -12206,6 +12219,9 @@ type CreateProjectInput struct {
 	//
 	// ProjectName is a required field
 	ProjectName *string `min:"1" type:"string" required:"true"`
+
+	// A set of tags (key-value pairs) that you want to attach to the project.
+	Tags map[string]*string `type:"map"`
 }
 
 // String returns the string representation.
@@ -12257,6 +12273,12 @@ func (s *CreateProjectInput) SetFeature(v string) *CreateProjectInput {
 // SetProjectName sets the ProjectName field's value.
 func (s *CreateProjectInput) SetProjectName(v string) *CreateProjectInput {
 	s.ProjectName = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateProjectInput) SetTags(v map[string]*string) *CreateProjectInput {
+	s.Tags = v
 	return s
 }
 
@@ -15634,8 +15656,8 @@ type DetectModerationLabelsOutput struct {
 	// Shows the results of the human in the loop evaluation.
 	HumanLoopActivationOutput *HumanLoopActivationOutput `type:"structure"`
 
-	// Array of detected Moderation labels and the time, in milliseconds from the
-	// start of the video, they were detected.
+	// Array of detected Moderation labels. For video operations, this includes
+	// the time, in milliseconds from the start of the video, they were detected.
 	ModerationLabels []*ModerationLabel `type:"list"`
 
 	// Version number of the base moderation detection model that was used to detect

@@ -1848,7 +1848,8 @@
       "members":{
         "DatasetSource":{"shape":"DatasetSource"},
         "DatasetType":{"shape":"DatasetType"},
-        "ProjectArn":{"shape":"ProjectArn"}
+        "ProjectArn":{"shape":"ProjectArn"},
+        "Tags":{"shape":"TagMap"}
       }
     },
     "CreateDatasetResponse":{
@@ -1885,7 +1886,8 @@
       "members":{
         "ProjectName":{"shape":"ProjectName"},
         "Feature":{"shape":"CustomizationFeature"},
-        "AutoUpdate":{"shape":"ProjectAutoUpdate"}
+        "AutoUpdate":{"shape":"ProjectAutoUpdate"},
+        "Tags":{"shape":"TagMap"}
       }
     },
     "CreateProjectResponse":{

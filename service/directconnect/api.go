@@ -2005,12 +2005,12 @@ func (c *DirectConnect) CreateLagRequest(input *CreateLagInput) (req *request.Re
 // Aggregation Control Protocol (LACP) to aggregate multiple interfaces, enabling
 // you to treat them as a single interface.
 //
-// All connections in a LAG must use the same bandwidth (either 1Gbps or 10Gbps)
-// and must terminate at the same Direct Connect endpoint.
+// All connections in a LAG must use the same bandwidth (either 1Gbps, 10Gbps,
+// 100Gbps, or 400Gbps) and must terminate at the same Direct Connect endpoint.
 //
-// You can have up to 10 dedicated connections per LAG. Regardless of this limit,
-// if you request more connections for the LAG than Direct Connect can allocate
-// on a single endpoint, no LAG is created.
+// You can have up to 10 dedicated connections per location. Regardless of this
+// limit, if you request more connections for the LAG than Direct Connect can
+// allocate on a single endpoint, no LAG is created..
 //
 // You can specify an existing physical dedicated connection or interconnect
 // to include in the LAG (which counts towards the total number of connections).
@@ -2119,7 +2119,7 @@ func (c *DirectConnect) CreatePrivateVirtualInterfaceRequest(input *CreatePrivat
 // Regions. Connecting the private virtual interface to a VGW only provides
 // access to a single VPC within the same Region.
 //
-// Setting the MTU of a virtual interface to 9001 (jumbo frames) can cause an
+// Setting the MTU of a virtual interface to 8500 (jumbo frames) can cause an
 // update to the underlying physical connection if it wasn't updated to support
 // jumbo frames. Updating the connection disrupts network connectivity for all
 // virtual interfaces associated with the connection for up to 30 seconds. To
@@ -4483,6 +4483,9 @@ func (c *DirectConnect) DescribeVirtualGatewaysRequest(input *DescribeVirtualGat
 
 // DescribeVirtualGateways API operation for AWS Direct Connect.
 //
+// Deprecated. Use DescribeVpnGateways instead. See DescribeVPNGateways (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeVpnGateways.html)
+// in the Amazon Elastic Compute Cloud API Reference.
+//
 // Lists the virtual private gateways owned by the Amazon Web Services account.
 //
 // You can create one or more Direct Connect private virtual interfaces linked
@@ -5618,7 +5621,7 @@ func (c *DirectConnect) UpdateVirtualInterfaceAttributesRequest(input *UpdateVir
 //
 // Updates the specified attributes of the specified virtual private interface.
 //
-// Setting the MTU of a virtual interface to 9001 (jumbo frames) can cause an
+// Setting the MTU of a virtual interface to 8500 (jumbo frames) can cause an
 // update to the underlying physical connection if it wasn't updated to support
 // jumbo frames. Updating the connection disrupts network connectivity for all
 // virtual interfaces associated with the connection for up to 30 seconds. To
@@ -5753,7 +5756,7 @@ type AcceptDirectConnectGatewayAssociationProposalOutput struct {
 	_ struct{} `type:"structure"`
 
 	// Information about an association between a Direct Connect gateway and a virtual
-	// private gateway or transit gateway.
+	// gateway or transit gateway.
 	DirectConnectGatewayAssociation *GatewayAssociation `locationName:"directConnectGatewayAssociation" type:"structure"`
 }
 
@@ -5891,9 +5894,9 @@ type AllocateHostedConnectionInput struct {
 	_ struct{} `type:"structure"`
 
 	// The bandwidth of the connection. The possible values are 50Mbps, 100Mbps,
-	// 200Mbps, 300Mbps, 400Mbps, 500Mbps, 1Gbps, 2Gbps, 5Gbps, and 10Gbps. Note
-	// that only those Direct Connect Partners who have met specific requirements
-	// are allowed to create a 1Gbps, 2Gbps, 5Gbps or 10Gbps hosted connection.
+	// 200Mbps, 300Mbps, 400Mbps, 500Mbps, 1Gbps, 2Gbps, 5Gbps, 10Gbps, and 25Gbps.
+	// Note that only those Direct Connect Partners who have met specific requirements
+	// are allowed to create a 1Gbps, 2Gbps, 5Gbps, 10Gbps, or 25Gbps hosted connection.
 	//
 	// Bandwidth is a required field
 	Bandwidth *string `locationName:"bandwidth" type:"string" required:"true"`
@@ -6254,7 +6257,7 @@ func (s *AllocateTransitVirtualInterfaceInput) SetOwnerAccount(v string) *Alloca
 type AllocateTransitVirtualInterfaceOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Information about a virtual interface.
+	// Information about the transit virtual interface.
 	VirtualInterface *VirtualInterface `locationName:"virtualInterface" type:"structure"`
 }
 
@@ -8175,7 +8178,7 @@ func (s *CreateDirectConnectGatewayOutput) SetDirectConnectGateway(v *Gateway) *
 type CreateInterconnectInput struct {
 	_ struct{} `type:"structure"`
 
-	// The port bandwidth, in Gbps. The possible values are 1 and 10.
+	// The port bandwidth, in Gbps. The possible values are 1, 10, and 100.
 	//
 	// Bandwidth is a required field
 	Bandwidth *string `locationName:"bandwidth" type:"string" required:"true"`
@@ -8296,7 +8299,7 @@ type CreateLagInput struct {
 	ConnectionId *string `locationName:"connectionId" type:"string"`
 
 	// The bandwidth of the individual physical dedicated connections bundled by
-	// the LAG. The possible values are 1Gbps and 10Gbps.
+	// the LAG. The possible values are 1Gbps,10Gbps, 100Gbps, and 400Gbps.
 	//
 	// ConnectionsBandwidth is a required field
 	ConnectionsBandwidth *string `locationName:"connectionsBandwidth" type:"string" required:"true"`
@@ -8313,7 +8316,7 @@ type CreateLagInput struct {
 
 	// The number of physical dedicated connections initially provisioned and bundled
 	// by the LAG. You can have a maximum of four connections when the port speed
-	// is 1G or 10G, or two when the port speed is 100G.
+	// is 1Gbps or 10Gbps, or two when the port speed is 100Gbps or 400Gbps.
 	//
 	// NumberOfConnections is a required field
 	NumberOfConnections *int64 `locationName:"numberOfConnections" type:"integer" required:"true"`
@@ -11545,7 +11548,7 @@ type Lag struct {
 	Connections []*Connection `locationName:"connections" type:"list"`
 
 	// The individual bandwidth of the physical connections bundled by the LAG.
-	// The possible values are 1Gbps and 10Gbps.
+	// The possible values are 1Gbps, 10Gbps, 100Gbps, or 400 Gbps..
 	ConnectionsBandwidth *string `locationName:"connectionsBandwidth" type:"string"`
 
 	// The LAG MAC Security (MACsec) encryption mode.
@@ -11598,8 +11601,9 @@ type Lag struct {
 	// for the LAG itself to be operational.
 	MinimumLinks *int64 `locationName:"minimumLinks" type:"integer"`
 
-	// The number of physical dedicated connections bundled by the LAG, up to a
-	// maximum of 10.
+	// The number of physical dedicated connections initially provisioned and bundled
+	// by the LAG. You can have a maximum of four connections when the port speed
+	// is 1 Gbps or 10 Gbps, or two when the port speed is 100 Gbps or 400 Gbps.
 	NumberOfConnections *int64 `locationName:"numberOfConnections" type:"integer"`
 
 	// The ID of the Amazon Web Services account that owns the LAG.
@@ -12176,7 +12180,7 @@ type NewPrivateVirtualInterface struct {
 	EnableSiteLink *bool `locationName:"enableSiteLink" type:"boolean"`
 
 	// The maximum transmission unit (MTU), in bytes. The supported values are 1500
-	// and 9001. The default value is 1500.
+	// and 8500. The default value is 1500.
 	Mtu *int64 `locationName:"mtu" type:"integer"`
 
 	// The tags associated with the private virtual interface.
@@ -12345,7 +12349,7 @@ type NewPrivateVirtualInterfaceAllocation struct {
 	CustomerAddress *string `locationName:"customerAddress" type:"string"`
 
 	// The maximum transmission unit (MTU), in bytes. The supported values are 1500
-	// and 9001. The default value is 1500.
+	// and 8500. The default value is 1500.
 	Mtu *int64 `locationName:"mtu" type:"integer"`
 
 	// The tags associated with the private virtual interface.
@@ -14204,8 +14208,8 @@ func (s *UpdateDirectConnectGatewayInput) SetNewDirectConnectGatewayName(v strin
 type UpdateDirectConnectGatewayOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Information about a Direct Connect gateway, which enables you to connect
-	// virtual interfaces and virtual private gateway or transit gateways.
+	// Informaiton about a Direct Connect gateway, which enables you to connect
+	// virtual interfaces and virtual private gateways or transit gateways.
 	DirectConnectGateway *Gateway `locationName:"directConnectGateway" type:"structure"`
 }
 
@@ -14317,7 +14321,7 @@ type UpdateVirtualInterfaceAttributesInput struct {
 	EnableSiteLink *bool `locationName:"enableSiteLink" type:"boolean"`
 
 	// The maximum transmission unit (MTU), in bytes. The supported values are 1500
-	// and 9001. The default value is 1500.
+	// and 8500. The default value is 1500.
 	Mtu *int64 `locationName:"mtu" type:"integer"`
 
 	// The ID of the virtual private interface.
@@ -14497,7 +14501,8 @@ type UpdateVirtualInterfaceAttributesOutput struct {
 	//    * unknown: The state of the virtual interface is not available.
 	VirtualInterfaceState *string `locationName:"virtualInterfaceState" type:"string" enum:"VirtualInterfaceState"`
 
-	// The type of virtual interface. The possible values are private and public.
+	// The type of virtual interface. The possible values are private, public and
+	// transit.
 	VirtualInterfaceType *string `locationName:"virtualInterfaceType" type:"string"`
 
 	// The ID of the VLAN.
@@ -14842,7 +14847,8 @@ type VirtualInterface struct {
 	//    * unknown: The state of the virtual interface is not available.
 	VirtualInterfaceState *string `locationName:"virtualInterfaceState" type:"string" enum:"VirtualInterfaceState"`
 
-	// The type of virtual interface. The possible values are private and public.
+	// The type of virtual interface. The possible values are private, public and
+	// transit.
 	VirtualInterfaceType *string `locationName:"virtualInterfaceType" type:"string"`
 
 	// The ID of the VLAN.
