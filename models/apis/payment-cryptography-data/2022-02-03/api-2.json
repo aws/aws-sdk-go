@@ -221,7 +221,7 @@
       "type":"structure",
       "required":["CardExpiryDate"],
       "members":{
-        "CardExpiryDate":{"shape":"NumberLengthEquals4"}
+        "CardExpiryDate":{"shape":"CardExpiryDateType"}
       }
     },
     "AmexCardSecurityCodeVersion2":{
@@ -231,15 +231,43 @@
         "ServiceCode"
       ],
       "members":{
-        "CardExpiryDate":{"shape":"NumberLengthEquals4"},
-        "ServiceCode":{"shape":"NumberLengthEquals3"}
+        "CardExpiryDate":{"shape":"CardExpiryDateType"},
+        "ServiceCode":{"shape":"ServiceCodeType"}
       }
+    },
+    "ApplicationCryptogramType":{
+      "type":"string",
+      "max":16,
+      "min":16,
+      "pattern":"[0-9a-fA-F]+",
+      "sensitive":true
     },
     "AsymmetricEncryptionAttributes":{
       "type":"structure",
       "members":{
         "PaddingType":{"shape":"PaddingType"}
       }
+    },
+    "AuthRequestCryptogramType":{
+      "type":"string",
+      "max":16,
+      "min":16,
+      "pattern":"[0-9a-fA-F]+",
+      "sensitive":true
+    },
+    "AuthResponseValueType":{
+      "type":"string",
+      "max":16,
+      "min":1,
+      "pattern":"[0-9a-fA-F]+",
+      "sensitive":true
+    },
+    "CardExpiryDateType":{
+      "type":"string",
+      "max":4,
+      "min":4,
+      "pattern":"[0-9]+",
+      "sensitive":true
     },
     "CardGenerationAttributes":{
       "type":"structure",
@@ -288,16 +316,23 @@
         "ServiceCode"
       ],
       "members":{
-        "CardExpiryDate":{"shape":"NumberLengthEquals4"},
-        "ServiceCode":{"shape":"NumberLengthEquals3"}
+        "CardExpiryDate":{"shape":"CardExpiryDateType"},
+        "ServiceCode":{"shape":"ServiceCodeType"}
       }
     },
     "CardVerificationValue2":{
       "type":"structure",
       "required":["CardExpiryDate"],
       "members":{
-        "CardExpiryDate":{"shape":"NumberLengthEquals4"}
+        "CardExpiryDate":{"shape":"CardExpiryDateType"}
       }
+    },
+    "CipherTextType":{
+      "type":"string",
+      "max":4096,
+      "min":16,
+      "pattern":"(?:[0-9a-fA-F][0-9a-fA-F])+",
+      "sensitive":true
     },
     "CryptogramAuthResponse":{
       "type":"structure",
@@ -319,8 +354,15 @@
       "required":["CardStatusUpdate"],
       "members":{
         "CardStatusUpdate":{"shape":"HexLengthEquals8"},
-        "ProprietaryAuthenticationData":{"shape":"HexLengthBetween1And16"}
+        "ProprietaryAuthenticationData":{"shape":"ProprietaryAuthenticationDataType"}
       }
+    },
+    "DecimalizationTableType":{
+      "type":"string",
+      "max":16,
+      "min":16,
+      "pattern":"[0-9]+",
+      "sensitive":true
     },
     "DecryptDataInput":{
       "type":"structure",
@@ -335,7 +377,7 @@
           "location":"uri",
           "locationName":"KeyIdentifier"
         },
-        "CipherText":{"shape":"HexEvenLengthBetween16And4096"},
+        "CipherText":{"shape":"CipherTextType"},
         "DecryptionAttributes":{"shape":"EncryptionDecryptionAttributes"},
         "WrappedKey":{"shape":"WrappedKey"}
       }
@@ -350,7 +392,7 @@
       "members":{
         "KeyArn":{"shape":"KeyArn"},
         "KeyCheckValue":{"shape":"KeyCheckValue"},
-        "PlainText":{"shape":"HexEvenLengthBetween16And4096"}
+        "PlainText":{"shape":"PlainTextOutputType"}
       }
     },
     "DiscoverDynamicCardVerificationCode":{
@@ -361,7 +403,7 @@
         "ApplicationTransactionCounter"
       ],
       "members":{
-        "CardExpiryDate":{"shape":"NumberLengthEquals4"},
+        "CardExpiryDate":{"shape":"CardExpiryDateType"},
         "UnpredictableNumber":{"shape":"HexLengthBetween2And8"},
         "ApplicationTransactionCounter":{"shape":"HexLengthBetween2And4"}
       }
@@ -404,7 +446,7 @@
         "Mode":{"shape":"DukptEncryptionMode"},
         "DukptKeyDerivationType":{"shape":"DukptDerivationType"},
         "DukptKeyVariant":{"shape":"DukptKeyVariant"},
-        "InitializationVector":{"shape":"HexLength16Or32"}
+        "InitializationVector":{"shape":"InitializationVectorType"}
       }
     },
     "DukptEncryptionMode":{
@@ -434,7 +476,7 @@
         "UnpredictableNumber":{"shape":"HexLengthBetween2And8"},
         "PanSequenceNumber":{"shape":"NumberLengthEquals2"},
         "ApplicationTransactionCounter":{"shape":"HexLengthBetween2And4"},
-        "TrackData":{"shape":"HexLengthBetween2And160"}
+        "TrackData":{"shape":"TrackDataType"}
       }
     },
     "DynamicCardVerificationValue":{
@@ -447,8 +489,8 @@
       ],
       "members":{
         "PanSequenceNumber":{"shape":"NumberLengthEquals2"},
-        "CardExpiryDate":{"shape":"NumberLengthEquals4"},
-        "ServiceCode":{"shape":"NumberLengthEquals3"},
+        "CardExpiryDate":{"shape":"CardExpiryDateType"},
+        "ServiceCode":{"shape":"ServiceCodeType"},
         "ApplicationTransactionCounter":{"shape":"HexLengthBetween2And4"}
       }
     },
@@ -462,11 +504,11 @@
       ],
       "members":{
         "MajorKeyDerivationMode":{"shape":"EmvMajorKeyDerivationMode"},
-        "PrimaryAccountNumber":{"shape":"NumberLengthBetween12And19"},
+        "PrimaryAccountNumber":{"shape":"PrimaryAccountNumberType"},
         "PanSequenceNumber":{"shape":"NumberLengthEquals2"},
-        "SessionDerivationData":{"shape":"HexLengthEquals16"},
+        "SessionDerivationData":{"shape":"SessionDerivationDataType"},
         "Mode":{"shape":"EmvEncryptionMode"},
-        "InitializationVector":{"shape":"HexLength16Or32"}
+        "InitializationVector":{"shape":"InitializationVectorType"}
       }
     },
     "EmvEncryptionMode":{
@@ -496,7 +538,7 @@
           "location":"uri",
           "locationName":"KeyIdentifier"
         },
-        "PlainText":{"shape":"HexEvenLengthBetween16And4064"},
+        "PlainText":{"shape":"PlainTextType"},
         "EncryptionAttributes":{"shape":"EncryptionDecryptionAttributes"},
         "WrappedKey":{"shape":"WrappedKey"}
       }
@@ -510,8 +552,15 @@
       "members":{
         "KeyArn":{"shape":"KeyArn"},
         "KeyCheckValue":{"shape":"KeyCheckValue"},
-        "CipherText":{"shape":"HexEvenLengthBetween16And4096"}
+        "CipherText":{"shape":"CipherTextType"}
       }
+    },
+    "EncryptedPinBlockType":{
+      "type":"string",
+      "max":32,
+      "min":16,
+      "pattern":"[0-9a-fA-F]+",
+      "sensitive":true
     },
     "EncryptionDecryptionAttributes":{
       "type":"structure",
@@ -545,7 +594,7 @@
       ],
       "members":{
         "KeyIdentifier":{"shape":"KeyArnOrKeyAliasType"},
-        "PrimaryAccountNumber":{"shape":"NumberLengthBetween12And19"},
+        "PrimaryAccountNumber":{"shape":"PrimaryAccountNumberType"},
         "GenerationAttributes":{"shape":"CardGenerationAttributes"},
         "ValidationDataLength":{"shape":"IntegerRangeBetween3And5Type"}
       }
@@ -560,7 +609,7 @@
       "members":{
         "KeyArn":{"shape":"KeyArn"},
         "KeyCheckValue":{"shape":"KeyCheckValue"},
-        "ValidationData":{"shape":"NumberLengthBetween3And5"}
+        "ValidationData":{"shape":"ValidationDataType"}
       }
     },
     "GenerateMacInput":{
@@ -572,7 +621,7 @@
       ],
       "members":{
         "KeyIdentifier":{"shape":"KeyArnOrKeyAliasType"},
-        "MessageData":{"shape":"HexEvenLengthBetween2And4096"},
+        "MessageData":{"shape":"MessageDataType"},
         "GenerationAttributes":{"shape":"MacAttributes"},
         "MacLength":{"shape":"IntegerRangeBetween4And16"}
       }
@@ -587,7 +636,7 @@
       "members":{
         "KeyArn":{"shape":"KeyArn"},
         "KeyCheckValue":{"shape":"KeyCheckValue"},
-        "Mac":{"shape":"HexLengthBetween4And128"}
+        "Mac":{"shape":"MacOutputType"}
       }
     },
     "GeneratePinDataInput":{
@@ -604,7 +653,7 @@
         "EncryptionKeyIdentifier":{"shape":"KeyArnOrKeyAliasType"},
         "GenerationAttributes":{"shape":"PinGenerationAttributes"},
         "PinDataLength":{"shape":"IntegerRangeBetween4And12"},
-        "PrimaryAccountNumber":{"shape":"NumberLengthBetween12And19"},
+        "PrimaryAccountNumber":{"shape":"PrimaryAccountNumberType"},
         "PinBlockFormat":{"shape":"PinBlockFormatForPinData"}
       }
     },
@@ -623,7 +672,7 @@
         "GenerationKeyCheckValue":{"shape":"KeyCheckValue"},
         "EncryptionKeyArn":{"shape":"KeyArn"},
         "EncryptionKeyCheckValue":{"shape":"KeyCheckValue"},
-        "EncryptedPinBlock":{"shape":"HexLengthBetween16And32"},
+        "EncryptedPinBlock":{"shape":"EncryptedPinBlockType"},
         "PinData":{"shape":"PinData"}
       }
     },
@@ -634,69 +683,10 @@
       "pattern":"(?:[0-9a-fA-F][0-9a-fA-F])+",
       "sensitive":true
     },
-    "HexEvenLengthBetween16And4064":{
-      "type":"string",
-      "max":4064,
-      "min":16,
-      "pattern":"(?:[0-9a-fA-F][0-9a-fA-F])+",
-      "sensitive":true
-    },
-    "HexEvenLengthBetween16And4096":{
-      "type":"string",
-      "max":4096,
-      "min":16,
-      "pattern":"(?:[0-9a-fA-F][0-9a-fA-F])+",
-      "sensitive":true
-    },
-    "HexEvenLengthBetween2And4096":{
-      "type":"string",
-      "max":4096,
-      "min":2,
-      "pattern":"(?:[0-9a-fA-F][0-9a-fA-F])+",
-      "sensitive":true
-    },
-    "HexEvenLengthBetween4And128":{
-      "type":"string",
-      "max":128,
-      "min":4,
-      "pattern":"(?:[0-9a-fA-F][0-9a-fA-F])+",
-      "sensitive":true
-    },
-    "HexLength16Or32":{
-      "type":"string",
-      "max":32,
-      "min":16,
-      "pattern":"(?:[0-9a-fA-F]{16}|[0-9a-fA-F]{32})",
-      "sensitive":true
-    },
     "HexLengthBetween10And24":{
       "type":"string",
       "max":24,
       "min":10,
-      "pattern":"[0-9a-fA-F]+"
-    },
-    "HexLengthBetween16And32":{
-      "type":"string",
-      "max":32,
-      "min":16,
-      "pattern":"[0-9a-fA-F]+"
-    },
-    "HexLengthBetween1And16":{
-      "type":"string",
-      "max":16,
-      "min":1,
-      "pattern":"[0-9a-fA-F]+"
-    },
-    "HexLengthBetween2And1024":{
-      "type":"string",
-      "max":1024,
-      "min":2,
-      "pattern":"[0-9a-fA-F]+"
-    },
-    "HexLengthBetween2And160":{
-      "type":"string",
-      "max":160,
-      "min":2,
       "pattern":"[0-9a-fA-F]+"
     },
     "HexLengthBetween2And4":{
@@ -711,23 +701,11 @@
       "min":2,
       "pattern":"[0-9a-fA-F]+"
     },
-    "HexLengthBetween4And128":{
-      "type":"string",
-      "max":128,
-      "min":4,
-      "pattern":"[0-9a-fA-F]+"
-    },
     "HexLengthEquals1":{
       "type":"string",
       "max":1,
       "min":1,
       "pattern":"[0-9A-F]+"
-    },
-    "HexLengthEquals16":{
-      "type":"string",
-      "max":16,
-      "min":16,
-      "pattern":"[0-9a-fA-F]+"
     },
     "HexLengthEquals4":{
       "type":"string",
@@ -749,9 +727,9 @@
         "PinValidationData"
       ],
       "members":{
-        "DecimalizationTable":{"shape":"NumberLengthEquals16"},
+        "DecimalizationTable":{"shape":"DecimalizationTableType"},
         "PinValidationDataPadCharacter":{"shape":"HexLengthEquals1"},
-        "PinValidationData":{"shape":"NumberLengthBetween4And16"}
+        "PinValidationData":{"shape":"PinValidationDataType"}
       }
     },
     "Ibm3624PinFromOffset":{
@@ -763,10 +741,10 @@
         "PinOffset"
       ],
       "members":{
-        "DecimalizationTable":{"shape":"NumberLengthEquals16"},
+        "DecimalizationTable":{"shape":"DecimalizationTableType"},
         "PinValidationDataPadCharacter":{"shape":"HexLengthEquals1"},
-        "PinValidationData":{"shape":"NumberLengthBetween4And16"},
-        "PinOffset":{"shape":"NumberLengthBetween4And12"}
+        "PinValidationData":{"shape":"PinValidationDataType"},
+        "PinOffset":{"shape":"PinOffsetType"}
       }
     },
     "Ibm3624PinOffset":{
@@ -778,10 +756,10 @@
         "PinValidationData"
       ],
       "members":{
-        "EncryptedPinBlock":{"shape":"HexLengthBetween16And32"},
-        "DecimalizationTable":{"shape":"NumberLengthEquals16"},
+        "EncryptedPinBlock":{"shape":"EncryptedPinBlockType"},
+        "DecimalizationTable":{"shape":"DecimalizationTableType"},
         "PinValidationDataPadCharacter":{"shape":"HexLengthEquals1"},
-        "PinValidationData":{"shape":"NumberLengthBetween4And16"}
+        "PinValidationData":{"shape":"PinValidationDataType"}
       }
     },
     "Ibm3624PinVerification":{
@@ -793,10 +771,10 @@
         "PinOffset"
       ],
       "members":{
-        "DecimalizationTable":{"shape":"NumberLengthEquals16"},
+        "DecimalizationTable":{"shape":"DecimalizationTableType"},
         "PinValidationDataPadCharacter":{"shape":"HexLengthEquals1"},
-        "PinValidationData":{"shape":"NumberLengthBetween4And16"},
-        "PinOffset":{"shape":"NumberLengthBetween4And12"}
+        "PinValidationData":{"shape":"PinValidationDataType"},
+        "PinOffset":{"shape":"PinOffsetType"}
       }
     },
     "Ibm3624RandomPin":{
@@ -807,10 +785,17 @@
         "PinValidationData"
       ],
       "members":{
-        "DecimalizationTable":{"shape":"NumberLengthEquals16"},
+        "DecimalizationTable":{"shape":"DecimalizationTableType"},
         "PinValidationDataPadCharacter":{"shape":"HexLengthEquals1"},
-        "PinValidationData":{"shape":"NumberLengthBetween4And16"}
+        "PinValidationData":{"shape":"PinValidationDataType"}
       }
+    },
+    "InitializationVectorType":{
+      "type":"string",
+      "max":32,
+      "min":16,
+      "pattern":"(?:[0-9a-fA-F]{16}|[0-9a-fA-F]{32})",
+      "sensitive":true
     },
     "IntegerRangeBetween0And6":{
       "type":"integer",
@@ -905,7 +890,7 @@
       ],
       "members":{
         "MajorKeyDerivationMode":{"shape":"MajorKeyDerivationMode"},
-        "PrimaryAccountNumber":{"shape":"NumberLengthBetween12And19"},
+        "PrimaryAccountNumber":{"shape":"PrimaryAccountNumberType"},
         "PanSequenceNumber":{"shape":"NumberLengthEquals2"},
         "SessionKeyDerivationMode":{"shape":"SessionKeyDerivationMode"},
         "SessionKeyDerivationValue":{"shape":"SessionKeyDerivationValue"}
@@ -922,6 +907,20 @@
       },
       "union":true
     },
+    "MacOutputType":{
+      "type":"string",
+      "max":128,
+      "min":4,
+      "pattern":"[0-9a-fA-F]+",
+      "sensitive":true
+    },
+    "MacType":{
+      "type":"string",
+      "max":128,
+      "min":4,
+      "pattern":"(?:[0-9a-fA-F][0-9a-fA-F])+",
+      "sensitive":true
+    },
     "MajorKeyDerivationMode":{
       "type":"string",
       "enum":[
@@ -929,53 +928,17 @@
         "EMV_OPTION_B"
       ]
     },
-    "NumberLengthBetween12And19":{
+    "MessageDataType":{
       "type":"string",
-      "max":19,
-      "min":12,
-      "pattern":"[0-9]+",
+      "max":4096,
+      "min":2,
+      "pattern":"(?:[0-9a-fA-F][0-9a-fA-F])+",
       "sensitive":true
-    },
-    "NumberLengthBetween3And5":{
-      "type":"string",
-      "max":5,
-      "min":3,
-      "pattern":"[0-9]+"
-    },
-    "NumberLengthBetween4And12":{
-      "type":"string",
-      "max":12,
-      "min":4,
-      "pattern":"[0-9]+"
-    },
-    "NumberLengthBetween4And16":{
-      "type":"string",
-      "max":16,
-      "min":4,
-      "pattern":"[0-9]+"
-    },
-    "NumberLengthEquals16":{
-      "type":"string",
-      "max":16,
-      "min":16,
-      "pattern":"[0-9]+"
     },
     "NumberLengthEquals2":{
       "type":"string",
       "max":2,
       "min":2,
-      "pattern":"[0-9]+"
-    },
-    "NumberLengthEquals3":{
-      "type":"string",
-      "max":3,
-      "min":3,
-      "pattern":"[0-9]+"
-    },
-    "NumberLengthEquals4":{
-      "type":"string",
-      "max":4,
-      "min":4,
       "pattern":"[0-9]+"
     },
     "PaddingType":{
@@ -997,8 +960,8 @@
     "PinData":{
       "type":"structure",
       "members":{
-        "PinOffset":{"shape":"NumberLengthBetween4And12"},
-        "VerificationValue":{"shape":"NumberLengthBetween4And12"}
+        "PinOffset":{"shape":"PinOffsetType"},
+        "VerificationValue":{"shape":"VerificationValueType"}
       },
       "union":true
     },
@@ -1014,6 +977,20 @@
       },
       "union":true
     },
+    "PinOffsetType":{
+      "type":"string",
+      "max":12,
+      "min":4,
+      "pattern":"[0-9]+",
+      "sensitive":true
+    },
+    "PinValidationDataType":{
+      "type":"string",
+      "max":16,
+      "min":4,
+      "pattern":"[0-9]+",
+      "sensitive":true
+    },
     "PinVerificationAttributes":{
       "type":"structure",
       "members":{
@@ -1021,6 +998,34 @@
         "Ibm3624Pin":{"shape":"Ibm3624PinVerification"}
       },
       "union":true
+    },
+    "PlainTextOutputType":{
+      "type":"string",
+      "max":4096,
+      "min":16,
+      "pattern":"(?:[0-9a-fA-F][0-9a-fA-F])+",
+      "sensitive":true
+    },
+    "PlainTextType":{
+      "type":"string",
+      "max":4064,
+      "min":16,
+      "pattern":"(?:[0-9a-fA-F][0-9a-fA-F])+",
+      "sensitive":true
+    },
+    "PrimaryAccountNumberType":{
+      "type":"string",
+      "max":19,
+      "min":12,
+      "pattern":"[0-9]+",
+      "sensitive":true
+    },
+    "ProprietaryAuthenticationDataType":{
+      "type":"string",
+      "max":16,
+      "min":1,
+      "pattern":"[0-9a-fA-F]+",
+      "sensitive":true
     },
     "ReEncryptDataInput":{
       "type":"structure",
@@ -1038,7 +1043,7 @@
           "locationName":"IncomingKeyIdentifier"
         },
         "OutgoingKeyIdentifier":{"shape":"KeyArnOrKeyAliasType"},
-        "CipherText":{"shape":"HexEvenLengthBetween16And4096"},
+        "CipherText":{"shape":"CipherTextType"},
         "IncomingEncryptionAttributes":{"shape":"ReEncryptionAttributes"},
         "OutgoingEncryptionAttributes":{"shape":"ReEncryptionAttributes"},
         "IncomingWrappedKey":{"shape":"WrappedKey"},
@@ -1055,7 +1060,7 @@
       "members":{
         "KeyArn":{"shape":"KeyArn"},
         "KeyCheckValue":{"shape":"KeyCheckValue"},
-        "CipherText":{"shape":"HexEvenLengthBetween16And4096"}
+        "CipherText":{"shape":"CipherTextType"}
       }
     },
     "ReEncryptionAttributes":{
@@ -1077,6 +1082,20 @@
       },
       "exception":true
     },
+    "ServiceCodeType":{
+      "type":"string",
+      "max":3,
+      "min":3,
+      "pattern":"[0-9]+",
+      "sensitive":true
+    },
+    "SessionDerivationDataType":{
+      "type":"string",
+      "max":16,
+      "min":16,
+      "pattern":"[0-9a-fA-F]+",
+      "sensitive":true
+    },
     "SessionKeyAmex":{
       "type":"structure",
       "required":[
@@ -1084,7 +1103,7 @@
         "PanSequenceNumber"
       ],
       "members":{
-        "PrimaryAccountNumber":{"shape":"NumberLengthBetween12And19"},
+        "PrimaryAccountNumber":{"shape":"PrimaryAccountNumberType"},
         "PanSequenceNumber":{"shape":"NumberLengthEquals2"}
       }
     },
@@ -1112,7 +1131,7 @@
     "SessionKeyDerivationValue":{
       "type":"structure",
       "members":{
-        "ApplicationCryptogram":{"shape":"HexLengthEquals16"},
+        "ApplicationCryptogram":{"shape":"ApplicationCryptogramType"},
         "ApplicationTransactionCounter":{"shape":"HexLengthBetween2And4"}
       },
       "union":true
@@ -1125,7 +1144,7 @@
         "ApplicationTransactionCounter"
       ],
       "members":{
-        "PrimaryAccountNumber":{"shape":"NumberLengthBetween12And19"},
+        "PrimaryAccountNumber":{"shape":"PrimaryAccountNumberType"},
         "PanSequenceNumber":{"shape":"NumberLengthEquals2"},
         "ApplicationTransactionCounter":{"shape":"HexLengthBetween2And4"}
       }
@@ -1138,7 +1157,7 @@
         "ApplicationTransactionCounter"
       ],
       "members":{
-        "PrimaryAccountNumber":{"shape":"NumberLengthBetween12And19"},
+        "PrimaryAccountNumber":{"shape":"PrimaryAccountNumberType"},
         "PanSequenceNumber":{"shape":"NumberLengthEquals2"},
         "ApplicationTransactionCounter":{"shape":"HexLengthBetween2And4"}
       }
@@ -1152,7 +1171,7 @@
         "UnpredictableNumber"
       ],
       "members":{
-        "PrimaryAccountNumber":{"shape":"NumberLengthBetween12And19"},
+        "PrimaryAccountNumber":{"shape":"PrimaryAccountNumberType"},
         "PanSequenceNumber":{"shape":"NumberLengthEquals2"},
         "ApplicationTransactionCounter":{"shape":"HexLengthBetween2And4"},
         "UnpredictableNumber":{"shape":"HexLengthBetween2And8"}
@@ -1165,7 +1184,7 @@
         "PanSequenceNumber"
       ],
       "members":{
-        "PrimaryAccountNumber":{"shape":"NumberLengthBetween12And19"},
+        "PrimaryAccountNumber":{"shape":"PrimaryAccountNumberType"},
         "PanSequenceNumber":{"shape":"NumberLengthEquals2"}
       }
     },
@@ -1175,7 +1194,7 @@
       "required":["Mode"],
       "members":{
         "Mode":{"shape":"EncryptionMode"},
-        "InitializationVector":{"shape":"HexLength16Or32"},
+        "InitializationVector":{"shape":"InitializationVectorType"},
         "PaddingType":{"shape":"PaddingType"}
       }
     },
@@ -1195,6 +1214,20 @@
       "max":9984,
       "min":56,
       "pattern":"[0-9A-Z]+",
+      "sensitive":true
+    },
+    "TrackDataType":{
+      "type":"string",
+      "max":160,
+      "min":2,
+      "pattern":"[0-9a-fA-F]+",
+      "sensitive":true
+    },
+    "TransactionDataType":{
+      "type":"string",
+      "max":1024,
+      "min":2,
+      "pattern":"[0-9a-fA-F]+",
       "sensitive":true
     },
     "TranslatePinDataInput":{
@@ -1226,7 +1259,7 @@
         "KeyCheckValue"
       ],
       "members":{
-        "PinBlock":{"shape":"HexLengthBetween16And32"},
+        "PinBlock":{"shape":"EncryptedPinBlockType"},
         "KeyArn":{"shape":"KeyArn"},
         "KeyCheckValue":{"shape":"KeyCheckValue"}
       }
@@ -1245,13 +1278,20 @@
       "type":"structure",
       "required":["PrimaryAccountNumber"],
       "members":{
-        "PrimaryAccountNumber":{"shape":"NumberLengthBetween12And19"}
+        "PrimaryAccountNumber":{"shape":"PrimaryAccountNumberType"}
       }
     },
     "TranslationPinDataIsoFormat1":{
       "type":"structure",
       "members":{
       }
+    },
+    "ValidationDataType":{
+      "type":"string",
+      "max":5,
+      "min":3,
+      "pattern":"[0-9]+",
+      "sensitive":true
     },
     "ValidationException":{
       "type":"structure",
@@ -1302,6 +1342,13 @@
         "INVALID_AUTH_REQUEST_CRYPTOGRAM"
       ]
     },
+    "VerificationValueType":{
+      "type":"string",
+      "max":12,
+      "min":4,
+      "pattern":"[0-9]+",
+      "sensitive":true
+    },
     "VerifyAuthRequestCryptogramInput":{
       "type":"structure",
       "required":[
@@ -1313,8 +1360,8 @@
       ],
       "members":{
         "KeyIdentifier":{"shape":"KeyArnOrKeyAliasType"},
-        "TransactionData":{"shape":"HexLengthBetween2And1024"},
-        "AuthRequestCryptogram":{"shape":"HexLengthEquals16"},
+        "TransactionData":{"shape":"TransactionDataType"},
+        "AuthRequestCryptogram":{"shape":"AuthRequestCryptogramType"},
         "MajorKeyDerivationMode":{"shape":"MajorKeyDerivationMode"},
         "SessionKeyDerivationAttributes":{"shape":"SessionKeyDerivation"},
         "AuthResponseAttributes":{"shape":"CryptogramAuthResponse"}
@@ -1329,7 +1376,7 @@
       "members":{
         "KeyArn":{"shape":"KeyArn"},
         "KeyCheckValue":{"shape":"KeyCheckValue"},
-        "AuthResponseValue":{"shape":"HexLengthBetween1And16"}
+        "AuthResponseValue":{"shape":"AuthResponseValueType"}
       }
     },
     "VerifyCardValidationDataInput":{
@@ -1342,9 +1389,9 @@
       ],
       "members":{
         "KeyIdentifier":{"shape":"KeyArnOrKeyAliasType"},
-        "PrimaryAccountNumber":{"shape":"NumberLengthBetween12And19"},
+        "PrimaryAccountNumber":{"shape":"PrimaryAccountNumberType"},
         "VerificationAttributes":{"shape":"CardVerificationAttributes"},
-        "ValidationData":{"shape":"NumberLengthBetween3And5"}
+        "ValidationData":{"shape":"ValidationDataType"}
       }
     },
     "VerifyCardValidationDataOutput":{
@@ -1368,8 +1415,8 @@
       ],
       "members":{
         "KeyIdentifier":{"shape":"KeyArnOrKeyAliasType"},
-        "MessageData":{"shape":"HexEvenLengthBetween2And4096"},
-        "Mac":{"shape":"HexEvenLengthBetween4And128"},
+        "MessageData":{"shape":"MessageDataType"},
+        "Mac":{"shape":"MacType"},
         "VerificationAttributes":{"shape":"MacAttributes"},
         "MacLength":{"shape":"IntegerRangeBetween4And16"}
       }
@@ -1399,8 +1446,8 @@
         "VerificationKeyIdentifier":{"shape":"KeyArnOrKeyAliasType"},
         "EncryptionKeyIdentifier":{"shape":"KeyArnOrKeyAliasType"},
         "VerificationAttributes":{"shape":"PinVerificationAttributes"},
-        "EncryptedPinBlock":{"shape":"HexLengthBetween16And32"},
-        "PrimaryAccountNumber":{"shape":"NumberLengthBetween12And19"},
+        "EncryptedPinBlock":{"shape":"EncryptedPinBlockType"},
+        "PrimaryAccountNumber":{"shape":"PrimaryAccountNumberType"},
         "PinBlockFormat":{"shape":"PinBlockFormatForPinData"},
         "PinDataLength":{"shape":"IntegerRangeBetween4And12"},
         "DukptAttributes":{"shape":"DukptAttributes"}
@@ -1436,7 +1483,7 @@
       ],
       "members":{
         "PinVerificationKeyIndex":{"shape":"IntegerRangeBetween0And6"},
-        "VerificationValue":{"shape":"NumberLengthBetween4And12"}
+        "VerificationValue":{"shape":"VerificationValueType"}
       }
     },
     "VisaPinVerificationValue":{
@@ -1446,7 +1493,7 @@
         "PinVerificationKeyIndex"
       ],
       "members":{
-        "EncryptedPinBlock":{"shape":"HexLengthBetween16And32"},
+        "EncryptedPinBlock":{"shape":"EncryptedPinBlockType"},
         "PinVerificationKeyIndex":{"shape":"IntegerRangeBetween0And6"}
       }
     },

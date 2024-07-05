@@ -9453,6 +9453,10 @@ type CreateApplicationInput struct {
 	// either creating for—or connecting to—your Amazon Q Business application.
 	IdentityCenterInstanceArn *string `locationName:"identityCenterInstanceArn" min:"10" type:"string"`
 
+	// Configuration information about chat response personalization. For more information,
+	// see Personalizing chat responses (https://docs.aws.amazon.com/amazonq/latest/qbusiness-ug/personalizing-chat-responses.html)
+	PersonalizationConfiguration *PersonalizationConfiguration `locationName:"personalizationConfiguration" type:"structure"`
+
 	// An option to allow end users to create and use Amazon Q Apps in the web experience.
 	QAppsConfiguration *QAppsConfiguration `locationName:"qAppsConfiguration" type:"structure"`
 
@@ -9510,6 +9514,11 @@ func (s *CreateApplicationInput) Validate() error {
 			invalidParams.AddNested("EncryptionConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.PersonalizationConfiguration != nil {
+		if err := s.PersonalizationConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("PersonalizationConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.QAppsConfiguration != nil {
 		if err := s.QAppsConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("QAppsConfiguration", err.(request.ErrInvalidParams))
@@ -9565,6 +9574,12 @@ func (s *CreateApplicationInput) SetEncryptionConfiguration(v *EncryptionConfigu
 // SetIdentityCenterInstanceArn sets the IdentityCenterInstanceArn field's value.
 func (s *CreateApplicationInput) SetIdentityCenterInstanceArn(v string) *CreateApplicationInput {
 	s.IdentityCenterInstanceArn = &v
+	return s
+}
+
+// SetPersonalizationConfiguration sets the PersonalizationConfiguration field's value.
+func (s *CreateApplicationInput) SetPersonalizationConfiguration(v *PersonalizationConfiguration) *CreateApplicationInput {
+	s.PersonalizationConfiguration = v
 	return s
 }
 
@@ -13248,6 +13263,10 @@ type GetApplicationOutput struct {
 	// to your Amazon Q Business application.
 	IdentityCenterApplicationArn *string `locationName:"identityCenterApplicationArn" min:"10" type:"string"`
 
+	// Configuration information about chat response personalization. For more information,
+	// see Personalizing chat responses (https://docs.aws.amazon.com/amazonq/latest/qbusiness-ug/personalizing-chat-responses.html).
+	PersonalizationConfiguration *PersonalizationConfiguration `locationName:"personalizationConfiguration" type:"structure"`
+
 	// Settings for whether end users can create and use Amazon Q Apps in the web
 	// experience.
 	QAppsConfiguration *QAppsConfiguration `locationName:"qAppsConfiguration" type:"structure"`
@@ -13332,6 +13351,12 @@ func (s *GetApplicationOutput) SetError(v *ErrorDetail) *GetApplicationOutput {
 // SetIdentityCenterApplicationArn sets the IdentityCenterApplicationArn field's value.
 func (s *GetApplicationOutput) SetIdentityCenterApplicationArn(v string) *GetApplicationOutput {
 	s.IdentityCenterApplicationArn = &v
+	return s
+}
+
+// SetPersonalizationConfiguration sets the PersonalizationConfiguration field's value.
+func (s *GetApplicationOutput) SetPersonalizationConfiguration(v *PersonalizationConfiguration) *GetApplicationOutput {
+	s.PersonalizationConfiguration = v
 	return s
 }
 
@@ -17654,6 +17679,56 @@ func (s *OAuth2ClientCredentialConfiguration) SetSecretArn(v string) *OAuth2Clie
 	return s
 }
 
+// Configuration information about chat response personalization. For more information,
+// see Personalizing chat responses (https://docs.aws.amazon.com/amazonq/latest/qbusiness-ug/personalizing-chat-responses.html).
+type PersonalizationConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// An option to allow Amazon Q Business to customize chat responses using user
+	// specific metadata—specifically, location and job information—in your
+	// IAM Identity Center instance.
+	//
+	// PersonalizationControlMode is a required field
+	PersonalizationControlMode *string `locationName:"personalizationControlMode" type:"string" required:"true" enum:"PersonalizationControlMode"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PersonalizationConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PersonalizationConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PersonalizationConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PersonalizationConfiguration"}
+	if s.PersonalizationControlMode == nil {
+		invalidParams.Add(request.NewErrParamRequired("PersonalizationControlMode"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPersonalizationControlMode sets the PersonalizationControlMode field's value.
+func (s *PersonalizationConfiguration) SetPersonalizationControlMode(v string) *PersonalizationConfiguration {
+	s.PersonalizationControlMode = &v
+	return s
+}
+
 // Information about an Amazon Q Business plugin and its configuration.
 type Plugin struct {
 	_ struct{} `type:"structure"`
@@ -20151,6 +20226,10 @@ type UpdateApplicationInput struct {
 	// either creating for—or connecting to—your Amazon Q Business application.
 	IdentityCenterInstanceArn *string `locationName:"identityCenterInstanceArn" min:"10" type:"string"`
 
+	// Configuration information about chat response personalization. For more information,
+	// see Personalizing chat responses (https://docs.aws.amazon.com/amazonq/latest/qbusiness-ug/personalizing-chat-responses.html).
+	PersonalizationConfiguration *PersonalizationConfiguration `locationName:"personalizationConfiguration" type:"structure"`
+
 	// An option to allow end users to create and use Amazon Q Apps in the web experience.
 	QAppsConfiguration *QAppsConfiguration `locationName:"qAppsConfiguration" type:"structure"`
 
@@ -20197,6 +20276,11 @@ func (s *UpdateApplicationInput) Validate() error {
 			invalidParams.AddNested("AttachmentsConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.PersonalizationConfiguration != nil {
+		if err := s.PersonalizationConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("PersonalizationConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.QAppsConfiguration != nil {
 		if err := s.QAppsConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("QAppsConfiguration", err.(request.ErrInvalidParams))
@@ -20236,6 +20320,12 @@ func (s *UpdateApplicationInput) SetDisplayName(v string) *UpdateApplicationInpu
 // SetIdentityCenterInstanceArn sets the IdentityCenterInstanceArn field's value.
 func (s *UpdateApplicationInput) SetIdentityCenterInstanceArn(v string) *UpdateApplicationInput {
 	s.IdentityCenterInstanceArn = &v
+	return s
+}
+
+// SetPersonalizationConfiguration sets the PersonalizationConfiguration field's value.
+func (s *UpdateApplicationInput) SetPersonalizationConfiguration(v *PersonalizationConfiguration) *UpdateApplicationInput {
+	s.PersonalizationConfiguration = v
 	return s
 }
 
@@ -22343,6 +22433,22 @@ func NumberAttributeBoostingType_Values() []string {
 	return []string{
 		NumberAttributeBoostingTypePrioritizeLargerValues,
 		NumberAttributeBoostingTypePrioritizeSmallerValues,
+	}
+}
+
+const (
+	// PersonalizationControlModeEnabled is a PersonalizationControlMode enum value
+	PersonalizationControlModeEnabled = "ENABLED"
+
+	// PersonalizationControlModeDisabled is a PersonalizationControlMode enum value
+	PersonalizationControlModeDisabled = "DISABLED"
+)
+
+// PersonalizationControlMode_Values returns all elements of the PersonalizationControlMode enum
+func PersonalizationControlMode_Values() []string {
+	return []string{
+		PersonalizationControlModeEnabled,
+		PersonalizationControlModeDisabled,
 	}
 }
 

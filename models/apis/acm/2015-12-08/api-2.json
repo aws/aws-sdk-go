@@ -11,7 +11,8 @@
     "serviceId":"ACM",
     "signatureVersion":"v4",
     "targetPrefix":"CertificateManager",
-    "uid":"acm-2015-12-08"
+    "uid":"acm-2015-12-08",
+    "auth":["aws.auth#sigv4"]
   },
   "operations":{
     "AddTagsToCertificate":{
