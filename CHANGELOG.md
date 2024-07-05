@@ -1,3 +1,14 @@
+Release v1.54.15 (2024-07-05)
+===
+
+### Service Client Updates
+* `service/acm`: Updates service API and documentation
+  * Documentation updates, including fixes for xml formatting, broken links, and ListCertificates description.
+* `service/ecr`: Updates service API
+  * This release for Amazon ECR makes change to bring the SDK into sync with the API.
+* `service/payment-cryptography-data`: Updates service API and documentation
+* `service/qbusiness`: Updates service API and documentation
+
 Release v1.54.14 (2024-07-03)
 ===
 

@@ -2806,6 +2806,9 @@
         "identityCenterInstanceArn": {
           "shape": "InstanceArn"
         },
+        "personalizationConfiguration": {
+          "shape": "PersonalizationConfiguration"
+        },
         "qAppsConfiguration": {
           "shape": "QAppsConfiguration"
         },
@@ -3978,6 +3981,9 @@
         },
         "identityCenterApplicationArn": {
           "shape": "IdcApplicationArn"
+        },
+        "personalizationConfiguration": {
+          "shape": "PersonalizationConfiguration"
         },
         "qAppsConfiguration": {
           "shape": "QAppsConfiguration"
@@ -5482,6 +5488,24 @@
       "sensitive": true,
       "type": "string"
     },
+    "PersonalizationConfiguration": {
+      "members": {
+        "personalizationControlMode": {
+          "shape": "PersonalizationControlMode"
+        }
+      },
+      "required": [
+        "personalizationControlMode"
+      ],
+      "type": "structure"
+    },
+    "PersonalizationControlMode": {
+      "enum": [
+        "ENABLED",
+        "DISABLED"
+      ],
+      "type": "string"
+    },
     "Plugin": {
       "members": {
         "buildStatus": {
@@ -6422,6 +6446,9 @@
         },
         "identityCenterInstanceArn": {
           "shape": "InstanceArn"
+        },
+        "personalizationConfiguration": {
+          "shape": "PersonalizationConfiguration"
         },
         "qAppsConfiguration": {
           "shape": "QAppsConfiguration"

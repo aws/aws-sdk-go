@@ -34,10 +34,39 @@
         "CardVerificationAttributes$AmexCardSecurityCodeVersion2": "<p>Card data parameters that are required to verify a Card Security Code (CSC2) for an AMEX payment card.</p>"
       }
     },
+    "ApplicationCryptogramType": {
+      "base": null,
+      "refs": {
+        "SessionKeyDerivationValue$ApplicationCryptogram": "<p>The cryptogram provided by the terminal during transaction processing.</p>"
+      }
+    },
     "AsymmetricEncryptionAttributes": {
       "base": "<p>Parameters for plaintext encryption using asymmetric keys.</p>",
       "refs": {
         "EncryptionDecryptionAttributes$Asymmetric": null
+      }
+    },
+    "AuthRequestCryptogramType": {
+      "base": null,
+      "refs": {
+        "VerifyAuthRequestCryptogramInput$AuthRequestCryptogram": "<p>The auth request cryptogram imported into Amazon Web Services Payment Cryptography for ARQC verification using a major encryption key and transaction data.</p>"
+      }
+    },
+    "AuthResponseValueType": {
+      "base": null,
+      "refs": {
+        "VerifyAuthRequestCryptogramOutput$AuthResponseValue": "<p>The result for ARQC verification or ARPC generation within Amazon Web Services Payment Cryptography.</p>"
+      }
+    },
+    "CardExpiryDateType": {
+      "base": null,
+      "refs": {
+        "AmexCardSecurityCodeVersion1$CardExpiryDate": "<p>The expiry date of a payment card.</p>",
+        "AmexCardSecurityCodeVersion2$CardExpiryDate": "<p>The expiry date of a payment card.</p>",
+        "CardVerificationValue1$CardExpiryDate": "<p>The expiry date of a payment card.</p>",
+        "CardVerificationValue2$CardExpiryDate": "<p>The expiry date of a payment card.</p>",
+        "DiscoverDynamicCardVerificationCode$CardExpiryDate": "<p>The expiry date of a payment card.</p>",
+        "DynamicCardVerificationValue$CardExpiryDate": "<p>The expiry date of a payment card.</p>"
       }
     },
     "CardGenerationAttributes": {
@@ -73,6 +102,15 @@
         "CardVerificationAttributes$CardVerificationValue2": "<p>Card data parameters that are required to verify Card Verification Value (CVV2) for the payment card.</p>"
       }
     },
+    "CipherTextType": {
+      "base": null,
+      "refs": {
+        "DecryptDataInput$CipherText": "<p>The ciphertext to decrypt.</p>",
+        "EncryptDataOutput$CipherText": "<p>The encrypted ciphertext.</p>",
+        "ReEncryptDataInput$CipherText": "<p>Ciphertext to be encrypted. The minimum allowed length is 16 bytes and maximum allowed length is 4096 bytes.</p>",
+        "ReEncryptDataOutput$CipherText": "<p>The encrypted ciphertext.</p>"
+      }
+    },
     "CryptogramAuthResponse": {
       "base": "<p>Parameters that are required for Authorization Response Cryptogram (ARPC) generation after Authorization Request Cryptogram (ARQC) verification is successful.</p>",
       "refs": {
@@ -89,6 +127,16 @@
       "base": "<p>Parameters that are required for ARPC response generation using method2 after ARQC verification is successful.</p>",
       "refs": {
         "CryptogramAuthResponse$ArpcMethod2": "<p>Parameters that are required for ARPC response generation using method2 after ARQC verification is successful.</p>"
+      }
+    },
+    "DecimalizationTableType": {
+      "base": null,
+      "refs": {
+        "Ibm3624NaturalPin$DecimalizationTable": "<p>The decimalization table to use for IBM 3624 PIN algorithm. The table is used to convert the algorithm intermediate result from hexadecimal characters to decimal.</p>",
+        "Ibm3624PinFromOffset$DecimalizationTable": "<p>The decimalization table to use for IBM 3624 PIN algorithm. The table is used to convert the algorithm intermediate result from hexadecimal characters to decimal.</p>",
+        "Ibm3624PinOffset$DecimalizationTable": "<p>The decimalization table to use for IBM 3624 PIN algorithm. The table is used to convert the algorithm intermediate result from hexadecimal characters to decimal.</p>",
+        "Ibm3624PinVerification$DecimalizationTable": "<p>The decimalization table to use for IBM 3624 PIN algorithm. The table is used to convert the algorithm intermediate result from hexadecimal characters to decimal.</p>",
+        "Ibm3624RandomPin$DecimalizationTable": "<p>The decimalization table to use for IBM 3624 PIN algorithm. The table is used to convert the algorithm intermediate result from hexadecimal characters to decimal.</p>"
       }
     },
     "DecryptDataInput": {
@@ -192,6 +240,16 @@
       "refs": {
       }
     },
+    "EncryptedPinBlockType": {
+      "base": null,
+      "refs": {
+        "GeneratePinDataOutput$EncryptedPinBlock": "<p>The PIN block encrypted under PEK from Amazon Web Services Payment Cryptography. The encrypted PIN block is a composite of PAN (Primary Account Number) and PIN (Personal Identification Number), generated in accordance with ISO 9564 standard.</p>",
+        "Ibm3624PinOffset$EncryptedPinBlock": "<p>The encrypted PIN block data. According to ISO 9564 standard, a PIN Block is an encoded representation of a payment card Personal Account Number (PAN) and the cardholder Personal Identification Number (PIN).</p>",
+        "TranslatePinDataOutput$PinBlock": "<p>The outgoing encrypted PIN block data after translation.</p>",
+        "VerifyPinDataInput$EncryptedPinBlock": "<p>The encrypted PIN block data that Amazon Web Services Payment Cryptography verifies.</p>",
+        "VisaPinVerificationValue$EncryptedPinBlock": "<p>The encrypted PIN block data to verify.</p>"
+      }
+    },
     "EncryptionDecryptionAttributes": {
       "base": "<p>Parameters that are required to perform encryption and decryption operations.</p>",
       "refs": {
@@ -241,43 +299,6 @@
         "TranslatePinDataInput$EncryptedPinBlock": "<p>The encrypted PIN block data that Amazon Web Services Payment Cryptography translates.</p>"
       }
     },
-    "HexEvenLengthBetween16And4064": {
-      "base": null,
-      "refs": {
-        "EncryptDataInput$PlainText": "<p>The plaintext to be encrypted.</p> <note> <p>For encryption using asymmetric keys, plaintext data length is constrained by encryption key strength that you define in <code>KeyAlgorithm</code> and padding type that you define in <code>AsymmetricEncryptionAttributes</code>. For more information, see <a href=\"https://docs.aws.amazon.com/payment-cryptography/latest/userguide/encrypt-data.html\">Encrypt data</a> in the <i>Amazon Web Services Payment Cryptography User Guide</i>.</p> </note>"
-      }
-    },
-    "HexEvenLengthBetween16And4096": {
-      "base": null,
-      "refs": {
-        "DecryptDataInput$CipherText": "<p>The ciphertext to decrypt.</p>",
-        "DecryptDataOutput$PlainText": "<p>The decrypted plaintext data in hexBinary format.</p>",
-        "EncryptDataOutput$CipherText": "<p>The encrypted ciphertext.</p>",
-        "ReEncryptDataInput$CipherText": "<p>Ciphertext to be encrypted. The minimum allowed length is 16 bytes and maximum allowed length is 4096 bytes.</p>",
-        "ReEncryptDataOutput$CipherText": "<p>The encrypted ciphertext.</p>"
-      }
-    },
-    "HexEvenLengthBetween2And4096": {
-      "base": null,
-      "refs": {
-        "GenerateMacInput$MessageData": "<p>The data for which a MAC is under generation. This value must be hexBinary.</p>",
-        "VerifyMacInput$MessageData": "<p>The data on for which MAC is under verification. This value must be hexBinary.</p>"
-      }
-    },
-    "HexEvenLengthBetween4And128": {
-      "base": null,
-      "refs": {
-        "VerifyMacInput$Mac": "<p>The MAC being verified.</p>"
-      }
-    },
-    "HexLength16Or32": {
-      "base": null,
-      "refs": {
-        "DukptEncryptionAttributes$InitializationVector": "<p>An input used to provide the intial state. If no value is provided, Amazon Web Services Payment Cryptography defaults it to zero.</p>",
-        "EmvEncryptionAttributes$InitializationVector": "<p>An input used to provide the intial state. If no value is provided, Amazon Web Services Payment Cryptography defaults it to zero.</p>",
-        "SymmetricEncryptionAttributes$InitializationVector": "<p>An input used to provide the intial state. If no value is provided, Amazon Web Services Payment Cryptography defaults it to zero.</p>"
-      }
-    },
     "HexLengthBetween10And24": {
       "base": null,
       "refs": {
@@ -285,35 +306,6 @@
         "DukptDerivationAttributes$KeySerialNumber": "<p>The unique identifier known as Key Serial Number (KSN) that comes from an encrypting device using DUKPT encryption method. The KSN is derived from the encrypting device unique identifier and an internal transaction counter.</p>",
         "DukptEncryptionAttributes$KeySerialNumber": "<p>The unique identifier known as Key Serial Number (KSN) that comes from an encrypting device using DUKPT encryption method. The KSN is derived from the encrypting device unique identifier and an internal transaction counter.</p>",
         "MacAlgorithmDukpt$KeySerialNumber": "<p>The unique identifier known as Key Serial Number (KSN) that comes from an encrypting device using DUKPT encryption method. The KSN is derived from the encrypting device unique identifier and an internal transaction counter.</p>"
-      }
-    },
-    "HexLengthBetween16And32": {
-      "base": null,
-      "refs": {
-        "GeneratePinDataOutput$EncryptedPinBlock": "<p>The PIN block encrypted under PEK from Amazon Web Services Payment Cryptography. The encrypted PIN block is a composite of PAN (Primary Account Number) and PIN (Personal Identification Number), generated in accordance with ISO 9564 standard.</p>",
-        "Ibm3624PinOffset$EncryptedPinBlock": "<p>The encrypted PIN block data. According to ISO 9564 standard, a PIN Block is an encoded representation of a payment card Personal Account Number (PAN) and the cardholder Personal Identification Number (PIN).</p>",
-        "TranslatePinDataOutput$PinBlock": "<p>The outgoing encrypted PIN block data after translation.</p>",
-        "VerifyPinDataInput$EncryptedPinBlock": "<p>The encrypted PIN block data that Amazon Web Services Payment Cryptography verifies.</p>",
-        "VisaPinVerificationValue$EncryptedPinBlock": "<p>The encrypted PIN block data to verify.</p>"
-      }
-    },
-    "HexLengthBetween1And16": {
-      "base": null,
-      "refs": {
-        "CryptogramVerificationArpcMethod2$ProprietaryAuthenticationData": "<p>The proprietary authentication data used by issuer for communication during online transaction using an EMV chip card.</p>",
-        "VerifyAuthRequestCryptogramOutput$AuthResponseValue": "<p>The result for ARQC verification or ARPC generation within Amazon Web Services Payment Cryptography.</p>"
-      }
-    },
-    "HexLengthBetween2And1024": {
-      "base": null,
-      "refs": {
-        "VerifyAuthRequestCryptogramInput$TransactionData": "<p>The transaction data that Amazon Web Services Payment Cryptography uses for ARQC verification. The same transaction is used for ARQC generation outside of Amazon Web Services Payment Cryptography.</p>"
-      }
-    },
-    "HexLengthBetween2And160": {
-      "base": null,
-      "refs": {
-        "DynamicCardVerificationCode$TrackData": "<p>The data on the two tracks of magnetic cards used for financial transactions. This includes the cardholder name, PAN, expiration date, bank ID (BIN) and several other numbers the issuing bank uses to validate the data received.</p>"
       }
     },
     "HexLengthBetween2And4": {
@@ -338,12 +330,6 @@
         "SessionKeyMastercard$UnpredictableNumber": "<p>A random number generated by the issuer.</p>"
       }
     },
-    "HexLengthBetween4And128": {
-      "base": null,
-      "refs": {
-        "GenerateMacOutput$Mac": "<p>The MAC cryptogram generated within Amazon Web Services Payment Cryptography.</p>"
-      }
-    },
     "HexLengthEquals1": {
       "base": null,
       "refs": {
@@ -352,14 +338,6 @@
         "Ibm3624PinOffset$PinValidationDataPadCharacter": "<p>The padding character for validation data.</p>",
         "Ibm3624PinVerification$PinValidationDataPadCharacter": "<p>The padding character for validation data.</p>",
         "Ibm3624RandomPin$PinValidationDataPadCharacter": "<p>The padding character for validation data.</p>"
-      }
-    },
-    "HexLengthEquals16": {
-      "base": null,
-      "refs": {
-        "EmvEncryptionAttributes$SessionDerivationData": "<p>The derivation value used to derive the ICC session key. It is typically the application transaction counter value padded with zeros or previous ARQC value padded with zeros as per EMV version 4.3 book 2.</p>",
-        "SessionKeyDerivationValue$ApplicationCryptogram": "<p>The cryptogram provided by the terminal during transaction processing.</p>",
-        "VerifyAuthRequestCryptogramInput$AuthRequestCryptogram": "<p>The auth request cryptogram imported into Amazon Web Services Payment Cryptography for ARQC verification using a major encryption key and transaction data.</p>"
       }
     },
     "HexLengthEquals4": {
@@ -402,6 +380,14 @@
       "base": "<p>Parameters that are required to generate or verify Ibm3624 random PIN.</p>",
       "refs": {
         "PinGenerationAttributes$Ibm3624RandomPin": "<p>Parameters that are required to generate or verify Ibm3624 random PIN.</p>"
+      }
+    },
+    "InitializationVectorType": {
+      "base": null,
+      "refs": {
+        "DukptEncryptionAttributes$InitializationVector": "<p>An input used to provide the intial state. If no value is provided, Amazon Web Services Payment Cryptography defaults it to zero.</p>",
+        "EmvEncryptionAttributes$InitializationVector": "<p>An input used to provide the intial state. If no value is provided, Amazon Web Services Payment Cryptography defaults it to zero.</p>",
+        "SymmetricEncryptionAttributes$InitializationVector": "<p>An input used to provide the intial state. If no value is provided, Amazon Web Services Payment Cryptography defaults it to zero.</p>"
       }
     },
     "IntegerRangeBetween0And6": {
@@ -526,6 +512,18 @@
         "VerifyMacInput$VerificationAttributes": "<p>The attributes and data values to use for MAC verification within Amazon Web Services Payment Cryptography.</p>"
       }
     },
+    "MacOutputType": {
+      "base": null,
+      "refs": {
+        "GenerateMacOutput$Mac": "<p>The MAC cryptogram generated within Amazon Web Services Payment Cryptography.</p>"
+      }
+    },
+    "MacType": {
+      "base": null,
+      "refs": {
+        "VerifyMacInput$Mac": "<p>The MAC being verified.</p>"
+      }
+    },
     "MajorKeyDerivationMode": {
       "base": null,
       "refs": {
@@ -533,58 +531,11 @@
         "VerifyAuthRequestCryptogramInput$MajorKeyDerivationMode": "<p>The method to use when deriving the major encryption key for ARQC verification within Amazon Web Services Payment Cryptography. The same key derivation mode was used for ARQC generation outside of Amazon Web Services Payment Cryptography.</p>"
       }
     },
-    "NumberLengthBetween12And19": {
+    "MessageDataType": {
       "base": null,
       "refs": {
-        "EmvEncryptionAttributes$PrimaryAccountNumber": "<p>The Primary Account Number (PAN), a unique identifier for a payment credit or debit card and associates the card to a specific account holder.</p>",
-        "GenerateCardValidationDataInput$PrimaryAccountNumber": "<p>The Primary Account Number (PAN), a unique identifier for a payment credit or debit card that associates the card with a specific account holder.</p>",
-        "GeneratePinDataInput$PrimaryAccountNumber": "<p>The Primary Account Number (PAN), a unique identifier for a payment credit or debit card that associates the card with a specific account holder.</p>",
-        "MacAlgorithmEmv$PrimaryAccountNumber": "<p>The Primary Account Number (PAN), a unique identifier for a payment credit or debit card and associates the card to a specific account holder.</p>",
-        "SessionKeyAmex$PrimaryAccountNumber": "<p>The Primary Account Number (PAN) of the cardholder. A PAN is a unique identifier for a payment credit or debit card and associates the card to a specific account holder.</p>",
-        "SessionKeyEmv2000$PrimaryAccountNumber": "<p>The Primary Account Number (PAN) of the cardholder. A PAN is a unique identifier for a payment credit or debit card and associates the card to a specific account holder.</p>",
-        "SessionKeyEmvCommon$PrimaryAccountNumber": "<p>The Primary Account Number (PAN) of the cardholder. A PAN is a unique identifier for a payment credit or debit card and associates the card to a specific account holder.</p>",
-        "SessionKeyMastercard$PrimaryAccountNumber": "<p>The Primary Account Number (PAN) of the cardholder. A PAN is a unique identifier for a payment credit or debit card and associates the card to a specific account holder.</p>",
-        "SessionKeyVisa$PrimaryAccountNumber": "<p>The Primary Account Number (PAN) of the cardholder. A PAN is a unique identifier for a payment credit or debit card and associates the card to a specific account holder.</p>",
-        "TranslationPinDataIsoFormat034$PrimaryAccountNumber": "<p>The Primary Account Number (PAN) of the cardholder. A PAN is a unique identifier for a payment credit or debit card and associates the card to a specific account holder.</p>",
-        "VerifyCardValidationDataInput$PrimaryAccountNumber": "<p>The Primary Account Number (PAN), a unique identifier for a payment credit or debit card that associates the card with a specific account holder.</p>",
-        "VerifyPinDataInput$PrimaryAccountNumber": "<p>The Primary Account Number (PAN), a unique identifier for a payment credit or debit card that associates the card with a specific account holder.</p>"
-      }
-    },
-    "NumberLengthBetween3And5": {
-      "base": null,
-      "refs": {
-        "GenerateCardValidationDataOutput$ValidationData": "<p>The CVV or CSC value that Amazon Web Services Payment Cryptography generates for the card.</p>",
-        "VerifyCardValidationDataInput$ValidationData": "<p>The CVV or CSC value for use for card data verification within Amazon Web Services Payment Cryptography.</p>"
-      }
-    },
-    "NumberLengthBetween4And12": {
-      "base": null,
-      "refs": {
-        "Ibm3624PinFromOffset$PinOffset": "<p>The PIN offset value.</p>",
-        "Ibm3624PinVerification$PinOffset": "<p>The PIN offset value.</p>",
-        "PinData$PinOffset": "<p>The PIN offset value.</p>",
-        "PinData$VerificationValue": "<p>The unique data to identify a cardholder. In most cases, this is the same as cardholder's Primary Account Number (PAN). If a value is not provided, it defaults to PAN.</p>",
-        "VisaPinVerification$VerificationValue": "<p>Parameters that are required to generate or verify Visa PVV (PIN Verification Value).</p>"
-      }
-    },
-    "NumberLengthBetween4And16": {
-      "base": null,
-      "refs": {
-        "Ibm3624NaturalPin$PinValidationData": "<p>The unique data for cardholder identification.</p>",
-        "Ibm3624PinFromOffset$PinValidationData": "<p>The unique data for cardholder identification.</p>",
-        "Ibm3624PinOffset$PinValidationData": "<p>The unique data for cardholder identification.</p>",
-        "Ibm3624PinVerification$PinValidationData": "<p>The unique data for cardholder identification.</p>",
-        "Ibm3624RandomPin$PinValidationData": "<p>The unique data for cardholder identification.</p>"
-      }
-    },
-    "NumberLengthEquals16": {
-      "base": null,
-      "refs": {
-        "Ibm3624NaturalPin$DecimalizationTable": "<p>The decimalization table to use for IBM 3624 PIN algorithm. The table is used to convert the algorithm intermediate result from hexadecimal characters to decimal.</p>",
-        "Ibm3624PinFromOffset$DecimalizationTable": "<p>The decimalization table to use for IBM 3624 PIN algorithm. The table is used to convert the algorithm intermediate result from hexadecimal characters to decimal.</p>",
-        "Ibm3624PinOffset$DecimalizationTable": "<p>The decimalization table to use for IBM 3624 PIN algorithm. The table is used to convert the algorithm intermediate result from hexadecimal characters to decimal.</p>",
-        "Ibm3624PinVerification$DecimalizationTable": "<p>The decimalization table to use for IBM 3624 PIN algorithm. The table is used to convert the algorithm intermediate result from hexadecimal characters to decimal.</p>",
-        "Ibm3624RandomPin$DecimalizationTable": "<p>The decimalization table to use for IBM 3624 PIN algorithm. The table is used to convert the algorithm intermediate result from hexadecimal characters to decimal.</p>"
+        "GenerateMacInput$MessageData": "<p>The data for which a MAC is under generation. This value must be hexBinary.</p>",
+        "VerifyMacInput$MessageData": "<p>The data on for which MAC is under verification. This value must be hexBinary.</p>"
       }
     },
     "NumberLengthEquals2": {
@@ -600,25 +551,6 @@
         "SessionKeyEmvCommon$PanSequenceNumber": "<p>A number that identifies and differentiates payment cards with the same Primary Account Number (PAN).</p>",
         "SessionKeyMastercard$PanSequenceNumber": "<p>A number that identifies and differentiates payment cards with the same Primary Account Number (PAN).</p>",
         "SessionKeyVisa$PanSequenceNumber": "<p>A number that identifies and differentiates payment cards with the same Primary Account Number (PAN).</p>"
-      }
-    },
-    "NumberLengthEquals3": {
-      "base": null,
-      "refs": {
-        "AmexCardSecurityCodeVersion2$ServiceCode": "<p>The service code of the AMEX payment card. This is different from the Card Security Code (CSC).</p>",
-        "CardVerificationValue1$ServiceCode": "<p>The service code of the payment card. This is different from Card Security Code (CSC).</p>",
-        "DynamicCardVerificationValue$ServiceCode": "<p>The service code of the payment card. This is different from Card Security Code (CSC).</p>"
-      }
-    },
-    "NumberLengthEquals4": {
-      "base": null,
-      "refs": {
-        "AmexCardSecurityCodeVersion1$CardExpiryDate": "<p>The expiry date of a payment card.</p>",
-        "AmexCardSecurityCodeVersion2$CardExpiryDate": "<p>The expiry date of a payment card.</p>",
-        "CardVerificationValue1$CardExpiryDate": "<p>The expiry date of a payment card.</p>",
-        "CardVerificationValue2$CardExpiryDate": "<p>The expiry date of a payment card.</p>",
-        "DiscoverDynamicCardVerificationCode$CardExpiryDate": "<p>The expiry date of a payment card.</p>",
-        "DynamicCardVerificationValue$CardExpiryDate": "<p>The expiry date of a payment card.</p>"
       }
     },
     "PaddingType": {
@@ -647,10 +579,63 @@
         "GeneratePinDataInput$GenerationAttributes": "<p>The attributes and values to use for PIN, PVV, or PIN Offset generation.</p>"
       }
     },
+    "PinOffsetType": {
+      "base": null,
+      "refs": {
+        "Ibm3624PinFromOffset$PinOffset": "<p>The PIN offset value.</p>",
+        "Ibm3624PinVerification$PinOffset": "<p>The PIN offset value.</p>",
+        "PinData$PinOffset": "<p>The PIN offset value.</p>"
+      }
+    },
+    "PinValidationDataType": {
+      "base": null,
+      "refs": {
+        "Ibm3624NaturalPin$PinValidationData": "<p>The unique data for cardholder identification.</p>",
+        "Ibm3624PinFromOffset$PinValidationData": "<p>The unique data for cardholder identification.</p>",
+        "Ibm3624PinOffset$PinValidationData": "<p>The unique data for cardholder identification.</p>",
+        "Ibm3624PinVerification$PinValidationData": "<p>The unique data for cardholder identification.</p>",
+        "Ibm3624RandomPin$PinValidationData": "<p>The unique data for cardholder identification.</p>"
+      }
+    },
     "PinVerificationAttributes": {
       "base": "<p>Parameters that are required for PIN data verification.</p>",
       "refs": {
         "VerifyPinDataInput$VerificationAttributes": "<p>The attributes and values for PIN data verification.</p>"
+      }
+    },
+    "PlainTextOutputType": {
+      "base": null,
+      "refs": {
+        "DecryptDataOutput$PlainText": "<p>The decrypted plaintext data in hexBinary format.</p>"
+      }
+    },
+    "PlainTextType": {
+      "base": null,
+      "refs": {
+        "EncryptDataInput$PlainText": "<p>The plaintext to be encrypted.</p> <note> <p>For encryption using asymmetric keys, plaintext data length is constrained by encryption key strength that you define in <code>KeyAlgorithm</code> and padding type that you define in <code>AsymmetricEncryptionAttributes</code>. For more information, see <a href=\"https://docs.aws.amazon.com/payment-cryptography/latest/userguide/encrypt-data.html\">Encrypt data</a> in the <i>Amazon Web Services Payment Cryptography User Guide</i>.</p> </note>"
+      }
+    },
+    "PrimaryAccountNumberType": {
+      "base": null,
+      "refs": {
+        "EmvEncryptionAttributes$PrimaryAccountNumber": "<p>The Primary Account Number (PAN), a unique identifier for a payment credit or debit card and associates the card to a specific account holder.</p>",
+        "GenerateCardValidationDataInput$PrimaryAccountNumber": "<p>The Primary Account Number (PAN), a unique identifier for a payment credit or debit card that associates the card with a specific account holder.</p>",
+        "GeneratePinDataInput$PrimaryAccountNumber": "<p>The Primary Account Number (PAN), a unique identifier for a payment credit or debit card that associates the card with a specific account holder.</p>",
+        "MacAlgorithmEmv$PrimaryAccountNumber": "<p>The Primary Account Number (PAN), a unique identifier for a payment credit or debit card and associates the card to a specific account holder.</p>",
+        "SessionKeyAmex$PrimaryAccountNumber": "<p>The Primary Account Number (PAN) of the cardholder. A PAN is a unique identifier for a payment credit or debit card and associates the card to a specific account holder.</p>",
+        "SessionKeyEmv2000$PrimaryAccountNumber": "<p>The Primary Account Number (PAN) of the cardholder. A PAN is a unique identifier for a payment credit or debit card and associates the card to a specific account holder.</p>",
+        "SessionKeyEmvCommon$PrimaryAccountNumber": "<p>The Primary Account Number (PAN) of the cardholder. A PAN is a unique identifier for a payment credit or debit card and associates the card to a specific account holder.</p>",
+        "SessionKeyMastercard$PrimaryAccountNumber": "<p>The Primary Account Number (PAN) of the cardholder. A PAN is a unique identifier for a payment credit or debit card and associates the card to a specific account holder.</p>",
+        "SessionKeyVisa$PrimaryAccountNumber": "<p>The Primary Account Number (PAN) of the cardholder. A PAN is a unique identifier for a payment credit or debit card and associates the card to a specific account holder.</p>",
+        "TranslationPinDataIsoFormat034$PrimaryAccountNumber": "<p>The Primary Account Number (PAN) of the cardholder. A PAN is a unique identifier for a payment credit or debit card and associates the card to a specific account holder.</p>",
+        "VerifyCardValidationDataInput$PrimaryAccountNumber": "<p>The Primary Account Number (PAN), a unique identifier for a payment credit or debit card that associates the card with a specific account holder.</p>",
+        "VerifyPinDataInput$PrimaryAccountNumber": "<p>The Primary Account Number (PAN), a unique identifier for a payment credit or debit card that associates the card with a specific account holder.</p>"
+      }
+    },
+    "ProprietaryAuthenticationDataType": {
+      "base": null,
+      "refs": {
+        "CryptogramVerificationArpcMethod2$ProprietaryAuthenticationData": "<p>The proprietary authentication data used by issuer for communication during online transaction using an EMV chip card.</p>"
       }
     },
     "ReEncryptDataInput": {
@@ -673,6 +658,20 @@
     "ResourceNotFoundException": {
       "base": "<p>The request was denied due to an invalid resource error.</p>",
       "refs": {
+      }
+    },
+    "ServiceCodeType": {
+      "base": null,
+      "refs": {
+        "AmexCardSecurityCodeVersion2$ServiceCode": "<p>The service code of the AMEX payment card. This is different from the Card Security Code (CSC).</p>",
+        "CardVerificationValue1$ServiceCode": "<p>The service code of the payment card. This is different from Card Security Code (CSC).</p>",
+        "DynamicCardVerificationValue$ServiceCode": "<p>The service code of the payment card. This is different from Card Security Code (CSC).</p>"
+      }
+    },
+    "SessionDerivationDataType": {
+      "base": null,
+      "refs": {
+        "EmvEncryptionAttributes$SessionDerivationData": "<p>The derivation value used to derive the ICC session key. It is typically the application transaction counter value padded with zeros or previous ARQC value padded with zeros as per EMV version 4.3 book 2.</p>"
       }
     },
     "SessionKeyAmex": {
@@ -754,6 +753,18 @@
         "WrappedKeyMaterial$Tr31KeyBlock": "<p>The TR-31 wrapped key block.</p>"
       }
     },
+    "TrackDataType": {
+      "base": null,
+      "refs": {
+        "DynamicCardVerificationCode$TrackData": "<p>The data on the two tracks of magnetic cards used for financial transactions. This includes the cardholder name, PAN, expiration date, bank ID (BIN) and several other numbers the issuing bank uses to validate the data received.</p>"
+      }
+    },
+    "TransactionDataType": {
+      "base": null,
+      "refs": {
+        "VerifyAuthRequestCryptogramInput$TransactionData": "<p>The transaction data that Amazon Web Services Payment Cryptography uses for ARQC verification. The same transaction is used for ARQC generation outside of Amazon Web Services Payment Cryptography.</p>"
+      }
+    },
     "TranslatePinDataInput": {
       "base": null,
       "refs": {
@@ -785,6 +796,13 @@
         "TranslationIsoFormats$IsoFormat1": "<p>Parameters that are required for ISO9564 PIN format 1 tranlation.</p>"
       }
     },
+    "ValidationDataType": {
+      "base": null,
+      "refs": {
+        "GenerateCardValidationDataOutput$ValidationData": "<p>The CVV or CSC value that Amazon Web Services Payment Cryptography generates for the card.</p>",
+        "VerifyCardValidationDataInput$ValidationData": "<p>The CVV or CSC value for use for card data verification within Amazon Web Services Payment Cryptography.</p>"
+      }
+    },
     "ValidationException": {
       "base": "<p>The request was denied due to an invalid request error.</p>",
       "refs": {
@@ -811,6 +829,13 @@
       "base": null,
       "refs": {
         "VerificationFailedException$Reason": "<p>The reason for the exception.</p>"
+      }
+    },
+    "VerificationValueType": {
+      "base": null,
+      "refs": {
+        "PinData$VerificationValue": "<p>The unique data to identify a cardholder. In most cases, this is the same as cardholder's Primary Account Number (PAN). If a value is not provided, it defaults to PAN.</p>",
+        "VisaPinVerification$VerificationValue": "<p>Parameters that are required to generate or verify Visa PVV (PIN Verification Value).</p>"
       }
     },
     "VerifyAuthRequestCryptogramInput": {
