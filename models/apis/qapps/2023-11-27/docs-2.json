@@ -1,0 +1,960 @@
+{
+  "version": "2.0",
+  "service": "<p>The Amazon Q Apps feature capability within Amazon Q Business allows web experience users to create lightweight, purpose-built AI apps to fulfill specific tasks from within their web experience. For example, users can create an Q Appthat exclusively generates marketing-related content to improve your marketing team's productivity or a Q App for marketing content-generation like writing customer emails and creating promotional content using a certain style of voice, tone, and branding. For more information, see <a href=\"https://docs.aws.amazon.com/amazonq/latest/qbusiness-ug/purpose-built-qapps.html\">Amazon Q App</a> in the <i>Amazon Q Business User Guide</i>. </p>",
+  "operations": {
+    "AssociateLibraryItemReview": "<p>Associates a rating or review for a library item with the user submitting the request. This increments the rating count for the specified library item.</p>",
+    "AssociateQAppWithUser": "<p>This operation creates a link between the user's identity calling the operation and a specific Q App. This is useful to mark the Q App as a <i>favorite</i> for the user if the user doesn't own the Amazon Q App so they can still run it and see it in their inventory of Q Apps.</p>",
+    "CreateLibraryItem": "<p>Creates a new library item for an Amazon Q App, allowing it to be discovered and used by other allowed users. </p>",
+    "CreateQApp": "<p>Creates a new Amazon Q App based on the provided definition. The Q App definition specifies the cards and flow of the Q App. This operation also calculates the dependencies between the cards by inspecting the references in the prompts. </p>",
+    "DeleteLibraryItem": "<p>Deletes a library item for an Amazon Q App, removing it from the library so it can no longer be discovered or used by other users.</p>",
+    "DeleteQApp": "<p>Deletes an Amazon Q App owned by the user. If the Q App was previously published to the library, it is also removed from the library.</p>",
+    "DisassociateLibraryItemReview": "<p>Removes a rating or review previously submitted by the user for a library item.</p>",
+    "DisassociateQAppFromUser": "<p>Disassociates a Q App from a user removing the user's access to run the Q App.</p>",
+    "GetLibraryItem": "<p>Retrieves details about a library item for an Amazon Q App, including its metadata, categories, ratings, and usage statistics.</p>",
+    "GetQApp": "<p>Retrieves the full details of an Q App, including its definition specifying the cards and flow.</p>",
+    "GetQAppSession": "<p>Retrieves the current state and results for an active session of an Amazon Q App.</p>",
+    "ImportDocument": "<p>Uploads a file that can then be used either as a default in a <code>FileUploadCard</code> from Q App definition or as a file that is used inside a single Q App run. The purpose of the document is determined by a scope parameter that indicates whether it is at the app definition level or at the app session level.</p>",
+    "ListLibraryItems": "<p>Lists the library items for Amazon Q Apps that are published and available for users in your Amazon Web Services account.</p>",
+    "ListQApps": "<p>Lists the Amazon Q Apps owned by or associated with the user either because they created it or because they used it from the library in the past. The user identity is extracted from the credentials used to invoke this operation..</p>",
+    "ListTagsForResource": "<p>Lists the tags associated with an Amazon Q Apps resource.</p>",
+    "PredictQApp": "<p>Generates an Amazon Q App definition based on either a conversation or a problem statement provided as input.The resulting app definition can be used to call <code>CreateQApp</code>. This API doesn't create Amazon Q Apps directly.</p>",
+    "StartQAppSession": "<p>Starts a new session for an Amazon Q App, allowing inputs to be provided and the app to be run.</p> <note> <p>Each Q App session will be condensed into a single conversation in the web experience.</p> </note>",
+    "StopQAppSession": "<p>Stops an active session for an Amazon Q App.This deletes all data related to the session and makes it invalid for future uses. The results of the session will be persisted as part of the conversation.</p>",
+    "TagResource": "<p>Associates tags with an Amazon Q Apps resource.</p>",
+    "UntagResource": "<p>Disassociates tags from an Amazon Q Apps resource.</p>",
+    "UpdateLibraryItem": "<p>Updates the metadata and status of a library item for an Amazon Q App.</p>",
+    "UpdateQApp": "<p>Updates an existing Amazon Q App, allowing modifications to its title, description, and definition.</p>",
+    "UpdateQAppSession": "<p>Updates the session for a given Q App <code>sessionId</code>. This is only valid when at least one card of the session is in the <code>WAITING</code> state. Data for each <code>WAITING</code> card can be provided as input. If inputs are not provided, the call will be accepted but session will not move forward. Inputs for cards that are not in the <code>WAITING</code> status will be ignored.</p>"
+  },
+  "shapes": {
+    "AccessDeniedException": {
+      "base": "<p>The client is not authorized to perform the requested operation.</p>",
+      "refs": {
+      }
+    },
+    "AmazonResourceName": {
+      "base": null,
+      "refs": {
+        "ListTagsForResourceRequest$resourceARN": "<p>The Amazon Resource Name (ARN) of the resource whose tags should be listed.</p>",
+        "TagResourceRequest$resourceARN": "<p>The Amazon Resource Name (ARN) of the resource to tag.</p>",
+        "UntagResourceRequest$resourceARN": "<p>The Amazon Resource Name (ARN) of the resource to disassociate the tag from.</p>"
+      }
+    },
+    "AppArn": {
+      "base": null,
+      "refs": {
+        "CreateQAppOutput$appArn": "<p>The Amazon Resource Name (ARN) of the new Q App.</p>",
+        "GetQAppOutput$appArn": "<p>The Amazon Resource Name (ARN) of the Q App.</p>",
+        "UpdateQAppOutput$appArn": "<p>The Amazon Resource Name (ARN) of the updated Q App.</p>",
+        "UserAppItem$appArn": "<p>The Amazon Resource Name (ARN) of the Q App.</p>"
+      }
+    },
+    "AppDefinition": {
+      "base": "<p>The definition of the Q App, specifying the cards and flow.</p>",
+      "refs": {
+        "GetQAppOutput$appDefinition": "<p>The full definition of the Q App, specifying the cards and flow.</p>"
+      }
+    },
+    "AppDefinitionInput": {
+      "base": "<p>The input for defining an Q App.</p>",
+      "refs": {
+        "CreateQAppInput$appDefinition": "<p>The definition of the new Q App, specifying the cards and flow.</p>",
+        "PredictAppDefinition$appDefinition": "<p>The definition specifying the cards and flow of the generated Q App.</p>",
+        "UpdateQAppInput$appDefinition": "<p>The new definition specifying the cards and flow for the Q App.</p>"
+      }
+    },
+    "AppRequiredCapabilities": {
+      "base": null,
+      "refs": {
+        "CreateQAppOutput$requiredCapabilities": "<p>The capabilities required to run the Q App, such as file upload or third-party integrations.</p>",
+        "GetQAppOutput$requiredCapabilities": "<p>The capabilities required to run the Q App, such as file upload or third-party integrations.</p>",
+        "UpdateQAppOutput$requiredCapabilities": "<p>The capabilities required for the updated Q App.</p>"
+      }
+    },
+    "AppRequiredCapability": {
+      "base": null,
+      "refs": {
+        "AppRequiredCapabilities$member": null
+      }
+    },
+    "AppStatus": {
+      "base": null,
+      "refs": {
+        "CreateQAppOutput$status": "<p>The status of the new Q App, such as \"Created\".</p>",
+        "GetQAppOutput$status": "<p>The status of the Q App.</p>",
+        "UpdateQAppOutput$status": "<p>The status of the updated Q App.</p>"
+      }
+    },
+    "AppVersion": {
+      "base": null,
+      "refs": {
+        "CreateLibraryItemInput$appVersion": "<p>The version of the Amazon Q App to publish to the library.</p>",
+        "CreateQAppOutput$appVersion": "<p>The version of the new Q App.</p>",
+        "GetLibraryItemOutput$appVersion": "<p>The version of the Q App associated with the library item.</p>",
+        "GetQAppOutput$appVersion": "<p>The version of the Q App.</p>",
+        "LibraryItemMember$appVersion": "<p>The version of the Q App associated with the library item.</p>",
+        "StartQAppSessionInput$appVersion": "<p>The version of the Q App to use for the session.</p>",
+        "UpdateLibraryItemOutput$appVersion": "<p>The version of the Q App associated with the library item.</p>",
+        "UpdateQAppOutput$appVersion": "<p>The new version of the updated Q App.</p>"
+      }
+    },
+    "AssociateLibraryItemReviewInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AssociateQAppWithUserInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AttributeFilter": {
+      "base": "<p>The filter criteria used on responses based on document attributes or metadata fields.</p>",
+      "refs": {
+        "AttributeFilter$notFilter": "<p>Performs a logical <code>NOT</code> operation on all supplied filters. </p>",
+        "AttributeFilters$member": null,
+        "QQueryCard$attributeFilter": "<p>The Amazon Q Business filters applied in this query card when resolving data sources</p>",
+        "QQueryCardInput$attributeFilter": "<p>Turns on filtering of responses based on document attributes or metadata fields.</p>"
+      }
+    },
+    "AttributeFilters": {
+      "base": null,
+      "refs": {
+        "AttributeFilter$andAllFilters": "<p>Performs a logical <code>AND</code> operation on all supplied filters.</p>",
+        "AttributeFilter$orAllFilters": "<p> Performs a logical <code>OR</code> operation on all supplied filters. </p>"
+      }
+    },
+    "Boolean": {
+      "base": null,
+      "refs": {
+        "AppDefinition$canEdit": "<p>A flag indicating whether the Q App's definition can be edited by the user.</p>",
+        "FileUploadCard$allowOverride": "<p>A flag indicating if the user can override the default file for the upload card.</p>",
+        "FileUploadCardInput$allowOverride": "<p>A flag indicating if the user can override the default file for the upload card.</p>",
+        "GetLibraryItemOutput$isRatedByUser": "<p>Whether the current user has rated the library item.</p>",
+        "LibraryItemMember$isRatedByUser": "<p>Whether the current user has rated the library item.</p>",
+        "UpdateLibraryItemOutput$isRatedByUser": "<p>Whether the current user has rated the library item.</p>",
+        "UserAppItem$canEdit": "<p>A flag indicating whether the user can edit the Q App.</p>"
+      }
+    },
+    "Card": {
+      "base": "<p>A card representing a component or step in an Amazon Q App's flow.</p>",
+      "refs": {
+        "CardModelList$member": null
+      }
+    },
+    "CardInput": {
+      "base": "<p>The properties defining an input card in an Amazon Q App.</p>",
+      "refs": {
+        "CardList$member": null
+      }
+    },
+    "CardList": {
+      "base": null,
+      "refs": {
+        "AppDefinitionInput$cards": "<p>The cards that make up the Q App definition.</p>"
+      }
+    },
+    "CardModelList": {
+      "base": null,
+      "refs": {
+        "AppDefinition$cards": "<p>The cards that make up the Q App, such as text input, file upload, or query cards.</p>"
+      }
+    },
+    "CardOutputSource": {
+      "base": null,
+      "refs": {
+        "QQueryCard$outputSource": "<p>The source or type of output generated by the query card.</p>",
+        "QQueryCardInput$outputSource": "<p>The source or type of output to generate for the query card.</p>"
+      }
+    },
+    "CardStatus": {
+      "base": "<p>The current status and value of a card in an active Amazon Q App session.</p>",
+      "refs": {
+        "CardStatusMap$value": null
+      }
+    },
+    "CardStatusMap": {
+      "base": null,
+      "refs": {
+        "GetQAppSessionOutput$cardStatus": "<p>The current status for each card in the Q App session.</p>"
+      }
+    },
+    "CardType": {
+      "base": null,
+      "refs": {
+        "FileUploadCard$type": "<p>The type of the card.</p>",
+        "FileUploadCardInput$type": "<p>The type of the card.</p>",
+        "QPluginCard$type": "<p>The type of the card.</p>",
+        "QPluginCardInput$type": "<p>The type of the card.</p>",
+        "QQueryCard$type": "<p>The type of the card.</p>",
+        "QQueryCardInput$type": "<p>The type of the card.</p>",
+        "TextInputCard$type": "<p>The type of the card.</p>",
+        "TextInputCardInput$type": "<p>The type of the card.</p>"
+      }
+    },
+    "CardValue": {
+      "base": "<p>The value or result associated with a card in a Amazon Q App session.</p>",
+      "refs": {
+        "CardValueList$member": null
+      }
+    },
+    "CardValueList": {
+      "base": null,
+      "refs": {
+        "StartQAppSessionInput$initialValues": "<p>Optional initial input values to provide for the Q App session.</p>",
+        "UpdateQAppSessionInput$values": "<p>The input values to provide for the current state of the Q App session.</p>"
+      }
+    },
+    "CardValueValueString": {
+      "base": null,
+      "refs": {
+        "CardValue$value": "<p>The value or result associated with the card.</p>"
+      }
+    },
+    "Category": {
+      "base": "<p>A category used to classify and filter library items for Amazon Q Apps.</p>",
+      "refs": {
+        "CategoryList$member": null
+      }
+    },
+    "CategoryIdList": {
+      "base": null,
+      "refs": {
+        "CreateLibraryItemInput$categories": "<p>The categories to associate with the library item for easier discovery.</p>",
+        "UpdateLibraryItemInput$categories": "<p>The new categories to associate with the library item.</p>"
+      }
+    },
+    "CategoryList": {
+      "base": null,
+      "refs": {
+        "GetLibraryItemOutput$categories": "<p>The categories associated with the library item for discovery.</p>",
+        "LibraryItemMember$categories": "<p>The categories associated with the library item.</p>",
+        "UpdateLibraryItemOutput$categories": "<p>The categories associated with the updated library item.</p>"
+      }
+    },
+    "ConflictException": {
+      "base": "<p>The requested operation could not be completed due to a conflict with the current state of the resource.</p>",
+      "refs": {
+      }
+    },
+    "ContentTooLargeException": {
+      "base": "<p>The requested operation could not be completed because the content exceeds the maximum allowed size.</p>",
+      "refs": {
+      }
+    },
+    "ConversationMessage": {
+      "base": "<p>A message in a conversation, used as input for generating an Amazon Q App definition.</p>",
+      "refs": {
+        "PredictQAppInputOptionsConversationList$member": null
+      }
+    },
+    "ConversationMessageBodyString": {
+      "base": null,
+      "refs": {
+        "ConversationMessage$body": "<p>The text content of the conversation message.</p>"
+      }
+    },
+    "CreateLibraryItemInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateLibraryItemOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateQAppInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateQAppOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "Default": {
+      "base": null,
+      "refs": {
+        "TextInputCard$defaultValue": "<p>The default value to pre-populate in the text input field.</p>",
+        "TextInputCardInput$defaultValue": "<p>The default value to pre-populate in the text input field.</p>"
+      }
+    },
+    "DeleteLibraryItemInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteQAppInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DependencyList": {
+      "base": null,
+      "refs": {
+        "FileUploadCard$dependencies": "<p>Any dependencies or requirements for the file upload card.</p>",
+        "QPluginCard$dependencies": "<p>Any dependencies or requirements for the plugin card.</p>",
+        "QQueryCard$dependencies": "<p>Any dependencies or requirements for the query card.</p>",
+        "TextInputCard$dependencies": "<p>Any dependencies or requirements for the text input card.</p>"
+      }
+    },
+    "Description": {
+      "base": null,
+      "refs": {
+        "CreateQAppInput$description": "<p>The description of the new Q App.</p>",
+        "CreateQAppOutput$description": "<p>The description of the new Q App.</p>",
+        "GetQAppOutput$description": "<p>The description of the Q App.</p>",
+        "PredictAppDefinition$description": "<p>The description of the generated Q App definition.</p>",
+        "UpdateQAppInput$description": "<p>The new description for the Q App.</p>",
+        "UpdateQAppOutput$description": "<p>The new description of the updated Q App.</p>",
+        "UserAppItem$description": "<p>The description of the Q App.</p>"
+      }
+    },
+    "DisassociateLibraryItemReviewInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DisassociateQAppFromUserInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DocumentAttribute": {
+      "base": "<p>A document attribute or metadata field.</p>",
+      "refs": {
+        "AttributeFilter$equalsTo": "<p>Performs an <i>equals</i> operation on two document attributes or metadata fields. Supported for the following <a href=\"https://docs.aws.amazon.com/amazonq/latest/api-reference/API_DocumentAttributeValue.html\">document attribute value types</a>: <code>dateValue</code>, <code>longValue</code>, <code>stringListValue</code> and <code>stringValue</code>.</p>",
+        "AttributeFilter$containsAll": "<p>Returns <code>true</code> when a document contains all the specified document attributes or metadata fields. Supported for the following <a href=\"https://docs.aws.amazon.com/amazonq/latest/api-reference/API_DocumentAttributeValue.html\">document attribute value types</a>: <code>stringListValue</code>.</p>",
+        "AttributeFilter$containsAny": "<p>Returns <code>true</code> when a document contains any of the specified document attributes or metadata fields. Supported for the following <a href=\"https://docs.aws.amazon.com/amazonq/latest/api-reference/API_DocumentAttributeValue.html\">document attribute value types</a>: <code>stringListValue</code>.</p>",
+        "AttributeFilter$greaterThan": "<p>Performs a <i>greater than</i> operation on two document attributes or metadata fields. Supported for the following <a href=\"https://docs.aws.amazon.com/amazonq/latest/api-reference/API_DocumentAttributeValue.html\">document attribute value types</a>: <code>dateValue</code> and <code>longValue</code>.</p>",
+        "AttributeFilter$greaterThanOrEquals": "<p>Performs a <i>greater than or equals</i> operation on two document attributes or metadata fields. Supported for the following <a href=\"https://docs.aws.amazon.com/amazonq/latest/api-reference/API_DocumentAttributeValue.html\">document attribute value types</a>: <code>dateValue</code> and <code>longValue</code>. </p>",
+        "AttributeFilter$lessThan": "<p>Performs a <i>less than</i> operation on two document attributes or metadata fields. Supported for the following <a href=\"https://docs.aws.amazon.com/amazonq/latest/api-reference/API_DocumentAttributeValue.html\">document attribute value types</a>: <code>dateValue</code> and <code>longValue</code>.</p>",
+        "AttributeFilter$lessThanOrEquals": "<p>Performs a <i>less than or equals</i> operation on two document attributes or metadata fields.Supported for the following <a href=\"https://docs.aws.amazon.com/amazonq/latest/api-reference/API_DocumentAttributeValue.html\">document attribute value type</a>: <code>dateValue</code> and <code>longValue</code>. </p>"
+      }
+    },
+    "DocumentAttributeKey": {
+      "base": null,
+      "refs": {
+        "DocumentAttribute$name": "<p>The identifier for the attribute.</p>"
+      }
+    },
+    "DocumentAttributeStringListValue": {
+      "base": null,
+      "refs": {
+        "DocumentAttributeValue$stringListValue": "<p>A list of strings.</p>"
+      }
+    },
+    "DocumentAttributeValue": {
+      "base": "<p>The value of a document attribute. You can only provide one value for a document attribute.</p>",
+      "refs": {
+        "DocumentAttribute$value": "<p>The value of the attribute. </p>"
+      }
+    },
+    "DocumentAttributeValueStringValueString": {
+      "base": null,
+      "refs": {
+        "DocumentAttributeValue$stringValue": "<p>A string.</p>"
+      }
+    },
+    "DocumentScope": {
+      "base": null,
+      "refs": {
+        "ImportDocumentInput$scope": "<p>Whether the file is associated with an Q App definition or a specific Q App session.</p>"
+      }
+    },
+    "ExecutionStatus": {
+      "base": null,
+      "refs": {
+        "CardStatus$currentState": "<p>The current state of the card.</p>",
+        "GetQAppSessionOutput$status": "<p>The current status of the Q App session.</p>"
+      }
+    },
+    "FileUploadCard": {
+      "base": "<p>A card in an Amazon Q App that allows the user to upload a file.</p>",
+      "refs": {
+        "Card$fileUpload": "<p>A container for the properties of the file upload card.</p>"
+      }
+    },
+    "FileUploadCardInput": {
+      "base": "<p>Represents a file upload card. It can optionally receive a <code>filename</code> and <code>fileId</code> to set a default file. If not received, the user must provide the file when the Q App runs.</p>",
+      "refs": {
+        "CardInput$fileUpload": "<p>A container for the properties of the file upload input card.</p>"
+      }
+    },
+    "Filename": {
+      "base": null,
+      "refs": {
+        "FileUploadCardInput$filename": "<p>The default filename to use for the file upload card.</p>",
+        "ImportDocumentInput$fileName": "<p>The name of the file being uploaded.</p>"
+      }
+    },
+    "GetLibraryItemInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetLibraryItemOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetQAppInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetQAppOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetQAppSessionInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetQAppSessionOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ImportDocumentInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ImportDocumentOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "InitialPrompt": {
+      "base": null,
+      "refs": {
+        "AppDefinitionInput$initialPrompt": "<p>The initial prompt displayed when the Q App is started.</p>",
+        "CreateQAppOutput$initialPrompt": "<p>The initial prompt displayed when the Q App is started.</p>",
+        "GetQAppOutput$initialPrompt": "<p>The initial prompt displayed when the Q App is started.</p>",
+        "UpdateQAppOutput$initialPrompt": "<p>The initial prompt for the updated Q App.</p>"
+      }
+    },
+    "InstanceId": {
+      "base": null,
+      "refs": {
+        "AssociateLibraryItemReviewInput$instanceId": "<p>The unique identifier for the Amazon Q Business application environment instance.</p>",
+        "AssociateQAppWithUserInput$instanceId": "<p>The unique identifier of the Amazon Q Business application environment instance.</p>",
+        "CreateLibraryItemInput$instanceId": "<p>The unique identifier of the Amazon Q Business application environment instance.</p>",
+        "CreateQAppInput$instanceId": "<p>The unique identifier of the Amazon Q Business application environment instance.</p>",
+        "DeleteLibraryItemInput$instanceId": "<p>The unique identifier of the Amazon Q Business application environment instance.</p>",
+        "DeleteQAppInput$instanceId": "<p>The unique identifier of the Amazon Q Business application environment instance.</p>",
+        "DisassociateLibraryItemReviewInput$instanceId": "<p>The unique identifier of the Amazon Q Business application environment instance.</p>",
+        "DisassociateQAppFromUserInput$instanceId": "<p>The unique identifier of the Amazon Q Business application environment instance.</p>",
+        "GetLibraryItemInput$instanceId": "<p>The unique identifier of the Amazon Q Business application environment instance.</p>",
+        "GetQAppInput$instanceId": "<p>The unique identifier of the Amazon Q Business application environment instance.</p>",
+        "GetQAppSessionInput$instanceId": "<p>The unique identifier of the Amazon Q Business application environment instance.</p>",
+        "ImportDocumentInput$instanceId": "<p>The unique identifier of the Amazon Q Business application environment instance.</p>",
+        "ListLibraryItemsInput$instanceId": "<p>The unique identifier of the Amazon Q Business application environment instance.</p>",
+        "ListQAppsInput$instanceId": "<p>The unique identifier of the Amazon Q Business application environment instance.</p>",
+        "PredictQAppInput$instanceId": "<p>The unique identifier of the Amazon Q Business application environment instance.</p>",
+        "StartQAppSessionInput$instanceId": "<p>The unique identifier of the Amazon Q Business application environment instance.</p>",
+        "StopQAppSessionInput$instanceId": "<p>The unique identifier of the Amazon Q Business application environment instance.</p>",
+        "UpdateLibraryItemInput$instanceId": "<p>The unique identifier of the Amazon Q Business application environment instance.</p>",
+        "UpdateQAppInput$instanceId": "<p>The unique identifier of the Amazon Q Business application environment instance.</p>",
+        "UpdateQAppSessionInput$instanceId": "<p>The unique identifier of the Amazon Q Business application environment instance.</p>"
+      }
+    },
+    "Integer": {
+      "base": null,
+      "refs": {
+        "CreateLibraryItemOutput$ratingCount": "<p>The number of ratings the library item has received from users.</p>",
+        "GetLibraryItemOutput$ratingCount": "<p>The number of ratings the library item has received from users.</p>",
+        "GetLibraryItemOutput$userCount": "<p>The number of users who have associated the Q App with their account.</p>",
+        "InternalServerException$retryAfterSeconds": "<p>The number of seconds to wait before retrying the operation</p>",
+        "LibraryItemMember$ratingCount": "<p>The number of ratings the library item has received.</p>",
+        "LibraryItemMember$userCount": "<p>The number of users who have the associated Q App.</p>",
+        "ThrottlingException$retryAfterSeconds": "<p>The number of seconds to wait before retrying the operation</p>",
+        "UpdateLibraryItemOutput$ratingCount": "<p>The number of ratings the library item has received.</p>",
+        "UpdateLibraryItemOutput$userCount": "<p>The number of users who have the associated Q App.</p>"
+      }
+    },
+    "InternalServerException": {
+      "base": "<p>An internal service error occurred while processing the request.</p>",
+      "refs": {
+      }
+    },
+    "LibraryItemList": {
+      "base": null,
+      "refs": {
+        "ListLibraryItemsOutput$libraryItems": "<p>The list of library items meeting the request criteria.</p>"
+      }
+    },
+    "LibraryItemMember": {
+      "base": "<p>A library item is a snapshot of an Amazon Q App that can be published so the users in their Amazon Q Apps library can discover it, clone it, and run it.</p>",
+      "refs": {
+        "LibraryItemList$member": null
+      }
+    },
+    "LibraryItemStatus": {
+      "base": null,
+      "refs": {
+        "UpdateLibraryItemInput$status": "<p>The new status to set for the library item, such as \"Published\" or \"Hidden\".</p>"
+      }
+    },
+    "ListLibraryItemsInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListLibraryItemsOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListQAppsInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListQAppsOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTagsForResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTagsForResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "Long": {
+      "base": null,
+      "refs": {
+        "DocumentAttributeValue$longValue": "<p>A long integer value. </p>"
+      }
+    },
+    "PageLimit": {
+      "base": null,
+      "refs": {
+        "ListLibraryItemsInput$limit": "<p>The maximum number of library items to return in the response.</p>",
+        "ListQAppsInput$limit": "<p>The maximum number of Q Apps to return in the response.</p>"
+      }
+    },
+    "PaginationToken": {
+      "base": null,
+      "refs": {
+        "ListLibraryItemsInput$nextToken": "<p>The token to request the next page of results.</p>",
+        "ListQAppsInput$nextToken": "<p>The token to request the next page of results.</p>"
+      }
+    },
+    "Placeholder": {
+      "base": null,
+      "refs": {
+        "TextInputCard$placeholder": "<p>The placeholder text to display in the text input field.</p>",
+        "TextInputCardInput$placeholder": "<p>The placeholder text to display in the text input field.</p>"
+      }
+    },
+    "PlatoString": {
+      "base": null,
+      "refs": {
+        "DocumentAttributeStringListValue$member": null
+      }
+    },
+    "PluginId": {
+      "base": null,
+      "refs": {
+        "QPluginCardInput$pluginId": "<p>The unique identifier of the plugin used by the card.</p>"
+      }
+    },
+    "PluginType": {
+      "base": null,
+      "refs": {
+        "QPluginCard$pluginType": "<p>The type or category of the plugin used by the card.</p>"
+      }
+    },
+    "PredictAppDefinition": {
+      "base": "<p>The definition of an Amazon Q App generated based on input such as a conversation or problem statement.</p>",
+      "refs": {
+        "PredictQAppOutput$app": "<p>The generated Q App definition.</p>"
+      }
+    },
+    "PredictQAppInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PredictQAppInputOptions": {
+      "base": "<p>The input options for generating an Q App definition.</p>",
+      "refs": {
+        "PredictQAppInput$options": "<p>The input to generate the Q App definition from, either a conversation or problem statement.</p>"
+      }
+    },
+    "PredictQAppInputOptionsConversationList": {
+      "base": null,
+      "refs": {
+        "PredictQAppInputOptions$conversation": "<p>A conversation to use as input for generating the Q App definition.</p>"
+      }
+    },
+    "PredictQAppInputOptionsProblemStatementString": {
+      "base": null,
+      "refs": {
+        "PredictQAppInputOptions$problemStatement": "<p>A problem statement to use as input for generating the Q App definition.</p>"
+      }
+    },
+    "PredictQAppOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "Prompt": {
+      "base": null,
+      "refs": {
+        "QPluginCard$prompt": "<p>The prompt or instructions displayed for the plugin card.</p>",
+        "QPluginCardInput$prompt": "<p>The prompt or instructions displayed for the plugin card.</p>",
+        "QQueryCard$prompt": "<p>The prompt or instructions displayed for the query card.</p>",
+        "QQueryCardInput$prompt": "<p>The prompt or instructions displayed for the query card.</p>"
+      }
+    },
+    "QAppsTimestamp": {
+      "base": null,
+      "refs": {
+        "CreateLibraryItemOutput$createdAt": "<p>The date and time the library item was created.</p>",
+        "CreateLibraryItemOutput$updatedAt": "<p>The date and time the library item was last updated.</p>",
+        "CreateQAppOutput$createdAt": "<p>The date and time the Q App was created.</p>",
+        "CreateQAppOutput$updatedAt": "<p>The date and time the Q App was last updated.</p>",
+        "GetLibraryItemOutput$createdAt": "<p>The date and time the library item was created.</p>",
+        "GetLibraryItemOutput$updatedAt": "<p>The date and time the library item was last updated.</p>",
+        "GetQAppOutput$createdAt": "<p>The date and time the Q App was created.</p>",
+        "GetQAppOutput$updatedAt": "<p>The date and time the Q App was last updated.</p>",
+        "LibraryItemMember$createdAt": "<p>The date and time the library item was created.</p>",
+        "LibraryItemMember$updatedAt": "<p>The date and time the library item was last updated.</p>",
+        "UpdateLibraryItemOutput$createdAt": "<p>The date and time the library item was originally created.</p>",
+        "UpdateLibraryItemOutput$updatedAt": "<p>The date and time the library item was last updated.</p>",
+        "UpdateQAppOutput$createdAt": "<p>The date and time the Q App was originally created.</p>",
+        "UpdateQAppOutput$updatedAt": "<p>The date and time the Q App was last updated.</p>",
+        "UserAppItem$createdAt": "<p>The date and time the user's association with the Q App was created.</p>"
+      }
+    },
+    "QPluginCard": {
+      "base": "<p>A card in an Q App that integrates with a third-party plugin or service.</p>",
+      "refs": {
+        "Card$qPlugin": "<p>A container for the properties of the plugin card.</p>"
+      }
+    },
+    "QPluginCardInput": {
+      "base": "<p>The input shape for defining a plugin card in an Amazon Q App.</p>",
+      "refs": {
+        "CardInput$qPlugin": "<p>A container for the properties of the plugin input card.</p>"
+      }
+    },
+    "QQueryCard": {
+      "base": "<p>A card in a Amazon Q App that generates a response based on the Amazon Q Business service.</p>",
+      "refs": {
+        "Card$qQuery": "<p>A container for the properties of the query card.</p>"
+      }
+    },
+    "QQueryCardInput": {
+      "base": "<p>The input shape for defining a query card in an Amazon Q App.</p>",
+      "refs": {
+        "CardInput$qQuery": "<p>A container for the properties of the query input card.</p>"
+      }
+    },
+    "ResourceNotFoundException": {
+      "base": "<p>The requested resource could not be found.</p>",
+      "refs": {
+      }
+    },
+    "Sender": {
+      "base": null,
+      "refs": {
+        "ConversationMessage$type": "<p>The type of the conversation message.</p>"
+      }
+    },
+    "ServiceQuotaExceededException": {
+      "base": "<p>The requested operation could not be completed because it would exceed the service's quota or limit.</p>",
+      "refs": {
+      }
+    },
+    "StartQAppSessionInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartQAppSessionOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StopQAppSessionInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "String": {
+      "base": null,
+      "refs": {
+        "AccessDeniedException$message": null,
+        "AppDefinition$appDefinitionVersion": "<p>The version of the app definition schema or specification.</p>",
+        "CardStatus$currentValue": "<p>The current value or result associated with the card.</p>",
+        "Category$title": "<p>The title or name of the category.</p>",
+        "ConflictException$message": null,
+        "ConflictException$resourceId": "<p>The unique identifier of the resource</p>",
+        "ConflictException$resourceType": "<p>The type of the resource</p>",
+        "ContentTooLargeException$message": null,
+        "ContentTooLargeException$resourceId": "<p>The unique identifier of the resource</p>",
+        "ContentTooLargeException$resourceType": "<p>The type of the resource</p>",
+        "CreateLibraryItemOutput$status": "<p>The status of the new library item, such as \"Published\".</p>",
+        "CreateLibraryItemOutput$createdBy": "<p>The user who created the library item.</p>",
+        "CreateLibraryItemOutput$updatedBy": "<p>The user who last updated the library item.</p>",
+        "CreateQAppOutput$createdBy": "<p>The user who created the Q App.</p>",
+        "CreateQAppOutput$updatedBy": "<p>The user who last updated the Q App.</p>",
+        "DependencyList$member": null,
+        "FileUploadCard$filename": "<p>The name of the file being uploaded.</p>",
+        "FileUploadCard$fileId": "<p>The unique identifier of the file associated with the card.</p>",
+        "GetLibraryItemOutput$status": "<p>The status of the library item, such as \"Published\".</p>",
+        "GetLibraryItemOutput$createdBy": "<p>The user who created the library item.</p>",
+        "GetLibraryItemOutput$updatedBy": "<p>The user who last updated the library item.</p>",
+        "GetQAppOutput$createdBy": "<p>The user who created the Q App.</p>",
+        "GetQAppOutput$updatedBy": "<p>The user who last updated the Q App.</p>",
+        "GetQAppSessionOutput$sessionId": "<p>The unique identifier of the Q App session.</p>",
+        "GetQAppSessionOutput$sessionArn": "<p>The Amazon Resource Name (ARN) of the Q App session.</p>",
+        "ImportDocumentInput$fileContentsBase64": "<p>The base64-encoded contents of the file to upload.</p>",
+        "ImportDocumentOutput$fileId": "<p>The unique identifier assigned to the uploaded file.</p>",
+        "InternalServerException$message": null,
+        "LibraryItemMember$status": "<p>The status of the library item.</p>",
+        "LibraryItemMember$createdBy": "<p>The user who created the library item.</p>",
+        "LibraryItemMember$updatedBy": "<p>The user who last updated the library item.</p>",
+        "ListLibraryItemsOutput$nextToken": "<p>The token to use to request the next page of results.</p>",
+        "ListQAppsOutput$nextToken": "<p>The token to use to request the next page of results.</p>",
+        "PredictQAppOutput$problemStatement": "<p>The problem statement extracted from the input conversation, if provided.</p>",
+        "QPluginCard$pluginId": "<p>The unique identifier of the plugin used by the card.</p>",
+        "ResourceNotFoundException$message": null,
+        "ResourceNotFoundException$resourceId": "<p>The unique identifier of the resource</p>",
+        "ResourceNotFoundException$resourceType": "<p>The type of the resource</p>",
+        "ServiceQuotaExceededException$message": null,
+        "ServiceQuotaExceededException$resourceId": "<p>The unique identifier of the resource</p>",
+        "ServiceQuotaExceededException$resourceType": "<p>The type of the resource</p>",
+        "ServiceQuotaExceededException$serviceCode": "<p>The code for the service where the quota was exceeded</p>",
+        "ServiceQuotaExceededException$quotaCode": "<p>The code of the quota that was exceeded</p>",
+        "StartQAppSessionOutput$sessionId": "<p>The unique identifier of the new Q App session.</p>",
+        "StartQAppSessionOutput$sessionArn": "<p>The Amazon Resource Name (ARN) of the new Q App session.</p>",
+        "TagMap$key": null,
+        "TagMap$value": null,
+        "ThrottlingException$message": null,
+        "ThrottlingException$serviceCode": "<p>The code for the service where the quota was exceeded</p>",
+        "ThrottlingException$quotaCode": "<p>The code of the quota that was exceeded</p>",
+        "UnauthorizedException$message": null,
+        "UpdateLibraryItemOutput$status": "<p>The new status of the updated library item.</p>",
+        "UpdateLibraryItemOutput$createdBy": "<p>The user who originally created the library item.</p>",
+        "UpdateLibraryItemOutput$updatedBy": "<p>The user who last updated the library item.</p>",
+        "UpdateQAppOutput$createdBy": "<p>The user who originally created the Q App.</p>",
+        "UpdateQAppOutput$updatedBy": "<p>The user who last updated the Q App.</p>",
+        "UpdateQAppSessionOutput$sessionId": "<p>The unique identifier of the updated Q App session.</p>",
+        "UpdateQAppSessionOutput$sessionArn": "<p>The Amazon Resource Name (ARN) of the updated Q App session.</p>",
+        "UserAppItem$status": "<p>The status of the user's association with the Q App.</p>",
+        "ValidationException$message": null
+      }
+    },
+    "TagKey": {
+      "base": null,
+      "refs": {
+        "TagKeys$member": null,
+        "Tags$key": null
+      }
+    },
+    "TagKeys": {
+      "base": null,
+      "refs": {
+        "UntagResourceRequest$tagKeys": "<p>The keys of the tags to disassociate from the resource.</p>"
+      }
+    },
+    "TagMap": {
+      "base": null,
+      "refs": {
+        "CreateQAppInput$tags": "<p>Optional tags to associate with the new Q App.</p>",
+        "StartQAppSessionInput$tags": "<p>Optional tags to associate with the new Q App session.</p>"
+      }
+    },
+    "TagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagValue": {
+      "base": null,
+      "refs": {
+        "Tags$value": null
+      }
+    },
+    "Tags": {
+      "base": null,
+      "refs": {
+        "ListTagsForResourceResponse$tags": "<p>The list of tags that are assigned to the resource.</p>",
+        "TagResourceRequest$tags": "<p>The tags to associate with the resource.</p>"
+      }
+    },
+    "TextInputCard": {
+      "base": "<p>A card in an Amazon Q App that allows the user to input text.</p>",
+      "refs": {
+        "Card$textInput": "<p>A container for the properties of the text input card.</p>"
+      }
+    },
+    "TextInputCardInput": {
+      "base": "<p>The input shape for defining a text input card in an Amazon Q App.</p>",
+      "refs": {
+        "CardInput$textInput": "<p>A container for the properties of the text input card.</p>"
+      }
+    },
+    "ThrottlingException": {
+      "base": "<p>The requested operation could not be completed because too many requests were sent at once. Wait a bit and try again later.</p>",
+      "refs": {
+      }
+    },
+    "Timestamp": {
+      "base": null,
+      "refs": {
+        "DocumentAttributeValue$dateValue": "<p>A date expressed as an ISO 8601 string.</p> <p>It's important for the time zone to be included in the <i>ISO 8601 date-time</i> format. For example, 2012-03-25T12:30:10+01:00 is the ISO 8601 date-time format for March 25th 2012 at 12:30PM (plus 10 seconds) in Central European Time. </p>"
+      }
+    },
+    "Title": {
+      "base": null,
+      "refs": {
+        "CreateQAppInput$title": "<p>The title of the new Q App.</p>",
+        "CreateQAppOutput$title": "<p>The title of the new Q App.</p>",
+        "FileUploadCard$title": "<p>The title of the file upload card.</p>",
+        "FileUploadCardInput$title": "<p>The title or label of the file upload card.</p>",
+        "GetQAppOutput$title": "<p>The title of the Q App.</p>",
+        "PredictAppDefinition$title": "<p>The title of the generated Q App definition.</p>",
+        "QPluginCard$title": "<p>The title or label of the plugin card.</p>",
+        "QPluginCardInput$title": "<p>The title or label of the plugin card.</p>",
+        "QQueryCard$title": "<p>The title or label of the query card.</p>",
+        "QQueryCardInput$title": "<p>The title or label of the query card.</p>",
+        "TextInputCard$title": "<p>The title or label of the text input card.</p>",
+        "TextInputCardInput$title": "<p>The title or label of the text input card.</p>",
+        "UpdateQAppInput$title": "<p>The new title for the Q App.</p>",
+        "UpdateQAppOutput$title": "<p>The new title of the updated Q App.</p>",
+        "UserAppItem$title": "<p>The title of the Q App.</p>"
+      }
+    },
+    "UUID": {
+      "base": null,
+      "refs": {
+        "AssociateLibraryItemReviewInput$libraryItemId": "<p>The unique identifier of the library item to associate the review with.</p>",
+        "AssociateQAppWithUserInput$appId": "<p>The ID of the Amazon Q App to associate with the user.</p>",
+        "CardStatusMap$key": null,
+        "CardValue$cardId": "<p>The unique identifier of the card.</p>",
+        "Category$id": "<p>The unique identifier of the category.</p>",
+        "CategoryIdList$member": null,
+        "CreateLibraryItemInput$appId": "<p>The unique identifier of the Amazon Q App to publish to the library.</p>",
+        "CreateLibraryItemOutput$libraryItemId": "<p>The unique identifier of the new library item.</p>",
+        "CreateQAppOutput$appId": "<p>The unique identifier of the new Q App.</p>",
+        "DeleteLibraryItemInput$libraryItemId": "<p>The unique identifier of the library item to delete.</p>",
+        "DeleteQAppInput$appId": "<p>The unique identifier of the Q App to delete.</p>",
+        "DisassociateLibraryItemReviewInput$libraryItemId": "<p>The unique identifier of the library item to remove the review from.</p>",
+        "DisassociateQAppFromUserInput$appId": "<p>The unique identifier of the Q App to disassociate from the user.</p>",
+        "FileUploadCard$id": "<p>The unique identifier of the file upload card.</p>",
+        "FileUploadCardInput$id": "<p>The unique identifier of the file upload card.</p>",
+        "FileUploadCardInput$fileId": "<p>The identifier of a pre-uploaded file associated with the card.</p>",
+        "GetLibraryItemInput$libraryItemId": "<p>The unique identifier of the library item to retrieve.</p>",
+        "GetLibraryItemInput$appId": "<p>The unique identifier of the Amazon Q App associated with the library item.</p>",
+        "GetLibraryItemOutput$libraryItemId": "<p>The unique identifier of the library item.</p>",
+        "GetLibraryItemOutput$appId": "<p>The unique identifier of the Q App associated with the library item.</p>",
+        "GetQAppInput$appId": "<p>The unique identifier of the Q App to retrieve.</p>",
+        "GetQAppOutput$appId": "<p>The unique identifier of the Q App.</p>",
+        "GetQAppSessionInput$sessionId": "<p>The unique identifier of the Q App session to retrieve.</p>",
+        "ImportDocumentInput$cardId": "<p>The unique identifier of the card the file is associated with, if applicable.</p>",
+        "ImportDocumentInput$appId": "<p>The unique identifier of the Q App the file is associated with.</p>",
+        "ImportDocumentInput$sessionId": "<p>The unique identifier of the Q App session the file is associated with, if applicable.</p>",
+        "LibraryItemMember$libraryItemId": "<p>The unique identifier of the library item.</p>",
+        "LibraryItemMember$appId": "<p>The unique identifier of the Q App associated with the library item.</p>",
+        "ListLibraryItemsInput$categoryId": "<p>Optional category to filter the library items by.</p>",
+        "QPluginCard$id": "<p>The unique identifier of the plugin card.</p>",
+        "QPluginCardInput$id": "<p>The unique identifier of the plugin card.</p>",
+        "QQueryCard$id": "<p>The unique identifier of the query card. </p>",
+        "QQueryCardInput$id": "<p>The unique identifier of the query card.</p>",
+        "StartQAppSessionInput$appId": "<p>The unique identifier of the Q App to start a session for.</p>",
+        "StopQAppSessionInput$sessionId": "<p>The unique identifier of the Q App session to stop.</p>",
+        "TextInputCard$id": "<p>The unique identifier of the text input card.</p>",
+        "TextInputCardInput$id": "<p>The unique identifier of the text input card.</p>",
+        "UpdateLibraryItemInput$libraryItemId": "<p>The unique identifier of the library item to update.</p>",
+        "UpdateLibraryItemOutput$libraryItemId": "<p>The unique identifier of the updated library item.</p>",
+        "UpdateLibraryItemOutput$appId": "<p>The unique identifier of the Q App associated with the library item.</p>",
+        "UpdateQAppInput$appId": "<p>The unique identifier of the Q App to update.</p>",
+        "UpdateQAppOutput$appId": "<p>The unique identifier of the updated Q App.</p>",
+        "UpdateQAppSessionInput$sessionId": "<p>The unique identifier of the Q App session to provide input for.</p>",
+        "UserAppItem$appId": "<p>The unique identifier of the Q App.</p>"
+      }
+    },
+    "UnauthorizedException": {
+      "base": "<p>The client is not authenticated or authorized to perform the requested operation.</p>",
+      "refs": {
+      }
+    },
+    "UntagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UntagResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateLibraryItemInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateLibraryItemOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateQAppInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateQAppOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateQAppSessionInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateQAppSessionOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UserAppItem": {
+      "base": "<p>An Amazon Q App associated with a user, either owned by the user or favorited.</p>",
+      "refs": {
+        "UserAppsList$member": null
+      }
+    },
+    "UserAppsList": {
+      "base": null,
+      "refs": {
+        "ListQAppsOutput$apps": "<p>The list of Amazon Q Apps meeting the request criteria.</p>"
+      }
+    },
+    "ValidationException": {
+      "base": "<p>The input failed to satisfy the constraints specified by the service.</p>",
+      "refs": {
+      }
+    }
+  }
+}

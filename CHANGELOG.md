@@ -1,3 +1,26 @@
+Release v1.54.16 (2024-07-08)
+===
+
+### Service Client Updates
+* `service/codedeploy`: Updates service API
+  * Add v2 smoke tests and smithy smokeTests trait for SDK testing.
+* `service/devicefarm`: Updates service API
+  * Add v2 smoke tests and smithy smokeTests trait for SDK testing.
+* `service/dms`: Updates service API
+  * Add v2 smoke tests and smithy smokeTests trait for SDK testing.
+* `service/elasticbeanstalk`: Updates service API
+  * Add v2 smoke tests and smithy smokeTests trait for SDK testing.
+* `service/email`: Updates service API
+  * Add v2 smoke tests and smithy smokeTests trait for SDK testing.
+* `service/es`: Updates service API
+  * Add v2 smoke tests and smithy smokeTests trait for SDK testing.
+* `service/firehose`: Updates service API
+  * Add v2 smoke tests and smithy smokeTests trait for SDK testing.
+* `service/gamelift`: Updates service API
+  * Add v2 smoke tests and smithy smokeTests trait for SDK testing.
+* `service/qapps`: Updates service API, documentation, waiters, paginators, and examples
+* `service/route53resolver`: Updates service API
+
 Release v1.54.15 (2024-07-05)
 ===
 

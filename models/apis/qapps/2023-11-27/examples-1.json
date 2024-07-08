@@ -1,0 +1,583 @@
+{
+  "version": "1.0",
+  "examples": {
+    "AssociateLibraryItemReview": [
+      {
+        "input": {
+          "instanceId": "0b95c9c4-89cc-4aa8-9aae-aa91cbec699f",
+          "libraryItemId": "cb9ecf72-8563-450d-9db9-994f98297316"
+        },
+        "id": "example-1",
+        "title": "Increase the rating counter by 1 for the related app for this user"
+      }
+    ],
+    "AssociateQAppWithUser": [
+      {
+        "input": {
+          "appId": "393e77fb-0a30-4f47-ad30-75d71aeaed8a",
+          "instanceId": "0b95c9c4-89cc-4aa8-9aae-aa91cbec699f"
+        },
+        "id": "example-1",
+        "title": "Links an Amazon Q App to the invoker's list of apps"
+      }
+    ],
+    "CreateLibraryItem": [
+      {
+        "input": {
+          "appId": "7a11f34b-42d4-4bc8-b668-ae4a788dae1e",
+          "appVersion": 6,
+          "categories": [
+            "9c871ed4-1c41-4065-aefe-321cd4b61cf8"
+          ],
+          "instanceId": "0b95c9c4-89cc-4aa8-9aae-aa91cbec699f"
+        },
+        "output": {
+          "createdAt": "2024-05-21T23:17:27.350Z",
+          "createdBy": "a841e300-40c1-7062-fa34-5b46dadbbaac",
+          "libraryItemId": "cb9ecf72-8563-450d-9db9-994f98297316",
+          "ratingCount": 0,
+          "status": "PUBLISHED",
+          "updatedAt": "2024-05-21T23:17:27.350Z",
+          "updatedBy": "a841e300-40c1-7062-fa34-5b46dadbbaac"
+        },
+        "id": "example-1",
+        "title": "Create a Library Item"
+      }
+    ],
+    "CreateQApp": [
+      {
+        "input": {
+          "appDefinition": {
+            "cards": [
+              {
+                "textInput": {
+                  "type": "text-input",
+                  "id": "4cf94d96-8819-45c2-98cc-58c56b35c72f",
+                  "title": "Color Base"
+                }
+              },
+              {
+                "qQuery": {
+                  "type": "q-query",
+                  "id": "18870b94-1e63-40e0-8c12-669c90ac5acc",
+                  "prompt": "Recommend me a list of colors that go well with @4cf94d96-8819-45c2-98cc-58c56b35c72f",
+                  "title": "Recommended Palette"
+                }
+              }
+            ],
+            "initialPrompt": "Create an app that recommend a list of colors based on input."
+          },
+          "instanceId": "0b95c9c4-89cc-4aa8-9aae-aa91cbec699f",
+          "title": "Color Palette Generator"
+        },
+        "output": {
+          "appArn": "arn:aws:qapps:us-west-2:123456789012:app/7212ff04-de7b-4831-bd80-45d6975ba1b0",
+          "appId": "7212ff04-de7b-4831-bd80-45d6975ba1b0",
+          "appVersion": 1,
+          "createdAt": "2024-05-14T00:11:54.232Z",
+          "createdBy": "a841e300-40c1-7062-fa34-5b46dadbbaac",
+          "initialPrompt": "Create an app that recommend a list of colors based on input.",
+          "requiredCapabilities": [
+            "CreatorMode"
+          ],
+          "status": "DRAFT",
+          "title": "Color Palette Generator",
+          "updatedAt": "2024-05-14T00:13:26.168Z",
+          "updatedBy": "a841e300-40c1-7062-fa34-5b46dadbbaac"
+        },
+        "id": "example-1",
+        "title": "A basic application with 1 text input card and 1 output card"
+      }
+    ],
+    "DeleteLibraryItem": [
+      {
+        "input": {
+          "instanceId": "3642ba81-344c-42fd-a480-9119a5a5f26b",
+          "libraryItemId": "72088fd4-78b6-43da-bfb8-8621323c3cfb"
+        },
+        "id": "example-1",
+        "title": "Delete a library item"
+      }
+    ],
+    "DeleteQApp": [
+      {
+        "input": {
+          "appId": "393e77fb-0a30-4f47-ad30-75d71aeaed8a",
+          "instanceId": "0b95c9c4-89cc-4aa8-9aae-aa91cbec699f"
+        },
+        "id": "example-1",
+        "title": "Delete an Amazon Q App"
+      }
+    ],
+    "DisassociateLibraryItemReview": [
+      {
+        "input": {
+          "instanceId": "0b95c9c4-89cc-4aa8-9aae-aa91cbec699f",
+          "libraryItemId": "cb9ecf72-8563-450d-9db9-994f98297316"
+        },
+        "id": "example-1",
+        "title": "Decrease the rating counter by 1 for the related app for this user"
+      }
+    ],
+    "DisassociateQAppFromUser": [
+      {
+        "input": {
+          "appId": "393e77fb-0a30-4f47-ad30-75d71aeaed8a",
+          "instanceId": "0b95c9c4-89cc-4aa8-9aae-aa91cbec699f"
+        },
+        "id": "example-1",
+        "title": "Unlinks an Amazon Q App from the invoker's list of apps"
+      }
+    ],
+    "GetLibraryItem": [
+      {
+        "input": {
+          "instanceId": "0b95c9c4-89cc-4aa8-9aae-aa91cbec699f",
+          "libraryItemId": "18cbebaa-196a-4aa5-a840-88d548e07f8f"
+        },
+        "output": {
+          "appId": "0b95c9c4-89cc-4aa8-9aae-aa91cbec699f",
+          "appVersion": 1,
+          "categories": [
+            {
+              "id": "9c871ed4-1c41-4065-aefe-321cd4b61cf8",
+              "title": "HR"
+            },
+            {
+              "id": "fdc4b483-c4e2-44c9-b4b2-6c850bbdb579",
+              "title": "General"
+            },
+            {
+              "id": "c1c4e374-118c-446f-81fb-cba6225d88da",
+              "title": "IT"
+            }
+          ],
+          "createdAt": "2024-05-08T16:09:56.080Z",
+          "createdBy": "a841e300-40c1-7062-fa34-5b46dadbbaac",
+          "isRatedByUser": false,
+          "libraryItemId": "18cbebaa-196a-4aa5-a840-88d548e07f8f",
+          "ratingCount": 0,
+          "status": "PUBLISHED",
+          "updatedAt": "2024-05-08T16:09:56.080Z",
+          "updatedBy": "a841e300-40c1-7062-fa34-5b46dadbbaac",
+          "userCount": 1
+        },
+        "id": "example-1",
+        "title": "Retrieve a library item"
+      }
+    ],
+    "GetQApp": [
+      {
+        "input": {
+          "appId": "3d110749-efc3-427c-87e8-15e966e5c168",
+          "instanceId": "0b95c9c4-89cc-4aa8-9aae-aa91cbec699f"
+        },
+        "output": {
+          "appArn": "arn:aws:qapps:us-west-2:123456789012:app/7212ff04-de7b-4831-bd80-45d6975ba1b0",
+          "appDefinition": {
+            "appDefinitionVersion": "1",
+            "cards": [
+              {
+                "textInput": {
+                  "type": "text-input",
+                  "dependencies": [
+
+                  ],
+                  "id": "4cf94d96-8819-45c2-98cc-58c56b35c72f",
+                  "title": "Color Base"
+                }
+              },
+              {
+                "qQuery": {
+                  "type": "q-query",
+                  "dependencies": [
+                    "91e4513d-6981-454a-9329-329c9302eef4"
+                  ],
+                  "id": "18870b94-1e63-40e0-8c12-669c90ac5acc",
+                  "outputSource": "llm",
+                  "prompt": "Recommend me a list of colors that go well with @91e4513d-6981-454a-9329-329c9302eef4 ",
+                  "title": "Recommended Palette"
+                }
+              }
+            ]
+          },
+          "appId": "7212ff04-de7b-4831-bd80-45d6975ba1b0",
+          "appVersion": 1,
+          "createdAt": "2024-05-14T00:11:54.232Z",
+          "createdBy": "a841e300-40c1-7062-fa34-5b46dadbbaac",
+          "status": "DRAFT",
+          "title": "Color Palette Generator",
+          "updatedAt": "2024-05-14T00:13:26.168Z",
+          "updatedBy": "a841e300-40c1-7062-fa34-5b46dadbbaac"
+        },
+        "id": "example-1",
+        "title": "A basic application with 1 text input card and 1 output card"
+      }
+    ],
+    "GetQAppSession": [
+      {
+        "input": {
+          "instanceId": "288ae830-1df2-4871-b6c0-4314d74dadef",
+          "sessionId": "1fca878e-64c5-4dc4-b1d9-c93effed4e82"
+        },
+        "output": {
+          "cardStatus": {
+            "1e6caeac-b481-45ff-a082-8b9a4a0b72e8": {
+              "currentState": "COMPLETED",
+              "currentValue": "Earth's circumference is 24,901 miles"
+            },
+            "6fb5b404-3b7b-48a4-8a8b-56406922a606": {
+              "currentState": "COMPLETED",
+              "currentValue": "What is the circumference of Earth?"
+            }
+          },
+          "sessionArn": "arn:aws:qapps:us-west-2:0123456789012:application/a929ecd6-5765-4ec7-bd3e-2ca90098b18e/qapp/65e7dce7-226a-47f9-b689-22850becef89/session/1fca878e-64c5-4dc4-b1d9-c93effed4e82",
+          "sessionId": "1fca878e-64c5-4dc4-b1d9-c93effed4e82",
+          "status": "COMPLETED"
+        },
+        "id": "example-1",
+        "title": "Retrieves an existing session for an Amazon Q App"
+      }
+    ],
+    "ImportDocument": [
+      {
+        "input": {
+          "appId": "4263767c-d889-4cb2-a8f6-8b649bc66af0",
+          "cardId": "82f69028-22a9-4bea-8727-0eabf58e9fed",
+          "fileContentsBase64": "data:text/plain;base64,SomeFileEncodedInBase64",
+          "fileName": "myFile.txt",
+          "instanceId": "0b95c9c4-89cc-4aa8-9aae-aa91cbec699f",
+          "scope": "SESSION",
+          "sessionId": "4f0e5b87-9d38-41cd-9eb4-ebce2f2917cc"
+        },
+        "output": {
+          "fileId": "412aa1b4-341c-45af-936d-da52f8a1a3b4"
+        },
+        "id": "example-1",
+        "title": "Upload a file to a specific session"
+      },
+      {
+        "input": {
+          "appId": "4263767c-d889-4cb2-a8f6-8b649bc66af0",
+          "cardId": "7a11f34b-42d4-4bc8-b668-ae4a788dae1e",
+          "fileContentsBase64": "data:text/plain;base64,SomeFileEncodedInBase64",
+          "fileName": "anApplicationFile.txt",
+          "instanceId": "0b95c9c4-89cc-4aa8-9aae-aa91cbec699f",
+          "scope": "APPLICATION"
+        },
+        "output": {
+          "fileId": "bc1a0cc9-076a-4e82-9a6c-f4d2d8a22489"
+        },
+        "id": "example-2",
+        "title": "Upload a file into a application"
+      }
+    ],
+    "ListLibraryItems": [
+      {
+        "input": {
+          "instanceId": "0b95c9c4-89cc-4aa8-9aae-aa91cbec699f",
+          "limit": 3
+        },
+        "output": {
+          "libraryItems": [
+            {
+              "appId": "7a11f34b-42d4-4bc8-b668-ae4a788dae1e",
+              "appVersion": 6,
+              "categories": [
+                {
+                  "id": "9c871ed4-1c41-4065-aefe-321cd4b61cf8",
+                  "title": "HR"
+                },
+                {
+                  "id": "c1c4e374-118c-446f-81fb-cba6225d88da",
+                  "title": "IT"
+                }
+              ],
+              "createdAt": "2024-05-21T23:17:27.350Z",
+              "createdBy": "a841e300-40c1-7062-fa34-5b46dadbbaac",
+              "isRatedByUser": true,
+              "libraryItemId": "cb9ecf72-8563-450d-9db9-994f98297316",
+              "ratingCount": 3,
+              "status": "PUBLISHED",
+              "updatedAt": "2024-05-21T23:17:27.350Z",
+              "updatedBy": "a841e300-40c1-7062-fa34-5b46dadbbaac",
+              "userCount": 5
+            },
+            {
+              "appId": "201272ac-d474-4a97-991c-5520dae04026",
+              "appVersion": 1,
+              "categories": [
+                {
+                  "id": "fdc4b483-c4e2-44c9-b4b2-6c850bbdb579",
+                  "title": "General"
+                }
+              ],
+              "createdAt": "2024-05-08T16:09:56.080Z",
+              "createdBy": "a841e300-40c1-7062-fa34-5b46dadbbaac",
+              "isRatedByUser": false,
+              "libraryItemId": "18cbebaa-196a-4aa5-a840-88d548e07f8f",
+              "ratingCount": 5,
+              "status": "PUBLISHED",
+              "updatedAt": "2024-05-08T16:09:56.080Z",
+              "updatedBy": "a841e300-40c1-7062-fa34-5b46dadbbaac",
+              "userCount": 8
+            },
+            {
+              "appId": "1802f57f-079a-4b5b-839a-79bbe2e21b3c",
+              "appVersion": 1,
+              "categories": [
+                {
+                  "id": "fdc4b483-c4e2-44c9-b4b2-6c850bbdb579",
+                  "title": "General"
+                }
+              ],
+              "createdAt": "2024-05-07T22:57:59.327Z",
+              "createdBy": "a841e300-40c1-7062-fa34-5b46dadbbaac",
+              "isRatedByUser": false,
+              "libraryItemId": "549abfe0-f5c4-45a2-bb9b-c05987a49c6d",
+              "ratingCount": 8,
+              "status": "PUBLISHED",
+              "updatedAt": "2024-05-07T22:57:59.327Z",
+              "updatedBy": "a841e300-40c1-7062-fa34-5b46dadbbaac",
+              "userCount": 12
+            }
+          ],
+          "nextToken": "YW5vdGhlclRva2VuIQ=="
+        },
+        "id": "example-1",
+        "title": "List at most 3 library items for this instance"
+      }
+    ],
+    "ListQApps": [
+      {
+        "input": {
+          "instanceId": "0b95c9c4-89cc-4aa8-9aae-aa91cbec699f",
+          "limit": 3
+        },
+        "output": {
+          "apps": [
+            {
+              "appArn": "arn:aws:qapps:us-west-2:..../7b9fe303-18bb-4643-952c-bfcf9f4c427f",
+              "appId": "7b9fe303-18bb-4643-952c-bfcf9f4c427f",
+              "createdAt": "2024-05-21T04:09:10.401Z",
+              "description": "Description 1",
+              "status": "DRAFT",
+              "title": "App 1"
+            },
+            {
+              "appArn": "arn:aws:qapps:us-west-2:..../dd178fd6-ad3d-49b3-a32d-e915cf423e37",
+              "appId": "dd178fd6-ad3d-49b3-a32d-e915cf423e37",
+              "createdAt": "2024-05-21T04:09:10.401Z",
+              "description": "Description 2",
+              "status": "PUBLISHED",
+              "title": "App 2"
+            },
+            {
+              "appArn": "arn:aws:qapps:us-west-2:..../3274b744-1a13-4aad-953f-eda2e4149e6e",
+              "appId": "3274b744-1a13-4aad-953f-eda2e4149e6e",
+              "createdAt": "2024-05-21T04:09:10.401Z",
+              "description": "Description 3",
+              "status": "DRAFT",
+              "title": "App 3"
+            }
+          ],
+          "nextToken": "bXlzdGVyaW91c1BhZ2luYXRpb25Ub2tlbg=="
+        },
+        "id": "example-1",
+        "title": "List at most 3 Amazon Q Apps in an Q Business application"
+      },
+      {
+        "input": {
+          "instanceId": "0b95c9c4-89cc-4aa8-9aae-aa91cbec699f",
+          "limit": 3,
+          "nextToken": "bXlzdGVyaW91c1BhZ2luYXRpb25Ub2tlbg=="
+        },
+        "output": {
+          "apps": [
+            {
+              "appArn": "arn:aws:qapps:us-west-2:..../bec8ee64-2635-41e8-aace-e1e418f4f295",
+              "appId": "bec8ee64-2635-41e8-aace-e1e418f4f295",
+              "createdAt": "2024-05-21T04:09:10.401Z",
+              "description": "Description 4",
+              "status": "PUBLISHED",
+              "title": "App 4"
+            },
+            {
+              "appArn": "arn:aws:qapps:us-west-2:..../c380a45d-bd77-45b0-a0e5-8a266c1d8bc4",
+              "appId": "c380a45d-bd77-45b0-a0e5-8a266c1d8bc4",
+              "createdAt": "2024-05-21T04:09:10.401Z",
+              "description": "Description 5",
+              "status": "PUBLISHED",
+              "title": "App 5"
+            },
+            {
+              "appArn": "arn:aws:qapps:us-west-2:..../afc4ee80-9722-4396-85a6-7aeaff52c177",
+              "appId": "afc4ee80-9722-4396-85a6-7aeaff52c177",
+              "createdAt": "2024-05-21T04:09:10.401Z",
+              "description": "Description 6",
+              "status": "PUBLISHED",
+              "title": "App 6"
+            }
+          ],
+          "nextToken": "YW5vdGhlclRva2VuIQ=="
+        },
+        "id": "example-2",
+        "title": "Retrieve the next page of Amazon Q Apps"
+      }
+    ],
+    "ListTagsForResource": [
+      {
+        "input": {
+          "resourceARN": "arn:aws:qapps:us-west-2:123456789012:application/3642ba81-344c-42fd-a480-9119a5a5f26b/qapp/7212ff04-de7b-4831-bd80-45d6975ba1b0"
+        },
+        "output": {
+          "tags": {
+            "department": "HR"
+          }
+        },
+        "id": "example-1",
+        "title": "A call to list tags for a resource"
+      }
+    ],
+    "StartQAppSession": [
+      {
+        "input": {
+          "appId": "65e7dce7-226a-47f9-b689-22850becef89",
+          "appVersion": 1,
+          "initialValues": [
+            {
+              "value": "What is the circumference of Earth?",
+              "cardId": "6fb5b404-3b7b-48a4-8a8b-56406922a606"
+            }
+          ],
+          "instanceId": "4cc5e4c2-d2a2-4188-a114-9ca125b4aedc"
+        },
+        "output": {
+          "sessionArn": "arn:aws:qapps:us-west-2:0123456789012:application/a929ecd6-5765-4ec7-bd3e-2ca90098b18e/qapp/65e7dce7-226a-47f9-b689-22850becef89/session/1fca878e-64c5-4dc4-b1d9-c93effed4e82",
+          "sessionId": "1fca878e-64c5-4dc4-b1d9-c93effed4e82"
+        },
+        "id": "example-1",
+        "title": "Start a session for an Amazon Q App using version 1, passing in initial values for one card"
+      }
+    ],
+    "TagResource": [
+      {
+        "input": {
+          "resourceARN": "arn:aws:qapps:us-west-2:123456789012:application/3642ba81-344c-42fd-a480-9119a5a5f26b/qapp/7212ff04-de7b-4831-bd80-45d6975ba1b0",
+          "tags": {
+            "department": "HR"
+          }
+        },
+        "id": "example-1",
+        "title": "A call to tag a resource"
+      }
+    ],
+    "UntagResource": [
+      {
+        "input": {
+          "resourceARN": "arn:aws:qapps:us-west-2:123456789012:application/3642ba81-344c-42fd-a480-9119a5a5f26b/qapp/7212ff04-de7b-4831-bd80-45d6975ba1b0",
+          "tagKeys": [
+            "department"
+          ]
+        },
+        "id": "example-1",
+        "title": "A call to untag a resource"
+      }
+    ],
+    "UpdateLibraryItem": [
+      {
+        "input": {
+          "instanceId": "0b95c9c4-89cc-4aa8-9aae-aa91cbec699f",
+          "libraryItemId": "cb9ecf72-8563-450d-9db9-994f98297316",
+          "status": "DISABLED"
+        },
+        "output": {
+          "appId": "7a11f34b-42d4-4bc8-b668-ae4a788dae1e",
+          "appVersion": 6,
+          "categories": [
+            {
+              "id": "9c871ed4-1c41-4065-aefe-321cd4b61cf8",
+              "title": "HR"
+            },
+            {
+              "id": "fdc4b483-c4e2-44c9-b4b2-6c850bbdb579",
+              "title": "General"
+            },
+            {
+              "id": "c1c4e374-118c-446f-81fb-cba6225d88da",
+              "title": "IT"
+            }
+          ],
+          "createdAt": "2024-05-21T23:17:27.350Z",
+          "createdBy": "a841e300-40c1-7062-fa34-5b46dadbbaac",
+          "libraryItemId": "cb9ecf72-8563-450d-9db9-994f98297316",
+          "ratingCount": 24,
+          "status": "DISABLED",
+          "updatedAt": "2024-05-28T19:43:48.577Z",
+          "updatedBy": "a841e300-40c1-7062-fa34-5b46dadbbaac"
+        },
+        "id": "example-1",
+        "title": "Sets the status of a library item to DISABLED"
+      }
+    ],
+    "UpdateQApp": [
+      {
+        "input": {
+          "appId": "7212ff04-de7b-4831-bd80-45d6975ba1b0",
+          "instanceId": "0b95c9c4-89cc-4aa8-9aae-aa91cbec699f",
+          "title": "This is the new title"
+        },
+        "output": {
+          "appArn": "arn:aws:qapps:us-west-2:123456789012:app/7212ff04-de7b-4831-bd80-45d6975ba1b0",
+          "appId": "7212ff04-de7b-4831-bd80-45d6975ba1b0",
+          "appVersion": 2,
+          "createdAt": "2024-05-14T00:11:54.232Z",
+          "createdBy": "a841e300-40c1-7062-fa34-5b46dadbbaac",
+          "requiredCapabilities": [
+            "CreatorMode"
+          ],
+          "status": "DRAFT",
+          "title": "This is the new title",
+          "updatedAt": "2024-05-17T23:15:08.571Z",
+          "updatedBy": "a841e300-40c1-7062-fa34-5b46dadbbaac"
+        },
+        "id": "example-1",
+        "title": "Updating the title of an app"
+      },
+      {
+        "input": {
+          "appDefinition": {
+            "cards": [
+              {
+                "qQuery": {
+                  "type": "q-query",
+                  "id": "18870b94-1e63-40e0-8c12-669c90ac5acc",
+                  "prompt": "Recommend me an itinerary for a trip",
+                  "title": "Trip Ideas"
+                }
+              }
+            ]
+          },
+          "appId": "7212ff04-de7b-4831-bd80-45d6975ba1b0",
+          "instanceId": "0b95c9c4-89cc-4aa8-9aae-aa91cbec699f"
+        },
+        "output": {
+          "appArn": "arn:aws:qapps:us-west-2:123456789012:app/7212ff04-de7b-4831-bd80-45d6975ba1b0",
+          "appId": "7212ff04-de7b-4831-bd80-45d6975ba1b0",
+          "appVersion": 99,
+          "createdAt": "2024-05-14T00:11:54.232Z",
+          "createdBy": "a841e300-40c1-7062-fa34-5b46dadbbaac",
+          "requiredCapabilities": [
+            "CreatorMode"
+          ],
+          "status": "DRAFT",
+          "title": "Previous Title Stays the Same",
+          "updatedAt": "2024-05-17T23:15:08.571Z",
+          "updatedBy": "a841e300-40c1-7062-fa34-5b46dadbbaac"
+        },
+        "id": "example-2",
+        "title": "Updating the app so it has a single q-query card"
+      }
+    ]
+  }
+}

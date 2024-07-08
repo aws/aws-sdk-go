@@ -1,0 +1,16 @@
+{
+    "version": 2,
+    "testCases": [
+        {
+            "id": "ListApplicationsSuccess",
+            "operationName": "ListApplications",
+            "input": {},
+            "expectation": {
+                "success": {}
+            },
+            "config": {
+                "region": "us-west-2"
+            }
+        }
+    ]
+}
