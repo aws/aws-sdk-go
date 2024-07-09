@@ -6653,6 +6653,114 @@ func (c *OpenSearchService) UpgradeDomainWithContext(ctx aws.Context, input *Upg
 	return out, req.Send()
 }
 
+// Container for parameters required to enable all machine learning features.
+type AIMLOptionsInput_ struct {
+	_ struct{} `type:"structure"`
+
+	// Container for parameters required for natural language query generation on
+	// the specified domain.
+	NaturalLanguageQueryGenerationOptions *NaturalLanguageQueryGenerationOptionsInput_ `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AIMLOptionsInput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AIMLOptionsInput_) GoString() string {
+	return s.String()
+}
+
+// SetNaturalLanguageQueryGenerationOptions sets the NaturalLanguageQueryGenerationOptions field's value.
+func (s *AIMLOptionsInput_) SetNaturalLanguageQueryGenerationOptions(v *NaturalLanguageQueryGenerationOptionsInput_) *AIMLOptionsInput_ {
+	s.NaturalLanguageQueryGenerationOptions = v
+	return s
+}
+
+// Container for parameters representing the state of machine learning features
+// on the specified domain.
+type AIMLOptionsOutput_ struct {
+	_ struct{} `type:"structure"`
+
+	// Container for parameters required for natural language query generation on
+	// the specified domain.
+	NaturalLanguageQueryGenerationOptions *NaturalLanguageQueryGenerationOptionsOutput_ `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AIMLOptionsOutput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AIMLOptionsOutput_) GoString() string {
+	return s.String()
+}
+
+// SetNaturalLanguageQueryGenerationOptions sets the NaturalLanguageQueryGenerationOptions field's value.
+func (s *AIMLOptionsOutput_) SetNaturalLanguageQueryGenerationOptions(v *NaturalLanguageQueryGenerationOptionsOutput_) *AIMLOptionsOutput_ {
+	s.NaturalLanguageQueryGenerationOptions = v
+	return s
+}
+
+// The status of machine learning options on the specified domain.
+type AIMLOptionsStatus struct {
+	_ struct{} `type:"structure"`
+
+	// Machine learning options on the specified domain.
+	Options *AIMLOptionsOutput_ `type:"structure"`
+
+	// Provides the current status of an entity.
+	Status *OptionStatus `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AIMLOptionsStatus) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AIMLOptionsStatus) GoString() string {
+	return s.String()
+}
+
+// SetOptions sets the Options field's value.
+func (s *AIMLOptionsStatus) SetOptions(v *AIMLOptionsOutput_) *AIMLOptionsStatus {
+	s.Options = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *AIMLOptionsStatus) SetStatus(v *OptionStatus) *AIMLOptionsStatus {
+	s.Status = v
+	return s
+}
+
 // Information about an Amazon OpenSearch Service domain.
 type AWSDomainInformation struct {
 	_ struct{} `type:"structure"`
@@ -9404,6 +9512,9 @@ func (s *ConnectionProperties) SetEndpoint(v string) *ConnectionProperties {
 type CreateDomainInput struct {
 	_ struct{} `type:"structure"`
 
+	// Options for all machine learning features for the specified domain.
+	AIMLOptions *AIMLOptionsInput_ `type:"structure"`
+
 	// Identity and Access Management (IAM) policy document specifying the access
 	// policies for the new domain.
 	AccessPolicies *string `type:"string"`
@@ -9597,6 +9708,12 @@ func (s *CreateDomainInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAIMLOptions sets the AIMLOptions field's value.
+func (s *CreateDomainInput) SetAIMLOptions(v *AIMLOptionsInput_) *CreateDomainInput {
+	s.AIMLOptions = v
+	return s
 }
 
 // SetAccessPolicies sets the AccessPolicies field's value.
@@ -12775,6 +12892,9 @@ func (s *DissociatePackageOutput) SetDomainPackageDetails(v *DomainPackageDetail
 type DomainConfig struct {
 	_ struct{} `type:"structure"`
 
+	// Container for parameters required to enable all machine learning features.
+	AIMLOptions *AIMLOptionsStatus `type:"structure"`
+
 	// Specifies the access policies for the domain.
 	AccessPolicies *AccessPoliciesStatus `type:"structure"`
 
@@ -12857,6 +12977,12 @@ func (s DomainConfig) String() string {
 // value will be replaced with "sensitive".
 func (s DomainConfig) GoString() string {
 	return s.String()
+}
+
+// SetAIMLOptions sets the AIMLOptions field's value.
+func (s *DomainConfig) SetAIMLOptions(v *AIMLOptionsStatus) *DomainConfig {
+	s.AIMLOptions = v
+	return s
 }
 
 // SetAccessPolicies sets the AccessPolicies field's value.
@@ -13503,6 +13629,9 @@ func (s *DomainPackageDetails) SetReferencePath(v string) *DomainPackageDetails 
 type DomainStatus struct {
 	_ struct{} `type:"structure"`
 
+	// Container for parameters required to enable all machine learning features.
+	AIMLOptions *AIMLOptionsOutput_ `type:"structure"`
+
 	// The Amazon Resource Name (ARN) of the domain. For more information, see IAM
 	// identifiers (https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html)
 	// in the AWS Identity and Access Management User Guide.
@@ -13648,6 +13777,12 @@ func (s DomainStatus) String() string {
 // value will be replaced with "sensitive".
 func (s DomainStatus) GoString() string {
 	return s.String()
+}
+
+// SetAIMLOptions sets the AIMLOptions field's value.
+func (s *DomainStatus) SetAIMLOptions(v *AIMLOptionsOutput_) *DomainStatus {
+	s.AIMLOptions = v
+	return s
 }
 
 // SetARN sets the ARN field's value.
@@ -17336,6 +17471,84 @@ func (s *ModifyingProperties) SetValueType(v string) *ModifyingProperties {
 	return s
 }
 
+// Container for parameters required to enable the natural language query generation
+// feature.
+type NaturalLanguageQueryGenerationOptionsInput_ struct {
+	_ struct{} `type:"structure"`
+
+	// The desired state of the natural language query generation feature. Valid
+	// values are ENABLED and DISABLED.
+	DesiredState *string `type:"string" enum:"NaturalLanguageQueryGenerationDesiredState"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NaturalLanguageQueryGenerationOptionsInput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NaturalLanguageQueryGenerationOptionsInput_) GoString() string {
+	return s.String()
+}
+
+// SetDesiredState sets the DesiredState field's value.
+func (s *NaturalLanguageQueryGenerationOptionsInput_) SetDesiredState(v string) *NaturalLanguageQueryGenerationOptionsInput_ {
+	s.DesiredState = &v
+	return s
+}
+
+// Container for parameters representing the state of the natural language query
+// generation feature on the specified domain.
+type NaturalLanguageQueryGenerationOptionsOutput_ struct {
+	_ struct{} `type:"structure"`
+
+	// The current state of the natural language query generation feature, indicating
+	// completion, in progress, or failure.
+	CurrentState *string `type:"string" enum:"NaturalLanguageQueryGenerationCurrentState"`
+
+	// The desired state of the natural language query generation feature. Valid
+	// values are ENABLED and DISABLED.
+	DesiredState *string `type:"string" enum:"NaturalLanguageQueryGenerationDesiredState"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NaturalLanguageQueryGenerationOptionsOutput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NaturalLanguageQueryGenerationOptionsOutput_) GoString() string {
+	return s.String()
+}
+
+// SetCurrentState sets the CurrentState field's value.
+func (s *NaturalLanguageQueryGenerationOptionsOutput_) SetCurrentState(v string) *NaturalLanguageQueryGenerationOptionsOutput_ {
+	s.CurrentState = &v
+	return s
+}
+
+// SetDesiredState sets the DesiredState field's value.
+func (s *NaturalLanguageQueryGenerationOptionsOutput_) SetDesiredState(v string) *NaturalLanguageQueryGenerationOptionsOutput_ {
+	s.DesiredState = &v
+	return s
+}
+
 // Enables or disables node-to-node encryption. For more information, see Node-to-node
 // encryption for Amazon OpenSearch Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/ntn.html).
 type NodeToNodeEncryptionOptions struct {
@@ -20245,6 +20458,9 @@ func (s *UpdateDataSourceOutput) SetMessage(v string) *UpdateDataSourceOutput {
 type UpdateDomainConfigInput struct {
 	_ struct{} `type:"structure"`
 
+	// Options for all machine learning features for the specified domain.
+	AIMLOptions *AIMLOptionsInput_ `type:"structure"`
+
 	// Identity and Access Management (IAM) access policy as a JSON-formatted string.
 	AccessPolicies *string `type:"string"`
 
@@ -20417,6 +20633,12 @@ func (s *UpdateDomainConfigInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAIMLOptions sets the AIMLOptions field's value.
+func (s *UpdateDomainConfigInput) SetAIMLOptions(v *AIMLOptionsInput_) *UpdateDomainConfigInput {
+	s.AIMLOptions = v
+	return s
 }
 
 // SetAccessPolicies sets the AccessPolicies field's value.
@@ -22445,6 +22667,58 @@ func MasterNodeStatus_Values() []string {
 	return []string{
 		MasterNodeStatusAvailable,
 		MasterNodeStatusUnAvailable,
+	}
+}
+
+const (
+	// NaturalLanguageQueryGenerationCurrentStateNotEnabled is a NaturalLanguageQueryGenerationCurrentState enum value
+	NaturalLanguageQueryGenerationCurrentStateNotEnabled = "NOT_ENABLED"
+
+	// NaturalLanguageQueryGenerationCurrentStateEnableComplete is a NaturalLanguageQueryGenerationCurrentState enum value
+	NaturalLanguageQueryGenerationCurrentStateEnableComplete = "ENABLE_COMPLETE"
+
+	// NaturalLanguageQueryGenerationCurrentStateEnableInProgress is a NaturalLanguageQueryGenerationCurrentState enum value
+	NaturalLanguageQueryGenerationCurrentStateEnableInProgress = "ENABLE_IN_PROGRESS"
+
+	// NaturalLanguageQueryGenerationCurrentStateEnableFailed is a NaturalLanguageQueryGenerationCurrentState enum value
+	NaturalLanguageQueryGenerationCurrentStateEnableFailed = "ENABLE_FAILED"
+
+	// NaturalLanguageQueryGenerationCurrentStateDisableComplete is a NaturalLanguageQueryGenerationCurrentState enum value
+	NaturalLanguageQueryGenerationCurrentStateDisableComplete = "DISABLE_COMPLETE"
+
+	// NaturalLanguageQueryGenerationCurrentStateDisableInProgress is a NaturalLanguageQueryGenerationCurrentState enum value
+	NaturalLanguageQueryGenerationCurrentStateDisableInProgress = "DISABLE_IN_PROGRESS"
+
+	// NaturalLanguageQueryGenerationCurrentStateDisableFailed is a NaturalLanguageQueryGenerationCurrentState enum value
+	NaturalLanguageQueryGenerationCurrentStateDisableFailed = "DISABLE_FAILED"
+)
+
+// NaturalLanguageQueryGenerationCurrentState_Values returns all elements of the NaturalLanguageQueryGenerationCurrentState enum
+func NaturalLanguageQueryGenerationCurrentState_Values() []string {
+	return []string{
+		NaturalLanguageQueryGenerationCurrentStateNotEnabled,
+		NaturalLanguageQueryGenerationCurrentStateEnableComplete,
+		NaturalLanguageQueryGenerationCurrentStateEnableInProgress,
+		NaturalLanguageQueryGenerationCurrentStateEnableFailed,
+		NaturalLanguageQueryGenerationCurrentStateDisableComplete,
+		NaturalLanguageQueryGenerationCurrentStateDisableInProgress,
+		NaturalLanguageQueryGenerationCurrentStateDisableFailed,
+	}
+}
+
+const (
+	// NaturalLanguageQueryGenerationDesiredStateEnabled is a NaturalLanguageQueryGenerationDesiredState enum value
+	NaturalLanguageQueryGenerationDesiredStateEnabled = "ENABLED"
+
+	// NaturalLanguageQueryGenerationDesiredStateDisabled is a NaturalLanguageQueryGenerationDesiredState enum value
+	NaturalLanguageQueryGenerationDesiredStateDisabled = "DISABLED"
+)
+
+// NaturalLanguageQueryGenerationDesiredState_Values returns all elements of the NaturalLanguageQueryGenerationDesiredState enum
+func NaturalLanguageQueryGenerationDesiredState_Values() []string {
+	return []string{
+		NaturalLanguageQueryGenerationDesiredStateEnabled,
+		NaturalLanguageQueryGenerationDesiredStateDisabled,
 	}
 }
 

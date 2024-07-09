@@ -608,6 +608,19 @@
         {"shape":"ResourceLimitExceeded"}
       ]
     },
+    "CreateOptimizationJob":{
+      "name":"CreateOptimizationJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateOptimizationJobRequest"},
+      "output":{"shape":"CreateOptimizationJobResponse"},
+      "errors":[
+        {"shape":"ResourceInUse"},
+        {"shape":"ResourceLimitExceeded"}
+      ]
+    },
     "CreatePipeline":{
       "name":"CreatePipeline",
       "http":{
@@ -1239,6 +1252,17 @@
         "requestUri":"/"
       },
       "input":{"shape":"DeleteNotebookInstanceLifecycleConfigInput"}
+    },
+    "DeleteOptimizationJob":{
+      "name":"DeleteOptimizationJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteOptimizationJobRequest"},
+      "errors":[
+        {"shape":"ResourceNotFound"}
+      ]
     },
     "DeletePipeline":{
       "name":"DeletePipeline",
@@ -1895,6 +1919,18 @@
       },
       "input":{"shape":"DescribeNotebookInstanceLifecycleConfigInput"},
       "output":{"shape":"DescribeNotebookInstanceLifecycleConfigOutput"}
+    },
+    "DescribeOptimizationJob":{
+      "name":"DescribeOptimizationJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeOptimizationJobRequest"},
+      "output":{"shape":"DescribeOptimizationJobResponse"},
+      "errors":[
+        {"shape":"ResourceNotFound"}
+      ]
     },
     "DescribePipeline":{
       "name":"DescribePipeline",
@@ -2718,6 +2754,15 @@
       "input":{"shape":"ListNotebookInstancesInput"},
       "output":{"shape":"ListNotebookInstancesOutput"}
     },
+    "ListOptimizationJobs":{
+      "name":"ListOptimizationJobs",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListOptimizationJobsRequest"},
+      "output":{"shape":"ListOptimizationJobsResponse"}
+    },
     "ListPipelineExecutionSteps":{
       "name":"ListPipelineExecutionSteps",
       "http":{
@@ -3202,6 +3247,17 @@
         "requestUri":"/"
       },
       "input":{"shape":"StopNotebookInstanceInput"}
+    },
+    "StopOptimizationJob":{
+      "name":"StopOptimizationJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StopOptimizationJobRequest"},
+      "errors":[
+        {"shape":"ResourceNotFound"}
+      ]
     },
     "StopPipelineExecution":{
       "name":"StopPipelineExecution",
@@ -3845,6 +3901,29 @@
       "max":15,
       "min":1
     },
+    "AdditionalModelChannelName":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"[A-Za-z0-9\\.\\-_]+"
+    },
+    "AdditionalModelDataSource":{
+      "type":"structure",
+      "required":[
+        "ChannelName",
+        "S3DataSource"
+      ],
+      "members":{
+        "ChannelName":{"shape":"AdditionalModelChannelName"},
+        "S3DataSource":{"shape":"S3ModelDataSource"}
+      }
+    },
+    "AdditionalModelDataSources":{
+      "type":"list",
+      "member":{"shape":"AdditionalModelDataSource"},
+      "max":5,
+      "min":0
+    },
     "AdditionalS3DataSource":{
       "type":"structure",
       "required":[
@@ -4026,6 +4105,13 @@
       "members":{
         "ValidationRole":{"shape":"RoleArn"},
         "ValidationProfiles":{"shape":"AlgorithmValidationProfiles"}
+      }
+    },
+    "AmazonQSettings":{
+      "type":"structure",
+      "members":{
+        "Status":{"shape":"FeatureStatus"},
+        "QProfileArn":{"shape":"QProfileArn"}
       }
     },
     "AnnotationConsolidationConfig":{
@@ -6350,6 +6436,7 @@
         "Mode":{"shape":"ContainerMode"},
         "ModelDataUrl":{"shape":"Url"},
         "ModelDataSource":{"shape":"ModelDataSource"},
+        "AdditionalModelDataSources":{"shape":"AdditionalModelDataSources"},
         "Environment":{"shape":"EnvironmentMap"},
         "ModelPackageName":{"shape":"VersionedArnOrName"},
         "InferenceSpecificationName":{"shape":"InferenceSpecificationName"},
@@ -7553,6 +7640,37 @@
         "NotebookInstanceArn":{"shape":"NotebookInstanceArn"}
       }
     },
+    "CreateOptimizationJobRequest":{
+      "type":"structure",
+      "required":[
+        "OptimizationJobName",
+        "RoleArn",
+        "ModelSource",
+        "DeploymentInstanceType",
+        "OptimizationConfigs",
+        "OutputConfig",
+        "StoppingCondition"
+      ],
+      "members":{
+        "OptimizationJobName":{"shape":"EntityName"},
+        "RoleArn":{"shape":"RoleArn"},
+        "ModelSource":{"shape":"OptimizationJobModelSource"},
+        "DeploymentInstanceType":{"shape":"OptimizationJobDeploymentInstanceType"},
+        "OptimizationEnvironment":{"shape":"OptimizationJobEnvironmentVariables"},
+        "OptimizationConfigs":{"shape":"OptimizationConfigs"},
+        "OutputConfig":{"shape":"OptimizationJobOutputConfig"},
+        "StoppingCondition":{"shape":"StoppingCondition"},
+        "Tags":{"shape":"TagList"},
+        "VpcConfig":{"shape":"OptimizationVpcConfig"}
+      }
+    },
+    "CreateOptimizationJobResponse":{
+      "type":"structure",
+      "required":["OptimizationJobArn"],
+      "members":{
+        "OptimizationJobArn":{"shape":"OptimizationJobArn"}
+      }
+    },
     "CreatePipelineRequest":{
       "type":"structure",
       "required":[
@@ -8636,6 +8754,13 @@
       "required":["NotebookInstanceLifecycleConfigName"],
       "members":{
         "NotebookInstanceLifecycleConfigName":{"shape":"NotebookInstanceLifecycleConfigName"}
+      }
+    },
+    "DeleteOptimizationJobRequest":{
+      "type":"structure",
+      "required":["OptimizationJobName"],
+      "members":{
+        "OptimizationJobName":{"shape":"EntityName"}
       }
     },
     "DeletePipelineRequest":{
@@ -10318,6 +10443,48 @@
         "InstanceMetadataServiceConfiguration":{"shape":"InstanceMetadataServiceConfiguration"}
       }
     },
+    "DescribeOptimizationJobRequest":{
+      "type":"structure",
+      "required":["OptimizationJobName"],
+      "members":{
+        "OptimizationJobName":{"shape":"EntityName"}
+      }
+    },
+    "DescribeOptimizationJobResponse":{
+      "type":"structure",
+      "required":[
+        "OptimizationJobArn",
+        "OptimizationJobStatus",
+        "CreationTime",
+        "LastModifiedTime",
+        "OptimizationJobName",
+        "ModelSource",
+        "DeploymentInstanceType",
+        "OptimizationConfigs",
+        "OutputConfig",
+        "RoleArn",
+        "StoppingCondition"
+      ],
+      "members":{
+        "OptimizationJobArn":{"shape":"OptimizationJobArn"},
+        "OptimizationJobStatus":{"shape":"OptimizationJobStatus"},
+        "OptimizationStartTime":{"shape":"Timestamp"},
+        "OptimizationEndTime":{"shape":"Timestamp"},
+        "CreationTime":{"shape":"CreationTime"},
+        "LastModifiedTime":{"shape":"LastModifiedTime"},
+        "FailureReason":{"shape":"FailureReason"},
+        "OptimizationJobName":{"shape":"EntityName"},
+        "ModelSource":{"shape":"OptimizationJobModelSource"},
+        "OptimizationEnvironment":{"shape":"OptimizationJobEnvironmentVariables"},
+        "DeploymentInstanceType":{"shape":"OptimizationJobDeploymentInstanceType"},
+        "OptimizationConfigs":{"shape":"OptimizationConfigs"},
+        "OutputConfig":{"shape":"OptimizationJobOutputConfig"},
+        "OptimizationOutput":{"shape":"OptimizationOutput"},
+        "RoleArn":{"shape":"RoleArn"},
+        "StoppingCondition":{"shape":"StoppingCondition"},
+        "VpcConfig":{"shape":"OptimizationVpcConfig"}
+      }
+    },
     "DescribePipelineDefinitionForExecutionRequest":{
       "type":"structure",
       "required":["PipelineExecutionArn"],
@@ -11047,7 +11214,8 @@
         "SecurityGroupIds":{"shape":"DomainSecurityGroupIds"},
         "RStudioServerProDomainSettings":{"shape":"RStudioServerProDomainSettings"},
         "ExecutionRoleIdentityConfig":{"shape":"ExecutionRoleIdentityConfig"},
-        "DockerSettings":{"shape":"DockerSettings"}
+        "DockerSettings":{"shape":"DockerSettings"},
+        "AmazonQSettings":{"shape":"AmazonQSettings"}
       }
     },
     "DomainSettingsForUpdate":{
@@ -11056,7 +11224,8 @@
         "RStudioServerProDomainSettingsForUpdate":{"shape":"RStudioServerProDomainSettingsForUpdate"},
         "ExecutionRoleIdentityConfig":{"shape":"ExecutionRoleIdentityConfig"},
         "SecurityGroupIds":{"shape":"DomainSecurityGroupIds"},
-        "DockerSettings":{"shape":"DockerSettings"}
+        "DockerSettings":{"shape":"DockerSettings"},
+        "AmazonQSettings":{"shape":"AmazonQSettings"}
       }
     },
     "DomainStatus":{
@@ -15724,6 +15893,41 @@
         "NotebookInstances":{"shape":"NotebookInstanceSummaryList"}
       }
     },
+    "ListOptimizationJobsRequest":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"NextToken"},
+        "MaxResults":{
+          "shape":"MaxResults",
+          "box":true
+        },
+        "CreationTimeAfter":{"shape":"CreationTime"},
+        "CreationTimeBefore":{"shape":"CreationTime"},
+        "LastModifiedTimeAfter":{"shape":"LastModifiedTime"},
+        "LastModifiedTimeBefore":{"shape":"LastModifiedTime"},
+        "OptimizationContains":{"shape":"NameContains"},
+        "NameContains":{"shape":"NameContains"},
+        "StatusEquals":{"shape":"OptimizationJobStatus"},
+        "SortBy":{"shape":"ListOptimizationJobsSortBy"},
+        "SortOrder":{"shape":"SortOrder"}
+      }
+    },
+    "ListOptimizationJobsResponse":{
+      "type":"structure",
+      "required":["OptimizationJobSummaries"],
+      "members":{
+        "OptimizationJobSummaries":{"shape":"OptimizationJobSummaries"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListOptimizationJobsSortBy":{
+      "type":"string",
+      "enum":[
+        "Name",
+        "CreationTime",
+        "Status"
+      ]
+    },
     "ListPipelineExecutionStepsRequest":{
       "type":"structure",
       "members":{
@@ -16691,6 +16895,13 @@
         "InvocationsMaxRetries":{"shape":"InvocationsMaxRetries"}
       }
     },
+    "ModelCompilationConfig":{
+      "type":"structure",
+      "members":{
+        "Image":{"shape":"OptimizationContainerImage"},
+        "OverrideEnvironment":{"shape":"OptimizationJobEnvironmentVariables"}
+      }
+    },
     "ModelCompressionType":{
       "type":"string",
       "enum":[
@@ -17245,6 +17456,13 @@
         "EndpointInput":{"shape":"EndpointInput"},
         "BatchTransformInput":{"shape":"BatchTransformInput"},
         "GroundTruthS3Input":{"shape":"MonitoringGroundTruthS3Input"}
+      }
+    },
+    "ModelQuantizationConfig":{
+      "type":"structure",
+      "members":{
+        "Image":{"shape":"OptimizationContainerImage"},
+        "OverrideEnvironment":{"shape":"OptimizationJobEnvironmentVariables"}
       }
     },
     "ModelRegisterSettings":{
@@ -18195,6 +18413,176 @@
         "NotExists",
         "In"
       ]
+    },
+    "OptimizationConfig":{
+      "type":"structure",
+      "members":{
+        "ModelQuantizationConfig":{"shape":"ModelQuantizationConfig"},
+        "ModelCompilationConfig":{"shape":"ModelCompilationConfig"}
+      },
+      "union":true
+    },
+    "OptimizationConfigs":{
+      "type":"list",
+      "member":{"shape":"OptimizationConfig"},
+      "max":10
+    },
+    "OptimizationContainerImage":{
+      "type":"string",
+      "max":255,
+      "pattern":"[\\S]+"
+    },
+    "OptimizationJobArn":{
+      "type":"string",
+      "max":256,
+      "pattern":"arn:aws[a-z\\-]*:sagemaker:[a-z0-9\\-]*:[0-9]{12}:optimization-job/.*"
+    },
+    "OptimizationJobDeploymentInstanceType":{
+      "type":"string",
+      "enum":[
+        "ml.p4d.24xlarge",
+        "ml.p4de.24xlarge",
+        "ml.p5.48xlarge",
+        "ml.g5.xlarge",
+        "ml.g5.2xlarge",
+        "ml.g5.4xlarge",
+        "ml.g5.8xlarge",
+        "ml.g5.12xlarge",
+        "ml.g5.16xlarge",
+        "ml.g5.24xlarge",
+        "ml.g5.48xlarge",
+        "ml.g6.xlarge",
+        "ml.g6.2xlarge",
+        "ml.g6.4xlarge",
+        "ml.g6.8xlarge",
+        "ml.g6.12xlarge",
+        "ml.g6.16xlarge",
+        "ml.g6.24xlarge",
+        "ml.g6.48xlarge",
+        "ml.inf2.xlarge",
+        "ml.inf2.8xlarge",
+        "ml.inf2.24xlarge",
+        "ml.inf2.48xlarge",
+        "ml.trn1.2xlarge",
+        "ml.trn1.32xlarge",
+        "ml.trn1n.32xlarge"
+      ]
+    },
+    "OptimizationJobEnvironmentVariables":{
+      "type":"map",
+      "key":{"shape":"NonEmptyString256"},
+      "value":{"shape":"String256"},
+      "max":25
+    },
+    "OptimizationJobModelSource":{
+      "type":"structure",
+      "members":{
+        "S3":{"shape":"OptimizationJobModelSourceS3"}
+      }
+    },
+    "OptimizationJobModelSourceS3":{
+      "type":"structure",
+      "members":{
+        "S3Uri":{"shape":"S3Uri"},
+        "ModelAccessConfig":{"shape":"OptimizationModelAccessConfig"}
+      }
+    },
+    "OptimizationJobOutputConfig":{
+      "type":"structure",
+      "required":["S3OutputLocation"],
+      "members":{
+        "KmsKeyId":{"shape":"KmsKeyId"},
+        "S3OutputLocation":{"shape":"S3Uri"}
+      }
+    },
+    "OptimizationJobStatus":{
+      "type":"string",
+      "enum":[
+        "INPROGRESS",
+        "COMPLETED",
+        "FAILED",
+        "STARTING",
+        "STOPPING",
+        "STOPPED"
+      ]
+    },
+    "OptimizationJobSummaries":{
+      "type":"list",
+      "member":{"shape":"OptimizationJobSummary"}
+    },
+    "OptimizationJobSummary":{
+      "type":"structure",
+      "required":[
+        "OptimizationJobName",
+        "OptimizationJobArn",
+        "CreationTime",
+        "OptimizationJobStatus",
+        "DeploymentInstanceType",
+        "OptimizationTypes"
+      ],
+      "members":{
+        "OptimizationJobName":{"shape":"EntityName"},
+        "OptimizationJobArn":{"shape":"OptimizationJobArn"},
+        "CreationTime":{"shape":"CreationTime"},
+        "OptimizationJobStatus":{"shape":"OptimizationJobStatus"},
+        "OptimizationStartTime":{"shape":"Timestamp"},
+        "OptimizationEndTime":{"shape":"Timestamp"},
+        "LastModifiedTime":{"shape":"LastModifiedTime"},
+        "DeploymentInstanceType":{"shape":"OptimizationJobDeploymentInstanceType"},
+        "OptimizationTypes":{"shape":"OptimizationTypes"}
+      }
+    },
+    "OptimizationModelAcceptEula":{"type":"boolean"},
+    "OptimizationModelAccessConfig":{
+      "type":"structure",
+      "required":["AcceptEula"],
+      "members":{
+        "AcceptEula":{"shape":"OptimizationModelAcceptEula"}
+      }
+    },
+    "OptimizationOutput":{
+      "type":"structure",
+      "members":{
+        "RecommendedInferenceImage":{"shape":"OptimizationContainerImage"}
+      }
+    },
+    "OptimizationType":{"type":"string"},
+    "OptimizationTypes":{
+      "type":"list",
+      "member":{"shape":"OptimizationType"}
+    },
+    "OptimizationVpcConfig":{
+      "type":"structure",
+      "required":[
+        "SecurityGroupIds",
+        "Subnets"
+      ],
+      "members":{
+        "SecurityGroupIds":{"shape":"OptimizationVpcSecurityGroupIds"},
+        "Subnets":{"shape":"OptimizationVpcSubnets"}
+      }
+    },
+    "OptimizationVpcSecurityGroupId":{
+      "type":"string",
+      "max":32,
+      "pattern":"[-0-9a-zA-Z]+"
+    },
+    "OptimizationVpcSecurityGroupIds":{
+      "type":"list",
+      "member":{"shape":"OptimizationVpcSecurityGroupId"},
+      "max":5,
+      "min":1
+    },
+    "OptimizationVpcSubnetId":{
+      "type":"string",
+      "max":32,
+      "pattern":"[-0-9a-zA-Z]+"
+    },
+    "OptimizationVpcSubnets":{
+      "type":"list",
+      "member":{"shape":"OptimizationVpcSubnetId"},
+      "max":16,
+      "min":1
     },
     "OptionalDouble":{"type":"double"},
     "OptionalInteger":{"type":"integer"},
@@ -19528,6 +19916,10 @@
       "members":{
         "ModelPackageGroupArn":{"shape":"ModelPackageGroupArn"}
       }
+    },
+    "QProfileArn":{
+      "type":"string",
+      "pattern":"^arn:[-.a-z0-9]{1,63}:codewhisperer:([-.a-z0-9]{0,63}:){2}([a-zA-Z0-9-_:/]){1,1023}$"
     },
     "QualityCheckStepMetadata":{
       "type":"structure",
@@ -21337,6 +21729,13 @@
       "required":["NotebookInstanceName"],
       "members":{
         "NotebookInstanceName":{"shape":"NotebookInstanceName"}
+      }
+    },
+    "StopOptimizationJobRequest":{
+      "type":"structure",
+      "required":["OptimizationJobName"],
+      "members":{
+        "OptimizationJobName":{"shape":"EntityName"}
       }
     },
     "StopPipelineExecutionRequest":{

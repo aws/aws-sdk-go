@@ -318,6 +318,12 @@
       "limit_key": "MaxResults",
       "result_key": "NotebookInstances"
     },
+    "ListOptimizationJobs": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults",
+      "result_key": "OptimizationJobSummaries"
+    },
     "ListPipelineExecutionSteps": {
       "input_token": "NextToken",
       "output_token": "NextToken",

@@ -252,6 +252,10 @@ type SageMakerAPI interface {
 	CreateNotebookInstanceLifecycleConfigWithContext(aws.Context, *sagemaker.CreateNotebookInstanceLifecycleConfigInput, ...request.Option) (*sagemaker.CreateNotebookInstanceLifecycleConfigOutput, error)
 	CreateNotebookInstanceLifecycleConfigRequest(*sagemaker.CreateNotebookInstanceLifecycleConfigInput) (*request.Request, *sagemaker.CreateNotebookInstanceLifecycleConfigOutput)
 
+	CreateOptimizationJob(*sagemaker.CreateOptimizationJobInput) (*sagemaker.CreateOptimizationJobOutput, error)
+	CreateOptimizationJobWithContext(aws.Context, *sagemaker.CreateOptimizationJobInput, ...request.Option) (*sagemaker.CreateOptimizationJobOutput, error)
+	CreateOptimizationJobRequest(*sagemaker.CreateOptimizationJobInput) (*request.Request, *sagemaker.CreateOptimizationJobOutput)
+
 	CreatePipeline(*sagemaker.CreatePipelineInput) (*sagemaker.CreatePipelineOutput, error)
 	CreatePipelineWithContext(aws.Context, *sagemaker.CreatePipelineInput, ...request.Option) (*sagemaker.CreatePipelineOutput, error)
 	CreatePipelineRequest(*sagemaker.CreatePipelineInput) (*request.Request, *sagemaker.CreatePipelineOutput)
@@ -475,6 +479,10 @@ type SageMakerAPI interface {
 	DeleteNotebookInstanceLifecycleConfig(*sagemaker.DeleteNotebookInstanceLifecycleConfigInput) (*sagemaker.DeleteNotebookInstanceLifecycleConfigOutput, error)
 	DeleteNotebookInstanceLifecycleConfigWithContext(aws.Context, *sagemaker.DeleteNotebookInstanceLifecycleConfigInput, ...request.Option) (*sagemaker.DeleteNotebookInstanceLifecycleConfigOutput, error)
 	DeleteNotebookInstanceLifecycleConfigRequest(*sagemaker.DeleteNotebookInstanceLifecycleConfigInput) (*request.Request, *sagemaker.DeleteNotebookInstanceLifecycleConfigOutput)
+
+	DeleteOptimizationJob(*sagemaker.DeleteOptimizationJobInput) (*sagemaker.DeleteOptimizationJobOutput, error)
+	DeleteOptimizationJobWithContext(aws.Context, *sagemaker.DeleteOptimizationJobInput, ...request.Option) (*sagemaker.DeleteOptimizationJobOutput, error)
+	DeleteOptimizationJobRequest(*sagemaker.DeleteOptimizationJobInput) (*request.Request, *sagemaker.DeleteOptimizationJobOutput)
 
 	DeletePipeline(*sagemaker.DeletePipelineInput) (*sagemaker.DeletePipelineOutput, error)
 	DeletePipelineWithContext(aws.Context, *sagemaker.DeletePipelineInput, ...request.Option) (*sagemaker.DeletePipelineOutput, error)
@@ -707,6 +715,10 @@ type SageMakerAPI interface {
 	DescribeNotebookInstanceLifecycleConfig(*sagemaker.DescribeNotebookInstanceLifecycleConfigInput) (*sagemaker.DescribeNotebookInstanceLifecycleConfigOutput, error)
 	DescribeNotebookInstanceLifecycleConfigWithContext(aws.Context, *sagemaker.DescribeNotebookInstanceLifecycleConfigInput, ...request.Option) (*sagemaker.DescribeNotebookInstanceLifecycleConfigOutput, error)
 	DescribeNotebookInstanceLifecycleConfigRequest(*sagemaker.DescribeNotebookInstanceLifecycleConfigInput) (*request.Request, *sagemaker.DescribeNotebookInstanceLifecycleConfigOutput)
+
+	DescribeOptimizationJob(*sagemaker.DescribeOptimizationJobInput) (*sagemaker.DescribeOptimizationJobOutput, error)
+	DescribeOptimizationJobWithContext(aws.Context, *sagemaker.DescribeOptimizationJobInput, ...request.Option) (*sagemaker.DescribeOptimizationJobOutput, error)
+	DescribeOptimizationJobRequest(*sagemaker.DescribeOptimizationJobInput) (*request.Request, *sagemaker.DescribeOptimizationJobOutput)
 
 	DescribePipeline(*sagemaker.DescribePipelineInput) (*sagemaker.DescribePipelineOutput, error)
 	DescribePipelineWithContext(aws.Context, *sagemaker.DescribePipelineInput, ...request.Option) (*sagemaker.DescribePipelineOutput, error)
@@ -1191,6 +1203,13 @@ type SageMakerAPI interface {
 	ListNotebookInstancesPages(*sagemaker.ListNotebookInstancesInput, func(*sagemaker.ListNotebookInstancesOutput, bool) bool) error
 	ListNotebookInstancesPagesWithContext(aws.Context, *sagemaker.ListNotebookInstancesInput, func(*sagemaker.ListNotebookInstancesOutput, bool) bool, ...request.Option) error
 
+	ListOptimizationJobs(*sagemaker.ListOptimizationJobsInput) (*sagemaker.ListOptimizationJobsOutput, error)
+	ListOptimizationJobsWithContext(aws.Context, *sagemaker.ListOptimizationJobsInput, ...request.Option) (*sagemaker.ListOptimizationJobsOutput, error)
+	ListOptimizationJobsRequest(*sagemaker.ListOptimizationJobsInput) (*request.Request, *sagemaker.ListOptimizationJobsOutput)
+
+	ListOptimizationJobsPages(*sagemaker.ListOptimizationJobsInput, func(*sagemaker.ListOptimizationJobsOutput, bool) bool) error
+	ListOptimizationJobsPagesWithContext(aws.Context, *sagemaker.ListOptimizationJobsInput, func(*sagemaker.ListOptimizationJobsOutput, bool) bool, ...request.Option) error
+
 	ListPipelineExecutionSteps(*sagemaker.ListPipelineExecutionStepsInput) (*sagemaker.ListPipelineExecutionStepsOutput, error)
 	ListPipelineExecutionStepsWithContext(aws.Context, *sagemaker.ListPipelineExecutionStepsInput, ...request.Option) (*sagemaker.ListPipelineExecutionStepsOutput, error)
 	ListPipelineExecutionStepsRequest(*sagemaker.ListPipelineExecutionStepsInput) (*request.Request, *sagemaker.ListPipelineExecutionStepsOutput)
@@ -1436,6 +1455,10 @@ type SageMakerAPI interface {
 	StopNotebookInstance(*sagemaker.StopNotebookInstanceInput) (*sagemaker.StopNotebookInstanceOutput, error)
 	StopNotebookInstanceWithContext(aws.Context, *sagemaker.StopNotebookInstanceInput, ...request.Option) (*sagemaker.StopNotebookInstanceOutput, error)
 	StopNotebookInstanceRequest(*sagemaker.StopNotebookInstanceInput) (*request.Request, *sagemaker.StopNotebookInstanceOutput)
+
+	StopOptimizationJob(*sagemaker.StopOptimizationJobInput) (*sagemaker.StopOptimizationJobOutput, error)
+	StopOptimizationJobWithContext(aws.Context, *sagemaker.StopOptimizationJobInput, ...request.Option) (*sagemaker.StopOptimizationJobOutput, error)
+	StopOptimizationJobRequest(*sagemaker.StopOptimizationJobInput) (*request.Request, *sagemaker.StopOptimizationJobOutput)
 
 	StopPipelineExecution(*sagemaker.StopPipelineExecutionInput) (*sagemaker.StopPipelineExecutionOutput, error)
 	StopPipelineExecutionWithContext(aws.Context, *sagemaker.StopPipelineExecutionInput, ...request.Option) (*sagemaker.StopPipelineExecutionOutput, error)
