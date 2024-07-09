@@ -20075,8 +20075,9 @@ func (s *CustomParameter) SetKeyName(v string) *CustomParameter {
 	return s
 }
 
+// Deprecated: This structure is deprecated.
 type DataProductItem struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 
 	DomainId *string `locationName:"domainId" type:"string"`
 
@@ -20113,14 +20114,15 @@ func (s *DataProductItem) SetItemId(v string) *DataProductItem {
 	return s
 }
 
+// Deprecated: This structure is deprecated.
 type DataProductSummary struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp"`
 
 	CreatedBy *string `locationName:"createdBy" type:"string"`
 
-	DataProductItems []*DataProductItem `locationName:"dataProductItems" type:"list"`
+	DataProductItems []*DataProductItem `locationName:"dataProductItems" deprecated:"true" type:"list"`
 
 	// Description is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by DataProductSummary's
@@ -37613,7 +37615,9 @@ type SearchInventoryResultItem struct {
 	AssetItem *AssetItem `locationName:"assetItem" type:"structure"`
 
 	// The data product item included in the search results.
-	DataProductItem *DataProductSummary `locationName:"dataProductItem" type:"structure"`
+	//
+	// Deprecated: This field is deprecated.
+	DataProductItem *DataProductSummary `locationName:"dataProductItem" deprecated:"true" type:"structure"`
 
 	// The glossary item included in the search results.
 	GlossaryItem *GlossaryItem `locationName:"glossaryItem" type:"structure"`

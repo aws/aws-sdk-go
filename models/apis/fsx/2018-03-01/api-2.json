@@ -11,7 +11,8 @@
     "signatureVersion":"v4",
     "signingName":"fsx",
     "targetPrefix":"AWSSimbaAPIService_v20180301",
-    "uid":"fsx-2018-03-01"
+    "uid":"fsx-2018-03-01",
+    "auth":["aws.auth#sigv4"]
   },
   "operations":{
     "AssociateFileSystemAliases":{
@@ -846,7 +847,8 @@
         "STORAGE_TYPE_OPTIMIZATION",
         "MISCONFIGURED_STATE_RECOVERY",
         "VOLUME_UPDATE_WITH_SNAPSHOT",
-        "VOLUME_INITIALIZE_WITH_SNAPSHOT"
+        "VOLUME_INITIALIZE_WITH_SNAPSHOT",
+        "DOWNLOAD_DATA_FROM_BACKUP"
       ]
     },
     "AdministrativeActions":{
@@ -2978,7 +2980,8 @@
       "enum":[
         "MULTI_AZ_1",
         "SINGLE_AZ_1",
-        "SINGLE_AZ_2"
+        "SINGLE_AZ_2",
+        "MULTI_AZ_2"
       ]
     },
     "OntapEndpointIpAddresses":{
@@ -3088,6 +3091,8 @@
       "enum":[
         "SINGLE_AZ_1",
         "SINGLE_AZ_2",
+        "SINGLE_AZ_HA_1",
+        "SINGLE_AZ_HA_2",
         "MULTI_AZ_1"
       ]
     },
@@ -3614,7 +3619,8 @@
         "IN_PROGRESS",
         "PENDING",
         "COMPLETED",
-        "UPDATED_OPTIMIZING"
+        "UPDATED_OPTIMIZING",
+        "OPTIMIZING"
       ]
     },
     "StorageCapacity":{
@@ -3971,7 +3977,8 @@
         "ThroughputCapacity":{"shape":"MegabytesPerSecond"},
         "AddRouteTableIds":{"shape":"RouteTableIds"},
         "RemoveRouteTableIds":{"shape":"RouteTableIds"},
-        "ThroughputCapacityPerHAPair":{"shape":"ThroughputCapacityPerHAPair"}
+        "ThroughputCapacityPerHAPair":{"shape":"ThroughputCapacityPerHAPair"},
+        "HAPairs":{"shape":"HAPairs"}
       }
     },
     "UpdateFileSystemOpenZFSConfiguration":{

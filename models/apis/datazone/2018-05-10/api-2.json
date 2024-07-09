@@ -3698,11 +3698,15 @@
       "members":{
         "domainId":{"shape":"DomainId"},
         "itemId":{"shape":"DataProductId"}
-      }
+      },
+      "deprecated":true,
+      "deprecatedMessage":"This structure is deprecated."
     },
     "DataProductItems":{
       "type":"list",
       "member":{"shape":"DataProductItem"},
+      "deprecated":true,
+      "deprecatedMessage":"This structure is deprecated.",
       "max":100,
       "min":0
     },
@@ -3732,7 +3736,9 @@
         "owningProjectId":{"shape":"ProjectId"},
         "updatedAt":{"shape":"UpdatedAt"},
         "updatedBy":{"shape":"UpdatedBy"}
-      }
+      },
+      "deprecated":true,
+      "deprecatedMessage":"This structure is deprecated."
     },
     "DataSourceConfigurationInput":{
       "type":"structure",
@@ -8293,7 +8299,11 @@
       "type":"structure",
       "members":{
         "assetItem":{"shape":"AssetItem"},
-        "dataProductItem":{"shape":"DataProductSummary"},
+        "dataProductItem":{
+          "shape":"DataProductSummary",
+          "deprecated":true,
+          "deprecatedMessage":"This field is deprecated."
+        },
         "glossaryItem":{"shape":"GlossaryItem"},
         "glossaryTermItem":{"shape":"GlossaryTermItem"}
       },

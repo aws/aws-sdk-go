@@ -1,3 +1,13 @@
+Release v1.54.17 (2024-07-09)
+===
+
+### Service Client Updates
+* `service/datazone`: Updates service API
+* `service/fsx`: Updates service API and documentation
+* `service/opensearch`: Updates service API and documentation
+* `service/sagemaker`: Updates service API, documentation, and paginators
+  * This release 1/ enables optimization jobs that allows customers to perform Ahead-of-time compilation and quantization. 2/ allows customers to control access to Amazon Q integration in SageMaker Studio. 3/ enables AdditionalModelDataSources for CreateModel action.
+
 Release v1.54.16 (2024-07-08)
 ===
 
