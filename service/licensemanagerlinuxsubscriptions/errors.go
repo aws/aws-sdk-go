@@ -14,6 +14,12 @@ const (
 	// An exception occurred with the service.
 	ErrCodeInternalServerException = "InternalServerException"
 
+	// ErrCodeResourceNotFoundException for service response error code
+	// "ResourceNotFoundException".
+	//
+	// Unable to find the requested Amazon Web Services resource.
+	ErrCodeResourceNotFoundException = "ResourceNotFoundException"
+
 	// ErrCodeThrottlingException for service response error code
 	// "ThrottlingException".
 	//
@@ -28,7 +34,8 @@ const (
 )
 
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
-	"InternalServerException": newErrorInternalServerException,
-	"ThrottlingException":     newErrorThrottlingException,
-	"ValidationException":     newErrorValidationException,
+	"InternalServerException":   newErrorInternalServerException,
+	"ResourceNotFoundException": newErrorResourceNotFoundException,
+	"ThrottlingException":       newErrorThrottlingException,
+	"ValidationException":       newErrorValidationException,
 }

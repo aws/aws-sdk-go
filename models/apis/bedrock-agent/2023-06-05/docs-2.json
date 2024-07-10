@@ -3,17 +3,26 @@
   "service": "<p>Describes the API operations for creating and managing Amazon Bedrock agents.</p>",
   "operations": {
     "AssociateAgentKnowledgeBase": "<p>Associates a knowledge base with an agent. If a knowledge base is associated and its <code>indexState</code> is set to <code>Enabled</code>, the agent queries the knowledge base for information to augment its response to the user.</p>",
-    "CreateAgent": "<p>Creates an agent that orchestrates interactions between foundation models, data sources, software applications, user conversations, and APIs to carry out tasks to help customers.</p> <ul> <li> <p>Specify the following fields for security purposes.</p> <ul> <li> <p> <code>agentResourceRoleArn</code> – The Amazon Resource Name (ARN) of the role with permissions to invoke API operations on an agent.</p> </li> <li> <p>(Optional) <code>customerEncryptionKeyArn</code> – The Amazon Resource Name (ARN) of a KMS key to encrypt the creation of the agent.</p> </li> <li> <p>(Optional) <code>idleSessionTTLinSeconds</code> – Specify the number of seconds for which the agent should maintain session information. After this time expires, the subsequent <code>InvokeAgent</code> request begins a new session.</p> </li> </ul> </li> <li> <p>To override the default prompt behavior for agent orchestration and to use advanced prompts, include a <code>promptOverrideConfiguration</code> object. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/advanced-prompts.html\">Advanced prompts</a>.</p> </li> <li> <p>If you agent fails to be created, the response returns a list of <code>failureReasons</code> alongside a list of <code>recommendedActions</code> for you to troubleshoot.</p> </li> </ul>",
-    "CreateAgentActionGroup": "<p>Creates an action group for an agent. An action group represents the actions that an agent can carry out for the customer by defining the APIs that an agent can call and the logic for calling them.</p> <p>To allow your agent to request the user for additional information when trying to complete a task, add an action group with the <code>parentActionGroupSignature</code> field set to <code>AMAZON.UserInput</code>. You must leave the <code>description</code>, <code>apiSchema</code>, and <code>actionGroupExecutor</code> fields blank for this action group. During orchestration, if your agent determines that it needs to invoke an API in an action group, but doesn't have enough information to complete the API request, it will invoke this action group instead and return an <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Observation.html\">Observation</a> reprompting the user for more information.</p>",
+    "CreateAgent": "<p>Creates an agent that orchestrates interactions between foundation models, data sources, software applications, user conversations, and APIs to carry out tasks to help customers.</p> <ul> <li> <p>Specify the following fields for security purposes.</p> <ul> <li> <p> <code>agentResourceRoleArn</code> – The Amazon Resource Name (ARN) of the role with permissions to invoke API operations on an agent.</p> </li> <li> <p>(Optional) <code>customerEncryptionKeyArn</code> – The Amazon Resource Name (ARN) of a KMS key to encrypt the creation of the agent.</p> </li> <li> <p>(Optional) <code>idleSessionTTLinSeconds</code> – Specify the number of seconds for which the agent should maintain session information. After this time expires, the subsequent <code>InvokeAgent</code> request begins a new session.</p> </li> </ul> </li> <li> <p>To enable your agent to retain conversational context across multiple sessions, include a <code>memoryConfiguration</code> object. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/agents-configure-memory.html\">Configure memory</a>.</p> </li> <li> <p>To override the default prompt behavior for agent orchestration and to use advanced prompts, include a <code>promptOverrideConfiguration</code> object. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/advanced-prompts.html\">Advanced prompts</a>.</p> </li> <li> <p>If you agent fails to be created, the response returns a list of <code>failureReasons</code> alongside a list of <code>recommendedActions</code> for you to troubleshoot.</p> </li> </ul>",
+    "CreateAgentActionGroup": "<p>Creates an action group for an agent. An action group represents the actions that an agent can carry out for the customer by defining the APIs that an agent can call and the logic for calling them.</p> <p>To allow your agent to request the user for additional information when trying to complete a task, add an action group with the <code>parentActionGroupSignature</code> field set to <code>AMAZON.UserInput</code>. </p> <p>To allow your agent to generate, run, and troubleshoot code when trying to complete a task, add an action group with the <code>parentActionGroupSignature</code> field set to <code>AMAZON.CodeInterpreter</code>. </p> <p>You must leave the <code>description</code>, <code>apiSchema</code>, and <code>actionGroupExecutor</code> fields blank for this action group. During orchestration, if your agent determines that it needs to invoke an API in an action group, but doesn't have enough information to complete the API request, it will invoke this action group instead and return an <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Observation.html\">Observation</a> reprompting the user for more information.</p>",
     "CreateAgentAlias": "<p>Creates an alias of an agent that can be used to deploy the agent.</p>",
-    "CreateDataSource": "<p>Sets up a data source to be added to a knowledge base.</p> <important> <p>You can't change the <code>chunkingConfiguration</code> after you create the data source.</p> </important>",
+    "CreateDataSource": "<p>Creates a data source connector for a knowledge base.</p> <important> <p>You can't change the <code>chunkingConfiguration</code> after you create the data source connector.</p> </important>",
+    "CreateFlow": "<p>Creates a prompt flow that you can use to send an input through various steps to yield an output. Configure nodes, each of which corresponds to a step of the flow, and create connections between the nodes to create paths to different outputs. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/flows-how-it-works.html\">How it works</a> and <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/flows-create.html\">Create a flow in Amazon Bedrock</a> in the Amazon Bedrock User Guide.</p>",
+    "CreateFlowAlias": "<p>Creates an alias of a flow for deployment. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/flows-deploy.html\">Deploy a flow in Amazon Bedrock</a> in the Amazon Bedrock User Guide.</p>",
+    "CreateFlowVersion": "<p>Creates a version of the flow that you can deploy. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/flows-deploy.html\">Deploy a flow in Amazon Bedrock</a> in the Amazon Bedrock User Guide.</p>",
     "CreateKnowledgeBase": "<p>Creates a knowledge base that contains data sources from which information can be queried and used by LLMs. To create a knowledge base, you must first set up your data sources and configure a supported vector store. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-setup.html\">Set up your data for ingestion</a>.</p> <note> <p>If you prefer to let Amazon Bedrock create and manage a vector store for you in Amazon OpenSearch Service, use the console. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-create\">Create a knowledge base</a>.</p> </note> <ul> <li> <p>Provide the <code>name</code> and an optional <code>description</code>.</p> </li> <li> <p>Provide the Amazon Resource Name (ARN) with permissions to create a knowledge base in the <code>roleArn</code> field.</p> </li> <li> <p>Provide the embedding model to use in the <code>embeddingModelArn</code> field in the <code>knowledgeBaseConfiguration</code> object.</p> </li> <li> <p>Provide the configuration for your vector store in the <code>storageConfiguration</code> object.</p> <ul> <li> <p>For an Amazon OpenSearch Service database, use the <code>opensearchServerlessConfiguration</code> object. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-setup-oss.html\">Create a vector store in Amazon OpenSearch Service</a>.</p> </li> <li> <p>For an Amazon Aurora database, use the <code>RdsConfiguration</code> object. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-setup-rds.html\">Create a vector store in Amazon Aurora</a>.</p> </li> <li> <p>For a Pinecone database, use the <code>pineconeConfiguration</code> object. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-setup-pinecone.html\">Create a vector store in Pinecone</a>.</p> </li> <li> <p>For a Redis Enterprise Cloud database, use the <code>redisEnterpriseCloudConfiguration</code> object. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-setup-redis.html\">Create a vector store in Redis Enterprise Cloud</a>.</p> </li> </ul> </li> </ul>",
+    "CreatePrompt": "<p>Creates a prompt in your prompt library that you can add to a flow. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-management.html\">Prompt management in Amazon Bedrock</a>, <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-management-create.html\">Create a prompt using Prompt management</a> and <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/flows.html\">Prompt flows in Amazon Bedrock</a> in the Amazon Bedrock User Guide.</p>",
+    "CreatePromptVersion": "<p>Creates a static snapshot of your prompt that can be deployed to production. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-management-deploy.html\">Deploy prompts using Prompt management by creating versions</a> in the Amazon Bedrock User Guide.</p>",
     "DeleteAgent": "<p>Deletes an agent.</p>",
     "DeleteAgentActionGroup": "<p>Deletes an action group in an agent.</p>",
     "DeleteAgentAlias": "<p>Deletes an alias of an agent.</p>",
     "DeleteAgentVersion": "<p>Deletes a version of an agent.</p>",
     "DeleteDataSource": "<p>Deletes a data source from a knowledge base.</p>",
+    "DeleteFlow": "<p>Deletes a flow.</p>",
+    "DeleteFlowAlias": "<p>Deletes an alias of a flow.</p>",
+    "DeleteFlowVersion": "<p>Deletes a version of a flow.</p>",
     "DeleteKnowledgeBase": "<p>Deletes a knowledge base. Before deleting a knowledge base, you should disassociate the knowledge base from any agents that it is associated with by making a <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_DisassociateAgentKnowledgeBase.html\">DisassociateAgentKnowledgeBase</a> request.</p>",
+    "DeletePrompt": "<p>Deletes a prompt or a prompt version from the Prompt management tool. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-management-manage.html#prompt-management-delete.html\">Delete prompts from the Prompt management tool</a> and <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-management-deploy.html#prompt-management-versions-delete.html\">Delete a version of a prompt from the Prompt management tool</a> in the Amazon Bedrock User Guide.</p>",
     "DisassociateAgentKnowledgeBase": "<p>Disassociates a knowledge base from an agent.</p>",
     "GetAgent": "<p>Gets information about an agent.</p>",
     "GetAgentActionGroup": "<p>Gets information about an action group for an agent.</p>",
@@ -21,18 +30,27 @@
     "GetAgentKnowledgeBase": "<p>Gets information about a knowledge base associated with an agent.</p>",
     "GetAgentVersion": "<p>Gets details about a version of an agent.</p>",
     "GetDataSource": "<p>Gets information about a data source.</p>",
+    "GetFlow": "<p>Retrieves information about a flow. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/flows-manage.html\">Manage a flow in Amazon Bedrock</a> in the Amazon Bedrock User Guide.</p>",
+    "GetFlowAlias": "<p>Retrieves information about a flow. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/flows-deploy.html\">Deploy a flow in Amazon Bedrock</a> in the Amazon Bedrock User Guide.</p>",
+    "GetFlowVersion": "<p>Retrieves information about a version of a flow. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/flows-deploy.html\">Deploy a flow in Amazon Bedrock</a> in the Amazon Bedrock User Guide.</p>",
     "GetIngestionJob": "<p>Gets information about a ingestion job, in which a data source is added to a knowledge base.</p>",
     "GetKnowledgeBase": "<p>Gets information about a knoweldge base.</p>",
+    "GetPrompt": "<p>Retrieves information about a prompt or a version of it. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-management-manage.html#prompt-management-view.html\">View information about prompts using Prompt management</a> and <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-management-deploy.html#prompt-management-versions-view.html\">View information about a version of your prompt</a> in the Amazon Bedrock User Guide.</p>",
     "ListAgentActionGroups": "<p>Lists the action groups for an agent and information about each one.</p>",
     "ListAgentAliases": "<p>Lists the aliases of an agent and information about each one.</p>",
     "ListAgentKnowledgeBases": "<p>Lists knowledge bases associated with an agent and information about each one.</p>",
     "ListAgentVersions": "<p>Lists the versions of an agent and information about each version.</p>",
     "ListAgents": "<p>Lists the agents belonging to an account and information about each agent.</p>",
     "ListDataSources": "<p>Lists the data sources in a knowledge base and information about each one.</p>",
+    "ListFlowAliases": "<p>Returns a list of aliases for a flow.</p>",
+    "ListFlowVersions": "<p>Returns a list of information about each flow. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/flows-deploy.html\">Deploy a flow in Amazon Bedrock</a> in the Amazon Bedrock User Guide.</p>",
+    "ListFlows": "<p>Returns a list of flows and information about each flow. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/flows-manage.html\">Manage a flow in Amazon Bedrock</a> in the Amazon Bedrock User Guide.</p>",
     "ListIngestionJobs": "<p>Lists the ingestion jobs for a data source and information about each of them.</p>",
     "ListKnowledgeBases": "<p>Lists the knowledge bases in an account and information about each of them.</p>",
+    "ListPrompts": "<p>Returns a list of prompts from the Prompt management tool and information about each prompt. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-management-manage.html#prompt-management-view.html\">View information about prompts using Prompt management</a> in the Amazon Bedrock User Guide.</p>",
     "ListTagsForResource": "<p>List all the tags for the resource you specify.</p>",
     "PrepareAgent": "<p>Creates a <code>DRAFT</code> version of the agent that can be used for internal testing.</p>",
+    "PrepareFlow": "<p>Prepares the <code>DRAFT</code> version of a flow so that it can be invoked. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/flows-test.html\">Test a flow in Amazon Bedrock</a> in the Amazon Bedrock User Guide.</p>",
     "StartIngestionJob": "<p>Begins an ingestion job, in which a data source is added to a knowledge base.</p>",
     "TagResource": "<p>Associate tags with a resource. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-service.html\">Tagging resources</a> in the Amazon Bedrock User Guide.</p>",
     "UntagResource": "<p>Remove tags from a resource.</p>",
@@ -40,8 +58,11 @@
     "UpdateAgentActionGroup": "<p>Updates the configuration for an action group for an agent.</p>",
     "UpdateAgentAlias": "<p>Updates configurations for an alias of an agent.</p>",
     "UpdateAgentKnowledgeBase": "<p>Updates the configuration for a knowledge base that has been associated with an agent.</p>",
-    "UpdateDataSource": "<p>Updates configurations for a data source.</p> <important> <p>You can't change the <code>chunkingConfiguration</code> after you create the data source. Specify the existing <code>chunkingConfiguration</code>.</p> </important>",
-    "UpdateKnowledgeBase": "<p>Updates the configuration of a knowledge base with the fields that you specify. Because all fields will be overwritten, you must include the same values for fields that you want to keep the same.</p> <p>You can change the following fields:</p> <ul> <li> <p> <code>name</code> </p> </li> <li> <p> <code>description</code> </p> </li> <li> <p> <code>roleArn</code> </p> </li> </ul> <p>You can't change the <code>knowledgeBaseConfiguration</code> or <code>storageConfiguration</code> fields, so you must specify the same configurations as when you created the knowledge base. You can send a <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_GetKnowledgeBase.html\">GetKnowledgeBase</a> request and copy the same configurations.</p>"
+    "UpdateDataSource": "<p>Updates the configurations for a data source connector.</p> <important> <p>You can't change the <code>chunkingConfiguration</code> after you create the data source connector. Specify the existing <code>chunkingConfiguration</code>.</p> </important>",
+    "UpdateFlow": "<p>Modifies a flow. Include both fields that you want to keep and fields that you want to change. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/flows-how-it-works.html\">How it works</a> and <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/flows-create.html\">Create a flow in Amazon Bedrock</a> in the Amazon Bedrock User Guide.</p>",
+    "UpdateFlowAlias": "<p>Modifies the alias of a flow. Include both fields that you want to keep and ones that you want to change. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/flows-deploy.html\">Deploy a flow in Amazon Bedrock</a> in the Amazon Bedrock User Guide.</p>",
+    "UpdateKnowledgeBase": "<p>Updates the configuration of a knowledge base with the fields that you specify. Because all fields will be overwritten, you must include the same values for fields that you want to keep the same.</p> <p>You can change the following fields:</p> <ul> <li> <p> <code>name</code> </p> </li> <li> <p> <code>description</code> </p> </li> <li> <p> <code>roleArn</code> </p> </li> </ul> <p>You can't change the <code>knowledgeBaseConfiguration</code> or <code>storageConfiguration</code> fields, so you must specify the same configurations as when you created the knowledge base. You can send a <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_GetKnowledgeBase.html\">GetKnowledgeBase</a> request and copy the same configurations.</p>",
+    "UpdatePrompt": "<p>Modifies a prompt in your prompt library. Include both fields that you want to keep and fields that you want to replace. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-management.html\">Prompt management in Amazon Bedrock</a> and <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-management-manage.html#prompt-management-edit\">Edit prompts in your prompt library</a> in the Amazon Bedrock User Guide.</p>"
   },
   "shapes": {
     "APISchema": {
@@ -69,7 +90,7 @@
       "base": null,
       "refs": {
         "AgentActionGroup$parentActionSignature": "<p>If this field is set as <code>AMAZON.UserInput</code>, the agent can request the user for additional information when trying to complete a task. The <code>description</code>, <code>apiSchema</code>, and <code>actionGroupExecutor</code> fields must be blank for this action group.</p> <p>During orchestration, if the agent determines that it needs to invoke an API in an action group, but doesn't have enough information to complete the API request, it will invoke this action group instead and return an <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Observation.html\">Observation</a> reprompting the user for more information.</p>",
-        "CreateAgentActionGroupRequest$parentActionGroupSignature": "<p>To allow your agent to request the user for additional information when trying to complete a task, set this field to <code>AMAZON.UserInput</code>. You must leave the <code>description</code>, <code>apiSchema</code>, and <code>actionGroupExecutor</code> fields blank for this action group.</p> <p>During orchestration, if your agent determines that it needs to invoke an API in an action group, but doesn't have enough information to complete the API request, it will invoke this action group instead and return an <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Observation.html\">Observation</a> reprompting the user for more information.</p>",
+        "CreateAgentActionGroupRequest$parentActionGroupSignature": "<p>To allow your agent to request the user for additional information when trying to complete a task, set this field to <code>AMAZON.UserInput</code>. You must leave the <code>description</code>, <code>apiSchema</code>, and <code>actionGroupExecutor</code> fields blank for this action group.</p> <p>To allow your agent to generate, run, and troubleshoot code when trying to complete a task, set this field to <code>AMAZON.CodeInterpreter</code>. You must leave the <code>description</code>, <code>apiSchema</code>, and <code>actionGroupExecutor</code> fields blank for this action group.</p> <p>During orchestration, if your agent determines that it needs to invoke an API in an action group, but doesn't have enough information to complete the API request, it will invoke this action group instead and return an <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Observation.html\">Observation</a> reprompting the user for more information.</p>",
         "UpdateAgentActionGroupRequest$parentActionGroupSignature": "<p>To allow your agent to request the user for additional information when trying to complete a task, set this field to <code>AMAZON.UserInput</code>. You must leave the <code>description</code>, <code>apiSchema</code>, and <code>actionGroupExecutor</code> fields blank for this action group.</p> <p>During orchestration, if your agent determines that it needs to invoke an API in an action group, but doesn't have enough information to complete the API request, it will invoke this action group instead and return an <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Observation.html\">Observation</a> reprompting the user for more information.</p>"
       }
     },
@@ -121,7 +142,8 @@
     "AgentAliasArn": {
       "base": null,
       "refs": {
-        "AgentAlias$agentAliasArn": "<p>The Amazon Resource Name (ARN) of the alias of the agent.</p>"
+        "AgentAlias$agentAliasArn": "<p>The Amazon Resource Name (ARN) of the alias of the agent.</p>",
+        "AgentFlowNodeConfiguration$agentAliasArn": "<p>The Amazon Resource Name (ARN) of the alias of the agent to invoke.</p>"
       }
     },
     "AgentAliasHistoryEvent": {
@@ -188,6 +210,12 @@
       "refs": {
         "Agent$agentArn": "<p>The Amazon Resource Name (ARN) of the agent.</p>",
         "AgentVersion$agentArn": "<p>The Amazon Resource Name (ARN) of the agent that the version belongs to.</p>"
+      }
+    },
+    "AgentFlowNodeConfiguration": {
+      "base": "<p>Defines an agent node in your flow. You specify the agent to invoke at this point in the flow. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/flows-nodes.html\">Node types in Amazon Bedrock works</a> in the Amazon Bedrock User Guide.</p>",
+      "refs": {
+        "FlowNodeConfiguration$agent": "<p>Contains configurations for an agent node in your flow. Invokes an alias of an agent and returns the response.</p>"
       }
     },
     "AgentKnowledgeBase": {
@@ -289,19 +317,33 @@
         "EmbeddingModelConfiguration$bedrockEmbeddingModelConfiguration": "<p>The vector configuration details on the Bedrock embeddings model.</p>"
       }
     },
+    "BedrockFoundationModelConfiguration": {
+      "base": "<p>Settings for a foundation model used to parse documents for a data source.</p>",
+      "refs": {
+        "ParsingConfiguration$bedrockFoundationModelConfiguration": "<p>Settings for a foundation model used to parse documents for a data source.</p>"
+      }
+    },
+    "BedrockModelArn": {
+      "base": null,
+      "refs": {
+        "BedrockFoundationModelConfiguration$modelArn": "<p>The model's ARN.</p>"
+      }
+    },
     "Boolean": {
       "base": null,
       "refs": {
         "DeleteAgentActionGroupRequest$skipResourceInUseCheck": "<p>By default, this value is <code>false</code> and deletion is stopped if the resource is in use. If you set it to <code>true</code>, the resource will be deleted even if the resource is in use.</p>",
         "DeleteAgentRequest$skipResourceInUseCheck": "<p>By default, this value is <code>false</code> and deletion is stopped if the resource is in use. If you set it to <code>true</code>, the resource will be deleted even if the resource is in use.</p>",
         "DeleteAgentVersionRequest$skipResourceInUseCheck": "<p>By default, this value is <code>false</code> and deletion is stopped if the resource is in use. If you set it to <code>true</code>, the resource will be deleted even if the resource is in use.</p>",
+        "DeleteFlowRequest$skipResourceInUseCheck": "<p>By default, this value is <code>false</code> and deletion is stopped if the resource is in use. If you set it to <code>true</code>, the resource will be deleted even if the resource is in use.</p>",
+        "DeleteFlowVersionRequest$skipResourceInUseCheck": "<p>By default, this value is <code>false</code> and deletion is stopped if the resource is in use. If you set it to <code>true</code>, the resource will be deleted even if the resource is in use.</p>",
         "ParameterDetail$required": "<p>Whether the parameter is required for the agent to complete the function for action group invocation.</p>"
       }
     },
     "BucketOwnerAccountId": {
       "base": null,
       "refs": {
-        "S3DataSourceConfiguration$bucketOwnerAccountId": "<p>The bucket account owner ID for the S3 bucket.</p>"
+        "S3DataSourceConfiguration$bucketOwnerAccountId": "<p>The account ID for the owner of the S3 bucket.</p>"
       }
     },
     "ChunkingConfiguration": {
@@ -313,7 +355,7 @@
     "ChunkingStrategy": {
       "base": null,
       "refs": {
-        "ChunkingConfiguration$chunkingStrategy": "<p>Knowledge base can split your source data into chunks. A <i>chunk</i> refers to an excerpt from a data source that is returned when the knowledge base that it belongs to is queried. You have the following options for chunking your data. If you opt for <code>NONE</code>, then you may want to pre-process your files by splitting them up such that each file corresponds to a chunk.</p> <ul> <li> <p> <code>FIXED_SIZE</code> – Amazon Bedrock splits your source data into chunks of the approximate size that you set in the <code>fixedSizeChunkingConfiguration</code>.</p> </li> <li> <p> <code>NONE</code> – Amazon Bedrock treats each file as one chunk. If you choose this option, you may want to pre-process your documents by splitting them into separate files.</p> </li> </ul>"
+        "ChunkingConfiguration$chunkingStrategy": "<p>Knowledge base can split your source data into chunks. A <i>chunk</i> refers to an excerpt from a data source that is returned when the knowledge base that it belongs to is queried. You have the following options for chunking your data. If you opt for <code>NONE</code>, then you may want to pre-process your files by splitting them up such that each file corresponds to a chunk.</p> <ul> <li> <p> <code>FIXED_SIZE</code> – Amazon Bedrock splits your source data into chunks of the approximate size that you set in the <code>fixedSizeChunkingConfiguration</code>.</p> </li> <li> <p> <code>HIERARCHICAL</code> – Split documents into layers of chunks where the first layer contains large chunks, and the second layer contains smaller chunks derived from the first layer.</p> </li> <li> <p> <code>SEMANTIC</code> – Split documents into chunks based on groups of similar content derived with natural language processing.</p> </li> <li> <p> <code>NONE</code> – Amazon Bedrock treats each file as one chunk. If you choose this option, you may want to pre-process your documents by splitting them into separate files.</p> </li> </ul>"
       }
     },
     "ClientToken": {
@@ -326,8 +368,19 @@
         "CreateAgentAliasRequest$clientToken": "<p>A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If this token matches a previous request, Amazon Bedrock ignores the request, but does not return an error. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a>.</p>",
         "CreateAgentRequest$clientToken": "<p>A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If this token matches a previous request, Amazon Bedrock ignores the request, but does not return an error. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a>.</p>",
         "CreateDataSourceRequest$clientToken": "<p>A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If this token matches a previous request, Amazon Bedrock ignores the request, but does not return an error. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a>.</p>",
+        "CreateFlowAliasRequest$clientToken": "<p>A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If this token matches a previous request, Amazon Bedrock ignores the request, but does not return an error. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a>.</p>",
+        "CreateFlowRequest$clientToken": "<p>A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If this token matches a previous request, Amazon Bedrock ignores the request, but does not return an error. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a>.</p>",
+        "CreateFlowVersionRequest$clientToken": "<p>A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If this token matches a previous request, Amazon Bedrock ignores the request, but does not return an error. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a>.</p>",
         "CreateKnowledgeBaseRequest$clientToken": "<p>A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If this token matches a previous request, Amazon Bedrock ignores the request, but does not return an error. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a>.</p>",
+        "CreatePromptRequest$clientToken": "<p>A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If this token matches a previous request, Amazon Bedrock ignores the request, but does not return an error. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a>.</p>",
+        "CreatePromptVersionRequest$clientToken": "<p>A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If this token matches a previous request, Amazon Bedrock ignores the request, but does not return an error. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a>.</p>",
         "StartIngestionJobRequest$clientToken": "<p>A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If this token matches a previous request, Amazon Bedrock ignores the request, but does not return an error. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a>.</p>"
+      }
+    },
+    "CollectorFlowNodeConfiguration": {
+      "base": "<p>Defines a collector node in your flow. This node takes an iteration of inputs and consolidates them into an array in the output. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/flows-nodes.html\">Node types in Amazon Bedrock works</a> in the Amazon Bedrock User Guide.</p>",
+      "refs": {
+        "FlowNodeConfiguration$collector": "<p>Contains configurations for a collector node in your flow. Collects an iteration of inputs and consolidates them into an array of outputs.</p>"
       }
     },
     "ColumnName": {
@@ -339,9 +392,59 @@
         "RdsFieldMapping$vectorField": "<p>The name of the field in which Amazon Bedrock stores the vector embeddings for your data sources.</p>"
       }
     },
+    "ConditionFlowNodeConfiguration": {
+      "base": "<p>Defines a condition node in your flow. You can specify conditions that determine which node comes next in the flow. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/flows-nodes.html\">Node types in Amazon Bedrock works</a> in the Amazon Bedrock User Guide.</p>",
+      "refs": {
+        "FlowNodeConfiguration$condition": "<p>Contains configurations for a Condition node in your flow. Defines conditions that lead to different branches of the flow.</p>"
+      }
+    },
     "ConflictException": {
       "base": "<p>There was a conflict performing an operation.</p>",
       "refs": {
+      }
+    },
+    "ConfluenceAuthType": {
+      "base": null,
+      "refs": {
+        "ConfluenceSourceConfiguration$authType": "<p>The supported authentication type to authenticate and connect to your Confluence instance.</p>"
+      }
+    },
+    "ConfluenceCrawlerConfiguration": {
+      "base": "<p>The configuration of the Confluence content. For example, configuring specific types of Confluence content.</p>",
+      "refs": {
+        "ConfluenceDataSourceConfiguration$crawlerConfiguration": "<p>The configuration of the Confluence content. For example, configuring specific types of Confluence content.</p>"
+      }
+    },
+    "ConfluenceDataSourceConfiguration": {
+      "base": "<p>The configuration information to connect to Confluence as your data source.</p>",
+      "refs": {
+        "DataSourceConfiguration$confluenceConfiguration": "<p>The configuration information to connect to Confluence as your data source.</p> <note> <p>Confluence data source connector is in preview release and is subject to change.</p> </note>"
+      }
+    },
+    "ConfluenceHostType": {
+      "base": null,
+      "refs": {
+        "ConfluenceSourceConfiguration$hostType": "<p>The supported host type, whether online/cloud or server/on-premises.</p>"
+      }
+    },
+    "ConfluenceSourceConfiguration": {
+      "base": "<p>The endpoint information to connect to your Confluence data source.</p>",
+      "refs": {
+        "ConfluenceDataSourceConfiguration$sourceConfiguration": "<p>The endpoint information to connect to your Confluence data source.</p>"
+      }
+    },
+    "CrawlFilterConfiguration": {
+      "base": "<p>The configuration of filtering the data source content. For example, configuring regular expression patterns to include or exclude certain content.</p>",
+      "refs": {
+        "ConfluenceCrawlerConfiguration$filterConfiguration": "<p>The configuration of filtering the Confluence content. For example, configuring regular expression patterns to include or exclude certain content.</p>",
+        "SalesforceCrawlerConfiguration$filterConfiguration": "<p>The configuration of filtering the Salesforce content. For example, configuring regular expression patterns to include or exclude certain content.</p>",
+        "SharePointCrawlerConfiguration$filterConfiguration": "<p>The configuration of filtering the SharePoint content. For example, configuring regular expression patterns to include or exclude certain content.</p>"
+      }
+    },
+    "CrawlFilterConfigurationType": {
+      "base": null,
+      "refs": {
+        "CrawlFilterConfiguration$type": "<p>The type of filtering that you want to apply to certain objects or content of the data source. For example, the <code>PATTERN</code> type is regular expression patterns you can apply to filter your content.</p>"
       }
     },
     "CreateAgentActionGroupRequest": {
@@ -384,12 +487,62 @@
       "refs": {
       }
     },
+    "CreateFlowAliasRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateFlowAliasResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateFlowRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateFlowResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateFlowVersionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateFlowVersionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreateKnowledgeBaseRequest": {
       "base": null,
       "refs": {
       }
     },
     "CreateKnowledgeBaseResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreatePromptRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreatePromptResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreatePromptVersionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreatePromptVersionResponse": {
       "base": null,
       "refs": {
       }
@@ -407,12 +560,18 @@
         "ActionGroupExecutor$customControl": "<p>To return the action group invocation results directly in the <code>InvokeAgent</code> response, specify <code>RETURN_CONTROL</code>.</p>"
       }
     },
+    "CustomTransformationConfiguration": {
+      "base": "<p>Settings for customizing steps in the data source content ingestion pipeline.</p> <p>You can configure the data source to process documents with a Lambda function after they are parsed and converted into chunks. When you add a post-chunking transformation, the service stores chunked documents in an S3 bucket and invokes a Lambda function to process them.</p> <p>To process chunked documents with a Lambda function, define an S3 bucket path for input and output objects, and a transformation that specifies the Lambda function to invoke. You can use the Lambda function to customize how chunks are split, and the metadata for each chunk. </p>",
+      "refs": {
+        "VectorIngestionConfiguration$customTransformationConfiguration": "<p>A custom document transformer for parsed data source documents.</p>"
+      }
+    },
     "DataDeletionPolicy": {
       "base": null,
       "refs": {
-        "CreateDataSourceRequest$dataDeletionPolicy": "<p>The data deletion policy assigned to the data source.</p>",
-        "DataSource$dataDeletionPolicy": "<p>The data deletion policy for a data source.</p>",
-        "UpdateDataSourceRequest$dataDeletionPolicy": "<p>The data deletion policy of the updated data source.</p>"
+        "CreateDataSourceRequest$dataDeletionPolicy": "<p>The data deletion policy for the data source.</p> <p>You can set the data deletion policy to:</p> <ul> <li> <p>DELETE: Deletes all underlying data belonging to the data source from the vector store upon deletion of a knowledge base or data source resource. Note that the vector store itself is not deleted, only the underlying data. This flag is ignored if an Amazon Web Services account is deleted.</p> </li> <li> <p>RETAIN: Retains all underlying data in your vector store upon deletion of a knowledge base or data source resource.</p> </li> </ul>",
+        "DataSource$dataDeletionPolicy": "<p>The data deletion policy for the data source.</p>",
+        "UpdateDataSourceRequest$dataDeletionPolicy": "<p>The data deletion policy for the data source that you want to update.</p>"
       }
     },
     "DataSource": {
@@ -424,11 +583,11 @@
       }
     },
     "DataSourceConfiguration": {
-      "base": "<p>Contains details about how a data source is stored.</p>",
+      "base": "<p>The connection configuration for the data source.</p>",
       "refs": {
-        "CreateDataSourceRequest$dataSourceConfiguration": "<p>Contains metadata about where the data source is stored.</p>",
-        "DataSource$dataSourceConfiguration": "<p>Contains details about how the data source is stored.</p>",
-        "UpdateDataSourceRequest$dataSourceConfiguration": "<p>Contains details about the storage configuration of the data source.</p>"
+        "CreateDataSourceRequest$dataSourceConfiguration": "<p>The connection configuration for the data source.</p>",
+        "DataSource$dataSourceConfiguration": "<p>The connection configuration for the data source.</p>",
+        "UpdateDataSourceRequest$dataSourceConfiguration": "<p>The connection configuration for the data source that you want to update.</p>"
       }
     },
     "DataSourceStatus": {
@@ -454,7 +613,7 @@
     "DataSourceType": {
       "base": null,
       "refs": {
-        "DataSourceConfiguration$type": "<p>The type of storage for the data source.</p>"
+        "DataSourceConfiguration$type": "<p>The type of data source.</p>"
       }
     },
     "DateTimestamp": {
@@ -480,9 +639,30 @@
         "AgentVersion$updatedAt": "<p>The time at which the version was last updated.</p>",
         "AgentVersionSummary$createdAt": "<p>The time at which the version was created.</p>",
         "AgentVersionSummary$updatedAt": "<p>The time at which the version was last updated.</p>",
+        "CreateFlowAliasResponse$createdAt": "<p>The time at which the alias was created.</p>",
+        "CreateFlowAliasResponse$updatedAt": "<p>The time at which the alias of the flow was last updated.</p>",
+        "CreateFlowResponse$createdAt": "<p>The time at which the flow was created.</p>",
+        "CreateFlowResponse$updatedAt": "<p>The time at which the flow was last updated.</p>",
+        "CreateFlowVersionResponse$createdAt": "<p>The time at which the flow was created.</p>",
+        "CreatePromptResponse$createdAt": "<p>The time at which the prompt was created.</p>",
+        "CreatePromptResponse$updatedAt": "<p>The time at which the prompt was last updated.</p>",
+        "CreatePromptVersionResponse$createdAt": "<p>The time at which the prompt was created.</p>",
+        "CreatePromptVersionResponse$updatedAt": "<p>The time at which the prompt was last updated.</p>",
         "DataSource$createdAt": "<p>The time at which the data source was created.</p>",
         "DataSource$updatedAt": "<p>The time at which the data source was last updated.</p>",
         "DataSourceSummary$updatedAt": "<p>The time at which the data source was last updated.</p>",
+        "FlowAliasSummary$createdAt": "<p>The time at which the alias was created.</p>",
+        "FlowAliasSummary$updatedAt": "<p>The time at which the alias was last updated.</p>",
+        "FlowSummary$createdAt": "<p>The time at which the flow was created.</p>",
+        "FlowSummary$updatedAt": "<p>The time at which the flow was last updated.</p>",
+        "FlowVersionSummary$createdAt": "<p>The time at the flow version was created.</p>",
+        "GetFlowAliasResponse$createdAt": "<p>The time at which the flow was created.</p>",
+        "GetFlowAliasResponse$updatedAt": "<p>The time at which the flow alias was last updated.</p>",
+        "GetFlowResponse$createdAt": "<p>The time at which the flow was created.</p>",
+        "GetFlowResponse$updatedAt": "<p>The time at which the flow was last updated.</p>",
+        "GetFlowVersionResponse$createdAt": "<p>The time at which the flow was created.</p>",
+        "GetPromptResponse$createdAt": "<p>The time at which the prompt was created.</p>",
+        "GetPromptResponse$updatedAt": "<p>The time at which the prompt was last updated.</p>",
         "IngestionJob$startedAt": "<p>The time at which the ingestion job started.</p>",
         "IngestionJob$updatedAt": "<p>The time at which the ingestion job was last updated.</p>",
         "IngestionJobSummary$startedAt": "<p>The time at which the ingestion job was started.</p>",
@@ -490,7 +670,15 @@
         "KnowledgeBase$createdAt": "<p>The time at which the knowledge base was created.</p>",
         "KnowledgeBase$updatedAt": "<p>The time at which the knowledge base was last updated.</p>",
         "KnowledgeBaseSummary$updatedAt": "<p>The time at which the knowledge base was last updated.</p>",
-        "PrepareAgentResponse$preparedAt": "<p>The time at which the <code>DRAFT</code> version of the agent was last prepared.</p>"
+        "PrepareAgentResponse$preparedAt": "<p>The time at which the <code>DRAFT</code> version of the agent was last prepared.</p>",
+        "PromptSummary$createdAt": "<p>The time at which the prompt was created.</p>",
+        "PromptSummary$updatedAt": "<p>The time at which the prompt was last updated.</p>",
+        "UpdateFlowAliasResponse$createdAt": "<p>The time at which the flow was created.</p>",
+        "UpdateFlowAliasResponse$updatedAt": "<p>The time at which the flow alias was last updated.</p>",
+        "UpdateFlowResponse$createdAt": "<p>The time at which the flow was created.</p>",
+        "UpdateFlowResponse$updatedAt": "<p>The time at which the flow was last updated.</p>",
+        "UpdatePromptResponse$createdAt": "<p>The time at which the prompt was created.</p>",
+        "UpdatePromptResponse$updatedAt": "<p>The time at which the prompt was last updated.</p>"
       }
     },
     "DeleteAgentActionGroupRequest": {
@@ -543,12 +731,52 @@
       "refs": {
       }
     },
+    "DeleteFlowAliasRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteFlowAliasResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteFlowRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteFlowResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteFlowVersionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteFlowVersionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteKnowledgeBaseRequest": {
       "base": null,
       "refs": {
       }
     },
     "DeleteKnowledgeBaseResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeletePromptRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeletePromptResponse": {
       "base": null,
       "refs": {
       }
@@ -571,9 +799,13 @@
         "CreateAgentAliasRequest$description": "<p>A description of the alias of the agent.</p>",
         "CreateAgentRequest$description": "<p>A description of the agent.</p>",
         "CreateDataSourceRequest$description": "<p>A description of the data source.</p>",
+        "CreateFlowAliasRequest$description": "<p>A description for the alias.</p>",
+        "CreateFlowAliasResponse$description": "<p>The description of the alias.</p>",
         "CreateKnowledgeBaseRequest$description": "<p>A description of the knowledge base.</p>",
         "DataSource$description": "<p>The description of the data source.</p>",
         "DataSourceSummary$description": "<p>The description of the data source.</p>",
+        "FlowAliasSummary$description": "<p>A description of the alias.</p>",
+        "GetFlowAliasResponse$description": "<p>The description of the flow.</p>",
         "IngestionJob$description": "<p>The description of the ingestion job.</p>",
         "IngestionJobSummary$description": "<p>The description of the ingestion job.</p>",
         "KnowledgeBase$description": "<p>The description of the knowledge base.</p>",
@@ -584,6 +816,8 @@
         "UpdateAgentKnowledgeBaseRequest$description": "<p>Specifies a new description for the knowledge base associated with an agent.</p>",
         "UpdateAgentRequest$description": "<p>Specifies a new description of the agent.</p>",
         "UpdateDataSourceRequest$description": "<p>Specifies a new description for the data source.</p>",
+        "UpdateFlowAliasRequest$description": "<p>A description for the flow alias.</p>",
+        "UpdateFlowAliasResponse$description": "<p>The description of the flow.</p>",
         "UpdateKnowledgeBaseRequest$description": "<p>Specifies a new description for the knowledge base.</p>"
       }
     },
@@ -609,16 +843,26 @@
         "Agent$agentVersion": "<p>The version of the agent.</p>",
         "AssociateAgentKnowledgeBaseRequest$agentVersion": "<p>The version of the agent with which you want to associate the knowledge base.</p>",
         "CreateAgentActionGroupRequest$agentVersion": "<p>The version of the agent for which to create the action group.</p>",
+        "CreateFlowResponse$version": "<p>The version of the flow. When you create a flow, the version created is the <code>DRAFT</code> version.</p>",
         "DeleteAgentActionGroupRequest$agentVersion": "<p>The version of the agent that the action group belongs to.</p>",
         "DisassociateAgentKnowledgeBaseRequest$agentVersion": "<p>The version of the agent from which to disassociate the knowledge base.</p>",
+        "FlowSummary$version": "<p>The latest version of the flow.</p>",
+        "GetFlowResponse$version": "<p>The version of the flow for which information was retrieved.</p>",
         "UpdateAgentActionGroupRequest$agentVersion": "<p>The unique identifier of the agent version for which to update the action group.</p>",
-        "UpdateAgentKnowledgeBaseRequest$agentVersion": "<p>The version of the agent associated with the knowledge base that you want to update.</p>"
+        "UpdateAgentKnowledgeBaseRequest$agentVersion": "<p>The version of the agent associated with the knowledge base that you want to update.</p>",
+        "UpdateFlowResponse$version": "<p>The version of the flow. When you update a flow, the version updated is the <code>DRAFT</code> version.</p>"
       }
     },
     "EmbeddingModelConfiguration": {
       "base": "<p>The configuration details for the embeddings model.</p>",
       "refs": {
         "VectorKnowledgeBaseConfiguration$embeddingModelConfiguration": "<p>The embeddings model configuration details for the vector model used in Knowledge Base.</p>"
+      }
+    },
+    "EnabledMemoryTypes": {
+      "base": null,
+      "refs": {
+        "MemoryConfiguration$enabledMemoryTypes": "<p>The type of memory that is stored. </p>"
       }
     },
     "FailureReason": {
@@ -654,6 +898,27 @@
         "RedisEnterpriseCloudFieldMapping$vectorField": "<p>The name of the field in which Amazon Bedrock stores the vector embeddings for your data sources.</p>"
       }
     },
+    "FilterList": {
+      "base": null,
+      "refs": {
+        "PatternObjectFilter$exclusionFilters": "<p>A list of one or more exclusion regular expression patterns to exclude certain object types that adhere to the pattern. If you specify an inclusion and exclusion filter/pattern and both match a document, the exclusion filter takes precedence and the document isn’t crawled.</p>",
+        "PatternObjectFilter$inclusionFilters": "<p>A list of one or more inclusion regular expression patterns to include certain object types that adhere to the pattern. If you specify an inclusion and exclusion filter/pattern and both match a document, the exclusion filter takes precedence and the document isn’t crawled.</p>",
+        "WebCrawlerConfiguration$exclusionFilters": "<p>A list of one or more exclusion regular expression patterns to exclude certain URLs. If you specify an inclusion and exclusion filter/pattern and both match a URL, the exclusion filter takes precedence and the web content of the URL isn’t crawled.</p>",
+        "WebCrawlerConfiguration$inclusionFilters": "<p>A list of one or more inclusion regular expression patterns to include certain URLs. If you specify an inclusion and exclusion filter/pattern and both match a URL, the exclusion filter takes precedence and the web content of the URL isn’t crawled.</p>"
+      }
+    },
+    "FilterPattern": {
+      "base": null,
+      "refs": {
+        "FilterList$member": null
+      }
+    },
+    "FilteredObjectType": {
+      "base": null,
+      "refs": {
+        "PatternObjectFilter$objectType": "<p>The supported object type or content type of the data source.</p>"
+      }
+    },
     "FixedSizeChunkingConfiguration": {
       "base": "<p>Configurations for when you choose fixed-size chunking. If you set the <code>chunkingStrategy</code> as <code>NONE</code>, exclude this field.</p>",
       "refs": {
@@ -670,6 +935,367 @@
       "base": null,
       "refs": {
         "FixedSizeChunkingConfiguration$overlapPercentage": "<p>The percentage of overlap between adjacent chunks of a data source.</p>"
+      }
+    },
+    "FlowAliasArn": {
+      "base": null,
+      "refs": {
+        "CreateFlowAliasResponse$arn": "<p>The Amazon Resource Name (ARN) of the alias.</p>",
+        "FlowAliasSummary$arn": "<p>The Amazon Resource Name (ARN) of the flow alias.</p>",
+        "GetFlowAliasResponse$arn": "<p>The Amazon Resource Name (ARN) of the flow.</p>",
+        "UpdateFlowAliasResponse$arn": "<p>The Amazon Resource Name (ARN) of the flow.</p>"
+      }
+    },
+    "FlowAliasId": {
+      "base": null,
+      "refs": {
+        "CreateFlowAliasResponse$id": "<p>The unique identifier of the alias.</p>",
+        "DeleteFlowAliasResponse$id": "<p>The unique identifier of the flow.</p>",
+        "FlowAliasSummary$id": "<p>The unique identifier of the alias of the flow.</p>",
+        "GetFlowAliasResponse$id": "<p>The unique identifier of the alias of the flow.</p>",
+        "UpdateFlowAliasResponse$id": "<p>The unique identifier of the alias.</p>"
+      }
+    },
+    "FlowAliasIdentifier": {
+      "base": null,
+      "refs": {
+        "DeleteFlowAliasRequest$aliasIdentifier": "<p>The unique identifier of the alias to be deleted.</p>",
+        "GetFlowAliasRequest$aliasIdentifier": "<p>The unique identifier of the alias for which to retrieve information.</p>",
+        "UpdateFlowAliasRequest$aliasIdentifier": "<p>The unique identifier of the alias.</p>"
+      }
+    },
+    "FlowAliasRoutingConfiguration": {
+      "base": null,
+      "refs": {
+        "CreateFlowAliasRequest$routingConfiguration": "<p>Contains information about the version to which to map the alias.</p>",
+        "CreateFlowAliasResponse$routingConfiguration": "<p>Contains information about the version that the alias is mapped to.</p>",
+        "FlowAliasSummary$routingConfiguration": "<p>A list of configurations about the versions that the alias maps to. Currently, you can only specify one.</p>",
+        "GetFlowAliasResponse$routingConfiguration": "<p>Contains information about the version that the alias is mapped to.</p>",
+        "UpdateFlowAliasRequest$routingConfiguration": "<p>Contains information about the version to which to map the alias.</p>",
+        "UpdateFlowAliasResponse$routingConfiguration": "<p>Contains information about the version that the alias is mapped to.</p>"
+      }
+    },
+    "FlowAliasRoutingConfigurationListItem": {
+      "base": "<p>Contains information about a version that the alias maps to.</p>",
+      "refs": {
+        "FlowAliasRoutingConfiguration$member": null
+      }
+    },
+    "FlowAliasSummaries": {
+      "base": null,
+      "refs": {
+        "ListFlowAliasesResponse$flowAliasSummaries": "<p>A list, each member of which contains information about a flow alias.</p>"
+      }
+    },
+    "FlowAliasSummary": {
+      "base": "<p>Contains information about an alias of a flow.</p> <p>This data type is used in the following API operations:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_ListFlowAliases.html#API_agent_ListFlowAliases_ResponseSyntax\">ListFlowAliases response</a> </p> </li> </ul>",
+      "refs": {
+        "FlowAliasSummaries$member": null
+      }
+    },
+    "FlowArn": {
+      "base": null,
+      "refs": {
+        "CreateFlowResponse$arn": "<p>The Amazon Resource Name (ARN) of the flow.</p>",
+        "CreateFlowVersionResponse$arn": "<p>The Amazon Resource Name (ARN) of the flow.</p>",
+        "FlowSummary$arn": "<p>The Amazon Resource Name (ARN) of the flow.</p>",
+        "FlowVersionSummary$arn": "<p>The Amazon Resource Name (ARN) of the flow that the version belongs to.</p>",
+        "GetFlowResponse$arn": "<p>The Amazon Resource Name (ARN) of the flow.</p>",
+        "GetFlowVersionResponse$arn": "<p>The Amazon Resource Name (ARN) of the flow.</p>",
+        "UpdateFlowResponse$arn": "<p>The Amazon Resource Name (ARN) of the flow.</p>"
+      }
+    },
+    "FlowCondition": {
+      "base": "<p>Defines a condition in the condition node.</p>",
+      "refs": {
+        "FlowConditions$member": null
+      }
+    },
+    "FlowConditionExpression": {
+      "base": null,
+      "refs": {
+        "FlowCondition$expression": "<p>Defines the condition. You must refer to at least one of the inputs in the condition. For more information, expand the Condition node section in <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/flows-how-it-works.html#flows-nodes\">Node types in prompt flows</a>.</p>"
+      }
+    },
+    "FlowConditionName": {
+      "base": null,
+      "refs": {
+        "FlowCondition$name": "<p>A name for the condition that you can reference.</p>",
+        "FlowConditionalConnectionConfiguration$condition": "<p>The condition that triggers this connection. For more information about how to write conditions, see the <b>Condition</b> node type in the <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/node-types.html\">Node types</a> topic in the Amazon Bedrock User Guide.</p>"
+      }
+    },
+    "FlowConditionalConnectionConfiguration": {
+      "base": "<p>The configuration of a connection between a condition node and another node.</p>",
+      "refs": {
+        "FlowConnectionConfiguration$conditional": "<p>The configuration of a connection originating from a Condition node.</p>"
+      }
+    },
+    "FlowConditions": {
+      "base": null,
+      "refs": {
+        "ConditionFlowNodeConfiguration$conditions": "<p>An array of conditions. Each member contains the name of a condition and an expression that defines the condition.</p>"
+      }
+    },
+    "FlowConnection": {
+      "base": "<p>Contains information about a connection between two nodes in the flow.</p>",
+      "refs": {
+        "FlowConnections$member": null
+      }
+    },
+    "FlowConnectionConfiguration": {
+      "base": "<p>The configuration of the connection.</p>",
+      "refs": {
+        "FlowConnection$configuration": "<p>The configuration of the connection.</p>"
+      }
+    },
+    "FlowConnectionName": {
+      "base": null,
+      "refs": {
+        "FlowConnection$name": "<p>A name for the connection that you can reference.</p>"
+      }
+    },
+    "FlowConnectionType": {
+      "base": null,
+      "refs": {
+        "FlowConnection$type": "<p>Whether the source node that the connection begins from is a condition node (<code>Conditional</code>) or not (<code>Data</code>).</p>"
+      }
+    },
+    "FlowConnections": {
+      "base": null,
+      "refs": {
+        "FlowDefinition$connections": "<p>An array of connection definitions in the flow.</p>"
+      }
+    },
+    "FlowDataConnectionConfiguration": {
+      "base": "<p>The configuration of a connection originating from a node that isn't a Condition node.</p>",
+      "refs": {
+        "FlowConnectionConfiguration$data": "<p>The configuration of a connection originating from a node that isn't a Condition node.</p>"
+      }
+    },
+    "FlowDefinition": {
+      "base": "<p>The definition of the nodes and connections between nodes in the flow.</p>",
+      "refs": {
+        "CreateFlowRequest$definition": "<p>A definition of the nodes and connections between nodes in the flow.</p>",
+        "CreateFlowResponse$definition": "<p>A definition of the nodes and connections between nodes in the flow.</p>",
+        "CreateFlowVersionResponse$definition": "<p>A definition of the nodes and connections in the flow.</p>",
+        "GetFlowResponse$definition": "<p>The definition of the nodes and connections between the nodes in the flow.</p>",
+        "GetFlowVersionResponse$definition": "<p>The definition of the nodes and connections between nodes in the flow.</p>",
+        "UpdateFlowRequest$definition": "<p>A definition of the nodes and the connections between the nodes in the flow.</p>",
+        "UpdateFlowResponse$definition": "<p>A definition of the nodes and the connections between nodes in the flow.</p>"
+      }
+    },
+    "FlowDescription": {
+      "base": null,
+      "refs": {
+        "CreateFlowRequest$description": "<p>A description for the flow.</p>",
+        "CreateFlowResponse$description": "<p>The description of the flow.</p>",
+        "CreateFlowVersionRequest$description": "<p>A description of the version of the flow.</p>",
+        "CreateFlowVersionResponse$description": "<p>The description of the flow version.</p>",
+        "FlowSummary$description": "<p>A description of the flow.</p>",
+        "GetFlowResponse$description": "<p>The description of the flow.</p>",
+        "GetFlowVersionResponse$description": "<p>The description of the flow.</p>",
+        "UpdateFlowRequest$description": "<p>A description for the flow.</p>",
+        "UpdateFlowResponse$description": "<p>The description of the flow.</p>"
+      }
+    },
+    "FlowExecutionRoleArn": {
+      "base": null,
+      "refs": {
+        "CreateFlowRequest$executionRoleArn": "<p>The Amazon Resource Name (ARN) of the service role with permissions to create and manage a flow. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/flows-permissions.html\">Create a service role for flows in Amazon Bedrock</a> in the Amazon Bedrock User Guide.</p>",
+        "CreateFlowResponse$executionRoleArn": "<p>The Amazon Resource Name (ARN) of the service role with permissions to create a flow. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/flows-permissions.html\">Create a service role for flows in Amazon Bedrock</a> in the Amazon Bedrock User Guide.</p>",
+        "CreateFlowVersionResponse$executionRoleArn": "<p>The Amazon Resource Name (ARN) of the service role with permissions to create a flow. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/flows-permissions.html\">Create a service role for flows in Amazon Bedrock</a> in the Amazon Bedrock User Guide.</p>",
+        "GetFlowResponse$executionRoleArn": "<p>The Amazon Resource Name (ARN) of the service role with permissions to create a flow. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/flows-permissions.html\">Create a service row for flows</a> in the Amazon Bedrock User Guide.</p>",
+        "GetFlowVersionResponse$executionRoleArn": "<p>The Amazon Resource Name (ARN) of the service role with permissions to create a flow. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/flows-permissions.html\">Create a service role for flows in Amazon Bedrock</a> in the Amazon Bedrock User Guide.</p>",
+        "UpdateFlowRequest$executionRoleArn": "<p>The Amazon Resource Name (ARN) of the service role with permissions to create and manage a flow. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/flows-permissions.html\">Create a service role for flows in Amazon Bedrock</a> in the Amazon Bedrock User Guide.</p>",
+        "UpdateFlowResponse$executionRoleArn": "<p>The Amazon Resource Name (ARN) of the service role with permissions to create a flow. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/flows-permissions.html\">Create a service role for flows in Amazon Bedrock</a> in the Amazon Bedrock User Guide.</p>"
+      }
+    },
+    "FlowId": {
+      "base": null,
+      "refs": {
+        "CreateFlowAliasResponse$flowId": "<p>The unique identifier of the flow that the alias belongs to.</p>",
+        "CreateFlowResponse$id": "<p>The unique identifier of the flow.</p>",
+        "CreateFlowVersionResponse$id": "<p>The unique identifier of the flow.</p>",
+        "DeleteFlowAliasResponse$flowId": "<p>The unique identifier of the flow that the alias belongs to.</p>",
+        "DeleteFlowResponse$id": "<p>The unique identifier of the flow.</p>",
+        "FlowAliasSummary$flowId": "<p>The unique identifier of the flow.</p>",
+        "FlowSummary$id": "<p>The unique identifier of the flow.</p>",
+        "FlowVersionSummary$id": "<p>The unique identifier of the flow.</p>",
+        "GetFlowAliasResponse$flowId": "<p>The unique identifier of the flow that the alias belongs to.</p>",
+        "GetFlowResponse$id": "<p>The unique identifier of the flow.</p>",
+        "GetFlowVersionResponse$id": "<p>The unique identifier of the flow.</p>",
+        "PrepareFlowResponse$id": "<p>The unique identifier of the flow.</p>",
+        "UpdateFlowAliasResponse$flowId": "<p>The unique identifier of the flow.</p>",
+        "UpdateFlowResponse$id": "<p>The unique identifier of the flow.</p>"
+      }
+    },
+    "FlowIdentifier": {
+      "base": null,
+      "refs": {
+        "CreateFlowAliasRequest$flowIdentifier": "<p>The unique identifier of the flow for which to create an alias.</p>",
+        "CreateFlowVersionRequest$flowIdentifier": "<p>The unique identifier of the flow that you want to create a version of.</p>",
+        "DeleteFlowAliasRequest$flowIdentifier": "<p>The unique identifier of the flow that the alias belongs to.</p>",
+        "DeleteFlowRequest$flowIdentifier": "<p>The unique identifier of the flow.</p>",
+        "DeleteFlowVersionRequest$flowIdentifier": "<p>The unique identifier of the flow whose version that you want to delete</p>",
+        "GetFlowAliasRequest$flowIdentifier": "<p>The unique identifier of the flow that the alias belongs to.</p>",
+        "GetFlowRequest$flowIdentifier": "<p>The unique identifier of the flow.</p>",
+        "GetFlowVersionRequest$flowIdentifier": "<p>The unique identifier of the flow for which to get information.</p>",
+        "ListFlowAliasesRequest$flowIdentifier": "<p>The unique identifier of the flow for which aliases are being returned.</p>",
+        "ListFlowVersionsRequest$flowIdentifier": "<p>The unique identifier of the flow.</p>",
+        "PrepareFlowRequest$flowIdentifier": "<p>The unique identifier of the flow.</p>",
+        "UpdateFlowAliasRequest$flowIdentifier": "<p>The unique identifier of the flow.</p>",
+        "UpdateFlowRequest$flowIdentifier": "<p>The unique identifier of the flow.</p>"
+      }
+    },
+    "FlowName": {
+      "base": null,
+      "refs": {
+        "CreateFlowRequest$name": "<p>A name for the flow.</p>",
+        "CreateFlowResponse$name": "<p>The name of the flow.</p>",
+        "CreateFlowVersionResponse$name": "<p>The name of the flow version.</p>",
+        "FlowSummary$name": "<p>The name of the flow.</p>",
+        "GetFlowResponse$name": "<p>The name of the flow.</p>",
+        "GetFlowVersionResponse$name": "<p>The name of the flow version.</p>",
+        "UpdateFlowRequest$name": "<p>A name for the flow.</p>",
+        "UpdateFlowResponse$name": "<p>The name of the flow.</p>"
+      }
+    },
+    "FlowNode": {
+      "base": "<p>Contains configurations about a node in the flow.</p>",
+      "refs": {
+        "FlowNodes$member": null
+      }
+    },
+    "FlowNodeConfiguration": {
+      "base": "<p>Contains configurations for a node in your flow. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/flows-nodes.html\">Node types in Amazon Bedrock works</a> in the Amazon Bedrock User Guide.</p>",
+      "refs": {
+        "FlowNode$configuration": "<p>Contains configurations for the node.</p>"
+      }
+    },
+    "FlowNodeIODataType": {
+      "base": null,
+      "refs": {
+        "FlowNodeInput$type": "<p>The data type of the input. If the input doesn't match this type at runtime, a validation error will be thrown.</p>",
+        "FlowNodeOutput$type": "<p>The data type of the output. If the output doesn't match this type at runtime, a validation error will be thrown.</p>"
+      }
+    },
+    "FlowNodeInput": {
+      "base": "<p>Contains configurations for an input to a node.</p>",
+      "refs": {
+        "FlowNodeInputs$member": null
+      }
+    },
+    "FlowNodeInputExpression": {
+      "base": null,
+      "refs": {
+        "FlowNodeInput$expression": "<p>An expression that formats the input for the node. For an explanation of how to create expressions, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/flows-expressions.html\">Expressions in Prompt flows in Amazon Bedrock</a>.</p>"
+      }
+    },
+    "FlowNodeInputName": {
+      "base": null,
+      "refs": {
+        "FlowDataConnectionConfiguration$targetInput": "<p>The name of the input in the target node that the connection ends at.</p>",
+        "FlowNodeInput$name": "<p>A name for the input that you can reference.</p>"
+      }
+    },
+    "FlowNodeInputs": {
+      "base": null,
+      "refs": {
+        "FlowNode$inputs": "<p>An array of objects, each of which contains information about an input into the node.</p>"
+      }
+    },
+    "FlowNodeName": {
+      "base": null,
+      "refs": {
+        "FlowConnection$source": "<p>The node that the connection starts at.</p>",
+        "FlowConnection$target": "<p>The node that the connection ends at.</p>",
+        "FlowNode$name": "<p>A name for the node.</p>"
+      }
+    },
+    "FlowNodeOutput": {
+      "base": "<p>Contains configurations for an output from a node.</p>",
+      "refs": {
+        "FlowNodeOutputs$member": null
+      }
+    },
+    "FlowNodeOutputName": {
+      "base": null,
+      "refs": {
+        "FlowDataConnectionConfiguration$sourceOutput": "<p>The name of the output in the source node that the connection begins from.</p>",
+        "FlowNodeOutput$name": "<p>A name for the output that you can reference.</p>"
+      }
+    },
+    "FlowNodeOutputs": {
+      "base": null,
+      "refs": {
+        "FlowNode$outputs": "<p>A list of objects, each of which contains information about an output from the node.</p>"
+      }
+    },
+    "FlowNodeType": {
+      "base": null,
+      "refs": {
+        "FlowNode$type": "<p>The type of node. This value must match the name of the key that you provide in the configuration you provide in the <code>FlowNodeConfiguration</code> field.</p>"
+      }
+    },
+    "FlowNodes": {
+      "base": null,
+      "refs": {
+        "FlowDefinition$nodes": "<p>An array of node definitions in the flow.</p>"
+      }
+    },
+    "FlowStatus": {
+      "base": null,
+      "refs": {
+        "CreateFlowResponse$status": "<p>The status of the flow. When you submit this request, the status will be <code>NotPrepared</code>. If creation fails, the status becomes <code>Failed</code>.</p>",
+        "CreateFlowVersionResponse$status": "<p>The status of the flow.</p>",
+        "FlowSummary$status": "<p>The status of the flow. The following statuses are possible:</p> <ul> <li> <p>NotPrepared – The flow has been created or updated, but hasn't been prepared. If you just created the flow, you can't test it. If you updated the flow, the <code>DRAFT</code> version won't contain the latest changes for testing. Send a <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_PrepareFlow.html\">PrepareFlow</a> request to package the latest changes into the <code>DRAFT</code> version.</p> </li> <li> <p>Preparing – The flow is being prepared so that the <code>DRAFT</code> version contains the latest changes for testing.</p> </li> <li> <p>Prepared – The flow is prepared and the <code>DRAFT</code> version contains the latest changes for testing.</p> </li> <li> <p>Failed – The last API operation that you invoked on the flow failed. Send a <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_GetFlow.html\">GetFlow</a> request and check the error message in the <code>validations</code> field.</p> </li> </ul>",
+        "FlowVersionSummary$status": "<p>The status of the flow.</p>",
+        "GetFlowResponse$status": "<p>The status of the flow. The following statuses are possible:</p> <ul> <li> <p>NotPrepared – The flow has been created or updated, but hasn't been prepared. If you just created the flow, you can't test it. If you updated the flow, the <code>DRAFT</code> version won't contain the latest changes for testing. Send a <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_PrepareFlow.html\">PrepareFlow</a> request to package the latest changes into the <code>DRAFT</code> version.</p> </li> <li> <p>Preparing – The flow is being prepared so that the <code>DRAFT</code> version contains the latest changes for testing.</p> </li> <li> <p>Prepared – The flow is prepared and the <code>DRAFT</code> version contains the latest changes for testing.</p> </li> <li> <p>Failed – The last API operation that you invoked on the flow failed. Send a <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_GetFlow.html\">GetFlow</a> request and check the error message in the <code>validations</code> field.</p> </li> </ul>",
+        "GetFlowVersionResponse$status": "<p>The status of the flow.</p>",
+        "PrepareFlowResponse$status": "<p>The status of the flow. When you submit this request, the status will be <code>NotPrepared</code>. If preparation succeeds, the status becomes <code>Prepared</code>. If it fails, the status becomes <code>FAILED</code>.</p>",
+        "UpdateFlowResponse$status": "<p>The status of the flow. When you submit this request, the status will be <code>NotPrepared</code>. If updating fails, the status becomes <code>Failed</code>.</p>"
+      }
+    },
+    "FlowSummaries": {
+      "base": null,
+      "refs": {
+        "ListFlowsResponse$flowSummaries": "<p>A list, each member of which contains information about a flow.</p>"
+      }
+    },
+    "FlowSummary": {
+      "base": "<p>Contains the definition of a flow.</p>",
+      "refs": {
+        "FlowSummaries$member": null
+      }
+    },
+    "FlowValidation": {
+      "base": "<p>Contains information about validation of the flow.</p> <p>This data type is used in the following API operations:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_GetFlow.html#API_agent_GetFlow_ResponseSyntax\">GetFlow response</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_GetFlowVersion.html#API_agent_GetFlowVersion_ResponseSyntax\">GetFlowVersion response</a> </p> </li> </ul>",
+      "refs": {
+        "FlowValidations$member": null
+      }
+    },
+    "FlowValidationSeverity": {
+      "base": null,
+      "refs": {
+        "FlowValidation$severity": "<p>The severity of the issue described in the message.</p>"
+      }
+    },
+    "FlowValidations": {
+      "base": null,
+      "refs": {
+        "GetFlowResponse$validations": "<p>A list of validation error messages related to the last failed operation on the flow.</p>"
+      }
+    },
+    "FlowVersionSummaries": {
+      "base": null,
+      "refs": {
+        "ListFlowVersionsResponse$flowVersionSummaries": "<p>A list, each member of which contains information about a flow.</p>"
+      }
+    },
+    "FlowVersionSummary": {
+      "base": "<p>Contains information about the flow version.</p> <p>This data type is used in the following API operations:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_ListFlowVersions.html#API_agent_ListFlowVersions_ResponseSyntax\">ListFlowVersions response</a> </p> </li> </ul>",
+      "refs": {
+        "FlowVersionSummaries$member": null
       }
     },
     "Function": {
@@ -758,6 +1384,36 @@
       "refs": {
       }
     },
+    "GetFlowAliasRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetFlowAliasResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetFlowRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetFlowResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetFlowVersionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetFlowVersionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetIngestionJobRequest": {
       "base": null,
       "refs": {
@@ -778,13 +1434,23 @@
       "refs": {
       }
     },
-    "GuardrailConfiguration": {
-      "base": "<p>The details of the guardrails configuration.</p>",
+    "GetPromptRequest": {
+      "base": null,
       "refs": {
-        "Agent$guardrailConfiguration": "<p>The guardrails configuration assigned to the agent.</p>",
-        "AgentSummary$guardrailConfiguration": "<p>The details of the guardrails configuration in the agent summary.</p>",
-        "AgentVersion$guardrailConfiguration": "<p>The guardrails configuration assigned to the agent version.</p>",
-        "AgentVersionSummary$guardrailConfiguration": "<p>The details of the guardrails configuration in the agent version summary.</p>",
+      }
+    },
+    "GetPromptResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GuardrailConfiguration": {
+      "base": "<p>Details about the guardrail associated with an agent.</p>",
+      "refs": {
+        "Agent$guardrailConfiguration": "<p>Details about the guardrail associated with the agent.</p>",
+        "AgentSummary$guardrailConfiguration": "<p>Details about the guardrail associated with the agent.</p>",
+        "AgentVersion$guardrailConfiguration": "<p>Details about the guardrail associated with the agent.</p>",
+        "AgentVersionSummary$guardrailConfiguration": "<p>Details about the guardrail associated with the agent.</p>",
         "CreateAgentRequest$guardrailConfiguration": "<p>The unique Guardrail configuration assigned to the agent when it is created.</p>",
         "UpdateAgentRequest$guardrailConfiguration": "<p>The unique Guardrail configuration assigned to the agent when it is updated.</p>"
       }
@@ -792,13 +1458,51 @@
     "GuardrailIdentifier": {
       "base": null,
       "refs": {
-        "GuardrailConfiguration$guardrailIdentifier": "<p>The guardrails identifier assigned to the guardrails configuration.</p>"
+        "GuardrailConfiguration$guardrailIdentifier": "<p>The unique identifier of the guardrail.</p>"
       }
     },
     "GuardrailVersion": {
       "base": null,
       "refs": {
-        "GuardrailConfiguration$guardrailVersion": "<p>The guardrails version assigned to the guardrails configuration.</p>"
+        "GuardrailConfiguration$guardrailVersion": "<p>The version of the guardrail.</p>"
+      }
+    },
+    "HierarchicalChunkingConfiguration": {
+      "base": "<p>Settings for hierarchical document chunking for a data source. Hierarchical chunking splits documents into layers of chunks where the first layer contains large chunks, and the second layer contains smaller chunks derived from the first layer.</p> <p>You configure the number of tokens to overlap, or repeat across adjacent chunks. For example, if you set overlap tokens to 60, the last 60 tokens in the first chunk are also included at the beginning of the second chunk. For each layer, you must also configure the maximum number of tokens in a chunk.</p>",
+      "refs": {
+        "ChunkingConfiguration$hierarchicalChunkingConfiguration": "<p>Settings for hierarchical document chunking for a data source. Hierarchical chunking splits documents into layers of chunks where the first layer contains large chunks, and the second layer contains smaller chunks derived from the first layer.</p>"
+      }
+    },
+    "HierarchicalChunkingConfigurationOverlapTokensInteger": {
+      "base": null,
+      "refs": {
+        "HierarchicalChunkingConfiguration$overlapTokens": "<p>The number of tokens to repeat across chunks in the same layer.</p>"
+      }
+    },
+    "HierarchicalChunkingLevelConfiguration": {
+      "base": "<p>Token settings for a layer in a hierarchical chunking configuration.</p>",
+      "refs": {
+        "HierarchicalChunkingLevelConfigurations$member": null
+      }
+    },
+    "HierarchicalChunkingLevelConfigurationMaxTokensInteger": {
+      "base": null,
+      "refs": {
+        "HierarchicalChunkingLevelConfiguration$maxTokens": "<p>The maximum number of tokens that a chunk can contain in this layer.</p>"
+      }
+    },
+    "HierarchicalChunkingLevelConfigurations": {
+      "base": null,
+      "refs": {
+        "HierarchicalChunkingConfiguration$levelConfigurations": "<p>Token settings for each layer.</p>"
+      }
+    },
+    "HttpsUrl": {
+      "base": null,
+      "refs": {
+        "ConfluenceSourceConfiguration$hostUrl": "<p>The Confluence host URL or instance URL.</p>",
+        "SalesforceSourceConfiguration$hostUrl": "<p>The Salesforce host URL or instance URL.</p>",
+        "SharePointSiteUrls$member": null
       }
     },
     "Id": {
@@ -835,6 +1539,7 @@
         "DeleteDataSourceRequest$knowledgeBaseId": "<p>The unique identifier of the knowledge base from which to delete the data source.</p>",
         "DeleteDataSourceResponse$dataSourceId": "<p>The unique identifier of the data source that was deleted.</p>",
         "DeleteDataSourceResponse$knowledgeBaseId": "<p>The unique identifier of the knowledge base to which the data source that was deleted belonged.</p>",
+        "DeleteFlowVersionResponse$id": "<p>The unique identifier of the flow.</p>",
         "DeleteKnowledgeBaseRequest$knowledgeBaseId": "<p>The unique identifier of the knowledge base to delete.</p>",
         "DeleteKnowledgeBaseResponse$knowledgeBaseId": "<p>The unique identifier of the knowledge base that was deleted.</p>",
         "DisassociateAgentKnowledgeBaseRequest$agentId": "<p>The unique identifier of the agent from which to disassociate the knowledge base.</p>",
@@ -878,7 +1583,7 @@
         "UpdateAgentKnowledgeBaseRequest$knowledgeBaseId": "<p>The unique identifier of the knowledge base that has been associated with an agent.</p>",
         "UpdateAgentRequest$agentId": "<p>The unique identifier of the agent.</p>",
         "UpdateDataSourceRequest$dataSourceId": "<p>The unique identifier of the data source.</p>",
-        "UpdateDataSourceRequest$knowledgeBaseId": "<p>The unique identifier of the knowledge base to which the data source belongs.</p>",
+        "UpdateDataSourceRequest$knowledgeBaseId": "<p>The unique identifier of the knowledge base for the data source.</p>",
         "UpdateKnowledgeBaseRequest$knowledgeBaseId": "<p>The unique identifier of the knowledge base to update.</p>"
       }
     },
@@ -969,6 +1674,12 @@
         "IngestionJobSummaries$member": null
       }
     },
+    "InputFlowNodeConfiguration": {
+      "base": "<p>Contains configurations for the input flow node for a flow. This node takes the input from flow invocation and passes it to the next node in the data type that you specify.</p>",
+      "refs": {
+        "FlowNodeConfiguration$input": "<p>Contains configurations for an input flow node in your flow. The first node in the flow. <code>inputs</code> can't be specified for this node.</p>"
+      }
+    },
     "Instruction": {
       "base": null,
       "refs": {
@@ -978,9 +1689,21 @@
         "UpdateAgentRequest$instruction": "<p>Specifies new instructions that tell the agent what it should do and how it should interact with users.</p>"
       }
     },
+    "IntermediateStorage": {
+      "base": "<p>A location for storing content from data sources temporarily as it is processed by custom components in the ingestion pipeline.</p>",
+      "refs": {
+        "CustomTransformationConfiguration$intermediateStorage": "<p>An S3 bucket path for input and output objects.</p>"
+      }
+    },
     "InternalServerException": {
       "base": "<p>An internal server error occurred. Retry your request.</p>",
       "refs": {
+      }
+    },
+    "IteratorFlowNodeConfiguration": {
+      "base": "<p>Contains configurations for an iterator node in a flow. Takes an input that is an array and iteratively sends each item of the array as an output to the following node. The size of the array is also returned in the output.</p> <p>The output flow node at the end of the flow iteration will return a response for each member of the array. To return only one response, you can include a collector node downstream from the iterator node.</p>",
+      "refs": {
+        "FlowNodeConfiguration$iterator": "<p>Contains configurations for an iterator node in your flow. Takes an input that is an array and iteratively sends each item of the array as an output to the following node. The size of the array is also returned in the output.</p> <p>The output flow node at the end of the flow iteration will return a response for each member of the array. To return only one response, you can include a collector node downstream from the iterator node.</p>"
       }
     },
     "KmsKeyArn": {
@@ -989,8 +1712,21 @@
         "Agent$customerEncryptionKeyArn": "<p>The Amazon Resource Name (ARN) of the KMS key that encrypts the agent.</p>",
         "AgentVersion$customerEncryptionKeyArn": "<p>The Amazon Resource Name (ARN) of the KMS key that encrypts the agent.</p>",
         "CreateAgentRequest$customerEncryptionKeyArn": "<p>The Amazon Resource Name (ARN) of the KMS key with which to encrypt the agent.</p>",
+        "CreateFlowRequest$customerEncryptionKeyArn": "<p>The Amazon Resource Name (ARN) of the KMS key to encrypt the flow.</p>",
+        "CreateFlowResponse$customerEncryptionKeyArn": "<p>The Amazon Resource Name (ARN) of the KMS key that you encrypted the flow with.</p>",
+        "CreateFlowVersionResponse$customerEncryptionKeyArn": "<p>The KMS key that the flow is encrypted with.</p>",
+        "CreatePromptRequest$customerEncryptionKeyArn": "<p>The Amazon Resource Name (ARN) of the KMS key to encrypt the prompt.</p>",
+        "CreatePromptResponse$customerEncryptionKeyArn": "<p>The Amazon Resource Name (ARN) of the KMS key that you encrypted the prompt with.</p>",
+        "CreatePromptVersionResponse$customerEncryptionKeyArn": "<p>The Amazon Resource Name (ARN) of the KMS key to encrypt the version of the prompt.</p>",
+        "GetFlowResponse$customerEncryptionKeyArn": "<p>The Amazon Resource Name (ARN) of the KMS key that the flow is encrypted with.</p>",
+        "GetFlowVersionResponse$customerEncryptionKeyArn": "<p>The Amazon Resource Name (ARN) of the KMS key that the version of the flow is encrypted with.</p>",
+        "GetPromptResponse$customerEncryptionKeyArn": "<p>The Amazon Resource Name (ARN) of the KMS key that the prompt is encrypted with.</p>",
         "ServerSideEncryptionConfiguration$kmsKeyArn": "<p>The Amazon Resource Name (ARN) of the KMS key used to encrypt the resource.</p>",
-        "UpdateAgentRequest$customerEncryptionKeyArn": "<p>The Amazon Resource Name (ARN) of the KMS key with which to encrypt the agent.</p>"
+        "UpdateAgentRequest$customerEncryptionKeyArn": "<p>The Amazon Resource Name (ARN) of the KMS key with which to encrypt the agent.</p>",
+        "UpdateFlowRequest$customerEncryptionKeyArn": "<p>The Amazon Resource Name (ARN) of the KMS key to encrypt the flow.</p>",
+        "UpdateFlowResponse$customerEncryptionKeyArn": "<p>The Amazon Resource Name (ARN) of the KMS key that the flow was encrypted with.</p>",
+        "UpdatePromptRequest$customerEncryptionKeyArn": "<p>The Amazon Resource Name (ARN) of the KMS key to encrypt the prompt.</p>",
+        "UpdatePromptResponse$customerEncryptionKeyArn": "<p>The Amazon Resource Name (ARN) of the KMS key to encrypt the prompt.</p>"
       }
     },
     "KnowledgeBase": {
@@ -1013,6 +1749,18 @@
         "CreateKnowledgeBaseRequest$knowledgeBaseConfiguration": "<p>Contains details about the embeddings model used for the knowledge base.</p>",
         "KnowledgeBase$knowledgeBaseConfiguration": "<p>Contains details about the embeddings configuration of the knowledge base.</p>",
         "UpdateKnowledgeBaseRequest$knowledgeBaseConfiguration": "<p>Specifies the configuration for the embeddings model used for the knowledge base. You must use the same configuration as when the knowledge base was created.</p>"
+      }
+    },
+    "KnowledgeBaseFlowNodeConfiguration": {
+      "base": "<p>Contains configurations for a knowledge base node in a flow. This node takes a query as the input and returns, as the output, the retrieved responses directly (as an array) or a response generated based on the retrieved responses. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/flows-nodes.html\">Node types in Amazon Bedrock works</a> in the Amazon Bedrock User Guide.</p>",
+      "refs": {
+        "FlowNodeConfiguration$knowledgeBase": "<p>Contains configurations for a knowledge base node in your flow. Queries a knowledge base and returns the retrieved results or generated response.</p>"
+      }
+    },
+    "KnowledgeBaseId": {
+      "base": null,
+      "refs": {
+        "KnowledgeBaseFlowNodeConfiguration$knowledgeBaseId": "<p>The unique identifier of the knowledge base to query.</p>"
       }
     },
     "KnowledgeBaseRoleArn": {
@@ -1068,7 +1816,33 @@
       "base": null,
       "refs": {
         "ActionGroupExecutor$lambda": "<p>The Amazon Resource Name (ARN) of the Lambda function containing the business logic that is carried out upon invoking the action.</p>",
-        "PromptOverrideConfiguration$overrideLambda": "<p>The ARN of the Lambda function to use when parsing the raw foundation model output in parts of the agent sequence. If you specify this field, at least one of the <code>promptConfigurations</code> must contain a <code>parserMode</code> value that is set to <code>OVERRIDDEN</code>. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/lambda-parser.html\">Parser Lambda function in Agents for Amazon Bedrock</a>.</p>"
+        "LambdaFunctionFlowNodeConfiguration$lambdaArn": "<p>The Amazon Resource Name (ARN) of the Lambda function to invoke.</p>",
+        "PromptOverrideConfiguration$overrideLambda": "<p>The ARN of the Lambda function to use when parsing the raw foundation model output in parts of the agent sequence. If you specify this field, at least one of the <code>promptConfigurations</code> must contain a <code>parserMode</code> value that is set to <code>OVERRIDDEN</code>. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/lambda-parser.html\">Parser Lambda function in Agents for Amazon Bedrock</a>.</p>",
+        "TransformationLambdaConfiguration$lambdaArn": "<p>The function's ARN identifier.</p>"
+      }
+    },
+    "LambdaFunctionFlowNodeConfiguration": {
+      "base": "<p>Contains configurations for a Lambda function node in the flow. You specify the Lambda function to invoke and the inputs into the function. The output is the response that is defined in the Lambda function. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/flows-nodes.html\">Node types in Amazon Bedrock works</a> in the Amazon Bedrock User Guide.</p>",
+      "refs": {
+        "FlowNodeConfiguration$lambdaFunction": "<p>Contains configurations for a Lambda function node in your flow. Invokes an Lambda function.</p>"
+      }
+    },
+    "LexBotAliasArn": {
+      "base": null,
+      "refs": {
+        "LexFlowNodeConfiguration$botAliasArn": "<p>The Amazon Resource Name (ARN) of the Amazon Lex bot alias to invoke.</p>"
+      }
+    },
+    "LexBotLocaleId": {
+      "base": null,
+      "refs": {
+        "LexFlowNodeConfiguration$localeId": "<p>The Region to invoke the Amazon Lex bot in.</p>"
+      }
+    },
+    "LexFlowNodeConfiguration": {
+      "base": "<p>Contains configurations for a Lex node in the flow. You specify a Amazon Lex bot to invoke. This node takes an utterance as the input and returns as the output the intent identified by the Amazon Lex bot. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/flows-nodes.html\">Node types in Amazon Bedrock works</a> in the Amazon Bedrock User Guide.</p>",
+      "refs": {
+        "FlowNodeConfiguration$lex": "<p>Contains configurations for a Lex node in your flow. Invokes an Amazon Lex bot to identify the intent of the input and return the intent as the output.</p>"
       }
     },
     "ListAgentActionGroupsRequest": {
@@ -1131,6 +1905,36 @@
       "refs": {
       }
     },
+    "ListFlowAliasesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListFlowAliasesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListFlowVersionsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListFlowVersionsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListFlowsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListFlowsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListIngestionJobsRequest": {
       "base": null,
       "refs": {
@@ -1147,6 +1951,16 @@
       }
     },
     "ListKnowledgeBasesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListPromptsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListPromptsResponse": {
       "base": null,
       "refs": {
       }
@@ -1170,14 +1984,40 @@
         "ListAgentVersionsRequest$maxResults": "<p>The maximum number of results to return in the response. If the total number of results is greater than this value, use the token returned in the response in the <code>nextToken</code> field when making another request to return the next batch of results.</p>",
         "ListAgentsRequest$maxResults": "<p>The maximum number of results to return in the response. If the total number of results is greater than this value, use the token returned in the response in the <code>nextToken</code> field when making another request to return the next batch of results.</p>",
         "ListDataSourcesRequest$maxResults": "<p>The maximum number of results to return in the response. If the total number of results is greater than this value, use the token returned in the response in the <code>nextToken</code> field when making another request to return the next batch of results.</p>",
+        "ListFlowAliasesRequest$maxResults": "<p>The maximum number of results to return in the response. If the total number of results is greater than this value, use the token returned in the response in the <code>nextToken</code> field when making another request to return the next batch of results.</p>",
+        "ListFlowVersionsRequest$maxResults": "<p>The maximum number of results to return in the response. If the total number of results is greater than this value, use the token returned in the response in the <code>nextToken</code> field when making another request to return the next batch of results.</p>",
+        "ListFlowsRequest$maxResults": "<p>The maximum number of results to return in the response. If the total number of results is greater than this value, use the token returned in the response in the <code>nextToken</code> field when making another request to return the next batch of results.</p>",
         "ListIngestionJobsRequest$maxResults": "<p>The maximum number of results to return in the response. If the total number of results is greater than this value, use the token returned in the response in the <code>nextToken</code> field when making another request to return the next batch of results.</p>",
-        "ListKnowledgeBasesRequest$maxResults": "<p>The maximum number of results to return in the response. If the total number of results is greater than this value, use the token returned in the response in the <code>nextToken</code> field when making another request to return the next batch of results.</p>"
+        "ListKnowledgeBasesRequest$maxResults": "<p>The maximum number of results to return in the response. If the total number of results is greater than this value, use the token returned in the response in the <code>nextToken</code> field when making another request to return the next batch of results.</p>",
+        "ListPromptsRequest$maxResults": "<p>The maximum number of results to return in the response. If the total number of results is greater than this value, use the token returned in the response in the <code>nextToken</code> field when making another request to return the next batch of results.</p>"
       }
     },
     "MaximumLength": {
       "base": null,
       "refs": {
-        "InferenceConfiguration$maximumLength": "<p>The maximum number of tokens to allow in the generated response.</p>"
+        "InferenceConfiguration$maximumLength": "<p>The maximum number of tokens to allow in the generated response.</p>",
+        "PromptModelInferenceConfiguration$maxTokens": "<p>The maximum number of tokens to return in the response.</p>"
+      }
+    },
+    "MemoryConfiguration": {
+      "base": "<p>Details of the memory configuration.</p>",
+      "refs": {
+        "Agent$memoryConfiguration": "<p>Contains memory configuration for the agent.</p>",
+        "AgentVersion$memoryConfiguration": "<p> Contains details of the memory configuration on the version of the agent. </p>",
+        "CreateAgentRequest$memoryConfiguration": "<p> Contains the details of the memory configured for the agent.</p>",
+        "UpdateAgentRequest$memoryConfiguration": "<p>Specifies the new memory configuration for the agent. </p>"
+      }
+    },
+    "MemoryType": {
+      "base": null,
+      "refs": {
+        "EnabledMemoryTypes$member": null
+      }
+    },
+    "Microsoft365TenantId": {
+      "base": null,
+      "refs": {
+        "SharePointSourceConfiguration$tenantId": "<p>The identifier of your Microsoft 365 tenant.</p>"
       }
     },
     "ModelIdentifier": {
@@ -1186,6 +2026,7 @@
         "Agent$foundationModel": "<p>The foundation model used for orchestration by the agent.</p>",
         "AgentVersion$foundationModel": "<p>The foundation model that the version invokes.</p>",
         "CreateAgentRequest$foundationModel": "<p>The foundation model to be used for orchestration by the agent you create.</p>",
+        "KnowledgeBaseFlowNodeConfiguration$modelId": "<p>The unique identifier of the model to use to generate a response from the query results. Omit this field if you want to return the retrieved results as an array.</p>",
         "UpdateAgentRequest$foundationModel": "<p>Specifies a new foundation model to be used for orchestration by the agent.</p>"
       }
     },
@@ -1246,10 +2087,14 @@
         "CreateAgentAliasRequest$agentAliasName": "<p>The name of the alias.</p>",
         "CreateAgentRequest$agentName": "<p>A name for the agent that you create.</p>",
         "CreateDataSourceRequest$name": "<p>The name of the data source.</p>",
+        "CreateFlowAliasRequest$name": "<p>A name for the alias.</p>",
+        "CreateFlowAliasResponse$name": "<p>The name of the alias.</p>",
         "CreateKnowledgeBaseRequest$name": "<p>A name for the knowledge base.</p>",
         "DataSource$name": "<p>The name of the data source.</p>",
         "DataSourceSummary$name": "<p>The name of the data source.</p>",
+        "FlowAliasSummary$name": "<p>The name of the alias.</p>",
         "Function$name": "<p>A name for the function.</p>",
+        "GetFlowAliasResponse$name": "<p>The name of the flow alias.</p>",
         "KnowledgeBase$name": "<p>The name of the knowledge base.</p>",
         "KnowledgeBaseSummary$name": "<p>The name of the knowledge base.</p>",
         "ParameterMap$key": null,
@@ -1257,6 +2102,8 @@
         "UpdateAgentAliasRequest$agentAliasName": "<p>Specifies a new name for the alias.</p>",
         "UpdateAgentRequest$agentName": "<p>Specifies a new name for the agent.</p>",
         "UpdateDataSourceRequest$name": "<p>Specifies a new name for the data source.</p>",
+        "UpdateFlowAliasRequest$name": "<p>The name of the flow alias.</p>",
+        "UpdateFlowAliasResponse$name": "<p>The name of the flow alias.</p>",
         "UpdateKnowledgeBaseRequest$name": "<p>Specifies a new name for the knowledge base.</p>"
       }
     },
@@ -1275,10 +2122,18 @@
         "ListAgentsResponse$nextToken": "<p>If the total number of results is greater than the <code>maxResults</code> value provided in the request, use this token when making another request in the <code>nextToken</code> field to return the next batch of results.</p>",
         "ListDataSourcesRequest$nextToken": "<p>If the total number of results is greater than the <code>maxResults</code> value provided in the request, enter the token returned in the <code>nextToken</code> field in the response in this field to return the next batch of results.</p>",
         "ListDataSourcesResponse$nextToken": "<p>If the total number of results is greater than the <code>maxResults</code> value provided in the request, use this token when making another request in the <code>nextToken</code> field to return the next batch of results.</p>",
+        "ListFlowAliasesRequest$nextToken": "<p>If the total number of results is greater than the <code>maxResults</code> value provided in the request, enter the token returned in the <code>nextToken</code> field in the response in this field to return the next batch of results.</p>",
+        "ListFlowAliasesResponse$nextToken": "<p>If the total number of results is greater than the <code>maxResults</code> value provided in the request, use this token when making another request in the <code>nextToken</code> field to return the next batch of results.</p>",
+        "ListFlowVersionsRequest$nextToken": "<p>If the total number of results is greater than the <code>maxResults</code> value provided in the request, enter the token returned in the <code>nextToken</code> field in the response in this field to return the next batch of results.</p>",
+        "ListFlowVersionsResponse$nextToken": "<p>If the total number of results is greater than the <code>maxResults</code> value provided in the request, use this token when making another request in the <code>nextToken</code> field to return the next batch of results.</p>",
+        "ListFlowsRequest$nextToken": "<p>If the total number of results is greater than the <code>maxResults</code> value provided in the request, enter the token returned in the <code>nextToken</code> field in the response in this field to return the next batch of results.</p>",
+        "ListFlowsResponse$nextToken": "<p>If the total number of results is greater than the <code>maxResults</code> value provided in the request, use this token when making another request in the <code>nextToken</code> field to return the next batch of results.</p>",
         "ListIngestionJobsRequest$nextToken": "<p>If the total number of results is greater than the <code>maxResults</code> value provided in the request, enter the token returned in the <code>nextToken</code> field in the response in this field to return the next batch of results.</p>",
         "ListIngestionJobsResponse$nextToken": "<p>If the total number of results is greater than the <code>maxResults</code> value provided in the request, use this token when making another request in the <code>nextToken</code> field to return the next batch of results.</p>",
         "ListKnowledgeBasesRequest$nextToken": "<p>If the total number of results is greater than the <code>maxResults</code> value provided in the request, enter the token returned in the <code>nextToken</code> field in the response in this field to return the next batch of results.</p>",
-        "ListKnowledgeBasesResponse$nextToken": "<p>If the total number of results is greater than the <code>maxResults</code> value provided in the request, use this token when making another request in the <code>nextToken</code> field to return the next batch of results.</p>"
+        "ListKnowledgeBasesResponse$nextToken": "<p>If the total number of results is greater than the <code>maxResults</code> value provided in the request, use this token when making another request in the <code>nextToken</code> field to return the next batch of results.</p>",
+        "ListPromptsRequest$nextToken": "<p>If the total number of results is greater than the <code>maxResults</code> value provided in the request, enter the token returned in the <code>nextToken</code> field in the response in this field to return the next batch of results.</p>",
+        "ListPromptsResponse$nextToken": "<p>If the total number of results is greater than the <code>maxResults</code> value provided in the request, use this token when making another request in the <code>nextToken</code> field to return the next batch of results.</p>"
       }
     },
     "NonBlankString": {
@@ -1286,6 +2141,7 @@
       "refs": {
         "AccessDeniedException$message": null,
         "ConflictException$message": null,
+        "FlowValidation$message": "<p>A message describing the validation error.</p>",
         "InternalServerException$message": null,
         "ResourceNotFoundException$message": null,
         "ServiceQuotaExceededException$message": null,
@@ -1299,9 +2155,17 @@
       "base": null,
       "refs": {
         "AgentVersion$version": "<p>The version number.</p>",
+        "CreateFlowVersionResponse$version": "<p>The version of the flow that was created. Versions are numbered incrementally, starting from 1.</p>",
         "DeleteAgentVersionRequest$agentVersion": "<p>The version of the agent to delete.</p>",
         "DeleteAgentVersionResponse$agentVersion": "<p>The version that was deleted.</p>",
-        "GetAgentVersionRequest$agentVersion": "<p>The version of the agent.</p>"
+        "DeleteFlowVersionRequest$flowVersion": "<p>The version of the flow that you want to delete.</p>",
+        "DeleteFlowVersionResponse$version": "<p>The version of the flow being deleted.</p>",
+        "DeletePromptRequest$promptVersion": "<p>The version of the prompt to delete.</p>",
+        "DeletePromptResponse$version": "<p>The version of the prompt that was deleted.</p>",
+        "FlowVersionSummary$version": "<p>The version of the flow.</p>",
+        "GetAgentVersionRequest$agentVersion": "<p>The version of the agent.</p>",
+        "GetFlowVersionRequest$flowVersion": "<p>The version of the flow for which to get information.</p>",
+        "GetFlowVersionResponse$version": "<p>The version of the flow for which information was retrieved.</p>"
       }
     },
     "OpenSearchServerlessCollectionArn": {
@@ -1328,6 +2192,12 @@
         "OpenSearchServerlessConfiguration$vectorIndexName": "<p>The name of the vector store.</p>"
       }
     },
+    "OutputFlowNodeConfiguration": {
+      "base": "<p>Contains configurations for an output flow node in the flow. You specify the data type expected for the input into the node in the <code>type</code> field and how to return the final output in the <code>expression</code> field.</p>",
+      "refs": {
+        "FlowNodeConfiguration$output": "<p>Contains configurations for an output flow node in your flow. The last node in the flow. <code>outputs</code> can't be specified for this node.</p>"
+      }
+    },
     "ParameterDescription": {
       "base": null,
       "refs": {
@@ -1344,6 +2214,48 @@
       "base": null,
       "refs": {
         "Function$parameters": "<p>The parameters that the agent elicits from the user to fulfill the function.</p>"
+      }
+    },
+    "ParsingConfiguration": {
+      "base": "<p>Settings for parsing document contents. By default, the service converts the contents of each document into text before splitting it into chunks. To improve processing of PDF files with tables and images, you can configure the data source to convert the pages of text into images and use a model to describe the contents of each page.</p> <p>To use a model to parse PDF documents, set the parsing strategy to <code>BEDROCK_FOUNDATION_MODEL</code> and specify the model to use by ARN. You can also override the default parsing prompt with instructions for how to interpret images and tables in your documents. The following models are supported.</p> <ul> <li> <p>Anthropic Claude 3 Sonnet - <code>anthropic.claude-3-sonnet-20240229-v1:0</code> </p> </li> <li> <p>Anthropic Claude 3 Haiku - <code>anthropic.claude-3-haiku-20240307-v1:0</code> </p> </li> </ul> <p>You can get the ARN of a model with the action. Standard model usage charges apply for the foundation model parsing strategy.</p>",
+      "refs": {
+        "VectorIngestionConfiguration$parsingConfiguration": "<p>A custom parser for data source documents.</p>"
+      }
+    },
+    "ParsingPrompt": {
+      "base": "<p>Instructions for interpreting the contents of a document.</p>",
+      "refs": {
+        "BedrockFoundationModelConfiguration$parsingPrompt": "<p>Instructions for interpreting the contents of a document.</p>"
+      }
+    },
+    "ParsingPromptText": {
+      "base": null,
+      "refs": {
+        "ParsingPrompt$parsingPromptText": "<p>Instructions for interpreting the contents of a document.</p>"
+      }
+    },
+    "ParsingStrategy": {
+      "base": null,
+      "refs": {
+        "ParsingConfiguration$parsingStrategy": "<p>The parsing strategy for the data source.</p>"
+      }
+    },
+    "PatternObjectFilter": {
+      "base": "<p>The specific filters applied to your data source content. You can filter out or include certain content.</p>",
+      "refs": {
+        "PatternObjectFilterList$member": null
+      }
+    },
+    "PatternObjectFilterConfiguration": {
+      "base": "<p>The configuration of filtering certain objects or content types of the data source.</p>",
+      "refs": {
+        "CrawlFilterConfiguration$patternObjectFilter": "<p>The configuration of filtering certain objects or content types of the data source.</p>"
+      }
+    },
+    "PatternObjectFilterList": {
+      "base": null,
+      "refs": {
+        "PatternObjectFilterConfiguration$filters": "<p>The configuration of specific filters applied to your data source content. You can filter out or include certain content.</p>"
       }
     },
     "Payload": {
@@ -1386,6 +2298,16 @@
       "refs": {
       }
     },
+    "PrepareFlowRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PrepareFlowResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "PrimitiveLong": {
       "base": null,
       "refs": {
@@ -1398,6 +2320,17 @@
         "IngestionJobStatistics$numberOfNewDocumentsIndexed": "<p>The number of new source documents in the data source that were successfully indexed.</p>"
       }
     },
+    "PromptArn": {
+      "base": null,
+      "refs": {
+        "CreatePromptResponse$arn": "<p>The Amazon Resource Name (ARN) of the prompt.</p>",
+        "CreatePromptVersionResponse$arn": "<p>The Amazon Resource Name (ARN) of the version of the prompt.</p>",
+        "GetPromptResponse$arn": "<p>The Amazon Resource Name (ARN) of the prompt.</p>",
+        "PromptFlowNodeResourceConfiguration$promptArn": "<p>The Amazon Resource Name (ARN) of the prompt from Prompt management.</p>",
+        "PromptSummary$arn": "<p>The Amazon Resource Name (ARN) of the prompt.</p>",
+        "UpdatePromptResponse$arn": "<p>The Amazon Resource Name (ARN) of the prompt.</p>"
+      }
+    },
     "PromptConfiguration": {
       "base": "<p>Contains configurations to override a prompt template in one part of an agent sequence. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/advanced-prompts.html\">Advanced prompts</a>.</p>",
       "refs": {
@@ -1408,6 +2341,114 @@
       "base": null,
       "refs": {
         "PromptOverrideConfiguration$promptConfigurations": "<p>Contains configurations to override a prompt template in one part of an agent sequence. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/advanced-prompts.html\">Advanced prompts</a>.</p>"
+      }
+    },
+    "PromptDescription": {
+      "base": null,
+      "refs": {
+        "CreatePromptRequest$description": "<p>A description for the prompt.</p>",
+        "CreatePromptResponse$description": "<p>The description of the prompt.</p>",
+        "CreatePromptVersionRequest$description": "<p>A description for the version of the prompt.</p>",
+        "CreatePromptVersionResponse$description": "<p>A description for the prompt version.</p>",
+        "GetPromptResponse$description": "<p>The descriptino of the prompt.</p>",
+        "PromptSummary$description": "<p>The description of the prompt.</p>",
+        "UpdatePromptRequest$description": "<p>A description for the prompt.</p>",
+        "UpdatePromptResponse$description": "<p>The description of the prompt.</p>"
+      }
+    },
+    "PromptFlowNodeConfiguration": {
+      "base": "<p>Contains configurations for a prompt node in the flow. You can use a prompt from Prompt management or you can define one in this node. If the prompt contains variables, the inputs into this node will fill in the variables. The output from this node is the response generated by the model. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/flows-nodes.html\">Node types in Amazon Bedrock works</a> in the Amazon Bedrock User Guide.</p>",
+      "refs": {
+        "FlowNodeConfiguration$prompt": "<p>Contains configurations for a prompt node in your flow. Runs a prompt and generates the model response as the output. You can use a prompt from Prompt management or you can configure one in this node.</p>"
+      }
+    },
+    "PromptFlowNodeInlineConfiguration": {
+      "base": "<p>Contains configurations for a prompt defined inline in the node.</p>",
+      "refs": {
+        "PromptFlowNodeSourceConfiguration$inline": "<p>Contains configurations for a prompt that is defined inline</p>"
+      }
+    },
+    "PromptFlowNodeResourceConfiguration": {
+      "base": "<p>Contains configurations for a prompt from Prompt management to use in a node.</p>",
+      "refs": {
+        "PromptFlowNodeSourceConfiguration$resource": "<p>Contains configurations for a prompt from Prompt management.</p>"
+      }
+    },
+    "PromptFlowNodeSourceConfiguration": {
+      "base": "<p>Contains configurations for a prompt and whether it is from Prompt management or defined inline.</p>",
+      "refs": {
+        "PromptFlowNodeConfiguration$sourceConfiguration": "<p>Specifies whether the prompt is from Prompt management or defined inline.</p>"
+      }
+    },
+    "PromptId": {
+      "base": null,
+      "refs": {
+        "CreatePromptResponse$id": "<p>The unique identifier of the prompt.</p>",
+        "CreatePromptVersionResponse$id": "<p>The unique identifier of the prompt.</p>",
+        "DeletePromptResponse$id": "<p>The unique identifier of the prompt that was deleted.</p>",
+        "GetPromptResponse$id": "<p>The unique identifier of the prompt.</p>",
+        "PromptSummary$id": "<p>The unique identifier of the prompt.</p>",
+        "UpdatePromptResponse$id": "<p>The unique identifier of the prompt.</p>"
+      }
+    },
+    "PromptIdentifier": {
+      "base": null,
+      "refs": {
+        "CreatePromptVersionRequest$promptIdentifier": "<p>The unique identifier of the prompt that you want to create a version of.</p>",
+        "DeletePromptRequest$promptIdentifier": "<p>The unique identifier of the prompt.</p>",
+        "GetPromptRequest$promptIdentifier": "<p>The unique identifier of the prompt.</p>",
+        "ListPromptsRequest$promptIdentifier": "<p>The unique identifier of the prompt.</p>",
+        "UpdatePromptRequest$promptIdentifier": "<p>The unique identifier of the prompt.</p>"
+      }
+    },
+    "PromptInferenceConfiguration": {
+      "base": "<p>Contains inference configurations for the prompt.</p>",
+      "refs": {
+        "PromptFlowNodeInlineConfiguration$inferenceConfiguration": "<p>Contains inference configurations for the prompt.</p>",
+        "PromptVariant$inferenceConfiguration": "<p>Contains inference configurations for the prompt variant.</p>"
+      }
+    },
+    "PromptInputVariable": {
+      "base": "<p>Contains information about a variable in the prompt.</p>",
+      "refs": {
+        "PromptInputVariablesList$member": null
+      }
+    },
+    "PromptInputVariableName": {
+      "base": null,
+      "refs": {
+        "PromptInputVariable$name": "<p>The name of the variable.</p>"
+      }
+    },
+    "PromptInputVariablesList": {
+      "base": null,
+      "refs": {
+        "TextPromptTemplateConfiguration$inputVariables": "<p>An array of the variables in the prompt template.</p>"
+      }
+    },
+    "PromptModelIdentifier": {
+      "base": null,
+      "refs": {
+        "PromptFlowNodeInlineConfiguration$modelId": "<p>The unique identifier of the model to run inference with.</p>",
+        "PromptVariant$modelId": "<p>The unique identifier of the model with which to run inference on the prompt.</p>"
+      }
+    },
+    "PromptModelInferenceConfiguration": {
+      "base": "<p>Contains inference configurations related to model inference for a prompt. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/inference-parameters.html\">Inference parameters</a>.</p>",
+      "refs": {
+        "PromptInferenceConfiguration$text": "<p>Contains inference configurations for a text prompt.</p>"
+      }
+    },
+    "PromptName": {
+      "base": null,
+      "refs": {
+        "CreatePromptRequest$name": "<p>A name for the prompt.</p>",
+        "CreatePromptResponse$name": "<p>The name of the prompt.</p>",
+        "CreatePromptVersionResponse$name": "<p>The name of the prompt version.</p>",
+        "GetPromptResponse$name": "<p>The name of the prompt.</p>",
+        "PromptSummary$name": "<p>The name of the prompt.</p>",
+        "UpdatePromptRequest$name": "<p>A name for the prompt.</p>",
+        "UpdatePromptResponse$name": "<p>The name of the prompt.</p>"
       }
     },
     "PromptOverrideConfiguration": {
@@ -1425,10 +2466,65 @@
         "PromptConfiguration$promptState": "<p>Specifies whether to allow the agent to carry out the step specified in the <code>promptType</code>. If you set this value to <code>DISABLED</code>, the agent skips that step. The default state for each <code>promptType</code> is as follows.</p> <ul> <li> <p> <code>PRE_PROCESSING</code> – <code>ENABLED</code> </p> </li> <li> <p> <code>ORCHESTRATION</code> – <code>ENABLED</code> </p> </li> <li> <p> <code>KNOWLEDGE_BASE_RESPONSE_GENERATION</code> – <code>ENABLED</code> </p> </li> <li> <p> <code>POST_PROCESSING</code> – <code>DISABLED</code> </p> </li> </ul>"
       }
     },
+    "PromptSummaries": {
+      "base": null,
+      "refs": {
+        "ListPromptsResponse$promptSummaries": "<p>A list, each member of which contains information about a prompt using Prompt management.</p>"
+      }
+    },
+    "PromptSummary": {
+      "base": "<p>Contains information about a prompt in your Prompt management tool.</p> <p>This data type is used in the following API operations:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_ListPrompts.html#API_agent_ListPrompts_ResponseSyntax\">ListPrompts response</a> </p> </li> </ul>",
+      "refs": {
+        "PromptSummaries$member": null
+      }
+    },
+    "PromptTemplateConfiguration": {
+      "base": "<p>Contains the message for a prompt. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-management.html\">Prompt management in Amazon Bedrock</a>.</p>",
+      "refs": {
+        "PromptFlowNodeInlineConfiguration$templateConfiguration": "<p>Contains a prompt and variables in the prompt that can be replaced with values at runtime.</p>",
+        "PromptVariant$templateConfiguration": "<p>Contains configurations for the prompt template.</p>"
+      }
+    },
+    "PromptTemplateType": {
+      "base": null,
+      "refs": {
+        "PromptFlowNodeInlineConfiguration$templateType": "<p>The type of prompt template.</p>",
+        "PromptVariant$templateType": "<p>The type of prompt template to use.</p>"
+      }
+    },
     "PromptType": {
       "base": null,
       "refs": {
         "PromptConfiguration$promptType": "<p>The step in the agent sequence that this prompt configuration applies to.</p>"
+      }
+    },
+    "PromptVariant": {
+      "base": "<p>Contains details about a variant of the prompt.</p>",
+      "refs": {
+        "PromptVariantList$member": null
+      }
+    },
+    "PromptVariantList": {
+      "base": null,
+      "refs": {
+        "CreatePromptRequest$variants": "<p>A list of objects, each containing details about a variant of the prompt.</p>",
+        "CreatePromptResponse$variants": "<p>A list of objects, each containing details about a variant of the prompt.</p>",
+        "CreatePromptVersionResponse$variants": "<p>A list of objects, each containing details about a variant of the prompt.</p>",
+        "GetPromptResponse$variants": "<p>A list of objects, each containing details about a variant of the prompt.</p>",
+        "UpdatePromptRequest$variants": "<p>A list of objects, each containing details about a variant of the prompt.</p>",
+        "UpdatePromptResponse$variants": "<p>A list of objects, each containing details about a variant of the prompt.</p>"
+      }
+    },
+    "PromptVariantName": {
+      "base": null,
+      "refs": {
+        "CreatePromptRequest$defaultVariant": "<p>The name of the default variant for the prompt. This value must match the <code>name</code> field in the relevant <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_PromptVariant.html\">PromptVariant</a> object.</p>",
+        "CreatePromptResponse$defaultVariant": "<p>The name of the default variant for your prompt.</p>",
+        "CreatePromptVersionResponse$defaultVariant": "<p>The name of the default variant for the prompt. This value must match the <code>name</code> field in the relevant <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_PromptVariant.html\">PromptVariant</a> object.</p>",
+        "GetPromptResponse$defaultVariant": "<p>The name of the default variant for the prompt. This value must match the <code>name</code> field in the relevant <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_PromptVariant.html\">PromptVariant</a> object.</p>",
+        "PromptVariant$name": "<p>The name of the prompt variant.</p>",
+        "UpdatePromptRequest$defaultVariant": "<p>The name of the default variant for the prompt. This value must match the <code>name</code> field in the relevant <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_PromptVariant.html\">PromptVariant</a> object.</p>",
+        "UpdatePromptResponse$defaultVariant": "<p>The name of the default variant for the prompt. This value must match the <code>name</code> field in the relevant <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_PromptVariant.html\">PromptVariant</a> object.</p>"
       }
     },
     "ProvisionedModelIdentifier": {
@@ -1509,34 +2605,66 @@
       "refs": {
       }
     },
+    "RetrievalFlowNodeConfiguration": {
+      "base": "<p>Contains configurations for a Retrieval node in a flow. This node retrieves data from the Amazon S3 location that you specify and returns it as the output.</p>",
+      "refs": {
+        "FlowNodeConfiguration$retrieval": "<p>Contains configurations for a Retrieval node in your flow. Retrieves data from an Amazon S3 location and returns it as the output.</p>"
+      }
+    },
+    "RetrievalFlowNodeS3Configuration": {
+      "base": "<p>Contains configurations for the Amazon S3 location from which to retrieve data to return as the output from the node.</p>",
+      "refs": {
+        "RetrievalFlowNodeServiceConfiguration$s3": "<p>Contains configurations for the Amazon S3 location from which to retrieve data to return as the output from the node.</p>"
+      }
+    },
+    "RetrievalFlowNodeServiceConfiguration": {
+      "base": "<p>Contains configurations for the service to use for retrieving data to return as the output from the node.</p>",
+      "refs": {
+        "RetrievalFlowNodeConfiguration$serviceConfiguration": "<p>Contains configurations for the service to use for retrieving data to return as the output from the node.</p>"
+      }
+    },
     "S3BucketArn": {
       "base": null,
       "refs": {
-        "S3DataSourceConfiguration$bucketArn": "<p>The Amazon Resource Name (ARN) of the bucket that contains the data source.</p>"
+        "S3DataSourceConfiguration$bucketArn": "<p>The Amazon Resource Name (ARN) of the S3 bucket that contains your data.</p>"
       }
     },
     "S3BucketName": {
       "base": null,
       "refs": {
-        "S3Identifier$s3BucketName": "<p>The name of the S3 bucket.</p>"
+        "RetrievalFlowNodeS3Configuration$bucketName": "<p>The name of the Amazon S3 bucket from which to retrieve data.</p>",
+        "S3Identifier$s3BucketName": "<p>The name of the S3 bucket.</p>",
+        "StorageFlowNodeS3Configuration$bucketName": "<p>The name of the Amazon S3 bucket in which to store the input into the node.</p>"
+      }
+    },
+    "S3BucketUri": {
+      "base": null,
+      "refs": {
+        "S3Location$uri": "<p>The location's URI. For example, <code>s3://my-bucket/chunk-processor/</code>.</p>"
       }
     },
     "S3DataSourceConfiguration": {
-      "base": "<p>Contains information about the S3 configuration of the data source.</p>",
+      "base": "<p>The configuration information to connect to Amazon S3 as your data source.</p>",
       "refs": {
-        "DataSourceConfiguration$s3Configuration": "<p>Contains details about the configuration of the S3 object containing the data source.</p>"
+        "DataSourceConfiguration$s3Configuration": "<p>The configuration information to connect to Amazon S3 as your data source.</p>"
       }
     },
     "S3Identifier": {
-      "base": "<p>Contains information about the S3 object containing the resource.</p>",
+      "base": "<p>The identifier information for an Amazon S3 bucket.</p>",
       "refs": {
         "APISchema$s3": "<p>Contains details about the S3 object containing the OpenAPI schema for the action group. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/agents-api-schema.html\">Action group OpenAPI schemas</a>.</p>"
+      }
+    },
+    "S3Location": {
+      "base": "<p>An Amazon S3 location.</p>",
+      "refs": {
+        "IntermediateStorage$s3Location": "<p>An S3 bucket path.</p>"
       }
     },
     "S3ObjectKey": {
       "base": null,
       "refs": {
-        "S3Identifier$s3ObjectKey": "<p>The S3 object key containing the resource.</p>"
+        "S3Identifier$s3ObjectKey": "<p>The S3 object key for the S3 resource.</p>"
       }
     },
     "S3Prefix": {
@@ -1548,16 +2676,79 @@
     "S3Prefixes": {
       "base": null,
       "refs": {
-        "S3DataSourceConfiguration$inclusionPrefixes": "<p>A list of S3 prefixes that define the object containing the data sources. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-prefixes.html\">Organizing objects using prefixes</a>.</p>"
+        "S3DataSourceConfiguration$inclusionPrefixes": "<p>A list of S3 prefixes to include certain files or content. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-prefixes.html\">Organizing objects using prefixes</a>.</p>"
+      }
+    },
+    "SalesforceAuthType": {
+      "base": null,
+      "refs": {
+        "SalesforceSourceConfiguration$authType": "<p>The supported authentication type to authenticate and connect to your Salesforce instance.</p>"
+      }
+    },
+    "SalesforceCrawlerConfiguration": {
+      "base": "<p>The configuration of the Salesforce content. For example, configuring specific types of Salesforce content.</p>",
+      "refs": {
+        "SalesforceDataSourceConfiguration$crawlerConfiguration": "<p>The configuration of the Salesforce content. For example, configuring specific types of Salesforce content.</p>"
+      }
+    },
+    "SalesforceDataSourceConfiguration": {
+      "base": "<p>The configuration information to connect to Salesforce as your data source.</p>",
+      "refs": {
+        "DataSourceConfiguration$salesforceConfiguration": "<p>The configuration information to connect to Salesforce as your data source.</p> <note> <p>Salesforce data source connector is in preview release and is subject to change.</p> </note>"
+      }
+    },
+    "SalesforceSourceConfiguration": {
+      "base": "<p>The endpoint information to connect to your Salesforce data source.</p>",
+      "refs": {
+        "SalesforceDataSourceConfiguration$sourceConfiguration": "<p>The endpoint information to connect to your Salesforce data source.</p>"
       }
     },
     "SecretArn": {
       "base": null,
       "refs": {
+        "ConfluenceSourceConfiguration$credentialsSecretArn": "<p>The Amazon Resource Name of an Secrets Manager secret that stores your authentication credentials for your SharePoint site/sites. For more information on the key-value pairs that must be included in your secret, depending on your authentication type, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/confluence-data-source-connector.html#configuration-confluence-connector\">Confluence connection configuration</a>.</p>",
         "MongoDbAtlasConfiguration$credentialsSecretArn": "<p>The Amazon Resource Name (ARN) of the secret that you created in Secrets Manager that contains user credentials for your MongoDB Atlas cluster.</p>",
         "PineconeConfiguration$credentialsSecretArn": "<p>The Amazon Resource Name (ARN) of the secret that you created in Secrets Manager that is linked to your Pinecone API key.</p>",
         "RdsConfiguration$credentialsSecretArn": "<p>The Amazon Resource Name (ARN) of the secret that you created in Secrets Manager that is linked to your Amazon RDS database.</p>",
-        "RedisEnterpriseCloudConfiguration$credentialsSecretArn": "<p>The Amazon Resource Name (ARN) of the secret that you created in Secrets Manager that is linked to your Redis Enterprise Cloud database.</p>"
+        "RedisEnterpriseCloudConfiguration$credentialsSecretArn": "<p>The Amazon Resource Name (ARN) of the secret that you created in Secrets Manager that is linked to your Redis Enterprise Cloud database.</p>",
+        "SalesforceSourceConfiguration$credentialsSecretArn": "<p>The Amazon Resource Name of an Secrets Manager secret that stores your authentication credentials for your SharePoint site/sites. For more information on the key-value pairs that must be included in your secret, depending on your authentication type, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/salesforce-data-source-connector.html#configuration-salesforce-connector\">Salesforce connection configuration</a>.</p>",
+        "SharePointSourceConfiguration$credentialsSecretArn": "<p>The Amazon Resource Name of an Secrets Manager secret that stores your authentication credentials for your SharePoint site/sites. For more information on the key-value pairs that must be included in your secret, depending on your authentication type, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/sharepoint-data-source-connector.html#configuration-sharepoint-connector\">SharePoint connection configuration</a>.</p>"
+      }
+    },
+    "SeedUrl": {
+      "base": "<p>The seed or starting point URL. You should be authorized to crawl the URL.</p>",
+      "refs": {
+        "SeedUrls$member": null
+      }
+    },
+    "SeedUrls": {
+      "base": null,
+      "refs": {
+        "UrlConfiguration$seedUrls": "<p>One or more seed or starting point URLs.</p>"
+      }
+    },
+    "SemanticChunkingConfiguration": {
+      "base": "<p>Settings for semantic document chunking for a data source. Semantic chunking splits a document into into smaller documents based on groups of similar content derived from the text with natural language processing.</p> <p>With semantic chunking, each sentence is compared to the next to determine how similar they are. You specify a threshold in the form of a percentile, where adjacent sentences that are less similar than that percentage of sentence pairs are divided into separate chunks. For example, if you set the threshold to 90, then the 10 percent of sentence pairs that are least similar are split. So if you have 101 sentences, 100 sentence pairs are compared, and the 10 with the least similarity are split, creating 11 chunks. These chunks are further split if they exceed the max token size.</p> <p>You must also specify a buffer size, which determines whether sentences are compared in isolation, or within a moving context window that includes the previous and following sentence. For example, if you set the buffer size to <code>1</code>, the embedding for sentence 10 is derived from sentences 9, 10, and 11 combined.</p>",
+      "refs": {
+        "ChunkingConfiguration$semanticChunkingConfiguration": "<p>Settings for semantic document chunking for a data source. Semantic chunking splits a document into into smaller documents based on groups of similar content derived from the text with natural language processing.</p>"
+      }
+    },
+    "SemanticChunkingConfigurationBreakpointPercentileThresholdInteger": {
+      "base": null,
+      "refs": {
+        "SemanticChunkingConfiguration$breakpointPercentileThreshold": "<p>The dissimilarity threshold for splitting chunks.</p>"
+      }
+    },
+    "SemanticChunkingConfigurationBufferSizeInteger": {
+      "base": null,
+      "refs": {
+        "SemanticChunkingConfiguration$bufferSize": "<p>The buffer size.</p>"
+      }
+    },
+    "SemanticChunkingConfigurationMaxTokensInteger": {
+      "base": null,
+      "refs": {
+        "SemanticChunkingConfiguration$maxTokens": "<p>The maximum number of tokens that a chunk can contain.</p>"
       }
     },
     "ServerSideEncryptionConfiguration": {
@@ -1582,6 +2773,48 @@
         "UpdateAgentRequest$idleSessionTTLInSeconds": "<p>The number of seconds for which Amazon Bedrock keeps information about a user's conversation with the agent.</p> <p>A user interaction remains active for the amount of time specified. If no conversation occurs during this time, the session expires and Amazon Bedrock deletes any data provided before the timeout.</p>"
       }
     },
+    "SharePointAuthType": {
+      "base": null,
+      "refs": {
+        "SharePointSourceConfiguration$authType": "<p>The supported authentication type to authenticate and connect to your SharePoint site/sites.</p>"
+      }
+    },
+    "SharePointCrawlerConfiguration": {
+      "base": "<p>The configuration of the SharePoint content. For example, configuring specific types of SharePoint content.</p>",
+      "refs": {
+        "SharePointDataSourceConfiguration$crawlerConfiguration": "<p>The configuration of the SharePoint content. For example, configuring specific types of SharePoint content.</p>"
+      }
+    },
+    "SharePointDataSourceConfiguration": {
+      "base": "<p>The configuration information to connect to SharePoint as your data source.</p>",
+      "refs": {
+        "DataSourceConfiguration$sharePointConfiguration": "<p>The configuration information to connect to SharePoint as your data source.</p> <note> <p>SharePoint data source connector is in preview release and is subject to change.</p> </note>"
+      }
+    },
+    "SharePointDomain": {
+      "base": null,
+      "refs": {
+        "SharePointSourceConfiguration$domain": "<p>The domain of your SharePoint instance or site URL/URLs.</p>"
+      }
+    },
+    "SharePointHostType": {
+      "base": null,
+      "refs": {
+        "SharePointSourceConfiguration$hostType": "<p>The supported host type, whether online/cloud or server/on-premises.</p>"
+      }
+    },
+    "SharePointSiteUrls": {
+      "base": null,
+      "refs": {
+        "SharePointSourceConfiguration$siteUrls": "<p>A list of one or more SharePoint site URLs.</p>"
+      }
+    },
+    "SharePointSourceConfiguration": {
+      "base": "<p>The endpoint information to connect to your SharePoint data source.</p>",
+      "refs": {
+        "SharePointDataSourceConfiguration$sourceConfiguration": "<p>The endpoint information to connect to your SharePoint data source.</p>"
+      }
+    },
     "SortOrder": {
       "base": null,
       "refs": {
@@ -1598,10 +2831,17 @@
       "refs": {
       }
     },
+    "StepType": {
+      "base": null,
+      "refs": {
+        "Transformation$stepToApply": "<p>When the service applies the transformation.</p>"
+      }
+    },
     "StopSequences": {
       "base": null,
       "refs": {
-        "InferenceConfiguration$stopSequences": "<p>A list of stop sequences. A stop sequence is a sequence of characters that causes the model to stop generating the response.</p>"
+        "InferenceConfiguration$stopSequences": "<p>A list of stop sequences. A stop sequence is a sequence of characters that causes the model to stop generating the response.</p>",
+        "PromptModelInferenceConfiguration$stopSequences": "<p>A list of strings that define sequences after which the model will stop generating.</p>"
       }
     },
     "StorageConfiguration": {
@@ -1610,6 +2850,30 @@
         "CreateKnowledgeBaseRequest$storageConfiguration": "<p>Contains details about the configuration of the vector database used for the knowledge base.</p>",
         "KnowledgeBase$storageConfiguration": "<p>Contains details about the storage configuration of the knowledge base.</p>",
         "UpdateKnowledgeBaseRequest$storageConfiguration": "<p>Specifies the configuration for the vector store used for the knowledge base. You must use the same configuration as when the knowledge base was created.</p>"
+      }
+    },
+    "StorageDays": {
+      "base": null,
+      "refs": {
+        "MemoryConfiguration$storageDays": "<p>The number of days the agent is configured to retain the conversational context.</p>"
+      }
+    },
+    "StorageFlowNodeConfiguration": {
+      "base": "<p>Contains configurations for a Storage node in a flow. This node stores the input in an Amazon S3 location that you specify.</p>",
+      "refs": {
+        "FlowNodeConfiguration$storage": "<p>Contains configurations for a Storage node in your flow. Stores an input in an Amazon S3 location.</p>"
+      }
+    },
+    "StorageFlowNodeS3Configuration": {
+      "base": "<p>Contains configurations for the Amazon S3 location in which to store the input into the node.</p>",
+      "refs": {
+        "StorageFlowNodeServiceConfiguration$s3": "<p>Contains configurations for the Amazon S3 location in which to store the input into the node.</p>"
+      }
+    },
+    "StorageFlowNodeServiceConfiguration": {
+      "base": "<p>Contains configurations for the service to use for storing the input into the node.</p>",
+      "refs": {
+        "StorageFlowNodeConfiguration$serviceConfiguration": "<p>Contains configurations for the service to use for storing the input into the node.</p>"
       }
     },
     "String": {
@@ -1660,7 +2924,11 @@
       "refs": {
         "CreateAgentAliasRequest$tags": "<p>Any tags that you want to attach to the alias of the agent.</p>",
         "CreateAgentRequest$tags": "<p>Any tags that you want to attach to the agent.</p>",
+        "CreateFlowAliasRequest$tags": "<p>Any tags that you want to attach to the alias of the flow. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/tagging.html\">Tagging resources in Amazon Bedrock</a>.</p>",
+        "CreateFlowRequest$tags": "<p>Any tags that you want to attach to the flow. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/tagging.html\">Tagging resources in Amazon Bedrock</a>.</p>",
         "CreateKnowledgeBaseRequest$tags": "<p>Specify the key-value pairs for the tags that you want to attach to your knowledge base in this object.</p>",
+        "CreatePromptRequest$tags": "<p>Any tags that you want to attach to the prompt. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/tagging.html\">Tagging resources in Amazon Bedrock</a>.</p>",
+        "CreatePromptVersionRequest$tags": "<p>Any tags that you want to attach to the version of the prompt. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/tagging.html\">Tagging resources in Amazon Bedrock</a>.</p>",
         "ListTagsForResourceResponse$tags": "<p>The key-value pairs for the tags associated with the resource.</p>",
         "TagResourceRequest$tags": "<p>An object containing key-value pairs that define the tags to attach to the resource.</p>"
       }
@@ -1668,7 +2936,20 @@
     "Temperature": {
       "base": null,
       "refs": {
-        "InferenceConfiguration$temperature": "<p>The likelihood of the model selecting higher-probability options while generating a response. A lower value makes the model more likely to choose higher-probability options, while a higher value makes the model more likely to choose lower-probability options.</p>"
+        "InferenceConfiguration$temperature": "<p>The likelihood of the model selecting higher-probability options while generating a response. A lower value makes the model more likely to choose higher-probability options, while a higher value makes the model more likely to choose lower-probability options.</p>",
+        "PromptModelInferenceConfiguration$temperature": "<p>Controls the randomness of the response. Choose a lower value for more predictable outputs and a higher value for more surprising outputs.</p>"
+      }
+    },
+    "TextPrompt": {
+      "base": null,
+      "refs": {
+        "TextPromptTemplateConfiguration$text": "<p>The message for the prompt.</p>"
+      }
+    },
+    "TextPromptTemplateConfiguration": {
+      "base": "<p>Contains configurations for a text prompt template. To include a variable, enclose a word in double curly braces as in <code>{{variable}}</code>.</p>",
+      "refs": {
+        "PromptTemplateConfiguration$text": "<p>Contains configurations for the text in a message for a prompt.</p>"
       }
     },
     "ThrottlingException": {
@@ -1679,13 +2960,39 @@
     "TopK": {
       "base": null,
       "refs": {
-        "InferenceConfiguration$topK": "<p>While generating a response, the model determines the probability of the following token at each point of generation. The value that you set for <code>topK</code> is the number of most-likely candidates from which the model chooses the next token in the sequence. For example, if you set <code>topK</code> to 50, the model selects the next token from among the top 50 most likely choices.</p>"
+        "InferenceConfiguration$topK": "<p>While generating a response, the model determines the probability of the following token at each point of generation. The value that you set for <code>topK</code> is the number of most-likely candidates from which the model chooses the next token in the sequence. For example, if you set <code>topK</code> to 50, the model selects the next token from among the top 50 most likely choices.</p>",
+        "PromptModelInferenceConfiguration$topK": "<p>The number of most-likely candidates that the model considers for the next token during generation.</p>"
       }
     },
     "TopP": {
       "base": null,
       "refs": {
-        "InferenceConfiguration$topP": "<p>While generating a response, the model determines the probability of the following token at each point of generation. The value that you set for <code>Top P</code> determines the number of most-likely candidates from which the model chooses the next token in the sequence. For example, if you set <code>topP</code> to 80, the model only selects the next token from the top 80% of the probability distribution of next tokens.</p>"
+        "InferenceConfiguration$topP": "<p>While generating a response, the model determines the probability of the following token at each point of generation. The value that you set for <code>Top P</code> determines the number of most-likely candidates from which the model chooses the next token in the sequence. For example, if you set <code>topP</code> to 80, the model only selects the next token from the top 80% of the probability distribution of next tokens.</p>",
+        "PromptModelInferenceConfiguration$topP": "<p>The percentage of most-likely candidates that the model considers for the next token.</p>"
+      }
+    },
+    "Transformation": {
+      "base": "<p>A custom processing step for documents moving through a data source ingestion pipeline. To process documents after they have been converted into chunks, set the step to apply to <code>POST_CHUNKING</code>.</p>",
+      "refs": {
+        "Transformations$member": null
+      }
+    },
+    "TransformationFunction": {
+      "base": "<p>A Lambda function that processes documents.</p>",
+      "refs": {
+        "Transformation$transformationFunction": "<p>A Lambda function that processes documents.</p>"
+      }
+    },
+    "TransformationLambdaConfiguration": {
+      "base": "<p>A Lambda function that processes documents.</p>",
+      "refs": {
+        "TransformationFunction$transformationLambdaConfiguration": "<p>The Lambda function.</p>"
+      }
+    },
+    "Transformations": {
+      "base": null,
+      "refs": {
+        "CustomTransformationConfiguration$transformations": "<p>A Lambda function that processes documents.</p>"
       }
     },
     "Type": {
@@ -1754,6 +3061,26 @@
       "refs": {
       }
     },
+    "UpdateFlowAliasRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateFlowAliasResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateFlowRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateFlowResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "UpdateKnowledgeBaseRequest": {
       "base": null,
       "refs": {
@@ -1762,6 +3089,28 @@
     "UpdateKnowledgeBaseResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "UpdatePromptRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdatePromptResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "Url": {
+      "base": null,
+      "refs": {
+        "SeedUrl$url": "<p>A seed or starting point URL.</p>"
+      }
+    },
+    "UrlConfiguration": {
+      "base": "<p>The configuration of web URLs that you want to crawl. You should be authorized to crawl the URLs.</p>",
+      "refs": {
+        "WebSourceConfiguration$urlConfiguration": "<p>The configuration of the URL/URLs.</p>"
       }
     },
     "ValidationException": {
@@ -1803,11 +3152,54 @@
         "AgentKnowledgeBase$agentVersion": "<p>The version of the agent with which the knowledge base is associated.</p>",
         "AgentSummary$latestAgentVersion": "<p>The latest version of the agent.</p>",
         "AgentVersionSummary$agentVersion": "<p>The version of the agent.</p>",
+        "CreatePromptResponse$version": "<p>The version of the prompt. When you create a prompt, the version created is the <code>DRAFT</code> version.</p>",
+        "CreatePromptVersionResponse$version": "<p>The version of the prompt that was created. Versions are numbered incrementally, starting from 1.</p>",
+        "FlowAliasRoutingConfigurationListItem$flowVersion": "<p>The version that the alias maps to.</p>",
         "GetAgentActionGroupRequest$agentVersion": "<p>The version of the agent that the action group belongs to.</p>",
         "GetAgentKnowledgeBaseRequest$agentVersion": "<p>The version of the agent with which the knowledge base is associated.</p>",
+        "GetPromptRequest$promptVersion": "<p>The version of the prompt about which you want to retrieve information.</p>",
+        "GetPromptResponse$version": "<p>The version of the prompt.</p>",
         "ListAgentActionGroupsRequest$agentVersion": "<p>The version of the agent.</p>",
         "ListAgentKnowledgeBasesRequest$agentVersion": "<p>The version of the agent for which to return information about knowledge bases associated with it.</p>",
-        "PrepareAgentResponse$agentVersion": "<p>The version of the agent.</p>"
+        "PrepareAgentResponse$agentVersion": "<p>The version of the agent.</p>",
+        "PromptSummary$version": "<p>The version of the prompt that this summary applies to.</p>",
+        "UpdatePromptResponse$version": "<p>The version of the prompt. When you update a prompt, the version updated is the <code>DRAFT</code> version.</p>"
+      }
+    },
+    "WebCrawlerConfiguration": {
+      "base": "<p>The configuration of web URLs that you want to crawl. You should be authorized to crawl the URLs.</p>",
+      "refs": {
+        "WebDataSourceConfiguration$crawlerConfiguration": "<p>The Web Crawler configuration details for the web data source.</p>"
+      }
+    },
+    "WebCrawlerLimits": {
+      "base": "<p>The rate limits for the URLs that you want to crawl. You should be authorized to crawl the URLs.</p>",
+      "refs": {
+        "WebCrawlerConfiguration$crawlerLimits": "<p>The configuration of crawl limits for the web URLs.</p>"
+      }
+    },
+    "WebCrawlerLimitsRateLimitInteger": {
+      "base": null,
+      "refs": {
+        "WebCrawlerLimits$rateLimit": "<p>The max rate at which pages are crawled, up to 300 per minute per host.</p>"
+      }
+    },
+    "WebDataSourceConfiguration": {
+      "base": "<p>The configuration details for the web data source.</p>",
+      "refs": {
+        "DataSourceConfiguration$webConfiguration": "<p>The configuration of web URLs to crawl for your data source. You should be authorized to crawl the URLs.</p> <note> <p>Crawling web URLs as your data source is in preview release and is subject to change.</p> </note>"
+      }
+    },
+    "WebScopeType": {
+      "base": null,
+      "refs": {
+        "WebCrawlerConfiguration$scope": "<p>The scope of what is crawled for your URLs.</p> <p>You can choose to crawl only web pages that belong to the same host or primary domain. For example, only web pages that contain the seed URL \"https://docs.aws.amazon.com/bedrock/latest/userguide/\" and no other domains. You can choose to include sub domains in addition to the host or primary domain. For example, web pages that contain \"aws.amazon.com\" can also include sub domain \"docs.aws.amazon.com\".</p>"
+      }
+    },
+    "WebSourceConfiguration": {
+      "base": "<p>The configuration of the URL/URLs for the web content that you want to crawl. You should be authorized to crawl the URLs.</p>",
+      "refs": {
+        "WebDataSourceConfiguration$sourceConfiguration": "<p>The source configuration details for the web data source.</p>"
       }
     }
   }

@@ -157,37 +157,34 @@ func (c *Bedrock) CreateGuardrailRequest(input *CreateGuardrailInput) (req *requ
 
 // CreateGuardrail API operation for Amazon Bedrock.
 //
-// Creates a guardrail to block topics and to filter out harmful content.
+// Creates a guardrail to block topics and to implement safeguards for your
+// generative AI applications.
 //
-//   - Specify a name and optional description.
+// You can configure the following policies in a guardrail to avoid undesirable
+// and harmful content, filter out denied topics and words, and remove sensitive
+// information for privacy protection.
 //
-//   - Specify messages for when the guardrail successfully blocks a prompt
-//     or a model response in the blockedInputMessaging and blockedOutputsMessaging
-//     fields.
+//   - Content filters - Adjust filter strengths to block input prompts or
+//     model responses containing harmful content.
 //
-//   - Specify topics for the guardrail to deny in the topicPolicyConfig object.
-//     Each GuardrailTopicConfig (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_GuardrailTopicConfig.html)
-//     object in the topicsConfig list pertains to one topic. Give a name and
-//     description so that the guardrail can properly identify the topic. Specify
-//     DENY in the type field. (Optional) Provide up to five prompts that you
-//     would categorize as belonging to the topic in the examples list.
+//   - Denied topics - Define a set of topics that are undesirable in the context
+//     of your application. These topics will be blocked if detected in user
+//     queries or model responses.
 //
-//   - Specify filter strengths for the harmful categories defined in Amazon
-//     Bedrock in the contentPolicyConfig object. Each GuardrailContentFilterConfig
-//     (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_GuardrailContentFilterConfig.html)
-//     object in the filtersConfig list pertains to a harmful category. For more
-//     information, see Content filters (https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails-filters).
-//     For more information about the fields in a content filter, see GuardrailContentFilterConfig
-//     (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_GuardrailContentFilterConfig.html).
-//     Specify the category in the type field. Specify the strength of the filter
-//     for prompts in the inputStrength field and for model responses in the
-//     strength field of the GuardrailContentFilterConfig (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_GuardrailContentFilterConfig.html).
+//   - Word filters - Configure filters to block undesirable words, phrases,
+//     and profanity. Such words can include offensive terms, competitor names
+//     etc.
 //
-//   - (Optional) For security, include the ARN of a KMS key in the kmsKeyId
-//     field.
+//   - Sensitive information filters - Block or mask sensitive information
+//     such as personally identifiable information (PII) or custom regex in user
+//     inputs and model responses.
 //
-//   - (Optional) Attach any tags to the guardrail in the tags object. For
-//     more information, see Tag resources (https://docs.aws.amazon.com/bedrock/latest/userguide/tagging).
+// In addition to the above policies, you can also configure the messages to
+// be returned to the user if a user input or model response is in violation
+// of the policies defined in the guardrail.
+//
+// For more information, see Guardrails for Amazon Bedrock (https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html)
+// in the Amazon Bedrock User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3074,7 +3071,7 @@ func (c *Bedrock) UpdateGuardrailRequest(input *UpdateGuardrailInput) (req *requ
 //     Bedrock in the contentPolicyConfig object. Each GuardrailContentFilterConfig
 //     (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_GuardrailContentFilterConfig.html)
 //     object in the filtersConfig list pertains to a harmful category. For more
-//     information, see Content filters (https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails-filters).
+//     information, see Content filters (https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails-content-filters).
 //     For more information about the fields in a content filter, see GuardrailContentFilterConfig
 //     (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_GuardrailContentFilterConfig.html).
 //     Specify the category in the type field. Specify the strength of the filter
@@ -3083,9 +3080,6 @@ func (c *Bedrock) UpdateGuardrailRequest(input *UpdateGuardrailInput) (req *requ
 //
 //   - (Optional) For security, include the ARN of a KMS key in the kmsKeyId
 //     field.
-//
-//   - (Optional) Attach any tags to the guardrail in the tags object. For
-//     more information, see Tag resources (https://docs.aws.amazon.com/bedrock/latest/userguide/tagging).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3758,6 +3752,9 @@ type CreateGuardrailInput struct {
 	// The content filter policies to configure for the guardrail.
 	ContentPolicyConfig *GuardrailContentPolicyConfig `locationName:"contentPolicyConfig" type:"structure"`
 
+	// The contextual grounding policy configuration used to create a guardrail.
+	ContextualGroundingPolicyConfig *GuardrailContextualGroundingPolicyConfig `locationName:"contextualGroundingPolicyConfig" type:"structure"`
+
 	// A description of the guardrail.
 	//
 	// Description is a sensitive parameter and its value will be
@@ -3843,6 +3840,11 @@ func (s *CreateGuardrailInput) Validate() error {
 			invalidParams.AddNested("ContentPolicyConfig", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.ContextualGroundingPolicyConfig != nil {
+		if err := s.ContextualGroundingPolicyConfig.Validate(); err != nil {
+			invalidParams.AddNested("ContextualGroundingPolicyConfig", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.SensitiveInformationPolicyConfig != nil {
 		if err := s.SensitiveInformationPolicyConfig.Validate(); err != nil {
 			invalidParams.AddNested("SensitiveInformationPolicyConfig", err.(request.ErrInvalidParams))
@@ -3899,6 +3901,12 @@ func (s *CreateGuardrailInput) SetContentPolicyConfig(v *GuardrailContentPolicyC
 	return s
 }
 
+// SetContextualGroundingPolicyConfig sets the ContextualGroundingPolicyConfig field's value.
+func (s *CreateGuardrailInput) SetContextualGroundingPolicyConfig(v *GuardrailContextualGroundingPolicyConfig) *CreateGuardrailInput {
+	s.ContextualGroundingPolicyConfig = v
+	return s
+}
+
 // SetDescription sets the Description field's value.
 func (s *CreateGuardrailInput) SetDescription(v string) *CreateGuardrailInput {
 	s.Description = &v
@@ -3949,7 +3957,7 @@ type CreateGuardrailOutput struct {
 	// CreatedAt is a required field
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
-	// The ARN of the guardrail that was created.
+	// The ARN of the guardrail.
 	//
 	// GuardrailArn is a required field
 	GuardrailArn *string `locationName:"guardrailArn" type:"string" required:"true"`
@@ -3959,7 +3967,8 @@ type CreateGuardrailOutput struct {
 	// GuardrailId is a required field
 	GuardrailId *string `locationName:"guardrailId" type:"string" required:"true"`
 
-	// The version of the guardrail that was created. This value should be 1.
+	// The version of the guardrail that was created. This value will always be
+	// DRAFT.
 	//
 	// Version is a required field
 	Version *string `locationName:"version" min:"5" type:"string" required:"true"`
@@ -4024,7 +4033,7 @@ type CreateGuardrailVersionInput struct {
 	// String and GoString methods.
 	Description *string `locationName:"description" min:"1" type:"string" sensitive:"true"`
 
-	// The unique identifier of the guardrail.
+	// The unique identifier of the guardrail. This can be an ID or the ARN.
 	//
 	// GuardrailIdentifier is a required field
 	GuardrailIdentifier *string `location:"uri" locationName:"guardrailIdentifier" type:"string" required:"true"`
@@ -4767,7 +4776,7 @@ func (s DeleteCustomModelOutput) GoString() string {
 type DeleteGuardrailInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The unique identifier of the guardrail.
+	// The unique identifier of the guardrail. This can be an ID or the ARN.
 	//
 	// GuardrailIdentifier is a required field
 	GuardrailIdentifier *string `location:"uri" locationName:"guardrailIdentifier" type:"string" required:"true"`
@@ -6348,7 +6357,8 @@ func (s *GetFoundationModelOutput) SetModelDetails(v *FoundationModelDetails) *G
 type GetGuardrailInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The unique identifier of the guardrail for which to get details.
+	// The unique identifier of the guardrail for which to get details. This can
+	// be an ID or the ARN.
 	//
 	// GuardrailIdentifier is a required field
 	GuardrailIdentifier *string `location:"uri" locationName:"guardrailIdentifier" type:"string" required:"true"`
@@ -6428,6 +6438,9 @@ type GetGuardrailOutput struct {
 	// The content policy that was configured for the guardrail.
 	ContentPolicy *GuardrailContentPolicy `locationName:"contentPolicy" type:"structure"`
 
+	// The contextual grounding policy used in the guardrail.
+	ContextualGroundingPolicy *GuardrailContextualGroundingPolicy `locationName:"contextualGroundingPolicy" type:"structure"`
+
 	// The date and time at which the guardrail was created.
 	//
 	// CreatedAt is a required field
@@ -6444,7 +6457,7 @@ type GetGuardrailOutput struct {
 	// to carry out before retrying the request.
 	FailureRecommendations []*string `locationName:"failureRecommendations" type:"list"`
 
-	// The ARN of the guardrail that was created.
+	// The ARN of the guardrail.
 	//
 	// GuardrailArn is a required field
 	GuardrailArn *string `locationName:"guardrailArn" type:"string" required:"true"`
@@ -6528,6 +6541,12 @@ func (s *GetGuardrailOutput) SetBlockedOutputsMessaging(v string) *GetGuardrailO
 // SetContentPolicy sets the ContentPolicy field's value.
 func (s *GetGuardrailOutput) SetContentPolicy(v *GuardrailContentPolicy) *GetGuardrailOutput {
 	s.ContentPolicy = v
+	return s
+}
+
+// SetContextualGroundingPolicy sets the ContextualGroundingPolicy field's value.
+func (s *GetGuardrailOutput) SetContextualGroundingPolicy(v *GuardrailContextualGroundingPolicy) *GetGuardrailOutput {
+	s.ContextualGroundingPolicy = v
 	return s
 }
 
@@ -7295,12 +7314,6 @@ func (s *GuardrailContentFilter) SetType(v string) *GuardrailContentFilter {
 // confidence.
 //
 // For more information, see Guardrails content filters (https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails-filters.html).
-//
-// This data type is used in the following API operations:
-//
-//   - CreateGuardrail request body (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_CreateGuardrail.html#API_CreateGuardrail_RequestSyntax)
-//
-//   - UpdateGuardrail request body (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_UpdateGuardrail.html#API_UpdateGuardrail_RequestSyntax)
 type GuardrailContentFilterConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -7417,12 +7430,6 @@ func (s *GuardrailContentPolicy) SetFilters(v []*GuardrailContentFilter) *Guardr
 }
 
 // Contains details about how to handle harmful content.
-//
-// This data type is used in the following API operations:
-//
-//   - CreateGuardrail request body (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_CreateGuardrail.html#API_CreateGuardrail_RequestSyntax)
-//
-//   - UpdateGuardrail request body (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_UpdateGuardrail.html#API_UpdateGuardrail_RequestSyntax)
 type GuardrailContentPolicyConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -7483,8 +7490,211 @@ func (s *GuardrailContentPolicyConfig) SetFiltersConfig(v []*GuardrailContentFil
 	return s
 }
 
+// The details for the guardrails contextual grounding filter.
+type GuardrailContextualGroundingFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The threshold details for the guardrails contextual grounding filter.
+	//
+	// Threshold is a required field
+	Threshold *float64 `locationName:"threshold" type:"double" required:"true"`
+
+	// The filter type details for the guardrails contextual grounding filter.
+	//
+	// Type is a required field
+	Type *string `locationName:"type" type:"string" required:"true" enum:"GuardrailContextualGroundingFilterType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailContextualGroundingFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailContextualGroundingFilter) GoString() string {
+	return s.String()
+}
+
+// SetThreshold sets the Threshold field's value.
+func (s *GuardrailContextualGroundingFilter) SetThreshold(v float64) *GuardrailContextualGroundingFilter {
+	s.Threshold = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *GuardrailContextualGroundingFilter) SetType(v string) *GuardrailContextualGroundingFilter {
+	s.Type = &v
+	return s
+}
+
+// The filter configuration details for the guardrails contextual grounding
+// filter.
+type GuardrailContextualGroundingFilterConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The threshold details for the guardrails contextual grounding filter.
+	//
+	// Threshold is a required field
+	Threshold *float64 `locationName:"threshold" type:"double" required:"true"`
+
+	// The filter details for the guardrails contextual grounding filter.
+	//
+	// Type is a required field
+	Type *string `locationName:"type" type:"string" required:"true" enum:"GuardrailContextualGroundingFilterType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailContextualGroundingFilterConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailContextualGroundingFilterConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GuardrailContextualGroundingFilterConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GuardrailContextualGroundingFilterConfig"}
+	if s.Threshold == nil {
+		invalidParams.Add(request.NewErrParamRequired("Threshold"))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetThreshold sets the Threshold field's value.
+func (s *GuardrailContextualGroundingFilterConfig) SetThreshold(v float64) *GuardrailContextualGroundingFilterConfig {
+	s.Threshold = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *GuardrailContextualGroundingFilterConfig) SetType(v string) *GuardrailContextualGroundingFilterConfig {
+	s.Type = &v
+	return s
+}
+
+// The details for the guardrails contextual grounding policy.
+type GuardrailContextualGroundingPolicy struct {
+	_ struct{} `type:"structure"`
+
+	// The filter details for the guardrails contextual grounding policy.
+	//
+	// Filters is a required field
+	Filters []*GuardrailContextualGroundingFilter `locationName:"filters" min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailContextualGroundingPolicy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailContextualGroundingPolicy) GoString() string {
+	return s.String()
+}
+
+// SetFilters sets the Filters field's value.
+func (s *GuardrailContextualGroundingPolicy) SetFilters(v []*GuardrailContextualGroundingFilter) *GuardrailContextualGroundingPolicy {
+	s.Filters = v
+	return s
+}
+
+// The policy configuration details for the guardrails contextual grounding
+// policy.
+type GuardrailContextualGroundingPolicyConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The filter configuration details for the guardrails contextual grounding
+	// policy.
+	//
+	// FiltersConfig is a required field
+	FiltersConfig []*GuardrailContextualGroundingFilterConfig `locationName:"filtersConfig" min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailContextualGroundingPolicyConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailContextualGroundingPolicyConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GuardrailContextualGroundingPolicyConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GuardrailContextualGroundingPolicyConfig"}
+	if s.FiltersConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("FiltersConfig"))
+	}
+	if s.FiltersConfig != nil && len(s.FiltersConfig) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FiltersConfig", 1))
+	}
+	if s.FiltersConfig != nil {
+		for i, v := range s.FiltersConfig {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "FiltersConfig", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFiltersConfig sets the FiltersConfig field's value.
+func (s *GuardrailContextualGroundingPolicyConfig) SetFiltersConfig(v []*GuardrailContextualGroundingFilterConfig) *GuardrailContextualGroundingPolicyConfig {
+	s.FiltersConfig = v
+	return s
+}
+
 // The managed word list that was configured for the guardrail. (This is a list
-// of words that are pre-defined and managed by Guardrails only.)
+// of words that are pre-defined and managed by guardrails only.)
 type GuardrailManagedWords struct {
 	_ struct{} `type:"structure"`
 
@@ -7621,6 +7831,100 @@ type GuardrailPiiEntityConfig struct {
 	Action *string `locationName:"action" type:"string" required:"true" enum:"GuardrailSensitiveInformationAction"`
 
 	// Configure guardrail type when the PII entity is detected.
+	//
+	// The following PIIs are used to block or mask sensitive information:
+	//
+	//    * General ADDRESS A physical address, such as "100 Main Street, Anytown,
+	//    USA" or "Suite #12, Building 123". An address can include information
+	//    such as the street, building, location, city, state, country, county,
+	//    zip code, precinct, and neighborhood. AGE An individual's age, including
+	//    the quantity and unit of time. For example, in the phrase "I am 40 years
+	//    old," Guarrails recognizes "40 years" as an age. NAME An individual's
+	//    name. This entity type does not include titles, such as Dr., Mr., Mrs.,
+	//    or Miss. guardrails doesn't apply this entity type to names that are part
+	//    of organizations or addresses. For example, guardrails recognizes the
+	//    "John Doe Organization" as an organization, and it recognizes "Jane Doe
+	//    Street" as an address. EMAIL An email address, such as marymajor@email.com.
+	//    PHONE A phone number. This entity type also includes fax and pager numbers.
+	//    USERNAME A user name that identifies an account, such as a login name,
+	//    screen name, nick name, or handle. PASSWORD An alphanumeric string that
+	//    is used as a password, such as "*very20special#pass*". DRIVER_ID The number
+	//    assigned to a driver's license, which is an official document permitting
+	//    an individual to operate one or more motorized vehicles on a public road.
+	//    A driver's license number consists of alphanumeric characters. LICENSE_PLATE
+	//    A license plate for a vehicle is issued by the state or country where
+	//    the vehicle is registered. The format for passenger vehicles is typically
+	//    five to eight digits, consisting of upper-case letters and numbers. The
+	//    format varies depending on the location of the issuing state or country.
+	//    VEHICLE_IDENTIFICATION_NUMBER A Vehicle Identification Number (VIN) uniquely
+	//    identifies a vehicle. VIN content and format are defined in the ISO 3779
+	//    specification. Each country has specific codes and formats for VINs.
+	//
+	//    * Finance REDIT_DEBIT_CARD_CVV A three-digit card verification code (CVV)
+	//    that is present on VISA, MasterCard, and Discover credit and debit cards.
+	//    For American Express credit or debit cards, the CVV is a four-digit numeric
+	//    code. CREDIT_DEBIT_CARD_EXPIRY The expiration date for a credit or debit
+	//    card. This number is usually four digits long and is often formatted as
+	//    month/year or MM/YY. Guardrails recognizes expiration dates such as 01/21,
+	//    01/2021, and Jan 2021. CREDIT_DEBIT_CARD_NUMBER The number for a credit
+	//    or debit card. These numbers can vary from 13 to 16 digits in length.
+	//    However, Amazon Comprehend also recognizes credit or debit card numbers
+	//    when only the last four digits are present. PIN A four-digit personal
+	//    identification number (PIN) with which you can access your bank account.
+	//    INTERNATIONAL_BANK_ACCOUNT_NUMBER An International Bank Account Number
+	//    has specific formats in each country. For more information, see www.iban.com/structure
+	//    (https://www.iban.com/structure). SWIFT_CODE A SWIFT code is a standard
+	//    format of Bank Identifier Code (BIC) used to specify a particular bank
+	//    or branch. Banks use these codes for money transfers such as international
+	//    wire transfers. SWIFT codes consist of eight or 11 characters. The 11-digit
+	//    codes refer to specific branches, while eight-digit codes (or 11-digit
+	//    codes ending in 'XXX') refer to the head or primary office.
+	//
+	//    * IT IP_ADDRESS An IPv4 address, such as 198.51.100.0. MAC_ADDRESS A media
+	//    access control (MAC) address is a unique identifier assigned to a network
+	//    interface controller (NIC). URL A web address, such as www.example.com.
+	//    AWS_ACCESS_KEY A unique identifier that's associated with a secret access
+	//    key; you use the access key ID and secret access key to sign programmatic
+	//    Amazon Web Services requests cryptographically. AWS_SECRET_KEY A unique
+	//    identifier that's associated with an access key. You use the access key
+	//    ID and secret access key to sign programmatic Amazon Web Services requests
+	//    cryptographically.
+	//
+	//    * USA specific US_BANK_ACCOUNT_NUMBER A US bank account number, which
+	//    is typically 10 to 12 digits long. US_BANK_ROUTING_NUMBER A US bank account
+	//    routing number. These are typically nine digits long, US_INDIVIDUAL_TAX_IDENTIFICATION_NUMBER
+	//    A US Individual Taxpayer Identification Number (ITIN) is a nine-digit
+	//    number that starts with a "9" and contain a "7" or "8" as the fourth digit.
+	//    An ITIN can be formatted with a space or a dash after the third and forth
+	//    digits. US_PASSPORT_NUMBER A US passport number. Passport numbers range
+	//    from six to nine alphanumeric characters. US_SOCIAL_SECURITY_NUMBER A
+	//    US Social Security Number (SSN) is a nine-digit number that is issued
+	//    to US citizens, permanent residents, and temporary working residents.
+	//
+	//    * Canada specific CA_HEALTH_NUMBER A Canadian Health Service Number is
+	//    a 10-digit unique identifier, required for individuals to access healthcare
+	//    benefits. CA_SOCIAL_INSURANCE_NUMBER A Canadian Social Insurance Number
+	//    (SIN) is a nine-digit unique identifier, required for individuals to access
+	//    government programs and benefits. The SIN is formatted as three groups
+	//    of three digits, such as 123-456-789. A SIN can be validated through a
+	//    simple check-digit process called the Luhn algorithm (https://www.wikipedia.org/wiki/Luhn_algorithm).
+	//
+	//    * UK Specific UK_NATIONAL_HEALTH_SERVICE_NUMBER A UK National Health Service
+	//    Number is a 10-17 digit number, such as 485 777 3456. The current system
+	//    formats the 10-digit number with spaces after the third and sixth digits.
+	//    The final digit is an error-detecting checksum. UK_NATIONAL_INSURANCE_NUMBER
+	//    A UK National Insurance Number (NINO) provides individuals with access
+	//    to National Insurance (social security) benefits. It is also used for
+	//    some purposes in the UK tax system. The number is nine digits long and
+	//    starts with two letters, followed by six numbers and one letter. A NINO
+	//    can be formatted with a space or a dash after the two letters and after
+	//    the second, forth, and sixth digits. UK_UNIQUE_TAXPAYER_REFERENCE_NUMBER
+	//    A UK Unique Taxpayer Reference (UTR) is a 10-digit number that identifies
+	//    a taxpayer or a business.
+	//
+	//    * Custom Regex filter - You can use a regular expressions to define patterns
+	//    for a guardrail to recognize and act upon such as serial number, booking
+	//    ID etc..
 	//
 	// Type is a required field
 	Type *string `locationName:"type" type:"string" required:"true" enum:"GuardrailPiiEntityType"`
@@ -8148,12 +8452,6 @@ func (s *GuardrailTopic) SetType(v string) *GuardrailTopic {
 }
 
 // Details about topics for the guardrail to identify and deny.
-//
-// This data type is used in the following API operations:
-//
-//   - CreateGuardrail request body (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_CreateGuardrail.html#API_CreateGuardrail_RequestSyntax)
-//
-//   - UpdateGuardrail request body (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_UpdateGuardrail.html#API_UpdateGuardrail_RequestSyntax)
 type GuardrailTopicConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -8291,12 +8589,6 @@ func (s *GuardrailTopicPolicy) SetTopics(v []*GuardrailTopic) *GuardrailTopicPol
 }
 
 // Contains details about topics that the guardrail should identify and deny.
-//
-// This data type is used in the following API operations:
-//
-//   - CreateGuardrail request body (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_CreateGuardrail.html#API_CreateGuardrail_RequestSyntax)
-//
-//   - UpdateGuardrail request body (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_UpdateGuardrail.html#API_UpdateGuardrail_RequestSyntax)
 type GuardrailTopicPolicyConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -9304,7 +9596,7 @@ func (s *ListFoundationModelsOutput) SetModelSummaries(v []*FoundationModelSumma
 type ListGuardrailsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The unique identifier of the guardrail.
+	// The unique identifier of the guardrail. This can be an ID or the ARN.
 	GuardrailIdentifier *string `location:"querystring" locationName:"guardrailIdentifier" type:"string"`
 
 	// The maximum number of results to return in the response.
@@ -11137,6 +11429,9 @@ type UpdateGuardrailInput struct {
 	// The content policy to configure for the guardrail.
 	ContentPolicyConfig *GuardrailContentPolicyConfig `locationName:"contentPolicyConfig" type:"structure"`
 
+	// The contextual grounding policy configuration used to update a guardrail.
+	ContextualGroundingPolicyConfig *GuardrailContextualGroundingPolicyConfig `locationName:"contextualGroundingPolicyConfig" type:"structure"`
+
 	// A description of the guardrail.
 	//
 	// Description is a sensitive parameter and its value will be
@@ -11144,7 +11439,7 @@ type UpdateGuardrailInput struct {
 	// String and GoString methods.
 	Description *string `locationName:"description" min:"1" type:"string" sensitive:"true"`
 
-	// The unique identifier of the guardrail
+	// The unique identifier of the guardrail. This can be an ID or the ARN.
 	//
 	// GuardrailIdentifier is a required field
 	GuardrailIdentifier *string `location:"uri" locationName:"guardrailIdentifier" type:"string" required:"true"`
@@ -11227,6 +11522,11 @@ func (s *UpdateGuardrailInput) Validate() error {
 			invalidParams.AddNested("ContentPolicyConfig", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.ContextualGroundingPolicyConfig != nil {
+		if err := s.ContextualGroundingPolicyConfig.Validate(); err != nil {
+			invalidParams.AddNested("ContextualGroundingPolicyConfig", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.SensitiveInformationPolicyConfig != nil {
 		if err := s.SensitiveInformationPolicyConfig.Validate(); err != nil {
 			invalidParams.AddNested("SensitiveInformationPolicyConfig", err.(request.ErrInvalidParams))
@@ -11264,6 +11564,12 @@ func (s *UpdateGuardrailInput) SetBlockedOutputsMessaging(v string) *UpdateGuard
 // SetContentPolicyConfig sets the ContentPolicyConfig field's value.
 func (s *UpdateGuardrailInput) SetContentPolicyConfig(v *GuardrailContentPolicyConfig) *UpdateGuardrailInput {
 	s.ContentPolicyConfig = v
+	return s
+}
+
+// SetContextualGroundingPolicyConfig sets the ContextualGroundingPolicyConfig field's value.
+func (s *UpdateGuardrailInput) SetContextualGroundingPolicyConfig(v *GuardrailContextualGroundingPolicyConfig) *UpdateGuardrailInput {
+	s.ContextualGroundingPolicyConfig = v
 	return s
 }
 
@@ -11312,7 +11618,7 @@ func (s *UpdateGuardrailInput) SetWordPolicyConfig(v *GuardrailWordPolicyConfig)
 type UpdateGuardrailOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the guardrail that was created.
+	// The ARN of the guardrail.
 	//
 	// GuardrailArn is a required field
 	GuardrailArn *string `locationName:"guardrailArn" type:"string" required:"true"`
@@ -11927,6 +12233,22 @@ func GuardrailContentFilterType_Values() []string {
 		GuardrailContentFilterTypeInsults,
 		GuardrailContentFilterTypeMisconduct,
 		GuardrailContentFilterTypePromptAttack,
+	}
+}
+
+const (
+	// GuardrailContextualGroundingFilterTypeGrounding is a GuardrailContextualGroundingFilterType enum value
+	GuardrailContextualGroundingFilterTypeGrounding = "GROUNDING"
+
+	// GuardrailContextualGroundingFilterTypeRelevance is a GuardrailContextualGroundingFilterType enum value
+	GuardrailContextualGroundingFilterTypeRelevance = "RELEVANCE"
+)
+
+// GuardrailContextualGroundingFilterType_Values returns all elements of the GuardrailContextualGroundingFilterType enum
+func GuardrailContextualGroundingFilterType_Values() []string {
+	return []string{
+		GuardrailContextualGroundingFilterTypeGrounding,
+		GuardrailContextualGroundingFilterTypeRelevance,
 	}
 }
 

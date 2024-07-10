@@ -26,7 +26,7 @@ import (
 //	// myFunc uses an SDK service client to make a request to
 //	// AWS License Manager Linux Subscriptions.
 //	func myFunc(svc licensemanagerlinuxsubscriptionsiface.LicenseManagerLinuxSubscriptionsAPI) bool {
-//	    // Make svc.GetServiceSettings request
+//	    // Make svc.DeregisterSubscriptionProvider request
 //	}
 //
 //	func main() {
@@ -42,7 +42,7 @@ import (
 //	type mockLicenseManagerLinuxSubscriptionsClient struct {
 //	    licensemanagerlinuxsubscriptionsiface.LicenseManagerLinuxSubscriptionsAPI
 //	}
-//	func (m *mockLicenseManagerLinuxSubscriptionsClient) GetServiceSettings(input *licensemanagerlinuxsubscriptions.GetServiceSettingsInput) (*licensemanagerlinuxsubscriptions.GetServiceSettingsOutput, error) {
+//	func (m *mockLicenseManagerLinuxSubscriptionsClient) DeregisterSubscriptionProvider(input *licensemanagerlinuxsubscriptions.DeregisterSubscriptionProviderInput) (*licensemanagerlinuxsubscriptions.DeregisterSubscriptionProviderOutput, error) {
 //	    // mock response/functionality
 //	}
 //
@@ -60,6 +60,14 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type LicenseManagerLinuxSubscriptionsAPI interface {
+	DeregisterSubscriptionProvider(*licensemanagerlinuxsubscriptions.DeregisterSubscriptionProviderInput) (*licensemanagerlinuxsubscriptions.DeregisterSubscriptionProviderOutput, error)
+	DeregisterSubscriptionProviderWithContext(aws.Context, *licensemanagerlinuxsubscriptions.DeregisterSubscriptionProviderInput, ...request.Option) (*licensemanagerlinuxsubscriptions.DeregisterSubscriptionProviderOutput, error)
+	DeregisterSubscriptionProviderRequest(*licensemanagerlinuxsubscriptions.DeregisterSubscriptionProviderInput) (*request.Request, *licensemanagerlinuxsubscriptions.DeregisterSubscriptionProviderOutput)
+
+	GetRegisteredSubscriptionProvider(*licensemanagerlinuxsubscriptions.GetRegisteredSubscriptionProviderInput) (*licensemanagerlinuxsubscriptions.GetRegisteredSubscriptionProviderOutput, error)
+	GetRegisteredSubscriptionProviderWithContext(aws.Context, *licensemanagerlinuxsubscriptions.GetRegisteredSubscriptionProviderInput, ...request.Option) (*licensemanagerlinuxsubscriptions.GetRegisteredSubscriptionProviderOutput, error)
+	GetRegisteredSubscriptionProviderRequest(*licensemanagerlinuxsubscriptions.GetRegisteredSubscriptionProviderInput) (*request.Request, *licensemanagerlinuxsubscriptions.GetRegisteredSubscriptionProviderOutput)
+
 	GetServiceSettings(*licensemanagerlinuxsubscriptions.GetServiceSettingsInput) (*licensemanagerlinuxsubscriptions.GetServiceSettingsOutput, error)
 	GetServiceSettingsWithContext(aws.Context, *licensemanagerlinuxsubscriptions.GetServiceSettingsInput, ...request.Option) (*licensemanagerlinuxsubscriptions.GetServiceSettingsOutput, error)
 	GetServiceSettingsRequest(*licensemanagerlinuxsubscriptions.GetServiceSettingsInput) (*request.Request, *licensemanagerlinuxsubscriptions.GetServiceSettingsOutput)
@@ -77,6 +85,29 @@ type LicenseManagerLinuxSubscriptionsAPI interface {
 
 	ListLinuxSubscriptionsPages(*licensemanagerlinuxsubscriptions.ListLinuxSubscriptionsInput, func(*licensemanagerlinuxsubscriptions.ListLinuxSubscriptionsOutput, bool) bool) error
 	ListLinuxSubscriptionsPagesWithContext(aws.Context, *licensemanagerlinuxsubscriptions.ListLinuxSubscriptionsInput, func(*licensemanagerlinuxsubscriptions.ListLinuxSubscriptionsOutput, bool) bool, ...request.Option) error
+
+	ListRegisteredSubscriptionProviders(*licensemanagerlinuxsubscriptions.ListRegisteredSubscriptionProvidersInput) (*licensemanagerlinuxsubscriptions.ListRegisteredSubscriptionProvidersOutput, error)
+	ListRegisteredSubscriptionProvidersWithContext(aws.Context, *licensemanagerlinuxsubscriptions.ListRegisteredSubscriptionProvidersInput, ...request.Option) (*licensemanagerlinuxsubscriptions.ListRegisteredSubscriptionProvidersOutput, error)
+	ListRegisteredSubscriptionProvidersRequest(*licensemanagerlinuxsubscriptions.ListRegisteredSubscriptionProvidersInput) (*request.Request, *licensemanagerlinuxsubscriptions.ListRegisteredSubscriptionProvidersOutput)
+
+	ListRegisteredSubscriptionProvidersPages(*licensemanagerlinuxsubscriptions.ListRegisteredSubscriptionProvidersInput, func(*licensemanagerlinuxsubscriptions.ListRegisteredSubscriptionProvidersOutput, bool) bool) error
+	ListRegisteredSubscriptionProvidersPagesWithContext(aws.Context, *licensemanagerlinuxsubscriptions.ListRegisteredSubscriptionProvidersInput, func(*licensemanagerlinuxsubscriptions.ListRegisteredSubscriptionProvidersOutput, bool) bool, ...request.Option) error
+
+	ListTagsForResource(*licensemanagerlinuxsubscriptions.ListTagsForResourceInput) (*licensemanagerlinuxsubscriptions.ListTagsForResourceOutput, error)
+	ListTagsForResourceWithContext(aws.Context, *licensemanagerlinuxsubscriptions.ListTagsForResourceInput, ...request.Option) (*licensemanagerlinuxsubscriptions.ListTagsForResourceOutput, error)
+	ListTagsForResourceRequest(*licensemanagerlinuxsubscriptions.ListTagsForResourceInput) (*request.Request, *licensemanagerlinuxsubscriptions.ListTagsForResourceOutput)
+
+	RegisterSubscriptionProvider(*licensemanagerlinuxsubscriptions.RegisterSubscriptionProviderInput) (*licensemanagerlinuxsubscriptions.RegisterSubscriptionProviderOutput, error)
+	RegisterSubscriptionProviderWithContext(aws.Context, *licensemanagerlinuxsubscriptions.RegisterSubscriptionProviderInput, ...request.Option) (*licensemanagerlinuxsubscriptions.RegisterSubscriptionProviderOutput, error)
+	RegisterSubscriptionProviderRequest(*licensemanagerlinuxsubscriptions.RegisterSubscriptionProviderInput) (*request.Request, *licensemanagerlinuxsubscriptions.RegisterSubscriptionProviderOutput)
+
+	TagResource(*licensemanagerlinuxsubscriptions.TagResourceInput) (*licensemanagerlinuxsubscriptions.TagResourceOutput, error)
+	TagResourceWithContext(aws.Context, *licensemanagerlinuxsubscriptions.TagResourceInput, ...request.Option) (*licensemanagerlinuxsubscriptions.TagResourceOutput, error)
+	TagResourceRequest(*licensemanagerlinuxsubscriptions.TagResourceInput) (*request.Request, *licensemanagerlinuxsubscriptions.TagResourceOutput)
+
+	UntagResource(*licensemanagerlinuxsubscriptions.UntagResourceInput) (*licensemanagerlinuxsubscriptions.UntagResourceOutput, error)
+	UntagResourceWithContext(aws.Context, *licensemanagerlinuxsubscriptions.UntagResourceInput, ...request.Option) (*licensemanagerlinuxsubscriptions.UntagResourceOutput, error)
+	UntagResourceRequest(*licensemanagerlinuxsubscriptions.UntagResourceInput) (*request.Request, *licensemanagerlinuxsubscriptions.UntagResourceOutput)
 
 	UpdateServiceSettings(*licensemanagerlinuxsubscriptions.UpdateServiceSettingsInput) (*licensemanagerlinuxsubscriptions.UpdateServiceSettingsOutput, error)
 	UpdateServiceSettingsWithContext(aws.Context, *licensemanagerlinuxsubscriptions.UpdateServiceSettingsInput, ...request.Option) (*licensemanagerlinuxsubscriptions.UpdateServiceSettingsOutput, error)

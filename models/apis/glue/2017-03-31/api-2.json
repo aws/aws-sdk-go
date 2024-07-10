@@ -4950,6 +4950,22 @@
       },
       "exception":true
     },
+    "ConditionExpression":{
+      "type":"structure",
+      "required":[
+        "Condition",
+        "TargetColumn"
+      ],
+      "members":{
+        "Condition":{"shape":"DatabrewCondition"},
+        "Value":{"shape":"DatabrewConditionValue"},
+        "TargetColumn":{"shape":"TargetColumn"}
+      }
+    },
+    "ConditionExpressionList":{
+      "type":"list",
+      "member":{"shape":"ConditionExpression"}
+    },
     "ConditionList":{
       "type":"list",
       "member":{"shape":"Condition"}
@@ -6409,6 +6425,16 @@
       "member":{"shape":"Database"}
     },
     "DatabaseName":{"type":"string"},
+    "DatabrewCondition":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"^[A-Z\\_]+$"
+    },
+    "DatabrewConditionValue":{
+      "type":"string",
+      "max":1024
+    },
     "Datatype":{
       "type":"structure",
       "required":[
@@ -7146,11 +7172,11 @@
     },
     "EnclosedInStringProperty":{
       "type":"string",
-      "pattern":"([\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF]|[^\\S\\r\\n\"'])*"
+      "pattern":"([\\u0009\\u000B\\u000C\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF])*"
     },
     "EnclosedInStringPropertyWithQuote":{
       "type":"string",
-      "pattern":"([\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF]|[^\\S\\r\\n])*"
+      "pattern":"([\\u0009\\u000B\\u000C\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF])*"
     },
     "EncryptionAtRest":{
       "type":"structure",
@@ -10306,7 +10332,7 @@
     },
     "NodeName":{
       "type":"string",
-      "pattern":"([\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF]|[^\\r\\n])*"
+      "pattern":"([^\\r\\n])*"
     },
     "NodeType":{
       "type":"string",
@@ -10429,6 +10455,12 @@
       "members":{
         "IcebergInput":{"shape":"IcebergInput"}
       }
+    },
+    "Operation":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"^[A-Z\\_]+$"
     },
     "OperationNotSupportedException":{
       "type":"structure",
@@ -10608,6 +10640,22 @@
         "list",
         "null"
       ]
+    },
+    "ParameterMap":{
+      "type":"map",
+      "key":{"shape":"ParameterName"},
+      "value":{"shape":"ParameterValue"}
+    },
+    "ParameterName":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"^[A-Za-z0-9]+$"
+    },
+    "ParameterValue":{
+      "type":"string",
+      "max":32768,
+      "min":1
     },
     "ParametersMap":{
       "type":"map",
@@ -11023,13 +11071,21 @@
       "type":"structure",
       "required":[
         "Name",
-        "Inputs",
-        "RecipeReference"
+        "Inputs"
       ],
       "members":{
         "Name":{"shape":"NodeName"},
         "Inputs":{"shape":"OneInput"},
-        "RecipeReference":{"shape":"RecipeReference"}
+        "RecipeReference":{"shape":"RecipeReference"},
+        "RecipeSteps":{"shape":"RecipeSteps"}
+      }
+    },
+    "RecipeAction":{
+      "type":"structure",
+      "required":["Operation"],
+      "members":{
+        "Operation":{"shape":"Operation"},
+        "Parameters":{"shape":"ParameterMap"}
       }
     },
     "RecipeReference":{
@@ -11042,6 +11098,18 @@
         "RecipeArn":{"shape":"EnclosedInStringProperty"},
         "RecipeVersion":{"shape":"RecipeVersion"}
       }
+    },
+    "RecipeStep":{
+      "type":"structure",
+      "required":["Action"],
+      "members":{
+        "Action":{"shape":"RecipeAction"},
+        "ConditionExpressions":{"shape":"ConditionExpressionList"}
+      }
+    },
+    "RecipeSteps":{
+      "type":"list",
+      "member":{"shape":"RecipeStep"}
     },
     "RecipeVersion":{
       "type":"string",
@@ -12806,6 +12874,11 @@
       "value":{"shape":"TagValue"},
       "max":50,
       "min":0
+    },
+    "TargetColumn":{
+      "type":"string",
+      "max":1024,
+      "min":1
     },
     "TargetFormat":{
       "type":"string",

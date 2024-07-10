@@ -634,6 +634,7 @@
       "base": "<p>An object that contains the properties for the Kubernetes resources of a job.</p>",
       "refs": {
         "JobDefinition$eksProperties": "<p>An object with properties that are specific to Amazon EKS-based jobs. When <code>eksProperties</code> is used in the job definition, it can't be used in addition to <code>containerProperties</code>, <code>ecsProperties</code>, or <code>nodeProperties</code>.</p>",
+        "NodeRangeProperty$eksProperties": "<p>This is an object that represents the properties of the node range for a multi-node parallel job.</p>",
         "RegisterJobDefinitionRequest$eksProperties": "<p>An object with properties that are specific to Amazon EKS-based jobs. This must not be specified for Amazon ECS based job definitions.</p>"
       }
     },
@@ -646,6 +647,7 @@
     "EksPropertiesOverride": {
       "base": "<p>An object that contains overrides for the Kubernetes resources of a job.</p>",
       "refs": {
+        "NodePropertyOverride$eksPropertiesOverride": "<p>An object that contains the properties that you want to replace for the existing Amazon EKS resources of a job.</p>",
         "SubmitJobRequest$eksPropertiesOverride": "<p>An object, with properties that override defaults for the job definition, can only be specified for jobs that are run on Amazon EKS resources.</p>"
       }
     },
@@ -1484,6 +1486,7 @@
         "EcsTaskProperties$pidMode": "<p>The process namespace to use for the containers in the task. The valid values are <code>host</code> or <code>task</code>. For example, monitoring sidecars might need <code>pidMode</code> to access information about other containers running in the same task.</p> <p>If <code>host</code> is specified, all containers within the tasks that specified the <code>host</code> PID mode on the same container instance share the process namespace with the host Amazon EC2 instance.</p> <p>If <code>task</code> is specified, all containers within the specified task share the same process namespace.</p> <p>If no value is specified, the default is a private namespace for each container. For more information, see <a href=\"https://docs.docker.com/engine/reference/run/#pid-settings---pid\">PID settings</a> in the Docker run reference.</p>",
         "EksAttemptContainerDetail$name": "<p>The name of a container.</p>",
         "EksAttemptContainerDetail$reason": "<p>A short (255 max characters) human-readable string to provide additional details for a running or stopped container.</p>",
+        "EksAttemptDetail$eksClusterArn": "<p>The Amazon Resource Name (ARN) of the Amazon EKS cluster.</p>",
         "EksAttemptDetail$podName": "<p>The name of the pod for this job attempt.</p>",
         "EksAttemptDetail$nodeName": "<p>The name of the node for this job attempt.</p>",
         "EksAttemptDetail$statusReason": "<p>A short, human-readable string to provide additional details for the current status of the job attempt.</p>",

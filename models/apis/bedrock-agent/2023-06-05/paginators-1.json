@@ -36,6 +36,24 @@
       "limit_key": "maxResults",
       "result_key": "dataSourceSummaries"
     },
+    "ListFlowAliases": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults",
+      "result_key": "flowAliasSummaries"
+    },
+    "ListFlowVersions": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults",
+      "result_key": "flowVersionSummaries"
+    },
+    "ListFlows": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults",
+      "result_key": "flowSummaries"
+    },
     "ListIngestionJobs": {
       "input_token": "nextToken",
       "output_token": "nextToken",
@@ -47,6 +65,12 @@
       "output_token": "nextToken",
       "limit_key": "maxResults",
       "result_key": "knowledgeBaseSummaries"
+    },
+    "ListPrompts": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults",
+      "result_key": "promptSummaries"
     }
   }
 }

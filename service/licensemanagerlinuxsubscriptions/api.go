@@ -9,7 +9,187 @@ import (
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/private/protocol"
+	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
+
+const opDeregisterSubscriptionProvider = "DeregisterSubscriptionProvider"
+
+// DeregisterSubscriptionProviderRequest generates a "aws/request.Request" representing the
+// client's request for the DeregisterSubscriptionProvider operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeregisterSubscriptionProvider for more information on using the DeregisterSubscriptionProvider
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeregisterSubscriptionProviderRequest method.
+//	req, resp := client.DeregisterSubscriptionProviderRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/license-manager-linux-subscriptions-2018-05-10/DeregisterSubscriptionProvider
+func (c *LicenseManagerLinuxSubscriptions) DeregisterSubscriptionProviderRequest(input *DeregisterSubscriptionProviderInput) (req *request.Request, output *DeregisterSubscriptionProviderOutput) {
+	op := &request.Operation{
+		Name:       opDeregisterSubscriptionProvider,
+		HTTPMethod: "POST",
+		HTTPPath:   "/subscription/DeregisterSubscriptionProvider",
+	}
+
+	if input == nil {
+		input = &DeregisterSubscriptionProviderInput{}
+	}
+
+	output = &DeregisterSubscriptionProviderOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeregisterSubscriptionProvider API operation for AWS License Manager Linux Subscriptions.
+//
+// Remove a third-party subscription provider from the Bring Your Own License
+// (BYOL) subscriptions registered to your account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS License Manager Linux Subscriptions's
+// API operation DeregisterSubscriptionProvider for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     An exception occurred with the service.
+//
+//   - ResourceNotFoundException
+//     Unable to find the requested Amazon Web Services resource.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - ValidationException
+//     The provided input is not valid. Try your request again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/license-manager-linux-subscriptions-2018-05-10/DeregisterSubscriptionProvider
+func (c *LicenseManagerLinuxSubscriptions) DeregisterSubscriptionProvider(input *DeregisterSubscriptionProviderInput) (*DeregisterSubscriptionProviderOutput, error) {
+	req, out := c.DeregisterSubscriptionProviderRequest(input)
+	return out, req.Send()
+}
+
+// DeregisterSubscriptionProviderWithContext is the same as DeregisterSubscriptionProvider with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeregisterSubscriptionProvider for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LicenseManagerLinuxSubscriptions) DeregisterSubscriptionProviderWithContext(ctx aws.Context, input *DeregisterSubscriptionProviderInput, opts ...request.Option) (*DeregisterSubscriptionProviderOutput, error) {
+	req, out := c.DeregisterSubscriptionProviderRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetRegisteredSubscriptionProvider = "GetRegisteredSubscriptionProvider"
+
+// GetRegisteredSubscriptionProviderRequest generates a "aws/request.Request" representing the
+// client's request for the GetRegisteredSubscriptionProvider operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetRegisteredSubscriptionProvider for more information on using the GetRegisteredSubscriptionProvider
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetRegisteredSubscriptionProviderRequest method.
+//	req, resp := client.GetRegisteredSubscriptionProviderRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/license-manager-linux-subscriptions-2018-05-10/GetRegisteredSubscriptionProvider
+func (c *LicenseManagerLinuxSubscriptions) GetRegisteredSubscriptionProviderRequest(input *GetRegisteredSubscriptionProviderInput) (req *request.Request, output *GetRegisteredSubscriptionProviderOutput) {
+	op := &request.Operation{
+		Name:       opGetRegisteredSubscriptionProvider,
+		HTTPMethod: "POST",
+		HTTPPath:   "/subscription/GetRegisteredSubscriptionProvider",
+	}
+
+	if input == nil {
+		input = &GetRegisteredSubscriptionProviderInput{}
+	}
+
+	output = &GetRegisteredSubscriptionProviderOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetRegisteredSubscriptionProvider API operation for AWS License Manager Linux Subscriptions.
+//
+// Get details for a Bring Your Own License (BYOL) subscription that's registered
+// to your account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS License Manager Linux Subscriptions's
+// API operation GetRegisteredSubscriptionProvider for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     An exception occurred with the service.
+//
+//   - ResourceNotFoundException
+//     Unable to find the requested Amazon Web Services resource.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - ValidationException
+//     The provided input is not valid. Try your request again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/license-manager-linux-subscriptions-2018-05-10/GetRegisteredSubscriptionProvider
+func (c *LicenseManagerLinuxSubscriptions) GetRegisteredSubscriptionProvider(input *GetRegisteredSubscriptionProviderInput) (*GetRegisteredSubscriptionProviderOutput, error) {
+	req, out := c.GetRegisteredSubscriptionProviderRequest(input)
+	return out, req.Send()
+}
+
+// GetRegisteredSubscriptionProviderWithContext is the same as GetRegisteredSubscriptionProvider with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetRegisteredSubscriptionProvider for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LicenseManagerLinuxSubscriptions) GetRegisteredSubscriptionProviderWithContext(ctx aws.Context, input *GetRegisteredSubscriptionProviderInput, opts ...request.Option) (*GetRegisteredSubscriptionProviderOutput, error) {
+	req, out := c.GetRegisteredSubscriptionProviderRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
 
 const opGetServiceSettings = "GetServiceSettings"
 
@@ -54,7 +234,7 @@ func (c *LicenseManagerLinuxSubscriptions) GetServiceSettingsRequest(input *GetS
 
 // GetServiceSettings API operation for AWS License Manager Linux Subscriptions.
 //
-// Lists the Linux subscriptions service settings.
+// Lists the Linux subscriptions service settings for your account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -383,6 +563,490 @@ func (c *LicenseManagerLinuxSubscriptions) ListLinuxSubscriptionsPagesWithContex
 	return p.Err()
 }
 
+const opListRegisteredSubscriptionProviders = "ListRegisteredSubscriptionProviders"
+
+// ListRegisteredSubscriptionProvidersRequest generates a "aws/request.Request" representing the
+// client's request for the ListRegisteredSubscriptionProviders operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListRegisteredSubscriptionProviders for more information on using the ListRegisteredSubscriptionProviders
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListRegisteredSubscriptionProvidersRequest method.
+//	req, resp := client.ListRegisteredSubscriptionProvidersRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/license-manager-linux-subscriptions-2018-05-10/ListRegisteredSubscriptionProviders
+func (c *LicenseManagerLinuxSubscriptions) ListRegisteredSubscriptionProvidersRequest(input *ListRegisteredSubscriptionProvidersInput) (req *request.Request, output *ListRegisteredSubscriptionProvidersOutput) {
+	op := &request.Operation{
+		Name:       opListRegisteredSubscriptionProviders,
+		HTTPMethod: "POST",
+		HTTPPath:   "/subscription/ListRegisteredSubscriptionProviders",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListRegisteredSubscriptionProvidersInput{}
+	}
+
+	output = &ListRegisteredSubscriptionProvidersOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListRegisteredSubscriptionProviders API operation for AWS License Manager Linux Subscriptions.
+//
+// List Bring Your Own License (BYOL) subscription registration resources for
+// your account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS License Manager Linux Subscriptions's
+// API operation ListRegisteredSubscriptionProviders for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     An exception occurred with the service.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - ValidationException
+//     The provided input is not valid. Try your request again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/license-manager-linux-subscriptions-2018-05-10/ListRegisteredSubscriptionProviders
+func (c *LicenseManagerLinuxSubscriptions) ListRegisteredSubscriptionProviders(input *ListRegisteredSubscriptionProvidersInput) (*ListRegisteredSubscriptionProvidersOutput, error) {
+	req, out := c.ListRegisteredSubscriptionProvidersRequest(input)
+	return out, req.Send()
+}
+
+// ListRegisteredSubscriptionProvidersWithContext is the same as ListRegisteredSubscriptionProviders with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListRegisteredSubscriptionProviders for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LicenseManagerLinuxSubscriptions) ListRegisteredSubscriptionProvidersWithContext(ctx aws.Context, input *ListRegisteredSubscriptionProvidersInput, opts ...request.Option) (*ListRegisteredSubscriptionProvidersOutput, error) {
+	req, out := c.ListRegisteredSubscriptionProvidersRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListRegisteredSubscriptionProvidersPages iterates over the pages of a ListRegisteredSubscriptionProviders operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListRegisteredSubscriptionProviders method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListRegisteredSubscriptionProviders operation.
+//	pageNum := 0
+//	err := client.ListRegisteredSubscriptionProvidersPages(params,
+//	    func(page *licensemanagerlinuxsubscriptions.ListRegisteredSubscriptionProvidersOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *LicenseManagerLinuxSubscriptions) ListRegisteredSubscriptionProvidersPages(input *ListRegisteredSubscriptionProvidersInput, fn func(*ListRegisteredSubscriptionProvidersOutput, bool) bool) error {
+	return c.ListRegisteredSubscriptionProvidersPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListRegisteredSubscriptionProvidersPagesWithContext same as ListRegisteredSubscriptionProvidersPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LicenseManagerLinuxSubscriptions) ListRegisteredSubscriptionProvidersPagesWithContext(ctx aws.Context, input *ListRegisteredSubscriptionProvidersInput, fn func(*ListRegisteredSubscriptionProvidersOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListRegisteredSubscriptionProvidersInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListRegisteredSubscriptionProvidersRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListRegisteredSubscriptionProvidersOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListTagsForResource = "ListTagsForResource"
+
+// ListTagsForResourceRequest generates a "aws/request.Request" representing the
+// client's request for the ListTagsForResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListTagsForResource for more information on using the ListTagsForResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListTagsForResourceRequest method.
+//	req, resp := client.ListTagsForResourceRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/license-manager-linux-subscriptions-2018-05-10/ListTagsForResource
+func (c *LicenseManagerLinuxSubscriptions) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
+	op := &request.Operation{
+		Name:       opListTagsForResource,
+		HTTPMethod: "GET",
+		HTTPPath:   "/tags/{resourceArn}",
+	}
+
+	if input == nil {
+		input = &ListTagsForResourceInput{}
+	}
+
+	output = &ListTagsForResourceOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListTagsForResource API operation for AWS License Manager Linux Subscriptions.
+//
+// List the metadata tags that are assigned to the specified Amazon Web Services
+// resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS License Manager Linux Subscriptions's
+// API operation ListTagsForResource for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     An exception occurred with the service.
+//
+//   - ResourceNotFoundException
+//     Unable to find the requested Amazon Web Services resource.
+//
+//   - ValidationException
+//     The provided input is not valid. Try your request again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/license-manager-linux-subscriptions-2018-05-10/ListTagsForResource
+func (c *LicenseManagerLinuxSubscriptions) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
+	req, out := c.ListTagsForResourceRequest(input)
+	return out, req.Send()
+}
+
+// ListTagsForResourceWithContext is the same as ListTagsForResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListTagsForResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LicenseManagerLinuxSubscriptions) ListTagsForResourceWithContext(ctx aws.Context, input *ListTagsForResourceInput, opts ...request.Option) (*ListTagsForResourceOutput, error) {
+	req, out := c.ListTagsForResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opRegisterSubscriptionProvider = "RegisterSubscriptionProvider"
+
+// RegisterSubscriptionProviderRequest generates a "aws/request.Request" representing the
+// client's request for the RegisterSubscriptionProvider operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See RegisterSubscriptionProvider for more information on using the RegisterSubscriptionProvider
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the RegisterSubscriptionProviderRequest method.
+//	req, resp := client.RegisterSubscriptionProviderRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/license-manager-linux-subscriptions-2018-05-10/RegisterSubscriptionProvider
+func (c *LicenseManagerLinuxSubscriptions) RegisterSubscriptionProviderRequest(input *RegisterSubscriptionProviderInput) (req *request.Request, output *RegisterSubscriptionProviderOutput) {
+	op := &request.Operation{
+		Name:       opRegisterSubscriptionProvider,
+		HTTPMethod: "POST",
+		HTTPPath:   "/subscription/RegisterSubscriptionProvider",
+	}
+
+	if input == nil {
+		input = &RegisterSubscriptionProviderInput{}
+	}
+
+	output = &RegisterSubscriptionProviderOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// RegisterSubscriptionProvider API operation for AWS License Manager Linux Subscriptions.
+//
+// Register the supported third-party subscription provider for your Bring Your
+// Own License (BYOL) subscription.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS License Manager Linux Subscriptions's
+// API operation RegisterSubscriptionProvider for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     An exception occurred with the service.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - ValidationException
+//     The provided input is not valid. Try your request again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/license-manager-linux-subscriptions-2018-05-10/RegisterSubscriptionProvider
+func (c *LicenseManagerLinuxSubscriptions) RegisterSubscriptionProvider(input *RegisterSubscriptionProviderInput) (*RegisterSubscriptionProviderOutput, error) {
+	req, out := c.RegisterSubscriptionProviderRequest(input)
+	return out, req.Send()
+}
+
+// RegisterSubscriptionProviderWithContext is the same as RegisterSubscriptionProvider with the addition of
+// the ability to pass a context and additional request options.
+//
+// See RegisterSubscriptionProvider for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LicenseManagerLinuxSubscriptions) RegisterSubscriptionProviderWithContext(ctx aws.Context, input *RegisterSubscriptionProviderInput, opts ...request.Option) (*RegisterSubscriptionProviderOutput, error) {
+	req, out := c.RegisterSubscriptionProviderRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opTagResource = "TagResource"
+
+// TagResourceRequest generates a "aws/request.Request" representing the
+// client's request for the TagResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See TagResource for more information on using the TagResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the TagResourceRequest method.
+//	req, resp := client.TagResourceRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/license-manager-linux-subscriptions-2018-05-10/TagResource
+func (c *LicenseManagerLinuxSubscriptions) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
+	op := &request.Operation{
+		Name:       opTagResource,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/tags/{resourceArn}",
+	}
+
+	if input == nil {
+		input = &TagResourceInput{}
+	}
+
+	output = &TagResourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// TagResource API operation for AWS License Manager Linux Subscriptions.
+//
+// Add metadata tags to the specified Amazon Web Services resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS License Manager Linux Subscriptions's
+// API operation TagResource for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     An exception occurred with the service.
+//
+//   - ResourceNotFoundException
+//     Unable to find the requested Amazon Web Services resource.
+//
+//   - ValidationException
+//     The provided input is not valid. Try your request again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/license-manager-linux-subscriptions-2018-05-10/TagResource
+func (c *LicenseManagerLinuxSubscriptions) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
+	req, out := c.TagResourceRequest(input)
+	return out, req.Send()
+}
+
+// TagResourceWithContext is the same as TagResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See TagResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LicenseManagerLinuxSubscriptions) TagResourceWithContext(ctx aws.Context, input *TagResourceInput, opts ...request.Option) (*TagResourceOutput, error) {
+	req, out := c.TagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUntagResource = "UntagResource"
+
+// UntagResourceRequest generates a "aws/request.Request" representing the
+// client's request for the UntagResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UntagResource for more information on using the UntagResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UntagResourceRequest method.
+//	req, resp := client.UntagResourceRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/license-manager-linux-subscriptions-2018-05-10/UntagResource
+func (c *LicenseManagerLinuxSubscriptions) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
+	op := &request.Operation{
+		Name:       opUntagResource,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/tags/{resourceArn}",
+	}
+
+	if input == nil {
+		input = &UntagResourceInput{}
+	}
+
+	output = &UntagResourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UntagResource API operation for AWS License Manager Linux Subscriptions.
+//
+// Remove one or more metadata tag from the specified Amazon Web Services resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS License Manager Linux Subscriptions's
+// API operation UntagResource for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     An exception occurred with the service.
+//
+//   - ResourceNotFoundException
+//     Unable to find the requested Amazon Web Services resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/license-manager-linux-subscriptions-2018-05-10/UntagResource
+func (c *LicenseManagerLinuxSubscriptions) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
+	req, out := c.UntagResourceRequest(input)
+	return out, req.Send()
+}
+
+// UntagResourceWithContext is the same as UntagResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UntagResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LicenseManagerLinuxSubscriptions) UntagResourceWithContext(ctx aws.Context, input *UntagResourceInput, opts ...request.Option) (*UntagResourceOutput, error) {
+	req, out := c.UntagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateServiceSettings = "UpdateServiceSettings"
 
 // UpdateServiceSettingsRequest generates a "aws/request.Request" representing the
@@ -468,6 +1132,74 @@ func (c *LicenseManagerLinuxSubscriptions) UpdateServiceSettingsWithContext(ctx 
 	return out, req.Send()
 }
 
+type DeregisterSubscriptionProviderInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the subscription provider resource to deregister.
+	//
+	// SubscriptionProviderArn is a required field
+	SubscriptionProviderArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeregisterSubscriptionProviderInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeregisterSubscriptionProviderInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeregisterSubscriptionProviderInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeregisterSubscriptionProviderInput"}
+	if s.SubscriptionProviderArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("SubscriptionProviderArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSubscriptionProviderArn sets the SubscriptionProviderArn field's value.
+func (s *DeregisterSubscriptionProviderInput) SetSubscriptionProviderArn(v string) *DeregisterSubscriptionProviderInput {
+	s.SubscriptionProviderArn = &v
+	return s
+}
+
+type DeregisterSubscriptionProviderOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeregisterSubscriptionProviderOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeregisterSubscriptionProviderOutput) GoString() string {
+	return s.String()
+}
+
 // A filter object that is used to return more specific results from a describe
 // operation. Filters can be used to match a set of resources by specific criteria.
 type Filter struct {
@@ -532,6 +1264,134 @@ func (s *Filter) SetOperator(v string) *Filter {
 // SetValues sets the Values field's value.
 func (s *Filter) SetValues(v []*string) *Filter {
 	s.Values = v
+	return s
+}
+
+type GetRegisteredSubscriptionProviderInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the BYOL registration resource to get details
+	// for.
+	//
+	// SubscriptionProviderArn is a required field
+	SubscriptionProviderArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetRegisteredSubscriptionProviderInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetRegisteredSubscriptionProviderInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetRegisteredSubscriptionProviderInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetRegisteredSubscriptionProviderInput"}
+	if s.SubscriptionProviderArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("SubscriptionProviderArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSubscriptionProviderArn sets the SubscriptionProviderArn field's value.
+func (s *GetRegisteredSubscriptionProviderInput) SetSubscriptionProviderArn(v string) *GetRegisteredSubscriptionProviderInput {
+	s.SubscriptionProviderArn = &v
+	return s
+}
+
+type GetRegisteredSubscriptionProviderOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The timestamp from the last time License Manager retrieved subscription details
+	// from your registered third-party Linux subscription provider.
+	LastSuccessfulDataRetrievalTime *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the third-party access secret stored in
+	// Secrets Manager for the BYOL registration resource specified in the request.
+	SecretArn *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) for the BYOL registration resource specified
+	// in the request.
+	SubscriptionProviderArn *string `type:"string"`
+
+	// The subscription provider for the BYOL registration resource specified in
+	// the request.
+	SubscriptionProviderSource *string `type:"string" enum:"SubscriptionProviderSource"`
+
+	// The status of the Linux subscription provider access token from the last
+	// successful subscription data request.
+	SubscriptionProviderStatus *string `type:"string" enum:"SubscriptionProviderStatus"`
+
+	// The detailed message from your subscription provider token status.
+	SubscriptionProviderStatusMessage *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetRegisteredSubscriptionProviderOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetRegisteredSubscriptionProviderOutput) GoString() string {
+	return s.String()
+}
+
+// SetLastSuccessfulDataRetrievalTime sets the LastSuccessfulDataRetrievalTime field's value.
+func (s *GetRegisteredSubscriptionProviderOutput) SetLastSuccessfulDataRetrievalTime(v string) *GetRegisteredSubscriptionProviderOutput {
+	s.LastSuccessfulDataRetrievalTime = &v
+	return s
+}
+
+// SetSecretArn sets the SecretArn field's value.
+func (s *GetRegisteredSubscriptionProviderOutput) SetSecretArn(v string) *GetRegisteredSubscriptionProviderOutput {
+	s.SecretArn = &v
+	return s
+}
+
+// SetSubscriptionProviderArn sets the SubscriptionProviderArn field's value.
+func (s *GetRegisteredSubscriptionProviderOutput) SetSubscriptionProviderArn(v string) *GetRegisteredSubscriptionProviderOutput {
+	s.SubscriptionProviderArn = &v
+	return s
+}
+
+// SetSubscriptionProviderSource sets the SubscriptionProviderSource field's value.
+func (s *GetRegisteredSubscriptionProviderOutput) SetSubscriptionProviderSource(v string) *GetRegisteredSubscriptionProviderOutput {
+	s.SubscriptionProviderSource = &v
+	return s
+}
+
+// SetSubscriptionProviderStatus sets the SubscriptionProviderStatus field's value.
+func (s *GetRegisteredSubscriptionProviderOutput) SetSubscriptionProviderStatus(v string) *GetRegisteredSubscriptionProviderOutput {
+	s.SubscriptionProviderStatus = &v
+	return s
+}
+
+// SetSubscriptionProviderStatusMessage sets the SubscriptionProviderStatusMessage field's value.
+func (s *GetRegisteredSubscriptionProviderOutput) SetSubscriptionProviderStatusMessage(v string) *GetRegisteredSubscriptionProviderOutput {
+	s.SubscriptionProviderStatusMessage = &v
 	return s
 }
 
@@ -638,6 +1498,10 @@ type Instance struct {
 	// The AMI ID used to launch the instance.
 	AmiId *string `type:"string"`
 
+	// Indicates that you have two different license subscriptions for the same
+	// software on your instance.
+	DualSubscription *string `type:"string"`
+
 	// The instance ID of the resource.
 	InstanceID *string `type:"string"`
 
@@ -647,6 +1511,9 @@ type Instance struct {
 	// The time in which the last discovery updated the instance details.
 	LastUpdatedTime *string `type:"string"`
 
+	// The operating system software version that runs on your instance.
+	OsVersion *string `type:"string"`
+
 	// The product code for the instance. For more information, see Usage operation
 	// values (https://docs.aws.amazon.com/license-manager/latest/userguide/linux-subscriptions-usage-operation.html)
 	// in the License Manager User Guide .
@@ -655,11 +1522,23 @@ type Instance struct {
 	// The Region the instance is running in.
 	Region *string `type:"string"`
 
+	// Indicates that your instance uses a BYOL license subscription from a third-party
+	// Linux subscription provider that you've registered with License Manager.
+	RegisteredWithSubscriptionProvider *string `type:"string"`
+
 	// The status of the instance.
 	Status *string `type:"string"`
 
-	// The name of the subscription being used by the instance.
+	// The name of the license subscription that the instance uses.
 	SubscriptionName *string `type:"string"`
+
+	// The timestamp when you registered the third-party Linux subscription provider
+	// for the subscription that the instance uses.
+	SubscriptionProviderCreateTime *string `type:"string"`
+
+	// The timestamp from the last time that the instance synced with the registered
+	// third-party Linux subscription provider.
+	SubscriptionProviderUpdateTime *string `type:"string"`
 
 	// The usage operation of the instance. For more information, see For more information,
 	// see Usage operation values (https://docs.aws.amazon.com/license-manager/latest/userguide/linux-subscriptions-usage-operation.html)
@@ -697,6 +1576,12 @@ func (s *Instance) SetAmiId(v string) *Instance {
 	return s
 }
 
+// SetDualSubscription sets the DualSubscription field's value.
+func (s *Instance) SetDualSubscription(v string) *Instance {
+	s.DualSubscription = &v
+	return s
+}
+
 // SetInstanceID sets the InstanceID field's value.
 func (s *Instance) SetInstanceID(v string) *Instance {
 	s.InstanceID = &v
@@ -715,6 +1600,12 @@ func (s *Instance) SetLastUpdatedTime(v string) *Instance {
 	return s
 }
 
+// SetOsVersion sets the OsVersion field's value.
+func (s *Instance) SetOsVersion(v string) *Instance {
+	s.OsVersion = &v
+	return s
+}
+
 // SetProductCode sets the ProductCode field's value.
 func (s *Instance) SetProductCode(v []*string) *Instance {
 	s.ProductCode = v
@@ -727,6 +1618,12 @@ func (s *Instance) SetRegion(v string) *Instance {
 	return s
 }
 
+// SetRegisteredWithSubscriptionProvider sets the RegisteredWithSubscriptionProvider field's value.
+func (s *Instance) SetRegisteredWithSubscriptionProvider(v string) *Instance {
+	s.RegisteredWithSubscriptionProvider = &v
+	return s
+}
+
 // SetStatus sets the Status field's value.
 func (s *Instance) SetStatus(v string) *Instance {
 	s.Status = &v
@@ -736,6 +1633,18 @@ func (s *Instance) SetStatus(v string) *Instance {
 // SetSubscriptionName sets the SubscriptionName field's value.
 func (s *Instance) SetSubscriptionName(v string) *Instance {
 	s.SubscriptionName = &v
+	return s
+}
+
+// SetSubscriptionProviderCreateTime sets the SubscriptionProviderCreateTime field's value.
+func (s *Instance) SetSubscriptionProviderCreateTime(v string) *Instance {
+	s.SubscriptionProviderCreateTime = &v
+	return s
+}
+
+// SetSubscriptionProviderUpdateTime sets the SubscriptionProviderUpdateTime field's value.
+func (s *Instance) SetSubscriptionProviderUpdateTime(v string) *Instance {
+	s.SubscriptionProviderUpdateTime = &v
 	return s
 }
 
@@ -878,31 +1787,34 @@ func (s *LinuxSubscriptionsDiscoverySettings) SetSourceRegions(v []*string) *Lin
 type ListLinuxSubscriptionInstancesInput struct {
 	_ struct{} `type:"structure"`
 
-	// An array of structures that you can use to filter the results to those that
-	// match one or more sets of key-value pairs that you specify. For example,
-	// you can filter by the name of AmiID with an optional operator to see subscriptions
-	// that match, partially match, or don't match a certain Amazon Machine Image
-	// (AMI) ID.
+	// An array of structures that you can use to filter the results by your specified
+	// criteria. For example, you can specify Region in the Name, with the contains
+	// operator to list all subscriptions that match a partial string in the Value,
+	// such as us-west.
 	//
-	// The valid names for this filter are:
-	//
-	//    * AmiID
-	//
-	//    * InstanceID
+	// For each filter, you can specify one of the following values for the Name
+	// key to streamline results:
 	//
 	//    * AccountID
 	//
-	//    * Status
+	//    * AmiID
 	//
-	//    * Region
+	//    * DualSubscription
 	//
-	//    * UsageOperation
-	//
-	//    * ProductCode
+	//    * InstanceID
 	//
 	//    * InstanceType
 	//
-	// The valid Operators for this filter are:
+	//    * ProductCode
+	//
+	//    * Region
+	//
+	//    * Status
+	//
+	//    * UsageOperation
+	//
+	// For each filter, you can use one of the following Operator values to define
+	// the behavior of the filter:
 	//
 	//    * contains
 	//
@@ -911,10 +1823,11 @@ type ListLinuxSubscriptionInstancesInput struct {
 	//    * Notequal
 	Filters []*Filter `type:"list"`
 
-	// Maximum number of results to return in a single call.
+	// The maximum items to return in a request.
 	MaxResults *int64 `type:"integer"`
 
-	// Token for the next set of results.
+	// A token to specify where to start paginating. This is the nextToken from
+	// a previously truncated response.
 	NextToken *string `min:"1" type:"string"`
 }
 
@@ -983,7 +1896,9 @@ type ListLinuxSubscriptionInstancesOutput struct {
 	// An array that contains instance objects.
 	Instances []*Instance `type:"list"`
 
-	// Token for the next set of results.
+	// The next token used for paginated responses. When this field isn't empty,
+	// there are additional elements that the service hasn't included in this request.
+	// Use this token with the next request to retrieve additional objects.
 	NextToken *string `type:"string"`
 }
 
@@ -1041,10 +1956,11 @@ type ListLinuxSubscriptionsInput struct {
 	//    * Notequal
 	Filters []*Filter `type:"list"`
 
-	// Maximum number of results to return in a single call.
+	// The maximum items to return in a request.
 	MaxResults *int64 `type:"integer"`
 
-	// Token for the next set of results.
+	// A token to specify where to start paginating. This is the nextToken from
+	// a previously truncated response.
 	NextToken *string `min:"1" type:"string"`
 }
 
@@ -1110,7 +2026,9 @@ func (s *ListLinuxSubscriptionsInput) SetNextToken(v string) *ListLinuxSubscript
 type ListLinuxSubscriptionsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Token for the next set of results.
+	// The next token used for paginated responses. When this field isn't empty,
+	// there are additional elements that the service hasn't included in this request.
+	// Use this token with the next request to retrieve additional objects.
 	NextToken *string `type:"string"`
 
 	// An array that contains subscription objects.
@@ -1145,6 +2063,477 @@ func (s *ListLinuxSubscriptionsOutput) SetNextToken(v string) *ListLinuxSubscrip
 func (s *ListLinuxSubscriptionsOutput) SetSubscriptions(v []*Subscription) *ListLinuxSubscriptionsOutput {
 	s.Subscriptions = v
 	return s
+}
+
+type ListRegisteredSubscriptionProvidersInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum items to return in a request.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// A token to specify where to start paginating. This is the nextToken from
+	// a previously truncated response.
+	NextToken *string `type:"string"`
+
+	// To filter your results, specify which subscription providers to return in
+	// the list.
+	SubscriptionProviderSources []*string `type:"list" enum:"SubscriptionProviderSource"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListRegisteredSubscriptionProvidersInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListRegisteredSubscriptionProvidersInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListRegisteredSubscriptionProvidersInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListRegisteredSubscriptionProvidersInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListRegisteredSubscriptionProvidersInput) SetMaxResults(v int64) *ListRegisteredSubscriptionProvidersInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListRegisteredSubscriptionProvidersInput) SetNextToken(v string) *ListRegisteredSubscriptionProvidersInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSubscriptionProviderSources sets the SubscriptionProviderSources field's value.
+func (s *ListRegisteredSubscriptionProvidersInput) SetSubscriptionProviderSources(v []*string) *ListRegisteredSubscriptionProvidersInput {
+	s.SubscriptionProviderSources = v
+	return s
+}
+
+type ListRegisteredSubscriptionProvidersOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The next token used for paginated responses. When this field isn't empty,
+	// there are additional elements that the service hasn't included in this request.
+	// Use this token with the next request to retrieve additional objects.
+	NextToken *string `type:"string"`
+
+	// The list of BYOL registration resources that fit the criteria you specified
+	// in the request.
+	RegisteredSubscriptionProviders []*RegisteredSubscriptionProvider `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListRegisteredSubscriptionProvidersOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListRegisteredSubscriptionProvidersOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListRegisteredSubscriptionProvidersOutput) SetNextToken(v string) *ListRegisteredSubscriptionProvidersOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRegisteredSubscriptionProviders sets the RegisteredSubscriptionProviders field's value.
+func (s *ListRegisteredSubscriptionProvidersOutput) SetRegisteredSubscriptionProviders(v []*RegisteredSubscriptionProvider) *ListRegisteredSubscriptionProvidersOutput {
+	s.RegisteredSubscriptionProviders = v
+	return s
+}
+
+type ListTagsForResourceInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The Amazon Resource Name (ARN) of the resource for which to list metadata
+	// tags.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListTagsForResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListTagsForResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *ListTagsForResourceInput) SetResourceArn(v string) *ListTagsForResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+type ListTagsForResourceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The metadata tags for the requested resource.
+	//
+	// Tags is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ListTagsForResourceOutput's
+	// String and GoString methods.
+	Tags map[string]*string `locationName:"tags" type:"map" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceOutput) GoString() string {
+	return s.String()
+}
+
+// SetTags sets the Tags field's value.
+func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForResourceOutput {
+	s.Tags = v
+	return s
+}
+
+type RegisterSubscriptionProviderInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the secret where you've stored your subscription
+	// provider's access token. For RHEL subscriptions managed through the Red Hat
+	// Subscription Manager (RHSM), the secret contains your Red Hat Offline token.
+	//
+	// SecretArn is a required field
+	SecretArn *string `type:"string" required:"true"`
+
+	// The supported Linux subscription provider to register.
+	//
+	// SubscriptionProviderSource is a required field
+	SubscriptionProviderSource *string `type:"string" required:"true" enum:"SubscriptionProviderSource"`
+
+	// The metadata tags to assign to your registered Linux subscription provider
+	// resource.
+	//
+	// Tags is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by RegisterSubscriptionProviderInput's
+	// String and GoString methods.
+	Tags map[string]*string `type:"map" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RegisterSubscriptionProviderInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RegisterSubscriptionProviderInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RegisterSubscriptionProviderInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RegisterSubscriptionProviderInput"}
+	if s.SecretArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("SecretArn"))
+	}
+	if s.SubscriptionProviderSource == nil {
+		invalidParams.Add(request.NewErrParamRequired("SubscriptionProviderSource"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSecretArn sets the SecretArn field's value.
+func (s *RegisterSubscriptionProviderInput) SetSecretArn(v string) *RegisterSubscriptionProviderInput {
+	s.SecretArn = &v
+	return s
+}
+
+// SetSubscriptionProviderSource sets the SubscriptionProviderSource field's value.
+func (s *RegisterSubscriptionProviderInput) SetSubscriptionProviderSource(v string) *RegisterSubscriptionProviderInput {
+	s.SubscriptionProviderSource = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *RegisterSubscriptionProviderInput) SetTags(v map[string]*string) *RegisterSubscriptionProviderInput {
+	s.Tags = v
+	return s
+}
+
+type RegisterSubscriptionProviderOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the Linux subscription provider resource
+	// that you registered.
+	SubscriptionProviderArn *string `type:"string"`
+
+	// The Linux subscription provider that you registered.
+	SubscriptionProviderSource *string `type:"string" enum:"SubscriptionProviderSource"`
+
+	// Indicates the status of the registration action for the Linux subscription
+	// provider that you requested.
+	SubscriptionProviderStatus *string `type:"string" enum:"SubscriptionProviderStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RegisterSubscriptionProviderOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RegisterSubscriptionProviderOutput) GoString() string {
+	return s.String()
+}
+
+// SetSubscriptionProviderArn sets the SubscriptionProviderArn field's value.
+func (s *RegisterSubscriptionProviderOutput) SetSubscriptionProviderArn(v string) *RegisterSubscriptionProviderOutput {
+	s.SubscriptionProviderArn = &v
+	return s
+}
+
+// SetSubscriptionProviderSource sets the SubscriptionProviderSource field's value.
+func (s *RegisterSubscriptionProviderOutput) SetSubscriptionProviderSource(v string) *RegisterSubscriptionProviderOutput {
+	s.SubscriptionProviderSource = &v
+	return s
+}
+
+// SetSubscriptionProviderStatus sets the SubscriptionProviderStatus field's value.
+func (s *RegisterSubscriptionProviderOutput) SetSubscriptionProviderStatus(v string) *RegisterSubscriptionProviderOutput {
+	s.SubscriptionProviderStatus = &v
+	return s
+}
+
+// A third-party provider for operating system (OS) platform software and license
+// subscriptions, such as Red Hat. When you register a third-party Linux subscription
+// provider, License Manager can get subscription data from the registered provider.
+type RegisteredSubscriptionProvider struct {
+	_ struct{} `type:"structure"`
+
+	// The timestamp from the last time that License Manager accessed third-party
+	// subscription data for your account from your registered Linux subscription
+	// provider.
+	LastSuccessfulDataRetrievalTime *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the Secrets Manager secret that stores
+	// your registered Linux subscription provider access token. For RHEL account
+	// subscriptions, this is the offline token.
+	SecretArn *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the Linux subscription provider resource
+	// that you registered.
+	SubscriptionProviderArn *string `type:"string"`
+
+	// A supported third-party Linux subscription provider. License Manager currently
+	// supports Red Hat subscriptions.
+	SubscriptionProviderSource *string `type:"string" enum:"SubscriptionProviderSource"`
+
+	// Indicates the status of your registered Linux subscription provider access
+	// token from the last time License Manager retrieved subscription data. For
+	// RHEL account subscriptions, this is the status of the offline token.
+	SubscriptionProviderStatus *string `type:"string" enum:"SubscriptionProviderStatus"`
+
+	// A detailed message that's associated with your BYOL subscription provider
+	// token status.
+	SubscriptionProviderStatusMessage *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RegisteredSubscriptionProvider) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RegisteredSubscriptionProvider) GoString() string {
+	return s.String()
+}
+
+// SetLastSuccessfulDataRetrievalTime sets the LastSuccessfulDataRetrievalTime field's value.
+func (s *RegisteredSubscriptionProvider) SetLastSuccessfulDataRetrievalTime(v string) *RegisteredSubscriptionProvider {
+	s.LastSuccessfulDataRetrievalTime = &v
+	return s
+}
+
+// SetSecretArn sets the SecretArn field's value.
+func (s *RegisteredSubscriptionProvider) SetSecretArn(v string) *RegisteredSubscriptionProvider {
+	s.SecretArn = &v
+	return s
+}
+
+// SetSubscriptionProviderArn sets the SubscriptionProviderArn field's value.
+func (s *RegisteredSubscriptionProvider) SetSubscriptionProviderArn(v string) *RegisteredSubscriptionProvider {
+	s.SubscriptionProviderArn = &v
+	return s
+}
+
+// SetSubscriptionProviderSource sets the SubscriptionProviderSource field's value.
+func (s *RegisteredSubscriptionProvider) SetSubscriptionProviderSource(v string) *RegisteredSubscriptionProvider {
+	s.SubscriptionProviderSource = &v
+	return s
+}
+
+// SetSubscriptionProviderStatus sets the SubscriptionProviderStatus field's value.
+func (s *RegisteredSubscriptionProvider) SetSubscriptionProviderStatus(v string) *RegisteredSubscriptionProvider {
+	s.SubscriptionProviderStatus = &v
+	return s
+}
+
+// SetSubscriptionProviderStatusMessage sets the SubscriptionProviderStatusMessage field's value.
+func (s *RegisteredSubscriptionProvider) SetSubscriptionProviderStatusMessage(v string) *RegisteredSubscriptionProvider {
+	s.SubscriptionProviderStatusMessage = &v
+	return s
+}
+
+// Unable to find the requested Amazon Web Services resource.
+type ResourceNotFoundException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourceNotFoundException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourceNotFoundException) GoString() string {
+	return s.String()
+}
+
+func newErrorResourceNotFoundException(v protocol.ResponseMetadata) error {
+	return &ResourceNotFoundException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ResourceNotFoundException) Code() string {
+	return "ResourceNotFoundException"
+}
+
+// Message returns the exception's message.
+func (s *ResourceNotFoundException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ResourceNotFoundException) OrigErr() error {
+	return nil
+}
+
+func (s *ResourceNotFoundException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ResourceNotFoundException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ResourceNotFoundException) RequestID() string {
+	return s.RespMetadata.RequestID
 }
 
 // An object which details a discovered Linux subscription.
@@ -1198,6 +2587,97 @@ func (s *Subscription) SetName(v string) *Subscription {
 func (s *Subscription) SetType(v string) *Subscription {
 	s.Type = &v
 	return s
+}
+
+type TagResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the Amazon Web Services resource to which
+	// to add the specified metadata tags.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
+
+	// The metadata tags to assign to the Amazon Web Services resource. Tags are
+	// formatted as key value pairs.
+	//
+	// Tags is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by TagResourceInput's
+	// String and GoString methods.
+	//
+	// Tags is a required field
+	Tags map[string]*string `locationName:"tags" type:"map" required:"true" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TagResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TagResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
+	}
+	if s.Tags == nil {
+		invalidParams.Add(request.NewErrParamRequired("Tags"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *TagResourceInput) SetResourceArn(v string) *TagResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
+	s.Tags = v
+	return s
+}
+
+type TagResourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceOutput) GoString() string {
+	return s.String()
 }
 
 // The request was denied due to request throttling.
@@ -1262,6 +2742,96 @@ func (s *ThrottlingException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ThrottlingException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type UntagResourceInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The Amazon Resource Name (ARN) of the Amazon Web Services resource to remove
+	// the metadata tags from.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
+
+	// A list of metadata tag keys to remove from the requested resource.
+	//
+	// TagKeys is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UntagResourceInput's
+	// String and GoString methods.
+	//
+	// TagKeys is a required field
+	TagKeys []*string `location:"querystring" locationName:"tagKeys" type:"list" required:"true" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UntagResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UntagResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
+	}
+	if s.TagKeys == nil {
+		invalidParams.Add(request.NewErrParamRequired("TagKeys"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *UntagResourceInput) SetResourceArn(v string) *UntagResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetTagKeys sets the TagKeys field's value.
+func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
+	s.TagKeys = v
+	return s
+}
+
+type UntagResourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceOutput) GoString() string {
+	return s.String()
 }
 
 type UpdateServiceSettingsInput struct {
@@ -1550,5 +3120,37 @@ func Status_Values() []string {
 		StatusCompleted,
 		StatusSuccessful,
 		StatusFailed,
+	}
+}
+
+const (
+	// SubscriptionProviderSourceRedHat is a SubscriptionProviderSource enum value
+	SubscriptionProviderSourceRedHat = "RedHat"
+)
+
+// SubscriptionProviderSource_Values returns all elements of the SubscriptionProviderSource enum
+func SubscriptionProviderSource_Values() []string {
+	return []string{
+		SubscriptionProviderSourceRedHat,
+	}
+}
+
+const (
+	// SubscriptionProviderStatusActive is a SubscriptionProviderStatus enum value
+	SubscriptionProviderStatusActive = "ACTIVE"
+
+	// SubscriptionProviderStatusInvalid is a SubscriptionProviderStatus enum value
+	SubscriptionProviderStatusInvalid = "INVALID"
+
+	// SubscriptionProviderStatusPending is a SubscriptionProviderStatus enum value
+	SubscriptionProviderStatusPending = "PENDING"
+)
+
+// SubscriptionProviderStatus_Values returns all elements of the SubscriptionProviderStatus enum
+func SubscriptionProviderStatus_Values() []string {
+	return []string{
+		SubscriptionProviderStatusActive,
+		SubscriptionProviderStatusInvalid,
+		SubscriptionProviderStatusPending,
 	}
 }

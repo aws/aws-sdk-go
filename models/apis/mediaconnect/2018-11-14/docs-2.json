@@ -730,6 +730,14 @@
         "__listOfOutput$member" : null
       }
     },
+    "OutputStatus": {
+      "base": null,
+      "refs": {
+        "AddOutputRequest$OutputStatus": "An indication of whether the new output should be enabled or disabled as soon as it is created. If you don't specify the outputStatus field in your request, MediaConnect sets it to ENABLED.",
+        "Output$OutputStatus": "An indication of whether the output is transmitting data or not.",
+        "UpdateFlowOutputRequest$OutputStatus": "An indication of whether the output should transmit data or not. If you don't specify the outputStatus field in your request, MediaConnect leaves the value unchanged."
+      }
+    },
     "PriceUnits" : {
       "base" : null,
       "refs" : {

@@ -26,7 +26,7 @@ import (
 //	// myFunc uses an SDK service client to make a request to
 //	// Agents for Amazon Bedrock Runtime.
 //	func myFunc(svc bedrockagentruntimeiface.BedrockAgentRuntimeAPI) bool {
-//	    // Make svc.InvokeAgent request
+//	    // Make svc.DeleteAgentMemory request
 //	}
 //
 //	func main() {
@@ -42,7 +42,7 @@ import (
 //	type mockBedrockAgentRuntimeClient struct {
 //	    bedrockagentruntimeiface.BedrockAgentRuntimeAPI
 //	}
-//	func (m *mockBedrockAgentRuntimeClient) InvokeAgent(input *bedrockagentruntime.InvokeAgentInput) (*bedrockagentruntime.InvokeAgentOutput, error) {
+//	func (m *mockBedrockAgentRuntimeClient) DeleteAgentMemory(input *bedrockagentruntime.DeleteAgentMemoryInput) (*bedrockagentruntime.DeleteAgentMemoryOutput, error) {
 //	    // mock response/functionality
 //	}
 //
@@ -60,9 +60,24 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type BedrockAgentRuntimeAPI interface {
+	DeleteAgentMemory(*bedrockagentruntime.DeleteAgentMemoryInput) (*bedrockagentruntime.DeleteAgentMemoryOutput, error)
+	DeleteAgentMemoryWithContext(aws.Context, *bedrockagentruntime.DeleteAgentMemoryInput, ...request.Option) (*bedrockagentruntime.DeleteAgentMemoryOutput, error)
+	DeleteAgentMemoryRequest(*bedrockagentruntime.DeleteAgentMemoryInput) (*request.Request, *bedrockagentruntime.DeleteAgentMemoryOutput)
+
+	GetAgentMemory(*bedrockagentruntime.GetAgentMemoryInput) (*bedrockagentruntime.GetAgentMemoryOutput, error)
+	GetAgentMemoryWithContext(aws.Context, *bedrockagentruntime.GetAgentMemoryInput, ...request.Option) (*bedrockagentruntime.GetAgentMemoryOutput, error)
+	GetAgentMemoryRequest(*bedrockagentruntime.GetAgentMemoryInput) (*request.Request, *bedrockagentruntime.GetAgentMemoryOutput)
+
+	GetAgentMemoryPages(*bedrockagentruntime.GetAgentMemoryInput, func(*bedrockagentruntime.GetAgentMemoryOutput, bool) bool) error
+	GetAgentMemoryPagesWithContext(aws.Context, *bedrockagentruntime.GetAgentMemoryInput, func(*bedrockagentruntime.GetAgentMemoryOutput, bool) bool, ...request.Option) error
+
 	InvokeAgent(*bedrockagentruntime.InvokeAgentInput) (*bedrockagentruntime.InvokeAgentOutput, error)
 	InvokeAgentWithContext(aws.Context, *bedrockagentruntime.InvokeAgentInput, ...request.Option) (*bedrockagentruntime.InvokeAgentOutput, error)
 	InvokeAgentRequest(*bedrockagentruntime.InvokeAgentInput) (*request.Request, *bedrockagentruntime.InvokeAgentOutput)
+
+	InvokeFlow(*bedrockagentruntime.InvokeFlowInput) (*bedrockagentruntime.InvokeFlowOutput, error)
+	InvokeFlowWithContext(aws.Context, *bedrockagentruntime.InvokeFlowInput, ...request.Option) (*bedrockagentruntime.InvokeFlowOutput, error)
+	InvokeFlowRequest(*bedrockagentruntime.InvokeFlowInput) (*request.Request, *bedrockagentruntime.InvokeFlowOutput)
 
 	Retrieve(*bedrockagentruntime.RetrieveInput) (*bedrockagentruntime.RetrieveOutput, error)
 	RetrieveWithContext(aws.Context, *bedrockagentruntime.RetrieveInput, ...request.Option) (*bedrockagentruntime.RetrieveOutput, error)

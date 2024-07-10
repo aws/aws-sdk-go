@@ -12804,6 +12804,12 @@
         "ModifyIpamPoolRequest$AllocationDefaultNetmaskLength": "<p>The default netmask length for allocations added to this pool. If, for example, the CIDR assigned to this pool is 10.0.0.0/8 and you enter 16 here, new allocations will default to 10.0.0.0/16.</p>"
       }
     },
+    "IpamNetworkInterfaceAttachmentStatus": {
+      "base": null,
+      "refs": {
+        "IpamDiscoveredResourceCidr$NetworkInterfaceAttachmentStatus": "<p>For elastic IP addresses, this is the status of an attached network interface.</p>"
+      }
+    },
     "IpamOperatingRegion": {
       "base": "<p>The operating Regions for an IPAM. Operating Regions are Amazon Web Services Regions where the IPAM is allowed to manage IP address CIDRs. IPAM only discovers and monitors resources in the Amazon Web Services Regions you select as operating Regions.</p> <p>For more information about operating Regions, see <a href=\"https://docs.aws.amazon.com/vpc/latest/ipam/create-ipam.html\">Create an IPAM</a> in the <i>Amazon VPC IPAM User Guide</i>.</p>",
       "refs": {
@@ -19666,7 +19672,7 @@
         "CreateInstanceConnectEndpointResult$ClientToken": "<p>Unique, case-sensitive idempotency token provided by the client in the the request.</p>",
         "CreateInstanceEventWindowRequest$Name": "<p>The name of the event window.</p>",
         "CreateInstanceExportTaskRequest$Description": "<p>A description for the conversion task or the resource being exported. The maximum length is 255 characters.</p>",
-        "CreateIpamPoolRequest$Locale": "<p>In IPAM, the locale is the Amazon Web Services Region where you want to make an IPAM pool available for allocations. Only resources in the same Region as the locale of the pool can get IP address allocations from the pool. You can only allocate a CIDR for a VPC, for example, from an IPAM pool that shares a locale with the VPC’s Region. Note that once you choose a Locale for a pool, you cannot modify it. If you do not choose a locale, resources in Regions others than the IPAM's home region cannot use CIDRs from this pool.</p> <p>Possible values: Any Amazon Web Services Region, such as us-east-1.</p>",
+        "CreateIpamPoolRequest$Locale": "<p>In IPAM, the locale is the Amazon Web Services Region or, for IPAM IPv4 pools in the public scope, the network border group for an Amazon Web Services Local Zone where you want to make an IPAM pool available for allocations (<a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-byoip.html#byoip-zone-avail\">supported Local Zones</a>). If you do not choose a locale, resources in Regions others than the IPAM's home region cannot use CIDRs from this pool.</p> <p>Possible values: Any Amazon Web Services Region, such as us-east-1.</p>",
         "CreateIpamPoolRequest$Description": "<p>A description for the IPAM pool.</p>",
         "CreateIpamPoolRequest$ClientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/ec2/latest/devguide/ec2-api-idempotency.html\">Ensuring idempotency</a>.</p>",
         "CreateIpamRequest$Description": "<p>A description for the IPAM.</p>",
@@ -19700,6 +19706,7 @@
         "CreateNetworkInterfaceRequest$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/ec2/latest/devguide/ec2-api-idempotency.html\">Ensuring idempotency</a>.</p>",
         "CreateNetworkInterfaceResult$ClientToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "CreatePlacementGroupRequest$GroupName": "<p>A name for the placement group. Must be unique within the scope of your account for the Region.</p> <p>Constraints: Up to 255 ASCII characters</p>",
+        "CreatePublicIpv4PoolRequest$NetworkBorderGroup": "<p>The Availability Zone (AZ) or Local Zone (LZ) network border group that the resource that the IP address is assigned to is in. Defaults to an AZ network border group. For more information on available Local Zones, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-byoip.html#byoip-zone-avail\">Local Zone availability</a> in the <i>Amazon EC2 User Guide</i>.</p>",
         "CreateReplaceRootVolumeTaskRequest$ClientToken": "<p>Unique, case-sensitive identifier you provide to ensure the idempotency of the request. If you do not specify a client token, a randomly generated token is used for the request to ensure idempotency. For more information, see <a href=\"https://docs.aws.amazon.com/ec2/latest/devguide/ec2-api-idempotency.html\">Ensuring idempotency</a>.</p>",
         "CreateReservedInstancesListingRequest$ClientToken": "<p>Unique, case-sensitive identifier you provide to ensure idempotency of your listings. This helps avoid duplicate listings. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring Idempotency</a>.</p>",
         "CreateRestoreImageTaskRequest$Bucket": "<p>The name of the Amazon S3 bucket that contains the stored AMI object.</p>",
@@ -19818,6 +19825,7 @@
         "DeleteLaunchTemplateVersionsResponseSuccessItem$LaunchTemplateName": "<p>The name of the launch template.</p>",
         "DeleteLocalGatewayRouteRequest$DestinationCidrBlock": "<p>The CIDR range for the route. This must match the CIDR for the route exactly.</p>",
         "DeleteNatGatewayResult$NatGatewayId": "<p>The ID of the NAT gateway.</p>",
+        "DeletePublicIpv4PoolRequest$NetworkBorderGroup": "<p>The Availability Zone (AZ) or Local Zone (LZ) network border group that the resource that the IP address is assigned to is in. Defaults to an AZ network border group. For more information on available Local Zones, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-byoip.html#byoip-zone-avail\">Local Zone availability</a> in the <i>Amazon EC2 User Guide</i>.</p>",
         "DeleteQueuedReservedInstancesError$Message": "<p>The error message.</p>",
         "DeleteRouteRequest$DestinationCidrBlock": "<p>The IPv4 CIDR range for the route. The value you specify must match the CIDR for the route exactly.</p>",
         "DeleteRouteRequest$DestinationIpv6CidrBlock": "<p>The IPv6 CIDR range for the route. The value you specify must match the CIDR for the route exactly.</p>",
@@ -20487,17 +20495,18 @@
         "IpamDiscoveredPublicAddress$NetworkInterfaceId": "<p>The network interface ID of the resource with the assigned IP address.</p>",
         "IpamDiscoveredPublicAddress$NetworkInterfaceDescription": "<p>The description of the network interface that IP address is assigned to.</p>",
         "IpamDiscoveredPublicAddress$InstanceId": "<p>The instance ID of the instance the assigned IP address is assigned to.</p>",
-        "IpamDiscoveredPublicAddress$NetworkBorderGroup": "<p>The network border group that the resource that the IP address is assigned to is in.</p>",
+        "IpamDiscoveredPublicAddress$NetworkBorderGroup": "<p>The Availability Zone (AZ) or Local Zone (LZ) network border group that the resource that the IP address is assigned to is in. Defaults to an AZ network border group. For more information on available Local Zones, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-byoip.html#byoip-zone-avail\">Local Zone availability</a> in the <i>Amazon EC2 User Guide</i>.</p>",
         "IpamDiscoveredResourceCidr$ResourceRegion": "<p>The resource Region.</p>",
         "IpamDiscoveredResourceCidr$ResourceId": "<p>The resource ID.</p>",
         "IpamDiscoveredResourceCidr$ResourceOwnerId": "<p>The resource owner ID.</p>",
         "IpamDiscoveredResourceCidr$ResourceCidr": "<p>The resource CIDR.</p>",
         "IpamDiscoveredResourceCidr$VpcId": "<p>The VPC ID.</p>",
+        "IpamDiscoveredResourceCidr$AvailabilityZoneId": "<p>The Availability Zone ID.</p>",
         "IpamDiscoveryFailureReason$Message": "<p>The discovery failure message.</p>",
         "IpamOperatingRegion$RegionName": "<p>The name of the operating Region.</p>",
         "IpamPool$OwnerId": "<p>The Amazon Web Services account ID of the owner of the IPAM pool.</p>",
         "IpamPool$IpamRegion": "<p>The Amazon Web Services Region of the IPAM pool.</p>",
-        "IpamPool$Locale": "<p>The locale of the IPAM pool. In IPAM, the locale is the Amazon Web Services Region where you want to make an IPAM pool available for allocations. Only resources in the same Region as the locale of the pool can get IP address allocations from the pool. You can only allocate a CIDR for a VPC, for example, from an IPAM pool that shares a locale with the VPC’s Region. Note that once you choose a Locale for a pool, you cannot modify it. If you choose an Amazon Web Services Region for locale that has not been configured as an operating Region for the IPAM, you'll get an error.</p>",
+        "IpamPool$Locale": "<p>The locale of the IPAM pool. In IPAM, the locale is the Amazon Web Services Region or, for IPAM IPv4 pools in the public scope, the network border group for an Amazon Web Services Local Zone where you want to make an IPAM pool available for allocations (<a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-byoip.html#byoip-zone-avail\">supported Local Zones</a>). If you choose an Amazon Web Services Region for locale that has not been configured as an operating Region for the IPAM, you'll get an error.</p>",
         "IpamPool$StateMessage": "<p>The state message.</p>",
         "IpamPool$Description": "<p>The description of the IPAM pool.</p>",
         "IpamPoolAllocation$Cidr": "<p>The CIDR for the allocation. A CIDR is a representation of an IP address and its associated network mask (or netmask) and refers to a range of IP addresses. An IPv4 CIDR example is <code>10.24.34.0/23</code>. An IPv6 CIDR example is <code>2001:DB8::/32</code>.</p>",
@@ -20525,6 +20534,7 @@
         "IpamResourceCidr$ResourceName": "<p>The name of an IPAM resource.</p>",
         "IpamResourceCidr$ResourceCidr": "<p>The CIDR for an IPAM resource.</p>",
         "IpamResourceCidr$VpcId": "<p>The ID of a VPC.</p>",
+        "IpamResourceCidr$AvailabilityZoneId": "<p>The Availability Zone ID.</p>",
         "IpamResourceDiscovery$OwnerId": "<p>The ID of the owner.</p>",
         "IpamResourceDiscovery$IpamResourceDiscoveryArn": "<p>The resource discovery Amazon Resource Name (ARN).</p>",
         "IpamResourceDiscovery$IpamResourceDiscoveryRegion": "<p>The resource discovery Region.</p>",
@@ -20858,6 +20868,7 @@
         "ProvisionIpamByoasnRequest$Asn": "<p>A public 2-byte or 4-byte ASN.</p>",
         "ProvisionIpamPoolCidrRequest$Cidr": "<p>The CIDR you want to assign to the IPAM pool. Either \"NetmaskLength\" or \"Cidr\" is required. This value will be null if you specify \"NetmaskLength\" and will be filled in during the provisioning process.</p>",
         "ProvisionIpamPoolCidrRequest$ClientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/ec2/latest/devguide/ec2-api-idempotency.html\">Ensuring idempotency</a>.</p>",
+        "ProvisionPublicIpv4PoolCidrRequest$NetworkBorderGroup": "<p>The Availability Zone (AZ) or Local Zone (LZ) network border group that the resource that the IP address is assigned to is in. Defaults to an AZ network border group. For more information on available Local Zones, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-byoip.html#byoip-zone-avail\">Local Zone availability</a> in the <i>Amazon EC2 User Guide</i>.</p>",
         "ProvisionedBandwidth$Provisioned": "<p>Reserved.</p>",
         "ProvisionedBandwidth$Requested": "<p>Reserved.</p>",
         "ProvisionedBandwidth$Status": "<p>Reserved.</p>",

@@ -11,6 +11,40 @@
     "uid": "bedrock-runtime-2023-09-30"
   },
   "operations": {
+    "ApplyGuardrail": {
+      "errors": [
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "ServiceQuotaExceededException"
+        }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/guardrail/{guardrailIdentifier}/version/{guardrailVersion}/apply",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "ApplyGuardrailRequest"
+      },
+      "name": "ApplyGuardrail",
+      "output": {
+        "shape": "ApplyGuardrailResponse"
+      }
+    },
     "Converse": {
       "errors": [
         {
@@ -197,6 +231,56 @@
     },
     "AnyToolChoice": {
       "members": {},
+      "type": "structure"
+    },
+    "ApplyGuardrailRequest": {
+      "members": {
+        "content": {
+          "shape": "GuardrailContentBlockList"
+        },
+        "guardrailIdentifier": {
+          "location": "uri",
+          "locationName": "guardrailIdentifier",
+          "shape": "GuardrailIdentifier"
+        },
+        "guardrailVersion": {
+          "location": "uri",
+          "locationName": "guardrailVersion",
+          "shape": "GuardrailVersion"
+        },
+        "source": {
+          "shape": "GuardrailContentSource"
+        }
+      },
+      "required": [
+        "guardrailIdentifier",
+        "guardrailVersion",
+        "source",
+        "content"
+      ],
+      "type": "structure"
+    },
+    "ApplyGuardrailResponse": {
+      "members": {
+        "action": {
+          "shape": "GuardrailAction"
+        },
+        "assessments": {
+          "shape": "GuardrailAssessmentList"
+        },
+        "outputs": {
+          "shape": "GuardrailOutputContentList"
+        },
+        "usage": {
+          "shape": "GuardrailUsage"
+        }
+      },
+      "required": [
+        "usage",
+        "action",
+        "outputs",
+        "assessments"
+      ],
       "type": "structure"
     },
     "AutoToolChoice": {
@@ -592,10 +676,20 @@
       "min": 1,
       "type": "blob"
     },
+    "GuardrailAction": {
+      "enum": [
+        "NONE",
+        "GUARDRAIL_INTERVENED"
+      ],
+      "type": "string"
+    },
     "GuardrailAssessment": {
       "members": {
         "contentPolicy": {
           "shape": "GuardrailContentPolicyAssessment"
+        },
+        "contextualGroundingPolicy": {
+          "shape": "GuardrailContextualGroundingPolicyAssessment"
         },
         "sensitiveInformationPolicy": {
           "shape": "GuardrailSensitiveInformationPolicyAssessment"
@@ -650,6 +744,21 @@
         "guardrailVersion"
       ],
       "type": "structure"
+    },
+    "GuardrailContentBlock": {
+      "members": {
+        "text": {
+          "shape": "GuardrailTextBlock"
+        }
+      },
+      "type": "structure",
+      "union": true
+    },
+    "GuardrailContentBlockList": {
+      "member": {
+        "shape": "GuardrailContentBlock"
+      },
+      "type": "list"
     },
     "GuardrailContentFilter": {
       "members": {
@@ -713,6 +822,98 @@
       ],
       "type": "structure"
     },
+    "GuardrailContentPolicyUnitsProcessed": {
+      "box": true,
+      "type": "integer"
+    },
+    "GuardrailContentQualifier": {
+      "enum": [
+        "grounding_source",
+        "query",
+        "guard_content"
+      ],
+      "type": "string"
+    },
+    "GuardrailContentQualifierList": {
+      "member": {
+        "shape": "GuardrailContentQualifier"
+      },
+      "type": "list"
+    },
+    "GuardrailContentSource": {
+      "enum": [
+        "INPUT",
+        "OUTPUT"
+      ],
+      "type": "string"
+    },
+    "GuardrailContextualGroundingFilter": {
+      "members": {
+        "action": {
+          "shape": "GuardrailContextualGroundingPolicyAction"
+        },
+        "score": {
+          "shape": "GuardrailContextualGroundingFilterScoreDouble"
+        },
+        "threshold": {
+          "shape": "GuardrailContextualGroundingFilterThresholdDouble"
+        },
+        "type": {
+          "shape": "GuardrailContextualGroundingFilterType"
+        }
+      },
+      "required": [
+        "type",
+        "threshold",
+        "score",
+        "action"
+      ],
+      "type": "structure"
+    },
+    "GuardrailContextualGroundingFilterScoreDouble": {
+      "box": true,
+      "max": 1,
+      "min": 0,
+      "type": "double"
+    },
+    "GuardrailContextualGroundingFilterThresholdDouble": {
+      "box": true,
+      "max": 1,
+      "min": 0,
+      "type": "double"
+    },
+    "GuardrailContextualGroundingFilterType": {
+      "enum": [
+        "GROUNDING",
+        "RELEVANCE"
+      ],
+      "type": "string"
+    },
+    "GuardrailContextualGroundingFilters": {
+      "member": {
+        "shape": "GuardrailContextualGroundingFilter"
+      },
+      "type": "list"
+    },
+    "GuardrailContextualGroundingPolicyAction": {
+      "enum": [
+        "BLOCKED",
+        "NONE"
+      ],
+      "type": "string"
+    },
+    "GuardrailContextualGroundingPolicyAssessment": {
+      "members": {
+        "filters": {
+          "shape": "GuardrailContextualGroundingFilters"
+        }
+      },
+      "type": "structure"
+    },
+    "GuardrailContextualGroundingPolicyUnitsProcessed": {
+      "box": true,
+      "type": "integer"
+    },
     "GuardrailConverseContentBlock": {
       "members": {
         "text": {
@@ -722,8 +923,25 @@
       "type": "structure",
       "union": true
     },
+    "GuardrailConverseContentQualifier": {
+      "enum": [
+        "grounding_source",
+        "query",
+        "guard_content"
+      ],
+      "type": "string"
+    },
+    "GuardrailConverseContentQualifierList": {
+      "member": {
+        "shape": "GuardrailConverseContentQualifier"
+      },
+      "type": "list"
+    },
     "GuardrailConverseTextBlock": {
       "members": {
+        "qualifiers": {
+          "shape": "GuardrailConverseContentQualifierList"
+        },
         "text": {
           "shape": "String"
         }
@@ -790,6 +1008,20 @@
         "PROFANITY"
       ],
       "type": "string"
+    },
+    "GuardrailOutputContent": {
+      "members": {
+        "text": {
+          "shape": "GuardrailOutputText"
+        }
+      },
+      "type": "structure"
+    },
+    "GuardrailOutputContentList": {
+      "member": {
+        "shape": "GuardrailOutputContent"
+      },
+      "type": "list"
     },
     "GuardrailOutputText": {
       "type": "string"
@@ -903,6 +1135,14 @@
       ],
       "type": "structure"
     },
+    "GuardrailSensitiveInformationPolicyFreeUnitsProcessed": {
+      "box": true,
+      "type": "integer"
+    },
+    "GuardrailSensitiveInformationPolicyUnitsProcessed": {
+      "box": true,
+      "type": "integer"
+    },
     "GuardrailStreamConfiguration": {
       "members": {
         "guardrailIdentifier": {
@@ -930,6 +1170,20 @@
         "async"
       ],
       "type": "string"
+    },
+    "GuardrailTextBlock": {
+      "members": {
+        "qualifiers": {
+          "shape": "GuardrailContentQualifierList"
+        },
+        "text": {
+          "shape": "String"
+        }
+      },
+      "required": [
+        "text"
+      ],
+      "type": "structure"
     },
     "GuardrailTopic": {
       "members": {
@@ -973,6 +1227,10 @@
       ],
       "type": "structure"
     },
+    "GuardrailTopicPolicyUnitsProcessed": {
+      "box": true,
+      "type": "integer"
+    },
     "GuardrailTopicType": {
       "enum": [
         "DENY"
@@ -1000,6 +1258,37 @@
       },
       "type": "structure"
     },
+    "GuardrailUsage": {
+      "members": {
+        "contentPolicyUnits": {
+          "shape": "GuardrailContentPolicyUnitsProcessed"
+        },
+        "contextualGroundingPolicyUnits": {
+          "shape": "GuardrailContextualGroundingPolicyUnitsProcessed"
+        },
+        "sensitiveInformationPolicyFreeUnits": {
+          "shape": "GuardrailSensitiveInformationPolicyFreeUnitsProcessed"
+        },
+        "sensitiveInformationPolicyUnits": {
+          "shape": "GuardrailSensitiveInformationPolicyUnitsProcessed"
+        },
+        "topicPolicyUnits": {
+          "shape": "GuardrailTopicPolicyUnitsProcessed"
+        },
+        "wordPolicyUnits": {
+          "shape": "GuardrailWordPolicyUnitsProcessed"
+        }
+      },
+      "required": [
+        "topicPolicyUnits",
+        "contentPolicyUnits",
+        "wordPolicyUnits",
+        "sensitiveInformationPolicyUnits",
+        "sensitiveInformationPolicyFreeUnits",
+        "contextualGroundingPolicyUnits"
+      ],
+      "type": "structure"
+    },
     "GuardrailVersion": {
       "pattern": "(([1-9][0-9]{0,7})|(DRAFT))",
       "type": "string"
@@ -1024,6 +1313,10 @@
         "managedWordLists"
       ],
       "type": "structure"
+    },
+    "GuardrailWordPolicyUnitsProcessed": {
+      "box": true,
+      "type": "integer"
     },
     "ImageBlock": {
       "members": {

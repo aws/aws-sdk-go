@@ -2,7 +2,10 @@
   "version": "2.0",
   "service": "<p>Contains APIs related to model invocation and querying of knowledge bases.</p>",
   "operations": {
-    "InvokeAgent": "<note> <p>The CLI doesn't support <code>InvokeAgent</code>.</p> </note> <p>Sends a prompt for the agent to process and respond to. Note the following fields for the request:</p> <ul> <li> <p>To continue the same conversation with an agent, use the same <code>sessionId</code> value in the request.</p> </li> <li> <p>To activate trace enablement, turn <code>enableTrace</code> to <code>true</code>. Trace enablement helps you follow the agent's reasoning process that led it to the information it processed, the actions it took, and the final result it yielded. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/agents-test.html#trace-events\">Trace enablement</a>.</p> </li> <li> <p>End a conversation by setting <code>endSession</code> to <code>true</code>.</p> </li> <li> <p>In the <code>sessionState</code> object, you can include attributes for the session or prompt or, if you configured an action group to return control, results from invocation of the action group.</p> </li> </ul> <p>The response is returned in the <code>bytes</code> field of the <code>chunk</code> object.</p> <ul> <li> <p>The <code>attribution</code> object contains citations for parts of the response.</p> </li> <li> <p>If you set <code>enableTrace</code> to <code>true</code> in the request, you can trace the agent's steps and reasoning process that led it to the response.</p> </li> <li> <p>If the action predicted was configured to return control, the response returns parameters for the action, elicited from the user, in the <code>returnControl</code> field.</p> </li> <li> <p>Errors are also surfaced in the response.</p> </li> </ul>",
+    "DeleteAgentMemory": "<p>Deletes memory from the specified memory identifier.</p>",
+    "GetAgentMemory": "<p>Gets the sessions stored in the memory of the agent.</p>",
+    "InvokeAgent": "<note> <p>The CLI doesn't support streaming operations in Amazon Bedrock, including <code>InvokeAgent</code>.</p> </note> <p>Sends a prompt for the agent to process and respond to. Note the following fields for the request:</p> <ul> <li> <p>To continue the same conversation with an agent, use the same <code>sessionId</code> value in the request.</p> </li> <li> <p>To activate trace enablement, turn <code>enableTrace</code> to <code>true</code>. Trace enablement helps you follow the agent's reasoning process that led it to the information it processed, the actions it took, and the final result it yielded. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/agents-test.html#trace-events\">Trace enablement</a>.</p> </li> <li> <p>End a conversation by setting <code>endSession</code> to <code>true</code>.</p> </li> <li> <p>In the <code>sessionState</code> object, you can include attributes for the session or prompt or, if you configured an action group to return control, results from invocation of the action group.</p> </li> </ul> <p>The response is returned in the <code>bytes</code> field of the <code>chunk</code> object.</p> <ul> <li> <p>The <code>attribution</code> object contains citations for parts of the response.</p> </li> <li> <p>If you set <code>enableTrace</code> to <code>true</code> in the request, you can trace the agent's steps and reasoning process that led it to the response.</p> </li> <li> <p>If the action predicted was configured to return control, the response returns parameters for the action, elicited from the user, in the <code>returnControl</code> field.</p> </li> <li> <p>Errors are also surfaced in the response.</p> </li> </ul>",
+    "InvokeFlow": "<p>Invokes an alias of a flow to run the inputs that you specify and return the output of each node as a stream. If there's an error, the error is returned. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/flows-test.html\">Test a flow in Amazon Bedrock</a> in the Amazon Bedrock User Guide.</p>",
     "Retrieve": "<p>Queries a knowledge base and retrieves information from it.</p>",
     "RetrieveAndGenerate": "<p>Queries a knowledge base and generates responses based on the retrieved results. The response only cites sources that are relevant to the query.</p>"
   },
@@ -10,6 +13,7 @@
     "AccessDeniedException": {
       "base": "<p>The request is denied because of missing access permissions. Check your permissions and retry your request.</p>",
       "refs": {
+        "FlowResponseStream$accessDeniedException": "<p>The request is denied because of missing access permissions. Check your permissions and retry your request.</p>",
         "ResponseStream$accessDeniedException": "<p>The request is denied because of missing access permissions. Check your permissions and retry your request.</p>"
       }
     },
@@ -59,6 +63,8 @@
     "AgentAliasId": {
       "base": null,
       "refs": {
+        "DeleteAgentMemoryRequest$agentAliasId": "<p>The unique identifier of an alias of an agent.</p>",
+        "GetAgentMemoryRequest$agentAliasId": "<p>The unique identifier of an alias of an agent.</p>",
         "InvokeAgentRequest$agentAliasId": "<p>The alias of the agent to use.</p>",
         "TracePart$agentAliasId": "<p>The unique identifier of the alias of the agent.</p>"
       }
@@ -66,6 +72,8 @@
     "AgentId": {
       "base": null,
       "refs": {
+        "DeleteAgentMemoryRequest$agentId": "<p>The unique identifier of the agent to which the alias belongs.</p>",
+        "GetAgentMemoryRequest$agentId": "<p>The unique identifier of the agent to which the alias belongs.</p>",
         "InvokeAgentRequest$agentId": "<p>The unique identifier of the agent to use.</p>",
         "TracePart$agentId": "<p>The unique identifier of the agent.</p>"
       }
@@ -129,6 +137,7 @@
     "BadGatewayException": {
       "base": "<p>There was an issue with a dependency due to a server issue. Retry your request.</p>",
       "refs": {
+        "FlowResponseStream$badGatewayException": "<p>There was an issue with a dependency due to a server issue. Retry your request.</p>",
         "ResponseStream$badGatewayException": "<p>There was an issue with a dependency due to a server issue. Retry your request.</p>"
       }
     },
@@ -142,6 +151,7 @@
     "Boolean": {
       "base": null,
       "refs": {
+        "CodeInterpreterInvocationOutput$executionTimeout": "<p>Indicates if the execution of the code timed out.</p>",
         "InvokeAgentRequest$enableTrace": "<p>Specifies whether to turn on the trace or not to track the agent's reasoning process. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/agents-test.html#trace-events\">Trace enablement</a>.</p>",
         "InvokeAgentRequest$endSession": "<p>Specifies whether to end the session with the agent or not.</p>",
         "PreProcessingParsedResponse$isValid": "<p>Whether the user input is valid or not. If <code>false</code>, the agent doesn't proceed to orchestration.</p>"
@@ -150,13 +160,20 @@
     "ByteContentBlob": {
       "base": null,
       "refs": {
-        "ByteContentDoc$data": "<p>The byte value of the file to upload, encoded as a Base-64 string.</p>"
+        "ByteContentDoc$data": "<p>The byte value of the file to upload, encoded as a Base-64 string.</p>",
+        "ByteContentFile$data": "<p>The byte value of the file to attach, encoded as Base-64 string. The maximum size of all files that is attached is 10MB. You can attach a maximum of 5 files. </p>"
       }
     },
     "ByteContentDoc": {
       "base": "<p>This property contains the document to chat with, along with its attributes.</p>",
       "refs": {
         "ExternalSource$byteContent": "<p>The identifier, contentType, and data of the external source wrapper object.</p>"
+      }
+    },
+    "ByteContentFile": {
+      "base": "<p>The property contains the file to chat with, along with its attributes.</p>",
+      "refs": {
+        "FileSource$byteContent": "<p>The data and the text of the attached files.</p>"
       }
     },
     "Citation": {
@@ -172,9 +189,22 @@
         "RetrieveAndGenerateResponse$citations": "<p>A list of segments of the generated response that are based on sources in the knowledge base, alongside information about the sources.</p>"
       }
     },
+    "CodeInterpreterInvocationInput": {
+      "base": "<p>Contains information about the code interpreter being invoked.</p>",
+      "refs": {
+        "InvocationInput$codeInterpreterInvocationInput": "<p>Contains information about the code interpreter to be invoked.</p>"
+      }
+    },
+    "CodeInterpreterInvocationOutput": {
+      "base": "<p>Contains the JSON-formatted string returned by the API invoked by the code interpreter.</p>",
+      "refs": {
+        "Observation$codeInterpreterInvocationOutput": "<p>Contains the JSON-formatted string returned by the API invoked by the code interpreter.</p>"
+      }
+    },
     "ConflictException": {
       "base": "<p>There was a conflict performing an operation. Resolve the conflict and retry your request.</p>",
       "refs": {
+        "FlowResponseStream$conflictException": "<p>There was a conflict performing an operation. Resolve the conflict and retry your request.</p>",
         "ResponseStream$conflictException": "<p>There was a conflict performing an operation. Resolve the conflict and retry your request.</p>"
       }
     },
@@ -203,16 +233,47 @@
         "ModelInvocationInput$promptCreationMode": "<p>Specifies whether the default prompt template was <code>OVERRIDDEN</code>. If it was, the <code>basePromptTemplate</code> that was set in the <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_PromptOverrideConfiguration.html\">PromptOverrideConfiguration</a> object when the agent was created or updated is used instead.</p>"
       }
     },
+    "DateTimestamp": {
+      "base": "<p>Time Stamp.</p>",
+      "refs": {
+        "MemorySessionSummary$sessionExpiryTime": "<p>The time when the memory duration for the session is set to end.</p>",
+        "MemorySessionSummary$sessionStartTime": "<p>The start time for this session.</p>"
+      }
+    },
+    "DeleteAgentMemoryRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteAgentMemoryResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DependencyFailedException": {
       "base": "<p>There was an issue with a dependency. Check the resource configurations and retry the request.</p>",
       "refs": {
+        "FlowResponseStream$dependencyFailedException": "<p>There was an issue with a dependency. Check the resource configurations and retry the request.</p>",
         "ResponseStream$dependencyFailedException": "<p>There was an issue with a dependency. Check the resource configurations and retry the request.</p>"
+      }
+    },
+    "Document": {
+      "base": null,
+      "refs": {
+        "FlowInputContent$document": "<p>The input for the flow input node.</p>",
+        "FlowOutputContent$document": "<p>A name for the output of the flow.</p>"
       }
     },
     "Double": {
       "base": null,
       "refs": {
         "KnowledgeBaseRetrievalResult$score": "<p>The level of relevance of the result to the query.</p>"
+      }
+    },
+    "ExecutionType": {
+      "base": null,
+      "refs": {
+        "ActionGroupInvocationInput$executionType": "<p>How fulfillment of the action is handled. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/action-handle.html\">Handling fulfillment of the action</a>.</p>"
       }
     },
     "ExternalSource": {
@@ -257,6 +318,43 @@
         "Trace$failureTrace": "<p>Contains information about the failure of the interaction.</p>"
       }
     },
+    "FileBody": {
+      "base": null,
+      "refs": {
+        "OutputFile$bytes": "<p>The byte count of files that contains response from code interpreter.</p>"
+      }
+    },
+    "FilePart": {
+      "base": "<p>Contains intermediate response for code interpreter if any files have been generated.</p>",
+      "refs": {
+        "ResponseStream$files": "<p>Contains intermediate response for code interpreter if any files have been generated.</p>"
+      }
+    },
+    "FileSource": {
+      "base": "<p>The source file of the content contained in the wrapper object.</p>",
+      "refs": {
+        "InputFile$source": "<p>Specifies where the files are located.</p>"
+      }
+    },
+    "FileSourceType": {
+      "base": null,
+      "refs": {
+        "FileSource$sourceType": "<p>The source type of the files to attach.</p>"
+      }
+    },
+    "FileUseCase": {
+      "base": null,
+      "refs": {
+        "InputFile$useCase": "<p>Specifies how the source files will be used by the code interpreter.</p>"
+      }
+    },
+    "Files": {
+      "base": null,
+      "refs": {
+        "CodeInterpreterInvocationInput$files": "<p>Files that are uploaded for code interpreter to use.</p>",
+        "CodeInterpreterInvocationOutput$files": "<p>Contains output files, if generated by code execution.</p>"
+      }
+    },
     "FilterAttribute": {
       "base": "<p>Specifies the name that the metadata attribute must match and the value to which to compare the value of the metadata attribute. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/kb-test-config.html\">Query configurations</a>.</p> <p>This data type is used in the following API operations:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_RetrieveAndGenerate.html#API_agent-runtime_RetrieveAndGenerate_RequestSyntax\">RetrieveAndGenerate request</a> </p> </li> </ul>",
       "refs": {
@@ -295,6 +393,66 @@
       "base": null,
       "refs": {
         "FinalResponse$text": "<p>The text in the response to the user.</p>"
+      }
+    },
+    "FlowAliasIdentifier": {
+      "base": null,
+      "refs": {
+        "InvokeFlowRequest$flowAliasIdentifier": "<p>The unique identifier of the flow alias.</p>"
+      }
+    },
+    "FlowCompletionEvent": {
+      "base": "<p>Contains information about why a flow completed.</p> <p>This data type is used in the following API operations:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_InvokeFlow.html#API_agent_InvokeFlow_ResponseSyntax\">InvokeFlow response</a> </p> </li> </ul>",
+      "refs": {
+        "FlowResponseStream$flowCompletionEvent": "<p>Contains information about why the flow completed.</p>"
+      }
+    },
+    "FlowCompletionReason": {
+      "base": null,
+      "refs": {
+        "FlowCompletionEvent$completionReason": "<p>The reason that the flow completed.</p>"
+      }
+    },
+    "FlowIdentifier": {
+      "base": null,
+      "refs": {
+        "InvokeFlowRequest$flowIdentifier": "<p>The unique identifier of the flow.</p>"
+      }
+    },
+    "FlowInput": {
+      "base": "<p>Contains information about an input into the flow and what to do with it.</p> <p>This data type is used in the following API operations:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_InvokeFlow.html#API_agent_InvokeFlow_RequestSyntax\">InvokeFlow request</a> </p> </li> </ul>",
+      "refs": {
+        "FlowInputs$member": null
+      }
+    },
+    "FlowInputContent": {
+      "base": "<p>Contains information about an input into the flow.</p> <p>This data type is used in the following API operations:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_InvokeFlow.html#API_agent_InvokeFlow_RequestSyntax\">InvokeFlow request</a> </p> </li> </ul>",
+      "refs": {
+        "FlowInput$content": "<p>Contains information about an input into the flow.</p>"
+      }
+    },
+    "FlowInputs": {
+      "base": null,
+      "refs": {
+        "InvokeFlowRequest$inputs": "<p>A list of objects, each containing information about an input into the flow.</p>"
+      }
+    },
+    "FlowOutputContent": {
+      "base": "<p>Contains information about the output node.</p> <p>This data type is used in the following API operations:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_InvokeFlow.html#API_agent_InvokeFlow_RequestSyntax\">InvokeFlow request</a> </p> </li> </ul>",
+      "refs": {
+        "FlowOutputEvent$content": "<p>The output of the node.</p>"
+      }
+    },
+    "FlowOutputEvent": {
+      "base": "<p>Contains information about an output from flow invoction.</p> <p>This data type is used in the following API operations:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_InvokeFlow.html#API_agent_InvokeFlow_ResponseSyntax\">InvokeFlow response</a> </p> </li> </ul>",
+      "refs": {
+        "FlowResponseStream$flowOutputEvent": "<p>Contains information about an output from flow invocation.</p>"
+      }
+    },
+    "FlowResponseStream": {
+      "base": "<p>The output of the flow.</p> <p>This data type is used in the following API operations:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_InvokeFlow.html#API_agent_InvokeFlow_ResponseSyntax\">InvokeFlow response</a> </p> </li> </ul>",
+      "refs": {
+        "InvokeFlowResponse$responseStream": "<p>The output of the flow, returned as a stream. If there's an error, the error is returned.</p>"
       }
     },
     "Function": {
@@ -336,7 +494,17 @@
     "GenerationConfiguration": {
       "base": "<p>Contains configurations for response generation based on the knowledge base query results.</p> <p>This data type is used in the following API operations:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_RetrieveAndGenerate.html#API_agent-runtime_RetrieveAndGenerate_RequestSyntax\">RetrieveAndGenerate request</a> </p> </li> </ul>",
       "refs": {
-        "KnowledgeBaseRetrieveAndGenerateConfiguration$generationConfiguration": "<p>Contains configurations for response generation based on the knowwledge base query results.</p>"
+        "KnowledgeBaseRetrieveAndGenerateConfiguration$generationConfiguration": "<p>Contains configurations for response generation based on the knowledge base query results.</p>"
+      }
+    },
+    "GetAgentMemoryRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetAgentMemoryResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "GuadrailAction": {
@@ -560,6 +728,18 @@
         "ModelInvocationInput$inferenceConfiguration": "<p>Specifications about the inference parameters that were provided alongside the prompt. These are specified in the <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_PromptOverrideConfiguration.html\">PromptOverrideConfiguration</a> object that was set when the agent was created or updated. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters.html\">Inference parameters for foundation models</a>.</p>"
       }
     },
+    "InputFile": {
+      "base": "<p>Contains details of the source files.</p>",
+      "refs": {
+        "InputFiles$member": null
+      }
+    },
+    "InputFiles": {
+      "base": null,
+      "refs": {
+        "SessionState$files": "<p>Contains information about the files used by code interpreter.</p>"
+      }
+    },
     "InputText": {
       "base": null,
       "refs": {
@@ -575,6 +755,7 @@
     "InternalServerException": {
       "base": "<p>An internal server error occurred. Retry your request.</p>",
       "refs": {
+        "FlowResponseStream$internalServerException": "<p>An internal server error occurred. Retry your request.</p>",
         "ResponseStream$internalServerException": "<p>An internal server error occurred. Retry your request.</p>"
       }
     },
@@ -618,15 +799,38 @@
       "refs": {
       }
     },
+    "InvokeFlowRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "InvokeFlowResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "KmsKeyArn": {
       "base": null,
       "refs": {
         "RetrieveAndGenerateSessionConfiguration$kmsKeyArn": "<p>The ARN of the KMS key encrypting the session.</p>"
       }
     },
+    "KnowledgeBaseConfiguration": {
+      "base": "<p>Configurations to apply to a knowledge base attached to the agent during query. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/agents-session-state.html#session-state-kb\">Knowledge base retrieval configurations</a>.</p>",
+      "refs": {
+        "KnowledgeBaseConfigurations$member": null
+      }
+    },
+    "KnowledgeBaseConfigurations": {
+      "base": null,
+      "refs": {
+        "SessionState$knowledgeBaseConfigurations": "<p>An array of configurations, each of which applies to a knowledge base attached to the agent.</p>"
+      }
+    },
     "KnowledgeBaseId": {
       "base": null,
       "refs": {
+        "KnowledgeBaseConfiguration$knowledgeBaseId": "<p>The unique identifier for a knowledge base attached to the agent.</p>",
         "KnowledgeBaseRetrieveAndGenerateConfiguration$knowledgeBaseId": "<p>The unique identifier of the knowledge base that is queried and the foundation model used for generation.</p>",
         "RetrieveRequest$knowledgeBaseId": "<p>The unique identifier of the knowledge base to query.</p>"
       }
@@ -662,8 +866,9 @@
       }
     },
     "KnowledgeBaseRetrievalConfiguration": {
-      "base": "<p>Contains configurations for the knowledge base query and retrieval process. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/kb-test-config.html\">Query configurations</a>.</p> <p>This data type is used in the following API operations:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Retrieve.html#API_agent-runtime_Retrieve_RequestSyntax\">Retrieve request</a> – in the <code>retrievalConfiguration</code> field</p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_RetrieveAndGenerate.html#API_agent-runtime_RetrieveAndGenerate_RequestSyntax\">RetrieveAndGenerate request</a> – in the <code>retrievalConfiguration</code> field</p> </li> </ul>",
+      "base": "<p>Contains configurations for knowledge base query. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/kb-test-config.html\">Query configurations</a>.</p> <p>This data type is used in the following API operations:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Retrieve.html#API_agent-runtime_Retrieve_RequestSyntax\">Retrieve request</a> – in the <code>retrievalConfiguration</code> field</p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_RetrieveAndGenerate.html#API_agent-runtime_RetrieveAndGenerate_RequestSyntax\">RetrieveAndGenerate request</a> – in the <code>retrievalConfiguration</code> field</p> </li> </ul>",
       "refs": {
+        "KnowledgeBaseConfiguration$retrievalConfiguration": "<p>The configurations to apply to the knowledge base during query. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/kb-test-config.html\">Query configurations</a>.</p>",
         "KnowledgeBaseRetrieveAndGenerateConfiguration$retrievalConfiguration": "<p>Contains configurations for how to retrieve and return the knowledge base query.</p>",
         "RetrieveRequest$retrievalConfiguration": "<p>Contains configurations for the knowledge base query and retrieval process. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/kb-test-config.html\">Query configurations</a>.</p>"
       }
@@ -704,6 +909,12 @@
         "ModelInvocationInput$overrideLambda": "<p>The ARN of the Lambda function to use when parsing the raw foundation model output in parts of the agent sequence.</p>"
       }
     },
+    "MaxResults": {
+      "base": "<p>Max Results.</p>",
+      "refs": {
+        "GetAgentMemoryRequest$maxItems": "<p>The maximum number of items to return in the response. If the total number of results is greater than this value, use the token returned in the response in the <code>nextToken</code> field when making another request to return the next batch of results.</p>"
+      }
+    },
     "MaxTokens": {
       "base": null,
       "refs": {
@@ -716,10 +927,46 @@
         "InferenceConfiguration$maximumLength": "<p>The maximum number of tokens allowed in the generated response.</p>"
       }
     },
+    "Memories": {
+      "base": null,
+      "refs": {
+        "GetAgentMemoryResponse$memoryContents": "<p>Contains details of the sessions stored in the memory</p>"
+      }
+    },
+    "Memory": {
+      "base": "<p>Contains sessions summaries.</p>",
+      "refs": {
+        "Memories$member": null
+      }
+    },
+    "MemoryId": {
+      "base": null,
+      "refs": {
+        "DeleteAgentMemoryRequest$memoryId": "<p>The unique identifier of the memory.</p>",
+        "GetAgentMemoryRequest$memoryId": "<p>The unique identifier of the memory. </p>",
+        "InvokeAgentRequest$memoryId": "<p>The unique identifier of the agent memory.</p>",
+        "InvokeAgentResponse$memoryId": "<p>The unique identifier of the agent memory.</p>",
+        "MemorySessionSummary$memoryId": "<p>The unique identifier of the memory where the session summary is stored.</p>"
+      }
+    },
+    "MemorySessionSummary": {
+      "base": "<p>Contains details of a session summary.</p>",
+      "refs": {
+        "Memory$sessionSummary": "<p>Contains summary of a session.</p>"
+      }
+    },
+    "MemoryType": {
+      "base": null,
+      "refs": {
+        "GetAgentMemoryRequest$memoryType": "<p>The type of memory.</p>"
+      }
+    },
     "MimeType": {
       "base": null,
       "refs": {
-        "InvokeAgentResponse$contentType": "<p>The MIME type of the input data in the request. The default value is <code>application/json</code>.</p>"
+        "ByteContentFile$mediaType": "<p>The MIME type of data contained in the file used for chat.</p>",
+        "InvokeAgentResponse$contentType": "<p>The MIME type of the input data in the request. The default value is <code>application/json</code>.</p>",
+        "OutputFile$type": "<p>The type of file that contains response from the code interpreter.</p>"
       }
     },
     "ModelInvocationInput": {
@@ -733,8 +980,29 @@
     "NextToken": {
       "base": null,
       "refs": {
+        "GetAgentMemoryRequest$nextToken": "<p>If the total number of results is greater than the maxItems value provided in the request, enter the token returned in the <code>nextToken</code> field in the response in this field to return the next batch of results.</p>",
+        "GetAgentMemoryResponse$nextToken": "<p>If the total number of results is greater than the maxItems value provided in the request, use this token when making another request in the <code>nextToken</code> field to return the next batch of results.</p>",
         "RetrieveRequest$nextToken": "<p>If there are more results than can fit in the response, the response returns a <code>nextToken</code>. Use this token in the <code>nextToken</code> field of another request to retrieve the next batch of results.</p>",
         "RetrieveResponse$nextToken": "<p>If there are more results than can fit in the response, the response returns a <code>nextToken</code>. Use this token in the <code>nextToken</code> field of another request to retrieve the next batch of results.</p>"
+      }
+    },
+    "NodeName": {
+      "base": null,
+      "refs": {
+        "FlowInput$nodeName": "<p>A name for the input of the flow input node.</p>",
+        "FlowOutputEvent$nodeName": "<p>The name of the node to which input was provided.</p>"
+      }
+    },
+    "NodeOutputName": {
+      "base": null,
+      "refs": {
+        "FlowInput$nodeOutputName": "<p>A name for the output of the flow input node.</p>"
+      }
+    },
+    "NodeType": {
+      "base": null,
+      "refs": {
+        "FlowOutputEvent$nodeType": "<p>The type of node to which input was provided.</p>"
       }
     },
     "NonBlankString": {
@@ -759,10 +1027,28 @@
         "OrchestrationTrace$observation": "<p>Details about the observation (the output of the action group Lambda or knowledge base) made by the agent.</p>"
       }
     },
+    "OrchestrationConfiguration": {
+      "base": "<p>Settings for how the model processes the prompt prior to retrieval and generation.</p>",
+      "refs": {
+        "KnowledgeBaseRetrieveAndGenerateConfiguration$orchestrationConfiguration": "<p>Settings for how the model processes the prompt prior to retrieval and generation.</p>"
+      }
+    },
     "OrchestrationTrace": {
       "base": "<p>Details about the orchestration step, in which the agent determines the order in which actions are executed and which knowledge bases are retrieved.</p>",
       "refs": {
         "Trace$orchestrationTrace": "<p>Details about the orchestration step, in which the agent determines the order in which actions are executed and which knowledge bases are retrieved.</p>"
+      }
+    },
+    "OutputFile": {
+      "base": "<p>Contains details of the response from code interpreter.</p>",
+      "refs": {
+        "OutputFiles$member": null
+      }
+    },
+    "OutputFiles": {
+      "base": null,
+      "refs": {
+        "FilePart$files": "<p>Files containing intermediate response for the user.</p>"
       }
     },
     "OutputString": {
@@ -870,6 +1156,18 @@
         "ApiContentMap$value": null
       }
     },
+    "QueryTransformationConfiguration": {
+      "base": "<p>To split up the prompt and retrieve multiple sources, set the transformation type to <code>QUERY_DECOMPOSITION</code>.</p>",
+      "refs": {
+        "OrchestrationConfiguration$queryTransformationConfiguration": "<p>To split up the prompt and retrieve multiple sources, set the transformation type to <code>QUERY_DECOMPOSITION</code>.</p>"
+      }
+    },
+    "QueryTransformationType": {
+      "base": null,
+      "refs": {
+        "QueryTransformationConfiguration$type": "<p>The type of transformation to apply to the prompt.</p>"
+      }
+    },
     "RAGStopSequences": {
       "base": null,
       "refs": {
@@ -910,6 +1208,7 @@
     "ResourceNotFoundException": {
       "base": "<p>The specified resource Amazon Resource Name (ARN) was not found. Check the Amazon Resource Name (ARN) and try your request again.</p>",
       "refs": {
+        "FlowResponseStream$resourceNotFoundException": "<p>The specified resource Amazon Resource Name (ARN) was not found. Check the Amazon Resource Name (ARN) and try your request again.</p>",
         "ResponseStream$resourceNotFoundException": "<p>The specified resource Amazon Resource Name (ARN) was not found. Check the Amazon Resource Name (ARN) and try your request again.</p>"
       }
     },
@@ -947,6 +1246,12 @@
         "RetrievalFilter$orAll": "<p>Knowledge base data sources are returned if their metadata attributes fulfill at least one of the filter conditions inside this list.</p>"
       }
     },
+    "RetrievalResultConfluenceLocation": {
+      "base": "<p>The Confluence data source location.</p>",
+      "refs": {
+        "RetrievalResultLocation$confluenceLocation": "<p>The Confluence data source location.</p>"
+      }
+    },
     "RetrievalResultContent": {
       "base": "<p>Contains the cited text from the data source.</p> <p>This data type is used in the following API operations:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Retrieve.html#API_agent-runtime_Retrieve_ResponseSyntax\">Retrieve response</a> – in the <code>content</code> field</p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_RetrieveAndGenerate.html#API_agent-runtime_RetrieveAndGenerate_ResponseSyntax\">RetrieveAndGenerate response</a> – in the <code>content</code> field</p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_InvokeAgent.html#API_agent-runtime_InvokeAgent_ResponseSyntax\">InvokeAgent response</a> – in the <code>content</code> field</p> </li> </ul>",
       "refs": {
@@ -955,7 +1260,7 @@
       }
     },
     "RetrievalResultLocation": {
-      "base": "<p>Contains information about the location of the data source.</p> <p>This data type is used in the following API operations:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Retrieve.html#API_agent-runtime_Retrieve_ResponseSyntax\">Retrieve response</a> – in the <code>location</code> field</p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_RetrieveAndGenerate.html#API_agent-runtime_RetrieveAndGenerate_ResponseSyntax\">RetrieveAndGenerate response</a> – in the <code>location</code> field</p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_InvokeAgent.html#API_agent-runtime_InvokeAgent_ResponseSyntax\">InvokeAgent response</a> – in the <code>locatino</code> field</p> </li> </ul>",
+      "base": "<p>Contains information about the data source location.</p> <p>This data type is used in the following API operations:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Retrieve.html#API_agent-runtime_Retrieve_ResponseSyntax\">Retrieve response</a> – in the <code>location</code> field</p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_RetrieveAndGenerate.html#API_agent-runtime_RetrieveAndGenerate_ResponseSyntax\">RetrieveAndGenerate response</a> – in the <code>location</code> field</p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_InvokeAgent.html#API_agent-runtime_InvokeAgent_ResponseSyntax\">InvokeAgent response</a> – in the <code>locatino</code> field</p> </li> </ul>",
       "refs": {
         "KnowledgeBaseRetrievalResult$location": "<p>Contains information about the location of the data source.</p>",
         "RetrievedReference$location": "<p>Contains information about the location of the data source.</p>"
@@ -964,7 +1269,7 @@
     "RetrievalResultLocationType": {
       "base": null,
       "refs": {
-        "RetrievalResultLocation$type": "<p>The type of the location of the data source.</p>"
+        "RetrievalResultLocation$type": "<p>The type of data source location.</p>"
       }
     },
     "RetrievalResultMetadata": {
@@ -987,9 +1292,27 @@
       }
     },
     "RetrievalResultS3Location": {
-      "base": "<p>Contains the S3 location of the data source.</p> <p>This data type is used in the following API operations:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Retrieve.html#API_agent-runtime_Retrieve_ResponseSyntax\">Retrieve response</a> – in the <code>s3Location</code> field</p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_RetrieveAndGenerate.html#API_agent-runtime_RetrieveAndGenerate_ResponseSyntax\">RetrieveAndGenerate response</a> – in the <code>s3Location</code> field</p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_InvokeAgent.html#API_agent-runtime_InvokeAgent_ResponseSyntax\">InvokeAgent response</a> – in the <code>s3Location</code> field</p> </li> </ul>",
+      "base": "<p>The S3 data source location.</p> <p>This data type is used in the following API operations:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Retrieve.html#API_agent-runtime_Retrieve_ResponseSyntax\">Retrieve response</a> – in the <code>s3Location</code> field</p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_RetrieveAndGenerate.html#API_agent-runtime_RetrieveAndGenerate_ResponseSyntax\">RetrieveAndGenerate response</a> – in the <code>s3Location</code> field</p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_InvokeAgent.html#API_agent-runtime_InvokeAgent_ResponseSyntax\">InvokeAgent response</a> – in the <code>s3Location</code> field</p> </li> </ul>",
       "refs": {
-        "RetrievalResultLocation$s3Location": "<p>Contains the S3 location of the data source.</p>"
+        "RetrievalResultLocation$s3Location": "<p>The S3 data source location.</p>"
+      }
+    },
+    "RetrievalResultSalesforceLocation": {
+      "base": "<p>The Salesforce data source location.</p>",
+      "refs": {
+        "RetrievalResultLocation$salesforceLocation": "<p>The Salesforce data source location.</p>"
+      }
+    },
+    "RetrievalResultSharePointLocation": {
+      "base": "<p>The SharePoint data source location.</p>",
+      "refs": {
+        "RetrievalResultLocation$sharePointLocation": "<p>The SharePoint data source location.</p>"
+      }
+    },
+    "RetrievalResultWebLocation": {
+      "base": "<p>The web URL/URLs data source location.</p>",
+      "refs": {
+        "RetrievalResultLocation$webLocation": "<p>The web URL/URLs data source location.</p>"
       }
     },
     "RetrieveAndGenerateConfiguration": {
@@ -1079,10 +1402,17 @@
         "ExternalSource$s3Location": "<p>The S3 location of the external source wrapper object.</p>"
       }
     },
+    "S3ObjectFile": {
+      "base": "<p>Contains details of the s3 object where the source file is located.</p>",
+      "refs": {
+        "FileSource$s3Location": "<p>The s3 location of the files to attach.</p>"
+      }
+    },
     "S3Uri": {
       "base": null,
       "refs": {
-        "S3ObjectDoc$uri": "<p>The file location of the S3 wrapper object.</p>"
+        "S3ObjectDoc$uri": "<p>The file location of the S3 wrapper object.</p>",
+        "S3ObjectFile$uri": "<p>The uri of the s3 object.</p>"
       }
     },
     "SearchType": {
@@ -1094,6 +1424,7 @@
     "ServiceQuotaExceededException": {
       "base": "<p>The number of requests exceeds the service quota. Resubmit your request later.</p>",
       "refs": {
+        "FlowResponseStream$serviceQuotaExceededException": "<p>The number of requests exceeds the service quota. Resubmit your request later.</p>",
         "ResponseStream$serviceQuotaExceededException": "<p>The number of requests exceeds the service quota. Resubmit your request later.</p>"
       }
     },
@@ -1108,8 +1439,9 @@
       "refs": {
         "InvokeAgentRequest$sessionId": "<p>The unique identifier of the session. Use the same value across requests to continue the same conversation.</p>",
         "InvokeAgentResponse$sessionId": "<p>The unique identifier of the session with the agent.</p>",
-        "RetrieveAndGenerateRequest$sessionId": "<p>The unique identifier of the session. Reuse the same value to continue the same session with the knowledge base.</p>",
-        "RetrieveAndGenerateResponse$sessionId": "<p>The unique identifier of the session. Reuse the same value to continue the same session with the knowledge base.</p>",
+        "MemorySessionSummary$sessionId": "<p>The identifier for this session.</p>",
+        "RetrieveAndGenerateRequest$sessionId": "<p>The unique identifier of the session. When you first make a <code>RetrieveAndGenerate</code> request, Amazon Bedrock automatically generates this value. You must reuse this value for all subsequent requests in the same conversational session. This value allows Amazon Bedrock to maintain context and knowledge from previous interactions. You can't explicitly set the <code>sessionId</code> yourself.</p>",
+        "RetrieveAndGenerateResponse$sessionId": "<p>The unique identifier of the session. When you first make a <code>RetrieveAndGenerate</code> request, Amazon Bedrock automatically generates this value. You must reuse this value for all subsequent requests in the same conversational session. This value allows Amazon Bedrock to maintain context and knowledge from previous interactions. You can't explicitly set the <code>sessionId</code> yourself.</p>",
         "TracePart$sessionId": "<p>The unique identifier of the session with the agent.</p>"
       }
     },
@@ -1152,6 +1484,7 @@
     "String": {
       "base": null,
       "refs": {
+        "ActionGroupInvocationInput$invocationId": "<p>The unique identifier of the invocation. Only returned if the <code>executionType</code> is <code>RETURN_CONTROL</code>.</p>",
         "ApiContentMap$key": null,
         "ApiInvocationInput$actionGroup": "<p>The action group that the API operation belongs to.</p>",
         "ApiInvocationInput$httpMethod": "<p>The HTTP method of the API operation.</p>",
@@ -1160,8 +1493,12 @@
         "ApiParameter$value": "<p>The value of the parameter.</p>",
         "ApiResult$actionGroup": "<p>The action group that the API operation belongs to.</p>",
         "ApiResult$httpMethod": "<p>The HTTP method for the API operation.</p>",
+        "CodeInterpreterInvocationInput$code": "<p>The code for the code interpreter to use.</p>",
+        "CodeInterpreterInvocationOutput$executionError": "<p>Contains the error returned from code execution.</p>",
+        "CodeInterpreterInvocationOutput$executionOutput": "<p>Contains the successful output returned from code execution</p>",
         "ContentBody$body": "<p>The body of the API response.</p>",
         "ContentMap$key": null,
+        "Files$member": null,
         "FunctionInvocationInput$actionGroup": "<p>The action group that the function belongs to.</p>",
         "FunctionInvocationInput$function": "<p>The name of the function.</p>",
         "FunctionParameter$name": "<p>The name of the parameter.</p>",
@@ -1176,6 +1513,8 @@
         "GuardrailRegexFilter$name": "<p>The name details for the regex filter used in the Guardrail.</p>",
         "GuardrailRegexFilter$regex": "<p>The regex details for the regex filter used in the Guardrail.</p>",
         "GuardrailTopic$name": "<p>The name details on a specific topic in the Guardrail.</p>",
+        "InputFile$name": "<p>The name of the source file.</p>",
+        "OutputFile$name": "<p>The name of the file containing response from code interpreter.</p>",
         "Parameter$name": "<p>The name of the parameter.</p>",
         "Parameter$type": "<p>The type of the parameter.</p>",
         "Parameter$value": "<p>The value of the parameter.</p>",
@@ -1183,8 +1522,12 @@
         "PromptSessionAttributesMap$value": null,
         "RepromptResponse$text": "<p>The text reprompting the input.</p>",
         "ResponseBody$key": null,
+        "RetrievalResultConfluenceLocation$url": "<p>The Confluence host URL for the data source location.</p>",
         "RetrievalResultContent$text": "<p>The cited text from the data source.</p>",
-        "RetrievalResultS3Location$uri": "<p>The S3 URI of the data source.</p>",
+        "RetrievalResultS3Location$uri": "<p>The S3 URI for the data source location.</p>",
+        "RetrievalResultSalesforceLocation$url": "<p>The Salesforce host URL for the data source location.</p>",
+        "RetrievalResultSharePointLocation$url": "<p>The SharePoint site URL for the data source location.</p>",
+        "RetrievalResultWebLocation$url": "<p>The web URL/URLs for the data source location.</p>",
         "RetrieveAndGenerateOutput$text": "<p>The response generated from querying the knowledge base.</p>",
         "ReturnControlPayload$invocationId": "<p>The identifier of the action group invocation.</p>",
         "SessionAttributesMap$key": null,
@@ -1192,6 +1535,12 @@
         "SessionState$invocationId": "<p>The identifier of the invocation of an action. This value must match the <code>invocationId</code> returned in the <code>InvokeAgent</code> response for the action whose results are provided in the <code>returnControlInvocationResults</code> field. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/agents-returncontrol.html\">Return control to the agent developer</a> and <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/agents-session-state.html\">Control session context</a>.</p>",
         "StopSequences$member": null,
         "TextResponsePart$text": "<p>The part of the generated text that contains a citation.</p>"
+      }
+    },
+    "SummaryText": {
+      "base": null,
+      "refs": {
+        "MemorySessionSummary$summaryText": "<p>The summarized text for this session.</p>"
       }
     },
     "Temperature": {
@@ -1222,6 +1571,7 @@
     "ThrottlingException": {
       "base": "<p>The number of requests exceeds the limit. Resubmit your request later.</p>",
       "refs": {
+        "FlowResponseStream$throttlingException": "<p>The number of requests exceeds the limit. Resubmit your request later.</p>",
         "ResponseStream$throttlingException": "<p>The number of requests exceeds the limit. Resubmit your request later.</p>"
       }
     },
@@ -1278,6 +1628,7 @@
     "ValidationException": {
       "base": "<p>Input validation failed. Check your request parameters and retry the request.</p>",
       "refs": {
+        "FlowResponseStream$validationException": "<p>Input validation failed. Check your request parameters and retry the request.</p>",
         "ResponseStream$validationException": "<p>Input validation failed. Check your request parameters and retry the request.</p>"
       }
     },
