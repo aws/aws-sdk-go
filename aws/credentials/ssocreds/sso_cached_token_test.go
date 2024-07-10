@@ -4,6 +4,7 @@
 package ssocreds
 
 import (
+	"encoding/json"
 	"io/ioutil"
 	"os"
 	"path/filepath"
@@ -11,6 +12,8 @@ import (
 	"strings"
 	"testing"
 	"time"
+
+	"github.com/aws/aws-sdk-go/aws"
 )
 
 func TestStandardSSOCacheTokenFilepath(t *testing.T) {
@@ -188,4 +191,91 @@ func TestStoreCachedToken(t *testing.T) {
 // Time returns a pointer value for the time.Time value passed in.
 func Time(v time.Time) *time.Time {
 	return &v
+}
+
+func TestStoreTokenTimeZone(t *testing.T) {
+	tempDir, err := ioutil.TempDir(os.TempDir(), "aws-sdk-go-v2-"+t.Name())
+	if err != nil {
+		t.Fatalf("failed to create temporary test directory, %v", err)
+	}
+	defer func() {
+		if err := os.RemoveAll(tempDir); err != nil {
+			t.Errorf("failed to cleanup temporary test directory, %v", err)
+		}
+	}()
+
+	cases := map[string]struct {
+		token             cachedToken
+		filename          string
+		fileMode          os.FileMode
+		expectedExpiresAt string
+	}{
+		"utc token": {
+			filename: filepath.Join(tempDir, "token_file.json"),
+			fileMode: 0600,
+			token: cachedToken{
+				tokenKnownFields: tokenKnownFields{
+					AccessToken:  "dGhpcyBpcyBub3QgYSByZWFsIHZhbHVl",
+					ExpiresAt:    (*rfc3339)(aws.Time(time.Date(2044, 4, 4, 7, 0, 1, 0, time.UTC))),
+					ClientID:     "client id",
+					ClientSecret: "client secret",
+					RefreshToken: "refresh token",
+				},
+				UnknownFields: map[string]interface{}{
+					"unknownField":          "some value",
+					"registrationExpiresAt": "2044-04-04T07:00:01Z",
+					"region":                "region",
+					"startURL":              "start URL",
+				},
+			},
+			expectedExpiresAt: "2044-04-04T07:00:01Z",
+		},
+		"non-utc token": {
+			filename: filepath.Join(tempDir, "token_file.json"),
+			fileMode: 0600,
+			token: cachedToken{
+				tokenKnownFields: tokenKnownFields{
+					AccessToken:  "dGhpcyBpcyBub3QgYSByZWFsIHZhbHVl",
+					ExpiresAt:    (*rfc3339)(aws.Time(time.Date(2044, 4, 4, 7, 0, 1, 0, time.FixedZone("UTC-8", -8*60*60)))),
+					ClientID:     "client id",
+					ClientSecret: "client secret",
+					RefreshToken: "refresh token",
+				},
+				UnknownFields: map[string]interface{}{
+					"unknownField":          "some value",
+					"registrationExpiresAt": "2044-04-04T07:00:01Z",
+					"region":                "region",
+					"startURL":              "start URL",
+				},
+			},
+			expectedExpiresAt: "2044-04-04T15:00:01Z",
+		},
+	}
+
+	type ExpiresAt struct {
+		ExpiresAt string `json:"expiresAt"`
+	}
+
+	for name, c := range cases {
+		t.Run(name, func(t *testing.T) {
+			err := storeCachedToken(c.filename, c.token, c.fileMode)
+			if err != nil {
+				t.Fatalf("expect no error, got %v", err)
+			}
+
+			fileBytes, err := ioutil.ReadFile(c.filename)
+			if err != nil {
+				t.Fatalf("failed to load file, %v", err)
+			}
+			var expiresAtData ExpiresAt
+			err = json.Unmarshal(fileBytes, &expiresAtData)
+			if err != nil {
+				t.Fatalf("failed to unmarshal expiresAt, %v", err)
+			}
+
+			if expiresAtData.ExpiresAt != c.expectedExpiresAt {
+				t.Errorf("expect %v, got %v", c.expectedExpiresAt, expiresAtData.ExpiresAt)
+			}
+		})
+	}
 }
