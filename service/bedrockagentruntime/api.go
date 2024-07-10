@@ -21,6 +21,278 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
 
+const opDeleteAgentMemory = "DeleteAgentMemory"
+
+// DeleteAgentMemoryRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteAgentMemory operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteAgentMemory for more information on using the DeleteAgentMemory
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteAgentMemoryRequest method.
+//	req, resp := client.DeleteAgentMemoryRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-runtime-2023-07-26/DeleteAgentMemory
+func (c *BedrockAgentRuntime) DeleteAgentMemoryRequest(input *DeleteAgentMemoryInput) (req *request.Request, output *DeleteAgentMemoryOutput) {
+	op := &request.Operation{
+		Name:       opDeleteAgentMemory,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/agents/{agentId}/agentAliases/{agentAliasId}/memories",
+	}
+
+	if input == nil {
+		input = &DeleteAgentMemoryInput{}
+	}
+
+	output = &DeleteAgentMemoryOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteAgentMemory API operation for Agents for Amazon Bedrock Runtime.
+//
+// Deletes memory from the specified memory identifier.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Agents for Amazon Bedrock Runtime's
+// API operation DeleteAgentMemory for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ConflictException
+//     There was a conflict performing an operation. Resolve the conflict and retry
+//     your request.
+//
+//   - ResourceNotFoundException
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
+//
+//   - ValidationException
+//     Input validation failed. Check your request parameters and retry the request.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
+//
+//   - DependencyFailedException
+//     There was an issue with a dependency. Check the resource configurations and
+//     retry the request.
+//
+//   - BadGatewayException
+//     There was an issue with a dependency due to a server issue. Retry your request.
+//
+//   - ThrottlingException
+//     The number of requests exceeds the limit. Resubmit your request later.
+//
+//   - AccessDeniedException
+//     The request is denied because of missing access permissions. Check your permissions
+//     and retry your request.
+//
+//   - ServiceQuotaExceededException
+//     The number of requests exceeds the service quota. Resubmit your request later.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-runtime-2023-07-26/DeleteAgentMemory
+func (c *BedrockAgentRuntime) DeleteAgentMemory(input *DeleteAgentMemoryInput) (*DeleteAgentMemoryOutput, error) {
+	req, out := c.DeleteAgentMemoryRequest(input)
+	return out, req.Send()
+}
+
+// DeleteAgentMemoryWithContext is the same as DeleteAgentMemory with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteAgentMemory for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *BedrockAgentRuntime) DeleteAgentMemoryWithContext(ctx aws.Context, input *DeleteAgentMemoryInput, opts ...request.Option) (*DeleteAgentMemoryOutput, error) {
+	req, out := c.DeleteAgentMemoryRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetAgentMemory = "GetAgentMemory"
+
+// GetAgentMemoryRequest generates a "aws/request.Request" representing the
+// client's request for the GetAgentMemory operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetAgentMemory for more information on using the GetAgentMemory
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetAgentMemoryRequest method.
+//	req, resp := client.GetAgentMemoryRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-runtime-2023-07-26/GetAgentMemory
+func (c *BedrockAgentRuntime) GetAgentMemoryRequest(input *GetAgentMemoryInput) (req *request.Request, output *GetAgentMemoryOutput) {
+	op := &request.Operation{
+		Name:       opGetAgentMemory,
+		HTTPMethod: "GET",
+		HTTPPath:   "/agents/{agentId}/agentAliases/{agentAliasId}/memories",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxItems",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &GetAgentMemoryInput{}
+	}
+
+	output = &GetAgentMemoryOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetAgentMemory API operation for Agents for Amazon Bedrock Runtime.
+//
+// Gets the sessions stored in the memory of the agent.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Agents for Amazon Bedrock Runtime's
+// API operation GetAgentMemory for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ConflictException
+//     There was a conflict performing an operation. Resolve the conflict and retry
+//     your request.
+//
+//   - ResourceNotFoundException
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
+//
+//   - ValidationException
+//     Input validation failed. Check your request parameters and retry the request.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
+//
+//   - DependencyFailedException
+//     There was an issue with a dependency. Check the resource configurations and
+//     retry the request.
+//
+//   - BadGatewayException
+//     There was an issue with a dependency due to a server issue. Retry your request.
+//
+//   - ThrottlingException
+//     The number of requests exceeds the limit. Resubmit your request later.
+//
+//   - AccessDeniedException
+//     The request is denied because of missing access permissions. Check your permissions
+//     and retry your request.
+//
+//   - ServiceQuotaExceededException
+//     The number of requests exceeds the service quota. Resubmit your request later.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-runtime-2023-07-26/GetAgentMemory
+func (c *BedrockAgentRuntime) GetAgentMemory(input *GetAgentMemoryInput) (*GetAgentMemoryOutput, error) {
+	req, out := c.GetAgentMemoryRequest(input)
+	return out, req.Send()
+}
+
+// GetAgentMemoryWithContext is the same as GetAgentMemory with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetAgentMemory for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *BedrockAgentRuntime) GetAgentMemoryWithContext(ctx aws.Context, input *GetAgentMemoryInput, opts ...request.Option) (*GetAgentMemoryOutput, error) {
+	req, out := c.GetAgentMemoryRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// GetAgentMemoryPages iterates over the pages of a GetAgentMemory operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See GetAgentMemory method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a GetAgentMemory operation.
+//	pageNum := 0
+//	err := client.GetAgentMemoryPages(params,
+//	    func(page *bedrockagentruntime.GetAgentMemoryOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *BedrockAgentRuntime) GetAgentMemoryPages(input *GetAgentMemoryInput, fn func(*GetAgentMemoryOutput, bool) bool) error {
+	return c.GetAgentMemoryPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// GetAgentMemoryPagesWithContext same as GetAgentMemoryPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *BedrockAgentRuntime) GetAgentMemoryPagesWithContext(ctx aws.Context, input *GetAgentMemoryInput, fn func(*GetAgentMemoryOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *GetAgentMemoryInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.GetAgentMemoryRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*GetAgentMemoryOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opInvokeAgent = "InvokeAgent"
 
 // InvokeAgentRequest generates a "aws/request.Request" representing the
@@ -72,7 +344,8 @@ func (c *BedrockAgentRuntime) InvokeAgentRequest(input *InvokeAgentInput) (req *
 
 // InvokeAgent API operation for Agents for Amazon Bedrock Runtime.
 //
-// The CLI doesn't support InvokeAgent.
+// The CLI doesn't support streaming operations in Amazon Bedrock, including
+// InvokeAgent.
 //
 // Sends a prompt for the agent to process and respond to. Note the following
 // fields for the request:
@@ -249,6 +522,7 @@ func (es *InvokeAgentEventStream) waitStreamPartClose() {
 // These events are:
 //
 //   - PayloadPart
+//   - FilePart
 //   - ReturnControlPayload
 //   - TracePart
 //   - ResponseStreamUnknownEvent
@@ -306,6 +580,273 @@ func (es *InvokeAgentEventStream) safeClose() {
 // Err returns any error that occurred while reading or writing EventStream
 // Events from the service API's response. Returns nil if there were no errors.
 func (es *InvokeAgentEventStream) Err() error {
+	if err := es.err.Err(); err != nil {
+		return err
+	}
+	if err := es.Reader.Err(); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+const opInvokeFlow = "InvokeFlow"
+
+// InvokeFlowRequest generates a "aws/request.Request" representing the
+// client's request for the InvokeFlow operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See InvokeFlow for more information on using the InvokeFlow
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the InvokeFlowRequest method.
+//	req, resp := client.InvokeFlowRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-runtime-2023-07-26/InvokeFlow
+func (c *BedrockAgentRuntime) InvokeFlowRequest(input *InvokeFlowInput) (req *request.Request, output *InvokeFlowOutput) {
+	op := &request.Operation{
+		Name:       opInvokeFlow,
+		HTTPMethod: "POST",
+		HTTPPath:   "/flows/{flowIdentifier}/aliases/{flowAliasIdentifier}",
+	}
+
+	if input == nil {
+		input = &InvokeFlowInput{}
+	}
+
+	output = &InvokeFlowOutput{}
+	req = c.newRequest(op, input, output)
+
+	es := NewInvokeFlowEventStream()
+	output.eventStream = es
+
+	req.Handlers.Send.Swap(client.LogHTTPResponseHandler.Name, client.LogHTTPResponseHeaderHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, rest.UnmarshalHandler)
+	req.Handlers.Unmarshal.PushBack(es.runOutputStream)
+	req.Handlers.Unmarshal.PushBack(es.runOnStreamPartClose)
+	return
+}
+
+// InvokeFlow API operation for Agents for Amazon Bedrock Runtime.
+//
+// Invokes an alias of a flow to run the inputs that you specify and return
+// the output of each node as a stream. If there's an error, the error is returned.
+// For more information, see Test a flow in Amazon Bedrock (https://docs.aws.amazon.com/bedrock/latest/userguide/flows-test.html)
+// in the Amazon Bedrock User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Agents for Amazon Bedrock Runtime's
+// API operation InvokeFlow for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ConflictException
+//     There was a conflict performing an operation. Resolve the conflict and retry
+//     your request.
+//
+//   - ResourceNotFoundException
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
+//
+//   - ValidationException
+//     Input validation failed. Check your request parameters and retry the request.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
+//
+//   - DependencyFailedException
+//     There was an issue with a dependency. Check the resource configurations and
+//     retry the request.
+//
+//   - BadGatewayException
+//     There was an issue with a dependency due to a server issue. Retry your request.
+//
+//   - ThrottlingException
+//     The number of requests exceeds the limit. Resubmit your request later.
+//
+//   - AccessDeniedException
+//     The request is denied because of missing access permissions. Check your permissions
+//     and retry your request.
+//
+//   - ServiceQuotaExceededException
+//     The number of requests exceeds the service quota. Resubmit your request later.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-runtime-2023-07-26/InvokeFlow
+func (c *BedrockAgentRuntime) InvokeFlow(input *InvokeFlowInput) (*InvokeFlowOutput, error) {
+	req, out := c.InvokeFlowRequest(input)
+	return out, req.Send()
+}
+
+// InvokeFlowWithContext is the same as InvokeFlow with the addition of
+// the ability to pass a context and additional request options.
+//
+// See InvokeFlow for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *BedrockAgentRuntime) InvokeFlowWithContext(ctx aws.Context, input *InvokeFlowInput, opts ...request.Option) (*InvokeFlowOutput, error) {
+	req, out := c.InvokeFlowRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+var _ awserr.Error
+var _ time.Time
+
+// InvokeFlowEventStream provides the event stream handling for the InvokeFlow.
+//
+// For testing and mocking the event stream this type should be initialized via
+// the NewInvokeFlowEventStream constructor function. Using the functional options
+// to pass in nested mock behavior.
+type InvokeFlowEventStream struct {
+
+	// Reader is the EventStream reader for the FlowResponseStream
+	// events. This value is automatically set by the SDK when the API call is made
+	// Use this member when unit testing your code with the SDK to mock out the
+	// EventStream Reader.
+	//
+	// Must not be nil.
+	Reader FlowResponseStreamReader
+
+	outputReader io.ReadCloser
+
+	done      chan struct{}
+	closeOnce sync.Once
+	err       *eventstreamapi.OnceError
+}
+
+// NewInvokeFlowEventStream initializes an InvokeFlowEventStream.
+// This function should only be used for testing and mocking the InvokeFlowEventStream
+// stream within your application.
+//
+// The Reader member must be set before reading events from the stream.
+//
+//	es := NewInvokeFlowEventStream(func(o *InvokeFlowEventStream){
+//	    es.Reader = myMockStreamReader
+//	})
+func NewInvokeFlowEventStream(opts ...func(*InvokeFlowEventStream)) *InvokeFlowEventStream {
+	es := &InvokeFlowEventStream{
+		done: make(chan struct{}),
+		err:  eventstreamapi.NewOnceError(),
+	}
+
+	for _, fn := range opts {
+		fn(es)
+	}
+
+	return es
+}
+
+func (es *InvokeFlowEventStream) runOnStreamPartClose(r *request.Request) {
+	if es.done == nil {
+		return
+	}
+	go es.waitStreamPartClose()
+
+}
+
+func (es *InvokeFlowEventStream) waitStreamPartClose() {
+	var outputErrCh <-chan struct{}
+	if v, ok := es.Reader.(interface{ ErrorSet() <-chan struct{} }); ok {
+		outputErrCh = v.ErrorSet()
+	}
+	var outputClosedCh <-chan struct{}
+	if v, ok := es.Reader.(interface{ Closed() <-chan struct{} }); ok {
+		outputClosedCh = v.Closed()
+	}
+
+	select {
+	case <-es.done:
+	case <-outputErrCh:
+		es.err.SetError(es.Reader.Err())
+		es.Close()
+	case <-outputClosedCh:
+		if err := es.Reader.Err(); err != nil {
+			es.err.SetError(es.Reader.Err())
+		}
+		es.Close()
+	}
+}
+
+// Events returns a channel to read events from.
+//
+// These events are:
+//
+//   - FlowCompletionEvent
+//   - FlowOutputEvent
+//   - FlowResponseStreamUnknownEvent
+func (es *InvokeFlowEventStream) Events() <-chan FlowResponseStreamEvent {
+	return es.Reader.Events()
+}
+
+func (es *InvokeFlowEventStream) runOutputStream(r *request.Request) {
+	var opts []func(*eventstream.Decoder)
+	if r.Config.Logger != nil && r.Config.LogLevel.Matches(aws.LogDebugWithEventStreamBody) {
+		opts = append(opts, eventstream.DecodeWithLogger(r.Config.Logger))
+	}
+
+	unmarshalerForEvent := unmarshalerForFlowResponseStreamEvent{
+		metadata: protocol.ResponseMetadata{
+			StatusCode: r.HTTPResponse.StatusCode,
+			RequestID:  r.RequestID,
+		},
+	}.UnmarshalerForEventName
+
+	decoder := eventstream.NewDecoder(r.HTTPResponse.Body, opts...)
+	eventReader := eventstreamapi.NewEventReader(decoder,
+		protocol.HandlerPayloadUnmarshal{
+			Unmarshalers: r.Handlers.UnmarshalStream,
+		},
+		unmarshalerForEvent,
+	)
+
+	es.outputReader = r.HTTPResponse.Body
+	es.Reader = newReadFlowResponseStream(eventReader)
+}
+
+// Close closes the stream. This will also cause the stream to be closed.
+// Close must be called when done using the stream API. Not calling Close
+// may result in resource leaks.
+//
+// You can use the closing of the Reader's Events channel to terminate your
+// application's read from the API's stream.
+func (es *InvokeFlowEventStream) Close() (err error) {
+	es.closeOnce.Do(es.safeClose)
+	return es.Err()
+}
+
+func (es *InvokeFlowEventStream) safeClose() {
+	if es.done != nil {
+		close(es.done)
+	}
+
+	es.Reader.Close()
+	if es.outputReader != nil {
+		es.outputReader.Close()
+	}
+}
+
+// Err returns any error that occurred while reading or writing EventStream
+// Events from the service API's response. Returns nil if there were no errors.
+func (es *InvokeFlowEventStream) Err() error {
 	if err := es.err.Err(); err != nil {
 		return err
 	}
@@ -615,6 +1156,9 @@ func (s AccessDeniedException) GoString() string {
 	return s.String()
 }
 
+// The AccessDeniedException is and event in the FlowResponseStream group of events.
+func (s *AccessDeniedException) eventFlowResponseStream() {}
+
 // The AccessDeniedException is and event in the ResponseStream group of events.
 func (s *AccessDeniedException) eventResponseStream() {}
 
@@ -703,12 +1247,20 @@ type ActionGroupInvocationInput_ struct {
 	// String and GoString methods.
 	ApiPath *string `locationName:"apiPath" type:"string" sensitive:"true"`
 
+	// How fulfillment of the action is handled. For more information, see Handling
+	// fulfillment of the action (https://docs.aws.amazon.com/bedrock/latest/userguide/action-handle.html).
+	ExecutionType *string `locationName:"executionType" type:"string" enum:"ExecutionType"`
+
 	// The function in the action group to call.
 	//
 	// Function is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by ActionGroupInvocationInput_'s
 	// String and GoString methods.
 	Function *string `locationName:"function" type:"string" sensitive:"true"`
+
+	// The unique identifier of the invocation. Only returned if the executionType
+	// is RETURN_CONTROL.
+	InvocationId *string `locationName:"invocationId" type:"string"`
 
 	// The parameters in the Lambda input event.
 	Parameters []*Parameter `locationName:"parameters" type:"list"`
@@ -754,9 +1306,21 @@ func (s *ActionGroupInvocationInput_) SetApiPath(v string) *ActionGroupInvocatio
 	return s
 }
 
+// SetExecutionType sets the ExecutionType field's value.
+func (s *ActionGroupInvocationInput_) SetExecutionType(v string) *ActionGroupInvocationInput_ {
+	s.ExecutionType = &v
+	return s
+}
+
 // SetFunction sets the Function field's value.
 func (s *ActionGroupInvocationInput_) SetFunction(v string) *ActionGroupInvocationInput_ {
 	s.Function = &v
+	return s
+}
+
+// SetInvocationId sets the InvocationId field's value.
+func (s *ActionGroupInvocationInput_) SetInvocationId(v string) *ActionGroupInvocationInput_ {
+	s.InvocationId = &v
 	return s
 }
 
@@ -1156,6 +1720,9 @@ func (s BadGatewayException) GoString() string {
 	return s.String()
 }
 
+// The BadGatewayException is and event in the FlowResponseStream group of events.
+func (s *BadGatewayException) eventFlowResponseStream() {}
+
 // The BadGatewayException is and event in the ResponseStream group of events.
 func (s *BadGatewayException) eventResponseStream() {}
 
@@ -1314,6 +1881,78 @@ func (s *ByteContentDoc) SetIdentifier(v string) *ByteContentDoc {
 	return s
 }
 
+// The property contains the file to chat with, along with its attributes.
+type ByteContentFile struct {
+	_ struct{} `type:"structure"`
+
+	// The byte value of the file to attach, encoded as Base-64 string. The maximum
+	// size of all files that is attached is 10MB. You can attach a maximum of 5
+	// files.
+	//
+	// Data is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ByteContentFile's
+	// String and GoString methods.
+	//
+	// Data is automatically base64 encoded/decoded by the SDK.
+	//
+	// Data is a required field
+	Data []byte `locationName:"data" min:"1" type:"blob" required:"true" sensitive:"true"`
+
+	// The MIME type of data contained in the file used for chat.
+	//
+	// MediaType is a required field
+	MediaType *string `locationName:"mediaType" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ByteContentFile) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ByteContentFile) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ByteContentFile) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ByteContentFile"}
+	if s.Data == nil {
+		invalidParams.Add(request.NewErrParamRequired("Data"))
+	}
+	if s.Data != nil && len(s.Data) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Data", 1))
+	}
+	if s.MediaType == nil {
+		invalidParams.Add(request.NewErrParamRequired("MediaType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetData sets the Data field's value.
+func (s *ByteContentFile) SetData(v []byte) *ByteContentFile {
+	s.Data = v
+	return s
+}
+
+// SetMediaType sets the MediaType field's value.
+func (s *ByteContentFile) SetMediaType(v string) *ByteContentFile {
+	s.MediaType = &v
+	return s
+}
+
 // An object containing a segment of the generated response that is based on
 // a source in the knowledge base, alongside information about the source.
 //
@@ -1364,6 +2003,107 @@ func (s *Citation) SetRetrievedReferences(v []*RetrievedReference) *Citation {
 	return s
 }
 
+// Contains information about the code interpreter being invoked.
+type CodeInterpreterInvocationInput_ struct {
+	_ struct{} `type:"structure"`
+
+	// The code for the code interpreter to use.
+	Code *string `locationName:"code" type:"string"`
+
+	// Files that are uploaded for code interpreter to use.
+	Files []*string `locationName:"files" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CodeInterpreterInvocationInput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CodeInterpreterInvocationInput_) GoString() string {
+	return s.String()
+}
+
+// SetCode sets the Code field's value.
+func (s *CodeInterpreterInvocationInput_) SetCode(v string) *CodeInterpreterInvocationInput_ {
+	s.Code = &v
+	return s
+}
+
+// SetFiles sets the Files field's value.
+func (s *CodeInterpreterInvocationInput_) SetFiles(v []*string) *CodeInterpreterInvocationInput_ {
+	s.Files = v
+	return s
+}
+
+// Contains the JSON-formatted string returned by the API invoked by the code
+// interpreter.
+type CodeInterpreterInvocationOutput_ struct {
+	_ struct{} `type:"structure"`
+
+	// Contains the error returned from code execution.
+	ExecutionError *string `locationName:"executionError" type:"string"`
+
+	// Contains the successful output returned from code execution
+	ExecutionOutput *string `locationName:"executionOutput" type:"string"`
+
+	// Indicates if the execution of the code timed out.
+	ExecutionTimeout *bool `locationName:"executionTimeout" type:"boolean"`
+
+	// Contains output files, if generated by code execution.
+	Files []*string `locationName:"files" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CodeInterpreterInvocationOutput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CodeInterpreterInvocationOutput_) GoString() string {
+	return s.String()
+}
+
+// SetExecutionError sets the ExecutionError field's value.
+func (s *CodeInterpreterInvocationOutput_) SetExecutionError(v string) *CodeInterpreterInvocationOutput_ {
+	s.ExecutionError = &v
+	return s
+}
+
+// SetExecutionOutput sets the ExecutionOutput field's value.
+func (s *CodeInterpreterInvocationOutput_) SetExecutionOutput(v string) *CodeInterpreterInvocationOutput_ {
+	s.ExecutionOutput = &v
+	return s
+}
+
+// SetExecutionTimeout sets the ExecutionTimeout field's value.
+func (s *CodeInterpreterInvocationOutput_) SetExecutionTimeout(v bool) *CodeInterpreterInvocationOutput_ {
+	s.ExecutionTimeout = &v
+	return s
+}
+
+// SetFiles sets the Files field's value.
+func (s *CodeInterpreterInvocationOutput_) SetFiles(v []*string) *CodeInterpreterInvocationOutput_ {
+	s.Files = v
+	return s
+}
+
 // There was a conflict performing an operation. Resolve the conflict and retry
 // your request.
 type ConflictException struct {
@@ -1390,6 +2130,9 @@ func (s ConflictException) String() string {
 func (s ConflictException) GoString() string {
 	return s.String()
 }
+
+// The ConflictException is and event in the FlowResponseStream group of events.
+func (s *ConflictException) eventFlowResponseStream() {}
 
 // The ConflictException is and event in the ResponseStream group of events.
 func (s *ConflictException) eventResponseStream() {}
@@ -1495,6 +2238,106 @@ func (s *ContentBody) SetBody(v string) *ContentBody {
 	return s
 }
 
+type DeleteAgentMemoryInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The unique identifier of an alias of an agent.
+	//
+	// AgentAliasId is a required field
+	AgentAliasId *string `location:"uri" locationName:"agentAliasId" type:"string" required:"true"`
+
+	// The unique identifier of the agent to which the alias belongs.
+	//
+	// AgentId is a required field
+	AgentId *string `location:"uri" locationName:"agentId" type:"string" required:"true"`
+
+	// The unique identifier of the memory.
+	MemoryId *string `location:"querystring" locationName:"memoryId" min:"2" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAgentMemoryInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAgentMemoryInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteAgentMemoryInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteAgentMemoryInput"}
+	if s.AgentAliasId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AgentAliasId"))
+	}
+	if s.AgentAliasId != nil && len(*s.AgentAliasId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AgentAliasId", 1))
+	}
+	if s.AgentId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AgentId"))
+	}
+	if s.AgentId != nil && len(*s.AgentId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AgentId", 1))
+	}
+	if s.MemoryId != nil && len(*s.MemoryId) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("MemoryId", 2))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAgentAliasId sets the AgentAliasId field's value.
+func (s *DeleteAgentMemoryInput) SetAgentAliasId(v string) *DeleteAgentMemoryInput {
+	s.AgentAliasId = &v
+	return s
+}
+
+// SetAgentId sets the AgentId field's value.
+func (s *DeleteAgentMemoryInput) SetAgentId(v string) *DeleteAgentMemoryInput {
+	s.AgentId = &v
+	return s
+}
+
+// SetMemoryId sets the MemoryId field's value.
+func (s *DeleteAgentMemoryInput) SetMemoryId(v string) *DeleteAgentMemoryInput {
+	s.MemoryId = &v
+	return s
+}
+
+type DeleteAgentMemoryOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAgentMemoryOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAgentMemoryOutput) GoString() string {
+	return s.String()
+}
+
 // There was an issue with a dependency. Check the resource configurations and
 // retry the request.
 type DependencyFailedException struct {
@@ -1525,6 +2368,9 @@ func (s DependencyFailedException) String() string {
 func (s DependencyFailedException) GoString() string {
 	return s.String()
 }
+
+// The DependencyFailedException is and event in the FlowResponseStream group of events.
+func (s *DependencyFailedException) eventFlowResponseStream() {}
 
 // The DependencyFailedException is and event in the ResponseStream group of events.
 func (s *DependencyFailedException) eventResponseStream() {}
@@ -1879,6 +2725,143 @@ func (s *FailureTrace) SetTraceId(v string) *FailureTrace {
 	return s
 }
 
+// Contains intermediate response for code interpreter if any files have been
+// generated.
+type FilePart struct {
+	_ struct{} `type:"structure"`
+
+	// Files containing intermediate response for the user.
+	Files []*OutputFile `locationName:"files" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FilePart) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FilePart) GoString() string {
+	return s.String()
+}
+
+// SetFiles sets the Files field's value.
+func (s *FilePart) SetFiles(v []*OutputFile) *FilePart {
+	s.Files = v
+	return s
+}
+
+// The FilePart is and event in the ResponseStream group of events.
+func (s *FilePart) eventResponseStream() {}
+
+// UnmarshalEvent unmarshals the EventStream Message into the FilePart value.
+// This method is only used internally within the SDK's EventStream handling.
+func (s *FilePart) UnmarshalEvent(
+	payloadUnmarshaler protocol.PayloadUnmarshaler,
+	msg eventstream.Message,
+) error {
+	if err := payloadUnmarshaler.UnmarshalPayload(
+		bytes.NewReader(msg.Payload), s,
+	); err != nil {
+		return err
+	}
+	return nil
+}
+
+// MarshalEvent marshals the type into an stream event value. This method
+// should only used internally within the SDK's EventStream handling.
+func (s *FilePart) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
+	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.EventMessageType))
+	var buf bytes.Buffer
+	if err = pm.MarshalPayload(&buf, s); err != nil {
+		return eventstream.Message{}, err
+	}
+	msg.Payload = buf.Bytes()
+	return msg, err
+}
+
+// The source file of the content contained in the wrapper object.
+type FileSource struct {
+	_ struct{} `type:"structure"`
+
+	// The data and the text of the attached files.
+	ByteContent *ByteContentFile `locationName:"byteContent" type:"structure"`
+
+	// The s3 location of the files to attach.
+	S3Location *S3ObjectFile `locationName:"s3Location" type:"structure"`
+
+	// The source type of the files to attach.
+	//
+	// SourceType is a required field
+	SourceType *string `locationName:"sourceType" type:"string" required:"true" enum:"FileSourceType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FileSource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FileSource) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *FileSource) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "FileSource"}
+	if s.SourceType == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceType"))
+	}
+	if s.ByteContent != nil {
+		if err := s.ByteContent.Validate(); err != nil {
+			invalidParams.AddNested("ByteContent", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.S3Location != nil {
+		if err := s.S3Location.Validate(); err != nil {
+			invalidParams.AddNested("S3Location", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetByteContent sets the ByteContent field's value.
+func (s *FileSource) SetByteContent(v *ByteContentFile) *FileSource {
+	s.ByteContent = v
+	return s
+}
+
+// SetS3Location sets the S3Location field's value.
+func (s *FileSource) SetS3Location(v *S3ObjectFile) *FileSource {
+	s.S3Location = v
+	return s
+}
+
+// SetSourceType sets the SourceType field's value.
+func (s *FileSource) SetSourceType(v string) *FileSource {
+	s.SourceType = &v
+	return s
+}
+
 // Contains details about the response to the user.
 type FinalResponse struct {
 	_ struct{} `type:"structure"`
@@ -1913,6 +2896,473 @@ func (s FinalResponse) GoString() string {
 func (s *FinalResponse) SetText(v string) *FinalResponse {
 	s.Text = &v
 	return s
+}
+
+// Contains information about why a flow completed.
+//
+// This data type is used in the following API operations:
+//
+//   - InvokeFlow response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_InvokeFlow.html#API_agent_InvokeFlow_ResponseSyntax)
+type FlowCompletionEvent struct {
+	_ struct{} `type:"structure" sensitive:"true"`
+
+	// The reason that the flow completed.
+	//
+	// CompletionReason is a required field
+	CompletionReason *string `locationName:"completionReason" type:"string" required:"true" enum:"FlowCompletionReason"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FlowCompletionEvent) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FlowCompletionEvent) GoString() string {
+	return s.String()
+}
+
+// SetCompletionReason sets the CompletionReason field's value.
+func (s *FlowCompletionEvent) SetCompletionReason(v string) *FlowCompletionEvent {
+	s.CompletionReason = &v
+	return s
+}
+
+// The FlowCompletionEvent is and event in the FlowResponseStream group of events.
+func (s *FlowCompletionEvent) eventFlowResponseStream() {}
+
+// UnmarshalEvent unmarshals the EventStream Message into the FlowCompletionEvent value.
+// This method is only used internally within the SDK's EventStream handling.
+func (s *FlowCompletionEvent) UnmarshalEvent(
+	payloadUnmarshaler protocol.PayloadUnmarshaler,
+	msg eventstream.Message,
+) error {
+	if err := payloadUnmarshaler.UnmarshalPayload(
+		bytes.NewReader(msg.Payload), s,
+	); err != nil {
+		return err
+	}
+	return nil
+}
+
+// MarshalEvent marshals the type into an stream event value. This method
+// should only used internally within the SDK's EventStream handling.
+func (s *FlowCompletionEvent) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
+	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.EventMessageType))
+	var buf bytes.Buffer
+	if err = pm.MarshalPayload(&buf, s); err != nil {
+		return eventstream.Message{}, err
+	}
+	msg.Payload = buf.Bytes()
+	return msg, err
+}
+
+// Contains information about an input into the flow.
+//
+// This data type is used in the following API operations:
+//
+//   - InvokeFlow request (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_InvokeFlow.html#API_agent_InvokeFlow_RequestSyntax)
+type FlowInputContent struct {
+	_ struct{} `type:"structure" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FlowInputContent) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FlowInputContent) GoString() string {
+	return s.String()
+}
+
+// Contains information about an input into the flow and what to do with it.
+//
+// This data type is used in the following API operations:
+//
+//   - InvokeFlow request (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_InvokeFlow.html#API_agent_InvokeFlow_RequestSyntax)
+type FlowInput_ struct {
+	_ struct{} `type:"structure"`
+
+	// Contains information about an input into the flow.
+	//
+	// Content is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by FlowInput_'s
+	// String and GoString methods.
+	//
+	// Content is a required field
+	Content *FlowInputContent `locationName:"content" type:"structure" required:"true" sensitive:"true"`
+
+	// A name for the input of the flow input node.
+	//
+	// NodeName is a required field
+	NodeName *string `locationName:"nodeName" type:"string" required:"true"`
+
+	// A name for the output of the flow input node.
+	//
+	// NodeOutputName is a required field
+	NodeOutputName *string `locationName:"nodeOutputName" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FlowInput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FlowInput_) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *FlowInput_) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "FlowInput_"}
+	if s.Content == nil {
+		invalidParams.Add(request.NewErrParamRequired("Content"))
+	}
+	if s.NodeName == nil {
+		invalidParams.Add(request.NewErrParamRequired("NodeName"))
+	}
+	if s.NodeOutputName == nil {
+		invalidParams.Add(request.NewErrParamRequired("NodeOutputName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContent sets the Content field's value.
+func (s *FlowInput_) SetContent(v *FlowInputContent) *FlowInput_ {
+	s.Content = v
+	return s
+}
+
+// SetNodeName sets the NodeName field's value.
+func (s *FlowInput_) SetNodeName(v string) *FlowInput_ {
+	s.NodeName = &v
+	return s
+}
+
+// SetNodeOutputName sets the NodeOutputName field's value.
+func (s *FlowInput_) SetNodeOutputName(v string) *FlowInput_ {
+	s.NodeOutputName = &v
+	return s
+}
+
+// Contains information about the output node.
+//
+// This data type is used in the following API operations:
+//
+//   - InvokeFlow request (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_InvokeFlow.html#API_agent_InvokeFlow_RequestSyntax)
+type FlowOutputContent struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FlowOutputContent) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FlowOutputContent) GoString() string {
+	return s.String()
+}
+
+// Contains information about an output from flow invoction.
+//
+// This data type is used in the following API operations:
+//
+//   - InvokeFlow response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_InvokeFlow.html#API_agent_InvokeFlow_ResponseSyntax)
+type FlowOutputEvent struct {
+	_ struct{} `type:"structure" sensitive:"true"`
+
+	// The output of the node.
+	//
+	// Content is a required field
+	Content *FlowOutputContent `locationName:"content" type:"structure" required:"true"`
+
+	// The name of the node to which input was provided.
+	//
+	// NodeName is a required field
+	NodeName *string `locationName:"nodeName" type:"string" required:"true"`
+
+	// The type of node to which input was provided.
+	//
+	// NodeType is a required field
+	NodeType *string `locationName:"nodeType" type:"string" required:"true" enum:"NodeType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FlowOutputEvent) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FlowOutputEvent) GoString() string {
+	return s.String()
+}
+
+// SetContent sets the Content field's value.
+func (s *FlowOutputEvent) SetContent(v *FlowOutputContent) *FlowOutputEvent {
+	s.Content = v
+	return s
+}
+
+// SetNodeName sets the NodeName field's value.
+func (s *FlowOutputEvent) SetNodeName(v string) *FlowOutputEvent {
+	s.NodeName = &v
+	return s
+}
+
+// SetNodeType sets the NodeType field's value.
+func (s *FlowOutputEvent) SetNodeType(v string) *FlowOutputEvent {
+	s.NodeType = &v
+	return s
+}
+
+// The FlowOutputEvent is and event in the FlowResponseStream group of events.
+func (s *FlowOutputEvent) eventFlowResponseStream() {}
+
+// UnmarshalEvent unmarshals the EventStream Message into the FlowOutputEvent value.
+// This method is only used internally within the SDK's EventStream handling.
+func (s *FlowOutputEvent) UnmarshalEvent(
+	payloadUnmarshaler protocol.PayloadUnmarshaler,
+	msg eventstream.Message,
+) error {
+	if err := payloadUnmarshaler.UnmarshalPayload(
+		bytes.NewReader(msg.Payload), s,
+	); err != nil {
+		return err
+	}
+	return nil
+}
+
+// MarshalEvent marshals the type into an stream event value. This method
+// should only used internally within the SDK's EventStream handling.
+func (s *FlowOutputEvent) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
+	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.EventMessageType))
+	var buf bytes.Buffer
+	if err = pm.MarshalPayload(&buf, s); err != nil {
+		return eventstream.Message{}, err
+	}
+	msg.Payload = buf.Bytes()
+	return msg, err
+}
+
+// FlowResponseStreamEvent groups together all EventStream
+// events writes for FlowResponseStream.
+//
+// These events are:
+//
+//   - FlowCompletionEvent
+//   - FlowOutputEvent
+type FlowResponseStreamEvent interface {
+	eventFlowResponseStream()
+	eventstreamapi.Marshaler
+	eventstreamapi.Unmarshaler
+}
+
+// FlowResponseStreamReader provides the interface for reading to the stream. The
+// default implementation for this interface will be FlowResponseStream.
+//
+// The reader's Close method must allow multiple concurrent calls.
+//
+// These events are:
+//
+//   - FlowCompletionEvent
+//   - FlowOutputEvent
+//   - FlowResponseStreamUnknownEvent
+type FlowResponseStreamReader interface {
+	// Returns a channel of events as they are read from the event stream.
+	Events() <-chan FlowResponseStreamEvent
+
+	// Close will stop the reader reading events from the stream.
+	Close() error
+
+	// Returns any error that has occurred while reading from the event stream.
+	Err() error
+}
+
+type readFlowResponseStream struct {
+	eventReader *eventstreamapi.EventReader
+	stream      chan FlowResponseStreamEvent
+	err         *eventstreamapi.OnceError
+
+	done      chan struct{}
+	closeOnce sync.Once
+}
+
+func newReadFlowResponseStream(eventReader *eventstreamapi.EventReader) *readFlowResponseStream {
+	r := &readFlowResponseStream{
+		eventReader: eventReader,
+		stream:      make(chan FlowResponseStreamEvent),
+		done:        make(chan struct{}),
+		err:         eventstreamapi.NewOnceError(),
+	}
+	go r.readEventStream()
+
+	return r
+}
+
+// Close will close the underlying event stream reader.
+func (r *readFlowResponseStream) Close() error {
+	r.closeOnce.Do(r.safeClose)
+	return r.Err()
+}
+
+func (r *readFlowResponseStream) ErrorSet() <-chan struct{} {
+	return r.err.ErrorSet()
+}
+
+func (r *readFlowResponseStream) Closed() <-chan struct{} {
+	return r.done
+}
+
+func (r *readFlowResponseStream) safeClose() {
+	close(r.done)
+}
+
+func (r *readFlowResponseStream) Err() error {
+	return r.err.Err()
+}
+
+func (r *readFlowResponseStream) Events() <-chan FlowResponseStreamEvent {
+	return r.stream
+}
+
+func (r *readFlowResponseStream) readEventStream() {
+	defer r.Close()
+	defer close(r.stream)
+
+	for {
+		event, err := r.eventReader.ReadEvent()
+		if err != nil {
+			if err == io.EOF {
+				return
+			}
+			select {
+			case <-r.done:
+				// If closed already ignore the error
+				return
+			default:
+			}
+			if _, ok := err.(*eventstreamapi.UnknownMessageTypeError); ok {
+				continue
+			}
+			r.err.SetError(err)
+			return
+		}
+
+		select {
+		case r.stream <- event.(FlowResponseStreamEvent):
+		case <-r.done:
+			return
+		}
+	}
+}
+
+type unmarshalerForFlowResponseStreamEvent struct {
+	metadata protocol.ResponseMetadata
+}
+
+func (u unmarshalerForFlowResponseStreamEvent) UnmarshalerForEventName(eventType string) (eventstreamapi.Unmarshaler, error) {
+	switch eventType {
+	case "flowCompletionEvent":
+		return &FlowCompletionEvent{}, nil
+	case "flowOutputEvent":
+		return &FlowOutputEvent{}, nil
+	case "accessDeniedException":
+		return newErrorAccessDeniedException(u.metadata).(eventstreamapi.Unmarshaler), nil
+	case "badGatewayException":
+		return newErrorBadGatewayException(u.metadata).(eventstreamapi.Unmarshaler), nil
+	case "conflictException":
+		return newErrorConflictException(u.metadata).(eventstreamapi.Unmarshaler), nil
+	case "dependencyFailedException":
+		return newErrorDependencyFailedException(u.metadata).(eventstreamapi.Unmarshaler), nil
+	case "internalServerException":
+		return newErrorInternalServerException(u.metadata).(eventstreamapi.Unmarshaler), nil
+	case "resourceNotFoundException":
+		return newErrorResourceNotFoundException(u.metadata).(eventstreamapi.Unmarshaler), nil
+	case "serviceQuotaExceededException":
+		return newErrorServiceQuotaExceededException(u.metadata).(eventstreamapi.Unmarshaler), nil
+	case "throttlingException":
+		return newErrorThrottlingException(u.metadata).(eventstreamapi.Unmarshaler), nil
+	case "validationException":
+		return newErrorValidationException(u.metadata).(eventstreamapi.Unmarshaler), nil
+	default:
+		return &FlowResponseStreamUnknownEvent{Type: eventType}, nil
+	}
+}
+
+// FlowResponseStreamUnknownEvent provides a failsafe event for the
+// FlowResponseStream group of events when an unknown event is received.
+type FlowResponseStreamUnknownEvent struct {
+	Type    string
+	Message eventstream.Message
+}
+
+// The FlowResponseStreamUnknownEvent is and event in the FlowResponseStream
+// group of events.
+func (s *FlowResponseStreamUnknownEvent) eventFlowResponseStream() {}
+
+// MarshalEvent marshals the type into an stream event value. This method
+// should only used internally within the SDK's EventStream handling.
+func (e *FlowResponseStreamUnknownEvent) MarshalEvent(pm protocol.PayloadMarshaler) (
+	msg eventstream.Message, err error,
+) {
+	return e.Message.Clone(), nil
+}
+
+// UnmarshalEvent unmarshals the EventStream Message into the FlowResponseStream value.
+// This method is only used internally within the SDK's EventStream handling.
+func (e *FlowResponseStreamUnknownEvent) UnmarshalEvent(
+	payloadUnmarshaler protocol.PayloadUnmarshaler,
+	msg eventstream.Message,
+) error {
+	e.Message = msg.Clone()
+	return nil
 }
 
 // Contains information about the function that the agent predicts should be
@@ -2230,6 +3680,174 @@ func (s *GenerationConfiguration) SetInferenceConfig(v *InferenceConfig) *Genera
 // SetPromptTemplate sets the PromptTemplate field's value.
 func (s *GenerationConfiguration) SetPromptTemplate(v *PromptTemplate) *GenerationConfiguration {
 	s.PromptTemplate = v
+	return s
+}
+
+type GetAgentMemoryInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The unique identifier of an alias of an agent.
+	//
+	// AgentAliasId is a required field
+	AgentAliasId *string `location:"uri" locationName:"agentAliasId" type:"string" required:"true"`
+
+	// The unique identifier of the agent to which the alias belongs.
+	//
+	// AgentId is a required field
+	AgentId *string `location:"uri" locationName:"agentId" type:"string" required:"true"`
+
+	// The maximum number of items to return in the response. If the total number
+	// of results is greater than this value, use the token returned in the response
+	// in the nextToken field when making another request to return the next batch
+	// of results.
+	MaxItems *int64 `location:"querystring" locationName:"maxItems" min:"1" type:"integer"`
+
+	// The unique identifier of the memory.
+	//
+	// MemoryId is a required field
+	MemoryId *string `location:"querystring" locationName:"memoryId" min:"2" type:"string" required:"true"`
+
+	// The type of memory.
+	//
+	// MemoryType is a required field
+	MemoryType *string `location:"querystring" locationName:"memoryType" type:"string" required:"true" enum:"MemoryType"`
+
+	// If the total number of results is greater than the maxItems value provided
+	// in the request, enter the token returned in the nextToken field in the response
+	// in this field to return the next batch of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAgentMemoryInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAgentMemoryInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetAgentMemoryInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetAgentMemoryInput"}
+	if s.AgentAliasId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AgentAliasId"))
+	}
+	if s.AgentAliasId != nil && len(*s.AgentAliasId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AgentAliasId", 1))
+	}
+	if s.AgentId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AgentId"))
+	}
+	if s.AgentId != nil && len(*s.AgentId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AgentId", 1))
+	}
+	if s.MaxItems != nil && *s.MaxItems < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxItems", 1))
+	}
+	if s.MemoryId == nil {
+		invalidParams.Add(request.NewErrParamRequired("MemoryId"))
+	}
+	if s.MemoryId != nil && len(*s.MemoryId) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("MemoryId", 2))
+	}
+	if s.MemoryType == nil {
+		invalidParams.Add(request.NewErrParamRequired("MemoryType"))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAgentAliasId sets the AgentAliasId field's value.
+func (s *GetAgentMemoryInput) SetAgentAliasId(v string) *GetAgentMemoryInput {
+	s.AgentAliasId = &v
+	return s
+}
+
+// SetAgentId sets the AgentId field's value.
+func (s *GetAgentMemoryInput) SetAgentId(v string) *GetAgentMemoryInput {
+	s.AgentId = &v
+	return s
+}
+
+// SetMaxItems sets the MaxItems field's value.
+func (s *GetAgentMemoryInput) SetMaxItems(v int64) *GetAgentMemoryInput {
+	s.MaxItems = &v
+	return s
+}
+
+// SetMemoryId sets the MemoryId field's value.
+func (s *GetAgentMemoryInput) SetMemoryId(v string) *GetAgentMemoryInput {
+	s.MemoryId = &v
+	return s
+}
+
+// SetMemoryType sets the MemoryType field's value.
+func (s *GetAgentMemoryInput) SetMemoryType(v string) *GetAgentMemoryInput {
+	s.MemoryType = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetAgentMemoryInput) SetNextToken(v string) *GetAgentMemoryInput {
+	s.NextToken = &v
+	return s
+}
+
+type GetAgentMemoryOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Contains details of the sessions stored in the memory
+	MemoryContents []*Memory `locationName:"memoryContents" type:"list"`
+
+	// If the total number of results is greater than the maxItems value provided
+	// in the request, use this token when making another request in the nextToken
+	// field to return the next batch of results.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAgentMemoryOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAgentMemoryOutput) GoString() string {
+	return s.String()
+}
+
+// SetMemoryContents sets the MemoryContents field's value.
+func (s *GetAgentMemoryOutput) SetMemoryContents(v []*Memory) *GetAgentMemoryOutput {
+	s.MemoryContents = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetAgentMemoryOutput) SetNextToken(v string) *GetAgentMemoryOutput {
+	s.NextToken = &v
 	return s
 }
 
@@ -3023,6 +4641,86 @@ func (s *InferenceConfiguration) SetTopP(v float64) *InferenceConfiguration {
 	return s
 }
 
+// Contains details of the source files.
+type InputFile struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the source file.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true"`
+
+	// Specifies where the files are located.
+	//
+	// Source is a required field
+	Source *FileSource `locationName:"source" type:"structure" required:"true"`
+
+	// Specifies how the source files will be used by the code interpreter.
+	//
+	// UseCase is a required field
+	UseCase *string `locationName:"useCase" type:"string" required:"true" enum:"FileUseCase"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InputFile) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InputFile) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *InputFile) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "InputFile"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Source == nil {
+		invalidParams.Add(request.NewErrParamRequired("Source"))
+	}
+	if s.UseCase == nil {
+		invalidParams.Add(request.NewErrParamRequired("UseCase"))
+	}
+	if s.Source != nil {
+		if err := s.Source.Validate(); err != nil {
+			invalidParams.AddNested("Source", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *InputFile) SetName(v string) *InputFile {
+	s.Name = &v
+	return s
+}
+
+// SetSource sets the Source field's value.
+func (s *InputFile) SetSource(v *FileSource) *InputFile {
+	s.Source = v
+	return s
+}
+
+// SetUseCase sets the UseCase field's value.
+func (s *InputFile) SetUseCase(v string) *InputFile {
+	s.UseCase = &v
+	return s
+}
+
 // An internal server error occurred. Retry your request.
 type InternalServerException struct {
 	_            struct{}                  `type:"structure"`
@@ -3048,6 +4746,9 @@ func (s InternalServerException) String() string {
 func (s InternalServerException) GoString() string {
 	return s.String()
 }
+
+// The InternalServerException is and event in the FlowResponseStream group of events.
+func (s *InternalServerException) eventFlowResponseStream() {}
 
 // The InternalServerException is and event in the ResponseStream group of events.
 func (s *InternalServerException) eventResponseStream() {}
@@ -3172,6 +4873,9 @@ type InvocationInput_ struct {
 	// Contains information about the action group to be invoked.
 	ActionGroupInvocationInput *ActionGroupInvocationInput_ `locationName:"actionGroupInvocationInput" type:"structure"`
 
+	// Contains information about the code interpreter to be invoked.
+	CodeInterpreterInvocationInput *CodeInterpreterInvocationInput_ `locationName:"codeInterpreterInvocationInput" type:"structure"`
+
 	// Specifies whether the agent is invoking an action group or a knowledge base.
 	InvocationType *string `locationName:"invocationType" type:"string" enum:"InvocationType"`
 
@@ -3204,6 +4908,12 @@ func (s InvocationInput_) GoString() string {
 // SetActionGroupInvocationInput sets the ActionGroupInvocationInput field's value.
 func (s *InvocationInput_) SetActionGroupInvocationInput(v *ActionGroupInvocationInput_) *InvocationInput_ {
 	s.ActionGroupInvocationInput = v
+	return s
+}
+
+// SetCodeInterpreterInvocationInput sets the CodeInterpreterInvocationInput field's value.
+func (s *InvocationInput_) SetCodeInterpreterInvocationInput(v *CodeInterpreterInvocationInput_) *InvocationInput_ {
+	s.CodeInterpreterInvocationInput = v
 	return s
 }
 
@@ -3322,6 +5032,9 @@ type InvokeAgentInput struct {
 	// String and GoString methods.
 	InputText *string `locationName:"inputText" type:"string" sensitive:"true"`
 
+	// The unique identifier of the agent memory.
+	MemoryId *string `locationName:"memoryId" min:"2" type:"string"`
+
 	// The unique identifier of the session. Use the same value across requests
 	// to continue the same conversation.
 	//
@@ -3368,6 +5081,9 @@ func (s *InvokeAgentInput) Validate() error {
 	}
 	if s.AgentId != nil && len(*s.AgentId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("AgentId", 1))
+	}
+	if s.MemoryId != nil && len(*s.MemoryId) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("MemoryId", 2))
 	}
 	if s.SessionId == nil {
 		invalidParams.Add(request.NewErrParamRequired("SessionId"))
@@ -3417,6 +5133,12 @@ func (s *InvokeAgentInput) SetInputText(v string) *InvokeAgentInput {
 	return s
 }
 
+// SetMemoryId sets the MemoryId field's value.
+func (s *InvokeAgentInput) SetMemoryId(v string) *InvokeAgentInput {
+	s.MemoryId = &v
+	return s
+}
+
 // SetSessionId sets the SessionId field's value.
 func (s *InvokeAgentInput) SetSessionId(v string) *InvokeAgentInput {
 	s.SessionId = &v
@@ -3438,6 +5160,9 @@ type InvokeAgentOutput struct {
 	//
 	// ContentType is a required field
 	ContentType *string `location:"header" locationName:"x-amzn-bedrock-agent-content-type" type:"string" required:"true"`
+
+	// The unique identifier of the agent memory.
+	MemoryId *string `location:"header" locationName:"x-amz-bedrock-agent-memory-id" min:"2" type:"string"`
 
 	// The unique identifier of the session with the agent.
 	//
@@ -3469,6 +5194,12 @@ func (s *InvokeAgentOutput) SetContentType(v string) *InvokeAgentOutput {
 	return s
 }
 
+// SetMemoryId sets the MemoryId field's value.
+func (s *InvokeAgentOutput) SetMemoryId(v string) *InvokeAgentOutput {
+	s.MemoryId = &v
+	return s
+}
+
 // SetSessionId sets the SessionId field's value.
 func (s *InvokeAgentOutput) SetSessionId(v string) *InvokeAgentOutput {
 	s.SessionId = &v
@@ -3478,6 +5209,197 @@ func (s *InvokeAgentOutput) SetSessionId(v string) *InvokeAgentOutput {
 // GetStream returns the type to interact with the event stream.
 func (s *InvokeAgentOutput) GetStream() *InvokeAgentEventStream {
 	return s.eventStream
+}
+
+type InvokeFlowInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier of the flow alias.
+	//
+	// FlowAliasIdentifier is a required field
+	FlowAliasIdentifier *string `location:"uri" locationName:"flowAliasIdentifier" type:"string" required:"true"`
+
+	// The unique identifier of the flow.
+	//
+	// FlowIdentifier is a required field
+	FlowIdentifier *string `location:"uri" locationName:"flowIdentifier" type:"string" required:"true"`
+
+	// A list of objects, each containing information about an input into the flow.
+	//
+	// Inputs is a required field
+	Inputs []*FlowInput_ `locationName:"inputs" min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvokeFlowInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvokeFlowInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *InvokeFlowInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "InvokeFlowInput"}
+	if s.FlowAliasIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("FlowAliasIdentifier"))
+	}
+	if s.FlowAliasIdentifier != nil && len(*s.FlowAliasIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FlowAliasIdentifier", 1))
+	}
+	if s.FlowIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("FlowIdentifier"))
+	}
+	if s.FlowIdentifier != nil && len(*s.FlowIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FlowIdentifier", 1))
+	}
+	if s.Inputs == nil {
+		invalidParams.Add(request.NewErrParamRequired("Inputs"))
+	}
+	if s.Inputs != nil && len(s.Inputs) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Inputs", 1))
+	}
+	if s.Inputs != nil {
+		for i, v := range s.Inputs {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Inputs", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFlowAliasIdentifier sets the FlowAliasIdentifier field's value.
+func (s *InvokeFlowInput) SetFlowAliasIdentifier(v string) *InvokeFlowInput {
+	s.FlowAliasIdentifier = &v
+	return s
+}
+
+// SetFlowIdentifier sets the FlowIdentifier field's value.
+func (s *InvokeFlowInput) SetFlowIdentifier(v string) *InvokeFlowInput {
+	s.FlowIdentifier = &v
+	return s
+}
+
+// SetInputs sets the Inputs field's value.
+func (s *InvokeFlowInput) SetInputs(v []*FlowInput_) *InvokeFlowInput {
+	s.Inputs = v
+	return s
+}
+
+type InvokeFlowOutput struct {
+	_ struct{} `type:"structure" payload:"ResponseStream"`
+
+	eventStream *InvokeFlowEventStream
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvokeFlowOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvokeFlowOutput) GoString() string {
+	return s.String()
+}
+
+// GetStream returns the type to interact with the event stream.
+func (s *InvokeFlowOutput) GetStream() *InvokeFlowEventStream {
+	return s.eventStream
+}
+
+// Configurations to apply to a knowledge base attached to the agent during
+// query. For more information, see Knowledge base retrieval configurations
+// (https://docs.aws.amazon.com/bedrock/latest/userguide/agents-session-state.html#session-state-kb).
+type KnowledgeBaseConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier for a knowledge base attached to the agent.
+	//
+	// KnowledgeBaseId is a required field
+	KnowledgeBaseId *string `locationName:"knowledgeBaseId" type:"string" required:"true"`
+
+	// The configurations to apply to the knowledge base during query. For more
+	// information, see Query configurations (https://docs.aws.amazon.com/bedrock/latest/userguide/kb-test-config.html).
+	//
+	// RetrievalConfiguration is a required field
+	RetrievalConfiguration *KnowledgeBaseRetrievalConfiguration `locationName:"retrievalConfiguration" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KnowledgeBaseConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KnowledgeBaseConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *KnowledgeBaseConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "KnowledgeBaseConfiguration"}
+	if s.KnowledgeBaseId == nil {
+		invalidParams.Add(request.NewErrParamRequired("KnowledgeBaseId"))
+	}
+	if s.RetrievalConfiguration == nil {
+		invalidParams.Add(request.NewErrParamRequired("RetrievalConfiguration"))
+	}
+	if s.RetrievalConfiguration != nil {
+		if err := s.RetrievalConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("RetrievalConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKnowledgeBaseId sets the KnowledgeBaseId field's value.
+func (s *KnowledgeBaseConfiguration) SetKnowledgeBaseId(v string) *KnowledgeBaseConfiguration {
+	s.KnowledgeBaseId = &v
+	return s
+}
+
+// SetRetrievalConfiguration sets the RetrievalConfiguration field's value.
+func (s *KnowledgeBaseConfiguration) SetRetrievalConfiguration(v *KnowledgeBaseRetrievalConfiguration) *KnowledgeBaseConfiguration {
+	s.RetrievalConfiguration = v
+	return s
 }
 
 // Contains details about the knowledge base to look up and the query to be
@@ -3614,8 +5536,8 @@ func (s *KnowledgeBaseQuery) SetText(v string) *KnowledgeBaseQuery {
 	return s
 }
 
-// Contains configurations for the knowledge base query and retrieval process.
-// For more information, see Query configurations (https://docs.aws.amazon.com/bedrock/latest/userguide/kb-test-config.html).
+// Contains configurations for knowledge base query. For more information, see
+// Query configurations (https://docs.aws.amazon.com/bedrock/latest/userguide/kb-test-config.html).
 //
 // This data type is used in the following API operations:
 //
@@ -3753,7 +5675,7 @@ func (s *KnowledgeBaseRetrievalResult) SetScore(v float64) *KnowledgeBaseRetriev
 type KnowledgeBaseRetrieveAndGenerateConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// Contains configurations for response generation based on the knowwledge base
+	// Contains configurations for response generation based on the knowledge base
 	// query results.
 	GenerationConfiguration *GenerationConfiguration `locationName:"generationConfiguration" type:"structure"`
 
@@ -3767,6 +5689,9 @@ type KnowledgeBaseRetrieveAndGenerateConfiguration struct {
 	//
 	// ModelArn is a required field
 	ModelArn *string `locationName:"modelArn" min:"20" type:"string" required:"true"`
+
+	// Settings for how the model processes the prompt prior to retrieval and generation.
+	OrchestrationConfiguration *OrchestrationConfiguration `locationName:"orchestrationConfiguration" type:"structure"`
 
 	// Contains configurations for how to retrieve and return the knowledge base
 	// query.
@@ -3808,6 +5733,11 @@ func (s *KnowledgeBaseRetrieveAndGenerateConfiguration) Validate() error {
 			invalidParams.AddNested("GenerationConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.OrchestrationConfiguration != nil {
+		if err := s.OrchestrationConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("OrchestrationConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.RetrievalConfiguration != nil {
 		if err := s.RetrievalConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("RetrievalConfiguration", err.(request.ErrInvalidParams))
@@ -3835,6 +5765,12 @@ func (s *KnowledgeBaseRetrieveAndGenerateConfiguration) SetKnowledgeBaseId(v str
 // SetModelArn sets the ModelArn field's value.
 func (s *KnowledgeBaseRetrieveAndGenerateConfiguration) SetModelArn(v string) *KnowledgeBaseRetrieveAndGenerateConfiguration {
 	s.ModelArn = &v
+	return s
+}
+
+// SetOrchestrationConfiguration sets the OrchestrationConfiguration field's value.
+func (s *KnowledgeBaseRetrieveAndGenerateConfiguration) SetOrchestrationConfiguration(v *OrchestrationConfiguration) *KnowledgeBaseRetrieveAndGenerateConfiguration {
+	s.OrchestrationConfiguration = v
 	return s
 }
 
@@ -3929,6 +5865,106 @@ func (s *KnowledgeBaseVectorSearchConfiguration) SetNumberOfResults(v int64) *Kn
 // SetOverrideSearchType sets the OverrideSearchType field's value.
 func (s *KnowledgeBaseVectorSearchConfiguration) SetOverrideSearchType(v string) *KnowledgeBaseVectorSearchConfiguration {
 	s.OverrideSearchType = &v
+	return s
+}
+
+// Contains sessions summaries.
+type Memory struct {
+	_ struct{} `type:"structure"`
+
+	// Contains summary of a session.
+	SessionSummary *MemorySessionSummary `locationName:"sessionSummary" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Memory) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Memory) GoString() string {
+	return s.String()
+}
+
+// SetSessionSummary sets the SessionSummary field's value.
+func (s *Memory) SetSessionSummary(v *MemorySessionSummary) *Memory {
+	s.SessionSummary = v
+	return s
+}
+
+// Contains details of a session summary.
+type MemorySessionSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier of the memory where the session summary is stored.
+	MemoryId *string `locationName:"memoryId" min:"2" type:"string"`
+
+	// The time when the memory duration for the session is set to end.
+	SessionExpiryTime *time.Time `locationName:"sessionExpiryTime" type:"timestamp" timestampFormat:"iso8601"`
+
+	// The identifier for this session.
+	SessionId *string `locationName:"sessionId" min:"2" type:"string"`
+
+	// The start time for this session.
+	SessionStartTime *time.Time `locationName:"sessionStartTime" type:"timestamp" timestampFormat:"iso8601"`
+
+	// The summarized text for this session.
+	SummaryText *string `locationName:"summaryText" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MemorySessionSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MemorySessionSummary) GoString() string {
+	return s.String()
+}
+
+// SetMemoryId sets the MemoryId field's value.
+func (s *MemorySessionSummary) SetMemoryId(v string) *MemorySessionSummary {
+	s.MemoryId = &v
+	return s
+}
+
+// SetSessionExpiryTime sets the SessionExpiryTime field's value.
+func (s *MemorySessionSummary) SetSessionExpiryTime(v time.Time) *MemorySessionSummary {
+	s.SessionExpiryTime = &v
+	return s
+}
+
+// SetSessionId sets the SessionId field's value.
+func (s *MemorySessionSummary) SetSessionId(v string) *MemorySessionSummary {
+	s.SessionId = &v
+	return s
+}
+
+// SetSessionStartTime sets the SessionStartTime field's value.
+func (s *MemorySessionSummary) SetSessionStartTime(v time.Time) *MemorySessionSummary {
+	s.SessionStartTime = &v
+	return s
+}
+
+// SetSummaryText sets the SummaryText field's value.
+func (s *MemorySessionSummary) SetSummaryText(v string) *MemorySessionSummary {
+	s.SummaryText = &v
 	return s
 }
 
@@ -4047,6 +6083,10 @@ type Observation struct {
 	// group.
 	ActionGroupInvocationOutput *ActionGroupInvocationOutput_ `locationName:"actionGroupInvocationOutput" type:"structure"`
 
+	// Contains the JSON-formatted string returned by the API invoked by the code
+	// interpreter.
+	CodeInterpreterInvocationOutput *CodeInterpreterInvocationOutput_ `locationName:"codeInterpreterInvocationOutput" type:"structure"`
+
 	// Contains details about the response to the user.
 	FinalResponse *FinalResponse `locationName:"finalResponse" type:"structure"`
 
@@ -4102,6 +6142,12 @@ func (s *Observation) SetActionGroupInvocationOutput(v *ActionGroupInvocationOut
 	return s
 }
 
+// SetCodeInterpreterInvocationOutput sets the CodeInterpreterInvocationOutput field's value.
+func (s *Observation) SetCodeInterpreterInvocationOutput(v *CodeInterpreterInvocationOutput_) *Observation {
+	s.CodeInterpreterInvocationOutput = v
+	return s
+}
+
 // SetFinalResponse sets the FinalResponse field's value.
 func (s *Observation) SetFinalResponse(v *FinalResponse) *Observation {
 	s.FinalResponse = v
@@ -4129,6 +6175,59 @@ func (s *Observation) SetTraceId(v string) *Observation {
 // SetType sets the Type field's value.
 func (s *Observation) SetType(v string) *Observation {
 	s.Type = &v
+	return s
+}
+
+// Settings for how the model processes the prompt prior to retrieval and generation.
+type OrchestrationConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// To split up the prompt and retrieve multiple sources, set the transformation
+	// type to QUERY_DECOMPOSITION.
+	//
+	// QueryTransformationConfiguration is a required field
+	QueryTransformationConfiguration *QueryTransformationConfiguration `locationName:"queryTransformationConfiguration" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OrchestrationConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OrchestrationConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *OrchestrationConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "OrchestrationConfiguration"}
+	if s.QueryTransformationConfiguration == nil {
+		invalidParams.Add(request.NewErrParamRequired("QueryTransformationConfiguration"))
+	}
+	if s.QueryTransformationConfiguration != nil {
+		if err := s.QueryTransformationConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("QueryTransformationConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetQueryTransformationConfiguration sets the QueryTransformationConfiguration field's value.
+func (s *OrchestrationConfiguration) SetQueryTransformationConfiguration(v *QueryTransformationConfiguration) *OrchestrationConfiguration {
+	s.QueryTransformationConfiguration = v
 	return s
 }
 
@@ -4216,6 +6315,62 @@ func (s *OrchestrationTrace) SetObservation(v *Observation) *OrchestrationTrace 
 // SetRationale sets the Rationale field's value.
 func (s *OrchestrationTrace) SetRationale(v *Rationale) *OrchestrationTrace {
 	s.Rationale = v
+	return s
+}
+
+// Contains details of the response from code interpreter.
+type OutputFile struct {
+	_ struct{} `type:"structure" sensitive:"true"`
+
+	// The byte count of files that contains response from code interpreter.
+	//
+	// Bytes is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by OutputFile's
+	// String and GoString methods.
+	//
+	// Bytes is automatically base64 encoded/decoded by the SDK.
+	Bytes []byte `locationName:"bytes" type:"blob" sensitive:"true"`
+
+	// The name of the file containing response from code interpreter.
+	Name *string `locationName:"name" type:"string"`
+
+	// The type of file that contains response from the code interpreter.
+	Type *string `locationName:"type" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OutputFile) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OutputFile) GoString() string {
+	return s.String()
+}
+
+// SetBytes sets the Bytes field's value.
+func (s *OutputFile) SetBytes(v []byte) *OutputFile {
+	s.Bytes = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *OutputFile) SetName(v string) *OutputFile {
+	s.Name = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *OutputFile) SetType(v string) *OutputFile {
+	s.Type = &v
 	return s
 }
 
@@ -4735,6 +6890,54 @@ func (s *PropertyParameters) SetProperties(v []*Parameter) *PropertyParameters {
 	return s
 }
 
+// To split up the prompt and retrieve multiple sources, set the transformation
+// type to QUERY_DECOMPOSITION.
+type QueryTransformationConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The type of transformation to apply to the prompt.
+	//
+	// Type is a required field
+	Type *string `locationName:"type" type:"string" required:"true" enum:"QueryTransformationType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s QueryTransformationConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s QueryTransformationConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *QueryTransformationConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "QueryTransformationConfiguration"}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetType sets the Type field's value.
+func (s *QueryTransformationConfiguration) SetType(v string) *QueryTransformationConfiguration {
+	s.Type = &v
+	return s
+}
+
 // Contains the reasoning, based on the input, that the agent uses to justify
 // carrying out an action group or getting information from a knowledge base.
 type Rationale struct {
@@ -4885,6 +7088,9 @@ func (s ResourceNotFoundException) GoString() string {
 	return s.String()
 }
 
+// The ResourceNotFoundException is and event in the FlowResponseStream group of events.
+func (s *ResourceNotFoundException) eventFlowResponseStream() {}
+
 // The ResourceNotFoundException is and event in the ResponseStream group of events.
 func (s *ResourceNotFoundException) eventResponseStream() {}
 
@@ -4958,6 +7164,7 @@ func (s *ResourceNotFoundException) RequestID() string {
 // These events are:
 //
 //   - PayloadPart
+//   - FilePart
 //   - ReturnControlPayload
 //   - TracePart
 type ResponseStreamEvent interface {
@@ -4974,6 +7181,7 @@ type ResponseStreamEvent interface {
 // These events are:
 //
 //   - PayloadPart
+//   - FilePart
 //   - ReturnControlPayload
 //   - TracePart
 //   - ResponseStreamUnknownEvent
@@ -5074,6 +7282,8 @@ func (u unmarshalerForResponseStreamEvent) UnmarshalerForEventName(eventType str
 	switch eventType {
 	case "chunk":
 		return &PayloadPart{}, nil
+	case "files":
+		return &FilePart{}, nil
 	case "returnControl":
 		return &ReturnControlPayload{}, nil
 	case "trace":
@@ -5220,6 +7430,38 @@ func (s *RetrievalFilter) SetOrAll(v []*RetrievalFilter) *RetrievalFilter {
 	return s
 }
 
+// The Confluence data source location.
+type RetrievalResultConfluenceLocation struct {
+	_ struct{} `type:"structure"`
+
+	// The Confluence host URL for the data source location.
+	Url *string `locationName:"url" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RetrievalResultConfluenceLocation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RetrievalResultConfluenceLocation) GoString() string {
+	return s.String()
+}
+
+// SetUrl sets the Url field's value.
+func (s *RetrievalResultConfluenceLocation) SetUrl(v string) *RetrievalResultConfluenceLocation {
+	s.Url = &v
+	return s
+}
+
 // Contains the cited text from the data source.
 //
 // This data type is used in the following API operations:
@@ -5265,7 +7507,7 @@ func (s *RetrievalResultContent) SetText(v string) *RetrievalResultContent {
 	return s
 }
 
-// Contains information about the location of the data source.
+// Contains information about the data source location.
 //
 // This data type is used in the following API operations:
 //
@@ -5280,13 +7522,25 @@ func (s *RetrievalResultContent) SetText(v string) *RetrievalResultContent {
 type RetrievalResultLocation struct {
 	_ struct{} `type:"structure" sensitive:"true"`
 
-	// Contains the S3 location of the data source.
+	// The Confluence data source location.
+	ConfluenceLocation *RetrievalResultConfluenceLocation `locationName:"confluenceLocation" type:"structure"`
+
+	// The S3 data source location.
 	S3Location *RetrievalResultS3Location `locationName:"s3Location" type:"structure"`
 
-	// The type of the location of the data source.
+	// The Salesforce data source location.
+	SalesforceLocation *RetrievalResultSalesforceLocation `locationName:"salesforceLocation" type:"structure"`
+
+	// The SharePoint data source location.
+	SharePointLocation *RetrievalResultSharePointLocation `locationName:"sharePointLocation" type:"structure"`
+
+	// The type of data source location.
 	//
 	// Type is a required field
 	Type *string `locationName:"type" type:"string" required:"true" enum:"RetrievalResultLocationType"`
+
+	// The web URL/URLs data source location.
+	WebLocation *RetrievalResultWebLocation `locationName:"webLocation" type:"structure"`
 }
 
 // String returns the string representation.
@@ -5307,9 +7561,27 @@ func (s RetrievalResultLocation) GoString() string {
 	return s.String()
 }
 
+// SetConfluenceLocation sets the ConfluenceLocation field's value.
+func (s *RetrievalResultLocation) SetConfluenceLocation(v *RetrievalResultConfluenceLocation) *RetrievalResultLocation {
+	s.ConfluenceLocation = v
+	return s
+}
+
 // SetS3Location sets the S3Location field's value.
 func (s *RetrievalResultLocation) SetS3Location(v *RetrievalResultS3Location) *RetrievalResultLocation {
 	s.S3Location = v
+	return s
+}
+
+// SetSalesforceLocation sets the SalesforceLocation field's value.
+func (s *RetrievalResultLocation) SetSalesforceLocation(v *RetrievalResultSalesforceLocation) *RetrievalResultLocation {
+	s.SalesforceLocation = v
+	return s
+}
+
+// SetSharePointLocation sets the SharePointLocation field's value.
+func (s *RetrievalResultLocation) SetSharePointLocation(v *RetrievalResultSharePointLocation) *RetrievalResultLocation {
+	s.SharePointLocation = v
 	return s
 }
 
@@ -5319,7 +7591,13 @@ func (s *RetrievalResultLocation) SetType(v string) *RetrievalResultLocation {
 	return s
 }
 
-// Contains the S3 location of the data source.
+// SetWebLocation sets the WebLocation field's value.
+func (s *RetrievalResultLocation) SetWebLocation(v *RetrievalResultWebLocation) *RetrievalResultLocation {
+	s.WebLocation = v
+	return s
+}
+
+// The S3 data source location.
 //
 // This data type is used in the following API operations:
 //
@@ -5334,7 +7612,7 @@ func (s *RetrievalResultLocation) SetType(v string) *RetrievalResultLocation {
 type RetrievalResultS3Location struct {
 	_ struct{} `type:"structure"`
 
-	// The S3 URI of the data source.
+	// The S3 URI for the data source location.
 	Uri *string `locationName:"uri" type:"string"`
 }
 
@@ -5359,6 +7637,102 @@ func (s RetrievalResultS3Location) GoString() string {
 // SetUri sets the Uri field's value.
 func (s *RetrievalResultS3Location) SetUri(v string) *RetrievalResultS3Location {
 	s.Uri = &v
+	return s
+}
+
+// The Salesforce data source location.
+type RetrievalResultSalesforceLocation struct {
+	_ struct{} `type:"structure"`
+
+	// The Salesforce host URL for the data source location.
+	Url *string `locationName:"url" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RetrievalResultSalesforceLocation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RetrievalResultSalesforceLocation) GoString() string {
+	return s.String()
+}
+
+// SetUrl sets the Url field's value.
+func (s *RetrievalResultSalesforceLocation) SetUrl(v string) *RetrievalResultSalesforceLocation {
+	s.Url = &v
+	return s
+}
+
+// The SharePoint data source location.
+type RetrievalResultSharePointLocation struct {
+	_ struct{} `type:"structure"`
+
+	// The SharePoint site URL for the data source location.
+	Url *string `locationName:"url" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RetrievalResultSharePointLocation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RetrievalResultSharePointLocation) GoString() string {
+	return s.String()
+}
+
+// SetUrl sets the Url field's value.
+func (s *RetrievalResultSharePointLocation) SetUrl(v string) *RetrievalResultSharePointLocation {
+	s.Url = &v
+	return s
+}
+
+// The web URL/URLs data source location.
+type RetrievalResultWebLocation struct {
+	_ struct{} `type:"structure"`
+
+	// The web URL/URLs for the data source location.
+	Url *string `locationName:"url" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RetrievalResultWebLocation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RetrievalResultWebLocation) GoString() string {
+	return s.String()
+}
+
+// SetUrl sets the Url field's value.
+func (s *RetrievalResultWebLocation) SetUrl(v string) *RetrievalResultWebLocation {
+	s.Url = &v
 	return s
 }
 
@@ -5462,8 +7836,11 @@ type RetrieveAndGenerateInput struct {
 	// Contains details about the session with the knowledge base.
 	SessionConfiguration *RetrieveAndGenerateSessionConfiguration `locationName:"sessionConfiguration" type:"structure"`
 
-	// The unique identifier of the session. Reuse the same value to continue the
-	// same session with the knowledge base.
+	// The unique identifier of the session. When you first make a RetrieveAndGenerate
+	// request, Amazon Bedrock automatically generates this value. You must reuse
+	// this value for all subsequent requests in the same conversational session.
+	// This value allows Amazon Bedrock to maintain context and knowledge from previous
+	// interactions. You can't explicitly set the sessionId yourself.
 	SessionId *string `locationName:"sessionId" min:"2" type:"string"`
 }
 
@@ -5611,8 +7988,11 @@ type RetrieveAndGenerateOutput struct {
 	// Output is a required field
 	Output *RetrieveAndGenerateOutput_ `locationName:"output" type:"structure" required:"true" sensitive:"true"`
 
-	// The unique identifier of the session. Reuse the same value to continue the
-	// same session with the knowledge base.
+	// The unique identifier of the session. When you first make a RetrieveAndGenerate
+	// request, Amazon Bedrock automatically generates this value. You must reuse
+	// this value for all subsequent requests in the same conversational session.
+	// This value allows Amazon Bedrock to maintain context and knowledge from previous
+	// interactions. You can't explicitly set the sessionId yourself.
 	//
 	// SessionId is a required field
 	SessionId *string `locationName:"sessionId" min:"2" type:"string" required:"true"`
@@ -6087,6 +8467,56 @@ func (s *S3ObjectDoc) SetUri(v string) *S3ObjectDoc {
 	return s
 }
 
+// Contains details of the s3 object where the source file is located.
+type S3ObjectFile struct {
+	_ struct{} `type:"structure"`
+
+	// The uri of the s3 object.
+	//
+	// Uri is a required field
+	Uri *string `locationName:"uri" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3ObjectFile) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3ObjectFile) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *S3ObjectFile) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "S3ObjectFile"}
+	if s.Uri == nil {
+		invalidParams.Add(request.NewErrParamRequired("Uri"))
+	}
+	if s.Uri != nil && len(*s.Uri) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Uri", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetUri sets the Uri field's value.
+func (s *S3ObjectFile) SetUri(v string) *S3ObjectFile {
+	s.Uri = &v
+	return s
+}
+
 // The number of requests exceeds the service quota. Resubmit your request later.
 type ServiceQuotaExceededException struct {
 	_            struct{}                  `type:"structure"`
@@ -6112,6 +8542,9 @@ func (s ServiceQuotaExceededException) String() string {
 func (s ServiceQuotaExceededException) GoString() string {
 	return s.String()
 }
+
+// The ServiceQuotaExceededException is and event in the FlowResponseStream group of events.
+func (s *ServiceQuotaExceededException) eventFlowResponseStream() {}
 
 // The ServiceQuotaExceededException is and event in the ResponseStream group of events.
 func (s *ServiceQuotaExceededException) eventResponseStream() {}
@@ -6190,12 +8623,19 @@ func (s *ServiceQuotaExceededException) RequestID() string {
 type SessionState struct {
 	_ struct{} `type:"structure"`
 
+	// Contains information about the files used by code interpreter.
+	Files []*InputFile `locationName:"files" type:"list"`
+
 	// The identifier of the invocation of an action. This value must match the
 	// invocationId returned in the InvokeAgent response for the action whose results
 	// are provided in the returnControlInvocationResults field. For more information,
 	// see Return control to the agent developer (https://docs.aws.amazon.com/bedrock/latest/userguide/agents-returncontrol.html)
 	// and Control session context (https://docs.aws.amazon.com/bedrock/latest/userguide/agents-session-state.html).
 	InvocationId *string `locationName:"invocationId" type:"string"`
+
+	// An array of configurations, each of which applies to a knowledge base attached
+	// to the agent.
+	KnowledgeBaseConfigurations []*KnowledgeBaseConfiguration `locationName:"knowledgeBaseConfigurations" min:"1" type:"list"`
 
 	// Contains attributes that persist across a prompt and the values of those
 	// attributes. These attributes replace the $prompt_session_attributes$ placeholder
@@ -6236,8 +8676,31 @@ func (s SessionState) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *SessionState) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "SessionState"}
+	if s.KnowledgeBaseConfigurations != nil && len(s.KnowledgeBaseConfigurations) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KnowledgeBaseConfigurations", 1))
+	}
 	if s.ReturnControlInvocationResults != nil && len(s.ReturnControlInvocationResults) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ReturnControlInvocationResults", 1))
+	}
+	if s.Files != nil {
+		for i, v := range s.Files {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Files", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.KnowledgeBaseConfigurations != nil {
+		for i, v := range s.KnowledgeBaseConfigurations {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "KnowledgeBaseConfigurations", i), err.(request.ErrInvalidParams))
+			}
+		}
 	}
 	if s.ReturnControlInvocationResults != nil {
 		for i, v := range s.ReturnControlInvocationResults {
@@ -6256,9 +8719,21 @@ func (s *SessionState) Validate() error {
 	return nil
 }
 
+// SetFiles sets the Files field's value.
+func (s *SessionState) SetFiles(v []*InputFile) *SessionState {
+	s.Files = v
+	return s
+}
+
 // SetInvocationId sets the InvocationId field's value.
 func (s *SessionState) SetInvocationId(v string) *SessionState {
 	s.InvocationId = &v
+	return s
+}
+
+// SetKnowledgeBaseConfigurations sets the KnowledgeBaseConfigurations field's value.
+func (s *SessionState) SetKnowledgeBaseConfigurations(v []*KnowledgeBaseConfiguration) *SessionState {
+	s.KnowledgeBaseConfigurations = v
 	return s
 }
 
@@ -6483,6 +8958,9 @@ func (s ThrottlingException) String() string {
 func (s ThrottlingException) GoString() string {
 	return s.String()
 }
+
+// The ThrottlingException is and event in the FlowResponseStream group of events.
+func (s *ThrottlingException) eventFlowResponseStream() {}
 
 // The ThrottlingException is and event in the ResponseStream group of events.
 func (s *ThrottlingException) eventResponseStream() {}
@@ -6778,6 +9256,9 @@ func (s ValidationException) GoString() string {
 	return s.String()
 }
 
+// The ValidationException is and event in the FlowResponseStream group of events.
+func (s *ValidationException) eventFlowResponseStream() {}
+
 // The ValidationException is and event in the ResponseStream group of events.
 func (s *ValidationException) eventResponseStream() {}
 
@@ -6862,6 +9343,22 @@ func CreationMode_Values() []string {
 }
 
 const (
+	// ExecutionTypeLambda is a ExecutionType enum value
+	ExecutionTypeLambda = "LAMBDA"
+
+	// ExecutionTypeReturnControl is a ExecutionType enum value
+	ExecutionTypeReturnControl = "RETURN_CONTROL"
+)
+
+// ExecutionType_Values returns all elements of the ExecutionType enum
+func ExecutionType_Values() []string {
+	return []string{
+		ExecutionTypeLambda,
+		ExecutionTypeReturnControl,
+	}
+}
+
+const (
 	// ExternalSourceTypeS3 is a ExternalSourceType enum value
 	ExternalSourceTypeS3 = "S3"
 
@@ -6874,6 +9371,50 @@ func ExternalSourceType_Values() []string {
 	return []string{
 		ExternalSourceTypeS3,
 		ExternalSourceTypeByteContent,
+	}
+}
+
+const (
+	// FileSourceTypeS3 is a FileSourceType enum value
+	FileSourceTypeS3 = "S3"
+
+	// FileSourceTypeByteContent is a FileSourceType enum value
+	FileSourceTypeByteContent = "BYTE_CONTENT"
+)
+
+// FileSourceType_Values returns all elements of the FileSourceType enum
+func FileSourceType_Values() []string {
+	return []string{
+		FileSourceTypeS3,
+		FileSourceTypeByteContent,
+	}
+}
+
+const (
+	// FileUseCaseCodeInterpreter is a FileUseCase enum value
+	FileUseCaseCodeInterpreter = "CODE_INTERPRETER"
+
+	// FileUseCaseChat is a FileUseCase enum value
+	FileUseCaseChat = "CHAT"
+)
+
+// FileUseCase_Values returns all elements of the FileUseCase enum
+func FileUseCase_Values() []string {
+	return []string{
+		FileUseCaseCodeInterpreter,
+		FileUseCaseChat,
+	}
+}
+
+const (
+	// FlowCompletionReasonSuccess is a FlowCompletionReason enum value
+	FlowCompletionReasonSuccess = "SUCCESS"
+)
+
+// FlowCompletionReason_Values returns all elements of the FlowCompletionReason enum
+func FlowCompletionReason_Values() []string {
+	return []string{
+		FlowCompletionReasonSuccess,
 	}
 }
 
@@ -7182,6 +9723,9 @@ const (
 
 	// InvocationTypeFinish is a InvocationType enum value
 	InvocationTypeFinish = "FINISH"
+
+	// InvocationTypeActionGroupCodeInterpreter is a InvocationType enum value
+	InvocationTypeActionGroupCodeInterpreter = "ACTION_GROUP_CODE_INTERPRETER"
 )
 
 // InvocationType_Values returns all elements of the InvocationType enum
@@ -7190,6 +9734,55 @@ func InvocationType_Values() []string {
 		InvocationTypeActionGroup,
 		InvocationTypeKnowledgeBase,
 		InvocationTypeFinish,
+		InvocationTypeActionGroupCodeInterpreter,
+	}
+}
+
+const (
+	// MemoryTypeSessionSummary is a MemoryType enum value
+	MemoryTypeSessionSummary = "SESSION_SUMMARY"
+)
+
+// MemoryType_Values returns all elements of the MemoryType enum
+func MemoryType_Values() []string {
+	return []string{
+		MemoryTypeSessionSummary,
+	}
+}
+
+const (
+	// NodeTypeFlowInputNode is a NodeType enum value
+	NodeTypeFlowInputNode = "FlowInputNode"
+
+	// NodeTypeFlowOutputNode is a NodeType enum value
+	NodeTypeFlowOutputNode = "FlowOutputNode"
+
+	// NodeTypeLambdaFunctionNode is a NodeType enum value
+	NodeTypeLambdaFunctionNode = "LambdaFunctionNode"
+
+	// NodeTypeKnowledgeBaseNode is a NodeType enum value
+	NodeTypeKnowledgeBaseNode = "KnowledgeBaseNode"
+
+	// NodeTypePromptNode is a NodeType enum value
+	NodeTypePromptNode = "PromptNode"
+
+	// NodeTypeConditionNode is a NodeType enum value
+	NodeTypeConditionNode = "ConditionNode"
+
+	// NodeTypeLexNode is a NodeType enum value
+	NodeTypeLexNode = "LexNode"
+)
+
+// NodeType_Values returns all elements of the NodeType enum
+func NodeType_Values() []string {
+	return []string{
+		NodeTypeFlowInputNode,
+		NodeTypeFlowOutputNode,
+		NodeTypeLambdaFunctionNode,
+		NodeTypeKnowledgeBaseNode,
+		NodeTypePromptNode,
+		NodeTypeConditionNode,
+		NodeTypeLexNode,
 	}
 }
 
@@ -7218,6 +9811,18 @@ func PromptType_Values() []string {
 }
 
 const (
+	// QueryTransformationTypeQueryDecomposition is a QueryTransformationType enum value
+	QueryTransformationTypeQueryDecomposition = "QUERY_DECOMPOSITION"
+)
+
+// QueryTransformationType_Values returns all elements of the QueryTransformationType enum
+func QueryTransformationType_Values() []string {
+	return []string{
+		QueryTransformationTypeQueryDecomposition,
+	}
+}
+
+const (
 	// ResponseStateFailure is a ResponseState enum value
 	ResponseStateFailure = "FAILURE"
 
@@ -7236,12 +9841,28 @@ func ResponseState_Values() []string {
 const (
 	// RetrievalResultLocationTypeS3 is a RetrievalResultLocationType enum value
 	RetrievalResultLocationTypeS3 = "S3"
+
+	// RetrievalResultLocationTypeWeb is a RetrievalResultLocationType enum value
+	RetrievalResultLocationTypeWeb = "WEB"
+
+	// RetrievalResultLocationTypeConfluence is a RetrievalResultLocationType enum value
+	RetrievalResultLocationTypeConfluence = "CONFLUENCE"
+
+	// RetrievalResultLocationTypeSalesforce is a RetrievalResultLocationType enum value
+	RetrievalResultLocationTypeSalesforce = "SALESFORCE"
+
+	// RetrievalResultLocationTypeSharepoint is a RetrievalResultLocationType enum value
+	RetrievalResultLocationTypeSharepoint = "SHAREPOINT"
 )
 
 // RetrievalResultLocationType_Values returns all elements of the RetrievalResultLocationType enum
 func RetrievalResultLocationType_Values() []string {
 	return []string{
 		RetrievalResultLocationTypeS3,
+		RetrievalResultLocationTypeWeb,
+		RetrievalResultLocationTypeConfluence,
+		RetrievalResultLocationTypeSalesforce,
+		RetrievalResultLocationTypeSharepoint,
 	}
 }
 

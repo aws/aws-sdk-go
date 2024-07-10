@@ -1551,6 +1551,18 @@
       "refs": {
       }
     },
+    "ConditionExpression": {
+      "base": "<p>Condition expression defined in the Glue Studio data preparation recipe node.</p>",
+      "refs": {
+        "ConditionExpressionList$member": null
+      }
+    },
+    "ConditionExpressionList": {
+      "base": null,
+      "refs": {
+        "RecipeStep$ConditionExpressions": "<p>The condition expressions for the recipe step.</p>"
+      }
+    },
     "ConditionList": {
       "base": null,
       "refs": {
@@ -2575,6 +2587,18 @@
         "GetColumnStatisticsTaskRunsRequest$DatabaseName": "<p>The name of the database where the table resides.</p>",
         "StopColumnStatisticsTaskRunRequest$DatabaseName": "<p>The name of the database where the table resides.</p>",
         "UpdateCrawlerRequest$DatabaseName": "<p>The Glue database where results are stored, such as: <code>arn:aws:daylight:us-east-1::database/sometable/*</code>.</p>"
+      }
+    },
+    "DatabrewCondition": {
+      "base": null,
+      "refs": {
+        "ConditionExpression$Condition": "<p>The condition of the condition expression.</p>"
+      }
+    },
+    "DatabrewConditionValue": {
+      "base": null,
+      "refs": {
+        "ConditionExpression$Value": "<p>The value of the condition expression.</p>"
       }
     },
     "Datatype": {
@@ -6593,6 +6617,12 @@
         "CreateTableRequest$OpenTableFormatInput": "<p>Specifies an <code>OpenTableFormatInput</code> structure when creating an open format table.</p>"
       }
     },
+    "Operation": {
+      "base": null,
+      "refs": {
+        "RecipeAction$Operation": "<p>The operation of the recipe action.</p>"
+      }
+    },
     "OperationNotSupportedException": {
       "base": "<p>The operation is not available in the region.</p>",
       "refs": {
@@ -6825,6 +6855,24 @@
       "refs": {
         "TransformConfigParameter$Type": "<p>Specifies the parameter type in the config file of the dynamic transform.</p>",
         "TransformConfigParameter$ListType": "<p>Specifies the list type of the parameter in the config file of the dynamic transform.</p>"
+      }
+    },
+    "ParameterMap": {
+      "base": null,
+      "refs": {
+        "RecipeAction$Parameters": "<p>The parameters of the recipe action.</p>"
+      }
+    },
+    "ParameterName": {
+      "base": null,
+      "refs": {
+        "ParameterMap$key": null
+      }
+    },
+    "ParameterValue": {
+      "base": null,
+      "refs": {
+        "ParameterMap$value": null
       }
     },
     "ParametersMap": {
@@ -7212,10 +7260,28 @@
         "CodeGenConfigurationNode$Recipe": "<p>Specifies a Glue DataBrew recipe node.</p>"
       }
     },
+    "RecipeAction": {
+      "base": "<p>Actions defined in the Glue Studio data preparation recipe node.</p>",
+      "refs": {
+        "RecipeStep$Action": "<p>The transformation action of the recipe step.</p>"
+      }
+    },
     "RecipeReference": {
       "base": "<p>A reference to a Glue DataBrew recipe.</p>",
       "refs": {
         "Recipe$RecipeReference": "<p>A reference to the DataBrew recipe used by the node.</p>"
+      }
+    },
+    "RecipeStep": {
+      "base": "<p>A recipe step used in a Glue Studio data preparation recipe node.</p>",
+      "refs": {
+        "RecipeSteps$member": null
+      }
+    },
+    "RecipeSteps": {
+      "base": null,
+      "refs": {
+        "Recipe$RecipeSteps": "<p>Transform steps used in the recipe node.</p>"
       }
     },
     "RecipeVersion": {
@@ -8559,6 +8625,12 @@
         "ListSessionsRequest$Tags": "<p>Tags belonging to the session. </p>",
         "ListTriggersRequest$Tags": "<p>Specifies to return only these tagged resources.</p>",
         "TagResourceRequest$TagsToAdd": "<p>Tags to add to this resource.</p>"
+      }
+    },
+    "TargetColumn": {
+      "base": null,
+      "refs": {
+        "ConditionExpression$TargetColumn": "<p>The target column of the condition expressions.</p>"
       }
     },
     "TargetFormat": {

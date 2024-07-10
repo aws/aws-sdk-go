@@ -665,6 +665,7 @@
         "contentPolicyConfig":{"shape":"GuardrailContentPolicyConfig"},
         "wordPolicyConfig":{"shape":"GuardrailWordPolicyConfig"},
         "sensitiveInformationPolicyConfig":{"shape":"GuardrailSensitiveInformationPolicyConfig"},
+        "contextualGroundingPolicyConfig":{"shape":"GuardrailContextualGroundingPolicyConfig"},
         "blockedInputMessaging":{"shape":"GuardrailBlockedMessaging"},
         "blockedOutputsMessaging":{"shape":"GuardrailBlockedMessaging"},
         "kmsKeyId":{"shape":"KmsKeyId"},
@@ -1322,6 +1323,7 @@
         "contentPolicy":{"shape":"GuardrailContentPolicy"},
         "wordPolicy":{"shape":"GuardrailWordPolicy"},
         "sensitiveInformationPolicy":{"shape":"GuardrailSensitiveInformationPolicy"},
+        "contextualGroundingPolicy":{"shape":"GuardrailContextualGroundingPolicy"},
         "createdAt":{"shape":"Timestamp"},
         "updatedAt":{"shape":"Timestamp"},
         "statusReasons":{"shape":"GuardrailStatusReasons"},
@@ -1504,6 +1506,69 @@
       "required":["filtersConfig"],
       "members":{
         "filtersConfig":{"shape":"GuardrailContentFiltersConfig"}
+      }
+    },
+    "GuardrailContextualGroundingFilter":{
+      "type":"structure",
+      "required":[
+        "type",
+        "threshold"
+      ],
+      "members":{
+        "type":{"shape":"GuardrailContextualGroundingFilterType"},
+        "threshold":{"shape":"GuardrailContextualGroundingFilterThresholdDouble"}
+      }
+    },
+    "GuardrailContextualGroundingFilterConfig":{
+      "type":"structure",
+      "required":[
+        "type",
+        "threshold"
+      ],
+      "members":{
+        "type":{"shape":"GuardrailContextualGroundingFilterType"},
+        "threshold":{"shape":"GuardrailContextualGroundingFilterConfigThresholdDouble"}
+      }
+    },
+    "GuardrailContextualGroundingFilterConfigThresholdDouble":{
+      "type":"double",
+      "box":true,
+      "min":0
+    },
+    "GuardrailContextualGroundingFilterThresholdDouble":{
+      "type":"double",
+      "box":true,
+      "min":0
+    },
+    "GuardrailContextualGroundingFilterType":{
+      "type":"string",
+      "enum":[
+        "GROUNDING",
+        "RELEVANCE"
+      ]
+    },
+    "GuardrailContextualGroundingFilters":{
+      "type":"list",
+      "member":{"shape":"GuardrailContextualGroundingFilter"},
+      "min":1
+    },
+    "GuardrailContextualGroundingFiltersConfig":{
+      "type":"list",
+      "member":{"shape":"GuardrailContextualGroundingFilterConfig"},
+      "min":1
+    },
+    "GuardrailContextualGroundingPolicy":{
+      "type":"structure",
+      "required":["filters"],
+      "members":{
+        "filters":{"shape":"GuardrailContextualGroundingFilters"}
+      }
+    },
+    "GuardrailContextualGroundingPolicyConfig":{
+      "type":"structure",
+      "required":["filtersConfig"],
+      "members":{
+        "filtersConfig":{"shape":"GuardrailContextualGroundingFiltersConfig"}
       }
     },
     "GuardrailDescription":{
@@ -2783,6 +2848,7 @@
         "contentPolicyConfig":{"shape":"GuardrailContentPolicyConfig"},
         "wordPolicyConfig":{"shape":"GuardrailWordPolicyConfig"},
         "sensitiveInformationPolicyConfig":{"shape":"GuardrailSensitiveInformationPolicyConfig"},
+        "contextualGroundingPolicyConfig":{"shape":"GuardrailContextualGroundingPolicyConfig"},
         "blockedInputMessaging":{"shape":"GuardrailBlockedMessaging"},
         "blockedOutputsMessaging":{"shape":"GuardrailBlockedMessaging"},
         "kmsKeyId":{"shape":"KmsKeyId"}

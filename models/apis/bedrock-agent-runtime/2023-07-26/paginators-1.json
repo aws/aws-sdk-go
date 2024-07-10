@@ -1,5 +1,11 @@
 {
   "pagination": {
+    "GetAgentMemory": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxItems",
+      "result_key": "memoryContents"
+    },
     "Retrieve": {
       "input_token": "nextToken",
       "output_token": "nextToken",

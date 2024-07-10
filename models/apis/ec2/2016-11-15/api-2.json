@@ -11619,7 +11619,8 @@
         "TagSpecifications":{
           "shape":"TagSpecificationList",
           "locationName":"TagSpecification"
-        }
+        },
+        "NetworkBorderGroup":{"shape":"String"}
       }
     },
     "CreatePublicIpv4PoolResult":{
@@ -13926,7 +13927,8 @@
       "required":["PoolId"],
       "members":{
         "DryRun":{"shape":"Boolean"},
-        "PoolId":{"shape":"Ipv4PoolEc2Id"}
+        "PoolId":{"shape":"Ipv4PoolEc2Id"},
+        "NetworkBorderGroup":{"shape":"String"}
       }
     },
     "DeletePublicIpv4PoolResult":{
@@ -29503,9 +29505,17 @@
           "shape":"String",
           "locationName":"vpcId"
         },
+        "NetworkInterfaceAttachmentStatus":{
+          "shape":"IpamNetworkInterfaceAttachmentStatus",
+          "locationName":"networkInterfaceAttachmentStatus"
+        },
         "SampleTime":{
           "shape":"MillisecondDateTime",
           "locationName":"sampleTime"
+        },
+        "AvailabilityZoneId":{
+          "shape":"String",
+          "locationName":"availabilityZoneId"
         }
       }
     },
@@ -29555,6 +29565,13 @@
       "type":"integer",
       "max":128,
       "min":0
+    },
+    "IpamNetworkInterfaceAttachmentStatus":{
+      "type":"string",
+      "enum":[
+        "available",
+        "in-use"
+      ]
     },
     "IpamOperatingRegion":{
       "type":"structure",
@@ -30024,6 +30041,10 @@
         "VpcId":{
           "shape":"String",
           "locationName":"vpcId"
+        },
+        "AvailabilityZoneId":{
+          "shape":"String",
+          "locationName":"availabilityZoneId"
         }
       }
     },
@@ -37055,7 +37076,8 @@
         "DryRun":{"shape":"Boolean"},
         "IpamPoolId":{"shape":"IpamPoolId"},
         "PoolId":{"shape":"Ipv4PoolEc2Id"},
-        "NetmaskLength":{"shape":"Integer"}
+        "NetmaskLength":{"shape":"Integer"},
+        "NetworkBorderGroup":{"shape":"String"}
       }
     },
     "ProvisionPublicIpv4PoolCidrResult":{

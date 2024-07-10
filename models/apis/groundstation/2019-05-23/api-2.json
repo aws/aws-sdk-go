@@ -5,11 +5,13 @@
     "endpointPrefix":"groundstation",
     "jsonVersion":"1.1",
     "protocol":"rest-json",
+    "protocols":["rest-json"],
     "serviceFullName":"AWS Ground Station",
     "serviceId":"GroundStation",
     "signatureVersion":"v4",
     "signingName":"groundstation",
-    "uid":"groundstation-2019-05-23"
+    "uid":"groundstation-2019-05-23",
+    "auth":["aws.auth#sigv4"]
   },
   "operations":{
     "CancelContact":{

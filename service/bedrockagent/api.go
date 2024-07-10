@@ -168,6 +168,10 @@ func (c *BedrockAgent) CreateAgentRequest(input *CreateAgentInput) (req *request
 //     for which the agent should maintain session information. After this time
 //     expires, the subsequent InvokeAgent request begins a new session.
 //
+//   - To enable your agent to retain conversational context across multiple
+//     sessions, include a memoryConfiguration object. For more information,
+//     see Configure memory (https://docs.aws.amazon.com/bedrock/latest/userguide/agents-configure-memory.html).
+//
 //   - To override the default prompt behavior for agent orchestration and
 //     to use advanced prompts, include a promptOverrideConfiguration object.
 //     For more information, see Advanced prompts (https://docs.aws.amazon.com/bedrock/latest/userguide/advanced-prompts.html).
@@ -273,11 +277,17 @@ func (c *BedrockAgent) CreateAgentActionGroupRequest(input *CreateAgentActionGro
 //
 // To allow your agent to request the user for additional information when trying
 // to complete a task, add an action group with the parentActionGroupSignature
-// field set to AMAZON.UserInput. You must leave the description, apiSchema,
-// and actionGroupExecutor fields blank for this action group. During orchestration,
-// if your agent determines that it needs to invoke an API in an action group,
-// but doesn't have enough information to complete the API request, it will
-// invoke this action group instead and return an Observation (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Observation.html)
+// field set to AMAZON.UserInput.
+//
+// To allow your agent to generate, run, and troubleshoot code when trying to
+// complete a task, add an action group with the parentActionGroupSignature
+// field set to AMAZON.CodeInterpreter.
+//
+// You must leave the description, apiSchema, and actionGroupExecutor fields
+// blank for this action group. During orchestration, if your agent determines
+// that it needs to invoke an API in an action group, but doesn't have enough
+// information to complete the API request, it will invoke this action group
+// instead and return an Observation (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Observation.html)
 // reprompting the user for more information.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -474,9 +484,10 @@ func (c *BedrockAgent) CreateDataSourceRequest(input *CreateDataSourceInput) (re
 
 // CreateDataSource API operation for Agents for Amazon Bedrock.
 //
-// Sets up a data source to be added to a knowledge base.
+// Creates a data source connector for a knowledge base.
 //
-// You can't change the chunkingConfiguration after you create the data source.
+// You can't change the chunkingConfiguration after you create the data source
+// connector.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -526,6 +537,305 @@ func (c *BedrockAgent) CreateDataSource(input *CreateDataSourceInput) (*CreateDa
 // for more information on using Contexts.
 func (c *BedrockAgent) CreateDataSourceWithContext(ctx aws.Context, input *CreateDataSourceInput, opts ...request.Option) (*CreateDataSourceOutput, error) {
 	req, out := c.CreateDataSourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateFlow = "CreateFlow"
+
+// CreateFlowRequest generates a "aws/request.Request" representing the
+// client's request for the CreateFlow operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateFlow for more information on using the CreateFlow
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateFlowRequest method.
+//	req, resp := client.CreateFlowRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/CreateFlow
+func (c *BedrockAgent) CreateFlowRequest(input *CreateFlowInput) (req *request.Request, output *CreateFlowOutput) {
+	op := &request.Operation{
+		Name:       opCreateFlow,
+		HTTPMethod: "POST",
+		HTTPPath:   "/flows/",
+	}
+
+	if input == nil {
+		input = &CreateFlowInput{}
+	}
+
+	output = &CreateFlowOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateFlow API operation for Agents for Amazon Bedrock.
+//
+// Creates a prompt flow that you can use to send an input through various steps
+// to yield an output. Configure nodes, each of which corresponds to a step
+// of the flow, and create connections between the nodes to create paths to
+// different outputs. For more information, see How it works (https://docs.aws.amazon.com/bedrock/latest/userguide/flows-how-it-works.html)
+// and Create a flow in Amazon Bedrock (https://docs.aws.amazon.com/bedrock/latest/userguide/flows-create.html)
+// in the Amazon Bedrock User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Agents for Amazon Bedrock's
+// API operation CreateFlow for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     The number of requests exceeds the limit. Resubmit your request later.
+//
+//   - AccessDeniedException
+//     The request is denied because of missing access permissions.
+//
+//   - ValidationException
+//     Input validation failed. Check your request parameters and retry the request.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
+//
+//   - ConflictException
+//     There was a conflict performing an operation.
+//
+//   - ServiceQuotaExceededException
+//     The number of requests exceeds the service quota. Resubmit your request later.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/CreateFlow
+func (c *BedrockAgent) CreateFlow(input *CreateFlowInput) (*CreateFlowOutput, error) {
+	req, out := c.CreateFlowRequest(input)
+	return out, req.Send()
+}
+
+// CreateFlowWithContext is the same as CreateFlow with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateFlow for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *BedrockAgent) CreateFlowWithContext(ctx aws.Context, input *CreateFlowInput, opts ...request.Option) (*CreateFlowOutput, error) {
+	req, out := c.CreateFlowRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateFlowAlias = "CreateFlowAlias"
+
+// CreateFlowAliasRequest generates a "aws/request.Request" representing the
+// client's request for the CreateFlowAlias operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateFlowAlias for more information on using the CreateFlowAlias
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateFlowAliasRequest method.
+//	req, resp := client.CreateFlowAliasRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/CreateFlowAlias
+func (c *BedrockAgent) CreateFlowAliasRequest(input *CreateFlowAliasInput) (req *request.Request, output *CreateFlowAliasOutput) {
+	op := &request.Operation{
+		Name:       opCreateFlowAlias,
+		HTTPMethod: "POST",
+		HTTPPath:   "/flows/{flowIdentifier}/aliases",
+	}
+
+	if input == nil {
+		input = &CreateFlowAliasInput{}
+	}
+
+	output = &CreateFlowAliasOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateFlowAlias API operation for Agents for Amazon Bedrock.
+//
+// Creates an alias of a flow for deployment. For more information, see Deploy
+// a flow in Amazon Bedrock (https://docs.aws.amazon.com/bedrock/latest/userguide/flows-deploy.html)
+// in the Amazon Bedrock User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Agents for Amazon Bedrock's
+// API operation CreateFlowAlias for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     The number of requests exceeds the limit. Resubmit your request later.
+//
+//   - AccessDeniedException
+//     The request is denied because of missing access permissions.
+//
+//   - ValidationException
+//     Input validation failed. Check your request parameters and retry the request.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
+//
+//   - ResourceNotFoundException
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
+//
+//   - ConflictException
+//     There was a conflict performing an operation.
+//
+//   - ServiceQuotaExceededException
+//     The number of requests exceeds the service quota. Resubmit your request later.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/CreateFlowAlias
+func (c *BedrockAgent) CreateFlowAlias(input *CreateFlowAliasInput) (*CreateFlowAliasOutput, error) {
+	req, out := c.CreateFlowAliasRequest(input)
+	return out, req.Send()
+}
+
+// CreateFlowAliasWithContext is the same as CreateFlowAlias with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateFlowAlias for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *BedrockAgent) CreateFlowAliasWithContext(ctx aws.Context, input *CreateFlowAliasInput, opts ...request.Option) (*CreateFlowAliasOutput, error) {
+	req, out := c.CreateFlowAliasRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateFlowVersion = "CreateFlowVersion"
+
+// CreateFlowVersionRequest generates a "aws/request.Request" representing the
+// client's request for the CreateFlowVersion operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateFlowVersion for more information on using the CreateFlowVersion
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateFlowVersionRequest method.
+//	req, resp := client.CreateFlowVersionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/CreateFlowVersion
+func (c *BedrockAgent) CreateFlowVersionRequest(input *CreateFlowVersionInput) (req *request.Request, output *CreateFlowVersionOutput) {
+	op := &request.Operation{
+		Name:       opCreateFlowVersion,
+		HTTPMethod: "POST",
+		HTTPPath:   "/flows/{flowIdentifier}/versions",
+	}
+
+	if input == nil {
+		input = &CreateFlowVersionInput{}
+	}
+
+	output = &CreateFlowVersionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateFlowVersion API operation for Agents for Amazon Bedrock.
+//
+// Creates a version of the flow that you can deploy. For more information,
+// see Deploy a flow in Amazon Bedrock (https://docs.aws.amazon.com/bedrock/latest/userguide/flows-deploy.html)
+// in the Amazon Bedrock User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Agents for Amazon Bedrock's
+// API operation CreateFlowVersion for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     The number of requests exceeds the limit. Resubmit your request later.
+//
+//   - AccessDeniedException
+//     The request is denied because of missing access permissions.
+//
+//   - ValidationException
+//     Input validation failed. Check your request parameters and retry the request.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
+//
+//   - ResourceNotFoundException
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
+//
+//   - ConflictException
+//     There was a conflict performing an operation.
+//
+//   - ServiceQuotaExceededException
+//     The number of requests exceeds the service quota. Resubmit your request later.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/CreateFlowVersion
+func (c *BedrockAgent) CreateFlowVersion(input *CreateFlowVersionInput) (*CreateFlowVersionOutput, error) {
+	req, out := c.CreateFlowVersionRequest(input)
+	return out, req.Send()
+}
+
+// CreateFlowVersionWithContext is the same as CreateFlowVersion with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateFlowVersion for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *BedrockAgent) CreateFlowVersionWithContext(ctx aws.Context, input *CreateFlowVersionInput, opts ...request.Option) (*CreateFlowVersionOutput, error) {
+	req, out := c.CreateFlowVersionRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -647,6 +957,205 @@ func (c *BedrockAgent) CreateKnowledgeBase(input *CreateKnowledgeBaseInput) (*Cr
 // for more information on using Contexts.
 func (c *BedrockAgent) CreateKnowledgeBaseWithContext(ctx aws.Context, input *CreateKnowledgeBaseInput, opts ...request.Option) (*CreateKnowledgeBaseOutput, error) {
 	req, out := c.CreateKnowledgeBaseRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreatePrompt = "CreatePrompt"
+
+// CreatePromptRequest generates a "aws/request.Request" representing the
+// client's request for the CreatePrompt operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreatePrompt for more information on using the CreatePrompt
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreatePromptRequest method.
+//	req, resp := client.CreatePromptRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/CreatePrompt
+func (c *BedrockAgent) CreatePromptRequest(input *CreatePromptInput) (req *request.Request, output *CreatePromptOutput) {
+	op := &request.Operation{
+		Name:       opCreatePrompt,
+		HTTPMethod: "POST",
+		HTTPPath:   "/prompts/",
+	}
+
+	if input == nil {
+		input = &CreatePromptInput{}
+	}
+
+	output = &CreatePromptOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreatePrompt API operation for Agents for Amazon Bedrock.
+//
+// Creates a prompt in your prompt library that you can add to a flow. For more
+// information, see Prompt management in Amazon Bedrock (https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-management.html),
+// Create a prompt using Prompt management (https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-management-create.html)
+// and Prompt flows in Amazon Bedrock (https://docs.aws.amazon.com/bedrock/latest/userguide/flows.html)
+// in the Amazon Bedrock User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Agents for Amazon Bedrock's
+// API operation CreatePrompt for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     The number of requests exceeds the limit. Resubmit your request later.
+//
+//   - AccessDeniedException
+//     The request is denied because of missing access permissions.
+//
+//   - ValidationException
+//     Input validation failed. Check your request parameters and retry the request.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
+//
+//   - ConflictException
+//     There was a conflict performing an operation.
+//
+//   - ServiceQuotaExceededException
+//     The number of requests exceeds the service quota. Resubmit your request later.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/CreatePrompt
+func (c *BedrockAgent) CreatePrompt(input *CreatePromptInput) (*CreatePromptOutput, error) {
+	req, out := c.CreatePromptRequest(input)
+	return out, req.Send()
+}
+
+// CreatePromptWithContext is the same as CreatePrompt with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreatePrompt for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *BedrockAgent) CreatePromptWithContext(ctx aws.Context, input *CreatePromptInput, opts ...request.Option) (*CreatePromptOutput, error) {
+	req, out := c.CreatePromptRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreatePromptVersion = "CreatePromptVersion"
+
+// CreatePromptVersionRequest generates a "aws/request.Request" representing the
+// client's request for the CreatePromptVersion operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreatePromptVersion for more information on using the CreatePromptVersion
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreatePromptVersionRequest method.
+//	req, resp := client.CreatePromptVersionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/CreatePromptVersion
+func (c *BedrockAgent) CreatePromptVersionRequest(input *CreatePromptVersionInput) (req *request.Request, output *CreatePromptVersionOutput) {
+	op := &request.Operation{
+		Name:       opCreatePromptVersion,
+		HTTPMethod: "POST",
+		HTTPPath:   "/prompts/{promptIdentifier}/versions",
+	}
+
+	if input == nil {
+		input = &CreatePromptVersionInput{}
+	}
+
+	output = &CreatePromptVersionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreatePromptVersion API operation for Agents for Amazon Bedrock.
+//
+// Creates a static snapshot of your prompt that can be deployed to production.
+// For more information, see Deploy prompts using Prompt management by creating
+// versions (https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-management-deploy.html)
+// in the Amazon Bedrock User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Agents for Amazon Bedrock's
+// API operation CreatePromptVersion for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     The number of requests exceeds the limit. Resubmit your request later.
+//
+//   - AccessDeniedException
+//     The request is denied because of missing access permissions.
+//
+//   - ValidationException
+//     Input validation failed. Check your request parameters and retry the request.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
+//
+//   - ResourceNotFoundException
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
+//
+//   - ConflictException
+//     There was a conflict performing an operation.
+//
+//   - ServiceQuotaExceededException
+//     The number of requests exceeds the service quota. Resubmit your request later.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/CreatePromptVersion
+func (c *BedrockAgent) CreatePromptVersion(input *CreatePromptVersionInput) (*CreatePromptVersionOutput, error) {
+	req, out := c.CreatePromptVersionRequest(input)
+	return out, req.Send()
+}
+
+// CreatePromptVersionWithContext is the same as CreatePromptVersion with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreatePromptVersion for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *BedrockAgent) CreatePromptVersionWithContext(ctx aws.Context, input *CreatePromptVersionInput, opts ...request.Option) (*CreatePromptVersionOutput, error) {
+	req, out := c.CreatePromptVersionRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1125,6 +1634,291 @@ func (c *BedrockAgent) DeleteDataSourceWithContext(ctx aws.Context, input *Delet
 	return out, req.Send()
 }
 
+const opDeleteFlow = "DeleteFlow"
+
+// DeleteFlowRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteFlow operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteFlow for more information on using the DeleteFlow
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteFlowRequest method.
+//	req, resp := client.DeleteFlowRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/DeleteFlow
+func (c *BedrockAgent) DeleteFlowRequest(input *DeleteFlowInput) (req *request.Request, output *DeleteFlowOutput) {
+	op := &request.Operation{
+		Name:       opDeleteFlow,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/flows/{flowIdentifier}/",
+	}
+
+	if input == nil {
+		input = &DeleteFlowInput{}
+	}
+
+	output = &DeleteFlowOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteFlow API operation for Agents for Amazon Bedrock.
+//
+// Deletes a flow.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Agents for Amazon Bedrock's
+// API operation DeleteFlow for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     The number of requests exceeds the limit. Resubmit your request later.
+//
+//   - AccessDeniedException
+//     The request is denied because of missing access permissions.
+//
+//   - ValidationException
+//     Input validation failed. Check your request parameters and retry the request.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
+//
+//   - ResourceNotFoundException
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
+//
+//   - ConflictException
+//     There was a conflict performing an operation.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/DeleteFlow
+func (c *BedrockAgent) DeleteFlow(input *DeleteFlowInput) (*DeleteFlowOutput, error) {
+	req, out := c.DeleteFlowRequest(input)
+	return out, req.Send()
+}
+
+// DeleteFlowWithContext is the same as DeleteFlow with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteFlow for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *BedrockAgent) DeleteFlowWithContext(ctx aws.Context, input *DeleteFlowInput, opts ...request.Option) (*DeleteFlowOutput, error) {
+	req, out := c.DeleteFlowRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteFlowAlias = "DeleteFlowAlias"
+
+// DeleteFlowAliasRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteFlowAlias operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteFlowAlias for more information on using the DeleteFlowAlias
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteFlowAliasRequest method.
+//	req, resp := client.DeleteFlowAliasRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/DeleteFlowAlias
+func (c *BedrockAgent) DeleteFlowAliasRequest(input *DeleteFlowAliasInput) (req *request.Request, output *DeleteFlowAliasOutput) {
+	op := &request.Operation{
+		Name:       opDeleteFlowAlias,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/flows/{flowIdentifier}/aliases/{aliasIdentifier}",
+	}
+
+	if input == nil {
+		input = &DeleteFlowAliasInput{}
+	}
+
+	output = &DeleteFlowAliasOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteFlowAlias API operation for Agents for Amazon Bedrock.
+//
+// Deletes an alias of a flow.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Agents for Amazon Bedrock's
+// API operation DeleteFlowAlias for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     The number of requests exceeds the limit. Resubmit your request later.
+//
+//   - AccessDeniedException
+//     The request is denied because of missing access permissions.
+//
+//   - ValidationException
+//     Input validation failed. Check your request parameters and retry the request.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
+//
+//   - ResourceNotFoundException
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
+//
+//   - ConflictException
+//     There was a conflict performing an operation.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/DeleteFlowAlias
+func (c *BedrockAgent) DeleteFlowAlias(input *DeleteFlowAliasInput) (*DeleteFlowAliasOutput, error) {
+	req, out := c.DeleteFlowAliasRequest(input)
+	return out, req.Send()
+}
+
+// DeleteFlowAliasWithContext is the same as DeleteFlowAlias with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteFlowAlias for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *BedrockAgent) DeleteFlowAliasWithContext(ctx aws.Context, input *DeleteFlowAliasInput, opts ...request.Option) (*DeleteFlowAliasOutput, error) {
+	req, out := c.DeleteFlowAliasRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteFlowVersion = "DeleteFlowVersion"
+
+// DeleteFlowVersionRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteFlowVersion operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteFlowVersion for more information on using the DeleteFlowVersion
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteFlowVersionRequest method.
+//	req, resp := client.DeleteFlowVersionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/DeleteFlowVersion
+func (c *BedrockAgent) DeleteFlowVersionRequest(input *DeleteFlowVersionInput) (req *request.Request, output *DeleteFlowVersionOutput) {
+	op := &request.Operation{
+		Name:       opDeleteFlowVersion,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/flows/{flowIdentifier}/versions/{flowVersion}/",
+	}
+
+	if input == nil {
+		input = &DeleteFlowVersionInput{}
+	}
+
+	output = &DeleteFlowVersionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteFlowVersion API operation for Agents for Amazon Bedrock.
+//
+// Deletes a version of a flow.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Agents for Amazon Bedrock's
+// API operation DeleteFlowVersion for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     The number of requests exceeds the limit. Resubmit your request later.
+//
+//   - AccessDeniedException
+//     The request is denied because of missing access permissions.
+//
+//   - ValidationException
+//     Input validation failed. Check your request parameters and retry the request.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
+//
+//   - ResourceNotFoundException
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
+//
+//   - ConflictException
+//     There was a conflict performing an operation.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/DeleteFlowVersion
+func (c *BedrockAgent) DeleteFlowVersion(input *DeleteFlowVersionInput) (*DeleteFlowVersionOutput, error) {
+	req, out := c.DeleteFlowVersionRequest(input)
+	return out, req.Send()
+}
+
+// DeleteFlowVersionWithContext is the same as DeleteFlowVersion with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteFlowVersion for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *BedrockAgent) DeleteFlowVersionWithContext(ctx aws.Context, input *DeleteFlowVersionInput, opts ...request.Option) (*DeleteFlowVersionOutput, error) {
+	req, out := c.DeleteFlowVersionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteKnowledgeBase = "DeleteKnowledgeBase"
 
 // DeleteKnowledgeBaseRequest generates a "aws/request.Request" representing the
@@ -1218,6 +2012,104 @@ func (c *BedrockAgent) DeleteKnowledgeBase(input *DeleteKnowledgeBaseInput) (*De
 // for more information on using Contexts.
 func (c *BedrockAgent) DeleteKnowledgeBaseWithContext(ctx aws.Context, input *DeleteKnowledgeBaseInput, opts ...request.Option) (*DeleteKnowledgeBaseOutput, error) {
 	req, out := c.DeleteKnowledgeBaseRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeletePrompt = "DeletePrompt"
+
+// DeletePromptRequest generates a "aws/request.Request" representing the
+// client's request for the DeletePrompt operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeletePrompt for more information on using the DeletePrompt
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeletePromptRequest method.
+//	req, resp := client.DeletePromptRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/DeletePrompt
+func (c *BedrockAgent) DeletePromptRequest(input *DeletePromptInput) (req *request.Request, output *DeletePromptOutput) {
+	op := &request.Operation{
+		Name:       opDeletePrompt,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/prompts/{promptIdentifier}/",
+	}
+
+	if input == nil {
+		input = &DeletePromptInput{}
+	}
+
+	output = &DeletePromptOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeletePrompt API operation for Agents for Amazon Bedrock.
+//
+// Deletes a prompt or a prompt version from the Prompt management tool. For
+// more information, see Delete prompts from the Prompt management tool (https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-management-manage.html#prompt-management-delete.html)
+// and Delete a version of a prompt from the Prompt management tool (https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-management-deploy.html#prompt-management-versions-delete.html)
+// in the Amazon Bedrock User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Agents for Amazon Bedrock's
+// API operation DeletePrompt for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     The number of requests exceeds the limit. Resubmit your request later.
+//
+//   - AccessDeniedException
+//     The request is denied because of missing access permissions.
+//
+//   - ValidationException
+//     Input validation failed. Check your request parameters and retry the request.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
+//
+//   - ResourceNotFoundException
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
+//
+//   - ConflictException
+//     There was a conflict performing an operation.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/DeletePrompt
+func (c *BedrockAgent) DeletePrompt(input *DeletePromptInput) (*DeletePromptOutput, error) {
+	req, out := c.DeletePromptRequest(input)
+	return out, req.Send()
+}
+
+// DeletePromptWithContext is the same as DeletePrompt with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeletePrompt for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *BedrockAgent) DeletePromptWithContext(ctx aws.Context, input *DeletePromptInput, opts ...request.Option) (*DeletePromptOutput, error) {
+	req, out := c.DeletePromptRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1871,6 +2763,288 @@ func (c *BedrockAgent) GetDataSourceWithContext(ctx aws.Context, input *GetDataS
 	return out, req.Send()
 }
 
+const opGetFlow = "GetFlow"
+
+// GetFlowRequest generates a "aws/request.Request" representing the
+// client's request for the GetFlow operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetFlow for more information on using the GetFlow
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetFlowRequest method.
+//	req, resp := client.GetFlowRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/GetFlow
+func (c *BedrockAgent) GetFlowRequest(input *GetFlowInput) (req *request.Request, output *GetFlowOutput) {
+	op := &request.Operation{
+		Name:       opGetFlow,
+		HTTPMethod: "GET",
+		HTTPPath:   "/flows/{flowIdentifier}/",
+	}
+
+	if input == nil {
+		input = &GetFlowInput{}
+	}
+
+	output = &GetFlowOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetFlow API operation for Agents for Amazon Bedrock.
+//
+// Retrieves information about a flow. For more information, see Manage a flow
+// in Amazon Bedrock (https://docs.aws.amazon.com/bedrock/latest/userguide/flows-manage.html)
+// in the Amazon Bedrock User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Agents for Amazon Bedrock's
+// API operation GetFlow for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     The number of requests exceeds the limit. Resubmit your request later.
+//
+//   - AccessDeniedException
+//     The request is denied because of missing access permissions.
+//
+//   - ValidationException
+//     Input validation failed. Check your request parameters and retry the request.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
+//
+//   - ResourceNotFoundException
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/GetFlow
+func (c *BedrockAgent) GetFlow(input *GetFlowInput) (*GetFlowOutput, error) {
+	req, out := c.GetFlowRequest(input)
+	return out, req.Send()
+}
+
+// GetFlowWithContext is the same as GetFlow with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetFlow for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *BedrockAgent) GetFlowWithContext(ctx aws.Context, input *GetFlowInput, opts ...request.Option) (*GetFlowOutput, error) {
+	req, out := c.GetFlowRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetFlowAlias = "GetFlowAlias"
+
+// GetFlowAliasRequest generates a "aws/request.Request" representing the
+// client's request for the GetFlowAlias operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetFlowAlias for more information on using the GetFlowAlias
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetFlowAliasRequest method.
+//	req, resp := client.GetFlowAliasRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/GetFlowAlias
+func (c *BedrockAgent) GetFlowAliasRequest(input *GetFlowAliasInput) (req *request.Request, output *GetFlowAliasOutput) {
+	op := &request.Operation{
+		Name:       opGetFlowAlias,
+		HTTPMethod: "GET",
+		HTTPPath:   "/flows/{flowIdentifier}/aliases/{aliasIdentifier}",
+	}
+
+	if input == nil {
+		input = &GetFlowAliasInput{}
+	}
+
+	output = &GetFlowAliasOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetFlowAlias API operation for Agents for Amazon Bedrock.
+//
+// Retrieves information about a flow. For more information, see Deploy a flow
+// in Amazon Bedrock (https://docs.aws.amazon.com/bedrock/latest/userguide/flows-deploy.html)
+// in the Amazon Bedrock User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Agents for Amazon Bedrock's
+// API operation GetFlowAlias for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     The number of requests exceeds the limit. Resubmit your request later.
+//
+//   - AccessDeniedException
+//     The request is denied because of missing access permissions.
+//
+//   - ValidationException
+//     Input validation failed. Check your request parameters and retry the request.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
+//
+//   - ResourceNotFoundException
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/GetFlowAlias
+func (c *BedrockAgent) GetFlowAlias(input *GetFlowAliasInput) (*GetFlowAliasOutput, error) {
+	req, out := c.GetFlowAliasRequest(input)
+	return out, req.Send()
+}
+
+// GetFlowAliasWithContext is the same as GetFlowAlias with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetFlowAlias for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *BedrockAgent) GetFlowAliasWithContext(ctx aws.Context, input *GetFlowAliasInput, opts ...request.Option) (*GetFlowAliasOutput, error) {
+	req, out := c.GetFlowAliasRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetFlowVersion = "GetFlowVersion"
+
+// GetFlowVersionRequest generates a "aws/request.Request" representing the
+// client's request for the GetFlowVersion operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetFlowVersion for more information on using the GetFlowVersion
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetFlowVersionRequest method.
+//	req, resp := client.GetFlowVersionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/GetFlowVersion
+func (c *BedrockAgent) GetFlowVersionRequest(input *GetFlowVersionInput) (req *request.Request, output *GetFlowVersionOutput) {
+	op := &request.Operation{
+		Name:       opGetFlowVersion,
+		HTTPMethod: "GET",
+		HTTPPath:   "/flows/{flowIdentifier}/versions/{flowVersion}/",
+	}
+
+	if input == nil {
+		input = &GetFlowVersionInput{}
+	}
+
+	output = &GetFlowVersionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetFlowVersion API operation for Agents for Amazon Bedrock.
+//
+// Retrieves information about a version of a flow. For more information, see
+// Deploy a flow in Amazon Bedrock (https://docs.aws.amazon.com/bedrock/latest/userguide/flows-deploy.html)
+// in the Amazon Bedrock User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Agents for Amazon Bedrock's
+// API operation GetFlowVersion for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     The number of requests exceeds the limit. Resubmit your request later.
+//
+//   - AccessDeniedException
+//     The request is denied because of missing access permissions.
+//
+//   - ValidationException
+//     Input validation failed. Check your request parameters and retry the request.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
+//
+//   - ResourceNotFoundException
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/GetFlowVersion
+func (c *BedrockAgent) GetFlowVersion(input *GetFlowVersionInput) (*GetFlowVersionOutput, error) {
+	req, out := c.GetFlowVersionRequest(input)
+	return out, req.Send()
+}
+
+// GetFlowVersionWithContext is the same as GetFlowVersion with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetFlowVersion for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *BedrockAgent) GetFlowVersionWithContext(ctx aws.Context, input *GetFlowVersionInput, opts ...request.Option) (*GetFlowVersionOutput, error) {
+	req, out := c.GetFlowVersionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetIngestionJob = "GetIngestionJob"
 
 // GetIngestionJobRequest generates a "aws/request.Request" representing the
@@ -2051,6 +3225,101 @@ func (c *BedrockAgent) GetKnowledgeBase(input *GetKnowledgeBaseInput) (*GetKnowl
 // for more information on using Contexts.
 func (c *BedrockAgent) GetKnowledgeBaseWithContext(ctx aws.Context, input *GetKnowledgeBaseInput, opts ...request.Option) (*GetKnowledgeBaseOutput, error) {
 	req, out := c.GetKnowledgeBaseRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetPrompt = "GetPrompt"
+
+// GetPromptRequest generates a "aws/request.Request" representing the
+// client's request for the GetPrompt operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetPrompt for more information on using the GetPrompt
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetPromptRequest method.
+//	req, resp := client.GetPromptRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/GetPrompt
+func (c *BedrockAgent) GetPromptRequest(input *GetPromptInput) (req *request.Request, output *GetPromptOutput) {
+	op := &request.Operation{
+		Name:       opGetPrompt,
+		HTTPMethod: "GET",
+		HTTPPath:   "/prompts/{promptIdentifier}/",
+	}
+
+	if input == nil {
+		input = &GetPromptInput{}
+	}
+
+	output = &GetPromptOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetPrompt API operation for Agents for Amazon Bedrock.
+//
+// Retrieves information about a prompt or a version of it. For more information,
+// see View information about prompts using Prompt management (https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-management-manage.html#prompt-management-view.html)
+// and View information about a version of your prompt (https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-management-deploy.html#prompt-management-versions-view.html)
+// in the Amazon Bedrock User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Agents for Amazon Bedrock's
+// API operation GetPrompt for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     The number of requests exceeds the limit. Resubmit your request later.
+//
+//   - AccessDeniedException
+//     The request is denied because of missing access permissions.
+//
+//   - ValidationException
+//     Input validation failed. Check your request parameters and retry the request.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
+//
+//   - ResourceNotFoundException
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/GetPrompt
+func (c *BedrockAgent) GetPrompt(input *GetPromptInput) (*GetPromptOutput, error) {
+	req, out := c.GetPromptRequest(input)
+	return out, req.Send()
+}
+
+// GetPromptWithContext is the same as GetPrompt with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetPrompt for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *BedrockAgent) GetPromptWithContext(ctx aws.Context, input *GetPromptInput, opts ...request.Option) (*GetPromptOutput, error) {
+	req, out := c.GetPromptRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2947,6 +4216,453 @@ func (c *BedrockAgent) ListDataSourcesPagesWithContext(ctx aws.Context, input *L
 	return p.Err()
 }
 
+const opListFlowAliases = "ListFlowAliases"
+
+// ListFlowAliasesRequest generates a "aws/request.Request" representing the
+// client's request for the ListFlowAliases operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListFlowAliases for more information on using the ListFlowAliases
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListFlowAliasesRequest method.
+//	req, resp := client.ListFlowAliasesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/ListFlowAliases
+func (c *BedrockAgent) ListFlowAliasesRequest(input *ListFlowAliasesInput) (req *request.Request, output *ListFlowAliasesOutput) {
+	op := &request.Operation{
+		Name:       opListFlowAliases,
+		HTTPMethod: "GET",
+		HTTPPath:   "/flows/{flowIdentifier}/aliases",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListFlowAliasesInput{}
+	}
+
+	output = &ListFlowAliasesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListFlowAliases API operation for Agents for Amazon Bedrock.
+//
+// Returns a list of aliases for a flow.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Agents for Amazon Bedrock's
+// API operation ListFlowAliases for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     The number of requests exceeds the limit. Resubmit your request later.
+//
+//   - AccessDeniedException
+//     The request is denied because of missing access permissions.
+//
+//   - ValidationException
+//     Input validation failed. Check your request parameters and retry the request.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
+//
+//   - ResourceNotFoundException
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/ListFlowAliases
+func (c *BedrockAgent) ListFlowAliases(input *ListFlowAliasesInput) (*ListFlowAliasesOutput, error) {
+	req, out := c.ListFlowAliasesRequest(input)
+	return out, req.Send()
+}
+
+// ListFlowAliasesWithContext is the same as ListFlowAliases with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListFlowAliases for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *BedrockAgent) ListFlowAliasesWithContext(ctx aws.Context, input *ListFlowAliasesInput, opts ...request.Option) (*ListFlowAliasesOutput, error) {
+	req, out := c.ListFlowAliasesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListFlowAliasesPages iterates over the pages of a ListFlowAliases operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListFlowAliases method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListFlowAliases operation.
+//	pageNum := 0
+//	err := client.ListFlowAliasesPages(params,
+//	    func(page *bedrockagent.ListFlowAliasesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *BedrockAgent) ListFlowAliasesPages(input *ListFlowAliasesInput, fn func(*ListFlowAliasesOutput, bool) bool) error {
+	return c.ListFlowAliasesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListFlowAliasesPagesWithContext same as ListFlowAliasesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *BedrockAgent) ListFlowAliasesPagesWithContext(ctx aws.Context, input *ListFlowAliasesInput, fn func(*ListFlowAliasesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListFlowAliasesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListFlowAliasesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListFlowAliasesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListFlowVersions = "ListFlowVersions"
+
+// ListFlowVersionsRequest generates a "aws/request.Request" representing the
+// client's request for the ListFlowVersions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListFlowVersions for more information on using the ListFlowVersions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListFlowVersionsRequest method.
+//	req, resp := client.ListFlowVersionsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/ListFlowVersions
+func (c *BedrockAgent) ListFlowVersionsRequest(input *ListFlowVersionsInput) (req *request.Request, output *ListFlowVersionsOutput) {
+	op := &request.Operation{
+		Name:       opListFlowVersions,
+		HTTPMethod: "GET",
+		HTTPPath:   "/flows/{flowIdentifier}/versions",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListFlowVersionsInput{}
+	}
+
+	output = &ListFlowVersionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListFlowVersions API operation for Agents for Amazon Bedrock.
+//
+// Returns a list of information about each flow. For more information, see
+// Deploy a flow in Amazon Bedrock (https://docs.aws.amazon.com/bedrock/latest/userguide/flows-deploy.html)
+// in the Amazon Bedrock User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Agents for Amazon Bedrock's
+// API operation ListFlowVersions for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     The number of requests exceeds the limit. Resubmit your request later.
+//
+//   - AccessDeniedException
+//     The request is denied because of missing access permissions.
+//
+//   - ValidationException
+//     Input validation failed. Check your request parameters and retry the request.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
+//
+//   - ResourceNotFoundException
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/ListFlowVersions
+func (c *BedrockAgent) ListFlowVersions(input *ListFlowVersionsInput) (*ListFlowVersionsOutput, error) {
+	req, out := c.ListFlowVersionsRequest(input)
+	return out, req.Send()
+}
+
+// ListFlowVersionsWithContext is the same as ListFlowVersions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListFlowVersions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *BedrockAgent) ListFlowVersionsWithContext(ctx aws.Context, input *ListFlowVersionsInput, opts ...request.Option) (*ListFlowVersionsOutput, error) {
+	req, out := c.ListFlowVersionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListFlowVersionsPages iterates over the pages of a ListFlowVersions operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListFlowVersions method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListFlowVersions operation.
+//	pageNum := 0
+//	err := client.ListFlowVersionsPages(params,
+//	    func(page *bedrockagent.ListFlowVersionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *BedrockAgent) ListFlowVersionsPages(input *ListFlowVersionsInput, fn func(*ListFlowVersionsOutput, bool) bool) error {
+	return c.ListFlowVersionsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListFlowVersionsPagesWithContext same as ListFlowVersionsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *BedrockAgent) ListFlowVersionsPagesWithContext(ctx aws.Context, input *ListFlowVersionsInput, fn func(*ListFlowVersionsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListFlowVersionsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListFlowVersionsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListFlowVersionsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListFlows = "ListFlows"
+
+// ListFlowsRequest generates a "aws/request.Request" representing the
+// client's request for the ListFlows operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListFlows for more information on using the ListFlows
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListFlowsRequest method.
+//	req, resp := client.ListFlowsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/ListFlows
+func (c *BedrockAgent) ListFlowsRequest(input *ListFlowsInput) (req *request.Request, output *ListFlowsOutput) {
+	op := &request.Operation{
+		Name:       opListFlows,
+		HTTPMethod: "GET",
+		HTTPPath:   "/flows/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListFlowsInput{}
+	}
+
+	output = &ListFlowsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListFlows API operation for Agents for Amazon Bedrock.
+//
+// Returns a list of flows and information about each flow. For more information,
+// see Manage a flow in Amazon Bedrock (https://docs.aws.amazon.com/bedrock/latest/userguide/flows-manage.html)
+// in the Amazon Bedrock User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Agents for Amazon Bedrock's
+// API operation ListFlows for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     The number of requests exceeds the limit. Resubmit your request later.
+//
+//   - AccessDeniedException
+//     The request is denied because of missing access permissions.
+//
+//   - ValidationException
+//     Input validation failed. Check your request parameters and retry the request.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/ListFlows
+func (c *BedrockAgent) ListFlows(input *ListFlowsInput) (*ListFlowsOutput, error) {
+	req, out := c.ListFlowsRequest(input)
+	return out, req.Send()
+}
+
+// ListFlowsWithContext is the same as ListFlows with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListFlows for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *BedrockAgent) ListFlowsWithContext(ctx aws.Context, input *ListFlowsInput, opts ...request.Option) (*ListFlowsOutput, error) {
+	req, out := c.ListFlowsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListFlowsPages iterates over the pages of a ListFlows operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListFlows method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListFlows operation.
+//	pageNum := 0
+//	err := client.ListFlowsPages(params,
+//	    func(page *bedrockagent.ListFlowsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *BedrockAgent) ListFlowsPages(input *ListFlowsInput, fn func(*ListFlowsOutput, bool) bool) error {
+	return c.ListFlowsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListFlowsPagesWithContext same as ListFlowsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *BedrockAgent) ListFlowsPagesWithContext(ctx aws.Context, input *ListFlowsInput, fn func(*ListFlowsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListFlowsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListFlowsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListFlowsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListIngestionJobs = "ListIngestionJobs"
 
 // ListIngestionJobsRequest generates a "aws/request.Request" representing the
@@ -3242,6 +4958,158 @@ func (c *BedrockAgent) ListKnowledgeBasesPagesWithContext(ctx aws.Context, input
 	return p.Err()
 }
 
+const opListPrompts = "ListPrompts"
+
+// ListPromptsRequest generates a "aws/request.Request" representing the
+// client's request for the ListPrompts operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListPrompts for more information on using the ListPrompts
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListPromptsRequest method.
+//	req, resp := client.ListPromptsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/ListPrompts
+func (c *BedrockAgent) ListPromptsRequest(input *ListPromptsInput) (req *request.Request, output *ListPromptsOutput) {
+	op := &request.Operation{
+		Name:       opListPrompts,
+		HTTPMethod: "GET",
+		HTTPPath:   "/prompts/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListPromptsInput{}
+	}
+
+	output = &ListPromptsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListPrompts API operation for Agents for Amazon Bedrock.
+//
+// Returns a list of prompts from the Prompt management tool and information
+// about each prompt. For more information, see View information about prompts
+// using Prompt management (https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-management-manage.html#prompt-management-view.html)
+// in the Amazon Bedrock User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Agents for Amazon Bedrock's
+// API operation ListPrompts for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     The number of requests exceeds the limit. Resubmit your request later.
+//
+//   - AccessDeniedException
+//     The request is denied because of missing access permissions.
+//
+//   - ValidationException
+//     Input validation failed. Check your request parameters and retry the request.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
+//
+//   - ResourceNotFoundException
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/ListPrompts
+func (c *BedrockAgent) ListPrompts(input *ListPromptsInput) (*ListPromptsOutput, error) {
+	req, out := c.ListPromptsRequest(input)
+	return out, req.Send()
+}
+
+// ListPromptsWithContext is the same as ListPrompts with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListPrompts for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *BedrockAgent) ListPromptsWithContext(ctx aws.Context, input *ListPromptsInput, opts ...request.Option) (*ListPromptsOutput, error) {
+	req, out := c.ListPromptsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListPromptsPages iterates over the pages of a ListPrompts operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListPrompts method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListPrompts operation.
+//	pageNum := 0
+//	err := client.ListPromptsPages(params,
+//	    func(page *bedrockagent.ListPromptsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *BedrockAgent) ListPromptsPages(input *ListPromptsInput, fn func(*ListPromptsOutput, bool) bool) error {
+	return c.ListPromptsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListPromptsPagesWithContext same as ListPromptsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *BedrockAgent) ListPromptsPagesWithContext(ctx aws.Context, input *ListPromptsInput, fn func(*ListPromptsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListPromptsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListPromptsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListPromptsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListTagsForResource = "ListTagsForResource"
 
 // ListTagsForResourceRequest generates a "aws/request.Request" representing the
@@ -3427,6 +5295,106 @@ func (c *BedrockAgent) PrepareAgent(input *PrepareAgentInput) (*PrepareAgentOutp
 // for more information on using Contexts.
 func (c *BedrockAgent) PrepareAgentWithContext(ctx aws.Context, input *PrepareAgentInput, opts ...request.Option) (*PrepareAgentOutput, error) {
 	req, out := c.PrepareAgentRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opPrepareFlow = "PrepareFlow"
+
+// PrepareFlowRequest generates a "aws/request.Request" representing the
+// client's request for the PrepareFlow operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PrepareFlow for more information on using the PrepareFlow
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the PrepareFlowRequest method.
+//	req, resp := client.PrepareFlowRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/PrepareFlow
+func (c *BedrockAgent) PrepareFlowRequest(input *PrepareFlowInput) (req *request.Request, output *PrepareFlowOutput) {
+	op := &request.Operation{
+		Name:       opPrepareFlow,
+		HTTPMethod: "POST",
+		HTTPPath:   "/flows/{flowIdentifier}/",
+	}
+
+	if input == nil {
+		input = &PrepareFlowInput{}
+	}
+
+	output = &PrepareFlowOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// PrepareFlow API operation for Agents for Amazon Bedrock.
+//
+// Prepares the DRAFT version of a flow so that it can be invoked. For more
+// information, see Test a flow in Amazon Bedrock (https://docs.aws.amazon.com/bedrock/latest/userguide/flows-test.html)
+// in the Amazon Bedrock User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Agents for Amazon Bedrock's
+// API operation PrepareFlow for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     The number of requests exceeds the limit. Resubmit your request later.
+//
+//   - AccessDeniedException
+//     The request is denied because of missing access permissions.
+//
+//   - ValidationException
+//     Input validation failed. Check your request parameters and retry the request.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
+//
+//   - ResourceNotFoundException
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
+//
+//   - ConflictException
+//     There was a conflict performing an operation.
+//
+//   - ServiceQuotaExceededException
+//     The number of requests exceeds the service quota. Resubmit your request later.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/PrepareFlow
+func (c *BedrockAgent) PrepareFlow(input *PrepareFlowInput) (*PrepareFlowOutput, error) {
+	req, out := c.PrepareFlowRequest(input)
+	return out, req.Send()
+}
+
+// PrepareFlowWithContext is the same as PrepareFlow with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PrepareFlow for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *BedrockAgent) PrepareFlowWithContext(ctx aws.Context, input *PrepareFlowInput, opts ...request.Option) (*PrepareFlowOutput, error) {
+	req, out := c.PrepareFlowRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4154,10 +6122,10 @@ func (c *BedrockAgent) UpdateDataSourceRequest(input *UpdateDataSourceInput) (re
 
 // UpdateDataSource API operation for Agents for Amazon Bedrock.
 //
-// Updates configurations for a data source.
+// Updates the configurations for a data source connector.
 //
-// You can't change the chunkingConfiguration after you create the data source.
-// Specify the existing chunkingConfiguration.
+// You can't change the chunkingConfiguration after you create the data source
+// connector. Specify the existing chunkingConfiguration.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4204,6 +6172,208 @@ func (c *BedrockAgent) UpdateDataSource(input *UpdateDataSourceInput) (*UpdateDa
 // for more information on using Contexts.
 func (c *BedrockAgent) UpdateDataSourceWithContext(ctx aws.Context, input *UpdateDataSourceInput, opts ...request.Option) (*UpdateDataSourceOutput, error) {
 	req, out := c.UpdateDataSourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateFlow = "UpdateFlow"
+
+// UpdateFlowRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateFlow operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateFlow for more information on using the UpdateFlow
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateFlowRequest method.
+//	req, resp := client.UpdateFlowRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/UpdateFlow
+func (c *BedrockAgent) UpdateFlowRequest(input *UpdateFlowInput) (req *request.Request, output *UpdateFlowOutput) {
+	op := &request.Operation{
+		Name:       opUpdateFlow,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/flows/{flowIdentifier}/",
+	}
+
+	if input == nil {
+		input = &UpdateFlowInput{}
+	}
+
+	output = &UpdateFlowOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateFlow API operation for Agents for Amazon Bedrock.
+//
+// Modifies a flow. Include both fields that you want to keep and fields that
+// you want to change. For more information, see How it works (https://docs.aws.amazon.com/bedrock/latest/userguide/flows-how-it-works.html)
+// and Create a flow in Amazon Bedrock (https://docs.aws.amazon.com/bedrock/latest/userguide/flows-create.html)
+// in the Amazon Bedrock User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Agents for Amazon Bedrock's
+// API operation UpdateFlow for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     The number of requests exceeds the limit. Resubmit your request later.
+//
+//   - AccessDeniedException
+//     The request is denied because of missing access permissions.
+//
+//   - ValidationException
+//     Input validation failed. Check your request parameters and retry the request.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
+//
+//   - ResourceNotFoundException
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
+//
+//   - ConflictException
+//     There was a conflict performing an operation.
+//
+//   - ServiceQuotaExceededException
+//     The number of requests exceeds the service quota. Resubmit your request later.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/UpdateFlow
+func (c *BedrockAgent) UpdateFlow(input *UpdateFlowInput) (*UpdateFlowOutput, error) {
+	req, out := c.UpdateFlowRequest(input)
+	return out, req.Send()
+}
+
+// UpdateFlowWithContext is the same as UpdateFlow with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateFlow for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *BedrockAgent) UpdateFlowWithContext(ctx aws.Context, input *UpdateFlowInput, opts ...request.Option) (*UpdateFlowOutput, error) {
+	req, out := c.UpdateFlowRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateFlowAlias = "UpdateFlowAlias"
+
+// UpdateFlowAliasRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateFlowAlias operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateFlowAlias for more information on using the UpdateFlowAlias
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateFlowAliasRequest method.
+//	req, resp := client.UpdateFlowAliasRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/UpdateFlowAlias
+func (c *BedrockAgent) UpdateFlowAliasRequest(input *UpdateFlowAliasInput) (req *request.Request, output *UpdateFlowAliasOutput) {
+	op := &request.Operation{
+		Name:       opUpdateFlowAlias,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/flows/{flowIdentifier}/aliases/{aliasIdentifier}",
+	}
+
+	if input == nil {
+		input = &UpdateFlowAliasInput{}
+	}
+
+	output = &UpdateFlowAliasOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateFlowAlias API operation for Agents for Amazon Bedrock.
+//
+// Modifies the alias of a flow. Include both fields that you want to keep and
+// ones that you want to change. For more information, see Deploy a flow in
+// Amazon Bedrock (https://docs.aws.amazon.com/bedrock/latest/userguide/flows-deploy.html)
+// in the Amazon Bedrock User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Agents for Amazon Bedrock's
+// API operation UpdateFlowAlias for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     The number of requests exceeds the limit. Resubmit your request later.
+//
+//   - AccessDeniedException
+//     The request is denied because of missing access permissions.
+//
+//   - ValidationException
+//     Input validation failed. Check your request parameters and retry the request.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
+//
+//   - ResourceNotFoundException
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
+//
+//   - ConflictException
+//     There was a conflict performing an operation.
+//
+//   - ServiceQuotaExceededException
+//     The number of requests exceeds the service quota. Resubmit your request later.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/UpdateFlowAlias
+func (c *BedrockAgent) UpdateFlowAlias(input *UpdateFlowAliasInput) (*UpdateFlowAliasOutput, error) {
+	req, out := c.UpdateFlowAliasRequest(input)
+	return out, req.Send()
+}
+
+// UpdateFlowAliasWithContext is the same as UpdateFlowAlias with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateFlowAlias for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *BedrockAgent) UpdateFlowAliasWithContext(ctx aws.Context, input *UpdateFlowAliasInput, opts ...request.Option) (*UpdateFlowAliasOutput, error) {
+	req, out := c.UpdateFlowAliasRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4314,6 +6484,108 @@ func (c *BedrockAgent) UpdateKnowledgeBase(input *UpdateKnowledgeBaseInput) (*Up
 // for more information on using Contexts.
 func (c *BedrockAgent) UpdateKnowledgeBaseWithContext(ctx aws.Context, input *UpdateKnowledgeBaseInput, opts ...request.Option) (*UpdateKnowledgeBaseOutput, error) {
 	req, out := c.UpdateKnowledgeBaseRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdatePrompt = "UpdatePrompt"
+
+// UpdatePromptRequest generates a "aws/request.Request" representing the
+// client's request for the UpdatePrompt operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdatePrompt for more information on using the UpdatePrompt
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdatePromptRequest method.
+//	req, resp := client.UpdatePromptRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/UpdatePrompt
+func (c *BedrockAgent) UpdatePromptRequest(input *UpdatePromptInput) (req *request.Request, output *UpdatePromptOutput) {
+	op := &request.Operation{
+		Name:       opUpdatePrompt,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/prompts/{promptIdentifier}/",
+	}
+
+	if input == nil {
+		input = &UpdatePromptInput{}
+	}
+
+	output = &UpdatePromptOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdatePrompt API operation for Agents for Amazon Bedrock.
+//
+// Modifies a prompt in your prompt library. Include both fields that you want
+// to keep and fields that you want to replace. For more information, see Prompt
+// management in Amazon Bedrock (https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-management.html)
+// and Edit prompts in your prompt library (https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-management-manage.html#prompt-management-edit)
+// in the Amazon Bedrock User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Agents for Amazon Bedrock's
+// API operation UpdatePrompt for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     The number of requests exceeds the limit. Resubmit your request later.
+//
+//   - AccessDeniedException
+//     The request is denied because of missing access permissions.
+//
+//   - ValidationException
+//     Input validation failed. Check your request parameters and retry the request.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
+//
+//   - ResourceNotFoundException
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
+//
+//   - ConflictException
+//     There was a conflict performing an operation.
+//
+//   - ServiceQuotaExceededException
+//     The number of requests exceeds the service quota. Resubmit your request later.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/UpdatePrompt
+func (c *BedrockAgent) UpdatePrompt(input *UpdatePromptInput) (*UpdatePromptOutput, error) {
+	req, out := c.UpdatePromptRequest(input)
+	return out, req.Send()
+}
+
+// UpdatePromptWithContext is the same as UpdatePrompt with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdatePrompt for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *BedrockAgent) UpdatePromptWithContext(ctx aws.Context, input *UpdatePromptInput, opts ...request.Option) (*UpdatePromptOutput, error) {
+	req, out := c.UpdatePromptRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4644,7 +6916,7 @@ type Agent struct {
 	// The foundation model used for orchestration by the agent.
 	FoundationModel *string `locationName:"foundationModel" min:"1" type:"string"`
 
-	// The guardrails configuration assigned to the agent.
+	// Details about the guardrail associated with the agent.
 	GuardrailConfiguration *GuardrailConfiguration `locationName:"guardrailConfiguration" type:"structure"`
 
 	// The number of seconds for which Amazon Bedrock keeps information about a
@@ -4664,6 +6936,9 @@ type Agent struct {
 	// replaced with "sensitive" in string returned by Agent's
 	// String and GoString methods.
 	Instruction *string `locationName:"instruction" min:"40" type:"string" sensitive:"true"`
+
+	// Contains memory configuration for the agent.
+	MemoryConfiguration *MemoryConfiguration `locationName:"memoryConfiguration" type:"structure"`
 
 	// The time at which the agent was last prepared.
 	PreparedAt *time.Time `locationName:"preparedAt" type:"timestamp" timestampFormat:"iso8601"`
@@ -4791,6 +7066,12 @@ func (s *Agent) SetIdleSessionTTLInSeconds(v int64) *Agent {
 // SetInstruction sets the Instruction field's value.
 func (s *Agent) SetInstruction(v string) *Agent {
 	s.Instruction = &v
+	return s
+}
+
+// SetMemoryConfiguration sets the MemoryConfiguration field's value.
+func (s *Agent) SetMemoryConfiguration(v *MemoryConfiguration) *Agent {
+	s.MemoryConfiguration = v
 	return s
 }
 
@@ -5358,6 +7639,56 @@ func (s *AgentAliasSummary) SetUpdatedAt(v time.Time) *AgentAliasSummary {
 	return s
 }
 
+// Defines an agent node in your flow. You specify the agent to invoke at this
+// point in the flow. For more information, see Node types in Amazon Bedrock
+// works (https://docs.aws.amazon.com/bedrock/latest/userguide/flows-nodes.html)
+// in the Amazon Bedrock User Guide.
+type AgentFlowNodeConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the alias of the agent to invoke.
+	//
+	// AgentAliasArn is a required field
+	AgentAliasArn *string `locationName:"agentAliasArn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AgentFlowNodeConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AgentFlowNodeConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AgentFlowNodeConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AgentFlowNodeConfiguration"}
+	if s.AgentAliasArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AgentAliasArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAgentAliasArn sets the AgentAliasArn field's value.
+func (s *AgentFlowNodeConfiguration) SetAgentAliasArn(v string) *AgentFlowNodeConfiguration {
+	s.AgentAliasArn = &v
+	return s
+}
+
 // Contains details about a knowledge base that is associated with an agent.
 type AgentKnowledgeBase struct {
 	_ struct{} `type:"structure"`
@@ -5552,7 +7883,7 @@ type AgentSummary struct {
 	// The description of the agent.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
-	// The details of the guardrails configuration in the agent summary.
+	// Details about the guardrail associated with the agent.
 	GuardrailConfiguration *GuardrailConfiguration `locationName:"guardrailConfiguration" type:"structure"`
 
 	// The latest version of the agent.
@@ -5671,7 +8002,7 @@ type AgentVersion struct {
 	// The foundation model that the version invokes.
 	FoundationModel *string `locationName:"foundationModel" min:"1" type:"string"`
 
-	// The guardrails configuration assigned to the agent version.
+	// Details about the guardrail associated with the agent.
 	GuardrailConfiguration *GuardrailConfiguration `locationName:"guardrailConfiguration" type:"structure"`
 
 	// The number of seconds for which Amazon Bedrock keeps information about a
@@ -5690,6 +8021,9 @@ type AgentVersion struct {
 	// replaced with "sensitive" in string returned by AgentVersion's
 	// String and GoString methods.
 	Instruction *string `locationName:"instruction" min:"40" type:"string" sensitive:"true"`
+
+	// Contains details of the memory configuration on the version of the agent.
+	MemoryConfiguration *MemoryConfiguration `locationName:"memoryConfiguration" type:"structure"`
 
 	// Contains configurations to override prompt templates in different parts of
 	// an agent sequence. For more information, see Advanced prompts (https://docs.aws.amazon.com/bedrock/latest/userguide/advanced-prompts.html).
@@ -5810,6 +8144,12 @@ func (s *AgentVersion) SetInstruction(v string) *AgentVersion {
 	return s
 }
 
+// SetMemoryConfiguration sets the MemoryConfiguration field's value.
+func (s *AgentVersion) SetMemoryConfiguration(v *MemoryConfiguration) *AgentVersion {
+	s.MemoryConfiguration = v
+	return s
+}
+
 // SetPromptOverrideConfiguration sets the PromptOverrideConfiguration field's value.
 func (s *AgentVersion) SetPromptOverrideConfiguration(v *PromptOverrideConfiguration) *AgentVersion {
 	s.PromptOverrideConfiguration = v
@@ -5861,7 +8201,7 @@ type AgentVersionSummary struct {
 	// The description of the version of the agent.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
-	// The details of the guardrails configuration in the agent version summary.
+	// Details about the guardrail associated with the agent.
 	GuardrailConfiguration *GuardrailConfiguration `locationName:"guardrailConfiguration" type:"structure"`
 
 	// The time at which the version was last updated.
@@ -6106,6 +8446,70 @@ func (s *BedrockEmbeddingModelConfiguration) SetDimensions(v int64) *BedrockEmbe
 	return s
 }
 
+// Settings for a foundation model used to parse documents for a data source.
+type BedrockFoundationModelConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The model's ARN.
+	//
+	// ModelArn is a required field
+	ModelArn *string `locationName:"modelArn" min:"1" type:"string" required:"true"`
+
+	// Instructions for interpreting the contents of a document.
+	ParsingPrompt *ParsingPrompt `locationName:"parsingPrompt" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BedrockFoundationModelConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BedrockFoundationModelConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BedrockFoundationModelConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BedrockFoundationModelConfiguration"}
+	if s.ModelArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ModelArn"))
+	}
+	if s.ModelArn != nil && len(*s.ModelArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ModelArn", 1))
+	}
+	if s.ParsingPrompt != nil {
+		if err := s.ParsingPrompt.Validate(); err != nil {
+			invalidParams.AddNested("ParsingPrompt", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetModelArn sets the ModelArn field's value.
+func (s *BedrockFoundationModelConfiguration) SetModelArn(v string) *BedrockFoundationModelConfiguration {
+	s.ModelArn = &v
+	return s
+}
+
+// SetParsingPrompt sets the ParsingPrompt field's value.
+func (s *BedrockFoundationModelConfiguration) SetParsingPrompt(v *ParsingPrompt) *BedrockFoundationModelConfiguration {
+	s.ParsingPrompt = v
+	return s
+}
+
 // Details about how to chunk the documents in the data source. A chunk refers
 // to an excerpt from a data source that is returned when the knowledge base
 // that it belongs to is queried.
@@ -6121,6 +8525,13 @@ type ChunkingConfiguration struct {
 	//    * FIXED_SIZE – Amazon Bedrock splits your source data into chunks of
 	//    the approximate size that you set in the fixedSizeChunkingConfiguration.
 	//
+	//    * HIERARCHICAL – Split documents into layers of chunks where the first
+	//    layer contains large chunks, and the second layer contains smaller chunks
+	//    derived from the first layer.
+	//
+	//    * SEMANTIC – Split documents into chunks based on groups of similar
+	//    content derived with natural language processing.
+	//
 	//    * NONE – Amazon Bedrock treats each file as one chunk. If you choose
 	//    this option, you may want to pre-process your documents by splitting them
 	//    into separate files.
@@ -6131,6 +8542,17 @@ type ChunkingConfiguration struct {
 	// Configurations for when you choose fixed-size chunking. If you set the chunkingStrategy
 	// as NONE, exclude this field.
 	FixedSizeChunkingConfiguration *FixedSizeChunkingConfiguration `locationName:"fixedSizeChunkingConfiguration" type:"structure"`
+
+	// Settings for hierarchical document chunking for a data source. Hierarchical
+	// chunking splits documents into layers of chunks where the first layer contains
+	// large chunks, and the second layer contains smaller chunks derived from the
+	// first layer.
+	HierarchicalChunkingConfiguration *HierarchicalChunkingConfiguration `locationName:"hierarchicalChunkingConfiguration" type:"structure"`
+
+	// Settings for semantic document chunking for a data source. Semantic chunking
+	// splits a document into into smaller documents based on groups of similar
+	// content derived from the text with natural language processing.
+	SemanticChunkingConfiguration *SemanticChunkingConfiguration `locationName:"semanticChunkingConfiguration" type:"structure"`
 }
 
 // String returns the string representation.
@@ -6162,6 +8584,16 @@ func (s *ChunkingConfiguration) Validate() error {
 			invalidParams.AddNested("FixedSizeChunkingConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.HierarchicalChunkingConfiguration != nil {
+		if err := s.HierarchicalChunkingConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("HierarchicalChunkingConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SemanticChunkingConfiguration != nil {
+		if err := s.SemanticChunkingConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("SemanticChunkingConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -6178,6 +8610,112 @@ func (s *ChunkingConfiguration) SetChunkingStrategy(v string) *ChunkingConfigura
 // SetFixedSizeChunkingConfiguration sets the FixedSizeChunkingConfiguration field's value.
 func (s *ChunkingConfiguration) SetFixedSizeChunkingConfiguration(v *FixedSizeChunkingConfiguration) *ChunkingConfiguration {
 	s.FixedSizeChunkingConfiguration = v
+	return s
+}
+
+// SetHierarchicalChunkingConfiguration sets the HierarchicalChunkingConfiguration field's value.
+func (s *ChunkingConfiguration) SetHierarchicalChunkingConfiguration(v *HierarchicalChunkingConfiguration) *ChunkingConfiguration {
+	s.HierarchicalChunkingConfiguration = v
+	return s
+}
+
+// SetSemanticChunkingConfiguration sets the SemanticChunkingConfiguration field's value.
+func (s *ChunkingConfiguration) SetSemanticChunkingConfiguration(v *SemanticChunkingConfiguration) *ChunkingConfiguration {
+	s.SemanticChunkingConfiguration = v
+	return s
+}
+
+// Defines a collector node in your flow. This node takes an iteration of inputs
+// and consolidates them into an array in the output. For more information,
+// see Node types in Amazon Bedrock works (https://docs.aws.amazon.com/bedrock/latest/userguide/flows-nodes.html)
+// in the Amazon Bedrock User Guide.
+type CollectorFlowNodeConfiguration struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CollectorFlowNodeConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CollectorFlowNodeConfiguration) GoString() string {
+	return s.String()
+}
+
+// Defines a condition node in your flow. You can specify conditions that determine
+// which node comes next in the flow. For more information, see Node types in
+// Amazon Bedrock works (https://docs.aws.amazon.com/bedrock/latest/userguide/flows-nodes.html)
+// in the Amazon Bedrock User Guide.
+type ConditionFlowNodeConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// An array of conditions. Each member contains the name of a condition and
+	// an expression that defines the condition.
+	//
+	// Conditions is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ConditionFlowNodeConfiguration's
+	// String and GoString methods.
+	//
+	// Conditions is a required field
+	Conditions []*FlowCondition `locationName:"conditions" min:"1" type:"list" required:"true" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConditionFlowNodeConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConditionFlowNodeConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ConditionFlowNodeConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ConditionFlowNodeConfiguration"}
+	if s.Conditions == nil {
+		invalidParams.Add(request.NewErrParamRequired("Conditions"))
+	}
+	if s.Conditions != nil && len(s.Conditions) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Conditions", 1))
+	}
+	if s.Conditions != nil {
+		for i, v := range s.Conditions {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Conditions", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConditions sets the Conditions field's value.
+func (s *ConditionFlowNodeConfiguration) SetConditions(v []*FlowCondition) *ConditionFlowNodeConfiguration {
+	s.Conditions = v
 	return s
 }
 
@@ -6245,6 +8783,280 @@ func (s *ConflictException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The configuration of the Confluence content. For example, configuring specific
+// types of Confluence content.
+type ConfluenceCrawlerConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The configuration of filtering the Confluence content. For example, configuring
+	// regular expression patterns to include or exclude certain content.
+	FilterConfiguration *CrawlFilterConfiguration `locationName:"filterConfiguration" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConfluenceCrawlerConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConfluenceCrawlerConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ConfluenceCrawlerConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ConfluenceCrawlerConfiguration"}
+	if s.FilterConfiguration != nil {
+		if err := s.FilterConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("FilterConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilterConfiguration sets the FilterConfiguration field's value.
+func (s *ConfluenceCrawlerConfiguration) SetFilterConfiguration(v *CrawlFilterConfiguration) *ConfluenceCrawlerConfiguration {
+	s.FilterConfiguration = v
+	return s
+}
+
+// The configuration information to connect to Confluence as your data source.
+type ConfluenceDataSourceConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The configuration of the Confluence content. For example, configuring specific
+	// types of Confluence content.
+	CrawlerConfiguration *ConfluenceCrawlerConfiguration `locationName:"crawlerConfiguration" type:"structure"`
+
+	// The endpoint information to connect to your Confluence data source.
+	//
+	// SourceConfiguration is a required field
+	SourceConfiguration *ConfluenceSourceConfiguration `locationName:"sourceConfiguration" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConfluenceDataSourceConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConfluenceDataSourceConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ConfluenceDataSourceConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ConfluenceDataSourceConfiguration"}
+	if s.SourceConfiguration == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceConfiguration"))
+	}
+	if s.CrawlerConfiguration != nil {
+		if err := s.CrawlerConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("CrawlerConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SourceConfiguration != nil {
+		if err := s.SourceConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("SourceConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCrawlerConfiguration sets the CrawlerConfiguration field's value.
+func (s *ConfluenceDataSourceConfiguration) SetCrawlerConfiguration(v *ConfluenceCrawlerConfiguration) *ConfluenceDataSourceConfiguration {
+	s.CrawlerConfiguration = v
+	return s
+}
+
+// SetSourceConfiguration sets the SourceConfiguration field's value.
+func (s *ConfluenceDataSourceConfiguration) SetSourceConfiguration(v *ConfluenceSourceConfiguration) *ConfluenceDataSourceConfiguration {
+	s.SourceConfiguration = v
+	return s
+}
+
+// The endpoint information to connect to your Confluence data source.
+type ConfluenceSourceConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The supported authentication type to authenticate and connect to your Confluence
+	// instance.
+	//
+	// AuthType is a required field
+	AuthType *string `locationName:"authType" type:"string" required:"true" enum:"ConfluenceAuthType"`
+
+	// The Amazon Resource Name of an Secrets Manager secret that stores your authentication
+	// credentials for your SharePoint site/sites. For more information on the key-value
+	// pairs that must be included in your secret, depending on your authentication
+	// type, see Confluence connection configuration (https://docs.aws.amazon.com/bedrock/latest/userguide/confluence-data-source-connector.html#configuration-confluence-connector).
+	//
+	// CredentialsSecretArn is a required field
+	CredentialsSecretArn *string `locationName:"credentialsSecretArn" type:"string" required:"true"`
+
+	// The supported host type, whether online/cloud or server/on-premises.
+	//
+	// HostType is a required field
+	HostType *string `locationName:"hostType" type:"string" required:"true" enum:"ConfluenceHostType"`
+
+	// The Confluence host URL or instance URL.
+	//
+	// HostUrl is a required field
+	HostUrl *string `locationName:"hostUrl" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConfluenceSourceConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConfluenceSourceConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ConfluenceSourceConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ConfluenceSourceConfiguration"}
+	if s.AuthType == nil {
+		invalidParams.Add(request.NewErrParamRequired("AuthType"))
+	}
+	if s.CredentialsSecretArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("CredentialsSecretArn"))
+	}
+	if s.HostType == nil {
+		invalidParams.Add(request.NewErrParamRequired("HostType"))
+	}
+	if s.HostUrl == nil {
+		invalidParams.Add(request.NewErrParamRequired("HostUrl"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAuthType sets the AuthType field's value.
+func (s *ConfluenceSourceConfiguration) SetAuthType(v string) *ConfluenceSourceConfiguration {
+	s.AuthType = &v
+	return s
+}
+
+// SetCredentialsSecretArn sets the CredentialsSecretArn field's value.
+func (s *ConfluenceSourceConfiguration) SetCredentialsSecretArn(v string) *ConfluenceSourceConfiguration {
+	s.CredentialsSecretArn = &v
+	return s
+}
+
+// SetHostType sets the HostType field's value.
+func (s *ConfluenceSourceConfiguration) SetHostType(v string) *ConfluenceSourceConfiguration {
+	s.HostType = &v
+	return s
+}
+
+// SetHostUrl sets the HostUrl field's value.
+func (s *ConfluenceSourceConfiguration) SetHostUrl(v string) *ConfluenceSourceConfiguration {
+	s.HostUrl = &v
+	return s
+}
+
+// The configuration of filtering the data source content. For example, configuring
+// regular expression patterns to include or exclude certain content.
+type CrawlFilterConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The configuration of filtering certain objects or content types of the data
+	// source.
+	PatternObjectFilter *PatternObjectFilterConfiguration `locationName:"patternObjectFilter" type:"structure"`
+
+	// The type of filtering that you want to apply to certain objects or content
+	// of the data source. For example, the PATTERN type is regular expression patterns
+	// you can apply to filter your content.
+	//
+	// Type is a required field
+	Type *string `locationName:"type" type:"string" required:"true" enum:"CrawlFilterConfigurationType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CrawlFilterConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CrawlFilterConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CrawlFilterConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CrawlFilterConfiguration"}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+	if s.PatternObjectFilter != nil {
+		if err := s.PatternObjectFilter.Validate(); err != nil {
+			invalidParams.AddNested("PatternObjectFilter", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPatternObjectFilter sets the PatternObjectFilter field's value.
+func (s *CrawlFilterConfiguration) SetPatternObjectFilter(v *PatternObjectFilterConfiguration) *CrawlFilterConfiguration {
+	s.PatternObjectFilter = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *CrawlFilterConfiguration) SetType(v string) *CrawlFilterConfiguration {
+	s.Type = &v
+	return s
+}
+
 type CreateAgentActionGroupInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6295,6 +9107,11 @@ type CreateAgentActionGroupInput struct {
 	// to complete a task, set this field to AMAZON.UserInput. You must leave the
 	// description, apiSchema, and actionGroupExecutor fields blank for this action
 	// group.
+	//
+	// To allow your agent to generate, run, and troubleshoot code when trying to
+	// complete a task, set this field to AMAZON.CodeInterpreter. You must leave
+	// the description, apiSchema, and actionGroupExecutor fields blank for this
+	// action group.
 	//
 	// During orchestration, if your agent determines that it needs to invoke an
 	// API in an action group, but doesn't have enough information to complete the
@@ -6653,6 +9470,9 @@ type CreateAgentInput struct {
 	// String and GoString methods.
 	Instruction *string `locationName:"instruction" min:"40" type:"string" sensitive:"true"`
 
+	// Contains the details of the memory configured for the agent.
+	MemoryConfiguration *MemoryConfiguration `locationName:"memoryConfiguration" type:"structure"`
+
 	// Contains configurations to override prompts in different parts of an agent
 	// sequence. For more information, see Advanced prompts (https://docs.aws.amazon.com/bedrock/latest/userguide/advanced-prompts.html).
 	//
@@ -6706,6 +9526,11 @@ func (s *CreateAgentInput) Validate() error {
 	}
 	if s.Instruction != nil && len(*s.Instruction) < 40 {
 		invalidParams.Add(request.NewErrParamMinLen("Instruction", 40))
+	}
+	if s.MemoryConfiguration != nil {
+		if err := s.MemoryConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("MemoryConfiguration", err.(request.ErrInvalidParams))
+		}
 	}
 	if s.PromptOverrideConfiguration != nil {
 		if err := s.PromptOverrideConfiguration.Validate(); err != nil {
@@ -6773,6 +9598,12 @@ func (s *CreateAgentInput) SetInstruction(v string) *CreateAgentInput {
 	return s
 }
 
+// SetMemoryConfiguration sets the MemoryConfiguration field's value.
+func (s *CreateAgentInput) SetMemoryConfiguration(v *MemoryConfiguration) *CreateAgentInput {
+	s.MemoryConfiguration = v
+	return s
+}
+
 // SetPromptOverrideConfiguration sets the PromptOverrideConfiguration field's value.
 func (s *CreateAgentInput) SetPromptOverrideConfiguration(v *PromptOverrideConfiguration) *CreateAgentInput {
 	s.PromptOverrideConfiguration = v
@@ -6827,10 +9658,20 @@ type CreateDataSourceInput struct {
 	// see Ensuring idempotency (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html).
 	ClientToken *string `locationName:"clientToken" min:"33" type:"string" idempotencyToken:"true"`
 
-	// The data deletion policy assigned to the data source.
+	// The data deletion policy for the data source.
+	//
+	// You can set the data deletion policy to:
+	//
+	//    * DELETE: Deletes all underlying data belonging to the data source from
+	//    the vector store upon deletion of a knowledge base or data source resource.
+	//    Note that the vector store itself is not deleted, only the underlying
+	//    data. This flag is ignored if an Amazon Web Services account is deleted.
+	//
+	//    * RETAIN: Retains all underlying data in your vector store upon deletion
+	//    of a knowledge base or data source resource.
 	DataDeletionPolicy *string `locationName:"dataDeletionPolicy" type:"string" enum:"DataDeletionPolicy"`
 
-	// Contains metadata about where the data source is stored.
+	// The connection configuration for the data source.
 	//
 	// DataSourceConfiguration is a required field
 	DataSourceConfiguration *DataSourceConfiguration `locationName:"dataSourceConfiguration" type:"structure" required:"true"`
@@ -6994,6 +9835,716 @@ func (s CreateDataSourceOutput) GoString() string {
 // SetDataSource sets the DataSource field's value.
 func (s *CreateDataSourceOutput) SetDataSource(v *DataSource) *CreateDataSourceOutput {
 	s.DataSource = v
+	return s
+}
+
+type CreateFlowAliasInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique, case-sensitive identifier to ensure that the API request completes
+	// no more than one time. If this token matches a previous request, Amazon Bedrock
+	// ignores the request, but does not return an error. For more information,
+	// see Ensuring idempotency (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html).
+	ClientToken *string `locationName:"clientToken" min:"33" type:"string" idempotencyToken:"true"`
+
+	// A description for the alias.
+	Description *string `locationName:"description" min:"1" type:"string"`
+
+	// The unique identifier of the flow for which to create an alias.
+	//
+	// FlowIdentifier is a required field
+	FlowIdentifier *string `location:"uri" locationName:"flowIdentifier" type:"string" required:"true"`
+
+	// A name for the alias.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true"`
+
+	// Contains information about the version to which to map the alias.
+	//
+	// RoutingConfiguration is a required field
+	RoutingConfiguration []*FlowAliasRoutingConfigurationListItem `locationName:"routingConfiguration" min:"1" type:"list" required:"true"`
+
+	// Any tags that you want to attach to the alias of the flow. For more information,
+	// see Tagging resources in Amazon Bedrock (https://docs.aws.amazon.com/bedrock/latest/userguide/tagging.html).
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateFlowAliasInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateFlowAliasInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateFlowAliasInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateFlowAliasInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 33 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 33))
+	}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.FlowIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("FlowIdentifier"))
+	}
+	if s.FlowIdentifier != nil && len(*s.FlowIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FlowIdentifier", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.RoutingConfiguration == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoutingConfiguration"))
+	}
+	if s.RoutingConfiguration != nil && len(s.RoutingConfiguration) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RoutingConfiguration", 1))
+	}
+	if s.RoutingConfiguration != nil {
+		for i, v := range s.RoutingConfiguration {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "RoutingConfiguration", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *CreateFlowAliasInput) SetClientToken(v string) *CreateFlowAliasInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateFlowAliasInput) SetDescription(v string) *CreateFlowAliasInput {
+	s.Description = &v
+	return s
+}
+
+// SetFlowIdentifier sets the FlowIdentifier field's value.
+func (s *CreateFlowAliasInput) SetFlowIdentifier(v string) *CreateFlowAliasInput {
+	s.FlowIdentifier = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateFlowAliasInput) SetName(v string) *CreateFlowAliasInput {
+	s.Name = &v
+	return s
+}
+
+// SetRoutingConfiguration sets the RoutingConfiguration field's value.
+func (s *CreateFlowAliasInput) SetRoutingConfiguration(v []*FlowAliasRoutingConfigurationListItem) *CreateFlowAliasInput {
+	s.RoutingConfiguration = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateFlowAliasInput) SetTags(v map[string]*string) *CreateFlowAliasInput {
+	s.Tags = v
+	return s
+}
+
+type CreateFlowAliasOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the alias.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" type:"string" required:"true"`
+
+	// The time at which the alias was created.
+	//
+	// CreatedAt is a required field
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// The description of the alias.
+	Description *string `locationName:"description" min:"1" type:"string"`
+
+	// The unique identifier of the flow that the alias belongs to.
+	//
+	// FlowId is a required field
+	FlowId *string `locationName:"flowId" type:"string" required:"true"`
+
+	// The unique identifier of the alias.
+	//
+	// Id is a required field
+	Id *string `locationName:"id" type:"string" required:"true"`
+
+	// The name of the alias.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true"`
+
+	// Contains information about the version that the alias is mapped to.
+	//
+	// RoutingConfiguration is a required field
+	RoutingConfiguration []*FlowAliasRoutingConfigurationListItem `locationName:"routingConfiguration" min:"1" type:"list" required:"true"`
+
+	// The time at which the alias of the flow was last updated.
+	//
+	// UpdatedAt is a required field
+	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateFlowAliasOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateFlowAliasOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *CreateFlowAliasOutput) SetArn(v string) *CreateFlowAliasOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *CreateFlowAliasOutput) SetCreatedAt(v time.Time) *CreateFlowAliasOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateFlowAliasOutput) SetDescription(v string) *CreateFlowAliasOutput {
+	s.Description = &v
+	return s
+}
+
+// SetFlowId sets the FlowId field's value.
+func (s *CreateFlowAliasOutput) SetFlowId(v string) *CreateFlowAliasOutput {
+	s.FlowId = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *CreateFlowAliasOutput) SetId(v string) *CreateFlowAliasOutput {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateFlowAliasOutput) SetName(v string) *CreateFlowAliasOutput {
+	s.Name = &v
+	return s
+}
+
+// SetRoutingConfiguration sets the RoutingConfiguration field's value.
+func (s *CreateFlowAliasOutput) SetRoutingConfiguration(v []*FlowAliasRoutingConfigurationListItem) *CreateFlowAliasOutput {
+	s.RoutingConfiguration = v
+	return s
+}
+
+// SetUpdatedAt sets the UpdatedAt field's value.
+func (s *CreateFlowAliasOutput) SetUpdatedAt(v time.Time) *CreateFlowAliasOutput {
+	s.UpdatedAt = &v
+	return s
+}
+
+type CreateFlowInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique, case-sensitive identifier to ensure that the API request completes
+	// no more than one time. If this token matches a previous request, Amazon Bedrock
+	// ignores the request, but does not return an error. For more information,
+	// see Ensuring idempotency (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html).
+	ClientToken *string `locationName:"clientToken" min:"33" type:"string" idempotencyToken:"true"`
+
+	// The Amazon Resource Name (ARN) of the KMS key to encrypt the flow.
+	CustomerEncryptionKeyArn *string `locationName:"customerEncryptionKeyArn" min:"1" type:"string"`
+
+	// A definition of the nodes and connections between nodes in the flow.
+	Definition *FlowDefinition `locationName:"definition" type:"structure"`
+
+	// A description for the flow.
+	Description *string `locationName:"description" min:"1" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the service role with permissions to create
+	// and manage a flow. For more information, see Create a service role for flows
+	// in Amazon Bedrock (https://docs.aws.amazon.com/bedrock/latest/userguide/flows-permissions.html)
+	// in the Amazon Bedrock User Guide.
+	//
+	// ExecutionRoleArn is a required field
+	ExecutionRoleArn *string `locationName:"executionRoleArn" type:"string" required:"true"`
+
+	// A name for the flow.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true"`
+
+	// Any tags that you want to attach to the flow. For more information, see Tagging
+	// resources in Amazon Bedrock (https://docs.aws.amazon.com/bedrock/latest/userguide/tagging.html).
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateFlowInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateFlowInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateFlowInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateFlowInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 33 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 33))
+	}
+	if s.CustomerEncryptionKeyArn != nil && len(*s.CustomerEncryptionKeyArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CustomerEncryptionKeyArn", 1))
+	}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.ExecutionRoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ExecutionRoleArn"))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Definition != nil {
+		if err := s.Definition.Validate(); err != nil {
+			invalidParams.AddNested("Definition", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *CreateFlowInput) SetClientToken(v string) *CreateFlowInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetCustomerEncryptionKeyArn sets the CustomerEncryptionKeyArn field's value.
+func (s *CreateFlowInput) SetCustomerEncryptionKeyArn(v string) *CreateFlowInput {
+	s.CustomerEncryptionKeyArn = &v
+	return s
+}
+
+// SetDefinition sets the Definition field's value.
+func (s *CreateFlowInput) SetDefinition(v *FlowDefinition) *CreateFlowInput {
+	s.Definition = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateFlowInput) SetDescription(v string) *CreateFlowInput {
+	s.Description = &v
+	return s
+}
+
+// SetExecutionRoleArn sets the ExecutionRoleArn field's value.
+func (s *CreateFlowInput) SetExecutionRoleArn(v string) *CreateFlowInput {
+	s.ExecutionRoleArn = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateFlowInput) SetName(v string) *CreateFlowInput {
+	s.Name = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateFlowInput) SetTags(v map[string]*string) *CreateFlowInput {
+	s.Tags = v
+	return s
+}
+
+type CreateFlowOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the flow.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" type:"string" required:"true"`
+
+	// The time at which the flow was created.
+	//
+	// CreatedAt is a required field
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the KMS key that you encrypted the flow
+	// with.
+	CustomerEncryptionKeyArn *string `locationName:"customerEncryptionKeyArn" min:"1" type:"string"`
+
+	// A definition of the nodes and connections between nodes in the flow.
+	Definition *FlowDefinition `locationName:"definition" type:"structure"`
+
+	// The description of the flow.
+	Description *string `locationName:"description" min:"1" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the service role with permissions to create
+	// a flow. For more information, see Create a service role for flows in Amazon
+	// Bedrock (https://docs.aws.amazon.com/bedrock/latest/userguide/flows-permissions.html)
+	// in the Amazon Bedrock User Guide.
+	//
+	// ExecutionRoleArn is a required field
+	ExecutionRoleArn *string `locationName:"executionRoleArn" type:"string" required:"true"`
+
+	// The unique identifier of the flow.
+	//
+	// Id is a required field
+	Id *string `locationName:"id" type:"string" required:"true"`
+
+	// The name of the flow.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true"`
+
+	// The status of the flow. When you submit this request, the status will be
+	// NotPrepared. If creation fails, the status becomes Failed.
+	//
+	// Status is a required field
+	Status *string `locationName:"status" type:"string" required:"true" enum:"FlowStatus"`
+
+	// The time at which the flow was last updated.
+	//
+	// UpdatedAt is a required field
+	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// The version of the flow. When you create a flow, the version created is the
+	// DRAFT version.
+	//
+	// Version is a required field
+	Version *string `locationName:"version" min:"5" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateFlowOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateFlowOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *CreateFlowOutput) SetArn(v string) *CreateFlowOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *CreateFlowOutput) SetCreatedAt(v time.Time) *CreateFlowOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetCustomerEncryptionKeyArn sets the CustomerEncryptionKeyArn field's value.
+func (s *CreateFlowOutput) SetCustomerEncryptionKeyArn(v string) *CreateFlowOutput {
+	s.CustomerEncryptionKeyArn = &v
+	return s
+}
+
+// SetDefinition sets the Definition field's value.
+func (s *CreateFlowOutput) SetDefinition(v *FlowDefinition) *CreateFlowOutput {
+	s.Definition = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateFlowOutput) SetDescription(v string) *CreateFlowOutput {
+	s.Description = &v
+	return s
+}
+
+// SetExecutionRoleArn sets the ExecutionRoleArn field's value.
+func (s *CreateFlowOutput) SetExecutionRoleArn(v string) *CreateFlowOutput {
+	s.ExecutionRoleArn = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *CreateFlowOutput) SetId(v string) *CreateFlowOutput {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateFlowOutput) SetName(v string) *CreateFlowOutput {
+	s.Name = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *CreateFlowOutput) SetStatus(v string) *CreateFlowOutput {
+	s.Status = &v
+	return s
+}
+
+// SetUpdatedAt sets the UpdatedAt field's value.
+func (s *CreateFlowOutput) SetUpdatedAt(v time.Time) *CreateFlowOutput {
+	s.UpdatedAt = &v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *CreateFlowOutput) SetVersion(v string) *CreateFlowOutput {
+	s.Version = &v
+	return s
+}
+
+type CreateFlowVersionInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique, case-sensitive identifier to ensure that the API request completes
+	// no more than one time. If this token matches a previous request, Amazon Bedrock
+	// ignores the request, but does not return an error. For more information,
+	// see Ensuring idempotency (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html).
+	ClientToken *string `locationName:"clientToken" min:"33" type:"string" idempotencyToken:"true"`
+
+	// A description of the version of the flow.
+	Description *string `locationName:"description" min:"1" type:"string"`
+
+	// The unique identifier of the flow that you want to create a version of.
+	//
+	// FlowIdentifier is a required field
+	FlowIdentifier *string `location:"uri" locationName:"flowIdentifier" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateFlowVersionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateFlowVersionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateFlowVersionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateFlowVersionInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 33 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 33))
+	}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.FlowIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("FlowIdentifier"))
+	}
+	if s.FlowIdentifier != nil && len(*s.FlowIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FlowIdentifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *CreateFlowVersionInput) SetClientToken(v string) *CreateFlowVersionInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateFlowVersionInput) SetDescription(v string) *CreateFlowVersionInput {
+	s.Description = &v
+	return s
+}
+
+// SetFlowIdentifier sets the FlowIdentifier field's value.
+func (s *CreateFlowVersionInput) SetFlowIdentifier(v string) *CreateFlowVersionInput {
+	s.FlowIdentifier = &v
+	return s
+}
+
+type CreateFlowVersionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the flow.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" type:"string" required:"true"`
+
+	// The time at which the flow was created.
+	//
+	// CreatedAt is a required field
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// The KMS key that the flow is encrypted with.
+	CustomerEncryptionKeyArn *string `locationName:"customerEncryptionKeyArn" min:"1" type:"string"`
+
+	// A definition of the nodes and connections in the flow.
+	Definition *FlowDefinition `locationName:"definition" type:"structure"`
+
+	// The description of the flow version.
+	Description *string `locationName:"description" min:"1" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the service role with permissions to create
+	// a flow. For more information, see Create a service role for flows in Amazon
+	// Bedrock (https://docs.aws.amazon.com/bedrock/latest/userguide/flows-permissions.html)
+	// in the Amazon Bedrock User Guide.
+	//
+	// ExecutionRoleArn is a required field
+	ExecutionRoleArn *string `locationName:"executionRoleArn" type:"string" required:"true"`
+
+	// The unique identifier of the flow.
+	//
+	// Id is a required field
+	Id *string `locationName:"id" type:"string" required:"true"`
+
+	// The name of the flow version.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true"`
+
+	// The status of the flow.
+	//
+	// Status is a required field
+	Status *string `locationName:"status" type:"string" required:"true" enum:"FlowStatus"`
+
+	// The version of the flow that was created. Versions are numbered incrementally,
+	// starting from 1.
+	//
+	// Version is a required field
+	Version *string `locationName:"version" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateFlowVersionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateFlowVersionOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *CreateFlowVersionOutput) SetArn(v string) *CreateFlowVersionOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *CreateFlowVersionOutput) SetCreatedAt(v time.Time) *CreateFlowVersionOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetCustomerEncryptionKeyArn sets the CustomerEncryptionKeyArn field's value.
+func (s *CreateFlowVersionOutput) SetCustomerEncryptionKeyArn(v string) *CreateFlowVersionOutput {
+	s.CustomerEncryptionKeyArn = &v
+	return s
+}
+
+// SetDefinition sets the Definition field's value.
+func (s *CreateFlowVersionOutput) SetDefinition(v *FlowDefinition) *CreateFlowVersionOutput {
+	s.Definition = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateFlowVersionOutput) SetDescription(v string) *CreateFlowVersionOutput {
+	s.Description = &v
+	return s
+}
+
+// SetExecutionRoleArn sets the ExecutionRoleArn field's value.
+func (s *CreateFlowVersionOutput) SetExecutionRoleArn(v string) *CreateFlowVersionOutput {
+	s.ExecutionRoleArn = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *CreateFlowVersionOutput) SetId(v string) *CreateFlowVersionOutput {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateFlowVersionOutput) SetName(v string) *CreateFlowVersionOutput {
+	s.Name = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *CreateFlowVersionOutput) SetStatus(v string) *CreateFlowVersionOutput {
+	s.Status = &v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *CreateFlowVersionOutput) SetVersion(v string) *CreateFlowVersionOutput {
+	s.Version = &v
 	return s
 }
 
@@ -7167,6 +10718,572 @@ func (s *CreateKnowledgeBaseOutput) SetKnowledgeBase(v *KnowledgeBase) *CreateKn
 	return s
 }
 
+type CreatePromptInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique, case-sensitive identifier to ensure that the API request completes
+	// no more than one time. If this token matches a previous request, Amazon Bedrock
+	// ignores the request, but does not return an error. For more information,
+	// see Ensuring idempotency (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html).
+	ClientToken *string `locationName:"clientToken" min:"33" type:"string" idempotencyToken:"true"`
+
+	// The Amazon Resource Name (ARN) of the KMS key to encrypt the prompt.
+	CustomerEncryptionKeyArn *string `locationName:"customerEncryptionKeyArn" min:"1" type:"string"`
+
+	// The name of the default variant for the prompt. This value must match the
+	// name field in the relevant PromptVariant (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_PromptVariant.html)
+	// object.
+	DefaultVariant *string `locationName:"defaultVariant" type:"string"`
+
+	// A description for the prompt.
+	Description *string `locationName:"description" min:"1" type:"string"`
+
+	// A name for the prompt.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true"`
+
+	// Any tags that you want to attach to the prompt. For more information, see
+	// Tagging resources in Amazon Bedrock (https://docs.aws.amazon.com/bedrock/latest/userguide/tagging.html).
+	Tags map[string]*string `locationName:"tags" type:"map"`
+
+	// A list of objects, each containing details about a variant of the prompt.
+	//
+	// Variants is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreatePromptInput's
+	// String and GoString methods.
+	Variants []*PromptVariant `locationName:"variants" type:"list" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreatePromptInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreatePromptInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreatePromptInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreatePromptInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 33 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 33))
+	}
+	if s.CustomerEncryptionKeyArn != nil && len(*s.CustomerEncryptionKeyArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CustomerEncryptionKeyArn", 1))
+	}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Variants != nil {
+		for i, v := range s.Variants {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Variants", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *CreatePromptInput) SetClientToken(v string) *CreatePromptInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetCustomerEncryptionKeyArn sets the CustomerEncryptionKeyArn field's value.
+func (s *CreatePromptInput) SetCustomerEncryptionKeyArn(v string) *CreatePromptInput {
+	s.CustomerEncryptionKeyArn = &v
+	return s
+}
+
+// SetDefaultVariant sets the DefaultVariant field's value.
+func (s *CreatePromptInput) SetDefaultVariant(v string) *CreatePromptInput {
+	s.DefaultVariant = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreatePromptInput) SetDescription(v string) *CreatePromptInput {
+	s.Description = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreatePromptInput) SetName(v string) *CreatePromptInput {
+	s.Name = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreatePromptInput) SetTags(v map[string]*string) *CreatePromptInput {
+	s.Tags = v
+	return s
+}
+
+// SetVariants sets the Variants field's value.
+func (s *CreatePromptInput) SetVariants(v []*PromptVariant) *CreatePromptInput {
+	s.Variants = v
+	return s
+}
+
+type CreatePromptOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the prompt.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" type:"string" required:"true"`
+
+	// The time at which the prompt was created.
+	//
+	// CreatedAt is a required field
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the KMS key that you encrypted the prompt
+	// with.
+	CustomerEncryptionKeyArn *string `locationName:"customerEncryptionKeyArn" min:"1" type:"string"`
+
+	// The name of the default variant for your prompt.
+	DefaultVariant *string `locationName:"defaultVariant" type:"string"`
+
+	// The description of the prompt.
+	Description *string `locationName:"description" min:"1" type:"string"`
+
+	// The unique identifier of the prompt.
+	//
+	// Id is a required field
+	Id *string `locationName:"id" type:"string" required:"true"`
+
+	// The name of the prompt.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true"`
+
+	// The time at which the prompt was last updated.
+	//
+	// UpdatedAt is a required field
+	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// A list of objects, each containing details about a variant of the prompt.
+	//
+	// Variants is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreatePromptOutput's
+	// String and GoString methods.
+	Variants []*PromptVariant `locationName:"variants" type:"list" sensitive:"true"`
+
+	// The version of the prompt. When you create a prompt, the version created
+	// is the DRAFT version.
+	//
+	// Version is a required field
+	Version *string `locationName:"version" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreatePromptOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreatePromptOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *CreatePromptOutput) SetArn(v string) *CreatePromptOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *CreatePromptOutput) SetCreatedAt(v time.Time) *CreatePromptOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetCustomerEncryptionKeyArn sets the CustomerEncryptionKeyArn field's value.
+func (s *CreatePromptOutput) SetCustomerEncryptionKeyArn(v string) *CreatePromptOutput {
+	s.CustomerEncryptionKeyArn = &v
+	return s
+}
+
+// SetDefaultVariant sets the DefaultVariant field's value.
+func (s *CreatePromptOutput) SetDefaultVariant(v string) *CreatePromptOutput {
+	s.DefaultVariant = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreatePromptOutput) SetDescription(v string) *CreatePromptOutput {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *CreatePromptOutput) SetId(v string) *CreatePromptOutput {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreatePromptOutput) SetName(v string) *CreatePromptOutput {
+	s.Name = &v
+	return s
+}
+
+// SetUpdatedAt sets the UpdatedAt field's value.
+func (s *CreatePromptOutput) SetUpdatedAt(v time.Time) *CreatePromptOutput {
+	s.UpdatedAt = &v
+	return s
+}
+
+// SetVariants sets the Variants field's value.
+func (s *CreatePromptOutput) SetVariants(v []*PromptVariant) *CreatePromptOutput {
+	s.Variants = v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *CreatePromptOutput) SetVersion(v string) *CreatePromptOutput {
+	s.Version = &v
+	return s
+}
+
+type CreatePromptVersionInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique, case-sensitive identifier to ensure that the API request completes
+	// no more than one time. If this token matches a previous request, Amazon Bedrock
+	// ignores the request, but does not return an error. For more information,
+	// see Ensuring idempotency (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html).
+	ClientToken *string `locationName:"clientToken" min:"33" type:"string" idempotencyToken:"true"`
+
+	// A description for the version of the prompt.
+	Description *string `locationName:"description" min:"1" type:"string"`
+
+	// The unique identifier of the prompt that you want to create a version of.
+	//
+	// PromptIdentifier is a required field
+	PromptIdentifier *string `location:"uri" locationName:"promptIdentifier" type:"string" required:"true"`
+
+	// Any tags that you want to attach to the version of the prompt. For more information,
+	// see Tagging resources in Amazon Bedrock (https://docs.aws.amazon.com/bedrock/latest/userguide/tagging.html).
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreatePromptVersionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreatePromptVersionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreatePromptVersionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreatePromptVersionInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 33 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 33))
+	}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.PromptIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("PromptIdentifier"))
+	}
+	if s.PromptIdentifier != nil && len(*s.PromptIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PromptIdentifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *CreatePromptVersionInput) SetClientToken(v string) *CreatePromptVersionInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreatePromptVersionInput) SetDescription(v string) *CreatePromptVersionInput {
+	s.Description = &v
+	return s
+}
+
+// SetPromptIdentifier sets the PromptIdentifier field's value.
+func (s *CreatePromptVersionInput) SetPromptIdentifier(v string) *CreatePromptVersionInput {
+	s.PromptIdentifier = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreatePromptVersionInput) SetTags(v map[string]*string) *CreatePromptVersionInput {
+	s.Tags = v
+	return s
+}
+
+type CreatePromptVersionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the version of the prompt.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" type:"string" required:"true"`
+
+	// The time at which the prompt was created.
+	//
+	// CreatedAt is a required field
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the KMS key to encrypt the version of the
+	// prompt.
+	CustomerEncryptionKeyArn *string `locationName:"customerEncryptionKeyArn" min:"1" type:"string"`
+
+	// The name of the default variant for the prompt. This value must match the
+	// name field in the relevant PromptVariant (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_PromptVariant.html)
+	// object.
+	DefaultVariant *string `locationName:"defaultVariant" type:"string"`
+
+	// A description for the prompt version.
+	Description *string `locationName:"description" min:"1" type:"string"`
+
+	// The unique identifier of the prompt.
+	//
+	// Id is a required field
+	Id *string `locationName:"id" type:"string" required:"true"`
+
+	// The name of the prompt version.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true"`
+
+	// The time at which the prompt was last updated.
+	//
+	// UpdatedAt is a required field
+	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// A list of objects, each containing details about a variant of the prompt.
+	//
+	// Variants is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreatePromptVersionOutput's
+	// String and GoString methods.
+	Variants []*PromptVariant `locationName:"variants" type:"list" sensitive:"true"`
+
+	// The version of the prompt that was created. Versions are numbered incrementally,
+	// starting from 1.
+	//
+	// Version is a required field
+	Version *string `locationName:"version" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreatePromptVersionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreatePromptVersionOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *CreatePromptVersionOutput) SetArn(v string) *CreatePromptVersionOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *CreatePromptVersionOutput) SetCreatedAt(v time.Time) *CreatePromptVersionOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetCustomerEncryptionKeyArn sets the CustomerEncryptionKeyArn field's value.
+func (s *CreatePromptVersionOutput) SetCustomerEncryptionKeyArn(v string) *CreatePromptVersionOutput {
+	s.CustomerEncryptionKeyArn = &v
+	return s
+}
+
+// SetDefaultVariant sets the DefaultVariant field's value.
+func (s *CreatePromptVersionOutput) SetDefaultVariant(v string) *CreatePromptVersionOutput {
+	s.DefaultVariant = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreatePromptVersionOutput) SetDescription(v string) *CreatePromptVersionOutput {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *CreatePromptVersionOutput) SetId(v string) *CreatePromptVersionOutput {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreatePromptVersionOutput) SetName(v string) *CreatePromptVersionOutput {
+	s.Name = &v
+	return s
+}
+
+// SetUpdatedAt sets the UpdatedAt field's value.
+func (s *CreatePromptVersionOutput) SetUpdatedAt(v time.Time) *CreatePromptVersionOutput {
+	s.UpdatedAt = &v
+	return s
+}
+
+// SetVariants sets the Variants field's value.
+func (s *CreatePromptVersionOutput) SetVariants(v []*PromptVariant) *CreatePromptVersionOutput {
+	s.Variants = v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *CreatePromptVersionOutput) SetVersion(v string) *CreatePromptVersionOutput {
+	s.Version = &v
+	return s
+}
+
+// Settings for customizing steps in the data source content ingestion pipeline.
+//
+// You can configure the data source to process documents with a Lambda function
+// after they are parsed and converted into chunks. When you add a post-chunking
+// transformation, the service stores chunked documents in an S3 bucket and
+// invokes a Lambda function to process them.
+//
+// To process chunked documents with a Lambda function, define an S3 bucket
+// path for input and output objects, and a transformation that specifies the
+// Lambda function to invoke. You can use the Lambda function to customize how
+// chunks are split, and the metadata for each chunk.
+type CustomTransformationConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// An S3 bucket path for input and output objects.
+	//
+	// IntermediateStorage is a required field
+	IntermediateStorage *IntermediateStorage `locationName:"intermediateStorage" type:"structure" required:"true"`
+
+	// A Lambda function that processes documents.
+	//
+	// Transformations is a required field
+	Transformations []*Transformation `locationName:"transformations" min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CustomTransformationConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CustomTransformationConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CustomTransformationConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CustomTransformationConfiguration"}
+	if s.IntermediateStorage == nil {
+		invalidParams.Add(request.NewErrParamRequired("IntermediateStorage"))
+	}
+	if s.Transformations == nil {
+		invalidParams.Add(request.NewErrParamRequired("Transformations"))
+	}
+	if s.Transformations != nil && len(s.Transformations) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Transformations", 1))
+	}
+	if s.IntermediateStorage != nil {
+		if err := s.IntermediateStorage.Validate(); err != nil {
+			invalidParams.AddNested("IntermediateStorage", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Transformations != nil {
+		for i, v := range s.Transformations {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Transformations", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIntermediateStorage sets the IntermediateStorage field's value.
+func (s *CustomTransformationConfiguration) SetIntermediateStorage(v *IntermediateStorage) *CustomTransformationConfiguration {
+	s.IntermediateStorage = v
+	return s
+}
+
+// SetTransformations sets the Transformations field's value.
+func (s *CustomTransformationConfiguration) SetTransformations(v []*Transformation) *CustomTransformationConfiguration {
+	s.Transformations = v
+	return s
+}
+
 // Contains details about a data source.
 type DataSource struct {
 	_ struct{} `type:"structure"`
@@ -7176,10 +11293,10 @@ type DataSource struct {
 	// CreatedAt is a required field
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
-	// The data deletion policy for a data source.
+	// The data deletion policy for the data source.
 	DataDeletionPolicy *string `locationName:"dataDeletionPolicy" type:"string" enum:"DataDeletionPolicy"`
 
-	// Contains details about how the data source is stored.
+	// The connection configuration for the data source.
 	//
 	// DataSourceConfiguration is a required field
 	DataSourceConfiguration *DataSourceConfiguration `locationName:"dataSourceConfiguration" type:"structure" required:"true"`
@@ -7317,18 +11434,42 @@ func (s *DataSource) SetVectorIngestionConfiguration(v *VectorIngestionConfigura
 	return s
 }
 
-// Contains details about how a data source is stored.
+// The connection configuration for the data source.
 type DataSourceConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// Contains details about the configuration of the S3 object containing the
-	// data source.
+	// The configuration information to connect to Confluence as your data source.
+	//
+	// Confluence data source connector is in preview release and is subject to
+	// change.
+	ConfluenceConfiguration *ConfluenceDataSourceConfiguration `locationName:"confluenceConfiguration" type:"structure"`
+
+	// The configuration information to connect to Amazon S3 as your data source.
 	S3Configuration *S3DataSourceConfiguration `locationName:"s3Configuration" type:"structure"`
 
-	// The type of storage for the data source.
+	// The configuration information to connect to Salesforce as your data source.
+	//
+	// Salesforce data source connector is in preview release and is subject to
+	// change.
+	SalesforceConfiguration *SalesforceDataSourceConfiguration `locationName:"salesforceConfiguration" type:"structure"`
+
+	// The configuration information to connect to SharePoint as your data source.
+	//
+	// SharePoint data source connector is in preview release and is subject to
+	// change.
+	SharePointConfiguration *SharePointDataSourceConfiguration `locationName:"sharePointConfiguration" type:"structure"`
+
+	// The type of data source.
 	//
 	// Type is a required field
 	Type *string `locationName:"type" type:"string" required:"true" enum:"DataSourceType"`
+
+	// The configuration of web URLs to crawl for your data source. You should be
+	// authorized to crawl the URLs.
+	//
+	// Crawling web URLs as your data source is in preview release and is subject
+	// to change.
+	WebConfiguration *WebDataSourceConfiguration `locationName:"webConfiguration" type:"structure"`
 }
 
 // String returns the string representation.
@@ -7355,9 +11496,29 @@ func (s *DataSourceConfiguration) Validate() error {
 	if s.Type == nil {
 		invalidParams.Add(request.NewErrParamRequired("Type"))
 	}
+	if s.ConfluenceConfiguration != nil {
+		if err := s.ConfluenceConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("ConfluenceConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.S3Configuration != nil {
 		if err := s.S3Configuration.Validate(); err != nil {
 			invalidParams.AddNested("S3Configuration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SalesforceConfiguration != nil {
+		if err := s.SalesforceConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("SalesforceConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SharePointConfiguration != nil {
+		if err := s.SharePointConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("SharePointConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.WebConfiguration != nil {
+		if err := s.WebConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("WebConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -7367,15 +11528,39 @@ func (s *DataSourceConfiguration) Validate() error {
 	return nil
 }
 
+// SetConfluenceConfiguration sets the ConfluenceConfiguration field's value.
+func (s *DataSourceConfiguration) SetConfluenceConfiguration(v *ConfluenceDataSourceConfiguration) *DataSourceConfiguration {
+	s.ConfluenceConfiguration = v
+	return s
+}
+
 // SetS3Configuration sets the S3Configuration field's value.
 func (s *DataSourceConfiguration) SetS3Configuration(v *S3DataSourceConfiguration) *DataSourceConfiguration {
 	s.S3Configuration = v
 	return s
 }
 
+// SetSalesforceConfiguration sets the SalesforceConfiguration field's value.
+func (s *DataSourceConfiguration) SetSalesforceConfiguration(v *SalesforceDataSourceConfiguration) *DataSourceConfiguration {
+	s.SalesforceConfiguration = v
+	return s
+}
+
+// SetSharePointConfiguration sets the SharePointConfiguration field's value.
+func (s *DataSourceConfiguration) SetSharePointConfiguration(v *SharePointDataSourceConfiguration) *DataSourceConfiguration {
+	s.SharePointConfiguration = v
+	return s
+}
+
 // SetType sets the Type field's value.
 func (s *DataSourceConfiguration) SetType(v string) *DataSourceConfiguration {
 	s.Type = &v
+	return s
+}
+
+// SetWebConfiguration sets the WebConfiguration field's value.
+func (s *DataSourceConfiguration) SetWebConfiguration(v *WebDataSourceConfiguration) *DataSourceConfiguration {
+	s.WebConfiguration = v
 	return s
 }
 
@@ -8062,6 +12247,330 @@ func (s *DeleteDataSourceOutput) SetStatus(v string) *DeleteDataSourceOutput {
 	return s
 }
 
+type DeleteFlowAliasInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The unique identifier of the alias to be deleted.
+	//
+	// AliasIdentifier is a required field
+	AliasIdentifier *string `location:"uri" locationName:"aliasIdentifier" type:"string" required:"true"`
+
+	// The unique identifier of the flow that the alias belongs to.
+	//
+	// FlowIdentifier is a required field
+	FlowIdentifier *string `location:"uri" locationName:"flowIdentifier" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteFlowAliasInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteFlowAliasInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteFlowAliasInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteFlowAliasInput"}
+	if s.AliasIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("AliasIdentifier"))
+	}
+	if s.AliasIdentifier != nil && len(*s.AliasIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AliasIdentifier", 1))
+	}
+	if s.FlowIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("FlowIdentifier"))
+	}
+	if s.FlowIdentifier != nil && len(*s.FlowIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FlowIdentifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAliasIdentifier sets the AliasIdentifier field's value.
+func (s *DeleteFlowAliasInput) SetAliasIdentifier(v string) *DeleteFlowAliasInput {
+	s.AliasIdentifier = &v
+	return s
+}
+
+// SetFlowIdentifier sets the FlowIdentifier field's value.
+func (s *DeleteFlowAliasInput) SetFlowIdentifier(v string) *DeleteFlowAliasInput {
+	s.FlowIdentifier = &v
+	return s
+}
+
+type DeleteFlowAliasOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier of the flow that the alias belongs to.
+	//
+	// FlowId is a required field
+	FlowId *string `locationName:"flowId" type:"string" required:"true"`
+
+	// The unique identifier of the flow.
+	//
+	// Id is a required field
+	Id *string `locationName:"id" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteFlowAliasOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteFlowAliasOutput) GoString() string {
+	return s.String()
+}
+
+// SetFlowId sets the FlowId field's value.
+func (s *DeleteFlowAliasOutput) SetFlowId(v string) *DeleteFlowAliasOutput {
+	s.FlowId = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *DeleteFlowAliasOutput) SetId(v string) *DeleteFlowAliasOutput {
+	s.Id = &v
+	return s
+}
+
+type DeleteFlowInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The unique identifier of the flow.
+	//
+	// FlowIdentifier is a required field
+	FlowIdentifier *string `location:"uri" locationName:"flowIdentifier" type:"string" required:"true"`
+
+	// By default, this value is false and deletion is stopped if the resource is
+	// in use. If you set it to true, the resource will be deleted even if the resource
+	// is in use.
+	SkipResourceInUseCheck *bool `location:"querystring" locationName:"skipResourceInUseCheck" type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteFlowInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteFlowInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteFlowInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteFlowInput"}
+	if s.FlowIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("FlowIdentifier"))
+	}
+	if s.FlowIdentifier != nil && len(*s.FlowIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FlowIdentifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFlowIdentifier sets the FlowIdentifier field's value.
+func (s *DeleteFlowInput) SetFlowIdentifier(v string) *DeleteFlowInput {
+	s.FlowIdentifier = &v
+	return s
+}
+
+// SetSkipResourceInUseCheck sets the SkipResourceInUseCheck field's value.
+func (s *DeleteFlowInput) SetSkipResourceInUseCheck(v bool) *DeleteFlowInput {
+	s.SkipResourceInUseCheck = &v
+	return s
+}
+
+type DeleteFlowOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier of the flow.
+	//
+	// Id is a required field
+	Id *string `locationName:"id" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteFlowOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteFlowOutput) GoString() string {
+	return s.String()
+}
+
+// SetId sets the Id field's value.
+func (s *DeleteFlowOutput) SetId(v string) *DeleteFlowOutput {
+	s.Id = &v
+	return s
+}
+
+type DeleteFlowVersionInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The unique identifier of the flow whose version that you want to delete
+	//
+	// FlowIdentifier is a required field
+	FlowIdentifier *string `location:"uri" locationName:"flowIdentifier" type:"string" required:"true"`
+
+	// The version of the flow that you want to delete.
+	//
+	// FlowVersion is a required field
+	FlowVersion *string `location:"uri" locationName:"flowVersion" type:"string" required:"true"`
+
+	// By default, this value is false and deletion is stopped if the resource is
+	// in use. If you set it to true, the resource will be deleted even if the resource
+	// is in use.
+	SkipResourceInUseCheck *bool `location:"querystring" locationName:"skipResourceInUseCheck" type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteFlowVersionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteFlowVersionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteFlowVersionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteFlowVersionInput"}
+	if s.FlowIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("FlowIdentifier"))
+	}
+	if s.FlowIdentifier != nil && len(*s.FlowIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FlowIdentifier", 1))
+	}
+	if s.FlowVersion == nil {
+		invalidParams.Add(request.NewErrParamRequired("FlowVersion"))
+	}
+	if s.FlowVersion != nil && len(*s.FlowVersion) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FlowVersion", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFlowIdentifier sets the FlowIdentifier field's value.
+func (s *DeleteFlowVersionInput) SetFlowIdentifier(v string) *DeleteFlowVersionInput {
+	s.FlowIdentifier = &v
+	return s
+}
+
+// SetFlowVersion sets the FlowVersion field's value.
+func (s *DeleteFlowVersionInput) SetFlowVersion(v string) *DeleteFlowVersionInput {
+	s.FlowVersion = &v
+	return s
+}
+
+// SetSkipResourceInUseCheck sets the SkipResourceInUseCheck field's value.
+func (s *DeleteFlowVersionInput) SetSkipResourceInUseCheck(v bool) *DeleteFlowVersionInput {
+	s.SkipResourceInUseCheck = &v
+	return s
+}
+
+type DeleteFlowVersionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier of the flow.
+	//
+	// Id is a required field
+	Id *string `locationName:"id" type:"string" required:"true"`
+
+	// The version of the flow being deleted.
+	//
+	// Version is a required field
+	Version *string `locationName:"version" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteFlowVersionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteFlowVersionOutput) GoString() string {
+	return s.String()
+}
+
+// SetId sets the Id field's value.
+func (s *DeleteFlowVersionOutput) SetId(v string) *DeleteFlowVersionOutput {
+	s.Id = &v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *DeleteFlowVersionOutput) SetVersion(v string) *DeleteFlowVersionOutput {
+	s.Version = &v
+	return s
+}
+
 type DeleteKnowledgeBaseInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -8152,6 +12661,106 @@ func (s *DeleteKnowledgeBaseOutput) SetKnowledgeBaseId(v string) *DeleteKnowledg
 // SetStatus sets the Status field's value.
 func (s *DeleteKnowledgeBaseOutput) SetStatus(v string) *DeleteKnowledgeBaseOutput {
 	s.Status = &v
+	return s
+}
+
+type DeletePromptInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The unique identifier of the prompt.
+	//
+	// PromptIdentifier is a required field
+	PromptIdentifier *string `location:"uri" locationName:"promptIdentifier" type:"string" required:"true"`
+
+	// The version of the prompt to delete.
+	PromptVersion *string `location:"querystring" locationName:"promptVersion" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeletePromptInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeletePromptInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeletePromptInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeletePromptInput"}
+	if s.PromptIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("PromptIdentifier"))
+	}
+	if s.PromptIdentifier != nil && len(*s.PromptIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PromptIdentifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPromptIdentifier sets the PromptIdentifier field's value.
+func (s *DeletePromptInput) SetPromptIdentifier(v string) *DeletePromptInput {
+	s.PromptIdentifier = &v
+	return s
+}
+
+// SetPromptVersion sets the PromptVersion field's value.
+func (s *DeletePromptInput) SetPromptVersion(v string) *DeletePromptInput {
+	s.PromptVersion = &v
+	return s
+}
+
+type DeletePromptOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier of the prompt that was deleted.
+	//
+	// Id is a required field
+	Id *string `locationName:"id" type:"string" required:"true"`
+
+	// The version of the prompt that was deleted.
+	Version *string `locationName:"version" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeletePromptOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeletePromptOutput) GoString() string {
+	return s.String()
+}
+
+// SetId sets the Id field's value.
+func (s *DeletePromptOutput) SetId(v string) *DeletePromptOutput {
+	s.Id = &v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *DeletePromptOutput) SetVersion(v string) *DeletePromptOutput {
+	s.Version = &v
 	return s
 }
 
@@ -8358,6 +12967,1304 @@ func (s *FixedSizeChunkingConfiguration) SetMaxTokens(v int64) *FixedSizeChunkin
 // SetOverlapPercentage sets the OverlapPercentage field's value.
 func (s *FixedSizeChunkingConfiguration) SetOverlapPercentage(v int64) *FixedSizeChunkingConfiguration {
 	s.OverlapPercentage = &v
+	return s
+}
+
+// Contains information about a version that the alias maps to.
+type FlowAliasRoutingConfigurationListItem struct {
+	_ struct{} `type:"structure"`
+
+	// The version that the alias maps to.
+	FlowVersion *string `locationName:"flowVersion" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FlowAliasRoutingConfigurationListItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FlowAliasRoutingConfigurationListItem) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *FlowAliasRoutingConfigurationListItem) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "FlowAliasRoutingConfigurationListItem"}
+	if s.FlowVersion != nil && len(*s.FlowVersion) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FlowVersion", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFlowVersion sets the FlowVersion field's value.
+func (s *FlowAliasRoutingConfigurationListItem) SetFlowVersion(v string) *FlowAliasRoutingConfigurationListItem {
+	s.FlowVersion = &v
+	return s
+}
+
+// Contains information about an alias of a flow.
+//
+// This data type is used in the following API operations:
+//
+//   - ListFlowAliases response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_ListFlowAliases.html#API_agent_ListFlowAliases_ResponseSyntax)
+type FlowAliasSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the flow alias.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" type:"string" required:"true"`
+
+	// The time at which the alias was created.
+	//
+	// CreatedAt is a required field
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// A description of the alias.
+	Description *string `locationName:"description" min:"1" type:"string"`
+
+	// The unique identifier of the flow.
+	//
+	// FlowId is a required field
+	FlowId *string `locationName:"flowId" type:"string" required:"true"`
+
+	// The unique identifier of the alias of the flow.
+	//
+	// Id is a required field
+	Id *string `locationName:"id" type:"string" required:"true"`
+
+	// The name of the alias.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true"`
+
+	// A list of configurations about the versions that the alias maps to. Currently,
+	// you can only specify one.
+	//
+	// RoutingConfiguration is a required field
+	RoutingConfiguration []*FlowAliasRoutingConfigurationListItem `locationName:"routingConfiguration" min:"1" type:"list" required:"true"`
+
+	// The time at which the alias was last updated.
+	//
+	// UpdatedAt is a required field
+	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FlowAliasSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FlowAliasSummary) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *FlowAliasSummary) SetArn(v string) *FlowAliasSummary {
+	s.Arn = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *FlowAliasSummary) SetCreatedAt(v time.Time) *FlowAliasSummary {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *FlowAliasSummary) SetDescription(v string) *FlowAliasSummary {
+	s.Description = &v
+	return s
+}
+
+// SetFlowId sets the FlowId field's value.
+func (s *FlowAliasSummary) SetFlowId(v string) *FlowAliasSummary {
+	s.FlowId = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *FlowAliasSummary) SetId(v string) *FlowAliasSummary {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *FlowAliasSummary) SetName(v string) *FlowAliasSummary {
+	s.Name = &v
+	return s
+}
+
+// SetRoutingConfiguration sets the RoutingConfiguration field's value.
+func (s *FlowAliasSummary) SetRoutingConfiguration(v []*FlowAliasRoutingConfigurationListItem) *FlowAliasSummary {
+	s.RoutingConfiguration = v
+	return s
+}
+
+// SetUpdatedAt sets the UpdatedAt field's value.
+func (s *FlowAliasSummary) SetUpdatedAt(v time.Time) *FlowAliasSummary {
+	s.UpdatedAt = &v
+	return s
+}
+
+// Defines a condition in the condition node.
+type FlowCondition struct {
+	_ struct{} `type:"structure" sensitive:"true"`
+
+	// Defines the condition. You must refer to at least one of the inputs in the
+	// condition. For more information, expand the Condition node section in Node
+	// types in prompt flows (https://docs.aws.amazon.com/bedrock/latest/userguide/flows-how-it-works.html#flows-nodes).
+	//
+	// Expression is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by FlowCondition's
+	// String and GoString methods.
+	Expression *string `locationName:"expression" min:"1" type:"string" sensitive:"true"`
+
+	// A name for the condition that you can reference.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FlowCondition) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FlowCondition) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *FlowCondition) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "FlowCondition"}
+	if s.Expression != nil && len(*s.Expression) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Expression", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExpression sets the Expression field's value.
+func (s *FlowCondition) SetExpression(v string) *FlowCondition {
+	s.Expression = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *FlowCondition) SetName(v string) *FlowCondition {
+	s.Name = &v
+	return s
+}
+
+// The configuration of a connection between a condition node and another node.
+type FlowConditionalConnectionConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The condition that triggers this connection. For more information about how
+	// to write conditions, see the Condition node type in the Node types (https://docs.aws.amazon.com/bedrock/latest/userguide/node-types.html)
+	// topic in the Amazon Bedrock User Guide.
+	//
+	// Condition is a required field
+	Condition *string `locationName:"condition" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FlowConditionalConnectionConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FlowConditionalConnectionConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *FlowConditionalConnectionConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "FlowConditionalConnectionConfiguration"}
+	if s.Condition == nil {
+		invalidParams.Add(request.NewErrParamRequired("Condition"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCondition sets the Condition field's value.
+func (s *FlowConditionalConnectionConfiguration) SetCondition(v string) *FlowConditionalConnectionConfiguration {
+	s.Condition = &v
+	return s
+}
+
+// Contains information about a connection between two nodes in the flow.
+type FlowConnection struct {
+	_ struct{} `type:"structure"`
+
+	// The configuration of the connection.
+	Configuration *FlowConnectionConfiguration `locationName:"configuration" type:"structure"`
+
+	// A name for the connection that you can reference.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true"`
+
+	// The node that the connection starts at.
+	//
+	// Source is a required field
+	Source *string `locationName:"source" type:"string" required:"true"`
+
+	// The node that the connection ends at.
+	//
+	// Target is a required field
+	Target *string `locationName:"target" type:"string" required:"true"`
+
+	// Whether the source node that the connection begins from is a condition node
+	// (Conditional) or not (Data).
+	//
+	// Type is a required field
+	Type *string `locationName:"type" type:"string" required:"true" enum:"FlowConnectionType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FlowConnection) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FlowConnection) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *FlowConnection) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "FlowConnection"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Source == nil {
+		invalidParams.Add(request.NewErrParamRequired("Source"))
+	}
+	if s.Target == nil {
+		invalidParams.Add(request.NewErrParamRequired("Target"))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+	if s.Configuration != nil {
+		if err := s.Configuration.Validate(); err != nil {
+			invalidParams.AddNested("Configuration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConfiguration sets the Configuration field's value.
+func (s *FlowConnection) SetConfiguration(v *FlowConnectionConfiguration) *FlowConnection {
+	s.Configuration = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *FlowConnection) SetName(v string) *FlowConnection {
+	s.Name = &v
+	return s
+}
+
+// SetSource sets the Source field's value.
+func (s *FlowConnection) SetSource(v string) *FlowConnection {
+	s.Source = &v
+	return s
+}
+
+// SetTarget sets the Target field's value.
+func (s *FlowConnection) SetTarget(v string) *FlowConnection {
+	s.Target = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *FlowConnection) SetType(v string) *FlowConnection {
+	s.Type = &v
+	return s
+}
+
+// The configuration of the connection.
+type FlowConnectionConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The configuration of a connection originating from a Condition node.
+	Conditional *FlowConditionalConnectionConfiguration `locationName:"conditional" type:"structure"`
+
+	// The configuration of a connection originating from a node that isn't a Condition
+	// node.
+	Data *FlowDataConnectionConfiguration `locationName:"data" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FlowConnectionConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FlowConnectionConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *FlowConnectionConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "FlowConnectionConfiguration"}
+	if s.Conditional != nil {
+		if err := s.Conditional.Validate(); err != nil {
+			invalidParams.AddNested("Conditional", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Data != nil {
+		if err := s.Data.Validate(); err != nil {
+			invalidParams.AddNested("Data", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConditional sets the Conditional field's value.
+func (s *FlowConnectionConfiguration) SetConditional(v *FlowConditionalConnectionConfiguration) *FlowConnectionConfiguration {
+	s.Conditional = v
+	return s
+}
+
+// SetData sets the Data field's value.
+func (s *FlowConnectionConfiguration) SetData(v *FlowDataConnectionConfiguration) *FlowConnectionConfiguration {
+	s.Data = v
+	return s
+}
+
+// The configuration of a connection originating from a node that isn't a Condition
+// node.
+type FlowDataConnectionConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the output in the source node that the connection begins from.
+	//
+	// SourceOutput is a required field
+	SourceOutput *string `locationName:"sourceOutput" type:"string" required:"true"`
+
+	// The name of the input in the target node that the connection ends at.
+	//
+	// TargetInput is a required field
+	TargetInput *string `locationName:"targetInput" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FlowDataConnectionConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FlowDataConnectionConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *FlowDataConnectionConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "FlowDataConnectionConfiguration"}
+	if s.SourceOutput == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceOutput"))
+	}
+	if s.TargetInput == nil {
+		invalidParams.Add(request.NewErrParamRequired("TargetInput"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSourceOutput sets the SourceOutput field's value.
+func (s *FlowDataConnectionConfiguration) SetSourceOutput(v string) *FlowDataConnectionConfiguration {
+	s.SourceOutput = &v
+	return s
+}
+
+// SetTargetInput sets the TargetInput field's value.
+func (s *FlowDataConnectionConfiguration) SetTargetInput(v string) *FlowDataConnectionConfiguration {
+	s.TargetInput = &v
+	return s
+}
+
+// The definition of the nodes and connections between nodes in the flow.
+type FlowDefinition struct {
+	_ struct{} `type:"structure"`
+
+	// An array of connection definitions in the flow.
+	Connections []*FlowConnection `locationName:"connections" type:"list"`
+
+	// An array of node definitions in the flow.
+	//
+	// Nodes is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by FlowDefinition's
+	// String and GoString methods.
+	Nodes []*FlowNode `locationName:"nodes" type:"list" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FlowDefinition) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FlowDefinition) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *FlowDefinition) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "FlowDefinition"}
+	if s.Connections != nil {
+		for i, v := range s.Connections {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Connections", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Nodes != nil {
+		for i, v := range s.Nodes {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Nodes", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConnections sets the Connections field's value.
+func (s *FlowDefinition) SetConnections(v []*FlowConnection) *FlowDefinition {
+	s.Connections = v
+	return s
+}
+
+// SetNodes sets the Nodes field's value.
+func (s *FlowDefinition) SetNodes(v []*FlowNode) *FlowDefinition {
+	s.Nodes = v
+	return s
+}
+
+// Contains configurations about a node in the flow.
+type FlowNode struct {
+	_ struct{} `type:"structure"`
+
+	// Contains configurations for the node.
+	Configuration *FlowNodeConfiguration `locationName:"configuration" type:"structure"`
+
+	// An array of objects, each of which contains information about an input into
+	// the node.
+	Inputs []*FlowNodeInput_ `locationName:"inputs" type:"list"`
+
+	// A name for the node.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true"`
+
+	// A list of objects, each of which contains information about an output from
+	// the node.
+	Outputs []*FlowNodeOutput_ `locationName:"outputs" type:"list"`
+
+	// The type of node. This value must match the name of the key that you provide
+	// in the configuration you provide in the FlowNodeConfiguration field.
+	//
+	// Type is a required field
+	Type *string `locationName:"type" type:"string" required:"true" enum:"FlowNodeType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FlowNode) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FlowNode) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *FlowNode) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "FlowNode"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+	if s.Configuration != nil {
+		if err := s.Configuration.Validate(); err != nil {
+			invalidParams.AddNested("Configuration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Inputs != nil {
+		for i, v := range s.Inputs {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Inputs", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Outputs != nil {
+		for i, v := range s.Outputs {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Outputs", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConfiguration sets the Configuration field's value.
+func (s *FlowNode) SetConfiguration(v *FlowNodeConfiguration) *FlowNode {
+	s.Configuration = v
+	return s
+}
+
+// SetInputs sets the Inputs field's value.
+func (s *FlowNode) SetInputs(v []*FlowNodeInput_) *FlowNode {
+	s.Inputs = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *FlowNode) SetName(v string) *FlowNode {
+	s.Name = &v
+	return s
+}
+
+// SetOutputs sets the Outputs field's value.
+func (s *FlowNode) SetOutputs(v []*FlowNodeOutput_) *FlowNode {
+	s.Outputs = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *FlowNode) SetType(v string) *FlowNode {
+	s.Type = &v
+	return s
+}
+
+// Contains configurations for a node in your flow. For more information, see
+// Node types in Amazon Bedrock works (https://docs.aws.amazon.com/bedrock/latest/userguide/flows-nodes.html)
+// in the Amazon Bedrock User Guide.
+type FlowNodeConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Contains configurations for an agent node in your flow. Invokes an alias
+	// of an agent and returns the response.
+	Agent *AgentFlowNodeConfiguration `locationName:"agent" type:"structure"`
+
+	// Contains configurations for a collector node in your flow. Collects an iteration
+	// of inputs and consolidates them into an array of outputs.
+	Collector *CollectorFlowNodeConfiguration `locationName:"collector" type:"structure"`
+
+	// Contains configurations for a Condition node in your flow. Defines conditions
+	// that lead to different branches of the flow.
+	Condition *ConditionFlowNodeConfiguration `locationName:"condition" type:"structure"`
+
+	// Contains configurations for an input flow node in your flow. The first node
+	// in the flow. inputs can't be specified for this node.
+	Input *InputFlowNodeConfiguration `locationName:"input" type:"structure"`
+
+	// Contains configurations for an iterator node in your flow. Takes an input
+	// that is an array and iteratively sends each item of the array as an output
+	// to the following node. The size of the array is also returned in the output.
+	//
+	// The output flow node at the end of the flow iteration will return a response
+	// for each member of the array. To return only one response, you can include
+	// a collector node downstream from the iterator node.
+	Iterator *IteratorFlowNodeConfiguration `locationName:"iterator" type:"structure"`
+
+	// Contains configurations for a knowledge base node in your flow. Queries a
+	// knowledge base and returns the retrieved results or generated response.
+	KnowledgeBase *KnowledgeBaseFlowNodeConfiguration `locationName:"knowledgeBase" type:"structure"`
+
+	// Contains configurations for a Lambda function node in your flow. Invokes
+	// an Lambda function.
+	LambdaFunction *LambdaFunctionFlowNodeConfiguration `locationName:"lambdaFunction" type:"structure"`
+
+	// Contains configurations for a Lex node in your flow. Invokes an Amazon Lex
+	// bot to identify the intent of the input and return the intent as the output.
+	Lex *LexFlowNodeConfiguration `locationName:"lex" type:"structure"`
+
+	// Contains configurations for an output flow node in your flow. The last node
+	// in the flow. outputs can't be specified for this node.
+	Output *OutputFlowNodeConfiguration `locationName:"output" type:"structure"`
+
+	// Contains configurations for a prompt node in your flow. Runs a prompt and
+	// generates the model response as the output. You can use a prompt from Prompt
+	// management or you can configure one in this node.
+	Prompt *PromptFlowNodeConfiguration `locationName:"prompt" type:"structure"`
+
+	// Contains configurations for a Retrieval node in your flow. Retrieves data
+	// from an Amazon S3 location and returns it as the output.
+	Retrieval *RetrievalFlowNodeConfiguration `locationName:"retrieval" type:"structure"`
+
+	// Contains configurations for a Storage node in your flow. Stores an input
+	// in an Amazon S3 location.
+	Storage *StorageFlowNodeConfiguration `locationName:"storage" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FlowNodeConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FlowNodeConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *FlowNodeConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "FlowNodeConfiguration"}
+	if s.Agent != nil {
+		if err := s.Agent.Validate(); err != nil {
+			invalidParams.AddNested("Agent", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Condition != nil {
+		if err := s.Condition.Validate(); err != nil {
+			invalidParams.AddNested("Condition", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.KnowledgeBase != nil {
+		if err := s.KnowledgeBase.Validate(); err != nil {
+			invalidParams.AddNested("KnowledgeBase", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.LambdaFunction != nil {
+		if err := s.LambdaFunction.Validate(); err != nil {
+			invalidParams.AddNested("LambdaFunction", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Lex != nil {
+		if err := s.Lex.Validate(); err != nil {
+			invalidParams.AddNested("Lex", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Prompt != nil {
+		if err := s.Prompt.Validate(); err != nil {
+			invalidParams.AddNested("Prompt", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Retrieval != nil {
+		if err := s.Retrieval.Validate(); err != nil {
+			invalidParams.AddNested("Retrieval", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Storage != nil {
+		if err := s.Storage.Validate(); err != nil {
+			invalidParams.AddNested("Storage", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAgent sets the Agent field's value.
+func (s *FlowNodeConfiguration) SetAgent(v *AgentFlowNodeConfiguration) *FlowNodeConfiguration {
+	s.Agent = v
+	return s
+}
+
+// SetCollector sets the Collector field's value.
+func (s *FlowNodeConfiguration) SetCollector(v *CollectorFlowNodeConfiguration) *FlowNodeConfiguration {
+	s.Collector = v
+	return s
+}
+
+// SetCondition sets the Condition field's value.
+func (s *FlowNodeConfiguration) SetCondition(v *ConditionFlowNodeConfiguration) *FlowNodeConfiguration {
+	s.Condition = v
+	return s
+}
+
+// SetInput sets the Input field's value.
+func (s *FlowNodeConfiguration) SetInput(v *InputFlowNodeConfiguration) *FlowNodeConfiguration {
+	s.Input = v
+	return s
+}
+
+// SetIterator sets the Iterator field's value.
+func (s *FlowNodeConfiguration) SetIterator(v *IteratorFlowNodeConfiguration) *FlowNodeConfiguration {
+	s.Iterator = v
+	return s
+}
+
+// SetKnowledgeBase sets the KnowledgeBase field's value.
+func (s *FlowNodeConfiguration) SetKnowledgeBase(v *KnowledgeBaseFlowNodeConfiguration) *FlowNodeConfiguration {
+	s.KnowledgeBase = v
+	return s
+}
+
+// SetLambdaFunction sets the LambdaFunction field's value.
+func (s *FlowNodeConfiguration) SetLambdaFunction(v *LambdaFunctionFlowNodeConfiguration) *FlowNodeConfiguration {
+	s.LambdaFunction = v
+	return s
+}
+
+// SetLex sets the Lex field's value.
+func (s *FlowNodeConfiguration) SetLex(v *LexFlowNodeConfiguration) *FlowNodeConfiguration {
+	s.Lex = v
+	return s
+}
+
+// SetOutput sets the Output field's value.
+func (s *FlowNodeConfiguration) SetOutput(v *OutputFlowNodeConfiguration) *FlowNodeConfiguration {
+	s.Output = v
+	return s
+}
+
+// SetPrompt sets the Prompt field's value.
+func (s *FlowNodeConfiguration) SetPrompt(v *PromptFlowNodeConfiguration) *FlowNodeConfiguration {
+	s.Prompt = v
+	return s
+}
+
+// SetRetrieval sets the Retrieval field's value.
+func (s *FlowNodeConfiguration) SetRetrieval(v *RetrievalFlowNodeConfiguration) *FlowNodeConfiguration {
+	s.Retrieval = v
+	return s
+}
+
+// SetStorage sets the Storage field's value.
+func (s *FlowNodeConfiguration) SetStorage(v *StorageFlowNodeConfiguration) *FlowNodeConfiguration {
+	s.Storage = v
+	return s
+}
+
+// Contains configurations for an input to a node.
+type FlowNodeInput_ struct {
+	_ struct{} `type:"structure"`
+
+	// An expression that formats the input for the node. For an explanation of
+	// how to create expressions, see Expressions in Prompt flows in Amazon Bedrock
+	// (https://docs.aws.amazon.com/bedrock/latest/userguide/flows-expressions.html).
+	//
+	// Expression is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by FlowNodeInput_'s
+	// String and GoString methods.
+	//
+	// Expression is a required field
+	Expression *string `locationName:"expression" min:"1" type:"string" required:"true" sensitive:"true"`
+
+	// A name for the input that you can reference.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true"`
+
+	// The data type of the input. If the input doesn't match this type at runtime,
+	// a validation error will be thrown.
+	//
+	// Type is a required field
+	Type *string `locationName:"type" type:"string" required:"true" enum:"FlowNodeIODataType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FlowNodeInput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FlowNodeInput_) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *FlowNodeInput_) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "FlowNodeInput_"}
+	if s.Expression == nil {
+		invalidParams.Add(request.NewErrParamRequired("Expression"))
+	}
+	if s.Expression != nil && len(*s.Expression) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Expression", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExpression sets the Expression field's value.
+func (s *FlowNodeInput_) SetExpression(v string) *FlowNodeInput_ {
+	s.Expression = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *FlowNodeInput_) SetName(v string) *FlowNodeInput_ {
+	s.Name = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *FlowNodeInput_) SetType(v string) *FlowNodeInput_ {
+	s.Type = &v
+	return s
+}
+
+// Contains configurations for an output from a node.
+type FlowNodeOutput_ struct {
+	_ struct{} `type:"structure"`
+
+	// A name for the output that you can reference.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true"`
+
+	// The data type of the output. If the output doesn't match this type at runtime,
+	// a validation error will be thrown.
+	//
+	// Type is a required field
+	Type *string `locationName:"type" type:"string" required:"true" enum:"FlowNodeIODataType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FlowNodeOutput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FlowNodeOutput_) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *FlowNodeOutput_) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "FlowNodeOutput_"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *FlowNodeOutput_) SetName(v string) *FlowNodeOutput_ {
+	s.Name = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *FlowNodeOutput_) SetType(v string) *FlowNodeOutput_ {
+	s.Type = &v
+	return s
+}
+
+// Contains the definition of a flow.
+type FlowSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the flow.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" type:"string" required:"true"`
+
+	// The time at which the flow was created.
+	//
+	// CreatedAt is a required field
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// A description of the flow.
+	Description *string `locationName:"description" min:"1" type:"string"`
+
+	// The unique identifier of the flow.
+	//
+	// Id is a required field
+	Id *string `locationName:"id" type:"string" required:"true"`
+
+	// The name of the flow.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true"`
+
+	// The status of the flow. The following statuses are possible:
+	//
+	//    * NotPrepared – The flow has been created or updated, but hasn't been
+	//    prepared. If you just created the flow, you can't test it. If you updated
+	//    the flow, the DRAFT version won't contain the latest changes for testing.
+	//    Send a PrepareFlow (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_PrepareFlow.html)
+	//    request to package the latest changes into the DRAFT version.
+	//
+	//    * Preparing – The flow is being prepared so that the DRAFT version contains
+	//    the latest changes for testing.
+	//
+	//    * Prepared – The flow is prepared and the DRAFT version contains the
+	//    latest changes for testing.
+	//
+	//    * Failed – The last API operation that you invoked on the flow failed.
+	//    Send a GetFlow (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_GetFlow.html)
+	//    request and check the error message in the validations field.
+	//
+	// Status is a required field
+	Status *string `locationName:"status" type:"string" required:"true" enum:"FlowStatus"`
+
+	// The time at which the flow was last updated.
+	//
+	// UpdatedAt is a required field
+	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// The latest version of the flow.
+	//
+	// Version is a required field
+	Version *string `locationName:"version" min:"5" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FlowSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FlowSummary) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *FlowSummary) SetArn(v string) *FlowSummary {
+	s.Arn = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *FlowSummary) SetCreatedAt(v time.Time) *FlowSummary {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *FlowSummary) SetDescription(v string) *FlowSummary {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *FlowSummary) SetId(v string) *FlowSummary {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *FlowSummary) SetName(v string) *FlowSummary {
+	s.Name = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *FlowSummary) SetStatus(v string) *FlowSummary {
+	s.Status = &v
+	return s
+}
+
+// SetUpdatedAt sets the UpdatedAt field's value.
+func (s *FlowSummary) SetUpdatedAt(v time.Time) *FlowSummary {
+	s.UpdatedAt = &v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *FlowSummary) SetVersion(v string) *FlowSummary {
+	s.Version = &v
+	return s
+}
+
+// Contains information about validation of the flow.
+//
+// This data type is used in the following API operations:
+//
+//   - GetFlow response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_GetFlow.html#API_agent_GetFlow_ResponseSyntax)
+//
+//   - GetFlowVersion response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_GetFlowVersion.html#API_agent_GetFlowVersion_ResponseSyntax)
+type FlowValidation struct {
+	_ struct{} `type:"structure"`
+
+	// A message describing the validation error.
+	//
+	// Message is a required field
+	Message *string `locationName:"message" type:"string" required:"true"`
+
+	// The severity of the issue described in the message.
+	//
+	// Severity is a required field
+	Severity *string `locationName:"severity" type:"string" required:"true" enum:"FlowValidationSeverity"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FlowValidation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FlowValidation) GoString() string {
+	return s.String()
+}
+
+// SetMessage sets the Message field's value.
+func (s *FlowValidation) SetMessage(v string) *FlowValidation {
+	s.Message = &v
+	return s
+}
+
+// SetSeverity sets the Severity field's value.
+func (s *FlowValidation) SetSeverity(v string) *FlowValidation {
+	s.Severity = &v
+	return s
+}
+
+// Contains information about the flow version.
+//
+// This data type is used in the following API operations:
+//
+//   - ListFlowVersions response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_ListFlowVersions.html#API_agent_ListFlowVersions_ResponseSyntax)
+type FlowVersionSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the flow that the version belongs to.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" type:"string" required:"true"`
+
+	// The time at the flow version was created.
+	//
+	// CreatedAt is a required field
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// The unique identifier of the flow.
+	//
+	// Id is a required field
+	Id *string `locationName:"id" type:"string" required:"true"`
+
+	// The status of the flow.
+	//
+	// Status is a required field
+	Status *string `locationName:"status" type:"string" required:"true" enum:"FlowStatus"`
+
+	// The version of the flow.
+	//
+	// Version is a required field
+	Version *string `locationName:"version" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FlowVersionSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FlowVersionSummary) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *FlowVersionSummary) SetArn(v string) *FlowVersionSummary {
+	s.Arn = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *FlowVersionSummary) SetCreatedAt(v time.Time) *FlowVersionSummary {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *FlowVersionSummary) SetId(v string) *FlowVersionSummary {
+	s.Id = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *FlowVersionSummary) SetStatus(v string) *FlowVersionSummary {
+	s.Status = &v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *FlowVersionSummary) SetVersion(v string) *FlowVersionSummary {
+	s.Version = &v
 	return s
 }
 
@@ -9130,6 +15037,591 @@ func (s *GetDataSourceOutput) SetDataSource(v *DataSource) *GetDataSourceOutput 
 	return s
 }
 
+type GetFlowAliasInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The unique identifier of the alias for which to retrieve information.
+	//
+	// AliasIdentifier is a required field
+	AliasIdentifier *string `location:"uri" locationName:"aliasIdentifier" type:"string" required:"true"`
+
+	// The unique identifier of the flow that the alias belongs to.
+	//
+	// FlowIdentifier is a required field
+	FlowIdentifier *string `location:"uri" locationName:"flowIdentifier" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetFlowAliasInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetFlowAliasInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetFlowAliasInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetFlowAliasInput"}
+	if s.AliasIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("AliasIdentifier"))
+	}
+	if s.AliasIdentifier != nil && len(*s.AliasIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AliasIdentifier", 1))
+	}
+	if s.FlowIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("FlowIdentifier"))
+	}
+	if s.FlowIdentifier != nil && len(*s.FlowIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FlowIdentifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAliasIdentifier sets the AliasIdentifier field's value.
+func (s *GetFlowAliasInput) SetAliasIdentifier(v string) *GetFlowAliasInput {
+	s.AliasIdentifier = &v
+	return s
+}
+
+// SetFlowIdentifier sets the FlowIdentifier field's value.
+func (s *GetFlowAliasInput) SetFlowIdentifier(v string) *GetFlowAliasInput {
+	s.FlowIdentifier = &v
+	return s
+}
+
+type GetFlowAliasOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the flow.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" type:"string" required:"true"`
+
+	// The time at which the flow was created.
+	//
+	// CreatedAt is a required field
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// The description of the flow.
+	Description *string `locationName:"description" min:"1" type:"string"`
+
+	// The unique identifier of the flow that the alias belongs to.
+	//
+	// FlowId is a required field
+	FlowId *string `locationName:"flowId" type:"string" required:"true"`
+
+	// The unique identifier of the alias of the flow.
+	//
+	// Id is a required field
+	Id *string `locationName:"id" type:"string" required:"true"`
+
+	// The name of the flow alias.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true"`
+
+	// Contains information about the version that the alias is mapped to.
+	//
+	// RoutingConfiguration is a required field
+	RoutingConfiguration []*FlowAliasRoutingConfigurationListItem `locationName:"routingConfiguration" min:"1" type:"list" required:"true"`
+
+	// The time at which the flow alias was last updated.
+	//
+	// UpdatedAt is a required field
+	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetFlowAliasOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetFlowAliasOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *GetFlowAliasOutput) SetArn(v string) *GetFlowAliasOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *GetFlowAliasOutput) SetCreatedAt(v time.Time) *GetFlowAliasOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *GetFlowAliasOutput) SetDescription(v string) *GetFlowAliasOutput {
+	s.Description = &v
+	return s
+}
+
+// SetFlowId sets the FlowId field's value.
+func (s *GetFlowAliasOutput) SetFlowId(v string) *GetFlowAliasOutput {
+	s.FlowId = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *GetFlowAliasOutput) SetId(v string) *GetFlowAliasOutput {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *GetFlowAliasOutput) SetName(v string) *GetFlowAliasOutput {
+	s.Name = &v
+	return s
+}
+
+// SetRoutingConfiguration sets the RoutingConfiguration field's value.
+func (s *GetFlowAliasOutput) SetRoutingConfiguration(v []*FlowAliasRoutingConfigurationListItem) *GetFlowAliasOutput {
+	s.RoutingConfiguration = v
+	return s
+}
+
+// SetUpdatedAt sets the UpdatedAt field's value.
+func (s *GetFlowAliasOutput) SetUpdatedAt(v time.Time) *GetFlowAliasOutput {
+	s.UpdatedAt = &v
+	return s
+}
+
+type GetFlowInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The unique identifier of the flow.
+	//
+	// FlowIdentifier is a required field
+	FlowIdentifier *string `location:"uri" locationName:"flowIdentifier" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetFlowInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetFlowInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetFlowInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetFlowInput"}
+	if s.FlowIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("FlowIdentifier"))
+	}
+	if s.FlowIdentifier != nil && len(*s.FlowIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FlowIdentifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFlowIdentifier sets the FlowIdentifier field's value.
+func (s *GetFlowInput) SetFlowIdentifier(v string) *GetFlowInput {
+	s.FlowIdentifier = &v
+	return s
+}
+
+type GetFlowOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the flow.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" type:"string" required:"true"`
+
+	// The time at which the flow was created.
+	//
+	// CreatedAt is a required field
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the KMS key that the flow is encrypted
+	// with.
+	CustomerEncryptionKeyArn *string `locationName:"customerEncryptionKeyArn" min:"1" type:"string"`
+
+	// The definition of the nodes and connections between the nodes in the flow.
+	Definition *FlowDefinition `locationName:"definition" type:"structure"`
+
+	// The description of the flow.
+	Description *string `locationName:"description" min:"1" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the service role with permissions to create
+	// a flow. For more information, see Create a service row for flows (https://docs.aws.amazon.com/bedrock/latest/userguide/flows-permissions.html)
+	// in the Amazon Bedrock User Guide.
+	//
+	// ExecutionRoleArn is a required field
+	ExecutionRoleArn *string `locationName:"executionRoleArn" type:"string" required:"true"`
+
+	// The unique identifier of the flow.
+	//
+	// Id is a required field
+	Id *string `locationName:"id" type:"string" required:"true"`
+
+	// The name of the flow.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true"`
+
+	// The status of the flow. The following statuses are possible:
+	//
+	//    * NotPrepared – The flow has been created or updated, but hasn't been
+	//    prepared. If you just created the flow, you can't test it. If you updated
+	//    the flow, the DRAFT version won't contain the latest changes for testing.
+	//    Send a PrepareFlow (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_PrepareFlow.html)
+	//    request to package the latest changes into the DRAFT version.
+	//
+	//    * Preparing – The flow is being prepared so that the DRAFT version contains
+	//    the latest changes for testing.
+	//
+	//    * Prepared – The flow is prepared and the DRAFT version contains the
+	//    latest changes for testing.
+	//
+	//    * Failed – The last API operation that you invoked on the flow failed.
+	//    Send a GetFlow (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_GetFlow.html)
+	//    request and check the error message in the validations field.
+	//
+	// Status is a required field
+	Status *string `locationName:"status" type:"string" required:"true" enum:"FlowStatus"`
+
+	// The time at which the flow was last updated.
+	//
+	// UpdatedAt is a required field
+	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// A list of validation error messages related to the last failed operation
+	// on the flow.
+	Validations []*FlowValidation `locationName:"validations" type:"list"`
+
+	// The version of the flow for which information was retrieved.
+	//
+	// Version is a required field
+	Version *string `locationName:"version" min:"5" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetFlowOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetFlowOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *GetFlowOutput) SetArn(v string) *GetFlowOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *GetFlowOutput) SetCreatedAt(v time.Time) *GetFlowOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetCustomerEncryptionKeyArn sets the CustomerEncryptionKeyArn field's value.
+func (s *GetFlowOutput) SetCustomerEncryptionKeyArn(v string) *GetFlowOutput {
+	s.CustomerEncryptionKeyArn = &v
+	return s
+}
+
+// SetDefinition sets the Definition field's value.
+func (s *GetFlowOutput) SetDefinition(v *FlowDefinition) *GetFlowOutput {
+	s.Definition = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *GetFlowOutput) SetDescription(v string) *GetFlowOutput {
+	s.Description = &v
+	return s
+}
+
+// SetExecutionRoleArn sets the ExecutionRoleArn field's value.
+func (s *GetFlowOutput) SetExecutionRoleArn(v string) *GetFlowOutput {
+	s.ExecutionRoleArn = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *GetFlowOutput) SetId(v string) *GetFlowOutput {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *GetFlowOutput) SetName(v string) *GetFlowOutput {
+	s.Name = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *GetFlowOutput) SetStatus(v string) *GetFlowOutput {
+	s.Status = &v
+	return s
+}
+
+// SetUpdatedAt sets the UpdatedAt field's value.
+func (s *GetFlowOutput) SetUpdatedAt(v time.Time) *GetFlowOutput {
+	s.UpdatedAt = &v
+	return s
+}
+
+// SetValidations sets the Validations field's value.
+func (s *GetFlowOutput) SetValidations(v []*FlowValidation) *GetFlowOutput {
+	s.Validations = v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *GetFlowOutput) SetVersion(v string) *GetFlowOutput {
+	s.Version = &v
+	return s
+}
+
+type GetFlowVersionInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The unique identifier of the flow for which to get information.
+	//
+	// FlowIdentifier is a required field
+	FlowIdentifier *string `location:"uri" locationName:"flowIdentifier" type:"string" required:"true"`
+
+	// The version of the flow for which to get information.
+	//
+	// FlowVersion is a required field
+	FlowVersion *string `location:"uri" locationName:"flowVersion" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetFlowVersionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetFlowVersionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetFlowVersionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetFlowVersionInput"}
+	if s.FlowIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("FlowIdentifier"))
+	}
+	if s.FlowIdentifier != nil && len(*s.FlowIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FlowIdentifier", 1))
+	}
+	if s.FlowVersion == nil {
+		invalidParams.Add(request.NewErrParamRequired("FlowVersion"))
+	}
+	if s.FlowVersion != nil && len(*s.FlowVersion) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FlowVersion", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFlowIdentifier sets the FlowIdentifier field's value.
+func (s *GetFlowVersionInput) SetFlowIdentifier(v string) *GetFlowVersionInput {
+	s.FlowIdentifier = &v
+	return s
+}
+
+// SetFlowVersion sets the FlowVersion field's value.
+func (s *GetFlowVersionInput) SetFlowVersion(v string) *GetFlowVersionInput {
+	s.FlowVersion = &v
+	return s
+}
+
+type GetFlowVersionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the flow.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" type:"string" required:"true"`
+
+	// The time at which the flow was created.
+	//
+	// CreatedAt is a required field
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the KMS key that the version of the flow
+	// is encrypted with.
+	CustomerEncryptionKeyArn *string `locationName:"customerEncryptionKeyArn" min:"1" type:"string"`
+
+	// The definition of the nodes and connections between nodes in the flow.
+	Definition *FlowDefinition `locationName:"definition" type:"structure"`
+
+	// The description of the flow.
+	Description *string `locationName:"description" min:"1" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the service role with permissions to create
+	// a flow. For more information, see Create a service role for flows in Amazon
+	// Bedrock (https://docs.aws.amazon.com/bedrock/latest/userguide/flows-permissions.html)
+	// in the Amazon Bedrock User Guide.
+	//
+	// ExecutionRoleArn is a required field
+	ExecutionRoleArn *string `locationName:"executionRoleArn" type:"string" required:"true"`
+
+	// The unique identifier of the flow.
+	//
+	// Id is a required field
+	Id *string `locationName:"id" type:"string" required:"true"`
+
+	// The name of the flow version.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true"`
+
+	// The status of the flow.
+	//
+	// Status is a required field
+	Status *string `locationName:"status" type:"string" required:"true" enum:"FlowStatus"`
+
+	// The version of the flow for which information was retrieved.
+	//
+	// Version is a required field
+	Version *string `locationName:"version" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetFlowVersionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetFlowVersionOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *GetFlowVersionOutput) SetArn(v string) *GetFlowVersionOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *GetFlowVersionOutput) SetCreatedAt(v time.Time) *GetFlowVersionOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetCustomerEncryptionKeyArn sets the CustomerEncryptionKeyArn field's value.
+func (s *GetFlowVersionOutput) SetCustomerEncryptionKeyArn(v string) *GetFlowVersionOutput {
+	s.CustomerEncryptionKeyArn = &v
+	return s
+}
+
+// SetDefinition sets the Definition field's value.
+func (s *GetFlowVersionOutput) SetDefinition(v *FlowDefinition) *GetFlowVersionOutput {
+	s.Definition = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *GetFlowVersionOutput) SetDescription(v string) *GetFlowVersionOutput {
+	s.Description = &v
+	return s
+}
+
+// SetExecutionRoleArn sets the ExecutionRoleArn field's value.
+func (s *GetFlowVersionOutput) SetExecutionRoleArn(v string) *GetFlowVersionOutput {
+	s.ExecutionRoleArn = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *GetFlowVersionOutput) SetId(v string) *GetFlowVersionOutput {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *GetFlowVersionOutput) SetName(v string) *GetFlowVersionOutput {
+	s.Name = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *GetFlowVersionOutput) SetStatus(v string) *GetFlowVersionOutput {
+	s.Status = &v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *GetFlowVersionOutput) SetVersion(v string) *GetFlowVersionOutput {
+	s.Version = &v
+	return s
+}
+
 type GetIngestionJobInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -9328,14 +15820,206 @@ func (s *GetKnowledgeBaseOutput) SetKnowledgeBase(v *KnowledgeBase) *GetKnowledg
 	return s
 }
 
-// The details of the guardrails configuration.
+type GetPromptInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The unique identifier of the prompt.
+	//
+	// PromptIdentifier is a required field
+	PromptIdentifier *string `location:"uri" locationName:"promptIdentifier" type:"string" required:"true"`
+
+	// The version of the prompt about which you want to retrieve information.
+	PromptVersion *string `location:"querystring" locationName:"promptVersion" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetPromptInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetPromptInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetPromptInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetPromptInput"}
+	if s.PromptIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("PromptIdentifier"))
+	}
+	if s.PromptIdentifier != nil && len(*s.PromptIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PromptIdentifier", 1))
+	}
+	if s.PromptVersion != nil && len(*s.PromptVersion) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PromptVersion", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPromptIdentifier sets the PromptIdentifier field's value.
+func (s *GetPromptInput) SetPromptIdentifier(v string) *GetPromptInput {
+	s.PromptIdentifier = &v
+	return s
+}
+
+// SetPromptVersion sets the PromptVersion field's value.
+func (s *GetPromptInput) SetPromptVersion(v string) *GetPromptInput {
+	s.PromptVersion = &v
+	return s
+}
+
+type GetPromptOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the prompt.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" type:"string" required:"true"`
+
+	// The time at which the prompt was created.
+	//
+	// CreatedAt is a required field
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the KMS key that the prompt is encrypted
+	// with.
+	CustomerEncryptionKeyArn *string `locationName:"customerEncryptionKeyArn" min:"1" type:"string"`
+
+	// The name of the default variant for the prompt. This value must match the
+	// name field in the relevant PromptVariant (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_PromptVariant.html)
+	// object.
+	DefaultVariant *string `locationName:"defaultVariant" type:"string"`
+
+	// The descriptino of the prompt.
+	Description *string `locationName:"description" min:"1" type:"string"`
+
+	// The unique identifier of the prompt.
+	//
+	// Id is a required field
+	Id *string `locationName:"id" type:"string" required:"true"`
+
+	// The name of the prompt.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true"`
+
+	// The time at which the prompt was last updated.
+	//
+	// UpdatedAt is a required field
+	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// A list of objects, each containing details about a variant of the prompt.
+	//
+	// Variants is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GetPromptOutput's
+	// String and GoString methods.
+	Variants []*PromptVariant `locationName:"variants" type:"list" sensitive:"true"`
+
+	// The version of the prompt.
+	//
+	// Version is a required field
+	Version *string `locationName:"version" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetPromptOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetPromptOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *GetPromptOutput) SetArn(v string) *GetPromptOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *GetPromptOutput) SetCreatedAt(v time.Time) *GetPromptOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetCustomerEncryptionKeyArn sets the CustomerEncryptionKeyArn field's value.
+func (s *GetPromptOutput) SetCustomerEncryptionKeyArn(v string) *GetPromptOutput {
+	s.CustomerEncryptionKeyArn = &v
+	return s
+}
+
+// SetDefaultVariant sets the DefaultVariant field's value.
+func (s *GetPromptOutput) SetDefaultVariant(v string) *GetPromptOutput {
+	s.DefaultVariant = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *GetPromptOutput) SetDescription(v string) *GetPromptOutput {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *GetPromptOutput) SetId(v string) *GetPromptOutput {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *GetPromptOutput) SetName(v string) *GetPromptOutput {
+	s.Name = &v
+	return s
+}
+
+// SetUpdatedAt sets the UpdatedAt field's value.
+func (s *GetPromptOutput) SetUpdatedAt(v time.Time) *GetPromptOutput {
+	s.UpdatedAt = &v
+	return s
+}
+
+// SetVariants sets the Variants field's value.
+func (s *GetPromptOutput) SetVariants(v []*PromptVariant) *GetPromptOutput {
+	s.Variants = v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *GetPromptOutput) SetVersion(v string) *GetPromptOutput {
+	s.Version = &v
+	return s
+}
+
+// Details about the guardrail associated with an agent.
 type GuardrailConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The guardrails identifier assigned to the guardrails configuration.
+	// The unique identifier of the guardrail.
 	GuardrailIdentifier *string `locationName:"guardrailIdentifier" type:"string"`
 
-	// The guardrails version assigned to the guardrails configuration.
+	// The version of the guardrail.
 	GuardrailVersion *string `locationName:"guardrailVersion" type:"string"`
 }
 
@@ -9366,6 +16050,142 @@ func (s *GuardrailConfiguration) SetGuardrailIdentifier(v string) *GuardrailConf
 // SetGuardrailVersion sets the GuardrailVersion field's value.
 func (s *GuardrailConfiguration) SetGuardrailVersion(v string) *GuardrailConfiguration {
 	s.GuardrailVersion = &v
+	return s
+}
+
+// Settings for hierarchical document chunking for a data source. Hierarchical
+// chunking splits documents into layers of chunks where the first layer contains
+// large chunks, and the second layer contains smaller chunks derived from the
+// first layer.
+//
+// You configure the number of tokens to overlap, or repeat across adjacent
+// chunks. For example, if you set overlap tokens to 60, the last 60 tokens
+// in the first chunk are also included at the beginning of the second chunk.
+// For each layer, you must also configure the maximum number of tokens in a
+// chunk.
+type HierarchicalChunkingConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Token settings for each layer.
+	//
+	// LevelConfigurations is a required field
+	LevelConfigurations []*HierarchicalChunkingLevelConfiguration `locationName:"levelConfigurations" min:"2" type:"list" required:"true"`
+
+	// The number of tokens to repeat across chunks in the same layer.
+	//
+	// OverlapTokens is a required field
+	OverlapTokens *int64 `locationName:"overlapTokens" min:"1" type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s HierarchicalChunkingConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s HierarchicalChunkingConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *HierarchicalChunkingConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "HierarchicalChunkingConfiguration"}
+	if s.LevelConfigurations == nil {
+		invalidParams.Add(request.NewErrParamRequired("LevelConfigurations"))
+	}
+	if s.LevelConfigurations != nil && len(s.LevelConfigurations) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("LevelConfigurations", 2))
+	}
+	if s.OverlapTokens == nil {
+		invalidParams.Add(request.NewErrParamRequired("OverlapTokens"))
+	}
+	if s.OverlapTokens != nil && *s.OverlapTokens < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("OverlapTokens", 1))
+	}
+	if s.LevelConfigurations != nil {
+		for i, v := range s.LevelConfigurations {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "LevelConfigurations", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLevelConfigurations sets the LevelConfigurations field's value.
+func (s *HierarchicalChunkingConfiguration) SetLevelConfigurations(v []*HierarchicalChunkingLevelConfiguration) *HierarchicalChunkingConfiguration {
+	s.LevelConfigurations = v
+	return s
+}
+
+// SetOverlapTokens sets the OverlapTokens field's value.
+func (s *HierarchicalChunkingConfiguration) SetOverlapTokens(v int64) *HierarchicalChunkingConfiguration {
+	s.OverlapTokens = &v
+	return s
+}
+
+// Token settings for a layer in a hierarchical chunking configuration.
+type HierarchicalChunkingLevelConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of tokens that a chunk can contain in this layer.
+	//
+	// MaxTokens is a required field
+	MaxTokens *int64 `locationName:"maxTokens" min:"1" type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s HierarchicalChunkingLevelConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s HierarchicalChunkingLevelConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *HierarchicalChunkingLevelConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "HierarchicalChunkingLevelConfiguration"}
+	if s.MaxTokens == nil {
+		invalidParams.Add(request.NewErrParamRequired("MaxTokens"))
+	}
+	if s.MaxTokens != nil && *s.MaxTokens < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxTokens", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxTokens sets the MaxTokens field's value.
+func (s *HierarchicalChunkingLevelConfiguration) SetMaxTokens(v int64) *HierarchicalChunkingLevelConfiguration {
+	s.MaxTokens = &v
 	return s
 }
 
@@ -9911,6 +16731,84 @@ func (s *IngestionJobSummary) SetUpdatedAt(v time.Time) *IngestionJobSummary {
 	return s
 }
 
+// Contains configurations for the input flow node for a flow. This node takes
+// the input from flow invocation and passes it to the next node in the data
+// type that you specify.
+type InputFlowNodeConfiguration struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InputFlowNodeConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InputFlowNodeConfiguration) GoString() string {
+	return s.String()
+}
+
+// A location for storing content from data sources temporarily as it is processed
+// by custom components in the ingestion pipeline.
+type IntermediateStorage struct {
+	_ struct{} `type:"structure"`
+
+	// An S3 bucket path.
+	//
+	// S3Location is a required field
+	S3Location *S3Location `locationName:"s3Location" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IntermediateStorage) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IntermediateStorage) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *IntermediateStorage) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "IntermediateStorage"}
+	if s.S3Location == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3Location"))
+	}
+	if s.S3Location != nil {
+		if err := s.S3Location.Validate(); err != nil {
+			invalidParams.AddNested("S3Location", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetS3Location sets the S3Location field's value.
+func (s *IntermediateStorage) SetS3Location(v *S3Location) *IntermediateStorage {
+	s.S3Location = v
+	return s
+}
+
 // An internal server error occurred. Retry your request.
 type InternalServerException struct {
 	_            struct{}                  `type:"structure"`
@@ -9973,6 +16871,35 @@ func (s *InternalServerException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *InternalServerException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Contains configurations for an iterator node in a flow. Takes an input that
+// is an array and iteratively sends each item of the array as an output to
+// the following node. The size of the array is also returned in the output.
+//
+// The output flow node at the end of the flow iteration will return a response
+// for each member of the array. To return only one response, you can include
+// a collector node downstream from the iterator node.
+type IteratorFlowNodeConfiguration struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IteratorFlowNodeConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IteratorFlowNodeConfiguration) GoString() string {
+	return s.String()
 }
 
 // Contains information about a knowledge base.
@@ -10189,6 +17116,71 @@ func (s *KnowledgeBaseConfiguration) SetVectorKnowledgeBaseConfiguration(v *Vect
 	return s
 }
 
+// Contains configurations for a knowledge base node in a flow. This node takes
+// a query as the input and returns, as the output, the retrieved responses
+// directly (as an array) or a response generated based on the retrieved responses.
+// For more information, see Node types in Amazon Bedrock works (https://docs.aws.amazon.com/bedrock/latest/userguide/flows-nodes.html)
+// in the Amazon Bedrock User Guide.
+type KnowledgeBaseFlowNodeConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier of the knowledge base to query.
+	//
+	// KnowledgeBaseId is a required field
+	KnowledgeBaseId *string `locationName:"knowledgeBaseId" type:"string" required:"true"`
+
+	// The unique identifier of the model to use to generate a response from the
+	// query results. Omit this field if you want to return the retrieved results
+	// as an array.
+	ModelId *string `locationName:"modelId" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KnowledgeBaseFlowNodeConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KnowledgeBaseFlowNodeConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *KnowledgeBaseFlowNodeConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "KnowledgeBaseFlowNodeConfiguration"}
+	if s.KnowledgeBaseId == nil {
+		invalidParams.Add(request.NewErrParamRequired("KnowledgeBaseId"))
+	}
+	if s.ModelId != nil && len(*s.ModelId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ModelId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKnowledgeBaseId sets the KnowledgeBaseId field's value.
+func (s *KnowledgeBaseFlowNodeConfiguration) SetKnowledgeBaseId(v string) *KnowledgeBaseFlowNodeConfiguration {
+	s.KnowledgeBaseId = &v
+	return s
+}
+
+// SetModelId sets the ModelId field's value.
+func (s *KnowledgeBaseFlowNodeConfiguration) SetModelId(v string) *KnowledgeBaseFlowNodeConfiguration {
+	s.ModelId = &v
+	return s
+}
+
 // Contains details about a knowledge base.
 type KnowledgeBaseSummary struct {
 	_ struct{} `type:"structure"`
@@ -10262,6 +17254,125 @@ func (s *KnowledgeBaseSummary) SetStatus(v string) *KnowledgeBaseSummary {
 // SetUpdatedAt sets the UpdatedAt field's value.
 func (s *KnowledgeBaseSummary) SetUpdatedAt(v time.Time) *KnowledgeBaseSummary {
 	s.UpdatedAt = &v
+	return s
+}
+
+// Contains configurations for a Lambda function node in the flow. You specify
+// the Lambda function to invoke and the inputs into the function. The output
+// is the response that is defined in the Lambda function. For more information,
+// see Node types in Amazon Bedrock works (https://docs.aws.amazon.com/bedrock/latest/userguide/flows-nodes.html)
+// in the Amazon Bedrock User Guide.
+type LambdaFunctionFlowNodeConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the Lambda function to invoke.
+	//
+	// LambdaArn is a required field
+	LambdaArn *string `locationName:"lambdaArn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LambdaFunctionFlowNodeConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LambdaFunctionFlowNodeConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *LambdaFunctionFlowNodeConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LambdaFunctionFlowNodeConfiguration"}
+	if s.LambdaArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("LambdaArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLambdaArn sets the LambdaArn field's value.
+func (s *LambdaFunctionFlowNodeConfiguration) SetLambdaArn(v string) *LambdaFunctionFlowNodeConfiguration {
+	s.LambdaArn = &v
+	return s
+}
+
+// Contains configurations for a Lex node in the flow. You specify a Amazon
+// Lex bot to invoke. This node takes an utterance as the input and returns
+// as the output the intent identified by the Amazon Lex bot. For more information,
+// see Node types in Amazon Bedrock works (https://docs.aws.amazon.com/bedrock/latest/userguide/flows-nodes.html)
+// in the Amazon Bedrock User Guide.
+type LexFlowNodeConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the Amazon Lex bot alias to invoke.
+	//
+	// BotAliasArn is a required field
+	BotAliasArn *string `locationName:"botAliasArn" type:"string" required:"true"`
+
+	// The Region to invoke the Amazon Lex bot in.
+	//
+	// LocaleId is a required field
+	LocaleId *string `locationName:"localeId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LexFlowNodeConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LexFlowNodeConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *LexFlowNodeConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LexFlowNodeConfiguration"}
+	if s.BotAliasArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("BotAliasArn"))
+	}
+	if s.LocaleId == nil {
+		invalidParams.Add(request.NewErrParamRequired("LocaleId"))
+	}
+	if s.LocaleId != nil && len(*s.LocaleId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LocaleId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBotAliasArn sets the BotAliasArn field's value.
+func (s *LexFlowNodeConfiguration) SetBotAliasArn(v string) *LexFlowNodeConfiguration {
+	s.BotAliasArn = &v
+	return s
+}
+
+// SetLocaleId sets the LocaleId field's value.
+func (s *LexFlowNodeConfiguration) SetLocaleId(v string) *LexFlowNodeConfiguration {
+	s.LocaleId = &v
 	return s
 }
 
@@ -11020,6 +18131,355 @@ func (s *ListDataSourcesOutput) SetNextToken(v string) *ListDataSourcesOutput {
 	return s
 }
 
+type ListFlowAliasesInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The unique identifier of the flow for which aliases are being returned.
+	//
+	// FlowIdentifier is a required field
+	FlowIdentifier *string `location:"uri" locationName:"flowIdentifier" type:"string" required:"true"`
+
+	// The maximum number of results to return in the response. If the total number
+	// of results is greater than this value, use the token returned in the response
+	// in the nextToken field when making another request to return the next batch
+	// of results.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// If the total number of results is greater than the maxResults value provided
+	// in the request, enter the token returned in the nextToken field in the response
+	// in this field to return the next batch of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListFlowAliasesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListFlowAliasesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListFlowAliasesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListFlowAliasesInput"}
+	if s.FlowIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("FlowIdentifier"))
+	}
+	if s.FlowIdentifier != nil && len(*s.FlowIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FlowIdentifier", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFlowIdentifier sets the FlowIdentifier field's value.
+func (s *ListFlowAliasesInput) SetFlowIdentifier(v string) *ListFlowAliasesInput {
+	s.FlowIdentifier = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListFlowAliasesInput) SetMaxResults(v int64) *ListFlowAliasesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListFlowAliasesInput) SetNextToken(v string) *ListFlowAliasesInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListFlowAliasesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list, each member of which contains information about a flow alias.
+	//
+	// FlowAliasSummaries is a required field
+	FlowAliasSummaries []*FlowAliasSummary `locationName:"flowAliasSummaries" type:"list" required:"true"`
+
+	// If the total number of results is greater than the maxResults value provided
+	// in the request, use this token when making another request in the nextToken
+	// field to return the next batch of results.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListFlowAliasesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListFlowAliasesOutput) GoString() string {
+	return s.String()
+}
+
+// SetFlowAliasSummaries sets the FlowAliasSummaries field's value.
+func (s *ListFlowAliasesOutput) SetFlowAliasSummaries(v []*FlowAliasSummary) *ListFlowAliasesOutput {
+	s.FlowAliasSummaries = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListFlowAliasesOutput) SetNextToken(v string) *ListFlowAliasesOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListFlowVersionsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The unique identifier of the flow.
+	//
+	// FlowIdentifier is a required field
+	FlowIdentifier *string `location:"uri" locationName:"flowIdentifier" type:"string" required:"true"`
+
+	// The maximum number of results to return in the response. If the total number
+	// of results is greater than this value, use the token returned in the response
+	// in the nextToken field when making another request to return the next batch
+	// of results.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// If the total number of results is greater than the maxResults value provided
+	// in the request, enter the token returned in the nextToken field in the response
+	// in this field to return the next batch of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListFlowVersionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListFlowVersionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListFlowVersionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListFlowVersionsInput"}
+	if s.FlowIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("FlowIdentifier"))
+	}
+	if s.FlowIdentifier != nil && len(*s.FlowIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FlowIdentifier", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFlowIdentifier sets the FlowIdentifier field's value.
+func (s *ListFlowVersionsInput) SetFlowIdentifier(v string) *ListFlowVersionsInput {
+	s.FlowIdentifier = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListFlowVersionsInput) SetMaxResults(v int64) *ListFlowVersionsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListFlowVersionsInput) SetNextToken(v string) *ListFlowVersionsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListFlowVersionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list, each member of which contains information about a flow.
+	//
+	// FlowVersionSummaries is a required field
+	FlowVersionSummaries []*FlowVersionSummary `locationName:"flowVersionSummaries" type:"list" required:"true"`
+
+	// If the total number of results is greater than the maxResults value provided
+	// in the request, use this token when making another request in the nextToken
+	// field to return the next batch of results.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListFlowVersionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListFlowVersionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetFlowVersionSummaries sets the FlowVersionSummaries field's value.
+func (s *ListFlowVersionsOutput) SetFlowVersionSummaries(v []*FlowVersionSummary) *ListFlowVersionsOutput {
+	s.FlowVersionSummaries = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListFlowVersionsOutput) SetNextToken(v string) *ListFlowVersionsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListFlowsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The maximum number of results to return in the response. If the total number
+	// of results is greater than this value, use the token returned in the response
+	// in the nextToken field when making another request to return the next batch
+	// of results.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// If the total number of results is greater than the maxResults value provided
+	// in the request, enter the token returned in the nextToken field in the response
+	// in this field to return the next batch of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListFlowsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListFlowsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListFlowsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListFlowsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListFlowsInput) SetMaxResults(v int64) *ListFlowsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListFlowsInput) SetNextToken(v string) *ListFlowsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListFlowsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list, each member of which contains information about a flow.
+	//
+	// FlowSummaries is a required field
+	FlowSummaries []*FlowSummary `locationName:"flowSummaries" type:"list" required:"true"`
+
+	// If the total number of results is greater than the maxResults value provided
+	// in the request, use this token when making another request in the nextToken
+	// field to return the next batch of results.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListFlowsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListFlowsOutput) GoString() string {
+	return s.String()
+}
+
+// SetFlowSummaries sets the FlowSummaries field's value.
+func (s *ListFlowsOutput) SetFlowSummaries(v []*FlowSummary) *ListFlowsOutput {
+	s.FlowSummaries = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListFlowsOutput) SetNextToken(v string) *ListFlowsOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListIngestionJobsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11302,6 +18762,121 @@ func (s *ListKnowledgeBasesOutput) SetNextToken(v string) *ListKnowledgeBasesOut
 	return s
 }
 
+type ListPromptsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The maximum number of results to return in the response. If the total number
+	// of results is greater than this value, use the token returned in the response
+	// in the nextToken field when making another request to return the next batch
+	// of results.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// If the total number of results is greater than the maxResults value provided
+	// in the request, enter the token returned in the nextToken field in the response
+	// in this field to return the next batch of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
+
+	// The unique identifier of the prompt.
+	PromptIdentifier *string `location:"querystring" locationName:"promptIdentifier" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListPromptsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListPromptsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListPromptsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListPromptsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListPromptsInput) SetMaxResults(v int64) *ListPromptsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListPromptsInput) SetNextToken(v string) *ListPromptsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetPromptIdentifier sets the PromptIdentifier field's value.
+func (s *ListPromptsInput) SetPromptIdentifier(v string) *ListPromptsInput {
+	s.PromptIdentifier = &v
+	return s
+}
+
+type ListPromptsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// If the total number of results is greater than the maxResults value provided
+	// in the request, use this token when making another request in the nextToken
+	// field to return the next batch of results.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+
+	// A list, each member of which contains information about a prompt using Prompt
+	// management.
+	//
+	// PromptSummaries is a required field
+	PromptSummaries []*PromptSummary `locationName:"promptSummaries" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListPromptsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListPromptsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListPromptsOutput) SetNextToken(v string) *ListPromptsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetPromptSummaries sets the PromptSummaries field's value.
+func (s *ListPromptsOutput) SetPromptSummaries(v []*PromptSummary) *ListPromptsOutput {
+	s.PromptSummaries = v
+	return s
+}
+
 type ListTagsForResourceInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -11379,6 +18954,65 @@ func (s ListTagsForResourceOutput) GoString() string {
 // SetTags sets the Tags field's value.
 func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForResourceOutput {
 	s.Tags = v
+	return s
+}
+
+// Details of the memory configuration.
+type MemoryConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The type of memory that is stored.
+	//
+	// EnabledMemoryTypes is a required field
+	EnabledMemoryTypes []*string `locationName:"enabledMemoryTypes" min:"1" type:"list" required:"true" enum:"MemoryType"`
+
+	// The number of days the agent is configured to retain the conversational context.
+	StorageDays *int64 `locationName:"storageDays" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MemoryConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MemoryConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MemoryConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MemoryConfiguration"}
+	if s.EnabledMemoryTypes == nil {
+		invalidParams.Add(request.NewErrParamRequired("EnabledMemoryTypes"))
+	}
+	if s.EnabledMemoryTypes != nil && len(s.EnabledMemoryTypes) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EnabledMemoryTypes", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEnabledMemoryTypes sets the EnabledMemoryTypes field's value.
+func (s *MemoryConfiguration) SetEnabledMemoryTypes(v []*string) *MemoryConfiguration {
+	s.EnabledMemoryTypes = v
+	return s
+}
+
+// SetStorageDays sets the StorageDays field's value.
+func (s *MemoryConfiguration) SetStorageDays(v int64) *MemoryConfiguration {
+	s.StorageDays = &v
 	return s
 }
 
@@ -11761,6 +19395,31 @@ func (s *OpenSearchServerlessFieldMapping) SetVectorField(v string) *OpenSearchS
 	return s
 }
 
+// Contains configurations for an output flow node in the flow. You specify
+// the data type expected for the input into the node in the type field and
+// how to return the final output in the expression field.
+type OutputFlowNodeConfiguration struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OutputFlowNodeConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OutputFlowNodeConfiguration) GoString() string {
+	return s.String()
+}
+
 // Contains details about a parameter in a function for an action group.
 //
 // This data type is used in the following API operations:
@@ -11840,6 +19499,292 @@ func (s *ParameterDetail) SetRequired(v bool) *ParameterDetail {
 // SetType sets the Type field's value.
 func (s *ParameterDetail) SetType(v string) *ParameterDetail {
 	s.Type = &v
+	return s
+}
+
+// Settings for parsing document contents. By default, the service converts
+// the contents of each document into text before splitting it into chunks.
+// To improve processing of PDF files with tables and images, you can configure
+// the data source to convert the pages of text into images and use a model
+// to describe the contents of each page.
+//
+// To use a model to parse PDF documents, set the parsing strategy to BEDROCK_FOUNDATION_MODEL
+// and specify the model to use by ARN. You can also override the default parsing
+// prompt with instructions for how to interpret images and tables in your documents.
+// The following models are supported.
+//
+//   - Anthropic Claude 3 Sonnet - anthropic.claude-3-sonnet-20240229-v1:0
+//
+//   - Anthropic Claude 3 Haiku - anthropic.claude-3-haiku-20240307-v1:0
+//
+// You can get the ARN of a model with the action. Standard model usage charges
+// apply for the foundation model parsing strategy.
+type ParsingConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Settings for a foundation model used to parse documents for a data source.
+	BedrockFoundationModelConfiguration *BedrockFoundationModelConfiguration `locationName:"bedrockFoundationModelConfiguration" type:"structure"`
+
+	// The parsing strategy for the data source.
+	//
+	// ParsingStrategy is a required field
+	ParsingStrategy *string `locationName:"parsingStrategy" type:"string" required:"true" enum:"ParsingStrategy"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ParsingConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ParsingConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ParsingConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ParsingConfiguration"}
+	if s.ParsingStrategy == nil {
+		invalidParams.Add(request.NewErrParamRequired("ParsingStrategy"))
+	}
+	if s.BedrockFoundationModelConfiguration != nil {
+		if err := s.BedrockFoundationModelConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("BedrockFoundationModelConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBedrockFoundationModelConfiguration sets the BedrockFoundationModelConfiguration field's value.
+func (s *ParsingConfiguration) SetBedrockFoundationModelConfiguration(v *BedrockFoundationModelConfiguration) *ParsingConfiguration {
+	s.BedrockFoundationModelConfiguration = v
+	return s
+}
+
+// SetParsingStrategy sets the ParsingStrategy field's value.
+func (s *ParsingConfiguration) SetParsingStrategy(v string) *ParsingConfiguration {
+	s.ParsingStrategy = &v
+	return s
+}
+
+// Instructions for interpreting the contents of a document.
+type ParsingPrompt struct {
+	_ struct{} `type:"structure"`
+
+	// Instructions for interpreting the contents of a document.
+	//
+	// ParsingPromptText is a required field
+	ParsingPromptText *string `locationName:"parsingPromptText" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ParsingPrompt) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ParsingPrompt) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ParsingPrompt) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ParsingPrompt"}
+	if s.ParsingPromptText == nil {
+		invalidParams.Add(request.NewErrParamRequired("ParsingPromptText"))
+	}
+	if s.ParsingPromptText != nil && len(*s.ParsingPromptText) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ParsingPromptText", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetParsingPromptText sets the ParsingPromptText field's value.
+func (s *ParsingPrompt) SetParsingPromptText(v string) *ParsingPrompt {
+	s.ParsingPromptText = &v
+	return s
+}
+
+// The specific filters applied to your data source content. You can filter
+// out or include certain content.
+type PatternObjectFilter struct {
+	_ struct{} `type:"structure"`
+
+	// A list of one or more exclusion regular expression patterns to exclude certain
+	// object types that adhere to the pattern. If you specify an inclusion and
+	// exclusion filter/pattern and both match a document, the exclusion filter
+	// takes precedence and the document isn’t crawled.
+	//
+	// ExclusionFilters is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by PatternObjectFilter's
+	// String and GoString methods.
+	ExclusionFilters []*string `locationName:"exclusionFilters" min:"1" type:"list" sensitive:"true"`
+
+	// A list of one or more inclusion regular expression patterns to include certain
+	// object types that adhere to the pattern. If you specify an inclusion and
+	// exclusion filter/pattern and both match a document, the exclusion filter
+	// takes precedence and the document isn’t crawled.
+	//
+	// InclusionFilters is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by PatternObjectFilter's
+	// String and GoString methods.
+	InclusionFilters []*string `locationName:"inclusionFilters" min:"1" type:"list" sensitive:"true"`
+
+	// The supported object type or content type of the data source.
+	//
+	// ObjectType is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by PatternObjectFilter's
+	// String and GoString methods.
+	//
+	// ObjectType is a required field
+	ObjectType *string `locationName:"objectType" min:"1" type:"string" required:"true" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PatternObjectFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PatternObjectFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PatternObjectFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PatternObjectFilter"}
+	if s.ExclusionFilters != nil && len(s.ExclusionFilters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ExclusionFilters", 1))
+	}
+	if s.InclusionFilters != nil && len(s.InclusionFilters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InclusionFilters", 1))
+	}
+	if s.ObjectType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ObjectType"))
+	}
+	if s.ObjectType != nil && len(*s.ObjectType) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ObjectType", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExclusionFilters sets the ExclusionFilters field's value.
+func (s *PatternObjectFilter) SetExclusionFilters(v []*string) *PatternObjectFilter {
+	s.ExclusionFilters = v
+	return s
+}
+
+// SetInclusionFilters sets the InclusionFilters field's value.
+func (s *PatternObjectFilter) SetInclusionFilters(v []*string) *PatternObjectFilter {
+	s.InclusionFilters = v
+	return s
+}
+
+// SetObjectType sets the ObjectType field's value.
+func (s *PatternObjectFilter) SetObjectType(v string) *PatternObjectFilter {
+	s.ObjectType = &v
+	return s
+}
+
+// The configuration of filtering certain objects or content types of the data
+// source.
+type PatternObjectFilterConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The configuration of specific filters applied to your data source content.
+	// You can filter out or include certain content.
+	//
+	// Filters is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by PatternObjectFilterConfiguration's
+	// String and GoString methods.
+	//
+	// Filters is a required field
+	Filters []*PatternObjectFilter `locationName:"filters" min:"1" type:"list" required:"true" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PatternObjectFilterConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PatternObjectFilterConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PatternObjectFilterConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PatternObjectFilterConfiguration"}
+	if s.Filters == nil {
+		invalidParams.Add(request.NewErrParamRequired("Filters"))
+	}
+	if s.Filters != nil && len(s.Filters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Filters", 1))
+	}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilters sets the Filters field's value.
+func (s *PatternObjectFilterConfiguration) SetFilters(v []*PatternObjectFilter) *PatternObjectFilterConfiguration {
+	s.Filters = v
 	return s
 }
 
@@ -12114,6 +20059,101 @@ func (s *PrepareAgentOutput) SetPreparedAt(v time.Time) *PrepareAgentOutput {
 	return s
 }
 
+type PrepareFlowInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The unique identifier of the flow.
+	//
+	// FlowIdentifier is a required field
+	FlowIdentifier *string `location:"uri" locationName:"flowIdentifier" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PrepareFlowInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PrepareFlowInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PrepareFlowInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PrepareFlowInput"}
+	if s.FlowIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("FlowIdentifier"))
+	}
+	if s.FlowIdentifier != nil && len(*s.FlowIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FlowIdentifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFlowIdentifier sets the FlowIdentifier field's value.
+func (s *PrepareFlowInput) SetFlowIdentifier(v string) *PrepareFlowInput {
+	s.FlowIdentifier = &v
+	return s
+}
+
+type PrepareFlowOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier of the flow.
+	//
+	// Id is a required field
+	Id *string `locationName:"id" type:"string" required:"true"`
+
+	// The status of the flow. When you submit this request, the status will be
+	// NotPrepared. If preparation succeeds, the status becomes Prepared. If it
+	// fails, the status becomes FAILED.
+	//
+	// Status is a required field
+	Status *string `locationName:"status" type:"string" required:"true" enum:"FlowStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PrepareFlowOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PrepareFlowOutput) GoString() string {
+	return s.String()
+}
+
+// SetId sets the Id field's value.
+func (s *PrepareFlowOutput) SetId(v string) *PrepareFlowOutput {
+	s.Id = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *PrepareFlowOutput) SetStatus(v string) *PrepareFlowOutput {
+	s.Status = &v
+	return s
+}
+
 // Contains configurations to override a prompt template in one part of an agent
 // sequence. For more information, see Advanced prompts (https://docs.aws.amazon.com/bedrock/latest/userguide/advanced-prompts.html).
 type PromptConfiguration struct {
@@ -12124,7 +20164,11 @@ type PromptConfiguration struct {
 	// the prompt. For more information, see Prompt template placeholder variables
 	// (https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-placeholders.html).
 	// For more information, see Configure the prompt templates (https://docs.aws.amazon.com/bedrock/latest/userguide/advanced-prompts-configure.html).
-	BasePromptTemplate *string `locationName:"basePromptTemplate" min:"1" type:"string"`
+	//
+	// BasePromptTemplate is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by PromptConfiguration's
+	// String and GoString methods.
+	BasePromptTemplate *string `locationName:"basePromptTemplate" min:"1" type:"string" sensitive:"true"`
 
 	// Contains inference parameters to use when the agent invokes a foundation
 	// model in the part of the agent sequence defined by the promptType. For more
@@ -12227,6 +20271,401 @@ func (s *PromptConfiguration) SetPromptType(v string) *PromptConfiguration {
 	return s
 }
 
+// Contains configurations for a prompt node in the flow. You can use a prompt
+// from Prompt management or you can define one in this node. If the prompt
+// contains variables, the inputs into this node will fill in the variables.
+// The output from this node is the response generated by the model. For more
+// information, see Node types in Amazon Bedrock works (https://docs.aws.amazon.com/bedrock/latest/userguide/flows-nodes.html)
+// in the Amazon Bedrock User Guide.
+type PromptFlowNodeConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies whether the prompt is from Prompt management or defined inline.
+	//
+	// SourceConfiguration is a required field
+	SourceConfiguration *PromptFlowNodeSourceConfiguration `locationName:"sourceConfiguration" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PromptFlowNodeConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PromptFlowNodeConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PromptFlowNodeConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PromptFlowNodeConfiguration"}
+	if s.SourceConfiguration == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceConfiguration"))
+	}
+	if s.SourceConfiguration != nil {
+		if err := s.SourceConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("SourceConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSourceConfiguration sets the SourceConfiguration field's value.
+func (s *PromptFlowNodeConfiguration) SetSourceConfiguration(v *PromptFlowNodeSourceConfiguration) *PromptFlowNodeConfiguration {
+	s.SourceConfiguration = v
+	return s
+}
+
+// Contains configurations for a prompt defined inline in the node.
+type PromptFlowNodeInlineConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Contains inference configurations for the prompt.
+	InferenceConfiguration *PromptInferenceConfiguration `locationName:"inferenceConfiguration" type:"structure"`
+
+	// The unique identifier of the model to run inference with.
+	//
+	// ModelId is a required field
+	ModelId *string `locationName:"modelId" min:"1" type:"string" required:"true"`
+
+	// Contains a prompt and variables in the prompt that can be replaced with values
+	// at runtime.
+	//
+	// TemplateConfiguration is a required field
+	TemplateConfiguration *PromptTemplateConfiguration `locationName:"templateConfiguration" type:"structure" required:"true"`
+
+	// The type of prompt template.
+	//
+	// TemplateType is a required field
+	TemplateType *string `locationName:"templateType" type:"string" required:"true" enum:"PromptTemplateType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PromptFlowNodeInlineConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PromptFlowNodeInlineConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PromptFlowNodeInlineConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PromptFlowNodeInlineConfiguration"}
+	if s.ModelId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ModelId"))
+	}
+	if s.ModelId != nil && len(*s.ModelId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ModelId", 1))
+	}
+	if s.TemplateConfiguration == nil {
+		invalidParams.Add(request.NewErrParamRequired("TemplateConfiguration"))
+	}
+	if s.TemplateType == nil {
+		invalidParams.Add(request.NewErrParamRequired("TemplateType"))
+	}
+	if s.TemplateConfiguration != nil {
+		if err := s.TemplateConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("TemplateConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInferenceConfiguration sets the InferenceConfiguration field's value.
+func (s *PromptFlowNodeInlineConfiguration) SetInferenceConfiguration(v *PromptInferenceConfiguration) *PromptFlowNodeInlineConfiguration {
+	s.InferenceConfiguration = v
+	return s
+}
+
+// SetModelId sets the ModelId field's value.
+func (s *PromptFlowNodeInlineConfiguration) SetModelId(v string) *PromptFlowNodeInlineConfiguration {
+	s.ModelId = &v
+	return s
+}
+
+// SetTemplateConfiguration sets the TemplateConfiguration field's value.
+func (s *PromptFlowNodeInlineConfiguration) SetTemplateConfiguration(v *PromptTemplateConfiguration) *PromptFlowNodeInlineConfiguration {
+	s.TemplateConfiguration = v
+	return s
+}
+
+// SetTemplateType sets the TemplateType field's value.
+func (s *PromptFlowNodeInlineConfiguration) SetTemplateType(v string) *PromptFlowNodeInlineConfiguration {
+	s.TemplateType = &v
+	return s
+}
+
+// Contains configurations for a prompt from Prompt management to use in a node.
+type PromptFlowNodeResourceConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the prompt from Prompt management.
+	//
+	// PromptArn is a required field
+	PromptArn *string `locationName:"promptArn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PromptFlowNodeResourceConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PromptFlowNodeResourceConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PromptFlowNodeResourceConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PromptFlowNodeResourceConfiguration"}
+	if s.PromptArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("PromptArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPromptArn sets the PromptArn field's value.
+func (s *PromptFlowNodeResourceConfiguration) SetPromptArn(v string) *PromptFlowNodeResourceConfiguration {
+	s.PromptArn = &v
+	return s
+}
+
+// Contains configurations for a prompt and whether it is from Prompt management
+// or defined inline.
+type PromptFlowNodeSourceConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Contains configurations for a prompt that is defined inline
+	Inline *PromptFlowNodeInlineConfiguration `locationName:"inline" type:"structure"`
+
+	// Contains configurations for a prompt from Prompt management.
+	Resource *PromptFlowNodeResourceConfiguration `locationName:"resource" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PromptFlowNodeSourceConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PromptFlowNodeSourceConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PromptFlowNodeSourceConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PromptFlowNodeSourceConfiguration"}
+	if s.Inline != nil {
+		if err := s.Inline.Validate(); err != nil {
+			invalidParams.AddNested("Inline", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Resource != nil {
+		if err := s.Resource.Validate(); err != nil {
+			invalidParams.AddNested("Resource", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInline sets the Inline field's value.
+func (s *PromptFlowNodeSourceConfiguration) SetInline(v *PromptFlowNodeInlineConfiguration) *PromptFlowNodeSourceConfiguration {
+	s.Inline = v
+	return s
+}
+
+// SetResource sets the Resource field's value.
+func (s *PromptFlowNodeSourceConfiguration) SetResource(v *PromptFlowNodeResourceConfiguration) *PromptFlowNodeSourceConfiguration {
+	s.Resource = v
+	return s
+}
+
+// Contains inference configurations for the prompt.
+type PromptInferenceConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Contains inference configurations for a text prompt.
+	Text *PromptModelInferenceConfiguration `locationName:"text" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PromptInferenceConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PromptInferenceConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetText sets the Text field's value.
+func (s *PromptInferenceConfiguration) SetText(v *PromptModelInferenceConfiguration) *PromptInferenceConfiguration {
+	s.Text = v
+	return s
+}
+
+// Contains information about a variable in the prompt.
+type PromptInputVariable struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the variable.
+	Name *string `locationName:"name" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PromptInputVariable) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PromptInputVariable) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *PromptInputVariable) SetName(v string) *PromptInputVariable {
+	s.Name = &v
+	return s
+}
+
+// Contains inference configurations related to model inference for a prompt.
+// For more information, see Inference parameters (https://docs.aws.amazon.com/bedrock/latest/userguide/inference-parameters.html).
+type PromptModelInferenceConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of tokens to return in the response.
+	MaxTokens *int64 `locationName:"maxTokens" type:"integer"`
+
+	// A list of strings that define sequences after which the model will stop generating.
+	StopSequences []*string `locationName:"stopSequences" type:"list"`
+
+	// Controls the randomness of the response. Choose a lower value for more predictable
+	// outputs and a higher value for more surprising outputs.
+	Temperature *float64 `locationName:"temperature" type:"float"`
+
+	// The number of most-likely candidates that the model considers for the next
+	// token during generation.
+	TopK *int64 `locationName:"topK" type:"integer"`
+
+	// The percentage of most-likely candidates that the model considers for the
+	// next token.
+	TopP *float64 `locationName:"topP" type:"float"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PromptModelInferenceConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PromptModelInferenceConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetMaxTokens sets the MaxTokens field's value.
+func (s *PromptModelInferenceConfiguration) SetMaxTokens(v int64) *PromptModelInferenceConfiguration {
+	s.MaxTokens = &v
+	return s
+}
+
+// SetStopSequences sets the StopSequences field's value.
+func (s *PromptModelInferenceConfiguration) SetStopSequences(v []*string) *PromptModelInferenceConfiguration {
+	s.StopSequences = v
+	return s
+}
+
+// SetTemperature sets the Temperature field's value.
+func (s *PromptModelInferenceConfiguration) SetTemperature(v float64) *PromptModelInferenceConfiguration {
+	s.Temperature = &v
+	return s
+}
+
+// SetTopK sets the TopK field's value.
+func (s *PromptModelInferenceConfiguration) SetTopK(v int64) *PromptModelInferenceConfiguration {
+	s.TopK = &v
+	return s
+}
+
+// SetTopP sets the TopP field's value.
+func (s *PromptModelInferenceConfiguration) SetTopP(v float64) *PromptModelInferenceConfiguration {
+	s.TopP = &v
+	return s
+}
+
 // Contains configurations to override prompts in different parts of an agent
 // sequence. For more information, see Advanced prompts (https://docs.aws.amazon.com/bedrock/latest/userguide/advanced-prompts.html).
 type PromptOverrideConfiguration struct {
@@ -12296,6 +20735,256 @@ func (s *PromptOverrideConfiguration) SetOverrideLambda(v string) *PromptOverrid
 // SetPromptConfigurations sets the PromptConfigurations field's value.
 func (s *PromptOverrideConfiguration) SetPromptConfigurations(v []*PromptConfiguration) *PromptOverrideConfiguration {
 	s.PromptConfigurations = v
+	return s
+}
+
+// Contains information about a prompt in your Prompt management tool.
+//
+// This data type is used in the following API operations:
+//
+//   - ListPrompts response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_ListPrompts.html#API_agent_ListPrompts_ResponseSyntax)
+type PromptSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the prompt.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" type:"string" required:"true"`
+
+	// The time at which the prompt was created.
+	//
+	// CreatedAt is a required field
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// The description of the prompt.
+	Description *string `locationName:"description" min:"1" type:"string"`
+
+	// The unique identifier of the prompt.
+	//
+	// Id is a required field
+	Id *string `locationName:"id" type:"string" required:"true"`
+
+	// The name of the prompt.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true"`
+
+	// The time at which the prompt was last updated.
+	//
+	// UpdatedAt is a required field
+	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// The version of the prompt that this summary applies to.
+	//
+	// Version is a required field
+	Version *string `locationName:"version" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PromptSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PromptSummary) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *PromptSummary) SetArn(v string) *PromptSummary {
+	s.Arn = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *PromptSummary) SetCreatedAt(v time.Time) *PromptSummary {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *PromptSummary) SetDescription(v string) *PromptSummary {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *PromptSummary) SetId(v string) *PromptSummary {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *PromptSummary) SetName(v string) *PromptSummary {
+	s.Name = &v
+	return s
+}
+
+// SetUpdatedAt sets the UpdatedAt field's value.
+func (s *PromptSummary) SetUpdatedAt(v time.Time) *PromptSummary {
+	s.UpdatedAt = &v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *PromptSummary) SetVersion(v string) *PromptSummary {
+	s.Version = &v
+	return s
+}
+
+// Contains the message for a prompt. For more information, see Prompt management
+// in Amazon Bedrock (https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-management.html).
+type PromptTemplateConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Contains configurations for the text in a message for a prompt.
+	//
+	// Text is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by PromptTemplateConfiguration's
+	// String and GoString methods.
+	Text *TextPromptTemplateConfiguration `locationName:"text" type:"structure" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PromptTemplateConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PromptTemplateConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PromptTemplateConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PromptTemplateConfiguration"}
+	if s.Text != nil {
+		if err := s.Text.Validate(); err != nil {
+			invalidParams.AddNested("Text", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetText sets the Text field's value.
+func (s *PromptTemplateConfiguration) SetText(v *TextPromptTemplateConfiguration) *PromptTemplateConfiguration {
+	s.Text = v
+	return s
+}
+
+// Contains details about a variant of the prompt.
+type PromptVariant struct {
+	_ struct{} `type:"structure" sensitive:"true"`
+
+	// Contains inference configurations for the prompt variant.
+	InferenceConfiguration *PromptInferenceConfiguration `locationName:"inferenceConfiguration" type:"structure"`
+
+	// The unique identifier of the model with which to run inference on the prompt.
+	ModelId *string `locationName:"modelId" min:"1" type:"string"`
+
+	// The name of the prompt variant.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true"`
+
+	// Contains configurations for the prompt template.
+	TemplateConfiguration *PromptTemplateConfiguration `locationName:"templateConfiguration" type:"structure"`
+
+	// The type of prompt template to use.
+	//
+	// TemplateType is a required field
+	TemplateType *string `locationName:"templateType" type:"string" required:"true" enum:"PromptTemplateType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PromptVariant) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PromptVariant) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PromptVariant) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PromptVariant"}
+	if s.ModelId != nil && len(*s.ModelId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ModelId", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.TemplateType == nil {
+		invalidParams.Add(request.NewErrParamRequired("TemplateType"))
+	}
+	if s.TemplateConfiguration != nil {
+		if err := s.TemplateConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("TemplateConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInferenceConfiguration sets the InferenceConfiguration field's value.
+func (s *PromptVariant) SetInferenceConfiguration(v *PromptInferenceConfiguration) *PromptVariant {
+	s.InferenceConfiguration = v
+	return s
+}
+
+// SetModelId sets the ModelId field's value.
+func (s *PromptVariant) SetModelId(v string) *PromptVariant {
+	s.ModelId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *PromptVariant) SetName(v string) *PromptVariant {
+	s.Name = &v
+	return s
+}
+
+// SetTemplateConfiguration sets the TemplateConfiguration field's value.
+func (s *PromptVariant) SetTemplateConfiguration(v *PromptTemplateConfiguration) *PromptVariant {
+	s.TemplateConfiguration = v
+	return s
+}
+
+// SetTemplateType sets the TemplateType field's value.
+func (s *PromptVariant) SetTemplateType(v string) *PromptVariant {
+	s.TemplateType = &v
 	return s
 }
 
@@ -12746,20 +21435,174 @@ func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Contains information about the S3 configuration of the data source.
+// Contains configurations for a Retrieval node in a flow. This node retrieves
+// data from the Amazon S3 location that you specify and returns it as the output.
+type RetrievalFlowNodeConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Contains configurations for the service to use for retrieving data to return
+	// as the output from the node.
+	//
+	// ServiceConfiguration is a required field
+	ServiceConfiguration *RetrievalFlowNodeServiceConfiguration `locationName:"serviceConfiguration" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RetrievalFlowNodeConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RetrievalFlowNodeConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RetrievalFlowNodeConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RetrievalFlowNodeConfiguration"}
+	if s.ServiceConfiguration == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServiceConfiguration"))
+	}
+	if s.ServiceConfiguration != nil {
+		if err := s.ServiceConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("ServiceConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetServiceConfiguration sets the ServiceConfiguration field's value.
+func (s *RetrievalFlowNodeConfiguration) SetServiceConfiguration(v *RetrievalFlowNodeServiceConfiguration) *RetrievalFlowNodeConfiguration {
+	s.ServiceConfiguration = v
+	return s
+}
+
+// Contains configurations for the Amazon S3 location from which to retrieve
+// data to return as the output from the node.
+type RetrievalFlowNodeS3Configuration struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the Amazon S3 bucket from which to retrieve data.
+	//
+	// BucketName is a required field
+	BucketName *string `locationName:"bucketName" min:"3" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RetrievalFlowNodeS3Configuration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RetrievalFlowNodeS3Configuration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RetrievalFlowNodeS3Configuration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RetrievalFlowNodeS3Configuration"}
+	if s.BucketName == nil {
+		invalidParams.Add(request.NewErrParamRequired("BucketName"))
+	}
+	if s.BucketName != nil && len(*s.BucketName) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("BucketName", 3))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBucketName sets the BucketName field's value.
+func (s *RetrievalFlowNodeS3Configuration) SetBucketName(v string) *RetrievalFlowNodeS3Configuration {
+	s.BucketName = &v
+	return s
+}
+
+// Contains configurations for the service to use for retrieving data to return
+// as the output from the node.
+type RetrievalFlowNodeServiceConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Contains configurations for the Amazon S3 location from which to retrieve
+	// data to return as the output from the node.
+	S3 *RetrievalFlowNodeS3Configuration `locationName:"s3" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RetrievalFlowNodeServiceConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RetrievalFlowNodeServiceConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RetrievalFlowNodeServiceConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RetrievalFlowNodeServiceConfiguration"}
+	if s.S3 != nil {
+		if err := s.S3.Validate(); err != nil {
+			invalidParams.AddNested("S3", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetS3 sets the S3 field's value.
+func (s *RetrievalFlowNodeServiceConfiguration) SetS3(v *RetrievalFlowNodeS3Configuration) *RetrievalFlowNodeServiceConfiguration {
+	s.S3 = v
+	return s
+}
+
+// The configuration information to connect to Amazon S3 as your data source.
 type S3DataSourceConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the bucket that contains the data source.
+	// The Amazon Resource Name (ARN) of the S3 bucket that contains your data.
 	//
 	// BucketArn is a required field
 	BucketArn *string `locationName:"bucketArn" min:"1" type:"string" required:"true"`
 
-	// The bucket account owner ID for the S3 bucket.
+	// The account ID for the owner of the S3 bucket.
 	BucketOwnerAccountId *string `locationName:"bucketOwnerAccountId" min:"12" type:"string"`
 
-	// A list of S3 prefixes that define the object containing the data sources.
-	// For more information, see Organizing objects using prefixes (https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-prefixes.html).
+	// A list of S3 prefixes to include certain files or content. For more information,
+	// see Organizing objects using prefixes (https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-prefixes.html).
 	InclusionPrefixes []*string `locationName:"inclusionPrefixes" min:"1" type:"list"`
 }
 
@@ -12821,14 +21664,14 @@ func (s *S3DataSourceConfiguration) SetInclusionPrefixes(v []*string) *S3DataSou
 	return s
 }
 
-// Contains information about the S3 object containing the resource.
+// The identifier information for an Amazon S3 bucket.
 type S3Identifier struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the S3 bucket.
 	S3BucketName *string `locationName:"s3BucketName" min:"3" type:"string"`
 
-	// The S3 object key containing the resource.
+	// The S3 object key for the S3 resource.
 	S3ObjectKey *string `locationName:"s3ObjectKey" min:"1" type:"string"`
 }
 
@@ -12875,6 +21718,381 @@ func (s *S3Identifier) SetS3BucketName(v string) *S3Identifier {
 // SetS3ObjectKey sets the S3ObjectKey field's value.
 func (s *S3Identifier) SetS3ObjectKey(v string) *S3Identifier {
 	s.S3ObjectKey = &v
+	return s
+}
+
+// An Amazon S3 location.
+type S3Location struct {
+	_ struct{} `type:"structure"`
+
+	// The location's URI. For example, s3://my-bucket/chunk-processor/.
+	//
+	// Uri is a required field
+	Uri *string `locationName:"uri" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3Location) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3Location) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *S3Location) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "S3Location"}
+	if s.Uri == nil {
+		invalidParams.Add(request.NewErrParamRequired("Uri"))
+	}
+	if s.Uri != nil && len(*s.Uri) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Uri", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetUri sets the Uri field's value.
+func (s *S3Location) SetUri(v string) *S3Location {
+	s.Uri = &v
+	return s
+}
+
+// The configuration of the Salesforce content. For example, configuring specific
+// types of Salesforce content.
+type SalesforceCrawlerConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The configuration of filtering the Salesforce content. For example, configuring
+	// regular expression patterns to include or exclude certain content.
+	FilterConfiguration *CrawlFilterConfiguration `locationName:"filterConfiguration" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SalesforceCrawlerConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SalesforceCrawlerConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SalesforceCrawlerConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SalesforceCrawlerConfiguration"}
+	if s.FilterConfiguration != nil {
+		if err := s.FilterConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("FilterConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilterConfiguration sets the FilterConfiguration field's value.
+func (s *SalesforceCrawlerConfiguration) SetFilterConfiguration(v *CrawlFilterConfiguration) *SalesforceCrawlerConfiguration {
+	s.FilterConfiguration = v
+	return s
+}
+
+// The configuration information to connect to Salesforce as your data source.
+type SalesforceDataSourceConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The configuration of the Salesforce content. For example, configuring specific
+	// types of Salesforce content.
+	CrawlerConfiguration *SalesforceCrawlerConfiguration `locationName:"crawlerConfiguration" type:"structure"`
+
+	// The endpoint information to connect to your Salesforce data source.
+	//
+	// SourceConfiguration is a required field
+	SourceConfiguration *SalesforceSourceConfiguration `locationName:"sourceConfiguration" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SalesforceDataSourceConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SalesforceDataSourceConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SalesforceDataSourceConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SalesforceDataSourceConfiguration"}
+	if s.SourceConfiguration == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceConfiguration"))
+	}
+	if s.CrawlerConfiguration != nil {
+		if err := s.CrawlerConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("CrawlerConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SourceConfiguration != nil {
+		if err := s.SourceConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("SourceConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCrawlerConfiguration sets the CrawlerConfiguration field's value.
+func (s *SalesforceDataSourceConfiguration) SetCrawlerConfiguration(v *SalesforceCrawlerConfiguration) *SalesforceDataSourceConfiguration {
+	s.CrawlerConfiguration = v
+	return s
+}
+
+// SetSourceConfiguration sets the SourceConfiguration field's value.
+func (s *SalesforceDataSourceConfiguration) SetSourceConfiguration(v *SalesforceSourceConfiguration) *SalesforceDataSourceConfiguration {
+	s.SourceConfiguration = v
+	return s
+}
+
+// The endpoint information to connect to your Salesforce data source.
+type SalesforceSourceConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The supported authentication type to authenticate and connect to your Salesforce
+	// instance.
+	//
+	// AuthType is a required field
+	AuthType *string `locationName:"authType" type:"string" required:"true" enum:"SalesforceAuthType"`
+
+	// The Amazon Resource Name of an Secrets Manager secret that stores your authentication
+	// credentials for your SharePoint site/sites. For more information on the key-value
+	// pairs that must be included in your secret, depending on your authentication
+	// type, see Salesforce connection configuration (https://docs.aws.amazon.com/bedrock/latest/userguide/salesforce-data-source-connector.html#configuration-salesforce-connector).
+	//
+	// CredentialsSecretArn is a required field
+	CredentialsSecretArn *string `locationName:"credentialsSecretArn" type:"string" required:"true"`
+
+	// The Salesforce host URL or instance URL.
+	//
+	// HostUrl is a required field
+	HostUrl *string `locationName:"hostUrl" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SalesforceSourceConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SalesforceSourceConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SalesforceSourceConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SalesforceSourceConfiguration"}
+	if s.AuthType == nil {
+		invalidParams.Add(request.NewErrParamRequired("AuthType"))
+	}
+	if s.CredentialsSecretArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("CredentialsSecretArn"))
+	}
+	if s.HostUrl == nil {
+		invalidParams.Add(request.NewErrParamRequired("HostUrl"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAuthType sets the AuthType field's value.
+func (s *SalesforceSourceConfiguration) SetAuthType(v string) *SalesforceSourceConfiguration {
+	s.AuthType = &v
+	return s
+}
+
+// SetCredentialsSecretArn sets the CredentialsSecretArn field's value.
+func (s *SalesforceSourceConfiguration) SetCredentialsSecretArn(v string) *SalesforceSourceConfiguration {
+	s.CredentialsSecretArn = &v
+	return s
+}
+
+// SetHostUrl sets the HostUrl field's value.
+func (s *SalesforceSourceConfiguration) SetHostUrl(v string) *SalesforceSourceConfiguration {
+	s.HostUrl = &v
+	return s
+}
+
+// The seed or starting point URL. You should be authorized to crawl the URL.
+type SeedUrl struct {
+	_ struct{} `type:"structure"`
+
+	// A seed or starting point URL.
+	Url *string `locationName:"url" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SeedUrl) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SeedUrl) GoString() string {
+	return s.String()
+}
+
+// SetUrl sets the Url field's value.
+func (s *SeedUrl) SetUrl(v string) *SeedUrl {
+	s.Url = &v
+	return s
+}
+
+// Settings for semantic document chunking for a data source. Semantic chunking
+// splits a document into into smaller documents based on groups of similar
+// content derived from the text with natural language processing.
+//
+// With semantic chunking, each sentence is compared to the next to determine
+// how similar they are. You specify a threshold in the form of a percentile,
+// where adjacent sentences that are less similar than that percentage of sentence
+// pairs are divided into separate chunks. For example, if you set the threshold
+// to 90, then the 10 percent of sentence pairs that are least similar are split.
+// So if you have 101 sentences, 100 sentence pairs are compared, and the 10
+// with the least similarity are split, creating 11 chunks. These chunks are
+// further split if they exceed the max token size.
+//
+// You must also specify a buffer size, which determines whether sentences are
+// compared in isolation, or within a moving context window that includes the
+// previous and following sentence. For example, if you set the buffer size
+// to 1, the embedding for sentence 10 is derived from sentences 9, 10, and
+// 11 combined.
+type SemanticChunkingConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The dissimilarity threshold for splitting chunks.
+	//
+	// BreakpointPercentileThreshold is a required field
+	BreakpointPercentileThreshold *int64 `locationName:"breakpointPercentileThreshold" min:"50" type:"integer" required:"true"`
+
+	// The buffer size.
+	//
+	// BufferSize is a required field
+	BufferSize *int64 `locationName:"bufferSize" type:"integer" required:"true"`
+
+	// The maximum number of tokens that a chunk can contain.
+	//
+	// MaxTokens is a required field
+	MaxTokens *int64 `locationName:"maxTokens" min:"1" type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SemanticChunkingConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SemanticChunkingConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SemanticChunkingConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SemanticChunkingConfiguration"}
+	if s.BreakpointPercentileThreshold == nil {
+		invalidParams.Add(request.NewErrParamRequired("BreakpointPercentileThreshold"))
+	}
+	if s.BreakpointPercentileThreshold != nil && *s.BreakpointPercentileThreshold < 50 {
+		invalidParams.Add(request.NewErrParamMinValue("BreakpointPercentileThreshold", 50))
+	}
+	if s.BufferSize == nil {
+		invalidParams.Add(request.NewErrParamRequired("BufferSize"))
+	}
+	if s.MaxTokens == nil {
+		invalidParams.Add(request.NewErrParamRequired("MaxTokens"))
+	}
+	if s.MaxTokens != nil && *s.MaxTokens < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxTokens", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBreakpointPercentileThreshold sets the BreakpointPercentileThreshold field's value.
+func (s *SemanticChunkingConfiguration) SetBreakpointPercentileThreshold(v int64) *SemanticChunkingConfiguration {
+	s.BreakpointPercentileThreshold = &v
+	return s
+}
+
+// SetBufferSize sets the BufferSize field's value.
+func (s *SemanticChunkingConfiguration) SetBufferSize(v int64) *SemanticChunkingConfiguration {
+	s.BufferSize = &v
+	return s
+}
+
+// SetMaxTokens sets the MaxTokens field's value.
+func (s *SemanticChunkingConfiguration) SetMaxTokens(v int64) *SemanticChunkingConfiguration {
+	s.MaxTokens = &v
 	return s
 }
 
@@ -12985,6 +22203,247 @@ func (s *ServiceQuotaExceededException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ServiceQuotaExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// The configuration of the SharePoint content. For example, configuring specific
+// types of SharePoint content.
+type SharePointCrawlerConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The configuration of filtering the SharePoint content. For example, configuring
+	// regular expression patterns to include or exclude certain content.
+	FilterConfiguration *CrawlFilterConfiguration `locationName:"filterConfiguration" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SharePointCrawlerConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SharePointCrawlerConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SharePointCrawlerConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SharePointCrawlerConfiguration"}
+	if s.FilterConfiguration != nil {
+		if err := s.FilterConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("FilterConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilterConfiguration sets the FilterConfiguration field's value.
+func (s *SharePointCrawlerConfiguration) SetFilterConfiguration(v *CrawlFilterConfiguration) *SharePointCrawlerConfiguration {
+	s.FilterConfiguration = v
+	return s
+}
+
+// The configuration information to connect to SharePoint as your data source.
+type SharePointDataSourceConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The configuration of the SharePoint content. For example, configuring specific
+	// types of SharePoint content.
+	CrawlerConfiguration *SharePointCrawlerConfiguration `locationName:"crawlerConfiguration" type:"structure"`
+
+	// The endpoint information to connect to your SharePoint data source.
+	//
+	// SourceConfiguration is a required field
+	SourceConfiguration *SharePointSourceConfiguration `locationName:"sourceConfiguration" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SharePointDataSourceConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SharePointDataSourceConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SharePointDataSourceConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SharePointDataSourceConfiguration"}
+	if s.SourceConfiguration == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceConfiguration"))
+	}
+	if s.CrawlerConfiguration != nil {
+		if err := s.CrawlerConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("CrawlerConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SourceConfiguration != nil {
+		if err := s.SourceConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("SourceConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCrawlerConfiguration sets the CrawlerConfiguration field's value.
+func (s *SharePointDataSourceConfiguration) SetCrawlerConfiguration(v *SharePointCrawlerConfiguration) *SharePointDataSourceConfiguration {
+	s.CrawlerConfiguration = v
+	return s
+}
+
+// SetSourceConfiguration sets the SourceConfiguration field's value.
+func (s *SharePointDataSourceConfiguration) SetSourceConfiguration(v *SharePointSourceConfiguration) *SharePointDataSourceConfiguration {
+	s.SourceConfiguration = v
+	return s
+}
+
+// The endpoint information to connect to your SharePoint data source.
+type SharePointSourceConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The supported authentication type to authenticate and connect to your SharePoint
+	// site/sites.
+	//
+	// AuthType is a required field
+	AuthType *string `locationName:"authType" type:"string" required:"true" enum:"SharePointAuthType"`
+
+	// The Amazon Resource Name of an Secrets Manager secret that stores your authentication
+	// credentials for your SharePoint site/sites. For more information on the key-value
+	// pairs that must be included in your secret, depending on your authentication
+	// type, see SharePoint connection configuration (https://docs.aws.amazon.com/bedrock/latest/userguide/sharepoint-data-source-connector.html#configuration-sharepoint-connector).
+	//
+	// CredentialsSecretArn is a required field
+	CredentialsSecretArn *string `locationName:"credentialsSecretArn" type:"string" required:"true"`
+
+	// The domain of your SharePoint instance or site URL/URLs.
+	//
+	// Domain is a required field
+	Domain *string `locationName:"domain" min:"1" type:"string" required:"true"`
+
+	// The supported host type, whether online/cloud or server/on-premises.
+	//
+	// HostType is a required field
+	HostType *string `locationName:"hostType" type:"string" required:"true" enum:"SharePointHostType"`
+
+	// A list of one or more SharePoint site URLs.
+	//
+	// SiteUrls is a required field
+	SiteUrls []*string `locationName:"siteUrls" min:"1" type:"list" required:"true"`
+
+	// The identifier of your Microsoft 365 tenant.
+	TenantId *string `locationName:"tenantId" min:"36" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SharePointSourceConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SharePointSourceConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SharePointSourceConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SharePointSourceConfiguration"}
+	if s.AuthType == nil {
+		invalidParams.Add(request.NewErrParamRequired("AuthType"))
+	}
+	if s.CredentialsSecretArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("CredentialsSecretArn"))
+	}
+	if s.Domain == nil {
+		invalidParams.Add(request.NewErrParamRequired("Domain"))
+	}
+	if s.Domain != nil && len(*s.Domain) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Domain", 1))
+	}
+	if s.HostType == nil {
+		invalidParams.Add(request.NewErrParamRequired("HostType"))
+	}
+	if s.SiteUrls == nil {
+		invalidParams.Add(request.NewErrParamRequired("SiteUrls"))
+	}
+	if s.SiteUrls != nil && len(s.SiteUrls) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SiteUrls", 1))
+	}
+	if s.TenantId != nil && len(*s.TenantId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("TenantId", 36))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAuthType sets the AuthType field's value.
+func (s *SharePointSourceConfiguration) SetAuthType(v string) *SharePointSourceConfiguration {
+	s.AuthType = &v
+	return s
+}
+
+// SetCredentialsSecretArn sets the CredentialsSecretArn field's value.
+func (s *SharePointSourceConfiguration) SetCredentialsSecretArn(v string) *SharePointSourceConfiguration {
+	s.CredentialsSecretArn = &v
+	return s
+}
+
+// SetDomain sets the Domain field's value.
+func (s *SharePointSourceConfiguration) SetDomain(v string) *SharePointSourceConfiguration {
+	s.Domain = &v
+	return s
+}
+
+// SetHostType sets the HostType field's value.
+func (s *SharePointSourceConfiguration) SetHostType(v string) *SharePointSourceConfiguration {
+	s.HostType = &v
+	return s
+}
+
+// SetSiteUrls sets the SiteUrls field's value.
+func (s *SharePointSourceConfiguration) SetSiteUrls(v []*string) *SharePointSourceConfiguration {
+	s.SiteUrls = v
+	return s
+}
+
+// SetTenantId sets the TenantId field's value.
+func (s *SharePointSourceConfiguration) SetTenantId(v string) *SharePointSourceConfiguration {
+	s.TenantId = &v
+	return s
 }
 
 type StartIngestionJobInput struct {
@@ -13234,6 +22693,160 @@ func (s *StorageConfiguration) SetType(v string) *StorageConfiguration {
 	return s
 }
 
+// Contains configurations for a Storage node in a flow. This node stores the
+// input in an Amazon S3 location that you specify.
+type StorageFlowNodeConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Contains configurations for the service to use for storing the input into
+	// the node.
+	//
+	// ServiceConfiguration is a required field
+	ServiceConfiguration *StorageFlowNodeServiceConfiguration `locationName:"serviceConfiguration" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StorageFlowNodeConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StorageFlowNodeConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StorageFlowNodeConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StorageFlowNodeConfiguration"}
+	if s.ServiceConfiguration == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServiceConfiguration"))
+	}
+	if s.ServiceConfiguration != nil {
+		if err := s.ServiceConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("ServiceConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetServiceConfiguration sets the ServiceConfiguration field's value.
+func (s *StorageFlowNodeConfiguration) SetServiceConfiguration(v *StorageFlowNodeServiceConfiguration) *StorageFlowNodeConfiguration {
+	s.ServiceConfiguration = v
+	return s
+}
+
+// Contains configurations for the Amazon S3 location in which to store the
+// input into the node.
+type StorageFlowNodeS3Configuration struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the Amazon S3 bucket in which to store the input into the node.
+	//
+	// BucketName is a required field
+	BucketName *string `locationName:"bucketName" min:"3" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StorageFlowNodeS3Configuration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StorageFlowNodeS3Configuration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StorageFlowNodeS3Configuration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StorageFlowNodeS3Configuration"}
+	if s.BucketName == nil {
+		invalidParams.Add(request.NewErrParamRequired("BucketName"))
+	}
+	if s.BucketName != nil && len(*s.BucketName) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("BucketName", 3))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBucketName sets the BucketName field's value.
+func (s *StorageFlowNodeS3Configuration) SetBucketName(v string) *StorageFlowNodeS3Configuration {
+	s.BucketName = &v
+	return s
+}
+
+// Contains configurations for the service to use for storing the input into
+// the node.
+type StorageFlowNodeServiceConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Contains configurations for the Amazon S3 location in which to store the
+	// input into the node.
+	S3 *StorageFlowNodeS3Configuration `locationName:"s3" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StorageFlowNodeServiceConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StorageFlowNodeServiceConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StorageFlowNodeServiceConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StorageFlowNodeServiceConfiguration"}
+	if s.S3 != nil {
+		if err := s.S3.Validate(); err != nil {
+			invalidParams.AddNested("S3", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetS3 sets the S3 field's value.
+func (s *StorageFlowNodeServiceConfiguration) SetS3(v *StorageFlowNodeS3Configuration) *StorageFlowNodeServiceConfiguration {
+	s.S3 = v
+	return s
+}
+
 type TagResourceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -13320,6 +22933,74 @@ func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
 
+// Contains configurations for a text prompt template. To include a variable,
+// enclose a word in double curly braces as in {{variable}}.
+type TextPromptTemplateConfiguration struct {
+	_ struct{} `type:"structure" sensitive:"true"`
+
+	// An array of the variables in the prompt template.
+	//
+	// InputVariables is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by TextPromptTemplateConfiguration's
+	// String and GoString methods.
+	InputVariables []*PromptInputVariable `locationName:"inputVariables" type:"list" sensitive:"true"`
+
+	// The message for the prompt.
+	//
+	// Text is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by TextPromptTemplateConfiguration's
+	// String and GoString methods.
+	//
+	// Text is a required field
+	Text *string `locationName:"text" min:"1" type:"string" required:"true" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TextPromptTemplateConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TextPromptTemplateConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TextPromptTemplateConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TextPromptTemplateConfiguration"}
+	if s.Text == nil {
+		invalidParams.Add(request.NewErrParamRequired("Text"))
+	}
+	if s.Text != nil && len(*s.Text) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Text", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInputVariables sets the InputVariables field's value.
+func (s *TextPromptTemplateConfiguration) SetInputVariables(v []*PromptInputVariable) *TextPromptTemplateConfiguration {
+	s.InputVariables = v
+	return s
+}
+
+// SetText sets the Text field's value.
+func (s *TextPromptTemplateConfiguration) SetText(v string) *TextPromptTemplateConfiguration {
+	s.Text = &v
+	return s
+}
+
 // The number of requests exceeds the limit. Resubmit your request later.
 type ThrottlingException struct {
 	_            struct{}                  `type:"structure"`
@@ -13382,6 +23063,173 @@ func (s *ThrottlingException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ThrottlingException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// A custom processing step for documents moving through a data source ingestion
+// pipeline. To process documents after they have been converted into chunks,
+// set the step to apply to POST_CHUNKING.
+type Transformation struct {
+	_ struct{} `type:"structure"`
+
+	// When the service applies the transformation.
+	//
+	// StepToApply is a required field
+	StepToApply *string `locationName:"stepToApply" type:"string" required:"true" enum:"StepType"`
+
+	// A Lambda function that processes documents.
+	//
+	// TransformationFunction is a required field
+	TransformationFunction *TransformationFunction `locationName:"transformationFunction" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Transformation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Transformation) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Transformation) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Transformation"}
+	if s.StepToApply == nil {
+		invalidParams.Add(request.NewErrParamRequired("StepToApply"))
+	}
+	if s.TransformationFunction == nil {
+		invalidParams.Add(request.NewErrParamRequired("TransformationFunction"))
+	}
+	if s.TransformationFunction != nil {
+		if err := s.TransformationFunction.Validate(); err != nil {
+			invalidParams.AddNested("TransformationFunction", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetStepToApply sets the StepToApply field's value.
+func (s *Transformation) SetStepToApply(v string) *Transformation {
+	s.StepToApply = &v
+	return s
+}
+
+// SetTransformationFunction sets the TransformationFunction field's value.
+func (s *Transformation) SetTransformationFunction(v *TransformationFunction) *Transformation {
+	s.TransformationFunction = v
+	return s
+}
+
+// A Lambda function that processes documents.
+type TransformationFunction struct {
+	_ struct{} `type:"structure"`
+
+	// The Lambda function.
+	//
+	// TransformationLambdaConfiguration is a required field
+	TransformationLambdaConfiguration *TransformationLambdaConfiguration `locationName:"transformationLambdaConfiguration" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TransformationFunction) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TransformationFunction) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TransformationFunction) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TransformationFunction"}
+	if s.TransformationLambdaConfiguration == nil {
+		invalidParams.Add(request.NewErrParamRequired("TransformationLambdaConfiguration"))
+	}
+	if s.TransformationLambdaConfiguration != nil {
+		if err := s.TransformationLambdaConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("TransformationLambdaConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetTransformationLambdaConfiguration sets the TransformationLambdaConfiguration field's value.
+func (s *TransformationFunction) SetTransformationLambdaConfiguration(v *TransformationLambdaConfiguration) *TransformationFunction {
+	s.TransformationLambdaConfiguration = v
+	return s
+}
+
+// A Lambda function that processes documents.
+type TransformationLambdaConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The function's ARN identifier.
+	//
+	// LambdaArn is a required field
+	LambdaArn *string `locationName:"lambdaArn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TransformationLambdaConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TransformationLambdaConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TransformationLambdaConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TransformationLambdaConfiguration"}
+	if s.LambdaArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("LambdaArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLambdaArn sets the LambdaArn field's value.
+func (s *TransformationLambdaConfiguration) SetLambdaArn(v string) *TransformationLambdaConfiguration {
+	s.LambdaArn = &v
+	return s
 }
 
 type UntagResourceInput struct {
@@ -13875,6 +23723,9 @@ type UpdateAgentInput struct {
 	// String and GoString methods.
 	Instruction *string `locationName:"instruction" min:"40" type:"string" sensitive:"true"`
 
+	// Specifies the new memory configuration for the agent.
+	MemoryConfiguration *MemoryConfiguration `locationName:"memoryConfiguration" type:"structure"`
+
 	// Contains configurations to override prompts in different parts of an agent
 	// sequence. For more information, see Advanced prompts (https://docs.aws.amazon.com/bedrock/latest/userguide/advanced-prompts.html).
 	//
@@ -13934,6 +23785,11 @@ func (s *UpdateAgentInput) Validate() error {
 	}
 	if s.Instruction != nil && len(*s.Instruction) < 40 {
 		invalidParams.Add(request.NewErrParamMinLen("Instruction", 40))
+	}
+	if s.MemoryConfiguration != nil {
+		if err := s.MemoryConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("MemoryConfiguration", err.(request.ErrInvalidParams))
+		}
 	}
 	if s.PromptOverrideConfiguration != nil {
 		if err := s.PromptOverrideConfiguration.Validate(); err != nil {
@@ -13998,6 +23854,12 @@ func (s *UpdateAgentInput) SetIdleSessionTTLInSeconds(v int64) *UpdateAgentInput
 // SetInstruction sets the Instruction field's value.
 func (s *UpdateAgentInput) SetInstruction(v string) *UpdateAgentInput {
 	s.Instruction = &v
+	return s
+}
+
+// SetMemoryConfiguration sets the MemoryConfiguration field's value.
+func (s *UpdateAgentInput) SetMemoryConfiguration(v *MemoryConfiguration) *UpdateAgentInput {
+	s.MemoryConfiguration = v
 	return s
 }
 
@@ -14186,10 +24048,10 @@ func (s *UpdateAgentOutput) SetAgent(v *Agent) *UpdateAgentOutput {
 type UpdateDataSourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The data deletion policy of the updated data source.
+	// The data deletion policy for the data source that you want to update.
 	DataDeletionPolicy *string `locationName:"dataDeletionPolicy" type:"string" enum:"DataDeletionPolicy"`
 
-	// Contains details about the storage configuration of the data source.
+	// The connection configuration for the data source that you want to update.
 	//
 	// DataSourceConfiguration is a required field
 	DataSourceConfiguration *DataSourceConfiguration `locationName:"dataSourceConfiguration" type:"structure" required:"true"`
@@ -14202,7 +24064,7 @@ type UpdateDataSourceInput struct {
 	// Specifies a new description for the data source.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
-	// The unique identifier of the knowledge base to which the data source belongs.
+	// The unique identifier of the knowledge base for the data source.
 	//
 	// KnowledgeBaseId is a required field
 	KnowledgeBaseId *string `location:"uri" locationName:"knowledgeBaseId" type:"string" required:"true"`
@@ -14361,6 +24223,494 @@ func (s UpdateDataSourceOutput) GoString() string {
 // SetDataSource sets the DataSource field's value.
 func (s *UpdateDataSourceOutput) SetDataSource(v *DataSource) *UpdateDataSourceOutput {
 	s.DataSource = v
+	return s
+}
+
+type UpdateFlowAliasInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier of the alias.
+	//
+	// AliasIdentifier is a required field
+	AliasIdentifier *string `location:"uri" locationName:"aliasIdentifier" type:"string" required:"true"`
+
+	// A description for the flow alias.
+	Description *string `locationName:"description" min:"1" type:"string"`
+
+	// The unique identifier of the flow.
+	//
+	// FlowIdentifier is a required field
+	FlowIdentifier *string `location:"uri" locationName:"flowIdentifier" type:"string" required:"true"`
+
+	// The name of the flow alias.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true"`
+
+	// Contains information about the version to which to map the alias.
+	//
+	// RoutingConfiguration is a required field
+	RoutingConfiguration []*FlowAliasRoutingConfigurationListItem `locationName:"routingConfiguration" min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateFlowAliasInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateFlowAliasInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateFlowAliasInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateFlowAliasInput"}
+	if s.AliasIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("AliasIdentifier"))
+	}
+	if s.AliasIdentifier != nil && len(*s.AliasIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AliasIdentifier", 1))
+	}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.FlowIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("FlowIdentifier"))
+	}
+	if s.FlowIdentifier != nil && len(*s.FlowIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FlowIdentifier", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.RoutingConfiguration == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoutingConfiguration"))
+	}
+	if s.RoutingConfiguration != nil && len(s.RoutingConfiguration) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RoutingConfiguration", 1))
+	}
+	if s.RoutingConfiguration != nil {
+		for i, v := range s.RoutingConfiguration {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "RoutingConfiguration", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAliasIdentifier sets the AliasIdentifier field's value.
+func (s *UpdateFlowAliasInput) SetAliasIdentifier(v string) *UpdateFlowAliasInput {
+	s.AliasIdentifier = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateFlowAliasInput) SetDescription(v string) *UpdateFlowAliasInput {
+	s.Description = &v
+	return s
+}
+
+// SetFlowIdentifier sets the FlowIdentifier field's value.
+func (s *UpdateFlowAliasInput) SetFlowIdentifier(v string) *UpdateFlowAliasInput {
+	s.FlowIdentifier = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateFlowAliasInput) SetName(v string) *UpdateFlowAliasInput {
+	s.Name = &v
+	return s
+}
+
+// SetRoutingConfiguration sets the RoutingConfiguration field's value.
+func (s *UpdateFlowAliasInput) SetRoutingConfiguration(v []*FlowAliasRoutingConfigurationListItem) *UpdateFlowAliasInput {
+	s.RoutingConfiguration = v
+	return s
+}
+
+type UpdateFlowAliasOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the flow.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" type:"string" required:"true"`
+
+	// The time at which the flow was created.
+	//
+	// CreatedAt is a required field
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// The description of the flow.
+	Description *string `locationName:"description" min:"1" type:"string"`
+
+	// The unique identifier of the flow.
+	//
+	// FlowId is a required field
+	FlowId *string `locationName:"flowId" type:"string" required:"true"`
+
+	// The unique identifier of the alias.
+	//
+	// Id is a required field
+	Id *string `locationName:"id" type:"string" required:"true"`
+
+	// The name of the flow alias.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true"`
+
+	// Contains information about the version that the alias is mapped to.
+	//
+	// RoutingConfiguration is a required field
+	RoutingConfiguration []*FlowAliasRoutingConfigurationListItem `locationName:"routingConfiguration" min:"1" type:"list" required:"true"`
+
+	// The time at which the flow alias was last updated.
+	//
+	// UpdatedAt is a required field
+	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateFlowAliasOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateFlowAliasOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *UpdateFlowAliasOutput) SetArn(v string) *UpdateFlowAliasOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *UpdateFlowAliasOutput) SetCreatedAt(v time.Time) *UpdateFlowAliasOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateFlowAliasOutput) SetDescription(v string) *UpdateFlowAliasOutput {
+	s.Description = &v
+	return s
+}
+
+// SetFlowId sets the FlowId field's value.
+func (s *UpdateFlowAliasOutput) SetFlowId(v string) *UpdateFlowAliasOutput {
+	s.FlowId = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *UpdateFlowAliasOutput) SetId(v string) *UpdateFlowAliasOutput {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateFlowAliasOutput) SetName(v string) *UpdateFlowAliasOutput {
+	s.Name = &v
+	return s
+}
+
+// SetRoutingConfiguration sets the RoutingConfiguration field's value.
+func (s *UpdateFlowAliasOutput) SetRoutingConfiguration(v []*FlowAliasRoutingConfigurationListItem) *UpdateFlowAliasOutput {
+	s.RoutingConfiguration = v
+	return s
+}
+
+// SetUpdatedAt sets the UpdatedAt field's value.
+func (s *UpdateFlowAliasOutput) SetUpdatedAt(v time.Time) *UpdateFlowAliasOutput {
+	s.UpdatedAt = &v
+	return s
+}
+
+type UpdateFlowInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the KMS key to encrypt the flow.
+	CustomerEncryptionKeyArn *string `locationName:"customerEncryptionKeyArn" min:"1" type:"string"`
+
+	// A definition of the nodes and the connections between the nodes in the flow.
+	Definition *FlowDefinition `locationName:"definition" type:"structure"`
+
+	// A description for the flow.
+	Description *string `locationName:"description" min:"1" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the service role with permissions to create
+	// and manage a flow. For more information, see Create a service role for flows
+	// in Amazon Bedrock (https://docs.aws.amazon.com/bedrock/latest/userguide/flows-permissions.html)
+	// in the Amazon Bedrock User Guide.
+	//
+	// ExecutionRoleArn is a required field
+	ExecutionRoleArn *string `locationName:"executionRoleArn" type:"string" required:"true"`
+
+	// The unique identifier of the flow.
+	//
+	// FlowIdentifier is a required field
+	FlowIdentifier *string `location:"uri" locationName:"flowIdentifier" type:"string" required:"true"`
+
+	// A name for the flow.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateFlowInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateFlowInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateFlowInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateFlowInput"}
+	if s.CustomerEncryptionKeyArn != nil && len(*s.CustomerEncryptionKeyArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CustomerEncryptionKeyArn", 1))
+	}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.ExecutionRoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ExecutionRoleArn"))
+	}
+	if s.FlowIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("FlowIdentifier"))
+	}
+	if s.FlowIdentifier != nil && len(*s.FlowIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FlowIdentifier", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Definition != nil {
+		if err := s.Definition.Validate(); err != nil {
+			invalidParams.AddNested("Definition", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCustomerEncryptionKeyArn sets the CustomerEncryptionKeyArn field's value.
+func (s *UpdateFlowInput) SetCustomerEncryptionKeyArn(v string) *UpdateFlowInput {
+	s.CustomerEncryptionKeyArn = &v
+	return s
+}
+
+// SetDefinition sets the Definition field's value.
+func (s *UpdateFlowInput) SetDefinition(v *FlowDefinition) *UpdateFlowInput {
+	s.Definition = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateFlowInput) SetDescription(v string) *UpdateFlowInput {
+	s.Description = &v
+	return s
+}
+
+// SetExecutionRoleArn sets the ExecutionRoleArn field's value.
+func (s *UpdateFlowInput) SetExecutionRoleArn(v string) *UpdateFlowInput {
+	s.ExecutionRoleArn = &v
+	return s
+}
+
+// SetFlowIdentifier sets the FlowIdentifier field's value.
+func (s *UpdateFlowInput) SetFlowIdentifier(v string) *UpdateFlowInput {
+	s.FlowIdentifier = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateFlowInput) SetName(v string) *UpdateFlowInput {
+	s.Name = &v
+	return s
+}
+
+type UpdateFlowOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the flow.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" type:"string" required:"true"`
+
+	// The time at which the flow was created.
+	//
+	// CreatedAt is a required field
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the KMS key that the flow was encrypted
+	// with.
+	CustomerEncryptionKeyArn *string `locationName:"customerEncryptionKeyArn" min:"1" type:"string"`
+
+	// A definition of the nodes and the connections between nodes in the flow.
+	Definition *FlowDefinition `locationName:"definition" type:"structure"`
+
+	// The description of the flow.
+	Description *string `locationName:"description" min:"1" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the service role with permissions to create
+	// a flow. For more information, see Create a service role for flows in Amazon
+	// Bedrock (https://docs.aws.amazon.com/bedrock/latest/userguide/flows-permissions.html)
+	// in the Amazon Bedrock User Guide.
+	//
+	// ExecutionRoleArn is a required field
+	ExecutionRoleArn *string `locationName:"executionRoleArn" type:"string" required:"true"`
+
+	// The unique identifier of the flow.
+	//
+	// Id is a required field
+	Id *string `locationName:"id" type:"string" required:"true"`
+
+	// The name of the flow.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true"`
+
+	// The status of the flow. When you submit this request, the status will be
+	// NotPrepared. If updating fails, the status becomes Failed.
+	//
+	// Status is a required field
+	Status *string `locationName:"status" type:"string" required:"true" enum:"FlowStatus"`
+
+	// The time at which the flow was last updated.
+	//
+	// UpdatedAt is a required field
+	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// The version of the flow. When you update a flow, the version updated is the
+	// DRAFT version.
+	//
+	// Version is a required field
+	Version *string `locationName:"version" min:"5" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateFlowOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateFlowOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *UpdateFlowOutput) SetArn(v string) *UpdateFlowOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *UpdateFlowOutput) SetCreatedAt(v time.Time) *UpdateFlowOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetCustomerEncryptionKeyArn sets the CustomerEncryptionKeyArn field's value.
+func (s *UpdateFlowOutput) SetCustomerEncryptionKeyArn(v string) *UpdateFlowOutput {
+	s.CustomerEncryptionKeyArn = &v
+	return s
+}
+
+// SetDefinition sets the Definition field's value.
+func (s *UpdateFlowOutput) SetDefinition(v *FlowDefinition) *UpdateFlowOutput {
+	s.Definition = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateFlowOutput) SetDescription(v string) *UpdateFlowOutput {
+	s.Description = &v
+	return s
+}
+
+// SetExecutionRoleArn sets the ExecutionRoleArn field's value.
+func (s *UpdateFlowOutput) SetExecutionRoleArn(v string) *UpdateFlowOutput {
+	s.ExecutionRoleArn = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *UpdateFlowOutput) SetId(v string) *UpdateFlowOutput {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateFlowOutput) SetName(v string) *UpdateFlowOutput {
+	s.Name = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *UpdateFlowOutput) SetStatus(v string) *UpdateFlowOutput {
+	s.Status = &v
+	return s
+}
+
+// SetUpdatedAt sets the UpdatedAt field's value.
+func (s *UpdateFlowOutput) SetUpdatedAt(v time.Time) *UpdateFlowOutput {
+	s.UpdatedAt = &v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *UpdateFlowOutput) SetVersion(v string) *UpdateFlowOutput {
+	s.Version = &v
 	return s
 }
 
@@ -14528,6 +24878,304 @@ func (s *UpdateKnowledgeBaseOutput) SetKnowledgeBase(v *KnowledgeBase) *UpdateKn
 	return s
 }
 
+type UpdatePromptInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the KMS key to encrypt the prompt.
+	CustomerEncryptionKeyArn *string `locationName:"customerEncryptionKeyArn" min:"1" type:"string"`
+
+	// The name of the default variant for the prompt. This value must match the
+	// name field in the relevant PromptVariant (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_PromptVariant.html)
+	// object.
+	DefaultVariant *string `locationName:"defaultVariant" type:"string"`
+
+	// A description for the prompt.
+	Description *string `locationName:"description" min:"1" type:"string"`
+
+	// A name for the prompt.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true"`
+
+	// The unique identifier of the prompt.
+	//
+	// PromptIdentifier is a required field
+	PromptIdentifier *string `location:"uri" locationName:"promptIdentifier" type:"string" required:"true"`
+
+	// A list of objects, each containing details about a variant of the prompt.
+	//
+	// Variants is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdatePromptInput's
+	// String and GoString methods.
+	Variants []*PromptVariant `locationName:"variants" type:"list" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdatePromptInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdatePromptInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdatePromptInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdatePromptInput"}
+	if s.CustomerEncryptionKeyArn != nil && len(*s.CustomerEncryptionKeyArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CustomerEncryptionKeyArn", 1))
+	}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.PromptIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("PromptIdentifier"))
+	}
+	if s.PromptIdentifier != nil && len(*s.PromptIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PromptIdentifier", 1))
+	}
+	if s.Variants != nil {
+		for i, v := range s.Variants {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Variants", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCustomerEncryptionKeyArn sets the CustomerEncryptionKeyArn field's value.
+func (s *UpdatePromptInput) SetCustomerEncryptionKeyArn(v string) *UpdatePromptInput {
+	s.CustomerEncryptionKeyArn = &v
+	return s
+}
+
+// SetDefaultVariant sets the DefaultVariant field's value.
+func (s *UpdatePromptInput) SetDefaultVariant(v string) *UpdatePromptInput {
+	s.DefaultVariant = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdatePromptInput) SetDescription(v string) *UpdatePromptInput {
+	s.Description = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdatePromptInput) SetName(v string) *UpdatePromptInput {
+	s.Name = &v
+	return s
+}
+
+// SetPromptIdentifier sets the PromptIdentifier field's value.
+func (s *UpdatePromptInput) SetPromptIdentifier(v string) *UpdatePromptInput {
+	s.PromptIdentifier = &v
+	return s
+}
+
+// SetVariants sets the Variants field's value.
+func (s *UpdatePromptInput) SetVariants(v []*PromptVariant) *UpdatePromptInput {
+	s.Variants = v
+	return s
+}
+
+type UpdatePromptOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the prompt.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" type:"string" required:"true"`
+
+	// The time at which the prompt was created.
+	//
+	// CreatedAt is a required field
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the KMS key to encrypt the prompt.
+	CustomerEncryptionKeyArn *string `locationName:"customerEncryptionKeyArn" min:"1" type:"string"`
+
+	// The name of the default variant for the prompt. This value must match the
+	// name field in the relevant PromptVariant (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_PromptVariant.html)
+	// object.
+	DefaultVariant *string `locationName:"defaultVariant" type:"string"`
+
+	// The description of the prompt.
+	Description *string `locationName:"description" min:"1" type:"string"`
+
+	// The unique identifier of the prompt.
+	//
+	// Id is a required field
+	Id *string `locationName:"id" type:"string" required:"true"`
+
+	// The name of the prompt.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true"`
+
+	// The time at which the prompt was last updated.
+	//
+	// UpdatedAt is a required field
+	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// A list of objects, each containing details about a variant of the prompt.
+	//
+	// Variants is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdatePromptOutput's
+	// String and GoString methods.
+	Variants []*PromptVariant `locationName:"variants" type:"list" sensitive:"true"`
+
+	// The version of the prompt. When you update a prompt, the version updated
+	// is the DRAFT version.
+	//
+	// Version is a required field
+	Version *string `locationName:"version" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdatePromptOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdatePromptOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *UpdatePromptOutput) SetArn(v string) *UpdatePromptOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *UpdatePromptOutput) SetCreatedAt(v time.Time) *UpdatePromptOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetCustomerEncryptionKeyArn sets the CustomerEncryptionKeyArn field's value.
+func (s *UpdatePromptOutput) SetCustomerEncryptionKeyArn(v string) *UpdatePromptOutput {
+	s.CustomerEncryptionKeyArn = &v
+	return s
+}
+
+// SetDefaultVariant sets the DefaultVariant field's value.
+func (s *UpdatePromptOutput) SetDefaultVariant(v string) *UpdatePromptOutput {
+	s.DefaultVariant = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdatePromptOutput) SetDescription(v string) *UpdatePromptOutput {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *UpdatePromptOutput) SetId(v string) *UpdatePromptOutput {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdatePromptOutput) SetName(v string) *UpdatePromptOutput {
+	s.Name = &v
+	return s
+}
+
+// SetUpdatedAt sets the UpdatedAt field's value.
+func (s *UpdatePromptOutput) SetUpdatedAt(v time.Time) *UpdatePromptOutput {
+	s.UpdatedAt = &v
+	return s
+}
+
+// SetVariants sets the Variants field's value.
+func (s *UpdatePromptOutput) SetVariants(v []*PromptVariant) *UpdatePromptOutput {
+	s.Variants = v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *UpdatePromptOutput) SetVersion(v string) *UpdatePromptOutput {
+	s.Version = &v
+	return s
+}
+
+// The configuration of web URLs that you want to crawl. You should be authorized
+// to crawl the URLs.
+type UrlConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// One or more seed or starting point URLs.
+	SeedUrls []*SeedUrl `locationName:"seedUrls" min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UrlConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UrlConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UrlConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UrlConfiguration"}
+	if s.SeedUrls != nil && len(s.SeedUrls) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SeedUrls", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSeedUrls sets the SeedUrls field's value.
+func (s *UrlConfiguration) SetSeedUrls(v []*SeedUrl) *UrlConfiguration {
+	s.SeedUrls = v
+	return s
+}
+
 // Input validation failed. Check your request parameters and retry the request.
 type ValidationException struct {
 	_            struct{}                  `type:"structure"`
@@ -14650,6 +25298,12 @@ type VectorIngestionConfiguration struct {
 	// to an excerpt from a data source that is returned when the knowledge base
 	// that it belongs to is queried.
 	ChunkingConfiguration *ChunkingConfiguration `locationName:"chunkingConfiguration" type:"structure"`
+
+	// A custom document transformer for parsed data source documents.
+	CustomTransformationConfiguration *CustomTransformationConfiguration `locationName:"customTransformationConfiguration" type:"structure"`
+
+	// A custom parser for data source documents.
+	ParsingConfiguration *ParsingConfiguration `locationName:"parsingConfiguration" type:"structure"`
 }
 
 // String returns the string representation.
@@ -14678,6 +25332,16 @@ func (s *VectorIngestionConfiguration) Validate() error {
 			invalidParams.AddNested("ChunkingConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.CustomTransformationConfiguration != nil {
+		if err := s.CustomTransformationConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("CustomTransformationConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ParsingConfiguration != nil {
+		if err := s.ParsingConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("ParsingConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -14688,6 +25352,18 @@ func (s *VectorIngestionConfiguration) Validate() error {
 // SetChunkingConfiguration sets the ChunkingConfiguration field's value.
 func (s *VectorIngestionConfiguration) SetChunkingConfiguration(v *ChunkingConfiguration) *VectorIngestionConfiguration {
 	s.ChunkingConfiguration = v
+	return s
+}
+
+// SetCustomTransformationConfiguration sets the CustomTransformationConfiguration field's value.
+func (s *VectorIngestionConfiguration) SetCustomTransformationConfiguration(v *CustomTransformationConfiguration) *VectorIngestionConfiguration {
+	s.CustomTransformationConfiguration = v
+	return s
+}
+
+// SetParsingConfiguration sets the ParsingConfiguration field's value.
+func (s *VectorIngestionConfiguration) SetParsingConfiguration(v *ParsingConfiguration) *VectorIngestionConfiguration {
+	s.ParsingConfiguration = v
 	return s
 }
 
@@ -14753,15 +25429,285 @@ func (s *VectorKnowledgeBaseConfiguration) SetEmbeddingModelConfiguration(v *Emb
 	return s
 }
 
+// The configuration of web URLs that you want to crawl. You should be authorized
+// to crawl the URLs.
+type WebCrawlerConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The configuration of crawl limits for the web URLs.
+	CrawlerLimits *WebCrawlerLimits `locationName:"crawlerLimits" type:"structure"`
+
+	// A list of one or more exclusion regular expression patterns to exclude certain
+	// URLs. If you specify an inclusion and exclusion filter/pattern and both match
+	// a URL, the exclusion filter takes precedence and the web content of the URL
+	// isn’t crawled.
+	//
+	// ExclusionFilters is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by WebCrawlerConfiguration's
+	// String and GoString methods.
+	ExclusionFilters []*string `locationName:"exclusionFilters" min:"1" type:"list" sensitive:"true"`
+
+	// A list of one or more inclusion regular expression patterns to include certain
+	// URLs. If you specify an inclusion and exclusion filter/pattern and both match
+	// a URL, the exclusion filter takes precedence and the web content of the URL
+	// isn’t crawled.
+	//
+	// InclusionFilters is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by WebCrawlerConfiguration's
+	// String and GoString methods.
+	InclusionFilters []*string `locationName:"inclusionFilters" min:"1" type:"list" sensitive:"true"`
+
+	// The scope of what is crawled for your URLs.
+	//
+	// You can choose to crawl only web pages that belong to the same host or primary
+	// domain. For example, only web pages that contain the seed URL "https://docs.aws.amazon.com/bedrock/latest/userguide/"
+	// and no other domains. You can choose to include sub domains in addition to
+	// the host or primary domain. For example, web pages that contain "aws.amazon.com"
+	// can also include sub domain "docs.aws.amazon.com".
+	Scope *string `locationName:"scope" type:"string" enum:"WebScopeType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WebCrawlerConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WebCrawlerConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *WebCrawlerConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "WebCrawlerConfiguration"}
+	if s.ExclusionFilters != nil && len(s.ExclusionFilters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ExclusionFilters", 1))
+	}
+	if s.InclusionFilters != nil && len(s.InclusionFilters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InclusionFilters", 1))
+	}
+	if s.CrawlerLimits != nil {
+		if err := s.CrawlerLimits.Validate(); err != nil {
+			invalidParams.AddNested("CrawlerLimits", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCrawlerLimits sets the CrawlerLimits field's value.
+func (s *WebCrawlerConfiguration) SetCrawlerLimits(v *WebCrawlerLimits) *WebCrawlerConfiguration {
+	s.CrawlerLimits = v
+	return s
+}
+
+// SetExclusionFilters sets the ExclusionFilters field's value.
+func (s *WebCrawlerConfiguration) SetExclusionFilters(v []*string) *WebCrawlerConfiguration {
+	s.ExclusionFilters = v
+	return s
+}
+
+// SetInclusionFilters sets the InclusionFilters field's value.
+func (s *WebCrawlerConfiguration) SetInclusionFilters(v []*string) *WebCrawlerConfiguration {
+	s.InclusionFilters = v
+	return s
+}
+
+// SetScope sets the Scope field's value.
+func (s *WebCrawlerConfiguration) SetScope(v string) *WebCrawlerConfiguration {
+	s.Scope = &v
+	return s
+}
+
+// The rate limits for the URLs that you want to crawl. You should be authorized
+// to crawl the URLs.
+type WebCrawlerLimits struct {
+	_ struct{} `type:"structure"`
+
+	// The max rate at which pages are crawled, up to 300 per minute per host.
+	RateLimit *int64 `locationName:"rateLimit" min:"1" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WebCrawlerLimits) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WebCrawlerLimits) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *WebCrawlerLimits) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "WebCrawlerLimits"}
+	if s.RateLimit != nil && *s.RateLimit < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("RateLimit", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRateLimit sets the RateLimit field's value.
+func (s *WebCrawlerLimits) SetRateLimit(v int64) *WebCrawlerLimits {
+	s.RateLimit = &v
+	return s
+}
+
+// The configuration details for the web data source.
+type WebDataSourceConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The Web Crawler configuration details for the web data source.
+	CrawlerConfiguration *WebCrawlerConfiguration `locationName:"crawlerConfiguration" type:"structure"`
+
+	// The source configuration details for the web data source.
+	//
+	// SourceConfiguration is a required field
+	SourceConfiguration *WebSourceConfiguration `locationName:"sourceConfiguration" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WebDataSourceConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WebDataSourceConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *WebDataSourceConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "WebDataSourceConfiguration"}
+	if s.SourceConfiguration == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceConfiguration"))
+	}
+	if s.CrawlerConfiguration != nil {
+		if err := s.CrawlerConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("CrawlerConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SourceConfiguration != nil {
+		if err := s.SourceConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("SourceConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCrawlerConfiguration sets the CrawlerConfiguration field's value.
+func (s *WebDataSourceConfiguration) SetCrawlerConfiguration(v *WebCrawlerConfiguration) *WebDataSourceConfiguration {
+	s.CrawlerConfiguration = v
+	return s
+}
+
+// SetSourceConfiguration sets the SourceConfiguration field's value.
+func (s *WebDataSourceConfiguration) SetSourceConfiguration(v *WebSourceConfiguration) *WebDataSourceConfiguration {
+	s.SourceConfiguration = v
+	return s
+}
+
+// The configuration of the URL/URLs for the web content that you want to crawl.
+// You should be authorized to crawl the URLs.
+type WebSourceConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The configuration of the URL/URLs.
+	//
+	// UrlConfiguration is a required field
+	UrlConfiguration *UrlConfiguration `locationName:"urlConfiguration" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WebSourceConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WebSourceConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *WebSourceConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "WebSourceConfiguration"}
+	if s.UrlConfiguration == nil {
+		invalidParams.Add(request.NewErrParamRequired("UrlConfiguration"))
+	}
+	if s.UrlConfiguration != nil {
+		if err := s.UrlConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("UrlConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetUrlConfiguration sets the UrlConfiguration field's value.
+func (s *WebSourceConfiguration) SetUrlConfiguration(v *UrlConfiguration) *WebSourceConfiguration {
+	s.UrlConfiguration = v
+	return s
+}
+
 const (
 	// ActionGroupSignatureAmazonUserInput is a ActionGroupSignature enum value
 	ActionGroupSignatureAmazonUserInput = "AMAZON.UserInput"
+
+	// ActionGroupSignatureAmazonCodeInterpreter is a ActionGroupSignature enum value
+	ActionGroupSignatureAmazonCodeInterpreter = "AMAZON.CodeInterpreter"
 )
 
 // ActionGroupSignature_Values returns all elements of the ActionGroupSignature enum
 func ActionGroupSignature_Values() []string {
 	return []string{
 		ActionGroupSignatureAmazonUserInput,
+		ActionGroupSignatureAmazonCodeInterpreter,
 	}
 }
 
@@ -14855,6 +25801,12 @@ const (
 
 	// ChunkingStrategyNone is a ChunkingStrategy enum value
 	ChunkingStrategyNone = "NONE"
+
+	// ChunkingStrategyHierarchical is a ChunkingStrategy enum value
+	ChunkingStrategyHierarchical = "HIERARCHICAL"
+
+	// ChunkingStrategySemantic is a ChunkingStrategy enum value
+	ChunkingStrategySemantic = "SEMANTIC"
 )
 
 // ChunkingStrategy_Values returns all elements of the ChunkingStrategy enum
@@ -14862,6 +25814,48 @@ func ChunkingStrategy_Values() []string {
 	return []string{
 		ChunkingStrategyFixedSize,
 		ChunkingStrategyNone,
+		ChunkingStrategyHierarchical,
+		ChunkingStrategySemantic,
+	}
+}
+
+const (
+	// ConfluenceAuthTypeBasic is a ConfluenceAuthType enum value
+	ConfluenceAuthTypeBasic = "BASIC"
+
+	// ConfluenceAuthTypeOauth2ClientCredentials is a ConfluenceAuthType enum value
+	ConfluenceAuthTypeOauth2ClientCredentials = "OAUTH2_CLIENT_CREDENTIALS"
+)
+
+// ConfluenceAuthType_Values returns all elements of the ConfluenceAuthType enum
+func ConfluenceAuthType_Values() []string {
+	return []string{
+		ConfluenceAuthTypeBasic,
+		ConfluenceAuthTypeOauth2ClientCredentials,
+	}
+}
+
+const (
+	// ConfluenceHostTypeSaas is a ConfluenceHostType enum value
+	ConfluenceHostTypeSaas = "SAAS"
+)
+
+// ConfluenceHostType_Values returns all elements of the ConfluenceHostType enum
+func ConfluenceHostType_Values() []string {
+	return []string{
+		ConfluenceHostTypeSaas,
+	}
+}
+
+const (
+	// CrawlFilterConfigurationTypePattern is a CrawlFilterConfigurationType enum value
+	CrawlFilterConfigurationTypePattern = "PATTERN"
+)
+
+// CrawlFilterConfigurationType_Values returns all elements of the CrawlFilterConfigurationType enum
+func CrawlFilterConfigurationType_Values() []string {
+	return []string{
+		CrawlFilterConfigurationTypePattern,
 	}
 }
 
@@ -14932,12 +25926,168 @@ func DataSourceStatus_Values() []string {
 const (
 	// DataSourceTypeS3 is a DataSourceType enum value
 	DataSourceTypeS3 = "S3"
+
+	// DataSourceTypeWeb is a DataSourceType enum value
+	DataSourceTypeWeb = "WEB"
+
+	// DataSourceTypeConfluence is a DataSourceType enum value
+	DataSourceTypeConfluence = "CONFLUENCE"
+
+	// DataSourceTypeSalesforce is a DataSourceType enum value
+	DataSourceTypeSalesforce = "SALESFORCE"
+
+	// DataSourceTypeSharepoint is a DataSourceType enum value
+	DataSourceTypeSharepoint = "SHAREPOINT"
 )
 
 // DataSourceType_Values returns all elements of the DataSourceType enum
 func DataSourceType_Values() []string {
 	return []string{
 		DataSourceTypeS3,
+		DataSourceTypeWeb,
+		DataSourceTypeConfluence,
+		DataSourceTypeSalesforce,
+		DataSourceTypeSharepoint,
+	}
+}
+
+const (
+	// FlowConnectionTypeData is a FlowConnectionType enum value
+	FlowConnectionTypeData = "Data"
+
+	// FlowConnectionTypeConditional is a FlowConnectionType enum value
+	FlowConnectionTypeConditional = "Conditional"
+)
+
+// FlowConnectionType_Values returns all elements of the FlowConnectionType enum
+func FlowConnectionType_Values() []string {
+	return []string{
+		FlowConnectionTypeData,
+		FlowConnectionTypeConditional,
+	}
+}
+
+const (
+	// FlowNodeIODataTypeString is a FlowNodeIODataType enum value
+	FlowNodeIODataTypeString = "String"
+
+	// FlowNodeIODataTypeNumber is a FlowNodeIODataType enum value
+	FlowNodeIODataTypeNumber = "Number"
+
+	// FlowNodeIODataTypeBoolean is a FlowNodeIODataType enum value
+	FlowNodeIODataTypeBoolean = "Boolean"
+
+	// FlowNodeIODataTypeObject is a FlowNodeIODataType enum value
+	FlowNodeIODataTypeObject = "Object"
+
+	// FlowNodeIODataTypeArray is a FlowNodeIODataType enum value
+	FlowNodeIODataTypeArray = "Array"
+)
+
+// FlowNodeIODataType_Values returns all elements of the FlowNodeIODataType enum
+func FlowNodeIODataType_Values() []string {
+	return []string{
+		FlowNodeIODataTypeString,
+		FlowNodeIODataTypeNumber,
+		FlowNodeIODataTypeBoolean,
+		FlowNodeIODataTypeObject,
+		FlowNodeIODataTypeArray,
+	}
+}
+
+const (
+	// FlowNodeTypeInput is a FlowNodeType enum value
+	FlowNodeTypeInput = "Input"
+
+	// FlowNodeTypeOutput is a FlowNodeType enum value
+	FlowNodeTypeOutput = "Output"
+
+	// FlowNodeTypeKnowledgeBase is a FlowNodeType enum value
+	FlowNodeTypeKnowledgeBase = "KnowledgeBase"
+
+	// FlowNodeTypeCondition is a FlowNodeType enum value
+	FlowNodeTypeCondition = "Condition"
+
+	// FlowNodeTypeLex is a FlowNodeType enum value
+	FlowNodeTypeLex = "Lex"
+
+	// FlowNodeTypePrompt is a FlowNodeType enum value
+	FlowNodeTypePrompt = "Prompt"
+
+	// FlowNodeTypeLambdaFunction is a FlowNodeType enum value
+	FlowNodeTypeLambdaFunction = "LambdaFunction"
+
+	// FlowNodeTypeStorage is a FlowNodeType enum value
+	FlowNodeTypeStorage = "Storage"
+
+	// FlowNodeTypeAgent is a FlowNodeType enum value
+	FlowNodeTypeAgent = "Agent"
+
+	// FlowNodeTypeRetrieval is a FlowNodeType enum value
+	FlowNodeTypeRetrieval = "Retrieval"
+
+	// FlowNodeTypeIterator is a FlowNodeType enum value
+	FlowNodeTypeIterator = "Iterator"
+
+	// FlowNodeTypeCollector is a FlowNodeType enum value
+	FlowNodeTypeCollector = "Collector"
+)
+
+// FlowNodeType_Values returns all elements of the FlowNodeType enum
+func FlowNodeType_Values() []string {
+	return []string{
+		FlowNodeTypeInput,
+		FlowNodeTypeOutput,
+		FlowNodeTypeKnowledgeBase,
+		FlowNodeTypeCondition,
+		FlowNodeTypeLex,
+		FlowNodeTypePrompt,
+		FlowNodeTypeLambdaFunction,
+		FlowNodeTypeStorage,
+		FlowNodeTypeAgent,
+		FlowNodeTypeRetrieval,
+		FlowNodeTypeIterator,
+		FlowNodeTypeCollector,
+	}
+}
+
+const (
+	// FlowStatusFailed is a FlowStatus enum value
+	FlowStatusFailed = "Failed"
+
+	// FlowStatusPrepared is a FlowStatus enum value
+	FlowStatusPrepared = "Prepared"
+
+	// FlowStatusPreparing is a FlowStatus enum value
+	FlowStatusPreparing = "Preparing"
+
+	// FlowStatusNotPrepared is a FlowStatus enum value
+	FlowStatusNotPrepared = "NotPrepared"
+)
+
+// FlowStatus_Values returns all elements of the FlowStatus enum
+func FlowStatus_Values() []string {
+	return []string{
+		FlowStatusFailed,
+		FlowStatusPrepared,
+		FlowStatusPreparing,
+		FlowStatusNotPrepared,
+	}
+}
+
+const (
+	// FlowValidationSeverityWarning is a FlowValidationSeverity enum value
+	FlowValidationSeverityWarning = "Warning"
+
+	// FlowValidationSeverityError is a FlowValidationSeverity enum value
+	FlowValidationSeverityError = "Error"
+)
+
+// FlowValidationSeverity_Values returns all elements of the FlowValidationSeverity enum
+func FlowValidationSeverity_Values() []string {
+	return []string{
+		FlowValidationSeverityWarning,
+		FlowValidationSeverityError,
 	}
 }
 
@@ -15094,6 +26244,30 @@ func KnowledgeBaseType_Values() []string {
 }
 
 const (
+	// MemoryTypeSessionSummary is a MemoryType enum value
+	MemoryTypeSessionSummary = "SESSION_SUMMARY"
+)
+
+// MemoryType_Values returns all elements of the MemoryType enum
+func MemoryType_Values() []string {
+	return []string{
+		MemoryTypeSessionSummary,
+	}
+}
+
+const (
+	// ParsingStrategyBedrockFoundationModel is a ParsingStrategy enum value
+	ParsingStrategyBedrockFoundationModel = "BEDROCK_FOUNDATION_MODEL"
+)
+
+// ParsingStrategy_Values returns all elements of the ParsingStrategy enum
+func ParsingStrategy_Values() []string {
+	return []string{
+		ParsingStrategyBedrockFoundationModel,
+	}
+}
+
+const (
 	// PromptStateEnabled is a PromptState enum value
 	PromptStateEnabled = "ENABLED"
 
@@ -15106,6 +26280,18 @@ func PromptState_Values() []string {
 	return []string{
 		PromptStateEnabled,
 		PromptStateDisabled,
+	}
+}
+
+const (
+	// PromptTemplateTypeText is a PromptTemplateType enum value
+	PromptTemplateTypeText = "TEXT"
+)
+
+// PromptTemplateType_Values returns all elements of the PromptTemplateType enum
+func PromptTemplateType_Values() []string {
+	return []string{
+		PromptTemplateTypeText,
 	}
 }
 
@@ -15134,6 +26320,42 @@ func PromptType_Values() []string {
 }
 
 const (
+	// SalesforceAuthTypeOauth2ClientCredentials is a SalesforceAuthType enum value
+	SalesforceAuthTypeOauth2ClientCredentials = "OAUTH2_CLIENT_CREDENTIALS"
+)
+
+// SalesforceAuthType_Values returns all elements of the SalesforceAuthType enum
+func SalesforceAuthType_Values() []string {
+	return []string{
+		SalesforceAuthTypeOauth2ClientCredentials,
+	}
+}
+
+const (
+	// SharePointAuthTypeOauth2ClientCredentials is a SharePointAuthType enum value
+	SharePointAuthTypeOauth2ClientCredentials = "OAUTH2_CLIENT_CREDENTIALS"
+)
+
+// SharePointAuthType_Values returns all elements of the SharePointAuthType enum
+func SharePointAuthType_Values() []string {
+	return []string{
+		SharePointAuthTypeOauth2ClientCredentials,
+	}
+}
+
+const (
+	// SharePointHostTypeOnline is a SharePointHostType enum value
+	SharePointHostTypeOnline = "ONLINE"
+)
+
+// SharePointHostType_Values returns all elements of the SharePointHostType enum
+func SharePointHostType_Values() []string {
+	return []string{
+		SharePointHostTypeOnline,
+	}
+}
+
+const (
 	// SortOrderAscending is a SortOrder enum value
 	SortOrderAscending = "ASCENDING"
 
@@ -15146,6 +26368,18 @@ func SortOrder_Values() []string {
 	return []string{
 		SortOrderAscending,
 		SortOrderDescending,
+	}
+}
+
+const (
+	// StepTypePostChunking is a StepType enum value
+	StepTypePostChunking = "POST_CHUNKING"
+)
+
+// StepType_Values returns all elements of the StepType enum
+func StepType_Values() []string {
+	return []string{
+		StepTypePostChunking,
 	}
 }
 
@@ -15174,5 +26408,21 @@ func Type_Values() []string {
 		TypeInteger,
 		TypeBoolean,
 		TypeArray,
+	}
+}
+
+const (
+	// WebScopeTypeHostOnly is a WebScopeType enum value
+	WebScopeTypeHostOnly = "HOST_ONLY"
+
+	// WebScopeTypeSubdomains is a WebScopeType enum value
+	WebScopeTypeSubdomains = "SUBDOMAINS"
+)
+
+// WebScopeType_Values returns all elements of the WebScopeType enum
+func WebScopeType_Values() []string {
+	return []string{
+		WebScopeTypeHostOnly,
+		WebScopeTypeSubdomains,
 	}
 }

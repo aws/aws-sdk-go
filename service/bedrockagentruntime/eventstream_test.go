@@ -242,10 +242,22 @@ func mockInvokeAgentReadEvents() (
 									Text: aws.String("string value goes here"),
 								},
 								Location: &RetrievalResultLocation{
+									ConfluenceLocation: &RetrievalResultConfluenceLocation{
+										Url: aws.String("string value goes here"),
+									},
 									S3Location: &RetrievalResultS3Location{
 										Uri: aws.String("string value goes here"),
 									},
+									SalesforceLocation: &RetrievalResultSalesforceLocation{
+										Url: aws.String("string value goes here"),
+									},
+									SharePointLocation: &RetrievalResultSharePointLocation{
+										Url: aws.String("string value goes here"),
+									},
 									Type: aws.String("string value goes here"),
+									WebLocation: &RetrievalResultWebLocation{
+										Url: aws.String("string value goes here"),
+									},
 								},
 							},
 							{
@@ -253,10 +265,22 @@ func mockInvokeAgentReadEvents() (
 									Text: aws.String("string value goes here"),
 								},
 								Location: &RetrievalResultLocation{
+									ConfluenceLocation: &RetrievalResultConfluenceLocation{
+										Url: aws.String("string value goes here"),
+									},
 									S3Location: &RetrievalResultS3Location{
 										Uri: aws.String("string value goes here"),
 									},
+									SalesforceLocation: &RetrievalResultSalesforceLocation{
+										Url: aws.String("string value goes here"),
+									},
+									SharePointLocation: &RetrievalResultSharePointLocation{
+										Url: aws.String("string value goes here"),
+									},
 									Type: aws.String("string value goes here"),
+									WebLocation: &RetrievalResultWebLocation{
+										Url: aws.String("string value goes here"),
+									},
 								},
 							},
 							{
@@ -264,10 +288,22 @@ func mockInvokeAgentReadEvents() (
 									Text: aws.String("string value goes here"),
 								},
 								Location: &RetrievalResultLocation{
+									ConfluenceLocation: &RetrievalResultConfluenceLocation{
+										Url: aws.String("string value goes here"),
+									},
 									S3Location: &RetrievalResultS3Location{
 										Uri: aws.String("string value goes here"),
 									},
+									SalesforceLocation: &RetrievalResultSalesforceLocation{
+										Url: aws.String("string value goes here"),
+									},
+									SharePointLocation: &RetrievalResultSharePointLocation{
+										Url: aws.String("string value goes here"),
+									},
 									Type: aws.String("string value goes here"),
+									WebLocation: &RetrievalResultWebLocation{
+										Url: aws.String("string value goes here"),
+									},
 								},
 							},
 						},
@@ -288,10 +324,22 @@ func mockInvokeAgentReadEvents() (
 									Text: aws.String("string value goes here"),
 								},
 								Location: &RetrievalResultLocation{
+									ConfluenceLocation: &RetrievalResultConfluenceLocation{
+										Url: aws.String("string value goes here"),
+									},
 									S3Location: &RetrievalResultS3Location{
 										Uri: aws.String("string value goes here"),
 									},
+									SalesforceLocation: &RetrievalResultSalesforceLocation{
+										Url: aws.String("string value goes here"),
+									},
+									SharePointLocation: &RetrievalResultSharePointLocation{
+										Url: aws.String("string value goes here"),
+									},
 									Type: aws.String("string value goes here"),
+									WebLocation: &RetrievalResultWebLocation{
+										Url: aws.String("string value goes here"),
+									},
 								},
 							},
 							{
@@ -299,10 +347,22 @@ func mockInvokeAgentReadEvents() (
 									Text: aws.String("string value goes here"),
 								},
 								Location: &RetrievalResultLocation{
+									ConfluenceLocation: &RetrievalResultConfluenceLocation{
+										Url: aws.String("string value goes here"),
+									},
 									S3Location: &RetrievalResultS3Location{
 										Uri: aws.String("string value goes here"),
 									},
+									SalesforceLocation: &RetrievalResultSalesforceLocation{
+										Url: aws.String("string value goes here"),
+									},
+									SharePointLocation: &RetrievalResultSharePointLocation{
+										Url: aws.String("string value goes here"),
+									},
 									Type: aws.String("string value goes here"),
+									WebLocation: &RetrievalResultWebLocation{
+										Url: aws.String("string value goes here"),
+									},
 								},
 							},
 							{
@@ -310,10 +370,22 @@ func mockInvokeAgentReadEvents() (
 									Text: aws.String("string value goes here"),
 								},
 								Location: &RetrievalResultLocation{
+									ConfluenceLocation: &RetrievalResultConfluenceLocation{
+										Url: aws.String("string value goes here"),
+									},
 									S3Location: &RetrievalResultS3Location{
 										Uri: aws.String("string value goes here"),
 									},
+									SalesforceLocation: &RetrievalResultSalesforceLocation{
+										Url: aws.String("string value goes here"),
+									},
+									SharePointLocation: &RetrievalResultSharePointLocation{
+										Url: aws.String("string value goes here"),
+									},
 									Type: aws.String("string value goes here"),
+									WebLocation: &RetrievalResultWebLocation{
+										Url: aws.String("string value goes here"),
+									},
 								},
 							},
 						},
@@ -334,10 +406,22 @@ func mockInvokeAgentReadEvents() (
 									Text: aws.String("string value goes here"),
 								},
 								Location: &RetrievalResultLocation{
+									ConfluenceLocation: &RetrievalResultConfluenceLocation{
+										Url: aws.String("string value goes here"),
+									},
 									S3Location: &RetrievalResultS3Location{
 										Uri: aws.String("string value goes here"),
 									},
+									SalesforceLocation: &RetrievalResultSalesforceLocation{
+										Url: aws.String("string value goes here"),
+									},
+									SharePointLocation: &RetrievalResultSharePointLocation{
+										Url: aws.String("string value goes here"),
+									},
 									Type: aws.String("string value goes here"),
+									WebLocation: &RetrievalResultWebLocation{
+										Url: aws.String("string value goes here"),
+									},
 								},
 							},
 							{
@@ -345,10 +429,22 @@ func mockInvokeAgentReadEvents() (
 									Text: aws.String("string value goes here"),
 								},
 								Location: &RetrievalResultLocation{
+									ConfluenceLocation: &RetrievalResultConfluenceLocation{
+										Url: aws.String("string value goes here"),
+									},
 									S3Location: &RetrievalResultS3Location{
 										Uri: aws.String("string value goes here"),
 									},
+									SalesforceLocation: &RetrievalResultSalesforceLocation{
+										Url: aws.String("string value goes here"),
+									},
+									SharePointLocation: &RetrievalResultSharePointLocation{
+										Url: aws.String("string value goes here"),
+									},
 									Type: aws.String("string value goes here"),
+									WebLocation: &RetrievalResultWebLocation{
+										Url: aws.String("string value goes here"),
+									},
 								},
 							},
 							{
@@ -356,10 +452,22 @@ func mockInvokeAgentReadEvents() (
 									Text: aws.String("string value goes here"),
 								},
 								Location: &RetrievalResultLocation{
+									ConfluenceLocation: &RetrievalResultConfluenceLocation{
+										Url: aws.String("string value goes here"),
+									},
 									S3Location: &RetrievalResultS3Location{
 										Uri: aws.String("string value goes here"),
 									},
+									SalesforceLocation: &RetrievalResultSalesforceLocation{
+										Url: aws.String("string value goes here"),
+									},
+									SharePointLocation: &RetrievalResultSharePointLocation{
+										Url: aws.String("string value goes here"),
+									},
 									Type: aws.String("string value goes here"),
+									WebLocation: &RetrievalResultWebLocation{
+										Url: aws.String("string value goes here"),
+									},
 								},
 							},
 						},
@@ -367,6 +475,25 @@ func mockInvokeAgentReadEvents() (
 				},
 			},
 			Bytes: []byte("blob value goes here"),
+		},
+		&FilePart{
+			Files: []*OutputFile{
+				{
+					Bytes: []byte("blob value goes here"),
+					Name:  aws.String("string value goes here"),
+					Type:  aws.String("string value goes here"),
+				},
+				{
+					Bytes: []byte("blob value goes here"),
+					Name:  aws.String("string value goes here"),
+					Type:  aws.String("string value goes here"),
+				},
+				{
+					Bytes: []byte("blob value goes here"),
+					Name:  aws.String("string value goes here"),
+					Type:  aws.String("string value goes here"),
+				},
+			},
 		},
 		&ReturnControlPayload{
 			InvocationId: aws.String("string value goes here"),
@@ -1386,7 +1513,9 @@ func mockInvokeAgentReadEvents() (
 						ActionGroupInvocationInput: &ActionGroupInvocationInput_{
 							ActionGroupName: aws.String("string value goes here"),
 							ApiPath:         aws.String("string value goes here"),
+							ExecutionType:   aws.String("string value goes here"),
 							Function:        aws.String("string value goes here"),
+							InvocationId:    aws.String("string value goes here"),
 							Parameters: []*Parameter{
 								{
 									Name:  aws.String("string value goes here"),
@@ -1461,6 +1590,14 @@ func mockInvokeAgentReadEvents() (
 							},
 							Verb: aws.String("string value goes here"),
 						},
+						CodeInterpreterInvocationInput: &CodeInterpreterInvocationInput_{
+							Code: aws.String("string value goes here"),
+							Files: []*string{
+								aws.String("string value goes here"),
+								aws.String("string value goes here"),
+								aws.String("string value goes here"),
+							},
+						},
 						InvocationType: aws.String("string value goes here"),
 						KnowledgeBaseLookupInput: &KnowledgeBaseLookupInput_{
 							KnowledgeBaseId: aws.String("string value goes here"),
@@ -1491,6 +1628,16 @@ func mockInvokeAgentReadEvents() (
 						ActionGroupInvocationOutput: &ActionGroupInvocationOutput_{
 							Text: aws.String("string value goes here"),
 						},
+						CodeInterpreterInvocationOutput: &CodeInterpreterInvocationOutput_{
+							ExecutionError:   aws.String("string value goes here"),
+							ExecutionOutput:  aws.String("string value goes here"),
+							ExecutionTimeout: aws.Bool(true),
+							Files: []*string{
+								aws.String("string value goes here"),
+								aws.String("string value goes here"),
+								aws.String("string value goes here"),
+							},
+						},
 						FinalResponse: &FinalResponse{
 							Text: aws.String("string value goes here"),
 						},
@@ -1501,10 +1648,22 @@ func mockInvokeAgentReadEvents() (
 										Text: aws.String("string value goes here"),
 									},
 									Location: &RetrievalResultLocation{
+										ConfluenceLocation: &RetrievalResultConfluenceLocation{
+											Url: aws.String("string value goes here"),
+										},
 										S3Location: &RetrievalResultS3Location{
 											Uri: aws.String("string value goes here"),
 										},
+										SalesforceLocation: &RetrievalResultSalesforceLocation{
+											Url: aws.String("string value goes here"),
+										},
+										SharePointLocation: &RetrievalResultSharePointLocation{
+											Url: aws.String("string value goes here"),
+										},
 										Type: aws.String("string value goes here"),
+										WebLocation: &RetrievalResultWebLocation{
+											Url: aws.String("string value goes here"),
+										},
 									},
 								},
 								{
@@ -1512,10 +1671,22 @@ func mockInvokeAgentReadEvents() (
 										Text: aws.String("string value goes here"),
 									},
 									Location: &RetrievalResultLocation{
+										ConfluenceLocation: &RetrievalResultConfluenceLocation{
+											Url: aws.String("string value goes here"),
+										},
 										S3Location: &RetrievalResultS3Location{
 											Uri: aws.String("string value goes here"),
 										},
+										SalesforceLocation: &RetrievalResultSalesforceLocation{
+											Url: aws.String("string value goes here"),
+										},
+										SharePointLocation: &RetrievalResultSharePointLocation{
+											Url: aws.String("string value goes here"),
+										},
 										Type: aws.String("string value goes here"),
+										WebLocation: &RetrievalResultWebLocation{
+											Url: aws.String("string value goes here"),
+										},
 									},
 								},
 								{
@@ -1523,10 +1694,22 @@ func mockInvokeAgentReadEvents() (
 										Text: aws.String("string value goes here"),
 									},
 									Location: &RetrievalResultLocation{
+										ConfluenceLocation: &RetrievalResultConfluenceLocation{
+											Url: aws.String("string value goes here"),
+										},
 										S3Location: &RetrievalResultS3Location{
 											Uri: aws.String("string value goes here"),
 										},
+										SalesforceLocation: &RetrievalResultSalesforceLocation{
+											Url: aws.String("string value goes here"),
+										},
+										SharePointLocation: &RetrievalResultSharePointLocation{
+											Url: aws.String("string value goes here"),
+										},
 										Type: aws.String("string value goes here"),
+										WebLocation: &RetrievalResultWebLocation{
+											Url: aws.String("string value goes here"),
+										},
 									},
 								},
 							},
@@ -1625,7 +1808,7 @@ func mockInvokeAgentReadEvents() (
 				eventstreamtest.EventMessageTypeHeader,
 				{
 					Name:  eventstreamapi.EventTypeHeader,
-					Value: eventstream.StringValue("returnControl"),
+					Value: eventstream.StringValue("files"),
 				},
 			},
 			Payload: eventstreamtest.MarshalEventPayload(payloadMarshaler, expectEvents[1]),
@@ -1635,10 +1818,20 @@ func mockInvokeAgentReadEvents() (
 				eventstreamtest.EventMessageTypeHeader,
 				{
 					Name:  eventstreamapi.EventTypeHeader,
-					Value: eventstream.StringValue("trace"),
+					Value: eventstream.StringValue("returnControl"),
 				},
 			},
 			Payload: eventstreamtest.MarshalEventPayload(payloadMarshaler, expectEvents[2]),
+		},
+		{
+			Headers: eventstream.Headers{
+				eventstreamtest.EventMessageTypeHeader,
+				{
+					Name:  eventstreamapi.EventTypeHeader,
+					Value: eventstream.StringValue("trace"),
+				},
+			},
+			Payload: eventstreamtest.MarshalEventPayload(payloadMarshaler, expectEvents[3]),
 		},
 	}
 
@@ -1687,6 +1880,325 @@ func TestInvokeAgent_ReadException(t *testing.T) {
 
 	svc := New(sess)
 	resp, err := svc.InvokeAgent(nil)
+	if err != nil {
+		t.Fatalf("expect no error got, %v", err)
+	}
+
+	defer resp.GetStream().Close()
+
+	<-resp.GetStream().Events()
+
+	err = resp.GetStream().Err()
+	if err == nil {
+		t.Fatalf("expect err, got none")
+	}
+
+	expectErr := &AccessDeniedException{
+		RespMetadata: protocol.ResponseMetadata{
+			StatusCode: 200,
+		},
+		Message_: aws.String("string value goes here"),
+	}
+	aerr, ok := err.(awserr.Error)
+	if !ok {
+		t.Errorf("expect exception, got %T, %#v", err, err)
+	}
+	if e, a := expectErr.Code(), aerr.Code(); e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+	if e, a := expectErr.Message(), aerr.Message(); e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+
+	if e, a := expectErr, aerr; !reflect.DeepEqual(e, a) {
+		t.Errorf("expect error %+#v, got %+#v", e, a)
+	}
+}
+
+var _ awserr.Error = (*AccessDeniedException)(nil)
+var _ awserr.Error = (*BadGatewayException)(nil)
+var _ awserr.Error = (*ConflictException)(nil)
+var _ awserr.Error = (*DependencyFailedException)(nil)
+var _ awserr.Error = (*InternalServerException)(nil)
+var _ awserr.Error = (*ResourceNotFoundException)(nil)
+var _ awserr.Error = (*ServiceQuotaExceededException)(nil)
+var _ awserr.Error = (*ThrottlingException)(nil)
+var _ awserr.Error = (*ValidationException)(nil)
+
+func TestInvokeFlow_Read(t *testing.T) {
+	expectEvents, eventMsgs := mockInvokeFlowReadEvents()
+	sess, cleanupFn, err := eventstreamtest.SetupEventStreamSession(t,
+		eventstreamtest.ServeEventStream{
+			T:      t,
+			Events: eventMsgs,
+		},
+		true,
+	)
+	if err != nil {
+		t.Fatalf("expect no error, %v", err)
+	}
+	defer cleanupFn()
+
+	svc := New(sess)
+	resp, err := svc.InvokeFlow(nil)
+	if err != nil {
+		t.Fatalf("expect no error got, %v", err)
+	}
+	defer resp.GetStream().Close()
+
+	var i int
+	for event := range resp.GetStream().Events() {
+		if event == nil {
+			t.Errorf("%d, expect event, got nil", i)
+		}
+		if e, a := expectEvents[i], event; !reflect.DeepEqual(e, a) {
+			t.Errorf("%d, expect %T %v, got %T %v", i, e, e, a, a)
+		}
+		i++
+	}
+
+	if err := resp.GetStream().Err(); err != nil {
+		t.Errorf("expect no error, %v", err)
+	}
+}
+
+func TestInvokeFlow_ReadClose(t *testing.T) {
+	_, eventMsgs := mockInvokeFlowReadEvents()
+	sess, cleanupFn, err := eventstreamtest.SetupEventStreamSession(t,
+		eventstreamtest.ServeEventStream{
+			T:      t,
+			Events: eventMsgs,
+		},
+		true,
+	)
+	if err != nil {
+		t.Fatalf("expect no error, %v", err)
+	}
+	defer cleanupFn()
+
+	svc := New(sess)
+	resp, err := svc.InvokeFlow(nil)
+	if err != nil {
+		t.Fatalf("expect no error got, %v", err)
+	}
+
+	// Assert calling Err before close does not close the stream.
+	resp.GetStream().Err()
+	select {
+	case _, ok := <-resp.GetStream().Events():
+		if !ok {
+			t.Fatalf("expect stream not to be closed, but was")
+		}
+	default:
+	}
+
+	resp.GetStream().Close()
+	<-resp.GetStream().Events()
+
+	if err := resp.GetStream().Err(); err != nil {
+		t.Errorf("expect no error, %v", err)
+	}
+}
+
+func TestInvokeFlow_ReadUnknownEvent(t *testing.T) {
+	expectEvents, eventMsgs := mockInvokeFlowReadEvents()
+	var eventOffset int
+
+	unknownEvent := eventstream.Message{
+		Headers: eventstream.Headers{
+			eventstreamtest.EventMessageTypeHeader,
+			{
+				Name:  eventstreamapi.EventTypeHeader,
+				Value: eventstream.StringValue("UnknownEventName"),
+			},
+		},
+		Payload: []byte("some unknown event"),
+	}
+
+	eventMsgs = append(eventMsgs[:eventOffset],
+		append([]eventstream.Message{unknownEvent}, eventMsgs[eventOffset:]...)...)
+
+	expectEvents = append(expectEvents[:eventOffset],
+		append([]FlowResponseStreamEvent{
+			&FlowResponseStreamUnknownEvent{
+				Type:    "UnknownEventName",
+				Message: unknownEvent,
+			},
+		},
+			expectEvents[eventOffset:]...)...)
+
+	sess, cleanupFn, err := eventstreamtest.SetupEventStreamSession(t,
+		eventstreamtest.ServeEventStream{
+			T:      t,
+			Events: eventMsgs,
+		},
+		true,
+	)
+	if err != nil {
+		t.Fatalf("expect no error, %v", err)
+	}
+	defer cleanupFn()
+
+	svc := New(sess)
+	resp, err := svc.InvokeFlow(nil)
+	if err != nil {
+		t.Fatalf("expect no error got, %v", err)
+	}
+	defer resp.GetStream().Close()
+
+	var i int
+	for event := range resp.GetStream().Events() {
+		if event == nil {
+			t.Errorf("%d, expect event, got nil", i)
+		}
+		if e, a := expectEvents[i], event; !reflect.DeepEqual(e, a) {
+			t.Errorf("%d, expect %T %v, got %T %v", i, e, e, a, a)
+		}
+		i++
+	}
+
+	if err := resp.GetStream().Err(); err != nil {
+		t.Errorf("expect no error, %v", err)
+	}
+}
+
+func BenchmarkInvokeFlow_Read(b *testing.B) {
+	_, eventMsgs := mockInvokeFlowReadEvents()
+	var buf bytes.Buffer
+	encoder := eventstream.NewEncoder(&buf)
+	for _, msg := range eventMsgs {
+		if err := encoder.Encode(msg); err != nil {
+			b.Fatalf("failed to encode message, %v", err)
+		}
+	}
+	stream := &loopReader{source: bytes.NewReader(buf.Bytes())}
+
+	sess := unit.Session
+	svc := New(sess, &aws.Config{
+		Endpoint:               aws.String("https://example.com"),
+		DisableParamValidation: aws.Bool(true),
+	})
+	svc.Handlers.Send.Swap(corehandlers.SendHandler.Name,
+		request.NamedHandler{Name: "mockSend",
+			Fn: func(r *request.Request) {
+				r.HTTPResponse = &http.Response{
+					Status:     "200 OK",
+					StatusCode: 200,
+					Header:     http.Header{},
+					Body:       ioutil.NopCloser(stream),
+				}
+			},
+		},
+	)
+
+	resp, err := svc.InvokeFlow(nil)
+	if err != nil {
+		b.Fatalf("failed to create request, %v", err)
+	}
+	defer resp.GetStream().Close()
+	b.ResetTimer()
+
+	for i := 0; i < b.N; i++ {
+		if err = resp.GetStream().Err(); err != nil {
+			b.Fatalf("expect no error, got %v", err)
+		}
+		event := <-resp.GetStream().Events()
+		if event == nil {
+			b.Fatalf("expect event, got nil, %v, %d", resp.GetStream().Err(), i)
+		}
+	}
+}
+
+func mockInvokeFlowReadEvents() (
+	[]FlowResponseStreamEvent,
+	[]eventstream.Message,
+) {
+	expectEvents := []FlowResponseStreamEvent{
+		&FlowCompletionEvent{
+			CompletionReason: aws.String("string value goes here"),
+		},
+		&FlowOutputEvent{
+			Content:  &FlowOutputContent{},
+			NodeName: aws.String("string value goes here"),
+			NodeType: aws.String("string value goes here"),
+		},
+	}
+
+	var marshalers request.HandlerList
+	marshalers.PushBackNamed(restjson.BuildHandler)
+	payloadMarshaler := protocol.HandlerPayloadMarshal{
+		Marshalers: marshalers,
+	}
+	_ = payloadMarshaler
+
+	eventMsgs := []eventstream.Message{
+		{
+			Headers: eventstream.Headers{
+				eventstreamtest.EventMessageTypeHeader,
+				{
+					Name:  eventstreamapi.EventTypeHeader,
+					Value: eventstream.StringValue("flowCompletionEvent"),
+				},
+			},
+			Payload: eventstreamtest.MarshalEventPayload(payloadMarshaler, expectEvents[0]),
+		},
+		{
+			Headers: eventstream.Headers{
+				eventstreamtest.EventMessageTypeHeader,
+				{
+					Name:  eventstreamapi.EventTypeHeader,
+					Value: eventstream.StringValue("flowOutputEvent"),
+				},
+			},
+			Payload: eventstreamtest.MarshalEventPayload(payloadMarshaler, expectEvents[1]),
+		},
+	}
+
+	return expectEvents, eventMsgs
+}
+func TestInvokeFlow_ReadException(t *testing.T) {
+	expectEvents := []FlowResponseStreamEvent{
+		&AccessDeniedException{
+			RespMetadata: protocol.ResponseMetadata{
+				StatusCode: 200,
+			},
+			Message_: aws.String("string value goes here"),
+		},
+	}
+
+	var marshalers request.HandlerList
+	marshalers.PushBackNamed(restjson.BuildHandler)
+	payloadMarshaler := protocol.HandlerPayloadMarshal{
+		Marshalers: marshalers,
+	}
+
+	eventMsgs := []eventstream.Message{
+		{
+			Headers: eventstream.Headers{
+				eventstreamtest.EventExceptionTypeHeader,
+				{
+					Name:  eventstreamapi.ExceptionTypeHeader,
+					Value: eventstream.StringValue("accessDeniedException"),
+				},
+			},
+			Payload: eventstreamtest.MarshalEventPayload(payloadMarshaler, expectEvents[0]),
+		},
+	}
+
+	sess, cleanupFn, err := eventstreamtest.SetupEventStreamSession(t,
+		eventstreamtest.ServeEventStream{
+			T:      t,
+			Events: eventMsgs,
+		},
+		true,
+	)
+	if err != nil {
+		t.Fatalf("expect no error, %v", err)
+	}
+	defer cleanupFn()
+
+	svc := New(sess)
+	resp, err := svc.InvokeFlow(nil)
 	if err != nil {
 		t.Fatalf("expect no error got, %v", err)
 	}

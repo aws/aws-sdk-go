@@ -1,3 +1,21 @@
+Release v1.54.18 (2024-07-10)
+===
+
+### Service Client Updates
+* `service/batch`: Updates service API and documentation
+  * This feature allows AWS Batch Jobs with EKS container orchestration type to be run as Multi-Node Parallel Jobs.
+* `service/bedrock`: Updates service API and documentation
+* `service/bedrock-agent`: Updates service API, documentation, and paginators
+* `service/bedrock-agent-runtime`: Updates service API, documentation, and paginators
+* `service/bedrock-runtime`: Updates service API and documentation
+* `service/ec2`: Updates service API and documentation
+  * Add parameters to enable provisioning IPAM BYOIPv4 space at a Local Zone Network Border Group level
+* `service/glue`: Updates service API and documentation
+  * Add recipe step support for recipe node
+* `service/groundstation`: Updates service API and documentation
+* `service/license-manager-linux-subscriptions`: Updates service API, documentation, and paginators
+* `service/mediaconnect`: Updates service API and documentation
+
 Release v1.54.17 (2024-07-09)
 ===
 

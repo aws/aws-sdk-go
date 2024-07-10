@@ -1024,6 +1024,7 @@
       "members":{
         "containers":{"shape":"EksAttemptContainerDetails"},
         "initContainers":{"shape":"EksAttemptContainerDetails"},
+        "eksClusterArn":{"shape":"String"},
         "podName":{"shape":"String"},
         "nodeName":{"shape":"String"},
         "startedAt":{"shape":"Long"},
@@ -1792,7 +1793,8 @@
         "targetNodes":{"shape":"String"},
         "containerOverrides":{"shape":"ContainerOverrides"},
         "ecsPropertiesOverride":{"shape":"EcsPropertiesOverride"},
-        "instanceTypes":{"shape":"StringList"}
+        "instanceTypes":{"shape":"StringList"},
+        "eksPropertiesOverride":{"shape":"EksPropertiesOverride"}
       }
     },
     "NodePropertyOverrides":{
@@ -1810,7 +1812,8 @@
         "targetNodes":{"shape":"String"},
         "container":{"shape":"ContainerProperties"},
         "instanceTypes":{"shape":"StringList"},
-        "ecsProperties":{"shape":"EcsProperties"}
+        "ecsProperties":{"shape":"EcsProperties"},
+        "eksProperties":{"shape":"EksProperties"}
       }
     },
     "OrchestrationType":{

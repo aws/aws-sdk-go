@@ -11,6 +11,93 @@
     "uid": "bedrock-agent-runtime-2023-07-26"
   },
   "operations": {
+    "DeleteAgentMemory": {
+      "errors": [
+        {
+          "shape": "ConflictException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "DependencyFailedException"
+        },
+        {
+          "shape": "BadGatewayException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "ServiceQuotaExceededException"
+        }
+      ],
+      "http": {
+        "method": "DELETE",
+        "requestUri": "/agents/{agentId}/agentAliases/{agentAliasId}/memories",
+        "responseCode": 202
+      },
+      "idempotent": true,
+      "input": {
+        "shape": "DeleteAgentMemoryRequest"
+      },
+      "name": "DeleteAgentMemory",
+      "output": {
+        "shape": "DeleteAgentMemoryResponse"
+      }
+    },
+    "GetAgentMemory": {
+      "errors": [
+        {
+          "shape": "ConflictException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "DependencyFailedException"
+        },
+        {
+          "shape": "BadGatewayException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "ServiceQuotaExceededException"
+        }
+      ],
+      "http": {
+        "method": "GET",
+        "requestUri": "/agents/{agentId}/agentAliases/{agentAliasId}/memories",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "GetAgentMemoryRequest"
+      },
+      "name": "GetAgentMemory",
+      "output": {
+        "shape": "GetAgentMemoryResponse"
+      }
+    },
     "InvokeAgent": {
       "errors": [
         {
@@ -52,6 +139,49 @@
       "name": "InvokeAgent",
       "output": {
         "shape": "InvokeAgentResponse"
+      }
+    },
+    "InvokeFlow": {
+      "errors": [
+        {
+          "shape": "ConflictException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "DependencyFailedException"
+        },
+        {
+          "shape": "BadGatewayException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "ServiceQuotaExceededException"
+        }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/flows/{flowIdentifier}/aliases/{flowAliasIdentifier}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "InvokeFlowRequest"
+      },
+      "name": "InvokeFlow",
+      "output": {
+        "shape": "InvokeFlowResponse"
       }
     },
     "Retrieve": {
@@ -163,8 +293,14 @@
         "apiPath": {
           "shape": "ApiPath"
         },
+        "executionType": {
+          "shape": "ExecutionType"
+        },
         "function": {
           "shape": "Function"
+        },
+        "invocationId": {
+          "shape": "String"
         },
         "parameters": {
           "shape": "Parameters"
@@ -366,6 +502,21 @@
       ],
       "type": "structure"
     },
+    "ByteContentFile": {
+      "members": {
+        "data": {
+          "shape": "ByteContentBlob"
+        },
+        "mediaType": {
+          "shape": "MimeType"
+        }
+      },
+      "required": [
+        "data",
+        "mediaType"
+      ],
+      "type": "structure"
+    },
     "Citation": {
       "members": {
         "generatedResponsePart": {
@@ -382,6 +533,34 @@
         "shape": "Citation"
       },
       "type": "list"
+    },
+    "CodeInterpreterInvocationInput": {
+      "members": {
+        "code": {
+          "shape": "String"
+        },
+        "files": {
+          "shape": "Files"
+        }
+      },
+      "type": "structure"
+    },
+    "CodeInterpreterInvocationOutput": {
+      "members": {
+        "executionError": {
+          "shape": "String"
+        },
+        "executionOutput": {
+          "shape": "String"
+        },
+        "executionTimeout": {
+          "shape": "Boolean"
+        },
+        "files": {
+          "shape": "Files"
+        }
+      },
+      "type": "structure"
     },
     "ConflictException": {
       "error": {
@@ -424,6 +603,38 @@
       ],
       "type": "string"
     },
+    "DateTimestamp": {
+      "timestampFormat": "iso8601",
+      "type": "timestamp"
+    },
+    "DeleteAgentMemoryRequest": {
+      "members": {
+        "agentAliasId": {
+          "location": "uri",
+          "locationName": "agentAliasId",
+          "shape": "AgentAliasId"
+        },
+        "agentId": {
+          "location": "uri",
+          "locationName": "agentId",
+          "shape": "AgentId"
+        },
+        "memoryId": {
+          "location": "querystring",
+          "locationName": "memoryId",
+          "shape": "MemoryId"
+        }
+      },
+      "required": [
+        "agentAliasId",
+        "agentId"
+      ],
+      "type": "structure"
+    },
+    "DeleteAgentMemoryResponse": {
+      "members": {},
+      "type": "structure"
+    },
     "DependencyFailedException": {
       "error": {
         "httpStatusCode": 424,
@@ -443,6 +654,13 @@
     "Double": {
       "box": true,
       "type": "double"
+    },
+    "ExecutionType": {
+      "enum": [
+        "LAMBDA",
+        "RETURN_CONTROL"
+      ],
+      "type": "string"
     },
     "ExternalSource": {
       "members": {
@@ -524,6 +742,58 @@
       "sensitive": true,
       "type": "structure"
     },
+    "FileBody": {
+      "max": 1000000,
+      "min": 0,
+      "sensitive": true,
+      "type": "blob"
+    },
+    "FilePart": {
+      "event": true,
+      "members": {
+        "files": {
+          "shape": "OutputFiles"
+        }
+      },
+      "type": "structure"
+    },
+    "FileSource": {
+      "members": {
+        "byteContent": {
+          "shape": "ByteContentFile"
+        },
+        "s3Location": {
+          "shape": "S3ObjectFile"
+        },
+        "sourceType": {
+          "shape": "FileSourceType"
+        }
+      },
+      "required": [
+        "sourceType"
+      ],
+      "type": "structure"
+    },
+    "FileSourceType": {
+      "enum": [
+        "S3",
+        "BYTE_CONTENT"
+      ],
+      "type": "string"
+    },
+    "FileUseCase": {
+      "enum": [
+        "CODE_INTERPRETER",
+        "CHAT"
+      ],
+      "type": "string"
+    },
+    "Files": {
+      "member": {
+        "shape": "String"
+      },
+      "type": "list"
+    },
     "FilterKey": {
       "max": 100,
       "min": 1,
@@ -540,6 +810,135 @@
     "FinalResponseString": {
       "sensitive": true,
       "type": "string"
+    },
+    "FlowAliasIdentifier": {
+      "max": 2048,
+      "min": 0,
+      "pattern": "^(arn:aws:bedrock:[a-z0-9-]{1,20}:[0-9]{12}:flow/[0-9a-zA-Z]{10}/alias/[0-9a-zA-Z]{10})|(\\bTSTALIASID\\b|[0-9a-zA-Z]+)$",
+      "type": "string"
+    },
+    "FlowCompletionEvent": {
+      "event": true,
+      "members": {
+        "completionReason": {
+          "shape": "FlowCompletionReason"
+        }
+      },
+      "required": [
+        "completionReason"
+      ],
+      "sensitive": true,
+      "type": "structure"
+    },
+    "FlowCompletionReason": {
+      "enum": [
+        "SUCCESS"
+      ],
+      "type": "string"
+    },
+    "FlowIdentifier": {
+      "max": 2048,
+      "min": 0,
+      "pattern": "^(arn:aws:bedrock:[a-z0-9-]{1,20}:[0-9]{12}:flow/[0-9a-zA-Z]{10})|([0-9a-zA-Z]{10})$",
+      "type": "string"
+    },
+    "FlowInput": {
+      "members": {
+        "content": {
+          "shape": "FlowInputContent"
+        },
+        "nodeName": {
+          "shape": "NodeName"
+        },
+        "nodeOutputName": {
+          "shape": "NodeOutputName"
+        }
+      },
+      "required": [
+        "content",
+        "nodeName",
+        "nodeOutputName"
+      ],
+      "type": "structure"
+    },
+    "FlowInputContent": {
+      "members": {},
+      "sensitive": true,
+      "type": "structure",
+      "union": true
+    },
+    "FlowInputs": {
+      "max": 1,
+      "member": {
+        "shape": "FlowInput"
+      },
+      "min": 1,
+      "type": "list"
+    },
+    "FlowOutputContent": {
+      "members": {},
+      "type": "structure",
+      "union": true
+    },
+    "FlowOutputEvent": {
+      "event": true,
+      "members": {
+        "content": {
+          "shape": "FlowOutputContent"
+        },
+        "nodeName": {
+          "shape": "NodeName"
+        },
+        "nodeType": {
+          "shape": "NodeType"
+        }
+      },
+      "required": [
+        "content",
+        "nodeName",
+        "nodeType"
+      ],
+      "sensitive": true,
+      "type": "structure"
+    },
+    "FlowResponseStream": {
+      "eventstream": true,
+      "members": {
+        "accessDeniedException": {
+          "shape": "AccessDeniedException"
+        },
+        "badGatewayException": {
+          "shape": "BadGatewayException"
+        },
+        "conflictException": {
+          "shape": "ConflictException"
+        },
+        "dependencyFailedException": {
+          "shape": "DependencyFailedException"
+        },
+        "flowCompletionEvent": {
+          "shape": "FlowCompletionEvent"
+        },
+        "flowOutputEvent": {
+          "shape": "FlowOutputEvent"
+        },
+        "internalServerException": {
+          "shape": "InternalServerException"
+        },
+        "resourceNotFoundException": {
+          "shape": "ResourceNotFoundException"
+        },
+        "serviceQuotaExceededException": {
+          "shape": "ServiceQuotaExceededException"
+        },
+        "throttlingException": {
+          "shape": "ThrottlingException"
+        },
+        "validationException": {
+          "shape": "ValidationException"
+        }
+      },
+      "type": "structure"
     },
     "Function": {
       "sensitive": true,
@@ -620,6 +1019,58 @@
         },
         "promptTemplate": {
           "shape": "PromptTemplate"
+        }
+      },
+      "type": "structure"
+    },
+    "GetAgentMemoryRequest": {
+      "members": {
+        "agentAliasId": {
+          "location": "uri",
+          "locationName": "agentAliasId",
+          "shape": "AgentAliasId"
+        },
+        "agentId": {
+          "location": "uri",
+          "locationName": "agentId",
+          "shape": "AgentId"
+        },
+        "maxItems": {
+          "location": "querystring",
+          "locationName": "maxItems",
+          "shape": "MaxResults"
+        },
+        "memoryId": {
+          "location": "querystring",
+          "locationName": "memoryId",
+          "shape": "MemoryId"
+        },
+        "memoryType": {
+          "location": "querystring",
+          "locationName": "memoryType",
+          "shape": "MemoryType"
+        },
+        "nextToken": {
+          "location": "querystring",
+          "locationName": "nextToken",
+          "shape": "NextToken"
+        }
+      },
+      "required": [
+        "agentAliasId",
+        "agentId",
+        "memoryId",
+        "memoryType"
+      ],
+      "type": "structure"
+    },
+    "GetAgentMemoryResponse": {
+      "members": {
+        "memoryContents": {
+          "shape": "Memories"
+        },
+        "nextToken": {
+          "shape": "NextToken"
         }
       },
       "type": "structure"
@@ -1008,6 +1459,31 @@
       },
       "type": "structure"
     },
+    "InputFile": {
+      "members": {
+        "name": {
+          "shape": "String"
+        },
+        "source": {
+          "shape": "FileSource"
+        },
+        "useCase": {
+          "shape": "FileUseCase"
+        }
+      },
+      "required": [
+        "name",
+        "source",
+        "useCase"
+      ],
+      "type": "structure"
+    },
+    "InputFiles": {
+      "member": {
+        "shape": "InputFile"
+      },
+      "type": "list"
+    },
     "InputText": {
       "max": 25000000,
       "min": 0,
@@ -1035,6 +1511,9 @@
       "members": {
         "actionGroupInvocationInput": {
           "shape": "ActionGroupInvocationInput"
+        },
+        "codeInterpreterInvocationInput": {
+          "shape": "CodeInterpreterInvocationInput"
         },
         "invocationType": {
           "shape": "InvocationType"
@@ -1085,7 +1564,8 @@
       "enum": [
         "ACTION_GROUP",
         "KNOWLEDGE_BASE",
-        "FINISH"
+        "FINISH",
+        "ACTION_GROUP_CODE_INTERPRETER"
       ],
       "type": "string"
     },
@@ -1109,6 +1589,9 @@
         },
         "inputText": {
           "shape": "InputText"
+        },
+        "memoryId": {
+          "shape": "MemoryId"
         },
         "sessionId": {
           "location": "uri",
@@ -1136,6 +1619,11 @@
           "locationName": "x-amzn-bedrock-agent-content-type",
           "shape": "MimeType"
         },
+        "memoryId": {
+          "location": "header",
+          "locationName": "x-amz-bedrock-agent-memory-id",
+          "shape": "MemoryId"
+        },
         "sessionId": {
           "location": "header",
           "locationName": "x-amz-bedrock-agent-session-id",
@@ -1150,11 +1638,68 @@
       ],
       "type": "structure"
     },
+    "InvokeFlowRequest": {
+      "members": {
+        "flowAliasIdentifier": {
+          "location": "uri",
+          "locationName": "flowAliasIdentifier",
+          "shape": "FlowAliasIdentifier"
+        },
+        "flowIdentifier": {
+          "location": "uri",
+          "locationName": "flowIdentifier",
+          "shape": "FlowIdentifier"
+        },
+        "inputs": {
+          "shape": "FlowInputs"
+        }
+      },
+      "required": [
+        "flowAliasIdentifier",
+        "flowIdentifier",
+        "inputs"
+      ],
+      "type": "structure"
+    },
+    "InvokeFlowResponse": {
+      "members": {
+        "responseStream": {
+          "shape": "FlowResponseStream"
+        }
+      },
+      "payload": "responseStream",
+      "required": [
+        "responseStream"
+      ],
+      "type": "structure"
+    },
     "KmsKeyArn": {
       "max": 2048,
       "min": 1,
       "pattern": "^arn:aws(|-cn|-us-gov):kms:[a-zA-Z0-9-]*:[0-9]{12}:key/[a-zA-Z0-9-]{36}$",
       "type": "string"
+    },
+    "KnowledgeBaseConfiguration": {
+      "members": {
+        "knowledgeBaseId": {
+          "shape": "KnowledgeBaseId"
+        },
+        "retrievalConfiguration": {
+          "shape": "KnowledgeBaseRetrievalConfiguration"
+        }
+      },
+      "required": [
+        "knowledgeBaseId",
+        "retrievalConfiguration"
+      ],
+      "type": "structure"
+    },
+    "KnowledgeBaseConfigurations": {
+      "member": {
+        "shape": "KnowledgeBaseConfiguration"
+      },
+      "min": 1,
+      "type": "list"
     },
     "KnowledgeBaseId": {
       "max": 10,
@@ -1248,6 +1793,9 @@
         "modelArn": {
           "shape": "BedrockModelArn"
         },
+        "orchestrationConfiguration": {
+          "shape": "OrchestrationConfiguration"
+        },
         "retrievalConfiguration": {
           "shape": "KnowledgeBaseRetrievalConfiguration"
         }
@@ -1282,6 +1830,12 @@
     "LambdaArn": {
       "type": "string"
     },
+    "MaxResults": {
+      "box": true,
+      "max": 1000,
+      "min": 1,
+      "type": "integer"
+    },
     "MaxTokens": {
       "box": true,
       "max": 65536,
@@ -1293,6 +1847,53 @@
       "max": 4096,
       "min": 0,
       "type": "integer"
+    },
+    "Memories": {
+      "member": {
+        "shape": "Memory"
+      },
+      "type": "list"
+    },
+    "Memory": {
+      "members": {
+        "sessionSummary": {
+          "shape": "MemorySessionSummary"
+        }
+      },
+      "type": "structure",
+      "union": true
+    },
+    "MemoryId": {
+      "max": 100,
+      "min": 2,
+      "pattern": "^[0-9a-zA-Z._:-]+$",
+      "type": "string"
+    },
+    "MemorySessionSummary": {
+      "members": {
+        "memoryId": {
+          "shape": "MemoryId"
+        },
+        "sessionExpiryTime": {
+          "shape": "DateTimestamp"
+        },
+        "sessionId": {
+          "shape": "SessionId"
+        },
+        "sessionStartTime": {
+          "shape": "DateTimestamp"
+        },
+        "summaryText": {
+          "shape": "SummaryText"
+        }
+      },
+      "type": "structure"
+    },
+    "MemoryType": {
+      "enum": [
+        "SESSION_SUMMARY"
+      ],
+      "type": "string"
     },
     "MimeType": {
       "type": "string"
@@ -1330,6 +1931,26 @@
       "pattern": "^\\S*$",
       "type": "string"
     },
+    "NodeName": {
+      "pattern": "^[a-zA-Z]([_]?[0-9a-zA-Z]){0,99}$",
+      "type": "string"
+    },
+    "NodeOutputName": {
+      "pattern": "^[a-zA-Z]([_]?[0-9a-zA-Z]){0,99}$",
+      "type": "string"
+    },
+    "NodeType": {
+      "enum": [
+        "FlowInputNode",
+        "FlowOutputNode",
+        "LambdaFunctionNode",
+        "KnowledgeBaseNode",
+        "PromptNode",
+        "ConditionNode",
+        "LexNode"
+      ],
+      "type": "string"
+    },
     "NonBlankString": {
       "pattern": "^[\\s\\S]*$",
       "type": "string"
@@ -1338,6 +1959,9 @@
       "members": {
         "actionGroupInvocationOutput": {
           "shape": "ActionGroupInvocationOutput"
+        },
+        "codeInterpreterInvocationOutput": {
+          "shape": "CodeInterpreterInvocationOutput"
         },
         "finalResponse": {
           "shape": "FinalResponse"
@@ -1358,6 +1982,17 @@
       "sensitive": true,
       "type": "structure"
     },
+    "OrchestrationConfiguration": {
+      "members": {
+        "queryTransformationConfiguration": {
+          "shape": "QueryTransformationConfiguration"
+        }
+      },
+      "required": [
+        "queryTransformationConfiguration"
+      ],
+      "type": "structure"
+    },
     "OrchestrationTrace": {
       "members": {
         "invocationInput": {
@@ -1376,6 +2011,29 @@
       "sensitive": true,
       "type": "structure",
       "union": true
+    },
+    "OutputFile": {
+      "members": {
+        "bytes": {
+          "shape": "FileBody"
+        },
+        "name": {
+          "shape": "String"
+        },
+        "type": {
+          "shape": "MimeType"
+        }
+      },
+      "sensitive": true,
+      "type": "structure"
+    },
+    "OutputFiles": {
+      "max": 5,
+      "member": {
+        "shape": "OutputFile"
+      },
+      "min": 0,
+      "type": "list"
     },
     "OutputString": {
       "sensitive": true,
@@ -1535,6 +2193,23 @@
       },
       "type": "structure"
     },
+    "QueryTransformationConfiguration": {
+      "members": {
+        "type": {
+          "shape": "QueryTransformationType"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "type": "structure"
+    },
+    "QueryTransformationType": {
+      "enum": [
+        "QUERY_DECOMPOSITION"
+      ],
+      "type": "string"
+    },
     "RAGStopSequences": {
       "max": 4,
       "member": {
@@ -1631,6 +2306,9 @@
         "dependencyFailedException": {
           "shape": "DependencyFailedException"
         },
+        "files": {
+          "shape": "FilePart"
+        },
         "internalServerException": {
           "shape": "InternalServerException"
         },
@@ -1676,6 +2354,14 @@
       "min": 2,
       "type": "list"
     },
+    "RetrievalResultConfluenceLocation": {
+      "members": {
+        "url": {
+          "shape": "String"
+        }
+      },
+      "type": "structure"
+    },
     "RetrievalResultContent": {
       "members": {
         "text": {
@@ -1690,11 +2376,23 @@
     },
     "RetrievalResultLocation": {
       "members": {
+        "confluenceLocation": {
+          "shape": "RetrievalResultConfluenceLocation"
+        },
         "s3Location": {
           "shape": "RetrievalResultS3Location"
         },
+        "salesforceLocation": {
+          "shape": "RetrievalResultSalesforceLocation"
+        },
+        "sharePointLocation": {
+          "shape": "RetrievalResultSharePointLocation"
+        },
         "type": {
           "shape": "RetrievalResultLocationType"
+        },
+        "webLocation": {
+          "shape": "RetrievalResultWebLocation"
         }
       },
       "required": [
@@ -1705,7 +2403,11 @@
     },
     "RetrievalResultLocationType": {
       "enum": [
-        "S3"
+        "S3",
+        "WEB",
+        "CONFLUENCE",
+        "SALESFORCE",
+        "SHAREPOINT"
       ],
       "type": "string"
     },
@@ -1717,6 +2419,30 @@
     "RetrievalResultS3Location": {
       "members": {
         "uri": {
+          "shape": "String"
+        }
+      },
+      "type": "structure"
+    },
+    "RetrievalResultSalesforceLocation": {
+      "members": {
+        "url": {
+          "shape": "String"
+        }
+      },
+      "type": "structure"
+    },
+    "RetrievalResultSharePointLocation": {
+      "members": {
+        "url": {
+          "shape": "String"
+        }
+      },
+      "type": "structure"
+    },
+    "RetrievalResultWebLocation": {
+      "members": {
+        "url": {
           "shape": "String"
         }
       },
@@ -1913,6 +2639,17 @@
       ],
       "type": "structure"
     },
+    "S3ObjectFile": {
+      "members": {
+        "uri": {
+          "shape": "S3Uri"
+        }
+      },
+      "required": [
+        "uri"
+      ],
+      "type": "structure"
+    },
     "S3Uri": {
       "max": 1024,
       "min": 1,
@@ -1956,8 +2693,14 @@
     },
     "SessionState": {
       "members": {
+        "files": {
+          "shape": "InputFiles"
+        },
         "invocationId": {
           "shape": "String"
+        },
+        "knowledgeBaseConfigurations": {
+          "shape": "KnowledgeBaseConfigurations"
         },
         "promptSessionAttributes": {
           "shape": "PromptSessionAttributesMap"
@@ -2010,6 +2753,11 @@
       "type": "list"
     },
     "String": {
+      "type": "string"
+    },
+    "SummaryText": {
+      "max": 25000000,
+      "min": 0,
       "type": "string"
     },
     "Temperature": {

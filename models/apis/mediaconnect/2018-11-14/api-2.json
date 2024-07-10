@@ -8,7 +8,10 @@
     "protocol": "rest-json",
     "jsonVersion": "1.1",
     "uid": "mediaconnect-2018-11-14",
-    "signatureVersion": "v4"
+    "signatureVersion": "v4",
+    "auth": [
+      "aws.auth#sigv4"
+    ]
   },
   "operations": {
     "AddBridgeOutputs": {
@@ -2199,6 +2202,10 @@
         "VpcInterfaceAttachment": {
           "shape": "VpcInterfaceAttachment",
           "locationName": "vpcInterfaceAttachment"
+        },
+        "OutputStatus": {
+          "shape": "OutputStatus",
+          "locationName": "outputStatus"
         }
       },
       "required": [
@@ -4427,11 +4434,22 @@
         "BridgePorts": {
           "shape": "__listOf__integer",
           "locationName": "bridgePorts"
+        },
+        "OutputStatus": {
+          "shape": "OutputStatus",
+          "locationName": "outputStatus"
         }
       },
       "required": [
         "OutputArn",
         "Name"
+      ]
+    },
+    "OutputStatus": {
+      "type": "string",
+      "enum": [
+        "ENABLED",
+        "DISABLED"
       ]
     },
     "PriceUnits": {
@@ -5794,6 +5812,10 @@
         "VpcInterfaceAttachment": {
           "shape": "VpcInterfaceAttachment",
           "locationName": "vpcInterfaceAttachment"
+        },
+        "OutputStatus": {
+          "shape": "OutputStatus",
+          "locationName": "outputStatus"
         }
       },
       "required": [

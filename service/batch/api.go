@@ -7516,6 +7516,9 @@ type EksAttemptDetail struct {
 	// The details for the final status of the containers for this job attempt.
 	Containers []*EksAttemptContainerDetail `locationName:"containers" type:"list"`
 
+	// The Amazon Resource Name (ARN) of the Amazon EKS cluster.
+	EksClusterArn *string `locationName:"eksClusterArn" type:"string"`
+
 	// The details for the init containers.
 	InitContainers []*EksAttemptContainerDetail `locationName:"initContainers" type:"list"`
 
@@ -7560,6 +7563,12 @@ func (s EksAttemptDetail) GoString() string {
 // SetContainers sets the Containers field's value.
 func (s *EksAttemptDetail) SetContainers(v []*EksAttemptContainerDetail) *EksAttemptDetail {
 	s.Containers = v
+	return s
+}
+
+// SetEksClusterArn sets the EksClusterArn field's value.
+func (s *EksAttemptDetail) SetEksClusterArn(v string) *EksAttemptDetail {
+	s.EksClusterArn = &v
 	return s
 }
 
@@ -12095,6 +12104,10 @@ type NodePropertyOverride struct {
 	// Amazon ECS resources of a job.
 	EcsPropertiesOverride *EcsPropertiesOverride `locationName:"ecsPropertiesOverride" type:"structure"`
 
+	// An object that contains the properties that you want to replace for the existing
+	// Amazon EKS resources of a job.
+	EksPropertiesOverride *EksPropertiesOverride `locationName:"eksPropertiesOverride" type:"structure"`
+
 	// An object that contains the instance types that you want to replace for the
 	// existing resources of a job.
 	InstanceTypes []*string `locationName:"instanceTypes" type:"list"`
@@ -12143,6 +12156,11 @@ func (s *NodePropertyOverride) Validate() error {
 			invalidParams.AddNested("EcsPropertiesOverride", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.EksPropertiesOverride != nil {
+		if err := s.EksPropertiesOverride.Validate(); err != nil {
+			invalidParams.AddNested("EksPropertiesOverride", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -12159,6 +12177,12 @@ func (s *NodePropertyOverride) SetContainerOverrides(v *ContainerOverrides) *Nod
 // SetEcsPropertiesOverride sets the EcsPropertiesOverride field's value.
 func (s *NodePropertyOverride) SetEcsPropertiesOverride(v *EcsPropertiesOverride) *NodePropertyOverride {
 	s.EcsPropertiesOverride = v
+	return s
+}
+
+// SetEksPropertiesOverride sets the EksPropertiesOverride field's value.
+func (s *NodePropertyOverride) SetEksPropertiesOverride(v *EksPropertiesOverride) *NodePropertyOverride {
+	s.EksPropertiesOverride = v
 	return s
 }
 
@@ -12185,6 +12209,10 @@ type NodeRangeProperty struct {
 	// This is an object that represents the properties of the node range for a
 	// multi-node parallel job.
 	EcsProperties *EcsProperties `locationName:"ecsProperties" type:"structure"`
+
+	// This is an object that represents the properties of the node range for a
+	// multi-node parallel job.
+	EksProperties *EksProperties `locationName:"eksProperties" type:"structure"`
 
 	// The instance types of the underlying host infrastructure of a multi-node
 	// parallel job.
@@ -12240,6 +12268,11 @@ func (s *NodeRangeProperty) Validate() error {
 			invalidParams.AddNested("EcsProperties", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.EksProperties != nil {
+		if err := s.EksProperties.Validate(); err != nil {
+			invalidParams.AddNested("EksProperties", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -12256,6 +12289,12 @@ func (s *NodeRangeProperty) SetContainer(v *ContainerProperties) *NodeRangePrope
 // SetEcsProperties sets the EcsProperties field's value.
 func (s *NodeRangeProperty) SetEcsProperties(v *EcsProperties) *NodeRangeProperty {
 	s.EcsProperties = v
+	return s
+}
+
+// SetEksProperties sets the EksProperties field's value.
+func (s *NodeRangeProperty) SetEksProperties(v *EksProperties) *NodeRangeProperty {
+	s.EksProperties = v
 	return s
 }
 

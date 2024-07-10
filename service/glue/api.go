@@ -30296,6 +30296,82 @@ func (s *ConditionCheckFailureException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Condition expression defined in the Glue Studio data preparation recipe node.
+type ConditionExpression struct {
+	_ struct{} `type:"structure"`
+
+	// The condition of the condition expression.
+	//
+	// Condition is a required field
+	Condition *string `min:"1" type:"string" required:"true"`
+
+	// The target column of the condition expressions.
+	//
+	// TargetColumn is a required field
+	TargetColumn *string `min:"1" type:"string" required:"true"`
+
+	// The value of the condition expression.
+	Value *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConditionExpression) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConditionExpression) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ConditionExpression) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ConditionExpression"}
+	if s.Condition == nil {
+		invalidParams.Add(request.NewErrParamRequired("Condition"))
+	}
+	if s.Condition != nil && len(*s.Condition) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Condition", 1))
+	}
+	if s.TargetColumn == nil {
+		invalidParams.Add(request.NewErrParamRequired("TargetColumn"))
+	}
+	if s.TargetColumn != nil && len(*s.TargetColumn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TargetColumn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCondition sets the Condition field's value.
+func (s *ConditionExpression) SetCondition(v string) *ConditionExpression {
+	s.Condition = &v
+	return s
+}
+
+// SetTargetColumn sets the TargetColumn field's value.
+func (s *ConditionExpression) SetTargetColumn(v string) *ConditionExpression {
+	s.TargetColumn = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *ConditionExpression) SetValue(v string) *ConditionExpression {
+	s.Value = &v
+	return s
+}
+
 // Specifies the values that an admin sets for each job or session parameter
 // configured in a Glue usage profile.
 type ConfigurationObject struct {
@@ -64325,9 +64401,10 @@ type Recipe struct {
 	Name *string `type:"string" required:"true"`
 
 	// A reference to the DataBrew recipe used by the node.
-	//
-	// RecipeReference is a required field
-	RecipeReference *RecipeReference `type:"structure" required:"true"`
+	RecipeReference *RecipeReference `type:"structure"`
+
+	// Transform steps used in the recipe node.
+	RecipeSteps []*RecipeStep `type:"list"`
 }
 
 // String returns the string representation.
@@ -64360,12 +64437,19 @@ func (s *Recipe) Validate() error {
 	if s.Name == nil {
 		invalidParams.Add(request.NewErrParamRequired("Name"))
 	}
-	if s.RecipeReference == nil {
-		invalidParams.Add(request.NewErrParamRequired("RecipeReference"))
-	}
 	if s.RecipeReference != nil {
 		if err := s.RecipeReference.Validate(); err != nil {
 			invalidParams.AddNested("RecipeReference", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.RecipeSteps != nil {
+		for i, v := range s.RecipeSteps {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "RecipeSteps", i), err.(request.ErrInvalidParams))
+			}
 		}
 	}
 
@@ -64390,6 +64474,71 @@ func (s *Recipe) SetName(v string) *Recipe {
 // SetRecipeReference sets the RecipeReference field's value.
 func (s *Recipe) SetRecipeReference(v *RecipeReference) *Recipe {
 	s.RecipeReference = v
+	return s
+}
+
+// SetRecipeSteps sets the RecipeSteps field's value.
+func (s *Recipe) SetRecipeSteps(v []*RecipeStep) *Recipe {
+	s.RecipeSteps = v
+	return s
+}
+
+// Actions defined in the Glue Studio data preparation recipe node.
+type RecipeAction struct {
+	_ struct{} `type:"structure"`
+
+	// The operation of the recipe action.
+	//
+	// Operation is a required field
+	Operation *string `min:"1" type:"string" required:"true"`
+
+	// The parameters of the recipe action.
+	Parameters map[string]*string `type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecipeAction) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecipeAction) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RecipeAction) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RecipeAction"}
+	if s.Operation == nil {
+		invalidParams.Add(request.NewErrParamRequired("Operation"))
+	}
+	if s.Operation != nil && len(*s.Operation) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Operation", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetOperation sets the Operation field's value.
+func (s *RecipeAction) SetOperation(v string) *RecipeAction {
+	s.Operation = &v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *RecipeAction) SetParameters(v map[string]*string) *RecipeAction {
+	s.Parameters = v
 	return s
 }
 
@@ -64454,6 +64603,77 @@ func (s *RecipeReference) SetRecipeArn(v string) *RecipeReference {
 // SetRecipeVersion sets the RecipeVersion field's value.
 func (s *RecipeReference) SetRecipeVersion(v string) *RecipeReference {
 	s.RecipeVersion = &v
+	return s
+}
+
+// A recipe step used in a Glue Studio data preparation recipe node.
+type RecipeStep struct {
+	_ struct{} `type:"structure"`
+
+	// The transformation action of the recipe step.
+	//
+	// Action is a required field
+	Action *RecipeAction `type:"structure" required:"true"`
+
+	// The condition expressions for the recipe step.
+	ConditionExpressions []*ConditionExpression `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecipeStep) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecipeStep) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RecipeStep) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RecipeStep"}
+	if s.Action == nil {
+		invalidParams.Add(request.NewErrParamRequired("Action"))
+	}
+	if s.Action != nil {
+		if err := s.Action.Validate(); err != nil {
+			invalidParams.AddNested("Action", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ConditionExpressions != nil {
+		for i, v := range s.ConditionExpressions {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ConditionExpressions", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAction sets the Action field's value.
+func (s *RecipeStep) SetAction(v *RecipeAction) *RecipeStep {
+	s.Action = v
+	return s
+}
+
+// SetConditionExpressions sets the ConditionExpressions field's value.
+func (s *RecipeStep) SetConditionExpressions(v []*ConditionExpression) *RecipeStep {
+	s.ConditionExpressions = v
 	return s
 }
 

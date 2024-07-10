@@ -80,9 +80,29 @@ type BedrockAgentAPI interface {
 	CreateDataSourceWithContext(aws.Context, *bedrockagent.CreateDataSourceInput, ...request.Option) (*bedrockagent.CreateDataSourceOutput, error)
 	CreateDataSourceRequest(*bedrockagent.CreateDataSourceInput) (*request.Request, *bedrockagent.CreateDataSourceOutput)
 
+	CreateFlow(*bedrockagent.CreateFlowInput) (*bedrockagent.CreateFlowOutput, error)
+	CreateFlowWithContext(aws.Context, *bedrockagent.CreateFlowInput, ...request.Option) (*bedrockagent.CreateFlowOutput, error)
+	CreateFlowRequest(*bedrockagent.CreateFlowInput) (*request.Request, *bedrockagent.CreateFlowOutput)
+
+	CreateFlowAlias(*bedrockagent.CreateFlowAliasInput) (*bedrockagent.CreateFlowAliasOutput, error)
+	CreateFlowAliasWithContext(aws.Context, *bedrockagent.CreateFlowAliasInput, ...request.Option) (*bedrockagent.CreateFlowAliasOutput, error)
+	CreateFlowAliasRequest(*bedrockagent.CreateFlowAliasInput) (*request.Request, *bedrockagent.CreateFlowAliasOutput)
+
+	CreateFlowVersion(*bedrockagent.CreateFlowVersionInput) (*bedrockagent.CreateFlowVersionOutput, error)
+	CreateFlowVersionWithContext(aws.Context, *bedrockagent.CreateFlowVersionInput, ...request.Option) (*bedrockagent.CreateFlowVersionOutput, error)
+	CreateFlowVersionRequest(*bedrockagent.CreateFlowVersionInput) (*request.Request, *bedrockagent.CreateFlowVersionOutput)
+
 	CreateKnowledgeBase(*bedrockagent.CreateKnowledgeBaseInput) (*bedrockagent.CreateKnowledgeBaseOutput, error)
 	CreateKnowledgeBaseWithContext(aws.Context, *bedrockagent.CreateKnowledgeBaseInput, ...request.Option) (*bedrockagent.CreateKnowledgeBaseOutput, error)
 	CreateKnowledgeBaseRequest(*bedrockagent.CreateKnowledgeBaseInput) (*request.Request, *bedrockagent.CreateKnowledgeBaseOutput)
+
+	CreatePrompt(*bedrockagent.CreatePromptInput) (*bedrockagent.CreatePromptOutput, error)
+	CreatePromptWithContext(aws.Context, *bedrockagent.CreatePromptInput, ...request.Option) (*bedrockagent.CreatePromptOutput, error)
+	CreatePromptRequest(*bedrockagent.CreatePromptInput) (*request.Request, *bedrockagent.CreatePromptOutput)
+
+	CreatePromptVersion(*bedrockagent.CreatePromptVersionInput) (*bedrockagent.CreatePromptVersionOutput, error)
+	CreatePromptVersionWithContext(aws.Context, *bedrockagent.CreatePromptVersionInput, ...request.Option) (*bedrockagent.CreatePromptVersionOutput, error)
+	CreatePromptVersionRequest(*bedrockagent.CreatePromptVersionInput) (*request.Request, *bedrockagent.CreatePromptVersionOutput)
 
 	DeleteAgent(*bedrockagent.DeleteAgentInput) (*bedrockagent.DeleteAgentOutput, error)
 	DeleteAgentWithContext(aws.Context, *bedrockagent.DeleteAgentInput, ...request.Option) (*bedrockagent.DeleteAgentOutput, error)
@@ -104,9 +124,25 @@ type BedrockAgentAPI interface {
 	DeleteDataSourceWithContext(aws.Context, *bedrockagent.DeleteDataSourceInput, ...request.Option) (*bedrockagent.DeleteDataSourceOutput, error)
 	DeleteDataSourceRequest(*bedrockagent.DeleteDataSourceInput) (*request.Request, *bedrockagent.DeleteDataSourceOutput)
 
+	DeleteFlow(*bedrockagent.DeleteFlowInput) (*bedrockagent.DeleteFlowOutput, error)
+	DeleteFlowWithContext(aws.Context, *bedrockagent.DeleteFlowInput, ...request.Option) (*bedrockagent.DeleteFlowOutput, error)
+	DeleteFlowRequest(*bedrockagent.DeleteFlowInput) (*request.Request, *bedrockagent.DeleteFlowOutput)
+
+	DeleteFlowAlias(*bedrockagent.DeleteFlowAliasInput) (*bedrockagent.DeleteFlowAliasOutput, error)
+	DeleteFlowAliasWithContext(aws.Context, *bedrockagent.DeleteFlowAliasInput, ...request.Option) (*bedrockagent.DeleteFlowAliasOutput, error)
+	DeleteFlowAliasRequest(*bedrockagent.DeleteFlowAliasInput) (*request.Request, *bedrockagent.DeleteFlowAliasOutput)
+
+	DeleteFlowVersion(*bedrockagent.DeleteFlowVersionInput) (*bedrockagent.DeleteFlowVersionOutput, error)
+	DeleteFlowVersionWithContext(aws.Context, *bedrockagent.DeleteFlowVersionInput, ...request.Option) (*bedrockagent.DeleteFlowVersionOutput, error)
+	DeleteFlowVersionRequest(*bedrockagent.DeleteFlowVersionInput) (*request.Request, *bedrockagent.DeleteFlowVersionOutput)
+
 	DeleteKnowledgeBase(*bedrockagent.DeleteKnowledgeBaseInput) (*bedrockagent.DeleteKnowledgeBaseOutput, error)
 	DeleteKnowledgeBaseWithContext(aws.Context, *bedrockagent.DeleteKnowledgeBaseInput, ...request.Option) (*bedrockagent.DeleteKnowledgeBaseOutput, error)
 	DeleteKnowledgeBaseRequest(*bedrockagent.DeleteKnowledgeBaseInput) (*request.Request, *bedrockagent.DeleteKnowledgeBaseOutput)
+
+	DeletePrompt(*bedrockagent.DeletePromptInput) (*bedrockagent.DeletePromptOutput, error)
+	DeletePromptWithContext(aws.Context, *bedrockagent.DeletePromptInput, ...request.Option) (*bedrockagent.DeletePromptOutput, error)
+	DeletePromptRequest(*bedrockagent.DeletePromptInput) (*request.Request, *bedrockagent.DeletePromptOutput)
 
 	DisassociateAgentKnowledgeBase(*bedrockagent.DisassociateAgentKnowledgeBaseInput) (*bedrockagent.DisassociateAgentKnowledgeBaseOutput, error)
 	DisassociateAgentKnowledgeBaseWithContext(aws.Context, *bedrockagent.DisassociateAgentKnowledgeBaseInput, ...request.Option) (*bedrockagent.DisassociateAgentKnowledgeBaseOutput, error)
@@ -136,6 +172,18 @@ type BedrockAgentAPI interface {
 	GetDataSourceWithContext(aws.Context, *bedrockagent.GetDataSourceInput, ...request.Option) (*bedrockagent.GetDataSourceOutput, error)
 	GetDataSourceRequest(*bedrockagent.GetDataSourceInput) (*request.Request, *bedrockagent.GetDataSourceOutput)
 
+	GetFlow(*bedrockagent.GetFlowInput) (*bedrockagent.GetFlowOutput, error)
+	GetFlowWithContext(aws.Context, *bedrockagent.GetFlowInput, ...request.Option) (*bedrockagent.GetFlowOutput, error)
+	GetFlowRequest(*bedrockagent.GetFlowInput) (*request.Request, *bedrockagent.GetFlowOutput)
+
+	GetFlowAlias(*bedrockagent.GetFlowAliasInput) (*bedrockagent.GetFlowAliasOutput, error)
+	GetFlowAliasWithContext(aws.Context, *bedrockagent.GetFlowAliasInput, ...request.Option) (*bedrockagent.GetFlowAliasOutput, error)
+	GetFlowAliasRequest(*bedrockagent.GetFlowAliasInput) (*request.Request, *bedrockagent.GetFlowAliasOutput)
+
+	GetFlowVersion(*bedrockagent.GetFlowVersionInput) (*bedrockagent.GetFlowVersionOutput, error)
+	GetFlowVersionWithContext(aws.Context, *bedrockagent.GetFlowVersionInput, ...request.Option) (*bedrockagent.GetFlowVersionOutput, error)
+	GetFlowVersionRequest(*bedrockagent.GetFlowVersionInput) (*request.Request, *bedrockagent.GetFlowVersionOutput)
+
 	GetIngestionJob(*bedrockagent.GetIngestionJobInput) (*bedrockagent.GetIngestionJobOutput, error)
 	GetIngestionJobWithContext(aws.Context, *bedrockagent.GetIngestionJobInput, ...request.Option) (*bedrockagent.GetIngestionJobOutput, error)
 	GetIngestionJobRequest(*bedrockagent.GetIngestionJobInput) (*request.Request, *bedrockagent.GetIngestionJobOutput)
@@ -143,6 +191,10 @@ type BedrockAgentAPI interface {
 	GetKnowledgeBase(*bedrockagent.GetKnowledgeBaseInput) (*bedrockagent.GetKnowledgeBaseOutput, error)
 	GetKnowledgeBaseWithContext(aws.Context, *bedrockagent.GetKnowledgeBaseInput, ...request.Option) (*bedrockagent.GetKnowledgeBaseOutput, error)
 	GetKnowledgeBaseRequest(*bedrockagent.GetKnowledgeBaseInput) (*request.Request, *bedrockagent.GetKnowledgeBaseOutput)
+
+	GetPrompt(*bedrockagent.GetPromptInput) (*bedrockagent.GetPromptOutput, error)
+	GetPromptWithContext(aws.Context, *bedrockagent.GetPromptInput, ...request.Option) (*bedrockagent.GetPromptOutput, error)
+	GetPromptRequest(*bedrockagent.GetPromptInput) (*request.Request, *bedrockagent.GetPromptOutput)
 
 	ListAgentActionGroups(*bedrockagent.ListAgentActionGroupsInput) (*bedrockagent.ListAgentActionGroupsOutput, error)
 	ListAgentActionGroupsWithContext(aws.Context, *bedrockagent.ListAgentActionGroupsInput, ...request.Option) (*bedrockagent.ListAgentActionGroupsOutput, error)
@@ -186,6 +238,27 @@ type BedrockAgentAPI interface {
 	ListDataSourcesPages(*bedrockagent.ListDataSourcesInput, func(*bedrockagent.ListDataSourcesOutput, bool) bool) error
 	ListDataSourcesPagesWithContext(aws.Context, *bedrockagent.ListDataSourcesInput, func(*bedrockagent.ListDataSourcesOutput, bool) bool, ...request.Option) error
 
+	ListFlowAliases(*bedrockagent.ListFlowAliasesInput) (*bedrockagent.ListFlowAliasesOutput, error)
+	ListFlowAliasesWithContext(aws.Context, *bedrockagent.ListFlowAliasesInput, ...request.Option) (*bedrockagent.ListFlowAliasesOutput, error)
+	ListFlowAliasesRequest(*bedrockagent.ListFlowAliasesInput) (*request.Request, *bedrockagent.ListFlowAliasesOutput)
+
+	ListFlowAliasesPages(*bedrockagent.ListFlowAliasesInput, func(*bedrockagent.ListFlowAliasesOutput, bool) bool) error
+	ListFlowAliasesPagesWithContext(aws.Context, *bedrockagent.ListFlowAliasesInput, func(*bedrockagent.ListFlowAliasesOutput, bool) bool, ...request.Option) error
+
+	ListFlowVersions(*bedrockagent.ListFlowVersionsInput) (*bedrockagent.ListFlowVersionsOutput, error)
+	ListFlowVersionsWithContext(aws.Context, *bedrockagent.ListFlowVersionsInput, ...request.Option) (*bedrockagent.ListFlowVersionsOutput, error)
+	ListFlowVersionsRequest(*bedrockagent.ListFlowVersionsInput) (*request.Request, *bedrockagent.ListFlowVersionsOutput)
+
+	ListFlowVersionsPages(*bedrockagent.ListFlowVersionsInput, func(*bedrockagent.ListFlowVersionsOutput, bool) bool) error
+	ListFlowVersionsPagesWithContext(aws.Context, *bedrockagent.ListFlowVersionsInput, func(*bedrockagent.ListFlowVersionsOutput, bool) bool, ...request.Option) error
+
+	ListFlows(*bedrockagent.ListFlowsInput) (*bedrockagent.ListFlowsOutput, error)
+	ListFlowsWithContext(aws.Context, *bedrockagent.ListFlowsInput, ...request.Option) (*bedrockagent.ListFlowsOutput, error)
+	ListFlowsRequest(*bedrockagent.ListFlowsInput) (*request.Request, *bedrockagent.ListFlowsOutput)
+
+	ListFlowsPages(*bedrockagent.ListFlowsInput, func(*bedrockagent.ListFlowsOutput, bool) bool) error
+	ListFlowsPagesWithContext(aws.Context, *bedrockagent.ListFlowsInput, func(*bedrockagent.ListFlowsOutput, bool) bool, ...request.Option) error
+
 	ListIngestionJobs(*bedrockagent.ListIngestionJobsInput) (*bedrockagent.ListIngestionJobsOutput, error)
 	ListIngestionJobsWithContext(aws.Context, *bedrockagent.ListIngestionJobsInput, ...request.Option) (*bedrockagent.ListIngestionJobsOutput, error)
 	ListIngestionJobsRequest(*bedrockagent.ListIngestionJobsInput) (*request.Request, *bedrockagent.ListIngestionJobsOutput)
@@ -200,6 +273,13 @@ type BedrockAgentAPI interface {
 	ListKnowledgeBasesPages(*bedrockagent.ListKnowledgeBasesInput, func(*bedrockagent.ListKnowledgeBasesOutput, bool) bool) error
 	ListKnowledgeBasesPagesWithContext(aws.Context, *bedrockagent.ListKnowledgeBasesInput, func(*bedrockagent.ListKnowledgeBasesOutput, bool) bool, ...request.Option) error
 
+	ListPrompts(*bedrockagent.ListPromptsInput) (*bedrockagent.ListPromptsOutput, error)
+	ListPromptsWithContext(aws.Context, *bedrockagent.ListPromptsInput, ...request.Option) (*bedrockagent.ListPromptsOutput, error)
+	ListPromptsRequest(*bedrockagent.ListPromptsInput) (*request.Request, *bedrockagent.ListPromptsOutput)
+
+	ListPromptsPages(*bedrockagent.ListPromptsInput, func(*bedrockagent.ListPromptsOutput, bool) bool) error
+	ListPromptsPagesWithContext(aws.Context, *bedrockagent.ListPromptsInput, func(*bedrockagent.ListPromptsOutput, bool) bool, ...request.Option) error
+
 	ListTagsForResource(*bedrockagent.ListTagsForResourceInput) (*bedrockagent.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *bedrockagent.ListTagsForResourceInput, ...request.Option) (*bedrockagent.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*bedrockagent.ListTagsForResourceInput) (*request.Request, *bedrockagent.ListTagsForResourceOutput)
@@ -207,6 +287,10 @@ type BedrockAgentAPI interface {
 	PrepareAgent(*bedrockagent.PrepareAgentInput) (*bedrockagent.PrepareAgentOutput, error)
 	PrepareAgentWithContext(aws.Context, *bedrockagent.PrepareAgentInput, ...request.Option) (*bedrockagent.PrepareAgentOutput, error)
 	PrepareAgentRequest(*bedrockagent.PrepareAgentInput) (*request.Request, *bedrockagent.PrepareAgentOutput)
+
+	PrepareFlow(*bedrockagent.PrepareFlowInput) (*bedrockagent.PrepareFlowOutput, error)
+	PrepareFlowWithContext(aws.Context, *bedrockagent.PrepareFlowInput, ...request.Option) (*bedrockagent.PrepareFlowOutput, error)
+	PrepareFlowRequest(*bedrockagent.PrepareFlowInput) (*request.Request, *bedrockagent.PrepareFlowOutput)
 
 	StartIngestionJob(*bedrockagent.StartIngestionJobInput) (*bedrockagent.StartIngestionJobOutput, error)
 	StartIngestionJobWithContext(aws.Context, *bedrockagent.StartIngestionJobInput, ...request.Option) (*bedrockagent.StartIngestionJobOutput, error)
@@ -240,9 +324,21 @@ type BedrockAgentAPI interface {
 	UpdateDataSourceWithContext(aws.Context, *bedrockagent.UpdateDataSourceInput, ...request.Option) (*bedrockagent.UpdateDataSourceOutput, error)
 	UpdateDataSourceRequest(*bedrockagent.UpdateDataSourceInput) (*request.Request, *bedrockagent.UpdateDataSourceOutput)
 
+	UpdateFlow(*bedrockagent.UpdateFlowInput) (*bedrockagent.UpdateFlowOutput, error)
+	UpdateFlowWithContext(aws.Context, *bedrockagent.UpdateFlowInput, ...request.Option) (*bedrockagent.UpdateFlowOutput, error)
+	UpdateFlowRequest(*bedrockagent.UpdateFlowInput) (*request.Request, *bedrockagent.UpdateFlowOutput)
+
+	UpdateFlowAlias(*bedrockagent.UpdateFlowAliasInput) (*bedrockagent.UpdateFlowAliasOutput, error)
+	UpdateFlowAliasWithContext(aws.Context, *bedrockagent.UpdateFlowAliasInput, ...request.Option) (*bedrockagent.UpdateFlowAliasOutput, error)
+	UpdateFlowAliasRequest(*bedrockagent.UpdateFlowAliasInput) (*request.Request, *bedrockagent.UpdateFlowAliasOutput)
+
 	UpdateKnowledgeBase(*bedrockagent.UpdateKnowledgeBaseInput) (*bedrockagent.UpdateKnowledgeBaseOutput, error)
 	UpdateKnowledgeBaseWithContext(aws.Context, *bedrockagent.UpdateKnowledgeBaseInput, ...request.Option) (*bedrockagent.UpdateKnowledgeBaseOutput, error)
 	UpdateKnowledgeBaseRequest(*bedrockagent.UpdateKnowledgeBaseInput) (*request.Request, *bedrockagent.UpdateKnowledgeBaseOutput)
+
+	UpdatePrompt(*bedrockagent.UpdatePromptInput) (*bedrockagent.UpdatePromptOutput, error)
+	UpdatePromptWithContext(aws.Context, *bedrockagent.UpdatePromptInput, ...request.Option) (*bedrockagent.UpdatePromptOutput, error)
+	UpdatePromptRequest(*bedrockagent.UpdatePromptInput) (*request.Request, *bedrockagent.UpdatePromptOutput)
 }
 
 var _ BedrockAgentAPI = (*bedrockagent.BedrockAgent)(nil)

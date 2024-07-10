@@ -7317,6 +7317,11 @@ type AddOutputRequest struct {
 	// The name of the output. This value must be unique within the current flow.
 	Name *string `locationName:"name" type:"string"`
 
+	// An indication of whether the new output should be enabled or disabled as
+	// soon as it is created. If you don't specify the outputStatus field in your
+	// request, MediaConnect sets it to ENABLED.
+	OutputStatus *string `locationName:"outputStatus" type:"string" enum:"OutputStatus"`
+
 	// The port to use when content is distributed to this output.
 	Port *int64 `locationName:"port" type:"integer"`
 
@@ -7434,6 +7439,12 @@ func (s *AddOutputRequest) SetMinLatency(v int64) *AddOutputRequest {
 // SetName sets the Name field's value.
 func (s *AddOutputRequest) SetName(v string) *AddOutputRequest {
 	s.Name = &v
+	return s
+}
+
+// SetOutputStatus sets the OutputStatus field's value.
+func (s *AddOutputRequest) SetOutputStatus(v string) *AddOutputRequest {
+	s.OutputStatus = &v
 	return s
 }
 
@@ -13756,6 +13767,9 @@ type Output struct {
 	// OutputArn is a required field
 	OutputArn *string `locationName:"outputArn" type:"string" required:"true"`
 
+	// An indication of whether the output is transmitting data or not.
+	OutputStatus *string `locationName:"outputStatus" type:"string" enum:"OutputStatus"`
+
 	// The port to use when content is distributed to this output.
 	Port *int64 `locationName:"port" type:"integer"`
 
@@ -13853,6 +13867,12 @@ func (s *Output) SetName(v string) *Output {
 // SetOutputArn sets the OutputArn field's value.
 func (s *Output) SetOutputArn(v string) *Output {
 	s.OutputArn = &v
+	return s
+}
+
+// SetOutputStatus sets the OutputStatus field's value.
+func (s *Output) SetOutputStatus(v string) *Output {
+	s.OutputStatus = &v
 	return s
 }
 
@@ -17549,6 +17569,11 @@ type UpdateFlowOutputInput struct {
 	// OutputArn is a required field
 	OutputArn *string `location:"uri" locationName:"outputArn" type:"string" required:"true"`
 
+	// An indication of whether the output should transmit data or not. If you don't
+	// specify the outputStatus field in your request, MediaConnect leaves the value
+	// unchanged.
+	OutputStatus *string `locationName:"outputStatus" type:"string" enum:"OutputStatus"`
+
 	// The port to use when content is distributed to this output.
 	Port *int64 `locationName:"port" type:"integer"`
 
@@ -17678,6 +17703,12 @@ func (s *UpdateFlowOutputInput) SetMinLatency(v int64) *UpdateFlowOutputInput {
 // SetOutputArn sets the OutputArn field's value.
 func (s *UpdateFlowOutputInput) SetOutputArn(v string) *UpdateFlowOutputInput {
 	s.OutputArn = &v
+	return s
+}
+
+// SetOutputStatus sets the OutputStatus field's value.
+func (s *UpdateFlowOutputInput) SetOutputStatus(v string) *UpdateFlowOutputInput {
+	s.OutputStatus = &v
 	return s
 }
 
@@ -18922,6 +18953,22 @@ func NetworkInterfaceType_Values() []string {
 	return []string{
 		NetworkInterfaceTypeEna,
 		NetworkInterfaceTypeEfa,
+	}
+}
+
+const (
+	// OutputStatusEnabled is a OutputStatus enum value
+	OutputStatusEnabled = "ENABLED"
+
+	// OutputStatusDisabled is a OutputStatus enum value
+	OutputStatusDisabled = "DISABLED"
+)
+
+// OutputStatus_Values returns all elements of the OutputStatus enum
+func OutputStatus_Values() []string {
+	return []string{
+		OutputStatusEnabled,
+		OutputStatusDisabled,
 	}
 }
 

@@ -2,6 +2,7 @@
   "version": "2.0",
   "service": "<p>Describes the API operations for running inference using Amazon Bedrock models.</p>",
   "operations": {
+    "ApplyGuardrail": "<p>The action to apply a guardrail.</p>",
     "Converse": "<p>Sends messages to the specified Amazon Bedrock model. <code>Converse</code> provides a consistent interface that works with all models that support messages. This allows you to write code once and use it with different models. Should a model have unique inference parameters, you can also pass those unique parameters to the model.</p> <p>For information about the Converse API, see <i>Use the Converse API</i> in the <i>Amazon Bedrock User Guide</i>. To use a guardrail, see <i>Use a guardrail with the Converse API</i> in the <i>Amazon Bedrock User Guide</i>. To use a tool with a model, see <i>Tool use (Function calling)</i> in the <i>Amazon Bedrock User Guide</i> </p> <p>For example code, see <i>Converse API examples</i> in the <i>Amazon Bedrock User Guide</i>. </p> <p>This operation requires permission for the <code>bedrock:InvokeModel</code> action. </p>",
     "ConverseStream": "<p>Sends messages to the specified Amazon Bedrock model and returns the response in a stream. <code>ConverseStream</code> provides a consistent API that works with all Amazon Bedrock models that support messages. This allows you to write code once and use it with different models. Should a model have unique inference parameters, you can also pass those unique parameters to the model. </p> <p>To find out if a model supports streaming, call <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_GetFoundationModel.html\">GetFoundationModel</a> and check the <code>responseStreamingSupported</code> field in the response.</p> <p>For information about the Converse API, see <i>Use the Converse API</i> in the <i>Amazon Bedrock User Guide</i>. To use a guardrail, see <i>Use a guardrail with the Converse API</i> in the <i>Amazon Bedrock User Guide</i>. To use a tool with a model, see <i>Tool use (Function calling)</i> in the <i>Amazon Bedrock User Guide</i> </p> <p>For example code, see <i>Conversation streaming example</i> in the <i>Amazon Bedrock User Guide</i>. </p> <p>This operation requires permission for the <code>bedrock:InvokeModelWithResponseStream</code> action.</p>",
     "InvokeModel": "<p>Invokes the specified Amazon Bedrock model to run inference using the prompt and inference parameters provided in the request body. You use model inference to generate text, images, and embeddings.</p> <p>For example code, see <i>Invoke model code examples</i> in the <i>Amazon Bedrock User Guide</i>. </p> <p>This operation requires permission for the <code>bedrock:InvokeModel</code> action.</p>",
@@ -19,6 +20,16 @@
         "ToolChoice$any": "<p>The model must request at least one tool (no text is generated).</p>"
       }
     },
+    "ApplyGuardrailRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ApplyGuardrailResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "AutoToolChoice": {
       "base": "<p>The Model automatically decides if a tool should be called or whether to generate text instead. For example, <code>{\"auto\" : {}}</code>.</p>",
       "refs": {
@@ -34,7 +45,7 @@
       }
     },
     "ContentBlock": {
-      "base": "<p>A block of content for a message that you pass to, or receive from, a model with the Converse API (<a>Converse</a> and <a>ConverseStream</a>).</p>",
+      "base": "<p>A block of content for a message that you pass to, or receive from, a model with the <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_runtime_Converse.html\">Converse</a> or <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_runtime_ConverseStream.html\">ConverseStream</a> API operations.</p>",
       "refs": {
         "ContentBlocks$member": null
       }
@@ -72,7 +83,7 @@
     "ContentBlocks": {
       "base": null,
       "refs": {
-        "Message$content": "<p>The message content.</p>"
+        "Message$content": "<p>The message content. Note the following restrictions:</p> <ul> <li> <p>You can include up to 20 images. Each image's size, height, and width must be no more than 3.75 MB, 8000 px, and 8000 px, respectively.</p> </li> <li> <p>You can include up to five documents. Each document's size must be no more than 4.5 MB.</p> </li> <li> <p>If you include a <code>ContentBlock</code> with a <code>document</code> field in the array, you must also include a <code>ContentBlock</code> with a <code>text</code> field.</p> </li> <li> <p>You can only include images and documents if the <code>role</code> is <code>user</code>.</p> </li> </ul>"
       }
     },
     "ConversationRole": {
@@ -164,13 +175,13 @@
       }
     },
     "ConverseStreamTrace": {
-      "base": "<p>The trace object in a response from <a>ConverseStream</a>. Currently, you can only trace guardrails.</p>",
+      "base": "<p>The trace object in a response from <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_runtime_ConverseStream.html\">ConverseStream</a>. Currently, you can only trace guardrails.</p>",
       "refs": {
-        "ConverseStreamMetadataEvent$trace": "<p>The trace object in the response from <a>ConverseStream</a> that contains information about the guardrail behavior.</p>"
+        "ConverseStreamMetadataEvent$trace": "<p>The trace object in the response from <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_runtime_ConverseStream.html\">ConverseStream</a> that contains information about the guardrail behavior.</p>"
       }
     },
     "ConverseTrace": {
-      "base": "<p>The trace object in a response from <a>Converse</a>. Currently, you can only trace guardrails.</p>",
+      "base": "<p>The trace object in a response from <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_runtime_Converse.html\">Converse</a>. Currently, you can only trace guardrails.</p>",
       "refs": {
         "ConverseResponse$trace": "<p>A trace object that contains information about the Guardrail behavior.</p>"
       }
@@ -188,7 +199,7 @@
       }
     },
     "DocumentBlock": {
-      "base": "<p>A document to include in a message when sending a <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_runtime_Converse.html\">Converse</a> or <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_runtime_ConverseStream.html\">ConverseStream</a> request. You can include up to 5 documents in a request. The maximum document size is 50 MB.</p>",
+      "base": "<p>A document to include in a message.</p>",
       "refs": {
         "ContentBlock$document": "<p>A document to include in the message.</p>",
         "ToolResultContentBlock$document": "<p>A tool result that is a document.</p>"
@@ -197,7 +208,7 @@
     "DocumentBlockNameString": {
       "base": null,
       "refs": {
-        "DocumentBlock$name": "<p>A name for the document.</p>"
+        "DocumentBlock$name": "<p>A name for the document. The name can only contain the following characters:</p> <ul> <li> <p>Alphanumeric characters</p> </li> <li> <p>Whitespace characters (no more than one in a row)</p> </li> <li> <p>Hyphens</p> </li> <li> <p>Parentheses</p> </li> <li> <p>Square brackets</p> </li> </ul> <note> <p>This field is vulnerable to prompt injections, because the model might inadvertently interpret it as instructions. Therefore, we recommend that you specify a neutral name.</p> </note>"
       }
     },
     "DocumentFormat": {
@@ -207,7 +218,7 @@
       }
     },
     "DocumentSource": {
-      "base": "<p>Contains the content of the document included in a message when sending a <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_runtime_Converse.html\">Converse</a> or <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_runtime_ConverseStream.html\">ConverseStream</a> request or in the response.</p>",
+      "base": "<p>Contains the content of a document.</p>",
       "refs": {
         "DocumentBlock$source": "<p>Contains the content of the document.</p>"
       }
@@ -215,7 +226,13 @@
     "DocumentSourceBytesBlob": {
       "base": null,
       "refs": {
-        "DocumentSource$bytes": "<p>A base64-encoded string of a UTF-8 encoded file, that is the document to include in the message.</p>"
+        "DocumentSource$bytes": "<p>The raw bytes for the document. If you use an Amazon Web Services SDK, you don't need to encode the bytes in base64.</p>"
+      }
+    },
+    "GuardrailAction": {
+      "base": null,
+      "refs": {
+        "ApplyGuardrailResponse$action": "<p>The action taken in the response from the guardrail.</p>"
       }
     },
     "GuardrailAssessment": {
@@ -228,6 +245,7 @@
     "GuardrailAssessmentList": {
       "base": null,
       "refs": {
+        "ApplyGuardrailResponse$assessments": "<p>The assessment details in the response from the guardrail.</p>",
         "GuardrailAssessmentListMap$value": null
       }
     },
@@ -244,9 +262,21 @@
       }
     },
     "GuardrailConfiguration": {
-      "base": "<p>Configuration information for a guardrail that you use with the <a>Converse</a> action.</p>",
+      "base": "<p>Configuration information for a guardrail that you use with the <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_runtime_Converse.html\">Converse</a> operation.</p>",
       "refs": {
         "ConverseRequest$guardrailConfig": "<p>Configuration information for a guardrail that you want to use in the request. </p>"
+      }
+    },
+    "GuardrailContentBlock": {
+      "base": "<p>The content block to be evaluated by the guardrail.</p>",
+      "refs": {
+        "GuardrailContentBlockList$member": null
+      }
+    },
+    "GuardrailContentBlockList": {
+      "base": null,
+      "refs": {
+        "ApplyGuardrailRequest$content": "<p>The content details used in the request to apply the guardrail.</p>"
       }
     },
     "GuardrailContentFilter": {
@@ -285,11 +315,95 @@
         "GuardrailAssessment$contentPolicy": "<p>The content policy.</p>"
       }
     },
+    "GuardrailContentPolicyUnitsProcessed": {
+      "base": null,
+      "refs": {
+        "GuardrailUsage$contentPolicyUnits": "<p>The content policy units processed by the guardrail.</p>"
+      }
+    },
+    "GuardrailContentQualifier": {
+      "base": null,
+      "refs": {
+        "GuardrailContentQualifierList$member": null
+      }
+    },
+    "GuardrailContentQualifierList": {
+      "base": null,
+      "refs": {
+        "GuardrailTextBlock$qualifiers": "<p>The qualifiers describing the text block.</p>"
+      }
+    },
+    "GuardrailContentSource": {
+      "base": null,
+      "refs": {
+        "ApplyGuardrailRequest$source": "<p>The source of data used in the request to apply the guardrail.</p>"
+      }
+    },
+    "GuardrailContextualGroundingFilter": {
+      "base": "<p>The details for the guardrails contextual grounding filter.</p>",
+      "refs": {
+        "GuardrailContextualGroundingFilters$member": null
+      }
+    },
+    "GuardrailContextualGroundingFilterScoreDouble": {
+      "base": null,
+      "refs": {
+        "GuardrailContextualGroundingFilter$score": "<p>The score generated by contextual grounding filter.</p>"
+      }
+    },
+    "GuardrailContextualGroundingFilterThresholdDouble": {
+      "base": null,
+      "refs": {
+        "GuardrailContextualGroundingFilter$threshold": "<p>The threshold used by contextual grounding filter to determine whether the content is grounded or not.</p>"
+      }
+    },
+    "GuardrailContextualGroundingFilterType": {
+      "base": null,
+      "refs": {
+        "GuardrailContextualGroundingFilter$type": "<p>The contextual grounding filter type.</p>"
+      }
+    },
+    "GuardrailContextualGroundingFilters": {
+      "base": null,
+      "refs": {
+        "GuardrailContextualGroundingPolicyAssessment$filters": "<p>The filter details for the guardrails contextual grounding filter.</p>"
+      }
+    },
+    "GuardrailContextualGroundingPolicyAction": {
+      "base": null,
+      "refs": {
+        "GuardrailContextualGroundingFilter$action": "<p>The action performed by the guardrails contextual grounding filter.</p>"
+      }
+    },
+    "GuardrailContextualGroundingPolicyAssessment": {
+      "base": "<p>The policy assessment details for the guardrails contextual grounding filter.</p>",
+      "refs": {
+        "GuardrailAssessment$contextualGroundingPolicy": "<p>The contextual grounding policy used for the guardrail assessment.</p>"
+      }
+    },
+    "GuardrailContextualGroundingPolicyUnitsProcessed": {
+      "base": null,
+      "refs": {
+        "GuardrailUsage$contextualGroundingPolicyUnits": "<p>The contextual grounding policy units processed by the guardrail.</p>"
+      }
+    },
     "GuardrailConverseContentBlock": {
-      "base": "<p/> <p>A content block for selective guarding with the Converse API (<a>Converse</a> and <a>ConverseStream</a>). </p>",
+      "base": "<p/> <p>A content block for selective guarding with the <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_runtime_Converse.html\">Converse</a> or <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_runtime_ConverseStream.html\">ConverseStream</a> API operations. </p>",
       "refs": {
         "ContentBlock$guardContent": "<p>Contains the content to assess with the guardrail. If you don't specify <code>guardContent</code> in a call to the Converse API, the guardrail (if passed in the Converse API) assesses the entire message.</p> <p>For more information, see <i>Use a guardrail with the Converse API</i> in the <i>Amazon Bedrock User Guide</i>. <pre><code> &lt;/p&gt; </code></pre>",
-        "SystemContentBlock$guardContent": "<p>A content block to assess with the guardrail. Use with the Converse API (<a>Converse</a> and <a>ConverseStream</a>). </p> <p>For more information, see <i>Use a guardrail with the Converse API</i> in the <i>Amazon Bedrock User Guide</i>.</p>"
+        "SystemContentBlock$guardContent": "<p>A content block to assess with the guardrail. Use with the <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_runtime_Converse.html\">Converse</a> or <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_runtime_ConverseStream.html\">ConverseStream</a> API operations. </p> <p>For more information, see <i>Use a guardrail with the Converse API</i> in the <i>Amazon Bedrock User Guide</i>.</p>"
+      }
+    },
+    "GuardrailConverseContentQualifier": {
+      "base": null,
+      "refs": {
+        "GuardrailConverseContentQualifierList$member": null
+      }
+    },
+    "GuardrailConverseContentQualifierList": {
+      "base": null,
+      "refs": {
+        "GuardrailConverseTextBlock$qualifiers": "<p>The qualifier details for the guardrails contextual grounding filter.</p>"
       }
     },
     "GuardrailConverseTextBlock": {
@@ -313,6 +427,7 @@
     "GuardrailIdentifier": {
       "base": null,
       "refs": {
+        "ApplyGuardrailRequest$guardrailIdentifier": "<p>The guardrail identifier used in the request to apply the guardrail.</p>",
         "GuardrailConfiguration$guardrailIdentifier": "<p>The identifier for the guardrail.</p>",
         "GuardrailStreamConfiguration$guardrailIdentifier": "<p>The identifier for the guardrail.</p>",
         "InvokeModelRequest$guardrailIdentifier": "<p>The unique identifier of the guardrail that you want to use. If you don't provide a value, no guardrail is applied to the invocation.</p> <p>An error will be thrown in the following situations.</p> <ul> <li> <p>You don't provide a guardrail identifier but you specify the <code>amazon-bedrock-guardrailConfig</code> field in the request body.</p> </li> <li> <p>You enable the guardrail but the <code>contentType</code> isn't <code>application/json</code>.</p> </li> <li> <p>You provide a guardrail identifier, but <code>guardrailVersion</code> isn't specified.</p> </li> </ul>",
@@ -337,9 +452,22 @@
         "GuardrailManagedWord$type": "<p>The type for the managed word.</p>"
       }
     },
+    "GuardrailOutputContent": {
+      "base": "<p>The output content produced by the guardrail.</p>",
+      "refs": {
+        "GuardrailOutputContentList$member": null
+      }
+    },
+    "GuardrailOutputContentList": {
+      "base": null,
+      "refs": {
+        "ApplyGuardrailResponse$outputs": "<p>The output details in the response from the guardrail.</p>"
+      }
+    },
     "GuardrailOutputText": {
       "base": null,
       "refs": {
+        "GuardrailOutputContent$text": "<p>The specific text for the output content produced by the guardrail.</p>",
         "ModelOutputs$member": null
       }
     },
@@ -386,6 +514,18 @@
         "GuardrailAssessment$sensitiveInformationPolicy": "<p>The sensitive information policy.</p>"
       }
     },
+    "GuardrailSensitiveInformationPolicyFreeUnitsProcessed": {
+      "base": null,
+      "refs": {
+        "GuardrailUsage$sensitiveInformationPolicyFreeUnits": "<p>The sensitive information policy free units processed by the guardrail.</p>"
+      }
+    },
+    "GuardrailSensitiveInformationPolicyUnitsProcessed": {
+      "base": null,
+      "refs": {
+        "GuardrailUsage$sensitiveInformationPolicyUnits": "<p>The sensitive information policy units processed by the guardrail.</p>"
+      }
+    },
     "GuardrailStreamConfiguration": {
       "base": "<p>Configuration information for a guardrail that you use with the <a>ConverseStream</a> action. </p>",
       "refs": {
@@ -396,6 +536,12 @@
       "base": null,
       "refs": {
         "GuardrailStreamConfiguration$streamProcessingMode": "<p>The processing mode. </p> <p>The processing mode. For more information, see <i>Configure streaming response behavior</i> in the <i>Amazon Bedrock User Guide</i>. </p>"
+      }
+    },
+    "GuardrailTextBlock": {
+      "base": "<p>The text block to be evaluated by the guardrail.</p>",
+      "refs": {
+        "GuardrailContentBlock$text": "<p>Text within content block to be evaluated by the guardrail.</p>"
       }
     },
     "GuardrailTopic": {
@@ -422,6 +568,12 @@
         "GuardrailAssessment$topicPolicy": "<p>The topic policy.</p>"
       }
     },
+    "GuardrailTopicPolicyUnitsProcessed": {
+      "base": null,
+      "refs": {
+        "GuardrailUsage$topicPolicyUnits": "<p>The topic policy units processed by the guardrail.</p>"
+      }
+    },
     "GuardrailTopicType": {
       "base": null,
       "refs": {
@@ -442,9 +594,16 @@
         "ConverseTrace$guardrail": "<p>The guardrail trace object. </p>"
       }
     },
+    "GuardrailUsage": {
+      "base": "<p>The details on the use of the guardrail.</p>",
+      "refs": {
+        "ApplyGuardrailResponse$usage": "<p>The usage details in the response from the guardrail.</p>"
+      }
+    },
     "GuardrailVersion": {
       "base": null,
       "refs": {
+        "ApplyGuardrailRequest$guardrailVersion": "<p>The guardrail version used in the request to apply the guardrail.</p>",
         "GuardrailConfiguration$guardrailVersion": "<p>The version of the guardrail.</p>",
         "GuardrailStreamConfiguration$guardrailVersion": "<p>The version of the guardrail.</p>",
         "InvokeModelRequest$guardrailVersion": "<p>The version number for the guardrail. The value can also be <code>DRAFT</code>.</p>",
@@ -462,6 +621,12 @@
       "base": "<p>The word policy assessment.</p>",
       "refs": {
         "GuardrailAssessment$wordPolicy": "<p>The word policy.</p>"
+      }
+    },
+    "GuardrailWordPolicyUnitsProcessed": {
+      "base": null,
+      "refs": {
+        "GuardrailUsage$wordPolicyUnits": "<p>The word policy units processed by the guardrail.</p>"
       }
     },
     "ImageBlock": {
@@ -486,7 +651,7 @@
     "ImageSourceBytesBlob": {
       "base": null,
       "refs": {
-        "ImageSource$bytes": "<p>The raw image bytes for the image. If you use an AWS SDK, you don't need to base64 encode the image bytes.</p>"
+        "ImageSource$bytes": "<p>The raw image bytes for the image. If you use an AWS SDK, you don't need to encode the image bytes in base64.</p>"
       }
     },
     "InferenceConfiguration": {
@@ -722,6 +887,7 @@
         "GuardrailRegexFilter$name": "<p>The regex filter name.</p>",
         "GuardrailRegexFilter$match": "<p>The regesx filter match.</p>",
         "GuardrailRegexFilter$regex": "<p>The regex query.</p>",
+        "GuardrailTextBlock$text": "<p>The input text details to be evaluated by the guardrail.</p>",
         "GuardrailTopic$name": "<p>The name for the guardrail.</p>",
         "ToolResultContentBlock$text": "<p>A tool result that is text.</p>",
         "ToolUseBlockDelta$input": "<p>The input for a requested tool.</p>"
@@ -773,7 +939,7 @@
       }
     },
     "Tool": {
-      "base": "<p>Information about a tool that you can use with the Converse API. </p>",
+      "base": "<p>Information about a tool that you can use with the Converse API. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/tool-use.html\">Tool use (function calling)</a> in the Amazon Bedrock User Guide.</p>",
       "refs": {
         "ToolConfigurationToolsList$member": null
       }
@@ -785,7 +951,7 @@
       }
     },
     "ToolConfiguration": {
-      "base": "<p>Configuration information for the tools that you pass to a model.</p> <note> <p>This field is only supported by Anthropic Claude 3, Cohere Command R, Cohere Command R+, and Mistral Large models.</p> </note>",
+      "base": "<p>Configuration information for the tools that you pass to a model. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/tool-use.html\">Tool use (function calling)</a> in the Amazon Bedrock User Guide.</p> <note> <p>This field is only supported by Anthropic Claude 3, Cohere Command R, Cohere Command R+, and Mistral Large models.</p> </note>",
       "refs": {
         "ConverseRequest$toolConfig": "<p>Configuration information for the tools that the model can use when generating a response. </p> <note> <p>This field is only supported by Anthropic Claude 3, Cohere Command R, Cohere Command R+, and Mistral Large models.</p> </note>",
         "ConverseStreamRequest$toolConfig": "<p>Configuration information for the tools that the model can use when generating a response.</p> <note> <p>This field is only supported by Anthropic Claude 3 models.</p> </note>"
@@ -845,7 +1011,7 @@
     "ToolUseBlock": {
       "base": "<p>A tool use content block. Contains information about a tool that the model is requesting be run., The model uses the result from the tool to generate a response. </p>",
       "refs": {
-        "ContentBlock$toolUse": "<p>Information about a tool use request from a model. </p>"
+        "ContentBlock$toolUse": "<p>Information about a tool use request from a model.</p>"
       }
     },
     "ToolUseBlockDelta": {
