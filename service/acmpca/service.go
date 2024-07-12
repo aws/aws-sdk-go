@@ -51,8 +51,7 @@ const (
 func New(p client.ConfigProvider, cfgs ...*aws.Config) *ACMPCA {
 	c := p.ClientConfig(EndpointsID, cfgs...)
 	if c.SigningNameDerived || len(c.SigningName) == 0 {
-		c.SigningName = EndpointsID
-		// No Fallback
+		c.SigningName = "acm-pca"
 	}
 	return newClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }

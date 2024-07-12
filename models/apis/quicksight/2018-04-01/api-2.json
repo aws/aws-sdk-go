@@ -13,6 +13,39 @@
     "auth":["aws.auth#sigv4"]
   },
   "operations":{
+    "BatchCreateTopicReviewedAnswer":{
+      "name":"BatchCreateTopicReviewedAnswer",
+      "http":{
+        "method":"POST",
+        "requestUri":"/accounts/{AwsAccountId}/topics/{TopicId}/batch-create-reviewed-answers"
+      },
+      "input":{"shape":"BatchCreateTopicReviewedAnswerRequest"},
+      "output":{"shape":"BatchCreateTopicReviewedAnswerResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalFailureException"}
+      ]
+    },
+    "BatchDeleteTopicReviewedAnswer":{
+      "name":"BatchDeleteTopicReviewedAnswer",
+      "http":{
+        "method":"POST",
+        "requestUri":"/accounts/{AwsAccountId}/topics/{TopicId}/batch-delete-reviewed-answers"
+      },
+      "input":{"shape":"BatchDeleteTopicReviewedAnswerRequest"},
+      "output":{"shape":"BatchDeleteTopicReviewedAnswerResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalFailureException"}
+      ]
+    },
     "CancelIngestion":{
       "name":"CancelIngestion",
       "http":{
@@ -2169,6 +2202,22 @@
         {"shape":"InternalFailureException"}
       ]
     },
+    "ListTopicReviewedAnswers":{
+      "name":"ListTopicReviewedAnswers",
+      "http":{
+        "method":"GET",
+        "requestUri":"/accounts/{AwsAccountId}/topics/{TopicId}/reviewed-answers"
+      },
+      "input":{"shape":"ListTopicReviewedAnswersRequest"},
+      "output":{"shape":"ListTopicReviewedAnswersResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalFailureException"}
+      ]
+    },
     "ListTopics":{
       "name":"ListTopics",
       "http":{
@@ -3170,6 +3219,54 @@
       "max":20,
       "min":1
     },
+    "AggFunction":{
+      "type":"structure",
+      "members":{
+        "Aggregation":{"shape":"AggType"},
+        "AggregationFunctionParameters":{"shape":"AggFunctionParamMap"},
+        "Period":{"shape":"TopicTimeGranularity"},
+        "PeriodField":{"shape":"LimitedString"}
+      }
+    },
+    "AggFunctionParamKey":{
+      "type":"string",
+      "max":256,
+      "min":1
+    },
+    "AggFunctionParamMap":{
+      "type":"map",
+      "key":{"shape":"AggFunctionParamKey"},
+      "value":{"shape":"AggFunctionParamValue"}
+    },
+    "AggFunctionParamValue":{
+      "type":"string",
+      "max":1024
+    },
+    "AggType":{
+      "type":"string",
+      "enum":[
+        "SUM",
+        "MIN",
+        "MAX",
+        "COUNT",
+        "AVERAGE",
+        "DISTINCT_COUNT",
+        "STDEV",
+        "STDEVP",
+        "VAR",
+        "VARP",
+        "PERCENTILE",
+        "MEDIAN",
+        "PTD_SUM",
+        "PTD_MIN",
+        "PTD_MAX",
+        "PTD_COUNT",
+        "PTD_DISTINCT_COUNT",
+        "PTD_AVERAGE",
+        "COLUMN",
+        "CUSTOM"
+      ]
+    },
     "AggregationFunction":{
       "type":"structure",
       "members":{
@@ -3183,6 +3280,18 @@
       "type":"map",
       "key":{"shape":"LimitedString"},
       "value":{"shape":"LimitedString"}
+    },
+    "AggregationPartitionBy":{
+      "type":"structure",
+      "members":{
+        "FieldName":{"shape":"LimitedString"},
+        "TimeGranularity":{"shape":"TimeGranularity"}
+      }
+    },
+    "AggregationPartitionByList":{
+      "type":"list",
+      "member":{"shape":"AggregationPartitionBy"},
+      "max":50
     },
     "AggregationSortConfiguration":{
       "type":"structure",
@@ -3354,6 +3463,14 @@
       "member":{"shape":"AnalysisSummary"},
       "max":100
     },
+    "Anchor":{
+      "type":"structure",
+      "members":{
+        "AnchorType":{"shape":"AnchorType"},
+        "TimeGranularity":{"shape":"TimeGranularity"},
+        "Offset":{"shape":"Integer"}
+      }
+    },
     "AnchorDateConfiguration":{
       "type":"structure",
       "members":{
@@ -3364,6 +3481,10 @@
     "AnchorOption":{
       "type":"string",
       "enum":["NOW"]
+    },
+    "AnchorType":{
+      "type":"string",
+      "enum":["TODAY"]
     },
     "AnonymousUserDashboardEmbeddingConfiguration":{
       "type":"structure",
@@ -3411,6 +3532,15 @@
     "AnonymousUserSnapshotJobResultList":{
       "type":"list",
       "member":{"shape":"AnonymousUserSnapshotJobResult"}
+    },
+    "AnswerId":{
+      "type":"string",
+      "max":256,
+      "pattern":"^[A-Za-z0-9-_.\\\\+]*$"
+    },
+    "AnswerIds":{
+      "type":"list",
+      "member":{"shape":"AnswerId"}
     },
     "ArcAxisConfiguration":{
       "type":"structure",
@@ -4552,6 +4682,75 @@
         "IMAGERY"
       ]
     },
+    "BatchCreateTopicReviewedAnswerRequest":{
+      "type":"structure",
+      "required":[
+        "AwsAccountId",
+        "TopicId",
+        "Answers"
+      ],
+      "members":{
+        "AwsAccountId":{
+          "shape":"AwsAccountId",
+          "location":"uri",
+          "locationName":"AwsAccountId"
+        },
+        "TopicId":{
+          "shape":"TopicId",
+          "location":"uri",
+          "locationName":"TopicId"
+        },
+        "Answers":{"shape":"CreateTopicReviewedAnswers"}
+      }
+    },
+    "BatchCreateTopicReviewedAnswerResponse":{
+      "type":"structure",
+      "members":{
+        "TopicId":{"shape":"TopicId"},
+        "TopicArn":{"shape":"Arn"},
+        "SucceededAnswers":{"shape":"SucceededTopicReviewedAnswers"},
+        "InvalidAnswers":{"shape":"InvalidTopicReviewedAnswers"},
+        "Status":{
+          "shape":"StatusCode",
+          "location":"statusCode"
+        },
+        "RequestId":{"shape":"String"}
+      }
+    },
+    "BatchDeleteTopicReviewedAnswerRequest":{
+      "type":"structure",
+      "required":[
+        "AwsAccountId",
+        "TopicId"
+      ],
+      "members":{
+        "AwsAccountId":{
+          "shape":"AwsAccountId",
+          "location":"uri",
+          "locationName":"AwsAccountId"
+        },
+        "TopicId":{
+          "shape":"TopicId",
+          "location":"uri",
+          "locationName":"TopicId"
+        },
+        "AnswerIds":{"shape":"AnswerIds"}
+      }
+    },
+    "BatchDeleteTopicReviewedAnswerResponse":{
+      "type":"structure",
+      "members":{
+        "TopicId":{"shape":"TopicId"},
+        "TopicArn":{"shape":"Arn"},
+        "SucceededAnswers":{"shape":"SucceededTopicReviewedAnswers"},
+        "InvalidAnswers":{"shape":"InvalidTopicReviewedAnswers"},
+        "RequestId":{"shape":"String"},
+        "Status":{
+          "shape":"StatusCode",
+          "location":"statusCode"
+        }
+      }
+    },
     "BigQueryParameters":{
       "type":"structure",
       "required":["ProjectId"],
@@ -4811,6 +5010,11 @@
       "min":1,
       "sensitive":true
     },
+    "CalculatedFieldReferenceList":{
+      "type":"list",
+      "member":{"shape":"Identifier"},
+      "max":250
+    },
     "CalculatedFields":{
       "type":"list",
       "member":{"shape":"CalculatedField"},
@@ -5057,6 +5261,18 @@
       "members":{
         "ValueList":{"shape":"StringList"}
       }
+    },
+    "CollectiveConstantEntry":{
+      "type":"structure",
+      "members":{
+        "ConstantType":{"shape":"ConstantType"},
+        "Value":{"shape":"ConstantValueString"}
+      }
+    },
+    "CollectiveConstantEntryList":{
+      "type":"list",
+      "member":{"shape":"CollectiveConstantEntry"},
+      "max":2000
     },
     "ColorFillType":{
       "type":"string",
@@ -5404,6 +5620,21 @@
         "PERCENT"
       ]
     },
+    "ComparisonMethodType":{
+      "type":"string",
+      "enum":[
+        "DIFF",
+        "PERC_DIFF",
+        "DIFF_AS_PERC",
+        "POP_CURRENT_DIFF_AS_PERC",
+        "POP_CURRENT_DIFF",
+        "POP_OVERTIME_DIFF_AS_PERC",
+        "POP_OVERTIME_DIFF",
+        "PERCENT_OF_TOTAL",
+        "RUNNING_SUM",
+        "MOVING_AVERAGE"
+      ]
+    },
     "Computation":{
       "type":"structure",
       "members":{
@@ -5537,6 +5768,10 @@
         "COLLECTIVE"
       ]
     },
+    "ConstantValueString":{
+      "type":"string",
+      "max":1024
+    },
     "ContextMenuOption":{
       "type":"structure",
       "members":{
@@ -5559,6 +5794,41 @@
       "member":{"shape":"ContributionAnalysisDefault"},
       "max":200,
       "min":1
+    },
+    "ContributionAnalysisDirection":{
+      "type":"string",
+      "enum":[
+        "INCREASE",
+        "DECREASE",
+        "NEUTRAL"
+      ]
+    },
+    "ContributionAnalysisFactor":{
+      "type":"structure",
+      "members":{
+        "FieldName":{"shape":"LimitedString"}
+      }
+    },
+    "ContributionAnalysisFactorsList":{
+      "type":"list",
+      "member":{"shape":"ContributionAnalysisFactor"},
+      "max":50
+    },
+    "ContributionAnalysisSortType":{
+      "type":"string",
+      "enum":[
+        "ABSOLUTE_DIFFERENCE",
+        "CONTRIBUTION_PERCENTAGE",
+        "DEVIATION_FROM_EXPECTED",
+        "PERCENTAGE_DIFFERENCE"
+      ]
+    },
+    "ContributionAnalysisTimeRanges":{
+      "type":"structure",
+      "members":{
+        "StartRange":{"shape":"TopicIRFilterOption"},
+        "EndRange":{"shape":"TopicIRFilterOption"}
+      }
     },
     "ContributorDimensionList":{
       "type":"list",
@@ -6393,6 +6663,28 @@
           "location":"statusCode"
         }
       }
+    },
+    "CreateTopicReviewedAnswer":{
+      "type":"structure",
+      "required":[
+        "AnswerId",
+        "DatasetArn",
+        "Question"
+      ],
+      "members":{
+        "AnswerId":{"shape":"AnswerId"},
+        "DatasetArn":{"shape":"Arn"},
+        "Question":{"shape":"LimitedString"},
+        "Mir":{"shape":"TopicIR"},
+        "PrimaryVisual":{"shape":"TopicVisual"},
+        "Template":{"shape":"TopicTemplate"}
+      }
+    },
+    "CreateTopicReviewedAnswers":{
+      "type":"list",
+      "member":{"shape":"CreateTopicReviewedAnswer"},
+      "max":100,
+      "min":0
     },
     "CreateVPCConnectionRequest":{
       "type":"structure",
@@ -7569,7 +7861,9 @@
       "members":{
         "TitleOptions":{"shape":"LabelOptions"},
         "DateTimeFormat":{"shape":"DateTimeFormat"},
-        "InfoIconLabelOptions":{"shape":"SheetControlInfoIconLabelOptions"}
+        "InfoIconLabelOptions":{"shape":"SheetControlInfoIconLabelOptions"},
+        "HelperTextVisibility":{"shape":"Visibility"},
+        "DateIconVisibility":{"shape":"Visibility"}
       }
     },
     "DateTimeValueWhenUnsetConfiguration":{
@@ -10725,6 +11019,19 @@
         "NestedFilter":{"shape":"NestedFilter"}
       }
     },
+    "FilterAggMetrics":{
+      "type":"structure",
+      "members":{
+        "MetricOperand":{"shape":"Identifier"},
+        "Function":{"shape":"AggType"},
+        "SortDirection":{"shape":"TopicSortDirection"}
+      }
+    },
+    "FilterAggMetricsList":{
+      "type":"list",
+      "member":{"shape":"FilterAggMetrics"},
+      "max":100
+    },
     "FilterClass":{
       "type":"string",
       "enum":[
@@ -12151,6 +12458,13 @@
         "X"
       ]
     },
+    "Identifier":{
+      "type":"structure",
+      "required":["Identity"],
+      "members":{
+        "Identity":{"shape":"LimitedString"}
+      }
+    },
     "IdentityCenterConfiguration":{
       "type":"structure",
       "members":{
@@ -12508,6 +12822,17 @@
       },
       "error":{"httpStatusCode":400},
       "exception":true
+    },
+    "InvalidTopicReviewedAnswer":{
+      "type":"structure",
+      "members":{
+        "AnswerId":{"shape":"AnswerId"},
+        "Error":{"shape":"ReviewedAnswerErrorCode"}
+      }
+    },
+    "InvalidTopicReviewedAnswers":{
+      "type":"list",
+      "member":{"shape":"InvalidTopicReviewedAnswer"}
     },
     "IpRestrictionRuleDescription":{
       "type":"string",
@@ -13956,6 +14281,38 @@
         "RequestId":{"shape":"String"}
       }
     },
+    "ListTopicReviewedAnswersRequest":{
+      "type":"structure",
+      "required":[
+        "AwsAccountId",
+        "TopicId"
+      ],
+      "members":{
+        "AwsAccountId":{
+          "shape":"AwsAccountId",
+          "location":"uri",
+          "locationName":"AwsAccountId"
+        },
+        "TopicId":{
+          "shape":"TopicId",
+          "location":"uri",
+          "locationName":"TopicId"
+        }
+      }
+    },
+    "ListTopicReviewedAnswersResponse":{
+      "type":"structure",
+      "members":{
+        "TopicId":{"shape":"TopicId"},
+        "TopicArn":{"shape":"Arn"},
+        "Answers":{"shape":"TopicReviewedAnswers"},
+        "Status":{
+          "shape":"StatusCode",
+          "location":"statusCode"
+        },
+        "RequestId":{"shape":"String"}
+      }
+    },
     "ListTopicsRequest":{
       "type":"structure",
       "required":["AwsAccountId"],
@@ -14417,6 +14774,12 @@
       "type":"list",
       "member":{"shape":"NamedEntityDefinition"}
     },
+    "NamedEntityRef":{
+      "type":"structure",
+      "members":{
+        "NamedEntityName":{"shape":"LimitedString"}
+      }
+    },
     "NamedFilterAggType":{
       "type":"string",
       "enum":[
@@ -14579,6 +14942,14 @@
       "type":"list",
       "member":{"shape":"ShortRestrictiveResourceId"},
       "max":20
+    },
+    "NullFilterOption":{
+      "type":"string",
+      "enum":[
+        "ALL_VALUES",
+        "NON_NULLS_ONLY",
+        "NULLS_ONLY"
+      ]
     },
     "NullString":{
       "type":"string",
@@ -14777,6 +15148,11 @@
       "type":"string",
       "max":512,
       "min":1
+    },
+    "OperandList":{
+      "type":"list",
+      "member":{"shape":"Identifier"},
+      "max":25
     },
     "OptionalPort":{
       "type":"integer",
@@ -16322,6 +16698,18 @@
       "min":1,
       "pattern":"[\\w\\-]+"
     },
+    "ReviewedAnswerErrorCode":{
+      "type":"string",
+      "enum":[
+        "INTERNAL_ERROR",
+        "MISSING_ANSWER",
+        "DATASET_DOES_NOT_EXIST",
+        "INVALID_DATASET_ARN",
+        "DUPLICATED_ANSWER",
+        "INVALID_DATA",
+        "MISSING_REQUIRED_FIELDS"
+      ]
+    },
     "Role":{
       "type":"string",
       "enum":[
@@ -17409,6 +17797,17 @@
         "InfoIconLabelOptions":{"shape":"SheetControlInfoIconLabelOptions"}
       }
     },
+    "Slot":{
+      "type":"structure",
+      "members":{
+        "SlotId":{"shape":"LimitedString"},
+        "VisualId":{"shape":"LimitedString"}
+      }
+    },
+    "Slots":{
+      "type":"list",
+      "member":{"shape":"Slot"}
+    },
     "SmallMultiplesAxisPlacement":{
       "type":"string",
       "enum":[
@@ -17977,6 +18376,16 @@
         "MetricHeaderCellStyle":{"shape":"TableCellStyle"},
         "StyleTargets":{"shape":"TableStyleTargetList"}
       }
+    },
+    "SucceededTopicReviewedAnswer":{
+      "type":"structure",
+      "members":{
+        "AnswerId":{"shape":"AnswerId"}
+      }
+    },
+    "SucceededTopicReviewedAnswers":{
+      "type":"list",
+      "member":{"shape":"SucceededTopicReviewedAnswer"}
     },
     "SuccessfulKeyRegistrationEntries":{
       "type":"list",
@@ -19003,6 +19412,16 @@
       "type":"list",
       "member":{"shape":"TopicColumn"}
     },
+    "TopicConstantValue":{
+      "type":"structure",
+      "members":{
+        "ConstantType":{"shape":"ConstantType"},
+        "Value":{"shape":"ConstantValueString"},
+        "Minimum":{"shape":"ConstantValueString"},
+        "Maximum":{"shape":"ConstantValueString"},
+        "ValueList":{"shape":"CollectiveConstantEntryList"}
+      }
+    },
     "TopicDateRangeFilter":{
       "type":"structure",
       "members":{
@@ -19042,6 +19461,131 @@
     "TopicFilters":{
       "type":"list",
       "member":{"shape":"TopicFilter"}
+    },
+    "TopicIR":{
+      "type":"structure",
+      "members":{
+        "Metrics":{"shape":"TopicIRMetricList"},
+        "GroupByList":{"shape":"TopicIRGroupByList"},
+        "Filters":{"shape":"TopicIRFilterList"},
+        "Sort":{"shape":"TopicSortClause"},
+        "ContributionAnalysis":{"shape":"TopicIRContributionAnalysis"},
+        "Visual":{"shape":"VisualOptions"}
+      }
+    },
+    "TopicIRComparisonMethod":{
+      "type":"structure",
+      "members":{
+        "Type":{"shape":"ComparisonMethodType"},
+        "Period":{"shape":"TopicTimeGranularity"},
+        "WindowSize":{"shape":"Integer"}
+      }
+    },
+    "TopicIRContributionAnalysis":{
+      "type":"structure",
+      "members":{
+        "Factors":{"shape":"ContributionAnalysisFactorsList"},
+        "TimeRanges":{"shape":"ContributionAnalysisTimeRanges"},
+        "Direction":{"shape":"ContributionAnalysisDirection"},
+        "SortType":{"shape":"ContributionAnalysisSortType"}
+      }
+    },
+    "TopicIRFilterEntry":{
+      "type":"list",
+      "member":{"shape":"TopicIRFilterOption"},
+      "max":2000
+    },
+    "TopicIRFilterFunction":{
+      "type":"string",
+      "enum":[
+        "CONTAINS",
+        "EXACT",
+        "STARTS_WITH",
+        "ENDS_WITH",
+        "CONTAINS_STRING",
+        "PREVIOUS",
+        "THIS",
+        "LAST",
+        "NEXT",
+        "NOW"
+      ]
+    },
+    "TopicIRFilterList":{
+      "type":"list",
+      "member":{"shape":"TopicIRFilterEntry"},
+      "max":2000
+    },
+    "TopicIRFilterOption":{
+      "type":"structure",
+      "members":{
+        "FilterType":{"shape":"TopicIRFilterType"},
+        "FilterClass":{"shape":"FilterClass"},
+        "OperandField":{"shape":"Identifier"},
+        "Function":{"shape":"TopicIRFilterFunction"},
+        "Constant":{"shape":"TopicConstantValue"},
+        "Inverse":{"shape":"Boolean"},
+        "NullFilter":{"shape":"NullFilterOption"},
+        "Aggregation":{"shape":"AggType"},
+        "AggregationFunctionParameters":{"shape":"AggFunctionParamMap"},
+        "AggregationPartitionBy":{"shape":"AggregationPartitionByList"},
+        "Range":{"shape":"TopicConstantValue"},
+        "Inclusive":{"shape":"Boolean"},
+        "TimeGranularity":{"shape":"TimeGranularity"},
+        "LastNextOffset":{"shape":"TopicConstantValue"},
+        "AggMetrics":{"shape":"FilterAggMetricsList"},
+        "TopBottomLimit":{"shape":"TopicConstantValue"},
+        "SortDirection":{"shape":"TopicSortDirection"},
+        "Anchor":{"shape":"Anchor"}
+      }
+    },
+    "TopicIRFilterType":{
+      "type":"string",
+      "enum":[
+        "CATEGORY_FILTER",
+        "NUMERIC_EQUALITY_FILTER",
+        "NUMERIC_RANGE_FILTER",
+        "DATE_RANGE_FILTER",
+        "RELATIVE_DATE_FILTER",
+        "TOP_BOTTOM_FILTER",
+        "EQUALS",
+        "RANK_LIMIT_FILTER",
+        "ACCEPT_ALL_FILTER"
+      ]
+    },
+    "TopicIRGroupBy":{
+      "type":"structure",
+      "members":{
+        "FieldName":{"shape":"Identifier"},
+        "TimeGranularity":{"shape":"TopicTimeGranularity"},
+        "Sort":{"shape":"TopicSortClause"},
+        "DisplayFormat":{"shape":"DisplayFormat"},
+        "DisplayFormatOptions":{"shape":"DisplayFormatOptions"},
+        "NamedEntity":{"shape":"NamedEntityRef"}
+      }
+    },
+    "TopicIRGroupByList":{
+      "type":"list",
+      "member":{"shape":"TopicIRGroupBy"},
+      "max":2000
+    },
+    "TopicIRMetric":{
+      "type":"structure",
+      "members":{
+        "MetricId":{"shape":"Identifier"},
+        "Function":{"shape":"AggFunction"},
+        "Operands":{"shape":"OperandList"},
+        "ComparisonMethod":{"shape":"TopicIRComparisonMethod"},
+        "Expression":{"shape":"Expression"},
+        "CalculatedFieldReferences":{"shape":"CalculatedFieldReferenceList"},
+        "DisplayFormat":{"shape":"DisplayFormat"},
+        "DisplayFormatOptions":{"shape":"DisplayFormatOptions"},
+        "NamedEntity":{"shape":"NamedEntityRef"}
+      }
+    },
+    "TopicIRMetricList":{
+      "type":"list",
+      "member":{"shape":"TopicIRMetric"},
+      "max":2000
     },
     "TopicId":{
       "type":"string",
@@ -19157,6 +19701,27 @@
         "NOW"
       ]
     },
+    "TopicReviewedAnswer":{
+      "type":"structure",
+      "required":[
+        "AnswerId",
+        "DatasetArn",
+        "Question"
+      ],
+      "members":{
+        "Arn":{"shape":"Arn"},
+        "AnswerId":{"shape":"AnswerId"},
+        "DatasetArn":{"shape":"Arn"},
+        "Question":{"shape":"LimitedString"},
+        "Mir":{"shape":"TopicIR"},
+        "PrimaryVisual":{"shape":"TopicVisual"},
+        "Template":{"shape":"TopicTemplate"}
+      }
+    },
+    "TopicReviewedAnswers":{
+      "type":"list",
+      "member":{"shape":"TopicReviewedAnswer"}
+    },
     "TopicScheduleType":{
       "type":"string",
       "enum":[
@@ -19174,6 +19739,20 @@
       },
       "sensitive":true
     },
+    "TopicSortClause":{
+      "type":"structure",
+      "members":{
+        "Operand":{"shape":"Identifier"},
+        "SortDirection":{"shape":"TopicSortDirection"}
+      }
+    },
+    "TopicSortDirection":{
+      "type":"string",
+      "enum":[
+        "ASCENDING",
+        "DESCENDING"
+      ]
+    },
     "TopicSummaries":{
       "type":"list",
       "member":{"shape":"TopicSummary"}
@@ -19185,6 +19764,13 @@
         "TopicId":{"shape":"TopicId"},
         "Name":{"shape":"ResourceName"},
         "UserExperienceVersion":{"shape":"TopicUserExperienceVersion"}
+      }
+    },
+    "TopicTemplate":{
+      "type":"structure",
+      "members":{
+        "TemplateType":{"shape":"LimitedString"},
+        "Slots":{"shape":"Slots"}
       }
     },
     "TopicTimeGranularity":{
@@ -19206,6 +19792,19 @@
         "LEGACY",
         "NEW_READER_EXPERIENCE"
       ]
+    },
+    "TopicVisual":{
+      "type":"structure",
+      "members":{
+        "VisualId":{"shape":"LimitedString"},
+        "Role":{"shape":"VisualRole"},
+        "Ir":{"shape":"TopicIR"},
+        "SupportingVisuals":{"shape":"TopicVisuals"}
+      }
+    },
+    "TopicVisuals":{
+      "type":"list",
+      "member":{"shape":"TopicVisual"}
     },
     "TotalAggregationComputation":{
       "type":"structure",
@@ -20981,12 +21580,28 @@
         "AvailabilityStatus":{"shape":"DashboardBehavior"}
       }
     },
+    "VisualOptions":{
+      "type":"structure",
+      "members":{
+        "type":{"shape":"LimitedString"}
+      }
+    },
     "VisualPalette":{
       "type":"structure",
       "members":{
         "ChartColor":{"shape":"HexColor"},
         "ColorMap":{"shape":"DataPathColorList"}
       }
+    },
+    "VisualRole":{
+      "type":"string",
+      "enum":[
+        "PRIMARY",
+        "COMPLIMENTARY",
+        "MULTI_INTENT",
+        "FALLBACK",
+        "FRAGMENT"
+      ]
     },
     "VisualSubtitleLabelOptions":{
       "type":"structure",

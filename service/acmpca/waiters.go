@@ -28,7 +28,7 @@ func (c *ACMPCA) WaitUntilAuditReportCreated(input *DescribeCertificateAuthority
 func (c *ACMPCA) WaitUntilAuditReportCreatedWithContext(ctx aws.Context, input *DescribeCertificateAuthorityAuditReportInput, opts ...request.WaiterOption) error {
 	w := request.Waiter{
 		Name:        "WaitUntilAuditReportCreated",
-		MaxAttempts: 60,
+		MaxAttempts: 40,
 		Delay:       request.ConstantWaiterDelay(3 * time.Second),
 		Acceptors: []request.WaiterAcceptor{
 			{
@@ -84,13 +84,13 @@ func (c *ACMPCA) WaitUntilCertificateAuthorityCSRCreated(input *GetCertificateAu
 func (c *ACMPCA) WaitUntilCertificateAuthorityCSRCreatedWithContext(ctx aws.Context, input *GetCertificateAuthorityCsrInput, opts ...request.WaiterOption) error {
 	w := request.Waiter{
 		Name:        "WaitUntilCertificateAuthorityCSRCreated",
-		MaxAttempts: 60,
+		MaxAttempts: 40,
 		Delay:       request.ConstantWaiterDelay(3 * time.Second),
 		Acceptors: []request.WaiterAcceptor{
 			{
 				State:    request.SuccessWaiterState,
-				Matcher:  request.StatusWaiterMatch,
-				Expected: 200,
+				Matcher:  request.ErrorWaiterMatch,
+				Expected: false,
 			},
 			{
 				State:    request.RetryWaiterState,
@@ -140,13 +140,13 @@ func (c *ACMPCA) WaitUntilCertificateIssued(input *GetCertificateInput) error {
 func (c *ACMPCA) WaitUntilCertificateIssuedWithContext(ctx aws.Context, input *GetCertificateInput, opts ...request.WaiterOption) error {
 	w := request.Waiter{
 		Name:        "WaitUntilCertificateIssued",
-		MaxAttempts: 60,
+		MaxAttempts: 120,
 		Delay:       request.ConstantWaiterDelay(1 * time.Second),
 		Acceptors: []request.WaiterAcceptor{
 			{
 				State:    request.SuccessWaiterState,
-				Matcher:  request.StatusWaiterMatch,
-				Expected: 200,
+				Matcher:  request.ErrorWaiterMatch,
+				Expected: false,
 			},
 			{
 				State:    request.RetryWaiterState,

@@ -163,6 +163,11 @@ func (c *ARCZonalShift) CreatePracticeRunConfigurationRequest(input *CreatePract
 // an outcome alarm, to monitor application health during practice runs and,
 // optionally, a blocking alarm, to block practice runs from starting.
 //
+// When a resource has a practice run configuration, Route 53 ARC starts zonal
+// shifts for the resource weekly, to shift traffic for practice runs. Practice
+// runs help you to ensure that shifting away traffic from an Availability Zone
+// during an autoshift is safe for your application.
+//
 // For more information, see Considerations when you configure zonal autoshift
 // (https://docs.aws.amazon.com/r53recovery/latest/dg/arc-zonal-autoshift.considerations.html)
 // in the Amazon Route 53 Application Recovery Controller Developer Guide.
@@ -317,6 +322,102 @@ func (c *ARCZonalShift) DeletePracticeRunConfigurationWithContext(ctx aws.Contex
 	return out, req.Send()
 }
 
+const opGetAutoshiftObserverNotificationStatus = "GetAutoshiftObserverNotificationStatus"
+
+// GetAutoshiftObserverNotificationStatusRequest generates a "aws/request.Request" representing the
+// client's request for the GetAutoshiftObserverNotificationStatus operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetAutoshiftObserverNotificationStatus for more information on using the GetAutoshiftObserverNotificationStatus
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetAutoshiftObserverNotificationStatusRequest method.
+//	req, resp := client.GetAutoshiftObserverNotificationStatusRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/arc-zonal-shift-2022-10-30/GetAutoshiftObserverNotificationStatus
+func (c *ARCZonalShift) GetAutoshiftObserverNotificationStatusRequest(input *GetAutoshiftObserverNotificationStatusInput) (req *request.Request, output *GetAutoshiftObserverNotificationStatusOutput) {
+	op := &request.Operation{
+		Name:       opGetAutoshiftObserverNotificationStatus,
+		HTTPMethod: "GET",
+		HTTPPath:   "/autoshift-observer-notification",
+	}
+
+	if input == nil {
+		input = &GetAutoshiftObserverNotificationStatusInput{}
+	}
+
+	output = &GetAutoshiftObserverNotificationStatusOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetAutoshiftObserverNotificationStatus API operation for AWS ARC - Zonal Shift.
+//
+// Returns the status of autoshift observer notification. Autoshift observer
+// notification enables you to be notified, through Amazon EventBridge, when
+// there is an autoshift event for zonal autoshift.
+//
+// If the status is ENABLED, Route 53 ARC includes all autoshift events when
+// you use the EventBridge pattern Autoshift In Progress. When the status is
+// DISABLED, Route 53 ARC includes only autoshift events for autoshifts when
+// one or more of your resources is included in the autoshift.
+//
+// For more information, see Notifications for practice runs and autoshifts
+// (https://docs.aws.amazon.com/r53recovery/latest/dg/arc-zonal-autoshift.how-it-works.html#ZAShiftNotification)
+// in the Amazon Route 53 Application Recovery Controller Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS ARC - Zonal Shift's
+// API operation GetAutoshiftObserverNotificationStatus for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     There was an internal server error.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/arc-zonal-shift-2022-10-30/GetAutoshiftObserverNotificationStatus
+func (c *ARCZonalShift) GetAutoshiftObserverNotificationStatus(input *GetAutoshiftObserverNotificationStatusInput) (*GetAutoshiftObserverNotificationStatusOutput, error) {
+	req, out := c.GetAutoshiftObserverNotificationStatusRequest(input)
+	return out, req.Send()
+}
+
+// GetAutoshiftObserverNotificationStatusWithContext is the same as GetAutoshiftObserverNotificationStatus with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetAutoshiftObserverNotificationStatus for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ARCZonalShift) GetAutoshiftObserverNotificationStatusWithContext(ctx aws.Context, input *GetAutoshiftObserverNotificationStatusInput, opts ...request.Option) (*GetAutoshiftObserverNotificationStatusOutput, error) {
+	req, out := c.GetAutoshiftObserverNotificationStatusRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetManagedResource = "GetManagedResource"
 
 // GetManagedResourceRequest generates a "aws/request.Request" representing the
@@ -466,7 +567,9 @@ func (c *ARCZonalShift) ListAutoshiftsRequest(input *ListAutoshiftsInput) (req *
 
 // ListAutoshifts API operation for AWS ARC - Zonal Shift.
 //
-// Returns the active autoshifts for a specified resource.
+// Returns a list of autoshifts for an Amazon Web Services Region. By default,
+// the call returns only ACTIVE autoshifts. Optionally, you can specify the
+// status parameter to return COMPLETED autoshifts.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -765,8 +868,8 @@ func (c *ARCZonalShift) ListZonalShiftsRequest(input *ListZonalShiftsInput) (req
 //
 // Lists all active and completed zonal shifts in Amazon Route 53 Application
 // Recovery Controller in your Amazon Web Services account in this Amazon Web
-// Services Region. ListZonalShifts returns customer-started zonal shifts, as
-// well as practice run zonal shifts that Route 53 ARC started on your behalf
+// Services Region. ListZonalShifts returns customer-initiated zonal shifts,
+// as well as practice run zonal shifts that Route 53 ARC started on your behalf
 // for zonal autoshift.
 //
 // The ListZonalShifts operation does not list autoshifts. For more information
@@ -980,6 +1083,106 @@ func (c *ARCZonalShift) StartZonalShiftWithContext(ctx aws.Context, input *Start
 	return out, req.Send()
 }
 
+const opUpdateAutoshiftObserverNotificationStatus = "UpdateAutoshiftObserverNotificationStatus"
+
+// UpdateAutoshiftObserverNotificationStatusRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateAutoshiftObserverNotificationStatus operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateAutoshiftObserverNotificationStatus for more information on using the UpdateAutoshiftObserverNotificationStatus
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateAutoshiftObserverNotificationStatusRequest method.
+//	req, resp := client.UpdateAutoshiftObserverNotificationStatusRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/arc-zonal-shift-2022-10-30/UpdateAutoshiftObserverNotificationStatus
+func (c *ARCZonalShift) UpdateAutoshiftObserverNotificationStatusRequest(input *UpdateAutoshiftObserverNotificationStatusInput) (req *request.Request, output *UpdateAutoshiftObserverNotificationStatusOutput) {
+	op := &request.Operation{
+		Name:       opUpdateAutoshiftObserverNotificationStatus,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/autoshift-observer-notification",
+	}
+
+	if input == nil {
+		input = &UpdateAutoshiftObserverNotificationStatusInput{}
+	}
+
+	output = &UpdateAutoshiftObserverNotificationStatusOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateAutoshiftObserverNotificationStatus API operation for AWS ARC - Zonal Shift.
+//
+// Update the status of autoshift observer notification. Autoshift observer
+// notification enables you to be notified, through Amazon EventBridge, when
+// there is an autoshift event for zonal autoshift.
+//
+// If the status is ENABLED, Route 53 ARC includes all autoshift events when
+// you use the EventBridge pattern Autoshift In Progress. When the status is
+// DISABLED, Route 53 ARC includes only autoshift events for autoshifts when
+// one or more of your resources is included in the autoshift.
+//
+// For more information, see Notifications for practice runs and autoshifts
+// (https://docs.aws.amazon.com/r53recovery/latest/dg/arc-zonal-autoshift.how-it-works.html#ZAShiftNotification)
+// in the Amazon Route 53 Application Recovery Controller Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS ARC - Zonal Shift's
+// API operation UpdateAutoshiftObserverNotificationStatus for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     There was an internal server error.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/arc-zonal-shift-2022-10-30/UpdateAutoshiftObserverNotificationStatus
+func (c *ARCZonalShift) UpdateAutoshiftObserverNotificationStatus(input *UpdateAutoshiftObserverNotificationStatusInput) (*UpdateAutoshiftObserverNotificationStatusOutput, error) {
+	req, out := c.UpdateAutoshiftObserverNotificationStatusRequest(input)
+	return out, req.Send()
+}
+
+// UpdateAutoshiftObserverNotificationStatusWithContext is the same as UpdateAutoshiftObserverNotificationStatus with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateAutoshiftObserverNotificationStatus for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ARCZonalShift) UpdateAutoshiftObserverNotificationStatusWithContext(ctx aws.Context, input *UpdateAutoshiftObserverNotificationStatusInput, opts ...request.Option) (*UpdateAutoshiftObserverNotificationStatusOutput, error) {
+	req, out := c.UpdateAutoshiftObserverNotificationStatusRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdatePracticeRunConfiguration = "UpdatePracticeRunConfiguration"
 
 // UpdatePracticeRunConfigurationRequest generates a "aws/request.Request" representing the
@@ -1121,11 +1324,18 @@ func (c *ARCZonalShift) UpdateZonalAutoshiftConfigurationRequest(input *UpdateZo
 
 // UpdateZonalAutoshiftConfiguration API operation for AWS ARC - Zonal Shift.
 //
-// You can update the zonal autoshift status for a resource, to enable or disable
-// zonal autoshift. When zonal autoshift is ENABLED, Amazon Web Services shifts
-// away resource traffic from an Availability Zone, on your behalf, when Amazon
-// Web Services determines that there's an issue in the Availability Zone that
-// could potentially affect customers.
+// The zonal autoshift configuration for a resource includes the practice run
+// configuration and the status for running autoshifts, zonal autoshift status.
+// When a resource has a practice run configuation, Route 53 ARC starts weekly
+// zonal shifts for the resource, to shift traffic away from an Availability
+// Zone. Weekly practice runs help you to make sure that your application can
+// continue to operate normally with the loss of one Availability Zone.
+//
+// You can update the zonal autoshift autoshift status to enable or disable
+// zonal autoshift. When zonal autoshift is ENABLED, you authorize Amazon Web
+// Services to shift away resource traffic for an application from an Availability
+// Zone during events, on your behalf, to help reduce time to recovery. Traffic
+// is also shifted away for the required weekly practice runs.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1349,16 +1559,17 @@ type AutoshiftInResource struct {
 	_ struct{} `type:"structure"`
 
 	// The appliedStatus field specifies which application traffic shift is in effect
-	// for a resource when there is more than one traffic shift active. There can
+	// for a resource when there is more than one active traffic shift. There can
 	// be more than one application traffic shift in progress at the same time -
-	// that is, practice run zonal shifts, customer-started zonal shifts, or an
-	// autoshift. The appliedStatus field for an autoshift for a resource can have
-	// one of two values: APPLIED or NOT_APPLIED. The zonal shift or autoshift that
-	// is currently in effect for the resource has an applied status set to APPLIED.
+	// that is, practice run zonal shifts, customer-initiated zonal shifts, or an
+	// autoshift. The appliedStatus field for a shift that is in progress for a
+	// resource can have one of two values: APPLIED or NOT_APPLIED. The zonal shift
+	// or autoshift that is currently in effect for the resource has an appliedStatus
+	// set to APPLIED.
 	//
 	// The overall principle for precedence is that zonal shifts that you start
 	// as a customer take precedence autoshifts, which take precedence over practice
-	// runs. That is, customer-started zonal shifts > autoshifts > practice run
+	// runs. That is, customer-initiated zonal shifts > autoshifts > practice run
 	// zonal shifts.
 	//
 	// For more information, see How zonal autoshift and practice runs work (https://docs.aws.amazon.com/r53recovery/latest/dg/arc-zonal-autoshift.how-it-works.html)
@@ -1367,12 +1578,12 @@ type AutoshiftInResource struct {
 	// AppliedStatus is a required field
 	AppliedStatus *string `locationName:"appliedStatus" type:"string" required:"true" enum:"AutoshiftAppliedStatus"`
 
-	// The Availability Zone that traffic is shifted away from for a resource, when
-	// Amazon Web Services starts an autoshift. Until the autoshift ends, traffic
-	// for the resource is instead directed to other Availability Zones in the Amazon
-	// Web Services Region. An autoshift can end for a resource, for example, when
-	// Amazon Web Services ends the autoshift for the Availability Zone or when
-	// you disable zonal autoshift for the resource.
+	// The Availability Zone (for example, use1-az1) that traffic is shifted away
+	// from for a resource, when Amazon Web Services starts an autoshift. Until
+	// the autoshift ends, traffic for the resource is instead directed to other
+	// Availability Zones in the Amazon Web Services Region. An autoshift can end
+	// for a resource, for example, when Amazon Web Services ends the autoshift
+	// for the Availability Zone or when you disable zonal autoshift for the resource.
 	//
 	// AwayFrom is a required field
 	AwayFrom *string `locationName:"awayFrom" type:"string" required:"true"`
@@ -1435,12 +1646,12 @@ func (s *AutoshiftInResource) SetStartTime(v time.Time) *AutoshiftInResource {
 type AutoshiftSummary struct {
 	_ struct{} `type:"structure"`
 
-	// The Availability Zone that traffic is shifted away from for a resource when
-	// Amazon Web Services starts an autoshift. Until the autoshift ends, traffic
-	// for the resource is instead directed to other Availability Zones in the Amazon
-	// Web Services Region. An autoshift can end for a resource, for example, when
-	// Amazon Web Services ends the autoshift for the Availability Zone or when
-	// you disable zonal autoshift for the resource.
+	// The Availability Zone (for example, use1-az1) that traffic is shifted away
+	// from for a resource when Amazon Web Services starts an autoshift. Until the
+	// autoshift ends, traffic for the resource is instead directed to other Availability
+	// Zones in the Amazon Web Services Region. An autoshift can end for a resource,
+	// for example, when Amazon Web Services ends the autoshift for the Availability
+	// Zone or when you disable zonal autoshift for the resource.
 	//
 	// AwayFrom is a required field
 	AwayFrom *string `locationName:"awayFrom" type:"string" required:"true"`
@@ -1555,10 +1766,10 @@ func (s *CancelZonalShiftInput) SetZonalShiftId(v string) *CancelZonalShiftInput
 type CancelZonalShiftOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Availability Zone that traffic is moved away from for a resource when
-	// you start a zonal shift. Until the zonal shift expires or you cancel it,
-	// traffic for the resource is instead moved to other Availability Zones in
-	// the Amazon Web Services Region.
+	// The Availability Zone (for example, use1-az1) that traffic is moved away
+	// from for a resource when you start a zonal shift. Until the zonal shift expires
+	// or you cancel it, traffic for the resource is instead moved to other Availability
+	// Zones in the Amazon Web Services Region.
 	//
 	// AwayFrom is a required field
 	AwayFrom *string `locationName:"awayFrom" type:"string" required:"true"`
@@ -1570,10 +1781,10 @@ type CancelZonalShiftOutput struct {
 	// Comment is a required field
 	Comment *string `locationName:"comment" type:"string" required:"true"`
 
-	// The expiry time (expiration time) for a customer-started zonal shift. A zonal
-	// shift is temporary and must be set to expire when you start the zonal shift.
-	// You can initially set a zonal shift to expire in a maximum of three days
-	// (72 hours). However, you can update a zonal shift to set a new expiration
+	// The expiry time (expiration time) for a customer-initiated zonal shift. A
+	// zonal shift is temporary and must be set to expire when you start the zonal
+	// shift. You can initially set a zonal shift to expire in a maximum of three
+	// days (72 hours). However, you can update a zonal shift to set a new expiration
 	// at any time.
 	//
 	// When you start a zonal shift, you specify how long you want it to be active,
@@ -1585,8 +1796,8 @@ type CancelZonalShiftOutput struct {
 	// ExpiryTime is a required field
 	ExpiryTime *time.Time `locationName:"expiryTime" type:"timestamp" required:"true"`
 
-	// The identifier for the resource to shift away traffic for. The identifier
-	// is the Amazon Resource Name (ARN) for the resource.
+	// The identifier for the resource that Amazon Web Services shifts traffic for.
+	// The identifier is the Amazon Resource Name (ARN) for the resource.
 	//
 	// At this time, supported resources are Network Load Balancers and Application
 	// Load Balancers with cross-zone load balancing turned off.
@@ -1756,7 +1967,7 @@ func (s *ConflictException) RequestID() string {
 // Amazon CloudWatch alarms, which you create in CloudWatch to use with the
 // practice run. The alarms that you specify are an outcome alarm, to monitor
 // application health during practice runs and, optionally, a blocking alarm,
-// to block practice runs from starting.
+// to block practice runs from starting or to interrupt a practice run in progress.
 //
 // Control condition alarms do not apply for autoshifts.
 //
@@ -1766,13 +1977,14 @@ func (s *ConflictException) RequestID() string {
 type ControlCondition struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) for the Amazon CloudWatch alarm that you specify
+	// The Amazon Resource Name (ARN) for an Amazon CloudWatch alarm that you specify
 	// as a control condition for a practice run.
 	//
 	// AlarmIdentifier is a required field
 	AlarmIdentifier *string `locationName:"alarmIdentifier" min:"8" type:"string" required:"true"`
 
-	// The type of alarm specified for a practice run. The only valid value is CLOUDWATCH.
+	// The type of alarm specified for a practice run. You can only specify Amazon
+	// CloudWatch alarms for practice runs, so the only valid value is CLOUDWATCH.
 	//
 	// Type is a required field
 	Type *string `locationName:"type" type:"string" required:"true" enum:"ControlConditionType"`
@@ -1873,9 +2085,9 @@ type CreatePracticeRunConfigurationInput struct {
 	// OutcomeAlarms is a required field
 	OutcomeAlarms []*ControlCondition `locationName:"outcomeAlarms" min:"1" type:"list" required:"true"`
 
-	// The identifier of the resource to shift away traffic for when a practice
-	// run starts a zonal shift. The identifier is the Amazon Resource Name (ARN)
-	// for the resource.
+	// The identifier of the resource that Amazon Web Services shifts traffic for
+	// with a practice run zonal shift. The identifier is the Amazon Resource Name
+	// (ARN) for the resource.
 	//
 	// At this time, supported resources are Network Load Balancers and Application
 	// Load Balancers with cross-zone load balancing turned off.
@@ -1998,11 +2210,11 @@ type CreatePracticeRunConfigurationOutput struct {
 	// PracticeRunConfiguration is a required field
 	PracticeRunConfiguration *PracticeRunConfiguration `locationName:"practiceRunConfiguration" type:"structure" required:"true"`
 
-	// The status for zonal autoshift for a resource. When you specify the autoshift
-	// status as ENABLED, Amazon Web Services shifts traffic away from shifts away
-	// application resource traffic from an Availability Zone, on your behalf, when
-	// Amazon Web Services determines that there's an issue in the Availability
-	// Zone that could potentially affect customers.
+	// The status for zonal autoshift for a resource. When you specify ENABLED for
+	// the autoshift status, Amazon Web Services shifts traffic away from shifts
+	// away application resource traffic from an Availability Zone, on your behalf,
+	// when internal telemetry indicates that there is an Availability Zone impairment
+	// that could potentially impact customers.
 	//
 	// When you enable zonal autoshift, you must also configure practice runs for
 	// the resource.
@@ -2160,11 +2372,70 @@ func (s *DeletePracticeRunConfigurationOutput) SetZonalAutoshiftStatus(v string)
 	return s
 }
 
+type GetAutoshiftObserverNotificationStatusInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAutoshiftObserverNotificationStatusInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAutoshiftObserverNotificationStatusInput) GoString() string {
+	return s.String()
+}
+
+type GetAutoshiftObserverNotificationStatusOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The status of autoshift observer notification. If the status is ENABLED,
+	// Route 53 ARC includes all autoshift events when you use the Amazon EventBridge
+	// pattern Autoshift In Progress. When the status is DISABLED, Route 53 ARC
+	// includes only autoshift events for autoshifts when one or more of your resources
+	// is included in the autoshift.
+	//
+	// Status is a required field
+	Status *string `locationName:"status" type:"string" required:"true" enum:"AutoshiftObserverNotificationStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAutoshiftObserverNotificationStatusOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAutoshiftObserverNotificationStatusOutput) GoString() string {
+	return s.String()
+}
+
+// SetStatus sets the Status field's value.
+func (s *GetAutoshiftObserverNotificationStatusOutput) SetStatus(v string) *GetAutoshiftObserverNotificationStatusOutput {
+	s.Status = &v
+	return s
+}
+
 type GetManagedResourceInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier for the resource to shift away traffic for. The identifier
-	// is the Amazon Resource Name (ARN) for the resource.
+	// The identifier for the resource that Amazon Web Services shifts traffic for.
+	// The identifier is the Amazon Resource Name (ARN) for the resource.
 	//
 	// At this time, supported resources are Network Load Balancers and Application
 	// Load Balancers with cross-zone load balancing turned off.
@@ -2835,7 +3106,13 @@ func (s *ManagedResourceSummary) SetZonalShifts(v []*ZonalShiftInResource) *Mana
 
 // A practice run configuration for a resource includes the Amazon CloudWatch
 // alarms that you've specified for a practice run, as well as any blocked dates
-// or blocked windows for the practice run.
+// or blocked windows for the practice run. When a resource has a practice run
+// configuration, Route 53 ARC shifts traffic for the resource weekly for practice
+// runs.
+//
+// Practice runs are required for zonal autoshift. The zonal shifts that Route
+// 53 ARC starts for practice runs help you to ensure that shifting away traffic
+// from an Availability Zone during an autoshift is safe for your application.
 //
 // You can update or delete a practice run configuration. Before you delete
 // a practice run configuration, you must disable zonal autoshift for the resource.
@@ -2976,10 +3253,10 @@ func (s *ResourceNotFoundException) RequestID() string {
 type StartZonalShiftInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Availability Zone that traffic is moved away from for a resource when
-	// you start a zonal shift. Until the zonal shift expires or you cancel it,
-	// traffic for the resource is instead moved to other Availability Zones in
-	// the Amazon Web Services Region.
+	// The Availability Zone (for example, use1-az1) that traffic is moved away
+	// from for a resource when you start a zonal shift. Until the zonal shift expires
+	// or you cancel it, traffic for the resource is instead moved to other Availability
+	// Zones in the Amazon Web Services Region.
 	//
 	// AwayFrom is a required field
 	AwayFrom *string `locationName:"awayFrom" type:"string" required:"true"`
@@ -3014,8 +3291,8 @@ type StartZonalShiftInput struct {
 	// ExpiresIn is a required field
 	ExpiresIn *string `locationName:"expiresIn" min:"2" type:"string" required:"true"`
 
-	// The identifier for the resource to shift away traffic for. The identifier
-	// is the Amazon Resource Name (ARN) for the resource.
+	// The identifier for the resource that Amazon Web Services shifts traffic for.
+	// The identifier is the Amazon Resource Name (ARN) for the resource.
 	//
 	// At this time, supported resources are Network Load Balancers and Application
 	// Load Balancers with cross-zone load balancing turned off.
@@ -3097,10 +3374,10 @@ func (s *StartZonalShiftInput) SetResourceIdentifier(v string) *StartZonalShiftI
 type StartZonalShiftOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Availability Zone that traffic is moved away from for a resource when
-	// you start a zonal shift. Until the zonal shift expires or you cancel it,
-	// traffic for the resource is instead moved to other Availability Zones in
-	// the Amazon Web Services Region.
+	// The Availability Zone (for example, use1-az1) that traffic is moved away
+	// from for a resource when you start a zonal shift. Until the zonal shift expires
+	// or you cancel it, traffic for the resource is instead moved to other Availability
+	// Zones in the Amazon Web Services Region.
 	//
 	// AwayFrom is a required field
 	AwayFrom *string `locationName:"awayFrom" type:"string" required:"true"`
@@ -3112,10 +3389,10 @@ type StartZonalShiftOutput struct {
 	// Comment is a required field
 	Comment *string `locationName:"comment" type:"string" required:"true"`
 
-	// The expiry time (expiration time) for a customer-started zonal shift. A zonal
-	// shift is temporary and must be set to expire when you start the zonal shift.
-	// You can initially set a zonal shift to expire in a maximum of three days
-	// (72 hours). However, you can update a zonal shift to set a new expiration
+	// The expiry time (expiration time) for a customer-initiated zonal shift. A
+	// zonal shift is temporary and must be set to expire when you start the zonal
+	// shift. You can initially set a zonal shift to expire in a maximum of three
+	// days (72 hours). However, you can update a zonal shift to set a new expiration
 	// at any time.
 	//
 	// When you start a zonal shift, you specify how long you want it to be active,
@@ -3127,8 +3404,8 @@ type StartZonalShiftOutput struct {
 	// ExpiryTime is a required field
 	ExpiryTime *time.Time `locationName:"expiryTime" type:"timestamp" required:"true"`
 
-	// The identifier for the resource to shift away traffic for. The identifier
-	// is the Amazon Resource Name (ARN) for the resource.
+	// The identifier for the resource that Amazon Web Services shifts traffic for.
+	// The identifier is the Amazon Resource Name (ARN) for the resource.
 	//
 	// At this time, supported resources are Network Load Balancers and Application
 	// Load Balancers with cross-zone load balancing turned off.
@@ -3282,6 +3559,89 @@ func (s *ThrottlingException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ThrottlingException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type UpdateAutoshiftObserverNotificationStatusInput struct {
+	_ struct{} `type:"structure"`
+
+	// The status to set for autoshift observer notification. If the status is ENABLED,
+	// Route 53 ARC includes all autoshift events when you use the Amazon EventBridge
+	// pattern Autoshift In Progress. When the status is DISABLED, Route 53 ARC
+	// includes only autoshift events for autoshifts when one or more of your resources
+	// is included in the autoshift.
+	//
+	// Status is a required field
+	Status *string `locationName:"status" type:"string" required:"true" enum:"AutoshiftObserverNotificationStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateAutoshiftObserverNotificationStatusInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateAutoshiftObserverNotificationStatusInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateAutoshiftObserverNotificationStatusInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateAutoshiftObserverNotificationStatusInput"}
+	if s.Status == nil {
+		invalidParams.Add(request.NewErrParamRequired("Status"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetStatus sets the Status field's value.
+func (s *UpdateAutoshiftObserverNotificationStatusInput) SetStatus(v string) *UpdateAutoshiftObserverNotificationStatusInput {
+	s.Status = &v
+	return s
+}
+
+type UpdateAutoshiftObserverNotificationStatusOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The status for autoshift observer notification.
+	//
+	// Status is a required field
+	Status *string `locationName:"status" type:"string" required:"true" enum:"AutoshiftObserverNotificationStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateAutoshiftObserverNotificationStatusOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateAutoshiftObserverNotificationStatusOutput) GoString() string {
+	return s.String()
+}
+
+// SetStatus sets the Status field's value.
+func (s *UpdateAutoshiftObserverNotificationStatusOutput) SetStatus(v string) *UpdateAutoshiftObserverNotificationStatusOutput {
+	s.Status = &v
+	return s
 }
 
 type UpdatePracticeRunConfigurationInput struct {
@@ -3497,7 +3857,9 @@ type UpdateZonalAutoshiftConfigurationInput struct {
 	ResourceIdentifier *string `location:"uri" locationName:"resourceIdentifier" min:"8" type:"string" required:"true"`
 
 	// The zonal autoshift status for the resource that you want to update the zonal
-	// autoshift configuration for.
+	// autoshift configuration for. Choose ENABLED to authorize Amazon Web Services
+	// to shift away resource traffic for an application from an Availability Zone
+	// during events, on your behalf, to help reduce time to recovery.
 	//
 	// ZonalAutoshiftStatus is a required field
 	ZonalAutoshiftStatus *string `locationName:"zonalAutoshiftStatus" type:"string" required:"true" enum:"ZonalAutoshiftStatus"`
@@ -3561,8 +3923,7 @@ type UpdateZonalAutoshiftConfigurationOutput struct {
 	// ResourceIdentifier is a required field
 	ResourceIdentifier *string `locationName:"resourceIdentifier" min:"8" type:"string" required:"true"`
 
-	// The zonal autoshift status for the resource that you updated the zonal autoshift
-	// configuration for.
+	// The updated zonal autoshift status for the resource.
 	//
 	// ZonalAutoshiftStatus is a required field
 	ZonalAutoshiftStatus *string `locationName:"zonalAutoshiftStatus" type:"string" required:"true" enum:"ZonalAutoshiftStatus"`
@@ -3691,10 +4052,10 @@ func (s *UpdateZonalShiftInput) SetZonalShiftId(v string) *UpdateZonalShiftInput
 type UpdateZonalShiftOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Availability Zone that traffic is moved away from for a resource when
-	// you start a zonal shift. Until the zonal shift expires or you cancel it,
-	// traffic for the resource is instead moved to other Availability Zones in
-	// the Amazon Web Services Region.
+	// The Availability Zone (for example, use1-az1) that traffic is moved away
+	// from for a resource when you start a zonal shift. Until the zonal shift expires
+	// or you cancel it, traffic for the resource is instead moved to other Availability
+	// Zones in the Amazon Web Services Region.
 	//
 	// AwayFrom is a required field
 	AwayFrom *string `locationName:"awayFrom" type:"string" required:"true"`
@@ -3706,10 +4067,10 @@ type UpdateZonalShiftOutput struct {
 	// Comment is a required field
 	Comment *string `locationName:"comment" type:"string" required:"true"`
 
-	// The expiry time (expiration time) for a customer-started zonal shift. A zonal
-	// shift is temporary and must be set to expire when you start the zonal shift.
-	// You can initially set a zonal shift to expire in a maximum of three days
-	// (72 hours). However, you can update a zonal shift to set a new expiration
+	// The expiry time (expiration time) for a customer-initiated zonal shift. A
+	// zonal shift is temporary and must be set to expire when you start the zonal
+	// shift. You can initially set a zonal shift to expire in a maximum of three
+	// days (72 hours). However, you can update a zonal shift to set a new expiration
 	// at any time.
 	//
 	// When you start a zonal shift, you specify how long you want it to be active,
@@ -3721,8 +4082,8 @@ type UpdateZonalShiftOutput struct {
 	// ExpiryTime is a required field
 	ExpiryTime *time.Time `locationName:"expiryTime" type:"timestamp" required:"true"`
 
-	// The identifier for the resource to shift away traffic for. The identifier
-	// is the Amazon Resource Name (ARN) for the resource.
+	// The identifier for the resource that Amazon Web Services shifts traffic for.
+	// The identifier is the Amazon Resource Name (ARN) for the resource.
 	//
 	// At this time, supported resources are Network Load Balancers and Application
 	// Load Balancers with cross-zone load balancing turned off.
@@ -3890,16 +4251,17 @@ type ZonalShiftInResource struct {
 	_ struct{} `type:"structure"`
 
 	// The appliedStatus field specifies which application traffic shift is in effect
-	// for a resource when there is more than one traffic shift active. There can
+	// for a resource when there is more than one active traffic shift. There can
 	// be more than one application traffic shift in progress at the same time -
-	// that is, practice run zonal shifts, customer-started zonal shifts, or an
-	// autoshift. The appliedStatus field for an autoshift for a resource can have
-	// one of two values: APPLIED or NOT_APPLIED. The zonal shift or autoshift that
-	// is currently in effect for the resource has an applied status set to APPLIED.
+	// that is, practice run zonal shifts, customer-initiated zonal shifts, or an
+	// autoshift. The appliedStatus field for a shift that is in progress for a
+	// resource can have one of two values: APPLIED or NOT_APPLIED. The zonal shift
+	// or autoshift that is currently in effect for the resource has an appliedStatus
+	// set to APPLIED.
 	//
 	// The overall principle for precedence is that zonal shifts that you start
 	// as a customer take precedence autoshifts, which take precedence over practice
-	// runs. That is, customer-started zonal shifts > autoshifts > practice run
+	// runs. That is, customer-initiated zonal shifts > autoshifts > practice run
 	// zonal shifts.
 	//
 	// For more information, see How zonal autoshift and practice runs work (https://docs.aws.amazon.com/r53recovery/latest/dg/arc-zonal-autoshift.how-it-works.html)
@@ -3908,25 +4270,25 @@ type ZonalShiftInResource struct {
 	// AppliedStatus is a required field
 	AppliedStatus *string `locationName:"appliedStatus" type:"string" required:"true" enum:"AppliedStatus"`
 
-	// The Availability Zone that traffic is moved away from for a resource when
-	// you start a zonal shift. Until the zonal shift expires or you cancel it,
-	// traffic for the resource is instead moved to other Availability Zones in
-	// the Amazon Web Services Region.
+	// The Availability Zone (for example, use1-az1) that traffic is moved away
+	// from for a resource when you start a zonal shift. Until the zonal shift expires
+	// or you cancel it, traffic for the resource is instead moved to other Availability
+	// Zones in the Amazon Web Services Region.
 	//
 	// AwayFrom is a required field
 	AwayFrom *string `locationName:"awayFrom" type:"string" required:"true"`
 
-	// A comment that you enter about the zonal shift. Only the latest comment is
-	// retained; no comment history is maintained. That is, a new comment overwrites
-	// any existing comment string.
+	// A comment that you enter for a customer-initiated zonal shift. Only the latest
+	// comment is retained; no comment history is maintained. That is, a new comment
+	// overwrites any existing comment string.
 	//
 	// Comment is a required field
 	Comment *string `locationName:"comment" type:"string" required:"true"`
 
-	// The expiry time (expiration time) for a customer-started zonal shift. A zonal
-	// shift is temporary and must be set to expire when you start the zonal shift.
-	// You can initially set a zonal shift to expire in a maximum of three days
-	// (72 hours). However, you can update a zonal shift to set a new expiration
+	// The expiry time (expiration time) for a customer-initiated zonal shift. A
+	// zonal shift is temporary and must be set to expire when you start the zonal
+	// shift. You can initially set a zonal shift to expire in a maximum of three
+	// days (72 hours). However, you can update a zonal shift to set a new expiration
 	// at any time.
 	//
 	// When you start a zonal shift, you specify how long you want it to be active,
@@ -4051,17 +4413,17 @@ func (s *ZonalShiftInResource) SetZonalShiftId(v string) *ZonalShiftInResource {
 // Controller, including zonal shifts that you start yourself and zonal shifts
 // that Route 53 ARC starts on your behalf for practice runs with zonal autoshift.
 //
-// Zonal shifts are temporary, including customer-started zonal shifts and the
-// zonal autoshift practice run zonal shifts that Route 53 ARC starts weekly,
+// Zonal shifts are temporary, including customer-initiated zonal shifts and
+// the zonal autoshift practice run zonal shifts that Route 53 ARC starts weekly,
 // on your behalf. A zonal shift that a customer starts can be active for up
 // to three days (72 hours). A practice run zonal shift has a 30 minute duration.
 type ZonalShiftSummary struct {
 	_ struct{} `type:"structure"`
 
-	// The Availability Zone that traffic is moved away from for a resource when
-	// you start a zonal shift. Until the zonal shift expires or you cancel it,
-	// traffic for the resource is instead moved to other Availability Zones in
-	// the Amazon Web Services Region.
+	// The Availability Zone (for example, use1-az1) that traffic is moved away
+	// from for a resource when you start a zonal shift. Until the zonal shift expires
+	// or you cancel it, traffic for the resource is instead moved to other Availability
+	// Zones in the Amazon Web Services Region.
 	//
 	// AwayFrom is a required field
 	AwayFrom *string `locationName:"awayFrom" type:"string" required:"true"`
@@ -4073,10 +4435,10 @@ type ZonalShiftSummary struct {
 	// Comment is a required field
 	Comment *string `locationName:"comment" type:"string" required:"true"`
 
-	// The expiry time (expiration time) for a customer-started zonal shift. A zonal
-	// shift is temporary and must be set to expire when you start the zonal shift.
-	// You can initially set a zonal shift to expire in a maximum of three days
-	// (72 hours). However, you can update a zonal shift to set a new expiration
+	// The expiry time (expiration time) for a customer-initiated zonal shift. A
+	// zonal shift is temporary and must be set to expire when you start the zonal
+	// shift. You can initially set a zonal shift to expire in a maximum of three
+	// days (72 hours). However, you can update a zonal shift to set a new expiration
 	// at any time.
 	//
 	// When you start a zonal shift, you specify how long you want it to be active,
@@ -4254,6 +4616,22 @@ func AutoshiftExecutionStatus_Values() []string {
 	return []string{
 		AutoshiftExecutionStatusActive,
 		AutoshiftExecutionStatusCompleted,
+	}
+}
+
+const (
+	// AutoshiftObserverNotificationStatusEnabled is a AutoshiftObserverNotificationStatus enum value
+	AutoshiftObserverNotificationStatusEnabled = "ENABLED"
+
+	// AutoshiftObserverNotificationStatusDisabled is a AutoshiftObserverNotificationStatus enum value
+	AutoshiftObserverNotificationStatusDisabled = "DISABLED"
+)
+
+// AutoshiftObserverNotificationStatus_Values returns all elements of the AutoshiftObserverNotificationStatus enum
+func AutoshiftObserverNotificationStatus_Values() []string {
+	return []string{
+		AutoshiftObserverNotificationStatusEnabled,
+		AutoshiftObserverNotificationStatusDisabled,
 	}
 }
 

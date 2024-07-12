@@ -12,6 +12,199 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol"
 )
 
+const opBatchCreateTopicReviewedAnswer = "BatchCreateTopicReviewedAnswer"
+
+// BatchCreateTopicReviewedAnswerRequest generates a "aws/request.Request" representing the
+// client's request for the BatchCreateTopicReviewedAnswer operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See BatchCreateTopicReviewedAnswer for more information on using the BatchCreateTopicReviewedAnswer
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the BatchCreateTopicReviewedAnswerRequest method.
+//	req, resp := client.BatchCreateTopicReviewedAnswerRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/BatchCreateTopicReviewedAnswer
+func (c *QuickSight) BatchCreateTopicReviewedAnswerRequest(input *BatchCreateTopicReviewedAnswerInput) (req *request.Request, output *BatchCreateTopicReviewedAnswerOutput) {
+	op := &request.Operation{
+		Name:       opBatchCreateTopicReviewedAnswer,
+		HTTPMethod: "POST",
+		HTTPPath:   "/accounts/{AwsAccountId}/topics/{TopicId}/batch-create-reviewed-answers",
+	}
+
+	if input == nil {
+		input = &BatchCreateTopicReviewedAnswerInput{}
+	}
+
+	output = &BatchCreateTopicReviewedAnswerOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// BatchCreateTopicReviewedAnswer API operation for Amazon QuickSight.
+//
+// Creates new reviewed answers for a Q Topic.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation BatchCreateTopicReviewedAnswer for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You don't have access to this item. The provided credentials couldn't be
+//     validated. You might not be authorized to carry out the request. Make sure
+//     that your account is authorized to use the Amazon QuickSight service, that
+//     your policies have the correct permissions, and that you are using the correct
+//     credentials.
+//
+//   - InvalidParameterValueException
+//     One or more parameters has a value that isn't valid.
+//
+//   - ThrottlingException
+//     Access is throttled.
+//
+//   - ResourceNotFoundException
+//     One or more resources can't be found.
+//
+//   - InternalFailureException
+//     An internal failure occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/BatchCreateTopicReviewedAnswer
+func (c *QuickSight) BatchCreateTopicReviewedAnswer(input *BatchCreateTopicReviewedAnswerInput) (*BatchCreateTopicReviewedAnswerOutput, error) {
+	req, out := c.BatchCreateTopicReviewedAnswerRequest(input)
+	return out, req.Send()
+}
+
+// BatchCreateTopicReviewedAnswerWithContext is the same as BatchCreateTopicReviewedAnswer with the addition of
+// the ability to pass a context and additional request options.
+//
+// See BatchCreateTopicReviewedAnswer for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) BatchCreateTopicReviewedAnswerWithContext(ctx aws.Context, input *BatchCreateTopicReviewedAnswerInput, opts ...request.Option) (*BatchCreateTopicReviewedAnswerOutput, error) {
+	req, out := c.BatchCreateTopicReviewedAnswerRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opBatchDeleteTopicReviewedAnswer = "BatchDeleteTopicReviewedAnswer"
+
+// BatchDeleteTopicReviewedAnswerRequest generates a "aws/request.Request" representing the
+// client's request for the BatchDeleteTopicReviewedAnswer operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See BatchDeleteTopicReviewedAnswer for more information on using the BatchDeleteTopicReviewedAnswer
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the BatchDeleteTopicReviewedAnswerRequest method.
+//	req, resp := client.BatchDeleteTopicReviewedAnswerRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/BatchDeleteTopicReviewedAnswer
+func (c *QuickSight) BatchDeleteTopicReviewedAnswerRequest(input *BatchDeleteTopicReviewedAnswerInput) (req *request.Request, output *BatchDeleteTopicReviewedAnswerOutput) {
+	op := &request.Operation{
+		Name:       opBatchDeleteTopicReviewedAnswer,
+		HTTPMethod: "POST",
+		HTTPPath:   "/accounts/{AwsAccountId}/topics/{TopicId}/batch-delete-reviewed-answers",
+	}
+
+	if input == nil {
+		input = &BatchDeleteTopicReviewedAnswerInput{}
+	}
+
+	output = &BatchDeleteTopicReviewedAnswerOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// BatchDeleteTopicReviewedAnswer API operation for Amazon QuickSight.
+//
+// Deletes reviewed answers for Q Topic.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation BatchDeleteTopicReviewedAnswer for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You don't have access to this item. The provided credentials couldn't be
+//     validated. You might not be authorized to carry out the request. Make sure
+//     that your account is authorized to use the Amazon QuickSight service, that
+//     your policies have the correct permissions, and that you are using the correct
+//     credentials.
+//
+//   - InvalidParameterValueException
+//     One or more parameters has a value that isn't valid.
+//
+//   - ThrottlingException
+//     Access is throttled.
+//
+//   - ResourceNotFoundException
+//     One or more resources can't be found.
+//
+//   - ConflictException
+//     Updating or deleting a resource can cause an inconsistent state.
+//
+//   - InternalFailureException
+//     An internal failure occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/BatchDeleteTopicReviewedAnswer
+func (c *QuickSight) BatchDeleteTopicReviewedAnswer(input *BatchDeleteTopicReviewedAnswerInput) (*BatchDeleteTopicReviewedAnswerOutput, error) {
+	req, out := c.BatchDeleteTopicReviewedAnswerRequest(input)
+	return out, req.Send()
+}
+
+// BatchDeleteTopicReviewedAnswerWithContext is the same as BatchDeleteTopicReviewedAnswer with the addition of
+// the ability to pass a context and additional request options.
+//
+// See BatchDeleteTopicReviewedAnswer for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) BatchDeleteTopicReviewedAnswerWithContext(ctx aws.Context, input *BatchDeleteTopicReviewedAnswerInput, opts ...request.Option) (*BatchDeleteTopicReviewedAnswerOutput, error) {
+	req, out := c.BatchDeleteTopicReviewedAnswerRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCancelIngestion = "CancelIngestion"
 
 // CancelIngestionRequest generates a "aws/request.Request" representing the
@@ -13979,6 +14172,101 @@ func (c *QuickSight) ListTopicRefreshSchedulesWithContext(ctx aws.Context, input
 	return out, req.Send()
 }
 
+const opListTopicReviewedAnswers = "ListTopicReviewedAnswers"
+
+// ListTopicReviewedAnswersRequest generates a "aws/request.Request" representing the
+// client's request for the ListTopicReviewedAnswers operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListTopicReviewedAnswers for more information on using the ListTopicReviewedAnswers
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListTopicReviewedAnswersRequest method.
+//	req, resp := client.ListTopicReviewedAnswersRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/ListTopicReviewedAnswers
+func (c *QuickSight) ListTopicReviewedAnswersRequest(input *ListTopicReviewedAnswersInput) (req *request.Request, output *ListTopicReviewedAnswersOutput) {
+	op := &request.Operation{
+		Name:       opListTopicReviewedAnswers,
+		HTTPMethod: "GET",
+		HTTPPath:   "/accounts/{AwsAccountId}/topics/{TopicId}/reviewed-answers",
+	}
+
+	if input == nil {
+		input = &ListTopicReviewedAnswersInput{}
+	}
+
+	output = &ListTopicReviewedAnswersOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListTopicReviewedAnswers API operation for Amazon QuickSight.
+//
+// Lists all reviewed answers for a Q Topic.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation ListTopicReviewedAnswers for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You don't have access to this item. The provided credentials couldn't be
+//     validated. You might not be authorized to carry out the request. Make sure
+//     that your account is authorized to use the Amazon QuickSight service, that
+//     your policies have the correct permissions, and that you are using the correct
+//     credentials.
+//
+//   - InvalidParameterValueException
+//     One or more parameters has a value that isn't valid.
+//
+//   - ThrottlingException
+//     Access is throttled.
+//
+//   - ResourceNotFoundException
+//     One or more resources can't be found.
+//
+//   - InternalFailureException
+//     An internal failure occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/ListTopicReviewedAnswers
+func (c *QuickSight) ListTopicReviewedAnswers(input *ListTopicReviewedAnswersInput) (*ListTopicReviewedAnswersOutput, error) {
+	req, out := c.ListTopicReviewedAnswersRequest(input)
+	return out, req.Send()
+}
+
+// ListTopicReviewedAnswersWithContext is the same as ListTopicReviewedAnswers with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListTopicReviewedAnswers for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) ListTopicReviewedAnswersWithContext(ctx aws.Context, input *ListTopicReviewedAnswersInput, opts ...request.Option) (*ListTopicReviewedAnswersOutput, error) {
+	req, out := c.ListTopicReviewedAnswersRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListTopics = "ListTopics"
 
 // ListTopicsRequest generates a "aws/request.Request" representing the
@@ -20368,6 +20656,65 @@ func (s *AdHocFilteringOption) SetAvailabilityStatus(v string) *AdHocFilteringOp
 	return s
 }
 
+// The definition of an Agg function.
+type AggFunction struct {
+	_ struct{} `type:"structure"`
+
+	// The aggregation of an Agg function.
+	Aggregation *string `type:"string" enum:"AggType"`
+
+	// The aggregation parameters for an Agg function.
+	AggregationFunctionParameters map[string]*string `type:"map"`
+
+	// The period of an Agg function.
+	Period *string `type:"string" enum:"TopicTimeGranularity"`
+
+	// The period field for an Agg function.
+	PeriodField *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AggFunction) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AggFunction) GoString() string {
+	return s.String()
+}
+
+// SetAggregation sets the Aggregation field's value.
+func (s *AggFunction) SetAggregation(v string) *AggFunction {
+	s.Aggregation = &v
+	return s
+}
+
+// SetAggregationFunctionParameters sets the AggregationFunctionParameters field's value.
+func (s *AggFunction) SetAggregationFunctionParameters(v map[string]*string) *AggFunction {
+	s.AggregationFunctionParameters = v
+	return s
+}
+
+// SetPeriod sets the Period field's value.
+func (s *AggFunction) SetPeriod(v string) *AggFunction {
+	s.Period = &v
+	return s
+}
+
+// SetPeriodField sets the PeriodField field's value.
+func (s *AggFunction) SetPeriodField(v string) *AggFunction {
+	s.PeriodField = &v
+	return s
+}
+
 // An aggregation function aggregates values from a dimension or measure.
 //
 // This is a union type structure. For this structure to be valid, only one
@@ -20439,6 +20786,47 @@ func (s *AggregationFunction) SetDateAggregationFunction(v string) *AggregationF
 // SetNumericalAggregationFunction sets the NumericalAggregationFunction field's value.
 func (s *AggregationFunction) SetNumericalAggregationFunction(v *NumericalAggregationFunction) *AggregationFunction {
 	s.NumericalAggregationFunction = v
+	return s
+}
+
+// The definition of an AggregationPartitionBy.
+type AggregationPartitionBy struct {
+	_ struct{} `type:"structure"`
+
+	// The field Name for an AggregationPartitionBy.
+	FieldName *string `type:"string"`
+
+	// The TimeGranularity for an AggregationPartitionBy.
+	TimeGranularity *string `type:"string" enum:"TimeGranularity"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AggregationPartitionBy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AggregationPartitionBy) GoString() string {
+	return s.String()
+}
+
+// SetFieldName sets the FieldName field's value.
+func (s *AggregationPartitionBy) SetFieldName(v string) *AggregationPartitionBy {
+	s.FieldName = &v
+	return s
+}
+
+// SetTimeGranularity sets the TimeGranularity field's value.
+func (s *AggregationPartitionBy) SetTimeGranularity(v string) *AggregationPartitionBy {
+	s.TimeGranularity = &v
 	return s
 }
 
@@ -21340,6 +21728,56 @@ func (s *AnalysisSummary) SetName(v string) *AnalysisSummary {
 // SetStatus sets the Status field's value.
 func (s *AnalysisSummary) SetStatus(v string) *AnalysisSummary {
 	s.Status = &v
+	return s
+}
+
+// The definition of the Anchor.
+type Anchor struct {
+	_ struct{} `type:"structure"`
+
+	// The AnchorType for the Anchor.
+	AnchorType *string `type:"string" enum:"AnchorType"`
+
+	// The offset of the Anchor.
+	Offset *int64 `type:"integer"`
+
+	// The TimeGranularity of the Anchor.
+	TimeGranularity *string `type:"string" enum:"TimeGranularity"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Anchor) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Anchor) GoString() string {
+	return s.String()
+}
+
+// SetAnchorType sets the AnchorType field's value.
+func (s *Anchor) SetAnchorType(v string) *Anchor {
+	s.AnchorType = &v
+	return s
+}
+
+// SetOffset sets the Offset field's value.
+func (s *Anchor) SetOffset(v int64) *Anchor {
+	s.Offset = &v
+	return s
+}
+
+// SetTimeGranularity sets the TimeGranularity field's value.
+func (s *Anchor) SetTimeGranularity(v string) *Anchor {
+	s.TimeGranularity = &v
 	return s
 }
 
@@ -26964,6 +27402,329 @@ func (s *BarChartVisual) SetVisualId(v string) *BarChartVisual {
 	return s
 }
 
+type BatchCreateTopicReviewedAnswerInput struct {
+	_ struct{} `type:"structure"`
+
+	// The definition of the Answers to be created.
+	//
+	// Answers is a required field
+	Answers []*CreateTopicReviewedAnswer `type:"list" required:"true"`
+
+	// The ID of the Amazon Web Services account that you want to create a reviewed
+	// answer in.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The ID for the topic reviewed answer that you want to create. This ID is
+	// unique per Amazon Web Services Region for each Amazon Web Services account.
+	//
+	// TopicId is a required field
+	TopicId *string `location:"uri" locationName:"TopicId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchCreateTopicReviewedAnswerInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchCreateTopicReviewedAnswerInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchCreateTopicReviewedAnswerInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchCreateTopicReviewedAnswerInput"}
+	if s.Answers == nil {
+		invalidParams.Add(request.NewErrParamRequired("Answers"))
+	}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.TopicId == nil {
+		invalidParams.Add(request.NewErrParamRequired("TopicId"))
+	}
+	if s.TopicId != nil && len(*s.TopicId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TopicId", 1))
+	}
+	if s.Answers != nil {
+		for i, v := range s.Answers {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Answers", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAnswers sets the Answers field's value.
+func (s *BatchCreateTopicReviewedAnswerInput) SetAnswers(v []*CreateTopicReviewedAnswer) *BatchCreateTopicReviewedAnswerInput {
+	s.Answers = v
+	return s
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *BatchCreateTopicReviewedAnswerInput) SetAwsAccountId(v string) *BatchCreateTopicReviewedAnswerInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetTopicId sets the TopicId field's value.
+func (s *BatchCreateTopicReviewedAnswerInput) SetTopicId(v string) *BatchCreateTopicReviewedAnswerInput {
+	s.TopicId = &v
+	return s
+}
+
+type BatchCreateTopicReviewedAnswerOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The definition of Answers that are invalid and not created.
+	InvalidAnswers []*InvalidTopicReviewedAnswer `type:"list"`
+
+	// The Amazon Web Services request ID for this operation.
+	RequestId *string `type:"string"`
+
+	// The HTTP status of the request.
+	Status *int64 `location:"statusCode" type:"integer"`
+
+	// The definition of Answers that are successfully created.
+	SucceededAnswers []*SucceededTopicReviewedAnswer `type:"list"`
+
+	// The Amazon Resource Name (ARN) of the topic.
+	TopicArn *string `type:"string"`
+
+	// The ID for the topic reviewed answer that you want to create. This ID is
+	// unique per Amazon Web Services Region for each Amazon Web Services account.
+	TopicId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchCreateTopicReviewedAnswerOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchCreateTopicReviewedAnswerOutput) GoString() string {
+	return s.String()
+}
+
+// SetInvalidAnswers sets the InvalidAnswers field's value.
+func (s *BatchCreateTopicReviewedAnswerOutput) SetInvalidAnswers(v []*InvalidTopicReviewedAnswer) *BatchCreateTopicReviewedAnswerOutput {
+	s.InvalidAnswers = v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *BatchCreateTopicReviewedAnswerOutput) SetRequestId(v string) *BatchCreateTopicReviewedAnswerOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *BatchCreateTopicReviewedAnswerOutput) SetStatus(v int64) *BatchCreateTopicReviewedAnswerOutput {
+	s.Status = &v
+	return s
+}
+
+// SetSucceededAnswers sets the SucceededAnswers field's value.
+func (s *BatchCreateTopicReviewedAnswerOutput) SetSucceededAnswers(v []*SucceededTopicReviewedAnswer) *BatchCreateTopicReviewedAnswerOutput {
+	s.SucceededAnswers = v
+	return s
+}
+
+// SetTopicArn sets the TopicArn field's value.
+func (s *BatchCreateTopicReviewedAnswerOutput) SetTopicArn(v string) *BatchCreateTopicReviewedAnswerOutput {
+	s.TopicArn = &v
+	return s
+}
+
+// SetTopicId sets the TopicId field's value.
+func (s *BatchCreateTopicReviewedAnswerOutput) SetTopicId(v string) *BatchCreateTopicReviewedAnswerOutput {
+	s.TopicId = &v
+	return s
+}
+
+type BatchDeleteTopicReviewedAnswerInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Answer IDs of the Answers to be deleted.
+	AnswerIds []*string `type:"list"`
+
+	// The ID of the Amazon Web Services account that you want to delete a reviewed
+	// answers in.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The ID for the topic reviewed answer that you want to delete. This ID is
+	// unique per Amazon Web Services Region for each Amazon Web Services account.
+	//
+	// TopicId is a required field
+	TopicId *string `location:"uri" locationName:"TopicId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchDeleteTopicReviewedAnswerInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchDeleteTopicReviewedAnswerInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchDeleteTopicReviewedAnswerInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchDeleteTopicReviewedAnswerInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.TopicId == nil {
+		invalidParams.Add(request.NewErrParamRequired("TopicId"))
+	}
+	if s.TopicId != nil && len(*s.TopicId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TopicId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAnswerIds sets the AnswerIds field's value.
+func (s *BatchDeleteTopicReviewedAnswerInput) SetAnswerIds(v []*string) *BatchDeleteTopicReviewedAnswerInput {
+	s.AnswerIds = v
+	return s
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *BatchDeleteTopicReviewedAnswerInput) SetAwsAccountId(v string) *BatchDeleteTopicReviewedAnswerInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetTopicId sets the TopicId field's value.
+func (s *BatchDeleteTopicReviewedAnswerInput) SetTopicId(v string) *BatchDeleteTopicReviewedAnswerInput {
+	s.TopicId = &v
+	return s
+}
+
+type BatchDeleteTopicReviewedAnswerOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The definition of Answers that are invalid and not deleted.
+	InvalidAnswers []*InvalidTopicReviewedAnswer `type:"list"`
+
+	// The Amazon Web Services request ID for this operation.
+	RequestId *string `type:"string"`
+
+	// The HTTP status of the request.
+	Status *int64 `location:"statusCode" type:"integer"`
+
+	// The definition of Answers that are successfully deleted.
+	SucceededAnswers []*SucceededTopicReviewedAnswer `type:"list"`
+
+	// The Amazon Resource Name (ARN) of the topic.
+	TopicArn *string `type:"string"`
+
+	// The ID of the topic reviewed answer that you want to delete. This ID is unique
+	// per Amazon Web Services Region for each Amazon Web Services account.
+	TopicId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchDeleteTopicReviewedAnswerOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchDeleteTopicReviewedAnswerOutput) GoString() string {
+	return s.String()
+}
+
+// SetInvalidAnswers sets the InvalidAnswers field's value.
+func (s *BatchDeleteTopicReviewedAnswerOutput) SetInvalidAnswers(v []*InvalidTopicReviewedAnswer) *BatchDeleteTopicReviewedAnswerOutput {
+	s.InvalidAnswers = v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *BatchDeleteTopicReviewedAnswerOutput) SetRequestId(v string) *BatchDeleteTopicReviewedAnswerOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *BatchDeleteTopicReviewedAnswerOutput) SetStatus(v int64) *BatchDeleteTopicReviewedAnswerOutput {
+	s.Status = &v
+	return s
+}
+
+// SetSucceededAnswers sets the SucceededAnswers field's value.
+func (s *BatchDeleteTopicReviewedAnswerOutput) SetSucceededAnswers(v []*SucceededTopicReviewedAnswer) *BatchDeleteTopicReviewedAnswerOutput {
+	s.SucceededAnswers = v
+	return s
+}
+
+// SetTopicArn sets the TopicArn field's value.
+func (s *BatchDeleteTopicReviewedAnswerOutput) SetTopicArn(v string) *BatchDeleteTopicReviewedAnswerOutput {
+	s.TopicArn = &v
+	return s
+}
+
+// SetTopicId sets the TopicId field's value.
+func (s *BatchDeleteTopicReviewedAnswerOutput) SetTopicId(v string) *BatchDeleteTopicReviewedAnswerOutput {
+	s.TopicId = &v
+	return s
+}
+
 // The parameters that are required to connect to a Google BigQuery data source.
 type BigQueryParameters struct {
 	_ struct{} `type:"structure"`
@@ -29582,6 +30343,47 @@ func (s *CollectiveConstant) SetValueList(v []*string) *CollectiveConstant {
 	return s
 }
 
+// The definition for a CollectiveConstantEntry.
+type CollectiveConstantEntry struct {
+	_ struct{} `type:"structure"`
+
+	// The ConstantType of a CollectiveConstantEntry.
+	ConstantType *string `type:"string" enum:"ConstantType"`
+
+	// The value of a CollectiveConstantEntry.
+	Value *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CollectiveConstantEntry) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CollectiveConstantEntry) GoString() string {
+	return s.String()
+}
+
+// SetConstantType sets the ConstantType field's value.
+func (s *CollectiveConstantEntry) SetConstantType(v string) *CollectiveConstantEntry {
+	s.ConstantType = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *CollectiveConstantEntry) SetValue(v string) *CollectiveConstantEntry {
+	s.Value = &v
+	return s
+}
+
 // Determines the color scale that is applied to the visual.
 type ColorScale struct {
 	_ struct{} `type:"structure"`
@@ -32156,6 +32958,99 @@ func (s *ContributionAnalysisDefault) SetContributorDimensions(v []*ColumnIdenti
 // SetMeasureFieldId sets the MeasureFieldId field's value.
 func (s *ContributionAnalysisDefault) SetMeasureFieldId(v string) *ContributionAnalysisDefault {
 	s.MeasureFieldId = &v
+	return s
+}
+
+// The definition for the ContributionAnalysisFactor.
+type ContributionAnalysisFactor struct {
+	_ struct{} `type:"structure"`
+
+	// The field name of the ContributionAnalysisFactor.
+	FieldName *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContributionAnalysisFactor) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContributionAnalysisFactor) GoString() string {
+	return s.String()
+}
+
+// SetFieldName sets the FieldName field's value.
+func (s *ContributionAnalysisFactor) SetFieldName(v string) *ContributionAnalysisFactor {
+	s.FieldName = &v
+	return s
+}
+
+// The definition for the ContributionAnalysisTimeRanges.
+type ContributionAnalysisTimeRanges struct {
+	_ struct{} `type:"structure"`
+
+	// The end range for the ContributionAnalysisTimeRanges.
+	EndRange *TopicIRFilterOption `type:"structure"`
+
+	// The start range for the ContributionAnalysisTimeRanges.
+	StartRange *TopicIRFilterOption `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContributionAnalysisTimeRanges) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContributionAnalysisTimeRanges) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ContributionAnalysisTimeRanges) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ContributionAnalysisTimeRanges"}
+	if s.EndRange != nil {
+		if err := s.EndRange.Validate(); err != nil {
+			invalidParams.AddNested("EndRange", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.StartRange != nil {
+		if err := s.StartRange.Validate(); err != nil {
+			invalidParams.AddNested("StartRange", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEndRange sets the EndRange field's value.
+func (s *ContributionAnalysisTimeRanges) SetEndRange(v *TopicIRFilterOption) *ContributionAnalysisTimeRanges {
+	s.EndRange = v
+	return s
+}
+
+// SetStartRange sets the StartRange field's value.
+func (s *ContributionAnalysisTimeRanges) SetStartRange(v *TopicIRFilterOption) *ContributionAnalysisTimeRanges {
+	s.StartRange = v
 	return s
 }
 
@@ -36803,6 +37698,118 @@ func (s *CreateTopicRefreshScheduleOutput) SetTopicArn(v string) *CreateTopicRef
 // SetTopicId sets the TopicId field's value.
 func (s *CreateTopicRefreshScheduleOutput) SetTopicId(v string) *CreateTopicRefreshScheduleOutput {
 	s.TopicId = &v
+	return s
+}
+
+// The definition for a CreateTopicReviewedAnswer.
+type CreateTopicReviewedAnswer struct {
+	_ struct{} `type:"structure"`
+
+	// The answer ID for the CreateTopicReviewedAnswer.
+	//
+	// AnswerId is a required field
+	AnswerId *string `type:"string" required:"true"`
+
+	// The Dataset arn for the CreateTopicReviewedAnswer.
+	//
+	// DatasetArn is a required field
+	DatasetArn *string `type:"string" required:"true"`
+
+	// The Mir for the CreateTopicReviewedAnswer.
+	Mir *TopicIR `type:"structure"`
+
+	// The PrimaryVisual for the CreateTopicReviewedAnswer.
+	PrimaryVisual *TopicVisual `type:"structure"`
+
+	// The Question to be created.
+	//
+	// Question is a required field
+	Question *string `type:"string" required:"true"`
+
+	// The template for the CreateTopicReviewedAnswer.
+	Template *TopicTemplate `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateTopicReviewedAnswer) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateTopicReviewedAnswer) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateTopicReviewedAnswer) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateTopicReviewedAnswer"}
+	if s.AnswerId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AnswerId"))
+	}
+	if s.DatasetArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatasetArn"))
+	}
+	if s.Question == nil {
+		invalidParams.Add(request.NewErrParamRequired("Question"))
+	}
+	if s.Mir != nil {
+		if err := s.Mir.Validate(); err != nil {
+			invalidParams.AddNested("Mir", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.PrimaryVisual != nil {
+		if err := s.PrimaryVisual.Validate(); err != nil {
+			invalidParams.AddNested("PrimaryVisual", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAnswerId sets the AnswerId field's value.
+func (s *CreateTopicReviewedAnswer) SetAnswerId(v string) *CreateTopicReviewedAnswer {
+	s.AnswerId = &v
+	return s
+}
+
+// SetDatasetArn sets the DatasetArn field's value.
+func (s *CreateTopicReviewedAnswer) SetDatasetArn(v string) *CreateTopicReviewedAnswer {
+	s.DatasetArn = &v
+	return s
+}
+
+// SetMir sets the Mir field's value.
+func (s *CreateTopicReviewedAnswer) SetMir(v *TopicIR) *CreateTopicReviewedAnswer {
+	s.Mir = v
+	return s
+}
+
+// SetPrimaryVisual sets the PrimaryVisual field's value.
+func (s *CreateTopicReviewedAnswer) SetPrimaryVisual(v *TopicVisual) *CreateTopicReviewedAnswer {
+	s.PrimaryVisual = v
+	return s
+}
+
+// SetQuestion sets the Question field's value.
+func (s *CreateTopicReviewedAnswer) SetQuestion(v string) *CreateTopicReviewedAnswer {
+	s.Question = &v
+	return s
+}
+
+// SetTemplate sets the Template field's value.
+func (s *CreateTopicReviewedAnswer) SetTemplate(v *TopicTemplate) *CreateTopicReviewedAnswer {
+	s.Template = v
 	return s
 }
 
@@ -42969,8 +43976,14 @@ func (s *DateTimeParameterDeclaration) SetValueWhenUnset(v *DateTimeValueWhenUns
 type DateTimePickerControlDisplayOptions struct {
 	_ struct{} `type:"structure"`
 
+	// The date icon visibility of the DateTimePickerControlDisplayOptions.
+	DateIconVisibility *string `type:"string" enum:"Visibility"`
+
 	// Customize how dates are formatted in controls.
 	DateTimeFormat *string `min:"1" type:"string"`
+
+	// The helper text visibility of the DateTimePickerControlDisplayOptions.
+	HelperTextVisibility *string `type:"string" enum:"Visibility"`
 
 	// The configuration of info icon label options.
 	InfoIconLabelOptions *SheetControlInfoIconLabelOptions `type:"structure"`
@@ -43015,9 +44028,21 @@ func (s *DateTimePickerControlDisplayOptions) Validate() error {
 	return nil
 }
 
+// SetDateIconVisibility sets the DateIconVisibility field's value.
+func (s *DateTimePickerControlDisplayOptions) SetDateIconVisibility(v string) *DateTimePickerControlDisplayOptions {
+	s.DateIconVisibility = &v
+	return s
+}
+
 // SetDateTimeFormat sets the DateTimeFormat field's value.
 func (s *DateTimePickerControlDisplayOptions) SetDateTimeFormat(v string) *DateTimePickerControlDisplayOptions {
 	s.DateTimeFormat = &v
+	return s
+}
+
+// SetHelperTextVisibility sets the HelperTextVisibility field's value.
+func (s *DateTimePickerControlDisplayOptions) SetHelperTextVisibility(v string) *DateTimePickerControlDisplayOptions {
+	s.HelperTextVisibility = &v
 	return s
 }
 
@@ -56812,6 +57837,71 @@ func (s *Filter) SetTopBottomFilter(v *TopBottomFilter) *Filter {
 	return s
 }
 
+// The definition for the FilterAggMetrics.
+type FilterAggMetrics struct {
+	_ struct{} `type:"structure"`
+
+	// The function for the FilterAggMetrics.
+	Function *string `type:"string" enum:"AggType"`
+
+	// The metric operand of the FilterAggMetrics.
+	MetricOperand *Identifier `type:"structure"`
+
+	// The sort direction for FilterAggMetrics.
+	SortDirection *string `type:"string" enum:"TopicSortDirection"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FilterAggMetrics) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FilterAggMetrics) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *FilterAggMetrics) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "FilterAggMetrics"}
+	if s.MetricOperand != nil {
+		if err := s.MetricOperand.Validate(); err != nil {
+			invalidParams.AddNested("MetricOperand", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFunction sets the Function field's value.
+func (s *FilterAggMetrics) SetFunction(v string) *FilterAggMetrics {
+	s.Function = &v
+	return s
+}
+
+// SetMetricOperand sets the MetricOperand field's value.
+func (s *FilterAggMetrics) SetMetricOperand(v *Identifier) *FilterAggMetrics {
+	s.MetricOperand = v
+	return s
+}
+
+// SetSortDirection sets the SortDirection field's value.
+func (s *FilterAggMetrics) SetSortDirection(v string) *FilterAggMetrics {
+	s.SortDirection = &v
+	return s
+}
+
 // The control of a filter that is used to interact with a dashboard or an analysis.
 //
 // This is a union type structure. For this structure to be valid, only one
@@ -64537,6 +65627,53 @@ func (s *IAMPolicyAssignmentSummary) SetAssignmentStatus(v string) *IAMPolicyAss
 	return s
 }
 
+// The definition for the identifier.
+type Identifier struct {
+	_ struct{} `type:"structure"`
+
+	// The identity of the identifier.
+	//
+	// Identity is a required field
+	Identity *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Identifier) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Identifier) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Identifier) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Identifier"}
+	if s.Identity == nil {
+		invalidParams.Add(request.NewErrParamRequired("Identity"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIdentity sets the Identity field's value.
+func (s *Identifier) SetIdentity(v string) *Identifier {
+	s.Identity = &v
+	return s
+}
+
 // The parameters for an IAM Identity Center configuration.
 type IdentityCenterConfiguration struct {
 	_ struct{} `type:"structure"`
@@ -65834,6 +66971,47 @@ func (s *InvalidRequestException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *InvalidRequestException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// The definition for a InvalidTopicReviewedAnswer.
+type InvalidTopicReviewedAnswer struct {
+	_ struct{} `type:"structure"`
+
+	// The answer ID for the InvalidTopicReviewedAnswer.
+	AnswerId *string `type:"string"`
+
+	// The error that is returned for the InvalidTopicReviewedAnswer.
+	Error *string `type:"string" enum:"ReviewedAnswerErrorCode"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvalidTopicReviewedAnswer) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvalidTopicReviewedAnswer) GoString() string {
+	return s.String()
+}
+
+// SetAnswerId sets the AnswerId field's value.
+func (s *InvalidTopicReviewedAnswer) SetAnswerId(v string) *InvalidTopicReviewedAnswer {
+	s.AnswerId = &v
+	return s
+}
+
+// SetError sets the Error field's value.
+func (s *InvalidTopicReviewedAnswer) SetError(v string) *InvalidTopicReviewedAnswer {
+	s.Error = &v
+	return s
 }
 
 // The limit configuration of the visual display for an axis.
@@ -72253,6 +73431,144 @@ func (s *ListTopicRefreshSchedulesOutput) SetTopicId(v string) *ListTopicRefresh
 	return s
 }
 
+type ListTopicReviewedAnswersInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID of the Amazon Web Services account that containd the reviewed answers
+	// that you want listed.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The ID for the topic that contains the reviewed answer that you want to list.
+	// This ID is unique per Amazon Web Services Region for each Amazon Web Services
+	// account.
+	//
+	// TopicId is a required field
+	TopicId *string `location:"uri" locationName:"TopicId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTopicReviewedAnswersInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTopicReviewedAnswersInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListTopicReviewedAnswersInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListTopicReviewedAnswersInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.TopicId == nil {
+		invalidParams.Add(request.NewErrParamRequired("TopicId"))
+	}
+	if s.TopicId != nil && len(*s.TopicId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TopicId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *ListTopicReviewedAnswersInput) SetAwsAccountId(v string) *ListTopicReviewedAnswersInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetTopicId sets the TopicId field's value.
+func (s *ListTopicReviewedAnswersInput) SetTopicId(v string) *ListTopicReviewedAnswersInput {
+	s.TopicId = &v
+	return s
+}
+
+type ListTopicReviewedAnswersOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The definition of all Answers in the topic.
+	Answers []*TopicReviewedAnswer `type:"list"`
+
+	// The Amazon Web Services request ID for this operation.
+	RequestId *string `type:"string"`
+
+	// The HTTP status of the request.
+	Status *int64 `location:"statusCode" type:"integer"`
+
+	// The Amazon Resource Name (ARN) of the topic.
+	TopicArn *string `type:"string"`
+
+	// The ID for the topic that contains the reviewed answer that you want to list.
+	// This ID is unique per Amazon Web Services Region for each Amazon Web Services
+	// account.
+	TopicId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTopicReviewedAnswersOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTopicReviewedAnswersOutput) GoString() string {
+	return s.String()
+}
+
+// SetAnswers sets the Answers field's value.
+func (s *ListTopicReviewedAnswersOutput) SetAnswers(v []*TopicReviewedAnswer) *ListTopicReviewedAnswersOutput {
+	s.Answers = v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *ListTopicReviewedAnswersOutput) SetRequestId(v string) *ListTopicReviewedAnswersOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ListTopicReviewedAnswersOutput) SetStatus(v int64) *ListTopicReviewedAnswersOutput {
+	s.Status = &v
+	return s
+}
+
+// SetTopicArn sets the TopicArn field's value.
+func (s *ListTopicReviewedAnswersOutput) SetTopicArn(v string) *ListTopicReviewedAnswersOutput {
+	s.TopicArn = &v
+	return s
+}
+
+// SetTopicId sets the TopicId field's value.
+func (s *ListTopicReviewedAnswersOutput) SetTopicId(v string) *ListTopicReviewedAnswersOutput {
+	s.TopicId = &v
+	return s
+}
+
 type ListTopicsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -74093,6 +75409,38 @@ func (s *NamedEntityDefinitionMetric) SetAggregation(v string) *NamedEntityDefin
 // SetAggregationFunctionParameters sets the AggregationFunctionParameters field's value.
 func (s *NamedEntityDefinitionMetric) SetAggregationFunctionParameters(v map[string]*string) *NamedEntityDefinitionMetric {
 	s.AggregationFunctionParameters = v
+	return s
+}
+
+// The definition for a NamedEntityRef.
+type NamedEntityRef struct {
+	_ struct{} `type:"structure"`
+
+	// The NamedEntityName for the NamedEntityRef.
+	NamedEntityName *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NamedEntityRef) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NamedEntityRef) GoString() string {
+	return s.String()
+}
+
+// SetNamedEntityName sets the NamedEntityName field's value.
+func (s *NamedEntityRef) SetNamedEntityName(v string) *NamedEntityRef {
+	s.NamedEntityName = &v
 	return s
 }
 
@@ -88983,6 +90331,47 @@ func (s *SliderControlDisplayOptions) SetTitleOptions(v *LabelOptions) *SliderCo
 	return s
 }
 
+// The definition for the slot.
+type Slot struct {
+	_ struct{} `type:"structure"`
+
+	// The slot ID of the slot.
+	SlotId *string `type:"string"`
+
+	// The visual ID for the slot.
+	VisualId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Slot) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Slot) GoString() string {
+	return s.String()
+}
+
+// SetSlotId sets the SlotId field's value.
+func (s *Slot) SetSlotId(v string) *Slot {
+	s.SlotId = &v
+	return s
+}
+
+// SetVisualId sets the VisualId field's value.
+func (s *Slot) SetVisualId(v string) *Slot {
+	s.VisualId = &v
+	return s
+}
+
 // Configures the properties of a chart's axes that are used by small multiples
 // panels.
 type SmallMultiplesAxisProperties struct {
@@ -91674,6 +93063,38 @@ func (s *SubtotalOptions) SetTotalsVisibility(v string) *SubtotalOptions {
 // SetValueCellStyle sets the ValueCellStyle field's value.
 func (s *SubtotalOptions) SetValueCellStyle(v *TableCellStyle) *SubtotalOptions {
 	s.ValueCellStyle = v
+	return s
+}
+
+// The definition for a SucceededTopicReviewedAnswer.
+type SucceededTopicReviewedAnswer struct {
+	_ struct{} `type:"structure"`
+
+	// The answer ID for the SucceededTopicReviewedAnswer.
+	AnswerId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SucceededTopicReviewedAnswer) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SucceededTopicReviewedAnswer) GoString() string {
+	return s.String()
+}
+
+// SetAnswerId sets the AnswerId field's value.
+func (s *SucceededTopicReviewedAnswer) SetAnswerId(v string) *SucceededTopicReviewedAnswer {
+	s.AnswerId = &v
 	return s
 }
 
@@ -97215,6 +98636,74 @@ func (s *TopicColumn) SetTimeGranularity(v string) *TopicColumn {
 	return s
 }
 
+// The definition for a TopicConstantValue.
+type TopicConstantValue struct {
+	_ struct{} `type:"structure"`
+
+	// The constant type of a TopicConstantValue.
+	ConstantType *string `type:"string" enum:"ConstantType"`
+
+	// The maximum for the TopicConstantValue.
+	Maximum *string `type:"string"`
+
+	// The minimum for the TopicConstantValue.
+	Minimum *string `type:"string"`
+
+	// The value of the TopicConstantValue.
+	Value *string `type:"string"`
+
+	// The value list of the TopicConstantValue.
+	ValueList []*CollectiveConstantEntry `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TopicConstantValue) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TopicConstantValue) GoString() string {
+	return s.String()
+}
+
+// SetConstantType sets the ConstantType field's value.
+func (s *TopicConstantValue) SetConstantType(v string) *TopicConstantValue {
+	s.ConstantType = &v
+	return s
+}
+
+// SetMaximum sets the Maximum field's value.
+func (s *TopicConstantValue) SetMaximum(v string) *TopicConstantValue {
+	s.Maximum = &v
+	return s
+}
+
+// SetMinimum sets the Minimum field's value.
+func (s *TopicConstantValue) SetMinimum(v string) *TopicConstantValue {
+	s.Minimum = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *TopicConstantValue) SetValue(v string) *TopicConstantValue {
+	s.Value = &v
+	return s
+}
+
+// SetValueList sets the ValueList field's value.
+func (s *TopicConstantValue) SetValueList(v []*CollectiveConstantEntry) *TopicConstantValue {
+	s.ValueList = v
+	return s
+}
+
 // A filter used to restrict data based on a range of dates or times.
 type TopicDateRangeFilter struct {
 	_ struct{} `type:"structure"`
@@ -97486,6 +98975,700 @@ func (s *TopicFilter) SetOperandFieldName(v string) *TopicFilter {
 // SetRelativeDateFilter sets the RelativeDateFilter field's value.
 func (s *TopicFilter) SetRelativeDateFilter(v *TopicRelativeDateFilter) *TopicFilter {
 	s.RelativeDateFilter = v
+	return s
+}
+
+// The definition for a TopicIR.
+type TopicIR struct {
+	_ struct{} `type:"structure"`
+
+	// The contribution analysis for the TopicIR.
+	ContributionAnalysis *TopicIRContributionAnalysis `type:"structure"`
+
+	// The filters for the TopicIR.
+	Filters [][]*TopicIRFilterOption `type:"list"`
+
+	// The GroupBy list for the TopicIR.
+	GroupByList []*TopicIRGroupBy `type:"list"`
+
+	// The metrics for the TopicIR.
+	Metrics []*TopicIRMetric `type:"list"`
+
+	// The sort for the TopicIR.
+	Sort *TopicSortClause `type:"structure"`
+
+	// The visual for the TopicIR.
+	Visual *VisualOptions `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TopicIR) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TopicIR) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TopicIR) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TopicIR"}
+	if s.ContributionAnalysis != nil {
+		if err := s.ContributionAnalysis.Validate(); err != nil {
+			invalidParams.AddNested("ContributionAnalysis", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.GroupByList != nil {
+		for i, v := range s.GroupByList {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "GroupByList", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Metrics != nil {
+		for i, v := range s.Metrics {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Metrics", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Sort != nil {
+		if err := s.Sort.Validate(); err != nil {
+			invalidParams.AddNested("Sort", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContributionAnalysis sets the ContributionAnalysis field's value.
+func (s *TopicIR) SetContributionAnalysis(v *TopicIRContributionAnalysis) *TopicIR {
+	s.ContributionAnalysis = v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *TopicIR) SetFilters(v [][]*TopicIRFilterOption) *TopicIR {
+	s.Filters = v
+	return s
+}
+
+// SetGroupByList sets the GroupByList field's value.
+func (s *TopicIR) SetGroupByList(v []*TopicIRGroupBy) *TopicIR {
+	s.GroupByList = v
+	return s
+}
+
+// SetMetrics sets the Metrics field's value.
+func (s *TopicIR) SetMetrics(v []*TopicIRMetric) *TopicIR {
+	s.Metrics = v
+	return s
+}
+
+// SetSort sets the Sort field's value.
+func (s *TopicIR) SetSort(v *TopicSortClause) *TopicIR {
+	s.Sort = v
+	return s
+}
+
+// SetVisual sets the Visual field's value.
+func (s *TopicIR) SetVisual(v *VisualOptions) *TopicIR {
+	s.Visual = v
+	return s
+}
+
+// The definition of a TopicIRComparisonMethod.
+type TopicIRComparisonMethod struct {
+	_ struct{} `type:"structure"`
+
+	// The period for the TopicIRComparisonMethod.
+	Period *string `type:"string" enum:"TopicTimeGranularity"`
+
+	// The type for the TopicIRComparisonMethod.
+	Type *string `type:"string" enum:"ComparisonMethodType"`
+
+	// The window size for the TopicIRComparisonMethod.
+	WindowSize *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TopicIRComparisonMethod) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TopicIRComparisonMethod) GoString() string {
+	return s.String()
+}
+
+// SetPeriod sets the Period field's value.
+func (s *TopicIRComparisonMethod) SetPeriod(v string) *TopicIRComparisonMethod {
+	s.Period = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *TopicIRComparisonMethod) SetType(v string) *TopicIRComparisonMethod {
+	s.Type = &v
+	return s
+}
+
+// SetWindowSize sets the WindowSize field's value.
+func (s *TopicIRComparisonMethod) SetWindowSize(v int64) *TopicIRComparisonMethod {
+	s.WindowSize = &v
+	return s
+}
+
+// The definition for a TopicIRContributionAnalysis.
+type TopicIRContributionAnalysis struct {
+	_ struct{} `type:"structure"`
+
+	// The direction for the TopicIRContributionAnalysis.
+	Direction *string `type:"string" enum:"ContributionAnalysisDirection"`
+
+	// The factors for a TopicIRContributionAnalysis.
+	Factors []*ContributionAnalysisFactor `type:"list"`
+
+	// The sort type for the TopicIRContributionAnalysis.
+	SortType *string `type:"string" enum:"ContributionAnalysisSortType"`
+
+	// The time ranges for the TopicIRContributionAnalysis.
+	TimeRanges *ContributionAnalysisTimeRanges `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TopicIRContributionAnalysis) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TopicIRContributionAnalysis) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TopicIRContributionAnalysis) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TopicIRContributionAnalysis"}
+	if s.TimeRanges != nil {
+		if err := s.TimeRanges.Validate(); err != nil {
+			invalidParams.AddNested("TimeRanges", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDirection sets the Direction field's value.
+func (s *TopicIRContributionAnalysis) SetDirection(v string) *TopicIRContributionAnalysis {
+	s.Direction = &v
+	return s
+}
+
+// SetFactors sets the Factors field's value.
+func (s *TopicIRContributionAnalysis) SetFactors(v []*ContributionAnalysisFactor) *TopicIRContributionAnalysis {
+	s.Factors = v
+	return s
+}
+
+// SetSortType sets the SortType field's value.
+func (s *TopicIRContributionAnalysis) SetSortType(v string) *TopicIRContributionAnalysis {
+	s.SortType = &v
+	return s
+}
+
+// SetTimeRanges sets the TimeRanges field's value.
+func (s *TopicIRContributionAnalysis) SetTimeRanges(v *ContributionAnalysisTimeRanges) *TopicIRContributionAnalysis {
+	s.TimeRanges = v
+	return s
+}
+
+// The definition for a TopicIRFilterOption.
+type TopicIRFilterOption struct {
+	_ struct{} `type:"structure"`
+
+	// The agg metrics for the TopicIRFilterOption.
+	AggMetrics []*FilterAggMetrics `type:"list"`
+
+	// The aggregation for the TopicIRFilterOption.
+	Aggregation *string `type:"string" enum:"AggType"`
+
+	// The aggregation function parameters for the TopicIRFilterOption.
+	AggregationFunctionParameters map[string]*string `type:"map"`
+
+	// The AggregationPartitionBy for the TopicIRFilterOption.
+	AggregationPartitionBy []*AggregationPartitionBy `type:"list"`
+
+	// The anchor for the TopicIRFilterOption.
+	Anchor *Anchor `type:"structure"`
+
+	// The constant for the TopicIRFilterOption.
+	Constant *TopicConstantValue `type:"structure"`
+
+	// The filter class for the TopicIRFilterOption.
+	FilterClass *string `type:"string" enum:"FilterClass"`
+
+	// The filter type for the TopicIRFilterOption.
+	FilterType *string `type:"string" enum:"TopicIRFilterType"`
+
+	// The function for the TopicIRFilterOption.
+	Function *string `type:"string" enum:"TopicIRFilterFunction"`
+
+	// The inclusive for the TopicIRFilterOption.
+	Inclusive *bool `type:"boolean"`
+
+	// The inverse for the TopicIRFilterOption.
+	Inverse *bool `type:"boolean"`
+
+	// The last next offset for the TopicIRFilterOption.
+	LastNextOffset *TopicConstantValue `type:"structure"`
+
+	// The null filter for the TopicIRFilterOption.
+	NullFilter *string `type:"string" enum:"NullFilterOption"`
+
+	// The operand field for the TopicIRFilterOption.
+	OperandField *Identifier `type:"structure"`
+
+	// The range for the TopicIRFilterOption.
+	Range *TopicConstantValue `type:"structure"`
+
+	// The sort direction for the TopicIRFilterOption.
+	SortDirection *string `type:"string" enum:"TopicSortDirection"`
+
+	// The time granularity for the TopicIRFilterOption.
+	TimeGranularity *string `type:"string" enum:"TimeGranularity"`
+
+	// The TopBottomLimit for the TopicIRFilterOption.
+	TopBottomLimit *TopicConstantValue `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TopicIRFilterOption) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TopicIRFilterOption) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TopicIRFilterOption) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TopicIRFilterOption"}
+	if s.AggMetrics != nil {
+		for i, v := range s.AggMetrics {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "AggMetrics", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.OperandField != nil {
+		if err := s.OperandField.Validate(); err != nil {
+			invalidParams.AddNested("OperandField", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAggMetrics sets the AggMetrics field's value.
+func (s *TopicIRFilterOption) SetAggMetrics(v []*FilterAggMetrics) *TopicIRFilterOption {
+	s.AggMetrics = v
+	return s
+}
+
+// SetAggregation sets the Aggregation field's value.
+func (s *TopicIRFilterOption) SetAggregation(v string) *TopicIRFilterOption {
+	s.Aggregation = &v
+	return s
+}
+
+// SetAggregationFunctionParameters sets the AggregationFunctionParameters field's value.
+func (s *TopicIRFilterOption) SetAggregationFunctionParameters(v map[string]*string) *TopicIRFilterOption {
+	s.AggregationFunctionParameters = v
+	return s
+}
+
+// SetAggregationPartitionBy sets the AggregationPartitionBy field's value.
+func (s *TopicIRFilterOption) SetAggregationPartitionBy(v []*AggregationPartitionBy) *TopicIRFilterOption {
+	s.AggregationPartitionBy = v
+	return s
+}
+
+// SetAnchor sets the Anchor field's value.
+func (s *TopicIRFilterOption) SetAnchor(v *Anchor) *TopicIRFilterOption {
+	s.Anchor = v
+	return s
+}
+
+// SetConstant sets the Constant field's value.
+func (s *TopicIRFilterOption) SetConstant(v *TopicConstantValue) *TopicIRFilterOption {
+	s.Constant = v
+	return s
+}
+
+// SetFilterClass sets the FilterClass field's value.
+func (s *TopicIRFilterOption) SetFilterClass(v string) *TopicIRFilterOption {
+	s.FilterClass = &v
+	return s
+}
+
+// SetFilterType sets the FilterType field's value.
+func (s *TopicIRFilterOption) SetFilterType(v string) *TopicIRFilterOption {
+	s.FilterType = &v
+	return s
+}
+
+// SetFunction sets the Function field's value.
+func (s *TopicIRFilterOption) SetFunction(v string) *TopicIRFilterOption {
+	s.Function = &v
+	return s
+}
+
+// SetInclusive sets the Inclusive field's value.
+func (s *TopicIRFilterOption) SetInclusive(v bool) *TopicIRFilterOption {
+	s.Inclusive = &v
+	return s
+}
+
+// SetInverse sets the Inverse field's value.
+func (s *TopicIRFilterOption) SetInverse(v bool) *TopicIRFilterOption {
+	s.Inverse = &v
+	return s
+}
+
+// SetLastNextOffset sets the LastNextOffset field's value.
+func (s *TopicIRFilterOption) SetLastNextOffset(v *TopicConstantValue) *TopicIRFilterOption {
+	s.LastNextOffset = v
+	return s
+}
+
+// SetNullFilter sets the NullFilter field's value.
+func (s *TopicIRFilterOption) SetNullFilter(v string) *TopicIRFilterOption {
+	s.NullFilter = &v
+	return s
+}
+
+// SetOperandField sets the OperandField field's value.
+func (s *TopicIRFilterOption) SetOperandField(v *Identifier) *TopicIRFilterOption {
+	s.OperandField = v
+	return s
+}
+
+// SetRange sets the Range field's value.
+func (s *TopicIRFilterOption) SetRange(v *TopicConstantValue) *TopicIRFilterOption {
+	s.Range = v
+	return s
+}
+
+// SetSortDirection sets the SortDirection field's value.
+func (s *TopicIRFilterOption) SetSortDirection(v string) *TopicIRFilterOption {
+	s.SortDirection = &v
+	return s
+}
+
+// SetTimeGranularity sets the TimeGranularity field's value.
+func (s *TopicIRFilterOption) SetTimeGranularity(v string) *TopicIRFilterOption {
+	s.TimeGranularity = &v
+	return s
+}
+
+// SetTopBottomLimit sets the TopBottomLimit field's value.
+func (s *TopicIRFilterOption) SetTopBottomLimit(v *TopicConstantValue) *TopicIRFilterOption {
+	s.TopBottomLimit = v
+	return s
+}
+
+// The definition for a TopicIRGroupBy.
+type TopicIRGroupBy struct {
+	_ struct{} `type:"structure"`
+
+	// The display format for the TopicIRGroupBy.
+	DisplayFormat *string `type:"string" enum:"DisplayFormat"`
+
+	// A structure that represents additional options for display formatting.
+	DisplayFormatOptions *DisplayFormatOptions `type:"structure"`
+
+	// The field name for the TopicIRGroupBy.
+	FieldName *Identifier `type:"structure"`
+
+	// The named entity for the TopicIRGroupBy.
+	NamedEntity *NamedEntityRef `type:"structure"`
+
+	// The sort for the TopicIRGroupBy.
+	Sort *TopicSortClause `type:"structure"`
+
+	// The time granularity for the TopicIRGroupBy.
+	TimeGranularity *string `type:"string" enum:"TopicTimeGranularity"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TopicIRGroupBy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TopicIRGroupBy) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TopicIRGroupBy) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TopicIRGroupBy"}
+	if s.FieldName != nil {
+		if err := s.FieldName.Validate(); err != nil {
+			invalidParams.AddNested("FieldName", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Sort != nil {
+		if err := s.Sort.Validate(); err != nil {
+			invalidParams.AddNested("Sort", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDisplayFormat sets the DisplayFormat field's value.
+func (s *TopicIRGroupBy) SetDisplayFormat(v string) *TopicIRGroupBy {
+	s.DisplayFormat = &v
+	return s
+}
+
+// SetDisplayFormatOptions sets the DisplayFormatOptions field's value.
+func (s *TopicIRGroupBy) SetDisplayFormatOptions(v *DisplayFormatOptions) *TopicIRGroupBy {
+	s.DisplayFormatOptions = v
+	return s
+}
+
+// SetFieldName sets the FieldName field's value.
+func (s *TopicIRGroupBy) SetFieldName(v *Identifier) *TopicIRGroupBy {
+	s.FieldName = v
+	return s
+}
+
+// SetNamedEntity sets the NamedEntity field's value.
+func (s *TopicIRGroupBy) SetNamedEntity(v *NamedEntityRef) *TopicIRGroupBy {
+	s.NamedEntity = v
+	return s
+}
+
+// SetSort sets the Sort field's value.
+func (s *TopicIRGroupBy) SetSort(v *TopicSortClause) *TopicIRGroupBy {
+	s.Sort = v
+	return s
+}
+
+// SetTimeGranularity sets the TimeGranularity field's value.
+func (s *TopicIRGroupBy) SetTimeGranularity(v string) *TopicIRGroupBy {
+	s.TimeGranularity = &v
+	return s
+}
+
+// The definition for a TopicIRMetric.
+type TopicIRMetric struct {
+	_ struct{} `type:"structure"`
+
+	// The calculated field references for the TopicIRMetric.
+	CalculatedFieldReferences []*Identifier `type:"list"`
+
+	// The comparison method for the TopicIRMetric.
+	ComparisonMethod *TopicIRComparisonMethod `type:"structure"`
+
+	// The display format for the TopicIRMetric.
+	DisplayFormat *string `type:"string" enum:"DisplayFormat"`
+
+	// A structure that represents additional options for display formatting.
+	DisplayFormatOptions *DisplayFormatOptions `type:"structure"`
+
+	// The expression for the TopicIRMetric.
+	//
+	// Expression is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by TopicIRMetric's
+	// String and GoString methods.
+	Expression *string `min:"1" type:"string" sensitive:"true"`
+
+	// The function for the TopicIRMetric.
+	Function *AggFunction `type:"structure"`
+
+	// The metric ID for the TopicIRMetric.
+	MetricId *Identifier `type:"structure"`
+
+	// The named entity for the TopicIRMetric.
+	NamedEntity *NamedEntityRef `type:"structure"`
+
+	// The operands for the TopicIRMetric.
+	Operands []*Identifier `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TopicIRMetric) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TopicIRMetric) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TopicIRMetric) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TopicIRMetric"}
+	if s.Expression != nil && len(*s.Expression) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Expression", 1))
+	}
+	if s.CalculatedFieldReferences != nil {
+		for i, v := range s.CalculatedFieldReferences {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "CalculatedFieldReferences", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.MetricId != nil {
+		if err := s.MetricId.Validate(); err != nil {
+			invalidParams.AddNested("MetricId", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Operands != nil {
+		for i, v := range s.Operands {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Operands", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCalculatedFieldReferences sets the CalculatedFieldReferences field's value.
+func (s *TopicIRMetric) SetCalculatedFieldReferences(v []*Identifier) *TopicIRMetric {
+	s.CalculatedFieldReferences = v
+	return s
+}
+
+// SetComparisonMethod sets the ComparisonMethod field's value.
+func (s *TopicIRMetric) SetComparisonMethod(v *TopicIRComparisonMethod) *TopicIRMetric {
+	s.ComparisonMethod = v
+	return s
+}
+
+// SetDisplayFormat sets the DisplayFormat field's value.
+func (s *TopicIRMetric) SetDisplayFormat(v string) *TopicIRMetric {
+	s.DisplayFormat = &v
+	return s
+}
+
+// SetDisplayFormatOptions sets the DisplayFormatOptions field's value.
+func (s *TopicIRMetric) SetDisplayFormatOptions(v *DisplayFormatOptions) *TopicIRMetric {
+	s.DisplayFormatOptions = v
+	return s
+}
+
+// SetExpression sets the Expression field's value.
+func (s *TopicIRMetric) SetExpression(v string) *TopicIRMetric {
+	s.Expression = &v
+	return s
+}
+
+// SetFunction sets the Function field's value.
+func (s *TopicIRMetric) SetFunction(v *AggFunction) *TopicIRMetric {
+	s.Function = v
+	return s
+}
+
+// SetMetricId sets the MetricId field's value.
+func (s *TopicIRMetric) SetMetricId(v *Identifier) *TopicIRMetric {
+	s.MetricId = v
+	return s
+}
+
+// SetNamedEntity sets the NamedEntity field's value.
+func (s *TopicIRMetric) SetNamedEntity(v *NamedEntityRef) *TopicIRMetric {
+	s.NamedEntity = v
+	return s
+}
+
+// SetOperands sets the Operands field's value.
+func (s *TopicIRMetric) SetOperands(v []*Identifier) *TopicIRMetric {
+	s.Operands = v
 	return s
 }
 
@@ -97994,6 +100177,98 @@ func (s *TopicRelativeDateFilter) SetTimeGranularity(v string) *TopicRelativeDat
 	return s
 }
 
+// The deinition for a TopicReviewedAnswer.
+type TopicReviewedAnswer struct {
+	_ struct{} `type:"structure"`
+
+	// The answer ID of the reviewed answer.
+	//
+	// AnswerId is a required field
+	AnswerId *string `type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the reviewed answer.
+	Arn *string `type:"string"`
+
+	// The Dataset ARN for the TopicReviewedAnswer.
+	//
+	// DatasetArn is a required field
+	DatasetArn *string `type:"string" required:"true"`
+
+	// The mir for the TopicReviewedAnswer.
+	Mir *TopicIR `type:"structure"`
+
+	// The primary visual for the TopicReviewedAnswer.
+	PrimaryVisual *TopicVisual `type:"structure"`
+
+	// The question for the TopicReviewedAnswer.
+	//
+	// Question is a required field
+	Question *string `type:"string" required:"true"`
+
+	// The template for the TopicReviewedAnswer.
+	Template *TopicTemplate `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TopicReviewedAnswer) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TopicReviewedAnswer) GoString() string {
+	return s.String()
+}
+
+// SetAnswerId sets the AnswerId field's value.
+func (s *TopicReviewedAnswer) SetAnswerId(v string) *TopicReviewedAnswer {
+	s.AnswerId = &v
+	return s
+}
+
+// SetArn sets the Arn field's value.
+func (s *TopicReviewedAnswer) SetArn(v string) *TopicReviewedAnswer {
+	s.Arn = &v
+	return s
+}
+
+// SetDatasetArn sets the DatasetArn field's value.
+func (s *TopicReviewedAnswer) SetDatasetArn(v string) *TopicReviewedAnswer {
+	s.DatasetArn = &v
+	return s
+}
+
+// SetMir sets the Mir field's value.
+func (s *TopicReviewedAnswer) SetMir(v *TopicIR) *TopicReviewedAnswer {
+	s.Mir = v
+	return s
+}
+
+// SetPrimaryVisual sets the PrimaryVisual field's value.
+func (s *TopicReviewedAnswer) SetPrimaryVisual(v *TopicVisual) *TopicReviewedAnswer {
+	s.PrimaryVisual = v
+	return s
+}
+
+// SetQuestion sets the Question field's value.
+func (s *TopicReviewedAnswer) SetQuestion(v string) *TopicReviewedAnswer {
+	s.Question = &v
+	return s
+}
+
+// SetTemplate sets the Template field's value.
+func (s *TopicReviewedAnswer) SetTemplate(v *TopicTemplate) *TopicReviewedAnswer {
+	s.Template = v
+	return s
+}
+
 // A structure that represents a singular filter constant, used in filters to
 // specify a single value to match against.
 type TopicSingularFilterConstant struct {
@@ -98034,6 +100309,62 @@ func (s *TopicSingularFilterConstant) SetConstantType(v string) *TopicSingularFi
 // SetSingularConstant sets the SingularConstant field's value.
 func (s *TopicSingularFilterConstant) SetSingularConstant(v string) *TopicSingularFilterConstant {
 	s.SingularConstant = &v
+	return s
+}
+
+// The definition for a TopicSortClause.
+type TopicSortClause struct {
+	_ struct{} `type:"structure"`
+
+	// The operand for a TopicSortClause.
+	Operand *Identifier `type:"structure"`
+
+	// The sort direction for the TopicSortClause.
+	SortDirection *string `type:"string" enum:"TopicSortDirection"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TopicSortClause) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TopicSortClause) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TopicSortClause) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TopicSortClause"}
+	if s.Operand != nil {
+		if err := s.Operand.Validate(); err != nil {
+			invalidParams.AddNested("Operand", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetOperand sets the Operand field's value.
+func (s *TopicSortClause) SetOperand(v *Identifier) *TopicSortClause {
+	s.Operand = v
+	return s
+}
+
+// SetSortDirection sets the SortDirection field's value.
+func (s *TopicSortClause) SetSortDirection(v string) *TopicSortClause {
+	s.SortDirection = &v
 	return s
 }
 
@@ -98094,6 +100425,131 @@ func (s *TopicSummary) SetTopicId(v string) *TopicSummary {
 // SetUserExperienceVersion sets the UserExperienceVersion field's value.
 func (s *TopicSummary) SetUserExperienceVersion(v string) *TopicSummary {
 	s.UserExperienceVersion = &v
+	return s
+}
+
+// The definition for a TopicTemplate.
+type TopicTemplate struct {
+	_ struct{} `type:"structure"`
+
+	// The slots for the TopicTemplate.
+	Slots []*Slot `type:"list"`
+
+	// The template type for the TopicTemplate.
+	TemplateType *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TopicTemplate) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TopicTemplate) GoString() string {
+	return s.String()
+}
+
+// SetSlots sets the Slots field's value.
+func (s *TopicTemplate) SetSlots(v []*Slot) *TopicTemplate {
+	s.Slots = v
+	return s
+}
+
+// SetTemplateType sets the TemplateType field's value.
+func (s *TopicTemplate) SetTemplateType(v string) *TopicTemplate {
+	s.TemplateType = &v
+	return s
+}
+
+// The definition for a TopicVisual.
+type TopicVisual struct {
+	_ struct{} `type:"structure"`
+
+	// The ir for the TopicVisual.
+	Ir *TopicIR `type:"structure"`
+
+	// The role for the TopicVisual.
+	Role *string `type:"string" enum:"VisualRole"`
+
+	// The supporting visuals for the TopicVisual.
+	SupportingVisuals []*TopicVisual `type:"list"`
+
+	// The visual ID for the TopicVisual.
+	VisualId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TopicVisual) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TopicVisual) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TopicVisual) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TopicVisual"}
+	if s.Ir != nil {
+		if err := s.Ir.Validate(); err != nil {
+			invalidParams.AddNested("Ir", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SupportingVisuals != nil {
+		for i, v := range s.SupportingVisuals {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "SupportingVisuals", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIr sets the Ir field's value.
+func (s *TopicVisual) SetIr(v *TopicIR) *TopicVisual {
+	s.Ir = v
+	return s
+}
+
+// SetRole sets the Role field's value.
+func (s *TopicVisual) SetRole(v string) *TopicVisual {
+	s.Role = &v
+	return s
+}
+
+// SetSupportingVisuals sets the SupportingVisuals field's value.
+func (s *TopicVisual) SetSupportingVisuals(v []*TopicVisual) *TopicVisual {
+	s.SupportingVisuals = v
+	return s
+}
+
+// SetVisualId sets the VisualId field's value.
+func (s *TopicVisual) SetVisualId(v string) *TopicVisual {
+	s.VisualId = &v
 	return s
 }
 
@@ -107264,6 +109720,38 @@ func (s *VisualMenuOption) SetAvailabilityStatus(v string) *VisualMenuOption {
 	return s
 }
 
+// The definition for a VisualOptions.
+type VisualOptions struct {
+	_ struct{} `type:"structure"`
+
+	// The type for a VisualOptions.
+	Type *string `locationName:"type" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VisualOptions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VisualOptions) GoString() string {
+	return s.String()
+}
+
+// SetType sets the Type field's value.
+func (s *VisualOptions) SetType(v string) *VisualOptions {
+	s.Type = &v
+	return s
+}
+
 // The visual display options for the visual palette.
 type VisualPalette struct {
 	_ struct{} `type:"structure"`
@@ -108799,6 +111287,94 @@ func (s *YAxisOptions) SetYAxis(v string) *YAxisOptions {
 }
 
 const (
+	// AggTypeSum is a AggType enum value
+	AggTypeSum = "SUM"
+
+	// AggTypeMin is a AggType enum value
+	AggTypeMin = "MIN"
+
+	// AggTypeMax is a AggType enum value
+	AggTypeMax = "MAX"
+
+	// AggTypeCount is a AggType enum value
+	AggTypeCount = "COUNT"
+
+	// AggTypeAverage is a AggType enum value
+	AggTypeAverage = "AVERAGE"
+
+	// AggTypeDistinctCount is a AggType enum value
+	AggTypeDistinctCount = "DISTINCT_COUNT"
+
+	// AggTypeStdev is a AggType enum value
+	AggTypeStdev = "STDEV"
+
+	// AggTypeStdevp is a AggType enum value
+	AggTypeStdevp = "STDEVP"
+
+	// AggTypeVar is a AggType enum value
+	AggTypeVar = "VAR"
+
+	// AggTypeVarp is a AggType enum value
+	AggTypeVarp = "VARP"
+
+	// AggTypePercentile is a AggType enum value
+	AggTypePercentile = "PERCENTILE"
+
+	// AggTypeMedian is a AggType enum value
+	AggTypeMedian = "MEDIAN"
+
+	// AggTypePtdSum is a AggType enum value
+	AggTypePtdSum = "PTD_SUM"
+
+	// AggTypePtdMin is a AggType enum value
+	AggTypePtdMin = "PTD_MIN"
+
+	// AggTypePtdMax is a AggType enum value
+	AggTypePtdMax = "PTD_MAX"
+
+	// AggTypePtdCount is a AggType enum value
+	AggTypePtdCount = "PTD_COUNT"
+
+	// AggTypePtdDistinctCount is a AggType enum value
+	AggTypePtdDistinctCount = "PTD_DISTINCT_COUNT"
+
+	// AggTypePtdAverage is a AggType enum value
+	AggTypePtdAverage = "PTD_AVERAGE"
+
+	// AggTypeColumn is a AggType enum value
+	AggTypeColumn = "COLUMN"
+
+	// AggTypeCustom is a AggType enum value
+	AggTypeCustom = "CUSTOM"
+)
+
+// AggType_Values returns all elements of the AggType enum
+func AggType_Values() []string {
+	return []string{
+		AggTypeSum,
+		AggTypeMin,
+		AggTypeMax,
+		AggTypeCount,
+		AggTypeAverage,
+		AggTypeDistinctCount,
+		AggTypeStdev,
+		AggTypeStdevp,
+		AggTypeVar,
+		AggTypeVarp,
+		AggTypePercentile,
+		AggTypeMedian,
+		AggTypePtdSum,
+		AggTypePtdMin,
+		AggTypePtdMax,
+		AggTypePtdCount,
+		AggTypePtdDistinctCount,
+		AggTypePtdAverage,
+		AggTypeColumn,
+		AggTypeCustom,
+	}
+}
+
+const (
 	// AnalysisErrorTypeAccessDenied is a AnalysisErrorType enum value
 	AnalysisErrorTypeAccessDenied = "ACCESS_DENIED"
 
@@ -108891,6 +111467,18 @@ const (
 func AnchorOption_Values() []string {
 	return []string{
 		AnchorOptionNow,
+	}
+}
+
+const (
+	// AnchorTypeToday is a AnchorType enum value
+	AnchorTypeToday = "TODAY"
+)
+
+// AnchorType_Values returns all elements of the AnchorType enum
+func AnchorType_Values() []string {
+	return []string{
+		AnchorTypeToday,
 	}
 }
 
@@ -109623,6 +112211,54 @@ func ComparisonMethod_Values() []string {
 }
 
 const (
+	// ComparisonMethodTypeDiff is a ComparisonMethodType enum value
+	ComparisonMethodTypeDiff = "DIFF"
+
+	// ComparisonMethodTypePercDiff is a ComparisonMethodType enum value
+	ComparisonMethodTypePercDiff = "PERC_DIFF"
+
+	// ComparisonMethodTypeDiffAsPerc is a ComparisonMethodType enum value
+	ComparisonMethodTypeDiffAsPerc = "DIFF_AS_PERC"
+
+	// ComparisonMethodTypePopCurrentDiffAsPerc is a ComparisonMethodType enum value
+	ComparisonMethodTypePopCurrentDiffAsPerc = "POP_CURRENT_DIFF_AS_PERC"
+
+	// ComparisonMethodTypePopCurrentDiff is a ComparisonMethodType enum value
+	ComparisonMethodTypePopCurrentDiff = "POP_CURRENT_DIFF"
+
+	// ComparisonMethodTypePopOvertimeDiffAsPerc is a ComparisonMethodType enum value
+	ComparisonMethodTypePopOvertimeDiffAsPerc = "POP_OVERTIME_DIFF_AS_PERC"
+
+	// ComparisonMethodTypePopOvertimeDiff is a ComparisonMethodType enum value
+	ComparisonMethodTypePopOvertimeDiff = "POP_OVERTIME_DIFF"
+
+	// ComparisonMethodTypePercentOfTotal is a ComparisonMethodType enum value
+	ComparisonMethodTypePercentOfTotal = "PERCENT_OF_TOTAL"
+
+	// ComparisonMethodTypeRunningSum is a ComparisonMethodType enum value
+	ComparisonMethodTypeRunningSum = "RUNNING_SUM"
+
+	// ComparisonMethodTypeMovingAverage is a ComparisonMethodType enum value
+	ComparisonMethodTypeMovingAverage = "MOVING_AVERAGE"
+)
+
+// ComparisonMethodType_Values returns all elements of the ComparisonMethodType enum
+func ComparisonMethodType_Values() []string {
+	return []string{
+		ComparisonMethodTypeDiff,
+		ComparisonMethodTypePercDiff,
+		ComparisonMethodTypeDiffAsPerc,
+		ComparisonMethodTypePopCurrentDiffAsPerc,
+		ComparisonMethodTypePopCurrentDiff,
+		ComparisonMethodTypePopOvertimeDiffAsPerc,
+		ComparisonMethodTypePopOvertimeDiff,
+		ComparisonMethodTypePercentOfTotal,
+		ComparisonMethodTypeRunningSum,
+		ComparisonMethodTypeMovingAverage,
+	}
+}
+
+const (
 	// ConditionalFormattingIconDisplayOptionIconOnly is a ConditionalFormattingIconDisplayOption enum value
 	ConditionalFormattingIconDisplayOptionIconOnly = "ICON_ONLY"
 )
@@ -109703,6 +112339,50 @@ func ConstantType_Values() []string {
 		ConstantTypeSingular,
 		ConstantTypeRange,
 		ConstantTypeCollective,
+	}
+}
+
+const (
+	// ContributionAnalysisDirectionIncrease is a ContributionAnalysisDirection enum value
+	ContributionAnalysisDirectionIncrease = "INCREASE"
+
+	// ContributionAnalysisDirectionDecrease is a ContributionAnalysisDirection enum value
+	ContributionAnalysisDirectionDecrease = "DECREASE"
+
+	// ContributionAnalysisDirectionNeutral is a ContributionAnalysisDirection enum value
+	ContributionAnalysisDirectionNeutral = "NEUTRAL"
+)
+
+// ContributionAnalysisDirection_Values returns all elements of the ContributionAnalysisDirection enum
+func ContributionAnalysisDirection_Values() []string {
+	return []string{
+		ContributionAnalysisDirectionIncrease,
+		ContributionAnalysisDirectionDecrease,
+		ContributionAnalysisDirectionNeutral,
+	}
+}
+
+const (
+	// ContributionAnalysisSortTypeAbsoluteDifference is a ContributionAnalysisSortType enum value
+	ContributionAnalysisSortTypeAbsoluteDifference = "ABSOLUTE_DIFFERENCE"
+
+	// ContributionAnalysisSortTypeContributionPercentage is a ContributionAnalysisSortType enum value
+	ContributionAnalysisSortTypeContributionPercentage = "CONTRIBUTION_PERCENTAGE"
+
+	// ContributionAnalysisSortTypeDeviationFromExpected is a ContributionAnalysisSortType enum value
+	ContributionAnalysisSortTypeDeviationFromExpected = "DEVIATION_FROM_EXPECTED"
+
+	// ContributionAnalysisSortTypePercentageDifference is a ContributionAnalysisSortType enum value
+	ContributionAnalysisSortTypePercentageDifference = "PERCENTAGE_DIFFERENCE"
+)
+
+// ContributionAnalysisSortType_Values returns all elements of the ContributionAnalysisSortType enum
+func ContributionAnalysisSortType_Values() []string {
+	return []string{
+		ContributionAnalysisSortTypeAbsoluteDifference,
+		ContributionAnalysisSortTypeContributionPercentage,
+		ContributionAnalysisSortTypeDeviationFromExpected,
+		ContributionAnalysisSortTypePercentageDifference,
 	}
 }
 
@@ -111849,6 +114529,26 @@ func NetworkInterfaceStatus_Values() []string {
 }
 
 const (
+	// NullFilterOptionAllValues is a NullFilterOption enum value
+	NullFilterOptionAllValues = "ALL_VALUES"
+
+	// NullFilterOptionNonNullsOnly is a NullFilterOption enum value
+	NullFilterOptionNonNullsOnly = "NON_NULLS_ONLY"
+
+	// NullFilterOptionNullsOnly is a NullFilterOption enum value
+	NullFilterOptionNullsOnly = "NULLS_ONLY"
+)
+
+// NullFilterOption_Values returns all elements of the NullFilterOption enum
+func NullFilterOption_Values() []string {
+	return []string{
+		NullFilterOptionAllValues,
+		NullFilterOptionNonNullsOnly,
+		NullFilterOptionNullsOnly,
+	}
+}
+
+const (
 	// NumberScaleNone is a NumberScale enum value
 	NumberScaleNone = "NONE"
 
@@ -112493,6 +115193,42 @@ func ResourceStatus_Values() []string {
 		ResourceStatusUpdateSuccessful,
 		ResourceStatusUpdateFailed,
 		ResourceStatusDeleted,
+	}
+}
+
+const (
+	// ReviewedAnswerErrorCodeInternalError is a ReviewedAnswerErrorCode enum value
+	ReviewedAnswerErrorCodeInternalError = "INTERNAL_ERROR"
+
+	// ReviewedAnswerErrorCodeMissingAnswer is a ReviewedAnswerErrorCode enum value
+	ReviewedAnswerErrorCodeMissingAnswer = "MISSING_ANSWER"
+
+	// ReviewedAnswerErrorCodeDatasetDoesNotExist is a ReviewedAnswerErrorCode enum value
+	ReviewedAnswerErrorCodeDatasetDoesNotExist = "DATASET_DOES_NOT_EXIST"
+
+	// ReviewedAnswerErrorCodeInvalidDatasetArn is a ReviewedAnswerErrorCode enum value
+	ReviewedAnswerErrorCodeInvalidDatasetArn = "INVALID_DATASET_ARN"
+
+	// ReviewedAnswerErrorCodeDuplicatedAnswer is a ReviewedAnswerErrorCode enum value
+	ReviewedAnswerErrorCodeDuplicatedAnswer = "DUPLICATED_ANSWER"
+
+	// ReviewedAnswerErrorCodeInvalidData is a ReviewedAnswerErrorCode enum value
+	ReviewedAnswerErrorCodeInvalidData = "INVALID_DATA"
+
+	// ReviewedAnswerErrorCodeMissingRequiredFields is a ReviewedAnswerErrorCode enum value
+	ReviewedAnswerErrorCodeMissingRequiredFields = "MISSING_REQUIRED_FIELDS"
+)
+
+// ReviewedAnswerErrorCode_Values returns all elements of the ReviewedAnswerErrorCode enum
+func ReviewedAnswerErrorCode_Values() []string {
+	return []string{
+		ReviewedAnswerErrorCodeInternalError,
+		ReviewedAnswerErrorCodeMissingAnswer,
+		ReviewedAnswerErrorCodeDatasetDoesNotExist,
+		ReviewedAnswerErrorCodeInvalidDatasetArn,
+		ReviewedAnswerErrorCodeDuplicatedAnswer,
+		ReviewedAnswerErrorCodeInvalidData,
+		ReviewedAnswerErrorCodeMissingRequiredFields,
 	}
 }
 
@@ -113309,6 +116045,98 @@ func TopBottomSortOrder_Values() []string {
 }
 
 const (
+	// TopicIRFilterFunctionContains is a TopicIRFilterFunction enum value
+	TopicIRFilterFunctionContains = "CONTAINS"
+
+	// TopicIRFilterFunctionExact is a TopicIRFilterFunction enum value
+	TopicIRFilterFunctionExact = "EXACT"
+
+	// TopicIRFilterFunctionStartsWith is a TopicIRFilterFunction enum value
+	TopicIRFilterFunctionStartsWith = "STARTS_WITH"
+
+	// TopicIRFilterFunctionEndsWith is a TopicIRFilterFunction enum value
+	TopicIRFilterFunctionEndsWith = "ENDS_WITH"
+
+	// TopicIRFilterFunctionContainsString is a TopicIRFilterFunction enum value
+	TopicIRFilterFunctionContainsString = "CONTAINS_STRING"
+
+	// TopicIRFilterFunctionPrevious is a TopicIRFilterFunction enum value
+	TopicIRFilterFunctionPrevious = "PREVIOUS"
+
+	// TopicIRFilterFunctionThis is a TopicIRFilterFunction enum value
+	TopicIRFilterFunctionThis = "THIS"
+
+	// TopicIRFilterFunctionLast is a TopicIRFilterFunction enum value
+	TopicIRFilterFunctionLast = "LAST"
+
+	// TopicIRFilterFunctionNext is a TopicIRFilterFunction enum value
+	TopicIRFilterFunctionNext = "NEXT"
+
+	// TopicIRFilterFunctionNow is a TopicIRFilterFunction enum value
+	TopicIRFilterFunctionNow = "NOW"
+)
+
+// TopicIRFilterFunction_Values returns all elements of the TopicIRFilterFunction enum
+func TopicIRFilterFunction_Values() []string {
+	return []string{
+		TopicIRFilterFunctionContains,
+		TopicIRFilterFunctionExact,
+		TopicIRFilterFunctionStartsWith,
+		TopicIRFilterFunctionEndsWith,
+		TopicIRFilterFunctionContainsString,
+		TopicIRFilterFunctionPrevious,
+		TopicIRFilterFunctionThis,
+		TopicIRFilterFunctionLast,
+		TopicIRFilterFunctionNext,
+		TopicIRFilterFunctionNow,
+	}
+}
+
+const (
+	// TopicIRFilterTypeCategoryFilter is a TopicIRFilterType enum value
+	TopicIRFilterTypeCategoryFilter = "CATEGORY_FILTER"
+
+	// TopicIRFilterTypeNumericEqualityFilter is a TopicIRFilterType enum value
+	TopicIRFilterTypeNumericEqualityFilter = "NUMERIC_EQUALITY_FILTER"
+
+	// TopicIRFilterTypeNumericRangeFilter is a TopicIRFilterType enum value
+	TopicIRFilterTypeNumericRangeFilter = "NUMERIC_RANGE_FILTER"
+
+	// TopicIRFilterTypeDateRangeFilter is a TopicIRFilterType enum value
+	TopicIRFilterTypeDateRangeFilter = "DATE_RANGE_FILTER"
+
+	// TopicIRFilterTypeRelativeDateFilter is a TopicIRFilterType enum value
+	TopicIRFilterTypeRelativeDateFilter = "RELATIVE_DATE_FILTER"
+
+	// TopicIRFilterTypeTopBottomFilter is a TopicIRFilterType enum value
+	TopicIRFilterTypeTopBottomFilter = "TOP_BOTTOM_FILTER"
+
+	// TopicIRFilterTypeEquals is a TopicIRFilterType enum value
+	TopicIRFilterTypeEquals = "EQUALS"
+
+	// TopicIRFilterTypeRankLimitFilter is a TopicIRFilterType enum value
+	TopicIRFilterTypeRankLimitFilter = "RANK_LIMIT_FILTER"
+
+	// TopicIRFilterTypeAcceptAllFilter is a TopicIRFilterType enum value
+	TopicIRFilterTypeAcceptAllFilter = "ACCEPT_ALL_FILTER"
+)
+
+// TopicIRFilterType_Values returns all elements of the TopicIRFilterType enum
+func TopicIRFilterType_Values() []string {
+	return []string{
+		TopicIRFilterTypeCategoryFilter,
+		TopicIRFilterTypeNumericEqualityFilter,
+		TopicIRFilterTypeNumericRangeFilter,
+		TopicIRFilterTypeDateRangeFilter,
+		TopicIRFilterTypeRelativeDateFilter,
+		TopicIRFilterTypeTopBottomFilter,
+		TopicIRFilterTypeEquals,
+		TopicIRFilterTypeRankLimitFilter,
+		TopicIRFilterTypeAcceptAllFilter,
+	}
+}
+
+const (
 	// TopicNumericSeparatorSymbolComma is a TopicNumericSeparatorSymbol enum value
 	TopicNumericSeparatorSymbolComma = "COMMA"
 
@@ -113401,6 +116229,22 @@ func TopicScheduleType_Values() []string {
 		TopicScheduleTypeDaily,
 		TopicScheduleTypeWeekly,
 		TopicScheduleTypeMonthly,
+	}
+}
+
+const (
+	// TopicSortDirectionAscending is a TopicSortDirection enum value
+	TopicSortDirectionAscending = "ASCENDING"
+
+	// TopicSortDirectionDescending is a TopicSortDirection enum value
+	TopicSortDirectionDescending = "DESCENDING"
+)
+
+// TopicSortDirection_Values returns all elements of the TopicSortDirection enum
+func TopicSortDirection_Values() []string {
+	return []string{
+		TopicSortDirectionAscending,
+		TopicSortDirectionDescending,
 	}
 }
 
@@ -113685,6 +116529,34 @@ func VisualCustomActionTrigger_Values() []string {
 	return []string{
 		VisualCustomActionTriggerDataPointClick,
 		VisualCustomActionTriggerDataPointMenu,
+	}
+}
+
+const (
+	// VisualRolePrimary is a VisualRole enum value
+	VisualRolePrimary = "PRIMARY"
+
+	// VisualRoleComplimentary is a VisualRole enum value
+	VisualRoleComplimentary = "COMPLIMENTARY"
+
+	// VisualRoleMultiIntent is a VisualRole enum value
+	VisualRoleMultiIntent = "MULTI_INTENT"
+
+	// VisualRoleFallback is a VisualRole enum value
+	VisualRoleFallback = "FALLBACK"
+
+	// VisualRoleFragment is a VisualRole enum value
+	VisualRoleFragment = "FRAGMENT"
+)
+
+// VisualRole_Values returns all elements of the VisualRole enum
+func VisualRole_Values() []string {
+	return []string{
+		VisualRolePrimary,
+		VisualRoleComplimentary,
+		VisualRoleMultiIntent,
+		VisualRoleFallback,
+		VisualRoleFragment,
 	}
 }
 

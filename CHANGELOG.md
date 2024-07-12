@@ -1,3 +1,25 @@
+Release v1.54.19 (2024-07-12)
+===
+
+### Service Client Updates
+* `service/acm-pca`: Updates service API, documentation, waiters, and paginators
+* `service/arc-zonal-shift`: Updates service API and documentation
+* `service/autoscaling`: Adds new service
+  * Add v2 smoke tests and smithy smokeTests trait for SDK testing.
+* `service/codebuild`: Adds new service
+  * Add v2 smoke tests and smithy smokeTests trait for SDK testing.
+* `service/dynamodb`: Updates service API, documentation, waiters, paginators, and examples
+  * Add v2 smoke tests and smithy smokeTests trait for SDK testing.
+* `service/globalaccelerator`: Updates service API
+* `service/pinpoint`: Updates service API and documentation
+  * Add v2 smoke tests and smithy smokeTests trait for SDK testing.
+* `service/quicksight`: Updates service API and documentation
+  * Vega ally control options and Support for Reviewed Answers in Topics
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * Update path for CreateDBCluster resource identifier, and Add v2 smoke tests and smithy smokeTests trait for SDK testing.
+* `service/sns`: Adds new service
+  * Add v2 smoke tests and smithy smokeTests trait for SDK testing.
+
 Release v1.54.18 (2024-07-10)
 ===
 

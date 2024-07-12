@@ -2,6 +2,8 @@
   "version": "2.0",
   "service": "<fullname>Amazon QuickSight API Reference</fullname> <p>Amazon QuickSight is a fully managed, serverless business intelligence service for the Amazon Web Services Cloud that makes it easy to extend data and insights to every user in your organization. This API reference contains documentation for a programming interface that you can use to manage Amazon QuickSight. </p>",
   "operations": {
+    "BatchCreateTopicReviewedAnswer": "<p>Creates new reviewed answers for a Q Topic.</p>",
+    "BatchDeleteTopicReviewedAnswer": "<p>Deletes reviewed answers for Q Topic.</p>",
     "CancelIngestion": "<p>Cancels an ongoing ingestion of data into SPICE.</p>",
     "CreateAccountCustomization": "<p>Creates Amazon QuickSight customizations for the current Amazon Web Services Region. Currently, you can add a custom default theme by using the <code>CreateAccountCustomization</code> or <code>UpdateAccountCustomization</code> API operation. To further customize Amazon QuickSight by removing Amazon QuickSight sample assets and videos for all new users, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/customizing-quicksight.html\">Customizing Amazon QuickSight</a> in the <i>Amazon QuickSight User Guide.</i> </p> <p>You can create customizations for your Amazon Web Services account or, if you specify a namespace, for a QuickSight namespace instead. Customizations that apply to a namespace always override customizations that apply to an Amazon Web Services account. To find out which customizations apply, use the <code>DescribeAccountCustomization</code> API operation.</p> <p>Before you use the <code>CreateAccountCustomization</code> API operation to add a theme as the namespace default, make sure that you first share the theme with the namespace. If you don't share it with the namespace, the theme isn't visible to your users even if you make it the default theme. To check if the theme is shared, view the current permissions by using the <code> <a href=\"https://docs.aws.amazon.com/quicksight/latest/APIReference/API_DescribeThemePermissions.html\">DescribeThemePermissions</a> </code> API operation. To share the theme, grant permissions by using the <code> <a href=\"https://docs.aws.amazon.com/quicksight/latest/APIReference/API_UpdateThemePermissions.html\">UpdateThemePermissions</a> </code> API operation. </p>",
     "CreateAccountSubscription": "<p>Creates an Amazon QuickSight account, or subscribes to Amazon QuickSight Q.</p> <p>The Amazon Web Services Region for the account is derived from what is configured in the CLI or SDK.</p> <p>Before you use this operation, make sure that you can connect to an existing Amazon Web Services account. If you don't have an Amazon Web Services account, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/setting-up-aws-sign-up.html\">Sign up for Amazon Web Services</a> in the <i>Amazon QuickSight User Guide</i>. The person who signs up for Amazon QuickSight needs to have the correct Identity and Access Management (IAM) permissions. For more information, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/iam-policy-examples.html\">IAM Policy Examples for Amazon QuickSight</a> in the <i>Amazon QuickSight User Guide</i>.</p> <p>If your IAM policy includes both the <code>Subscribe</code> and <code>CreateAccountSubscription</code> actions, make sure that both actions are set to <code>Allow</code>. If either action is set to <code>Deny</code>, the <code>Deny</code> action prevails and your API call fails.</p> <p>You can't pass an existing IAM role to access other Amazon Web Services services using this API operation. To pass your existing IAM role to Amazon QuickSight, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/security_iam_service-with-iam.html#security-create-iam-role\">Passing IAM roles to Amazon QuickSight</a> in the <i>Amazon QuickSight User Guide</i>.</p> <p>You can't set default resource access on the new account from the Amazon QuickSight API. Instead, add default resource access from the Amazon QuickSight console. For more information about setting default resource access to Amazon Web Services services, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/scoping-policies-defaults.html\">Setting default resource access to Amazon Web Services services</a> in the <i>Amazon QuickSight User Guide</i>.</p>",
@@ -124,6 +126,7 @@
     "ListThemeVersions": "<p>Lists all the versions of the themes in the current Amazon Web Services account.</p>",
     "ListThemes": "<p>Lists all the themes in the current Amazon Web Services account.</p>",
     "ListTopicRefreshSchedules": "<p>Lists all of the refresh schedules for a topic.</p>",
+    "ListTopicReviewedAnswers": "<p>Lists all reviewed answers for a Q Topic.</p>",
     "ListTopics": "<p>Lists all of the topics within an account.</p>",
     "ListUserGroups": "<p>Lists the Amazon QuickSight groups that an Amazon QuickSight user is a member of.</p>",
     "ListUsers": "<p>Returns a list of all of the Amazon QuickSight users belonging to this account. </p>",
@@ -242,6 +245,39 @@
         "GetDashboardEmbedUrlRequest$AdditionalDashboardIds": "<p>A list of one or more dashboard IDs that you want anonymous users to have tempporary access to. Currently, the <code>IdentityType</code> parameter must be set to <code>ANONYMOUS</code> because other identity types authenticate as Amazon QuickSight or IAM users. For example, if you set \"<code>--dashboard-id dash_id1 --dashboard-id dash_id2 dash_id3 identity-type ANONYMOUS</code>\", the session can access all three dashboards.</p>"
       }
     },
+    "AggFunction": {
+      "base": "<p>The definition of an Agg function.</p>",
+      "refs": {
+        "TopicIRMetric$Function": "<p>The function for the <code>TopicIRMetric</code>.</p>"
+      }
+    },
+    "AggFunctionParamKey": {
+      "base": null,
+      "refs": {
+        "AggFunctionParamMap$key": null
+      }
+    },
+    "AggFunctionParamMap": {
+      "base": null,
+      "refs": {
+        "AggFunction$AggregationFunctionParameters": "<p>The aggregation parameters for an Agg function.</p>",
+        "TopicIRFilterOption$AggregationFunctionParameters": "<p>The aggregation function parameters for the <code>TopicIRFilterOption</code>.</p>"
+      }
+    },
+    "AggFunctionParamValue": {
+      "base": null,
+      "refs": {
+        "AggFunctionParamMap$value": null
+      }
+    },
+    "AggType": {
+      "base": null,
+      "refs": {
+        "AggFunction$Aggregation": "<p>The aggregation of an Agg function.</p>",
+        "FilterAggMetrics$Function": "<p>The function for the <code>FilterAggMetrics</code>.</p>",
+        "TopicIRFilterOption$Aggregation": "<p>The aggregation for the <code>TopicIRFilterOption</code>.</p>"
+      }
+    },
     "AggregationFunction": {
       "base": "<p>An aggregation function aggregates values from a dimension or measure.</p> <p>This is a union type structure. For this structure to be valid, only one of the attributes can be defined.</p>",
       "refs": {
@@ -257,6 +293,18 @@
       "base": null,
       "refs": {
         "NamedEntityDefinitionMetric$AggregationFunctionParameters": "<p>The additional parameters for an aggregation function.</p>"
+      }
+    },
+    "AggregationPartitionBy": {
+      "base": "<p>The definition of an <code>AggregationPartitionBy</code>.</p>",
+      "refs": {
+        "AggregationPartitionByList$member": null
+      }
+    },
+    "AggregationPartitionByList": {
+      "base": null,
+      "refs": {
+        "TopicIRFilterOption$AggregationPartitionBy": "<p>The <code>AggregationPartitionBy</code> for the <code>TopicIRFilterOption</code>.</p>"
       }
     },
     "AggregationSortConfiguration": {
@@ -406,6 +454,12 @@
         "SearchAnalysesResponse$AnalysisSummaryList": "<p>Metadata describing the analyses that you searched for.</p>"
       }
     },
+    "Anchor": {
+      "base": "<p>The definition of the Anchor.</p>",
+      "refs": {
+        "TopicIRFilterOption$Anchor": "<p>The anchor for the <code>TopicIRFilterOption</code>.</p>"
+      }
+    },
     "AnchorDateConfiguration": {
       "base": "<p>The date configuration of the filter.</p>",
       "refs": {
@@ -416,6 +470,12 @@
       "base": null,
       "refs": {
         "AnchorDateConfiguration$AnchorOption": "<p>The options for the date configuration. Choose one of the options below:</p> <ul> <li> <p> <code>NOW</code> </p> </li> </ul>"
+      }
+    },
+    "AnchorType": {
+      "base": null,
+      "refs": {
+        "Anchor$AnchorType": "<p>The <code>AnchorType</code> for the Anchor.</p>"
       }
     },
     "AnonymousUserDashboardEmbeddingConfiguration": {
@@ -458,6 +518,22 @@
       "base": null,
       "refs": {
         "SnapshotJobResult$AnonymousUsers": "<p> A list of <code>AnonymousUserSnapshotJobResult</code> objects that contain information on anonymous users and their user configurations. This data provided by you when you make a <code>StartDashboardSnapshotJob</code> API call.</p>"
+      }
+    },
+    "AnswerId": {
+      "base": null,
+      "refs": {
+        "AnswerIds$member": null,
+        "CreateTopicReviewedAnswer$AnswerId": "<p>The answer ID for the <code>CreateTopicReviewedAnswer</code>.</p>",
+        "InvalidTopicReviewedAnswer$AnswerId": "<p>The answer ID for the <code>InvalidTopicReviewedAnswer</code>.</p>",
+        "SucceededTopicReviewedAnswer$AnswerId": "<p>The answer ID for the <code>SucceededTopicReviewedAnswer</code>.</p>",
+        "TopicReviewedAnswer$AnswerId": "<p>The answer ID of the reviewed answer.</p>"
+      }
+    },
+    "AnswerIds": {
+      "base": null,
+      "refs": {
+        "BatchDeleteTopicReviewedAnswerRequest$AnswerIds": "<p>The Answer IDs of the Answers to be deleted.</p>"
       }
     },
     "ArcAxisConfiguration": {
@@ -521,6 +597,8 @@
         "AssetBundleImportJobSummary$Arn": "<p>The ARN of the import job.</p>",
         "AssetBundleImportJobWarning$Arn": "<p>The ARN of the resource that the warning occurred for.</p>",
         "AssetBundleResourceArns$member": null,
+        "BatchCreateTopicReviewedAnswerResponse$TopicArn": "<p>The Amazon Resource Name (ARN) of the topic.</p>",
+        "BatchDeleteTopicReviewedAnswerResponse$TopicArn": "<p>The Amazon Resource Name (ARN) of the topic.</p>",
         "CancelIngestionResponse$Arn": "<p>The Amazon Resource Name (ARN) for the data ingestion.</p>",
         "CreateAccountCustomizationResponse$Arn": "<p>The Amazon Resource Name (ARN) for the customization that you created for this Amazon Web Services account.</p>",
         "CreateAnalysisRequest$ThemeArn": "<p>The ARN for the theme to apply to the analysis that you're creating. To see the theme in the Amazon QuickSight console, make sure that you have access to it.</p>",
@@ -547,6 +625,7 @@
         "CreateTopicRefreshScheduleResponse$DatasetArn": "<p>The Amazon Resource Name (ARN) of the dataset.</p>",
         "CreateTopicResponse$Arn": "<p>The Amazon Resource Name (ARN) of the topic.</p>",
         "CreateTopicResponse$RefreshArn": "<p>The Amazon Resource Name (ARN) of the topic refresh.</p>",
+        "CreateTopicReviewedAnswer$DatasetArn": "<p>The Dataset arn for the <code>CreateTopicReviewedAnswer</code>.</p>",
         "CreateVPCConnectionResponse$Arn": "<p>The Amazon Resource Name (ARN) of the VPC connection.</p>",
         "CustomSql$DataSourceArn": "<p>The Amazon Resource Name (ARN) of the data source.</p>",
         "Dashboard$Arn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
@@ -613,6 +692,7 @@
         "Ingestion$Arn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
         "ListTagsForResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource that you want a list of tags for.</p>",
         "ListTopicRefreshSchedulesResponse$TopicArn": "<p>The Amazon Resource Name (ARN) of the topic.</p>",
+        "ListTopicReviewedAnswersResponse$TopicArn": "<p>The Amazon Resource Name (ARN) of the topic.</p>",
         "LogicalTableSource$DataSetArn": "<p>The Amazon Resource Number (ARN) of the parent dataset.</p>",
         "MemberIdArnPair$MemberArn": "<p>The Amazon Resource Name (ARN) of the member.</p>",
         "NamespaceInfoV2$Arn": "<p>The namespace ARN.</p>",
@@ -641,6 +721,8 @@
         "ThemeVersionSummary$Arn": "<p>The Amazon Resource Name (ARN) of the theme version.</p>",
         "TopicRefreshDetails$RefreshArn": "<p>The Amazon Resource Name (ARN) of the topic refresh.</p>",
         "TopicRefreshScheduleSummary$DatasetArn": "<p>The Amazon Resource Name (ARN) of the dataset.</p>",
+        "TopicReviewedAnswer$Arn": "<p>The Amazon Resource Name (ARN) of the reviewed answer.</p>",
+        "TopicReviewedAnswer$DatasetArn": "<p>The Dataset ARN for the <code>TopicReviewedAnswer</code>.</p>",
         "TopicSummary$Arn": "<p>The Amazon Resource Name (ARN) of the topic.</p>",
         "UntagResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource that you want to untag.</p>",
         "UpdateAccountCustomizationResponse$Arn": "<p>The Amazon Resource Name (ARN) for the updated customization for this Amazon Web Services account.</p>",
@@ -1397,6 +1479,8 @@
     "AwsAccountId": {
       "base": null,
       "refs": {
+        "BatchCreateTopicReviewedAnswerRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that you want to create a reviewed answer in.</p>",
+        "BatchDeleteTopicReviewedAnswerRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that you want to delete a reviewed answers in.</p>",
         "CancelIngestionRequest$AwsAccountId": "<p>The Amazon Web Services account ID.</p>",
         "CreateAccountCustomizationRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that you want to customize Amazon QuickSight for.</p>",
         "CreateAccountCustomizationResponse$AwsAccountId": "<p>The ID for the Amazon Web Services account that you want to customize Amazon QuickSight for.</p>",
@@ -1525,6 +1609,7 @@
         "ListThemeVersionsRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the themes that you're listing.</p>",
         "ListThemesRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the themes that you're listing.</p>",
         "ListTopicRefreshSchedulesRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the topic whose refresh schedule you want described.</p>",
+        "ListTopicReviewedAnswersRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that containd the reviewed answers that you want listed.</p>",
         "ListTopicsRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the topics that you want to list.</p>",
         "ListUserGroupsRequest$AwsAccountId": "<p>The Amazon Web Services account ID that the user is in. Currently, you use the ID for the Amazon Web Services account that contains your Amazon QuickSight account.</p>",
         "ListUsersRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that the user is in. Currently, you use the ID for the Amazon Web Services account that contains your Amazon QuickSight account.</p>",
@@ -1737,6 +1822,26 @@
         "GeospatialMapStyleOptions$BaseMapStyle": "<p>The base map style of the geospatial map.</p>"
       }
     },
+    "BatchCreateTopicReviewedAnswerRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchCreateTopicReviewedAnswerResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchDeleteTopicReviewedAnswerRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchDeleteTopicReviewedAnswerResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "BigQueryParameters": {
       "base": "<p>The parameters that are required to connect to a Google BigQuery data source.</p>",
       "refs": {
@@ -1898,6 +2003,8 @@
         "TopicColumn$IsIncludedInTopic": "<p>A Boolean value that indicates whether the column is included in the query results.</p>",
         "TopicColumn$NeverAggregateInFilter": "<p>A Boolean value that indicates whether to aggregate the column data when it's used in a filter context.</p>",
         "TopicDateRangeFilter$Inclusive": "<p>A Boolean value that indicates whether the date range filter should include the boundary values. If set to true, the filter includes the start and end dates. If set to false, the filter excludes them.</p>",
+        "TopicIRFilterOption$Inverse": "<p>The inverse for the <code>TopicIRFilterOption</code>.</p>",
+        "TopicIRFilterOption$Inclusive": "<p>The inclusive for the <code>TopicIRFilterOption</code>.</p>",
         "TopicNumericRangeFilter$Inclusive": "<p>A Boolean value that indicates whether the endpoints of the numeric range are included in the filter. If set to true, topics whose numeric field value is equal to the endpoint values will be included in the filter. If set to false, topics whose numeric field value is equal to the endpoint values will be excluded from the filter.</p>",
         "TopicRefreshSchedule$BasedOnSpiceSchedule": "<p>A Boolean value that controls whether to schedule runs at the same schedule that is specified in SPICE dataset.</p>",
         "UpdateAccountSettingsRequest$TerminationProtectionEnabled": "<p>A boolean value that determines whether or not an Amazon QuickSight account can be deleted. A <code>True</code> value doesn't allow the account to be deleted and results in an error message if a user tries to make a <code>DeleteAccountSubscription</code> request. A <code>False</code> value will allow the account to be deleted.</p>",
@@ -2007,6 +2114,12 @@
       "base": null,
       "refs": {
         "CalculatedField$Expression": "<p>The expression of the calculated field.</p>"
+      }
+    },
+    "CalculatedFieldReferenceList": {
+      "base": null,
+      "refs": {
+        "TopicIRMetric$CalculatedFieldReferences": "<p>The calculated field references for the <code>TopicIRMetric</code>.</p>"
       }
     },
     "CalculatedFields": {
@@ -2225,6 +2338,18 @@
       "base": "<p>A structure that represents a collective constant.</p>",
       "refs": {
         "TopicCategoryFilterConstant$CollectiveConstant": "<p>A collective constant used in a category filter. This element is used to specify a list of values for the constant.</p>"
+      }
+    },
+    "CollectiveConstantEntry": {
+      "base": "<p>The definition for a <code>CollectiveConstantEntry</code>.</p>",
+      "refs": {
+        "CollectiveConstantEntryList$member": null
+      }
+    },
+    "CollectiveConstantEntryList": {
+      "base": null,
+      "refs": {
+        "TopicConstantValue$ValueList": "<p>The value list of the <code>TopicConstantValue</code>.</p>"
       }
     },
     "ColorFillType": {
@@ -2586,6 +2711,12 @@
         "ComparisonConfiguration$ComparisonMethod": "<p>The method of the comparison. Choose from the following options:</p> <ul> <li> <p> <code>DIFFERENCE</code> </p> </li> <li> <p> <code>PERCENT_DIFFERENCE</code> </p> </li> <li> <p> <code>PERCENT</code> </p> </li> </ul>"
       }
     },
+    "ComparisonMethodType": {
+      "base": null,
+      "refs": {
+        "TopicIRComparisonMethod$Type": "<p>The type for the <code>TopicIRComparisonMethod</code>.</p>"
+      }
+    },
     "Computation": {
       "base": "<p>The computation union that is used in an insight visual.</p> <p>This is a union type structure. For this structure to be valid, only one of the attributes can be defined.</p>",
       "refs": {
@@ -2685,9 +2816,20 @@
     "ConstantType": {
       "base": null,
       "refs": {
+        "CollectiveConstantEntry$ConstantType": "<p>The <code>ConstantType</code> of a <code>CollectiveConstantEntry</code>.</p>",
         "TopicCategoryFilterConstant$ConstantType": "<p>The type of category filter constant. This element is used to specify whether a constant is a singular or collective. Valid values are <code>SINGULAR</code> and <code>COLLECTIVE</code>.</p>",
+        "TopicConstantValue$ConstantType": "<p>The constant type of a <code>TopicConstantValue</code>.</p>",
         "TopicRangeFilterConstant$ConstantType": "<p>The data type of the constant value that is used in a range filter. Valid values for this structure are <code>RANGE</code>.</p>",
         "TopicSingularFilterConstant$ConstantType": "<p>The type of the singular filter constant. Valid values for this structure are <code>SINGULAR</code>.</p>"
+      }
+    },
+    "ConstantValueString": {
+      "base": null,
+      "refs": {
+        "CollectiveConstantEntry$Value": "<p>The value of a <code>CollectiveConstantEntry</code>.</p>",
+        "TopicConstantValue$Value": "<p>The value of the <code>TopicConstantValue</code>.</p>",
+        "TopicConstantValue$Minimum": "<p>The minimum for the <code>TopicConstantValue</code>.</p>",
+        "TopicConstantValue$Maximum": "<p>The maximum for the <code>TopicConstantValue</code>.</p>"
       }
     },
     "ContextMenuOption": {
@@ -2708,6 +2850,36 @@
         "BarChartConfiguration$ContributionAnalysisDefaults": "<p>The contribution analysis (anomaly configuration) setup of the visual.</p>",
         "LineChartConfiguration$ContributionAnalysisDefaults": "<p>The default configuration of a line chart's contribution analysis.</p>",
         "PieChartConfiguration$ContributionAnalysisDefaults": "<p>The contribution analysis (anomaly configuration) setup of the visual.</p>"
+      }
+    },
+    "ContributionAnalysisDirection": {
+      "base": null,
+      "refs": {
+        "TopicIRContributionAnalysis$Direction": "<p>The direction for the <code>TopicIRContributionAnalysis</code>.</p>"
+      }
+    },
+    "ContributionAnalysisFactor": {
+      "base": "<p>The definition for the <code>ContributionAnalysisFactor</code>.</p>",
+      "refs": {
+        "ContributionAnalysisFactorsList$member": null
+      }
+    },
+    "ContributionAnalysisFactorsList": {
+      "base": null,
+      "refs": {
+        "TopicIRContributionAnalysis$Factors": "<p>The factors for a <code>TopicIRContributionAnalysis</code>.</p>"
+      }
+    },
+    "ContributionAnalysisSortType": {
+      "base": null,
+      "refs": {
+        "TopicIRContributionAnalysis$SortType": "<p>The sort type for the <code>TopicIRContributionAnalysis</code>.</p>"
+      }
+    },
+    "ContributionAnalysisTimeRanges": {
+      "base": "<p>The definition for the <code>ContributionAnalysisTimeRanges</code>.</p>",
+      "refs": {
+        "TopicIRContributionAnalysis$TimeRanges": "<p>The time ranges for the <code>TopicIRContributionAnalysis</code>.</p>"
       }
     },
     "ContributorDimensionList": {
@@ -2936,6 +3108,18 @@
     "CreateTopicResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "CreateTopicReviewedAnswer": {
+      "base": "<p>The definition for a <code>CreateTopicReviewedAnswer</code>.</p>",
+      "refs": {
+        "CreateTopicReviewedAnswers$member": null
+      }
+    },
+    "CreateTopicReviewedAnswers": {
+      "base": null,
+      "refs": {
+        "BatchCreateTopicReviewedAnswerRequest$Answers": "<p>The definition of the Answers to be created.</p>"
       }
     },
     "CreateVPCConnectionRequest": {
@@ -4784,13 +4968,17 @@
     "DisplayFormat": {
       "base": null,
       "refs": {
-        "DefaultFormatting$DisplayFormat": "<p>The display format. Valid values for this structure are <code>AUTO</code>, <code>PERCENT</code>, <code>CURRENCY</code>, <code>NUMBER</code>, <code>DATE</code>, and <code>STRING</code>.</p>"
+        "DefaultFormatting$DisplayFormat": "<p>The display format. Valid values for this structure are <code>AUTO</code>, <code>PERCENT</code>, <code>CURRENCY</code>, <code>NUMBER</code>, <code>DATE</code>, and <code>STRING</code>.</p>",
+        "TopicIRGroupBy$DisplayFormat": "<p>The display format for the <code>TopicIRGroupBy</code>.</p>",
+        "TopicIRMetric$DisplayFormat": "<p>The display format for the <code>TopicIRMetric</code>.</p>"
       }
     },
     "DisplayFormatOptions": {
       "base": "<p>A structure that represents additional options for display formatting.</p>",
       "refs": {
-        "DefaultFormatting$DisplayFormatOptions": "<p>The additional options for display formatting.</p>"
+        "DefaultFormatting$DisplayFormatOptions": "<p>The additional options for display formatting.</p>",
+        "TopicIRGroupBy$DisplayFormatOptions": null,
+        "TopicIRMetric$DisplayFormatOptions": null
       }
     },
     "DnsResolverList": {
@@ -5016,7 +5204,8 @@
         "FilterOperation$ConditionExpression": "<p>An expression that must evaluate to a Boolean value. Rows for which the expression evaluates to true are kept in the dataset.</p>",
         "RollingDateConfiguration$Expression": "<p>The expression of the rolling date configuration.</p>",
         "SheetElementRenderingRule$Expression": "<p>The expression of the rendering rules of a sheet.</p>",
-        "TopicCalculatedField$Expression": "<p>The calculated field expression.</p>"
+        "TopicCalculatedField$Expression": "<p>The calculated field expression.</p>",
+        "TopicIRMetric$Expression": "<p>The expression for the <code>TopicIRMetric</code>.</p>"
       }
     },
     "FailedKeyRegistrationEntries": {
@@ -5248,10 +5437,23 @@
         "FilterList$member": null
       }
     },
+    "FilterAggMetrics": {
+      "base": "<p>The definition for the <code>FilterAggMetrics</code>.</p>",
+      "refs": {
+        "FilterAggMetricsList$member": null
+      }
+    },
+    "FilterAggMetricsList": {
+      "base": null,
+      "refs": {
+        "TopicIRFilterOption$AggMetrics": "<p>The agg metrics for the <code>TopicIRFilterOption</code>.</p>"
+      }
+    },
     "FilterClass": {
       "base": null,
       "refs": {
-        "TopicFilter$FilterClass": "<p>The class of the filter. Valid values for this structure are <code>ENFORCED_VALUE_FILTER</code>, <code>CONDITIONAL_VALUE_FILTER</code>, and <code>NAMED_VALUE_FILTER</code>.</p>"
+        "TopicFilter$FilterClass": "<p>The class of the filter. Valid values for this structure are <code>ENFORCED_VALUE_FILTER</code>, <code>CONDITIONAL_VALUE_FILTER</code>, and <code>NAMED_VALUE_FILTER</code>.</p>",
+        "TopicIRFilterOption$FilterClass": "<p>The filter class for the <code>TopicIRFilterOption</code>.</p>"
       }
     },
     "FilterControl": {
@@ -6332,6 +6534,18 @@
         "ConditionalFormattingCustomIconOptions$Icon": "<p>Determines the type of icon.</p>"
       }
     },
+    "Identifier": {
+      "base": "<p>The definition for the identifier.</p>",
+      "refs": {
+        "CalculatedFieldReferenceList$member": null,
+        "FilterAggMetrics$MetricOperand": "<p>The metric operand of the <code>FilterAggMetrics</code>.</p>",
+        "OperandList$member": null,
+        "TopicIRFilterOption$OperandField": "<p>The operand field for the <code>TopicIRFilterOption</code>.</p>",
+        "TopicIRGroupBy$FieldName": "<p>The field name for the <code>TopicIRGroupBy</code>.</p>",
+        "TopicIRMetric$MetricId": "<p>The metric ID for the <code>TopicIRMetric</code>.</p>",
+        "TopicSortClause$Operand": "<p>The operand for a <code>TopicSortClause</code>.</p>"
+      }
+    },
     "IdentityCenterConfiguration": {
       "base": "<p>The parameters for an IAM Identity Center configuration.</p>",
       "refs": {
@@ -6495,12 +6709,14 @@
     "Integer": {
       "base": null,
       "refs": {
+        "Anchor$Offset": "<p>The offset of the Anchor.</p>",
         "ArcAxisConfiguration$ReserveRange": "<p>The reserved range of the arc axis.</p>",
         "AxisLinearScale$StepCount": "<p>The step count setup of a linear axis.</p>",
         "DisplayFormatOptions$FractionDigits": "<p>Determines the number of fraction digits.</p>",
         "ExcludePeriodConfiguration$Amount": "<p>The amount or number of the exclude period.</p>",
         "RelativeDatesFilter$RelativeDateValue": "<p>The date value of the filter.</p>",
-        "TopBottomFilter$Limit": "<p>The number of items to include in the top bottom filter results.</p>"
+        "TopBottomFilter$Limit": "<p>The number of items to include in the top bottom filter results.</p>",
+        "TopicIRComparisonMethod$WindowSize": "<p>The window size for the <code>TopicIRComparisonMethod</code>.</p>"
       }
     },
     "IntegerDatasetParameter": {
@@ -6583,6 +6799,19 @@
     "InvalidRequestException": {
       "base": "<p>You don't have this feature activated for your account. To fix this issue, contact Amazon Web Services support.</p>",
       "refs": {
+      }
+    },
+    "InvalidTopicReviewedAnswer": {
+      "base": "<p>The definition for a <code>InvalidTopicReviewedAnswer</code>.</p>",
+      "refs": {
+        "InvalidTopicReviewedAnswers$member": null
+      }
+    },
+    "InvalidTopicReviewedAnswers": {
+      "base": null,
+      "refs": {
+        "BatchCreateTopicReviewedAnswerResponse$InvalidAnswers": "<p>The definition of Answers that are invalid and not created.</p>",
+        "BatchDeleteTopicReviewedAnswerResponse$InvalidAnswers": "<p>The definition of Answers that are invalid and not deleted.</p>"
       }
     },
     "IpRestrictionRuleDescription": {
@@ -6844,9 +7073,13 @@
     "LimitedString": {
       "base": null,
       "refs": {
+        "AggFunction$PeriodField": "<p>The period field for an Agg function.</p>",
         "AggregationFunctionParameters$key": null,
         "AggregationFunctionParameters$value": null,
+        "AggregationPartitionBy$FieldName": "<p>The field Name for an <code>AggregationPartitionBy</code>.</p>",
         "CellValueSynonym$CellValue": "<p>The cell value.</p>",
+        "ContributionAnalysisFactor$FieldName": "<p>The field name of the <code>ContributionAnalysisFactor</code>.</p>",
+        "CreateTopicReviewedAnswer$Question": "<p>The Question to be created.</p>",
         "DataAggregation$DefaultDateColumnName": "<p>The column name for the default date.</p>",
         "DatasetMetadata$DatasetName": "<p>The name of the dataset.</p>",
         "DatasetMetadata$DatasetDescription": "<p>The description of the dataset.</p>",
@@ -6856,8 +7089,10 @@
         "DisplayFormatOptions$Prefix": "<p>The prefix value for a display format.</p>",
         "DisplayFormatOptions$Suffix": "<p>The suffix value for a display format.</p>",
         "DisplayFormatOptions$CurrencySymbol": "<p>The currency symbol, such as <code>USD</code>.</p>",
+        "Identifier$Identity": "<p>The identity of the identifier.</p>",
         "NamedEntityDefinition$FieldName": "<p>The name of the entity.</p>",
         "NamedEntityDefinition$PropertyName": "<p>The property name to be used for the named entity.</p>",
+        "NamedEntityRef$NamedEntityName": "<p>The <code>NamedEntityName</code> for the <code>NamedEntityRef</code>.</p>",
         "NegativeFormat$Prefix": "<p>The prefix for a negative format.</p>",
         "NegativeFormat$Suffix": "<p>The suffix for a negative format.</p>",
         "RangeConstant$Minimum": "<p>The minimum value for a range constant.</p>",
@@ -6866,6 +7101,8 @@
         "SemanticEntityType$SubTypeName": "<p>The semantic entity sub type name.</p>",
         "SemanticType$TypeName": "<p>The semantic type name.</p>",
         "SemanticType$SubTypeName": "<p>The semantic type sub type name.</p>",
+        "Slot$SlotId": "<p>The slot ID of the slot.</p>",
+        "Slot$VisualId": "<p>The visual ID for the slot.</p>",
         "Synonyms$member": null,
         "TopicCalculatedField$CalculatedFieldName": "<p>The calculated field name.</p>",
         "TopicCalculatedField$CalculatedFieldDescription": "<p>The calculated field description.</p>",
@@ -6883,9 +7120,13 @@
         "TopicRefreshSchedule$RepeatAt": "<p>The time of day when the refresh should run, for example, Monday-Sunday.</p>",
         "TopicRefreshScheduleSummary$DatasetId": "<p>The ID of the dataset.</p>",
         "TopicRefreshScheduleSummary$DatasetName": "<p>The name of the dataset.</p>",
+        "TopicReviewedAnswer$Question": "<p>The question for the <code>TopicReviewedAnswer</code>.</p>",
         "TopicSingularFilterConstant$SingularConstant": "<p>The value of the singular filter constant.</p>",
+        "TopicTemplate$TemplateType": "<p>The template type for the <code>TopicTemplate</code>.</p>",
+        "TopicVisual$VisualId": "<p>The visual ID for the <code>TopicVisual</code>.</p>",
         "TypeParameters$key": null,
-        "TypeParameters$value": null
+        "TypeParameters$value": null,
+        "VisualOptions$type": "<p>The type for a <code>VisualOptions</code>.</p>"
       }
     },
     "LineChartAggregatedFieldWells": {
@@ -7286,6 +7527,16 @@
       "refs": {
       }
     },
+    "ListTopicReviewedAnswersRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTopicReviewedAnswersResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListTopicsRequest": {
       "base": null,
       "refs": {
@@ -7638,6 +7889,13 @@
         "TopicNamedEntity$Definition": "<p>The definition of a named entity.</p>"
       }
     },
+    "NamedEntityRef": {
+      "base": "<p>The definition for a <code>NamedEntityRef</code>.</p>",
+      "refs": {
+        "TopicIRGroupBy$NamedEntity": "<p>The named entity for the <code>TopicIRGroupBy</code>.</p>",
+        "TopicIRMetric$NamedEntity": "<p>The named entity for the <code>TopicIRMetric</code>.</p>"
+      }
+    },
     "NamedFilterAggType": {
       "base": null,
       "refs": {
@@ -7842,6 +8100,12 @@
         "BodySectionRepeatConfiguration$NonRepeatingVisuals": "<p>List of visuals to exclude from repetition in repeating sections. The visuals will render identically, and ignore the repeating configurations in all repeating instances.</p>"
       }
     },
+    "NullFilterOption": {
+      "base": null,
+      "refs": {
+        "TopicIRFilterOption$NullFilter": "<p>The null filter for the <code>TopicIRFilterOption</code>.</p>"
+      }
+    },
     "NullString": {
       "base": null,
       "refs": {
@@ -7985,6 +8249,12 @@
       "base": null,
       "refs": {
         "JoinInstruction$OnClause": "<p>The join instructions provided in the <code>ON</code> clause of a join.</p>"
+      }
+    },
+    "OperandList": {
+      "base": null,
+      "refs": {
+        "TopicIRMetric$Operands": "<p>The operands for the <code>TopicIRMetric</code>.</p>"
       }
     },
     "OptionalPort": {
@@ -9282,6 +9552,12 @@
         "UpdateFolderResponse$FolderId": "<p>The ID of the folder.</p>"
       }
     },
+    "ReviewedAnswerErrorCode": {
+      "base": null,
+      "refs": {
+        "InvalidTopicReviewedAnswer$Error": "<p>The error that is returned for the <code>InvalidTopicReviewedAnswer</code>.</p>"
+      }
+    },
     "Role": {
       "base": null,
       "refs": {
@@ -10377,6 +10653,18 @@
         "ParameterSliderControl$DisplayOptions": "<p>The display options of a control.</p>"
       }
     },
+    "Slot": {
+      "base": "<p>The definition for the slot.</p>",
+      "refs": {
+        "Slots$member": null
+      }
+    },
+    "Slots": {
+      "base": null,
+      "refs": {
+        "TopicTemplate$Slots": "<p>The slots for the <code>TopicTemplate</code>.</p>"
+      }
+    },
     "SmallMultiplesAxisPlacement": {
       "base": null,
       "refs": {
@@ -10704,6 +10992,8 @@
     "StatusCode": {
       "base": null,
       "refs": {
+        "BatchCreateTopicReviewedAnswerResponse$Status": "<p>The HTTP status of the request.</p>",
+        "BatchDeleteTopicReviewedAnswerResponse$Status": "<p>The HTTP status of the request.</p>",
         "CancelIngestionResponse$Status": "<p>The HTTP status of the request.</p>",
         "CreateAccountCustomizationResponse$Status": "<p>The HTTP status of the request.</p>",
         "CreateAccountSubscriptionResponse$Status": "<p>The HTTP status of the request.</p>",
@@ -10827,6 +11117,7 @@
         "ListThemeVersionsResponse$Status": "<p>The HTTP status of the request.</p>",
         "ListThemesResponse$Status": "<p>The HTTP status of the request.</p>",
         "ListTopicRefreshSchedulesResponse$Status": "<p>The HTTP status of the request.</p>",
+        "ListTopicReviewedAnswersResponse$Status": "<p>The HTTP status of the request.</p>",
         "ListTopicsResponse$Status": "<p>The HTTP status of the request.</p>",
         "ListUserGroupsResponse$Status": "<p>The HTTP status of the request.</p>",
         "ListUsersResponse$Status": "<p>The HTTP status of the request.</p>",
@@ -10901,6 +11192,8 @@
         "AttributeAggregationFunction$ValueForMultipleValues": "<p>Used by the <code>UNIQUE_VALUE</code> aggregation function. If there are multiple values for the field used by the aggregation, the value for this property will be returned instead. Defaults to '*'.</p>",
         "AuthorizedTargetsList$member": null,
         "AxisLabelOptions$CustomLabel": "<p>The text for the axis label.</p>",
+        "BatchCreateTopicReviewedAnswerResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
+        "BatchDeleteTopicReviewedAnswerResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "CancelIngestionRequest$DataSetId": "<p>The ID of the dataset used in the ingestion.</p>",
         "CancelIngestionResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "CascadingControlSource$SourceSheetControlId": "<p>The source sheet control ID of a <code>CascadingControlSource</code>.</p>",
@@ -11135,6 +11428,7 @@
         "ListThemesResponse$NextToken": "<p>The token for the next set of results, or null if there are no more results.</p>",
         "ListThemesResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "ListTopicRefreshSchedulesResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
+        "ListTopicReviewedAnswersResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "ListTopicsRequest$NextToken": "<p>The token for the next set of results, or null if there are no more results.</p>",
         "ListTopicsResponse$NextToken": "<p>The token for the next set of results, or null if there are no more results.</p>",
         "ListTopicsResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
@@ -11392,6 +11686,19 @@
       "refs": {
         "PivotTableTotalOptions$RowSubtotalOptions": "<p>The row subtotal options.</p>",
         "PivotTableTotalOptions$ColumnSubtotalOptions": "<p>The column subtotal options.</p>"
+      }
+    },
+    "SucceededTopicReviewedAnswer": {
+      "base": "<p>The definition for a <code>SucceededTopicReviewedAnswer</code>.</p>",
+      "refs": {
+        "SucceededTopicReviewedAnswers$member": null
+      }
+    },
+    "SucceededTopicReviewedAnswers": {
+      "base": null,
+      "refs": {
+        "BatchCreateTopicReviewedAnswerResponse$SucceededAnswers": "<p>The definition of Answers that are successfully created.</p>",
+        "BatchDeleteTopicReviewedAnswerResponse$SucceededAnswers": "<p>The definition of Answers that are successfully deleted.</p>"
       }
     },
     "SuccessfulKeyRegistrationEntries": {
@@ -12055,6 +12362,8 @@
     "TimeGranularity": {
       "base": null,
       "refs": {
+        "AggregationPartitionBy$TimeGranularity": "<p>The <code>TimeGranularity</code> for an <code>AggregationPartitionBy</code>.</p>",
+        "Anchor$TimeGranularity": "<p>The <code>TimeGranularity</code> of the Anchor.</p>",
         "DataPathColor$TimeGranularity": "<p>The time granularity of the field that the color needs to be applied to.</p>",
         "DateDimensionField$DateGranularity": "<p>The date granularity of the <code>DateDimensionField</code>. Choose one of the following options:</p> <ul> <li> <p> <code>YEAR</code> </p> </li> <li> <p> <code>QUARTER</code> </p> </li> <li> <p> <code>MONTH</code> </p> </li> <li> <p> <code>WEEK</code> </p> </li> <li> <p> <code>DAY</code> </p> </li> <li> <p> <code>HOUR</code> </p> </li> <li> <p> <code>MINUTE</code> </p> </li> <li> <p> <code>SECOND</code> </p> </li> <li> <p> <code>MILLISECOND</code> </p> </li> </ul>",
         "DateTimeDatasetParameter$TimeGranularity": "<p>The time granularity of the date time parameter.</p>",
@@ -12066,7 +12375,8 @@
         "TimeEqualityFilter$TimeGranularity": "<p>The level of time precision that is used to aggregate <code>DateTime</code> values.</p>",
         "TimeRangeDrillDownFilter$TimeGranularity": "<p>The level of time precision that is used to aggregate <code>DateTime</code> values.</p>",
         "TimeRangeFilter$TimeGranularity": "<p>The level of time precision that is used to aggregate <code>DateTime</code> values.</p>",
-        "TopBottomFilter$TimeGranularity": "<p>The level of time precision that is used to aggregate <code>DateTime</code> values.</p>"
+        "TopBottomFilter$TimeGranularity": "<p>The level of time precision that is used to aggregate <code>DateTime</code> values.</p>",
+        "TopicIRFilterOption$TimeGranularity": "<p>The time granularity for the <code>TopicIRFilterOption</code>.</p>"
       }
     },
     "TimeRangeDrillDownFilter": {
@@ -12275,6 +12585,15 @@
         "DatasetMetadata$Columns": "<p>The list of column definitions.</p>"
       }
     },
+    "TopicConstantValue": {
+      "base": "<p>The definition for a <code>TopicConstantValue</code>.</p>",
+      "refs": {
+        "TopicIRFilterOption$Constant": "<p>The constant for the <code>TopicIRFilterOption</code>.</p>",
+        "TopicIRFilterOption$Range": "<p>The range for the <code>TopicIRFilterOption</code>.</p>",
+        "TopicIRFilterOption$LastNextOffset": "<p>The last next offset for the <code>TopicIRFilterOption</code>.</p>",
+        "TopicIRFilterOption$TopBottomLimit": "<p>The <code>TopBottomLimit</code> for the <code>TopicIRFilterOption</code>.</p>"
+      }
+    },
     "TopicDateRangeFilter": {
       "base": "<p>A filter used to restrict data based on a range of dates or times.</p>",
       "refs": {
@@ -12301,9 +12620,89 @@
         "DatasetMetadata$Filters": "<p>The list of filter definitions.</p>"
       }
     },
+    "TopicIR": {
+      "base": "<p>The definition for a <code>TopicIR</code>.</p>",
+      "refs": {
+        "CreateTopicReviewedAnswer$Mir": "<p>The Mir for the <code>CreateTopicReviewedAnswer</code>.</p>",
+        "TopicReviewedAnswer$Mir": "<p>The mir for the <code>TopicReviewedAnswer</code>.</p>",
+        "TopicVisual$Ir": "<p>The ir for the <code>TopicVisual</code>.</p>"
+      }
+    },
+    "TopicIRComparisonMethod": {
+      "base": "<p>The definition of a <code>TopicIRComparisonMethod</code>.</p>",
+      "refs": {
+        "TopicIRMetric$ComparisonMethod": "<p>The comparison method for the <code>TopicIRMetric</code>.</p>"
+      }
+    },
+    "TopicIRContributionAnalysis": {
+      "base": "<p>The definition for a <code>TopicIRContributionAnalysis</code>.</p>",
+      "refs": {
+        "TopicIR$ContributionAnalysis": "<p>The contribution analysis for the <code>TopicIR</code>.</p>"
+      }
+    },
+    "TopicIRFilterEntry": {
+      "base": null,
+      "refs": {
+        "TopicIRFilterList$member": null
+      }
+    },
+    "TopicIRFilterFunction": {
+      "base": null,
+      "refs": {
+        "TopicIRFilterOption$Function": "<p>The function for the <code>TopicIRFilterOption</code>.</p>"
+      }
+    },
+    "TopicIRFilterList": {
+      "base": null,
+      "refs": {
+        "TopicIR$Filters": "<p>The filters for the <code>TopicIR</code>.</p>"
+      }
+    },
+    "TopicIRFilterOption": {
+      "base": "<p>The definition for a <code>TopicIRFilterOption</code>.</p>",
+      "refs": {
+        "ContributionAnalysisTimeRanges$StartRange": "<p>The start range for the <code>ContributionAnalysisTimeRanges</code>.</p>",
+        "ContributionAnalysisTimeRanges$EndRange": "<p>The end range for the <code>ContributionAnalysisTimeRanges</code>.</p>",
+        "TopicIRFilterEntry$member": null
+      }
+    },
+    "TopicIRFilterType": {
+      "base": null,
+      "refs": {
+        "TopicIRFilterOption$FilterType": "<p>The filter type for the <code>TopicIRFilterOption</code>.</p>"
+      }
+    },
+    "TopicIRGroupBy": {
+      "base": "<p>The definition for a <code>TopicIRGroupBy</code>.</p>",
+      "refs": {
+        "TopicIRGroupByList$member": null
+      }
+    },
+    "TopicIRGroupByList": {
+      "base": null,
+      "refs": {
+        "TopicIR$GroupByList": "<p>The GroupBy list for the <code>TopicIR</code>.</p>"
+      }
+    },
+    "TopicIRMetric": {
+      "base": "<p>The definition for a <code>TopicIRMetric</code>.</p>",
+      "refs": {
+        "TopicIRMetricList$member": null
+      }
+    },
+    "TopicIRMetricList": {
+      "base": null,
+      "refs": {
+        "TopicIR$Metrics": "<p>The metrics for the <code>TopicIR</code>.</p>"
+      }
+    },
     "TopicId": {
       "base": null,
       "refs": {
+        "BatchCreateTopicReviewedAnswerRequest$TopicId": "<p>The ID for the topic reviewed answer that you want to create. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
+        "BatchCreateTopicReviewedAnswerResponse$TopicId": "<p>The ID for the topic reviewed answer that you want to create. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
+        "BatchDeleteTopicReviewedAnswerRequest$TopicId": "<p>The ID for the topic reviewed answer that you want to delete. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
+        "BatchDeleteTopicReviewedAnswerResponse$TopicId": "<p>The ID of the topic reviewed answer that you want to delete. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
         "CreateTopicRefreshScheduleRequest$TopicId": "<p>The ID of the topic that you want to modify. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
         "CreateTopicRefreshScheduleResponse$TopicId": "<p>The ID of the topic that you want to modify. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
         "CreateTopicRequest$TopicId": "<p>The ID for the topic that you want to create. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
@@ -12321,6 +12720,8 @@
         "DescribeTopicResponse$TopicId": "<p>The ID of the topic that you want to describe. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
         "ListTopicRefreshSchedulesRequest$TopicId": "<p>The ID for the topic that you want to describe. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
         "ListTopicRefreshSchedulesResponse$TopicId": "<p>The ID for the topic that you want to describe. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
+        "ListTopicReviewedAnswersRequest$TopicId": "<p>The ID for the topic that contains the reviewed answer that you want to list. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
+        "ListTopicReviewedAnswersResponse$TopicId": "<p>The ID for the topic that contains the reviewed answer that you want to list. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
         "TopicSummary$TopicId": "<p>The ID for the topic. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
         "UpdateTopicPermissionsRequest$TopicId": "<p>The ID of the topic that you want to modify. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
         "UpdateTopicPermissionsResponse$TopicId": "<p>The ID of the topic that you want to modify. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
@@ -12412,6 +12813,18 @@
         "TopicRelativeDateFilter$RelativeDateFilterFunction": "<p>The function to be used in a relative date filter to determine the range of dates to include in the results. Valid values for this structure are <code>BEFORE</code>, <code>AFTER</code>, and <code>BETWEEN</code>.</p>"
       }
     },
+    "TopicReviewedAnswer": {
+      "base": "<p>The deinition for a <code>TopicReviewedAnswer</code>.</p>",
+      "refs": {
+        "TopicReviewedAnswers$member": null
+      }
+    },
+    "TopicReviewedAnswers": {
+      "base": null,
+      "refs": {
+        "ListTopicReviewedAnswersResponse$Answers": "<p>The definition of all Answers in the topic.</p>"
+      }
+    },
     "TopicScheduleType": {
       "base": null,
       "refs": {
@@ -12423,6 +12836,21 @@
       "refs": {
         "TopicNumericEqualityFilter$Constant": "<p>The constant used in a numeric equality filter.</p>",
         "TopicRelativeDateFilter$Constant": "<p>The constant used in a relative date filter.</p>"
+      }
+    },
+    "TopicSortClause": {
+      "base": "<p>The definition for a <code>TopicSortClause</code>.</p>",
+      "refs": {
+        "TopicIR$Sort": "<p>The sort for the <code>TopicIR</code>.</p>",
+        "TopicIRGroupBy$Sort": "<p>The sort for the <code>TopicIRGroupBy</code>.</p>"
+      }
+    },
+    "TopicSortDirection": {
+      "base": null,
+      "refs": {
+        "FilterAggMetrics$SortDirection": "<p>The sort direction for <code>FilterAggMetrics</code>.</p>",
+        "TopicIRFilterOption$SortDirection": "<p>The sort direction for the <code>TopicIRFilterOption</code>.</p>",
+        "TopicSortClause$SortDirection": "<p>The sort direction for the <code>TopicSortClause</code>.</p>"
       }
     },
     "TopicSummaries": {
@@ -12437,12 +12865,22 @@
         "TopicSummaries$member": null
       }
     },
+    "TopicTemplate": {
+      "base": "<p>The definition for a <code>TopicTemplate</code>.</p>",
+      "refs": {
+        "CreateTopicReviewedAnswer$Template": "<p>The template for the <code>CreateTopicReviewedAnswer</code>.</p>",
+        "TopicReviewedAnswer$Template": "<p>The template for the <code>TopicReviewedAnswer</code>.</p>"
+      }
+    },
     "TopicTimeGranularity": {
       "base": null,
       "refs": {
+        "AggFunction$Period": "<p>The period of an Agg function.</p>",
         "DataAggregation$DatasetRowDateGranularity": "<p>The level of time precision that is used to aggregate <code>DateTime</code> values.</p>",
         "TopicCalculatedField$TimeGranularity": "<p>The level of time precision that is used to aggregate <code>DateTime</code> values.</p>",
         "TopicColumn$TimeGranularity": "<p>The level of time precision that is used to aggregate <code>DateTime</code> values.</p>",
+        "TopicIRComparisonMethod$Period": "<p>The period for the <code>TopicIRComparisonMethod</code>.</p>",
+        "TopicIRGroupBy$TimeGranularity": "<p>The time granularity for the <code>TopicIRGroupBy</code>.</p>",
         "TopicRelativeDateFilter$TimeGranularity": "<p>The level of time precision that is used to aggregate <code>DateTime</code> values.</p>"
       }
     },
@@ -12451,6 +12889,20 @@
       "refs": {
         "TopicDetails$UserExperienceVersion": "<p>The user experience version of a topic.</p>",
         "TopicSummary$UserExperienceVersion": "<p>The user experience version of the topic.</p>"
+      }
+    },
+    "TopicVisual": {
+      "base": "<p>The definition for a <code>TopicVisual</code>.</p>",
+      "refs": {
+        "CreateTopicReviewedAnswer$PrimaryVisual": "<p>The <code>PrimaryVisual</code> for the <code>CreateTopicReviewedAnswer</code>.</p>",
+        "TopicReviewedAnswer$PrimaryVisual": "<p>The primary visual for the <code>TopicReviewedAnswer</code>.</p>",
+        "TopicVisuals$member": null
+      }
+    },
+    "TopicVisuals": {
+      "base": null,
+      "refs": {
+        "TopicVisual$SupportingVisuals": "<p>The supporting visuals for the <code>TopicVisual</code>.</p>"
       }
     },
     "TotalAggregationComputation": {
@@ -13213,6 +13665,8 @@
         "DataLabelOptions$TotalsVisibility": "<p>Determines the visibility of the total.</p>",
         "DataPathLabelType$Visibility": "<p>The visibility of the data label.</p>",
         "DateAxisOptions$MissingDateVisibility": "<p>Determines whether or not missing dates are displayed.</p>",
+        "DateTimePickerControlDisplayOptions$HelperTextVisibility": "<p>The helper text visibility of the <code>DateTimePickerControlDisplayOptions</code>.</p>",
+        "DateTimePickerControlDisplayOptions$DateIconVisibility": "<p>The date icon visibility of the <code>DateTimePickerControlDisplayOptions</code>.</p>",
         "DonutCenterOptions$LabelVisibility": "<p>Determines the visibility of the label in a donut chart. In the Amazon QuickSight console, this option is called <code>'Show total'</code>.</p>",
         "FieldBasedTooltip$AggregationVisibility": "<p>The visibility of <code>Show aggregations</code>.</p>",
         "FieldLabelType$Visibility": "<p>The visibility of the field label.</p>",
@@ -13397,6 +13851,12 @@
         "VisualInteractionOptions$VisualMenuOption": "<p>The on-visual menu options for a visual.</p>"
       }
     },
+    "VisualOptions": {
+      "base": "<p>The definition for a <code>VisualOptions</code>.</p>",
+      "refs": {
+        "TopicIR$Visual": "<p>The visual for the <code>TopicIR</code>.</p>"
+      }
+    },
     "VisualPalette": {
       "base": "<p>The visual display options for the visual palette.</p>",
       "refs": {
@@ -13412,6 +13872,12 @@
         "RadarChartConfiguration$VisualPalette": "<p>The palette (chart color) display setup of the visual.</p>",
         "ScatterPlotConfiguration$VisualPalette": "<p>The palette (chart color) display setup of the visual.</p>",
         "WaterfallChartConfiguration$VisualPalette": "<p>The visual palette configuration of a waterfall visual.</p>"
+      }
+    },
+    "VisualRole": {
+      "base": null,
+      "refs": {
+        "TopicVisual$Role": "<p>The role for the <code>TopicVisual</code>.</p>"
       }
     },
     "VisualSubtitleLabelOptions": {

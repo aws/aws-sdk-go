@@ -976,12 +976,12 @@
         "WriteTreatmentResource$MessageConfiguration": "<p>The message configuration settings for the treatment.</p>"
       }
     },
-    "MessageHeader" : {
-       "base" : "<p>Contains the name and value pair of an email header to add to your email. You can have up to 15 MessageHeaders. A header can contain information such as the sender, receiver, route, or timestamp.</p>",
-       "refs" : {
-         "ListOfMessageHeader$member" : null
-       }
-     },
+    "MessageHeader": {
+      "base": "<p>Contains the name and value pair of an email header to add to your email. You can have up to 15 MessageHeaders. A header can contain information such as the sender, receiver, route, or timestamp.</p>",
+      "refs": {
+        "ListOfMessageHeader$member": null
+      }
+    },
     "MessageRequest": {
       "base": "<p>Specifies the configuration and other settings for a message.</p>",
       "refs": {}
@@ -1542,7 +1542,7 @@
         "GCMChannelRequest$Enabled": "<p>Specifies whether to enable the GCM channel for the application.</p>",
         "GCMChannelResponse$Enabled": "<p>Specifies whether the GCM channel is enabled for the application.</p>",
         "GCMChannelResponse$HasCredential": "<p>(Not used) This property is retained only for backward compatibility.</p>",
-        "GCMChannelResponse$HasFcmServiceCredentials" : "<p>Returns true if the JSON file provided by Google during registration process was used in the <b>ServiceJson</b> field of the request.</p>",
+        "GCMChannelResponse$HasFcmServiceCredentials": "<p>Returns true if the JSON file provided by Google during registration process was used in the <b>ServiceJson</b> field of the request.</p>",
         "GCMChannelResponse$IsArchived": "<p>Specifies whether the GCM channel is archived.</p>",
         "GCMMessage$SilentPush": "<p>Specifies whether the notification is a silent push notification, which is a push notification that doesn't display on a recipient's device. Silent push notifications can be used for cases such as updating an app's configuration or supporting phone home functionality.</p>",
         "ImportJobRequest$DefineSegment": "<p>Specifies whether to create a segment that contains the endpoints, when the endpoint definitions are imported.</p>",
@@ -1739,14 +1739,14 @@
         "JourneyRunsResponse$Item": "<p>An array of responses, one for each run of the journey</p>"
       }
     },
-    "ListOfMessageHeader" : {
-       "base" : null,
-       "refs" : {
-         "EmailTemplateRequest$Headers" : "<p>The list of <a href=\"https://docs.aws.amazon.com/pinpoint/latest/apireference/templates-template-name-email.html#templates-template-name-email-model-messageheader\">MessageHeaders</a> for the email. You can have up to 15 Headers.</p>",
-         "SimpleEmail$Headers" : "<p>List of Headers for the email.</p>",
-         "CampaignEmailMessage$Headers" : "<p>The list of <a href=\"https://docs.aws.amazon.com/pinpoint/latest/apireference/apps-application-id-campaigns-campaign-id.html#apps-application-id-campaigns-campaign-id-model-messageheader\">MessageHeaders</a> for the email. You can have up to 15 MessageHeaders for each email.</p>"
-       }
-     },
+    "ListOfMessageHeader": {
+      "base": null,
+      "refs": {
+        "EmailTemplateRequest$Headers": "<p>The list of <a href=\"https://docs.aws.amazon.com/pinpoint/latest/apireference/templates-template-name-email.html#templates-template-name-email-model-messageheader\">MessageHeaders</a> for the email. You can have up to 15 Headers.</p>",
+        "SimpleEmail$Headers": "<p>List of Headers for the email.</p>",
+        "CampaignEmailMessage$Headers": "<p>The list of <a href=\"https://docs.aws.amazon.com/pinpoint/latest/apireference/apps-application-id-campaigns-campaign-id.html#apps-application-id-campaigns-campaign-id-model-messageheader\">MessageHeaders</a> for the email. You can have up to 15 MessageHeaders for each email.</p>"
+      }
+    },
     "ListOfMultiConditionalBranch": {
       "base": null,
       "refs": {
@@ -2352,12 +2352,12 @@
         "ExportJobResponse$Type": "<p>The job type. This value is EXPORT for export jobs.</p>",
         "ExportJobsResponse$NextToken": "<p>The string to use in a subsequent request to get the next page of results in a paginated response. This value is null if there are no additional pages.</p>",
         "GCMChannelRequest$ApiKey": "<p>The Web API Key, also referred to as an <i>API_KEY</i> or <i>server key</i>, that you received from Google to communicate with Google services.</p>",
-        "GCMChannelRequest$DefaultAuthenticationMethod" : "<p>The default authentication method used for GCM. Values are either \"TOKEN\" or \"KEY\". Defaults to \"KEY\".</p>",
-        "GCMChannelRequest$ServiceJson" : "<p>The contents of the JSON file provided by Google during registration in order to generate an access token for authentication. For more information see <a href=\"https://firebase.google.com/docs/cloud-messaging/migrate-v1\">Migrate from legacy FCM APIs to HTTP v1</a>.</p>",
+        "GCMChannelRequest$DefaultAuthenticationMethod": "<p>The default authentication method used for GCM. Values are either \"TOKEN\" or \"KEY\". Defaults to \"KEY\".</p>",
+        "GCMChannelRequest$ServiceJson": "<p>The contents of the JSON file provided by Google during registration in order to generate an access token for authentication. For more information see <a href=\"https://firebase.google.com/docs/cloud-messaging/migrate-v1\">Migrate from legacy FCM APIs to HTTP v1</a>.</p>",
         "GCMChannelResponse$ApplicationId": "<p>The unique identifier for the application that the GCM channel applies to.</p>",
         "GCMChannelResponse$CreationDate": "<p>The date and time when the GCM channel was enabled.</p>",
         "GCMChannelResponse$Credential": "<p>The Web API Key, also referred to as an <i>API_KEY</i> or <i>server key</i>, that you received from Google to communicate with Google services.</p>",
-        "GCMChannelResponse$DefaultAuthenticationMethod" : "<p>The default authentication method used for GCM. Values are either \"TOKEN\" or \"KEY\". Defaults to \"KEY\".</p>",
+        "GCMChannelResponse$DefaultAuthenticationMethod": "<p>The default authentication method used for GCM. Values are either \"TOKEN\" or \"KEY\". Defaults to \"KEY\".</p>",
         "GCMChannelResponse$Id": "<p>(Deprecated) An identifier for the GCM channel. This property is retained only for backward compatibility.</p>",
         "GCMChannelResponse$LastModifiedBy": "<p>The user who last modified the GCM channel.</p>",
         "GCMChannelResponse$LastModifiedDate": "<p>The date and time when the GCM channel was last modified.</p>",
@@ -2367,7 +2367,7 @@
         "GCMMessage$IconReference": "<p>The icon image name of the asset saved in your app.</p>",
         "GCMMessage$ImageIconUrl": "<p>The URL of the large icon image to display in the content view of the push notification.</p>",
         "GCMMessage$ImageUrl": "<p>The URL of an image to display in the push notification.</p>",
-        "GCMMessage$PreferredAuthenticationMethod" : "<p>The preferred authentication method, with valid values \"KEY\" or \"TOKEN\". If a value isn't provided then the <b>DefaultAuthenticationMethod</b> is used.</p>",
+        "GCMMessage$PreferredAuthenticationMethod": "<p>The preferred authentication method, with valid values \"KEY\" or \"TOKEN\". If a value isn't provided then the <b>DefaultAuthenticationMethod</b> is used.</p>",
         "GCMMessage$Priority": "<p>para>normal - The notification might be delayed. Delivery is optimized for battery usage on the recipient's device. Use this value unless immediate delivery is required.</p>/listitem> <li><p>high - The notification is sent immediately and might wake a sleeping device.</p></li>/para> <p>Amazon Pinpoint specifies this value in the FCM priority parameter when it sends the notification message to FCM.</p> <p>The equivalent values for Apple Push Notification service (APNs) are 5, for normal, and 10, for high. If you specify an APNs value for this property, Amazon Pinpoint accepts and converts the value to the corresponding FCM value.</p>",
         "GCMMessage$RawContent": "<p>The raw, JSON-formatted string to use as the payload for the notification message. If specified, this value overrides all other content for the message.</p>",
         "GCMMessage$RestrictedPackageName": "<p>The package name of the application where registration tokens must match in order for the recipient to receive the message.</p>",
@@ -2470,8 +2470,8 @@
         "MessageBody$Message": "<p>The message that's returned from the API.</p>",
         "MessageBody$RequestID": "<p>The unique identifier for the request or response.</p>",
         "MessageRequest$TraceId": "<p>The unique identifier for tracing the message. This identifier is visible to message recipients.</p>",
-        "MessageHeader$Name" : "<p>The name of the message header. The header name can contain up to 126 characters.</p>",
-        "MessageHeader$Value" : "<p>The value of the message header. The header value can contain up to 870 characters, including the length of any rendered attributes. For example if you add the {CreationDate} attribute, it renders as YYYY-MM-DDTHH:MM:SS.SSSZ and is 24 characters in length.</p>",
+        "MessageHeader$Name": "<p>The name of the message header. The header name can contain up to 126 characters.</p>",
+        "MessageHeader$Value": "<p>The value of the message header. The header value can contain up to 870 characters, including the length of any rendered attributes. For example if you add the {CreationDate} attribute, it renders as YYYY-MM-DDTHH:MM:SS.SSSZ and is 24 characters in length.</p>",
         "MessageResponse$ApplicationId": "<p>The unique identifier for the application that was used to send the message.</p>",
         "MessageResponse$RequestId": "<p>The identifier for the original request that the message was delivered for.</p>",
         "MessageResult$MessageId": "<p>The unique identifier for the message that was sent.</p>",
