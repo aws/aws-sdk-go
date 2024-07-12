@@ -26,7 +26,7 @@ import (
 //	// myFunc uses an SDK service client to make a request to
 //	// Amazon QuickSight.
 //	func myFunc(svc quicksightiface.QuickSightAPI) bool {
-//	    // Make svc.CancelIngestion request
+//	    // Make svc.BatchCreateTopicReviewedAnswer request
 //	}
 //
 //	func main() {
@@ -42,7 +42,7 @@ import (
 //	type mockQuickSightClient struct {
 //	    quicksightiface.QuickSightAPI
 //	}
-//	func (m *mockQuickSightClient) CancelIngestion(input *quicksight.CancelIngestionInput) (*quicksight.CancelIngestionOutput, error) {
+//	func (m *mockQuickSightClient) BatchCreateTopicReviewedAnswer(input *quicksight.BatchCreateTopicReviewedAnswerInput) (*quicksight.BatchCreateTopicReviewedAnswerOutput, error) {
 //	    // mock response/functionality
 //	}
 //
@@ -60,6 +60,14 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type QuickSightAPI interface {
+	BatchCreateTopicReviewedAnswer(*quicksight.BatchCreateTopicReviewedAnswerInput) (*quicksight.BatchCreateTopicReviewedAnswerOutput, error)
+	BatchCreateTopicReviewedAnswerWithContext(aws.Context, *quicksight.BatchCreateTopicReviewedAnswerInput, ...request.Option) (*quicksight.BatchCreateTopicReviewedAnswerOutput, error)
+	BatchCreateTopicReviewedAnswerRequest(*quicksight.BatchCreateTopicReviewedAnswerInput) (*request.Request, *quicksight.BatchCreateTopicReviewedAnswerOutput)
+
+	BatchDeleteTopicReviewedAnswer(*quicksight.BatchDeleteTopicReviewedAnswerInput) (*quicksight.BatchDeleteTopicReviewedAnswerOutput, error)
+	BatchDeleteTopicReviewedAnswerWithContext(aws.Context, *quicksight.BatchDeleteTopicReviewedAnswerInput, ...request.Option) (*quicksight.BatchDeleteTopicReviewedAnswerOutput, error)
+	BatchDeleteTopicReviewedAnswerRequest(*quicksight.BatchDeleteTopicReviewedAnswerInput) (*request.Request, *quicksight.BatchDeleteTopicReviewedAnswerOutput)
+
 	CancelIngestion(*quicksight.CancelIngestionInput) (*quicksight.CancelIngestionOutput, error)
 	CancelIngestionWithContext(aws.Context, *quicksight.CancelIngestionInput, ...request.Option) (*quicksight.CancelIngestionOutput, error)
 	CancelIngestionRequest(*quicksight.CancelIngestionInput) (*request.Request, *quicksight.CancelIngestionOutput)
@@ -616,6 +624,10 @@ type QuickSightAPI interface {
 	ListTopicRefreshSchedules(*quicksight.ListTopicRefreshSchedulesInput) (*quicksight.ListTopicRefreshSchedulesOutput, error)
 	ListTopicRefreshSchedulesWithContext(aws.Context, *quicksight.ListTopicRefreshSchedulesInput, ...request.Option) (*quicksight.ListTopicRefreshSchedulesOutput, error)
 	ListTopicRefreshSchedulesRequest(*quicksight.ListTopicRefreshSchedulesInput) (*request.Request, *quicksight.ListTopicRefreshSchedulesOutput)
+
+	ListTopicReviewedAnswers(*quicksight.ListTopicReviewedAnswersInput) (*quicksight.ListTopicReviewedAnswersOutput, error)
+	ListTopicReviewedAnswersWithContext(aws.Context, *quicksight.ListTopicReviewedAnswersInput, ...request.Option) (*quicksight.ListTopicReviewedAnswersOutput, error)
+	ListTopicReviewedAnswersRequest(*quicksight.ListTopicReviewedAnswersInput) (*request.Request, *quicksight.ListTopicReviewedAnswersOutput)
 
 	ListTopics(*quicksight.ListTopicsInput) (*quicksight.ListTopicsOutput, error)
 	ListTopicsWithContext(aws.Context, *quicksight.ListTopicsInput, ...request.Option) (*quicksight.ListTopicsOutput, error)

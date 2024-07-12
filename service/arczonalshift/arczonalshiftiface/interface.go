@@ -72,6 +72,10 @@ type ARCZonalShiftAPI interface {
 	DeletePracticeRunConfigurationWithContext(aws.Context, *arczonalshift.DeletePracticeRunConfigurationInput, ...request.Option) (*arczonalshift.DeletePracticeRunConfigurationOutput, error)
 	DeletePracticeRunConfigurationRequest(*arczonalshift.DeletePracticeRunConfigurationInput) (*request.Request, *arczonalshift.DeletePracticeRunConfigurationOutput)
 
+	GetAutoshiftObserverNotificationStatus(*arczonalshift.GetAutoshiftObserverNotificationStatusInput) (*arczonalshift.GetAutoshiftObserverNotificationStatusOutput, error)
+	GetAutoshiftObserverNotificationStatusWithContext(aws.Context, *arczonalshift.GetAutoshiftObserverNotificationStatusInput, ...request.Option) (*arczonalshift.GetAutoshiftObserverNotificationStatusOutput, error)
+	GetAutoshiftObserverNotificationStatusRequest(*arczonalshift.GetAutoshiftObserverNotificationStatusInput) (*request.Request, *arczonalshift.GetAutoshiftObserverNotificationStatusOutput)
+
 	GetManagedResource(*arczonalshift.GetManagedResourceInput) (*arczonalshift.GetManagedResourceOutput, error)
 	GetManagedResourceWithContext(aws.Context, *arczonalshift.GetManagedResourceInput, ...request.Option) (*arczonalshift.GetManagedResourceOutput, error)
 	GetManagedResourceRequest(*arczonalshift.GetManagedResourceInput) (*request.Request, *arczonalshift.GetManagedResourceOutput)
@@ -100,6 +104,10 @@ type ARCZonalShiftAPI interface {
 	StartZonalShift(*arczonalshift.StartZonalShiftInput) (*arczonalshift.StartZonalShiftOutput, error)
 	StartZonalShiftWithContext(aws.Context, *arczonalshift.StartZonalShiftInput, ...request.Option) (*arczonalshift.StartZonalShiftOutput, error)
 	StartZonalShiftRequest(*arczonalshift.StartZonalShiftInput) (*request.Request, *arczonalshift.StartZonalShiftOutput)
+
+	UpdateAutoshiftObserverNotificationStatus(*arczonalshift.UpdateAutoshiftObserverNotificationStatusInput) (*arczonalshift.UpdateAutoshiftObserverNotificationStatusOutput, error)
+	UpdateAutoshiftObserverNotificationStatusWithContext(aws.Context, *arczonalshift.UpdateAutoshiftObserverNotificationStatusInput, ...request.Option) (*arczonalshift.UpdateAutoshiftObserverNotificationStatusOutput, error)
+	UpdateAutoshiftObserverNotificationStatusRequest(*arczonalshift.UpdateAutoshiftObserverNotificationStatusInput) (*request.Request, *arczonalshift.UpdateAutoshiftObserverNotificationStatusOutput)
 
 	UpdatePracticeRunConfiguration(*arczonalshift.UpdatePracticeRunConfigurationInput) (*arczonalshift.UpdatePracticeRunConfigurationOutput, error)
 	UpdatePracticeRunConfigurationWithContext(aws.Context, *arczonalshift.UpdatePracticeRunConfigurationInput, ...request.Option) (*arczonalshift.UpdatePracticeRunConfigurationOutput, error)

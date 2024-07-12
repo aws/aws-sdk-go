@@ -5,11 +5,13 @@
     "endpointPrefix":"arc-zonal-shift",
     "jsonVersion":"1.1",
     "protocol":"rest-json",
+    "protocols":["rest-json"],
     "serviceFullName":"AWS ARC - Zonal Shift",
     "serviceId":"ARC Zonal Shift",
     "signatureVersion":"v4",
     "signingName":"arc-zonal-shift",
-    "uid":"arc-zonal-shift-2022-10-30"
+    "uid":"arc-zonal-shift-2022-10-30",
+    "auth":["aws.auth#sigv4"]
   },
   "operations":{
     "CancelZonalShift":{
@@ -66,6 +68,21 @@
         {"shape":"AccessDeniedException"}
       ],
       "idempotent":true
+    },
+    "GetAutoshiftObserverNotificationStatus":{
+      "name":"GetAutoshiftObserverNotificationStatus",
+      "http":{
+        "method":"GET",
+        "requestUri":"/autoshift-observer-notification",
+        "responseCode":200
+      },
+      "input":{"shape":"GetAutoshiftObserverNotificationStatusRequest"},
+      "output":{"shape":"GetAutoshiftObserverNotificationStatusResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ]
     },
     "GetManagedResource":{
       "name":"GetManagedResource",
@@ -149,6 +166,23 @@
         {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"}
       ]
+    },
+    "UpdateAutoshiftObserverNotificationStatus":{
+      "name":"UpdateAutoshiftObserverNotificationStatus",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/autoshift-observer-notification",
+        "responseCode":200
+      },
+      "input":{"shape":"UpdateAutoshiftObserverNotificationStatusRequest"},
+      "output":{"shape":"UpdateAutoshiftObserverNotificationStatusResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"}
+      ],
+      "idempotent":true
     },
     "UpdatePracticeRunConfiguration":{
       "name":"UpdatePracticeRunConfiguration",
@@ -256,6 +290,13 @@
         "awayFrom":{"shape":"AvailabilityZone"},
         "startTime":{"shape":"StartTime"}
       }
+    },
+    "AutoshiftObserverNotificationStatus":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
+      ]
     },
     "AutoshiftSummaries":{
       "type":"list",
@@ -433,6 +474,18 @@
       "pattern":"^([1-9][0-9]*)(m|h)$"
     },
     "ExpiryTime":{"type":"timestamp"},
+    "GetAutoshiftObserverNotificationStatusRequest":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "GetAutoshiftObserverNotificationStatusResponse":{
+      "type":"structure",
+      "required":["status"],
+      "members":{
+        "status":{"shape":"AutoshiftObserverNotificationStatus"}
+      }
+    },
     "GetManagedResourceRequest":{
       "type":"structure",
       "required":["resourceIdentifier"],
@@ -649,6 +702,20 @@
         "senderFault":true
       },
       "exception":true
+    },
+    "UpdateAutoshiftObserverNotificationStatusRequest":{
+      "type":"structure",
+      "required":["status"],
+      "members":{
+        "status":{"shape":"AutoshiftObserverNotificationStatus"}
+      }
+    },
+    "UpdateAutoshiftObserverNotificationStatusResponse":{
+      "type":"structure",
+      "required":["status"],
+      "members":{
+        "status":{"shape":"AutoshiftObserverNotificationStatus"}
+      }
     },
     "UpdatePracticeRunConfigurationRequest":{
       "type":"structure",

@@ -90,7 +90,9 @@
       "errors":[
         {"shape":"InternalServiceErrorException"},
         {"shape":"InvalidArgumentException"},
-        {"shape":"LimitExceededException"}
+        {"shape":"LimitExceededException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"TransactionInProgressException"}
       ]
     },
     "CreateCrossAccountAttachment":{
@@ -121,7 +123,8 @@
         {"shape":"InternalServiceErrorException"},
         {"shape":"InvalidArgumentException"},
         {"shape":"LimitExceededException"},
-        {"shape":"AccessDeniedException"}
+        {"shape":"AccessDeniedException"},
+        {"shape":"TransactionInProgressException"}
       ]
     },
     "CreateCustomRoutingEndpointGroup":{
@@ -205,7 +208,8 @@
         {"shape":"AcceleratorNotDisabledException"},
         {"shape":"AssociatedListenerFoundException"},
         {"shape":"InternalServiceErrorException"},
-        {"shape":"InvalidArgumentException"}
+        {"shape":"InvalidArgumentException"},
+        {"shape":"TransactionInProgressException"}
       ]
     },
     "DeleteCrossAccountAttachment":{
@@ -235,7 +239,8 @@
         {"shape":"AcceleratorNotDisabledException"},
         {"shape":"AssociatedListenerFoundException"},
         {"shape":"InternalServiceErrorException"},
-        {"shape":"InvalidArgumentException"}
+        {"shape":"InvalidArgumentException"},
+        {"shape":"TransactionInProgressException"}
       ]
     },
     "DeleteCustomRoutingEndpointGroup":{
@@ -636,6 +641,9 @@
       "output":{"shape":"ListTagsForResourceResponse"},
       "errors":[
         {"shape":"AcceleratorNotFoundException"},
+        {"shape":"AttachmentNotFoundException"},
+        {"shape":"EndpointGroupNotFoundException"},
+        {"shape":"ListenerNotFoundException"},
         {"shape":"InternalServiceErrorException"},
         {"shape":"InvalidArgumentException"}
       ]
@@ -727,7 +735,9 @@
         {"shape":"AcceleratorNotFoundException"},
         {"shape":"AccessDeniedException"},
         {"shape":"InternalServiceErrorException"},
-        {"shape":"InvalidArgumentException"}
+        {"shape":"InvalidArgumentException"},
+        {"shape":"TransactionInProgressException"},
+        {"shape":"ConflictException"}
       ]
     },
     "UpdateAcceleratorAttributes":{
@@ -742,7 +752,8 @@
         {"shape":"AcceleratorNotFoundException"},
         {"shape":"InternalServiceErrorException"},
         {"shape":"InvalidArgumentException"},
-        {"shape":"AccessDeniedException"}
+        {"shape":"AccessDeniedException"},
+        {"shape":"TransactionInProgressException"}
       ]
     },
     "UpdateCrossAccountAttachment":{
@@ -773,7 +784,9 @@
       "errors":[
         {"shape":"AcceleratorNotFoundException"},
         {"shape":"InternalServiceErrorException"},
-        {"shape":"InvalidArgumentException"}
+        {"shape":"InvalidArgumentException"},
+        {"shape":"TransactionInProgressException"},
+        {"shape":"ConflictException"}
       ]
     },
     "UpdateCustomRoutingAcceleratorAttributes":{
@@ -788,7 +801,8 @@
         {"shape":"AcceleratorNotFoundException"},
         {"shape":"InternalServiceErrorException"},
         {"shape":"InvalidArgumentException"},
-        {"shape":"AccessDeniedException"}
+        {"shape":"AccessDeniedException"},
+        {"shape":"TransactionInProgressException"}
       ]
     },
     "UpdateCustomRoutingListener":{

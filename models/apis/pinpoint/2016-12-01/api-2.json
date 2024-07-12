@@ -8,7 +8,10 @@
     "protocol": "rest-json",
     "jsonVersion": "1.1",
     "uid": "pinpoint-2016-12-01",
-    "signatureVersion": "v4"
+    "signatureVersion": "v4",
+    "auth": [
+      "aws.auth#sigv4"
+    ]
   },
   "operations": {
     "CreateApp": {
@@ -3139,7 +3142,9 @@
       "output": {
         "shape": "ListTagsForResourceResponse"
       },
-      "errors": []
+      "errors": [
+
+      ]
     },
     "ListTemplateVersions": {
       "name": "ListTemplateVersions",
@@ -3478,7 +3483,9 @@
       "input": {
         "shape": "TagResourceRequest"
       },
-      "errors": []
+      "errors": [
+
+      ]
     },
     "UntagResource": {
       "name": "UntagResource",
@@ -3490,7 +3497,9 @@
       "input": {
         "shape": "UntagResourceRequest"
       },
-      "errors": []
+      "errors": [
+
+      ]
     },
     "UpdateAdmChannel": {
       "name": "UpdateAdmChannel",
@@ -5427,7 +5436,7 @@
           "shape": "__string"
         },
         "Headers": {
-           "shape": "ListOfMessageHeader"
+          "shape": "ListOfMessageHeader"
         },
         "HtmlBody": {
           "shape": "__string"
@@ -7128,7 +7137,7 @@
           "shape": "__string"
         },
         "Headers": {
-           "shape": "ListOfMessageHeader"
+          "shape": "ListOfMessageHeader"
         },
         "tags": {
           "shape": "MapOf__string",
@@ -7167,7 +7176,7 @@
           "shape": "__string"
         },
         "Headers": {
-           "shape": "ListOfMessageHeader"
+          "shape": "ListOfMessageHeader"
         },
         "tags": {
           "shape": "MapOf__string",
@@ -11945,26 +11954,26 @@
           "shape": "SimpleEmailPart"
         },
         "Headers": {
-           "shape": "ListOfMessageHeader"
+          "shape": "ListOfMessageHeader"
         }
       }
     },
     "ListOfMessageHeader": {
-       "type": "list",
-       "member": {
-         "shape": "MessageHeader"
-       }
+      "type": "list",
+      "member": {
+        "shape": "MessageHeader"
+      }
     },
     "MessageHeader": {
-       "type": "structure",
-       "members": {
-         "Name": {
-           "shape": "__string"
-         },
-         "Value": {
-           "shape": "__string"
-         }
-       }
+      "type": "structure",
+      "members": {
+        "Name": {
+          "shape": "__string"
+        },
+        "Value": {
+          "shape": "__string"
+        }
+      }
     },
     "SimpleEmailPart": {
       "type": "structure",

@@ -2,20 +2,20 @@
   "pagination": {
     "ListCertificateAuthorities": {
       "input_token": "NextToken",
-      "limit_key": "MaxResults",
       "output_token": "NextToken",
+      "limit_key": "MaxResults",
       "result_key": "CertificateAuthorities"
     },
     "ListPermissions": {
       "input_token": "NextToken",
-      "limit_key": "MaxResults",
       "output_token": "NextToken",
+      "limit_key": "MaxResults",
       "result_key": "Permissions"
     },
     "ListTags": {
       "input_token": "NextToken",
-      "limit_key": "MaxResults",
       "output_token": "NextToken",
+      "limit_key": "MaxResults",
       "result_key": "Tags"
     }
   }

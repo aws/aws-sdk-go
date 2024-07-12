@@ -1,0 +1,29 @@
+{
+    "version": 2,
+    "testCases": [
+        {
+            "id": "DescribeDBEngineVersionsSuccess",
+            "operationName": "DescribeDBEngineVersions",
+            "input": {},
+            "expectation": {
+                "success": {}
+            },
+            "config": {
+                "region": "us-west-2"
+            }
+        },
+        {
+            "id": "DescribeDBInstancesFailure",
+            "operationName": "DescribeDBInstances",
+            "input": {
+                "DBInstanceIdentifier": "fake-id"
+            },
+            "expectation": {
+                "failure": {}
+            },
+            "config": {
+                "region": "us-west-2"
+            }
+        }
+    ]
+}
