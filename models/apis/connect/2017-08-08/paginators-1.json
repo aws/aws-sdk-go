@@ -295,6 +295,15 @@
       "output_token": "NextToken",
       "result_key": "ViewsSummaryList"
     },
+    "SearchAgentStatuses": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "non_aggregate_keys": [
+        "ApproximateTotalCount"
+      ],
+      "output_token": "NextToken",
+      "result_key": "AgentStatuses"
+    },
     "SearchAvailablePhoneNumbers": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",
@@ -396,6 +405,15 @@
       ],
       "output_token": "NextToken",
       "result_key": "SecurityProfiles"
+    },
+    "SearchUserHierarchyGroups": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "non_aggregate_keys": [
+        "ApproximateTotalCount"
+      ],
+      "output_token": "NextToken",
+      "result_key": "UserHierarchyGroups"
     },
     "SearchUsers": {
       "input_token": "NextToken",

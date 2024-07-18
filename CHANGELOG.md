@@ -1,3 +1,26 @@
+Release v1.54.20 (2024-07-18)
+===
+
+### Service Client Updates
+* `service/acm-pca`: Updates service waiters
+* `service/connect`: Updates service API, documentation, and paginators
+* `service/ec2`: Updates service API and documentation
+  * Amazon VPC IP Address Manager (IPAM) now supports Bring-Your-Own-IP (BYOIP) for IP addresses registered with any Internet Registry. This feature uses DNS TXT records to validate ownership of a public IP address range.
+* `service/firehose`: Updates service API and documentation
+  * This release 1) Add configurable buffering hints for Snowflake as destination. 2) Add ReadFromTimestamp for MSK As Source. Firehose will start reading data from MSK Cluster using offset associated with this timestamp. 3) Gated public beta release to add Apache Iceberg tables as destination.
+* `service/ivschat`: Updates service API, documentation, and waiters
+* `service/medialive`: Updates service API and documentation
+  * AWS Elemental MediaLive now supports the SRT protocol via the new SRT Caller input type.
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * Updates Amazon RDS documentation to specify an eventual consistency model for DescribePendingMaintenanceActions.
+* `service/sagemaker`: Updates service API
+  * SageMaker Training supports R5, T3 and R5D instances family. And SageMaker Processing supports G5 and R5D instances family.
+* `service/secretsmanager`: Updates service documentation
+  * Doc only update for Secrets Manager
+* `service/taxsettings`: Updates service API
+* `service/timestream-query`: Updates service API and documentation
+* `service/workspaces-thin-client`: Updates service API and documentation
+
 Release v1.54.19 (2024-07-12)
 ===
 

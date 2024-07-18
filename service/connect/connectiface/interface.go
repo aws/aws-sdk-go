@@ -893,6 +893,13 @@ type ConnectAPI interface {
 	ResumeContactRecordingWithContext(aws.Context, *connect.ResumeContactRecordingInput, ...request.Option) (*connect.ResumeContactRecordingOutput, error)
 	ResumeContactRecordingRequest(*connect.ResumeContactRecordingInput) (*request.Request, *connect.ResumeContactRecordingOutput)
 
+	SearchAgentStatuses(*connect.SearchAgentStatusesInput) (*connect.SearchAgentStatusesOutput, error)
+	SearchAgentStatusesWithContext(aws.Context, *connect.SearchAgentStatusesInput, ...request.Option) (*connect.SearchAgentStatusesOutput, error)
+	SearchAgentStatusesRequest(*connect.SearchAgentStatusesInput) (*request.Request, *connect.SearchAgentStatusesOutput)
+
+	SearchAgentStatusesPages(*connect.SearchAgentStatusesInput, func(*connect.SearchAgentStatusesOutput, bool) bool) error
+	SearchAgentStatusesPagesWithContext(aws.Context, *connect.SearchAgentStatusesInput, func(*connect.SearchAgentStatusesOutput, bool) bool, ...request.Option) error
+
 	SearchAvailablePhoneNumbers(*connect.SearchAvailablePhoneNumbersInput) (*connect.SearchAvailablePhoneNumbersOutput, error)
 	SearchAvailablePhoneNumbersWithContext(aws.Context, *connect.SearchAvailablePhoneNumbersInput, ...request.Option) (*connect.SearchAvailablePhoneNumbersOutput, error)
 	SearchAvailablePhoneNumbersRequest(*connect.SearchAvailablePhoneNumbersInput) (*request.Request, *connect.SearchAvailablePhoneNumbersOutput)
@@ -976,6 +983,13 @@ type ConnectAPI interface {
 
 	SearchSecurityProfilesPages(*connect.SearchSecurityProfilesInput, func(*connect.SearchSecurityProfilesOutput, bool) bool) error
 	SearchSecurityProfilesPagesWithContext(aws.Context, *connect.SearchSecurityProfilesInput, func(*connect.SearchSecurityProfilesOutput, bool) bool, ...request.Option) error
+
+	SearchUserHierarchyGroups(*connect.SearchUserHierarchyGroupsInput) (*connect.SearchUserHierarchyGroupsOutput, error)
+	SearchUserHierarchyGroupsWithContext(aws.Context, *connect.SearchUserHierarchyGroupsInput, ...request.Option) (*connect.SearchUserHierarchyGroupsOutput, error)
+	SearchUserHierarchyGroupsRequest(*connect.SearchUserHierarchyGroupsInput) (*request.Request, *connect.SearchUserHierarchyGroupsOutput)
+
+	SearchUserHierarchyGroupsPages(*connect.SearchUserHierarchyGroupsInput, func(*connect.SearchUserHierarchyGroupsOutput, bool) bool) error
+	SearchUserHierarchyGroupsPagesWithContext(aws.Context, *connect.SearchUserHierarchyGroupsInput, func(*connect.SearchUserHierarchyGroupsOutput, bool) bool, ...request.Option) error
 
 	SearchUsers(*connect.SearchUsersInput) (*connect.SearchUsersOutput, error)
 	SearchUsersWithContext(aws.Context, *connect.SearchUsersInput, ...request.Option) (*connect.SearchUsersOutput, error)

@@ -19284,6 +19284,154 @@ func (c *Connect) ResumeContactRecordingWithContext(ctx aws.Context, input *Resu
 	return out, req.Send()
 }
 
+const opSearchAgentStatuses = "SearchAgentStatuses"
+
+// SearchAgentStatusesRequest generates a "aws/request.Request" representing the
+// client's request for the SearchAgentStatuses operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See SearchAgentStatuses for more information on using the SearchAgentStatuses
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the SearchAgentStatusesRequest method.
+//	req, resp := client.SearchAgentStatusesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/SearchAgentStatuses
+func (c *Connect) SearchAgentStatusesRequest(input *SearchAgentStatusesInput) (req *request.Request, output *SearchAgentStatusesOutput) {
+	op := &request.Operation{
+		Name:       opSearchAgentStatuses,
+		HTTPMethod: "POST",
+		HTTPPath:   "/search-agent-statuses",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &SearchAgentStatusesInput{}
+	}
+
+	output = &SearchAgentStatusesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// SearchAgentStatuses API operation for Amazon Connect Service.
+//
+// Searches AgentStatuses in an Amazon Connect instance, with optional filtering.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation SearchAgentStatuses for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/SearchAgentStatuses
+func (c *Connect) SearchAgentStatuses(input *SearchAgentStatusesInput) (*SearchAgentStatusesOutput, error) {
+	req, out := c.SearchAgentStatusesRequest(input)
+	return out, req.Send()
+}
+
+// SearchAgentStatusesWithContext is the same as SearchAgentStatuses with the addition of
+// the ability to pass a context and additional request options.
+//
+// See SearchAgentStatuses for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) SearchAgentStatusesWithContext(ctx aws.Context, input *SearchAgentStatusesInput, opts ...request.Option) (*SearchAgentStatusesOutput, error) {
+	req, out := c.SearchAgentStatusesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// SearchAgentStatusesPages iterates over the pages of a SearchAgentStatuses operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See SearchAgentStatuses method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a SearchAgentStatuses operation.
+//	pageNum := 0
+//	err := client.SearchAgentStatusesPages(params,
+//	    func(page *connect.SearchAgentStatusesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Connect) SearchAgentStatusesPages(input *SearchAgentStatusesInput, fn func(*SearchAgentStatusesOutput, bool) bool) error {
+	return c.SearchAgentStatusesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// SearchAgentStatusesPagesWithContext same as SearchAgentStatusesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) SearchAgentStatusesPagesWithContext(ctx aws.Context, input *SearchAgentStatusesInput, fn func(*SearchAgentStatusesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *SearchAgentStatusesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.SearchAgentStatusesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*SearchAgentStatusesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opSearchAvailablePhoneNumbers = "SearchAvailablePhoneNumbers"
 
 // SearchAvailablePhoneNumbersRequest generates a "aws/request.Request" representing the
@@ -21058,6 +21206,159 @@ func (c *Connect) SearchSecurityProfilesPagesWithContext(ctx aws.Context, input 
 
 	for p.Next() {
 		if !fn(p.Page().(*SearchSecurityProfilesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opSearchUserHierarchyGroups = "SearchUserHierarchyGroups"
+
+// SearchUserHierarchyGroupsRequest generates a "aws/request.Request" representing the
+// client's request for the SearchUserHierarchyGroups operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See SearchUserHierarchyGroups for more information on using the SearchUserHierarchyGroups
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the SearchUserHierarchyGroupsRequest method.
+//	req, resp := client.SearchUserHierarchyGroupsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/SearchUserHierarchyGroups
+func (c *Connect) SearchUserHierarchyGroupsRequest(input *SearchUserHierarchyGroupsInput) (req *request.Request, output *SearchUserHierarchyGroupsOutput) {
+	op := &request.Operation{
+		Name:       opSearchUserHierarchyGroups,
+		HTTPMethod: "POST",
+		HTTPPath:   "/search-user-hierarchy-groups",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &SearchUserHierarchyGroupsInput{}
+	}
+
+	output = &SearchUserHierarchyGroupsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// SearchUserHierarchyGroups API operation for Amazon Connect Service.
+//
+// Searches UserHierarchyGroups in an Amazon Connect instance, with optional
+// filtering.
+//
+// The UserHierarchyGroup with "LevelId": "0" is the foundation for building
+// levels on top of an instance. It is not user-definable, nor is it visible
+// in the UI.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation SearchUserHierarchyGroups for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/SearchUserHierarchyGroups
+func (c *Connect) SearchUserHierarchyGroups(input *SearchUserHierarchyGroupsInput) (*SearchUserHierarchyGroupsOutput, error) {
+	req, out := c.SearchUserHierarchyGroupsRequest(input)
+	return out, req.Send()
+}
+
+// SearchUserHierarchyGroupsWithContext is the same as SearchUserHierarchyGroups with the addition of
+// the ability to pass a context and additional request options.
+//
+// See SearchUserHierarchyGroups for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) SearchUserHierarchyGroupsWithContext(ctx aws.Context, input *SearchUserHierarchyGroupsInput, opts ...request.Option) (*SearchUserHierarchyGroupsOutput, error) {
+	req, out := c.SearchUserHierarchyGroupsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// SearchUserHierarchyGroupsPages iterates over the pages of a SearchUserHierarchyGroups operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See SearchUserHierarchyGroups method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a SearchUserHierarchyGroups operation.
+//	pageNum := 0
+//	err := client.SearchUserHierarchyGroupsPages(params,
+//	    func(page *connect.SearchUserHierarchyGroupsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Connect) SearchUserHierarchyGroupsPages(input *SearchUserHierarchyGroupsInput, fn func(*SearchUserHierarchyGroupsOutput, bool) bool) error {
+	return c.SearchUserHierarchyGroupsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// SearchUserHierarchyGroupsPagesWithContext same as SearchUserHierarchyGroupsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) SearchUserHierarchyGroupsPagesWithContext(ctx aws.Context, input *SearchUserHierarchyGroupsInput, fn func(*SearchUserHierarchyGroupsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *SearchUserHierarchyGroupsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.SearchUserHierarchyGroupsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*SearchUserHierarchyGroupsOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -28637,6 +28938,101 @@ func (s *AgentStatusReference) SetStatusStartTimestamp(v time.Time) *AgentStatus
 	return s
 }
 
+// The search criteria to be used to return agent statuses.
+type AgentStatusSearchCriteria struct {
+	_ struct{} `type:"structure"`
+
+	// A leaf node condition which can be used to specify a string condition.
+	//
+	// The currently supported values for FieldName are name, description, state,
+	// type, displayOrder, and resourceID.
+	AndConditions []*AgentStatusSearchCriteria `type:"list"`
+
+	// A list of conditions which would be applied together with an OR condition.
+	OrConditions []*AgentStatusSearchCriteria `type:"list"`
+
+	// A leaf node condition which can be used to specify a string condition.
+	//
+	// The currently supported values for FieldName are name, description, state,
+	// type, displayOrder, and resourceID.
+	StringCondition *StringCondition `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AgentStatusSearchCriteria) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AgentStatusSearchCriteria) GoString() string {
+	return s.String()
+}
+
+// SetAndConditions sets the AndConditions field's value.
+func (s *AgentStatusSearchCriteria) SetAndConditions(v []*AgentStatusSearchCriteria) *AgentStatusSearchCriteria {
+	s.AndConditions = v
+	return s
+}
+
+// SetOrConditions sets the OrConditions field's value.
+func (s *AgentStatusSearchCriteria) SetOrConditions(v []*AgentStatusSearchCriteria) *AgentStatusSearchCriteria {
+	s.OrConditions = v
+	return s
+}
+
+// SetStringCondition sets the StringCondition field's value.
+func (s *AgentStatusSearchCriteria) SetStringCondition(v *StringCondition) *AgentStatusSearchCriteria {
+	s.StringCondition = v
+	return s
+}
+
+// Filters to be applied to search results.
+type AgentStatusSearchFilter struct {
+	_ struct{} `type:"structure"`
+
+	// An object that can be used to specify Tag conditions inside the SearchFilter.
+	// This accepts an OR of AND (List of List) input where:
+	//
+	//    * The top level list specifies conditions that need to be applied with
+	//    OR operator.
+	//
+	//    * The inner list specifies conditions that need to be applied with AND
+	//    operator.
+	AttributeFilter *ControlPlaneAttributeFilter `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AgentStatusSearchFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AgentStatusSearchFilter) GoString() string {
+	return s.String()
+}
+
+// SetAttributeFilter sets the AttributeFilter field's value.
+func (s *AgentStatusSearchFilter) SetAttributeFilter(v *ControlPlaneAttributeFilter) *AgentStatusSearchFilter {
+	s.AttributeFilter = v
+	return s
+}
+
 // Summary information for an agent status.
 type AgentStatusSummary struct {
 	_ struct{} `type:"structure"`
@@ -32508,6 +32904,38 @@ func (s *ClaimedPhoneNumberSummary) SetTargetArn(v string) *ClaimedPhoneNumberSu
 	return s
 }
 
+// A list of conditions which would be applied together with an AND condition.
+type CommonAttributeAndCondition struct {
+	_ struct{} `type:"structure"`
+
+	// A leaf node condition which can be used to specify a tag condition.
+	TagConditions []*TagCondition `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CommonAttributeAndCondition) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CommonAttributeAndCondition) GoString() string {
+	return s.String()
+}
+
+// SetTagConditions sets the TagConditions field's value.
+func (s *CommonAttributeAndCondition) SetTagConditions(v []*TagCondition) *CommonAttributeAndCondition {
+	s.TagConditions = v
+	return s
+}
+
 // Request to CompleteAttachedFileUpload API
 type CompleteAttachedFileUploadInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
@@ -32613,6 +33041,50 @@ func (s CompleteAttachedFileUploadOutput) String() string {
 // value will be replaced with "sensitive".
 func (s CompleteAttachedFileUploadOutput) GoString() string {
 	return s.String()
+}
+
+// A leaf node condition which can be used to specify a ProficiencyName, ProficiencyValue
+// and ProficiencyLimit.
+type Condition struct {
+	_ struct{} `type:"structure"`
+
+	// A leaf node condition which can be used to specify a numeric condition.
+	NumberCondition *NumberCondition `type:"structure"`
+
+	// A leaf node condition which can be used to specify a string condition.
+	//
+	// The currently supported values for FieldName are name and value.
+	StringCondition *StringCondition `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Condition) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Condition) GoString() string {
+	return s.String()
+}
+
+// SetNumberCondition sets the NumberCondition field's value.
+func (s *Condition) SetNumberCondition(v *NumberCondition) *Condition {
+	s.NumberCondition = v
+	return s
+}
+
+// SetStringCondition sets the StringCondition field's value.
+func (s *Condition) SetStringCondition(v *StringCondition) *Condition {
+	s.StringCondition = v
+	return s
 }
 
 // Operation cannot be performed at this time as there is a conflict with another
@@ -33455,8 +33927,6 @@ type ContactFlowModuleSearchCriteria struct {
 	OrConditions []*ContactFlowModuleSearchCriteria `type:"list"`
 
 	// A leaf node condition which can be used to specify a string condition.
-	//
-	// The currently supported values for FieldName are name and description.
 	StringCondition *StringCondition `type:"structure"`
 }
 
@@ -33674,8 +34144,6 @@ type ContactFlowSearchCriteria struct {
 	StatusCondition *string `type:"string" enum:"ContactFlowStatus"`
 
 	// A leaf node condition which can be used to specify a string condition.
-	//
-	// The currently supported values for FieldName are name and description.
 	StringCondition *StringCondition `type:"structure"`
 
 	// The type of flow.
@@ -34130,6 +34598,64 @@ func (s *ContactSearchSummaryQueueInfo) SetEnqueueTimestamp(v time.Time) *Contac
 // SetId sets the Id field's value.
 func (s *ContactSearchSummaryQueueInfo) SetId(v string) *ContactSearchSummaryQueueInfo {
 	s.Id = &v
+	return s
+}
+
+// An object that can be used to specify Tag conditions inside the SearchFilter.
+// This accepts an OR or AND (List of List) input where:
+//
+//   - The top level list specifies conditions that need to be applied with
+//     OR operator.
+//
+//   - The inner list specifies conditions that need to be applied with AND
+//     operator.
+type ControlPlaneAttributeFilter struct {
+	_ struct{} `type:"structure"`
+
+	// A list of conditions which would be applied together with an AND condition.
+	AndCondition *CommonAttributeAndCondition `type:"structure"`
+
+	// A list of conditions which would be applied together with an OR condition.
+	OrConditions []*CommonAttributeAndCondition `type:"list"`
+
+	// A leaf node condition which can be used to specify a tag condition, for example,
+	// HAVE BPO = 123.
+	TagCondition *TagCondition `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ControlPlaneAttributeFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ControlPlaneAttributeFilter) GoString() string {
+	return s.String()
+}
+
+// SetAndCondition sets the AndCondition field's value.
+func (s *ControlPlaneAttributeFilter) SetAndCondition(v *CommonAttributeAndCondition) *ControlPlaneAttributeFilter {
+	s.AndCondition = v
+	return s
+}
+
+// SetOrConditions sets the OrConditions field's value.
+func (s *ControlPlaneAttributeFilter) SetOrConditions(v []*CommonAttributeAndCondition) *ControlPlaneAttributeFilter {
+	s.OrConditions = v
+	return s
+}
+
+// SetTagCondition sets the TagCondition field's value.
+func (s *ControlPlaneAttributeFilter) SetTagCondition(v *TagCondition) *ControlPlaneAttributeFilter {
+	s.TagCondition = v
 	return s
 }
 
@@ -50264,7 +50790,7 @@ type GetMetricDataV2Input struct {
 	// Threshold: For ThresholdValue, enter any whole number from 1 to 604800 (inclusive),
 	// in seconds. For Comparison, you must enter LT (for "Less than").
 	//
-	// UI name: This metric is not available in Amazon Connect admin website.
+	// UI name: Contacts removed from queue in X seconds (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#contacts-removed-historical)
 	//
 	// CONTACTS_RESOLVED_IN_X
 	//
@@ -54796,6 +55322,48 @@ func (s *ListBotsOutput) SetLexBots(v []*LexBotConfig) *ListBotsOutput {
 // SetNextToken sets the NextToken field's value.
 func (s *ListBotsOutput) SetNextToken(v string) *ListBotsOutput {
 	s.NextToken = &v
+	return s
+}
+
+// A leaf node condition which can be used to specify a List condition to search
+// users with attributes included in Lists like Proficiencies.
+type ListCondition struct {
+	_ struct{} `type:"structure"`
+
+	// A list of Condition objects which would be applied together with an AND condition.
+	Conditions []*Condition `type:"list"`
+
+	// The type of target list that will be used to filter the users.
+	TargetListType *string `type:"string" enum:"TargetListType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCondition) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCondition) GoString() string {
+	return s.String()
+}
+
+// SetConditions sets the Conditions field's value.
+func (s *ListCondition) SetConditions(v []*Condition) *ListCondition {
+	s.Conditions = v
+	return s
+}
+
+// SetTargetListType sets the TargetListType field's value.
+func (s *ListCondition) SetTargetListType(v string) *ListCondition {
+	s.TargetListType = &v
 	return s
 }
 
@@ -60890,6 +61458,67 @@ func (s *NotificationRecipientType) SetUserTags(v map[string]*string) *Notificat
 	return s
 }
 
+// A leaf node condition which can be used to specify a numeric condition.
+//
+// The currently supported value for FieldName is limit.
+type NumberCondition struct {
+	_ struct{} `type:"structure"`
+
+	// The type of comparison to be made when evaluating the number condition.
+	ComparisonType *string `type:"string" enum:"NumberComparisonType"`
+
+	// The name of the field in the number condition.
+	FieldName *string `type:"string"`
+
+	// The maxValue to be used while evaluating the number condition.
+	MaxValue *int64 `type:"integer"`
+
+	// The minValue to be used while evaluating the number condition.
+	MinValue *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NumberCondition) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NumberCondition) GoString() string {
+	return s.String()
+}
+
+// SetComparisonType sets the ComparisonType field's value.
+func (s *NumberCondition) SetComparisonType(v string) *NumberCondition {
+	s.ComparisonType = &v
+	return s
+}
+
+// SetFieldName sets the FieldName field's value.
+func (s *NumberCondition) SetFieldName(v string) *NumberCondition {
+	s.FieldName = &v
+	return s
+}
+
+// SetMaxValue sets the MaxValue field's value.
+func (s *NumberCondition) SetMaxValue(v int64) *NumberCondition {
+	s.MaxValue = &v
+	return s
+}
+
+// SetMinValue sets the MinValue field's value.
+func (s *NumberCondition) SetMinValue(v int64) *NumberCondition {
+	s.MinValue = &v
+	return s
+}
+
 // Information about a reference when the referenceType is NUMBER. Otherwise,
 // null.
 type NumberReference struct {
@@ -61928,8 +62557,6 @@ type PredefinedAttributeSearchCriteria struct {
 	OrConditions []*PredefinedAttributeSearchCriteria `type:"list"`
 
 	// A leaf node condition which can be used to specify a string condition.
-	//
-	// The currently supported values for FieldName are name and description.
 	StringCondition *StringCondition `type:"structure"`
 }
 
@@ -66421,6 +67048,148 @@ func (s *S3Config) SetEncryptionConfig(v *EncryptionConfig) *S3Config {
 	return s
 }
 
+type SearchAgentStatusesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `min:"1" type:"string" required:"true"`
+
+	// The maximum number of results to return per page.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// The token for the next set of results. Use the value returned in the previous
+	// response in the next request to retrieve the next set of results.
+	NextToken *string `min:"1" type:"string"`
+
+	// The search criteria to be used to return agent statuses.
+	SearchCriteria *AgentStatusSearchCriteria `type:"structure"`
+
+	// Filters to be applied to search results.
+	SearchFilter *AgentStatusSearchFilter `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchAgentStatusesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchAgentStatusesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SearchAgentStatusesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SearchAgentStatusesInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *SearchAgentStatusesInput) SetInstanceId(v string) *SearchAgentStatusesInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *SearchAgentStatusesInput) SetMaxResults(v int64) *SearchAgentStatusesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *SearchAgentStatusesInput) SetNextToken(v string) *SearchAgentStatusesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSearchCriteria sets the SearchCriteria field's value.
+func (s *SearchAgentStatusesInput) SetSearchCriteria(v *AgentStatusSearchCriteria) *SearchAgentStatusesInput {
+	s.SearchCriteria = v
+	return s
+}
+
+// SetSearchFilter sets the SearchFilter field's value.
+func (s *SearchAgentStatusesInput) SetSearchFilter(v *AgentStatusSearchFilter) *SearchAgentStatusesInput {
+	s.SearchFilter = v
+	return s
+}
+
+type SearchAgentStatusesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The search criteria to be used to return agent statuses.
+	AgentStatuses []*AgentStatus `type:"list"`
+
+	// The total number of agent statuses which matched your search query.
+	ApproximateTotalCount *int64 `type:"long"`
+
+	// If there are additional results, this is the token for the next set of results.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchAgentStatusesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchAgentStatusesOutput) GoString() string {
+	return s.String()
+}
+
+// SetAgentStatuses sets the AgentStatuses field's value.
+func (s *SearchAgentStatusesOutput) SetAgentStatuses(v []*AgentStatus) *SearchAgentStatusesOutput {
+	s.AgentStatuses = v
+	return s
+}
+
+// SetApproximateTotalCount sets the ApproximateTotalCount field's value.
+func (s *SearchAgentStatusesOutput) SetApproximateTotalCount(v int64) *SearchAgentStatusesOutput {
+	s.ApproximateTotalCount = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *SearchAgentStatusesOutput) SetNextToken(v string) *SearchAgentStatusesOutput {
+	s.NextToken = &v
+	return s
+}
+
 type SearchAvailablePhoneNumbersInput struct {
 	_ struct{} `type:"structure"`
 
@@ -67967,6 +68736,24 @@ type SearchResourceTagsInput struct {
 	// The list of resource types to be used to search tags from. If not provided
 	// or if any empty list is provided, this API will search from all supported
 	// resource types.
+	//
+	// Supported resource types
+	//
+	//    * AGENT
+	//
+	//    * ROUTING_PROFILE
+	//
+	//    * STANDARD_QUEUE
+	//
+	//    * SECURITY_PROFILE
+	//
+	//    * OPERATING_HOURS
+	//
+	//    * PROMPT
+	//
+	//    * CONTACT_FLOW
+	//
+	//    * FLOW_MODULE
 	ResourceTypes []*string `type:"list"`
 
 	// The search criteria to be used to return tags.
@@ -68376,6 +69163,148 @@ func (s *SearchSecurityProfilesOutput) SetNextToken(v string) *SearchSecurityPro
 // SetSecurityProfiles sets the SecurityProfiles field's value.
 func (s *SearchSecurityProfilesOutput) SetSecurityProfiles(v []*SecurityProfileSearchSummary) *SearchSecurityProfilesOutput {
 	s.SecurityProfiles = v
+	return s
+}
+
+type SearchUserHierarchyGroupsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `min:"1" type:"string" required:"true"`
+
+	// The maximum number of results to return per page.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// The token for the next set of results. Use the value returned in the previous
+	// response in the next request to retrieve the next set of results.
+	NextToken *string `min:"1" type:"string"`
+
+	// The search criteria to be used to return UserHierarchyGroups.
+	SearchCriteria *UserHierarchyGroupSearchCriteria `type:"structure"`
+
+	// Filters to be applied to search results.
+	SearchFilter *UserHierarchyGroupSearchFilter `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchUserHierarchyGroupsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchUserHierarchyGroupsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SearchUserHierarchyGroupsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SearchUserHierarchyGroupsInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *SearchUserHierarchyGroupsInput) SetInstanceId(v string) *SearchUserHierarchyGroupsInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *SearchUserHierarchyGroupsInput) SetMaxResults(v int64) *SearchUserHierarchyGroupsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *SearchUserHierarchyGroupsInput) SetNextToken(v string) *SearchUserHierarchyGroupsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSearchCriteria sets the SearchCriteria field's value.
+func (s *SearchUserHierarchyGroupsInput) SetSearchCriteria(v *UserHierarchyGroupSearchCriteria) *SearchUserHierarchyGroupsInput {
+	s.SearchCriteria = v
+	return s
+}
+
+// SetSearchFilter sets the SearchFilter field's value.
+func (s *SearchUserHierarchyGroupsInput) SetSearchFilter(v *UserHierarchyGroupSearchFilter) *SearchUserHierarchyGroupsInput {
+	s.SearchFilter = v
+	return s
+}
+
+type SearchUserHierarchyGroupsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The total number of userHierarchyGroups which matched your search query.
+	ApproximateTotalCount *int64 `type:"long"`
+
+	// If there are additional results, this is the token for the next set of results.
+	NextToken *string `min:"1" type:"string"`
+
+	// Information about the userHierarchyGroups.
+	UserHierarchyGroups []*HierarchyGroup `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchUserHierarchyGroupsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchUserHierarchyGroupsOutput) GoString() string {
+	return s.String()
+}
+
+// SetApproximateTotalCount sets the ApproximateTotalCount field's value.
+func (s *SearchUserHierarchyGroupsOutput) SetApproximateTotalCount(v int64) *SearchUserHierarchyGroupsOutput {
+	s.ApproximateTotalCount = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *SearchUserHierarchyGroupsOutput) SetNextToken(v string) *SearchUserHierarchyGroupsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetUserHierarchyGroups sets the UserHierarchyGroups field's value.
+func (s *SearchUserHierarchyGroupsOutput) SetUserHierarchyGroups(v []*HierarchyGroup) *SearchUserHierarchyGroupsOutput {
+	s.UserHierarchyGroups = v
 	return s
 }
 
@@ -69012,8 +69941,6 @@ type SecurityProfileSearchCriteria struct {
 	OrConditions []*SecurityProfileSearchCriteria `type:"list"`
 
 	// A leaf node condition which can be used to specify a string condition.
-	//
-	// The currently supported values for FieldName are name and description.
 	StringCondition *StringCondition `type:"structure"`
 }
 
@@ -71927,8 +72854,6 @@ func (s StopContactStreamingOutput) GoString() string {
 }
 
 // A leaf node condition which can be used to specify a string condition.
-//
-// The currently supported values for FieldName are name and description.
 type StringCondition struct {
 	_ struct{} `type:"structure"`
 
@@ -80608,6 +81533,98 @@ func (s *UserDataFilters) SetUserHierarchyGroups(v []*string) *UserDataFilters {
 	return s
 }
 
+// The search criteria to be used to return userHierarchyGroup.
+type UserHierarchyGroupSearchCriteria struct {
+	_ struct{} `type:"structure"`
+
+	// A list of conditions which would be applied together with an AND condition.
+	AndConditions []*UserHierarchyGroupSearchCriteria `type:"list"`
+
+	// A list of conditions which would be applied together with an OR condition.
+	OrConditions []*UserHierarchyGroupSearchCriteria `type:"list"`
+
+	// A leaf node condition which can be used to specify a string condition.
+	//
+	// The currently supported values for FieldName are name, parentId, levelId,
+	// and resourceID.
+	StringCondition *StringCondition `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UserHierarchyGroupSearchCriteria) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UserHierarchyGroupSearchCriteria) GoString() string {
+	return s.String()
+}
+
+// SetAndConditions sets the AndConditions field's value.
+func (s *UserHierarchyGroupSearchCriteria) SetAndConditions(v []*UserHierarchyGroupSearchCriteria) *UserHierarchyGroupSearchCriteria {
+	s.AndConditions = v
+	return s
+}
+
+// SetOrConditions sets the OrConditions field's value.
+func (s *UserHierarchyGroupSearchCriteria) SetOrConditions(v []*UserHierarchyGroupSearchCriteria) *UserHierarchyGroupSearchCriteria {
+	s.OrConditions = v
+	return s
+}
+
+// SetStringCondition sets the StringCondition field's value.
+func (s *UserHierarchyGroupSearchCriteria) SetStringCondition(v *StringCondition) *UserHierarchyGroupSearchCriteria {
+	s.StringCondition = v
+	return s
+}
+
+// Filters to be applied to search results.
+type UserHierarchyGroupSearchFilter struct {
+	_ struct{} `type:"structure"`
+
+	// An object that can be used to specify Tag conditions inside the SearchFilter.
+	// This accepts an OR or AND (List of List) input where:
+	//
+	//    * The top level list specifies conditions that need to be applied with
+	//    OR operator.
+	//
+	//    * The inner list specifies conditions that need to be applied with AND
+	//    operator.
+	AttributeFilter *ControlPlaneAttributeFilter `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UserHierarchyGroupSearchFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UserHierarchyGroupSearchFilter) GoString() string {
+	return s.String()
+}
+
+// SetAttributeFilter sets the AttributeFilter field's value.
+func (s *UserHierarchyGroupSearchFilter) SetAttributeFilter(v *ControlPlaneAttributeFilter) *UserHierarchyGroupSearchFilter {
+	s.AttributeFilter = v
+	return s
+}
+
 // Contains information about the identity of a user.
 //
 // For Amazon Connect instances that are created with the EXISTING_DIRECTORY
@@ -81183,6 +82200,10 @@ type UserSearchCriteria struct {
 	// A leaf node condition which can be used to specify a hierarchy group condition.
 	HierarchyGroupCondition *HierarchyGroupCondition `type:"structure"`
 
+	// A leaf node condition which can be used to specify a List condition to search
+	// users with attributes included in Lists like Proficiencies.
+	ListCondition *ListCondition `type:"structure"`
+
 	// A list of conditions which would be applied together with an OR condition.
 	OrConditions []*UserSearchCriteria `type:"list"`
 
@@ -81220,6 +82241,12 @@ func (s *UserSearchCriteria) SetAndConditions(v []*UserSearchCriteria) *UserSear
 // SetHierarchyGroupCondition sets the HierarchyGroupCondition field's value.
 func (s *UserSearchCriteria) SetHierarchyGroupCondition(v *HierarchyGroupCondition) *UserSearchCriteria {
 	s.HierarchyGroupCondition = v
+	return s
+}
+
+// SetListCondition sets the ListCondition field's value.
+func (s *UserSearchCriteria) SetListCondition(v *ListCondition) *UserSearchCriteria {
+	s.ListCondition = v
 	return s
 }
 
@@ -83476,6 +84503,42 @@ func NotificationDeliveryType_Values() []string {
 }
 
 const (
+	// NumberComparisonTypeGreaterOrEqual is a NumberComparisonType enum value
+	NumberComparisonTypeGreaterOrEqual = "GREATER_OR_EQUAL"
+
+	// NumberComparisonTypeGreater is a NumberComparisonType enum value
+	NumberComparisonTypeGreater = "GREATER"
+
+	// NumberComparisonTypeLesserOrEqual is a NumberComparisonType enum value
+	NumberComparisonTypeLesserOrEqual = "LESSER_OR_EQUAL"
+
+	// NumberComparisonTypeLesser is a NumberComparisonType enum value
+	NumberComparisonTypeLesser = "LESSER"
+
+	// NumberComparisonTypeEqual is a NumberComparisonType enum value
+	NumberComparisonTypeEqual = "EQUAL"
+
+	// NumberComparisonTypeNotEqual is a NumberComparisonType enum value
+	NumberComparisonTypeNotEqual = "NOT_EQUAL"
+
+	// NumberComparisonTypeRange is a NumberComparisonType enum value
+	NumberComparisonTypeRange = "RANGE"
+)
+
+// NumberComparisonType_Values returns all elements of the NumberComparisonType enum
+func NumberComparisonType_Values() []string {
+	return []string{
+		NumberComparisonTypeGreaterOrEqual,
+		NumberComparisonTypeGreater,
+		NumberComparisonTypeLesserOrEqual,
+		NumberComparisonTypeLesser,
+		NumberComparisonTypeEqual,
+		NumberComparisonTypeNotEqual,
+		NumberComparisonTypeRange,
+	}
+}
+
+const (
 	// NumericQuestionPropertyAutomationLabelOverallCustomerSentimentScore is a NumericQuestionPropertyAutomationLabel enum value
 	NumericQuestionPropertyAutomationLabelOverallCustomerSentimentScore = "OVERALL_CUSTOMER_SENTIMENT_SCORE"
 
@@ -85124,6 +86187,18 @@ func StringComparisonType_Values() []string {
 		StringComparisonTypeStartsWith,
 		StringComparisonTypeContains,
 		StringComparisonTypeExact,
+	}
+}
+
+const (
+	// TargetListTypeProficiencies is a TargetListType enum value
+	TargetListTypeProficiencies = "PROFICIENCIES"
+)
+
+// TargetListType_Values returns all elements of the TargetListType enum
+func TargetListType_Values() []string {
+	return []string{
+		TargetListTypeProficiencies,
 	}
 }
 

@@ -409,6 +409,12 @@ func (c *SecretsManager) CreateSecretRequest(input *CreateSecretInput) (req *req
 // To encrypt the secret with a KMS key other than aws/secretsmanager, you need
 // kms:GenerateDataKey and kms:Decrypt permission to the key.
 //
+// When you enter commands in a command shell, there is a risk of the command
+// history being accessed or utilities having access to your command parameters.
+// This is a concern if the command includes the value of a secret. Learn how
+// to Mitigate the risks of using command-line tools to store Secrets Manager
+// secrets (https://docs.aws.amazon.com/secretsmanager/latest/userguide/security_cli-exposure-risks.html).
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1709,6 +1715,12 @@ func (c *SecretsManager) PutSecretValueRequest(input *PutSecretValueInput) (req 
 // see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions)
 // and Authentication and access control in Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html).
 //
+// When you enter commands in a command shell, there is a risk of the command
+// history being accessed or utilities having access to your command parameters.
+// This is a concern if the command includes the value of a secret. Learn how
+// to Mitigate the risks of using command-line tools to store Secrets Manager
+// secrets (https://docs.aws.amazon.com/secretsmanager/latest/userguide/security_cli-exposure-risks.html).
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2670,8 +2682,14 @@ func (c *SecretsManager) UpdateSecretRequest(input *UpdateSecretInput) (req *req
 // If you use a customer managed key, you must also have kms:GenerateDataKey,
 // kms:Encrypt, and kms:Decrypt permissions on the key. If you change the KMS
 // key and you don't have kms:Encrypt permission to the new key, Secrets Manager
-// does not re-ecrypt existing secret versions with the new key. For more information,
+// does not re-encrypt existing secret versions with the new key. For more information,
 // see Secret encryption and decryption (https://docs.aws.amazon.com/secretsmanager/latest/userguide/security-encryption.html).
+//
+// When you enter commands in a command shell, there is a risk of the command
+// history being accessed or utilities having access to your command parameters.
+// This is a concern if the command includes the value of a secret. Learn how
+// to Mitigate the risks of using command-line tools to store Secrets Manager
+// secrets (https://docs.aws.amazon.com/secretsmanager/latest/userguide/security_cli-exposure-risks.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7636,7 +7654,7 @@ type UpdateSecretInput struct {
 	// The ARN, key ID, or alias of the KMS key that Secrets Manager uses to encrypt
 	// new secret versions as well as any existing versions with the staging labels
 	// AWSCURRENT, AWSPENDING, or AWSPREVIOUS. If you don't have kms:Encrypt permission
-	// to the new key, Secrets Manager does not re-ecrypt existing secret versions
+	// to the new key, Secrets Manager does not re-encrypt existing secret versions
 	// with the new key. For more information about versions and staging labels,
 	// see Concepts: Version (https://docs.aws.amazon.com/secretsmanager/latest/userguide/getting-started.html#term_version).
 	//

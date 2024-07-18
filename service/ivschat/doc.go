@@ -15,6 +15,10 @@
 // the Amazon IVS page (https://docs.aws.amazon.com/general/latest/gr/ivs.html)
 // in the AWS General Reference.
 //
+// This document describes HTTP operations. There is a separate messaging API
+// for managing Chat resources; see the Amazon IVS Chat Messaging API Reference
+// (https://docs.aws.amazon.com/ivs/latest/chatmsgapireference/chat-messaging-api.html).
+//
 // Notes on terminology:
 //
 //   - You create service applications using the Amazon IVS Chat API. We refer
@@ -23,13 +27,17 @@
 //   - You create front-end client applications (browser and Android/iOS apps)
 //     using the Amazon IVS Chat Messaging API. We refer to these as clients.
 //
-// Key Concepts
+// # Resources
+//
+// The following resources are part of Amazon IVS Chat:
 //
 //   - LoggingConfiguration — A configuration that allows customers to store
-//     and record sent messages in a chat room.
+//     and record sent messages in a chat room. See the Logging Configuration
+//     endpoints for more information.
 //
 //   - Room — The central Amazon IVS Chat resource through which clients
-//     connect to and exchange chat messages.
+//     connect to and exchange chat messages. See the Room endpoints for more
+//     information.
 //
 // # Tagging
 //
@@ -95,73 +103,6 @@
 // specify a resource unambiguously across all of AWS, such as in IAM policies
 // and API calls. For more information, see Amazon Resource Names (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 // in the AWS General Reference.
-//
-// Messaging Endpoints
-//
-//   - DeleteMessage — Sends an event to a specific room which directs clients
-//     to delete a specific message; that is, unrender it from view and delete
-//     it from the client’s chat history. This event’s EventName is aws:DELETE_MESSAGE.
-//     This replicates the DeleteMessage (https://docs.aws.amazon.com/ivs/latest/chatmsgapireference/actions-deletemessage-publish.html)
-//     WebSocket operation in the Amazon IVS Chat Messaging API.
-//
-//   - DisconnectUser — Disconnects all connections using a specified user
-//     ID from a room. This replicates the DisconnectUser (https://docs.aws.amazon.com/ivs/latest/chatmsgapireference/actions-disconnectuser-publish.html)
-//     WebSocket operation in the Amazon IVS Chat Messaging API.
-//
-//   - SendEvent — Sends an event to a room. Use this within your application’s
-//     business logic to send events to clients of a room; e.g., to notify clients
-//     to change the way the chat UI is rendered.
-//
-// Chat Token Endpoint
-//
-//   - CreateChatToken — Creates an encrypted token that is used by a chat
-//     participant to establish an individual WebSocket chat connection to a
-//     room. When the token is used to connect to chat, the connection is valid
-//     for the session duration specified in the request. The token becomes invalid
-//     at the token-expiration timestamp included in the response.
-//
-// Room Endpoints
-//
-//   - CreateRoom — Creates a room that allows clients to connect and pass
-//     messages.
-//
-//   - DeleteRoom — Deletes the specified room.
-//
-//   - GetRoom — Gets the specified room.
-//
-//   - ListRooms — Gets summary information about all your rooms in the AWS
-//     region where the API request is processed.
-//
-//   - UpdateRoom — Updates a room’s configuration.
-//
-// Logging Configuration Endpoints
-//
-//   - CreateLoggingConfiguration — Creates a logging configuration that
-//     allows clients to store and record sent messages.
-//
-//   - DeleteLoggingConfiguration — Deletes the specified logging configuration.
-//
-//   - GetLoggingConfiguration — Gets the specified logging configuration.
-//
-//   - ListLoggingConfigurations — Gets summary information about all your
-//     logging configurations in the AWS region where the API request is processed.
-//
-//   - UpdateLoggingConfiguration — Updates a specified logging configuration.
-//
-// Tags Endpoints
-//
-//   - ListTagsForResource — Gets information about AWS tags for the specified
-//     ARN.
-//
-//   - TagResource — Adds or updates tags for the AWS resource with the specified
-//     ARN.
-//
-//   - UntagResource — Removes tags from the resource with the specified
-//     ARN.
-//
-// All the above are HTTP operations. There is a separate messaging API for
-// managing Chat resources; see the Amazon IVS Chat Messaging API Reference
-// (https://docs.aws.amazon.com/ivs/latest/chatmsgapireference/chat-messaging-api.html).
 //
 // See https://docs.aws.amazon.com/goto/WebAPI/ivschat-2020-07-14 for more information on this service.
 //

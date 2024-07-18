@@ -250,9 +250,20 @@
         "ExtendedS3DestinationConfiguration$BufferingHints": "<p>The buffering option.</p>",
         "ExtendedS3DestinationDescription$BufferingHints": "<p>The buffering option.</p>",
         "ExtendedS3DestinationUpdate$BufferingHints": "<p>The buffering option.</p>",
+        "IcebergDestinationConfiguration$BufferingHints": null,
+        "IcebergDestinationDescription$BufferingHints": null,
+        "IcebergDestinationUpdate$BufferingHints": null,
         "S3DestinationConfiguration$BufferingHints": "<p>The buffering option. If no value is specified, <code>BufferingHints</code> object default values are used.</p>",
         "S3DestinationDescription$BufferingHints": "<p>The buffering option. If no value is specified, <code>BufferingHints</code> object default values are used.</p>",
         "S3DestinationUpdate$BufferingHints": "<p>The buffering option. If no value is specified, <code>BufferingHints</code> object default values are used.</p>"
+      }
+    },
+    "CatalogConfiguration": {
+      "base": "<p> Describes the containers where the destination Apache Iceberg Tables are persisted. </p> <p>Amazon Data Firehose is in preview release and is subject to change.</p>",
+      "refs": {
+        "IcebergDestinationConfiguration$CatalogConfiguration": "<p> Configuration describing where the destination Apache Iceberg Tables are persisted. </p> <p>Amazon Data Firehose is in preview release and is subject to change.</p>",
+        "IcebergDestinationDescription$CatalogConfiguration": "<p> Configuration describing where the destination Iceberg tables are persisted. </p> <p>Amazon Data Firehose is in preview release and is subject to change.</p>",
+        "IcebergDestinationUpdate$CatalogConfiguration": "<p> Configuration describing where the destination Iceberg tables are persisted. </p> <p>Amazon Data Firehose is in preview release and is subject to change.</p>"
       }
     },
     "CloudWatchLoggingOptions": {
@@ -273,6 +284,9 @@
         "HttpEndpointDestinationConfiguration$CloudWatchLoggingOptions": null,
         "HttpEndpointDestinationDescription$CloudWatchLoggingOptions": null,
         "HttpEndpointDestinationUpdate$CloudWatchLoggingOptions": null,
+        "IcebergDestinationConfiguration$CloudWatchLoggingOptions": null,
+        "IcebergDestinationDescription$CloudWatchLoggingOptions": null,
+        "IcebergDestinationUpdate$CloudWatchLoggingOptions": null,
         "RedshiftDestinationConfiguration$CloudWatchLoggingOptions": "<p>The CloudWatch logging options for your delivery stream.</p>",
         "RedshiftDestinationDescription$CloudWatchLoggingOptions": "<p>The Amazon CloudWatch logging options for your delivery stream.</p>",
         "RedshiftDestinationUpdate$CloudWatchLoggingOptions": "<p>The Amazon CloudWatch logging options for your delivery stream.</p>",
@@ -536,6 +550,20 @@
         "UpdateDestinationInput$DestinationId": "<p>The ID of the destination.</p>"
       }
     },
+    "DestinationTableConfiguration": {
+      "base": "<p> Describes the configuration of a destination in Apache Iceberg Tables. </p> <p>Amazon Data Firehose is in preview release and is subject to change.</p>",
+      "refs": {
+        "DestinationTableConfigurationList$member": null
+      }
+    },
+    "DestinationTableConfigurationList": {
+      "base": null,
+      "refs": {
+        "IcebergDestinationConfiguration$DestinationTableConfigurationList": "<p> Provides a list of <code>DestinationTableConfigurations</code> which Firehose uses to deliver data to Apache Iceberg tables. </p> <p>Amazon Data Firehose is in preview release and is subject to change.</p>",
+        "IcebergDestinationDescription$DestinationTableConfigurationList": "<p> Provides a list of <code>DestinationTableConfigurations</code> which Firehose uses to deliver data to Apache Iceberg tables. </p> <p>Amazon Data Firehose is in preview release and is subject to change.</p>",
+        "IcebergDestinationUpdate$DestinationTableConfigurationList": "<p> Provides a list of <code>DestinationTableConfigurations</code> which Firehose uses to deliver data to Apache Iceberg tables. </p> <p>Amazon Data Firehose is in preview release and is subject to change.</p>"
+      }
+    },
     "DocumentIdOptions": {
       "base": "<p>Indicates the method for setting up document ID. The supported methods are Firehose generated document ID and OpenSearch Service generated document ID.</p> <p/>",
       "refs": {
@@ -690,6 +718,7 @@
     "ErrorOutputPrefix": {
       "base": null,
       "refs": {
+        "DestinationTableConfiguration$S3ErrorOutputPrefix": "<p> The table specific S3 error output prefix. All the errors that occurred while delivering to this table will be prefixed with this value in S3 destination. </p> <p>Amazon Data Firehose is in preview release and is subject to change.</p>",
         "ExtendedS3DestinationConfiguration$ErrorOutputPrefix": "<p>A prefix that Firehose evaluates and adds to failed records before writing them to S3. This prefix appears immediately following the bucket name. For information about how to specify this prefix, see <a href=\"https://docs.aws.amazon.com/firehose/latest/dev/s3-prefixes.html\">Custom Prefixes for Amazon S3 Objects</a>.</p>",
         "ExtendedS3DestinationDescription$ErrorOutputPrefix": "<p>A prefix that Firehose evaluates and adds to failed records before writing them to S3. This prefix appears immediately following the bucket name. For information about how to specify this prefix, see <a href=\"https://docs.aws.amazon.com/firehose/latest/dev/s3-prefixes.html\">Custom Prefixes for Amazon S3 Objects</a>.</p>",
         "ExtendedS3DestinationUpdate$ErrorOutputPrefix": "<p>A prefix that Firehose evaluates and adds to failed records before writing them to S3. This prefix appears immediately following the bucket name. For information about how to specify this prefix, see <a href=\"https://docs.aws.amazon.com/firehose/latest/dev/s3-prefixes.html\">Custom Prefixes for Amazon S3 Objects</a>.</p>",
@@ -729,6 +758,12 @@
         "ExtendedS3DestinationConfiguration$FileExtension": "<p>Specify a file extension. It will override the default file extension</p>",
         "ExtendedS3DestinationDescription$FileExtension": "<p>Specify a file extension. It will override the default file extension</p>",
         "ExtendedS3DestinationUpdate$FileExtension": "<p>Specify a file extension. It will override the default file extension</p>"
+      }
+    },
+    "GlueDataCatalogARN": {
+      "base": null,
+      "refs": {
+        "CatalogConfiguration$CatalogARN": "<p> Specifies the Glue catalog ARN indentifier of the destination Apache Iceberg Tables. You must specify the ARN in the format <code>arn:aws:glue:region:account-id:catalog</code>. </p> <p>Amazon Data Firehose is in preview release and is subject to change.</p>"
       }
     },
     "HECAcknowledgmentTimeoutInSeconds": {
@@ -894,6 +929,32 @@
         "HttpEndpointDescription$Url": "<p>The URL of the HTTP endpoint selected as the destination.</p>"
       }
     },
+    "IcebergDestinationConfiguration": {
+      "base": "<p> Specifies the destination configure settings for Apache Iceberg Table. </p> <p>Amazon Data Firehose is in preview release and is subject to change.</p>",
+      "refs": {
+        "CreateDeliveryStreamInput$IcebergDestinationConfiguration": "<p> Configure Apache Iceberg Tables destination. </p> <p>Amazon Data Firehose is in preview release and is subject to change.</p>"
+      }
+    },
+    "IcebergDestinationDescription": {
+      "base": "<p> Describes a destination in Apache Iceberg Tables. </p> <p>Amazon Data Firehose is in preview release and is subject to change.</p>",
+      "refs": {
+        "DestinationDescription$IcebergDestinationDescription": "<p> Describes a destination in Apache Iceberg Tables. </p> <p>Amazon Data Firehose is in preview release and is subject to change.</p>"
+      }
+    },
+    "IcebergDestinationUpdate": {
+      "base": "<p> Describes an update for a destination in Apache Iceberg Tables. </p> <p>Amazon Data Firehose is in preview release and is subject to change.</p>",
+      "refs": {
+        "UpdateDestinationInput$IcebergDestinationUpdate": "<p> Describes an update for a destination in Apache Iceberg Tables. </p> <p>Amazon Data Firehose is in preview release and is subject to change.</p>"
+      }
+    },
+    "IcebergS3BackupMode": {
+      "base": null,
+      "refs": {
+        "IcebergDestinationConfiguration$S3BackupMode": "<p> Describes how Firehose will backup records. Currently,Firehose only supports <code>FailedDataOnly</code> for preview. </p> <p>Amazon Data Firehose is in preview release and is subject to change.</p>",
+        "IcebergDestinationDescription$S3BackupMode": "<p> Describes how Firehose will backup records. Currently,Firehose only supports <code>FailedDataOnly</code> for preview. </p> <p>Amazon Data Firehose is in preview release and is subject to change.</p>",
+        "IcebergDestinationUpdate$S3BackupMode": "<p> Describes how Firehose will backup records. Currently,Firehose only supports <code>FailedDataOnly</code> for preview. </p> <p>Amazon Data Firehose is in preview release and is subject to change.</p>"
+      }
+    },
     "InputFormatConfiguration": {
       "base": "<p>Specifies the deserializer you want to use to convert the format of the input data. This parameter is required if <code>Enabled</code> is set to true.</p>",
       "refs": {
@@ -983,6 +1044,7 @@
     "ListOfNonEmptyStringsWithoutWhitespace": {
       "base": null,
       "refs": {
+        "DestinationTableConfiguration$UniqueKeys": "<p> A list of unique keys for a given Apache Iceberg table. Firehose will use these for running Create/Update/Delete operations on the given Iceberg table. </p> <p>Amazon Data Firehose is in preview release and is subject to change.</p>",
         "OrcSerDe$BloomFilterColumns": "<p>The column names for which you want Firehose to create bloom filters. The default is <code>null</code>.</p>"
       }
     },
@@ -1057,6 +1119,8 @@
       "base": null,
       "refs": {
         "ColumnToJsonKeyMappings$key": null,
+        "DestinationTableConfiguration$DestinationTableName": "<p> Specifies the name of the Apache Iceberg Table. </p> <p>Amazon Data Firehose is in preview release and is subject to change.</p>",
+        "DestinationTableConfiguration$DestinationDatabaseName": "<p> The name of the Apache Iceberg database. </p> <p>Amazon Data Firehose is in preview release and is subject to change.</p>",
         "ListOfNonEmptyStringsWithoutWhitespace$member": null,
         "SchemaConfiguration$RoleARN": "<p>The role that Firehose can use to access Amazon Web Services Glue. This role must be in the same account you use for Firehose. Cross-account roles aren't allowed.</p> <important> <p>If the <code>SchemaConfiguration</code> request parameter is used as part of invoking the <code>CreateDeliveryStream</code> API, then the <code>RoleARN</code> property is required and its value must be specified.</p> </important>",
         "SchemaConfiguration$CatalogId": "<p>The ID of the Amazon Web Services Glue Data Catalog. If you don't supply this, the Amazon Web Services account ID is used by default.</p>",
@@ -1178,6 +1242,9 @@
         "HttpEndpointDestinationConfiguration$ProcessingConfiguration": null,
         "HttpEndpointDestinationDescription$ProcessingConfiguration": null,
         "HttpEndpointDestinationUpdate$ProcessingConfiguration": null,
+        "IcebergDestinationConfiguration$ProcessingConfiguration": null,
+        "IcebergDestinationDescription$ProcessingConfiguration": null,
+        "IcebergDestinationUpdate$ProcessingConfiguration": null,
         "RedshiftDestinationConfiguration$ProcessingConfiguration": "<p>The data processing configuration.</p>",
         "RedshiftDestinationDescription$ProcessingConfiguration": "<p>The data processing configuration.</p>",
         "RedshiftDestinationUpdate$ProcessingConfiguration": "<p>The data processing configuration.</p>",
@@ -1284,6 +1351,13 @@
         "PutRecordOutput$RecordId": "<p>The ID of the record.</p>"
       }
     },
+    "ReadFromTimestamp": {
+      "base": null,
+      "refs": {
+        "MSKSourceConfiguration$ReadFromTimestamp": "<p>The start date and time in UTC for the offset position within your MSK topic from where Firehose begins to read. By default, this is set to timestamp when Firehose becomes Active. </p> <p>If you want to create a Firehose stream with Earliest start position from SDK or CLI, you need to set the <code>ReadFromTimestamp</code> parameter to Epoch (1970-01-01T00:00:00Z). </p>",
+        "MSKSourceDescription$ReadFromTimestamp": "<p>The start date and time in UTC for the offset position within your MSK topic from where Firehose begins to read. By default, this is set to timestamp when Firehose becomes Active. </p> <p>If you want to create a Firehose stream with Earliest start position from SDK or CLI, you need to set the <code>ReadFromTimestampUTC</code> parameter to Epoch (1970-01-01T00:00:00Z). </p>"
+      }
+    },
     "Record": {
       "base": "<p>The unit of data in a delivery stream.</p>",
       "refs": {
@@ -1350,7 +1424,10 @@
     "RetryOptions": {
       "base": "<p> The retry behavior in case Firehose is unable to deliver data to an Amazon S3 prefix.</p>",
       "refs": {
-        "DynamicPartitioningConfiguration$RetryOptions": "<p>The retry behavior in case Firehose is unable to deliver data to an Amazon S3 prefix.</p>"
+        "DynamicPartitioningConfiguration$RetryOptions": "<p>The retry behavior in case Firehose is unable to deliver data to an Amazon S3 prefix.</p>",
+        "IcebergDestinationConfiguration$RetryOptions": null,
+        "IcebergDestinationDescription$RetryOptions": null,
+        "IcebergDestinationUpdate$RetryOptions": null
       }
     },
     "RoleARN": {
@@ -1372,6 +1449,9 @@
         "HttpEndpointDestinationConfiguration$RoleARN": "<p>Firehose uses this IAM role for all the permissions that the delivery stream needs.</p>",
         "HttpEndpointDestinationDescription$RoleARN": "<p>Firehose uses this IAM role for all the permissions that the delivery stream needs.</p>",
         "HttpEndpointDestinationUpdate$RoleARN": "<p>Firehose uses this IAM role for all the permissions that the delivery stream needs.</p>",
+        "IcebergDestinationConfiguration$RoleARN": "<p> The Amazon Resource Name (ARN) of the Apache Iceberg tables role. </p> <p>Amazon Data Firehose is in preview release and is subject to change.</p>",
+        "IcebergDestinationDescription$RoleARN": "<p> The Amazon Resource Name (ARN) of the Apache Iceberg Tables role. </p> <p>Amazon Data Firehose is in preview release and is subject to change.</p>",
+        "IcebergDestinationUpdate$RoleARN": "<p> The Amazon Resource Name (ARN) of the Apache Iceberg Tables role. </p> <p>Amazon Data Firehose is in preview release and is subject to change.</p>",
         "KinesisStreamSourceConfiguration$RoleARN": "<p>The ARN of the role that provides access to the source Kinesis data stream. For more information, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-iam\">Amazon Web Services Identity and Access Management (IAM) ARN Format</a>.</p>",
         "KinesisStreamSourceDescription$RoleARN": "<p>The ARN of the role used by the source Kinesis data stream. For more information, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-iam\">Amazon Web Services Identity and Access Management (IAM) ARN Format</a>.</p>",
         "RedshiftDestinationConfiguration$RoleARN": "<p>The Amazon Resource Name (ARN) of the Amazon Web Services credentials. For more information, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Names (ARNs) and Amazon Web Services Service Namespaces</a>.</p>",
@@ -1405,6 +1485,8 @@
         "ElasticsearchDestinationConfiguration$S3Configuration": "<p>The configuration for the backup Amazon S3 location.</p>",
         "ExtendedS3DestinationConfiguration$S3BackupConfiguration": "<p>The configuration for backup in Amazon S3.</p>",
         "HttpEndpointDestinationConfiguration$S3Configuration": null,
+        "IcebergDestinationConfiguration$S3Configuration": null,
+        "IcebergDestinationUpdate$S3Configuration": null,
         "RedshiftDestinationConfiguration$S3Configuration": "<p>The configuration for the intermediate Amazon S3 location from which Amazon Redshift obtains data. Restrictions are described in the topic for <a>CreateDeliveryStream</a>.</p> <p>The compression formats <code>SNAPPY</code> or <code>ZIP</code> cannot be specified in <code>RedshiftDestinationConfiguration.S3Configuration</code> because the Amazon Redshift <code>COPY</code> operation that reads from the S3 bucket doesn't support these compression formats.</p>",
         "RedshiftDestinationConfiguration$S3BackupConfiguration": "<p>The configuration for backup in Amazon S3.</p>",
         "SnowflakeDestinationConfiguration$S3Configuration": null,
@@ -1420,6 +1502,7 @@
         "ElasticsearchDestinationDescription$S3DestinationDescription": "<p>The Amazon S3 destination.</p>",
         "ExtendedS3DestinationDescription$S3BackupDescription": "<p>The configuration for backup in Amazon S3.</p>",
         "HttpEndpointDestinationDescription$S3DestinationDescription": null,
+        "IcebergDestinationDescription$S3DestinationDescription": null,
         "RedshiftDestinationDescription$S3DestinationDescription": "<p>The Amazon S3 destination.</p>",
         "RedshiftDestinationDescription$S3BackupDescription": "<p>The configuration for backup in Amazon S3.</p>",
         "SnowflakeDestinationDescription$S3DestinationDescription": null,
@@ -1500,6 +1583,26 @@
         "SnowflakeDestinationConfiguration$AccountUrl": "<p>URL for accessing your Snowflake account. This URL must include your <a href=\"https://docs.snowflake.com/en/user-guide/admin-account-identifier\">account identifier</a>. Note that the protocol (https://) and port number are optional.</p>",
         "SnowflakeDestinationDescription$AccountUrl": "<p>URL for accessing your Snowflake account. This URL must include your <a href=\"https://docs.snowflake.com/en/user-guide/admin-account-identifier\">account identifier</a>. Note that the protocol (https://) and port number are optional.</p>",
         "SnowflakeDestinationUpdate$AccountUrl": "<p>URL for accessing your Snowflake account. This URL must include your <a href=\"https://docs.snowflake.com/en/user-guide/admin-account-identifier\">account identifier</a>. Note that the protocol (https://) and port number are optional.</p>"
+      }
+    },
+    "SnowflakeBufferingHints": {
+      "base": "<p> Describes the buffering to perform before delivering data to the Snowflake destination. If you do not specify any value, Firehose uses the default values. </p>",
+      "refs": {
+        "SnowflakeDestinationConfiguration$BufferingHints": "<p> Describes the buffering to perform before delivering data to the Snowflake destination. If you do not specify any value, Firehose uses the default values. </p>",
+        "SnowflakeDestinationDescription$BufferingHints": "<p> Describes the buffering to perform before delivering data to the Snowflake destination. If you do not specify any value, Firehose uses the default values. </p>",
+        "SnowflakeDestinationUpdate$BufferingHints": "<p> Describes the buffering to perform before delivering data to the Snowflake destination. </p>"
+      }
+    },
+    "SnowflakeBufferingIntervalInSeconds": {
+      "base": null,
+      "refs": {
+        "SnowflakeBufferingHints$IntervalInSeconds": "<p> Buffer incoming data for the specified period of time, in seconds, before delivering it to the destination. The default value is 0. </p>"
+      }
+    },
+    "SnowflakeBufferingSizeInMBs": {
+      "base": null,
+      "refs": {
+        "SnowflakeBufferingHints$SizeInMBs": "<p> Buffer incoming data to the specified size, in MBs, before delivering it to the destination. The default value is 1. </p>"
       }
     },
     "SnowflakeContentColumnName": {
