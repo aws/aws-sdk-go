@@ -1272,7 +1272,7 @@
     "H264FilterSettings": {
       "base": "H264 Filter Settings",
       "refs": {
-        "H264Settings$FilterSettings": "Optional filters that you can apply to an encode."
+        "H264Settings$FilterSettings": "Optional. Both filters reduce bandwidth by removing imperceptible details. You can enable one of the filters. We\nrecommend that you try both filters and observe the results to decide which one to use.\n\nThe Temporal Filter reduces bandwidth by removing imperceptible details in the content. It combines perceptual\nfiltering and motion compensated temporal filtering (MCTF). It operates independently of the compression level.\n\nThe Bandwidth Reduction filter is a perceptual filter located within the encoding loop. It adapts to the current\ncompression level to filter imperceptible signals. This filter works only when the resolution is 1080p or lower."
       }
     },
     "H264FlickerAq": {
@@ -1416,7 +1416,7 @@
     "H265FilterSettings": {
       "base": "H265 Filter Settings",
       "refs": {
-        "H265Settings$FilterSettings": "Optional filters that you can apply to an encode."
+        "H265Settings$FilterSettings": "Optional. Both filters reduce bandwidth by removing imperceptible details. You can enable one of the filters. We\nrecommend that you try both filters and observe the results to decide which one to use.\n\nThe Temporal Filter reduces bandwidth by removing imperceptible details in the content. It combines perceptual\nfiltering and motion compensated temporal filtering (MCTF). It operates independently of the compression level.\n\nThe Bandwidth Reduction filter is a perceptual filter located within the encoding loop. It adapts to the current\ncompression level to filter imperceptible signals. This filter works only when the resolution is 1080p or lower."
       }
     },
     "H265FlickerAq": {
@@ -3746,7 +3746,7 @@
         "AacSettings$Bitrate": "Average bitrate in bits/second. Valid values depend on rate control mode and profile.",
         "AacSettings$SampleRate": "Sample rate in Hz. Valid values depend on rate control mode and profile.",
         "Ac3Settings$Bitrate": "Average bitrate in bits/second. Valid bitrates depend on the coding mode.",
-        "Eac3AtmosSettings$Bitrate": "Average bitrate in bits/second. Valid bitrates depend on the coding mode.\n//  * @affectsRightSizing true",
+        "Eac3AtmosSettings$Bitrate": "Average bitrate in bits/second. Valid bitrates depend on the coding mode.",
         "Eac3AtmosSettings$HeightTrim": "Height dimensional trim. Sets the maximum amount to attenuate the height channels when the downstream player isn??t configured to handle Dolby Digital Plus with Dolby Atmos and must remix the channels.",
         "Eac3AtmosSettings$SurroundTrim": "Surround dimensional trim. Sets the maximum amount to attenuate the surround channels when the downstream player isn't configured to handle Dolby Digital Plus with Dolby Atmos and must remix the channels.",
         "Eac3Settings$Bitrate": "Average bitrate in bits/second. Valid bitrates depend on the coding mode.",
@@ -3880,7 +3880,9 @@
         "InputDeviceConfigurableAudioChannelPairConfig$Id": "The ID for one audio pair configuration, a value from 1 to 8.",
         "InputDeviceUhdAudioChannelPairConfig$Id": "The ID for one audio pair configuration, a value from 1 to 8.",
         "CloudWatchAlarmTemplateGroupSummary$TemplateCount": "The number of templates in a group.",
-        "EventBridgeRuleTemplateGroupSummary$TemplateCount": "The number of templates in a group."
+        "EventBridgeRuleTemplateGroupSummary$TemplateCount": "The number of templates in a group.",
+        "SrtCallerSource$MinimumLatency": "The preferred latency (in milliseconds) for implementing packet loss and recovery. Packet recovery is a key feature of SRT.",
+        "SrtCallerSourceRequest$MinimumLatency": "The preferred latency (in milliseconds) for implementing packet loss and recovery. Packet recovery is a key feature of SRT. Obtain this value from the operator at the upstream system."
       }
     },
     "__integerMin0": {
@@ -5009,7 +5011,15 @@
         "InternalServerErrorExceptionResponseContent$Message": "Exception error message.",
         "NotFoundExceptionResponseContent$Message": "Exception error message.",
         "TagMap$member": null,
-        "TooManyRequestsExceptionResponseContent$Message": "Exception error message."
+        "TooManyRequestsExceptionResponseContent$Message": "Exception error message.",
+        "SrtCallerDecryption$PassphraseSecretArn": "The ARN for the secret in Secrets Manager. Someone in your organization must create a secret and provide you with its ARN. The secret holds the passphrase that MediaLive uses to decrypt the source content.",
+        "SrtCallerDecryptionRequest$PassphraseSecretArn": "The ARN for the secret in Secrets Manager. Someone in your organization must create a secret and provide you with its ARN. This secret holds the passphrase that MediaLive will use to decrypt the source content.",
+        "SrtCallerSource$SrtListenerAddress": "The IP address at the upstream system (the listener) that MediaLive (the caller) connects to.",
+        "SrtCallerSource$SrtListenerPort": "The port at the upstream system (the listener) that MediaLive (the caller) connects to.",
+        "SrtCallerSource$StreamId": "The stream ID, if the upstream system uses this identifier.",
+        "SrtCallerSourceRequest$SrtListenerAddress": "The IP address at the upstream system (the listener) that MediaLive (the caller) will connect to.",
+        "SrtCallerSourceRequest$SrtListenerPort": "The port at the upstream system (the listener) that MediaLive (the caller) will connect to.",
+        "SrtCallerSourceRequest$StreamId": "This value is required if the upstream system uses this identifier because without it, the SRT handshake between MediaLive (the caller) and the upstream system (the listener) might fail."
       }
     },
     "__stringMax1000": {
@@ -5969,6 +5979,62 @@
       "base": "Scte35 Segmentation Scope",
       "refs": {
         "AvailConfiguration$Scte35SegmentationScope": "Configures whether SCTE 35 passthrough triggers segment breaks in all output groups that use segmented outputs. Insertion of a SCTE 35 message typically results in a segment break, in addition to the regular cadence of breaks. The segment breaks appear in video outputs, audio outputs, and captions outputs (if any).\n\nALL_OUTPUT_GROUPS: Default. Insert the segment break in in all output groups that have segmented outputs. This is the legacy behavior.\nSCTE35_ENABLED_OUTPUT_GROUPS: Insert the segment break only in output groups that have SCTE 35 passthrough enabled. This is the recommended value, because it reduces unnecessary segment breaks."
+      }
+    },
+    "Algorithm": {
+      "base": null,
+      "refs": {
+        "SrtCallerDecryption$Algorithm": "The algorithm used to encrypt content.",
+        "SrtCallerDecryptionRequest$Algorithm": "The algorithm used to encrypt content."
+      }
+    },
+    "SrtCallerDecryption": {
+      "base": "The decryption settings for the SRT caller source. Present only if the source has decryption enabled.",
+      "refs": {
+        "SrtCallerSource$Decryption": null
+      }
+    },
+    "SrtCallerDecryptionRequest": {
+      "base": "Complete these parameters only if the content is encrypted.",
+      "refs": {
+        "SrtCallerSourceRequest$Decryption": null
+      }
+    },
+    "SrtCallerSource": {
+      "base": "The configuration for a source that uses SRT as the connection protocol. In terms of establishing the connection, MediaLive is always caller and the upstream system is always the listener. In terms of transmission of the source content, MediaLive is always the receiver and the upstream system is always the sender.",
+      "refs": {
+        "__listOfSrtCallerSource$member": null
+      }
+    },
+    "SrtCallerSourceRequest": {
+      "base": "Configures the connection for a source that uses SRT as the connection protocol. In terms of establishing the connection, MediaLive is always the caller and the upstream system is always the listener. In terms of transmission of the source content, MediaLive is always the receiver and the upstream system is always the sender.",
+      "refs": {
+        "__listOfSrtCallerSourceRequest$member": null
+      }
+    },
+    "SrtSettings": {
+      "base": "The configured sources for this SRT input.",
+      "refs": {
+        "Input$SrtSettings": "The settings associated with an SRT input."
+      }
+    },
+    "SrtSettingsRequest": {
+      "base": "Configures the sources for this SRT input. For a single-pipeline input, include one srtCallerSource in the array. For a standard-pipeline input, include two srtCallerSource.",
+      "refs": {
+        "CreateInput$SrtSettings": "The settings associated with an SRT input.",
+        "UpdateInput$SrtSettings": "The settings associated with an SRT input."
+      }
+    },
+    "__listOfSrtCallerSource": {
+      "base": null,
+      "refs": {
+        "SrtSettings$SrtCallerSources": null
+      }
+    },
+    "__listOfSrtCallerSourceRequest": {
+      "base": null,
+      "refs": {
+        "SrtSettingsRequest$SrtCallerSources": null
       }
     }
   },

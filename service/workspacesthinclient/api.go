@@ -2762,8 +2762,7 @@ type Environment struct {
 	// The type of streaming desktop for the environment.
 	DesktopType *string `locationName:"desktopType" type:"string" enum:"DesktopType"`
 
-	// "The tag keys and optional values for the newly created devices for this
-	// environment."
+	// The tag keys and optional values for the newly created devices for this environment.
 	//
 	// DeviceCreationTags is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by Environment's

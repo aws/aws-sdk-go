@@ -9,7 +9,10 @@
     "uid": "medialive-2017-10-14",
     "signatureVersion": "v4",
     "serviceAbbreviation": "MediaLive",
-    "jsonVersion": "1.1"
+    "jsonVersion": "1.1",
+    "auth": [
+      "aws.auth#sigv4"
+    ]
   },
   "operations": {
     "AcceptInputDeviceTransfer": {
@@ -5296,6 +5299,10 @@
         "Vpc": {
           "shape": "InputVpcRequest",
           "locationName": "vpc"
+        },
+        "SrtSettings": {
+          "shape": "SrtSettingsRequest",
+          "locationName": "srtSettings"
         }
       }
     },
@@ -5346,6 +5353,10 @@
         "Vpc": {
           "shape": "InputVpcRequest",
           "locationName": "vpc"
+        },
+        "SrtSettings": {
+          "shape": "SrtSettingsRequest",
+          "locationName": "srtSettings"
         }
       }
     },
@@ -6303,6 +6314,10 @@
         "Type": {
           "shape": "InputType",
           "locationName": "type"
+        },
+        "SrtSettings": {
+          "shape": "SrtSettings",
+          "locationName": "srtSettings"
         }
       }
     },
@@ -9101,6 +9116,10 @@
         "Type": {
           "shape": "InputType",
           "locationName": "type"
+        },
+        "SrtSettings": {
+          "shape": "SrtSettings",
+          "locationName": "srtSettings"
         }
       }
     },
@@ -10017,7 +10036,8 @@
         "MEDIACONNECT",
         "INPUT_DEVICE",
         "AWS_CDI",
-        "TS_FILE"
+        "TS_FILE",
+        "SRT_CALLER"
       ]
     },
     "InputVpcRequest": {
@@ -14531,6 +14551,10 @@
         "Sources": {
           "shape": "__listOfInputSourceRequest",
           "locationName": "sources"
+        },
+        "SrtSettings": {
+          "shape": "SrtSettingsRequest",
+          "locationName": "srtSettings"
         }
       }
     },
@@ -14688,6 +14712,10 @@
         "Sources": {
           "shape": "__listOfInputSourceRequest",
           "locationName": "sources"
+        },
+        "SrtSettings": {
+          "shape": "SrtSettingsRequest",
+          "locationName": "srtSettings"
         }
       },
       "required": [
@@ -19990,6 +20018,120 @@
         "ALL_OUTPUT_GROUPS",
         "SCTE35_ENABLED_OUTPUT_GROUPS"
       ]
+    },
+    "Algorithm": {
+      "type": "string",
+      "enum": [
+        "AES128",
+        "AES192",
+        "AES256"
+      ]
+    },
+    "SrtCallerDecryption": {
+      "type": "structure",
+      "members": {
+        "Algorithm": {
+          "shape": "Algorithm",
+          "locationName": "algorithm"
+        },
+        "PassphraseSecretArn": {
+          "shape": "__string",
+          "locationName": "passphraseSecretArn"
+        }
+      }
+    },
+    "SrtCallerDecryptionRequest": {
+      "type": "structure",
+      "members": {
+        "Algorithm": {
+          "shape": "Algorithm",
+          "locationName": "algorithm"
+        },
+        "PassphraseSecretArn": {
+          "shape": "__string",
+          "locationName": "passphraseSecretArn"
+        }
+      }
+    },
+    "SrtCallerSource": {
+      "type": "structure",
+      "members": {
+        "Decryption": {
+          "shape": "SrtCallerDecryption",
+          "locationName": "decryption"
+        },
+        "MinimumLatency": {
+          "shape": "__integer",
+          "locationName": "minimumLatency"
+        },
+        "SrtListenerAddress": {
+          "shape": "__string",
+          "locationName": "srtListenerAddress"
+        },
+        "SrtListenerPort": {
+          "shape": "__string",
+          "locationName": "srtListenerPort"
+        },
+        "StreamId": {
+          "shape": "__string",
+          "locationName": "streamId"
+        }
+      }
+    },
+    "SrtCallerSourceRequest": {
+      "type": "structure",
+      "members": {
+        "Decryption": {
+          "shape": "SrtCallerDecryptionRequest",
+          "locationName": "decryption"
+        },
+        "MinimumLatency": {
+          "shape": "__integer",
+          "locationName": "minimumLatency"
+        },
+        "SrtListenerAddress": {
+          "shape": "__string",
+          "locationName": "srtListenerAddress"
+        },
+        "SrtListenerPort": {
+          "shape": "__string",
+          "locationName": "srtListenerPort"
+        },
+        "StreamId": {
+          "shape": "__string",
+          "locationName": "streamId"
+        }
+      }
+    },
+    "SrtSettings": {
+      "type": "structure",
+      "members": {
+        "SrtCallerSources": {
+          "shape": "__listOfSrtCallerSource",
+          "locationName": "srtCallerSources"
+        }
+      }
+    },
+    "SrtSettingsRequest": {
+      "type": "structure",
+      "members": {
+        "SrtCallerSources": {
+          "shape": "__listOfSrtCallerSourceRequest",
+          "locationName": "srtCallerSources"
+        }
+      }
+    },
+    "__listOfSrtCallerSource": {
+      "type": "list",
+      "member": {
+        "shape": "SrtCallerSource"
+      }
+    },
+    "__listOfSrtCallerSourceRequest": {
+      "type": "list",
+      "member": {
+        "shape": "SrtCallerSourceRequest"
+      }
     }
   }
 }

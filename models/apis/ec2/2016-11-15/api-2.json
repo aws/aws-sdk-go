@@ -694,6 +694,15 @@
       "input":{"shape":"CreateIpamRequest"},
       "output":{"shape":"CreateIpamResult"}
     },
+    "CreateIpamExternalResourceVerificationToken":{
+      "name":"CreateIpamExternalResourceVerificationToken",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateIpamExternalResourceVerificationTokenRequest"},
+      "output":{"shape":"CreateIpamExternalResourceVerificationTokenResult"}
+    },
     "CreateIpamPool":{
       "name":"CreateIpamPool",
       "http":{
@@ -1371,6 +1380,15 @@
       },
       "input":{"shape":"DeleteIpamRequest"},
       "output":{"shape":"DeleteIpamResult"}
+    },
+    "DeleteIpamExternalResourceVerificationToken":{
+      "name":"DeleteIpamExternalResourceVerificationToken",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteIpamExternalResourceVerificationTokenRequest"},
+      "output":{"shape":"DeleteIpamExternalResourceVerificationTokenResult"}
     },
     "DeleteIpamPool":{
       "name":"DeleteIpamPool",
@@ -2470,6 +2488,15 @@
       },
       "input":{"shape":"DescribeIpamByoasnRequest"},
       "output":{"shape":"DescribeIpamByoasnResult"}
+    },
+    "DescribeIpamExternalResourceVerificationTokens":{
+      "name":"DescribeIpamExternalResourceVerificationTokens",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeIpamExternalResourceVerificationTokensRequest"},
+      "output":{"shape":"DescribeIpamExternalResourceVerificationTokensResult"}
     },
     "DescribeIpamPools":{
       "name":"DescribeIpamPools",
@@ -10951,6 +10978,31 @@
         }
       }
     },
+    "CreateIpamExternalResourceVerificationTokenRequest":{
+      "type":"structure",
+      "required":["IpamId"],
+      "members":{
+        "DryRun":{"shape":"Boolean"},
+        "IpamId":{"shape":"IpamId"},
+        "TagSpecifications":{
+          "shape":"TagSpecificationList",
+          "locationName":"TagSpecification"
+        },
+        "ClientToken":{
+          "shape":"String",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "CreateIpamExternalResourceVerificationTokenResult":{
+      "type":"structure",
+      "members":{
+        "IpamExternalResourceVerificationToken":{
+          "shape":"IpamExternalResourceVerificationToken",
+          "locationName":"ipamExternalResourceVerificationToken"
+        }
+      }
+    },
     "CreateIpamPoolRequest":{
       "type":"structure",
       "required":[
@@ -13472,6 +13524,23 @@
         "InternetGatewayId":{
           "shape":"InternetGatewayId",
           "locationName":"internetGatewayId"
+        }
+      }
+    },
+    "DeleteIpamExternalResourceVerificationTokenRequest":{
+      "type":"structure",
+      "required":["IpamExternalResourceVerificationTokenId"],
+      "members":{
+        "DryRun":{"shape":"Boolean"},
+        "IpamExternalResourceVerificationTokenId":{"shape":"IpamExternalResourceVerificationTokenId"}
+      }
+    },
+    "DeleteIpamExternalResourceVerificationTokenResult":{
+      "type":"structure",
+      "members":{
+        "IpamExternalResourceVerificationToken":{
+          "shape":"IpamExternalResourceVerificationToken",
+          "locationName":"ipamExternalResourceVerificationToken"
         }
       }
     },
@@ -16620,6 +16689,35 @@
         "NextToken":{
           "shape":"String",
           "locationName":"nextToken"
+        }
+      }
+    },
+    "DescribeIpamExternalResourceVerificationTokensRequest":{
+      "type":"structure",
+      "members":{
+        "DryRun":{"shape":"Boolean"},
+        "Filters":{
+          "shape":"FilterList",
+          "locationName":"Filter"
+        },
+        "NextToken":{"shape":"NextToken"},
+        "MaxResults":{"shape":"IpamMaxResults"},
+        "IpamExternalResourceVerificationTokenIds":{
+          "shape":"ValueStringList",
+          "locationName":"IpamExternalResourceVerificationTokenId"
+        }
+      }
+    },
+    "DescribeIpamExternalResourceVerificationTokensResult":{
+      "type":"structure",
+      "members":{
+        "NextToken":{
+          "shape":"NextToken",
+          "locationName":"nextToken"
+        },
+        "IpamExternalResourceVerificationTokens":{
+          "shape":"IpamExternalResourceVerificationTokenSet",
+          "locationName":"ipamExternalResourceVerificationTokenSet"
         }
       }
     },
@@ -29547,6 +29645,74 @@
         }
       }
     },
+    "IpamExternalResourceVerificationToken":{
+      "type":"structure",
+      "members":{
+        "IpamExternalResourceVerificationTokenId":{
+          "shape":"IpamExternalResourceVerificationTokenId",
+          "locationName":"ipamExternalResourceVerificationTokenId"
+        },
+        "IpamExternalResourceVerificationTokenArn":{
+          "shape":"ResourceArn",
+          "locationName":"ipamExternalResourceVerificationTokenArn"
+        },
+        "IpamId":{
+          "shape":"IpamId",
+          "locationName":"ipamId"
+        },
+        "IpamArn":{
+          "shape":"ResourceArn",
+          "locationName":"ipamArn"
+        },
+        "IpamRegion":{
+          "shape":"String",
+          "locationName":"ipamRegion"
+        },
+        "TokenValue":{
+          "shape":"String",
+          "locationName":"tokenValue"
+        },
+        "TokenName":{
+          "shape":"String",
+          "locationName":"tokenName"
+        },
+        "NotAfter":{
+          "shape":"MillisecondDateTime",
+          "locationName":"notAfter"
+        },
+        "Status":{
+          "shape":"TokenState",
+          "locationName":"status"
+        },
+        "Tags":{
+          "shape":"TagList",
+          "locationName":"tagSet"
+        },
+        "State":{
+          "shape":"IpamExternalResourceVerificationTokenState",
+          "locationName":"state"
+        }
+      }
+    },
+    "IpamExternalResourceVerificationTokenId":{"type":"string"},
+    "IpamExternalResourceVerificationTokenSet":{
+      "type":"list",
+      "member":{
+        "shape":"IpamExternalResourceVerificationToken",
+        "locationName":"item"
+      }
+    },
+    "IpamExternalResourceVerificationTokenState":{
+      "type":"string",
+      "enum":[
+        "create-in-progress",
+        "create-complete",
+        "create-failed",
+        "delete-in-progress",
+        "delete-complete",
+        "delete-failed"
+      ]
+    },
     "IpamId":{"type":"string"},
     "IpamManagementState":{
       "type":"string",
@@ -37053,7 +37219,9 @@
         "ClientToken":{
           "shape":"String",
           "idempotencyToken":true
-        }
+        },
+        "VerificationMethod":{"shape":"VerificationMethod"},
+        "IpamExternalResourceVerificationTokenId":{"shape":"IpamExternalResourceVerificationTokenId"}
       }
     },
     "ProvisionIpamPoolCidrResult":{
@@ -39219,7 +39387,8 @@
         "vpc-encryption-control",
         "ipam-resource-discovery",
         "ipam-resource-discovery-association",
-        "instance-connect-endpoint"
+        "instance-connect-endpoint",
+        "ipam-external-resource-verification-token"
       ]
     },
     "ResponseError":{
@@ -43098,6 +43267,13 @@
         "permanent-restore-failed"
       ]
     },
+    "TokenState":{
+      "type":"string",
+      "enum":[
+        "valid",
+        "expired"
+      ]
+    },
     "TotalLocalStorageGB":{
       "type":"structure",
       "members":{
@@ -45483,6 +45659,13 @@
         "shape":"String",
         "locationName":"item"
       }
+    },
+    "VerificationMethod":{
+      "type":"string",
+      "enum":[
+        "remarks-x509",
+        "dns-token"
+      ]
     },
     "VerifiedAccessEndpoint":{
       "type":"structure",

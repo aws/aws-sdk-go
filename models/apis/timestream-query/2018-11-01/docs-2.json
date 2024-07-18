@@ -401,7 +401,7 @@
       "base": null,
       "refs": {
         "DescribeAccountSettingsResponse$QueryPricingModel": "<p>The pricing model for queries in your account.</p>",
-        "UpdateAccountSettingsRequest$QueryPricingModel": "<p>The pricing model for queries in an account.</p>",
+        "UpdateAccountSettingsRequest$QueryPricingModel": "<p>The pricing model for queries in an account.</p> <note> <p>The <code>QueryPricingModel</code> parameter is used by several Timestream operations; however, the <code>UpdateAccountSettings</code> API operation doesn't recognize any values other than <code>COMPUTE_UNITS</code>.</p> </note>",
         "UpdateAccountSettingsResponse$QueryPricingModel": "<p>The pricing model for an account.</p>"
       }
     },

@@ -5959,6 +5959,10 @@ type UpdateAccountSettingsInput struct {
 	MaxQueryTCU *int64 `type:"integer"`
 
 	// The pricing model for queries in an account.
+	//
+	// The QueryPricingModel parameter is used by several Timestream operations;
+	// however, the UpdateAccountSettings API operation doesn't recognize any values
+	// other than COMPUTE_UNITS.
 	QueryPricingModel *string `type:"string" enum:"QueryPricingModel"`
 }
 
