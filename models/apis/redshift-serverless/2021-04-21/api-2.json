@@ -164,7 +164,8 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ConflictException"},
         {"shape":"ValidationException"},
-        {"shape":"TooManyTagsException"}
+        {"shape":"TooManyTagsException"},
+        {"shape":"Ipv6CidrBlockNotFoundException"}
       ],
       "idempotent":true
     },
@@ -862,7 +863,8 @@
         {"shape":"InsufficientCapacityException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ConflictException"},
-        {"shape":"ValidationException"}
+        {"shape":"ValidationException"},
+        {"shape":"Ipv6CidrBlockNotFoundException"}
       ]
     }
   },
@@ -1116,6 +1118,7 @@
         "baseCapacity":{"shape":"Integer"},
         "configParameters":{"shape":"ConfigParameterList"},
         "enhancedVpcRouting":{"shape":"Boolean"},
+        "ipAddressType":{"shape":"IpAddressType"},
         "maxCapacity":{"shape":"Integer"},
         "namespaceName":{"shape":"NamespaceName"},
         "port":{"shape":"Integer"},
@@ -1502,6 +1505,18 @@
       },
       "exception":true
     },
+    "IpAddressType":{
+      "type":"string",
+      "pattern":"^(ipv4|dualstack)$"
+    },
+    "Ipv6CidrBlockNotFoundException":{
+      "type":"structure",
+      "required":["message"],
+      "members":{
+        "message":{"shape":"String"}
+      },
+      "exception":true
+    },
     "KmsKeyId":{"type":"string"},
     "ListCustomDomainAssociationsRequest":{
       "type":"structure",
@@ -1829,6 +1844,7 @@
       "type":"structure",
       "members":{
         "availabilityZone":{"shape":"String"},
+        "ipv6Address":{"shape":"String"},
         "networkInterfaceId":{"shape":"String"},
         "privateIpAddress":{"shape":"String"},
         "subnetId":{"shape":"String"}
@@ -2389,6 +2405,7 @@
         "baseCapacity":{"shape":"Integer"},
         "configParameters":{"shape":"ConfigParameterList"},
         "enhancedVpcRouting":{"shape":"Boolean"},
+        "ipAddressType":{"shape":"IpAddressType"},
         "maxCapacity":{"shape":"Integer"},
         "port":{"shape":"Integer"},
         "publiclyAccessible":{"shape":"Boolean"},
@@ -2497,6 +2514,7 @@
         "customDomainName":{"shape":"CustomDomainName"},
         "endpoint":{"shape":"Endpoint"},
         "enhancedVpcRouting":{"shape":"Boolean"},
+        "ipAddressType":{"shape":"IpAddressType"},
         "maxCapacity":{"shape":"Integer"},
         "namespaceName":{"shape":"String"},
         "patchVersion":{"shape":"String"},

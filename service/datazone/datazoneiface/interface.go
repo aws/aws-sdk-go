@@ -84,6 +84,10 @@ type DataZoneAPI interface {
 	CreateAssetWithContext(aws.Context, *datazone.CreateAssetInput, ...request.Option) (*datazone.CreateAssetOutput, error)
 	CreateAssetRequest(*datazone.CreateAssetInput) (*request.Request, *datazone.CreateAssetOutput)
 
+	CreateAssetFilter(*datazone.CreateAssetFilterInput) (*datazone.CreateAssetFilterOutput, error)
+	CreateAssetFilterWithContext(aws.Context, *datazone.CreateAssetFilterInput, ...request.Option) (*datazone.CreateAssetFilterOutput, error)
+	CreateAssetFilterRequest(*datazone.CreateAssetFilterInput) (*request.Request, *datazone.CreateAssetFilterOutput)
+
 	CreateAssetRevision(*datazone.CreateAssetRevisionInput) (*datazone.CreateAssetRevisionOutput, error)
 	CreateAssetRevisionWithContext(aws.Context, *datazone.CreateAssetRevisionInput, ...request.Option) (*datazone.CreateAssetRevisionOutput, error)
 	CreateAssetRevisionRequest(*datazone.CreateAssetRevisionInput) (*request.Request, *datazone.CreateAssetRevisionOutput)
@@ -160,6 +164,10 @@ type DataZoneAPI interface {
 	DeleteAssetWithContext(aws.Context, *datazone.DeleteAssetInput, ...request.Option) (*datazone.DeleteAssetOutput, error)
 	DeleteAssetRequest(*datazone.DeleteAssetInput) (*request.Request, *datazone.DeleteAssetOutput)
 
+	DeleteAssetFilter(*datazone.DeleteAssetFilterInput) (*datazone.DeleteAssetFilterOutput, error)
+	DeleteAssetFilterWithContext(aws.Context, *datazone.DeleteAssetFilterInput, ...request.Option) (*datazone.DeleteAssetFilterOutput, error)
+	DeleteAssetFilterRequest(*datazone.DeleteAssetFilterInput) (*request.Request, *datazone.DeleteAssetFilterOutput)
+
 	DeleteAssetType(*datazone.DeleteAssetTypeInput) (*datazone.DeleteAssetTypeOutput, error)
 	DeleteAssetTypeWithContext(aws.Context, *datazone.DeleteAssetTypeInput, ...request.Option) (*datazone.DeleteAssetTypeOutput, error)
 	DeleteAssetTypeRequest(*datazone.DeleteAssetTypeInput) (*request.Request, *datazone.DeleteAssetTypeOutput)
@@ -235,6 +243,10 @@ type DataZoneAPI interface {
 	GetAsset(*datazone.GetAssetInput) (*datazone.GetAssetOutput, error)
 	GetAssetWithContext(aws.Context, *datazone.GetAssetInput, ...request.Option) (*datazone.GetAssetOutput, error)
 	GetAssetRequest(*datazone.GetAssetInput) (*request.Request, *datazone.GetAssetOutput)
+
+	GetAssetFilter(*datazone.GetAssetFilterInput) (*datazone.GetAssetFilterOutput, error)
+	GetAssetFilterWithContext(aws.Context, *datazone.GetAssetFilterInput, ...request.Option) (*datazone.GetAssetFilterOutput, error)
+	GetAssetFilterRequest(*datazone.GetAssetFilterInput) (*request.Request, *datazone.GetAssetFilterOutput)
 
 	GetAssetType(*datazone.GetAssetTypeInput) (*datazone.GetAssetTypeOutput, error)
 	GetAssetTypeWithContext(aws.Context, *datazone.GetAssetTypeInput, ...request.Option) (*datazone.GetAssetTypeOutput, error)
@@ -331,6 +343,13 @@ type DataZoneAPI interface {
 	GetUserProfile(*datazone.GetUserProfileInput) (*datazone.GetUserProfileOutput, error)
 	GetUserProfileWithContext(aws.Context, *datazone.GetUserProfileInput, ...request.Option) (*datazone.GetUserProfileOutput, error)
 	GetUserProfileRequest(*datazone.GetUserProfileInput) (*request.Request, *datazone.GetUserProfileOutput)
+
+	ListAssetFilters(*datazone.ListAssetFiltersInput) (*datazone.ListAssetFiltersOutput, error)
+	ListAssetFiltersWithContext(aws.Context, *datazone.ListAssetFiltersInput, ...request.Option) (*datazone.ListAssetFiltersOutput, error)
+	ListAssetFiltersRequest(*datazone.ListAssetFiltersInput) (*request.Request, *datazone.ListAssetFiltersOutput)
+
+	ListAssetFiltersPages(*datazone.ListAssetFiltersInput, func(*datazone.ListAssetFiltersOutput, bool) bool) error
+	ListAssetFiltersPagesWithContext(aws.Context, *datazone.ListAssetFiltersInput, func(*datazone.ListAssetFiltersOutput, bool) bool, ...request.Option) error
 
 	ListAssetRevisions(*datazone.ListAssetRevisionsInput) (*datazone.ListAssetRevisionsOutput, error)
 	ListAssetRevisionsWithContext(aws.Context, *datazone.ListAssetRevisionsInput, ...request.Option) (*datazone.ListAssetRevisionsOutput, error)
@@ -550,6 +569,10 @@ type DataZoneAPI interface {
 	UntagResource(*datazone.UntagResourceInput) (*datazone.UntagResourceOutput, error)
 	UntagResourceWithContext(aws.Context, *datazone.UntagResourceInput, ...request.Option) (*datazone.UntagResourceOutput, error)
 	UntagResourceRequest(*datazone.UntagResourceInput) (*request.Request, *datazone.UntagResourceOutput)
+
+	UpdateAssetFilter(*datazone.UpdateAssetFilterInput) (*datazone.UpdateAssetFilterOutput, error)
+	UpdateAssetFilterWithContext(aws.Context, *datazone.UpdateAssetFilterInput, ...request.Option) (*datazone.UpdateAssetFilterOutput, error)
+	UpdateAssetFilterRequest(*datazone.UpdateAssetFilterInput) (*request.Request, *datazone.UpdateAssetFilterOutput)
 
 	UpdateDataSource(*datazone.UpdateDataSourceInput) (*datazone.UpdateDataSourceOutput, error)
 	UpdateDataSourceWithContext(aws.Context, *datazone.UpdateDataSourceInput, ...request.Option) (*datazone.UpdateDataSourceOutput, error)

@@ -39,6 +39,13 @@ const (
 	// The provided pagination token is invalid.
 	ErrCodeInvalidPaginationException = "InvalidPaginationException"
 
+	// ErrCodeIpv6CidrBlockNotFoundException for service response error code
+	// "Ipv6CidrBlockNotFoundException".
+	//
+	// There are no subnets in your VPC with associated IPv6 CIDR blocks. To use
+	// dual-stack mode, associate an IPv6 CIDR block with each subnet in your VPC.
+	ErrCodeIpv6CidrBlockNotFoundException = "Ipv6CidrBlockNotFoundException"
+
 	// ErrCodeResourceNotFoundException for service response error code
 	// "ResourceNotFoundException".
 	//
@@ -71,14 +78,15 @@ const (
 )
 
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
-	"AccessDeniedException":         newErrorAccessDeniedException,
-	"ConflictException":             newErrorConflictException,
-	"InsufficientCapacityException": newErrorInsufficientCapacityException,
-	"InternalServerException":       newErrorInternalServerException,
-	"InvalidPaginationException":    newErrorInvalidPaginationException,
-	"ResourceNotFoundException":     newErrorResourceNotFoundException,
-	"ServiceQuotaExceededException": newErrorServiceQuotaExceededException,
-	"ThrottlingException":           newErrorThrottlingException,
-	"TooManyTagsException":          newErrorTooManyTagsException,
-	"ValidationException":           newErrorValidationException,
+	"AccessDeniedException":          newErrorAccessDeniedException,
+	"ConflictException":              newErrorConflictException,
+	"InsufficientCapacityException":  newErrorInsufficientCapacityException,
+	"InternalServerException":        newErrorInternalServerException,
+	"InvalidPaginationException":     newErrorInvalidPaginationException,
+	"Ipv6CidrBlockNotFoundException": newErrorIpv6CidrBlockNotFoundException,
+	"ResourceNotFoundException":      newErrorResourceNotFoundException,
+	"ServiceQuotaExceededException":  newErrorServiceQuotaExceededException,
+	"ThrottlingException":            newErrorThrottlingException,
+	"TooManyTagsException":           newErrorTooManyTagsException,
+	"ValidationException":            newErrorValidationException,
 }
