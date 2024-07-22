@@ -1,3 +1,19 @@
+Release v1.55.0 (2024-07-22)
+===
+
+### Service Client Updates
+* `service/datazone`: Updates service API, documentation, and paginators
+* `service/ivs`: Updates service API and documentation
+* `service/redshift-serverless`: Updates service API and documentation
+
+### SDK Features
+* `service/mobile`: Remove Mobile
+  * This change removes the Mobile service, which has been deprecated.
+
+### SDK Bugs
+* Apply sensitive struct tag to lists/maps with sensitive members.
+  * This change propagates existing sensitive protection to lists/maps.
+
 Release v1.54.20 (2024-07-18)
 ===
 

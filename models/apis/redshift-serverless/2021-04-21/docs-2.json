@@ -513,10 +513,10 @@
     "IamRoleArn": {
       "base": null,
       "refs": {
-        "CreateScheduledActionRequest$roleArn": "<p>The ARN of the IAM role to assume to run the scheduled action. This IAM role must have permission to run the Amazon Redshift Serverless API operation in the scheduled action. This IAM role must allow the Amazon Redshift scheduler to schedule creating snapshots. (Principal scheduler.redshift.amazonaws.com) to assume permissions on your behalf. For more information about the IAM role to use with the Amazon Redshift scheduler, see <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/redshift-iam-access-control-identity-based.html\">Using Identity-Based Policies for Amazon Redshift</a> in the Amazon Redshift Cluster Management Guide</p>",
+        "CreateScheduledActionRequest$roleArn": "<p>The ARN of the IAM role to assume to run the scheduled action. This IAM role must have permission to run the Amazon Redshift Serverless API operation in the scheduled action. This IAM role must allow the Amazon Redshift scheduler to schedule creating snapshots. (Principal scheduler.redshift.amazonaws.com) to assume permissions on your behalf. For more information about the IAM role to use with the Amazon Redshift scheduler, see <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/redshift-iam-access-control-identity-based.html\">Using Identity-Based Policies for Amazon Redshift</a> in the Amazon Redshift Management Guide</p>",
         "IamRoleArnList$member": null,
-        "ScheduledActionResponse$roleArn": "<p>The ARN of the IAM role to assume to run the scheduled action. This IAM role must have permission to run the Amazon Redshift Serverless API operation in the scheduled action. This IAM role must allow the Amazon Redshift scheduler to schedule creating snapshots. (Principal scheduler.redshift.amazonaws.com) to assume permissions on your behalf. For more information about the IAM role to use with the Amazon Redshift scheduler, see <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/redshift-iam-access-control-identity-based.html\">Using Identity-Based Policies for Amazon Redshift</a> in the Amazon Redshift Cluster Management Guide</p>",
-        "UpdateScheduledActionRequest$roleArn": "<p>The ARN of the IAM role to assume to run the scheduled action. This IAM role must have permission to run the Amazon Redshift Serverless API operation in the scheduled action. This IAM role must allow the Amazon Redshift scheduler to schedule creating snapshots (Principal scheduler.redshift.amazonaws.com) to assume permissions on your behalf. For more information about the IAM role to use with the Amazon Redshift scheduler, see <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/redshift-iam-access-control-identity-based.html\">Using Identity-Based Policies for Amazon Redshift</a> in the Amazon Redshift Cluster Management Guide</p>"
+        "ScheduledActionResponse$roleArn": "<p>The ARN of the IAM role to assume to run the scheduled action. This IAM role must have permission to run the Amazon Redshift Serverless API operation in the scheduled action. This IAM role must allow the Amazon Redshift scheduler to schedule creating snapshots. (Principal scheduler.redshift.amazonaws.com) to assume permissions on your behalf. For more information about the IAM role to use with the Amazon Redshift scheduler, see <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/redshift-iam-access-control-identity-based.html\">Using Identity-Based Policies for Amazon Redshift</a> in the Amazon Redshift Management Guide</p>",
+        "UpdateScheduledActionRequest$roleArn": "<p>The ARN of the IAM role to assume to run the scheduled action. This IAM role must have permission to run the Amazon Redshift Serverless API operation in the scheduled action. This IAM role must allow the Amazon Redshift scheduler to schedule creating snapshots (Principal scheduler.redshift.amazonaws.com) to assume permissions on your behalf. For more information about the IAM role to use with the Amazon Redshift scheduler, see <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/redshift-iam-access-control-identity-based.html\">Using Identity-Based Policies for Amazon Redshift</a> in the Amazon Redshift Management Guide</p>"
       }
     },
     "IamRoleArnList": {
@@ -566,6 +566,19 @@
     },
     "InvalidPaginationException": {
       "base": "<p>The provided pagination token is invalid.</p>",
+      "refs": {
+      }
+    },
+    "IpAddressType": {
+      "base": null,
+      "refs": {
+        "CreateWorkgroupRequest$ipAddressType": "<p>The IP address type that the workgroup supports. Possible values are <code>ipv4</code> and <code>dualstack</code>.</p>",
+        "UpdateWorkgroupRequest$ipAddressType": "<p>The IP address type that the workgroup supports. Possible values are <code>ipv4</code> and <code>dualstack</code>.</p>",
+        "Workgroup$ipAddressType": "<p>The IP address type that the workgroup supports. Possible values are <code>ipv4</code> and <code>dualstack</code>.</p>"
+      }
+    },
+    "Ipv6CidrBlockNotFoundException": {
+      "base": "<p>There are no subnets in your VPC with associated IPv6 CIDR blocks. To use dual-stack mode, associate an IPv6 CIDR block with each subnet in your VPC.</p>",
       "refs": {
       }
     },
@@ -1110,6 +1123,7 @@
         "InsufficientCapacityException$message": null,
         "InternalServerException$message": null,
         "InvalidPaginationException$message": null,
+        "Ipv6CidrBlockNotFoundException$message": null,
         "ListEndpointAccessRequest$nextToken": "<p>If your initial <code>ListEndpointAccess</code> operation returns a <code>nextToken</code>, you can include the returned <code>nextToken</code> in following <code>ListEndpointAccess</code> operations, which returns results in the next page.</p>",
         "ListEndpointAccessRequest$vpcId": "<p>The unique identifier of the virtual private cloud with access to Amazon Redshift Serverless.</p>",
         "ListEndpointAccessRequest$workgroupName": "<p>The name of the workgroup associated with the VPC endpoint to return.</p>",
@@ -1136,6 +1150,7 @@
         "Namespace$namespaceArn": "<p>The Amazon Resource Name (ARN) associated with a namespace.</p>",
         "Namespace$namespaceId": "<p>The unique identifier of a namespace.</p>",
         "NetworkInterface$availabilityZone": "<p>The availability Zone.</p>",
+        "NetworkInterface$ipv6Address": "<p>The IPv6 address of the network interface within the subnet.</p>",
         "NetworkInterface$networkInterfaceId": "<p>The unique identifier of the network interface.</p>",
         "NetworkInterface$privateIpAddress": "<p>The IPv4 address of the network interface within the subnet.</p>",
         "NetworkInterface$subnetId": "<p>The unique identifier of the subnet.</p>",

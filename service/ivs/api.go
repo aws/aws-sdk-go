@@ -9488,14 +9488,14 @@ func RecordingMode_Values() []string {
 }
 
 const (
-	// RenditionConfigurationRenditionFullHd is a RenditionConfigurationRendition enum value
-	RenditionConfigurationRenditionFullHd = "FULL_HD"
+	// RenditionConfigurationRenditionSd is a RenditionConfigurationRendition enum value
+	RenditionConfigurationRenditionSd = "SD"
 
 	// RenditionConfigurationRenditionHd is a RenditionConfigurationRendition enum value
 	RenditionConfigurationRenditionHd = "HD"
 
-	// RenditionConfigurationRenditionSd is a RenditionConfigurationRendition enum value
-	RenditionConfigurationRenditionSd = "SD"
+	// RenditionConfigurationRenditionFullHd is a RenditionConfigurationRendition enum value
+	RenditionConfigurationRenditionFullHd = "FULL_HD"
 
 	// RenditionConfigurationRenditionLowestResolution is a RenditionConfigurationRendition enum value
 	RenditionConfigurationRenditionLowestResolution = "LOWEST_RESOLUTION"
@@ -9504,9 +9504,9 @@ const (
 // RenditionConfigurationRendition_Values returns all elements of the RenditionConfigurationRendition enum
 func RenditionConfigurationRendition_Values() []string {
 	return []string{
-		RenditionConfigurationRenditionFullHd,
-		RenditionConfigurationRenditionHd,
 		RenditionConfigurationRenditionSd,
+		RenditionConfigurationRenditionHd,
+		RenditionConfigurationRenditionFullHd,
 		RenditionConfigurationRenditionLowestResolution,
 	}
 }
@@ -9568,14 +9568,14 @@ func StreamState_Values() []string {
 }
 
 const (
-	// ThumbnailConfigurationResolutionFullHd is a ThumbnailConfigurationResolution enum value
-	ThumbnailConfigurationResolutionFullHd = "FULL_HD"
+	// ThumbnailConfigurationResolutionSd is a ThumbnailConfigurationResolution enum value
+	ThumbnailConfigurationResolutionSd = "SD"
 
 	// ThumbnailConfigurationResolutionHd is a ThumbnailConfigurationResolution enum value
 	ThumbnailConfigurationResolutionHd = "HD"
 
-	// ThumbnailConfigurationResolutionSd is a ThumbnailConfigurationResolution enum value
-	ThumbnailConfigurationResolutionSd = "SD"
+	// ThumbnailConfigurationResolutionFullHd is a ThumbnailConfigurationResolution enum value
+	ThumbnailConfigurationResolutionFullHd = "FULL_HD"
 
 	// ThumbnailConfigurationResolutionLowestResolution is a ThumbnailConfigurationResolution enum value
 	ThumbnailConfigurationResolutionLowestResolution = "LOWEST_RESOLUTION"
@@ -9584,9 +9584,9 @@ const (
 // ThumbnailConfigurationResolution_Values returns all elements of the ThumbnailConfigurationResolution enum
 func ThumbnailConfigurationResolution_Values() []string {
 	return []string{
-		ThumbnailConfigurationResolutionFullHd,
-		ThumbnailConfigurationResolutionHd,
 		ThumbnailConfigurationResolutionSd,
+		ThumbnailConfigurationResolutionHd,
+		ThumbnailConfigurationResolutionFullHd,
 		ThumbnailConfigurationResolutionLowestResolution,
 	}
 }
