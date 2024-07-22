@@ -5516,7 +5516,7 @@ type KeyBlockHeaders struct {
 	// 2 characters are reserved for optional block ID and 2 characters reserved
 	// for optional block length. More than one optional blocks can be included
 	// as long as the combined length does not increase 112 characters.
-	OptionalBlocks map[string]*string `type:"map"`
+	OptionalBlocks map[string]*string `type:"map" sensitive:"true"`
 }
 
 // String returns the string representation.

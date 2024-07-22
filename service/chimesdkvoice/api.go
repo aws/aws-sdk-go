@@ -10159,7 +10159,7 @@ type AssociatePhoneNumbersWithVoiceConnectorGroupInput struct {
 	// List of phone numbers, in E.164 format.
 	//
 	// E164PhoneNumbers is a required field
-	E164PhoneNumbers []*string `type:"list" required:"true"`
+	E164PhoneNumbers []*string `type:"list" required:"true" sensitive:"true"`
 
 	// If true, associates the provided phone numbers with the provided Amazon Chime
 	// SDK Voice Connector Group and removes any previously existing associations.
@@ -10267,7 +10267,7 @@ type AssociatePhoneNumbersWithVoiceConnectorInput struct {
 	// List of phone numbers, in E.164 format.
 	//
 	// E164PhoneNumbers is a required field
-	E164PhoneNumbers []*string `type:"list" required:"true"`
+	E164PhoneNumbers []*string `type:"list" required:"true" sensitive:"true"`
 
 	// If true, associates the provided phone numbers with the provided Amazon Chime
 	// SDK Voice Connector and removes any previously existing associations. If
@@ -10836,7 +10836,7 @@ type CreatePhoneNumberOrderInput struct {
 	// List of phone numbers, in E.164 format.
 	//
 	// E164PhoneNumbers is a required field
-	E164PhoneNumbers []*string `type:"list" required:"true"`
+	E164PhoneNumbers []*string `type:"list" required:"true" sensitive:"true"`
 
 	// Specifies the name assigned to one or more phone numbers.
 	//
@@ -10966,7 +10966,7 @@ type CreateProxySessionInput struct {
 	// The participant phone numbers.
 	//
 	// ParticipantPhoneNumbers is a required field
-	ParticipantPhoneNumbers []*string `min:"2" type:"list" required:"true"`
+	ParticipantPhoneNumbers []*string `min:"2" type:"list" required:"true" sensitive:"true"`
 
 	// The Voice Connector ID.
 	//
@@ -11109,7 +11109,7 @@ type CreateSipMediaApplicationCallInput struct {
 
 	// Context passed to a CreateSipMediaApplication API call. For example, you
 	// could pass key-value pairs such as: "FirstName": "John", "LastName": "Doe"
-	ArgumentsMap map[string]*string `type:"map"`
+	ArgumentsMap map[string]*string `type:"map" sensitive:"true"`
 
 	// The phone number that a user calls from. This is a phone number in your Amazon
 	// Chime SDK phone number inventory.
@@ -11122,7 +11122,7 @@ type CreateSipMediaApplicationCallInput struct {
 	FromPhoneNumber *string `type:"string" required:"true" sensitive:"true"`
 
 	// The SIP headers added to an outbound call leg.
-	SipHeaders map[string]*string `type:"map"`
+	SipHeaders map[string]*string `type:"map" sensitive:"true"`
 
 	// The ID of the SIP media application.
 	//
@@ -12836,7 +12836,7 @@ type DeleteVoiceConnectorTerminationCredentialsInput struct {
 	// format.
 	//
 	// Usernames is a required field
-	Usernames []*string `type:"list" required:"true"`
+	Usernames []*string `type:"list" required:"true" sensitive:"true"`
 
 	// The Voice Connector ID.
 	//
@@ -13134,7 +13134,7 @@ type DisassociatePhoneNumbersFromVoiceConnectorGroupInput struct {
 	// The list of phone numbers, in E.164 format.
 	//
 	// E164PhoneNumbers is a required field
-	E164PhoneNumbers []*string `type:"list" required:"true"`
+	E164PhoneNumbers []*string `type:"list" required:"true" sensitive:"true"`
 
 	// The Voice Connector group ID.
 	//
@@ -13230,7 +13230,7 @@ type DisassociatePhoneNumbersFromVoiceConnectorInput struct {
 	// List of phone numbers, in E.164 format.
 	//
 	// E164PhoneNumbers is a required field
-	E164PhoneNumbers []*string `type:"list" required:"true"`
+	E164PhoneNumbers []*string `type:"list" required:"true" sensitive:"true"`
 
 	// The Voice Connector ID.
 	//
@@ -16249,7 +16249,7 @@ type ListVoiceConnectorTerminationCredentialsOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A list of user names.
-	Usernames []*string `type:"list"`
+	Usernames []*string `type:"list" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -18839,7 +18839,7 @@ type SearchAvailablePhoneNumbersOutput struct {
 	_ struct{} `type:"structure"`
 
 	// Confines a search to just the phone numbers in the E.164 format.
-	E164PhoneNumbers []*string `type:"list"`
+	E164PhoneNumbers []*string `type:"list" sensitive:"true"`
 
 	// The token used to return the next page of results.
 	NextToken *string `type:"string"`
@@ -19160,7 +19160,7 @@ type SipMediaApplicationAlexaSkillConfiguration struct {
 	// The ID of the Alexa Skill configuration.
 	//
 	// AlexaSkillIds is a required field
-	AlexaSkillIds []*string `min:"1" type:"list" required:"true"`
+	AlexaSkillIds []*string `min:"1" type:"list" required:"true" sensitive:"true"`
 
 	// The status of the Alexa Skill configuration.
 	//
@@ -20725,7 +20725,7 @@ type UntagResourceInput struct {
 	// The keys of the tags being removed from the resource.
 	//
 	// TagKeys is a required field
-	TagKeys []*string `min:"1" type:"list" required:"true"`
+	TagKeys []*string `min:"1" type:"list" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -21263,7 +21263,7 @@ type UpdateSipMediaApplicationCallInput struct {
 	// event. Can contain 0-20 key-value pairs.
 	//
 	// Arguments is a required field
-	Arguments map[string]*string `type:"map" required:"true"`
+	Arguments map[string]*string `type:"map" required:"true" sensitive:"true"`
 
 	// The ID of the SIP media application handling the call.
 	//

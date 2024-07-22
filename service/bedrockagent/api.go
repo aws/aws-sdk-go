@@ -21603,7 +21603,7 @@ type S3DataSourceConfiguration struct {
 
 	// A list of S3 prefixes to include certain files or content. For more information,
 	// see Organizing objects using prefixes (https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-prefixes.html).
-	InclusionPrefixes []*string `locationName:"inclusionPrefixes" min:"1" type:"list"`
+	InclusionPrefixes []*string `locationName:"inclusionPrefixes" min:"1" type:"list" sensitive:"true"`
 }
 
 // String returns the string representation.

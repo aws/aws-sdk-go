@@ -7904,7 +7904,7 @@ type UntagResourceInput struct {
 	// The tag keys.
 	//
 	// TagKeys is a required field
-	TagKeys []*string `min:"1" type:"list" required:"true"`
+	TagKeys []*string `min:"1" type:"list" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation.

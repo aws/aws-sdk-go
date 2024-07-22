@@ -4576,11 +4576,11 @@ type CodeConfigurationValues struct {
 	//
 	//    * Currently, cross account referencing of Amazon Web Services Systems
 	//    Manager Parameter Store parameter is not supported.
-	RuntimeEnvironmentSecrets map[string]*string `type:"map"`
+	RuntimeEnvironmentSecrets map[string]*string `type:"map" sensitive:"true"`
 
 	// The environment variables that are available to your running App Runner service.
 	// An array of key-value pairs.
-	RuntimeEnvironmentVariables map[string]*string `type:"map"`
+	RuntimeEnvironmentVariables map[string]*string `type:"map" sensitive:"true"`
 
 	// The command App Runner runs to start your application.
 	//
@@ -7395,11 +7395,11 @@ type ImageConfiguration struct {
 	//
 	//    * Currently, cross account referencing of Amazon Web Services Systems
 	//    Manager Parameter Store parameter is not supported.
-	RuntimeEnvironmentSecrets map[string]*string `type:"map"`
+	RuntimeEnvironmentSecrets map[string]*string `type:"map" sensitive:"true"`
 
 	// Environment variables that are available to your running App Runner service.
 	// An array of key-value pairs.
-	RuntimeEnvironmentVariables map[string]*string `type:"map"`
+	RuntimeEnvironmentVariables map[string]*string `type:"map" sensitive:"true"`
 
 	// An optional command that App Runner runs to start the application in the
 	// source image. If specified, this command overrides the Docker image’s default

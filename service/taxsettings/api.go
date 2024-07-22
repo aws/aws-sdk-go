@@ -2919,7 +2919,7 @@ type ListTaxRegistrationsOutput struct {
 	// for each of the linked accounts.
 	//
 	// AccountDetails is a required field
-	AccountDetails []*AccountDetails `locationName:"accountDetails" type:"list" required:"true"`
+	AccountDetails []*AccountDetails `locationName:"accountDetails" type:"list" required:"true" sensitive:"true"`
 
 	// The token to retrieve the next set of results.
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`

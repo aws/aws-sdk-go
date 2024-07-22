@@ -5907,7 +5907,7 @@ type CustomAuthCredentials struct {
 	_ struct{} `type:"structure"`
 
 	// A map that holds custom authentication credentials.
-	CredentialsMap map[string]*string `locationName:"credentialsMap" type:"map"`
+	CredentialsMap map[string]*string `locationName:"credentialsMap" type:"map" sensitive:"true"`
 
 	// The custom authentication type that the connector uses.
 	//

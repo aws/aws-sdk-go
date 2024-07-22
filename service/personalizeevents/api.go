@@ -554,7 +554,7 @@ type ActionInteraction struct {
 	// the user. For example, ["actionId1", "actionId2", "actionId3"]. Amazon Personalize
 	// doesn't use impressions data from action interaction events. Instead, record
 	// multiple events for each action and use the Viewed event type.
-	Impression []*string `locationName:"impression" min:"1" type:"list"`
+	Impression []*string `locationName:"impression" min:"1" type:"list" sensitive:"true"`
 
 	// A string map of event-specific data that you might choose to record. For
 	// example, if a user takes an action, other than the action ID, you might also
@@ -756,7 +756,7 @@ type Event struct {
 	// user. For example, ["itemId1", "itemId2", "itemId3"]. Provide a list of items
 	// to manually record impressions data for an event. For more information on
 	// recording impressions data, see Recording impressions data (https://docs.aws.amazon.com/personalize/latest/dg/recording-events.html#putevents-including-impressions-data).
-	Impression []*string `locationName:"impression" min:"1" type:"list"`
+	Impression []*string `locationName:"impression" min:"1" type:"list" sensitive:"true"`
 
 	// The item ID key that corresponds to the ITEM_ID field of the Item interactions
 	// dataset's schema.
@@ -1308,7 +1308,7 @@ type PutEventsInput struct {
 	// A list of event data from the session.
 	//
 	// EventList is a required field
-	EventList []*Event `locationName:"eventList" min:"1" type:"list" required:"true"`
+	EventList []*Event `locationName:"eventList" min:"1" type:"list" required:"true" sensitive:"true"`
 
 	// The session ID associated with the user's visit. Your application generates
 	// the sessionId when a user first visits your website or uses your application.

@@ -7097,7 +7097,7 @@ type AssessmentControlSet struct {
 	Controls []*AssessmentControl `locationName:"controls" type:"list"`
 
 	// The delegations that are associated with the control set.
-	Delegations []*Delegation `locationName:"delegations" type:"list"`
+	Delegations []*Delegation `locationName:"delegations" type:"list" sensitive:"true"`
 
 	// The description for the control set.
 	Description *string `locationName:"description" min:"1" type:"string"`
@@ -7756,7 +7756,7 @@ type AssessmentMetadata struct {
 	CreationTime *time.Time `locationName:"creationTime" type:"timestamp"`
 
 	// The delegations that are associated with the assessment.
-	Delegations []*Delegation `locationName:"delegations" type:"list"`
+	Delegations []*Delegation `locationName:"delegations" type:"list" sensitive:"true"`
 
 	// The description of the assessment.
 	//
@@ -7897,7 +7897,7 @@ type AssessmentMetadataItem struct {
 	CreationTime *time.Time `locationName:"creationTime" type:"timestamp"`
 
 	// The delegations that are associated with the assessment.
-	Delegations []*Delegation `locationName:"delegations" type:"list"`
+	Delegations []*Delegation `locationName:"delegations" type:"list" sensitive:"true"`
 
 	// The unique identifier for the assessment.
 	Id *string `locationName:"id" min:"36" type:"string"`
@@ -8663,7 +8663,7 @@ type BatchCreateDelegationByAssessmentOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The delegations that are associated with the assessment.
-	Delegations []*Delegation `locationName:"delegations" type:"list"`
+	Delegations []*Delegation `locationName:"delegations" type:"list" sensitive:"true"`
 
 	// A list of errors that the BatchCreateDelegationByAssessment API returned.
 	//

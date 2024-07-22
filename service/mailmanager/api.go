@@ -10914,7 +10914,7 @@ type ReplaceRecipientAction struct {
 	_ struct{} `type:"structure"`
 
 	// This action specifies the replacement recipient email addresses to insert.
-	ReplaceWith []*string `min:"1" type:"list"`
+	ReplaceWith []*string `min:"1" type:"list" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -13347,7 +13347,7 @@ type UntagResourceInput struct {
 	// the specified resource.
 	//
 	// TagKeys is a required field
-	TagKeys []*string `type:"list" required:"true"`
+	TagKeys []*string `type:"list" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation.

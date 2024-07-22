@@ -7986,7 +7986,7 @@ type ListCustomLineItemsFilter struct {
 	BillingGroups []*string `min:"1" type:"list"`
 
 	// A list of custom line items to retrieve information.
-	Names []*string `min:"1" type:"list"`
+	Names []*string `min:"1" type:"list" sensitive:"true"`
 }
 
 // String returns the string representation.

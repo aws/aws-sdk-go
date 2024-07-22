@@ -5322,7 +5322,7 @@ type SparkSubmit struct {
 	EntryPoint *string `locationName:"entryPoint" min:"1" type:"string" required:"true" sensitive:"true"`
 
 	// The arguments for the Spark submit job run.
-	EntryPointArguments []*string `locationName:"entryPointArguments" type:"list"`
+	EntryPointArguments []*string `locationName:"entryPointArguments" type:"list" sensitive:"true"`
 
 	// The parameters for the Spark submit job run.
 	//

@@ -12688,7 +12688,7 @@ type MessageAttributeValue struct {
 	_ struct{} `type:"structure"`
 
 	// The strings in a message attribute value.
-	StringValues []*string `type:"list"`
+	StringValues []*string `type:"list" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -14819,7 +14819,7 @@ type UntagResourceInput struct {
 	// The tag keys.
 	//
 	// TagKeys is a required field
-	TagKeys []*string `min:"1" type:"list" required:"true"`
+	TagKeys []*string `min:"1" type:"list" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation.

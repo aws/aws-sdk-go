@@ -10787,7 +10787,7 @@ type SelectedVideoStreams struct {
 	AttendeeIds []*string `min:"1" type:"list"`
 
 	// The external user IDs of the streams selected for a media pipeline.
-	ExternalUserIds []*string `min:"1" type:"list"`
+	ExternalUserIds []*string `min:"1" type:"list" sensitive:"true"`
 }
 
 // String returns the string representation.

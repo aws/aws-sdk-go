@@ -651,7 +651,7 @@ type ActiveContext struct {
 	// values for slots in subsequent events.
 	//
 	// Parameters is a required field
-	Parameters map[string]*string `locationName:"parameters" type:"map" required:"true"`
+	Parameters map[string]*string `locationName:"parameters" type:"map" required:"true" sensitive:"true"`
 
 	// The length of time or number of turns that a context remains active.
 	//

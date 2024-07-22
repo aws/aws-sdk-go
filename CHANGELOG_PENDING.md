@@ -5,3 +5,5 @@
 ### SDK Enhancements
 
 ### SDK Bugs
+* Apply sensitive struct tag to lists/maps with sensitive members.
+  * This change propagates existing sensitive protection to lists/maps.

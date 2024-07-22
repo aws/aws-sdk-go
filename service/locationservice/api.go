@@ -8261,7 +8261,7 @@ type CalculateRouteInput struct {
 	// is longer than 400 km returns a 400 RoutesValidationException error.
 	//
 	// Valid Values: [-180 to 180,-90 to 90]
-	WaypointPositions [][]*float64 `type:"list"`
+	WaypointPositions [][]*float64 `type:"list" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -8436,7 +8436,7 @@ type CalculateRouteMatrixInput struct {
 	// Valid Values: [-180 to 180,-90 to 90]
 	//
 	// DeparturePositions is a required field
-	DeparturePositions [][]*float64 `min:"1" type:"list" required:"true"`
+	DeparturePositions [][]*float64 `min:"1" type:"list" required:"true" sensitive:"true"`
 
 	// Specifies the desired time of departure. Uses the given time to calculate
 	// the route matrix. You can't set both DepartureTime and DepartNow. If neither
@@ -8466,7 +8466,7 @@ type CalculateRouteMatrixInput struct {
 	// Valid Values: [-180 to 180,-90 to 90]
 	//
 	// DestinationPositions is a required field
-	DestinationPositions [][]*float64 `min:"1" type:"list" required:"true"`
+	DestinationPositions [][]*float64 `min:"1" type:"list" required:"true" sensitive:"true"`
 
 	// Set the unit system to specify the distance.
 	//
@@ -8631,11 +8631,11 @@ type CalculateRouteMatrixOutput struct {
 	// positions are snapped to the closest road. For Esri route calculator resources,
 	// this returns the list of departure/origin positions used for calculation
 	// of the RouteMatrix.
-	SnappedDeparturePositions [][]*float64 `min:"1" type:"list"`
+	SnappedDeparturePositions [][]*float64 `min:"1" type:"list" sensitive:"true"`
 
 	// The list of destination positions for the route matrix used for calculation
 	// of the RouteMatrix.
-	SnappedDestinationPositions [][]*float64 `min:"1" type:"list"`
+	SnappedDestinationPositions [][]*float64 `min:"1" type:"list" sensitive:"true"`
 
 	// Contains information about the route matrix, DataSource, DistanceUnit, RouteCount
 	// and ErrorCount.
@@ -14517,7 +14517,7 @@ type LegGeometry struct {
 	// last position is the closest to the end position for the leg.
 	//
 	//    * For example, [[-123.117, 49.284],[-123.115, 49.285],[-123.115, 49.285]]
-	LineString [][]*float64 `min:"2" type:"list"`
+	LineString [][]*float64 `min:"2" type:"list" sensitive:"true"`
 }
 
 // String returns the string representation.

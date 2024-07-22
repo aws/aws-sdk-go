@@ -7140,7 +7140,7 @@ type SparkSubmitJobDriver struct {
 	EntryPoint *string `locationName:"entryPoint" min:"1" type:"string" required:"true" sensitive:"true"`
 
 	// The arguments for job application.
-	EntryPointArguments []*string `locationName:"entryPointArguments" type:"list"`
+	EntryPointArguments []*string `locationName:"entryPointArguments" type:"list" sensitive:"true"`
 
 	// The Spark submit parameters that are used for job runs.
 	//

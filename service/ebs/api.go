@@ -1504,7 +1504,7 @@ type ListChangedBlocksOutput struct {
 	BlockSize *int64 `type:"integer"`
 
 	// An array of objects containing information about the changed blocks.
-	ChangedBlocks []*ChangedBlock `type:"list"`
+	ChangedBlocks []*ChangedBlock `type:"list" sensitive:"true"`
 
 	// The time when the BlockToken expires.
 	ExpiryTime *time.Time `type:"timestamp"`

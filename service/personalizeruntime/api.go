@@ -308,7 +308,7 @@ type GetActionRecommendationsInput struct {
 	// use that portion of the expression to filter recommendations.
 	//
 	// For more information, see Filtering recommendations and user segments (https://docs.aws.amazon.com/personalize/latest/dg/filter.html).
-	FilterValues map[string]*string `locationName:"filterValues" type:"map"`
+	FilterValues map[string]*string `locationName:"filterValues" type:"map" sensitive:"true"`
 
 	// The number of results to return. The default is 5. The maximum is 100.
 	NumResults *int64 `locationName:"numResults" type:"integer"`
@@ -419,7 +419,7 @@ type GetPersonalizedRankingInput struct {
 	// The contextual metadata to use when getting recommendations. Contextual metadata
 	// includes any interaction information that might be relevant when getting
 	// a user's recommendations, such as the user's current location or device type.
-	Context map[string]*string `locationName:"context" type:"map"`
+	Context map[string]*string `locationName:"context" type:"map" sensitive:"true"`
 
 	// The Amazon Resource Name (ARN) of a filter you created to include items or
 	// exclude items from recommendations for a given user. For more information,
@@ -438,7 +438,7 @@ type GetPersonalizedRankingInput struct {
 	// that portion of the expression to filter recommendations.
 	//
 	// For more information, see Filtering Recommendations (https://docs.aws.amazon.com/personalize/latest/dg/filter.html).
-	FilterValues map[string]*string `locationName:"filterValues" type:"map"`
+	FilterValues map[string]*string `locationName:"filterValues" type:"map" sensitive:"true"`
 
 	// A list of items (by itemId) to rank. If an item was not included in the training
 	// dataset, the item is appended to the end of the reranked list. If you are
@@ -593,7 +593,7 @@ type GetRecommendationsInput struct {
 	// The contextual metadata to use when getting recommendations. Contextual metadata
 	// includes any interaction information that might be relevant when getting
 	// a user's recommendations, such as the user's current location or device type.
-	Context map[string]*string `locationName:"context" type:"map"`
+	Context map[string]*string `locationName:"context" type:"map" sensitive:"true"`
 
 	// The ARN of the filter to apply to the returned recommendations. For more
 	// information, see Filtering Recommendations (https://docs.aws.amazon.com/personalize/latest/dg/filter.html).
@@ -613,7 +613,7 @@ type GetRecommendationsInput struct {
 	// that portion of the expression to filter recommendations.
 	//
 	// For more information, see Filtering recommendations and user segments (https://docs.aws.amazon.com/personalize/latest/dg/filter.html).
-	FilterValues map[string]*string `locationName:"filterValues" type:"map"`
+	FilterValues map[string]*string `locationName:"filterValues" type:"map" sensitive:"true"`
 
 	// The item ID to provide recommendations for.
 	//
@@ -1014,7 +1014,7 @@ type Promotion struct {
 	//
 	// For more information on creating filters, see Filtering recommendations and
 	// user segments (https://docs.aws.amazon.com/personalize/latest/dg/filter.html).
-	FilterValues map[string]*string `locationName:"filterValues" type:"map"`
+	FilterValues map[string]*string `locationName:"filterValues" type:"map" sensitive:"true"`
 
 	// The name of the promotion.
 	Name *string `locationName:"name" min:"1" type:"string"`

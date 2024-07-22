@@ -3104,7 +3104,7 @@ type ViewContent struct {
 	_ struct{} `type:"structure"`
 
 	// A list of actions possible from the view
-	Actions []*string `type:"list"`
+	Actions []*string `type:"list" sensitive:"true"`
 
 	// The schema representing the input data that the view template must be supplied
 	// to render.
