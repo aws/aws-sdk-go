@@ -7129,7 +7129,7 @@ type CreateBrowserSettingsInput struct {
 	CustomerManagedKey *string `locationName:"customerManagedKey" min:"20" type:"string"`
 
 	// The tags to add to the browser settings resource. A tag is a key-value pair.
-	Tags []*Tag `locationName:"tags" type:"list"`
+	Tags []*Tag `locationName:"tags" type:"list" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -7305,7 +7305,7 @@ type CreateIdentityProviderInput struct {
 	PortalArn *string `locationName:"portalArn" min:"20" type:"string" required:"true"`
 
 	// The tags to add to the identity provider resource. A tag is a key-value pair.
-	Tags []*Tag `locationName:"tags" type:"list"`
+	Tags []*Tag `locationName:"tags" type:"list" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -7480,7 +7480,7 @@ type CreateIpAccessSettingsInput struct {
 
 	// The tags to add to the IP access settings resource. A tag is a key-value
 	// pair.
-	Tags []*Tag `locationName:"tags" type:"list"`
+	Tags []*Tag `locationName:"tags" type:"list" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -7651,7 +7651,7 @@ type CreateNetworkSettingsInput struct {
 	SubnetIds []*string `locationName:"subnetIds" min:"2" type:"list" required:"true"`
 
 	// The tags to add to the network settings resource. A tag is a key-value pair.
-	Tags []*Tag `locationName:"tags" type:"list"`
+	Tags []*Tag `locationName:"tags" type:"list" sensitive:"true"`
 
 	// The VPC that streaming instances will connect to.
 	//
@@ -7829,7 +7829,7 @@ type CreatePortalInput struct {
 	MaxConcurrentSessions *int64 `locationName:"maxConcurrentSessions" min:"1" type:"integer"`
 
 	// The tags to add to the web portal. A tag is a key-value pair.
-	Tags []*Tag `locationName:"tags" type:"list"`
+	Tags []*Tag `locationName:"tags" type:"list" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -7994,7 +7994,7 @@ type CreateTrustStoreInput struct {
 	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
 
 	// The tags to add to the trust store. A tag is a key-value pair.
-	Tags []*Tag `locationName:"tags" type:"list"`
+	Tags []*Tag `locationName:"tags" type:"list" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -8111,7 +8111,7 @@ type CreateUserAccessLoggingSettingsInput struct {
 	KinesisStreamArn *string `locationName:"kinesisStreamArn" min:"20" type:"string" required:"true"`
 
 	// The tags to add to the user settings resource. A tag is a key-value pair.
-	Tags []*Tag `locationName:"tags" type:"list"`
+	Tags []*Tag `locationName:"tags" type:"list" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -8275,7 +8275,7 @@ type CreateUserSettingsInput struct {
 	PrintAllowed *string `locationName:"printAllowed" type:"string" required:"true" enum:"EnabledType"`
 
 	// The tags to add to the user settings resource. A tag is a key-value pair.
-	Tags []*Tag `locationName:"tags" type:"list"`
+	Tags []*Tag `locationName:"tags" type:"list" sensitive:"true"`
 
 	// Specifies whether the user can upload files from the local device to the
 	// streaming session.
@@ -11302,7 +11302,7 @@ type ListTagsForResourceOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The tags of the resource.
-	Tags []*Tag `locationName:"tags" type:"list"`
+	Tags []*Tag `locationName:"tags" type:"list" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -12497,7 +12497,7 @@ type TagResourceInput struct {
 	// The tags of the resource.
 	//
 	// Tags is a required field
-	Tags []*Tag `locationName:"tags" type:"list" required:"true"`
+	Tags []*Tag `locationName:"tags" type:"list" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -12821,7 +12821,7 @@ type UntagResourceInput struct {
 	// The list of tag keys to remove from the resource.
 	//
 	// TagKeys is a required field
-	TagKeys []*string `location:"querystring" locationName:"tagKeys" type:"list" required:"true"`
+	TagKeys []*string `location:"querystring" locationName:"tagKeys" type:"list" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation.

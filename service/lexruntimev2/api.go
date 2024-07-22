@@ -1093,7 +1093,7 @@ type ActiveContext struct {
 	// for the session are cleared.
 	//
 	// ContextAttributes is a required field
-	ContextAttributes map[string]*string `locationName:"contextAttributes" type:"map" required:"true"`
+	ContextAttributes map[string]*string `locationName:"contextAttributes" type:"map" required:"true" sensitive:"true"`
 
 	// The name of the context.
 	//

@@ -9761,7 +9761,7 @@ type CreateListInput struct {
 	// The names of the elements, if providing. You can also create an empty list
 	// and add elements later using the UpdateList (https://docs.aws.amazon.com/frauddetector/latest/api/API_Updatelist.html)
 	// API.
-	Elements []*string `locationName:"elements" type:"list"`
+	Elements []*string `locationName:"elements" type:"list" sensitive:"true"`
 
 	// The name of the list.
 	//
@@ -12583,7 +12583,7 @@ type Event struct {
 	CurrentLabel *string `locationName:"currentLabel" type:"string"`
 
 	// The event entities.
-	Entities []*Entity `locationName:"entities" type:"list"`
+	Entities []*Entity `locationName:"entities" type:"list" sensitive:"true"`
 
 	// The event ID.
 	EventId *string `locationName:"eventId" type:"string"`
@@ -12598,7 +12598,7 @@ type Event struct {
 	// Names of the event type's variables you defined in Amazon Fraud Detector
 	// to represent data elements and their corresponding values for the event you
 	// are sending for evaluation.
-	EventVariables map[string]*string `locationName:"eventVariables" type:"map"`
+	EventVariables map[string]*string `locationName:"eventVariables" type:"map" sensitive:"true"`
 
 	// The timestamp associated with the label to update. The timestamp must be
 	// specified using ISO 8601 standard in UTC.
@@ -14206,7 +14206,7 @@ type GetEventPredictionInput struct {
 	// use "UNKNOWN."
 	//
 	// Entities is a required field
-	Entities []*Entity `locationName:"entities" type:"list" required:"true"`
+	Entities []*Entity `locationName:"entities" type:"list" required:"true" sensitive:"true"`
 
 	// The unique ID used to identify the event.
 	//
@@ -14248,7 +14248,7 @@ type GetEventPredictionInput struct {
 	// that is provided for the variable.
 	//
 	// EventVariables is a required field
-	EventVariables map[string]*string `locationName:"eventVariables" min:"1" type:"map" required:"true"`
+	EventVariables map[string]*string `locationName:"eventVariables" min:"1" type:"map" required:"true" sensitive:"true"`
 
 	// The Amazon SageMaker model endpoint input data blobs.
 	//
@@ -14784,7 +14784,7 @@ type GetEventTypesOutput struct {
 	_ struct{} `type:"structure"`
 
 	// An array of event types.
-	EventTypes []*EventType `locationName:"eventTypes" type:"list"`
+	EventTypes []*EventType `locationName:"eventTypes" type:"list" sensitive:"true"`
 
 	// The next page token.
 	NextToken *string `locationName:"nextToken" type:"string"`
@@ -15154,7 +15154,7 @@ type GetListElementsOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The list elements.
-	Elements []*string `locationName:"elements" type:"list"`
+	Elements []*string `locationName:"elements" type:"list" sensitive:"true"`
 
 	// The next page token.
 	NextToken *string `locationName:"nextToken" type:"string"`
@@ -18951,7 +18951,7 @@ type SendEventInput struct {
 	// An array of entities.
 	//
 	// Entities is a required field
-	Entities []*Entity `locationName:"entities" type:"list" required:"true"`
+	Entities []*Entity `locationName:"entities" type:"list" required:"true" sensitive:"true"`
 
 	// The event ID to upload.
 	//
@@ -18974,7 +18974,7 @@ type SendEventInput struct {
 	// are sending for evaluation.
 	//
 	// EventVariables is a required field
-	EventVariables map[string]*string `locationName:"eventVariables" min:"1" type:"map" required:"true"`
+	EventVariables map[string]*string `locationName:"eventVariables" min:"1" type:"map" required:"true" sensitive:"true"`
 
 	// The timestamp associated with the label. Required if specifying assignedLabel.
 	LabelTimestamp *string `locationName:"labelTimestamp" min:"10" type:"string"`
@@ -20404,7 +20404,7 @@ type UpdateListInput struct {
 	//
 	// If you are deleting all elements from the list, use REPLACE for the updateMode
 	// and provide an empty list (0 elements).
-	Elements []*string `locationName:"elements" type:"list"`
+	Elements []*string `locationName:"elements" type:"list" sensitive:"true"`
 
 	// The name of the list to update.
 	//

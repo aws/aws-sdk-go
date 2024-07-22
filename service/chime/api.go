@@ -24028,7 +24028,7 @@ type AssociatePhoneNumbersWithVoiceConnectorGroupInput struct {
 	// List of phone numbers, in E.164 format.
 	//
 	// E164PhoneNumbers is a required field
-	E164PhoneNumbers []*string `type:"list" required:"true"`
+	E164PhoneNumbers []*string `type:"list" required:"true" sensitive:"true"`
 
 	// If true, associates the provided phone numbers with the provided Amazon Chime
 	// Voice Connector Group and removes any previously existing associations. If
@@ -24136,7 +24136,7 @@ type AssociatePhoneNumbersWithVoiceConnectorInput struct {
 	// List of phone numbers, in E.164 format.
 	//
 	// E164PhoneNumbers is a required field
-	E164PhoneNumbers []*string `type:"list" required:"true"`
+	E164PhoneNumbers []*string `type:"list" required:"true" sensitive:"true"`
 
 	// If true, associates the provided phone numbers with the provided Amazon Chime
 	// Voice Connector and removes any previously existing associations. If false,
@@ -28880,7 +28880,7 @@ type CreatePhoneNumberOrderInput struct {
 	// List of phone numbers, in E.164 format.
 	//
 	// E164PhoneNumbers is a required field
-	E164PhoneNumbers []*string `type:"list" required:"true"`
+	E164PhoneNumbers []*string `type:"list" required:"true" sensitive:"true"`
 
 	// The phone number product type.
 	//
@@ -28997,7 +28997,7 @@ type CreateProxySessionInput struct {
 	// The participant phone numbers.
 	//
 	// ParticipantPhoneNumbers is a required field
-	ParticipantPhoneNumbers []*string `min:"2" type:"list" required:"true"`
+	ParticipantPhoneNumbers []*string `min:"2" type:"list" required:"true" sensitive:"true"`
 
 	// The Amazon Chime voice connector ID.
 	//
@@ -29383,7 +29383,7 @@ type CreateSipMediaApplicationCallInput struct {
 	FromPhoneNumber *string `type:"string" required:"true" sensitive:"true"`
 
 	// The SIP headers added to an outbound call leg.
-	SipHeaders map[string]*string `type:"map"`
+	SipHeaders map[string]*string `type:"map" sensitive:"true"`
 
 	// The ID of the SIP media application.
 	//
@@ -32307,7 +32307,7 @@ type DeleteVoiceConnectorTerminationCredentialsInput struct {
 	// format.
 	//
 	// Usernames is a required field
-	Usernames []*string `type:"list" required:"true"`
+	Usernames []*string `type:"list" required:"true" sensitive:"true"`
 
 	// The Amazon Chime Voice Connector ID.
 	//
@@ -33447,7 +33447,7 @@ type DisassociatePhoneNumbersFromVoiceConnectorGroupInput struct {
 	// List of phone numbers, in E.164 format.
 	//
 	// E164PhoneNumbers is a required field
-	E164PhoneNumbers []*string `type:"list" required:"true"`
+	E164PhoneNumbers []*string `type:"list" required:"true" sensitive:"true"`
 
 	// The Amazon Chime Voice Connector group ID.
 	//
@@ -33543,7 +33543,7 @@ type DisassociatePhoneNumbersFromVoiceConnectorInput struct {
 	// List of phone numbers, in E.164 format.
 	//
 	// E164PhoneNumbers is a required field
-	E164PhoneNumbers []*string `type:"list" required:"true"`
+	E164PhoneNumbers []*string `type:"list" required:"true" sensitive:"true"`
 
 	// The Amazon Chime Voice Connector ID.
 	//
@@ -37157,7 +37157,7 @@ type InviteUsersInput struct {
 	// The user email addresses to which to send the email invitation.
 	//
 	// UserEmailList is a required field
-	UserEmailList []*string `type:"list" required:"true"`
+	UserEmailList []*string `type:"list" required:"true" sensitive:"true"`
 
 	// The user type.
 	UserType *string `type:"string" enum:"UserType"`
@@ -40526,7 +40526,7 @@ type ListVoiceConnectorTerminationCredentialsOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A list of user names.
-	Usernames []*string `type:"list"`
+	Usernames []*string `type:"list" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -44595,7 +44595,7 @@ type SearchAvailablePhoneNumbersOutput struct {
 	_ struct{} `type:"structure"`
 
 	// List of phone numbers, in E.164 format.
-	E164PhoneNumbers []*string `type:"list"`
+	E164PhoneNumbers []*string `type:"list" sensitive:"true"`
 
 	// The token used to retrieve the next page of search results.
 	NextToken *string `type:"string"`
@@ -44640,7 +44640,7 @@ type SelectedVideoStreams struct {
 	AttendeeIds []*string `min:"1" type:"list"`
 
 	// The external user IDs of the streams selected for a media capture pipeline.
-	ExternalUserIds []*string `min:"1" type:"list"`
+	ExternalUserIds []*string `min:"1" type:"list" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -46591,7 +46591,7 @@ type UntagAttendeeInput struct {
 	// The tag keys.
 	//
 	// TagKeys is a required field
-	TagKeys []*string `min:"1" type:"list" required:"true"`
+	TagKeys []*string `min:"1" type:"list" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -46691,7 +46691,7 @@ type UntagMeetingInput struct {
 	// The tag keys.
 	//
 	// TagKeys is a required field
-	TagKeys []*string `min:"1" type:"list" required:"true"`
+	TagKeys []*string `min:"1" type:"list" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -46783,7 +46783,7 @@ type UntagResourceInput struct {
 	// The tag keys.
 	//
 	// TagKeys is a required field
-	TagKeys []*string `min:"1" type:"list" required:"true"`
+	TagKeys []*string `min:"1" type:"list" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -48425,7 +48425,7 @@ type UpdateSipMediaApplicationCallInput struct {
 	// event. Can contain 0-20 key-value pairs.
 	//
 	// Arguments is a required field
-	Arguments map[string]*string `type:"map" required:"true"`
+	Arguments map[string]*string `type:"map" required:"true" sensitive:"true"`
 
 	// The ID of the SIP media application handling the call.
 	//

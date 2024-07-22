@@ -2731,7 +2731,7 @@ type FilePart struct {
 	_ struct{} `type:"structure"`
 
 	// Files containing intermediate response for the user.
-	Files []*OutputFile `locationName:"files" type:"list"`
+	Files []*OutputFile `locationName:"files" type:"list" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -4423,10 +4423,10 @@ type GuardrailTrace struct {
 	Action *string `locationName:"action" type:"string" enum:"GuardrailAction"`
 
 	// The details of the input assessments used in the Guardrail Trace.
-	InputAssessments []*GuardrailAssessment `locationName:"inputAssessments" type:"list"`
+	InputAssessments []*GuardrailAssessment `locationName:"inputAssessments" type:"list" sensitive:"true"`
 
 	// The details of the output assessments used in the Guardrail Trace.
-	OutputAssessments []*GuardrailAssessment `locationName:"outputAssessments" type:"list"`
+	OutputAssessments []*GuardrailAssessment `locationName:"outputAssessments" type:"list" sensitive:"true"`
 
 	// The details of the trace Id used in the Guardrail Trace.
 	TraceId *string `locationName:"traceId" min:"2" type:"string"`
@@ -7357,11 +7357,11 @@ type RetrievalFilter struct {
 
 	// Knowledge base data sources are returned if their metadata attributes fulfill
 	// all the filter conditions inside this list.
-	AndAll []*RetrievalFilter `locationName:"andAll" min:"2" type:"list"`
+	AndAll []*RetrievalFilter `locationName:"andAll" min:"2" type:"list" sensitive:"true"`
 
 	// Knowledge base data sources are returned if their metadata attributes fulfill
 	// at least one of the filter conditions inside this list.
-	OrAll []*RetrievalFilter `locationName:"orAll" min:"2" type:"list"`
+	OrAll []*RetrievalFilter `locationName:"orAll" min:"2" type:"list" sensitive:"true"`
 }
 
 // String returns the string representation.

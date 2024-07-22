@@ -21104,7 +21104,7 @@ type UntagResourceInput struct {
 	// The keys of the tags to be removed.
 	//
 	// TagKeys is a required field
-	TagKeys []*string `type:"list" required:"true"`
+	TagKeys []*string `type:"list" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation.

@@ -4670,7 +4670,7 @@ type Toolchain struct {
 
 	// The list of parameter overrides to be passed into the toolchain template
 	// during stack provisioning, if any.
-	StackParameters map[string]*string `locationName:"stackParameters" type:"map"`
+	StackParameters map[string]*string `locationName:"stackParameters" type:"map" sensitive:"true"`
 }
 
 // String returns the string representation.

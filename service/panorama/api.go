@@ -4200,7 +4200,7 @@ type CreateNodeFromTemplateJobInput struct {
 	// Template parameters for the node.
 	//
 	// TemplateParameters is a required field
-	TemplateParameters map[string]*string `type:"map" required:"true"`
+	TemplateParameters map[string]*string `type:"map" required:"true" sensitive:"true"`
 
 	// The type of node.
 	//
@@ -5751,7 +5751,7 @@ type DescribeNodeFromTemplateJobOutput struct {
 	// The job's template parameters.
 	//
 	// TemplateParameters is a required field
-	TemplateParameters map[string]*string `type:"map" required:"true"`
+	TemplateParameters map[string]*string `type:"map" required:"true" sensitive:"true"`
 
 	// The job's template type.
 	//

@@ -5246,7 +5246,7 @@ type EvaluationDatasetMetricConfig struct {
 	// name parameter specified in HumanEvaluationCustomMetric.
 	//
 	// MetricNames is a required field
-	MetricNames []*string `locationName:"metricNames" min:"1" type:"list" required:"true"`
+	MetricNames []*string `locationName:"metricNames" min:"1" type:"list" required:"true" sensitive:"true"`
 
 	// The task type you want the model to carry out.
 	//
@@ -6455,7 +6455,7 @@ type GetGuardrailOutput struct {
 
 	// Appears if the status of the guardrail is FAILED. A list of recommendations
 	// to carry out before retrying the request.
-	FailureRecommendations []*string `locationName:"failureRecommendations" type:"list"`
+	FailureRecommendations []*string `locationName:"failureRecommendations" type:"list" sensitive:"true"`
 
 	// The ARN of the guardrail.
 	//
@@ -6489,7 +6489,7 @@ type GetGuardrailOutput struct {
 
 	// Appears if the status is FAILED. A list of reasons for why the guardrail
 	// failed to be created, updated, versioned, or deleted.
-	StatusReasons []*string `locationName:"statusReasons" type:"list"`
+	StatusReasons []*string `locationName:"statusReasons" type:"list" sensitive:"true"`
 
 	// The topic policy that was configured for the guardrail.
 	TopicPolicy *GuardrailTopicPolicy `locationName:"topicPolicy" type:"structure"`
@@ -8394,7 +8394,7 @@ type GuardrailTopic struct {
 
 	// A list of prompts, each of which is an example of a prompt that can be categorized
 	// as belonging to the topic.
-	Examples []*string `locationName:"examples" type:"list"`
+	Examples []*string `locationName:"examples" type:"list" sensitive:"true"`
 
 	// The name of the topic to deny.
 	//
@@ -8466,7 +8466,7 @@ type GuardrailTopicConfig struct {
 
 	// A list of prompts, each of which is an example of a prompt that can be categorized
 	// as belonging to the topic.
-	Examples []*string `locationName:"examples" type:"list"`
+	Examples []*string `locationName:"examples" type:"list" sensitive:"true"`
 
 	// The name of the topic to deny.
 	//

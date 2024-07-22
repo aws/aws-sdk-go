@@ -6717,7 +6717,7 @@ type UntagResourceInput struct {
 	// A list of keys. Tag keys are the unique identifiers of tags.
 	//
 	// TagKeys is a required field
-	TagKeys []*string `locationName:"tagKeys" type:"list" required:"true"`
+	TagKeys []*string `locationName:"tagKeys" type:"list" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation.

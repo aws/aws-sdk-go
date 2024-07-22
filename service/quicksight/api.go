@@ -39068,16 +39068,16 @@ type CustomParameterValues struct {
 	_ struct{} `type:"structure"`
 
 	// A list of datetime-type parameter values.
-	DateTimeValues []*time.Time `type:"list"`
+	DateTimeValues []*time.Time `type:"list" sensitive:"true"`
 
 	// A list of decimal-type parameter values.
-	DecimalValues []*float64 `type:"list"`
+	DecimalValues []*float64 `type:"list" sensitive:"true"`
 
 	// A list of integer-type parameter values.
-	IntegerValues []*int64 `type:"list"`
+	IntegerValues []*int64 `type:"list" sensitive:"true"`
 
 	// A list of string-type parameter values.
-	StringValues []*string `type:"list"`
+	StringValues []*string `type:"list" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -43607,7 +43607,7 @@ type DateTimeDefaultValues struct {
 	RollingDate *RollingDateConfiguration `type:"structure"`
 
 	// The static values of the DataTimeDefaultValues.
-	StaticValues []*time.Time `type:"list"`
+	StaticValues []*time.Time `type:"list" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -43820,7 +43820,7 @@ type DateTimeParameter struct {
 	// The values for the date-time parameter.
 	//
 	// Values is a required field
-	Values []*time.Time `type:"list" required:"true"`
+	Values []*time.Time `type:"list" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -44259,7 +44259,7 @@ type DecimalDefaultValues struct {
 	DynamicValue *DynamicDefaultValue `type:"structure"`
 
 	// The static values of the DecimalDefaultValues.
-	StaticValues []*float64 `type:"list"`
+	StaticValues []*float64 `type:"list" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -44319,7 +44319,7 @@ type DecimalParameter struct {
 	// The values for the decimal parameter.
 	//
 	// Values is a required field
-	Values []*float64 `type:"list" required:"true"`
+	Values []*float64 `type:"list" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -66435,7 +66435,7 @@ type IntegerDefaultValues struct {
 	DynamicValue *DynamicDefaultValue `type:"structure"`
 
 	// The static values of the IntegerDefaultValues.
-	StaticValues []*int64 `type:"list"`
+	StaticValues []*int64 `type:"list" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -66495,7 +66495,7 @@ type IntegerParameter struct {
 	// The values for the integer parameter.
 	//
 	// Values is a required field
-	Values []*int64 `type:"list" required:"true"`
+	Values []*int64 `type:"list" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -88835,7 +88835,7 @@ type SemanticType struct {
 	FalseyCellValue *string `type:"string" sensitive:"true"`
 
 	// The other names or aliases for the false cell value.
-	FalseyCellValueSynonyms []*string `type:"list"`
+	FalseyCellValueSynonyms []*string `type:"list" sensitive:"true"`
 
 	// The semantic type sub type name.
 	SubTypeName *string `type:"string"`
@@ -88848,7 +88848,7 @@ type SemanticType struct {
 	TruthyCellValue *string `type:"string" sensitive:"true"`
 
 	// The other names or aliases for the true cell value.
-	TruthyCellValueSynonyms []*string `type:"list"`
+	TruthyCellValueSynonyms []*string `type:"list" sensitive:"true"`
 
 	// The semantic type name.
 	TypeName *string `type:"string"`
@@ -92597,7 +92597,7 @@ type StringDefaultValues struct {
 	DynamicValue *DynamicDefaultValue `type:"structure"`
 
 	// The static values of the DecimalDefaultValues.
-	StaticValues []*string `type:"list"`
+	StaticValues []*string `type:"list" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -92718,7 +92718,7 @@ type StringParameter struct {
 	// The values of a string parameter.
 	//
 	// Values is a required field
-	Values []*string `type:"list" required:"true"`
+	Values []*string `type:"list" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation.

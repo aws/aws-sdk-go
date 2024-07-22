@@ -1005,13 +1005,13 @@ type AwsVpcConfiguration struct {
 	// must all be in the same VPC. You can specify as many as five security groups.
 	// If you do not specify a security group, the default security group for the
 	// VPC is used.
-	SecurityGroups []*string `type:"list"`
+	SecurityGroups []*string `type:"list" sensitive:"true"`
 
 	// Specifies the subnets associated with the task. These subnets must all be
 	// in the same VPC. You can specify as many as 16 subnets.
 	//
 	// Subnets is a required field
-	Subnets []*string `type:"list" required:"true"`
+	Subnets []*string `type:"list" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -1823,7 +1823,7 @@ type CreatePipeInput struct {
 	SourceParameters *PipeSourceParameters `type:"structure"`
 
 	// The list of key-value pairs to associate with the pipe.
-	Tags map[string]*string `min:"1" type:"map"`
+	Tags map[string]*string `min:"1" type:"map" sensitive:"true"`
 
 	// The ARN of the target resource.
 	//
@@ -2332,7 +2332,7 @@ type DescribePipeOutput struct {
 	StateReason *string `type:"string"`
 
 	// The list of key-value pairs to associate with the pipe.
-	Tags map[string]*string `min:"1" type:"map"`
+	Tags map[string]*string `min:"1" type:"map" sensitive:"true"`
 
 	// The ARN of the target resource.
 	Target *string `min:"1" type:"string"`
@@ -3580,7 +3580,7 @@ type ListTagsForResourceOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The list of key-value pairs to associate with the pipe.
-	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
+	Tags map[string]*string `locationName:"tags" min:"1" type:"map" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -4110,15 +4110,15 @@ type PipeEnrichmentHttpParameters struct {
 
 	// The headers that need to be sent as part of request invoking the API Gateway
 	// REST API or EventBridge ApiDestination.
-	HeaderParameters map[string]*string `type:"map"`
+	HeaderParameters map[string]*string `type:"map" sensitive:"true"`
 
 	// The path parameter values to be used to populate API Gateway REST API or
 	// EventBridge ApiDestination path wildcards ("*").
-	PathParameterValues []*string `type:"list"`
+	PathParameterValues []*string `type:"list" sensitive:"true"`
 
 	// The query string keys/values that need to be sent as part of request invoking
 	// the API Gateway REST API or EventBridge ApiDestination.
-	QueryStringParameters map[string]*string `type:"map"`
+	QueryStringParameters map[string]*string `type:"map" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -5179,7 +5179,7 @@ type PipeSourceSelfManagedKafkaParameters struct {
 	_ struct{} `type:"structure"`
 
 	// An array of server URLs.
-	AdditionalBootstrapServers []*string `type:"list"`
+	AdditionalBootstrapServers []*string `type:"list" sensitive:"true"`
 
 	// The maximum number of records to include in each batch.
 	BatchSize *int64 `min:"1" type:"integer"`
@@ -5932,15 +5932,15 @@ type PipeTargetHttpParameters struct {
 
 	// The headers that need to be sent as part of request invoking the API Gateway
 	// REST API or EventBridge ApiDestination.
-	HeaderParameters map[string]*string `type:"map"`
+	HeaderParameters map[string]*string `type:"map" sensitive:"true"`
 
 	// The path parameter values to be used to populate API Gateway REST API or
 	// EventBridge ApiDestination path wildcards ("*").
-	PathParameterValues []*string `type:"list"`
+	PathParameterValues []*string `type:"list" sensitive:"true"`
 
 	// The query string keys/values that need to be sent as part of request invoking
 	// the API Gateway REST API or EventBridge ApiDestination.
-	QueryStringParameters map[string]*string `type:"map"`
+	QueryStringParameters map[string]*string `type:"map" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -6313,7 +6313,7 @@ type PipeTargetRedshiftDataParameters struct {
 	// The SQL statement text to run.
 	//
 	// Sqls is a required field
-	Sqls []*string `min:"1" type:"list" required:"true"`
+	Sqls []*string `min:"1" type:"list" required:"true" sensitive:"true"`
 
 	// The name of the SQL statement. You can name the SQL statement when you create
 	// it to identify the query.
@@ -7192,11 +7192,11 @@ type SelfManagedKafkaAccessConfigurationVpc struct {
 	// groups must all be in the same VPC. You can specify as many as five security
 	// groups. If you do not specify a security group, the default security group
 	// for the VPC is used.
-	SecurityGroup []*string `type:"list"`
+	SecurityGroup []*string `type:"list" sensitive:"true"`
 
 	// Specifies the subnets associated with the stream. These subnets must all
 	// be in the same VPC. You can specify as many as 16 subnets.
-	Subnets []*string `type:"list"`
+	Subnets []*string `type:"list" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -7730,7 +7730,7 @@ type TagResourceInput struct {
 	// The list of key-value pairs associated with the pipe.
 	//
 	// Tags is a required field
-	Tags map[string]*string `locationName:"tags" min:"1" type:"map" required:"true"`
+	Tags map[string]*string `locationName:"tags" min:"1" type:"map" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation.

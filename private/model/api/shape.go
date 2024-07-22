@@ -600,7 +600,7 @@ func (ref *ShapeRef) GoTags(toplevel bool, isRequired bool) string {
 		tags = append(tags, ShapeTag{"ignore", "true"})
 	}
 
-	if ref.Shape.Sensitive {
+	if ref.Shape.IsSensitive() {
 		tags = append(tags, ShapeTag{"sensitive", "true"})
 	}
 
@@ -616,6 +616,21 @@ func (s *Shape) HasPayloadMembers() bool {
 		}
 	}
 
+	return false
+}
+
+// IsSensitive checks whether the Shape itself is sensitive, or if the Shape is
+// a collection/map with a sensitive member.
+func (s *Shape) IsSensitive() bool {
+	if s.Sensitive {
+		return true
+	}
+	if s.MemberRef.Shape != nil && s.MemberRef.Shape.Sensitive {
+		return true
+	}
+	if s.ValueRef.Shape != nil && s.ValueRef.Shape.Sensitive {
+		return true
+	}
 	return false
 }
 

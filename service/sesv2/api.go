@@ -20300,10 +20300,10 @@ type MessageInsightsFilters struct {
 	_ struct{} `type:"structure"`
 
 	// The recipient's email address.
-	Destination []*string `type:"list"`
+	Destination []*string `type:"list" sensitive:"true"`
 
 	// The from address used to send the message.
-	FromEmailAddress []*string `type:"list"`
+	FromEmailAddress []*string `type:"list" sensitive:"true"`
 
 	// The recipient's ISP (e.g., Gmail, Yahoo, etc.).
 	Isp []*string `type:"list"`
@@ -20320,7 +20320,7 @@ type MessageInsightsFilters struct {
 	LastEngagementEvent []*string `type:"list" enum:"EngagementEventType"`
 
 	// The subject line of the message.
-	Subject []*string `type:"list"`
+	Subject []*string `type:"list" sensitive:"true"`
 }
 
 // String returns the string representation.

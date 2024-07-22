@@ -7493,7 +7493,7 @@ type AnalysisTemplate struct {
 	_ struct{} `type:"structure"`
 
 	// The parameters of the analysis template.
-	AnalysisParameters []*AnalysisParameter `locationName:"analysisParameters" type:"list"`
+	AnalysisParameters []*AnalysisParameter `locationName:"analysisParameters" type:"list" sensitive:"true"`
 
 	// The Amazon Resource Name (ARN) of the analysis template.
 	//
@@ -8598,7 +8598,7 @@ type CollaborationAnalysisTemplate struct {
 	_ struct{} `type:"structure"`
 
 	// The analysis parameters that have been specified in the analysis template.
-	AnalysisParameters []*AnalysisParameter `locationName:"analysisParameters" type:"list"`
+	AnalysisParameters []*AnalysisParameter `locationName:"analysisParameters" type:"list" sensitive:"true"`
 
 	// The Amazon Resource Name (ARN) of the analysis template.
 	//
@@ -10823,7 +10823,7 @@ type CreateAnalysisTemplateInput struct {
 	_ struct{} `type:"structure"`
 
 	// The parameters of the analysis template.
-	AnalysisParameters []*AnalysisParameter `locationName:"analysisParameters" type:"list"`
+	AnalysisParameters []*AnalysisParameter `locationName:"analysisParameters" type:"list" sensitive:"true"`
 
 	// The description of the analysis template.
 	Description *string `locationName:"description" type:"string"`

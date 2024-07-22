@@ -18092,7 +18092,7 @@ type ListComponentOutputsOutput struct {
 	// An array of component Infrastructure as Code (IaC) outputs.
 	//
 	// Outputs is a required field
-	Outputs []*Output_ `locationName:"outputs" type:"list" required:"true"`
+	Outputs []*Output_ `locationName:"outputs" type:"list" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -18731,7 +18731,7 @@ type ListEnvironmentOutputsOutput struct {
 	// An array of environment outputs with detail data.
 	//
 	// Outputs is a required field
-	Outputs []*Output_ `locationName:"outputs" type:"list" required:"true"`
+	Outputs []*Output_ `locationName:"outputs" type:"list" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -19540,7 +19540,7 @@ type ListServiceInstanceOutputsOutput struct {
 	// An array of service instance Infrastructure as Code (IaC) outputs.
 	//
 	// Outputs is a required field
-	Outputs []*Output_ `locationName:"outputs" type:"list" required:"true"`
+	Outputs []*Output_ `locationName:"outputs" type:"list" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -19962,7 +19962,7 @@ type ListServicePipelineOutputsOutput struct {
 	// An array of service pipeline Infrastructure as Code (IaC) outputs.
 	//
 	// Outputs is a required field
-	Outputs []*Output_ `locationName:"outputs" type:"list" required:"true"`
+	Outputs []*Output_ `locationName:"outputs" type:"list" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -20545,7 +20545,7 @@ type NotifyResourceDeploymentStatusChangeInput struct {
 	DeploymentId *string `locationName:"deploymentId" type:"string"`
 
 	// The provisioned resource state change detail data that's returned by Proton.
-	Outputs []*Output_ `locationName:"outputs" type:"list"`
+	Outputs []*Output_ `locationName:"outputs" type:"list" sensitive:"true"`
 
 	// The provisioned resource Amazon Resource Name (ARN).
 	//

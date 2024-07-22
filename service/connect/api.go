@@ -69690,7 +69690,7 @@ type SearchableContactAttributesCriteria struct {
 	// The list of values to search for within a user-defined contact attribute.
 	//
 	// Values is a required field
-	Values []*string `type:"list" required:"true"`
+	Values []*string `type:"list" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -74760,7 +74760,7 @@ type TranscriptCriteria struct {
 	// The words or phrases used to search within a transcript.
 	//
 	// SearchText is a required field
-	SearchText []*string `type:"list" required:"true"`
+	SearchText []*string `type:"list" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -82658,7 +82658,7 @@ type ViewContent struct {
 	_ struct{} `type:"structure"`
 
 	// A list of possible actions from the view.
-	Actions []*string `type:"list"`
+	Actions []*string `type:"list" sensitive:"true"`
 
 	// The data schema matching data that the view template must be provided to
 	// render.
@@ -82715,7 +82715,7 @@ type ViewInputContent struct {
 	_ struct{} `type:"structure"`
 
 	// A list of possible actions from the view.
-	Actions []*string `type:"list"`
+	Actions []*string `type:"list" sensitive:"true"`
 
 	// The view template representing the structure of the view.
 	Template *string `type:"string"`

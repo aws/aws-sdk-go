@@ -12939,7 +12939,7 @@ type Attachments struct {
 	// A list of manifests which describe job attachment configurations.
 	//
 	// Manifests is a required field
-	Manifests []*ManifestProperties `locationName:"manifests" min:"1" type:"list" required:"true"`
+	Manifests []*ManifestProperties `locationName:"manifests" min:"1" type:"list" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -15154,7 +15154,7 @@ type CreateQueueInput struct {
 	JobRunAsUser *JobRunAsUser `locationName:"jobRunAsUser" type:"structure"`
 
 	// The file system location name to include in the queue.
-	RequiredFileSystemLocationNames []*string `locationName:"requiredFileSystemLocationNames" type:"list"`
+	RequiredFileSystemLocationNames []*string `locationName:"requiredFileSystemLocationNames" type:"list" sensitive:"true"`
 
 	// The IAM role ARN that workers will use while running jobs for this queue.
 	RoleArn *string `locationName:"roleArn" type:"string"`
@@ -15333,7 +15333,7 @@ type CreateStorageProfileInput struct {
 	FarmId *string `location:"uri" locationName:"farmId" type:"string" required:"true"`
 
 	// File system paths to include in the storage profile.
-	FileSystemLocations []*FileSystemLocation `locationName:"fileSystemLocations" type:"list"`
+	FileSystemLocations []*FileSystemLocation `locationName:"fileSystemLocations" type:"list" sensitive:"true"`
 
 	// The type of operating system (OS) for the storage profile.
 	//
@@ -20456,7 +20456,7 @@ type GetQueueOutput struct {
 	QueueId *string `locationName:"queueId" type:"string" required:"true"`
 
 	// A list of the required file system location names in the queue.
-	RequiredFileSystemLocationNames []*string `locationName:"requiredFileSystemLocationNames" type:"list"`
+	RequiredFileSystemLocationNames []*string `locationName:"requiredFileSystemLocationNames" type:"list" sensitive:"true"`
 
 	// The IAM role ARN.
 	RoleArn *string `locationName:"roleArn" type:"string"`
@@ -21598,7 +21598,7 @@ type GetStorageProfileForQueueOutput struct {
 	DisplayName *string `locationName:"displayName" min:"1" type:"string" required:"true"`
 
 	// The location of the files for the storage profile within the queue.
-	FileSystemLocations []*FileSystemLocation `locationName:"fileSystemLocations" type:"list"`
+	FileSystemLocations []*FileSystemLocation `locationName:"fileSystemLocations" type:"list" sensitive:"true"`
 
 	// The operating system of the storage profile in the queue.
 	//
@@ -21738,7 +21738,7 @@ type GetStorageProfileOutput struct {
 	DisplayName *string `locationName:"displayName" min:"1" type:"string" required:"true"`
 
 	// The location of the files for the storage profile.
-	FileSystemLocations []*FileSystemLocation `locationName:"fileSystemLocations" type:"list"`
+	FileSystemLocations []*FileSystemLocation `locationName:"fileSystemLocations" type:"list" sensitive:"true"`
 
 	// The operating system (OS) for the storage profile.
 	//
@@ -22741,7 +22741,7 @@ type JobDetailsEntity struct {
 	Parameters map[string]*JobParameter `locationName:"parameters" type:"map" sensitive:"true"`
 
 	// The path mapping rules.
-	PathMappingRules []*PathMappingRule `locationName:"pathMappingRules" type:"list"`
+	PathMappingRules []*PathMappingRule `locationName:"pathMappingRules" type:"list" sensitive:"true"`
 
 	// The queue role ARN.
 	QueueRoleArn *string `locationName:"queueRoleArn" type:"string"`
@@ -33575,10 +33575,10 @@ type UpdateQueueInput struct {
 	QueueId *string `location:"uri" locationName:"queueId" type:"string" required:"true"`
 
 	// The required file system location names to add to the queue.
-	RequiredFileSystemLocationNamesToAdd []*string `locationName:"requiredFileSystemLocationNamesToAdd" type:"list"`
+	RequiredFileSystemLocationNamesToAdd []*string `locationName:"requiredFileSystemLocationNamesToAdd" type:"list" sensitive:"true"`
 
 	// The required file system location names to remove from the queue.
-	RequiredFileSystemLocationNamesToRemove []*string `locationName:"requiredFileSystemLocationNamesToRemove" type:"list"`
+	RequiredFileSystemLocationNamesToRemove []*string `locationName:"requiredFileSystemLocationNamesToRemove" type:"list" sensitive:"true"`
 
 	// The IAM role ARN that's used to run jobs from this queue.
 	RoleArn *string `locationName:"roleArn" type:"string"`
@@ -34051,10 +34051,10 @@ type UpdateStorageProfileInput struct {
 	FarmId *string `location:"uri" locationName:"farmId" type:"string" required:"true"`
 
 	// The file system location names to add.
-	FileSystemLocationsToAdd []*FileSystemLocation `locationName:"fileSystemLocationsToAdd" type:"list"`
+	FileSystemLocationsToAdd []*FileSystemLocation `locationName:"fileSystemLocationsToAdd" type:"list" sensitive:"true"`
 
 	// The file system location names to remove.
-	FileSystemLocationsToRemove []*FileSystemLocation `locationName:"fileSystemLocationsToRemove" type:"list"`
+	FileSystemLocationsToRemove []*FileSystemLocation `locationName:"fileSystemLocationsToRemove" type:"list" sensitive:"true"`
 
 	// The OS system to update.
 	OsFamily *string `locationName:"osFamily" type:"string" enum:"StorageProfileOperatingSystemFamily"`

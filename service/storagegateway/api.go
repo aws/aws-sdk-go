@@ -14795,7 +14795,7 @@ type DescribeGatewayInformationOutput struct {
 
 	// A NetworkInterface array that contains descriptions of the gateway network
 	// interfaces.
-	GatewayNetworkInterfaces []*NetworkInterface `type:"list"`
+	GatewayNetworkInterfaces []*NetworkInterface `type:"list" sensitive:"true"`
 
 	// A value that indicates the operating state of the gateway.
 	GatewayState *string `min:"2" type:"string"`

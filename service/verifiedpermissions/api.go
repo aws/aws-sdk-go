@@ -4547,7 +4547,7 @@ type BatchIsAuthorizedOutputItem struct {
 	// request.
 	//
 	// Errors is a required field
-	Errors []*EvaluationErrorItem `locationName:"errors" type:"list" required:"true"`
+	Errors []*EvaluationErrorItem `locationName:"errors" type:"list" required:"true" sensitive:"true"`
 
 	// The authorization request that initiated the decision.
 	//
@@ -4889,7 +4889,7 @@ type BatchIsAuthorizedWithTokenOutputItem struct {
 	// request.
 	//
 	// Errors is a required field
-	Errors []*EvaluationErrorItem `locationName:"errors" type:"list" required:"true"`
+	Errors []*EvaluationErrorItem `locationName:"errors" type:"list" required:"true" sensitive:"true"`
 
 	// The authorization request that initiated the decision.
 	//
@@ -5096,7 +5096,7 @@ type CognitoUserPoolConfiguration struct {
 	// Amazon Cognito user pool.
 	//
 	// Example: "ClientIds": ["&ExampleCogClientId;"]
-	ClientIds []*string `locationName:"clientIds" type:"list"`
+	ClientIds []*string `locationName:"clientIds" type:"list" sensitive:"true"`
 
 	// The type of entity that a policy store maps to groups from an Amazon Cognito
 	// user pool identity source.
@@ -5187,7 +5187,7 @@ type CognitoUserPoolConfigurationDetail struct {
 	// Example: "clientIds": ["&ExampleCogClientId;"]
 	//
 	// ClientIds is a required field
-	ClientIds []*string `locationName:"clientIds" type:"list" required:"true"`
+	ClientIds []*string `locationName:"clientIds" type:"list" required:"true" sensitive:"true"`
 
 	// The type of entity that a policy store maps to groups from an Amazon Cognito
 	// user pool identity source.
@@ -5270,7 +5270,7 @@ type CognitoUserPoolConfigurationItem struct {
 	// Example: "clientIds": ["&ExampleCogClientId;"]
 	//
 	// ClientIds is a required field
-	ClientIds []*string `locationName:"clientIds" type:"list" required:"true"`
+	ClientIds []*string `locationName:"clientIds" type:"list" required:"true" sensitive:"true"`
 
 	// The type of entity that a policy store maps to groups from an Amazon Cognito
 	// user pool identity source.
@@ -7871,7 +7871,7 @@ type GetSchemaOutput struct {
 	LastUpdatedDate *time.Time `locationName:"lastUpdatedDate" type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
 	// The namespaces of the entities referenced by this schema.
-	Namespaces []*string `locationName:"namespaces" type:"list"`
+	Namespaces []*string `locationName:"namespaces" type:"list" sensitive:"true"`
 
 	// The ID of the policy store that contains the schema.
 	//
@@ -7949,7 +7949,7 @@ type IdentitySourceDetails struct {
 	// pool that are enabled for this identity source.
 	//
 	// Deprecated: This attribute has been replaced by configuration.cognitoUserPoolConfiguration.clientIds
-	ClientIds []*string `locationName:"clientIds" deprecated:"true" type:"list"`
+	ClientIds []*string `locationName:"clientIds" deprecated:"true" type:"list" sensitive:"true"`
 
 	// The well-known URL that points to this user pool's OIDC discovery endpoint.
 	// This is a URL string in the following format. This URL replaces the placeholders
@@ -8193,7 +8193,7 @@ type IdentitySourceItemDetails struct {
 	// pool that are enabled for this identity source.
 	//
 	// Deprecated: This attribute has been replaced by configuration.cognitoUserPoolConfiguration.clientIds
-	ClientIds []*string `locationName:"clientIds" deprecated:"true" type:"list"`
+	ClientIds []*string `locationName:"clientIds" deprecated:"true" type:"list" sensitive:"true"`
 
 	// The well-known URL that points to this user pool's OIDC discovery endpoint.
 	// This is a URL string in the following format. This URL replaces the placeholders
@@ -8476,7 +8476,7 @@ type IsAuthorizedOutput struct {
 	// the slice.
 	//
 	// Errors is a required field
-	Errors []*EvaluationErrorItem `locationName:"errors" type:"list" required:"true"`
+	Errors []*EvaluationErrorItem `locationName:"errors" type:"list" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -8702,7 +8702,7 @@ type IsAuthorizedWithTokenOutput struct {
 	// the slice.
 	//
 	// Errors is a required field
-	Errors []*EvaluationErrorItem `locationName:"errors" type:"list" required:"true"`
+	Errors []*EvaluationErrorItem `locationName:"errors" type:"list" required:"true" sensitive:"true"`
 
 	// The identifier of the principal in the ID or access token.
 	Principal *EntityIdentifier `locationName:"principal" type:"structure"`
@@ -9966,7 +9966,7 @@ type OpenIdConnectIdentityTokenConfiguration struct {
 	// The ID token audience, or client ID, claim values that you want to accept
 	// in your policy store from an OIDC identity provider. For example, 1example23456789,
 	// 2example10111213.
-	ClientIds []*string `locationName:"clientIds" type:"list"`
+	ClientIds []*string `locationName:"clientIds" type:"list" sensitive:"true"`
 
 	// The claim that determines the principal in OIDC access tokens. For example,
 	// sub.
@@ -10033,7 +10033,7 @@ type OpenIdConnectIdentityTokenConfigurationDetail struct {
 	// The ID token audience, or client ID, claim values that you want to accept
 	// in your policy store from an OIDC identity provider. For example, 1example23456789,
 	// 2example10111213.
-	ClientIds []*string `locationName:"clientIds" type:"list"`
+	ClientIds []*string `locationName:"clientIds" type:"list" sensitive:"true"`
 
 	// The claim that determines the principal in OIDC access tokens. For example,
 	// sub.
@@ -10087,7 +10087,7 @@ type OpenIdConnectIdentityTokenConfigurationItem struct {
 	// The ID token audience, or client ID, claim values that you want to accept
 	// in your policy store from an OIDC identity provider. For example, 1example23456789,
 	// 2example10111213.
-	ClientIds []*string `locationName:"clientIds" type:"list"`
+	ClientIds []*string `locationName:"clientIds" type:"list" sensitive:"true"`
 
 	// The claim that determines the principal in OIDC access tokens. For example,
 	// sub.
@@ -10936,7 +10936,7 @@ type PutSchemaOutput struct {
 	// Identifies the namespaces of the entities referenced by this schema.
 	//
 	// Namespaces is a required field
-	Namespaces []*string `locationName:"namespaces" type:"list" required:"true"`
+	Namespaces []*string `locationName:"namespaces" type:"list" required:"true" sensitive:"true"`
 
 	// The unique ID of the policy store that contains the schema.
 	//
@@ -11735,7 +11735,7 @@ type UpdateCognitoUserPoolConfiguration struct {
 
 	// The client ID of an app client that is configured for the specified Amazon
 	// Cognito user pool.
-	ClientIds []*string `locationName:"clientIds" type:"list"`
+	ClientIds []*string `locationName:"clientIds" type:"list" sensitive:"true"`
 
 	// The configuration of the user groups from an Amazon Cognito user pool identity
 	// source.
@@ -12321,7 +12321,7 @@ type UpdateOpenIdConnectIdentityTokenConfiguration struct {
 	// The ID token audience, or client ID, claim values that you want to accept
 	// in your policy store from an OIDC identity provider. For example, 1example23456789,
 	// 2example10111213.
-	ClientIds []*string `locationName:"clientIds" type:"list"`
+	ClientIds []*string `locationName:"clientIds" type:"list" sensitive:"true"`
 
 	// The claim that determines the principal in OIDC access tokens. For example,
 	// sub.

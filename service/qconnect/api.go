@@ -7407,7 +7407,7 @@ type CreateQuickResponseInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Connect channels this quick response applies to.
-	Channels []*string `locationName:"channels" type:"list"`
+	Channels []*string `locationName:"channels" type:"list" sensitive:"true"`
 
 	// A unique, case-sensitive identifier that you provide to ensure the idempotency
 	// of the request. If not provided, the Amazon Web Services SDK populates this
@@ -9938,7 +9938,7 @@ type GroupingConfiguration struct {
 	//    * When setting criteria to RoutingProfileArn, you need to provide a list
 	//    of ARNs of Amazon Connect routing profiles (https://docs.aws.amazon.com/connect/latest/APIReference/API_RoutingProfile.html)
 	//    as values of this parameter.
-	Values []*string `locationName:"values" type:"list"`
+	Values []*string `locationName:"values" type:"list" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -12395,7 +12395,7 @@ type QuickResponseData struct {
 
 	// The Amazon Connect contact channels this quick response applies to. The supported
 	// contact channel types include Chat.
-	Channels []*string `locationName:"channels" type:"list"`
+	Channels []*string `locationName:"channels" type:"list" sensitive:"true"`
 
 	// The media type of the quick response content.
 	//
@@ -13067,7 +13067,7 @@ type QuickResponseSearchResultData struct {
 
 	// The Amazon Connect contact channels this quick response applies to. The supported
 	// contact channel types include Chat.
-	Channels []*string `locationName:"channels" type:"list"`
+	Channels []*string `locationName:"channels" type:"list" sensitive:"true"`
 
 	// The media type of the quick response content.
 	//
@@ -13297,7 +13297,7 @@ type QuickResponseSummary struct {
 
 	// The Amazon Connect contact channels this quick response applies to. The supported
 	// contact channel types include Chat.
-	Channels []*string `locationName:"channels" type:"list"`
+	Channels []*string `locationName:"channels" type:"list" sensitive:"true"`
 
 	// The media type of the quick response content.
 	//
@@ -16014,7 +16014,7 @@ type UpdateQuickResponseInput struct {
 
 	// The Amazon Connect contact channels this quick response applies to. The supported
 	// contact channel types include Chat.
-	Channels []*string `locationName:"channels" type:"list"`
+	Channels []*string `locationName:"channels" type:"list" sensitive:"true"`
 
 	// The updated content of the quick response.
 	Content *QuickResponseDataProvider `locationName:"content" type:"structure"`

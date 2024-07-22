@@ -3296,7 +3296,7 @@ type AgentInfo struct {
 	AgentId *string `locationName:"agentId" min:"10" type:"string"`
 
 	// Network details about the host where the agent or collector resides.
-	AgentNetworkInfoList []*AgentNetworkInfo `locationName:"agentNetworkInfoList" type:"list"`
+	AgentNetworkInfoList []*AgentNetworkInfo `locationName:"agentNetworkInfoList" type:"list" sensitive:"true"`
 
 	// Type of agent.
 	AgentType *string `locationName:"agentType" type:"string"`

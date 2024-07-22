@@ -9378,13 +9378,13 @@ type DocumentVersionMetadata struct {
 	Size *int64 `type:"long"`
 
 	// The source of the document.
-	Source map[string]*string `type:"map"`
+	Source map[string]*string `type:"map" sensitive:"true"`
 
 	// The status of the document.
 	Status *string `type:"string" enum:"DocumentStatusType"`
 
 	// The thumbnail of the document.
-	Thumbnail map[string]*string `type:"map"`
+	Thumbnail map[string]*string `type:"map" sensitive:"true"`
 }
 
 // String returns the string representation.
