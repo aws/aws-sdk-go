@@ -18,6 +18,12 @@
       "limit_key": "maxResults",
       "result_key": "collaborationConfiguredAudienceModelAssociationSummaries"
     },
+    "ListCollaborationIdNamespaceAssociations": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults",
+      "result_key": "collaborationIdNamespaceAssociationSummaries"
+    },
     "ListCollaborationPrivacyBudgetTemplates": {
       "input_token": "nextToken",
       "output_token": "nextToken",
@@ -53,6 +59,18 @@
       "output_token": "nextToken",
       "limit_key": "maxResults",
       "result_key": "configuredTableSummaries"
+    },
+    "ListIdMappingTables": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults",
+      "result_key": "idMappingTableSummaries"
+    },
+    "ListIdNamespaceAssociations": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults",
+      "result_key": "idNamespaceAssociationSummaries"
     },
     "ListMembers": {
       "input_token": "nextToken",

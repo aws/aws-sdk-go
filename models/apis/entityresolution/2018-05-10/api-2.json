@@ -1,9 +1,15 @@
 {
   "metadata": {
     "apiVersion": "2018-05-10",
+    "auth": [
+      "aws.auth#sigv4"
+    ],
     "endpointPrefix": "entityresolution",
     "jsonVersion": "1.1",
     "protocol": "rest-json",
+    "protocols": [
+      "rest-json"
+    ],
     "serviceAbbreviation": "AWSEntityResolution",
     "serviceFullName": "AWS EntityResolution",
     "serviceId": "EntityResolution",
@@ -1304,7 +1310,7 @@
           "shape": "IdMappingWorkflowOutputSourceConfig"
         },
         "roleArn": {
-          "shape": "RoleArn"
+          "shape": "IdMappingRoleArn"
         },
         "tags": {
           "shape": "TagMap"
@@ -1316,7 +1322,6 @@
       "required": [
         "idMappingTechniques",
         "inputSourceConfig",
-        "roleArn",
         "workflowName"
       ],
       "type": "structure"
@@ -1336,7 +1341,7 @@
           "shape": "IdMappingWorkflowOutputSourceConfig"
         },
         "roleArn": {
-          "shape": "RoleArn"
+          "shape": "IdMappingRoleArn"
         },
         "workflowArn": {
           "shape": "IdMappingWorkflowArn"
@@ -1348,7 +1353,6 @@
       "required": [
         "idMappingTechniques",
         "inputSourceConfig",
-        "roleArn",
         "workflowArn",
         "workflowName"
       ],
@@ -1866,7 +1870,7 @@
           "shape": "IdMappingWorkflowOutputSourceConfig"
         },
         "roleArn": {
-          "shape": "RoleArn"
+          "shape": "IdMappingRoleArn"
         },
         "tags": {
           "shape": "TagMap"
@@ -1885,7 +1889,6 @@
         "createdAt",
         "idMappingTechniques",
         "inputSourceConfig",
-        "roleArn",
         "updatedAt",
         "workflowArn",
         "workflowName"
@@ -2197,6 +2200,15 @@
         "recordsNotProcessed": {
           "shape": "Integer"
         },
+        "totalMappedRecords": {
+          "shape": "Integer"
+        },
+        "totalMappedSourceRecords": {
+          "shape": "Integer"
+        },
+        "totalMappedTargetRecords": {
+          "shape": "Integer"
+        },
         "totalRecordsProcessed": {
           "shape": "Integer"
         }
@@ -2229,6 +2241,42 @@
       "min": 1,
       "type": "list"
     },
+    "IdMappingRoleArn": {
+      "max": 512,
+      "min": 0,
+      "pattern": "^$|^arn:aws:iam::\\d{12}:role/?[a-zA-Z_0-9+=,.@\\-_/]+$",
+      "type": "string"
+    },
+    "IdMappingRuleBasedProperties": {
+      "members": {
+        "attributeMatchingModel": {
+          "shape": "AttributeMatchingModel"
+        },
+        "recordMatchingModel": {
+          "shape": "RecordMatchingModel"
+        },
+        "ruleDefinitionType": {
+          "shape": "IdMappingWorkflowRuleDefinitionType"
+        },
+        "rules": {
+          "shape": "IdMappingRuleBasedPropertiesRulesList"
+        }
+      },
+      "required": [
+        "attributeMatchingModel",
+        "recordMatchingModel",
+        "ruleDefinitionType"
+      ],
+      "type": "structure"
+    },
+    "IdMappingRuleBasedPropertiesRulesList": {
+      "max": 25,
+      "member": {
+        "shape": "Rule"
+      },
+      "min": 1,
+      "type": "list"
+    },
     "IdMappingTechniques": {
       "members": {
         "idMappingType": {
@@ -2236,6 +2284,9 @@
         },
         "providerProperties": {
           "shape": "ProviderProperties"
+        },
+        "ruleBasedProperties": {
+          "shape": "IdMappingRuleBasedProperties"
         }
       },
       "required": [
@@ -2245,7 +2296,8 @@
     },
     "IdMappingType": {
       "enum": [
-        "PROVIDER"
+        "PROVIDER",
+        "RULE_BASED"
       ],
       "type": "string"
     },
@@ -2310,6 +2362,19 @@
       "min": 1,
       "type": "list"
     },
+    "IdMappingWorkflowRuleDefinitionType": {
+      "enum": [
+        "SOURCE",
+        "TARGET"
+      ],
+      "type": "string"
+    },
+    "IdMappingWorkflowRuleDefinitionTypeList": {
+      "member": {
+        "shape": "IdMappingWorkflowRuleDefinitionType"
+      },
+      "type": "list"
+    },
     "IdMappingWorkflowSummary": {
       "members": {
         "createdAt": {
@@ -2337,6 +2402,25 @@
       "pattern": "^arn:(aws|aws-us-gov|aws-cn):entityresolution:[a-z]{2}-[a-z]{1,10}-[0-9]:[0-9]{12}:(idnamespace/[a-zA-Z_0-9-]{1,255})$",
       "type": "string"
     },
+    "IdNamespaceIdMappingWorkflowMetadata": {
+      "members": {
+        "idMappingType": {
+          "shape": "IdMappingType"
+        }
+      },
+      "required": [
+        "idMappingType"
+      ],
+      "type": "structure"
+    },
+    "IdNamespaceIdMappingWorkflowMetadataList": {
+      "max": 1,
+      "member": {
+        "shape": "IdNamespaceIdMappingWorkflowMetadata"
+      },
+      "min": 1,
+      "type": "list"
+    },
     "IdNamespaceIdMappingWorkflowProperties": {
       "members": {
         "idMappingType": {
@@ -2344,6 +2428,9 @@
         },
         "providerProperties": {
           "shape": "NamespaceProviderProperties"
+        },
+        "ruleBasedProperties": {
+          "shape": "NamespaceRuleBasedProperties"
         }
       },
       "required": [
@@ -2398,6 +2485,9 @@
         },
         "description": {
           "shape": "Description"
+        },
+        "idMappingWorkflowProperties": {
+          "shape": "IdNamespaceIdMappingWorkflowMetadataList"
         },
         "idNamespaceArn": {
           "shape": "IdNamespaceArn"
@@ -2856,6 +2946,13 @@
       ],
       "type": "structure"
     },
+    "MatchPurpose": {
+      "enum": [
+        "IDENTIFIER_GENERATION",
+        "INDEXING"
+      ],
+      "type": "string"
+    },
     "MatchingWorkflowArn": {
       "pattern": "^arn:(aws|aws-us-gov|aws-cn):entityresolution:[a-z]{2}-[a-z]{1,10}-[0-9]:[0-9]{12}:(matchingworkflow/[a-zA-Z_0-9-]{1,255})$",
       "type": "string"
@@ -2903,6 +3000,31 @@
         "providerServiceArn"
       ],
       "type": "structure"
+    },
+    "NamespaceRuleBasedProperties": {
+      "members": {
+        "attributeMatchingModel": {
+          "shape": "AttributeMatchingModel"
+        },
+        "recordMatchingModels": {
+          "shape": "RecordMatchingModelList"
+        },
+        "ruleDefinitionTypes": {
+          "shape": "IdMappingWorkflowRuleDefinitionTypeList"
+        },
+        "rules": {
+          "shape": "NamespaceRuleBasedPropertiesRulesList"
+        }
+      },
+      "type": "structure"
+    },
+    "NamespaceRuleBasedPropertiesRulesList": {
+      "max": 25,
+      "member": {
+        "shape": "Rule"
+      },
+      "min": 1,
+      "type": "list"
     },
     "NextToken": {
       "max": 1024,
@@ -3179,6 +3301,19 @@
       "pattern": "^[a-zA-Z_0-9-./@ ()+\\t]*$",
       "type": "string"
     },
+    "RecordMatchingModel": {
+      "enum": [
+        "ONE_SOURCE_TO_ONE_TARGET",
+        "MANY_SOURCE_TO_ONE_TARGET"
+      ],
+      "type": "string"
+    },
+    "RecordMatchingModelList": {
+      "member": {
+        "shape": "RecordMatchingModel"
+      },
+      "type": "list"
+    },
     "RequiredBucketActionsList": {
       "member": {
         "shape": "String"
@@ -3248,6 +3383,9 @@
       "members": {
         "attributeMatchingModel": {
           "shape": "AttributeMatchingModel"
+        },
+        "matchPurpose": {
+          "shape": "MatchPurpose"
         },
         "rules": {
           "shape": "RuleBasedPropertiesRulesList"
@@ -3319,6 +3457,9 @@
         },
         "groupName": {
           "shape": "AttributeName"
+        },
+        "hashed": {
+          "shape": "Boolean"
         },
         "matchKey": {
           "shape": "AttributeName"
@@ -3573,7 +3714,7 @@
     "UniqueId": {
       "max": 760,
       "min": 1,
-      "pattern": "^[a-zA-Z_0-9-,]*$",
+      "pattern": "^[a-zA-Z_0-9-+=/,]*$",
       "type": "string"
     },
     "UniqueIdList": {
@@ -3620,7 +3761,7 @@
           "shape": "IdMappingWorkflowOutputSourceConfig"
         },
         "roleArn": {
-          "shape": "RoleArn"
+          "shape": "IdMappingRoleArn"
         },
         "workflowName": {
           "location": "uri",
@@ -3631,7 +3772,6 @@
       "required": [
         "idMappingTechniques",
         "inputSourceConfig",
-        "roleArn",
         "workflowName"
       ],
       "type": "structure"
@@ -3651,7 +3791,7 @@
           "shape": "IdMappingWorkflowOutputSourceConfig"
         },
         "roleArn": {
-          "shape": "RoleArn"
+          "shape": "IdMappingRoleArn"
         },
         "workflowArn": {
           "shape": "IdMappingWorkflowArn"
@@ -3663,7 +3803,6 @@
       "required": [
         "idMappingTechniques",
         "inputSourceConfig",
-        "roleArn",
         "workflowArn",
         "workflowName"
       ],

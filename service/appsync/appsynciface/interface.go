@@ -216,33 +216,57 @@ type AppSyncAPI interface {
 	ListApiKeysWithContext(aws.Context, *appsync.ListApiKeysInput, ...request.Option) (*appsync.ListApiKeysOutput, error)
 	ListApiKeysRequest(*appsync.ListApiKeysInput) (*request.Request, *appsync.ListApiKeysOutput)
 
+	ListApiKeysPages(*appsync.ListApiKeysInput, func(*appsync.ListApiKeysOutput, bool) bool) error
+	ListApiKeysPagesWithContext(aws.Context, *appsync.ListApiKeysInput, func(*appsync.ListApiKeysOutput, bool) bool, ...request.Option) error
+
 	ListDataSources(*appsync.ListDataSourcesInput) (*appsync.ListDataSourcesOutput, error)
 	ListDataSourcesWithContext(aws.Context, *appsync.ListDataSourcesInput, ...request.Option) (*appsync.ListDataSourcesOutput, error)
 	ListDataSourcesRequest(*appsync.ListDataSourcesInput) (*request.Request, *appsync.ListDataSourcesOutput)
+
+	ListDataSourcesPages(*appsync.ListDataSourcesInput, func(*appsync.ListDataSourcesOutput, bool) bool) error
+	ListDataSourcesPagesWithContext(aws.Context, *appsync.ListDataSourcesInput, func(*appsync.ListDataSourcesOutput, bool) bool, ...request.Option) error
 
 	ListDomainNames(*appsync.ListDomainNamesInput) (*appsync.ListDomainNamesOutput, error)
 	ListDomainNamesWithContext(aws.Context, *appsync.ListDomainNamesInput, ...request.Option) (*appsync.ListDomainNamesOutput, error)
 	ListDomainNamesRequest(*appsync.ListDomainNamesInput) (*request.Request, *appsync.ListDomainNamesOutput)
 
+	ListDomainNamesPages(*appsync.ListDomainNamesInput, func(*appsync.ListDomainNamesOutput, bool) bool) error
+	ListDomainNamesPagesWithContext(aws.Context, *appsync.ListDomainNamesInput, func(*appsync.ListDomainNamesOutput, bool) bool, ...request.Option) error
+
 	ListFunctions(*appsync.ListFunctionsInput) (*appsync.ListFunctionsOutput, error)
 	ListFunctionsWithContext(aws.Context, *appsync.ListFunctionsInput, ...request.Option) (*appsync.ListFunctionsOutput, error)
 	ListFunctionsRequest(*appsync.ListFunctionsInput) (*request.Request, *appsync.ListFunctionsOutput)
+
+	ListFunctionsPages(*appsync.ListFunctionsInput, func(*appsync.ListFunctionsOutput, bool) bool) error
+	ListFunctionsPagesWithContext(aws.Context, *appsync.ListFunctionsInput, func(*appsync.ListFunctionsOutput, bool) bool, ...request.Option) error
 
 	ListGraphqlApis(*appsync.ListGraphqlApisInput) (*appsync.ListGraphqlApisOutput, error)
 	ListGraphqlApisWithContext(aws.Context, *appsync.ListGraphqlApisInput, ...request.Option) (*appsync.ListGraphqlApisOutput, error)
 	ListGraphqlApisRequest(*appsync.ListGraphqlApisInput) (*request.Request, *appsync.ListGraphqlApisOutput)
 
+	ListGraphqlApisPages(*appsync.ListGraphqlApisInput, func(*appsync.ListGraphqlApisOutput, bool) bool) error
+	ListGraphqlApisPagesWithContext(aws.Context, *appsync.ListGraphqlApisInput, func(*appsync.ListGraphqlApisOutput, bool) bool, ...request.Option) error
+
 	ListResolvers(*appsync.ListResolversInput) (*appsync.ListResolversOutput, error)
 	ListResolversWithContext(aws.Context, *appsync.ListResolversInput, ...request.Option) (*appsync.ListResolversOutput, error)
 	ListResolversRequest(*appsync.ListResolversInput) (*request.Request, *appsync.ListResolversOutput)
+
+	ListResolversPages(*appsync.ListResolversInput, func(*appsync.ListResolversOutput, bool) bool) error
+	ListResolversPagesWithContext(aws.Context, *appsync.ListResolversInput, func(*appsync.ListResolversOutput, bool) bool, ...request.Option) error
 
 	ListResolversByFunction(*appsync.ListResolversByFunctionInput) (*appsync.ListResolversByFunctionOutput, error)
 	ListResolversByFunctionWithContext(aws.Context, *appsync.ListResolversByFunctionInput, ...request.Option) (*appsync.ListResolversByFunctionOutput, error)
 	ListResolversByFunctionRequest(*appsync.ListResolversByFunctionInput) (*request.Request, *appsync.ListResolversByFunctionOutput)
 
+	ListResolversByFunctionPages(*appsync.ListResolversByFunctionInput, func(*appsync.ListResolversByFunctionOutput, bool) bool) error
+	ListResolversByFunctionPagesWithContext(aws.Context, *appsync.ListResolversByFunctionInput, func(*appsync.ListResolversByFunctionOutput, bool) bool, ...request.Option) error
+
 	ListSourceApiAssociations(*appsync.ListSourceApiAssociationsInput) (*appsync.ListSourceApiAssociationsOutput, error)
 	ListSourceApiAssociationsWithContext(aws.Context, *appsync.ListSourceApiAssociationsInput, ...request.Option) (*appsync.ListSourceApiAssociationsOutput, error)
 	ListSourceApiAssociationsRequest(*appsync.ListSourceApiAssociationsInput) (*request.Request, *appsync.ListSourceApiAssociationsOutput)
+
+	ListSourceApiAssociationsPages(*appsync.ListSourceApiAssociationsInput, func(*appsync.ListSourceApiAssociationsOutput, bool) bool) error
+	ListSourceApiAssociationsPagesWithContext(aws.Context, *appsync.ListSourceApiAssociationsInput, func(*appsync.ListSourceApiAssociationsOutput, bool) bool, ...request.Option) error
 
 	ListTagsForResource(*appsync.ListTagsForResourceInput) (*appsync.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *appsync.ListTagsForResourceInput, ...request.Option) (*appsync.ListTagsForResourceOutput, error)
@@ -252,9 +276,15 @@ type AppSyncAPI interface {
 	ListTypesWithContext(aws.Context, *appsync.ListTypesInput, ...request.Option) (*appsync.ListTypesOutput, error)
 	ListTypesRequest(*appsync.ListTypesInput) (*request.Request, *appsync.ListTypesOutput)
 
+	ListTypesPages(*appsync.ListTypesInput, func(*appsync.ListTypesOutput, bool) bool) error
+	ListTypesPagesWithContext(aws.Context, *appsync.ListTypesInput, func(*appsync.ListTypesOutput, bool) bool, ...request.Option) error
+
 	ListTypesByAssociation(*appsync.ListTypesByAssociationInput) (*appsync.ListTypesByAssociationOutput, error)
 	ListTypesByAssociationWithContext(aws.Context, *appsync.ListTypesByAssociationInput, ...request.Option) (*appsync.ListTypesByAssociationOutput, error)
 	ListTypesByAssociationRequest(*appsync.ListTypesByAssociationInput) (*request.Request, *appsync.ListTypesByAssociationOutput)
+
+	ListTypesByAssociationPages(*appsync.ListTypesByAssociationInput, func(*appsync.ListTypesByAssociationOutput, bool) bool) error
+	ListTypesByAssociationPagesWithContext(aws.Context, *appsync.ListTypesByAssociationInput, func(*appsync.ListTypesByAssociationOutput, bool) bool, ...request.Option) error
 
 	PutGraphqlApiEnvironmentVariables(*appsync.PutGraphqlApiEnvironmentVariablesInput) (*appsync.PutGraphqlApiEnvironmentVariablesOutput, error)
 	PutGraphqlApiEnvironmentVariablesWithContext(aws.Context, *appsync.PutGraphqlApiEnvironmentVariablesInput, ...request.Option) (*appsync.PutGraphqlApiEnvironmentVariablesOutput, error)

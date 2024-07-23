@@ -96,6 +96,10 @@ type CleanRoomsAPI interface {
 	CreateConfiguredTableAssociationWithContext(aws.Context, *cleanrooms.CreateConfiguredTableAssociationInput, ...request.Option) (*cleanrooms.CreateConfiguredTableAssociationOutput, error)
 	CreateConfiguredTableAssociationRequest(*cleanrooms.CreateConfiguredTableAssociationInput) (*request.Request, *cleanrooms.CreateConfiguredTableAssociationOutput)
 
+	CreateIdMappingTable(*cleanrooms.CreateIdMappingTableInput) (*cleanrooms.CreateIdMappingTableOutput, error)
+	CreateIdMappingTableWithContext(aws.Context, *cleanrooms.CreateIdMappingTableInput, ...request.Option) (*cleanrooms.CreateIdMappingTableOutput, error)
+	CreateIdMappingTableRequest(*cleanrooms.CreateIdMappingTableInput) (*request.Request, *cleanrooms.CreateIdMappingTableOutput)
+
 	CreateMembership(*cleanrooms.CreateMembershipInput) (*cleanrooms.CreateMembershipOutput, error)
 	CreateMembershipWithContext(aws.Context, *cleanrooms.CreateMembershipInput, ...request.Option) (*cleanrooms.CreateMembershipOutput, error)
 	CreateMembershipRequest(*cleanrooms.CreateMembershipInput) (*request.Request, *cleanrooms.CreateMembershipOutput)
@@ -127,6 +131,14 @@ type CleanRoomsAPI interface {
 	DeleteConfiguredTableAssociation(*cleanrooms.DeleteConfiguredTableAssociationInput) (*cleanrooms.DeleteConfiguredTableAssociationOutput, error)
 	DeleteConfiguredTableAssociationWithContext(aws.Context, *cleanrooms.DeleteConfiguredTableAssociationInput, ...request.Option) (*cleanrooms.DeleteConfiguredTableAssociationOutput, error)
 	DeleteConfiguredTableAssociationRequest(*cleanrooms.DeleteConfiguredTableAssociationInput) (*request.Request, *cleanrooms.DeleteConfiguredTableAssociationOutput)
+
+	DeleteIdMappingTable(*cleanrooms.DeleteIdMappingTableInput) (*cleanrooms.DeleteIdMappingTableOutput, error)
+	DeleteIdMappingTableWithContext(aws.Context, *cleanrooms.DeleteIdMappingTableInput, ...request.Option) (*cleanrooms.DeleteIdMappingTableOutput, error)
+	DeleteIdMappingTableRequest(*cleanrooms.DeleteIdMappingTableInput) (*request.Request, *cleanrooms.DeleteIdMappingTableOutput)
+
+	DeleteIdNamespaceAssociation(*cleanrooms.DeleteIdNamespaceAssociationInput) (*cleanrooms.DeleteIdNamespaceAssociationOutput, error)
+	DeleteIdNamespaceAssociationWithContext(aws.Context, *cleanrooms.DeleteIdNamespaceAssociationInput, ...request.Option) (*cleanrooms.DeleteIdNamespaceAssociationOutput, error)
+	DeleteIdNamespaceAssociationRequest(*cleanrooms.DeleteIdNamespaceAssociationInput) (*request.Request, *cleanrooms.DeleteIdNamespaceAssociationOutput)
 
 	DeleteMember(*cleanrooms.DeleteMemberInput) (*cleanrooms.DeleteMemberOutput, error)
 	DeleteMemberWithContext(aws.Context, *cleanrooms.DeleteMemberInput, ...request.Option) (*cleanrooms.DeleteMemberOutput, error)
@@ -176,6 +188,10 @@ type CleanRoomsAPI interface {
 	GetConfiguredTableAssociationWithContext(aws.Context, *cleanrooms.GetConfiguredTableAssociationInput, ...request.Option) (*cleanrooms.GetConfiguredTableAssociationOutput, error)
 	GetConfiguredTableAssociationRequest(*cleanrooms.GetConfiguredTableAssociationInput) (*request.Request, *cleanrooms.GetConfiguredTableAssociationOutput)
 
+	GetIdMappingTable(*cleanrooms.GetIdMappingTableInput) (*cleanrooms.GetIdMappingTableOutput, error)
+	GetIdMappingTableWithContext(aws.Context, *cleanrooms.GetIdMappingTableInput, ...request.Option) (*cleanrooms.GetIdMappingTableOutput, error)
+	GetIdMappingTableRequest(*cleanrooms.GetIdMappingTableInput) (*request.Request, *cleanrooms.GetIdMappingTableOutput)
+
 	GetMembership(*cleanrooms.GetMembershipInput) (*cleanrooms.GetMembershipOutput, error)
 	GetMembershipWithContext(aws.Context, *cleanrooms.GetMembershipInput, ...request.Option) (*cleanrooms.GetMembershipOutput, error)
 	GetMembershipRequest(*cleanrooms.GetMembershipInput) (*request.Request, *cleanrooms.GetMembershipOutput)
@@ -216,6 +232,13 @@ type CleanRoomsAPI interface {
 
 	ListCollaborationConfiguredAudienceModelAssociationsPages(*cleanrooms.ListCollaborationConfiguredAudienceModelAssociationsInput, func(*cleanrooms.ListCollaborationConfiguredAudienceModelAssociationsOutput, bool) bool) error
 	ListCollaborationConfiguredAudienceModelAssociationsPagesWithContext(aws.Context, *cleanrooms.ListCollaborationConfiguredAudienceModelAssociationsInput, func(*cleanrooms.ListCollaborationConfiguredAudienceModelAssociationsOutput, bool) bool, ...request.Option) error
+
+	ListCollaborationIdNamespaceAssociations(*cleanrooms.ListCollaborationIdNamespaceAssociationsInput) (*cleanrooms.ListCollaborationIdNamespaceAssociationsOutput, error)
+	ListCollaborationIdNamespaceAssociationsWithContext(aws.Context, *cleanrooms.ListCollaborationIdNamespaceAssociationsInput, ...request.Option) (*cleanrooms.ListCollaborationIdNamespaceAssociationsOutput, error)
+	ListCollaborationIdNamespaceAssociationsRequest(*cleanrooms.ListCollaborationIdNamespaceAssociationsInput) (*request.Request, *cleanrooms.ListCollaborationIdNamespaceAssociationsOutput)
+
+	ListCollaborationIdNamespaceAssociationsPages(*cleanrooms.ListCollaborationIdNamespaceAssociationsInput, func(*cleanrooms.ListCollaborationIdNamespaceAssociationsOutput, bool) bool) error
+	ListCollaborationIdNamespaceAssociationsPagesWithContext(aws.Context, *cleanrooms.ListCollaborationIdNamespaceAssociationsInput, func(*cleanrooms.ListCollaborationIdNamespaceAssociationsOutput, bool) bool, ...request.Option) error
 
 	ListCollaborationPrivacyBudgetTemplates(*cleanrooms.ListCollaborationPrivacyBudgetTemplatesInput) (*cleanrooms.ListCollaborationPrivacyBudgetTemplatesOutput, error)
 	ListCollaborationPrivacyBudgetTemplatesWithContext(aws.Context, *cleanrooms.ListCollaborationPrivacyBudgetTemplatesInput, ...request.Option) (*cleanrooms.ListCollaborationPrivacyBudgetTemplatesOutput, error)
@@ -258,6 +281,20 @@ type CleanRoomsAPI interface {
 
 	ListConfiguredTablesPages(*cleanrooms.ListConfiguredTablesInput, func(*cleanrooms.ListConfiguredTablesOutput, bool) bool) error
 	ListConfiguredTablesPagesWithContext(aws.Context, *cleanrooms.ListConfiguredTablesInput, func(*cleanrooms.ListConfiguredTablesOutput, bool) bool, ...request.Option) error
+
+	ListIdMappingTables(*cleanrooms.ListIdMappingTablesInput) (*cleanrooms.ListIdMappingTablesOutput, error)
+	ListIdMappingTablesWithContext(aws.Context, *cleanrooms.ListIdMappingTablesInput, ...request.Option) (*cleanrooms.ListIdMappingTablesOutput, error)
+	ListIdMappingTablesRequest(*cleanrooms.ListIdMappingTablesInput) (*request.Request, *cleanrooms.ListIdMappingTablesOutput)
+
+	ListIdMappingTablesPages(*cleanrooms.ListIdMappingTablesInput, func(*cleanrooms.ListIdMappingTablesOutput, bool) bool) error
+	ListIdMappingTablesPagesWithContext(aws.Context, *cleanrooms.ListIdMappingTablesInput, func(*cleanrooms.ListIdMappingTablesOutput, bool) bool, ...request.Option) error
+
+	ListIdNamespaceAssociations(*cleanrooms.ListIdNamespaceAssociationsInput) (*cleanrooms.ListIdNamespaceAssociationsOutput, error)
+	ListIdNamespaceAssociationsWithContext(aws.Context, *cleanrooms.ListIdNamespaceAssociationsInput, ...request.Option) (*cleanrooms.ListIdNamespaceAssociationsOutput, error)
+	ListIdNamespaceAssociationsRequest(*cleanrooms.ListIdNamespaceAssociationsInput) (*request.Request, *cleanrooms.ListIdNamespaceAssociationsOutput)
+
+	ListIdNamespaceAssociationsPages(*cleanrooms.ListIdNamespaceAssociationsInput, func(*cleanrooms.ListIdNamespaceAssociationsOutput, bool) bool) error
+	ListIdNamespaceAssociationsPagesWithContext(aws.Context, *cleanrooms.ListIdNamespaceAssociationsInput, func(*cleanrooms.ListIdNamespaceAssociationsOutput, bool) bool, ...request.Option) error
 
 	ListMembers(*cleanrooms.ListMembersInput) (*cleanrooms.ListMembersOutput, error)
 	ListMembersWithContext(aws.Context, *cleanrooms.ListMembersInput, ...request.Option) (*cleanrooms.ListMembersOutput, error)
@@ -305,6 +342,10 @@ type CleanRoomsAPI interface {
 	ListTagsForResourceWithContext(aws.Context, *cleanrooms.ListTagsForResourceInput, ...request.Option) (*cleanrooms.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*cleanrooms.ListTagsForResourceInput) (*request.Request, *cleanrooms.ListTagsForResourceOutput)
 
+	PopulateIdMappingTable(*cleanrooms.PopulateIdMappingTableInput) (*cleanrooms.PopulateIdMappingTableOutput, error)
+	PopulateIdMappingTableWithContext(aws.Context, *cleanrooms.PopulateIdMappingTableInput, ...request.Option) (*cleanrooms.PopulateIdMappingTableOutput, error)
+	PopulateIdMappingTableRequest(*cleanrooms.PopulateIdMappingTableInput) (*request.Request, *cleanrooms.PopulateIdMappingTableOutput)
+
 	PreviewPrivacyImpact(*cleanrooms.PreviewPrivacyImpactInput) (*cleanrooms.PreviewPrivacyImpactOutput, error)
 	PreviewPrivacyImpactWithContext(aws.Context, *cleanrooms.PreviewPrivacyImpactInput, ...request.Option) (*cleanrooms.PreviewPrivacyImpactOutput, error)
 	PreviewPrivacyImpactRequest(*cleanrooms.PreviewPrivacyImpactInput) (*request.Request, *cleanrooms.PreviewPrivacyImpactOutput)
@@ -344,6 +385,10 @@ type CleanRoomsAPI interface {
 	UpdateConfiguredTableAssociation(*cleanrooms.UpdateConfiguredTableAssociationInput) (*cleanrooms.UpdateConfiguredTableAssociationOutput, error)
 	UpdateConfiguredTableAssociationWithContext(aws.Context, *cleanrooms.UpdateConfiguredTableAssociationInput, ...request.Option) (*cleanrooms.UpdateConfiguredTableAssociationOutput, error)
 	UpdateConfiguredTableAssociationRequest(*cleanrooms.UpdateConfiguredTableAssociationInput) (*request.Request, *cleanrooms.UpdateConfiguredTableAssociationOutput)
+
+	UpdateIdMappingTable(*cleanrooms.UpdateIdMappingTableInput) (*cleanrooms.UpdateIdMappingTableOutput, error)
+	UpdateIdMappingTableWithContext(aws.Context, *cleanrooms.UpdateIdMappingTableInput, ...request.Option) (*cleanrooms.UpdateIdMappingTableOutput, error)
+	UpdateIdMappingTableRequest(*cleanrooms.UpdateIdMappingTableInput) (*request.Request, *cleanrooms.UpdateIdMappingTableOutput)
 
 	UpdateMembership(*cleanrooms.UpdateMembershipInput) (*cleanrooms.UpdateMembershipOutput, error)
 	UpdateMembershipWithContext(aws.Context, *cleanrooms.UpdateMembershipInput, ...request.Option) (*cleanrooms.UpdateMembershipOutput, error)
