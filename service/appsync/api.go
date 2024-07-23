@@ -3596,6 +3596,12 @@ func (c *AppSync) ListApiKeysRequest(input *ListApiKeysInput) (req *request.Requ
 		Name:       opListApiKeys,
 		HTTPMethod: "GET",
 		HTTPPath:   "/v1/apis/{apiId}/apikeys",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -3661,6 +3667,57 @@ func (c *AppSync) ListApiKeysWithContext(ctx aws.Context, input *ListApiKeysInpu
 	return out, req.Send()
 }
 
+// ListApiKeysPages iterates over the pages of a ListApiKeys operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListApiKeys method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListApiKeys operation.
+//	pageNum := 0
+//	err := client.ListApiKeysPages(params,
+//	    func(page *appsync.ListApiKeysOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *AppSync) ListApiKeysPages(input *ListApiKeysInput, fn func(*ListApiKeysOutput, bool) bool) error {
+	return c.ListApiKeysPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListApiKeysPagesWithContext same as ListApiKeysPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppSync) ListApiKeysPagesWithContext(ctx aws.Context, input *ListApiKeysInput, fn func(*ListApiKeysOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListApiKeysInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListApiKeysRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListApiKeysOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListDataSources = "ListDataSources"
 
 // ListDataSourcesRequest generates a "aws/request.Request" representing the
@@ -3691,6 +3748,12 @@ func (c *AppSync) ListDataSourcesRequest(input *ListDataSourcesInput) (req *requ
 		Name:       opListDataSources,
 		HTTPMethod: "GET",
 		HTTPPath:   "/v1/apis/{apiId}/datasources",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -3751,6 +3814,57 @@ func (c *AppSync) ListDataSourcesWithContext(ctx aws.Context, input *ListDataSou
 	return out, req.Send()
 }
 
+// ListDataSourcesPages iterates over the pages of a ListDataSources operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListDataSources method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListDataSources operation.
+//	pageNum := 0
+//	err := client.ListDataSourcesPages(params,
+//	    func(page *appsync.ListDataSourcesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *AppSync) ListDataSourcesPages(input *ListDataSourcesInput, fn func(*ListDataSourcesOutput, bool) bool) error {
+	return c.ListDataSourcesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListDataSourcesPagesWithContext same as ListDataSourcesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppSync) ListDataSourcesPagesWithContext(ctx aws.Context, input *ListDataSourcesInput, fn func(*ListDataSourcesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListDataSourcesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListDataSourcesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListDataSourcesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListDomainNames = "ListDomainNames"
 
 // ListDomainNamesRequest generates a "aws/request.Request" representing the
@@ -3781,6 +3895,12 @@ func (c *AppSync) ListDomainNamesRequest(input *ListDomainNamesInput) (req *requ
 		Name:       opListDomainNames,
 		HTTPMethod: "GET",
 		HTTPPath:   "/v1/domainnames",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -3837,6 +3957,57 @@ func (c *AppSync) ListDomainNamesWithContext(ctx aws.Context, input *ListDomainN
 	return out, req.Send()
 }
 
+// ListDomainNamesPages iterates over the pages of a ListDomainNames operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListDomainNames method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListDomainNames operation.
+//	pageNum := 0
+//	err := client.ListDomainNamesPages(params,
+//	    func(page *appsync.ListDomainNamesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *AppSync) ListDomainNamesPages(input *ListDomainNamesInput, fn func(*ListDomainNamesOutput, bool) bool) error {
+	return c.ListDomainNamesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListDomainNamesPagesWithContext same as ListDomainNamesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppSync) ListDomainNamesPagesWithContext(ctx aws.Context, input *ListDomainNamesInput, fn func(*ListDomainNamesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListDomainNamesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListDomainNamesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListDomainNamesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListFunctions = "ListFunctions"
 
 // ListFunctionsRequest generates a "aws/request.Request" representing the
@@ -3867,6 +4038,12 @@ func (c *AppSync) ListFunctionsRequest(input *ListFunctionsInput) (req *request.
 		Name:       opListFunctions,
 		HTTPMethod: "GET",
 		HTTPPath:   "/v1/apis/{apiId}/functions",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -3927,6 +4104,57 @@ func (c *AppSync) ListFunctionsWithContext(ctx aws.Context, input *ListFunctions
 	return out, req.Send()
 }
 
+// ListFunctionsPages iterates over the pages of a ListFunctions operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListFunctions method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListFunctions operation.
+//	pageNum := 0
+//	err := client.ListFunctionsPages(params,
+//	    func(page *appsync.ListFunctionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *AppSync) ListFunctionsPages(input *ListFunctionsInput, fn func(*ListFunctionsOutput, bool) bool) error {
+	return c.ListFunctionsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListFunctionsPagesWithContext same as ListFunctionsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppSync) ListFunctionsPagesWithContext(ctx aws.Context, input *ListFunctionsInput, fn func(*ListFunctionsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListFunctionsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListFunctionsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListFunctionsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListGraphqlApis = "ListGraphqlApis"
 
 // ListGraphqlApisRequest generates a "aws/request.Request" representing the
@@ -3957,6 +4185,12 @@ func (c *AppSync) ListGraphqlApisRequest(input *ListGraphqlApisInput) (req *requ
 		Name:       opListGraphqlApis,
 		HTTPMethod: "GET",
 		HTTPPath:   "/v1/apis",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -4013,6 +4247,57 @@ func (c *AppSync) ListGraphqlApisWithContext(ctx aws.Context, input *ListGraphql
 	return out, req.Send()
 }
 
+// ListGraphqlApisPages iterates over the pages of a ListGraphqlApis operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListGraphqlApis method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListGraphqlApis operation.
+//	pageNum := 0
+//	err := client.ListGraphqlApisPages(params,
+//	    func(page *appsync.ListGraphqlApisOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *AppSync) ListGraphqlApisPages(input *ListGraphqlApisInput, fn func(*ListGraphqlApisOutput, bool) bool) error {
+	return c.ListGraphqlApisPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListGraphqlApisPagesWithContext same as ListGraphqlApisPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppSync) ListGraphqlApisPagesWithContext(ctx aws.Context, input *ListGraphqlApisInput, fn func(*ListGraphqlApisOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListGraphqlApisInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListGraphqlApisRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListGraphqlApisOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListResolvers = "ListResolvers"
 
 // ListResolversRequest generates a "aws/request.Request" representing the
@@ -4043,6 +4328,12 @@ func (c *AppSync) ListResolversRequest(input *ListResolversInput) (req *request.
 		Name:       opListResolvers,
 		HTTPMethod: "GET",
 		HTTPPath:   "/v1/apis/{apiId}/types/{typeName}/resolvers",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -4103,6 +4394,57 @@ func (c *AppSync) ListResolversWithContext(ctx aws.Context, input *ListResolvers
 	return out, req.Send()
 }
 
+// ListResolversPages iterates over the pages of a ListResolvers operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListResolvers method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListResolvers operation.
+//	pageNum := 0
+//	err := client.ListResolversPages(params,
+//	    func(page *appsync.ListResolversOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *AppSync) ListResolversPages(input *ListResolversInput, fn func(*ListResolversOutput, bool) bool) error {
+	return c.ListResolversPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListResolversPagesWithContext same as ListResolversPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppSync) ListResolversPagesWithContext(ctx aws.Context, input *ListResolversInput, fn func(*ListResolversOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListResolversInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListResolversRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListResolversOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListResolversByFunction = "ListResolversByFunction"
 
 // ListResolversByFunctionRequest generates a "aws/request.Request" representing the
@@ -4133,6 +4475,12 @@ func (c *AppSync) ListResolversByFunctionRequest(input *ListResolversByFunctionI
 		Name:       opListResolversByFunction,
 		HTTPMethod: "GET",
 		HTTPPath:   "/v1/apis/{apiId}/functions/{functionId}/resolvers",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -4193,6 +4541,57 @@ func (c *AppSync) ListResolversByFunctionWithContext(ctx aws.Context, input *Lis
 	return out, req.Send()
 }
 
+// ListResolversByFunctionPages iterates over the pages of a ListResolversByFunction operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListResolversByFunction method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListResolversByFunction operation.
+//	pageNum := 0
+//	err := client.ListResolversByFunctionPages(params,
+//	    func(page *appsync.ListResolversByFunctionOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *AppSync) ListResolversByFunctionPages(input *ListResolversByFunctionInput, fn func(*ListResolversByFunctionOutput, bool) bool) error {
+	return c.ListResolversByFunctionPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListResolversByFunctionPagesWithContext same as ListResolversByFunctionPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppSync) ListResolversByFunctionPagesWithContext(ctx aws.Context, input *ListResolversByFunctionInput, fn func(*ListResolversByFunctionOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListResolversByFunctionInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListResolversByFunctionRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListResolversByFunctionOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListSourceApiAssociations = "ListSourceApiAssociations"
 
 // ListSourceApiAssociationsRequest generates a "aws/request.Request" representing the
@@ -4223,6 +4622,12 @@ func (c *AppSync) ListSourceApiAssociationsRequest(input *ListSourceApiAssociati
 		Name:       opListSourceApiAssociations,
 		HTTPMethod: "GET",
 		HTTPPath:   "/v1/apis/{apiId}/sourceApiAssociations",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -4281,6 +4686,57 @@ func (c *AppSync) ListSourceApiAssociationsWithContext(ctx aws.Context, input *L
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ListSourceApiAssociationsPages iterates over the pages of a ListSourceApiAssociations operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListSourceApiAssociations method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListSourceApiAssociations operation.
+//	pageNum := 0
+//	err := client.ListSourceApiAssociationsPages(params,
+//	    func(page *appsync.ListSourceApiAssociationsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *AppSync) ListSourceApiAssociationsPages(input *ListSourceApiAssociationsInput, fn func(*ListSourceApiAssociationsOutput, bool) bool) error {
+	return c.ListSourceApiAssociationsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListSourceApiAssociationsPagesWithContext same as ListSourceApiAssociationsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppSync) ListSourceApiAssociationsPagesWithContext(ctx aws.Context, input *ListSourceApiAssociationsInput, fn func(*ListSourceApiAssociationsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListSourceApiAssociationsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListSourceApiAssociationsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListSourceApiAssociationsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opListTagsForResource = "ListTagsForResource"
@@ -4409,6 +4865,12 @@ func (c *AppSync) ListTypesRequest(input *ListTypesInput) (req *request.Request,
 		Name:       opListTypes,
 		HTTPMethod: "GET",
 		HTTPPath:   "/v1/apis/{apiId}/types",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -4473,6 +4935,57 @@ func (c *AppSync) ListTypesWithContext(ctx aws.Context, input *ListTypesInput, o
 	return out, req.Send()
 }
 
+// ListTypesPages iterates over the pages of a ListTypes operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListTypes method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListTypes operation.
+//	pageNum := 0
+//	err := client.ListTypesPages(params,
+//	    func(page *appsync.ListTypesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *AppSync) ListTypesPages(input *ListTypesInput, fn func(*ListTypesOutput, bool) bool) error {
+	return c.ListTypesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListTypesPagesWithContext same as ListTypesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppSync) ListTypesPagesWithContext(ctx aws.Context, input *ListTypesInput, fn func(*ListTypesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListTypesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListTypesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListTypesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListTypesByAssociation = "ListTypesByAssociation"
 
 // ListTypesByAssociationRequest generates a "aws/request.Request" representing the
@@ -4503,6 +5016,12 @@ func (c *AppSync) ListTypesByAssociationRequest(input *ListTypesByAssociationInp
 		Name:       opListTypesByAssociation,
 		HTTPMethod: "GET",
 		HTTPPath:   "/v1/mergedApis/{mergedApiIdentifier}/sourceApiAssociations/{associationId}/types",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -4565,6 +5084,57 @@ func (c *AppSync) ListTypesByAssociationWithContext(ctx aws.Context, input *List
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ListTypesByAssociationPages iterates over the pages of a ListTypesByAssociation operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListTypesByAssociation method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListTypesByAssociation operation.
+//	pageNum := 0
+//	err := client.ListTypesByAssociationPages(params,
+//	    func(page *appsync.ListTypesByAssociationOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *AppSync) ListTypesByAssociationPages(input *ListTypesByAssociationInput, fn func(*ListTypesByAssociationOutput, bool) bool) error {
+	return c.ListTypesByAssociationPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListTypesByAssociationPagesWithContext same as ListTypesByAssociationPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppSync) ListTypesByAssociationPagesWithContext(ctx aws.Context, input *ListTypesByAssociationInput, fn func(*ListTypesByAssociationOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListTypesByAssociationInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListTypesByAssociationRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListTypesByAssociationOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opPutGraphqlApiEnvironmentVariables = "PutGraphqlApiEnvironmentVariables"

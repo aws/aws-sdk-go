@@ -50201,6 +50201,8 @@ type GetMetricDataV2Input struct {
 	//
 	//    * Agents
 	//
+	//    * Campaigns
+	//
 	//    * Channels
 	//
 	//    * Feature
@@ -50216,6 +50218,9 @@ type GetMetricDataV2Input struct {
 	// At least one filter must be passed from queues, routing profiles, agents,
 	// or user hierarchy groups.
 	//
+	// For metrics for outbound campaigns analytics, you can also use campaigns
+	// to satisfy at least one filter requirement.
+	//
 	// To filter by phone number, see Create a historical metrics report (https://docs.aws.amazon.com/connect/latest/adminguide/create-historical-metrics-report.html)
 	// in the Amazon Connect Administrator Guide.
 	//
@@ -50224,7 +50229,8 @@ type GetMetricDataV2Input struct {
 	//    * Filter keys: A maximum of 5 filter keys are supported in a single request.
 	//    Valid filter keys: AGENT | AGENT_HIERARCHY_LEVEL_ONE | AGENT_HIERARCHY_LEVEL_TWO
 	//    | AGENT_HIERARCHY_LEVEL_THREE | AGENT_HIERARCHY_LEVEL_FOUR | AGENT_HIERARCHY_LEVEL_FIVE
-	//    | CASE_TEMPLATE_ARN | CASE_STATUS | CHANNEL | contact/segmentAttributes/connect:Subtype
+	//    | ANSWERING_MACHINE_DETECTION_STATUS | CAMPAIGN | CASE_TEMPLATE_ARN |
+	//    CASE_STATUS | CHANNEL | contact/segmentAttributes/connect:Subtype | DISCONNECT_REASON
 	//    | FEATURE | FLOW_TYPE | FLOWS_NEXT_RESOURCE_ID | FLOWS_NEXT_RESOURCE_QUEUE_ID
 	//    | FLOWS_OUTCOME_TYPE | FLOWS_RESOURCE_ID | INITIATION_METHOD | RESOURCE_PUBLISHED_TIMESTAMP
 	//    | ROUTING_PROFILE | ROUTING_STEP_EXPRESSION | QUEUE | Q_CONNECT_ENABLED
@@ -50247,7 +50253,8 @@ type GetMetricDataV2Input struct {
 	//    key. TRUE includes all contacts that had Amazon Q in Connect enabled as
 	//    part of the flow. FALSE includes all contacts that did not have Amazon
 	//    Q in Connect enabled as part of the flow This filter is available only
-	//    for contact record-driven metrics.
+	//    for contact record-driven metrics. Campaign (https://docs.aws.amazon.com/connect/latest/APIReference/API_connect-outbound-campaigns_Campaign.html)
+	//    ARNs are valid filterValues for the CAMPAIGN filter key.
 	//
 	// Filters is a required field
 	Filters []*FilterV2 `min:"1" type:"list" required:"true"`
@@ -50261,7 +50268,8 @@ type GetMetricDataV2Input struct {
 	//
 	// Valid grouping keys: AGENT | AGENT_HIERARCHY_LEVEL_ONE | AGENT_HIERARCHY_LEVEL_TWO
 	// | AGENT_HIERARCHY_LEVEL_THREE | AGENT_HIERARCHY_LEVEL_FOUR | AGENT_HIERARCHY_LEVEL_FIVE
-	// | CASE_TEMPLATE_ARN | CASE_STATUS | CHANNEL | contact/segmentAttributes/connect:Subtype
+	// | ANSWERING_MACHINE_DETECTION_STATUS | CAMPAIGN | CASE_TEMPLATE_ARN | CASE_STATUS
+	// | CHANNEL | contact/segmentAttributes/connect:Subtype | DISCONNECT_REASON
 	// | FLOWS_RESOURCE_ID | FLOWS_MODULE_RESOURCE_ID | FLOW_TYPE | FLOWS_OUTCOME_TYPE
 	// | INITIATION_METHOD | Q_CONNECT_ENABLED | QUEUE | RESOURCE_PUBLISHED_TIMESTAMP
 	// | ROUTING_PROFILE | ROUTING_STEP_EXPRESSION
@@ -50483,6 +50491,17 @@ type GetMetricDataV2Input struct {
 	//
 	// UI name: Average conversation duration (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#average-conversation-duration-historical)
 	//
+	// AVG_DIALS_PER_MINUTE
+	//
+	// This metric is available only for contacts analyzed by outbound campaigns
+	// analytics.
+	//
+	// Unit: Count
+	//
+	// Valid groupings and filters: Campaign, Agent, Queue, Routing Profile
+	//
+	// UI name: Average dials per minute (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#average-dials-historical)
+	//
 	// AVG_FLOW_TIME
 	//
 	// Unit: Seconds
@@ -50662,6 +50681,45 @@ type GetMetricDataV2Input struct {
 	//
 	// UI name: Average customer talk time (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#average-talk-time-customer-historical)
 	//
+	// AVG_WAIT_TIME_AFTER_CUSTOMER_CONNECTION
+	//
+	// This metric is available only for contacts analyzed by outbound campaigns
+	// analytics.
+	//
+	// Unit: Seconds
+	//
+	// Valid groupings and filters: Campaign
+	//
+	// UI name: Average wait time after customer connection (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#average-wait-time-historical)
+	//
+	// CAMPAIGN_CONTACTS_ABANDONED_AFTER_X
+	//
+	// This metric is available only for contacts analyzed by outbound campaigns
+	// analytics.
+	//
+	// Unit: Count
+	//
+	// Valid groupings and filters: Campaign, Agent
+	//
+	// Threshold: For ThresholdValue, enter any whole number from 1 to 604800 (inclusive),
+	// in seconds. For Comparison, you must enter GT (for Greater than).
+	//
+	// UI name: Campaign contacts abandoned after X (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#campaign-contacts-abandoned-historical)
+	//
+	// CAMPAIGN_CONTACTS_ABANDONED_AFTER_X_RATE
+	//
+	// This metric is available only for contacts analyzed by outbound campaigns
+	// analytics.
+	//
+	// Unit: Percent
+	//
+	// Valid groupings and filters: Campaign, Agent
+	//
+	// Threshold: For ThresholdValue, enter any whole number from 1 to 604800 (inclusive),
+	// in seconds. For Comparison, you must enter GT (for Greater than).
+	//
+	// UI name: Campaign contacts abandoned after X rate (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#campaign-contacts-abandoned-rate-historical)
+	//
 	// CASES_CREATED
 	//
 	// Unit: Count
@@ -50670,7 +50728,7 @@ type GetMetricDataV2Input struct {
 	//
 	// Valid groupings and filters: CASE_TEMPLATE_ARN, CASE_STATUS
 	//
-	// UI name: Cases created (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html##cases-created-historical)
+	// UI name: Cases created (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#cases-created-historical)
 	//
 	// CONTACTS_CREATED
 	//
@@ -50843,6 +50901,37 @@ type GetMetricDataV2Input struct {
 	//
 	// UI name: Current cases (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#current-cases-historical)
 	//
+	// DELIVERY_ATTEMPTS
+	//
+	// This metric is available only for contacts analyzed by outbound campaigns
+	// analytics.
+	//
+	// Unit: Count
+	//
+	// Valid metric filter key: ANSWERING_MACHINE_DETECTION_STATUS, DISCONNECT_REASON
+	//
+	// Valid groupings and filters: Campaign, Agent, Queue, Routing Profile, Answering
+	// Machine Detection Status, Disconnect Reason
+	//
+	// UI name: Delivery attempts (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#delivery-attempts-historical)
+	//
+	// DELIVERY_ATTEMPT_DISPOSITION_RATE
+	//
+	// This metric is available only for contacts analyzed by outbound campaigns
+	// analytics, and with the answering machine detection enabled.
+	//
+	// Unit: Percent
+	//
+	// Valid metric filter key: ANSWERING_MACHINE_DETECTION_STATUS, DISCONNECT_REASON
+	//
+	// Valid groupings and filters: Campaign, Agent, Answering Machine Detection
+	// Status, Disconnect Reason
+	//
+	// Answering Machine Detection Status and Disconnect Reason are valid filters
+	// but not valid groupings.
+	//
+	// UI name: Delivery attempt disposition rate (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#delivery-attempt-disposition-rate-historical)
+	//
 	// FLOWS_OUTCOME
 	//
 	// Unit: Count
@@ -50863,6 +50952,17 @@ type GetMetricDataV2Input struct {
 	// Resource published timestamp
 	//
 	// UI name: Flows started (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#flows-started-historical)
+	//
+	// HUMAN_ANSWERED_CALLS
+	//
+	// This metric is available only for contacts analyzed by outbound campaigns
+	// analytics, and with the answering machine detection enabled.
+	//
+	// Unit: Count
+	//
+	// Valid groupings and filters: Campaign, Agent
+	//
+	// UI name: Human answered (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#human-answered-historical)
 	//
 	// MAX_FLOW_TIME
 	//
@@ -64539,6 +64639,74 @@ func (s *RealTimeContactAnalysisSegmentIssues) SetIssuesDetected(v []*RealTimeCo
 	return s
 }
 
+// Information about the post-contact summary for a real-time contact segment.
+type RealTimeContactAnalysisSegmentPostContactSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The content of the summary.
+	Content *string `min:"1" type:"string"`
+
+	// If the summary failed to be generated, one of the following failure codes
+	// occurs:
+	//
+	//    * QUOTA_EXCEEDED: The number of concurrent analytics jobs reached your
+	//    service quota.
+	//
+	//    * INSUFFICIENT_CONVERSATION_CONTENT: The conversation needs to have at
+	//    least one turn from both the participants in order to generate the summary.
+	//
+	//    * FAILED_SAFETY_GUIDELINES: The generated summary cannot be provided because
+	//    it failed to meet system safety guidelines.
+	//
+	//    * INVALID_ANALYSIS_CONFIGURATION: This code occurs when, for example,
+	//    you're using a language (https://docs.aws.amazon.com/connect/latest/adminguide/supported-languages.html#supported-languages-contact-lens)
+	//    that isn't supported by generative AI-powered post-contact summaries.
+	//
+	//    * INTERNAL_ERROR: Internal system error.
+	FailureCode *string `type:"string" enum:"RealTimeContactAnalysisPostContactSummaryFailureCode"`
+
+	// Whether the summary was successfully COMPLETED or FAILED to be generated.
+	//
+	// Status is a required field
+	Status *string `type:"string" required:"true" enum:"RealTimeContactAnalysisPostContactSummaryStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RealTimeContactAnalysisSegmentPostContactSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RealTimeContactAnalysisSegmentPostContactSummary) GoString() string {
+	return s.String()
+}
+
+// SetContent sets the Content field's value.
+func (s *RealTimeContactAnalysisSegmentPostContactSummary) SetContent(v string) *RealTimeContactAnalysisSegmentPostContactSummary {
+	s.Content = &v
+	return s
+}
+
+// SetFailureCode sets the FailureCode field's value.
+func (s *RealTimeContactAnalysisSegmentPostContactSummary) SetFailureCode(v string) *RealTimeContactAnalysisSegmentPostContactSummary {
+	s.FailureCode = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *RealTimeContactAnalysisSegmentPostContactSummary) SetStatus(v string) *RealTimeContactAnalysisSegmentPostContactSummary {
+	s.Status = &v
+	return s
+}
+
 // The analyzed transcript segment.
 type RealTimeContactAnalysisSegmentTranscript struct {
 	_ struct{} `type:"structure"`
@@ -64840,6 +65008,9 @@ type RealtimeContactAnalysisSegment struct {
 	// Segment type containing a list of detected issues.
 	Issues *RealTimeContactAnalysisSegmentIssues `type:"structure"`
 
+	// Information about the post-contact summary.
+	PostContactSummary *RealTimeContactAnalysisSegmentPostContactSummary `type:"structure"`
+
 	// The analyzed transcript segment.
 	Transcript *RealTimeContactAnalysisSegmentTranscript `type:"structure"`
 }
@@ -64883,6 +65054,12 @@ func (s *RealtimeContactAnalysisSegment) SetEvent(v *RealTimeContactAnalysisSegm
 // SetIssues sets the Issues field's value.
 func (s *RealtimeContactAnalysisSegment) SetIssues(v *RealTimeContactAnalysisSegmentIssues) *RealtimeContactAnalysisSegment {
 	s.Issues = v
+	return s
+}
+
+// SetPostContactSummary sets the PostContactSummary field's value.
+func (s *RealtimeContactAnalysisSegment) SetPostContactSummary(v *RealTimeContactAnalysisSegmentPostContactSummary) *RealtimeContactAnalysisSegment {
+	s.PostContactSummary = v
 	return s
 }
 
@@ -74230,7 +74407,8 @@ func (s *Threshold) SetThresholdValue(v float64) *Threshold {
 type ThresholdV2 struct {
 	_ struct{} `type:"structure"`
 
-	// The type of comparison. Only "less than" (LT) comparisons are supported.
+	// The type of comparison. Only "less than" (LT) and "greater than" (GT) comparisons
+	// are supported.
 	Comparison *string `min:"1" type:"string"`
 
 	// The threshold value to compare.
@@ -85763,6 +85941,50 @@ func RealTimeContactAnalysisOutputType_Values() []string {
 }
 
 const (
+	// RealTimeContactAnalysisPostContactSummaryFailureCodeQuotaExceeded is a RealTimeContactAnalysisPostContactSummaryFailureCode enum value
+	RealTimeContactAnalysisPostContactSummaryFailureCodeQuotaExceeded = "QUOTA_EXCEEDED"
+
+	// RealTimeContactAnalysisPostContactSummaryFailureCodeInsufficientConversationContent is a RealTimeContactAnalysisPostContactSummaryFailureCode enum value
+	RealTimeContactAnalysisPostContactSummaryFailureCodeInsufficientConversationContent = "INSUFFICIENT_CONVERSATION_CONTENT"
+
+	// RealTimeContactAnalysisPostContactSummaryFailureCodeFailedSafetyGuidelines is a RealTimeContactAnalysisPostContactSummaryFailureCode enum value
+	RealTimeContactAnalysisPostContactSummaryFailureCodeFailedSafetyGuidelines = "FAILED_SAFETY_GUIDELINES"
+
+	// RealTimeContactAnalysisPostContactSummaryFailureCodeInvalidAnalysisConfiguration is a RealTimeContactAnalysisPostContactSummaryFailureCode enum value
+	RealTimeContactAnalysisPostContactSummaryFailureCodeInvalidAnalysisConfiguration = "INVALID_ANALYSIS_CONFIGURATION"
+
+	// RealTimeContactAnalysisPostContactSummaryFailureCodeInternalError is a RealTimeContactAnalysisPostContactSummaryFailureCode enum value
+	RealTimeContactAnalysisPostContactSummaryFailureCodeInternalError = "INTERNAL_ERROR"
+)
+
+// RealTimeContactAnalysisPostContactSummaryFailureCode_Values returns all elements of the RealTimeContactAnalysisPostContactSummaryFailureCode enum
+func RealTimeContactAnalysisPostContactSummaryFailureCode_Values() []string {
+	return []string{
+		RealTimeContactAnalysisPostContactSummaryFailureCodeQuotaExceeded,
+		RealTimeContactAnalysisPostContactSummaryFailureCodeInsufficientConversationContent,
+		RealTimeContactAnalysisPostContactSummaryFailureCodeFailedSafetyGuidelines,
+		RealTimeContactAnalysisPostContactSummaryFailureCodeInvalidAnalysisConfiguration,
+		RealTimeContactAnalysisPostContactSummaryFailureCodeInternalError,
+	}
+}
+
+const (
+	// RealTimeContactAnalysisPostContactSummaryStatusFailed is a RealTimeContactAnalysisPostContactSummaryStatus enum value
+	RealTimeContactAnalysisPostContactSummaryStatusFailed = "FAILED"
+
+	// RealTimeContactAnalysisPostContactSummaryStatusCompleted is a RealTimeContactAnalysisPostContactSummaryStatus enum value
+	RealTimeContactAnalysisPostContactSummaryStatusCompleted = "COMPLETED"
+)
+
+// RealTimeContactAnalysisPostContactSummaryStatus_Values returns all elements of the RealTimeContactAnalysisPostContactSummaryStatus enum
+func RealTimeContactAnalysisPostContactSummaryStatus_Values() []string {
+	return []string{
+		RealTimeContactAnalysisPostContactSummaryStatusFailed,
+		RealTimeContactAnalysisPostContactSummaryStatusCompleted,
+	}
+}
+
+const (
 	// RealTimeContactAnalysisSegmentTypeTranscript is a RealTimeContactAnalysisSegmentType enum value
 	RealTimeContactAnalysisSegmentTypeTranscript = "Transcript"
 
@@ -85777,6 +85999,9 @@ const (
 
 	// RealTimeContactAnalysisSegmentTypeAttachments is a RealTimeContactAnalysisSegmentType enum value
 	RealTimeContactAnalysisSegmentTypeAttachments = "Attachments"
+
+	// RealTimeContactAnalysisSegmentTypePostContactSummary is a RealTimeContactAnalysisSegmentType enum value
+	RealTimeContactAnalysisSegmentTypePostContactSummary = "PostContactSummary"
 )
 
 // RealTimeContactAnalysisSegmentType_Values returns all elements of the RealTimeContactAnalysisSegmentType enum
@@ -85787,6 +86012,7 @@ func RealTimeContactAnalysisSegmentType_Values() []string {
 		RealTimeContactAnalysisSegmentTypeIssues,
 		RealTimeContactAnalysisSegmentTypeEvent,
 		RealTimeContactAnalysisSegmentTypeAttachments,
+		RealTimeContactAnalysisSegmentTypePostContactSummary,
 	}
 }
 

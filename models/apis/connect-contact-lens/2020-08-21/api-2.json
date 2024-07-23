@@ -5,12 +5,14 @@
     "endpointPrefix":"contact-lens",
     "jsonVersion":"1.1",
     "protocol":"rest-json",
+    "protocols":["rest-json"],
     "serviceAbbreviation":"Amazon Connect Contact Lens",
     "serviceFullName":"Amazon Connect Contact Lens",
     "serviceId":"Connect Contact Lens",
     "signatureVersion":"v4",
     "signingName":"connect",
-    "uid":"connect-contact-lens-2020-08-21"
+    "uid":"connect-contact-lens-2020-08-21",
+    "auth":["aws.auth#sigv4"]
   },
   "operations":{
     "ListRealtimeContactAnalysisSegments":{
@@ -200,11 +202,43 @@
       "max":20,
       "min":0
     },
+    "PostContactSummary":{
+      "type":"structure",
+      "required":["Status"],
+      "members":{
+        "Content":{"shape":"PostContactSummaryContent"},
+        "Status":{"shape":"PostContactSummaryStatus"},
+        "FailureCode":{"shape":"PostContactSummaryFailureCode"}
+      }
+    },
+    "PostContactSummaryContent":{
+      "type":"string",
+      "max":1762,
+      "min":1
+    },
+    "PostContactSummaryFailureCode":{
+      "type":"string",
+      "enum":[
+        "QUOTA_EXCEEDED",
+        "INSUFFICIENT_CONVERSATION_CONTENT",
+        "FAILED_SAFETY_GUIDELINES",
+        "INVALID_ANALYSIS_CONFIGURATION",
+        "INTERNAL_ERROR"
+      ]
+    },
+    "PostContactSummaryStatus":{
+      "type":"string",
+      "enum":[
+        "FAILED",
+        "COMPLETED"
+      ]
+    },
     "RealtimeContactAnalysisSegment":{
       "type":"structure",
       "members":{
         "Transcript":{"shape":"Transcript"},
-        "Categories":{"shape":"Categories"}
+        "Categories":{"shape":"Categories"},
+        "PostContactSummary":{"shape":"PostContactSummary"}
       }
     },
     "RealtimeContactAnalysisSegments":{

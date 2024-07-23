@@ -2719,15 +2719,20 @@ type AudienceGenerationJobDataSource struct {
 	// {"user_id": "222222"}
 	//
 	// ...
-	//
-	// DataSource is a required field
-	DataSource *S3ConfigMap `locationName:"dataSource" type:"structure" required:"true"`
+	DataSource *S3ConfigMap `locationName:"dataSource" type:"structure"`
 
-	// The ARN of the IAM role that can read the Amazon S3 bucket where the training
-	// data is stored.
+	// The ARN of the IAM role that can read the Amazon S3 bucket where the seed
+	// audience is stored.
 	//
 	// RoleArn is a required field
 	RoleArn *string `locationName:"roleArn" min:"20" type:"string" required:"true"`
+
+	// The protected SQL query parameters.
+	//
+	// SqlParameters is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by AudienceGenerationJobDataSource's
+	// String and GoString methods.
+	SqlParameters *ProtectedQuerySQLParameters `locationName:"sqlParameters" type:"structure" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -2751,9 +2756,6 @@ func (s AudienceGenerationJobDataSource) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *AudienceGenerationJobDataSource) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "AudienceGenerationJobDataSource"}
-	if s.DataSource == nil {
-		invalidParams.Add(request.NewErrParamRequired("DataSource"))
-	}
 	if s.RoleArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
 	}
@@ -2781,6 +2783,12 @@ func (s *AudienceGenerationJobDataSource) SetDataSource(v *S3ConfigMap) *Audienc
 // SetRoleArn sets the RoleArn field's value.
 func (s *AudienceGenerationJobDataSource) SetRoleArn(v string) *AudienceGenerationJobDataSource {
 	s.RoleArn = &v
+	return s
+}
+
+// SetSqlParameters sets the SqlParameters field's value.
+func (s *AudienceGenerationJobDataSource) SetSqlParameters(v *ProtectedQuerySQLParameters) *AudienceGenerationJobDataSource {
+	s.SqlParameters = v
 	return s
 }
 
@@ -3117,10 +3125,12 @@ func (s *AudienceSize) SetValue(v int64) *AudienceSize {
 	return s
 }
 
-// Configure the list of audience output sizes that can be created. A request
-// to StartAudienceGenerationJob that uses this configured audience model must
-// have an audienceSize selected from this list. You can use the ABSOLUTE AudienceSize
-// to configure out audience sizes using the count of identifiers in the output.
+// Returns the relevance scores at these audience sizes when used in the GetAudienceGenerationJob
+// for a specified audience generation job and configured audience model.
+//
+// Specifies the list of allowed audienceSize values when used in the StartAudienceExportJob
+// for an audience generation job. You can use the ABSOLUTE AudienceSize to
+// configure out audience sizes using the count of identifiers in the output.
 // You can use the Percentage AudienceSize to configure sizes in the range 1-100
 // percent.
 type AudienceSizeConfig struct {
@@ -4743,6 +4753,10 @@ type GetAudienceGenerationJobOutput struct {
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
+	// The unique identifier of the protected query for this audience generation
+	// job.
+	ProtectedQueryIdentifier *string `locationName:"protectedQueryIdentifier" type:"string"`
+
 	// The seed audience that was used for this audience generation job. This field
 	// will be null if the account calling the API is the account that started this
 	// audience generation job.
@@ -4831,6 +4845,12 @@ func (s *GetAudienceGenerationJobOutput) SetMetrics(v *AudienceQualityMetrics) *
 // SetName sets the Name field's value.
 func (s *GetAudienceGenerationJobOutput) SetName(v string) *GetAudienceGenerationJobOutput {
 	s.Name = &v
+	return s
+}
+
+// SetProtectedQueryIdentifier sets the ProtectedQueryIdentifier field's value.
+func (s *GetAudienceGenerationJobOutput) SetProtectedQueryIdentifier(v string) *GetAudienceGenerationJobOutput {
+	s.ProtectedQueryIdentifier = &v
 	return s
 }
 
@@ -6246,6 +6266,57 @@ func (s *ListTrainingDatasetsOutput) SetNextToken(v string) *ListTrainingDataset
 // SetTrainingDatasets sets the TrainingDatasets field's value.
 func (s *ListTrainingDatasetsOutput) SetTrainingDatasets(v []*TrainingDatasetSummary) *ListTrainingDatasetsOutput {
 	s.TrainingDatasets = v
+	return s
+}
+
+// The parameters for the SQL type Protected Query.
+type ProtectedQuerySQLParameters struct {
+	_ struct{} `type:"structure" sensitive:"true"`
+
+	// The Amazon Resource Name (ARN) associated with the analysis template within
+	// a collaboration.
+	AnalysisTemplateArn *string `locationName:"analysisTemplateArn" type:"string"`
+
+	// The protected query SQL parameters.
+	Parameters map[string]*string `locationName:"parameters" type:"map"`
+
+	// The query string to be submitted.
+	QueryString *string `locationName:"queryString" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ProtectedQuerySQLParameters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ProtectedQuerySQLParameters) GoString() string {
+	return s.String()
+}
+
+// SetAnalysisTemplateArn sets the AnalysisTemplateArn field's value.
+func (s *ProtectedQuerySQLParameters) SetAnalysisTemplateArn(v string) *ProtectedQuerySQLParameters {
+	s.AnalysisTemplateArn = &v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *ProtectedQuerySQLParameters) SetParameters(v map[string]*string) *ProtectedQuerySQLParameters {
+	s.Parameters = v
+	return s
+}
+
+// SetQueryString sets the QueryString field's value.
+func (s *ProtectedQuerySQLParameters) SetQueryString(v string) *ProtectedQuerySQLParameters {
+	s.QueryString = &v
 	return s
 }
 

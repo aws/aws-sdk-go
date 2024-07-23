@@ -11,6 +11,8 @@
     "CreateConfiguredTable": "<p>Creates a new configured table resource.</p>",
     "CreateConfiguredTableAnalysisRule": "<p>Creates a new analysis rule for a configured table. Currently, only one analysis rule can be created for a given configured table.</p>",
     "CreateConfiguredTableAssociation": "<p>Creates a configured table association. A configured table association links a configured table with a collaboration.</p>",
+    "CreateIdMappingTable": "<p>Creates an ID mapping table.</p>",
+    "CreateIdNamespaceAssociation": "<p>Creates an ID namespace association.</p>",
     "CreateMembership": "<p>Creates a membership for a specific collaboration identifier and joins the collaboration.</p>",
     "CreatePrivacyBudgetTemplate": "<p>Creates a privacy budget template for a specified membership. Each membership can have only one privacy budget template, but it can be deleted and recreated. If you need to change the privacy budget template for a membership, use the <a>UpdatePrivacyBudgetTemplate</a> operation.</p>",
     "DeleteAnalysisTemplate": "<p>Deletes an analysis template.</p>",
@@ -19,6 +21,8 @@
     "DeleteConfiguredTable": "<p>Deletes a configured table.</p>",
     "DeleteConfiguredTableAnalysisRule": "<p>Deletes a configured table analysis rule.</p>",
     "DeleteConfiguredTableAssociation": "<p>Deletes a configured table association.</p>",
+    "DeleteIdMappingTable": "<p>Deletes an ID mapping table.</p>",
+    "DeleteIdNamespaceAssociation": "<p>Deletes an ID namespace association.</p>",
     "DeleteMember": "<p>Removes the specified member from a collaboration. The removed member is placed in the Removed status and can't interact with the collaboration. The removed member's data is inaccessible to active members of the collaboration.</p>",
     "DeleteMembership": "<p>Deletes a specified membership. All resources under a membership must be deleted.</p>",
     "DeletePrivacyBudgetTemplate": "<p>Deletes a privacy budget template for a specified membership.</p>",
@@ -26,11 +30,14 @@
     "GetCollaboration": "<p>Returns metadata about a collaboration.</p>",
     "GetCollaborationAnalysisTemplate": "<p>Retrieves an analysis template within a collaboration.</p>",
     "GetCollaborationConfiguredAudienceModelAssociation": "<p>Retrieves a configured audience model association within a collaboration.</p>",
+    "GetCollaborationIdNamespaceAssociation": "<p>Retrieves an ID namespace association from a specific collaboration.</p>",
     "GetCollaborationPrivacyBudgetTemplate": "<p>Returns details about a specified privacy budget template.</p>",
     "GetConfiguredAudienceModelAssociation": "<p>Returns information about a configured audience model association.</p>",
     "GetConfiguredTable": "<p>Retrieves a configured table.</p>",
     "GetConfiguredTableAnalysisRule": "<p>Retrieves a configured table analysis rule.</p>",
     "GetConfiguredTableAssociation": "<p>Retrieves a configured table association.</p>",
+    "GetIdMappingTable": "<p>Retrieves an ID mapping table.</p>",
+    "GetIdNamespaceAssociation": "<p>Retrieves an ID namespace association.</p>",
     "GetMembership": "<p>Retrieves a specified membership for an identifier.</p>",
     "GetPrivacyBudgetTemplate": "<p>Returns details for a specified privacy budget template.</p>",
     "GetProtectedQuery": "<p>Returns query processing metadata.</p>",
@@ -39,12 +46,15 @@
     "ListAnalysisTemplates": "<p>Lists analysis templates that the caller owns.</p>",
     "ListCollaborationAnalysisTemplates": "<p>Lists analysis templates within a collaboration.</p>",
     "ListCollaborationConfiguredAudienceModelAssociations": "<p>Lists configured audience model associations within a collaboration.</p>",
+    "ListCollaborationIdNamespaceAssociations": "<p>Returns a list of the ID namespace associations in a collaboration.</p>",
     "ListCollaborationPrivacyBudgetTemplates": "<p>Returns an array that summarizes each privacy budget template in a specified collaboration.</p>",
     "ListCollaborationPrivacyBudgets": "<p>Returns an array that summarizes each privacy budget in a specified collaboration. The summary includes the collaboration ARN, creation time, creating account, and privacy budget details.</p>",
     "ListCollaborations": "<p>Lists collaborations the caller owns, is active in, or has been invited to.</p>",
     "ListConfiguredAudienceModelAssociations": "<p>Lists information about requested configured audience model associations.</p>",
     "ListConfiguredTableAssociations": "<p>Lists configured table associations for a membership.</p>",
     "ListConfiguredTables": "<p>Lists configured tables.</p>",
+    "ListIdMappingTables": "<p>Returns a list of ID mapping tables.</p>",
+    "ListIdNamespaceAssociations": "<p>Returns a list of ID namespace associations.</p>",
     "ListMembers": "<p>Lists all members within a collaboration.</p>",
     "ListMemberships": "<p>Lists all memberships resources within the caller's account.</p>",
     "ListPrivacyBudgetTemplates": "<p>Returns detailed information about the privacy budget templates in a specified membership.</p>",
@@ -52,6 +62,7 @@
     "ListProtectedQueries": "<p>Lists protected queries, sorted by the most recent query.</p>",
     "ListSchemas": "<p>Lists the schemas for relations within a collaboration.</p>",
     "ListTagsForResource": "<p>Lists all of the tags that have been added to a resource.</p>",
+    "PopulateIdMappingTable": "<p>Defines the information that's necessary to populate an ID mapping table.</p>",
     "PreviewPrivacyImpact": "<p>An estimate of the number of aggregation functions that the member who can query can run given epsilon and noise parameters.</p>",
     "StartProtectedQuery": "<p>Creates a protected query that is started by Clean Rooms.</p>",
     "TagResource": "<p>Tags a resource.</p>",
@@ -62,6 +73,8 @@
     "UpdateConfiguredTable": "<p>Updates a configured table.</p>",
     "UpdateConfiguredTableAnalysisRule": "<p>Updates a configured table analysis rule.</p>",
     "UpdateConfiguredTableAssociation": "<p>Updates a configured table association.</p>",
+    "UpdateIdMappingTable": "<p>Provides the details that are necessary to update an ID mapping table.</p>",
+    "UpdateIdNamespaceAssociation": "<p>Provides the details that are necessary to update an ID namespace association.</p>",
     "UpdateMembership": "<p>Updates a membership.</p>",
     "UpdatePrivacyBudgetTemplate": "<p>Updates the privacy budget template for the specified membership.</p>",
     "UpdateProtectedQuery": "<p>Updates the processing of a currently running query.</p>"
@@ -85,8 +98,10 @@
         "Collaboration$creatorAccountId": "<p>The identifier used to reference members of the collaboration. Currently only supports Amazon Web Services account ID.</p>",
         "CollaborationAnalysisTemplate$creatorAccountId": "<p>The identifier used to reference members of the collaboration. Currently only supports Amazon Web Services account ID.</p>",
         "CollaborationAnalysisTemplateSummary$creatorAccountId": "<p>The identifier used to reference members of the collaboration. Currently only supports Amazon Web Services account ID.</p>",
-        "CollaborationConfiguredAudienceModelAssociation$creatorAccountId": "<p>The identifier used to reference members of the collaboration. Only supports AWS account ID.</p>",
-        "CollaborationConfiguredAudienceModelAssociationSummary$creatorAccountId": "<p>The identifier used to reference members of the collaboration. Only supports AWS account ID.</p>",
+        "CollaborationConfiguredAudienceModelAssociation$creatorAccountId": "<p>The identifier used to reference members of the collaboration. Only supports Amazon Web Services account ID.</p>",
+        "CollaborationConfiguredAudienceModelAssociationSummary$creatorAccountId": "<p>The identifier used to reference members of the collaboration. Only supports Amazon Web Services account ID.</p>",
+        "CollaborationIdNamespaceAssociation$creatorAccountId": "<p>The unique identifier of the Amazon Web Services account that created the collaboration ID namespace association.</p>",
+        "CollaborationIdNamespaceAssociationSummary$creatorAccountId": "<p>The Amazon Web Services account that created this collaboration ID namespace association.</p>",
         "CollaborationPrivacyBudgetSummary$creatorAccountId": "<p>The unique identifier of the account that created this privacy budget.</p>",
         "CollaborationPrivacyBudgetTemplate$creatorAccountId": "<p>The unique identifier of the account that created this collaboration privacy budget template.</p>",
         "CollaborationPrivacyBudgetTemplateSummary$creatorAccountId": "<p>The unique identifier of the account that created this collaboration privacy budget template.</p>",
@@ -164,7 +179,7 @@
         "ConfiguredTable$analysisMethod": "<p>The analysis method for the configured table. The only valid value is currently `DIRECT_QUERY`.</p>",
         "ConfiguredTableSummary$analysisMethod": "<p>The analysis method for the configured tables. The only valid value is currently `DIRECT_QUERY`.</p>",
         "CreateConfiguredTableInput$analysisMethod": "<p>The analysis method for the configured tables. The only valid value is currently `DIRECT_QUERY`.</p>",
-        "Schema$analysisMethod": "<p>The analysis method for the schema. The only valid value is currently DIRECT_QUERY.</p>",
+        "Schema$analysisMethod": "<p>The analysis method for the schema. The only valid value is currently <code>DIRECT_QUERY</code>.</p>",
         "SchemaSummary$analysisMethod": "<p>The analysis method for the associated schema. The only valid value is currently `DIRECT_QUERY`.</p>"
       }
     },
@@ -207,7 +222,9 @@
       "refs": {
         "AnalysisRuleAggregation$joinColumns": "<p>Columns in configured table that can be used in join statements and/or as aggregate columns. They can never be outputted directly.</p>",
         "AnalysisRuleAggregation$dimensionColumns": "<p>The columns that query runners are allowed to select, group by, or filter by.</p>",
-        "AnalysisRuleList$listColumns": "<p>Columns that can be listed in the output.</p>"
+        "AnalysisRuleIdMappingTable$dimensionColumns": "<p>The columns that query runners are allowed to select, group by, or filter by.</p>",
+        "AnalysisRuleList$listColumns": "<p>Columns that can be listed in the output.</p>",
+        "QueryConstraintRequireOverlap$columns": "<p>The columns that are required to overlap.</p>"
       }
     },
     "AnalysisRuleColumnName": {
@@ -216,6 +233,7 @@
         "AggregateColumnColumnNamesList$member": null,
         "AggregationConstraint$columnName": "<p>Column in aggregation constraint for which there must be a minimum number of distinct values in an output row for it to be in the query output.</p>",
         "AnalysisRuleColumnList$member": null,
+        "AnalysisRuleIdMappingTableJoinColumnsList$member": null,
         "AnalysisRuleListJoinColumnsList$member": null
       }
     },
@@ -236,6 +254,18 @@
       "base": null,
       "refs": {
         "AnalysisRuleCustom$allowedAnalysisProviders": "<p>The IDs of the Amazon Web Services accounts that are allowed to query by the custom analysis rule. Required when <code>allowedAnalyses</code> is <code>ANY_QUERY</code>.</p>"
+      }
+    },
+    "AnalysisRuleIdMappingTable": {
+      "base": "<p>Defines details for the analysis rule ID mapping table.</p>",
+      "refs": {
+        "AnalysisRulePolicyV1$idMappingTable": "<p>The ID mapping table.</p>"
+      }
+    },
+    "AnalysisRuleIdMappingTableJoinColumnsList": {
+      "base": null,
+      "refs": {
+        "AnalysisRuleIdMappingTable$joinColumns": "<p>The columns that query runners are allowed to use in an INNER JOIN statement.</p>"
       }
     },
     "AnalysisRuleList": {
@@ -277,7 +307,7 @@
     "AnalysisRuleTypeList": {
       "base": null,
       "refs": {
-        "Schema$analysisRuleTypes": "<p>The analysis rule types associated with the schema. Currently, only one entry is present.</p>",
+        "Schema$analysisRuleTypes": "<p>The analysis rule types that are associated with the schema. Currently, only one entry is present.</p>",
         "SchemaSummary$analysisRuleTypes": "<p>The types of analysis rules that are associated with this schema object.</p>"
       }
     },
@@ -471,6 +501,9 @@
         "DataEncryptionMetadata$allowDuplicates": "<p>Indicates whether Fingerprint columns can contain duplicate entries (<code>TRUE</code>) or are to contain only non-repeated values (<code>FALSE</code>).</p>",
         "DataEncryptionMetadata$allowJoinsOnColumnsWithDifferentNames": "<p>Indicates whether Fingerprint columns can be joined on any other Fingerprint column with a different name (<code>TRUE</code>) or can only be joined on Fingerprint columns of the same name (<code>FALSE</code>).</p>",
         "DataEncryptionMetadata$preserveNulls": "<p>Indicates whether NULL values are to be copied as NULL to encrypted tables (<code>TRUE</code>) or cryptographically processed (<code>FALSE</code>).</p>",
+        "IdMappingConfig$allowUseAsDimensionColumn": "<p>An indicator as to whether you can use your column as a dimension column in the ID mapping table (<code>TRUE</code>) or not (<code>FALSE</code>).</p> <p>Default is <code>FALSE</code>.</p>",
+        "IdMappingTableInputReferenceConfig$manageResourcePolicies": "<p>When <code>TRUE</code>, Clean Rooms manages permissions for the ID mapping table resource. </p> <p>When <code>FALSE</code>, the resource owner manages permissions for the ID mapping table resource.</p>",
+        "IdNamespaceAssociationInputReferenceConfig$manageResourcePolicies": "<p>When <code>TRUE</code>, Clean Rooms manages permissions for the ID namespace association resource.</p> <p>When <code>FALSE</code>, the resource owner manages permissions for the ID namespace association resource.</p>",
         "MembershipQueryComputePaymentConfig$isResponsible": "<p>Indicates whether the collaboration member has accepted to pay for query compute costs (<code>TRUE</code>) or has not accepted to pay for query compute costs (<code>FALSE</code>).</p> <p>If the collaboration creator has not specified anyone to pay for query compute costs, then the member who can query is the default payer. </p> <p>An error message is returned for the following reasons: </p> <ul> <li> <p>If you set the value to <code>FALSE</code> but you are responsible to pay for query compute costs. </p> </li> <li> <p>If you set the value to <code>TRUE</code> but you are not responsible to pay for query compute costs. </p> </li> </ul>",
         "QueryComputePaymentConfig$isResponsible": "<p>Indicates whether the collaboration creator has configured the collaboration member to pay for query compute costs (<code>TRUE</code>) or has not configured the collaboration member to pay for query compute costs (<code>FALSE</code>).</p> <p>Exactly one member can be configured to pay for query compute costs. An error is returned if the collaboration creator sets a <code>TRUE</code> value for more than one member in the collaboration. </p> <p>If the collaboration creator hasn't specified anyone as the member paying for query compute costs, then the member who can query is the default payer. An error is returned if the collaboration creator sets a <code>FALSE</code> value for the member who can query.</p>"
       }
@@ -526,18 +559,24 @@
         "CollaborationAnalysisTemplateSummary$collaborationArn": "<p>The unique ARN for the analysis template’s associated collaboration.</p>",
         "CollaborationConfiguredAudienceModelAssociation$collaborationArn": "<p>The unique ARN for the configured audience model's associated collaboration.</p>",
         "CollaborationConfiguredAudienceModelAssociationSummary$collaborationArn": "<p>The unique ARN for the configured audience model's associated collaboration.</p>",
+        "CollaborationIdNamespaceAssociation$collaborationArn": "<p>The Amazon Resource Name (ARN) of the collaboration that contains the collaboration ID namespace association.</p>",
+        "CollaborationIdNamespaceAssociationSummary$collaborationArn": "<p>The Amazon Resource Name (ARN) of the collaboration that contains this collaboration ID namespace association.</p>",
         "CollaborationPrivacyBudgetSummary$collaborationArn": "<p>The ARN of the collaboration that includes this privacy budget.</p>",
         "CollaborationPrivacyBudgetTemplate$collaborationArn": "<p>The ARN of the collaboration that includes this collaboration privacy budget template.</p>",
         "CollaborationPrivacyBudgetTemplateSummary$collaborationArn": "<p>The ARN of the collaboration that contains this collaboration privacy budget template.</p>",
         "CollaborationSummary$arn": "<p>The ARN of the collaboration.</p>",
         "ConfiguredAudienceModelAssociation$collaborationArn": "<p>The Amazon Resource Name (ARN) of the collaboration that contains this configured audience model association.</p>",
         "ConfiguredAudienceModelAssociationSummary$collaborationArn": "<p>The Amazon Resource Name (ARN) of the collaboration that contains the configured audience model association.</p>",
+        "IdMappingTable$collaborationArn": "<p>The Amazon Resource Name (ARN) of the collaboration that contains this ID mapping table.</p>",
+        "IdMappingTableSummary$collaborationArn": "<p>The Amazon Resource Name (ARN) of the collaboration that contains this ID mapping table.</p>",
+        "IdNamespaceAssociation$collaborationArn": "<p>The Amazon Resource Name (ARN) of the collaboration that contains this ID namespace association.</p>",
+        "IdNamespaceAssociationSummary$collaborationArn": "<p>The Amazon Resource Name (ARN) of the collaboration that contains this ID namespace association.</p>",
         "Membership$collaborationArn": "<p>The unique ARN for the membership's associated collaboration.</p>",
         "MembershipSummary$collaborationArn": "<p>The unique ARN for the membership's associated collaboration.</p>",
         "PrivacyBudgetSummary$collaborationArn": "<p>The ARN of the collaboration that contains this privacy budget.</p>",
         "PrivacyBudgetTemplate$collaborationArn": "<p>The ARN of the collaboration that contains this privacy budget template.</p>",
         "PrivacyBudgetTemplateSummary$collaborationArn": "<p>The ARN of the collaboration that contains this privacy budget template.</p>",
-        "Schema$collaborationArn": "<p>The unique ARN for the collaboration that the schema belongs to.</p>",
+        "Schema$collaborationArn": "<p>The unique Amazon Resource Name (ARN) for the collaboration that the schema belongs to.</p>",
         "SchemaSummary$collaborationArn": "<p>The unique ARN for the collaboration that the schema belongs to.</p>"
       }
     },
@@ -567,6 +606,24 @@
         "UpdateCollaborationInput$description": "<p>A description of the collaboration.</p>"
       }
     },
+    "CollaborationIdNamespaceAssociation": {
+      "base": "<p>Defines details for the collaboration ID namespace association.</p>",
+      "refs": {
+        "GetCollaborationIdNamespaceAssociationOutput$collaborationIdNamespaceAssociation": "<p>The ID namespace association that you requested.</p>"
+      }
+    },
+    "CollaborationIdNamespaceAssociationSummary": {
+      "base": "<p>Provides summary information about the collaboration ID namespace association.</p>",
+      "refs": {
+        "CollaborationIdNamespaceAssociationSummaryList$member": null
+      }
+    },
+    "CollaborationIdNamespaceAssociationSummaryList": {
+      "base": null,
+      "refs": {
+        "ListCollaborationIdNamespaceAssociationsOutput$collaborationIdNamespaceAssociationSummaries": "<p>The summary information of the collaboration ID namespace associations that you requested.</p>"
+      }
+    },
     "CollaborationIdentifier": {
       "base": null,
       "refs": {
@@ -579,12 +636,14 @@
         "DeleteMemberInput$collaborationIdentifier": "<p>The unique identifier for the associated collaboration.</p>",
         "GetCollaborationAnalysisTemplateInput$collaborationIdentifier": "<p>A unique identifier for the collaboration that the analysis templates belong to. Currently accepts collaboration ID.</p>",
         "GetCollaborationConfiguredAudienceModelAssociationInput$collaborationIdentifier": "<p>A unique identifier for the collaboration that the configured audience model association belongs to. Accepts a collaboration ID.</p>",
+        "GetCollaborationIdNamespaceAssociationInput$collaborationIdentifier": "<p>The unique identifier of the collaboration that contains the ID namespace association that you want to retrieve.</p>",
         "GetCollaborationInput$collaborationIdentifier": "<p>The identifier for the collaboration.</p>",
         "GetCollaborationPrivacyBudgetTemplateInput$collaborationIdentifier": "<p>A unique identifier for one of your collaborations.</p>",
         "GetSchemaAnalysisRuleInput$collaborationIdentifier": "<p>A unique identifier for the collaboration that the schema belongs to. Currently accepts a collaboration ID.</p>",
         "GetSchemaInput$collaborationIdentifier": "<p>A unique identifier for the collaboration that the schema belongs to. Currently accepts a collaboration ID.</p>",
         "ListCollaborationAnalysisTemplatesInput$collaborationIdentifier": "<p>A unique identifier for the collaboration that the analysis templates belong to. Currently accepts collaboration ID.</p>",
         "ListCollaborationConfiguredAudienceModelAssociationsInput$collaborationIdentifier": "<p>A unique identifier for the collaboration that the configured audience model association belongs to. Accepts a collaboration ID.</p>",
+        "ListCollaborationIdNamespaceAssociationsInput$collaborationIdentifier": "<p>The unique identifier of the collaboration that contains the ID namespace associations that you want to retrieve.</p>",
         "ListCollaborationPrivacyBudgetTemplatesInput$collaborationIdentifier": "<p>A unique identifier for one of your collaborations.</p>",
         "ListCollaborationPrivacyBudgetsInput$collaborationIdentifier": "<p>A unique identifier for one of your collaborations.</p>",
         "ListMembersInput$collaborationIdentifier": "<p>The identifier of the collaboration in which the members are listed.</p>",
@@ -662,7 +721,7 @@
     "ColumnList": {
       "base": null,
       "refs": {
-        "Schema$columns": "<p>The columns for the relation this schema represents.</p>",
+        "Schema$columns": "<p>The columns for the relation that this schema represents.</p>",
         "Schema$partitionKeys": "<p>The partition keys for the dataset underlying this schema.</p>"
       }
     },
@@ -929,6 +988,26 @@
       "refs": {
       }
     },
+    "CreateIdMappingTableInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateIdMappingTableOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateIdNamespaceAssociationInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateIdNamespaceAssociationOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreateMembershipInput": {
       "base": null,
       "refs": {
@@ -1013,6 +1092,26 @@
     },
     "DeleteConfiguredTableOutput": {
       "base": "<p>The empty output for a successful deletion.</p>",
+      "refs": {
+      }
+    },
+    "DeleteIdMappingTableInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteIdMappingTableOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteIdNamespaceAssociationInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteIdNamespaceAssociationOutput": {
+      "base": null,
       "refs": {
       }
     },
@@ -1196,6 +1295,12 @@
         "UpdateConfiguredTableInput$name": "<p>A new name for the configured table.</p>"
       }
     },
+    "Document": {
+      "base": null,
+      "refs": {
+        "IdMappingWorkflowsSupported$member": null
+      }
+    },
     "Double": {
       "base": null,
       "refs": {
@@ -1225,6 +1330,17 @@
         "DifferentialPrivacySensitivityParameters$maxColumnValue": "<p>The upper bound of the aggregation expression.</p>"
       }
     },
+    "GenericResourceName": {
+      "base": null,
+      "refs": {
+        "CollaborationIdNamespaceAssociation$name": "<p>The name of the collaboration ID namespace association.</p>",
+        "CollaborationIdNamespaceAssociationSummary$name": "<p>The name of the collaboration ID namespace association.</p>",
+        "CreateIdNamespaceAssociationInput$name": "<p>The name for the ID namespace association.</p>",
+        "IdNamespaceAssociation$name": "<p>The name of this ID namespace association.</p>",
+        "IdNamespaceAssociationSummary$name": "<p>The name of the ID namespace association.</p>",
+        "UpdateIdNamespaceAssociationInput$name": "<p>A new name for the ID namespace association.</p>"
+      }
+    },
     "GetAnalysisTemplateInput": {
       "base": null,
       "refs": {
@@ -1251,6 +1367,16 @@
       }
     },
     "GetCollaborationConfiguredAudienceModelAssociationOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetCollaborationIdNamespaceAssociationInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetCollaborationIdNamespaceAssociationOutput": {
       "base": null,
       "refs": {
       }
@@ -1311,6 +1437,26 @@
       }
     },
     "GetConfiguredTableOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetIdMappingTableInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetIdMappingTableOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetIdNamespaceAssociationInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetIdNamespaceAssociationOutput": {
       "base": null,
       "refs": {
       }
@@ -1383,6 +1529,166 @@
         "TableReference$glue": "<p>If present, a reference to the Glue table referred to by this table reference.</p>"
       }
     },
+    "IdMappingConfig": {
+      "base": "<p>The configuration settings for the ID mapping table.</p>",
+      "refs": {
+        "CollaborationIdNamespaceAssociation$idMappingConfig": null,
+        "CreateIdNamespaceAssociationInput$idMappingConfig": "<p>The configuration settings for the ID mapping table.</p>",
+        "IdNamespaceAssociation$idMappingConfig": "<p>The configuration settings for the ID mapping table.</p>",
+        "UpdateIdNamespaceAssociationInput$idMappingConfig": "<p>The configuration settings for the ID mapping table.</p>"
+      }
+    },
+    "IdMappingTable": {
+      "base": "<p>Describes information about the ID mapping table.</p>",
+      "refs": {
+        "CreateIdMappingTableOutput$idMappingTable": "<p>The ID mapping table that was created.</p>",
+        "GetIdMappingTableOutput$idMappingTable": "<p>The ID mapping table that you requested.</p>",
+        "UpdateIdMappingTableOutput$idMappingTable": "<p>The updated ID mapping table.</p>"
+      }
+    },
+    "IdMappingTableArn": {
+      "base": null,
+      "refs": {
+        "IdMappingTable$arn": "<p>The Amazon Resource Name (ARN) of the ID mapping table.</p>",
+        "IdMappingTableSummary$arn": "<p>The Amazon Resource Name (ARN) of this ID mapping table.</p>"
+      }
+    },
+    "IdMappingTableInputReferenceArn": {
+      "base": null,
+      "refs": {
+        "IdMappingTableInputReferenceConfig$inputReferenceArn": "<p>The Amazon Resource Name (ARN) of the referenced resource in Entity Resolution. Valid values are ID mapping workflow ARNs.</p>"
+      }
+    },
+    "IdMappingTableInputReferenceConfig": {
+      "base": "<p>Provides the input reference configuration for the ID mapping table.</p>",
+      "refs": {
+        "CreateIdMappingTableInput$inputReferenceConfig": "<p>The input reference configuration needed to create the ID mapping table.</p>",
+        "IdMappingTable$inputReferenceConfig": "<p>The input reference configuration for the ID mapping table.</p>",
+        "IdMappingTableSummary$inputReferenceConfig": "<p>The input reference configuration for the ID mapping table.</p>"
+      }
+    },
+    "IdMappingTableInputReferenceProperties": {
+      "base": "<p>The input reference properties for the ID mapping table.</p>",
+      "refs": {
+        "IdMappingTable$inputReferenceProperties": "<p>The input reference properties for the ID mapping table.</p>"
+      }
+    },
+    "IdMappingTableInputSource": {
+      "base": "<p>The input source of the ID mapping table.</p>",
+      "refs": {
+        "IdMappingTableInputSourceList$member": null
+      }
+    },
+    "IdMappingTableInputSourceList": {
+      "base": null,
+      "refs": {
+        "IdMappingTableInputReferenceProperties$idMappingTableInputSource": "<p>The input source of the ID mapping table.</p>",
+        "IdMappingTableSchemaTypeProperties$idMappingTableInputSource": "<p>Defines which ID namespace associations are used to create the ID mapping table.</p>"
+      }
+    },
+    "IdMappingTableSchemaTypeProperties": {
+      "base": "<p>Additional properties that are specific to the type of the associated schema.</p>",
+      "refs": {
+        "SchemaTypeProperties$idMappingTable": "<p>The ID mapping table for the schema type properties.</p>"
+      }
+    },
+    "IdMappingTableSummary": {
+      "base": "<p>Detailed information about the ID mapping table.</p>",
+      "refs": {
+        "IdMappingTableSummaryList$member": null
+      }
+    },
+    "IdMappingTableSummaryList": {
+      "base": null,
+      "refs": {
+        "ListIdMappingTablesOutput$idMappingTableSummaries": "<p>The summary information of the ID mapping tables that you requested.</p>"
+      }
+    },
+    "IdMappingWorkflowsSupported": {
+      "base": null,
+      "refs": {
+        "IdNamespaceAssociationInputReferenceProperties$idMappingWorkflowsSupported": "<p>Defines how ID mapping workflows are supported for this ID namespace association.</p>"
+      }
+    },
+    "IdNamespaceAssociation": {
+      "base": "<p>Provides information to create the ID namespace association.</p>",
+      "refs": {
+        "CreateIdNamespaceAssociationOutput$idNamespaceAssociation": "<p>The ID namespace association that was created.</p>",
+        "GetIdNamespaceAssociationOutput$idNamespaceAssociation": "<p>The ID namespace association that you requested.</p>",
+        "UpdateIdNamespaceAssociationOutput$idNamespaceAssociation": "<p>The updated ID namespace association.</p>"
+      }
+    },
+    "IdNamespaceAssociationArn": {
+      "base": null,
+      "refs": {
+        "CollaborationIdNamespaceAssociation$arn": "<p>The Amazon Resource Name (ARN) of the collaboration ID namespace association.</p>",
+        "CollaborationIdNamespaceAssociationSummary$arn": "<p>The Amazon Resource Name (ARN) of the collaboration ID namespace association.</p>",
+        "IdNamespaceAssociation$arn": "<p>The Amazon Resource Name (ARN) of the ID namespace association.</p>",
+        "IdNamespaceAssociationSummary$arn": "<p>The Amazon Resource Name (ARN) of this ID namespace association.</p>"
+      }
+    },
+    "IdNamespaceAssociationIdentifier": {
+      "base": null,
+      "refs": {
+        "CollaborationIdNamespaceAssociation$id": "<p>The unique identifier of the collaboration ID namespace association.</p>",
+        "CollaborationIdNamespaceAssociationSummary$id": "<p>The unique identifier of the collaboration ID namespace association.</p>",
+        "DeleteIdNamespaceAssociationInput$idNamespaceAssociationIdentifier": "<p>The unique identifier of the ID namespace association that you want to delete.</p>",
+        "GetCollaborationIdNamespaceAssociationInput$idNamespaceAssociationIdentifier": "<p>The unique identifier of the ID namespace association that you want to retrieve.</p>",
+        "GetIdNamespaceAssociationInput$idNamespaceAssociationIdentifier": "<p>The unique identifier of the ID namespace association that you want to retrieve.</p>",
+        "IdNamespaceAssociation$id": "<p>The unique identifier for this ID namespace association.</p>",
+        "UpdateIdNamespaceAssociationInput$idNamespaceAssociationIdentifier": "<p>The unique identifier of the ID namespace association that you want to update.</p>"
+      }
+    },
+    "IdNamespaceAssociationInputReferenceArn": {
+      "base": null,
+      "refs": {
+        "IdNamespaceAssociationInputReferenceConfig$inputReferenceArn": "<p>The Amazon Resource Name (ARN) of the Entity Resolution resource that is being associated to the collaboration. Valid resource ARNs are from the ID namespaces that you own.</p>"
+      }
+    },
+    "IdNamespaceAssociationInputReferenceConfig": {
+      "base": "<p>Provides the information for the ID namespace association input reference configuration.</p>",
+      "refs": {
+        "CollaborationIdNamespaceAssociation$inputReferenceConfig": "<p>The input reference configuration that's necessary to create the collaboration ID namespace association.</p>",
+        "CollaborationIdNamespaceAssociationSummary$inputReferenceConfig": "<p>The input reference configuration that's used to create the collaboration ID namespace association.</p>",
+        "CreateIdNamespaceAssociationInput$inputReferenceConfig": "<p>The input reference configuration needed to create the ID namespace association.</p>",
+        "IdNamespaceAssociation$inputReferenceConfig": "<p>The input reference configuration for the ID namespace association.</p>",
+        "IdNamespaceAssociationSummary$inputReferenceConfig": "<p>The input reference configuration details for this ID namespace association.</p>"
+      }
+    },
+    "IdNamespaceAssociationInputReferenceProperties": {
+      "base": "<p>Provides the information for the ID namespace association input reference properties.</p>",
+      "refs": {
+        "CollaborationIdNamespaceAssociation$inputReferenceProperties": "<p>The input reference properties that are needed to create the collaboration ID namespace association.</p>",
+        "IdNamespaceAssociation$inputReferenceProperties": "<p>The input reference properties for the ID namespace association.</p>"
+      }
+    },
+    "IdNamespaceAssociationInputReferencePropertiesSummary": {
+      "base": "<p>Detailed information about the ID namespace association input reference properties.</p>",
+      "refs": {
+        "CollaborationIdNamespaceAssociationSummary$inputReferenceProperties": "<p>The input reference properties that are used to create the collaboration ID namespace association.</p>",
+        "IdNamespaceAssociationSummary$inputReferenceProperties": "<p>The input reference properties for this ID namespace association.</p>"
+      }
+    },
+    "IdNamespaceAssociationSummary": {
+      "base": "<p>Detailed information about the ID namespace association.</p>",
+      "refs": {
+        "IdNamespaceAssociationSummaryList$member": null
+      }
+    },
+    "IdNamespaceAssociationSummaryList": {
+      "base": null,
+      "refs": {
+        "ListIdNamespaceAssociationsOutput$idNamespaceAssociationSummaries": "<p>The summary information of the ID namespace associations that you requested.</p>"
+      }
+    },
+    "IdNamespaceType": {
+      "base": null,
+      "refs": {
+        "IdMappingTableInputSource$type": "<p>The type of the input source of the ID mapping table.</p>",
+        "IdNamespaceAssociationInputReferenceProperties$idNamespaceType": "<p>The ID namespace type for this ID namespace association.</p>",
+        "IdNamespaceAssociationInputReferencePropertiesSummary$idNamespaceType": "<p>The ID namespace type for this ID namespace association.</p>"
+      }
+    },
     "InternalServerException": {
       "base": "<p>Unexpected error during processing of request.</p>",
       "refs": {
@@ -1405,6 +1711,14 @@
       "base": null,
       "refs": {
         "AnalysisRuleAggregation$joinRequired": "<p>Control that requires member who runs query to do a join with their configured table and/or other configured table in query.</p>"
+      }
+    },
+    "KMSKeyArn": {
+      "base": null,
+      "refs": {
+        "CreateIdMappingTableInput$kmsKeyArn": "<p>The Amazon Resource Name (ARN) of the Amazon Web Services KMS key. This value is used to encrypt the mapping table data that is stored by Clean Rooms.</p>",
+        "IdMappingTable$kmsKeyArn": "<p>The Amazon Resource Name (ARN) of the Amazon Web Services KMS key.</p>",
+        "UpdateIdMappingTableInput$kmsKeyArn": "<p>The Amazon Resource Name (ARN) of the Amazon Web Services KMS key.</p>"
       }
     },
     "KeyPrefix": {
@@ -1439,6 +1753,16 @@
       }
     },
     "ListCollaborationConfiguredAudienceModelAssociationsOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListCollaborationIdNamespaceAssociationsInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListCollaborationIdNamespaceAssociationsOutput": {
       "base": null,
       "refs": {
       }
@@ -1499,6 +1823,26 @@
       }
     },
     "ListConfiguredTablesOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListIdMappingTablesInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListIdMappingTablesOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListIdNamespaceAssociationsInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListIdNamespaceAssociationsOutput": {
       "base": null,
       "refs": {
       }
@@ -1582,21 +1926,24 @@
     "MaxResults": {
       "base": null,
       "refs": {
-        "ListAnalysisTemplatesInput$maxResults": "<p>The maximum size of the results that is returned per call.</p>",
-        "ListCollaborationAnalysisTemplatesInput$maxResults": "<p>The maximum size of the results that is returned per call.</p>",
-        "ListCollaborationConfiguredAudienceModelAssociationsInput$maxResults": "<p>The maximum size of the results that is returned per call.</p>",
-        "ListCollaborationPrivacyBudgetTemplatesInput$maxResults": "<p>The maximum size of the results that is returned per call. Service chooses a default if it has not been set. Service may return a nextToken even if the maximum results has not been met.</p>",
-        "ListCollaborationPrivacyBudgetsInput$maxResults": "<p>The maximum size of the results that is returned per call. Service chooses a default if it has not been set. Service may return a nextToken even if the maximum results has not been met.</p>",
-        "ListCollaborationsInput$maxResults": "<p>The maximum size of the results that is returned per call. Service chooses a default if it has not been set. Service may return a nextToken even if the maximum results has not been met.</p>",
-        "ListConfiguredAudienceModelAssociationsInput$maxResults": "<p>The maximum size of the results that is returned per call. Service chooses a default if it has not been set. Service may return a nextToken even if the maximum results has not been met.</p>",
-        "ListConfiguredTableAssociationsInput$maxResults": "<p>The maximum size of the results that is returned per call.</p>",
-        "ListConfiguredTablesInput$maxResults": "<p>The maximum size of the results that is returned per call.</p>",
-        "ListMembersInput$maxResults": "<p>The maximum size of the results that is returned per call.</p>",
-        "ListMembershipsInput$maxResults": "<p>The maximum size of the results that is returned per call.</p>",
-        "ListPrivacyBudgetTemplatesInput$maxResults": "<p>The maximum size of the results that is returned per call. Service chooses a default if it has not been set. Service may return a nextToken even if the maximum results has not been met.</p>",
-        "ListPrivacyBudgetsInput$maxResults": "<p>The maximum size of the results that is returned per call. Service chooses a default if it has not been set. Service may return a nextToken even if the maximum results has not been met.</p>",
-        "ListProtectedQueriesInput$maxResults": "<p>The maximum size of the results that is returned per call. Service chooses a default if it has not been set. Service can return a nextToken even if the maximum results has not been met. </p>",
-        "ListSchemasInput$maxResults": "<p>The maximum size of the results that is returned per call.</p>"
+        "ListAnalysisTemplatesInput$maxResults": "<p>The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a `nextToken` even if the `maxResults` value has not been met.</p>",
+        "ListCollaborationAnalysisTemplatesInput$maxResults": "<p>The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a `nextToken` even if the `maxResults` value has not been met.</p>",
+        "ListCollaborationConfiguredAudienceModelAssociationsInput$maxResults": "<p>The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a `nextToken` even if the `maxResults` value has not been met.</p>",
+        "ListCollaborationIdNamespaceAssociationsInput$maxResults": "<p>The maximum size of the results that is returned per call. Service chooses a default if it has not been set. Service may return a nextToken even if the maximum results has not been met.&gt;</p>",
+        "ListCollaborationPrivacyBudgetTemplatesInput$maxResults": "<p>The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a `nextToken` even if the `maxResults` value has not been met.</p>",
+        "ListCollaborationPrivacyBudgetsInput$maxResults": "<p>The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a `nextToken` even if the `maxResults` value has not been met.</p>",
+        "ListCollaborationsInput$maxResults": "<p>The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a `nextToken` even if the `maxResults` value has not been met.</p>",
+        "ListConfiguredAudienceModelAssociationsInput$maxResults": "<p>The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a `nextToken` even if the `maxResults` value has not been met.</p>",
+        "ListConfiguredTableAssociationsInput$maxResults": "<p>The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a `nextToken` even if the `maxResults` value has not been met.</p>",
+        "ListConfiguredTablesInput$maxResults": "<p>The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a `nextToken` even if the `maxResults` value has not been met.</p>",
+        "ListIdMappingTablesInput$maxResults": "<p>The maximum size of the results that is returned per call. Service chooses a default if it has not been set. Service may return a nextToken even if the maximum results has not been met.</p>",
+        "ListIdNamespaceAssociationsInput$maxResults": "<p>The maximum size of the results that is returned per call. Service chooses a default if it has not been set. Service may return a nextToken even if the maximum results has not been met.</p>",
+        "ListMembersInput$maxResults": "<p>The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a `nextToken` even if the `maxResults` value has not been met.</p>",
+        "ListMembershipsInput$maxResults": "<p>The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a `nextToken` even if the `maxResults` value has not been met.</p>",
+        "ListPrivacyBudgetTemplatesInput$maxResults": "<p>The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a `nextToken` even if the `maxResults` value has not been met.</p>",
+        "ListPrivacyBudgetsInput$maxResults": "<p>The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a `nextToken` even if the `maxResults` value has not been met.</p>",
+        "ListProtectedQueriesInput$maxResults": "<p>The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a `nextToken` even if the `maxResults` value has not been met. </p>",
+        "ListSchemasInput$maxResults": "<p>The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a `nextToken` even if the `maxResults` value has not been met.</p>"
       }
     },
     "MemberAbilities": {
@@ -1666,6 +2013,10 @@
         "ConfiguredAudienceModelAssociationSummary$membershipArn": "<p>The Amazon Resource Name (ARN) of the membership that contains the configured audience model association.</p>",
         "ConfiguredTableAssociation$membershipArn": "<p>The unique ARN for the membership this configured table association belongs to.</p>",
         "ConfiguredTableAssociationSummary$membershipArn": "<p>The unique ARN for the membership that the configured table association belongs to.</p>",
+        "IdMappingTable$membershipArn": "<p>The Amazon Resource Name (ARN) of the membership resource for the ID mapping table.</p>",
+        "IdMappingTableSummary$membershipArn": "<p>The Amazon Resource Name (ARN) of the membership resource for this ID mapping table.</p>",
+        "IdNamespaceAssociation$membershipArn": "<p>The Amazon Resource Name (ARN) of the membership resource for this ID namespace association.</p>",
+        "IdNamespaceAssociationSummary$membershipArn": "<p>The Amazon Resource Name (ARN) of the membership resource for this ID namespace association.</p>",
         "MemberSummary$membershipArn": "<p>The unique ARN for the member's associated membership, if present.</p>",
         "Membership$arn": "<p>The unique ARN for the membership.</p>",
         "MembershipSummary$arn": "<p>The unique ARN for the membership.</p>",
@@ -1684,30 +2035,43 @@
         "CreateAnalysisTemplateInput$membershipIdentifier": "<p>The identifier for a membership resource.</p>",
         "CreateConfiguredAudienceModelAssociationInput$membershipIdentifier": "<p>A unique identifier for one of your memberships for a collaboration. The configured audience model is associated to the collaboration that this membership belongs to. Accepts a membership ID.</p>",
         "CreateConfiguredTableAssociationInput$membershipIdentifier": "<p>A unique identifier for one of your memberships for a collaboration. The configured table is associated to the collaboration that this membership belongs to. Currently accepts a membership ID.</p>",
+        "CreateIdMappingTableInput$membershipIdentifier": "<p>The unique identifier of the membership that contains the ID mapping table.</p>",
+        "CreateIdNamespaceAssociationInput$membershipIdentifier": "<p>The unique identifier of the membership that contains the ID namespace association.</p>",
         "CreatePrivacyBudgetTemplateInput$membershipIdentifier": "<p>A unique identifier for one of your memberships for a collaboration. The privacy budget template is created in the collaboration that this membership belongs to. Accepts a membership ID.</p>",
         "DeleteAnalysisTemplateInput$membershipIdentifier": "<p>The identifier for a membership resource.</p>",
         "DeleteConfiguredAudienceModelAssociationInput$membershipIdentifier": "<p>A unique identifier of the membership that contains the audience model association that you want to delete.</p>",
         "DeleteConfiguredTableAssociationInput$membershipIdentifier": "<p>A unique identifier for the membership that the configured table association belongs to. Currently accepts the membership ID.</p>",
+        "DeleteIdMappingTableInput$membershipIdentifier": "<p>The unique identifier of the membership that contains the ID mapping table that you want to delete.</p>",
+        "DeleteIdNamespaceAssociationInput$membershipIdentifier": "<p>The unique identifier of the membership that contains the ID namespace association that you want to delete.</p>",
         "DeleteMembershipInput$membershipIdentifier": "<p>The identifier for a membership resource.</p>",
         "DeletePrivacyBudgetTemplateInput$membershipIdentifier": "<p>A unique identifier for one of your memberships for a collaboration. The privacy budget template is deleted from the collaboration that this membership belongs to. Accepts a membership ID.</p>",
         "GetAnalysisTemplateInput$membershipIdentifier": "<p>The identifier for a membership resource.</p>",
         "GetConfiguredAudienceModelAssociationInput$membershipIdentifier": "<p>A unique identifier for the membership that contains the configured audience model association that you want to retrieve.</p>",
         "GetConfiguredTableAssociationInput$membershipIdentifier": "<p>A unique identifier for the membership that the configured table association belongs to. Currently accepts the membership ID.</p>",
+        "GetIdMappingTableInput$membershipIdentifier": "<p>The unique identifier of the membership that contains the ID mapping table that you want to retrieve.</p>",
+        "GetIdNamespaceAssociationInput$membershipIdentifier": "<p>The unique identifier of the membership that contains the ID namespace association that you want to retrieve.</p>",
         "GetMembershipInput$membershipIdentifier": "<p>The identifier for a membership resource.</p>",
         "GetPrivacyBudgetTemplateInput$membershipIdentifier": "<p>A unique identifier for one of your memberships for a collaboration. The privacy budget template is retrieved from the collaboration that this membership belongs to. Accepts a membership ID.</p>",
         "GetProtectedQueryInput$membershipIdentifier": "<p>The identifier for a membership in a protected query instance.</p>",
+        "IdMappingTableSummary$membershipId": "<p>The unique identifier of the membership resource for this ID mapping table.</p>",
+        "IdNamespaceAssociationSummary$membershipId": "<p>The unique identifier of the membership resource for this ID namespace association.</p>",
         "ListAnalysisTemplatesInput$membershipIdentifier": "<p>The identifier for a membership resource.</p>",
         "ListConfiguredAudienceModelAssociationsInput$membershipIdentifier": "<p>A unique identifier for a membership that contains the configured audience model associations that you want to retrieve.</p>",
         "ListConfiguredTableAssociationsInput$membershipIdentifier": "<p>A unique identifier for the membership to list configured table associations for. Currently accepts the membership ID.</p>",
+        "ListIdMappingTablesInput$membershipIdentifier": "<p>The unique identifier of the membership that contains the ID mapping tables that you want to view.</p>",
+        "ListIdNamespaceAssociationsInput$membershipIdentifier": "<p>The unique identifier of the membership that contains the ID namespace association that you want to view.</p>",
         "ListPrivacyBudgetTemplatesInput$membershipIdentifier": "<p>A unique identifier for one of your memberships for a collaboration. The privacy budget templates are retrieved from the collaboration that this membership belongs to. Accepts a membership ID.</p>",
         "ListPrivacyBudgetsInput$membershipIdentifier": "<p>A unique identifier for one of your memberships for a collaboration. The privacy budget is retrieved from the collaboration that this membership belongs to. Accepts a membership ID.</p>",
         "ListProtectedQueriesInput$membershipIdentifier": "<p>The identifier for the membership in the collaboration.</p>",
+        "PopulateIdMappingTableInput$membershipIdentifier": "<p>The unique identifier of the membership that contains the ID mapping table that you want to populate.</p>",
         "PreviewPrivacyImpactInput$membershipIdentifier": "<p>A unique identifier for one of your memberships for a collaboration. Accepts a membership ID.</p>",
         "PrivacyBudgetSummary$membershipId": "<p>The identifier for a membership resource.</p>",
         "StartProtectedQueryInput$membershipIdentifier": "<p>A unique identifier for the membership to run this query against. Currently accepts a membership ID.</p>",
         "UpdateAnalysisTemplateInput$membershipIdentifier": "<p>The identifier for a membership resource.</p>",
         "UpdateConfiguredAudienceModelAssociationInput$membershipIdentifier": "<p>A unique identifier of the membership that contains the configured audience model association that you want to update.</p>",
         "UpdateConfiguredTableAssociationInput$membershipIdentifier": "<p>The unique ID for the membership that the configured table association belongs to.</p>",
+        "UpdateIdMappingTableInput$membershipIdentifier": "<p>The unique identifier of the membership that contains the ID mapping table that you want to update.</p>",
+        "UpdateIdNamespaceAssociationInput$membershipIdentifier": "<p>The unique identifier of the membership that contains the ID namespace association that you want to update.</p>",
         "UpdateMembershipInput$membershipIdentifier": "<p>The unique identifier of the membership.</p>",
         "UpdatePrivacyBudgetTemplateInput$membershipIdentifier": "<p>A unique identifier for one of your memberships for a collaboration. The privacy budget template is updated in the collaboration that this membership belongs to. Accepts a membership ID.</p>",
         "UpdateProtectedQueryInput$membershipIdentifier": "<p>The identifier for a member of a protected query instance.</p>"
@@ -1772,36 +2136,42 @@
     "PaginationToken": {
       "base": null,
       "refs": {
-        "ListAnalysisTemplatesInput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
-        "ListAnalysisTemplatesOutput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
-        "ListCollaborationAnalysisTemplatesInput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
-        "ListCollaborationAnalysisTemplatesOutput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
-        "ListCollaborationConfiguredAudienceModelAssociationsInput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
-        "ListCollaborationConfiguredAudienceModelAssociationsOutput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
-        "ListCollaborationPrivacyBudgetTemplatesInput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
-        "ListCollaborationPrivacyBudgetTemplatesOutput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
-        "ListCollaborationPrivacyBudgetsInput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
-        "ListCollaborationPrivacyBudgetsOutput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
-        "ListCollaborationsInput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
-        "ListCollaborationsOutput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
-        "ListConfiguredAudienceModelAssociationsInput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
+        "ListAnalysisTemplatesInput$nextToken": "<p>The pagination token that's used to fetch the next set of results.</p>",
+        "ListAnalysisTemplatesOutput$nextToken": "<p>The pagination token that's used to fetch the next set of results.</p>",
+        "ListCollaborationAnalysisTemplatesInput$nextToken": "<p>The pagination token that's used to fetch the next set of results.</p>",
+        "ListCollaborationAnalysisTemplatesOutput$nextToken": "<p>The pagination token that's used to fetch the next set of results.</p>",
+        "ListCollaborationConfiguredAudienceModelAssociationsInput$nextToken": "<p>The pagination token that's used to fetch the next set of results.</p>",
+        "ListCollaborationConfiguredAudienceModelAssociationsOutput$nextToken": "<p>The pagination token that's used to fetch the next set of results.</p>",
+        "ListCollaborationIdNamespaceAssociationsInput$nextToken": "<p>The pagination token that's used to fetch the next set of results.</p>",
+        "ListCollaborationIdNamespaceAssociationsOutput$nextToken": "<p>The token value provided to access the next page of results.</p>",
+        "ListCollaborationPrivacyBudgetTemplatesInput$nextToken": "<p>The pagination token that's used to fetch the next set of results.</p>",
+        "ListCollaborationPrivacyBudgetTemplatesOutput$nextToken": "<p>The pagination token that's used to fetch the next set of results.</p>",
+        "ListCollaborationPrivacyBudgetsInput$nextToken": "<p>The pagination token that's used to fetch the next set of results.</p>",
+        "ListCollaborationPrivacyBudgetsOutput$nextToken": "<p>The pagination token that's used to fetch the next set of results.</p>",
+        "ListCollaborationsInput$nextToken": "<p>The pagination token that's used to fetch the next set of results.</p>",
+        "ListCollaborationsOutput$nextToken": "<p>The pagination token that's used to fetch the next set of results.</p>",
+        "ListConfiguredAudienceModelAssociationsInput$nextToken": "<p>The pagination token that's used to fetch the next set of results.</p>",
         "ListConfiguredAudienceModelAssociationsOutput$nextToken": "<p>The token value provided to access the next page of results.</p>",
-        "ListConfiguredTableAssociationsInput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
-        "ListConfiguredTableAssociationsOutput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
-        "ListConfiguredTablesInput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
-        "ListConfiguredTablesOutput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
-        "ListMembersInput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
-        "ListMembersOutput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
-        "ListMembershipsInput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
-        "ListMembershipsOutput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
-        "ListPrivacyBudgetTemplatesInput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
-        "ListPrivacyBudgetTemplatesOutput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
-        "ListPrivacyBudgetsInput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
-        "ListPrivacyBudgetsOutput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
-        "ListProtectedQueriesInput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
-        "ListProtectedQueriesOutput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
-        "ListSchemasInput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
-        "ListSchemasOutput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>"
+        "ListConfiguredTableAssociationsInput$nextToken": "<p>The pagination token that's used to fetch the next set of results.</p>",
+        "ListConfiguredTableAssociationsOutput$nextToken": "<p>The pagination token that's used to fetch the next set of results.</p>",
+        "ListConfiguredTablesInput$nextToken": "<p>The pagination token that's used to fetch the next set of results.</p>",
+        "ListConfiguredTablesOutput$nextToken": "<p>The pagination token that's used to fetch the next set of results.</p>",
+        "ListIdMappingTablesInput$nextToken": "<p>The pagination token that's used to fetch the next set of results.</p>",
+        "ListIdMappingTablesOutput$nextToken": "<p>The token value provided to access the next page of results.</p>",
+        "ListIdNamespaceAssociationsInput$nextToken": "<p>The pagination token that's used to fetch the next set of results.</p>",
+        "ListIdNamespaceAssociationsOutput$nextToken": "<p>The token value provided to access the next page of results.</p>",
+        "ListMembersInput$nextToken": "<p>The pagination token that's used to fetch the next set of results.</p>",
+        "ListMembersOutput$nextToken": "<p>The pagination token that's used to fetch the next set of results.</p>",
+        "ListMembershipsInput$nextToken": "<p>The pagination token that's used to fetch the next set of results.</p>",
+        "ListMembershipsOutput$nextToken": "<p>The pagination token that's used to fetch the next set of results.</p>",
+        "ListPrivacyBudgetTemplatesInput$nextToken": "<p>The pagination token that's used to fetch the next set of results.</p>",
+        "ListPrivacyBudgetTemplatesOutput$nextToken": "<p>The pagination token that's used to fetch the next set of results.</p>",
+        "ListPrivacyBudgetsInput$nextToken": "<p>The pagination token that's used to fetch the next set of results.</p>",
+        "ListPrivacyBudgetsOutput$nextToken": "<p>The pagination token that's used to fetch the next set of results.</p>",
+        "ListProtectedQueriesInput$nextToken": "<p>The pagination token that's used to fetch the next set of results.</p>",
+        "ListProtectedQueriesOutput$nextToken": "<p>The pagination token that's used to fetch the next set of results.</p>",
+        "ListSchemasInput$nextToken": "<p>The pagination token that's used to fetch the next set of results.</p>",
+        "ListSchemasOutput$nextToken": "<p>The pagination token that's used to fetch the next set of results.</p>"
       }
     },
     "ParameterMap": {
@@ -1836,6 +2206,16 @@
         "CreateCollaborationInput$creatorPaymentConfiguration": "<p>The collaboration creator's payment responsibilities set by the collaboration creator. </p> <p>If the collaboration creator hasn't specified anyone as the member paying for query compute costs, then the member who can query is the default payer.</p>",
         "MemberSpecification$paymentConfiguration": "<p>The collaboration member's payment responsibilities set by the collaboration creator. </p> <p>If the collaboration creator hasn't speciﬁed anyone as the member paying for query compute costs, then the member who can query is the default payer.</p>",
         "MemberSummary$paymentConfiguration": "<p>The collaboration member's payment responsibilities set by the collaboration creator. </p>"
+      }
+    },
+    "PopulateIdMappingTableInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PopulateIdMappingTableOutput": {
+      "base": null,
+      "refs": {
       }
     },
     "PreviewPrivacyImpactInput": {
@@ -1925,7 +2305,7 @@
       "base": "<p>The epsilon and noise parameters that were used in the privacy budget template.</p>",
       "refs": {
         "CollaborationPrivacyBudgetTemplate$parameters": "<p>Specifies the epsilon and noise parameters for the privacy budget template.</p>",
-        "PrivacyBudgetTemplate$parameters": "<p>Specifies the epislon and noise parameters for the privacy budget template.</p>"
+        "PrivacyBudgetTemplate$parameters": "<p>Specifies the epsilon and noise parameters for the privacy budget template.</p>"
       }
     },
     "PrivacyBudgetTemplateSummary": {
@@ -2095,6 +2475,24 @@
         "PaymentConfiguration$queryCompute": "<p>The collaboration member's payment responsibilities set by the collaboration creator for query compute costs.</p>"
       }
     },
+    "QueryConstraint": {
+      "base": "<p>Provides any necessary query constraint information.</p>",
+      "refs": {
+        "QueryConstraintList$member": null
+      }
+    },
+    "QueryConstraintList": {
+      "base": null,
+      "refs": {
+        "AnalysisRuleIdMappingTable$queryConstraints": "<p>The query constraints of the analysis rule ID mapping table.</p>"
+      }
+    },
+    "QueryConstraintRequireOverlap": {
+      "base": "<p>Provides the name of the columns that are required to overlap.</p>",
+      "refs": {
+        "QueryConstraint$requireOverlap": "<p>An array of column names that specifies which columns are required in the JOIN statement.</p>"
+      }
+    },
     "QueryTables": {
       "base": null,
       "refs": {
@@ -2107,7 +2505,10 @@
         "AnalysisTemplate$name": "<p>The name of the analysis template.</p>",
         "AnalysisTemplateSummary$name": "<p>The name of the analysis template. </p>",
         "CollaborationAnalysisTemplate$name": "<p>The name of the analysis template.</p>",
-        "CollaborationAnalysisTemplateSummary$name": "<p>The name of the analysis template.</p>"
+        "CollaborationAnalysisTemplateSummary$name": "<p>The name of the analysis template.</p>",
+        "CreateIdMappingTableInput$name": "<p>A name for the ID mapping table.</p>",
+        "IdMappingTable$name": "<p>The name of the ID mapping table.</p>",
+        "IdMappingTableSummary$name": "<p>The name of this ID mapping table.</p>"
       }
     },
     "ResourceDescription": {
@@ -2119,12 +2520,22 @@
         "CollaborationAnalysisTemplateSummary$description": "<p>The description of the analysis template.</p>",
         "CollaborationConfiguredAudienceModelAssociation$description": "<p>The description of the configured audience model association.</p>",
         "CollaborationConfiguredAudienceModelAssociationSummary$description": "<p>The description of the configured audience model association.</p>",
+        "CollaborationIdNamespaceAssociation$description": "<p>The description of the collaboration ID namespace association.</p>",
+        "CollaborationIdNamespaceAssociationSummary$description": "<p>The description of the collaboration ID namepsace association.</p>",
         "ConfiguredAudienceModelAssociation$description": "<p>The description of the configured audience model association.</p>",
         "ConfiguredAudienceModelAssociationSummary$description": "<p>The description of the configured audience model association.</p>",
         "CreateAnalysisTemplateInput$description": "<p>The description of the analysis template.</p>",
         "CreateConfiguredAudienceModelAssociationInput$description": "<p>A description of the configured audience model association.</p>",
+        "CreateIdMappingTableInput$description": "<p>A description of the ID mapping table.</p>",
+        "CreateIdNamespaceAssociationInput$description": "<p>The description of the ID namespace association.</p>",
+        "IdMappingTable$description": "<p>The description of the ID mapping table.</p>",
+        "IdMappingTableSummary$description": "<p>The description of this ID mapping table.</p>",
+        "IdNamespaceAssociation$description": "<p>The description of the ID namespace association.</p>",
+        "IdNamespaceAssociationSummary$description": "<p>The description of the ID namespace association.</p>",
         "UpdateAnalysisTemplateInput$description": "<p>A new description for the analysis template.</p>",
-        "UpdateConfiguredAudienceModelAssociationInput$description": "<p>A new description for the configured audience model association.</p>"
+        "UpdateConfiguredAudienceModelAssociationInput$description": "<p>A new description for the configured audience model association.</p>",
+        "UpdateIdMappingTableInput$description": "<p>A new description for the ID mapping table.</p>",
+        "UpdateIdNamespaceAssociationInput$description": "<p>A new description for the ID namespace association.</p>"
       }
     },
     "ResourceNotFoundException": {
@@ -2260,9 +2671,15 @@
     "SchemaType": {
       "base": null,
       "refs": {
-        "ListSchemasInput$schemaType": "<p>If present, filter schemas by schema type. The only valid schema type is currently `TABLE`.</p>",
-        "Schema$type": "<p>The type of schema. The only valid value is currently `TABLE`.</p>",
-        "SchemaSummary$type": "<p>The type of schema object. The only valid schema type is currently `TABLE`.</p>"
+        "ListSchemasInput$schemaType": "<p>If present, filter schemas by schema type.</p>",
+        "Schema$type": "<p>The type of schema.</p>",
+        "SchemaSummary$type": "<p>The type of schema object.</p>"
+      }
+    },
+    "SchemaTypeProperties": {
+      "base": "<p>Information about the schema type properties.</p>",
+      "refs": {
+        "Schema$schemaTypeProperties": "<p>The schema type properties.</p>"
       }
     },
     "ServiceQuotaExceededException": {
@@ -2294,6 +2711,7 @@
         "ConflictException$message": null,
         "ConflictException$resourceId": "<p>The ID of the conflicting resource.</p>",
         "DifferentialPrivacyColumn$name": "<p>The name of the column, such as user_id, that contains the unique identifier of your users, whose privacy you want to protect. If you want to turn on differential privacy for two or more tables in a collaboration, you must configure the same column as the user identifier column in both analysis rules.</p>",
+        "IdMappingTableInputSource$idNamespaceAssociationId": "<p>The unique identifier of the ID namespace association.</p>",
         "InternalServerException$message": null,
         "ProtectedQueryError$message": "<p>A description of why the query failed.</p>",
         "ProtectedQueryError$code": "<p>An error code for the error.</p>",
@@ -2374,6 +2792,8 @@
         "CreateConfiguredAudienceModelAssociationInput$tags": "<p>An optional label that you can assign to a resource when you create it. Each tag consists of a key and an optional value, both of which you define. When you use tagging, you can also use tag-based access control in IAM policies to control access to this resource.</p>",
         "CreateConfiguredTableAssociationInput$tags": "<p>An optional label that you can assign to a resource when you create it. Each tag consists of a key and an optional value, both of which you define. When you use tagging, you can also use tag-based access control in IAM policies to control access to this resource.</p>",
         "CreateConfiguredTableInput$tags": "<p>An optional label that you can assign to a resource when you create it. Each tag consists of a key and an optional value, both of which you define. When you use tagging, you can also use tag-based access control in IAM policies to control access to this resource.</p>",
+        "CreateIdMappingTableInput$tags": "<p>An optional label that you can assign to a resource when you create it. Each tag consists of a key and an optional value, both of which you define. When you use tagging, you can also use tag-based access control in IAM policies to control access to this resource.</p>",
+        "CreateIdNamespaceAssociationInput$tags": "<p>An optional label that you can assign to a resource when you create it. Each tag consists of a key and an optional value, both of which you define. When you use tagging, you can also use tag-based access control in IAM policies to control access to this resource.</p>",
         "CreateMembershipInput$tags": "<p>An optional label that you can assign to a resource when you create it. Each tag consists of a key and an optional value, both of which you define. When you use tagging, you can also use tag-based access control in IAM policies to control access to this resource.</p>",
         "CreatePrivacyBudgetTemplateInput$tags": "<p>An optional label that you can assign to a resource when you create it. Each tag consists of a key and an optional value, both of which you define. When you use tagging, you can also use tag-based access control in IAM policies to control access to this resource.</p>",
         "ListTagsForResourceOutput$tags": "<p>A map of objects specifying each key name and value.</p>",
@@ -2426,6 +2846,10 @@
         "CollaborationConfiguredAudienceModelAssociation$updateTime": "<p>The most recent time at which the configured audience model association was updated.</p>",
         "CollaborationConfiguredAudienceModelAssociationSummary$createTime": "<p>The time at which the configured audience model association was created.</p>",
         "CollaborationConfiguredAudienceModelAssociationSummary$updateTime": "<p>The most recent time at which the configured audience model association was updated.</p>",
+        "CollaborationIdNamespaceAssociation$createTime": "<p>The time at which the collaboration ID namespace association was created.</p>",
+        "CollaborationIdNamespaceAssociation$updateTime": "<p>The most recent time at which the collaboration ID namespace was updated.</p>",
+        "CollaborationIdNamespaceAssociationSummary$createTime": "<p>The time at which the collaboration ID namespace association was created.</p>",
+        "CollaborationIdNamespaceAssociationSummary$updateTime": "<p>The most recent time at which the collaboration ID namespace association was updated.</p>",
         "CollaborationPrivacyBudgetSummary$createTime": "<p>The time at which the privacy budget was created.</p>",
         "CollaborationPrivacyBudgetSummary$updateTime": "<p>The most recent time at which the privacy budget was updated.</p>",
         "CollaborationPrivacyBudgetTemplate$createTime": "<p>The time at which the collaboration privacy budget template was created.</p>",
@@ -2448,6 +2872,14 @@
         "ConfiguredTableAssociationSummary$updateTime": "<p>The time the configured table association was last updated.</p>",
         "ConfiguredTableSummary$createTime": "<p>The time the configured table was created.</p>",
         "ConfiguredTableSummary$updateTime": "<p>The time the configured table was last updated.</p>",
+        "IdMappingTable$createTime": "<p>The time at which the ID mapping table was created.</p>",
+        "IdMappingTable$updateTime": "<p>The most recent time at which the ID mapping table was updated.</p>",
+        "IdMappingTableSummary$createTime": "<p>The time at which this ID mapping table was created.</p>",
+        "IdMappingTableSummary$updateTime": "<p>The most recent time at which this ID mapping table was updated.</p>",
+        "IdNamespaceAssociation$createTime": "<p>The time at which the ID namespace association was created.</p>",
+        "IdNamespaceAssociation$updateTime": "<p>The most recent time at which the ID namespace association was updated.</p>",
+        "IdNamespaceAssociationSummary$createTime": "<p>The time at which this ID namespace association was created.</p>",
+        "IdNamespaceAssociationSummary$updateTime": "<p>The most recent time at which this ID namespace association has been updated.</p>",
         "MemberSummary$createTime": "<p>The time when the member was created.</p>",
         "MemberSummary$updateTime": "<p>The time the member metadata was last updated.</p>",
         "Membership$createTime": "<p>The time when the membership was created.</p>",
@@ -2462,8 +2894,8 @@
         "PrivacyBudgetTemplateSummary$updateTime": "<p>The most recent time at which the privacy budget template was updated.</p>",
         "ProtectedQuery$createTime": "<p>The time at which the protected query was created.</p>",
         "ProtectedQuerySummary$createTime": "<p>The time the protected query was created.</p>",
-        "Schema$createTime": "<p>The time the schema was created.</p>",
-        "Schema$updateTime": "<p>The time the schema was last updated.</p>",
+        "Schema$createTime": "<p>The time at which the schema was created.</p>",
+        "Schema$updateTime": "<p>The most recent time at which the schema was updated.</p>",
         "SchemaSummary$createTime": "<p>The time the schema object was created.</p>",
         "SchemaSummary$updateTime": "<p>The time the schema object was last updated.</p>"
       }
@@ -2481,6 +2913,8 @@
         "CollaborationAnalysisTemplateSummary$collaborationId": "<p>A unique identifier for the collaboration that the analysis templates belong to. Currently accepts collaboration ID.</p>",
         "CollaborationConfiguredAudienceModelAssociation$collaborationId": "<p>A unique identifier for the collaboration that the configured audience model associations belong to. Accepts collaboration ID.</p>",
         "CollaborationConfiguredAudienceModelAssociationSummary$collaborationId": "<p>A unique identifier for the collaboration that the configured audience model associations belong to. Accepts collaboration ID.</p>",
+        "CollaborationIdNamespaceAssociation$collaborationId": "<p>The unique identifier of the collaboration that contains the collaboration ID namespace association.</p>",
+        "CollaborationIdNamespaceAssociationSummary$collaborationId": "<p>The unique identifier of the collaboration that contains this collaboration ID namespace association.</p>",
         "CollaborationPrivacyBudgetSummary$id": "<p>The unique identifier of the collaboration privacy budget.</p>",
         "CollaborationPrivacyBudgetSummary$collaborationId": "<p>The unique identifier of the collaboration that includes this privacy budget.</p>",
         "CollaborationPrivacyBudgetTemplate$collaborationId": "<p>The unique identifier of the collaboration that includes this collaboration privacy budget template.</p>",
@@ -2498,10 +2932,23 @@
         "ConfiguredTableAssociation$membershipId": "<p>The unique ID for the membership this configured table association belongs to.</p>",
         "ConfiguredTableAssociationSummary$configuredTableId": "<p>The unique configured table ID that this configured table association refers to.</p>",
         "ConfiguredTableAssociationSummary$id": "<p>The unique ID for the configured table association.</p>",
+        "DeleteIdMappingTableInput$idMappingTableIdentifier": "<p>The unique identifier of the ID mapping table that you want to delete.</p>",
+        "GetIdMappingTableInput$idMappingTableIdentifier": "<p>The unique identifier of the ID mapping table identifier that you want to retrieve.</p>",
+        "IdMappingTable$id": "<p>The unique identifier of the ID mapping table.</p>",
+        "IdMappingTable$membershipId": "<p>The unique identifier of the membership resource for the ID mapping table.</p>",
+        "IdMappingTable$collaborationId": "<p>The unique identifier of the collaboration that contains this ID mapping table.</p>",
+        "IdMappingTableSummary$collaborationId": "<p>The unique identifier of the collaboration that contains this ID mapping table.</p>",
+        "IdMappingTableSummary$id": "<p>The unique identifier of this ID mapping table.</p>",
+        "IdNamespaceAssociation$membershipId": "<p>The unique identifier of the membership resource for this ID namespace association.</p>",
+        "IdNamespaceAssociation$collaborationId": "<p>The unique identifier of the collaboration that contains this ID namespace association.</p>",
+        "IdNamespaceAssociationSummary$collaborationId": "<p>The unique identifier of the collaboration that contains this ID namespace association.</p>",
+        "IdNamespaceAssociationSummary$id": "<p>The unique identifier of this ID namespace association.</p>",
         "MemberSummary$membershipId": "<p>The unique ID for the member's associated membership, if present.</p>",
         "Membership$id": "<p>The unique ID of the membership.</p>",
         "Membership$collaborationId": "<p>The unique ID for the membership's collaboration.</p>",
         "MembershipSummary$id": "<p>The unique ID for the membership's collaboration.</p>",
+        "PopulateIdMappingTableInput$idMappingTableIdentifier": "<p>The unique identifier of the ID mapping table that you want to populate.</p>",
+        "PopulateIdMappingTableOutput$idMappingJobId": "<p>The unique identifier of the mapping job that will populate the ID mapping table.</p>",
         "PrivacyBudgetSummary$id": "<p>The unique identifier of the privacy budget.</p>",
         "PrivacyBudgetSummary$collaborationId": "<p>The unique identifier of the collaboration that contains this privacy budget.</p>",
         "PrivacyBudgetTemplate$membershipId": "<p>The identifier for a membership resource.</p>",
@@ -2513,7 +2960,8 @@
         "ProtectedQuerySummary$id": "<p>The unique ID of the protected query.</p>",
         "ProtectedQuerySummary$membershipId": "<p>The unique ID for the membership that initiated the protected query.</p>",
         "Schema$collaborationId": "<p>The unique ID for the collaboration that the schema belongs to.</p>",
-        "SchemaSummary$collaborationId": "<p>The unique ID for the collaboration that the schema belongs to.</p>"
+        "SchemaSummary$collaborationId": "<p>The unique ID for the collaboration that the schema belongs to.</p>",
+        "UpdateIdMappingTableInput$idMappingTableIdentifier": "<p>The unique identifier of the ID mapping table that you want to update.</p>"
       }
     },
     "UntagResourceInput": {
@@ -2582,6 +3030,26 @@
       }
     },
     "UpdateConfiguredTableOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateIdMappingTableInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateIdMappingTableOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateIdNamespaceAssociationInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateIdNamespaceAssociationOutput": {
       "base": null,
       "refs": {
       }

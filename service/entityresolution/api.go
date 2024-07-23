@@ -69,27 +69,25 @@ func (c *EntityResolution) AddPolicyStatementRequest(input *AddPolicyStatementIn
 // Returned Error Types:
 //
 //   - ThrottlingException
-//     The request was denied due to request throttling. HTTP Status Code: 429
+//     The request was denied due to request throttling.
 //
 //   - InternalServerException
 //     This exception occurs when there is an internal failure in the Entity Resolution
-//     service. HTTP Status Code: 500
+//     service.
 //
 //   - ResourceNotFoundException
-//     The resource could not be found. HTTP Status Code: 404
+//     The resource could not be found.
 //
 //   - AccessDeniedException
-//     You do not have sufficient access to perform this action. HTTP Status Code:
-//     403
+//     You do not have sufficient access to perform this action.
 //
 //   - ConflictException
 //     The request could not be processed because of conflict in the current state
 //     of the resource. Example: Workflow already exists, Schema already exists,
-//     Workflow is currently running, etc. HTTP Status Code: 400
+//     Workflow is currently running, etc.
 //
 //   - ValidationException
 //     The input fails to satisfy the constraints specified by Entity Resolution.
-//     HTTP Status Code: 400
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/AddPolicyStatement
 func (c *EntityResolution) AddPolicyStatement(input *AddPolicyStatementInput) (*AddPolicyStatementOutput, error) {
@@ -169,14 +167,13 @@ func (c *EntityResolution) BatchDeleteUniqueIdRequest(input *BatchDeleteUniqueId
 //
 //   - InternalServerException
 //     This exception occurs when there is an internal failure in the Entity Resolution
-//     service. HTTP Status Code: 500
+//     service.
 //
 //   - ResourceNotFoundException
-//     The resource could not be found. HTTP Status Code: 404
+//     The resource could not be found.
 //
 //   - ValidationException
 //     The input fails to satisfy the constraints specified by Entity Resolution.
-//     HTTP Status Code: 400
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/BatchDeleteUniqueId
 func (c *EntityResolution) BatchDeleteUniqueId(input *BatchDeleteUniqueIdInput) (*BatchDeleteUniqueIdOutput, error) {
@@ -258,29 +255,27 @@ func (c *EntityResolution) CreateIdMappingWorkflowRequest(input *CreateIdMapping
 // Returned Error Types:
 //
 //   - ThrottlingException
-//     The request was denied due to request throttling. HTTP Status Code: 429
+//     The request was denied due to request throttling.
 //
 //   - InternalServerException
 //     This exception occurs when there is an internal failure in the Entity Resolution
-//     service. HTTP Status Code: 500
+//     service.
 //
 //   - AccessDeniedException
-//     You do not have sufficient access to perform this action. HTTP Status Code:
-//     403
+//     You do not have sufficient access to perform this action.
 //
 //   - ExceedsLimitException
 //     The request was rejected because it attempted to create resources beyond
 //     the current Entity Resolution account limits. The error message describes
-//     the limit exceeded. HTTP Status Code: 402
+//     the limit exceeded.
 //
 //   - ConflictException
 //     The request could not be processed because of conflict in the current state
 //     of the resource. Example: Workflow already exists, Schema already exists,
-//     Workflow is currently running, etc. HTTP Status Code: 400
+//     Workflow is currently running, etc.
 //
 //   - ValidationException
 //     The input fails to satisfy the constraints specified by Entity Resolution.
-//     HTTP Status Code: 400
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/CreateIdMappingWorkflow
 func (c *EntityResolution) CreateIdMappingWorkflow(input *CreateIdMappingWorkflowInput) (*CreateIdMappingWorkflowOutput, error) {
@@ -362,29 +357,27 @@ func (c *EntityResolution) CreateIdNamespaceRequest(input *CreateIdNamespaceInpu
 // Returned Error Types:
 //
 //   - ThrottlingException
-//     The request was denied due to request throttling. HTTP Status Code: 429
+//     The request was denied due to request throttling.
 //
 //   - InternalServerException
 //     This exception occurs when there is an internal failure in the Entity Resolution
-//     service. HTTP Status Code: 500
+//     service.
 //
 //   - AccessDeniedException
-//     You do not have sufficient access to perform this action. HTTP Status Code:
-//     403
+//     You do not have sufficient access to perform this action.
 //
 //   - ExceedsLimitException
 //     The request was rejected because it attempted to create resources beyond
 //     the current Entity Resolution account limits. The error message describes
-//     the limit exceeded. HTTP Status Code: 402
+//     the limit exceeded.
 //
 //   - ConflictException
 //     The request could not be processed because of conflict in the current state
 //     of the resource. Example: Workflow already exists, Schema already exists,
-//     Workflow is currently running, etc. HTTP Status Code: 400
+//     Workflow is currently running, etc.
 //
 //   - ValidationException
 //     The input fails to satisfy the constraints specified by Entity Resolution.
-//     HTTP Status Code: 400
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/CreateIdNamespace
 func (c *EntityResolution) CreateIdNamespace(input *CreateIdNamespaceInput) (*CreateIdNamespaceOutput, error) {
@@ -466,29 +459,27 @@ func (c *EntityResolution) CreateMatchingWorkflowRequest(input *CreateMatchingWo
 // Returned Error Types:
 //
 //   - ThrottlingException
-//     The request was denied due to request throttling. HTTP Status Code: 429
+//     The request was denied due to request throttling.
 //
 //   - InternalServerException
 //     This exception occurs when there is an internal failure in the Entity Resolution
-//     service. HTTP Status Code: 500
+//     service.
 //
 //   - AccessDeniedException
-//     You do not have sufficient access to perform this action. HTTP Status Code:
-//     403
+//     You do not have sufficient access to perform this action.
 //
 //   - ExceedsLimitException
 //     The request was rejected because it attempted to create resources beyond
 //     the current Entity Resolution account limits. The error message describes
-//     the limit exceeded. HTTP Status Code: 402
+//     the limit exceeded.
 //
 //   - ConflictException
 //     The request could not be processed because of conflict in the current state
 //     of the resource. Example: Workflow already exists, Schema already exists,
-//     Workflow is currently running, etc. HTTP Status Code: 400
+//     Workflow is currently running, etc.
 //
 //   - ValidationException
 //     The input fails to satisfy the constraints specified by Entity Resolution.
-//     HTTP Status Code: 400
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/CreateMatchingWorkflow
 func (c *EntityResolution) CreateMatchingWorkflow(input *CreateMatchingWorkflowInput) (*CreateMatchingWorkflowOutput, error) {
@@ -570,29 +561,27 @@ func (c *EntityResolution) CreateSchemaMappingRequest(input *CreateSchemaMapping
 // Returned Error Types:
 //
 //   - ThrottlingException
-//     The request was denied due to request throttling. HTTP Status Code: 429
+//     The request was denied due to request throttling.
 //
 //   - InternalServerException
 //     This exception occurs when there is an internal failure in the Entity Resolution
-//     service. HTTP Status Code: 500
+//     service.
 //
 //   - AccessDeniedException
-//     You do not have sufficient access to perform this action. HTTP Status Code:
-//     403
+//     You do not have sufficient access to perform this action.
 //
 //   - ExceedsLimitException
 //     The request was rejected because it attempted to create resources beyond
 //     the current Entity Resolution account limits. The error message describes
-//     the limit exceeded. HTTP Status Code: 402
+//     the limit exceeded.
 //
 //   - ConflictException
 //     The request could not be processed because of conflict in the current state
 //     of the resource. Example: Workflow already exists, Schema already exists,
-//     Workflow is currently running, etc. HTTP Status Code: 400
+//     Workflow is currently running, etc.
 //
 //   - ValidationException
 //     The input fails to satisfy the constraints specified by Entity Resolution.
-//     HTTP Status Code: 400
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/CreateSchemaMapping
 func (c *EntityResolution) CreateSchemaMapping(input *CreateSchemaMappingInput) (*CreateSchemaMappingOutput, error) {
@@ -672,24 +661,22 @@ func (c *EntityResolution) DeleteIdMappingWorkflowRequest(input *DeleteIdMapping
 // Returned Error Types:
 //
 //   - ThrottlingException
-//     The request was denied due to request throttling. HTTP Status Code: 429
+//     The request was denied due to request throttling.
 //
 //   - InternalServerException
 //     This exception occurs when there is an internal failure in the Entity Resolution
-//     service. HTTP Status Code: 500
+//     service.
 //
 //   - AccessDeniedException
-//     You do not have sufficient access to perform this action. HTTP Status Code:
-//     403
+//     You do not have sufficient access to perform this action.
 //
 //   - ConflictException
 //     The request could not be processed because of conflict in the current state
 //     of the resource. Example: Workflow already exists, Schema already exists,
-//     Workflow is currently running, etc. HTTP Status Code: 400
+//     Workflow is currently running, etc.
 //
 //   - ValidationException
 //     The input fails to satisfy the constraints specified by Entity Resolution.
-//     HTTP Status Code: 400
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/DeleteIdMappingWorkflow
 func (c *EntityResolution) DeleteIdMappingWorkflow(input *DeleteIdMappingWorkflowInput) (*DeleteIdMappingWorkflowOutput, error) {
@@ -768,19 +755,17 @@ func (c *EntityResolution) DeleteIdNamespaceRequest(input *DeleteIdNamespaceInpu
 // Returned Error Types:
 //
 //   - ThrottlingException
-//     The request was denied due to request throttling. HTTP Status Code: 429
+//     The request was denied due to request throttling.
 //
 //   - InternalServerException
 //     This exception occurs when there is an internal failure in the Entity Resolution
-//     service. HTTP Status Code: 500
+//     service.
 //
 //   - AccessDeniedException
-//     You do not have sufficient access to perform this action. HTTP Status Code:
-//     403
+//     You do not have sufficient access to perform this action.
 //
 //   - ValidationException
 //     The input fails to satisfy the constraints specified by Entity Resolution.
-//     HTTP Status Code: 400
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/DeleteIdNamespace
 func (c *EntityResolution) DeleteIdNamespace(input *DeleteIdNamespaceInput) (*DeleteIdNamespaceOutput, error) {
@@ -860,24 +845,22 @@ func (c *EntityResolution) DeleteMatchingWorkflowRequest(input *DeleteMatchingWo
 // Returned Error Types:
 //
 //   - ThrottlingException
-//     The request was denied due to request throttling. HTTP Status Code: 429
+//     The request was denied due to request throttling.
 //
 //   - InternalServerException
 //     This exception occurs when there is an internal failure in the Entity Resolution
-//     service. HTTP Status Code: 500
+//     service.
 //
 //   - AccessDeniedException
-//     You do not have sufficient access to perform this action. HTTP Status Code:
-//     403
+//     You do not have sufficient access to perform this action.
 //
 //   - ConflictException
 //     The request could not be processed because of conflict in the current state
 //     of the resource. Example: Workflow already exists, Schema already exists,
-//     Workflow is currently running, etc. HTTP Status Code: 400
+//     Workflow is currently running, etc.
 //
 //   - ValidationException
 //     The input fails to satisfy the constraints specified by Entity Resolution.
-//     HTTP Status Code: 400
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/DeleteMatchingWorkflow
 func (c *EntityResolution) DeleteMatchingWorkflow(input *DeleteMatchingWorkflowInput) (*DeleteMatchingWorkflowOutput, error) {
@@ -956,27 +939,25 @@ func (c *EntityResolution) DeletePolicyStatementRequest(input *DeletePolicyState
 // Returned Error Types:
 //
 //   - ThrottlingException
-//     The request was denied due to request throttling. HTTP Status Code: 429
+//     The request was denied due to request throttling.
 //
 //   - InternalServerException
 //     This exception occurs when there is an internal failure in the Entity Resolution
-//     service. HTTP Status Code: 500
+//     service.
 //
 //   - ResourceNotFoundException
-//     The resource could not be found. HTTP Status Code: 404
+//     The resource could not be found.
 //
 //   - AccessDeniedException
-//     You do not have sufficient access to perform this action. HTTP Status Code:
-//     403
+//     You do not have sufficient access to perform this action.
 //
 //   - ConflictException
 //     The request could not be processed because of conflict in the current state
 //     of the resource. Example: Workflow already exists, Schema already exists,
-//     Workflow is currently running, etc. HTTP Status Code: 400
+//     Workflow is currently running, etc.
 //
 //   - ValidationException
 //     The input fails to satisfy the constraints specified by Entity Resolution.
-//     HTTP Status Code: 400
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/DeletePolicyStatement
 func (c *EntityResolution) DeletePolicyStatement(input *DeletePolicyStatementInput) (*DeletePolicyStatementOutput, error) {
@@ -1058,24 +1039,22 @@ func (c *EntityResolution) DeleteSchemaMappingRequest(input *DeleteSchemaMapping
 // Returned Error Types:
 //
 //   - ThrottlingException
-//     The request was denied due to request throttling. HTTP Status Code: 429
+//     The request was denied due to request throttling.
 //
 //   - InternalServerException
 //     This exception occurs when there is an internal failure in the Entity Resolution
-//     service. HTTP Status Code: 500
+//     service.
 //
 //   - AccessDeniedException
-//     You do not have sufficient access to perform this action. HTTP Status Code:
-//     403
+//     You do not have sufficient access to perform this action.
 //
 //   - ConflictException
 //     The request could not be processed because of conflict in the current state
 //     of the resource. Example: Workflow already exists, Schema already exists,
-//     Workflow is currently running, etc. HTTP Status Code: 400
+//     Workflow is currently running, etc.
 //
 //   - ValidationException
 //     The input fails to satisfy the constraints specified by Entity Resolution.
-//     HTTP Status Code: 400
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/DeleteSchemaMapping
 func (c *EntityResolution) DeleteSchemaMapping(input *DeleteSchemaMappingInput) (*DeleteSchemaMappingOutput, error) {
@@ -1155,22 +1134,20 @@ func (c *EntityResolution) GetIdMappingJobRequest(input *GetIdMappingJobInput) (
 // Returned Error Types:
 //
 //   - ThrottlingException
-//     The request was denied due to request throttling. HTTP Status Code: 429
+//     The request was denied due to request throttling.
 //
 //   - InternalServerException
 //     This exception occurs when there is an internal failure in the Entity Resolution
-//     service. HTTP Status Code: 500
+//     service.
 //
 //   - ResourceNotFoundException
-//     The resource could not be found. HTTP Status Code: 404
+//     The resource could not be found.
 //
 //   - AccessDeniedException
-//     You do not have sufficient access to perform this action. HTTP Status Code:
-//     403
+//     You do not have sufficient access to perform this action.
 //
 //   - ValidationException
 //     The input fails to satisfy the constraints specified by Entity Resolution.
-//     HTTP Status Code: 400
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/GetIdMappingJob
 func (c *EntityResolution) GetIdMappingJob(input *GetIdMappingJobInput) (*GetIdMappingJobOutput, error) {
@@ -1249,22 +1226,20 @@ func (c *EntityResolution) GetIdMappingWorkflowRequest(input *GetIdMappingWorkfl
 // Returned Error Types:
 //
 //   - ThrottlingException
-//     The request was denied due to request throttling. HTTP Status Code: 429
+//     The request was denied due to request throttling.
 //
 //   - InternalServerException
 //     This exception occurs when there is an internal failure in the Entity Resolution
-//     service. HTTP Status Code: 500
+//     service.
 //
 //   - ResourceNotFoundException
-//     The resource could not be found. HTTP Status Code: 404
+//     The resource could not be found.
 //
 //   - AccessDeniedException
-//     You do not have sufficient access to perform this action. HTTP Status Code:
-//     403
+//     You do not have sufficient access to perform this action.
 //
 //   - ValidationException
 //     The input fails to satisfy the constraints specified by Entity Resolution.
-//     HTTP Status Code: 400
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/GetIdMappingWorkflow
 func (c *EntityResolution) GetIdMappingWorkflow(input *GetIdMappingWorkflowInput) (*GetIdMappingWorkflowOutput, error) {
@@ -1343,22 +1318,20 @@ func (c *EntityResolution) GetIdNamespaceRequest(input *GetIdNamespaceInput) (re
 // Returned Error Types:
 //
 //   - ThrottlingException
-//     The request was denied due to request throttling. HTTP Status Code: 429
+//     The request was denied due to request throttling.
 //
 //   - InternalServerException
 //     This exception occurs when there is an internal failure in the Entity Resolution
-//     service. HTTP Status Code: 500
+//     service.
 //
 //   - ResourceNotFoundException
-//     The resource could not be found. HTTP Status Code: 404
+//     The resource could not be found.
 //
 //   - AccessDeniedException
-//     You do not have sufficient access to perform this action. HTTP Status Code:
-//     403
+//     You do not have sufficient access to perform this action.
 //
 //   - ValidationException
 //     The input fails to satisfy the constraints specified by Entity Resolution.
-//     HTTP Status Code: 400
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/GetIdNamespace
 func (c *EntityResolution) GetIdNamespace(input *GetIdNamespaceInput) (*GetIdNamespaceOutput, error) {
@@ -1438,22 +1411,20 @@ func (c *EntityResolution) GetMatchIdRequest(input *GetMatchIdInput) (req *reque
 // Returned Error Types:
 //
 //   - ThrottlingException
-//     The request was denied due to request throttling. HTTP Status Code: 429
+//     The request was denied due to request throttling.
 //
 //   - InternalServerException
 //     This exception occurs when there is an internal failure in the Entity Resolution
-//     service. HTTP Status Code: 500
+//     service.
 //
 //   - ResourceNotFoundException
-//     The resource could not be found. HTTP Status Code: 404
+//     The resource could not be found.
 //
 //   - AccessDeniedException
-//     You do not have sufficient access to perform this action. HTTP Status Code:
-//     403
+//     You do not have sufficient access to perform this action.
 //
 //   - ValidationException
 //     The input fails to satisfy the constraints specified by Entity Resolution.
-//     HTTP Status Code: 400
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/GetMatchId
 func (c *EntityResolution) GetMatchId(input *GetMatchIdInput) (*GetMatchIdOutput, error) {
@@ -1533,22 +1504,20 @@ func (c *EntityResolution) GetMatchingJobRequest(input *GetMatchingJobInput) (re
 // Returned Error Types:
 //
 //   - ThrottlingException
-//     The request was denied due to request throttling. HTTP Status Code: 429
+//     The request was denied due to request throttling.
 //
 //   - InternalServerException
 //     This exception occurs when there is an internal failure in the Entity Resolution
-//     service. HTTP Status Code: 500
+//     service.
 //
 //   - ResourceNotFoundException
-//     The resource could not be found. HTTP Status Code: 404
+//     The resource could not be found.
 //
 //   - AccessDeniedException
-//     You do not have sufficient access to perform this action. HTTP Status Code:
-//     403
+//     You do not have sufficient access to perform this action.
 //
 //   - ValidationException
 //     The input fails to satisfy the constraints specified by Entity Resolution.
-//     HTTP Status Code: 400
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/GetMatchingJob
 func (c *EntityResolution) GetMatchingJob(input *GetMatchingJobInput) (*GetMatchingJobOutput, error) {
@@ -1627,22 +1596,20 @@ func (c *EntityResolution) GetMatchingWorkflowRequest(input *GetMatchingWorkflow
 // Returned Error Types:
 //
 //   - ThrottlingException
-//     The request was denied due to request throttling. HTTP Status Code: 429
+//     The request was denied due to request throttling.
 //
 //   - InternalServerException
 //     This exception occurs when there is an internal failure in the Entity Resolution
-//     service. HTTP Status Code: 500
+//     service.
 //
 //   - ResourceNotFoundException
-//     The resource could not be found. HTTP Status Code: 404
+//     The resource could not be found.
 //
 //   - AccessDeniedException
-//     You do not have sufficient access to perform this action. HTTP Status Code:
-//     403
+//     You do not have sufficient access to perform this action.
 //
 //   - ValidationException
 //     The input fails to satisfy the constraints specified by Entity Resolution.
-//     HTTP Status Code: 400
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/GetMatchingWorkflow
 func (c *EntityResolution) GetMatchingWorkflow(input *GetMatchingWorkflowInput) (*GetMatchingWorkflowOutput, error) {
@@ -1721,22 +1688,20 @@ func (c *EntityResolution) GetPolicyRequest(input *GetPolicyInput) (req *request
 // Returned Error Types:
 //
 //   - ThrottlingException
-//     The request was denied due to request throttling. HTTP Status Code: 429
+//     The request was denied due to request throttling.
 //
 //   - InternalServerException
 //     This exception occurs when there is an internal failure in the Entity Resolution
-//     service. HTTP Status Code: 500
+//     service.
 //
 //   - ResourceNotFoundException
-//     The resource could not be found. HTTP Status Code: 404
+//     The resource could not be found.
 //
 //   - AccessDeniedException
-//     You do not have sufficient access to perform this action. HTTP Status Code:
-//     403
+//     You do not have sufficient access to perform this action.
 //
 //   - ValidationException
 //     The input fails to satisfy the constraints specified by Entity Resolution.
-//     HTTP Status Code: 400
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/GetPolicy
 func (c *EntityResolution) GetPolicy(input *GetPolicyInput) (*GetPolicyOutput, error) {
@@ -1815,22 +1780,20 @@ func (c *EntityResolution) GetSchemaMappingRequest(input *GetSchemaMappingInput)
 // Returned Error Types:
 //
 //   - ThrottlingException
-//     The request was denied due to request throttling. HTTP Status Code: 429
+//     The request was denied due to request throttling.
 //
 //   - InternalServerException
 //     This exception occurs when there is an internal failure in the Entity Resolution
-//     service. HTTP Status Code: 500
+//     service.
 //
 //   - ResourceNotFoundException
-//     The resource could not be found. HTTP Status Code: 404
+//     The resource could not be found.
 //
 //   - AccessDeniedException
-//     You do not have sufficient access to perform this action. HTTP Status Code:
-//     403
+//     You do not have sufficient access to perform this action.
 //
 //   - ValidationException
 //     The input fails to satisfy the constraints specified by Entity Resolution.
-//     HTTP Status Code: 400
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/GetSchemaMapping
 func (c *EntityResolution) GetSchemaMapping(input *GetSchemaMappingInput) (*GetSchemaMappingOutput, error) {
@@ -1915,22 +1878,20 @@ func (c *EntityResolution) ListIdMappingJobsRequest(input *ListIdMappingJobsInpu
 // Returned Error Types:
 //
 //   - ThrottlingException
-//     The request was denied due to request throttling. HTTP Status Code: 429
+//     The request was denied due to request throttling.
 //
 //   - InternalServerException
 //     This exception occurs when there is an internal failure in the Entity Resolution
-//     service. HTTP Status Code: 500
+//     service.
 //
 //   - ResourceNotFoundException
-//     The resource could not be found. HTTP Status Code: 404
+//     The resource could not be found.
 //
 //   - AccessDeniedException
-//     You do not have sufficient access to perform this action. HTTP Status Code:
-//     403
+//     You do not have sufficient access to perform this action.
 //
 //   - ValidationException
 //     The input fails to satisfy the constraints specified by Entity Resolution.
-//     HTTP Status Code: 400
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/ListIdMappingJobs
 func (c *EntityResolution) ListIdMappingJobs(input *ListIdMappingJobsInput) (*ListIdMappingJobsOutput, error) {
@@ -2067,19 +2028,17 @@ func (c *EntityResolution) ListIdMappingWorkflowsRequest(input *ListIdMappingWor
 // Returned Error Types:
 //
 //   - ThrottlingException
-//     The request was denied due to request throttling. HTTP Status Code: 429
+//     The request was denied due to request throttling.
 //
 //   - InternalServerException
 //     This exception occurs when there is an internal failure in the Entity Resolution
-//     service. HTTP Status Code: 500
+//     service.
 //
 //   - AccessDeniedException
-//     You do not have sufficient access to perform this action. HTTP Status Code:
-//     403
+//     You do not have sufficient access to perform this action.
 //
 //   - ValidationException
 //     The input fails to satisfy the constraints specified by Entity Resolution.
-//     HTTP Status Code: 400
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/ListIdMappingWorkflows
 func (c *EntityResolution) ListIdMappingWorkflows(input *ListIdMappingWorkflowsInput) (*ListIdMappingWorkflowsOutput, error) {
@@ -2215,19 +2174,17 @@ func (c *EntityResolution) ListIdNamespacesRequest(input *ListIdNamespacesInput)
 // Returned Error Types:
 //
 //   - ThrottlingException
-//     The request was denied due to request throttling. HTTP Status Code: 429
+//     The request was denied due to request throttling.
 //
 //   - InternalServerException
 //     This exception occurs when there is an internal failure in the Entity Resolution
-//     service. HTTP Status Code: 500
+//     service.
 //
 //   - AccessDeniedException
-//     You do not have sufficient access to perform this action. HTTP Status Code:
-//     403
+//     You do not have sufficient access to perform this action.
 //
 //   - ValidationException
 //     The input fails to satisfy the constraints specified by Entity Resolution.
-//     HTTP Status Code: 400
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/ListIdNamespaces
 func (c *EntityResolution) ListIdNamespaces(input *ListIdNamespacesInput) (*ListIdNamespacesOutput, error) {
@@ -2363,22 +2320,20 @@ func (c *EntityResolution) ListMatchingJobsRequest(input *ListMatchingJobsInput)
 // Returned Error Types:
 //
 //   - ThrottlingException
-//     The request was denied due to request throttling. HTTP Status Code: 429
+//     The request was denied due to request throttling.
 //
 //   - InternalServerException
 //     This exception occurs when there is an internal failure in the Entity Resolution
-//     service. HTTP Status Code: 500
+//     service.
 //
 //   - ResourceNotFoundException
-//     The resource could not be found. HTTP Status Code: 404
+//     The resource could not be found.
 //
 //   - AccessDeniedException
-//     You do not have sufficient access to perform this action. HTTP Status Code:
-//     403
+//     You do not have sufficient access to perform this action.
 //
 //   - ValidationException
 //     The input fails to satisfy the constraints specified by Entity Resolution.
-//     HTTP Status Code: 400
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/ListMatchingJobs
 func (c *EntityResolution) ListMatchingJobs(input *ListMatchingJobsInput) (*ListMatchingJobsOutput, error) {
@@ -2515,19 +2470,17 @@ func (c *EntityResolution) ListMatchingWorkflowsRequest(input *ListMatchingWorkf
 // Returned Error Types:
 //
 //   - ThrottlingException
-//     The request was denied due to request throttling. HTTP Status Code: 429
+//     The request was denied due to request throttling.
 //
 //   - InternalServerException
 //     This exception occurs when there is an internal failure in the Entity Resolution
-//     service. HTTP Status Code: 500
+//     service.
 //
 //   - AccessDeniedException
-//     You do not have sufficient access to perform this action. HTTP Status Code:
-//     403
+//     You do not have sufficient access to perform this action.
 //
 //   - ValidationException
 //     The input fails to satisfy the constraints specified by Entity Resolution.
-//     HTTP Status Code: 400
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/ListMatchingWorkflows
 func (c *EntityResolution) ListMatchingWorkflows(input *ListMatchingWorkflowsInput) (*ListMatchingWorkflowsOutput, error) {
@@ -2664,19 +2617,17 @@ func (c *EntityResolution) ListProviderServicesRequest(input *ListProviderServic
 // Returned Error Types:
 //
 //   - ThrottlingException
-//     The request was denied due to request throttling. HTTP Status Code: 429
+//     The request was denied due to request throttling.
 //
 //   - InternalServerException
 //     This exception occurs when there is an internal failure in the Entity Resolution
-//     service. HTTP Status Code: 500
+//     service.
 //
 //   - AccessDeniedException
-//     You do not have sufficient access to perform this action. HTTP Status Code:
-//     403
+//     You do not have sufficient access to perform this action.
 //
 //   - ValidationException
 //     The input fails to satisfy the constraints specified by Entity Resolution.
-//     HTTP Status Code: 400
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/ListProviderServices
 func (c *EntityResolution) ListProviderServices(input *ListProviderServicesInput) (*ListProviderServicesOutput, error) {
@@ -2813,19 +2764,17 @@ func (c *EntityResolution) ListSchemaMappingsRequest(input *ListSchemaMappingsIn
 // Returned Error Types:
 //
 //   - ThrottlingException
-//     The request was denied due to request throttling. HTTP Status Code: 429
+//     The request was denied due to request throttling.
 //
 //   - InternalServerException
 //     This exception occurs when there is an internal failure in the Entity Resolution
-//     service. HTTP Status Code: 500
+//     service.
 //
 //   - AccessDeniedException
-//     You do not have sufficient access to perform this action. HTTP Status Code:
-//     403
+//     You do not have sufficient access to perform this action.
 //
 //   - ValidationException
 //     The input fails to satisfy the constraints specified by Entity Resolution.
-//     HTTP Status Code: 400
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/ListSchemaMappings
 func (c *EntityResolution) ListSchemaMappings(input *ListSchemaMappingsInput) (*ListSchemaMappingsOutput, error) {
@@ -2957,14 +2906,13 @@ func (c *EntityResolution) ListTagsForResourceRequest(input *ListTagsForResource
 //
 //   - InternalServerException
 //     This exception occurs when there is an internal failure in the Entity Resolution
-//     service. HTTP Status Code: 500
+//     service.
 //
 //   - ResourceNotFoundException
-//     The resource could not be found. HTTP Status Code: 404
+//     The resource could not be found.
 //
 //   - ValidationException
 //     The input fails to satisfy the constraints specified by Entity Resolution.
-//     HTTP Status Code: 400
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/ListTagsForResource
 func (c *EntityResolution) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -3043,27 +2991,25 @@ func (c *EntityResolution) PutPolicyRequest(input *PutPolicyInput) (req *request
 // Returned Error Types:
 //
 //   - ThrottlingException
-//     The request was denied due to request throttling. HTTP Status Code: 429
+//     The request was denied due to request throttling.
 //
 //   - InternalServerException
 //     This exception occurs when there is an internal failure in the Entity Resolution
-//     service. HTTP Status Code: 500
+//     service.
 //
 //   - ResourceNotFoundException
-//     The resource could not be found. HTTP Status Code: 404
+//     The resource could not be found.
 //
 //   - AccessDeniedException
-//     You do not have sufficient access to perform this action. HTTP Status Code:
-//     403
+//     You do not have sufficient access to perform this action.
 //
 //   - ConflictException
 //     The request could not be processed because of conflict in the current state
 //     of the resource. Example: Workflow already exists, Schema already exists,
-//     Workflow is currently running, etc. HTTP Status Code: 400
+//     Workflow is currently running, etc.
 //
 //   - ValidationException
 //     The input fails to satisfy the constraints specified by Entity Resolution.
-//     HTTP Status Code: 400
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/PutPolicy
 func (c *EntityResolution) PutPolicy(input *PutPolicyInput) (*PutPolicyOutput, error) {
@@ -3143,32 +3089,30 @@ func (c *EntityResolution) StartIdMappingJobRequest(input *StartIdMappingJobInpu
 // Returned Error Types:
 //
 //   - ThrottlingException
-//     The request was denied due to request throttling. HTTP Status Code: 429
+//     The request was denied due to request throttling.
 //
 //   - InternalServerException
 //     This exception occurs when there is an internal failure in the Entity Resolution
-//     service. HTTP Status Code: 500
+//     service.
 //
 //   - ResourceNotFoundException
-//     The resource could not be found. HTTP Status Code: 404
+//     The resource could not be found.
 //
 //   - AccessDeniedException
-//     You do not have sufficient access to perform this action. HTTP Status Code:
-//     403
+//     You do not have sufficient access to perform this action.
 //
 //   - ExceedsLimitException
 //     The request was rejected because it attempted to create resources beyond
 //     the current Entity Resolution account limits. The error message describes
-//     the limit exceeded. HTTP Status Code: 402
+//     the limit exceeded.
 //
 //   - ConflictException
 //     The request could not be processed because of conflict in the current state
 //     of the resource. Example: Workflow already exists, Schema already exists,
-//     Workflow is currently running, etc. HTTP Status Code: 400
+//     Workflow is currently running, etc.
 //
 //   - ValidationException
 //     The input fails to satisfy the constraints specified by Entity Resolution.
-//     HTTP Status Code: 400
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/StartIdMappingJob
 func (c *EntityResolution) StartIdMappingJob(input *StartIdMappingJobInput) (*StartIdMappingJobOutput, error) {
@@ -3248,32 +3192,30 @@ func (c *EntityResolution) StartMatchingJobRequest(input *StartMatchingJobInput)
 // Returned Error Types:
 //
 //   - ThrottlingException
-//     The request was denied due to request throttling. HTTP Status Code: 429
+//     The request was denied due to request throttling.
 //
 //   - InternalServerException
 //     This exception occurs when there is an internal failure in the Entity Resolution
-//     service. HTTP Status Code: 500
+//     service.
 //
 //   - ResourceNotFoundException
-//     The resource could not be found. HTTP Status Code: 404
+//     The resource could not be found.
 //
 //   - AccessDeniedException
-//     You do not have sufficient access to perform this action. HTTP Status Code:
-//     403
+//     You do not have sufficient access to perform this action.
 //
 //   - ExceedsLimitException
 //     The request was rejected because it attempted to create resources beyond
 //     the current Entity Resolution account limits. The error message describes
-//     the limit exceeded. HTTP Status Code: 402
+//     the limit exceeded.
 //
 //   - ConflictException
 //     The request could not be processed because of conflict in the current state
 //     of the resource. Example: Workflow already exists, Schema already exists,
-//     Workflow is currently running, etc. HTTP Status Code: 400
+//     Workflow is currently running, etc.
 //
 //   - ValidationException
 //     The input fails to satisfy the constraints specified by Entity Resolution.
-//     HTTP Status Code: 400
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/StartMatchingJob
 func (c *EntityResolution) StartMatchingJob(input *StartMatchingJobInput) (*StartMatchingJobOutput, error) {
@@ -3364,14 +3306,13 @@ func (c *EntityResolution) TagResourceRequest(input *TagResourceInput) (req *req
 //
 //   - InternalServerException
 //     This exception occurs when there is an internal failure in the Entity Resolution
-//     service. HTTP Status Code: 500
+//     service.
 //
 //   - ResourceNotFoundException
-//     The resource could not be found. HTTP Status Code: 404
+//     The resource could not be found.
 //
 //   - ValidationException
 //     The input fails to satisfy the constraints specified by Entity Resolution.
-//     HTTP Status Code: 400
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/TagResource
 func (c *EntityResolution) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
@@ -3453,10 +3394,10 @@ func (c *EntityResolution) UntagResourceRequest(input *UntagResourceInput) (req 
 //
 //   - InternalServerException
 //     This exception occurs when there is an internal failure in the Entity Resolution
-//     service. HTTP Status Code: 500
+//     service.
 //
 //   - ResourceNotFoundException
-//     The resource could not be found. HTTP Status Code: 404
+//     The resource could not be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/UntagResource
 func (c *EntityResolution) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
@@ -3537,22 +3478,20 @@ func (c *EntityResolution) UpdateIdMappingWorkflowRequest(input *UpdateIdMapping
 // Returned Error Types:
 //
 //   - ThrottlingException
-//     The request was denied due to request throttling. HTTP Status Code: 429
+//     The request was denied due to request throttling.
 //
 //   - InternalServerException
 //     This exception occurs when there is an internal failure in the Entity Resolution
-//     service. HTTP Status Code: 500
+//     service.
 //
 //   - ResourceNotFoundException
-//     The resource could not be found. HTTP Status Code: 404
+//     The resource could not be found.
 //
 //   - AccessDeniedException
-//     You do not have sufficient access to perform this action. HTTP Status Code:
-//     403
+//     You do not have sufficient access to perform this action.
 //
 //   - ValidationException
 //     The input fails to satisfy the constraints specified by Entity Resolution.
-//     HTTP Status Code: 400
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/UpdateIdMappingWorkflow
 func (c *EntityResolution) UpdateIdMappingWorkflow(input *UpdateIdMappingWorkflowInput) (*UpdateIdMappingWorkflowOutput, error) {
@@ -3631,22 +3570,20 @@ func (c *EntityResolution) UpdateIdNamespaceRequest(input *UpdateIdNamespaceInpu
 // Returned Error Types:
 //
 //   - ThrottlingException
-//     The request was denied due to request throttling. HTTP Status Code: 429
+//     The request was denied due to request throttling.
 //
 //   - InternalServerException
 //     This exception occurs when there is an internal failure in the Entity Resolution
-//     service. HTTP Status Code: 500
+//     service.
 //
 //   - ResourceNotFoundException
-//     The resource could not be found. HTTP Status Code: 404
+//     The resource could not be found.
 //
 //   - AccessDeniedException
-//     You do not have sufficient access to perform this action. HTTP Status Code:
-//     403
+//     You do not have sufficient access to perform this action.
 //
 //   - ValidationException
 //     The input fails to satisfy the constraints specified by Entity Resolution.
-//     HTTP Status Code: 400
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/UpdateIdNamespace
 func (c *EntityResolution) UpdateIdNamespace(input *UpdateIdNamespaceInput) (*UpdateIdNamespaceOutput, error) {
@@ -3727,22 +3664,20 @@ func (c *EntityResolution) UpdateMatchingWorkflowRequest(input *UpdateMatchingWo
 // Returned Error Types:
 //
 //   - ThrottlingException
-//     The request was denied due to request throttling. HTTP Status Code: 429
+//     The request was denied due to request throttling.
 //
 //   - InternalServerException
 //     This exception occurs when there is an internal failure in the Entity Resolution
-//     service. HTTP Status Code: 500
+//     service.
 //
 //   - ResourceNotFoundException
-//     The resource could not be found. HTTP Status Code: 404
+//     The resource could not be found.
 //
 //   - AccessDeniedException
-//     You do not have sufficient access to perform this action. HTTP Status Code:
-//     403
+//     You do not have sufficient access to perform this action.
 //
 //   - ValidationException
 //     The input fails to satisfy the constraints specified by Entity Resolution.
-//     HTTP Status Code: 400
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/UpdateMatchingWorkflow
 func (c *EntityResolution) UpdateMatchingWorkflow(input *UpdateMatchingWorkflowInput) (*UpdateMatchingWorkflowOutput, error) {
@@ -3824,27 +3759,25 @@ func (c *EntityResolution) UpdateSchemaMappingRequest(input *UpdateSchemaMapping
 // Returned Error Types:
 //
 //   - ThrottlingException
-//     The request was denied due to request throttling. HTTP Status Code: 429
+//     The request was denied due to request throttling.
 //
 //   - InternalServerException
 //     This exception occurs when there is an internal failure in the Entity Resolution
-//     service. HTTP Status Code: 500
+//     service.
 //
 //   - ResourceNotFoundException
-//     The resource could not be found. HTTP Status Code: 404
+//     The resource could not be found.
 //
 //   - AccessDeniedException
-//     You do not have sufficient access to perform this action. HTTP Status Code:
-//     403
+//     You do not have sufficient access to perform this action.
 //
 //   - ConflictException
 //     The request could not be processed because of conflict in the current state
 //     of the resource. Example: Workflow already exists, Schema already exists,
-//     Workflow is currently running, etc. HTTP Status Code: 400
+//     Workflow is currently running, etc.
 //
 //   - ValidationException
 //     The input fails to satisfy the constraints specified by Entity Resolution.
-//     HTTP Status Code: 400
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/UpdateSchemaMapping
 func (c *EntityResolution) UpdateSchemaMapping(input *UpdateSchemaMappingInput) (*UpdateSchemaMappingOutput, error) {
@@ -3868,8 +3801,7 @@ func (c *EntityResolution) UpdateSchemaMappingWithContext(ctx aws.Context, input
 	return out, req.Send()
 }
 
-// You do not have sufficient access to perform this action. HTTP Status Code:
-// 403
+// You do not have sufficient access to perform this action.
 type AccessDeniedException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -3954,6 +3886,10 @@ type AddPolicyStatementInput struct {
 
 	// Determines whether the permissions specified in the policy are to be allowed
 	// (Allow) or denied (Deny).
+	//
+	// If you set the value of the effect parameter to Deny for the AddPolicyStatement
+	// operation, you must also set the value of the effect parameter in the policy
+	// to Deny for the PutPolicy operation.
 	//
 	// Effect is a required field
 	Effect *string `locationName:"effect" type:"string" required:"true" enum:"StatementEffect"`
@@ -4259,7 +4195,7 @@ func (s *BatchDeleteUniqueIdOutput) SetStatus(v string) *BatchDeleteUniqueIdOutp
 
 // The request could not be processed because of conflict in the current state
 // of the resource. Example: Workflow already exists, Schema already exists,
-// Workflow is currently running, etc. HTTP Status Code: 400
+// Workflow is currently running, etc.
 type ConflictException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -4329,7 +4265,7 @@ type CreateIdMappingWorkflowInput struct {
 	// A description of the workflow.
 	Description *string `locationName:"description" type:"string"`
 
-	// An object which defines the idMappingType and the providerProperties.
+	// An object which defines the ID mapping technique and any additional configurations.
 	//
 	// IdMappingTechniques is a required field
 	IdMappingTechniques *IdMappingTechniques `locationName:"idMappingTechniques" type:"structure" required:"true"`
@@ -4345,9 +4281,7 @@ type CreateIdMappingWorkflowInput struct {
 
 	// The Amazon Resource Name (ARN) of the IAM role. Entity Resolution assumes
 	// this role to create resources on your behalf as part of workflow execution.
-	//
-	// RoleArn is a required field
-	RoleArn *string `locationName:"roleArn" min:"32" type:"string" required:"true"`
+	RoleArn *string `locationName:"roleArn" type:"string"`
 
 	// The tags used to organize, track, or control access for this resource.
 	Tags map[string]*string `locationName:"tags" type:"map"`
@@ -4391,12 +4325,6 @@ func (s *CreateIdMappingWorkflowInput) Validate() error {
 	}
 	if s.OutputSourceConfig != nil && len(s.OutputSourceConfig) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("OutputSourceConfig", 1))
-	}
-	if s.RoleArn == nil {
-		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
-	}
-	if s.RoleArn != nil && len(*s.RoleArn) < 32 {
-		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 32))
 	}
 	if s.WorkflowName == nil {
 		invalidParams.Add(request.NewErrParamRequired("WorkflowName"))
@@ -4484,7 +4412,7 @@ type CreateIdMappingWorkflowOutput struct {
 	// A description of the workflow.
 	Description *string `locationName:"description" type:"string"`
 
-	// An object which defines the idMappingType and the providerProperties.
+	// An object which defines the ID mapping technique and any additional configurations.
 	//
 	// IdMappingTechniques is a required field
 	IdMappingTechniques *IdMappingTechniques `locationName:"idMappingTechniques" type:"structure" required:"true"`
@@ -4500,9 +4428,7 @@ type CreateIdMappingWorkflowOutput struct {
 
 	// The Amazon Resource Name (ARN) of the IAM role. Entity Resolution assumes
 	// this role to create resources on your behalf as part of workflow execution.
-	//
-	// RoleArn is a required field
-	RoleArn *string `locationName:"roleArn" min:"32" type:"string" required:"true"`
+	RoleArn *string `locationName:"roleArn" type:"string"`
 
 	// The ARN (Amazon Resource Name) that Entity Resolution generated for the IDMappingWorkflow.
 	//
@@ -5851,7 +5777,7 @@ func (s *ErrorDetails) SetErrorMessage(v string) *ErrorDetails {
 
 // The request was rejected because it attempted to create resources beyond
 // the current Entity Resolution account limits. The error message describes
-// the limit exceeded. HTTP Status Code: 402
+// the limit exceeded.
 type ExceedsLimitException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -6139,7 +6065,7 @@ type GetIdMappingWorkflowOutput struct {
 	// A description of the workflow.
 	Description *string `locationName:"description" type:"string"`
 
-	// An object which defines the idMappingType and the providerProperties.
+	// An object which defines the ID mapping technique and any additional configurations.
 	//
 	// IdMappingTechniques is a required field
 	IdMappingTechniques *IdMappingTechniques `locationName:"idMappingTechniques" type:"structure" required:"true"`
@@ -6155,9 +6081,7 @@ type GetIdMappingWorkflowOutput struct {
 
 	// The Amazon Resource Name (ARN) of the IAM role. Entity Resolution assumes
 	// this role to access Amazon Web Services resources on your behalf.
-	//
-	// RoleArn is a required field
-	RoleArn *string `locationName:"roleArn" min:"32" type:"string" required:"true"`
+	RoleArn *string `locationName:"roleArn" type:"string"`
 
 	// The tags used to organize, track, or control access for this resource.
 	Tags map[string]*string `locationName:"tags" type:"map"`
@@ -7162,17 +7086,27 @@ func (s *GetSchemaMappingOutput) SetUpdatedAt(v time.Time) *GetSchemaMappingOutp
 	return s
 }
 
-// An object containing InputRecords, TotalRecordsProcessed, MatchIDs, and RecordsNotProcessed.
+// An object containing InputRecords, RecordsNotProcessed, TotalRecordsProcessed,
+// TotalMappedRecords, TotalMappedSourceRecords, and TotalMappedTargetRecords.
 type IdMappingJobMetrics struct {
 	_ struct{} `type:"structure"`
 
-	// The total number of input records.
+	// The total number of records that were input for processing.
 	InputRecords *int64 `locationName:"inputRecords" type:"integer"`
 
 	// The total number of records that did not get processed.
 	RecordsNotProcessed *int64 `locationName:"recordsNotProcessed" type:"integer"`
 
-	// The total number of records processed.
+	// The total number of records that were mapped.
+	TotalMappedRecords *int64 `locationName:"totalMappedRecords" type:"integer"`
+
+	// The total number of mapped source records.
+	TotalMappedSourceRecords *int64 `locationName:"totalMappedSourceRecords" type:"integer"`
+
+	// The total number of distinct mapped target records.
+	TotalMappedTargetRecords *int64 `locationName:"totalMappedTargetRecords" type:"integer"`
+
+	// The total number of records that were processed.
 	TotalRecordsProcessed *int64 `locationName:"totalRecordsProcessed" type:"integer"`
 }
 
@@ -7203,6 +7137,24 @@ func (s *IdMappingJobMetrics) SetInputRecords(v int64) *IdMappingJobMetrics {
 // SetRecordsNotProcessed sets the RecordsNotProcessed field's value.
 func (s *IdMappingJobMetrics) SetRecordsNotProcessed(v int64) *IdMappingJobMetrics {
 	s.RecordsNotProcessed = &v
+	return s
+}
+
+// SetTotalMappedRecords sets the TotalMappedRecords field's value.
+func (s *IdMappingJobMetrics) SetTotalMappedRecords(v int64) *IdMappingJobMetrics {
+	s.TotalMappedRecords = &v
+	return s
+}
+
+// SetTotalMappedSourceRecords sets the TotalMappedSourceRecords field's value.
+func (s *IdMappingJobMetrics) SetTotalMappedSourceRecords(v int64) *IdMappingJobMetrics {
+	s.TotalMappedSourceRecords = &v
+	return s
+}
+
+// SetTotalMappedTargetRecords sets the TotalMappedTargetRecords field's value.
+func (s *IdMappingJobMetrics) SetTotalMappedTargetRecords(v int64) *IdMappingJobMetrics {
+	s.TotalMappedTargetRecords = &v
 	return s
 }
 
@@ -7291,7 +7243,123 @@ func (s *IdMappingJobOutputSource) SetRoleArn(v string) *IdMappingJobOutputSourc
 	return s
 }
 
-// An object which defines the ID mapping techniques and provider configurations.
+// An object that defines the list of matching rules to run in an ID mapping
+// workflow.
+type IdMappingRuleBasedProperties struct {
+	_ struct{} `type:"structure"`
+
+	// The comparison type. You can either choose ONE_TO_ONE or MANY_TO_MANY as
+	// the attributeMatchingModel.
+	//
+	// If you choose MANY_TO_MANY, the system can match attributes across the sub-types
+	// of an attribute type. For example, if the value of the Email field of Profile
+	// A matches the value of the BusinessEmail field of Profile B, the two profiles
+	// are matched on the Email attribute type.
+	//
+	// If you choose ONE_TO_ONE, the system can only match attributes if the sub-types
+	// are an exact match. For example, for the Email attribute type, the system
+	// will only consider it a match if the value of the Email field of Profile
+	// A matches the value of the Email field of Profile B.
+	//
+	// AttributeMatchingModel is a required field
+	AttributeMatchingModel *string `locationName:"attributeMatchingModel" type:"string" required:"true" enum:"AttributeMatchingModel"`
+
+	// The type of matching record that is allowed to be used in an ID mapping workflow.
+	//
+	// If the value is set to ONE_SOURCE_TO_ONE_TARGET, only one record in the source
+	// can be matched to the same record in the target.
+	//
+	// If the value is set to MANY_SOURCE_TO_ONE_TARGET, multiple records in the
+	// source can be matched to one record in the target.
+	//
+	// RecordMatchingModel is a required field
+	RecordMatchingModel *string `locationName:"recordMatchingModel" type:"string" required:"true" enum:"RecordMatchingModel"`
+
+	// The set of rules you can use in an ID mapping workflow. The limitations specified
+	// for the source or target to define the match rules must be compatible.
+	//
+	// RuleDefinitionType is a required field
+	RuleDefinitionType *string `locationName:"ruleDefinitionType" type:"string" required:"true" enum:"IdMappingWorkflowRuleDefinitionType"`
+
+	// The rules that can be used for ID mapping.
+	Rules []*Rule `locationName:"rules" min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IdMappingRuleBasedProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IdMappingRuleBasedProperties) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *IdMappingRuleBasedProperties) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "IdMappingRuleBasedProperties"}
+	if s.AttributeMatchingModel == nil {
+		invalidParams.Add(request.NewErrParamRequired("AttributeMatchingModel"))
+	}
+	if s.RecordMatchingModel == nil {
+		invalidParams.Add(request.NewErrParamRequired("RecordMatchingModel"))
+	}
+	if s.RuleDefinitionType == nil {
+		invalidParams.Add(request.NewErrParamRequired("RuleDefinitionType"))
+	}
+	if s.Rules != nil && len(s.Rules) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Rules", 1))
+	}
+	if s.Rules != nil {
+		for i, v := range s.Rules {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Rules", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAttributeMatchingModel sets the AttributeMatchingModel field's value.
+func (s *IdMappingRuleBasedProperties) SetAttributeMatchingModel(v string) *IdMappingRuleBasedProperties {
+	s.AttributeMatchingModel = &v
+	return s
+}
+
+// SetRecordMatchingModel sets the RecordMatchingModel field's value.
+func (s *IdMappingRuleBasedProperties) SetRecordMatchingModel(v string) *IdMappingRuleBasedProperties {
+	s.RecordMatchingModel = &v
+	return s
+}
+
+// SetRuleDefinitionType sets the RuleDefinitionType field's value.
+func (s *IdMappingRuleBasedProperties) SetRuleDefinitionType(v string) *IdMappingRuleBasedProperties {
+	s.RuleDefinitionType = &v
+	return s
+}
+
+// SetRules sets the Rules field's value.
+func (s *IdMappingRuleBasedProperties) SetRules(v []*Rule) *IdMappingRuleBasedProperties {
+	s.Rules = v
+	return s
+}
+
+// An object which defines the ID mapping technique and any additional configurations.
 type IdMappingTechniques struct {
 	_ struct{} `type:"structure"`
 
@@ -7303,6 +7371,10 @@ type IdMappingTechniques struct {
 	// An object which defines any additional configurations required by the provider
 	// service.
 	ProviderProperties *ProviderProperties `locationName:"providerProperties" type:"structure"`
+
+	// An object which defines any additional configurations required by rule-based
+	// matching.
+	RuleBasedProperties *IdMappingRuleBasedProperties `locationName:"ruleBasedProperties" type:"structure"`
 }
 
 // String returns the string representation.
@@ -7334,6 +7406,11 @@ func (s *IdMappingTechniques) Validate() error {
 			invalidParams.AddNested("ProviderProperties", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.RuleBasedProperties != nil {
+		if err := s.RuleBasedProperties.Validate(); err != nil {
+			invalidParams.AddNested("RuleBasedProperties", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -7353,11 +7430,18 @@ func (s *IdMappingTechniques) SetProviderProperties(v *ProviderProperties) *IdMa
 	return s
 }
 
+// SetRuleBasedProperties sets the RuleBasedProperties field's value.
+func (s *IdMappingTechniques) SetRuleBasedProperties(v *IdMappingRuleBasedProperties) *IdMappingTechniques {
+	s.RuleBasedProperties = v
+	return s
+}
+
 // An object containing InputSourceARN, SchemaName, and Type.
 type IdMappingWorkflowInputSource struct {
 	_ struct{} `type:"structure"`
 
-	// An Glue table ARN for the input source table.
+	// An Glue table Amazon Resource Name (ARN) or a matching workflow ARN for the
+	// input source table.
 	//
 	// InputSourceARN is a required field
 	InputSourceARN *string `locationName:"inputSourceARN" type:"string" required:"true"`
@@ -7370,7 +7454,7 @@ type IdMappingWorkflowInputSource struct {
 	// The SOURCE contains configurations for sourceId data that will be processed
 	// in an ID mapping workflow.
 	//
-	// The TARGET contains a configuration of targetId to which all sourceIds will
+	// The TARGET contains a configuration of targetId which all sourceIds will
 	// resolve to.
 	Type *string `locationName:"type" type:"string" enum:"IdNamespaceType"`
 }
@@ -7555,7 +7639,41 @@ func (s *IdMappingWorkflowSummary) SetWorkflowName(v string) *IdMappingWorkflowS
 	return s
 }
 
-// An object containing IdMappingType and ProviderProperties.
+// The settings for the ID namespace for the ID mapping workflow job.
+type IdNamespaceIdMappingWorkflowMetadata struct {
+	_ struct{} `type:"structure"`
+
+	// The type of ID mapping.
+	//
+	// IdMappingType is a required field
+	IdMappingType *string `locationName:"idMappingType" type:"string" required:"true" enum:"IdMappingType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IdNamespaceIdMappingWorkflowMetadata) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IdNamespaceIdMappingWorkflowMetadata) GoString() string {
+	return s.String()
+}
+
+// SetIdMappingType sets the IdMappingType field's value.
+func (s *IdNamespaceIdMappingWorkflowMetadata) SetIdMappingType(v string) *IdNamespaceIdMappingWorkflowMetadata {
+	s.IdMappingType = &v
+	return s
+}
+
+// An object containing IdMappingType, ProviderProperties, and RuleBasedProperties.
 type IdNamespaceIdMappingWorkflowProperties struct {
 	_ struct{} `type:"structure"`
 
@@ -7567,6 +7685,10 @@ type IdNamespaceIdMappingWorkflowProperties struct {
 	// An object which defines any additional configurations required by the provider
 	// service.
 	ProviderProperties *NamespaceProviderProperties `locationName:"providerProperties" type:"structure"`
+
+	// An object which defines any additional configurations required by rule-based
+	// matching.
+	RuleBasedProperties *NamespaceRuleBasedProperties `locationName:"ruleBasedProperties" type:"structure"`
 }
 
 // String returns the string representation.
@@ -7598,6 +7720,11 @@ func (s *IdNamespaceIdMappingWorkflowProperties) Validate() error {
 			invalidParams.AddNested("ProviderProperties", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.RuleBasedProperties != nil {
+		if err := s.RuleBasedProperties.Validate(); err != nil {
+			invalidParams.AddNested("RuleBasedProperties", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -7617,11 +7744,18 @@ func (s *IdNamespaceIdMappingWorkflowProperties) SetProviderProperties(v *Namesp
 	return s
 }
 
+// SetRuleBasedProperties sets the RuleBasedProperties field's value.
+func (s *IdNamespaceIdMappingWorkflowProperties) SetRuleBasedProperties(v *NamespaceRuleBasedProperties) *IdNamespaceIdMappingWorkflowProperties {
+	s.RuleBasedProperties = v
+	return s
+}
+
 // An object containing InputSourceARN and SchemaName.
 type IdNamespaceInputSource struct {
 	_ struct{} `type:"structure"`
 
-	// An Glue table ARN for the input source table.
+	// An Glue table Amazon Resource Name (ARN) or a matching workflow ARN for the
+	// input source table.
 	//
 	// InputSourceARN is a required field
 	InputSourceARN *string `locationName:"inputSourceARN" type:"string" required:"true"`
@@ -7688,6 +7822,10 @@ type IdNamespaceSummary struct {
 	// The description of the ID namespace.
 	Description *string `locationName:"description" type:"string"`
 
+	// An object which defines any additional configurations required by the ID
+	// mapping workflow.
+	IdMappingWorkflowProperties []*IdNamespaceIdMappingWorkflowMetadata `locationName:"idMappingWorkflowProperties" min:"1" type:"list"`
+
 	// The Amazon Resource Name (ARN) of the ID namespace.
 	//
 	// IdNamespaceArn is a required field
@@ -7703,7 +7841,7 @@ type IdNamespaceSummary struct {
 	// The SOURCE contains configurations for sourceId data that will be processed
 	// in an ID mapping workflow.
 	//
-	// The TARGET contains a configuration of targetId to which all sourceIds will
+	// The TARGET contains a configuration of targetId which all sourceIds will
 	// resolve to.
 	//
 	// Type is a required field
@@ -7742,6 +7880,12 @@ func (s *IdNamespaceSummary) SetCreatedAt(v time.Time) *IdNamespaceSummary {
 // SetDescription sets the Description field's value.
 func (s *IdNamespaceSummary) SetDescription(v string) *IdNamespaceSummary {
 	s.Description = &v
+	return s
+}
+
+// SetIdMappingWorkflowProperties sets the IdMappingWorkflowProperties field's value.
+func (s *IdNamespaceSummary) SetIdMappingWorkflowProperties(v []*IdNamespaceIdMappingWorkflowMetadata) *IdNamespaceSummary {
+	s.IdMappingWorkflowProperties = v
 	return s
 }
 
@@ -7812,7 +7956,7 @@ type InputSource struct {
 	// this field in the output to (123)-456-7890.
 	ApplyNormalization *bool `locationName:"applyNormalization" type:"boolean"`
 
-	// An Glue table ARN for the input source table.
+	// An Glue table Amazon Resource Name (ARN) for the input source table.
 	//
 	// InputSourceARN is a required field
 	InputSourceARN *string `locationName:"inputSourceARN" type:"string" required:"true"`
@@ -7930,7 +8074,7 @@ func (s *IntermediateSourceConfiguration) SetIntermediateS3Path(v string) *Inter
 }
 
 // This exception occurs when there is an internal failure in the Entity Resolution
-// service. HTTP Status Code: 500
+// service.
 type InternalServerException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -9096,6 +9240,107 @@ func (s *NamespaceProviderProperties) SetProviderServiceArn(v string) *Namespace
 	return s
 }
 
+// The rule-based properties of an ID namespace. These properties define how
+// the ID namespace can be used in an ID mapping workflow.
+type NamespaceRuleBasedProperties struct {
+	_ struct{} `type:"structure"`
+
+	// The comparison type. You can either choose ONE_TO_ONE or MANY_TO_MANY as
+	// the attributeMatchingModel.
+	//
+	// If you choose MANY_TO_MANY, the system can match attributes across the sub-types
+	// of an attribute type. For example, if the value of the Email field of Profile
+	// A matches the value of BusinessEmail field of Profile B, the two profiles
+	// are matched on the Email attribute type.
+	//
+	// If you choose ONE_TO_ONE, the system can only match attributes if the sub-types
+	// are an exact match. For example, for the Email attribute type, the system
+	// will only consider it a match if the value of the Email field of Profile
+	// A matches the value of the Email field of Profile B.
+	AttributeMatchingModel *string `locationName:"attributeMatchingModel" type:"string" enum:"AttributeMatchingModel"`
+
+	// The type of matching record that is allowed to be used in an ID mapping workflow.
+	//
+	// If the value is set to ONE_SOURCE_TO_ONE_TARGET, only one record in the source
+	// is matched to one record in the target.
+	//
+	// If the value is set to MANY_SOURCE_TO_ONE_TARGET, all matching records in
+	// the source are matched to one record in the target.
+	RecordMatchingModels []*string `locationName:"recordMatchingModels" type:"list" enum:"RecordMatchingModel"`
+
+	// The sets of rules you can use in an ID mapping workflow. The limitations
+	// specified for the source and target must be compatible.
+	RuleDefinitionTypes []*string `locationName:"ruleDefinitionTypes" type:"list" enum:"IdMappingWorkflowRuleDefinitionType"`
+
+	// The rules for the ID namespace.
+	Rules []*Rule `locationName:"rules" min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NamespaceRuleBasedProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NamespaceRuleBasedProperties) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *NamespaceRuleBasedProperties) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "NamespaceRuleBasedProperties"}
+	if s.Rules != nil && len(s.Rules) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Rules", 1))
+	}
+	if s.Rules != nil {
+		for i, v := range s.Rules {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Rules", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAttributeMatchingModel sets the AttributeMatchingModel field's value.
+func (s *NamespaceRuleBasedProperties) SetAttributeMatchingModel(v string) *NamespaceRuleBasedProperties {
+	s.AttributeMatchingModel = &v
+	return s
+}
+
+// SetRecordMatchingModels sets the RecordMatchingModels field's value.
+func (s *NamespaceRuleBasedProperties) SetRecordMatchingModels(v []*string) *NamespaceRuleBasedProperties {
+	s.RecordMatchingModels = v
+	return s
+}
+
+// SetRuleDefinitionTypes sets the RuleDefinitionTypes field's value.
+func (s *NamespaceRuleBasedProperties) SetRuleDefinitionTypes(v []*string) *NamespaceRuleBasedProperties {
+	s.RuleDefinitionTypes = v
+	return s
+}
+
+// SetRules sets the Rules field's value.
+func (s *NamespaceRuleBasedProperties) SetRules(v []*Rule) *NamespaceRuleBasedProperties {
+	s.Rules = v
+	return s
+}
+
 // A list of OutputAttribute objects, each of which have the fields Name and
 // Hashed. Each of these objects selects a column to be included in the output
 // table, and whether the values of the column should be hashed.
@@ -9411,6 +9656,10 @@ type PutPolicyInput struct {
 
 	// The resource-based policy.
 	//
+	// If you set the value of the effect parameter in the policy to Deny for the
+	// PutPolicy operation, you must also set the value of the effect parameter
+	// to Deny for the AddPolicyStatement operation.
+	//
 	// Policy is a required field
 	Policy *string `locationName:"policy" min:"1" type:"string" required:"true"`
 
@@ -9609,7 +9858,7 @@ func (s *ResolutionTechniques) SetRuleBasedProperties(v *RuleBasedProperties) *R
 	return s
 }
 
-// The resource could not be found. HTTP Status Code: 404
+// The resource could not be found.
 type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -9739,23 +9988,34 @@ func (s *Rule) SetRuleName(v string) *Rule {
 	return s
 }
 
-// An object which defines the list of matching rules to run and has a field
-// Rules, which is a list of rule objects.
+// An object which defines the list of matching rules to run in a matching workflow.
+// RuleBasedProperties contain a Rules field, which is a list of rule objects.
 type RuleBasedProperties struct {
 	_ struct{} `type:"structure"`
 
 	// The comparison type. You can either choose ONE_TO_ONE or MANY_TO_MANY as
-	// the AttributeMatchingModel. When choosing MANY_TO_MANY, the system can match
-	// attributes across the sub-types of an attribute type. For example, if the
-	// value of the Email field of Profile A and the value of BusinessEmail field
-	// of Profile B matches, the two profiles are matched on the Email type. When
-	// choosing ONE_TO_ONE ,the system can only match if the sub-types are exact
-	// matches. For example, only when the value of the Email field of Profile A
-	// and the value of the Email field of Profile B matches, the two profiles are
-	// matched on the Email type.
+	// the attributeMatchingModel.
+	//
+	// If you choose MANY_TO_MANY, the system can match attributes across the sub-types
+	// of an attribute type. For example, if the value of the Email field of Profile
+	// A and the value of BusinessEmail field of Profile B matches, the two profiles
+	// are matched on the Email attribute type.
+	//
+	// If you choose ONE_TO_ONE, the system can only match attributes if the sub-types
+	// are an exact match. For example, for the Email attribute type, the system
+	// will only consider it a match if the value of the Email field of Profile
+	// A matches the value of the Email field of Profile B.
 	//
 	// AttributeMatchingModel is a required field
 	AttributeMatchingModel *string `locationName:"attributeMatchingModel" type:"string" required:"true" enum:"AttributeMatchingModel"`
+
+	// An indicator of whether to generate IDs and index the data or not.
+	//
+	// If you choose IDENTIFIER_GENERATION, the process generates IDs and indexes
+	// the data.
+	//
+	// If you choose INDEXING, the process indexes the data without generating IDs.
+	MatchPurpose *string `locationName:"matchPurpose" type:"string" enum:"MatchPurpose"`
 
 	// A list of Rule objects, each of which have fields RuleName and MatchingKeys.
 	//
@@ -9816,13 +10076,19 @@ func (s *RuleBasedProperties) SetAttributeMatchingModel(v string) *RuleBasedProp
 	return s
 }
 
+// SetMatchPurpose sets the MatchPurpose field's value.
+func (s *RuleBasedProperties) SetMatchPurpose(v string) *RuleBasedProperties {
+	s.MatchPurpose = &v
+	return s
+}
+
 // SetRules sets the Rules field's value.
 func (s *RuleBasedProperties) SetRules(v []*Rule) *RuleBasedProperties {
 	s.Rules = v
 	return s
 }
 
-// An object containing FieldName, Type, GroupName, MatchKey, and SubType.
+// An object containing FieldName, Type, GroupName, MatchKey, Hashing, and SubType.
 type SchemaInputAttribute struct {
 	_ struct{} `type:"structure"`
 
@@ -9839,13 +10105,21 @@ type SchemaInputAttribute struct {
 	// to concatenate them into a single value.
 	GroupName *string `locationName:"groupName" type:"string"`
 
+	// Indicates if the column values are hashed in the schema input. If the value
+	// is set to TRUE, the column values are hashed. If the value is set to FALSE,
+	// the column values are cleartext.
+	Hashed *bool `locationName:"hashed" type:"boolean"`
+
 	// A key that allows grouping of multiple input attributes into a unified matching
-	// group. For example, consider a scenario where the source table contains various
+	// group.
+	//
+	// For example, consider a scenario where the source table contains various
 	// addresses, such as business_address and shipping_address. By assigning a
 	// matchKey called address to both attributes, Entity Resolution will match
-	// records across these fields to create a consolidated matching group. If no
-	// matchKey is specified for a column, it won't be utilized for matching purposes
-	// but will still be included in the output table.
+	// records across these fields to create a consolidated matching group.
+	//
+	// If no matchKey is specified for a column, it won't be utilized for matching
+	// purposes but will still be included in the output table.
 	MatchKey *string `locationName:"matchKey" type:"string"`
 
 	// The subtype of the attribute, selected from a list of values.
@@ -9900,6 +10174,12 @@ func (s *SchemaInputAttribute) SetFieldName(v string) *SchemaInputAttribute {
 // SetGroupName sets the GroupName field's value.
 func (s *SchemaInputAttribute) SetGroupName(v string) *SchemaInputAttribute {
 	s.GroupName = &v
+	return s
+}
+
+// SetHashed sets the Hashed field's value.
+func (s *SchemaInputAttribute) SetHashed(v bool) *SchemaInputAttribute {
+	s.Hashed = &v
 	return s
 }
 
@@ -10279,7 +10559,7 @@ func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
 
-// The request was denied due to request throttling. HTTP Status Code: 429
+// The request was denied due to request throttling.
 type ThrottlingException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -10434,7 +10714,7 @@ type UpdateIdMappingWorkflowInput struct {
 	// A description of the workflow.
 	Description *string `locationName:"description" type:"string"`
 
-	// An object which defines the idMappingType and the providerProperties.
+	// An object which defines the ID mapping technique and any additional configurations.
 	//
 	// IdMappingTechniques is a required field
 	IdMappingTechniques *IdMappingTechniques `locationName:"idMappingTechniques" type:"structure" required:"true"`
@@ -10450,9 +10730,7 @@ type UpdateIdMappingWorkflowInput struct {
 
 	// The Amazon Resource Name (ARN) of the IAM role. Entity Resolution assumes
 	// this role to access Amazon Web Services resources on your behalf.
-	//
-	// RoleArn is a required field
-	RoleArn *string `locationName:"roleArn" min:"32" type:"string" required:"true"`
+	RoleArn *string `locationName:"roleArn" type:"string"`
 
 	// The name of the workflow.
 	//
@@ -10492,12 +10770,6 @@ func (s *UpdateIdMappingWorkflowInput) Validate() error {
 	}
 	if s.OutputSourceConfig != nil && len(s.OutputSourceConfig) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("OutputSourceConfig", 1))
-	}
-	if s.RoleArn == nil {
-		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
-	}
-	if s.RoleArn != nil && len(*s.RoleArn) < 32 {
-		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 32))
 	}
 	if s.WorkflowName == nil {
 		invalidParams.Add(request.NewErrParamRequired("WorkflowName"))
@@ -10579,7 +10851,7 @@ type UpdateIdMappingWorkflowOutput struct {
 	// A description of the workflow.
 	Description *string `locationName:"description" type:"string"`
 
-	// An object which defines the idMappingType and the providerProperties.
+	// An object which defines the ID mapping technique and any additional configurations.
 	//
 	// IdMappingTechniques is a required field
 	IdMappingTechniques *IdMappingTechniques `locationName:"idMappingTechniques" type:"structure" required:"true"`
@@ -10595,9 +10867,7 @@ type UpdateIdMappingWorkflowOutput struct {
 
 	// The Amazon Resource Name (ARN) of the IAM role. Entity Resolution assumes
 	// this role to access Amazon Web Services resources on your behalf.
-	//
-	// RoleArn is a required field
-	RoleArn *string `locationName:"roleArn" min:"32" type:"string" required:"true"`
+	RoleArn *string `locationName:"roleArn" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the workflow role. Entity Resolution assumes
 	// this role to access Amazon Web Services resources on your behalf.
@@ -11317,7 +11587,6 @@ func (s *UpdateSchemaMappingOutput) SetSchemaName(v string) *UpdateSchemaMapping
 }
 
 // The input fails to satisfy the constraints specified by Entity Resolution.
-// HTTP Status Code: 400
 type ValidationException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -11432,12 +11701,32 @@ func DeleteUniqueIdStatus_Values() []string {
 const (
 	// IdMappingTypeProvider is a IdMappingType enum value
 	IdMappingTypeProvider = "PROVIDER"
+
+	// IdMappingTypeRuleBased is a IdMappingType enum value
+	IdMappingTypeRuleBased = "RULE_BASED"
 )
 
 // IdMappingType_Values returns all elements of the IdMappingType enum
 func IdMappingType_Values() []string {
 	return []string{
 		IdMappingTypeProvider,
+		IdMappingTypeRuleBased,
+	}
+}
+
+const (
+	// IdMappingWorkflowRuleDefinitionTypeSource is a IdMappingWorkflowRuleDefinitionType enum value
+	IdMappingWorkflowRuleDefinitionTypeSource = "SOURCE"
+
+	// IdMappingWorkflowRuleDefinitionTypeTarget is a IdMappingWorkflowRuleDefinitionType enum value
+	IdMappingWorkflowRuleDefinitionTypeTarget = "TARGET"
+)
+
+// IdMappingWorkflowRuleDefinitionType_Values returns all elements of the IdMappingWorkflowRuleDefinitionType enum
+func IdMappingWorkflowRuleDefinitionType_Values() []string {
+	return []string{
+		IdMappingWorkflowRuleDefinitionTypeSource,
+		IdMappingWorkflowRuleDefinitionTypeTarget,
 	}
 }
 
@@ -11490,6 +11779,38 @@ func JobStatus_Values() []string {
 		JobStatusSucceeded,
 		JobStatusFailed,
 		JobStatusQueued,
+	}
+}
+
+const (
+	// MatchPurposeIdentifierGeneration is a MatchPurpose enum value
+	MatchPurposeIdentifierGeneration = "IDENTIFIER_GENERATION"
+
+	// MatchPurposeIndexing is a MatchPurpose enum value
+	MatchPurposeIndexing = "INDEXING"
+)
+
+// MatchPurpose_Values returns all elements of the MatchPurpose enum
+func MatchPurpose_Values() []string {
+	return []string{
+		MatchPurposeIdentifierGeneration,
+		MatchPurposeIndexing,
+	}
+}
+
+const (
+	// RecordMatchingModelOneSourceToOneTarget is a RecordMatchingModel enum value
+	RecordMatchingModelOneSourceToOneTarget = "ONE_SOURCE_TO_ONE_TARGET"
+
+	// RecordMatchingModelManySourceToOneTarget is a RecordMatchingModel enum value
+	RecordMatchingModelManySourceToOneTarget = "MANY_SOURCE_TO_ONE_TARGET"
+)
+
+// RecordMatchingModel_Values returns all elements of the RecordMatchingModel enum
+func RecordMatchingModel_Values() []string {
+	return []string{
+		RecordMatchingModelOneSourceToOneTarget,
+		RecordMatchingModelManySourceToOneTarget,
 	}
 }
 

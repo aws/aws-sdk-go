@@ -862,6 +862,103 @@ func (c *CleanRooms) CreateConfiguredTableAssociationWithContext(ctx aws.Context
 	return out, req.Send()
 }
 
+const opCreateIdMappingTable = "CreateIdMappingTable"
+
+// CreateIdMappingTableRequest generates a "aws/request.Request" representing the
+// client's request for the CreateIdMappingTable operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateIdMappingTable for more information on using the CreateIdMappingTable
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateIdMappingTableRequest method.
+//	req, resp := client.CreateIdMappingTableRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/CreateIdMappingTable
+func (c *CleanRooms) CreateIdMappingTableRequest(input *CreateIdMappingTableInput) (req *request.Request, output *CreateIdMappingTableOutput) {
+	op := &request.Operation{
+		Name:       opCreateIdMappingTable,
+		HTTPMethod: "POST",
+		HTTPPath:   "/memberships/{membershipIdentifier}/idmappingtables",
+	}
+
+	if input == nil {
+		input = &CreateIdMappingTableInput{}
+	}
+
+	output = &CreateIdMappingTableOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateIdMappingTable API operation for AWS Clean Rooms Service.
+//
+// Creates an ID mapping table.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Clean Rooms Service's
+// API operation CreateIdMappingTable for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ConflictException
+//     Updating or deleting a resource can cause an inconsistent state.
+//
+//   - ServiceQuotaExceededException
+//     Request denied because service quota has been exceeded.
+//
+//   - ResourceNotFoundException
+//     Request references a resource which does not exist.
+//
+//   - InternalServerException
+//     Unexpected error during processing of request.
+//
+//   - ValidationException
+//     The input fails to satisfy the specified constraints.
+//
+//   - ThrottlingException
+//     Request was denied due to request throttling.
+//
+//   - AccessDeniedException
+//     Caller does not have sufficient access to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/CreateIdMappingTable
+func (c *CleanRooms) CreateIdMappingTable(input *CreateIdMappingTableInput) (*CreateIdMappingTableOutput, error) {
+	req, out := c.CreateIdMappingTableRequest(input)
+	return out, req.Send()
+}
+
+// CreateIdMappingTableWithContext is the same as CreateIdMappingTable with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateIdMappingTable for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CleanRooms) CreateIdMappingTableWithContext(ctx aws.Context, input *CreateIdMappingTableInput, opts ...request.Option) (*CreateIdMappingTableOutput, error) {
+	req, out := c.CreateIdMappingTableRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateMembership = "CreateMembership"
 
 // CreateMembershipRequest generates a "aws/request.Request" representing the
@@ -1611,6 +1708,190 @@ func (c *CleanRooms) DeleteConfiguredTableAssociation(input *DeleteConfiguredTab
 // for more information on using Contexts.
 func (c *CleanRooms) DeleteConfiguredTableAssociationWithContext(ctx aws.Context, input *DeleteConfiguredTableAssociationInput, opts ...request.Option) (*DeleteConfiguredTableAssociationOutput, error) {
 	req, out := c.DeleteConfiguredTableAssociationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteIdMappingTable = "DeleteIdMappingTable"
+
+// DeleteIdMappingTableRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteIdMappingTable operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteIdMappingTable for more information on using the DeleteIdMappingTable
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteIdMappingTableRequest method.
+//	req, resp := client.DeleteIdMappingTableRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/DeleteIdMappingTable
+func (c *CleanRooms) DeleteIdMappingTableRequest(input *DeleteIdMappingTableInput) (req *request.Request, output *DeleteIdMappingTableOutput) {
+	op := &request.Operation{
+		Name:       opDeleteIdMappingTable,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/memberships/{membershipIdentifier}/idmappingtables/{idMappingTableIdentifier}",
+	}
+
+	if input == nil {
+		input = &DeleteIdMappingTableInput{}
+	}
+
+	output = &DeleteIdMappingTableOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteIdMappingTable API operation for AWS Clean Rooms Service.
+//
+// Deletes an ID mapping table.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Clean Rooms Service's
+// API operation DeleteIdMappingTable for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     Request references a resource which does not exist.
+//
+//   - InternalServerException
+//     Unexpected error during processing of request.
+//
+//   - ValidationException
+//     The input fails to satisfy the specified constraints.
+//
+//   - ThrottlingException
+//     Request was denied due to request throttling.
+//
+//   - AccessDeniedException
+//     Caller does not have sufficient access to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/DeleteIdMappingTable
+func (c *CleanRooms) DeleteIdMappingTable(input *DeleteIdMappingTableInput) (*DeleteIdMappingTableOutput, error) {
+	req, out := c.DeleteIdMappingTableRequest(input)
+	return out, req.Send()
+}
+
+// DeleteIdMappingTableWithContext is the same as DeleteIdMappingTable with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteIdMappingTable for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CleanRooms) DeleteIdMappingTableWithContext(ctx aws.Context, input *DeleteIdMappingTableInput, opts ...request.Option) (*DeleteIdMappingTableOutput, error) {
+	req, out := c.DeleteIdMappingTableRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteIdNamespaceAssociation = "DeleteIdNamespaceAssociation"
+
+// DeleteIdNamespaceAssociationRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteIdNamespaceAssociation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteIdNamespaceAssociation for more information on using the DeleteIdNamespaceAssociation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteIdNamespaceAssociationRequest method.
+//	req, resp := client.DeleteIdNamespaceAssociationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/DeleteIdNamespaceAssociation
+func (c *CleanRooms) DeleteIdNamespaceAssociationRequest(input *DeleteIdNamespaceAssociationInput) (req *request.Request, output *DeleteIdNamespaceAssociationOutput) {
+	op := &request.Operation{
+		Name:       opDeleteIdNamespaceAssociation,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/memberships/{membershipIdentifier}/idnamespaceassociations/{idNamespaceAssociationIdentifier}",
+	}
+
+	if input == nil {
+		input = &DeleteIdNamespaceAssociationInput{}
+	}
+
+	output = &DeleteIdNamespaceAssociationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteIdNamespaceAssociation API operation for AWS Clean Rooms Service.
+//
+// Deletes an ID namespace association.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Clean Rooms Service's
+// API operation DeleteIdNamespaceAssociation for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     Request references a resource which does not exist.
+//
+//   - InternalServerException
+//     Unexpected error during processing of request.
+//
+//   - ValidationException
+//     The input fails to satisfy the specified constraints.
+//
+//   - ThrottlingException
+//     Request was denied due to request throttling.
+//
+//   - AccessDeniedException
+//     Caller does not have sufficient access to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/DeleteIdNamespaceAssociation
+func (c *CleanRooms) DeleteIdNamespaceAssociation(input *DeleteIdNamespaceAssociationInput) (*DeleteIdNamespaceAssociationOutput, error) {
+	req, out := c.DeleteIdNamespaceAssociationRequest(input)
+	return out, req.Send()
+}
+
+// DeleteIdNamespaceAssociationWithContext is the same as DeleteIdNamespaceAssociation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteIdNamespaceAssociation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CleanRooms) DeleteIdNamespaceAssociationWithContext(ctx aws.Context, input *DeleteIdNamespaceAssociationInput, opts ...request.Option) (*DeleteIdNamespaceAssociationOutput, error) {
+	req, out := c.DeleteIdNamespaceAssociationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2717,6 +2998,97 @@ func (c *CleanRooms) GetConfiguredTableAssociationWithContext(ctx aws.Context, i
 	return out, req.Send()
 }
 
+const opGetIdMappingTable = "GetIdMappingTable"
+
+// GetIdMappingTableRequest generates a "aws/request.Request" representing the
+// client's request for the GetIdMappingTable operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetIdMappingTable for more information on using the GetIdMappingTable
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetIdMappingTableRequest method.
+//	req, resp := client.GetIdMappingTableRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/GetIdMappingTable
+func (c *CleanRooms) GetIdMappingTableRequest(input *GetIdMappingTableInput) (req *request.Request, output *GetIdMappingTableOutput) {
+	op := &request.Operation{
+		Name:       opGetIdMappingTable,
+		HTTPMethod: "GET",
+		HTTPPath:   "/memberships/{membershipIdentifier}/idmappingtables/{idMappingTableIdentifier}",
+	}
+
+	if input == nil {
+		input = &GetIdMappingTableInput{}
+	}
+
+	output = &GetIdMappingTableOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetIdMappingTable API operation for AWS Clean Rooms Service.
+//
+// Retrieves an ID mapping table.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Clean Rooms Service's
+// API operation GetIdMappingTable for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     Request references a resource which does not exist.
+//
+//   - InternalServerException
+//     Unexpected error during processing of request.
+//
+//   - ValidationException
+//     The input fails to satisfy the specified constraints.
+//
+//   - ThrottlingException
+//     Request was denied due to request throttling.
+//
+//   - AccessDeniedException
+//     Caller does not have sufficient access to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/GetIdMappingTable
+func (c *CleanRooms) GetIdMappingTable(input *GetIdMappingTableInput) (*GetIdMappingTableOutput, error) {
+	req, out := c.GetIdMappingTableRequest(input)
+	return out, req.Send()
+}
+
+// GetIdMappingTableWithContext is the same as GetIdMappingTable with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetIdMappingTable for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CleanRooms) GetIdMappingTableWithContext(ctx aws.Context, input *GetIdMappingTableInput, opts ...request.Option) (*GetIdMappingTableOutput, error) {
+	req, out := c.GetIdMappingTableRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetMembership = "GetMembership"
 
 // GetMembershipRequest generates a "aws/request.Request" representing the
@@ -3616,6 +3988,154 @@ func (c *CleanRooms) ListCollaborationConfiguredAudienceModelAssociationsPagesWi
 	return p.Err()
 }
 
+const opListCollaborationIdNamespaceAssociations = "ListCollaborationIdNamespaceAssociations"
+
+// ListCollaborationIdNamespaceAssociationsRequest generates a "aws/request.Request" representing the
+// client's request for the ListCollaborationIdNamespaceAssociations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListCollaborationIdNamespaceAssociations for more information on using the ListCollaborationIdNamespaceAssociations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListCollaborationIdNamespaceAssociationsRequest method.
+//	req, resp := client.ListCollaborationIdNamespaceAssociationsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/ListCollaborationIdNamespaceAssociations
+func (c *CleanRooms) ListCollaborationIdNamespaceAssociationsRequest(input *ListCollaborationIdNamespaceAssociationsInput) (req *request.Request, output *ListCollaborationIdNamespaceAssociationsOutput) {
+	op := &request.Operation{
+		Name:       opListCollaborationIdNamespaceAssociations,
+		HTTPMethod: "GET",
+		HTTPPath:   "/collaborations/{collaborationIdentifier}/idnamespaceassociations",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListCollaborationIdNamespaceAssociationsInput{}
+	}
+
+	output = &ListCollaborationIdNamespaceAssociationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListCollaborationIdNamespaceAssociations API operation for AWS Clean Rooms Service.
+//
+// Returns a list of the ID namespace associations in a collaboration.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Clean Rooms Service's
+// API operation ListCollaborationIdNamespaceAssociations for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     Request references a resource which does not exist.
+//
+//   - InternalServerException
+//     Unexpected error during processing of request.
+//
+//   - ValidationException
+//     The input fails to satisfy the specified constraints.
+//
+//   - ThrottlingException
+//     Request was denied due to request throttling.
+//
+//   - AccessDeniedException
+//     Caller does not have sufficient access to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/ListCollaborationIdNamespaceAssociations
+func (c *CleanRooms) ListCollaborationIdNamespaceAssociations(input *ListCollaborationIdNamespaceAssociationsInput) (*ListCollaborationIdNamespaceAssociationsOutput, error) {
+	req, out := c.ListCollaborationIdNamespaceAssociationsRequest(input)
+	return out, req.Send()
+}
+
+// ListCollaborationIdNamespaceAssociationsWithContext is the same as ListCollaborationIdNamespaceAssociations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListCollaborationIdNamespaceAssociations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CleanRooms) ListCollaborationIdNamespaceAssociationsWithContext(ctx aws.Context, input *ListCollaborationIdNamespaceAssociationsInput, opts ...request.Option) (*ListCollaborationIdNamespaceAssociationsOutput, error) {
+	req, out := c.ListCollaborationIdNamespaceAssociationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListCollaborationIdNamespaceAssociationsPages iterates over the pages of a ListCollaborationIdNamespaceAssociations operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListCollaborationIdNamespaceAssociations method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListCollaborationIdNamespaceAssociations operation.
+//	pageNum := 0
+//	err := client.ListCollaborationIdNamespaceAssociationsPages(params,
+//	    func(page *cleanrooms.ListCollaborationIdNamespaceAssociationsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *CleanRooms) ListCollaborationIdNamespaceAssociationsPages(input *ListCollaborationIdNamespaceAssociationsInput, fn func(*ListCollaborationIdNamespaceAssociationsOutput, bool) bool) error {
+	return c.ListCollaborationIdNamespaceAssociationsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListCollaborationIdNamespaceAssociationsPagesWithContext same as ListCollaborationIdNamespaceAssociationsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CleanRooms) ListCollaborationIdNamespaceAssociationsPagesWithContext(ctx aws.Context, input *ListCollaborationIdNamespaceAssociationsInput, fn func(*ListCollaborationIdNamespaceAssociationsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListCollaborationIdNamespaceAssociationsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListCollaborationIdNamespaceAssociationsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListCollaborationIdNamespaceAssociationsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListCollaborationPrivacyBudgetTemplates = "ListCollaborationPrivacyBudgetTemplates"
 
 // ListCollaborationPrivacyBudgetTemplatesRequest generates a "aws/request.Request" representing the
@@ -4494,6 +5014,302 @@ func (c *CleanRooms) ListConfiguredTablesPagesWithContext(ctx aws.Context, input
 
 	for p.Next() {
 		if !fn(p.Page().(*ListConfiguredTablesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListIdMappingTables = "ListIdMappingTables"
+
+// ListIdMappingTablesRequest generates a "aws/request.Request" representing the
+// client's request for the ListIdMappingTables operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListIdMappingTables for more information on using the ListIdMappingTables
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListIdMappingTablesRequest method.
+//	req, resp := client.ListIdMappingTablesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/ListIdMappingTables
+func (c *CleanRooms) ListIdMappingTablesRequest(input *ListIdMappingTablesInput) (req *request.Request, output *ListIdMappingTablesOutput) {
+	op := &request.Operation{
+		Name:       opListIdMappingTables,
+		HTTPMethod: "GET",
+		HTTPPath:   "/memberships/{membershipIdentifier}/idmappingtables",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListIdMappingTablesInput{}
+	}
+
+	output = &ListIdMappingTablesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListIdMappingTables API operation for AWS Clean Rooms Service.
+//
+// Returns a list of ID mapping tables.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Clean Rooms Service's
+// API operation ListIdMappingTables for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     Request references a resource which does not exist.
+//
+//   - InternalServerException
+//     Unexpected error during processing of request.
+//
+//   - ValidationException
+//     The input fails to satisfy the specified constraints.
+//
+//   - ThrottlingException
+//     Request was denied due to request throttling.
+//
+//   - AccessDeniedException
+//     Caller does not have sufficient access to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/ListIdMappingTables
+func (c *CleanRooms) ListIdMappingTables(input *ListIdMappingTablesInput) (*ListIdMappingTablesOutput, error) {
+	req, out := c.ListIdMappingTablesRequest(input)
+	return out, req.Send()
+}
+
+// ListIdMappingTablesWithContext is the same as ListIdMappingTables with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListIdMappingTables for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CleanRooms) ListIdMappingTablesWithContext(ctx aws.Context, input *ListIdMappingTablesInput, opts ...request.Option) (*ListIdMappingTablesOutput, error) {
+	req, out := c.ListIdMappingTablesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListIdMappingTablesPages iterates over the pages of a ListIdMappingTables operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListIdMappingTables method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListIdMappingTables operation.
+//	pageNum := 0
+//	err := client.ListIdMappingTablesPages(params,
+//	    func(page *cleanrooms.ListIdMappingTablesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *CleanRooms) ListIdMappingTablesPages(input *ListIdMappingTablesInput, fn func(*ListIdMappingTablesOutput, bool) bool) error {
+	return c.ListIdMappingTablesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListIdMappingTablesPagesWithContext same as ListIdMappingTablesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CleanRooms) ListIdMappingTablesPagesWithContext(ctx aws.Context, input *ListIdMappingTablesInput, fn func(*ListIdMappingTablesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListIdMappingTablesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListIdMappingTablesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListIdMappingTablesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListIdNamespaceAssociations = "ListIdNamespaceAssociations"
+
+// ListIdNamespaceAssociationsRequest generates a "aws/request.Request" representing the
+// client's request for the ListIdNamespaceAssociations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListIdNamespaceAssociations for more information on using the ListIdNamespaceAssociations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListIdNamespaceAssociationsRequest method.
+//	req, resp := client.ListIdNamespaceAssociationsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/ListIdNamespaceAssociations
+func (c *CleanRooms) ListIdNamespaceAssociationsRequest(input *ListIdNamespaceAssociationsInput) (req *request.Request, output *ListIdNamespaceAssociationsOutput) {
+	op := &request.Operation{
+		Name:       opListIdNamespaceAssociations,
+		HTTPMethod: "GET",
+		HTTPPath:   "/memberships/{membershipIdentifier}/idnamespaceassociations",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListIdNamespaceAssociationsInput{}
+	}
+
+	output = &ListIdNamespaceAssociationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListIdNamespaceAssociations API operation for AWS Clean Rooms Service.
+//
+// Returns a list of ID namespace associations.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Clean Rooms Service's
+// API operation ListIdNamespaceAssociations for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     Request references a resource which does not exist.
+//
+//   - InternalServerException
+//     Unexpected error during processing of request.
+//
+//   - ValidationException
+//     The input fails to satisfy the specified constraints.
+//
+//   - ThrottlingException
+//     Request was denied due to request throttling.
+//
+//   - AccessDeniedException
+//     Caller does not have sufficient access to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/ListIdNamespaceAssociations
+func (c *CleanRooms) ListIdNamespaceAssociations(input *ListIdNamespaceAssociationsInput) (*ListIdNamespaceAssociationsOutput, error) {
+	req, out := c.ListIdNamespaceAssociationsRequest(input)
+	return out, req.Send()
+}
+
+// ListIdNamespaceAssociationsWithContext is the same as ListIdNamespaceAssociations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListIdNamespaceAssociations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CleanRooms) ListIdNamespaceAssociationsWithContext(ctx aws.Context, input *ListIdNamespaceAssociationsInput, opts ...request.Option) (*ListIdNamespaceAssociationsOutput, error) {
+	req, out := c.ListIdNamespaceAssociationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListIdNamespaceAssociationsPages iterates over the pages of a ListIdNamespaceAssociations operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListIdNamespaceAssociations method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListIdNamespaceAssociations operation.
+//	pageNum := 0
+//	err := client.ListIdNamespaceAssociationsPages(params,
+//	    func(page *cleanrooms.ListIdNamespaceAssociationsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *CleanRooms) ListIdNamespaceAssociationsPages(input *ListIdNamespaceAssociationsInput, fn func(*ListIdNamespaceAssociationsOutput, bool) bool) error {
+	return c.ListIdNamespaceAssociationsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListIdNamespaceAssociationsPagesWithContext same as ListIdNamespaceAssociationsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CleanRooms) ListIdNamespaceAssociationsPagesWithContext(ctx aws.Context, input *ListIdNamespaceAssociationsInput, fn func(*ListIdNamespaceAssociationsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListIdNamespaceAssociationsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListIdNamespaceAssociationsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListIdNamespaceAssociationsOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -5469,6 +6285,100 @@ func (c *CleanRooms) ListTagsForResourceWithContext(ctx aws.Context, input *List
 	return out, req.Send()
 }
 
+const opPopulateIdMappingTable = "PopulateIdMappingTable"
+
+// PopulateIdMappingTableRequest generates a "aws/request.Request" representing the
+// client's request for the PopulateIdMappingTable operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PopulateIdMappingTable for more information on using the PopulateIdMappingTable
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the PopulateIdMappingTableRequest method.
+//	req, resp := client.PopulateIdMappingTableRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/PopulateIdMappingTable
+func (c *CleanRooms) PopulateIdMappingTableRequest(input *PopulateIdMappingTableInput) (req *request.Request, output *PopulateIdMappingTableOutput) {
+	op := &request.Operation{
+		Name:       opPopulateIdMappingTable,
+		HTTPMethod: "POST",
+		HTTPPath:   "/memberships/{membershipIdentifier}/idmappingtables/{idMappingTableIdentifier}/populate",
+	}
+
+	if input == nil {
+		input = &PopulateIdMappingTableInput{}
+	}
+
+	output = &PopulateIdMappingTableOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// PopulateIdMappingTable API operation for AWS Clean Rooms Service.
+//
+// Defines the information that's necessary to populate an ID mapping table.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Clean Rooms Service's
+// API operation PopulateIdMappingTable for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ConflictException
+//     Updating or deleting a resource can cause an inconsistent state.
+//
+//   - ResourceNotFoundException
+//     Request references a resource which does not exist.
+//
+//   - InternalServerException
+//     Unexpected error during processing of request.
+//
+//   - ValidationException
+//     The input fails to satisfy the specified constraints.
+//
+//   - ThrottlingException
+//     Request was denied due to request throttling.
+//
+//   - AccessDeniedException
+//     Caller does not have sufficient access to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/PopulateIdMappingTable
+func (c *CleanRooms) PopulateIdMappingTable(input *PopulateIdMappingTableInput) (*PopulateIdMappingTableOutput, error) {
+	req, out := c.PopulateIdMappingTableRequest(input)
+	return out, req.Send()
+}
+
+// PopulateIdMappingTableWithContext is the same as PopulateIdMappingTable with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PopulateIdMappingTable for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CleanRooms) PopulateIdMappingTableWithContext(ctx aws.Context, input *PopulateIdMappingTableInput, opts ...request.Option) (*PopulateIdMappingTableOutput, error) {
+	req, out := c.PopulateIdMappingTableRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opPreviewPrivacyImpact = "PreviewPrivacyImpact"
 
 // PreviewPrivacyImpactRequest generates a "aws/request.Request" representing the
@@ -6374,6 +7284,97 @@ func (c *CleanRooms) UpdateConfiguredTableAssociationWithContext(ctx aws.Context
 	return out, req.Send()
 }
 
+const opUpdateIdMappingTable = "UpdateIdMappingTable"
+
+// UpdateIdMappingTableRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateIdMappingTable operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateIdMappingTable for more information on using the UpdateIdMappingTable
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateIdMappingTableRequest method.
+//	req, resp := client.UpdateIdMappingTableRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/UpdateIdMappingTable
+func (c *CleanRooms) UpdateIdMappingTableRequest(input *UpdateIdMappingTableInput) (req *request.Request, output *UpdateIdMappingTableOutput) {
+	op := &request.Operation{
+		Name:       opUpdateIdMappingTable,
+		HTTPMethod: "PATCH",
+		HTTPPath:   "/memberships/{membershipIdentifier}/idmappingtables/{idMappingTableIdentifier}",
+	}
+
+	if input == nil {
+		input = &UpdateIdMappingTableInput{}
+	}
+
+	output = &UpdateIdMappingTableOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateIdMappingTable API operation for AWS Clean Rooms Service.
+//
+// Provides the details that are necessary to update an ID mapping table.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Clean Rooms Service's
+// API operation UpdateIdMappingTable for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     Request references a resource which does not exist.
+//
+//   - InternalServerException
+//     Unexpected error during processing of request.
+//
+//   - ValidationException
+//     The input fails to satisfy the specified constraints.
+//
+//   - ThrottlingException
+//     Request was denied due to request throttling.
+//
+//   - AccessDeniedException
+//     Caller does not have sufficient access to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/UpdateIdMappingTable
+func (c *CleanRooms) UpdateIdMappingTable(input *UpdateIdMappingTableInput) (*UpdateIdMappingTableOutput, error) {
+	req, out := c.UpdateIdMappingTableRequest(input)
+	return out, req.Send()
+}
+
+// UpdateIdMappingTableWithContext is the same as UpdateIdMappingTable with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateIdMappingTable for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CleanRooms) UpdateIdMappingTableWithContext(ctx aws.Context, input *UpdateIdMappingTableInput, opts ...request.Option) (*UpdateIdMappingTableOutput, error) {
+	req, out := c.UpdateIdMappingTableRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateMembership = "UpdateMembership"
 
 // UpdateMembershipRequest generates a "aws/request.Request" representing the
@@ -7266,6 +8267,61 @@ func (s *AnalysisRuleCustom) SetDifferentialPrivacy(v *DifferentialPrivacyConfig
 	return s
 }
 
+// Defines details for the analysis rule ID mapping table.
+type AnalysisRuleIdMappingTable struct {
+	_ struct{} `type:"structure"`
+
+	// The columns that query runners are allowed to select, group by, or filter
+	// by.
+	DimensionColumns []*string `locationName:"dimensionColumns" type:"list"`
+
+	// The columns that query runners are allowed to use in an INNER JOIN statement.
+	//
+	// JoinColumns is a required field
+	JoinColumns []*string `locationName:"joinColumns" min:"2" type:"list" required:"true"`
+
+	// The query constraints of the analysis rule ID mapping table.
+	//
+	// QueryConstraints is a required field
+	QueryConstraints []*QueryConstraint `locationName:"queryConstraints" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalysisRuleIdMappingTable) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalysisRuleIdMappingTable) GoString() string {
+	return s.String()
+}
+
+// SetDimensionColumns sets the DimensionColumns field's value.
+func (s *AnalysisRuleIdMappingTable) SetDimensionColumns(v []*string) *AnalysisRuleIdMappingTable {
+	s.DimensionColumns = v
+	return s
+}
+
+// SetJoinColumns sets the JoinColumns field's value.
+func (s *AnalysisRuleIdMappingTable) SetJoinColumns(v []*string) *AnalysisRuleIdMappingTable {
+	s.JoinColumns = v
+	return s
+}
+
+// SetQueryConstraints sets the QueryConstraints field's value.
+func (s *AnalysisRuleIdMappingTable) SetQueryConstraints(v []*QueryConstraint) *AnalysisRuleIdMappingTable {
+	s.QueryConstraints = v
+	return s
+}
+
 // A type of analysis rule that enables row-level analysis.
 type AnalysisRuleList struct {
 	_ struct{} `type:"structure"`
@@ -7384,6 +8440,9 @@ type AnalysisRulePolicyV1 struct {
 	// Analysis rule type that enables custom SQL queries on a configured table.
 	Custom *AnalysisRuleCustom `locationName:"custom" type:"structure"`
 
+	// The ID mapping table.
+	IdMappingTable *AnalysisRuleIdMappingTable `locationName:"idMappingTable" type:"structure"`
+
 	// Analysis rule type that enables only list queries on a configured table.
 	List *AnalysisRuleList `locationName:"list" type:"structure"`
 }
@@ -7415,6 +8474,12 @@ func (s *AnalysisRulePolicyV1) SetAggregation(v *AnalysisRuleAggregation) *Analy
 // SetCustom sets the Custom field's value.
 func (s *AnalysisRulePolicyV1) SetCustom(v *AnalysisRuleCustom) *AnalysisRulePolicyV1 {
 	s.Custom = v
+	return s
+}
+
+// SetIdMappingTable sets the IdMappingTable field's value.
+func (s *AnalysisRulePolicyV1) SetIdMappingTable(v *AnalysisRuleIdMappingTable) *AnalysisRulePolicyV1 {
+	s.IdMappingTable = v
 	return s
 }
 
@@ -8925,7 +9990,7 @@ type CollaborationConfiguredAudienceModelAssociation struct {
 	CreateTime *time.Time `locationName:"createTime" type:"timestamp" required:"true"`
 
 	// The identifier used to reference members of the collaboration. Only supports
-	// AWS account ID.
+	// Amazon Web Services account ID.
 	//
 	// CreatorAccountId is a required field
 	CreatorAccountId *string `locationName:"creatorAccountId" min:"12" type:"string" required:"true"`
@@ -9054,7 +10119,7 @@ type CollaborationConfiguredAudienceModelAssociationSummary struct {
 	CreateTime *time.Time `locationName:"createTime" type:"timestamp" required:"true"`
 
 	// The identifier used to reference members of the collaboration. Only supports
-	// AWS account ID.
+	// Amazon Web Services account ID.
 	//
 	// CreatorAccountId is a required field
 	CreatorAccountId *string `locationName:"creatorAccountId" min:"12" type:"string" required:"true"`
@@ -9147,6 +10212,154 @@ func (s *CollaborationConfiguredAudienceModelAssociationSummary) SetName(v strin
 
 // SetUpdateTime sets the UpdateTime field's value.
 func (s *CollaborationConfiguredAudienceModelAssociationSummary) SetUpdateTime(v time.Time) *CollaborationConfiguredAudienceModelAssociationSummary {
+	s.UpdateTime = &v
+	return s
+}
+
+// Provides summary information about the collaboration ID namespace association.
+type CollaborationIdNamespaceAssociationSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the collaboration ID namespace association.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the collaboration that contains this collaboration
+	// ID namespace association.
+	//
+	// CollaborationArn is a required field
+	CollaborationArn *string `locationName:"collaborationArn" type:"string" required:"true"`
+
+	// The unique identifier of the collaboration that contains this collaboration
+	// ID namespace association.
+	//
+	// CollaborationId is a required field
+	CollaborationId *string `locationName:"collaborationId" min:"36" type:"string" required:"true"`
+
+	// The time at which the collaboration ID namespace association was created.
+	//
+	// CreateTime is a required field
+	CreateTime *time.Time `locationName:"createTime" type:"timestamp" required:"true"`
+
+	// The Amazon Web Services account that created this collaboration ID namespace
+	// association.
+	//
+	// CreatorAccountId is a required field
+	CreatorAccountId *string `locationName:"creatorAccountId" min:"12" type:"string" required:"true"`
+
+	// The description of the collaboration ID namepsace association.
+	Description *string `locationName:"description" type:"string"`
+
+	// The unique identifier of the collaboration ID namespace association.
+	//
+	// Id is a required field
+	Id *string `locationName:"id" min:"36" type:"string" required:"true"`
+
+	// The input reference configuration that's used to create the collaboration
+	// ID namespace association.
+	//
+	// InputReferenceConfig is a required field
+	InputReferenceConfig *IdNamespaceAssociationInputReferenceConfig `locationName:"inputReferenceConfig" type:"structure" required:"true"`
+
+	// The input reference properties that are used to create the collaboration
+	// ID namespace association.
+	//
+	// InputReferenceProperties is a required field
+	InputReferenceProperties *IdNamespaceAssociationInputReferencePropertiesSummary `locationName:"inputReferenceProperties" type:"structure" required:"true"`
+
+	// The name of the collaboration ID namespace association.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// The most recent time at which the collaboration ID namespace association
+	// was updated.
+	//
+	// UpdateTime is a required field
+	UpdateTime *time.Time `locationName:"updateTime" type:"timestamp" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CollaborationIdNamespaceAssociationSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CollaborationIdNamespaceAssociationSummary) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *CollaborationIdNamespaceAssociationSummary) SetArn(v string) *CollaborationIdNamespaceAssociationSummary {
+	s.Arn = &v
+	return s
+}
+
+// SetCollaborationArn sets the CollaborationArn field's value.
+func (s *CollaborationIdNamespaceAssociationSummary) SetCollaborationArn(v string) *CollaborationIdNamespaceAssociationSummary {
+	s.CollaborationArn = &v
+	return s
+}
+
+// SetCollaborationId sets the CollaborationId field's value.
+func (s *CollaborationIdNamespaceAssociationSummary) SetCollaborationId(v string) *CollaborationIdNamespaceAssociationSummary {
+	s.CollaborationId = &v
+	return s
+}
+
+// SetCreateTime sets the CreateTime field's value.
+func (s *CollaborationIdNamespaceAssociationSummary) SetCreateTime(v time.Time) *CollaborationIdNamespaceAssociationSummary {
+	s.CreateTime = &v
+	return s
+}
+
+// SetCreatorAccountId sets the CreatorAccountId field's value.
+func (s *CollaborationIdNamespaceAssociationSummary) SetCreatorAccountId(v string) *CollaborationIdNamespaceAssociationSummary {
+	s.CreatorAccountId = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CollaborationIdNamespaceAssociationSummary) SetDescription(v string) *CollaborationIdNamespaceAssociationSummary {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *CollaborationIdNamespaceAssociationSummary) SetId(v string) *CollaborationIdNamespaceAssociationSummary {
+	s.Id = &v
+	return s
+}
+
+// SetInputReferenceConfig sets the InputReferenceConfig field's value.
+func (s *CollaborationIdNamespaceAssociationSummary) SetInputReferenceConfig(v *IdNamespaceAssociationInputReferenceConfig) *CollaborationIdNamespaceAssociationSummary {
+	s.InputReferenceConfig = v
+	return s
+}
+
+// SetInputReferenceProperties sets the InputReferenceProperties field's value.
+func (s *CollaborationIdNamespaceAssociationSummary) SetInputReferenceProperties(v *IdNamespaceAssociationInputReferencePropertiesSummary) *CollaborationIdNamespaceAssociationSummary {
+	s.InputReferenceProperties = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CollaborationIdNamespaceAssociationSummary) SetName(v string) *CollaborationIdNamespaceAssociationSummary {
+	s.Name = &v
+	return s
+}
+
+// SetUpdateTime sets the UpdateTime field's value.
+func (s *CollaborationIdNamespaceAssociationSummary) SetUpdateTime(v time.Time) *CollaborationIdNamespaceAssociationSummary {
 	s.UpdateTime = &v
 	return s
 }
@@ -11792,6 +13005,155 @@ func (s *CreateConfiguredTableOutput) SetConfiguredTable(v *ConfiguredTable) *Cr
 	return s
 }
 
+type CreateIdMappingTableInput struct {
+	_ struct{} `type:"structure"`
+
+	// A description of the ID mapping table.
+	Description *string `locationName:"description" type:"string"`
+
+	// The input reference configuration needed to create the ID mapping table.
+	//
+	// InputReferenceConfig is a required field
+	InputReferenceConfig *IdMappingTableInputReferenceConfig `locationName:"inputReferenceConfig" type:"structure" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the Amazon Web Services KMS key. This value
+	// is used to encrypt the mapping table data that is stored by Clean Rooms.
+	KmsKeyArn *string `locationName:"kmsKeyArn" min:"20" type:"string"`
+
+	// The unique identifier of the membership that contains the ID mapping table.
+	//
+	// MembershipIdentifier is a required field
+	MembershipIdentifier *string `location:"uri" locationName:"membershipIdentifier" min:"36" type:"string" required:"true"`
+
+	// A name for the ID mapping table.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true"`
+
+	// An optional label that you can assign to a resource when you create it. Each
+	// tag consists of a key and an optional value, both of which you define. When
+	// you use tagging, you can also use tag-based access control in IAM policies
+	// to control access to this resource.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateIdMappingTableInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateIdMappingTableInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateIdMappingTableInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateIdMappingTableInput"}
+	if s.InputReferenceConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("InputReferenceConfig"))
+	}
+	if s.KmsKeyArn != nil && len(*s.KmsKeyArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("KmsKeyArn", 20))
+	}
+	if s.MembershipIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("MembershipIdentifier"))
+	}
+	if s.MembershipIdentifier != nil && len(*s.MembershipIdentifier) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("MembershipIdentifier", 36))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.InputReferenceConfig != nil {
+		if err := s.InputReferenceConfig.Validate(); err != nil {
+			invalidParams.AddNested("InputReferenceConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateIdMappingTableInput) SetDescription(v string) *CreateIdMappingTableInput {
+	s.Description = &v
+	return s
+}
+
+// SetInputReferenceConfig sets the InputReferenceConfig field's value.
+func (s *CreateIdMappingTableInput) SetInputReferenceConfig(v *IdMappingTableInputReferenceConfig) *CreateIdMappingTableInput {
+	s.InputReferenceConfig = v
+	return s
+}
+
+// SetKmsKeyArn sets the KmsKeyArn field's value.
+func (s *CreateIdMappingTableInput) SetKmsKeyArn(v string) *CreateIdMappingTableInput {
+	s.KmsKeyArn = &v
+	return s
+}
+
+// SetMembershipIdentifier sets the MembershipIdentifier field's value.
+func (s *CreateIdMappingTableInput) SetMembershipIdentifier(v string) *CreateIdMappingTableInput {
+	s.MembershipIdentifier = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateIdMappingTableInput) SetName(v string) *CreateIdMappingTableInput {
+	s.Name = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateIdMappingTableInput) SetTags(v map[string]*string) *CreateIdMappingTableInput {
+	s.Tags = v
+	return s
+}
+
+type CreateIdMappingTableOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID mapping table that was created.
+	//
+	// IdMappingTable is a required field
+	IdMappingTable *IdMappingTable `locationName:"idMappingTable" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateIdMappingTableOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateIdMappingTableOutput) GoString() string {
+	return s.String()
+}
+
+// SetIdMappingTable sets the IdMappingTable field's value.
+func (s *CreateIdMappingTableOutput) SetIdMappingTable(v *IdMappingTable) *CreateIdMappingTableOutput {
+	s.IdMappingTable = v
+	return s
+}
+
 type CreateMembershipInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12679,6 +14041,184 @@ func (s DeleteConfiguredTableOutput) String() string {
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
 func (s DeleteConfiguredTableOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteIdMappingTableInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The unique identifier of the ID mapping table that you want to delete.
+	//
+	// IdMappingTableIdentifier is a required field
+	IdMappingTableIdentifier *string `location:"uri" locationName:"idMappingTableIdentifier" min:"36" type:"string" required:"true"`
+
+	// The unique identifier of the membership that contains the ID mapping table
+	// that you want to delete.
+	//
+	// MembershipIdentifier is a required field
+	MembershipIdentifier *string `location:"uri" locationName:"membershipIdentifier" min:"36" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteIdMappingTableInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteIdMappingTableInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteIdMappingTableInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteIdMappingTableInput"}
+	if s.IdMappingTableIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("IdMappingTableIdentifier"))
+	}
+	if s.IdMappingTableIdentifier != nil && len(*s.IdMappingTableIdentifier) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("IdMappingTableIdentifier", 36))
+	}
+	if s.MembershipIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("MembershipIdentifier"))
+	}
+	if s.MembershipIdentifier != nil && len(*s.MembershipIdentifier) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("MembershipIdentifier", 36))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIdMappingTableIdentifier sets the IdMappingTableIdentifier field's value.
+func (s *DeleteIdMappingTableInput) SetIdMappingTableIdentifier(v string) *DeleteIdMappingTableInput {
+	s.IdMappingTableIdentifier = &v
+	return s
+}
+
+// SetMembershipIdentifier sets the MembershipIdentifier field's value.
+func (s *DeleteIdMappingTableInput) SetMembershipIdentifier(v string) *DeleteIdMappingTableInput {
+	s.MembershipIdentifier = &v
+	return s
+}
+
+type DeleteIdMappingTableOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteIdMappingTableOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteIdMappingTableOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteIdNamespaceAssociationInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The unique identifier of the ID namespace association that you want to delete.
+	//
+	// IdNamespaceAssociationIdentifier is a required field
+	IdNamespaceAssociationIdentifier *string `location:"uri" locationName:"idNamespaceAssociationIdentifier" min:"36" type:"string" required:"true"`
+
+	// The unique identifier of the membership that contains the ID namespace association
+	// that you want to delete.
+	//
+	// MembershipIdentifier is a required field
+	MembershipIdentifier *string `location:"uri" locationName:"membershipIdentifier" min:"36" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteIdNamespaceAssociationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteIdNamespaceAssociationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteIdNamespaceAssociationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteIdNamespaceAssociationInput"}
+	if s.IdNamespaceAssociationIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("IdNamespaceAssociationIdentifier"))
+	}
+	if s.IdNamespaceAssociationIdentifier != nil && len(*s.IdNamespaceAssociationIdentifier) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("IdNamespaceAssociationIdentifier", 36))
+	}
+	if s.MembershipIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("MembershipIdentifier"))
+	}
+	if s.MembershipIdentifier != nil && len(*s.MembershipIdentifier) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("MembershipIdentifier", 36))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIdNamespaceAssociationIdentifier sets the IdNamespaceAssociationIdentifier field's value.
+func (s *DeleteIdNamespaceAssociationInput) SetIdNamespaceAssociationIdentifier(v string) *DeleteIdNamespaceAssociationInput {
+	s.IdNamespaceAssociationIdentifier = &v
+	return s
+}
+
+// SetMembershipIdentifier sets the MembershipIdentifier field's value.
+func (s *DeleteIdNamespaceAssociationInput) SetMembershipIdentifier(v string) *DeleteIdNamespaceAssociationInput {
+	s.MembershipIdentifier = &v
+	return s
+}
+
+type DeleteIdNamespaceAssociationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteIdNamespaceAssociationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteIdNamespaceAssociationOutput) GoString() string {
 	return s.String()
 }
 
@@ -14457,6 +15997,107 @@ func (s *GetConfiguredTableOutput) SetConfiguredTable(v *ConfiguredTable) *GetCo
 	return s
 }
 
+type GetIdMappingTableInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The unique identifier of the ID mapping table identifier that you want to
+	// retrieve.
+	//
+	// IdMappingTableIdentifier is a required field
+	IdMappingTableIdentifier *string `location:"uri" locationName:"idMappingTableIdentifier" min:"36" type:"string" required:"true"`
+
+	// The unique identifier of the membership that contains the ID mapping table
+	// that you want to retrieve.
+	//
+	// MembershipIdentifier is a required field
+	MembershipIdentifier *string `location:"uri" locationName:"membershipIdentifier" min:"36" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetIdMappingTableInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetIdMappingTableInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetIdMappingTableInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetIdMappingTableInput"}
+	if s.IdMappingTableIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("IdMappingTableIdentifier"))
+	}
+	if s.IdMappingTableIdentifier != nil && len(*s.IdMappingTableIdentifier) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("IdMappingTableIdentifier", 36))
+	}
+	if s.MembershipIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("MembershipIdentifier"))
+	}
+	if s.MembershipIdentifier != nil && len(*s.MembershipIdentifier) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("MembershipIdentifier", 36))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIdMappingTableIdentifier sets the IdMappingTableIdentifier field's value.
+func (s *GetIdMappingTableInput) SetIdMappingTableIdentifier(v string) *GetIdMappingTableInput {
+	s.IdMappingTableIdentifier = &v
+	return s
+}
+
+// SetMembershipIdentifier sets the MembershipIdentifier field's value.
+func (s *GetIdMappingTableInput) SetMembershipIdentifier(v string) *GetIdMappingTableInput {
+	s.MembershipIdentifier = &v
+	return s
+}
+
+type GetIdMappingTableOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID mapping table that you requested.
+	//
+	// IdMappingTable is a required field
+	IdMappingTable *IdMappingTable `locationName:"idMappingTable" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetIdMappingTableOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetIdMappingTableOutput) GoString() string {
+	return s.String()
+}
+
+// SetIdMappingTable sets the IdMappingTable field's value.
+func (s *GetIdMappingTableOutput) SetIdMappingTable(v *IdMappingTable) *GetIdMappingTableOutput {
+	s.IdMappingTable = v
+	return s
+}
+
 type GetMembershipInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -15019,6 +16660,740 @@ func (s *GlueTableReference) SetTableName(v string) *GlueTableReference {
 	return s
 }
 
+// Describes information about the ID mapping table.
+type IdMappingTable struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the ID mapping table.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the collaboration that contains this ID
+	// mapping table.
+	//
+	// CollaborationArn is a required field
+	CollaborationArn *string `locationName:"collaborationArn" type:"string" required:"true"`
+
+	// The unique identifier of the collaboration that contains this ID mapping
+	// table.
+	//
+	// CollaborationId is a required field
+	CollaborationId *string `locationName:"collaborationId" min:"36" type:"string" required:"true"`
+
+	// The time at which the ID mapping table was created.
+	//
+	// CreateTime is a required field
+	CreateTime *time.Time `locationName:"createTime" type:"timestamp" required:"true"`
+
+	// The description of the ID mapping table.
+	Description *string `locationName:"description" type:"string"`
+
+	// The unique identifier of the ID mapping table.
+	//
+	// Id is a required field
+	Id *string `locationName:"id" min:"36" type:"string" required:"true"`
+
+	// The input reference configuration for the ID mapping table.
+	//
+	// InputReferenceConfig is a required field
+	InputReferenceConfig *IdMappingTableInputReferenceConfig `locationName:"inputReferenceConfig" type:"structure" required:"true"`
+
+	// The input reference properties for the ID mapping table.
+	//
+	// InputReferenceProperties is a required field
+	InputReferenceProperties *IdMappingTableInputReferenceProperties `locationName:"inputReferenceProperties" type:"structure" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the Amazon Web Services KMS key.
+	KmsKeyArn *string `locationName:"kmsKeyArn" min:"20" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the membership resource for the ID mapping
+	// table.
+	//
+	// MembershipArn is a required field
+	MembershipArn *string `locationName:"membershipArn" type:"string" required:"true"`
+
+	// The unique identifier of the membership resource for the ID mapping table.
+	//
+	// MembershipId is a required field
+	MembershipId *string `locationName:"membershipId" min:"36" type:"string" required:"true"`
+
+	// The name of the ID mapping table.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true"`
+
+	// The most recent time at which the ID mapping table was updated.
+	//
+	// UpdateTime is a required field
+	UpdateTime *time.Time `locationName:"updateTime" type:"timestamp" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IdMappingTable) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IdMappingTable) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *IdMappingTable) SetArn(v string) *IdMappingTable {
+	s.Arn = &v
+	return s
+}
+
+// SetCollaborationArn sets the CollaborationArn field's value.
+func (s *IdMappingTable) SetCollaborationArn(v string) *IdMappingTable {
+	s.CollaborationArn = &v
+	return s
+}
+
+// SetCollaborationId sets the CollaborationId field's value.
+func (s *IdMappingTable) SetCollaborationId(v string) *IdMappingTable {
+	s.CollaborationId = &v
+	return s
+}
+
+// SetCreateTime sets the CreateTime field's value.
+func (s *IdMappingTable) SetCreateTime(v time.Time) *IdMappingTable {
+	s.CreateTime = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *IdMappingTable) SetDescription(v string) *IdMappingTable {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *IdMappingTable) SetId(v string) *IdMappingTable {
+	s.Id = &v
+	return s
+}
+
+// SetInputReferenceConfig sets the InputReferenceConfig field's value.
+func (s *IdMappingTable) SetInputReferenceConfig(v *IdMappingTableInputReferenceConfig) *IdMappingTable {
+	s.InputReferenceConfig = v
+	return s
+}
+
+// SetInputReferenceProperties sets the InputReferenceProperties field's value.
+func (s *IdMappingTable) SetInputReferenceProperties(v *IdMappingTableInputReferenceProperties) *IdMappingTable {
+	s.InputReferenceProperties = v
+	return s
+}
+
+// SetKmsKeyArn sets the KmsKeyArn field's value.
+func (s *IdMappingTable) SetKmsKeyArn(v string) *IdMappingTable {
+	s.KmsKeyArn = &v
+	return s
+}
+
+// SetMembershipArn sets the MembershipArn field's value.
+func (s *IdMappingTable) SetMembershipArn(v string) *IdMappingTable {
+	s.MembershipArn = &v
+	return s
+}
+
+// SetMembershipId sets the MembershipId field's value.
+func (s *IdMappingTable) SetMembershipId(v string) *IdMappingTable {
+	s.MembershipId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *IdMappingTable) SetName(v string) *IdMappingTable {
+	s.Name = &v
+	return s
+}
+
+// SetUpdateTime sets the UpdateTime field's value.
+func (s *IdMappingTable) SetUpdateTime(v time.Time) *IdMappingTable {
+	s.UpdateTime = &v
+	return s
+}
+
+// Provides the input reference configuration for the ID mapping table.
+type IdMappingTableInputReferenceConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the referenced resource in Entity Resolution.
+	// Valid values are ID mapping workflow ARNs.
+	//
+	// InputReferenceArn is a required field
+	InputReferenceArn *string `locationName:"inputReferenceArn" min:"20" type:"string" required:"true"`
+
+	// When TRUE, Clean Rooms manages permissions for the ID mapping table resource.
+	//
+	// When FALSE, the resource owner manages permissions for the ID mapping table
+	// resource.
+	//
+	// ManageResourcePolicies is a required field
+	ManageResourcePolicies *bool `locationName:"manageResourcePolicies" type:"boolean" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IdMappingTableInputReferenceConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IdMappingTableInputReferenceConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *IdMappingTableInputReferenceConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "IdMappingTableInputReferenceConfig"}
+	if s.InputReferenceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("InputReferenceArn"))
+	}
+	if s.InputReferenceArn != nil && len(*s.InputReferenceArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("InputReferenceArn", 20))
+	}
+	if s.ManageResourcePolicies == nil {
+		invalidParams.Add(request.NewErrParamRequired("ManageResourcePolicies"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInputReferenceArn sets the InputReferenceArn field's value.
+func (s *IdMappingTableInputReferenceConfig) SetInputReferenceArn(v string) *IdMappingTableInputReferenceConfig {
+	s.InputReferenceArn = &v
+	return s
+}
+
+// SetManageResourcePolicies sets the ManageResourcePolicies field's value.
+func (s *IdMappingTableInputReferenceConfig) SetManageResourcePolicies(v bool) *IdMappingTableInputReferenceConfig {
+	s.ManageResourcePolicies = &v
+	return s
+}
+
+// The input reference properties for the ID mapping table.
+type IdMappingTableInputReferenceProperties struct {
+	_ struct{} `type:"structure"`
+
+	// The input source of the ID mapping table.
+	//
+	// IdMappingTableInputSource is a required field
+	IdMappingTableInputSource []*IdMappingTableInputSource `locationName:"idMappingTableInputSource" min:"2" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IdMappingTableInputReferenceProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IdMappingTableInputReferenceProperties) GoString() string {
+	return s.String()
+}
+
+// SetIdMappingTableInputSource sets the IdMappingTableInputSource field's value.
+func (s *IdMappingTableInputReferenceProperties) SetIdMappingTableInputSource(v []*IdMappingTableInputSource) *IdMappingTableInputReferenceProperties {
+	s.IdMappingTableInputSource = v
+	return s
+}
+
+// The input source of the ID mapping table.
+type IdMappingTableInputSource struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier of the ID namespace association.
+	//
+	// IdNamespaceAssociationId is a required field
+	IdNamespaceAssociationId *string `locationName:"idNamespaceAssociationId" type:"string" required:"true"`
+
+	// The type of the input source of the ID mapping table.
+	//
+	// Type is a required field
+	Type *string `locationName:"type" type:"string" required:"true" enum:"IdNamespaceType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IdMappingTableInputSource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IdMappingTableInputSource) GoString() string {
+	return s.String()
+}
+
+// SetIdNamespaceAssociationId sets the IdNamespaceAssociationId field's value.
+func (s *IdMappingTableInputSource) SetIdNamespaceAssociationId(v string) *IdMappingTableInputSource {
+	s.IdNamespaceAssociationId = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *IdMappingTableInputSource) SetType(v string) *IdMappingTableInputSource {
+	s.Type = &v
+	return s
+}
+
+// Additional properties that are specific to the type of the associated schema.
+type IdMappingTableSchemaTypeProperties struct {
+	_ struct{} `type:"structure"`
+
+	// Defines which ID namespace associations are used to create the ID mapping
+	// table.
+	//
+	// IdMappingTableInputSource is a required field
+	IdMappingTableInputSource []*IdMappingTableInputSource `locationName:"idMappingTableInputSource" min:"2" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IdMappingTableSchemaTypeProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IdMappingTableSchemaTypeProperties) GoString() string {
+	return s.String()
+}
+
+// SetIdMappingTableInputSource sets the IdMappingTableInputSource field's value.
+func (s *IdMappingTableSchemaTypeProperties) SetIdMappingTableInputSource(v []*IdMappingTableInputSource) *IdMappingTableSchemaTypeProperties {
+	s.IdMappingTableInputSource = v
+	return s
+}
+
+// Detailed information about the ID mapping table.
+type IdMappingTableSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of this ID mapping table.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the collaboration that contains this ID
+	// mapping table.
+	//
+	// CollaborationArn is a required field
+	CollaborationArn *string `locationName:"collaborationArn" type:"string" required:"true"`
+
+	// The unique identifier of the collaboration that contains this ID mapping
+	// table.
+	//
+	// CollaborationId is a required field
+	CollaborationId *string `locationName:"collaborationId" min:"36" type:"string" required:"true"`
+
+	// The time at which this ID mapping table was created.
+	//
+	// CreateTime is a required field
+	CreateTime *time.Time `locationName:"createTime" type:"timestamp" required:"true"`
+
+	// The description of this ID mapping table.
+	Description *string `locationName:"description" type:"string"`
+
+	// The unique identifier of this ID mapping table.
+	//
+	// Id is a required field
+	Id *string `locationName:"id" min:"36" type:"string" required:"true"`
+
+	// The input reference configuration for the ID mapping table.
+	//
+	// InputReferenceConfig is a required field
+	InputReferenceConfig *IdMappingTableInputReferenceConfig `locationName:"inputReferenceConfig" type:"structure" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the membership resource for this ID mapping
+	// table.
+	//
+	// MembershipArn is a required field
+	MembershipArn *string `locationName:"membershipArn" type:"string" required:"true"`
+
+	// The unique identifier of the membership resource for this ID mapping table.
+	//
+	// MembershipId is a required field
+	MembershipId *string `locationName:"membershipId" min:"36" type:"string" required:"true"`
+
+	// The name of this ID mapping table.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true"`
+
+	// The most recent time at which this ID mapping table was updated.
+	//
+	// UpdateTime is a required field
+	UpdateTime *time.Time `locationName:"updateTime" type:"timestamp" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IdMappingTableSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IdMappingTableSummary) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *IdMappingTableSummary) SetArn(v string) *IdMappingTableSummary {
+	s.Arn = &v
+	return s
+}
+
+// SetCollaborationArn sets the CollaborationArn field's value.
+func (s *IdMappingTableSummary) SetCollaborationArn(v string) *IdMappingTableSummary {
+	s.CollaborationArn = &v
+	return s
+}
+
+// SetCollaborationId sets the CollaborationId field's value.
+func (s *IdMappingTableSummary) SetCollaborationId(v string) *IdMappingTableSummary {
+	s.CollaborationId = &v
+	return s
+}
+
+// SetCreateTime sets the CreateTime field's value.
+func (s *IdMappingTableSummary) SetCreateTime(v time.Time) *IdMappingTableSummary {
+	s.CreateTime = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *IdMappingTableSummary) SetDescription(v string) *IdMappingTableSummary {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *IdMappingTableSummary) SetId(v string) *IdMappingTableSummary {
+	s.Id = &v
+	return s
+}
+
+// SetInputReferenceConfig sets the InputReferenceConfig field's value.
+func (s *IdMappingTableSummary) SetInputReferenceConfig(v *IdMappingTableInputReferenceConfig) *IdMappingTableSummary {
+	s.InputReferenceConfig = v
+	return s
+}
+
+// SetMembershipArn sets the MembershipArn field's value.
+func (s *IdMappingTableSummary) SetMembershipArn(v string) *IdMappingTableSummary {
+	s.MembershipArn = &v
+	return s
+}
+
+// SetMembershipId sets the MembershipId field's value.
+func (s *IdMappingTableSummary) SetMembershipId(v string) *IdMappingTableSummary {
+	s.MembershipId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *IdMappingTableSummary) SetName(v string) *IdMappingTableSummary {
+	s.Name = &v
+	return s
+}
+
+// SetUpdateTime sets the UpdateTime field's value.
+func (s *IdMappingTableSummary) SetUpdateTime(v time.Time) *IdMappingTableSummary {
+	s.UpdateTime = &v
+	return s
+}
+
+// Provides the information for the ID namespace association input reference
+// configuration.
+type IdNamespaceAssociationInputReferenceConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the Entity Resolution resource that is
+	// being associated to the collaboration. Valid resource ARNs are from the ID
+	// namespaces that you own.
+	//
+	// InputReferenceArn is a required field
+	InputReferenceArn *string `locationName:"inputReferenceArn" type:"string" required:"true"`
+
+	// When TRUE, Clean Rooms manages permissions for the ID namespace association
+	// resource.
+	//
+	// When FALSE, the resource owner manages permissions for the ID namespace association
+	// resource.
+	//
+	// ManageResourcePolicies is a required field
+	ManageResourcePolicies *bool `locationName:"manageResourcePolicies" type:"boolean" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IdNamespaceAssociationInputReferenceConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IdNamespaceAssociationInputReferenceConfig) GoString() string {
+	return s.String()
+}
+
+// SetInputReferenceArn sets the InputReferenceArn field's value.
+func (s *IdNamespaceAssociationInputReferenceConfig) SetInputReferenceArn(v string) *IdNamespaceAssociationInputReferenceConfig {
+	s.InputReferenceArn = &v
+	return s
+}
+
+// SetManageResourcePolicies sets the ManageResourcePolicies field's value.
+func (s *IdNamespaceAssociationInputReferenceConfig) SetManageResourcePolicies(v bool) *IdNamespaceAssociationInputReferenceConfig {
+	s.ManageResourcePolicies = &v
+	return s
+}
+
+// Detailed information about the ID namespace association input reference properties.
+type IdNamespaceAssociationInputReferencePropertiesSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The ID namespace type for this ID namespace association.
+	//
+	// IdNamespaceType is a required field
+	IdNamespaceType *string `locationName:"idNamespaceType" type:"string" required:"true" enum:"IdNamespaceType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IdNamespaceAssociationInputReferencePropertiesSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IdNamespaceAssociationInputReferencePropertiesSummary) GoString() string {
+	return s.String()
+}
+
+// SetIdNamespaceType sets the IdNamespaceType field's value.
+func (s *IdNamespaceAssociationInputReferencePropertiesSummary) SetIdNamespaceType(v string) *IdNamespaceAssociationInputReferencePropertiesSummary {
+	s.IdNamespaceType = &v
+	return s
+}
+
+// Detailed information about the ID namespace association.
+type IdNamespaceAssociationSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of this ID namespace association.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the collaboration that contains this ID
+	// namespace association.
+	//
+	// CollaborationArn is a required field
+	CollaborationArn *string `locationName:"collaborationArn" type:"string" required:"true"`
+
+	// The unique identifier of the collaboration that contains this ID namespace
+	// association.
+	//
+	// CollaborationId is a required field
+	CollaborationId *string `locationName:"collaborationId" min:"36" type:"string" required:"true"`
+
+	// The time at which this ID namespace association was created.
+	//
+	// CreateTime is a required field
+	CreateTime *time.Time `locationName:"createTime" type:"timestamp" required:"true"`
+
+	// The description of the ID namespace association.
+	Description *string `locationName:"description" type:"string"`
+
+	// The unique identifier of this ID namespace association.
+	//
+	// Id is a required field
+	Id *string `locationName:"id" min:"36" type:"string" required:"true"`
+
+	// The input reference configuration details for this ID namespace association.
+	//
+	// InputReferenceConfig is a required field
+	InputReferenceConfig *IdNamespaceAssociationInputReferenceConfig `locationName:"inputReferenceConfig" type:"structure" required:"true"`
+
+	// The input reference properties for this ID namespace association.
+	//
+	// InputReferenceProperties is a required field
+	InputReferenceProperties *IdNamespaceAssociationInputReferencePropertiesSummary `locationName:"inputReferenceProperties" type:"structure" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the membership resource for this ID namespace
+	// association.
+	//
+	// MembershipArn is a required field
+	MembershipArn *string `locationName:"membershipArn" type:"string" required:"true"`
+
+	// The unique identifier of the membership resource for this ID namespace association.
+	//
+	// MembershipId is a required field
+	MembershipId *string `locationName:"membershipId" min:"36" type:"string" required:"true"`
+
+	// The name of the ID namespace association.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// The most recent time at which this ID namespace association has been updated.
+	//
+	// UpdateTime is a required field
+	UpdateTime *time.Time `locationName:"updateTime" type:"timestamp" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IdNamespaceAssociationSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IdNamespaceAssociationSummary) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *IdNamespaceAssociationSummary) SetArn(v string) *IdNamespaceAssociationSummary {
+	s.Arn = &v
+	return s
+}
+
+// SetCollaborationArn sets the CollaborationArn field's value.
+func (s *IdNamespaceAssociationSummary) SetCollaborationArn(v string) *IdNamespaceAssociationSummary {
+	s.CollaborationArn = &v
+	return s
+}
+
+// SetCollaborationId sets the CollaborationId field's value.
+func (s *IdNamespaceAssociationSummary) SetCollaborationId(v string) *IdNamespaceAssociationSummary {
+	s.CollaborationId = &v
+	return s
+}
+
+// SetCreateTime sets the CreateTime field's value.
+func (s *IdNamespaceAssociationSummary) SetCreateTime(v time.Time) *IdNamespaceAssociationSummary {
+	s.CreateTime = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *IdNamespaceAssociationSummary) SetDescription(v string) *IdNamespaceAssociationSummary {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *IdNamespaceAssociationSummary) SetId(v string) *IdNamespaceAssociationSummary {
+	s.Id = &v
+	return s
+}
+
+// SetInputReferenceConfig sets the InputReferenceConfig field's value.
+func (s *IdNamespaceAssociationSummary) SetInputReferenceConfig(v *IdNamespaceAssociationInputReferenceConfig) *IdNamespaceAssociationSummary {
+	s.InputReferenceConfig = v
+	return s
+}
+
+// SetInputReferenceProperties sets the InputReferenceProperties field's value.
+func (s *IdNamespaceAssociationSummary) SetInputReferenceProperties(v *IdNamespaceAssociationInputReferencePropertiesSummary) *IdNamespaceAssociationSummary {
+	s.InputReferenceProperties = v
+	return s
+}
+
+// SetMembershipArn sets the MembershipArn field's value.
+func (s *IdNamespaceAssociationSummary) SetMembershipArn(v string) *IdNamespaceAssociationSummary {
+	s.MembershipArn = &v
+	return s
+}
+
+// SetMembershipId sets the MembershipId field's value.
+func (s *IdNamespaceAssociationSummary) SetMembershipId(v string) *IdNamespaceAssociationSummary {
+	s.MembershipId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *IdNamespaceAssociationSummary) SetName(v string) *IdNamespaceAssociationSummary {
+	s.Name = &v
+	return s
+}
+
+// SetUpdateTime sets the UpdateTime field's value.
+func (s *IdNamespaceAssociationSummary) SetUpdateTime(v time.Time) *IdNamespaceAssociationSummary {
+	s.UpdateTime = &v
+	return s
+}
+
 // Unexpected error during processing of request.
 type InternalServerException struct {
 	_            struct{}                  `type:"structure"`
@@ -15086,7 +17461,9 @@ func (s *InternalServerException) RequestID() string {
 type ListAnalysisTemplatesInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The maximum size of the results that is returned per call.
+	// The maximum number of results that are returned for an API request call.
+	// The service chooses a default number if you don't set one. The service might
+	// return a `nextToken` even if the `maxResults` value has not been met.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
 	// The identifier for a membership resource.
@@ -15094,8 +17471,7 @@ type ListAnalysisTemplatesInput struct {
 	// MembershipIdentifier is a required field
 	MembershipIdentifier *string `location:"uri" locationName:"membershipIdentifier" min:"36" type:"string" required:"true"`
 
-	// The token value retrieved from a previous call to access the next page of
-	// results.
+	// The pagination token that's used to fetch the next set of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
@@ -15162,8 +17538,7 @@ type ListAnalysisTemplatesOutput struct {
 	// AnalysisTemplateSummaries is a required field
 	AnalysisTemplateSummaries []*AnalysisTemplateSummary `locationName:"analysisTemplateSummaries" type:"list" required:"true"`
 
-	// The token value retrieved from a previous call to access the next page of
-	// results.
+	// The pagination token that's used to fetch the next set of results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -15206,11 +17581,12 @@ type ListCollaborationAnalysisTemplatesInput struct {
 	// CollaborationIdentifier is a required field
 	CollaborationIdentifier *string `location:"uri" locationName:"collaborationIdentifier" min:"36" type:"string" required:"true"`
 
-	// The maximum size of the results that is returned per call.
+	// The maximum number of results that are returned for an API request call.
+	// The service chooses a default number if you don't set one. The service might
+	// return a `nextToken` even if the `maxResults` value has not been met.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
-	// The token value retrieved from a previous call to access the next page of
-	// results.
+	// The pagination token that's used to fetch the next set of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
@@ -15277,8 +17653,7 @@ type ListCollaborationAnalysisTemplatesOutput struct {
 	// CollaborationAnalysisTemplateSummaries is a required field
 	CollaborationAnalysisTemplateSummaries []*CollaborationAnalysisTemplateSummary `locationName:"collaborationAnalysisTemplateSummaries" type:"list" required:"true"`
 
-	// The token value retrieved from a previous call to access the next page of
-	// results.
+	// The pagination token that's used to fetch the next set of results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -15321,11 +17696,12 @@ type ListCollaborationConfiguredAudienceModelAssociationsInput struct {
 	// CollaborationIdentifier is a required field
 	CollaborationIdentifier *string `location:"uri" locationName:"collaborationIdentifier" min:"36" type:"string" required:"true"`
 
-	// The maximum size of the results that is returned per call.
+	// The maximum number of results that are returned for an API request call.
+	// The service chooses a default number if you don't set one. The service might
+	// return a `nextToken` even if the `maxResults` value has not been met.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
-	// The token value retrieved from a previous call to access the next page of
-	// results.
+	// The pagination token that's used to fetch the next set of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
@@ -15392,8 +17768,7 @@ type ListCollaborationConfiguredAudienceModelAssociationsOutput struct {
 	// CollaborationConfiguredAudienceModelAssociationSummaries is a required field
 	CollaborationConfiguredAudienceModelAssociationSummaries []*CollaborationConfiguredAudienceModelAssociationSummary `locationName:"collaborationConfiguredAudienceModelAssociationSummaries" type:"list" required:"true"`
 
-	// The token value retrieved from a previous call to access the next page of
-	// results.
+	// The pagination token that's used to fetch the next set of results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -15427,6 +17802,122 @@ func (s *ListCollaborationConfiguredAudienceModelAssociationsOutput) SetNextToke
 	return s
 }
 
+type ListCollaborationIdNamespaceAssociationsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The unique identifier of the collaboration that contains the ID namespace
+	// associations that you want to retrieve.
+	//
+	// CollaborationIdentifier is a required field
+	CollaborationIdentifier *string `location:"uri" locationName:"collaborationIdentifier" min:"36" type:"string" required:"true"`
+
+	// The maximum size of the results that is returned per call. Service chooses
+	// a default if it has not been set. Service may return a nextToken even if
+	// the maximum results has not been met.>
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The pagination token that's used to fetch the next set of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCollaborationIdNamespaceAssociationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCollaborationIdNamespaceAssociationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListCollaborationIdNamespaceAssociationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListCollaborationIdNamespaceAssociationsInput"}
+	if s.CollaborationIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("CollaborationIdentifier"))
+	}
+	if s.CollaborationIdentifier != nil && len(*s.CollaborationIdentifier) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("CollaborationIdentifier", 36))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCollaborationIdentifier sets the CollaborationIdentifier field's value.
+func (s *ListCollaborationIdNamespaceAssociationsInput) SetCollaborationIdentifier(v string) *ListCollaborationIdNamespaceAssociationsInput {
+	s.CollaborationIdentifier = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListCollaborationIdNamespaceAssociationsInput) SetMaxResults(v int64) *ListCollaborationIdNamespaceAssociationsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCollaborationIdNamespaceAssociationsInput) SetNextToken(v string) *ListCollaborationIdNamespaceAssociationsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListCollaborationIdNamespaceAssociationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The summary information of the collaboration ID namespace associations that
+	// you requested.
+	//
+	// CollaborationIdNamespaceAssociationSummaries is a required field
+	CollaborationIdNamespaceAssociationSummaries []*CollaborationIdNamespaceAssociationSummary `locationName:"collaborationIdNamespaceAssociationSummaries" type:"list" required:"true"`
+
+	// The token value provided to access the next page of results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCollaborationIdNamespaceAssociationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCollaborationIdNamespaceAssociationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetCollaborationIdNamespaceAssociationSummaries sets the CollaborationIdNamespaceAssociationSummaries field's value.
+func (s *ListCollaborationIdNamespaceAssociationsOutput) SetCollaborationIdNamespaceAssociationSummaries(v []*CollaborationIdNamespaceAssociationSummary) *ListCollaborationIdNamespaceAssociationsOutput {
+	s.CollaborationIdNamespaceAssociationSummaries = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCollaborationIdNamespaceAssociationsOutput) SetNextToken(v string) *ListCollaborationIdNamespaceAssociationsOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListCollaborationPrivacyBudgetTemplatesInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -15435,13 +17926,12 @@ type ListCollaborationPrivacyBudgetTemplatesInput struct {
 	// CollaborationIdentifier is a required field
 	CollaborationIdentifier *string `location:"uri" locationName:"collaborationIdentifier" min:"36" type:"string" required:"true"`
 
-	// The maximum size of the results that is returned per call. Service chooses
-	// a default if it has not been set. Service may return a nextToken even if
-	// the maximum results has not been met.
+	// The maximum number of results that are returned for an API request call.
+	// The service chooses a default number if you don't set one. The service might
+	// return a `nextToken` even if the `maxResults` value has not been met.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
-	// The token value retrieved from a previous call to access the next page of
-	// results.
+	// The pagination token that's used to fetch the next set of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
@@ -15510,8 +18000,7 @@ type ListCollaborationPrivacyBudgetTemplatesOutput struct {
 	// CollaborationPrivacyBudgetTemplateSummaries is a required field
 	CollaborationPrivacyBudgetTemplateSummaries []*CollaborationPrivacyBudgetTemplateSummary `locationName:"collaborationPrivacyBudgetTemplateSummaries" type:"list" required:"true"`
 
-	// The token value retrieved from a previous call to access the next page of
-	// results.
+	// The pagination token that's used to fetch the next set of results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -15553,13 +18042,12 @@ type ListCollaborationPrivacyBudgetsInput struct {
 	// CollaborationIdentifier is a required field
 	CollaborationIdentifier *string `location:"uri" locationName:"collaborationIdentifier" min:"36" type:"string" required:"true"`
 
-	// The maximum size of the results that is returned per call. Service chooses
-	// a default if it has not been set. Service may return a nextToken even if
-	// the maximum results has not been met.
+	// The maximum number of results that are returned for an API request call.
+	// The service chooses a default number if you don't set one. The service might
+	// return a `nextToken` even if the `maxResults` value has not been met.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
-	// The token value retrieved from a previous call to access the next page of
-	// results.
+	// The pagination token that's used to fetch the next set of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 
 	// Specifies the type of the privacy budget.
@@ -15640,8 +18128,7 @@ type ListCollaborationPrivacyBudgetsOutput struct {
 	// CollaborationPrivacyBudgetSummaries is a required field
 	CollaborationPrivacyBudgetSummaries []*CollaborationPrivacyBudgetSummary `locationName:"collaborationPrivacyBudgetSummaries" type:"list" required:"true"`
 
-	// The token value retrieved from a previous call to access the next page of
-	// results.
+	// The pagination token that's used to fetch the next set of results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -15678,16 +18165,15 @@ func (s *ListCollaborationPrivacyBudgetsOutput) SetNextToken(v string) *ListColl
 type ListCollaborationsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The maximum size of the results that is returned per call. Service chooses
-	// a default if it has not been set. Service may return a nextToken even if
-	// the maximum results has not been met.
+	// The maximum number of results that are returned for an API request call.
+	// The service chooses a default number if you don't set one. The service might
+	// return a `nextToken` even if the `maxResults` value has not been met.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
 	// The caller's status in a collaboration.
 	MemberStatus *string `location:"querystring" locationName:"memberStatus" type:"string" enum:"FilterableMemberStatus"`
 
-	// The token value retrieved from a previous call to access the next page of
-	// results.
+	// The pagination token that's used to fetch the next set of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
@@ -15748,8 +18234,7 @@ type ListCollaborationsOutput struct {
 	// CollaborationList is a required field
 	CollaborationList []*CollaborationSummary `locationName:"collaborationList" type:"list" required:"true"`
 
-	// The token value retrieved from a previous call to access the next page of
-	// results.
+	// The pagination token that's used to fetch the next set of results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -15786,9 +18271,9 @@ func (s *ListCollaborationsOutput) SetNextToken(v string) *ListCollaborationsOut
 type ListConfiguredAudienceModelAssociationsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The maximum size of the results that is returned per call. Service chooses
-	// a default if it has not been set. Service may return a nextToken even if
-	// the maximum results has not been met.
+	// The maximum number of results that are returned for an API request call.
+	// The service chooses a default number if you don't set one. The service might
+	// return a `nextToken` even if the `maxResults` value has not been met.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
 	// A unique identifier for a membership that contains the configured audience
@@ -15797,8 +18282,7 @@ type ListConfiguredAudienceModelAssociationsInput struct {
 	// MembershipIdentifier is a required field
 	MembershipIdentifier *string `location:"uri" locationName:"membershipIdentifier" min:"36" type:"string" required:"true"`
 
-	// The token value retrieved from a previous call to access the next page of
-	// results.
+	// The pagination token that's used to fetch the next set of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
@@ -15902,7 +18386,9 @@ func (s *ListConfiguredAudienceModelAssociationsOutput) SetNextToken(v string) *
 type ListConfiguredTableAssociationsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The maximum size of the results that is returned per call.
+	// The maximum number of results that are returned for an API request call.
+	// The service chooses a default number if you don't set one. The service might
+	// return a `nextToken` even if the `maxResults` value has not been met.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
 	// A unique identifier for the membership to list configured table associations
@@ -15911,8 +18397,7 @@ type ListConfiguredTableAssociationsInput struct {
 	// MembershipIdentifier is a required field
 	MembershipIdentifier *string `location:"uri" locationName:"membershipIdentifier" min:"36" type:"string" required:"true"`
 
-	// The token value retrieved from a previous call to access the next page of
-	// results.
+	// The pagination token that's used to fetch the next set of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
@@ -15979,8 +18464,7 @@ type ListConfiguredTableAssociationsOutput struct {
 	// ConfiguredTableAssociationSummaries is a required field
 	ConfiguredTableAssociationSummaries []*ConfiguredTableAssociationSummary `locationName:"configuredTableAssociationSummaries" type:"list" required:"true"`
 
-	// The token value retrieved from a previous call to access the next page of
-	// results.
+	// The pagination token that's used to fetch the next set of results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -16017,11 +18501,12 @@ func (s *ListConfiguredTableAssociationsOutput) SetNextToken(v string) *ListConf
 type ListConfiguredTablesInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The maximum size of the results that is returned per call.
+	// The maximum number of results that are returned for an API request call.
+	// The service chooses a default number if you don't set one. The service might
+	// return a `nextToken` even if the `maxResults` value has not been met.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
-	// The token value retrieved from a previous call to access the next page of
-	// results.
+	// The pagination token that's used to fetch the next set of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
@@ -16076,8 +18561,7 @@ type ListConfiguredTablesOutput struct {
 	// ConfiguredTableSummaries is a required field
 	ConfiguredTableSummaries []*ConfiguredTableSummary `locationName:"configuredTableSummaries" type:"list" required:"true"`
 
-	// The token value retrieved from a previous call to access the next page of
-	// results.
+	// The pagination token that's used to fetch the next set of results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -16111,6 +18595,236 @@ func (s *ListConfiguredTablesOutput) SetNextToken(v string) *ListConfiguredTable
 	return s
 }
 
+type ListIdMappingTablesInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The maximum size of the results that is returned per call. Service chooses
+	// a default if it has not been set. Service may return a nextToken even if
+	// the maximum results has not been met.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The unique identifier of the membership that contains the ID mapping tables
+	// that you want to view.
+	//
+	// MembershipIdentifier is a required field
+	MembershipIdentifier *string `location:"uri" locationName:"membershipIdentifier" min:"36" type:"string" required:"true"`
+
+	// The pagination token that's used to fetch the next set of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListIdMappingTablesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListIdMappingTablesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListIdMappingTablesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListIdMappingTablesInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.MembershipIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("MembershipIdentifier"))
+	}
+	if s.MembershipIdentifier != nil && len(*s.MembershipIdentifier) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("MembershipIdentifier", 36))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListIdMappingTablesInput) SetMaxResults(v int64) *ListIdMappingTablesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetMembershipIdentifier sets the MembershipIdentifier field's value.
+func (s *ListIdMappingTablesInput) SetMembershipIdentifier(v string) *ListIdMappingTablesInput {
+	s.MembershipIdentifier = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListIdMappingTablesInput) SetNextToken(v string) *ListIdMappingTablesInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListIdMappingTablesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The summary information of the ID mapping tables that you requested.
+	//
+	// IdMappingTableSummaries is a required field
+	IdMappingTableSummaries []*IdMappingTableSummary `locationName:"idMappingTableSummaries" type:"list" required:"true"`
+
+	// The token value provided to access the next page of results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListIdMappingTablesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListIdMappingTablesOutput) GoString() string {
+	return s.String()
+}
+
+// SetIdMappingTableSummaries sets the IdMappingTableSummaries field's value.
+func (s *ListIdMappingTablesOutput) SetIdMappingTableSummaries(v []*IdMappingTableSummary) *ListIdMappingTablesOutput {
+	s.IdMappingTableSummaries = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListIdMappingTablesOutput) SetNextToken(v string) *ListIdMappingTablesOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListIdNamespaceAssociationsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The maximum size of the results that is returned per call. Service chooses
+	// a default if it has not been set. Service may return a nextToken even if
+	// the maximum results has not been met.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The unique identifier of the membership that contains the ID namespace association
+	// that you want to view.
+	//
+	// MembershipIdentifier is a required field
+	MembershipIdentifier *string `location:"uri" locationName:"membershipIdentifier" min:"36" type:"string" required:"true"`
+
+	// The pagination token that's used to fetch the next set of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListIdNamespaceAssociationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListIdNamespaceAssociationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListIdNamespaceAssociationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListIdNamespaceAssociationsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.MembershipIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("MembershipIdentifier"))
+	}
+	if s.MembershipIdentifier != nil && len(*s.MembershipIdentifier) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("MembershipIdentifier", 36))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListIdNamespaceAssociationsInput) SetMaxResults(v int64) *ListIdNamespaceAssociationsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetMembershipIdentifier sets the MembershipIdentifier field's value.
+func (s *ListIdNamespaceAssociationsInput) SetMembershipIdentifier(v string) *ListIdNamespaceAssociationsInput {
+	s.MembershipIdentifier = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListIdNamespaceAssociationsInput) SetNextToken(v string) *ListIdNamespaceAssociationsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListIdNamespaceAssociationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The summary information of the ID namespace associations that you requested.
+	//
+	// IdNamespaceAssociationSummaries is a required field
+	IdNamespaceAssociationSummaries []*IdNamespaceAssociationSummary `locationName:"idNamespaceAssociationSummaries" type:"list" required:"true"`
+
+	// The token value provided to access the next page of results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListIdNamespaceAssociationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListIdNamespaceAssociationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetIdNamespaceAssociationSummaries sets the IdNamespaceAssociationSummaries field's value.
+func (s *ListIdNamespaceAssociationsOutput) SetIdNamespaceAssociationSummaries(v []*IdNamespaceAssociationSummary) *ListIdNamespaceAssociationsOutput {
+	s.IdNamespaceAssociationSummaries = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListIdNamespaceAssociationsOutput) SetNextToken(v string) *ListIdNamespaceAssociationsOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListMembersInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -16119,11 +18833,12 @@ type ListMembersInput struct {
 	// CollaborationIdentifier is a required field
 	CollaborationIdentifier *string `location:"uri" locationName:"collaborationIdentifier" min:"36" type:"string" required:"true"`
 
-	// The maximum size of the results that is returned per call.
+	// The maximum number of results that are returned for an API request call.
+	// The service chooses a default number if you don't set one. The service might
+	// return a `nextToken` even if the `maxResults` value has not been met.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
-	// The token value retrieved from a previous call to access the next page of
-	// results.
+	// The pagination token that's used to fetch the next set of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
@@ -16190,8 +18905,7 @@ type ListMembersOutput struct {
 	// MemberSummaries is a required field
 	MemberSummaries []*MemberSummary `locationName:"memberSummaries" type:"list" required:"true"`
 
-	// The token value retrieved from a previous call to access the next page of
-	// results.
+	// The pagination token that's used to fetch the next set of results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -16228,11 +18942,12 @@ func (s *ListMembersOutput) SetNextToken(v string) *ListMembersOutput {
 type ListMembershipsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The maximum size of the results that is returned per call.
+	// The maximum number of results that are returned for an API request call.
+	// The service chooses a default number if you don't set one. The service might
+	// return a `nextToken` even if the `maxResults` value has not been met.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
-	// The token value retrieved from a previous call to access the next page of
-	// results.
+	// The pagination token that's used to fetch the next set of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 
 	// A filter which will return only memberships in the specified status.
@@ -16296,8 +19011,7 @@ type ListMembershipsOutput struct {
 	// MembershipSummaries is a required field
 	MembershipSummaries []*MembershipSummary `locationName:"membershipSummaries" type:"list" required:"true"`
 
-	// The token value retrieved from a previous call to access the next page of
-	// results.
+	// The pagination token that's used to fetch the next set of results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -16334,9 +19048,9 @@ func (s *ListMembershipsOutput) SetNextToken(v string) *ListMembershipsOutput {
 type ListPrivacyBudgetTemplatesInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The maximum size of the results that is returned per call. Service chooses
-	// a default if it has not been set. Service may return a nextToken even if
-	// the maximum results has not been met.
+	// The maximum number of results that are returned for an API request call.
+	// The service chooses a default number if you don't set one. The service might
+	// return a `nextToken` even if the `maxResults` value has not been met.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
 	// A unique identifier for one of your memberships for a collaboration. The
@@ -16346,8 +19060,7 @@ type ListPrivacyBudgetTemplatesInput struct {
 	// MembershipIdentifier is a required field
 	MembershipIdentifier *string `location:"uri" locationName:"membershipIdentifier" min:"36" type:"string" required:"true"`
 
-	// The token value retrieved from a previous call to access the next page of
-	// results.
+	// The pagination token that's used to fetch the next set of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
@@ -16409,8 +19122,7 @@ func (s *ListPrivacyBudgetTemplatesInput) SetNextToken(v string) *ListPrivacyBud
 type ListPrivacyBudgetTemplatesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The token value retrieved from a previous call to access the next page of
-	// results.
+	// The pagination token that's used to fetch the next set of results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// An array that summarizes the privacy budget templates. The summary includes
@@ -16453,9 +19165,9 @@ func (s *ListPrivacyBudgetTemplatesOutput) SetPrivacyBudgetTemplateSummaries(v [
 type ListPrivacyBudgetsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The maximum size of the results that is returned per call. Service chooses
-	// a default if it has not been set. Service may return a nextToken even if
-	// the maximum results has not been met.
+	// The maximum number of results that are returned for an API request call.
+	// The service chooses a default number if you don't set one. The service might
+	// return a `nextToken` even if the `maxResults` value has not been met.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
 	// A unique identifier for one of your memberships for a collaboration. The
@@ -16465,8 +19177,7 @@ type ListPrivacyBudgetsInput struct {
 	// MembershipIdentifier is a required field
 	MembershipIdentifier *string `location:"uri" locationName:"membershipIdentifier" min:"36" type:"string" required:"true"`
 
-	// The token value retrieved from a previous call to access the next page of
-	// results.
+	// The pagination token that's used to fetch the next set of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 
 	// The privacy budget type.
@@ -16542,8 +19253,7 @@ func (s *ListPrivacyBudgetsInput) SetPrivacyBudgetType(v string) *ListPrivacyBud
 type ListPrivacyBudgetsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The token value retrieved from a previous call to access the next page of
-	// results.
+	// The pagination token that's used to fetch the next set of results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// An array that summarizes the privacy budgets. The summary includes collaboration
@@ -16587,9 +19297,9 @@ func (s *ListPrivacyBudgetsOutput) SetPrivacyBudgetSummaries(v []*PrivacyBudgetS
 type ListProtectedQueriesInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The maximum size of the results that is returned per call. Service chooses
-	// a default if it has not been set. Service can return a nextToken even if
-	// the maximum results has not been met.
+	// The maximum number of results that are returned for an API request call.
+	// The service chooses a default number if you don't set one. The service might
+	// return a `nextToken` even if the `maxResults` value has not been met.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
 	// The identifier for the membership in the collaboration.
@@ -16597,8 +19307,7 @@ type ListProtectedQueriesInput struct {
 	// MembershipIdentifier is a required field
 	MembershipIdentifier *string `location:"uri" locationName:"membershipIdentifier" min:"36" type:"string" required:"true"`
 
-	// The token value retrieved from a previous call to access the next page of
-	// results.
+	// The pagination token that's used to fetch the next set of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 
 	// A filter on the status of the protected query.
@@ -16669,8 +19378,7 @@ func (s *ListProtectedQueriesInput) SetStatus(v string) *ListProtectedQueriesInp
 type ListProtectedQueriesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The token value retrieved from a previous call to access the next page of
-	// results.
+	// The pagination token that's used to fetch the next set of results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// A list of protected queries.
@@ -16718,15 +19426,15 @@ type ListSchemasInput struct {
 	// CollaborationIdentifier is a required field
 	CollaborationIdentifier *string `location:"uri" locationName:"collaborationIdentifier" min:"36" type:"string" required:"true"`
 
-	// The maximum size of the results that is returned per call.
+	// The maximum number of results that are returned for an API request call.
+	// The service chooses a default number if you don't set one. The service might
+	// return a `nextToken` even if the `maxResults` value has not been met.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
-	// The token value retrieved from a previous call to access the next page of
-	// results.
+	// The pagination token that's used to fetch the next set of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 
-	// If present, filter schemas by schema type. The only valid schema type is
-	// currently `TABLE`.
+	// If present, filter schemas by schema type.
 	SchemaType *string `location:"querystring" locationName:"schemaType" type:"string" enum:"SchemaType"`
 }
 
@@ -16794,8 +19502,7 @@ func (s *ListSchemasInput) SetSchemaType(v string) *ListSchemasInput {
 type ListSchemasOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The token value retrieved from a previous call to access the next page of
-	// results.
+	// The pagination token that's used to fetch the next set of results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// The retrieved list of schemas.
@@ -17752,6 +20459,107 @@ func (s *PaymentConfiguration) SetQueryCompute(v *QueryComputePaymentConfig) *Pa
 	return s
 }
 
+type PopulateIdMappingTableInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The unique identifier of the ID mapping table that you want to populate.
+	//
+	// IdMappingTableIdentifier is a required field
+	IdMappingTableIdentifier *string `location:"uri" locationName:"idMappingTableIdentifier" min:"36" type:"string" required:"true"`
+
+	// The unique identifier of the membership that contains the ID mapping table
+	// that you want to populate.
+	//
+	// MembershipIdentifier is a required field
+	MembershipIdentifier *string `location:"uri" locationName:"membershipIdentifier" min:"36" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PopulateIdMappingTableInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PopulateIdMappingTableInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PopulateIdMappingTableInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PopulateIdMappingTableInput"}
+	if s.IdMappingTableIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("IdMappingTableIdentifier"))
+	}
+	if s.IdMappingTableIdentifier != nil && len(*s.IdMappingTableIdentifier) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("IdMappingTableIdentifier", 36))
+	}
+	if s.MembershipIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("MembershipIdentifier"))
+	}
+	if s.MembershipIdentifier != nil && len(*s.MembershipIdentifier) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("MembershipIdentifier", 36))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIdMappingTableIdentifier sets the IdMappingTableIdentifier field's value.
+func (s *PopulateIdMappingTableInput) SetIdMappingTableIdentifier(v string) *PopulateIdMappingTableInput {
+	s.IdMappingTableIdentifier = &v
+	return s
+}
+
+// SetMembershipIdentifier sets the MembershipIdentifier field's value.
+func (s *PopulateIdMappingTableInput) SetMembershipIdentifier(v string) *PopulateIdMappingTableInput {
+	s.MembershipIdentifier = &v
+	return s
+}
+
+type PopulateIdMappingTableOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier of the mapping job that will populate the ID mapping
+	// table.
+	//
+	// IdMappingJobId is a required field
+	IdMappingJobId *string `locationName:"idMappingJobId" min:"36" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PopulateIdMappingTableOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PopulateIdMappingTableOutput) GoString() string {
+	return s.String()
+}
+
+// SetIdMappingJobId sets the IdMappingJobId field's value.
+func (s *PopulateIdMappingTableOutput) SetIdMappingJobId(v string) *PopulateIdMappingTableOutput {
+	s.IdMappingJobId = &v
+	return s
+}
+
 type PreviewPrivacyImpactInput struct {
 	_ struct{} `type:"structure"`
 
@@ -18138,7 +20946,7 @@ type PrivacyBudgetTemplate struct {
 	// MembershipId is a required field
 	MembershipId *string `locationName:"membershipId" min:"36" type:"string" required:"true"`
 
-	// Specifies the epislon and noise parameters for the privacy budget template.
+	// Specifies the epsilon and noise parameters for the privacy budget template.
 	//
 	// Parameters is a required field
 	Parameters *PrivacyBudgetTemplateParametersOutput_ `locationName:"parameters" type:"structure" required:"true"`
@@ -19244,6 +22052,71 @@ func (s *QueryComputePaymentConfig) SetIsResponsible(v bool) *QueryComputePaymen
 	return s
 }
 
+// Provides any necessary query constraint information.
+type QueryConstraint struct {
+	_ struct{} `type:"structure"`
+
+	// An array of column names that specifies which columns are required in the
+	// JOIN statement.
+	RequireOverlap *QueryConstraintRequireOverlap `locationName:"requireOverlap" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s QueryConstraint) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s QueryConstraint) GoString() string {
+	return s.String()
+}
+
+// SetRequireOverlap sets the RequireOverlap field's value.
+func (s *QueryConstraint) SetRequireOverlap(v *QueryConstraintRequireOverlap) *QueryConstraint {
+	s.RequireOverlap = v
+	return s
+}
+
+// Provides the name of the columns that are required to overlap.
+type QueryConstraintRequireOverlap struct {
+	_ struct{} `type:"structure"`
+
+	// The columns that are required to overlap.
+	Columns []*string `locationName:"columns" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s QueryConstraintRequireOverlap) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s QueryConstraintRequireOverlap) GoString() string {
+	return s.String()
+}
+
+// SetColumns sets the Columns field's value.
+func (s *QueryConstraintRequireOverlap) SetColumns(v []*string) *QueryConstraintRequireOverlap {
+	s.Columns = v
+	return s
+}
+
 // Request references a resource which does not exist.
 type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
@@ -19325,13 +22198,14 @@ type Schema struct {
 	// The analysis method for the schema. The only valid value is currently DIRECT_QUERY.
 	AnalysisMethod *string `locationName:"analysisMethod" type:"string" enum:"AnalysisMethod"`
 
-	// The analysis rule types associated with the schema. Currently, only one entry
-	// is present.
+	// The analysis rule types that are associated with the schema. Currently, only
+	// one entry is present.
 	//
 	// AnalysisRuleTypes is a required field
 	AnalysisRuleTypes []*string `locationName:"analysisRuleTypes" type:"list" required:"true" enum:"AnalysisRuleType"`
 
-	// The unique ARN for the collaboration that the schema belongs to.
+	// The unique Amazon Resource Name (ARN) for the collaboration that the schema
+	// belongs to.
 	//
 	// CollaborationArn is a required field
 	CollaborationArn *string `locationName:"collaborationArn" type:"string" required:"true"`
@@ -19341,12 +22215,12 @@ type Schema struct {
 	// CollaborationId is a required field
 	CollaborationId *string `locationName:"collaborationId" min:"36" type:"string" required:"true"`
 
-	// The columns for the relation this schema represents.
+	// The columns for the relation that this schema represents.
 	//
 	// Columns is a required field
 	Columns []*Column `locationName:"columns" type:"list" required:"true"`
 
-	// The time the schema was created.
+	// The time at which the schema was created.
 	//
 	// CreateTime is a required field
 	CreateTime *time.Time `locationName:"createTime" type:"timestamp" required:"true"`
@@ -19377,12 +22251,15 @@ type Schema struct {
 	// SchemaStatusDetails is a required field
 	SchemaStatusDetails []*SchemaStatusDetail `locationName:"schemaStatusDetails" type:"list" required:"true"`
 
-	// The type of schema. The only valid value is currently `TABLE`.
+	// The schema type properties.
+	SchemaTypeProperties *SchemaTypeProperties `locationName:"schemaTypeProperties" type:"structure"`
+
+	// The type of schema.
 	//
 	// Type is a required field
 	Type *string `locationName:"type" type:"string" required:"true" enum:"SchemaType"`
 
-	// The time the schema was last updated.
+	// The most recent time at which the schema was updated.
 	//
 	// UpdateTime is a required field
 	UpdateTime *time.Time `locationName:"updateTime" type:"timestamp" required:"true"`
@@ -19469,6 +22346,12 @@ func (s *Schema) SetPartitionKeys(v []*Column) *Schema {
 // SetSchemaStatusDetails sets the SchemaStatusDetails field's value.
 func (s *Schema) SetSchemaStatusDetails(v []*SchemaStatusDetail) *Schema {
 	s.SchemaStatusDetails = v
+	return s
+}
+
+// SetSchemaTypeProperties sets the SchemaTypeProperties field's value.
+func (s *Schema) SetSchemaTypeProperties(v *SchemaTypeProperties) *Schema {
+	s.SchemaTypeProperties = v
 	return s
 }
 
@@ -19695,7 +22578,7 @@ type SchemaSummary struct {
 	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true"`
 
-	// The type of schema object. The only valid schema type is currently `TABLE`.
+	// The type of schema object.
 	//
 	// Type is a required field
 	Type *string `locationName:"type" type:"string" required:"true" enum:"SchemaType"`
@@ -19775,6 +22658,38 @@ func (s *SchemaSummary) SetType(v string) *SchemaSummary {
 // SetUpdateTime sets the UpdateTime field's value.
 func (s *SchemaSummary) SetUpdateTime(v time.Time) *SchemaSummary {
 	s.UpdateTime = &v
+	return s
+}
+
+// Information about the schema type properties.
+type SchemaTypeProperties struct {
+	_ struct{} `type:"structure"`
+
+	// The ID mapping table for the schema type properties.
+	IdMappingTable *IdMappingTableSchemaTypeProperties `locationName:"idMappingTable" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SchemaTypeProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SchemaTypeProperties) GoString() string {
+	return s.String()
+}
+
+// SetIdMappingTable sets the IdMappingTable field's value.
+func (s *SchemaTypeProperties) SetIdMappingTable(v *IdMappingTableSchemaTypeProperties) *SchemaTypeProperties {
+	s.IdMappingTable = v
 	return s
 }
 
@@ -20949,6 +23864,127 @@ func (s *UpdateConfiguredTableOutput) SetConfiguredTable(v *ConfiguredTable) *Up
 	return s
 }
 
+type UpdateIdMappingTableInput struct {
+	_ struct{} `type:"structure"`
+
+	// A new description for the ID mapping table.
+	Description *string `locationName:"description" type:"string"`
+
+	// The unique identifier of the ID mapping table that you want to update.
+	//
+	// IdMappingTableIdentifier is a required field
+	IdMappingTableIdentifier *string `location:"uri" locationName:"idMappingTableIdentifier" min:"36" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the Amazon Web Services KMS key.
+	KmsKeyArn *string `locationName:"kmsKeyArn" min:"20" type:"string"`
+
+	// The unique identifier of the membership that contains the ID mapping table
+	// that you want to update.
+	//
+	// MembershipIdentifier is a required field
+	MembershipIdentifier *string `location:"uri" locationName:"membershipIdentifier" min:"36" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateIdMappingTableInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateIdMappingTableInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateIdMappingTableInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateIdMappingTableInput"}
+	if s.IdMappingTableIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("IdMappingTableIdentifier"))
+	}
+	if s.IdMappingTableIdentifier != nil && len(*s.IdMappingTableIdentifier) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("IdMappingTableIdentifier", 36))
+	}
+	if s.KmsKeyArn != nil && len(*s.KmsKeyArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("KmsKeyArn", 20))
+	}
+	if s.MembershipIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("MembershipIdentifier"))
+	}
+	if s.MembershipIdentifier != nil && len(*s.MembershipIdentifier) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("MembershipIdentifier", 36))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateIdMappingTableInput) SetDescription(v string) *UpdateIdMappingTableInput {
+	s.Description = &v
+	return s
+}
+
+// SetIdMappingTableIdentifier sets the IdMappingTableIdentifier field's value.
+func (s *UpdateIdMappingTableInput) SetIdMappingTableIdentifier(v string) *UpdateIdMappingTableInput {
+	s.IdMappingTableIdentifier = &v
+	return s
+}
+
+// SetKmsKeyArn sets the KmsKeyArn field's value.
+func (s *UpdateIdMappingTableInput) SetKmsKeyArn(v string) *UpdateIdMappingTableInput {
+	s.KmsKeyArn = &v
+	return s
+}
+
+// SetMembershipIdentifier sets the MembershipIdentifier field's value.
+func (s *UpdateIdMappingTableInput) SetMembershipIdentifier(v string) *UpdateIdMappingTableInput {
+	s.MembershipIdentifier = &v
+	return s
+}
+
+type UpdateIdMappingTableOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The updated ID mapping table.
+	//
+	// IdMappingTable is a required field
+	IdMappingTable *IdMappingTable `locationName:"idMappingTable" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateIdMappingTableOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateIdMappingTableOutput) GoString() string {
+	return s.String()
+}
+
+// SetIdMappingTable sets the IdMappingTable field's value.
+func (s *UpdateIdMappingTableOutput) SetIdMappingTable(v *IdMappingTable) *UpdateIdMappingTableOutput {
+	s.IdMappingTable = v
+	return s
+}
+
 type UpdateMembershipInput struct {
 	_ struct{} `type:"structure"`
 
@@ -21499,6 +24535,9 @@ const (
 
 	// AnalysisRuleTypeCustom is a AnalysisRuleType enum value
 	AnalysisRuleTypeCustom = "CUSTOM"
+
+	// AnalysisRuleTypeIdMappingTable is a AnalysisRuleType enum value
+	AnalysisRuleTypeIdMappingTable = "ID_MAPPING_TABLE"
 )
 
 // AnalysisRuleType_Values returns all elements of the AnalysisRuleType enum
@@ -21507,6 +24546,7 @@ func AnalysisRuleType_Values() []string {
 		AnalysisRuleTypeAggregation,
 		AnalysisRuleTypeList,
 		AnalysisRuleTypeCustom,
+		AnalysisRuleTypeIdMappingTable,
 	}
 }
 
@@ -21639,6 +24679,22 @@ func FilterableMemberStatus_Values() []string {
 	return []string{
 		FilterableMemberStatusInvited,
 		FilterableMemberStatusActive,
+	}
+}
+
+const (
+	// IdNamespaceTypeSource is a IdNamespaceType enum value
+	IdNamespaceTypeSource = "SOURCE"
+
+	// IdNamespaceTypeTarget is a IdNamespaceType enum value
+	IdNamespaceTypeTarget = "TARGET"
+)
+
+// IdNamespaceType_Values returns all elements of the IdNamespaceType enum
+func IdNamespaceType_Values() []string {
+	return []string{
+		IdNamespaceTypeSource,
+		IdNamespaceTypeTarget,
 	}
 }
 
@@ -22037,12 +25093,28 @@ func ScalarFunctions_Values() []string {
 const (
 	// SchemaConfigurationDifferentialPrivacy is a SchemaConfiguration enum value
 	SchemaConfigurationDifferentialPrivacy = "DIFFERENTIAL_PRIVACY"
+
+	// SchemaConfigurationCustomAnalysisNotAllowed is a SchemaConfiguration enum value
+	SchemaConfigurationCustomAnalysisNotAllowed = "CUSTOM_ANALYSIS_NOT_ALLOWED"
+
+	// SchemaConfigurationNoMemberAccountAllowedToProvideAnalysis is a SchemaConfiguration enum value
+	SchemaConfigurationNoMemberAccountAllowedToProvideAnalysis = "NO_MEMBER_ACCOUNT_ALLOWED_TO_PROVIDE_ANALYSIS"
+
+	// SchemaConfigurationDifferentialPrivacyBudgetNotConfigured is a SchemaConfiguration enum value
+	SchemaConfigurationDifferentialPrivacyBudgetNotConfigured = "DIFFERENTIAL_PRIVACY_BUDGET_NOT_CONFIGURED"
+
+	// SchemaConfigurationIdMappingTableNotPopulated is a SchemaConfiguration enum value
+	SchemaConfigurationIdMappingTableNotPopulated = "ID_MAPPING_TABLE_NOT_POPULATED"
 )
 
 // SchemaConfiguration_Values returns all elements of the SchemaConfiguration enum
 func SchemaConfiguration_Values() []string {
 	return []string{
 		SchemaConfigurationDifferentialPrivacy,
+		SchemaConfigurationCustomAnalysisNotAllowed,
+		SchemaConfigurationNoMemberAccountAllowedToProvideAnalysis,
+		SchemaConfigurationDifferentialPrivacyBudgetNotConfigured,
+		SchemaConfigurationIdMappingTableNotPopulated,
 	}
 }
 
@@ -22074,6 +25146,9 @@ const (
 
 	// SchemaStatusReasonCodeDifferentialPrivacyPolicyNotConfigured is a SchemaStatusReasonCode enum value
 	SchemaStatusReasonCodeDifferentialPrivacyPolicyNotConfigured = "DIFFERENTIAL_PRIVACY_POLICY_NOT_CONFIGURED"
+
+	// SchemaStatusReasonCodeIdMappingTableNotPopulated is a SchemaStatusReasonCode enum value
+	SchemaStatusReasonCodeIdMappingTableNotPopulated = "ID_MAPPING_TABLE_NOT_POPULATED"
 )
 
 // SchemaStatusReasonCode_Values returns all elements of the SchemaStatusReasonCode enum
@@ -22083,18 +25158,23 @@ func SchemaStatusReasonCode_Values() []string {
 		SchemaStatusReasonCodeAnalysisTemplatesNotConfigured,
 		SchemaStatusReasonCodeAnalysisProvidersNotConfigured,
 		SchemaStatusReasonCodeDifferentialPrivacyPolicyNotConfigured,
+		SchemaStatusReasonCodeIdMappingTableNotPopulated,
 	}
 }
 
 const (
 	// SchemaTypeTable is a SchemaType enum value
 	SchemaTypeTable = "TABLE"
+
+	// SchemaTypeIdMappingTable is a SchemaType enum value
+	SchemaTypeIdMappingTable = "ID_MAPPING_TABLE"
 )
 
 // SchemaType_Values returns all elements of the SchemaType enum
 func SchemaType_Values() []string {
 	return []string{
 		SchemaTypeTable,
+		SchemaTypeIdMappingTable,
 	}
 }
 

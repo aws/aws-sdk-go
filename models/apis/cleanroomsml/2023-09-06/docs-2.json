@@ -42,6 +42,12 @@
         "GlueDataSource$catalogId": "<p>The Glue catalog that contains the training data.</p>"
       }
     },
+    "AnalysisTemplateArn": {
+      "base": null,
+      "refs": {
+        "ProtectedQuerySQLParameters$analysisTemplateArn": "<p>The Amazon Resource Name (ARN) associated with the analysis template within a collaboration.</p>"
+      }
+    },
     "AudienceDestination": {
       "base": "<p>Defines the Amazon S3 bucket where the configured audience is stored.</p>",
       "refs": {
@@ -159,7 +165,7 @@
       }
     },
     "AudienceSizeConfig": {
-      "base": "<p>Configure the list of audience output sizes that can be created. A request to <a>StartAudienceGenerationJob</a> that uses this configured audience model must have an <code>audienceSize</code> selected from this list. You can use the <code>ABSOLUTE</code> <a>AudienceSize</a> to configure out audience sizes using the count of identifiers in the output. You can use the <code>Percentage</code> <a>AudienceSize</a> to configure sizes in the range 1-100 percent.</p>",
+      "base": "<p>Returns the relevance scores at these audience sizes when used in the <a>GetAudienceGenerationJob</a> for a specified audience generation job and configured audience model.</p> <p>Specifies the list of allowed <code>audienceSize</code> values when used in the <a>StartAudienceExportJob</a> for an audience generation job. You can use the <code>ABSOLUTE</code> <a>AudienceSize</a> to configure out audience sizes using the count of identifiers in the output. You can use the <code>Percentage</code> <a>AudienceSize</a> to configure sizes in the range 1-100 percent.</p>",
       "refs": {
         "CreateConfiguredAudienceModelRequest$audienceSizeConfig": "<p>Configure the list of output sizes of audiences that can be created using this configured audience model. A request to <a>StartAudienceGenerationJob</a> that uses this configured audience model must have an <code>audienceSize</code> selected from this list. You can use the <code>ABSOLUTE</code> <a>AudienceSize</a> to configure out audience sizes using the count of identifiers in the output. You can use the <code>Percentage</code> <a>AudienceSize</a> to configure sizes in the range 1-100 percent.</p>",
         "GetConfiguredAudienceModelResponse$audienceSizeConfig": "<p>The list of output sizes of audiences that can be created using this configured audience model. A request to <a>StartAudienceGenerationJob</a> that uses this configured audience model must have an <code>audienceSize</code> selected from this list. You can use the <code>ABSOLUTE</code> <a>AudienceSize</a> to configure out audience sizes using the count of identifiers in the output. You can use the <code>Percentage</code> <a>AudienceSize</a> to configure sizes in the range 1-100 percent.</p>",
@@ -448,7 +454,7 @@
     "IamRoleArn": {
       "base": null,
       "refs": {
-        "AudienceGenerationJobDataSource$roleArn": "<p>The ARN of the IAM role that can read the Amazon S3 bucket where the training data is stored.</p>",
+        "AudienceGenerationJobDataSource$roleArn": "<p>The ARN of the IAM role that can read the Amazon S3 bucket where the seed audience is stored.</p>",
         "ConfiguredAudienceModelOutputConfig$roleArn": "<p>The ARN of the IAM role that can write the Amazon S3 bucket.</p>",
         "CreateTrainingDatasetRequest$roleArn": "<p>The ARN of the IAM role that Clean Rooms ML can assume to read the data referred to in the <code>dataSource</code> field of each dataset.</p> <p>Passing a role across AWS accounts is not allowed. If you pass a role that isn't in your account, you get an <code>AccessDeniedException</code> error.</p>",
         "GetTrainingDatasetResponse$roleArn": "<p>The IAM role used to read the training data.</p>"
@@ -581,10 +587,40 @@
         "ListTrainingDatasetsResponse$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>"
       }
     },
+    "ParameterKey": {
+      "base": null,
+      "refs": {
+        "ParameterMap$key": null
+      }
+    },
+    "ParameterMap": {
+      "base": null,
+      "refs": {
+        "ProtectedQuerySQLParameters$parameters": "<p>The protected query SQL parameters.</p>"
+      }
+    },
+    "ParameterValue": {
+      "base": null,
+      "refs": {
+        "ParameterMap$value": null
+      }
+    },
     "PolicyExistenceCondition": {
       "base": null,
       "refs": {
         "PutConfiguredAudienceModelPolicyRequest$policyExistenceCondition": "<p>Use this to prevent unexpected concurrent modification of the policy.</p>"
+      }
+    },
+    "ProtectedQuerySQLParameters": {
+      "base": "<p>The parameters for the SQL type Protected Query.</p>",
+      "refs": {
+        "AudienceGenerationJobDataSource$sqlParameters": "<p>The protected SQL query parameters.</p>"
+      }
+    },
+    "ProtectedQuerySQLParametersQueryStringString": {
+      "base": null,
+      "refs": {
+        "ProtectedQuerySQLParameters$queryString": "<p>The query string to be submitted.</p>"
       }
     },
     "PutConfiguredAudienceModelPolicyRequest": {
@@ -695,10 +731,11 @@
       "refs": {
         "AccessDeniedException$message": null,
         "ConflictException$message": null,
+        "GetAudienceGenerationJobResponse$protectedQueryIdentifier": "<p>The unique identifier of the protected query for this audience generation job.</p>",
         "ResourceNotFoundException$message": null,
         "ServiceQuotaExceededException$message": null,
-        "StatusDetails$message": "<p>The error message that was returned. The message is intended for human consumption and can change at any time. Use the <code>statusCode</code> for programmatic error handling.</p>",
         "StatusDetails$statusCode": "<p>The status code that was returned. The status code is intended for programmatic error handling. Clean Rooms ML will not change the status code for existing error conditions.</p>",
+        "StatusDetails$message": "<p>The error message that was returned. The message is intended for human consumption and can change at any time. Use the <code>statusCode</code> for programmatic error handling.</p>",
         "ValidationException$message": null
       }
     },
@@ -713,14 +750,14 @@
         "AudienceModelSummary$updateTime": "<p>The most recent time at which the audience model was updated.</p>",
         "ConfiguredAudienceModelSummary$createTime": "<p>The time at which the configured audience model was created.</p>",
         "ConfiguredAudienceModelSummary$updateTime": "<p>The most recent time at which the configured audience model was updated.</p>",
-        "CreateAudienceModelRequest$trainingDataEndTime": "<p>The end date and time of the training window.</p>",
         "CreateAudienceModelRequest$trainingDataStartTime": "<p>The start date and time of the training window.</p>",
+        "CreateAudienceModelRequest$trainingDataEndTime": "<p>The end date and time of the training window.</p>",
         "GetAudienceGenerationJobResponse$createTime": "<p>The time at which the audience generation job was created.</p>",
         "GetAudienceGenerationJobResponse$updateTime": "<p>The most recent time at which the audience generation job was updated.</p>",
         "GetAudienceModelResponse$createTime": "<p>The time at which the audience model was created.</p>",
-        "GetAudienceModelResponse$trainingDataEndTime": "<p>The end date specified for the training window.</p>",
-        "GetAudienceModelResponse$trainingDataStartTime": "<p>The start date specified for the training window.</p>",
         "GetAudienceModelResponse$updateTime": "<p>The most recent time at which the audience model was updated.</p>",
+        "GetAudienceModelResponse$trainingDataStartTime": "<p>The start date specified for the training window.</p>",
+        "GetAudienceModelResponse$trainingDataEndTime": "<p>The end date specified for the training window.</p>",
         "GetConfiguredAudienceModelResponse$createTime": "<p>The time at which the configured audience model was created.</p>",
         "GetConfiguredAudienceModelResponse$updateTime": "<p>The most recent time at which the configured audience model was updated.</p>",
         "GetTrainingDatasetResponse$createTime": "<p>The time at which the training dataset was created.</p>",

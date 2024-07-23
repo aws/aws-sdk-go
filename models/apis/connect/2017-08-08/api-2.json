@@ -12957,6 +12957,28 @@
       "max":5,
       "min":0
     },
+    "RealTimeContactAnalysisPostContactSummaryContent":{
+      "type":"string",
+      "max":1270,
+      "min":1
+    },
+    "RealTimeContactAnalysisPostContactSummaryFailureCode":{
+      "type":"string",
+      "enum":[
+        "QUOTA_EXCEEDED",
+        "INSUFFICIENT_CONVERSATION_CONTENT",
+        "FAILED_SAFETY_GUIDELINES",
+        "INVALID_ANALYSIS_CONFIGURATION",
+        "INTERNAL_ERROR"
+      ]
+    },
+    "RealTimeContactAnalysisPostContactSummaryStatus":{
+      "type":"string",
+      "enum":[
+        "FAILED",
+        "COMPLETED"
+      ]
+    },
     "RealTimeContactAnalysisSegmentAttachments":{
       "type":"structure",
       "required":[
@@ -13005,6 +13027,15 @@
         "IssuesDetected":{"shape":"RealTimeContactAnalysisIssuesDetected"}
       }
     },
+    "RealTimeContactAnalysisSegmentPostContactSummary":{
+      "type":"structure",
+      "required":["Status"],
+      "members":{
+        "Content":{"shape":"RealTimeContactAnalysisPostContactSummaryContent"},
+        "Status":{"shape":"RealTimeContactAnalysisPostContactSummaryStatus"},
+        "FailureCode":{"shape":"RealTimeContactAnalysisPostContactSummaryFailureCode"}
+      }
+    },
     "RealTimeContactAnalysisSegmentTranscript":{
       "type":"structure",
       "required":[
@@ -13033,13 +13064,14 @@
         "Categories",
         "Issues",
         "Event",
-        "Attachments"
+        "Attachments",
+        "PostContactSummary"
       ]
     },
     "RealTimeContactAnalysisSegmentTypes":{
       "type":"list",
       "member":{"shape":"RealTimeContactAnalysisSegmentType"},
-      "max":5
+      "max":6
     },
     "RealTimeContactAnalysisSentimentLabel":{
       "type":"string",
@@ -13120,7 +13152,8 @@
         "Categories":{"shape":"RealTimeContactAnalysisSegmentCategories"},
         "Issues":{"shape":"RealTimeContactAnalysisSegmentIssues"},
         "Event":{"shape":"RealTimeContactAnalysisSegmentEvent"},
-        "Attachments":{"shape":"RealTimeContactAnalysisSegmentAttachments"}
+        "Attachments":{"shape":"RealTimeContactAnalysisSegmentAttachments"},
+        "PostContactSummary":{"shape":"RealTimeContactAnalysisSegmentPostContactSummary"}
       },
       "union":true
     },

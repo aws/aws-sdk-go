@@ -3,14 +3,18 @@
 // Package connectcontactlens provides the client and types for making API
 // requests to Amazon Connect Contact Lens.
 //
-// Contact Lens for Amazon Connect enables you to analyze conversations between
+//   - Contact Lens actions (https://docs.aws.amazon.com/connect/latest/APIReference/API_Operations_Amazon_Connect_Contact_Lens.html)
+//
+//   - Contact Lens data types (https://docs.aws.amazon.com/connect/latest/APIReference/API_Types_Amazon_Connect_Contact_Lens.html)
+//
+// Amazon Connect Contact Lens enables you to analyze conversations between
 // customer and agents, by using speech transcription, natural language processing,
 // and intelligent search capabilities. It performs sentiment analysis, detects
 // issues, and enables you to automatically categorize contacts.
 //
-// Contact Lens for Amazon Connect provides both real-time and post-call analytics
+// Amazon Connect Contact Lens provides both real-time and post-call analytics
 // of customer-agent conversations. For more information, see Analyze conversations
-// using Contact Lens (https://docs.aws.amazon.com/connect/latest/adminguide/analyze-conversations.html)
+// using speech analytics (https://docs.aws.amazon.com/connect/latest/adminguide/analyze-conversations.html)
 // in the Amazon Connect Administrator Guide.
 //
 // See https://docs.aws.amazon.com/goto/WebAPI/connect-contact-lens-2020-08-21 for more information on this service.

@@ -815,7 +815,6 @@
         "CreateSubscriptionGrantOutput$createdAt": "<p>A timestamp of when the subscription grant is created.</p>",
         "CreateSubscriptionRequestOutput$createdAt": "<p>A timestamp of when the subscription request is created.</p>",
         "CreateSubscriptionTargetOutput$createdAt": "<p>The timestamp of when the subscription target was created.</p>",
-        "DataProductSummary$createdAt": "<p/>",
         "DeleteSubscriptionGrantOutput$createdAt": "<p>The timestamp of when the subscription grant that is deleted was created.</p>",
         "DomainSummary$createdAt": "<p>A timestamp of when a Amazon DataZone domain was created.</p>",
         "FormTypeData$createdAt": "<p>The timestamp of when the metadata form type was created.</p>",
@@ -871,7 +870,6 @@
         "CreateSubscriptionGrantOutput$createdBy": "<p>The Amazon DataZone user who created the subscription grant.</p>",
         "CreateSubscriptionRequestOutput$createdBy": "<p>The Amazon DataZone user who created the subscription request.</p>",
         "CreateSubscriptionTargetOutput$createdBy": "<p>The Amazon DataZone user who created the subscription target.</p>",
-        "DataProductSummary$createdBy": "<p/>",
         "DeleteSubscriptionGrantOutput$createdBy": "<p>The Amazon DataZone user who created the subscription grant that is deleted.</p>",
         "FormTypeData$createdBy": "<p>The Amazon DataZone user who created teh metadata form type.</p>",
         "GetAssetOutput$createdBy": "<p>The Amazon DataZone user who created the asset.</p>",
@@ -949,43 +947,6 @@
       "refs": {
         "TimeSeriesDataPointFormOutput$id": "<p>The ID of the time series data points form.</p>",
         "TimeSeriesDataPointSummaryFormOutput$id": "<p>The ID of the time series data points summary form.</p>"
-      }
-    },
-    "DataProductDescription": {
-      "base": null,
-      "refs": {
-        "DataProductSummary$description": "<p/>"
-      }
-    },
-    "DataProductId": {
-      "base": null,
-      "refs": {
-        "DataProductItem$itemId": "<p/>",
-        "DataProductSummary$id": "<p/>"
-      }
-    },
-    "DataProductItem": {
-      "base": "<p/>",
-      "refs": {
-        "DataProductItems$member": null
-      }
-    },
-    "DataProductItems": {
-      "base": null,
-      "refs": {
-        "DataProductSummary$dataProductItems": "<p/>"
-      }
-    },
-    "DataProductName": {
-      "base": null,
-      "refs": {
-        "DataProductSummary$name": "<p/>"
-      }
-    },
-    "DataProductSummary": {
-      "base": "<p/>",
-      "refs": {
-        "SearchInventoryResultItem$dataProductItem": "<p>The data product item included in the search results.</p>"
       }
     },
     "DataSourceConfigurationInput": {
@@ -1535,8 +1496,6 @@
         "CreateSubscriptionTargetOutput$domainId": "<p>The ID of the Amazon DataZone domain in which the subscription target was created.</p>",
         "CreateUserProfileInput$domainIdentifier": "<p>The identifier of the Amazon DataZone domain in which a user profile is created.</p>",
         "CreateUserProfileOutput$domainId": "<p>The identifier of the Amazon DataZone domain in which a user profile is created.</p>",
-        "DataProductItem$domainId": "<p/>",
-        "DataProductSummary$domainId": "<p/>",
         "DataSourceSummary$domainId": "<p>The ID of the Amazon DataZone domain in which the data source exists.</p>",
         "DeleteAssetFilterInput$domainIdentifier": "<p>The ID of the domain where you want to delete an asset filter.</p>",
         "DeleteAssetInput$domainIdentifier": "<p>The ID of the Amazon DataZone domain in which the asset is deleted.</p>",
@@ -2652,7 +2611,6 @@
         "CreateEnvironmentOutput$glossaryTerms": "<p>The glossary terms that can be used in this Amazon DataZone environment.</p>",
         "CreateProjectInput$glossaryTerms": "<p>The glossary terms that can be used in this Amazon DataZone project.</p>",
         "CreateProjectOutput$glossaryTerms": "<p>The glossary terms that can be used in the project.</p>",
-        "DataProductSummary$glossaryTerms": "<p/>",
         "GetAssetOutput$glossaryTerms": "<p>The business glossary terms attached to the asset.</p>",
         "GetEnvironmentBlueprintOutput$glossaryTerms": "<p>The glossary terms attached to this Amazon DataZone blueprint.</p>",
         "GetEnvironmentOutput$glossaryTerms": "<p>The business glossary terms that can be used in this environment.</p>",
@@ -3567,7 +3525,6 @@
         "CreateProjectMembershipInput$projectIdentifier": "<p>The ID of the project for which this project membership was created.</p>",
         "CreateProjectOutput$id": "<p>The ID of the Amazon DataZone project.</p>",
         "CreateSubscriptionTargetOutput$projectId": "<p>???</p>",
-        "DataProductSummary$owningProjectId": "<p/>",
         "DataSourceRunActivity$projectId": "<p>The project ID included in the data source run activity.</p>",
         "DataSourceRunSummary$projectId": "<p>The project ID of the data source run.</p>",
         "DeleteDataSourceOutput$projectId": "<p>The ID of the project in which this data source exists and from which it's deleted.</p>",
@@ -5266,7 +5223,6 @@
         "CreateSubscriptionGrantOutput$updatedAt": "<p>A timestamp of when the subscription grant was updated.</p>",
         "CreateSubscriptionRequestOutput$updatedAt": "<p>The timestamp of when the subscription request was updated.</p>",
         "CreateSubscriptionTargetOutput$updatedAt": "<p>The timestamp of when the subscription target was updated.</p>",
-        "DataProductSummary$updatedAt": "<p/>",
         "DeleteSubscriptionGrantOutput$updatedAt": "<p>The timestamp of when the subscription grant that is deleted was updated.</p>",
         "DomainSummary$lastUpdatedAt": "<p>A timestamp of when a Amazon DataZone domain was last updated.</p>",
         "GetAssetTypeOutput$updatedAt": "<p>The timestamp of when the asset type was updated.</p>",
@@ -5306,7 +5262,6 @@
         "CreateSubscriptionGrantOutput$updatedBy": "<p>The Amazon DataZone user who updated the subscription grant.</p>",
         "CreateSubscriptionRequestOutput$updatedBy": "<p>The Amazon DataZone user who updated the subscription request.</p>",
         "CreateSubscriptionTargetOutput$updatedBy": "<p>The Amazon DataZone user who updated the subscription target.</p>",
-        "DataProductSummary$updatedBy": "<p/>",
         "DeleteSubscriptionGrantOutput$updatedBy": "<p>The Amazon DataZone user who updated the subscription grant that is deleted.</p>",
         "GetAssetTypeOutput$updatedBy": "<p>The Amazon DataZone user that updated the asset type.</p>",
         "GetGlossaryOutput$updatedBy": "<p>The Amazon DataZone user who updated the business glossary.</p>",

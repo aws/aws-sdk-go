@@ -524,7 +524,7 @@ type ListRealtimeContactAnalysisSegmentsInput struct {
 	// InstanceId is a required field
 	InstanceId *string `min:"1" type:"string" required:"true"`
 
-	// The maximimum number of results to return per page.
+	// The maximum number of results to return per page.
 	MaxResults *int64 `min:"1" type:"integer"`
 
 	// The token for the next set of results. Use the value returned in the previous
@@ -699,12 +699,83 @@ func (s *PointOfInterest) SetEndOffsetMillis(v int64) *PointOfInterest {
 	return s
 }
 
+// Information about the post-contact summary.
+type PostContactSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The content of the summary.
+	Content *string `min:"1" type:"string"`
+
+	// If the summary failed to be generated, one of the following failure codes
+	// occurs:
+	//
+	//    * QUOTA_EXCEEDED: The number of concurrent analytics jobs reached your
+	//    service quota.
+	//
+	//    * INSUFFICIENT_CONVERSATION_CONTENT: The conversation needs to have at
+	//    least one turn from both the participants in order to generate the summary.
+	//
+	//    * FAILED_SAFETY_GUIDELINES: The generated summary cannot be provided because
+	//    it failed to meet system safety guidelines.
+	//
+	//    * INVALID_ANALYSIS_CONFIGURATION: This code occurs when, for example,
+	//    you're using a language (https://docs.aws.amazon.com/connect/latest/adminguide/supported-languages.html#supported-languages-contact-lens)
+	//    that isn't supported by generative AI-powered post-contact summaries.
+	//
+	//    * INTERNAL_ERROR: Internal system error.
+	FailureCode *string `type:"string" enum:"PostContactSummaryFailureCode"`
+
+	// Whether the summary was successfully COMPLETED or FAILED to be generated.
+	//
+	// Status is a required field
+	Status *string `type:"string" required:"true" enum:"PostContactSummaryStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PostContactSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PostContactSummary) GoString() string {
+	return s.String()
+}
+
+// SetContent sets the Content field's value.
+func (s *PostContactSummary) SetContent(v string) *PostContactSummary {
+	s.Content = &v
+	return s
+}
+
+// SetFailureCode sets the FailureCode field's value.
+func (s *PostContactSummary) SetFailureCode(v string) *PostContactSummary {
+	s.FailureCode = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *PostContactSummary) SetStatus(v string) *PostContactSummary {
+	s.Status = &v
+	return s
+}
+
 // An analyzed segment for a real-time analysis session.
 type RealtimeContactAnalysisSegment struct {
 	_ struct{} `type:"structure"`
 
 	// The matched category rules.
 	Categories *Categories `type:"structure"`
+
+	// Information about the post-contact summary.
+	PostContactSummary *PostContactSummary `type:"structure"`
 
 	// The analyzed transcript.
 	Transcript *Transcript `type:"structure"`
@@ -731,6 +802,12 @@ func (s RealtimeContactAnalysisSegment) GoString() string {
 // SetCategories sets the Categories field's value.
 func (s *RealtimeContactAnalysisSegment) SetCategories(v *Categories) *RealtimeContactAnalysisSegment {
 	s.Categories = v
+	return s
+}
+
+// SetPostContactSummary sets the PostContactSummary field's value.
+func (s *RealtimeContactAnalysisSegment) SetPostContactSummary(v *PostContactSummary) *RealtimeContactAnalysisSegment {
+	s.PostContactSummary = v
 	return s
 }
 
@@ -895,7 +972,7 @@ type Transcript struct {
 	// List of positions where issues were detected on the transcript.
 	IssuesDetected []*IssueDetected `type:"list"`
 
-	// The identifier of the participant.
+	// The identifier of the participant. Valid values are CUSTOMER or AGENT.
 	//
 	// ParticipantId is a required field
 	ParticipantId *string `min:"1" type:"string" required:"true"`
@@ -905,7 +982,7 @@ type Transcript struct {
 	// ParticipantRole is a required field
 	ParticipantRole *string `min:"1" type:"string" required:"true"`
 
-	// The sentiment of the detected for this piece of transcript.
+	// The sentiment detected for this piece of transcript.
 	//
 	// Sentiment is a required field
 	Sentiment *string `type:"string" required:"true" enum:"SentimentValue"`
@@ -975,6 +1052,50 @@ func (s *Transcript) SetParticipantRole(v string) *Transcript {
 func (s *Transcript) SetSentiment(v string) *Transcript {
 	s.Sentiment = &v
 	return s
+}
+
+const (
+	// PostContactSummaryFailureCodeQuotaExceeded is a PostContactSummaryFailureCode enum value
+	PostContactSummaryFailureCodeQuotaExceeded = "QUOTA_EXCEEDED"
+
+	// PostContactSummaryFailureCodeInsufficientConversationContent is a PostContactSummaryFailureCode enum value
+	PostContactSummaryFailureCodeInsufficientConversationContent = "INSUFFICIENT_CONVERSATION_CONTENT"
+
+	// PostContactSummaryFailureCodeFailedSafetyGuidelines is a PostContactSummaryFailureCode enum value
+	PostContactSummaryFailureCodeFailedSafetyGuidelines = "FAILED_SAFETY_GUIDELINES"
+
+	// PostContactSummaryFailureCodeInvalidAnalysisConfiguration is a PostContactSummaryFailureCode enum value
+	PostContactSummaryFailureCodeInvalidAnalysisConfiguration = "INVALID_ANALYSIS_CONFIGURATION"
+
+	// PostContactSummaryFailureCodeInternalError is a PostContactSummaryFailureCode enum value
+	PostContactSummaryFailureCodeInternalError = "INTERNAL_ERROR"
+)
+
+// PostContactSummaryFailureCode_Values returns all elements of the PostContactSummaryFailureCode enum
+func PostContactSummaryFailureCode_Values() []string {
+	return []string{
+		PostContactSummaryFailureCodeQuotaExceeded,
+		PostContactSummaryFailureCodeInsufficientConversationContent,
+		PostContactSummaryFailureCodeFailedSafetyGuidelines,
+		PostContactSummaryFailureCodeInvalidAnalysisConfiguration,
+		PostContactSummaryFailureCodeInternalError,
+	}
+}
+
+const (
+	// PostContactSummaryStatusFailed is a PostContactSummaryStatus enum value
+	PostContactSummaryStatusFailed = "FAILED"
+
+	// PostContactSummaryStatusCompleted is a PostContactSummaryStatus enum value
+	PostContactSummaryStatusCompleted = "COMPLETED"
+)
+
+// PostContactSummaryStatus_Values returns all elements of the PostContactSummaryStatus enum
+func PostContactSummaryStatus_Values() []string {
+	return []string{
+		PostContactSummaryStatusFailed,
+		PostContactSummaryStatusCompleted,
+	}
 }
 
 const (

@@ -1,3 +1,15 @@
+Release v1.55.1 (2024-07-23)
+===
+
+### Service Client Updates
+* `service/appsync`: Updates service API and paginators
+* `service/cleanrooms`: Updates service API, documentation, and paginators
+* `service/cleanroomsml`: Updates service API, documentation, and waiters
+* `service/connect`: Updates service API and documentation
+* `service/connect-contact-lens`: Updates service API and documentation
+* `service/datazone`: Updates service API and documentation
+* `service/entityresolution`: Updates service API and documentation
+
 Release v1.55.0 (2024-07-22)
 ===
 

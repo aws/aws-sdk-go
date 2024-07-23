@@ -21105,166 +21105,6 @@ func (s *CustomParameter) SetKeyName(v string) *CustomParameter {
 	return s
 }
 
-// Deprecated: This structure is deprecated.
-type DataProductItem struct {
-	_ struct{} `deprecated:"true" type:"structure"`
-
-	DomainId *string `locationName:"domainId" type:"string"`
-
-	ItemId *string `locationName:"itemId" type:"string"`
-}
-
-// String returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s DataProductItem) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s DataProductItem) GoString() string {
-	return s.String()
-}
-
-// SetDomainId sets the DomainId field's value.
-func (s *DataProductItem) SetDomainId(v string) *DataProductItem {
-	s.DomainId = &v
-	return s
-}
-
-// SetItemId sets the ItemId field's value.
-func (s *DataProductItem) SetItemId(v string) *DataProductItem {
-	s.ItemId = &v
-	return s
-}
-
-// Deprecated: This structure is deprecated.
-type DataProductSummary struct {
-	_ struct{} `deprecated:"true" type:"structure"`
-
-	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp"`
-
-	CreatedBy *string `locationName:"createdBy" type:"string"`
-
-	DataProductItems []*DataProductItem `locationName:"dataProductItems" deprecated:"true" type:"list"`
-
-	// Description is a sensitive parameter and its value will be
-	// replaced with "sensitive" in string returned by DataProductSummary's
-	// String and GoString methods.
-	Description *string `locationName:"description" min:"1" type:"string" sensitive:"true"`
-
-	// DomainId is a required field
-	DomainId *string `locationName:"domainId" type:"string" required:"true"`
-
-	GlossaryTerms []*string `locationName:"glossaryTerms" min:"1" type:"list"`
-
-	// Id is a required field
-	Id *string `locationName:"id" type:"string" required:"true"`
-
-	// Name is a sensitive parameter and its value will be
-	// replaced with "sensitive" in string returned by DataProductSummary's
-	// String and GoString methods.
-	// Name is a required field
-	Name *string `locationName:"name" min:"1" type:"string" required:"true" sensitive:"true"`
-
-	// OwningProjectId is a required field
-	OwningProjectId *string `locationName:"owningProjectId" type:"string" required:"true"`
-
-	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp"`
-
-	UpdatedBy *string `locationName:"updatedBy" type:"string"`
-}
-
-// String returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s DataProductSummary) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s DataProductSummary) GoString() string {
-	return s.String()
-}
-
-// SetCreatedAt sets the CreatedAt field's value.
-func (s *DataProductSummary) SetCreatedAt(v time.Time) *DataProductSummary {
-	s.CreatedAt = &v
-	return s
-}
-
-// SetCreatedBy sets the CreatedBy field's value.
-func (s *DataProductSummary) SetCreatedBy(v string) *DataProductSummary {
-	s.CreatedBy = &v
-	return s
-}
-
-// SetDataProductItems sets the DataProductItems field's value.
-func (s *DataProductSummary) SetDataProductItems(v []*DataProductItem) *DataProductSummary {
-	s.DataProductItems = v
-	return s
-}
-
-// SetDescription sets the Description field's value.
-func (s *DataProductSummary) SetDescription(v string) *DataProductSummary {
-	s.Description = &v
-	return s
-}
-
-// SetDomainId sets the DomainId field's value.
-func (s *DataProductSummary) SetDomainId(v string) *DataProductSummary {
-	s.DomainId = &v
-	return s
-}
-
-// SetGlossaryTerms sets the GlossaryTerms field's value.
-func (s *DataProductSummary) SetGlossaryTerms(v []*string) *DataProductSummary {
-	s.GlossaryTerms = v
-	return s
-}
-
-// SetId sets the Id field's value.
-func (s *DataProductSummary) SetId(v string) *DataProductSummary {
-	s.Id = &v
-	return s
-}
-
-// SetName sets the Name field's value.
-func (s *DataProductSummary) SetName(v string) *DataProductSummary {
-	s.Name = &v
-	return s
-}
-
-// SetOwningProjectId sets the OwningProjectId field's value.
-func (s *DataProductSummary) SetOwningProjectId(v string) *DataProductSummary {
-	s.OwningProjectId = &v
-	return s
-}
-
-// SetUpdatedAt sets the UpdatedAt field's value.
-func (s *DataProductSummary) SetUpdatedAt(v time.Time) *DataProductSummary {
-	s.UpdatedAt = &v
-	return s
-}
-
-// SetUpdatedBy sets the UpdatedBy field's value.
-func (s *DataProductSummary) SetUpdatedBy(v string) *DataProductSummary {
-	s.UpdatedBy = &v
-	return s
-}
-
 // The configuration of the data source.
 type DataSourceConfigurationInput_ struct {
 	_ struct{} `type:"structure"`
@@ -40275,11 +40115,6 @@ type SearchInventoryResultItem struct {
 	// The asset item included in the search results.
 	AssetItem *AssetItem `locationName:"assetItem" type:"structure"`
 
-	// The data product item included in the search results.
-	//
-	// Deprecated: This field is deprecated.
-	DataProductItem *DataProductSummary `locationName:"dataProductItem" deprecated:"true" type:"structure"`
-
 	// The glossary item included in the search results.
 	GlossaryItem *GlossaryItem `locationName:"glossaryItem" type:"structure"`
 
@@ -40308,12 +40143,6 @@ func (s SearchInventoryResultItem) GoString() string {
 // SetAssetItem sets the AssetItem field's value.
 func (s *SearchInventoryResultItem) SetAssetItem(v *AssetItem) *SearchInventoryResultItem {
 	s.AssetItem = v
-	return s
-}
-
-// SetDataProductItem sets the DataProductItem field's value.
-func (s *SearchInventoryResultItem) SetDataProductItem(v *DataProductSummary) *SearchInventoryResultItem {
-	s.DataProductItem = v
 	return s
 }
 

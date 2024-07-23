@@ -11,8 +11,7 @@ const (
 	// ErrCodeAccessDeniedException for service response error code
 	// "AccessDeniedException".
 	//
-	// You do not have sufficient access to perform this action. HTTP Status Code:
-	// 403
+	// You do not have sufficient access to perform this action.
 	ErrCodeAccessDeniedException = "AccessDeniedException"
 
 	// ErrCodeConflictException for service response error code
@@ -20,7 +19,7 @@ const (
 	//
 	// The request could not be processed because of conflict in the current state
 	// of the resource. Example: Workflow already exists, Schema already exists,
-	// Workflow is currently running, etc. HTTP Status Code: 400
+	// Workflow is currently running, etc.
 	ErrCodeConflictException = "ConflictException"
 
 	// ErrCodeExceedsLimitException for service response error code
@@ -28,33 +27,32 @@ const (
 	//
 	// The request was rejected because it attempted to create resources beyond
 	// the current Entity Resolution account limits. The error message describes
-	// the limit exceeded. HTTP Status Code: 402
+	// the limit exceeded.
 	ErrCodeExceedsLimitException = "ExceedsLimitException"
 
 	// ErrCodeInternalServerException for service response error code
 	// "InternalServerException".
 	//
 	// This exception occurs when there is an internal failure in the Entity Resolution
-	// service. HTTP Status Code: 500
+	// service.
 	ErrCodeInternalServerException = "InternalServerException"
 
 	// ErrCodeResourceNotFoundException for service response error code
 	// "ResourceNotFoundException".
 	//
-	// The resource could not be found. HTTP Status Code: 404
+	// The resource could not be found.
 	ErrCodeResourceNotFoundException = "ResourceNotFoundException"
 
 	// ErrCodeThrottlingException for service response error code
 	// "ThrottlingException".
 	//
-	// The request was denied due to request throttling. HTTP Status Code: 429
+	// The request was denied due to request throttling.
 	ErrCodeThrottlingException = "ThrottlingException"
 
 	// ErrCodeValidationException for service response error code
 	// "ValidationException".
 	//
 	// The input fails to satisfy the constraints specified by Entity Resolution.
-	// HTTP Status Code: 400
 	ErrCodeValidationException = "ValidationException"
 )
 
