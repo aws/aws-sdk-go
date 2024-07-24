@@ -96,6 +96,10 @@ type CleanRoomsAPI interface {
 	CreateConfiguredTableAssociationWithContext(aws.Context, *cleanrooms.CreateConfiguredTableAssociationInput, ...request.Option) (*cleanrooms.CreateConfiguredTableAssociationOutput, error)
 	CreateConfiguredTableAssociationRequest(*cleanrooms.CreateConfiguredTableAssociationInput) (*request.Request, *cleanrooms.CreateConfiguredTableAssociationOutput)
 
+	CreateConfiguredTableAssociationAnalysisRule(*cleanrooms.CreateConfiguredTableAssociationAnalysisRuleInput) (*cleanrooms.CreateConfiguredTableAssociationAnalysisRuleOutput, error)
+	CreateConfiguredTableAssociationAnalysisRuleWithContext(aws.Context, *cleanrooms.CreateConfiguredTableAssociationAnalysisRuleInput, ...request.Option) (*cleanrooms.CreateConfiguredTableAssociationAnalysisRuleOutput, error)
+	CreateConfiguredTableAssociationAnalysisRuleRequest(*cleanrooms.CreateConfiguredTableAssociationAnalysisRuleInput) (*request.Request, *cleanrooms.CreateConfiguredTableAssociationAnalysisRuleOutput)
+
 	CreateIdMappingTable(*cleanrooms.CreateIdMappingTableInput) (*cleanrooms.CreateIdMappingTableOutput, error)
 	CreateIdMappingTableWithContext(aws.Context, *cleanrooms.CreateIdMappingTableInput, ...request.Option) (*cleanrooms.CreateIdMappingTableOutput, error)
 	CreateIdMappingTableRequest(*cleanrooms.CreateIdMappingTableInput) (*request.Request, *cleanrooms.CreateIdMappingTableOutput)
@@ -131,6 +135,10 @@ type CleanRoomsAPI interface {
 	DeleteConfiguredTableAssociation(*cleanrooms.DeleteConfiguredTableAssociationInput) (*cleanrooms.DeleteConfiguredTableAssociationOutput, error)
 	DeleteConfiguredTableAssociationWithContext(aws.Context, *cleanrooms.DeleteConfiguredTableAssociationInput, ...request.Option) (*cleanrooms.DeleteConfiguredTableAssociationOutput, error)
 	DeleteConfiguredTableAssociationRequest(*cleanrooms.DeleteConfiguredTableAssociationInput) (*request.Request, *cleanrooms.DeleteConfiguredTableAssociationOutput)
+
+	DeleteConfiguredTableAssociationAnalysisRule(*cleanrooms.DeleteConfiguredTableAssociationAnalysisRuleInput) (*cleanrooms.DeleteConfiguredTableAssociationAnalysisRuleOutput, error)
+	DeleteConfiguredTableAssociationAnalysisRuleWithContext(aws.Context, *cleanrooms.DeleteConfiguredTableAssociationAnalysisRuleInput, ...request.Option) (*cleanrooms.DeleteConfiguredTableAssociationAnalysisRuleOutput, error)
+	DeleteConfiguredTableAssociationAnalysisRuleRequest(*cleanrooms.DeleteConfiguredTableAssociationAnalysisRuleInput) (*request.Request, *cleanrooms.DeleteConfiguredTableAssociationAnalysisRuleOutput)
 
 	DeleteIdMappingTable(*cleanrooms.DeleteIdMappingTableInput) (*cleanrooms.DeleteIdMappingTableOutput, error)
 	DeleteIdMappingTableWithContext(aws.Context, *cleanrooms.DeleteIdMappingTableInput, ...request.Option) (*cleanrooms.DeleteIdMappingTableOutput, error)
@@ -187,6 +195,10 @@ type CleanRoomsAPI interface {
 	GetConfiguredTableAssociation(*cleanrooms.GetConfiguredTableAssociationInput) (*cleanrooms.GetConfiguredTableAssociationOutput, error)
 	GetConfiguredTableAssociationWithContext(aws.Context, *cleanrooms.GetConfiguredTableAssociationInput, ...request.Option) (*cleanrooms.GetConfiguredTableAssociationOutput, error)
 	GetConfiguredTableAssociationRequest(*cleanrooms.GetConfiguredTableAssociationInput) (*request.Request, *cleanrooms.GetConfiguredTableAssociationOutput)
+
+	GetConfiguredTableAssociationAnalysisRule(*cleanrooms.GetConfiguredTableAssociationAnalysisRuleInput) (*cleanrooms.GetConfiguredTableAssociationAnalysisRuleOutput, error)
+	GetConfiguredTableAssociationAnalysisRuleWithContext(aws.Context, *cleanrooms.GetConfiguredTableAssociationAnalysisRuleInput, ...request.Option) (*cleanrooms.GetConfiguredTableAssociationAnalysisRuleOutput, error)
+	GetConfiguredTableAssociationAnalysisRuleRequest(*cleanrooms.GetConfiguredTableAssociationAnalysisRuleInput) (*request.Request, *cleanrooms.GetConfiguredTableAssociationAnalysisRuleOutput)
 
 	GetIdMappingTable(*cleanrooms.GetIdMappingTableInput) (*cleanrooms.GetIdMappingTableOutput, error)
 	GetIdMappingTableWithContext(aws.Context, *cleanrooms.GetIdMappingTableInput, ...request.Option) (*cleanrooms.GetIdMappingTableOutput, error)
@@ -385,6 +397,10 @@ type CleanRoomsAPI interface {
 	UpdateConfiguredTableAssociation(*cleanrooms.UpdateConfiguredTableAssociationInput) (*cleanrooms.UpdateConfiguredTableAssociationOutput, error)
 	UpdateConfiguredTableAssociationWithContext(aws.Context, *cleanrooms.UpdateConfiguredTableAssociationInput, ...request.Option) (*cleanrooms.UpdateConfiguredTableAssociationOutput, error)
 	UpdateConfiguredTableAssociationRequest(*cleanrooms.UpdateConfiguredTableAssociationInput) (*request.Request, *cleanrooms.UpdateConfiguredTableAssociationOutput)
+
+	UpdateConfiguredTableAssociationAnalysisRule(*cleanrooms.UpdateConfiguredTableAssociationAnalysisRuleInput) (*cleanrooms.UpdateConfiguredTableAssociationAnalysisRuleOutput, error)
+	UpdateConfiguredTableAssociationAnalysisRuleWithContext(aws.Context, *cleanrooms.UpdateConfiguredTableAssociationAnalysisRuleInput, ...request.Option) (*cleanrooms.UpdateConfiguredTableAssociationAnalysisRuleOutput, error)
+	UpdateConfiguredTableAssociationAnalysisRuleRequest(*cleanrooms.UpdateConfiguredTableAssociationAnalysisRuleInput) (*request.Request, *cleanrooms.UpdateConfiguredTableAssociationAnalysisRuleOutput)
 
 	UpdateIdMappingTable(*cleanrooms.UpdateIdMappingTableInput) (*cleanrooms.UpdateIdMappingTableOutput, error)
 	UpdateIdMappingTableWithContext(aws.Context, *cleanrooms.UpdateIdMappingTableInput, ...request.Option) (*cleanrooms.UpdateIdMappingTableOutput, error)

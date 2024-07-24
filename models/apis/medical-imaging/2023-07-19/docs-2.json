@@ -46,6 +46,14 @@
         "StartDICOMImportJobRequest$inputOwnerAccountId": "<p>The account ID of the source S3 bucket owner.</p>"
       }
     },
+    "Boolean": {
+      "base": null,
+      "refs": {
+        "CopyImageSetRequest$force": "<p>Setting this flag will force the <code>CopyImageSet</code> operation, even if Patient, Study, or Series level metadata are mismatched across the <code>sourceImageSet</code> and <code>destinationImageSet</code>.</p>",
+        "Overrides$forced": "<p>Setting this flag will force the <code>CopyImageSet</code> and <code>UpdateImageSetMetadata</code> operations, even if Patient, Study, or Series level metadata are mismatched.</p>",
+        "UpdateImageSetMetadataRequest$force": "<p>Setting this flag will force the <code>UpdateImageSetMetadata</code> operation for the following attributes:</p> <ul> <li> <p> <code>Tag.StudyInstanceUID</code>, <code>Tag.SeriesInstanceUID</code>, <code>Tag.SOPInstanceUID</code>, and <code>Tag.StudyID</code> </p> </li> <li> <p>Adding, removing, or updating private tags for an individual SOP Instance</p> </li> </ul>"
+      }
+    },
     "ClientToken": {
       "base": null,
       "refs": {
@@ -56,6 +64,12 @@
     "ConflictException": {
       "base": "<p>Updating or deleting a resource can cause an inconsistent state.</p>",
       "refs": {
+      }
+    },
+    "CopiableAttributes": {
+      "base": null,
+      "refs": {
+        "MetadataCopies$copiableAttributes": "<p>The JSON string used to specify a subset of SOP Instances to copy from source to destination image set.</p>"
       }
     },
     "CopyDestinationImageSet": {
@@ -442,6 +456,7 @@
         "GetImageSetRequest$versionId": "<p>The image set version identifier.</p>",
         "GetImageSetResponse$versionId": "<p>The image set version identifier.</p>",
         "ImageSetProperties$versionId": "<p>The image set version identifier.</p>",
+        "MetadataUpdates$revertToVersionId": "<p>Specifies the previous image set version ID to revert the current image set back to.</p> <note> <p>You must provide either <code>revertToVersionId</code> or <code>DICOMUpdates</code> in your request. A <code>ValidationException</code> error is thrown if both parameters are provided at the same time.</p> </note>",
         "UpdateImageSetMetadataRequest$latestVersionId": "<p>The latest image set version identifier.</p>",
         "UpdateImageSetMetadataResponse$latestVersionId": "<p>The latest image set version identifier.</p>"
       }
@@ -630,6 +645,12 @@
         "UpdateImageSetMetadataResponse$message": "<p>The error message thrown if an update image set metadata action fails.</p>"
       }
     },
+    "MetadataCopies": {
+      "base": "<p>Contains copiable <code>Attributes</code> structure and wraps information related to specific copy use cases. For example, when copying subsets.</p>",
+      "refs": {
+        "CopySourceImageSetInformation$DICOMCopies": "<p>Contains <code>MetadataCopies</code> structure and wraps information related to specific copy use cases. For example, when copying subsets.</p>"
+      }
+    },
     "MetadataUpdates": {
       "base": "<p>Contains DICOMUpdates.</p>",
       "refs": {
@@ -653,6 +674,13 @@
       "base": null,
       "refs": {
         "SearchFilter$operator": "<p>The search filter operator for <code>imageSetDateTime</code>.</p>"
+      }
+    },
+    "Overrides": {
+      "base": "<p>Specifies the overrides used in image set modification calls to <code>CopyImageSet</code> and <code>UpdateImageSetMetadata</code>.</p>",
+      "refs": {
+        "GetImageSetResponse$overrides": "<p>This object contains the details of any overrides used while creating a specific image set version. If an image set was copied or updated using the <code>force</code> flag, this object will contain the <code>forced</code> flag.</p>",
+        "ImageSetProperties$overrides": "<p>Contains details on overrides used when creating the returned version of an image set. For example, if <code>forced</code> exists, the <code>forced</code> flag was used when creating the image set.</p>"
       }
     },
     "PayloadBlob": {

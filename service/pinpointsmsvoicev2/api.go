@@ -379,14 +379,14 @@ func (c *PinpointSMSVoiceV2) CreateEventDestinationRequest(input *CreateEventDes
 // Creates a new event destination in a configuration set.
 //
 // An event destination is a location where you send message events. The event
-// options are Amazon CloudWatch, Amazon Kinesis Data Firehose, or Amazon SNS.
-// For example, when a message is delivered successfully, you can send information
-// about that event to an event destination, or send notifications to endpoints
-// that are subscribed to an Amazon SNS topic.
+// options are Amazon CloudWatch, Amazon Data Firehose, or Amazon SNS. For example,
+// when a message is delivered successfully, you can send information about
+// that event to an event destination, or send notifications to endpoints that
+// are subscribed to an Amazon SNS topic.
 //
 // Each configuration set can contain between 0 and 5 event destinations. Each
 // event destination can contain a reference to a single destination, such as
-// a CloudWatch or Kinesis Data Firehose destination.
+// a CloudWatch or Firehose destination.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -498,7 +498,7 @@ func (c *PinpointSMSVoiceV2) CreateOptOutListRequest(input *CreateOptOutListInpu
 // "STOP," an entry for the phone number is added to the opt-out list. In addition
 // to STOP, your recipients can use any supported opt-out keyword, such as CANCEL
 // or OPTOUT. For a list of supported opt-out keywords, see SMS opt out (https://docs.aws.amazon.com/pinpoint/latest/userguide/channels-sms-manage.html#channels-sms-manage-optout)
-// in the Amazon Pinpoint User Guide.
+// in the AWS End User Messaging SMS User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1815,8 +1815,8 @@ func (c *PinpointSMSVoiceV2) DeleteKeywordRequest(input *DeleteKeywordInput) (re
 // A keyword is a word that you can search for on a particular phone number
 // or pool. It is also a specific word or phrase that an end user can send to
 // your number to elicit a response, such as an informational message or a special
-// offer. When your number receives a message that begins with a keyword, Amazon
-// Pinpoint responds with a customizable message.
+// offer. When your number receives a message that begins with a keyword, AWS
+// End User Messaging SMS and Voice responds with a customizable message.
 //
 // Keywords "HELP" and "STOP" can't be deleted or modified.
 //
@@ -2737,8 +2737,8 @@ func (c *PinpointSMSVoiceV2) DeleteTextMessageSpendLimitOverrideRequest(input *D
 // Deletes an account-level monthly spending limit override for sending text
 // messages. Deleting a spend limit override will set the EnforcedLimit to equal
 // the MaxLimit, which is controlled by Amazon Web Services. For more information
-// on spend limits (quotas) see Amazon Pinpoint quotas (https://docs.aws.amazon.com/pinpoint/latest/developerguide/quotas.html)
-// in the Amazon Pinpoint Developer Guide.
+// on spend limits (quotas) see Quotas (https://docs.aws.amazon.com/sms-voice/latest/userguide/quotas.html)
+// in the AWS End User Messaging SMS User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2932,8 +2932,8 @@ func (c *PinpointSMSVoiceV2) DeleteVoiceMessageSpendLimitOverrideRequest(input *
 // Deletes an account level monthly spend limit override for sending voice messages.
 // Deleting a spend limit override sets the EnforcedLimit equal to the MaxLimit,
 // which is controlled by Amazon Web Services. For more information on spending
-// limits (quotas) see Amazon Pinpoint quotas (https://docs.aws.amazon.com/pinpoint/latest/developerguide/quotas.html)
-// in the Amazon Pinpoint Developer Guide.
+// limits (quotas) see Quotas (https://docs.aws.amazon.com/sms-voice/latest/userguide/quotas.html)
+// in the AWS End User Messaging SMS User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3036,9 +3036,9 @@ func (c *PinpointSMSVoiceV2) DescribeAccountAttributesRequest(input *DescribeAcc
 // account out of the sandbox, create an Amazon Web Services Support case for
 // a service limit increase request.
 //
-// New Amazon Pinpoint accounts are placed into an SMS or voice sandbox. The
-// sandbox protects both Amazon Web Services end recipients and SMS or voice
-// recipients from fraud and abuse.
+// New accounts are placed into an SMS or voice sandbox. The sandbox protects
+// both Amazon Web Services end recipients and SMS or voice recipients from
+// fraud and abuse.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3186,15 +3186,15 @@ func (c *PinpointSMSVoiceV2) DescribeAccountLimitsRequest(input *DescribeAccount
 
 // DescribeAccountLimits API operation for Amazon Pinpoint SMS Voice V2.
 //
-// Describes the current Amazon Pinpoint SMS Voice V2 resource quotas for your
-// account. The description for a quota includes the quota name, current usage
-// toward that quota, and the quota's maximum value.
+// Describes the current AWS End User Messaging SMS and Voice SMS Voice V2 resource
+// quotas for your account. The description for a quota includes the quota name,
+// current usage toward that quota, and the quota's maximum value.
 //
 // When you establish an Amazon Web Services account, the account has initial
 // quotas on the maximum number of configuration sets, opt-out lists, phone
 // numbers, and pools that you can create in a given Region. For more information
-// see Amazon Pinpoint quotas (https://docs.aws.amazon.com/pinpoint/latest/developerguide/quotas.html)
-// in the Amazon Pinpoint Developer Guide.
+// see Quotas (https://docs.aws.amazon.com/sms-voice/latest/userguide/quotas.html)
+// in the AWS End User Messaging SMS User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3507,8 +3507,8 @@ func (c *PinpointSMSVoiceV2) DescribeKeywordsRequest(input *DescribeKeywordsInpu
 // A keyword is a word that you can search for on a particular phone number
 // or pool. It is also a specific word or phrase that an end user can send to
 // your number to elicit a response, such as an informational message or a special
-// offer. When your number receives a message that begins with a keyword, Amazon
-// Pinpoint responds with a customizable message.
+// offer. When your number receives a message that begins with a keyword, AWS
+// End User Messaging SMS and Voice responds with a customizable message.
 //
 // If you specify a keyword that isn't valid, an error is returned.
 //
@@ -5668,14 +5668,13 @@ func (c *PinpointSMSVoiceV2) DescribeSpendLimitsRequest(input *DescribeSpendLimi
 
 // DescribeSpendLimits API operation for Amazon Pinpoint SMS Voice V2.
 //
-// Describes the current Amazon Pinpoint monthly spend limits for sending voice
-// and text messages.
+// Describes the current monthly spend limits for sending voice and text messages.
 //
 // When you establish an Amazon Web Services account, the account has initial
 // monthly spend limit in a given Region. For more information on increasing
-// your monthly spend limit, see Requesting increases to your monthly SMS spending
-// quota for Amazon Pinpoint (https://docs.aws.amazon.com/pinpoint/latest/userguide/channels-sms-awssupport-spend-threshold.html)
-// in the Amazon Pinpoint User Guide.
+// your monthly spend limit, see Requesting increases to your monthly SMS, MMS,
+// or Voice spending quota (https://docs.aws.amazon.com/sms-voice/latest/userguide/awssupport-spend-threshold.html)
+// in the AWS End User Messaging SMS User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6771,8 +6770,8 @@ func (c *PinpointSMSVoiceV2) PutKeywordRequest(input *PutKeywordInput) (req *req
 // A keyword is a word that you can search for on a particular phone number
 // or pool. It is also a specific word or phrase that an end user can send to
 // your number to elicit a response, such as an informational message or a special
-// offer. When your number receives a message that begins with a keyword, Amazon
-// Pinpoint responds with a customizable message.
+// offer. When your number receives a message that begins with a keyword, AWS
+// End User Messaging SMS and Voice responds with a customizable message.
 //
 // If you specify a keyword that isn't valid, an error is returned.
 //
@@ -7279,8 +7278,8 @@ func (c *PinpointSMSVoiceV2) RequestPhoneNumberRequest(input *RequestPhoneNumber
 // RequestPhoneNumber API operation for Amazon Pinpoint SMS Voice V2.
 //
 // Request an origination phone number for use in your account. For more information
-// on phone number request see Requesting a number (https://docs.aws.amazon.com/pinpoint/latest/userguide/settings-sms-request-number.html)
-// in the Amazon Pinpoint User Guide.
+// on phone number request see Request a phone number (https://docs.aws.amazon.com/sms-voice/latest/userguide/phone-numbers-request.html)
+// in the AWS End User Messaging SMS User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7694,13 +7693,15 @@ func (c *PinpointSMSVoiceV2) SendTextMessageRequest(input *SendTextMessageInput)
 
 // SendTextMessage API operation for Amazon Pinpoint SMS Voice V2.
 //
-// Creates a new text message and sends it to a recipient's phone number.
+// Creates a new text message and sends it to a recipient's phone number. SendTextMessage
+// only sends an SMS message to one recipient each time it is invoked.
 //
 // SMS throughput limits are measured in Message Parts per Second (MPS). Your
 // MPS limit depends on the destination country of your messages, as well as
 // the type of phone number (origination number) that you use to send the message.
-// For more information, see Message Parts per Second (MPS) limits (https://docs.aws.amazon.com/pinpoint/latest/userguide/channels-sms-limitations-mps.html)
-// in the Amazon Pinpoint User Guide.
+// For more information about MPS, see Message Parts per Second (MPS) limits
+// (https://docs.aws.amazon.com/sms-voice/latest/userguide/sms-limitations-mps.html)
+// in the AWS End User Messaging SMS User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7803,9 +7804,9 @@ func (c *PinpointSMSVoiceV2) SendVoiceMessageRequest(input *SendVoiceMessageInpu
 
 // SendVoiceMessage API operation for Amazon Pinpoint SMS Voice V2.
 //
-// Allows you to send a request that sends a voice message through Amazon Pinpoint.
-// This operation uses Amazon Polly (http://aws.amazon.com/polly/) to convert
-// a text script into a voice message.
+// Allows you to send a request that sends a voice message. This operation uses
+// Amazon Polly (http://aws.amazon.com/polly/) to convert a text script into
+// a voice message.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -8583,13 +8584,12 @@ func (c *PinpointSMSVoiceV2) TagResourceRequest(input *TagResourceInput) (req *r
 
 // TagResource API operation for Amazon Pinpoint SMS Voice V2.
 //
-// Adds or overwrites only the specified tags for the specified Amazon Pinpoint
-// SMS Voice, version 2 resource. When you specify an existing tag key, the
-// value is overwritten with the new value. Each resource can have a maximum
-// of 50 tags. Each tag consists of a key and an optional value. Tag keys must
-// be unique per resource. For more information about tags, see Tagging Amazon
-// Pinpoint resources (https://docs.aws.amazon.com/pinpoint/latest/developerguide/tagging-resources.html)
-// in the Amazon Pinpoint Developer Guide.
+// Adds or overwrites only the specified tags for the specified resource. When
+// you specify an existing tag key, the value is overwritten with the new value.
+// Each resource can have a maximum of 50 tags. Each tag consists of a key and
+// an optional value. Tag keys must be unique per resource. For more information
+// about tags, see Tags (https://docs.aws.amazon.com/sms-voice/latest/userguide/phone-numbers-tags.html)
+// in the AWS End User Messaging SMS User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -8687,10 +8687,9 @@ func (c *PinpointSMSVoiceV2) UntagResourceRequest(input *UntagResourceInput) (re
 
 // UntagResource API operation for Amazon Pinpoint SMS Voice V2.
 //
-// Removes the association of the specified tags from an Amazon Pinpoint SMS
-// Voice V2 resource. For more information on tags see Tagging Amazon Pinpoint
-// resources (https://docs.aws.amazon.com/pinpoint/latest/developerguide/tagging-resources.html)
-// in the Amazon Pinpoint Developer Guide.
+// Removes the association of the specified tags from a resource. For more information
+// on tags see Tags (https://docs.aws.amazon.com/sms-voice/latest/userguide/phone-numbers-tags.html)
+// in the AWS End User Messaging SMS User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -8785,13 +8784,12 @@ func (c *PinpointSMSVoiceV2) UpdateEventDestinationRequest(input *UpdateEventDes
 // UpdateEventDestination API operation for Amazon Pinpoint SMS Voice V2.
 //
 // Updates an existing event destination in a configuration set. You can update
-// the IAM role ARN for CloudWatch Logs and Kinesis Data Firehose. You can also
-// enable or disable the event destination.
+// the IAM role ARN for CloudWatch Logs and Firehose. You can also enable or
+// disable the event destination.
 //
 // You may want to update an event destination to change its matching event
 // types or updating the destination resource ARN. You can't change an event
-// destination's type between CloudWatch Logs, Kinesis Data Firehose, and Amazon
-// SNS.
+// destination's type between CloudWatch Logs, Firehose, and Amazon SNS.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -10390,11 +10388,11 @@ type CreateEventDestinationInput struct {
 	EventDestinationName *string `min:"1" type:"string" required:"true"`
 
 	// An object that contains information about an event destination for logging
-	// to Amazon Kinesis Data Firehose.
+	// to Amazon Data Firehose.
 	KinesisFirehoseDestination *KinesisFirehoseDestination `type:"structure"`
 
 	// An array of event types that determine which events to log. If "ALL" is used,
-	// then Amazon Pinpoint logs every event type.
+	// then AWS End User Messaging SMS and Voice logs every event type.
 	//
 	// The TEXT_SENT event type is not supported.
 	//
@@ -10722,7 +10720,7 @@ type CreatePoolInput struct {
 
 	// The type of message. Valid values are TRANSACTIONAL for messages that are
 	// critical or time-sensitive and PROMOTIONAL for messages that aren't critical
-	// or time-sensitive.
+	// or time-sensitive. After the pool is created the MessageType can't be changed.
 	//
 	// MessageType is a required field
 	MessageType *string `type:"string" required:"true" enum:"MessageType"`
@@ -10731,6 +10729,9 @@ type CreatePoolInput struct {
 	// SenderId or SenderIdArn. You can use DescribePhoneNumbers to find the values
 	// for PhoneNumberId and PhoneNumberArn while DescribeSenderIds can be used
 	// to get the values for SenderId and SenderIdArn.
+	//
+	// After the pool is created you can add more origination identities to the
+	// pool by using AssociateOriginationIdentity (https://docs.aws.amazon.com/pinpoint/latest/apireference_smsvoicev2/API_AssociateOriginationIdentity.html).
 	//
 	// OriginationIdentity is a required field
 	OriginationIdentity *string `min:"1" type:"string" required:"true"`
@@ -10855,14 +10856,15 @@ type CreatePoolOutput struct {
 	PoolId *string `type:"string"`
 
 	// By default this is set to false. When an end recipient sends a message that
-	// begins with HELP or STOP to one of your dedicated numbers, Amazon Pinpoint
-	// automatically replies with a customizable message and adds the end recipient
-	// to the OptOutList. When set to true you're responsible for responding to
-	// HELP and STOP requests. You're also responsible for tracking and honoring
-	// opt-out requests.
+	// begins with HELP or STOP to one of your dedicated numbers, AWS End User Messaging
+	// SMS and Voice automatically replies with a customizable message and adds
+	// the end recipient to the OptOutList. When set to true you're responsible
+	// for responding to HELP and STOP requests. You're also responsible for tracking
+	// and honoring opt-out requests.
 	SelfManagedOptOutsEnabled *bool `type:"boolean"`
 
-	// Indicates whether shared routes are enabled for the pool.
+	// Indicates whether shared routes are enabled for the pool. Set to false and
+	// only origination identities in this pool are used to send messages.
 	SharedRoutesEnabled *bool `type:"boolean"`
 
 	// The current status of the pool.
@@ -13043,11 +13045,11 @@ type DeletePoolOutput struct {
 	PoolId *string `type:"string"`
 
 	// By default this is set to false. When an end recipient sends a message that
-	// begins with HELP or STOP to one of your dedicated numbers, Amazon Pinpoint
-	// automatically replies with a customizable message and adds the end recipient
-	// to the OptOutList. When set to true you're responsible for responding to
-	// HELP and STOP requests. You're also responsible for tracking and honoring
-	// opt-out requests.
+	// begins with HELP or STOP to one of your dedicated numbers, AWS End User Messaging
+	// SMS and Voice automatically replies with a customizable message and adds
+	// the end recipient to the OptOutList. When set to true you're responsible
+	// for responding to HELP and STOP requests. You're also responsible for tracking
+	// and honoring opt-out requests.
 	SelfManagedOptOutsEnabled *bool `type:"boolean"`
 
 	// Indicates whether shared routes are enabled for the pool.
@@ -16984,8 +16986,7 @@ func (s *DiscardRegistrationVersionOutput) SetVersionNumber(v int64) *DiscardReg
 // Contains information about an event destination.
 //
 // Event destinations are associated with configuration sets, which enable you
-// to publish message sending events to CloudWatch, Kinesis Data Firehose, or
-// Amazon SNS.
+// to publish message sending events to CloudWatch, Firehose, or Amazon SNS.
 type EventDestination struct {
 	_ struct{} `type:"structure"`
 
@@ -17004,7 +17005,7 @@ type EventDestination struct {
 	EventDestinationName *string `min:"1" type:"string" required:"true"`
 
 	// An object that contains information about an event destination for logging
-	// to Amazon Kinesis Data Firehose.
+	// to Amazon Data Firehose.
 	KinesisFirehoseDestination *KinesisFirehoseDestination `type:"structure"`
 
 	// An array of event types that determine which events to log.
@@ -17144,7 +17145,7 @@ type GetProtectConfigurationCountryRuleSetOutput struct {
 	// the details for the requested NumberCapability. The Key is the two-letter
 	// ISO country code. For a list of supported ISO country codes, see Supported
 	// countries and regions (SMS channel) (https://docs.aws.amazon.com/sms-voice/latest/userguide/phone-numbers-sms-by-country.html)
-	// in the Amazon Pinpoint SMS user guide.
+	// in the AWS End User Messaging SMS User Guide.
 	//
 	// CountryRuleSet is a required field
 	CountryRuleSet map[string]*ProtectConfigurationCountryRuleSetInformation `min:"1" type:"map" required:"true"`
@@ -17397,11 +17398,11 @@ func (s *KeywordInformation) SetKeywordMessage(v string) *KeywordInformation {
 }
 
 // Contains the delivery stream Amazon Resource Name (ARN), and the ARN of the
-// Identity and Access Management (IAM) role associated with a Kinesis Data
-// Firehose event destination.
+// Identity and Access Management (IAM) role associated with a Firehose event
+// destination.
 //
-// Event destinations, such as Kinesis Data Firehose, are associated with configuration
-// sets, which enable you to publish message sending events.
+// Event destinations, such as Firehose, are associated with configuration sets,
+// which enable you to publish message sending events.
 type KinesisFirehoseDestination struct {
 	_ struct{} `type:"structure"`
 
@@ -17411,7 +17412,7 @@ type KinesisFirehoseDestination struct {
 	DeliveryStreamArn *string `min:"20" type:"string" required:"true"`
 
 	// The ARN of an Identity and Access Management role that is able to write event
-	// data to an Amazon Kinesis Data Firehose destination.
+	// data to an Amazon Data Firehose destination.
 	//
 	// IamRoleArn is a required field
 	IamRoleArn *string `min:"20" type:"string" required:"true"`
@@ -18272,11 +18273,11 @@ type PhoneNumberInformation struct {
 	RegistrationId *string `type:"string"`
 
 	// When set to false an end recipient sends a message that begins with HELP
-	// or STOP to one of your dedicated numbers, Amazon Pinpoint automatically replies
-	// with a customizable message and adds the end recipient to the OptOutList.
-	// When set to true you're responsible for responding to HELP and STOP requests.
-	// You're also responsible for tracking and honoring opt-out request. For more
-	// information see Self-managed opt-outs (https://docs.aws.amazon.com/pinpoint/latest/userguide/settings-sms-managing.html#settings-account-sms-self-managed-opt-out)
+	// or STOP to one of your dedicated numbers, AWS End User Messaging SMS and
+	// Voice automatically replies with a customizable message and adds the end
+	// recipient to the OptOutList. When set to true you're responsible for responding
+	// to HELP and STOP requests. You're also responsible for tracking and honoring
+	// opt-out request. For more information see Self-managed opt-outs (https://docs.aws.amazon.com/pinpoint/latest/userguide/settings-sms-managing.html#settings-account-sms-self-managed-opt-out)
 	//
 	// SelfManagedOptOutsEnabled is a required field
 	SelfManagedOptOutsEnabled *bool `type:"boolean" required:"true"`
@@ -18528,11 +18529,11 @@ type PoolInformation struct {
 	PoolId *string `type:"string" required:"true"`
 
 	// When set to false, an end recipient sends a message that begins with HELP
-	// or STOP to one of your dedicated numbers, Amazon Pinpoint automatically replies
-	// with a customizable message and adds the end recipient to the OptOutList.
-	// When set to true you're responsible for responding to HELP and STOP requests.
-	// You're also responsible for tracking and honoring opt-out requests. For more
-	// information see Self-managed opt-outs (https://docs.aws.amazon.com/pinpoint/latest/userguide/settings-sms-managing.html#settings-account-sms-self-managed-opt-out)
+	// or STOP to one of your dedicated numbers, AWS End User Messaging SMS and
+	// Voice automatically replies with a customizable message and adds the end
+	// recipient to the OptOutList. When set to true you're responsible for responding
+	// to HELP and STOP requests. You're also responsible for tracking and honoring
+	// opt-out requests. For more information see Self-managed opt-outs (https://docs.aws.amazon.com/pinpoint/latest/userguide/settings-sms-managing.html#settings-account-sms-self-managed-opt-out)
 	//
 	// SelfManagedOptOutsEnabled is a required field
 	SelfManagedOptOutsEnabled *bool `type:"boolean" required:"true"`
@@ -18541,9 +18542,9 @@ type PoolInformation struct {
 	//
 	// By default, this is set to False. If you set this value to True, your messages
 	// are sent using phone numbers or sender IDs (depending on the country) that
-	// are shared with other Amazon Pinpoint users. In some countries, such as the
-	// United States, senders aren't allowed to use shared routes and must use a
-	// dedicated phone number or short code.
+	// are shared with other users. In some countries, such as the United States,
+	// senders aren't allowed to use shared routes and must use a dedicated phone
+	// number or short code.
 	//
 	// SharedRoutesEnabled is a required field
 	SharedRoutesEnabled *bool `type:"boolean" required:"true"`
@@ -20897,11 +20898,11 @@ type ReleasePhoneNumberOutput struct {
 	RegistrationId *string `type:"string"`
 
 	// By default this is set to false. When an end recipient sends a message that
-	// begins with HELP or STOP to one of your dedicated numbers, Amazon Pinpoint
-	// automatically replies with a customizable message and adds the end recipient
-	// to the OptOutList. When set to true you're responsible for responding to
-	// HELP and STOP requests. You're also responsible for tracking and honoring
-	// opt-out requests.
+	// begins with HELP or STOP to one of your dedicated numbers, AWS End User Messaging
+	// SMS and Voice automatically replies with a customizable message and adds
+	// the end recipient to the OptOutList. When set to true you're responsible
+	// for responding to HELP and STOP requests. You're also responsible for tracking
+	// and honoring opt-out requests.
 	SelfManagedOptOutsEnabled *bool `type:"boolean"`
 
 	// The current status of the request.
@@ -21428,11 +21429,11 @@ type RequestPhoneNumberOutput struct {
 	RegistrationId *string `type:"string"`
 
 	// By default this is set to false. When an end recipient sends a message that
-	// begins with HELP or STOP to one of your dedicated numbers, Amazon Pinpoint
-	// automatically replies with a customizable message and adds the end recipient
-	// to the OptOutList. When set to true you're responsible for responding to
-	// HELP and STOP requests. You're also responsible for tracking and honoring
-	// opt-out requests.
+	// begins with HELP or STOP to one of your dedicated numbers, AWS End User Messaging
+	// SMS and Voice automatically replies with a customizable message and adds
+	// the end recipient to the OptOutList. When set to true you're responsible
+	// for responding to HELP and STOP requests. You're also responsible for tracking
+	// and honoring opt-out requests.
 	SelfManagedOptOutsEnabled *bool `type:"boolean"`
 
 	// The current status of the request.
@@ -22363,6 +22364,15 @@ type SendTextMessageInput struct {
 	// this setting is only used when you send messages to recipients in India using
 	// a sender ID. For more information see Special requirements for sending SMS
 	// messages to recipients in India (https://docs.aws.amazon.com/pinpoint/latest/userguide/channels-sms-senderid-india.html).
+	//
+	//    * IN_ENTITY_ID The entity ID or Principal Entity (PE) ID that you received
+	//    after completing the sender ID registration process.
+	//
+	//    * IN_TEMPLATE_ID The template ID that you received after completing the
+	//    sender ID registration process. Make sure that the Template ID that you
+	//    specify matches your message template exactly. If your message doesn't
+	//    match the template that you provided during the registration process,
+	//    the mobile carriers might reject your message.
 	DestinationCountryParameters map[string]*string `type:"map"`
 
 	// The destination phone number in E.164 format.
@@ -22371,15 +22381,22 @@ type SendTextMessageInput struct {
 	DestinationPhoneNumber *string `min:"1" type:"string" required:"true"`
 
 	// When set to true, the message is checked and validated, but isn't sent to
-	// the end recipient.
+	// the end recipient. You are not charged for using DryRun.
+	//
+	// The Message Parts per Second (MPS) limit when using DryRun is five. If your
+	// origination identity has a lower MPS limit then the lower MPS limit is used.
+	// For more information about MPS limits, see Message Parts per Second (MPS)
+	// limits (https://docs.aws.amazon.com/sms-voice/latest/userguide/sms-limitations-mps.html)
+	// in the AWS End User Messaging SMS User Guide..
 	DryRun *bool `type:"boolean"`
 
 	// When you register a short code in the US, you must specify a program name.
 	// If you don’t have a US short code, omit this attribute.
 	Keyword *string `min:"1" type:"string"`
 
-	// The maximum amount that you want to spend, in US dollars, per each text message
-	// part. A text message can contain multiple parts.
+	// The maximum amount that you want to spend, in US dollars, per each text message.
+	// If the calculated amount to send the text message is greater than MaxPrice,
+	// the message is not sent and an error is returned.
 	MaxPrice *string `min:"2" type:"string"`
 
 	// The body of the text message.
@@ -22396,7 +22413,9 @@ type SendTextMessageInput struct {
 	// The unique identifier for the protect configuration.
 	ProtectConfigurationId *string `min:"1" type:"string"`
 
-	// How long the text message is valid for. By default this is 72 hours.
+	// How long the text message is valid for, in seconds. By default this is 72
+	// hours. If the messages isn't handed off before the TTL expires we stop attempting
+	// to hand off the message and return TTL_EXPIRED event.
 	TimeToLive *int64 `min:"5" type:"integer"`
 }
 
@@ -22763,9 +22782,8 @@ func (s *SendVoiceMessageOutput) SetMessageId(v string) *SendVoiceMessageOutput 
 }
 
 // The alphanumeric sender ID in a specific country that you want to describe.
-// For more information on sender IDs see Requesting sender IDs for SMS messaging
-// with Amazon Pinpoint (https://docs.aws.amazon.com/pinpoint/latest/userguide/channels-sms-awssupport-sender-id.html)
-// in the Amazon Pinpoint User Guide.
+// For more information on sender IDs see Requesting sender IDs (https://docs.aws.amazon.com/sms-voice/latest/userguide/sender-id-request.html)
+// in the AWS End User Messaging SMS User Guide.
 type SenderIdAndCountry struct {
 	_ struct{} `type:"structure"`
 
@@ -23688,11 +23706,10 @@ func (s *SnsDestination) SetTopicArn(v string) *SnsDestination {
 	return s
 }
 
-// Describes the current Amazon Pinpoint monthly spend limits for sending voice
-// and text messages. For more information on increasing your monthly spend
-// limit, see Requesting increases to your monthly SMS spending quota for Amazon
-// Pinpoint (https://docs.aws.amazon.com/pinpoint/latest/userguide/channels-sms-awssupport-spend-threshold.html)
-// in the Amazon Pinpoint User Guide.
+// Describes the current monthly spend limits for sending voice and text messages.
+// For more information on increasing your monthly spend limit, see Requesting
+// a spending quota increase (https://docs.aws.amazon.com/sms-voice/latest/userguide/awssupport-spend-threshold.html)
+// in the AWS End User Messaging SMS User Guide.
 type SpendLimit struct {
 	_ struct{} `type:"structure"`
 
@@ -24392,7 +24409,7 @@ type UpdateEventDestinationInput struct {
 	EventDestinationName *string `min:"1" type:"string" required:"true"`
 
 	// An object that contains information about an event destination for logging
-	// to Kinesis Data Firehose.
+	// to Firehose.
 	KinesisFirehoseDestination *KinesisFirehoseDestination `type:"structure"`
 
 	// An array of event types that determine which events to log.
@@ -24573,11 +24590,11 @@ type UpdatePhoneNumberInput struct {
 	PhoneNumberId *string `min:"1" type:"string" required:"true"`
 
 	// By default this is set to false. When an end recipient sends a message that
-	// begins with HELP or STOP to one of your dedicated numbers, Amazon Pinpoint
-	// automatically replies with a customizable message and adds the end recipient
-	// to the OptOutList. When set to true you're responsible for responding to
-	// HELP and STOP requests. You're also responsible for tracking and honoring
-	// opt-out requests.
+	// begins with HELP or STOP to one of your dedicated numbers, AWS End User Messaging
+	// SMS and Voice automatically replies with a customizable message and adds
+	// the end recipient to the OptOutList. When set to true you're responsible
+	// for responding to HELP and STOP requests. You're also responsible for tracking
+	// and honoring opt-out requests.
 	SelfManagedOptOutsEnabled *bool `type:"boolean"`
 
 	// The Amazon Resource Name (ARN) of the two way channel.
@@ -24875,11 +24892,11 @@ type UpdatePoolInput struct {
 	PoolId *string `min:"1" type:"string" required:"true"`
 
 	// By default this is set to false. When an end recipient sends a message that
-	// begins with HELP or STOP to one of your dedicated numbers, Amazon Pinpoint
-	// automatically replies with a customizable message and adds the end recipient
-	// to the OptOutList. When set to true you're responsible for responding to
-	// HELP and STOP requests. You're also responsible for tracking and honoring
-	// opt-out requests.
+	// begins with HELP or STOP to one of your dedicated numbers, AWS End User Messaging
+	// SMS and Voice automatically replies with a customizable message and adds
+	// the end recipient to the OptOutList. When set to true you're responsible
+	// for responding to HELP and STOP requests. You're also responsible for tracking
+	// and honoring opt-out requests.
 	SelfManagedOptOutsEnabled *bool `type:"boolean"`
 
 	// Indicates whether shared routes are enabled for the pool.
@@ -25011,10 +25028,10 @@ type UpdatePoolOutput struct {
 	PoolId *string `type:"string"`
 
 	// When an end recipient sends a message that begins with HELP or STOP to one
-	// of your dedicated numbers, Amazon Pinpoint automatically replies with a customizable
-	// message and adds the end recipient to the OptOutList. When set to true you're
-	// responsible for responding to HELP and STOP requests. You're also responsible
-	// for tracking and honoring opt-out requests.
+	// of your dedicated numbers, AWS End User Messaging SMS and Voice automatically
+	// replies with a customizable message and adds the end recipient to the OptOutList.
+	// When set to true you're responsible for responding to HELP and STOP requests.
+	// You're also responsible for tracking and honoring opt-out requests.
 	SelfManagedOptOutsEnabled *bool `type:"boolean"`
 
 	// Indicates whether shared routes are enabled for the pool.
@@ -25132,7 +25149,7 @@ type UpdateProtectConfigurationCountryRuleSetInput struct {
 	// the details for the requested NumberCapability. The Key is the two-letter
 	// ISO country code. For a list of supported ISO country codes, see Supported
 	// countries and regions (SMS channel) (https://docs.aws.amazon.com/sms-voice/latest/userguide/phone-numbers-sms-by-country.html)
-	// in the Amazon Pinpoint SMS user guide.
+	// in the AWS End User Messaging SMS User Guide.
 	//
 	// CountryRuleSetUpdates is a required field
 	CountryRuleSetUpdates map[string]*ProtectConfigurationCountryRuleSetInformation `min:"1" type:"map" required:"true"`

@@ -1,3 +1,19 @@
+Release v1.55.2 (2024-07-24)
+===
+
+### Service Client Updates
+* `service/cleanrooms`: Updates service API and documentation
+* `service/dynamodb`: Updates service API, documentation, waiters, paginators, and examples
+  * DynamoDB doc only update for July
+* `service/iotsitewise`: Updates service API and documentation
+* `service/mediapackagev2`: Updates service API
+* `service/medical-imaging`: Updates service API and documentation
+* `service/pinpoint-sms-voice-v2`: Updates service API and documentation
+
+### SDK Bugs
+* Add missing bool error matching.
+  * This enables waiters defined to match on presence/absence of errors.
+
 Release v1.55.1 (2024-07-23)
 ===
 
