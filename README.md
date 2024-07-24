@@ -14,6 +14,7 @@ Going forward, we will limit releases to address critical bug fixes and security
 issues only. The SDK will not receive API updates for new or existing services,
 or be updated to support new regions.
 
+Maintenance mode will last for 1 year. After 7/31/2025, the SDK will enter end-of-support, and no updates at all will be made.
 We recommend that you migrate to [AWS SDK for Go v2](https://aws.github.io/aws-sdk-go-v2/docs/).
 For additional details as well as information on how to migrate, please refer
 to the linked announcement.
