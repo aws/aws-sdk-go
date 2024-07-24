@@ -386,6 +386,217 @@ func TestWaiterError(t *testing.T) {
 	}
 }
 
+func TestWaiterRetryAnyError(t *testing.T) {
+	svc := &mockClient{Client: awstesting.NewClient(&aws.Config{
+		Region: aws.String("mock-region"),
+	})}
+	svc.Handlers.Send.Clear() // mock sending
+	svc.Handlers.Unmarshal.Clear()
+	svc.Handlers.UnmarshalMeta.Clear()
+	svc.Handlers.UnmarshalError.Clear()
+	svc.Handlers.ValidateResponse.Clear()
+
+	var reqNum int
+	results := []struct {
+		Out *MockOutput
+		Err error
+	}{
+		{ // retry
+			Err: awserr.New(
+				"MockException1", "mock exception message", nil,
+			),
+		},
+		{ // retry
+			Err: awserr.New(
+				"MockException2", "mock exception message", nil,
+			),
+		},
+		{ // success
+			Out: &MockOutput{
+				States: []*MockState{
+					{aws.String("running")},
+					{aws.String("running")},
+				},
+			},
+		},
+		{ // shouldn't happen
+			Out: &MockOutput{
+				States: []*MockState{
+					{aws.String("running")},
+					{aws.String("running")},
+				},
+			},
+		},
+	}
+
+	numBuiltReq := 0
+	svc.Handlers.Build.PushBack(func(r *request.Request) {
+		numBuiltReq++
+	})
+	svc.Handlers.Send.PushBack(func(r *request.Request) {
+		code := http.StatusOK
+		r.HTTPResponse = &http.Response{
+			StatusCode: code,
+			Status:     http.StatusText(code),
+			Body:       ioutil.NopCloser(bytes.NewReader([]byte{})),
+		}
+	})
+	svc.Handlers.Unmarshal.PushBack(func(r *request.Request) {
+		if reqNum >= len(results) {
+			t.Errorf("too many polling requests made")
+			return
+		}
+		r.Data = results[reqNum].Out
+		reqNum++
+	})
+	svc.Handlers.UnmarshalMeta.PushBack(func(r *request.Request) {
+		// If there was an error unmarshal error will be called instead of unmarshal
+		// need to increment count here also
+		if err := results[reqNum].Err; err != nil {
+			r.Error = err
+			reqNum++
+		}
+	})
+
+	w := request.Waiter{
+		MaxAttempts:      10,
+		Delay:            request.ConstantWaiterDelay(0),
+		SleepWithContext: aws.SleepWithContext,
+		Acceptors: []request.WaiterAcceptor{
+			{
+				State:    request.SuccessWaiterState,
+				Matcher:  request.PathAllWaiterMatch,
+				Argument: "States[].State",
+				Expected: "running",
+			},
+			{
+				State:    request.RetryWaiterState,
+				Matcher:  request.ErrorWaiterMatch,
+				Argument: "",
+				Expected: true,
+			},
+			{
+				State:    request.FailureWaiterState,
+				Matcher:  request.ErrorWaiterMatch,
+				Argument: "",
+				Expected: "FailureException",
+			},
+		},
+		NewRequest: BuildNewMockRequest(svc, &MockInput{}),
+	}
+
+	err := w.WaitWithContext(aws.BackgroundContext())
+	if err != nil {
+		t.Fatalf("expected no error, but did get one: %v", err)
+	}
+	if e, a := 3, numBuiltReq; e != a {
+		t.Errorf("expect %d built requests got %d", e, a)
+	}
+	if e, a := 3, reqNum; e != a {
+		t.Errorf("expect %d reqNum got %d", e, a)
+	}
+}
+
+func TestWaiterSuccessNoError(t *testing.T) {
+	svc := &mockClient{Client: awstesting.NewClient(&aws.Config{
+		Region: aws.String("mock-region"),
+	})}
+	svc.Handlers.Send.Clear() // mock sending
+	svc.Handlers.Unmarshal.Clear()
+	svc.Handlers.UnmarshalMeta.Clear()
+	svc.Handlers.UnmarshalError.Clear()
+	svc.Handlers.ValidateResponse.Clear()
+
+	var reqNum int
+	results := []struct {
+		Out *MockOutput
+		Err error
+	}{
+		{ // success
+			Out: &MockOutput{
+				States: []*MockState{
+					{aws.String("pending")},
+				},
+			},
+		},
+		{ // shouldn't happen
+			Out: &MockOutput{
+				States: []*MockState{
+					{aws.String("pending")},
+					{aws.String("pending")},
+				},
+			},
+		},
+	}
+
+	numBuiltReq := 0
+	svc.Handlers.Build.PushBack(func(r *request.Request) {
+		numBuiltReq++
+	})
+	svc.Handlers.Send.PushBack(func(r *request.Request) {
+		code := http.StatusOK
+		r.HTTPResponse = &http.Response{
+			StatusCode: code,
+			Status:     http.StatusText(code),
+			Body:       ioutil.NopCloser(bytes.NewReader([]byte{})),
+		}
+	})
+	svc.Handlers.Unmarshal.PushBack(func(r *request.Request) {
+		if reqNum >= len(results) {
+			t.Errorf("too many polling requests made")
+			return
+		}
+		r.Data = results[reqNum].Out
+		reqNum++
+	})
+	svc.Handlers.UnmarshalMeta.PushBack(func(r *request.Request) {
+		// If there was an error unmarshal error will be called instead of unmarshal
+		// need to increment count here also
+		if err := results[reqNum].Err; err != nil {
+			r.Error = err
+			reqNum++
+		}
+	})
+
+	w := request.Waiter{
+		MaxAttempts:      10,
+		Delay:            request.ConstantWaiterDelay(0),
+		SleepWithContext: aws.SleepWithContext,
+		Acceptors: []request.WaiterAcceptor{
+			{
+				State:    request.SuccessWaiterState,
+				Matcher:  request.PathAllWaiterMatch,
+				Argument: "States[].State",
+				Expected: "running",
+			},
+			{
+				State:    request.SuccessWaiterState,
+				Matcher:  request.ErrorWaiterMatch,
+				Argument: "",
+				Expected: false,
+			},
+			{
+				State:    request.FailureWaiterState,
+				Matcher:  request.ErrorWaiterMatch,
+				Argument: "",
+				Expected: "FailureException",
+			},
+		},
+		NewRequest: BuildNewMockRequest(svc, &MockInput{}),
+	}
+
+	err := w.WaitWithContext(aws.BackgroundContext())
+	if err != nil {
+		t.Fatalf("expected no error, but did get one")
+	}
+	if e, a := 1, numBuiltReq; e != a {
+		t.Errorf("expect %d built requests got %d", e, a)
+	}
+	if e, a := 1, reqNum; e != a {
+		t.Errorf("expect %d reqNum got %d", e, a)
+	}
+}
+
 func TestWaiterStatus(t *testing.T) {
 	svc := &mockClient{Client: awstesting.NewClient(&aws.Config{
 		Region: aws.String("mock-region"),
