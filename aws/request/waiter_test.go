@@ -487,7 +487,7 @@ func TestWaiterRetryAnyError(t *testing.T) {
 
 	err := w.WaitWithContext(aws.BackgroundContext())
 	if err != nil {
-		t.Fatalf("expected no error, but did get one")
+		t.Fatalf("expected no error, but did get one: %v", err)
 	}
 	if e, a := 3, numBuiltReq; e != a {
 		t.Errorf("expect %d built requests got %d", e, a)
