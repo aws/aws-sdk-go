@@ -9257,6 +9257,9 @@ const (
 
 	// DrmSystemWidevine is a DrmSystem enum value
 	DrmSystemWidevine = "WIDEVINE"
+
+	// DrmSystemIrdeto is a DrmSystem enum value
+	DrmSystemIrdeto = "IRDETO"
 )
 
 // DrmSystem_Values returns all elements of the DrmSystem enum
@@ -9266,6 +9269,7 @@ func DrmSystem_Values() []string {
 		DrmSystemFairplay,
 		DrmSystemPlayready,
 		DrmSystemWidevine,
+		DrmSystemIrdeto,
 	}
 }
 

@@ -5,11 +5,13 @@
     "endpointPrefix":"iotsitewise",
     "jsonVersion":"1.1",
     "protocol":"rest-json",
+    "protocols":["rest-json"],
     "serviceFullName":"AWS IoT SiteWise",
     "serviceId":"IoTSiteWise",
     "signatureVersion":"v4",
     "signingName":"iotsitewise",
-    "uid":"iotsitewise-2019-12-02"
+    "uid":"iotsitewise-2019-12-02",
+    "auth":["aws.auth#sigv4"]
   },
   "operations":{
     "AssociateAssets":{
@@ -416,6 +418,7 @@
       "errors":[
         {"shape":"InvalidRequestException"},
         {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictingOperationException"},
         {"shape":"InternalFailureException"},
         {"shape":"ThrottlingException"}
       ],
@@ -2606,7 +2609,7 @@
     },
     "CapabilityConfiguration":{
       "type":"string",
-      "max":104857600,
+      "max":10000000,
       "min":1
     },
     "CapabilityNamespace":{
@@ -2621,7 +2624,8 @@
         "IN_SYNC",
         "OUT_OF_SYNC",
         "SYNC_FAILED",
-        "UNKNOWN"
+        "UNKNOWN",
+        "NOT_APPLICABLE"
       ]
     },
     "ClientToken":{
@@ -2764,7 +2768,8 @@
     "CoreDeviceThingName":{
       "type":"string",
       "max":128,
-      "min":1
+      "min":1,
+      "pattern":"^[a-zA-Z0-9:_-]+$"
     },
     "CreateAccessPolicyRequest":{
       "type":"structure",
@@ -2968,7 +2973,7 @@
         "gatewayPlatform"
       ],
       "members":{
-        "gatewayName":{"shape":"Name"},
+        "gatewayName":{"shape":"GatewayName"},
         "gatewayPlatform":{"shape":"GatewayPlatform"},
         "tags":{"shape":"TagMap"}
       }
@@ -3742,7 +3747,7 @@
       ],
       "members":{
         "gatewayId":{"shape":"ID"},
-        "gatewayName":{"shape":"Name"},
+        "gatewayName":{"shape":"GatewayName"},
         "gatewayArn":{"shape":"ARN"},
         "gatewayPlatform":{"shape":"GatewayPlatform"},
         "gatewayCapabilitySummaries":{"shape":"GatewayCapabilitySummaries"},
@@ -4161,11 +4166,18 @@
         "capabilitySyncStatus":{"shape":"CapabilitySyncStatus"}
       }
     },
+    "GatewayName":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"[^\\u0000-\\u001F\\u007F]+"
+    },
     "GatewayPlatform":{
       "type":"structure",
       "members":{
         "greengrass":{"shape":"Greengrass"},
-        "greengrassV2":{"shape":"GreengrassV2"}
+        "greengrassV2":{"shape":"GreengrassV2"},
+        "siemensIE":{"shape":"SiemensIE"}
       }
     },
     "GatewaySummaries":{
@@ -4182,7 +4194,7 @@
       ],
       "members":{
         "gatewayId":{"shape":"ID"},
-        "gatewayName":{"shape":"Name"},
+        "gatewayName":{"shape":"GatewayName"},
         "gatewayPlatform":{"shape":"GatewayPlatform"},
         "gatewayCapabilitySummaries":{"shape":"GatewayCapabilitySummaries"},
         "creationDate":{"shape":"Timestamp"},
@@ -4601,6 +4613,12 @@
       },
       "error":{"httpStatusCode":400},
       "exception":true
+    },
+    "IotCoreThingName":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"^[a-zA-Z0-9:_-]+$"
     },
     "JobConfiguration":{
       "type":"structure",
@@ -5743,6 +5761,13 @@
       "exception":true,
       "fault":true
     },
+    "SiemensIE":{
+      "type":"structure",
+      "required":["iotCoreThingName"],
+      "members":{
+        "iotCoreThingName":{"shape":"IotCoreThingName"}
+      }
+    },
     "StorageType":{
       "type":"string",
       "enum":[
@@ -6170,7 +6195,7 @@
           "location":"uri",
           "locationName":"gatewayId"
         },
-        "gatewayName":{"shape":"Name"}
+        "gatewayName":{"shape":"GatewayName"}
       }
     },
     "UpdatePortalRequest":{

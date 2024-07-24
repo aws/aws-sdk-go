@@ -2629,6 +2629,10 @@ func (c *IoTSiteWise) DeleteGatewayRequest(input *DeleteGatewayInput) (req *requ
 //   - ResourceNotFoundException
 //     The requested resource can't be found.
 //
+//   - ConflictingOperationException
+//     Your request has conflicting operations. This can occur if you're trying
+//     to perform more than one operation on the same resource at the same time.
+//
 //   - InternalFailureException
 //     IoT SiteWise can't process your request right now. Try again later.
 //
@@ -9252,15 +9256,18 @@ func (c *IoTSiteWise) UpdateAssetModelRequest(input *UpdateAssetModelInput) (req
 // models (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/update-assets-and-models.html)
 // in the IoT SiteWise User Guide.
 //
-// This operation overwrites the existing model with the provided model. To
-// avoid deleting your asset model's properties or hierarchies, you must include
-// their IDs and definitions in the updated asset model payload. For more information,
-// see DescribeAssetModel (https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_DescribeAssetModel.html).
-//
 // If you remove a property from an asset model, IoT SiteWise deletes all previous
-// data for that property. If you remove a hierarchy definition from an asset
-// model, IoT SiteWise disassociates every asset associated with that hierarchy.
-// You can't change the type or data type of an existing property.
+// data for that property. You can’t change the type or data type of an existing
+// property.
+//
+// To replace an existing asset model property with a new one with the same
+// name, do the following:
+//
+// Submit an UpdateAssetModel request with the entire existing property removed.
+//
+// Submit a second UpdateAssetModel request that includes the new property.
+// The new asset property will have the same name as the previous one and IoT
+// SiteWise will generate a new unique id.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -11263,7 +11270,7 @@ func (s *AssetModelCompositeModelPathSegment) SetName(v string) *AssetModelCompo
 type AssetModelCompositeModelSummary struct {
 	_ struct{} `type:"structure"`
 
-	// The description of the the composite model that this summary describes..
+	// The description of the composite model that this summary describes..
 	Description *string `locationName:"description" min:"1" type:"string"`
 
 	// The external ID of a composite model on this asset model. For more information,
@@ -11271,12 +11278,12 @@ type AssetModelCompositeModelSummary struct {
 	// in the IoT SiteWise User Guide.
 	ExternalId *string `locationName:"externalId" min:"2" type:"string"`
 
-	// The ID of the the composite model that this summary describes..
+	// The ID of the composite model that this summary describes..
 	//
 	// Id is a required field
 	Id *string `locationName:"id" min:"36" type:"string" required:"true"`
 
-	// The name of the the composite model that this summary describes..
+	// The name of the composite model that this summary describes..
 	//
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
@@ -11284,14 +11291,7 @@ type AssetModelCompositeModelSummary struct {
 	// The path that includes all the pieces that make up the composite model.
 	Path []*AssetModelCompositeModelPathSegment `locationName:"path" type:"list"`
 
-	// The type of asset model.
-	//
-	//    * ASSET_MODEL – (default) An asset model that you can use to create
-	//    assets. Can't be included as a component in another asset model.
-	//
-	//    * COMPONENT_MODEL – A reusable component that you can include in the
-	//    composite models of other asset models. You can't create assets directly
-	//    from this type of asset model.
+	// The composite model type. Valid values are AWS/ALARM, CUSTOM, or AWS/L4E_ANOMALY.
 	//
 	// Type is a required field
 	Type *string `locationName:"type" min:"1" type:"string" required:"true"`
@@ -15904,13 +15904,14 @@ type CreateAssetModelCompositeModelInput struct {
 	// specify your own ID, it must be globally unique.
 	AssetModelCompositeModelId *string `locationName:"assetModelCompositeModelId" min:"36" type:"string"`
 
-	// A unique, friendly name for the composite model.
+	// A unique name for the composite model.
 	//
 	// AssetModelCompositeModelName is a required field
 	AssetModelCompositeModelName *string `locationName:"assetModelCompositeModelName" min:"1" type:"string" required:"true"`
 
 	// The property definitions of the composite model. For more information, see
-	// <LINK>.
+	// Inline custom composite models (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/custom-composite-models.html#inline-composite-models)
+	// in the IoT SiteWise User Guide.
 	//
 	// You can specify up to 200 properties per composite model. For more information,
 	// see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
@@ -15932,7 +15933,7 @@ type CreateAssetModelCompositeModelInput struct {
 	// is required.
 	ClientToken *string `locationName:"clientToken" min:"36" type:"string" idempotencyToken:"true"`
 
-	// The ID of a composite model on this asset.
+	// The ID of a component model which is reused to create this composite model.
 	ComposedAssetModelId *string `locationName:"composedAssetModelId" min:"13" type:"string"`
 
 	// The ID of the parent composite model in this asset model relationship.
@@ -16142,7 +16143,8 @@ type CreateAssetModelInput struct {
 	//
 	// When creating custom composite models, you need to use CreateAssetModelCompositeModel
 	// (https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_CreateAssetModelCompositeModel.html).
-	// For more information, see <LINK>.
+	// For more information, see Creating custom composite models (Components) (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/create-custom-composite-models.html)
+	// in the IoT SiteWise User Guide.
 	AssetModelCompositeModels []*AssetModelCompositeModelDefinition `locationName:"assetModelCompositeModels" type:"list"`
 
 	// A description for the asset model.
@@ -16170,7 +16172,7 @@ type CreateAssetModelInput struct {
 	// format. If you specify your own ID, it must be globally unique.
 	AssetModelId *string `locationName:"assetModelId" min:"36" type:"string"`
 
-	// A unique, friendly name for the asset model.
+	// A unique name for the asset model.
 	//
 	// AssetModelName is a required field
 	AssetModelName *string `locationName:"assetModelName" min:"1" type:"string" required:"true"`
@@ -16862,7 +16864,7 @@ func (s *CreateDashboardOutput) SetDashboardId(v string) *CreateDashboardOutput 
 type CreateGatewayInput struct {
 	_ struct{} `type:"structure"`
 
-	// A unique, friendly name for the gateway.
+	// A unique name for the gateway.
 	//
 	// GatewayName is a required field
 	GatewayName *string `locationName:"gatewayName" min:"1" type:"string" required:"true"`
@@ -22380,6 +22382,9 @@ type GatewayPlatform struct {
 
 	// A gateway that runs on IoT Greengrass V2.
 	GreengrassV2 *GreengrassV2 `locationName:"greengrassV2" type:"structure"`
+
+	// A SiteWise Edge gateway that runs on a Siemens Industrial Edge Device.
+	SiemensIE *SiemensIE `locationName:"siemensIE" type:"structure"`
 }
 
 // String returns the string representation.
@@ -22413,6 +22418,11 @@ func (s *GatewayPlatform) Validate() error {
 			invalidParams.AddNested("GreengrassV2", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.SiemensIE != nil {
+		if err := s.SiemensIE.Validate(); err != nil {
+			invalidParams.AddNested("SiemensIE", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -22429,6 +22439,12 @@ func (s *GatewayPlatform) SetGreengrass(v *Greengrass) *GatewayPlatform {
 // SetGreengrassV2 sets the GreengrassV2 field's value.
 func (s *GatewayPlatform) SetGreengrassV2(v *GreengrassV2) *GatewayPlatform {
 	s.GreengrassV2 = v
+	return s
+}
+
+// SetSiemensIE sets the SiemensIE field's value.
+func (s *GatewayPlatform) SetSiemensIE(v *SiemensIE) *GatewayPlatform {
+	s.SiemensIE = v
 	return s
 }
 
@@ -22452,7 +22468,7 @@ type GatewaySummary struct {
 	// GatewayId is a required field
 	GatewayId *string `locationName:"gatewayId" min:"36" type:"string" required:"true"`
 
-	// The name of the asset.
+	// The name of the gateway.
 	//
 	// GatewayName is a required field
 	GatewayName *string `locationName:"gatewayName" min:"1" type:"string" required:"true"`
@@ -23346,9 +23362,9 @@ type Greengrass struct {
 
 	// The ARN (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// of the Greengrass group. For more information about how to find a group's
-	// ARN, see ListGroups (https://docs.aws.amazon.com/greengrass/latest/apireference/listgroups-get.html)
-	// and GetGroup (https://docs.aws.amazon.com/greengrass/latest/apireference/getgroup-get.html)
-	// in the IoT Greengrass API Reference.
+	// ARN, see ListGroups (https://docs.aws.amazon.com/greengrass/v1/apireference/listgroups-get.html)
+	// and GetGroup (https://docs.aws.amazon.com/greengrass/v1/apireference/getgroup-get.html)
+	// in the IoT Greengrass V1 API Reference.
 	//
 	// GroupArn is a required field
 	GroupArn *string `locationName:"groupArn" min:"1" type:"string" required:"true"`
@@ -28536,6 +28552,57 @@ func (s *ServiceUnavailableException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Contains details for a SiteWise Edge gateway that runs on a Siemens Industrial
+// Edge Device.
+type SiemensIE struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the IoT Thing for your SiteWise Edge gateway.
+	//
+	// IotCoreThingName is a required field
+	IotCoreThingName *string `locationName:"iotCoreThingName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SiemensIE) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SiemensIE) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SiemensIE) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SiemensIE"}
+	if s.IotCoreThingName == nil {
+		invalidParams.Add(request.NewErrParamRequired("IotCoreThingName"))
+	}
+	if s.IotCoreThingName != nil && len(*s.IotCoreThingName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IotCoreThingName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIotCoreThingName sets the IotCoreThingName field's value.
+func (s *SiemensIE) SetIotCoreThingName(v string) *SiemensIE {
+	s.IotCoreThingName = &v
+	return s
+}
+
 type TagResourceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -29691,13 +29758,14 @@ type UpdateAssetModelCompositeModelInput struct {
 	// AssetModelCompositeModelId is a required field
 	AssetModelCompositeModelId *string `location:"uri" locationName:"assetModelCompositeModelId" min:"13" type:"string" required:"true"`
 
-	// A unique, friendly name for the composite model.
+	// A unique name for the composite model.
 	//
 	// AssetModelCompositeModelName is a required field
 	AssetModelCompositeModelName *string `locationName:"assetModelCompositeModelName" min:"1" type:"string" required:"true"`
 
 	// The property definitions of the composite model. For more information, see
-	// <LINK>.
+	// Inline custom composite models (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/custom-composite-models.html#inline-composite-models)
+	// in the IoT SiteWise User Guide.
 	//
 	// You can specify up to 200 properties per composite model. For more information,
 	// see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
@@ -29879,7 +29947,8 @@ type UpdateAssetModelInput struct {
 	//
 	// When creating custom composite models, you need to use CreateAssetModelCompositeModel
 	// (https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_CreateAssetModelCompositeModel.html).
-	// For more information, see <LINK>.
+	// For more information, see Creating custom composite models (Components) (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/create-custom-composite-models.html)
+	// in the IoT SiteWise User Guide.
 	AssetModelCompositeModels []*AssetModelCompositeModel `locationName:"assetModelCompositeModels" type:"list"`
 
 	// A description for the asset model.
@@ -29909,7 +29978,7 @@ type UpdateAssetModelInput struct {
 	// AssetModelId is a required field
 	AssetModelId *string `location:"uri" locationName:"assetModelId" min:"13" type:"string" required:"true"`
 
-	// A unique, friendly name for the asset model.
+	// A unique name for the asset model.
 	//
 	// AssetModelName is a required field
 	AssetModelName *string `locationName:"assetModelName" min:"1" type:"string" required:"true"`
@@ -30559,7 +30628,7 @@ type UpdateGatewayInput struct {
 	// GatewayId is a required field
 	GatewayId *string `location:"uri" locationName:"gatewayId" min:"36" type:"string" required:"true"`
 
-	// A unique, friendly name for the gateway.
+	// A unique name for the gateway.
 	//
 	// GatewayName is a required field
 	GatewayName *string `locationName:"gatewayName" min:"1" type:"string" required:"true"`
@@ -31180,8 +31249,7 @@ type Variant struct {
 	// Asset property data of type double (floating point number).
 	DoubleValue *float64 `locationName:"doubleValue" type:"double"`
 
-	// Asset property data of type integer (number that's greater than or equal
-	// to zero).
+	// Asset property data of type integer (whole number).
 	IntegerValue *int64 `locationName:"integerValue" type:"integer"`
 
 	// Asset property data of type string (sequence of characters).
@@ -31565,6 +31633,9 @@ const (
 
 	// CapabilitySyncStatusUnknown is a CapabilitySyncStatus enum value
 	CapabilitySyncStatusUnknown = "UNKNOWN"
+
+	// CapabilitySyncStatusNotApplicable is a CapabilitySyncStatus enum value
+	CapabilitySyncStatusNotApplicable = "NOT_APPLICABLE"
 )
 
 // CapabilitySyncStatus_Values returns all elements of the CapabilitySyncStatus enum
@@ -31574,6 +31645,7 @@ func CapabilitySyncStatus_Values() []string {
 		CapabilitySyncStatusOutOfSync,
 		CapabilitySyncStatusSyncFailed,
 		CapabilitySyncStatusUnknown,
+		CapabilitySyncStatusNotApplicable,
 	}
 }
 

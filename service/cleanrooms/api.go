@@ -862,6 +862,100 @@ func (c *CleanRooms) CreateConfiguredTableAssociationWithContext(ctx aws.Context
 	return out, req.Send()
 }
 
+const opCreateConfiguredTableAssociationAnalysisRule = "CreateConfiguredTableAssociationAnalysisRule"
+
+// CreateConfiguredTableAssociationAnalysisRuleRequest generates a "aws/request.Request" representing the
+// client's request for the CreateConfiguredTableAssociationAnalysisRule operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateConfiguredTableAssociationAnalysisRule for more information on using the CreateConfiguredTableAssociationAnalysisRule
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateConfiguredTableAssociationAnalysisRuleRequest method.
+//	req, resp := client.CreateConfiguredTableAssociationAnalysisRuleRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/CreateConfiguredTableAssociationAnalysisRule
+func (c *CleanRooms) CreateConfiguredTableAssociationAnalysisRuleRequest(input *CreateConfiguredTableAssociationAnalysisRuleInput) (req *request.Request, output *CreateConfiguredTableAssociationAnalysisRuleOutput) {
+	op := &request.Operation{
+		Name:       opCreateConfiguredTableAssociationAnalysisRule,
+		HTTPMethod: "POST",
+		HTTPPath:   "/memberships/{membershipIdentifier}/configuredTableAssociations/{configuredTableAssociationIdentifier}/analysisRule",
+	}
+
+	if input == nil {
+		input = &CreateConfiguredTableAssociationAnalysisRuleInput{}
+	}
+
+	output = &CreateConfiguredTableAssociationAnalysisRuleOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateConfiguredTableAssociationAnalysisRule API operation for AWS Clean Rooms Service.
+//
+// Creates a new analysis rule for an associated configured table.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Clean Rooms Service's
+// API operation CreateConfiguredTableAssociationAnalysisRule for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ConflictException
+//     Updating or deleting a resource can cause an inconsistent state.
+//
+//   - ResourceNotFoundException
+//     Request references a resource which does not exist.
+//
+//   - InternalServerException
+//     Unexpected error during processing of request.
+//
+//   - ValidationException
+//     The input fails to satisfy the specified constraints.
+//
+//   - ThrottlingException
+//     Request was denied due to request throttling.
+//
+//   - AccessDeniedException
+//     Caller does not have sufficient access to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/CreateConfiguredTableAssociationAnalysisRule
+func (c *CleanRooms) CreateConfiguredTableAssociationAnalysisRule(input *CreateConfiguredTableAssociationAnalysisRuleInput) (*CreateConfiguredTableAssociationAnalysisRuleOutput, error) {
+	req, out := c.CreateConfiguredTableAssociationAnalysisRuleRequest(input)
+	return out, req.Send()
+}
+
+// CreateConfiguredTableAssociationAnalysisRuleWithContext is the same as CreateConfiguredTableAssociationAnalysisRule with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateConfiguredTableAssociationAnalysisRule for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CleanRooms) CreateConfiguredTableAssociationAnalysisRuleWithContext(ctx aws.Context, input *CreateConfiguredTableAssociationAnalysisRuleInput, opts ...request.Option) (*CreateConfiguredTableAssociationAnalysisRuleOutput, error) {
+	req, out := c.CreateConfiguredTableAssociationAnalysisRuleRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateIdMappingTable = "CreateIdMappingTable"
 
 // CreateIdMappingTableRequest generates a "aws/request.Request" representing the
@@ -1708,6 +1802,101 @@ func (c *CleanRooms) DeleteConfiguredTableAssociation(input *DeleteConfiguredTab
 // for more information on using Contexts.
 func (c *CleanRooms) DeleteConfiguredTableAssociationWithContext(ctx aws.Context, input *DeleteConfiguredTableAssociationInput, opts ...request.Option) (*DeleteConfiguredTableAssociationOutput, error) {
 	req, out := c.DeleteConfiguredTableAssociationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteConfiguredTableAssociationAnalysisRule = "DeleteConfiguredTableAssociationAnalysisRule"
+
+// DeleteConfiguredTableAssociationAnalysisRuleRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteConfiguredTableAssociationAnalysisRule operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteConfiguredTableAssociationAnalysisRule for more information on using the DeleteConfiguredTableAssociationAnalysisRule
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteConfiguredTableAssociationAnalysisRuleRequest method.
+//	req, resp := client.DeleteConfiguredTableAssociationAnalysisRuleRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/DeleteConfiguredTableAssociationAnalysisRule
+func (c *CleanRooms) DeleteConfiguredTableAssociationAnalysisRuleRequest(input *DeleteConfiguredTableAssociationAnalysisRuleInput) (req *request.Request, output *DeleteConfiguredTableAssociationAnalysisRuleOutput) {
+	op := &request.Operation{
+		Name:       opDeleteConfiguredTableAssociationAnalysisRule,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/memberships/{membershipIdentifier}/configuredTableAssociations/{configuredTableAssociationIdentifier}/analysisRule/{analysisRuleType}",
+	}
+
+	if input == nil {
+		input = &DeleteConfiguredTableAssociationAnalysisRuleInput{}
+	}
+
+	output = &DeleteConfiguredTableAssociationAnalysisRuleOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteConfiguredTableAssociationAnalysisRule API operation for AWS Clean Rooms Service.
+//
+// Deletes an analysis rule for a configured table association.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Clean Rooms Service's
+// API operation DeleteConfiguredTableAssociationAnalysisRule for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ConflictException
+//     Updating or deleting a resource can cause an inconsistent state.
+//
+//   - ResourceNotFoundException
+//     Request references a resource which does not exist.
+//
+//   - InternalServerException
+//     Unexpected error during processing of request.
+//
+//   - ValidationException
+//     The input fails to satisfy the specified constraints.
+//
+//   - ThrottlingException
+//     Request was denied due to request throttling.
+//
+//   - AccessDeniedException
+//     Caller does not have sufficient access to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/DeleteConfiguredTableAssociationAnalysisRule
+func (c *CleanRooms) DeleteConfiguredTableAssociationAnalysisRule(input *DeleteConfiguredTableAssociationAnalysisRuleInput) (*DeleteConfiguredTableAssociationAnalysisRuleOutput, error) {
+	req, out := c.DeleteConfiguredTableAssociationAnalysisRuleRequest(input)
+	return out, req.Send()
+}
+
+// DeleteConfiguredTableAssociationAnalysisRuleWithContext is the same as DeleteConfiguredTableAssociationAnalysisRule with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteConfiguredTableAssociationAnalysisRule for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CleanRooms) DeleteConfiguredTableAssociationAnalysisRuleWithContext(ctx aws.Context, input *DeleteConfiguredTableAssociationAnalysisRuleInput, opts ...request.Option) (*DeleteConfiguredTableAssociationAnalysisRuleOutput, error) {
+	req, out := c.DeleteConfiguredTableAssociationAnalysisRuleRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2993,6 +3182,97 @@ func (c *CleanRooms) GetConfiguredTableAssociation(input *GetConfiguredTableAsso
 // for more information on using Contexts.
 func (c *CleanRooms) GetConfiguredTableAssociationWithContext(ctx aws.Context, input *GetConfiguredTableAssociationInput, opts ...request.Option) (*GetConfiguredTableAssociationOutput, error) {
 	req, out := c.GetConfiguredTableAssociationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetConfiguredTableAssociationAnalysisRule = "GetConfiguredTableAssociationAnalysisRule"
+
+// GetConfiguredTableAssociationAnalysisRuleRequest generates a "aws/request.Request" representing the
+// client's request for the GetConfiguredTableAssociationAnalysisRule operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetConfiguredTableAssociationAnalysisRule for more information on using the GetConfiguredTableAssociationAnalysisRule
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetConfiguredTableAssociationAnalysisRuleRequest method.
+//	req, resp := client.GetConfiguredTableAssociationAnalysisRuleRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/GetConfiguredTableAssociationAnalysisRule
+func (c *CleanRooms) GetConfiguredTableAssociationAnalysisRuleRequest(input *GetConfiguredTableAssociationAnalysisRuleInput) (req *request.Request, output *GetConfiguredTableAssociationAnalysisRuleOutput) {
+	op := &request.Operation{
+		Name:       opGetConfiguredTableAssociationAnalysisRule,
+		HTTPMethod: "GET",
+		HTTPPath:   "/memberships/{membershipIdentifier}/configuredTableAssociations/{configuredTableAssociationIdentifier}/analysisRule/{analysisRuleType}",
+	}
+
+	if input == nil {
+		input = &GetConfiguredTableAssociationAnalysisRuleInput{}
+	}
+
+	output = &GetConfiguredTableAssociationAnalysisRuleOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetConfiguredTableAssociationAnalysisRule API operation for AWS Clean Rooms Service.
+//
+// Retrieves the analysis rule for a configured table association.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Clean Rooms Service's
+// API operation GetConfiguredTableAssociationAnalysisRule for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     Request references a resource which does not exist.
+//
+//   - InternalServerException
+//     Unexpected error during processing of request.
+//
+//   - ValidationException
+//     The input fails to satisfy the specified constraints.
+//
+//   - ThrottlingException
+//     Request was denied due to request throttling.
+//
+//   - AccessDeniedException
+//     Caller does not have sufficient access to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/GetConfiguredTableAssociationAnalysisRule
+func (c *CleanRooms) GetConfiguredTableAssociationAnalysisRule(input *GetConfiguredTableAssociationAnalysisRuleInput) (*GetConfiguredTableAssociationAnalysisRuleOutput, error) {
+	req, out := c.GetConfiguredTableAssociationAnalysisRuleRequest(input)
+	return out, req.Send()
+}
+
+// GetConfiguredTableAssociationAnalysisRuleWithContext is the same as GetConfiguredTableAssociationAnalysisRule with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetConfiguredTableAssociationAnalysisRule for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CleanRooms) GetConfiguredTableAssociationAnalysisRuleWithContext(ctx aws.Context, input *GetConfiguredTableAssociationAnalysisRuleInput, opts ...request.Option) (*GetConfiguredTableAssociationAnalysisRuleOutput, error) {
+	req, out := c.GetConfiguredTableAssociationAnalysisRuleRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -7284,6 +7564,100 @@ func (c *CleanRooms) UpdateConfiguredTableAssociationWithContext(ctx aws.Context
 	return out, req.Send()
 }
 
+const opUpdateConfiguredTableAssociationAnalysisRule = "UpdateConfiguredTableAssociationAnalysisRule"
+
+// UpdateConfiguredTableAssociationAnalysisRuleRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateConfiguredTableAssociationAnalysisRule operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateConfiguredTableAssociationAnalysisRule for more information on using the UpdateConfiguredTableAssociationAnalysisRule
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateConfiguredTableAssociationAnalysisRuleRequest method.
+//	req, resp := client.UpdateConfiguredTableAssociationAnalysisRuleRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/UpdateConfiguredTableAssociationAnalysisRule
+func (c *CleanRooms) UpdateConfiguredTableAssociationAnalysisRuleRequest(input *UpdateConfiguredTableAssociationAnalysisRuleInput) (req *request.Request, output *UpdateConfiguredTableAssociationAnalysisRuleOutput) {
+	op := &request.Operation{
+		Name:       opUpdateConfiguredTableAssociationAnalysisRule,
+		HTTPMethod: "PATCH",
+		HTTPPath:   "/memberships/{membershipIdentifier}/configuredTableAssociations/{configuredTableAssociationIdentifier}/analysisRule/{analysisRuleType}",
+	}
+
+	if input == nil {
+		input = &UpdateConfiguredTableAssociationAnalysisRuleInput{}
+	}
+
+	output = &UpdateConfiguredTableAssociationAnalysisRuleOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateConfiguredTableAssociationAnalysisRule API operation for AWS Clean Rooms Service.
+//
+// Updates the analysis rule for a configured table association.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Clean Rooms Service's
+// API operation UpdateConfiguredTableAssociationAnalysisRule for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ConflictException
+//     Updating or deleting a resource can cause an inconsistent state.
+//
+//   - ResourceNotFoundException
+//     Request references a resource which does not exist.
+//
+//   - InternalServerException
+//     Unexpected error during processing of request.
+//
+//   - ValidationException
+//     The input fails to satisfy the specified constraints.
+//
+//   - ThrottlingException
+//     Request was denied due to request throttling.
+//
+//   - AccessDeniedException
+//     Caller does not have sufficient access to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/UpdateConfiguredTableAssociationAnalysisRule
+func (c *CleanRooms) UpdateConfiguredTableAssociationAnalysisRule(input *UpdateConfiguredTableAssociationAnalysisRuleInput) (*UpdateConfiguredTableAssociationAnalysisRuleOutput, error) {
+	req, out := c.UpdateConfiguredTableAssociationAnalysisRuleRequest(input)
+	return out, req.Send()
+}
+
+// UpdateConfiguredTableAssociationAnalysisRuleWithContext is the same as UpdateConfiguredTableAssociationAnalysisRule with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateConfiguredTableAssociationAnalysisRule for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CleanRooms) UpdateConfiguredTableAssociationAnalysisRuleWithContext(ctx aws.Context, input *UpdateConfiguredTableAssociationAnalysisRuleInput, opts ...request.Option) (*UpdateConfiguredTableAssociationAnalysisRuleOutput, error) {
+	req, out := c.UpdateConfiguredTableAssociationAnalysisRuleRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateIdMappingTable = "UpdateIdMappingTable"
 
 // UpdateIdMappingTableRequest generates a "aws/request.Request" representing the
@@ -8045,6 +8419,13 @@ func (s *AnalysisRule) SetUpdateTime(v time.Time) *AnalysisRule {
 type AnalysisRuleAggregation struct {
 	_ struct{} `type:"structure"`
 
+	// An indicator as to whether additional analyses (such as Clean Rooms ML) can
+	// be applied to the output of the direct query.
+	//
+	// The additionalAnalyses parameter is currently supported for the list analysis
+	// rule (AnalysisRuleList) and the custom analysis rule (AnalysisRuleCustom).
+	AdditionalAnalyses *string `locationName:"additionalAnalyses" type:"string" enum:"AdditionalAnalyses"`
+
 	// The columns that query runners are allowed to use in aggregation queries.
 	//
 	// AggregateColumns is a required field
@@ -8152,6 +8533,12 @@ func (s *AnalysisRuleAggregation) Validate() error {
 	return nil
 }
 
+// SetAdditionalAnalyses sets the AdditionalAnalyses field's value.
+func (s *AnalysisRuleAggregation) SetAdditionalAnalyses(v string) *AnalysisRuleAggregation {
+	s.AdditionalAnalyses = &v
+	return s
+}
+
 // SetAggregateColumns sets the AggregateColumns field's value.
 func (s *AnalysisRuleAggregation) SetAggregateColumns(v []*AggregateColumn) *AnalysisRuleAggregation {
 	s.AggregateColumns = v
@@ -8199,6 +8586,10 @@ func (s *AnalysisRuleAggregation) SetScalarFunctions(v []*string) *AnalysisRuleA
 type AnalysisRuleCustom struct {
 	_ struct{} `type:"structure"`
 
+	// An indicator as to whether additional analyses (such as Clean Rooms ML) can
+	// be applied to the output of the direct query.
+	AdditionalAnalyses *string `locationName:"additionalAnalyses" type:"string" enum:"AdditionalAnalyses"`
+
 	// The ARN of the analysis templates that are allowed by the custom analysis
 	// rule.
 	//
@@ -8211,6 +8602,9 @@ type AnalysisRuleCustom struct {
 
 	// The differential privacy configuration.
 	DifferentialPrivacy *DifferentialPrivacyConfiguration `locationName:"differentialPrivacy" type:"structure"`
+
+	// A list of columns that aren't allowed to be shown in the query output.
+	DisallowedOutputColumns []*string `locationName:"disallowedOutputColumns" type:"list"`
 }
 
 // String returns the string representation.
@@ -8249,6 +8643,12 @@ func (s *AnalysisRuleCustom) Validate() error {
 	return nil
 }
 
+// SetAdditionalAnalyses sets the AdditionalAnalyses field's value.
+func (s *AnalysisRuleCustom) SetAdditionalAnalyses(v string) *AnalysisRuleCustom {
+	s.AdditionalAnalyses = &v
+	return s
+}
+
 // SetAllowedAnalyses sets the AllowedAnalyses field's value.
 func (s *AnalysisRuleCustom) SetAllowedAnalyses(v []*string) *AnalysisRuleCustom {
 	s.AllowedAnalyses = v
@@ -8264,6 +8664,12 @@ func (s *AnalysisRuleCustom) SetAllowedAnalysisProviders(v []*string) *AnalysisR
 // SetDifferentialPrivacy sets the DifferentialPrivacy field's value.
 func (s *AnalysisRuleCustom) SetDifferentialPrivacy(v *DifferentialPrivacyConfiguration) *AnalysisRuleCustom {
 	s.DifferentialPrivacy = v
+	return s
+}
+
+// SetDisallowedOutputColumns sets the DisallowedOutputColumns field's value.
+func (s *AnalysisRuleCustom) SetDisallowedOutputColumns(v []*string) *AnalysisRuleCustom {
+	s.DisallowedOutputColumns = v
 	return s
 }
 
@@ -8326,6 +8732,10 @@ func (s *AnalysisRuleIdMappingTable) SetQueryConstraints(v []*QueryConstraint) *
 type AnalysisRuleList struct {
 	_ struct{} `type:"structure"`
 
+	// An indicator as to whether additional analyses (such as Clean Rooms ML) can
+	// be applied to the output of the direct query.
+	AdditionalAnalyses *string `locationName:"additionalAnalyses" type:"string" enum:"AdditionalAnalyses"`
+
 	// The logical operators (if any) that are to be used in an INNER JOIN match
 	// condition. Default is AND.
 	AllowedJoinOperators []*string `locationName:"allowedJoinOperators" type:"list" enum:"JoinOperator"`
@@ -8377,6 +8787,12 @@ func (s *AnalysisRuleList) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAdditionalAnalyses sets the AdditionalAnalyses field's value.
+func (s *AnalysisRuleList) SetAdditionalAnalyses(v string) *AnalysisRuleList {
+	s.AdditionalAnalyses = &v
+	return s
 }
 
 // SetAllowedJoinOperators sets the AllowedJoinOperators field's value.
@@ -9990,7 +10406,7 @@ type CollaborationConfiguredAudienceModelAssociation struct {
 	CreateTime *time.Time `locationName:"createTime" type:"timestamp" required:"true"`
 
 	// The identifier used to reference members of the collaboration. Only supports
-	// Amazon Web Services account ID.
+	// AWS account ID.
 	//
 	// CreatorAccountId is a required field
 	CreatorAccountId *string `locationName:"creatorAccountId" min:"12" type:"string" required:"true"`
@@ -10119,7 +10535,7 @@ type CollaborationConfiguredAudienceModelAssociationSummary struct {
 	CreateTime *time.Time `locationName:"createTime" type:"timestamp" required:"true"`
 
 	// The identifier used to reference members of the collaboration. Only supports
-	// Amazon Web Services account ID.
+	// AWS account ID.
 	//
 	// CreatorAccountId is a required field
 	CreatorAccountId *string `locationName:"creatorAccountId" min:"12" type:"string" required:"true"`
@@ -10937,6 +11353,38 @@ func (s *Column) SetType(v string) *Column {
 	return s
 }
 
+// The configuration details.
+type ConfigurationDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The direct analysis configuration details.
+	DirectAnalysisConfigurationDetails *DirectAnalysisConfigurationDetails `locationName:"directAnalysisConfigurationDetails" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConfigurationDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConfigurationDetails) GoString() string {
+	return s.String()
+}
+
+// SetDirectAnalysisConfigurationDetails sets the DirectAnalysisConfigurationDetails field's value.
+func (s *ConfigurationDetails) SetDirectAnalysisConfigurationDetails(v *DirectAnalysisConfigurationDetails) *ConfigurationDetails {
+	s.DirectAnalysisConfigurationDetails = v
+	return s
+}
+
 // Details about the configured audience model association.
 type ConfiguredAudienceModelAssociation struct {
 	_ struct{} `type:"structure"`
@@ -11600,6 +12048,9 @@ func (s *ConfiguredTableAnalysisRulePolicyV1) SetList(v *AnalysisRuleList) *Conf
 type ConfiguredTableAssociation struct {
 	_ struct{} `type:"structure"`
 
+	// The analysis rule types for the configured table association.
+	AnalysisRuleTypes []*string `locationName:"analysisRuleTypes" type:"list" enum:"ConfiguredTableAssociationAnalysisRuleType"`
+
 	// The unique ARN for the configured table association.
 	//
 	// Arn is a required field
@@ -11677,6 +12128,12 @@ func (s ConfiguredTableAssociation) GoString() string {
 	return s.String()
 }
 
+// SetAnalysisRuleTypes sets the AnalysisRuleTypes field's value.
+func (s *ConfiguredTableAssociation) SetAnalysisRuleTypes(v []*string) *ConfiguredTableAssociation {
+	s.AnalysisRuleTypes = v
+	return s
+}
+
 // SetArn sets the Arn field's value.
 func (s *ConfiguredTableAssociation) SetArn(v string) *ConfiguredTableAssociation {
 	s.Arn = &v
@@ -11740,6 +12197,330 @@ func (s *ConfiguredTableAssociation) SetRoleArn(v string) *ConfiguredTableAssoci
 // SetUpdateTime sets the UpdateTime field's value.
 func (s *ConfiguredTableAssociation) SetUpdateTime(v time.Time) *ConfiguredTableAssociation {
 	s.UpdateTime = &v
+	return s
+}
+
+// An analysis rule for a configured table association. This analysis rule specifies
+// how data from the table can be used within its associated collaboration.
+// In the console, the ConfiguredTableAssociationAnalysisRule is referred to
+// as the collaboration analysis rule.
+type ConfiguredTableAssociationAnalysisRule struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the configured table association.
+	//
+	// ConfiguredTableAssociationArn is a required field
+	ConfiguredTableAssociationArn *string `locationName:"configuredTableAssociationArn" type:"string" required:"true"`
+
+	// The unique identifier for the configured table association.
+	//
+	// ConfiguredTableAssociationId is a required field
+	ConfiguredTableAssociationId *string `locationName:"configuredTableAssociationId" min:"36" type:"string" required:"true"`
+
+	// The creation time of the configured table association analysis rule.
+	//
+	// CreateTime is a required field
+	CreateTime *time.Time `locationName:"createTime" type:"timestamp" required:"true"`
+
+	// The membership identifier for the configured table association analysis rule.
+	//
+	// MembershipIdentifier is a required field
+	MembershipIdentifier *string `locationName:"membershipIdentifier" min:"36" type:"string" required:"true"`
+
+	// The policy of the configured table association analysis rule.
+	//
+	// Policy is a required field
+	Policy *ConfiguredTableAssociationAnalysisRulePolicy `locationName:"policy" type:"structure" required:"true"`
+
+	// The type of the configured table association analysis rule.
+	//
+	// Type is a required field
+	Type *string `locationName:"type" type:"string" required:"true" enum:"ConfiguredTableAssociationAnalysisRuleType"`
+
+	// The update time of the configured table association analysis rule.
+	//
+	// UpdateTime is a required field
+	UpdateTime *time.Time `locationName:"updateTime" type:"timestamp" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConfiguredTableAssociationAnalysisRule) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConfiguredTableAssociationAnalysisRule) GoString() string {
+	return s.String()
+}
+
+// SetConfiguredTableAssociationArn sets the ConfiguredTableAssociationArn field's value.
+func (s *ConfiguredTableAssociationAnalysisRule) SetConfiguredTableAssociationArn(v string) *ConfiguredTableAssociationAnalysisRule {
+	s.ConfiguredTableAssociationArn = &v
+	return s
+}
+
+// SetConfiguredTableAssociationId sets the ConfiguredTableAssociationId field's value.
+func (s *ConfiguredTableAssociationAnalysisRule) SetConfiguredTableAssociationId(v string) *ConfiguredTableAssociationAnalysisRule {
+	s.ConfiguredTableAssociationId = &v
+	return s
+}
+
+// SetCreateTime sets the CreateTime field's value.
+func (s *ConfiguredTableAssociationAnalysisRule) SetCreateTime(v time.Time) *ConfiguredTableAssociationAnalysisRule {
+	s.CreateTime = &v
+	return s
+}
+
+// SetMembershipIdentifier sets the MembershipIdentifier field's value.
+func (s *ConfiguredTableAssociationAnalysisRule) SetMembershipIdentifier(v string) *ConfiguredTableAssociationAnalysisRule {
+	s.MembershipIdentifier = &v
+	return s
+}
+
+// SetPolicy sets the Policy field's value.
+func (s *ConfiguredTableAssociationAnalysisRule) SetPolicy(v *ConfiguredTableAssociationAnalysisRulePolicy) *ConfiguredTableAssociationAnalysisRule {
+	s.Policy = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *ConfiguredTableAssociationAnalysisRule) SetType(v string) *ConfiguredTableAssociationAnalysisRule {
+	s.Type = &v
+	return s
+}
+
+// SetUpdateTime sets the UpdateTime field's value.
+func (s *ConfiguredTableAssociationAnalysisRule) SetUpdateTime(v time.Time) *ConfiguredTableAssociationAnalysisRule {
+	s.UpdateTime = &v
+	return s
+}
+
+// The configured table association analysis rule applied to a configured table
+// with the aggregation analysis rule.
+type ConfiguredTableAssociationAnalysisRuleAggregation struct {
+	_ struct{} `type:"structure"`
+
+	// The list of resources or wildcards (ARNs) that are allowed to perform additional
+	// analysis on query output.
+	//
+	// The allowedAdditionalAnalyses parameter is currently supported for the list
+	// analysis rule (AnalysisRuleList) and the custom analysis rule (AnalysisRuleCustom).
+	AllowedAdditionalAnalyses []*string `locationName:"allowedAdditionalAnalyses" type:"list"`
+
+	// The list of collaboration members who are allowed to receive results of queries
+	// run with this configured table.
+	AllowedResultReceivers []*string `locationName:"allowedResultReceivers" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConfiguredTableAssociationAnalysisRuleAggregation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConfiguredTableAssociationAnalysisRuleAggregation) GoString() string {
+	return s.String()
+}
+
+// SetAllowedAdditionalAnalyses sets the AllowedAdditionalAnalyses field's value.
+func (s *ConfiguredTableAssociationAnalysisRuleAggregation) SetAllowedAdditionalAnalyses(v []*string) *ConfiguredTableAssociationAnalysisRuleAggregation {
+	s.AllowedAdditionalAnalyses = v
+	return s
+}
+
+// SetAllowedResultReceivers sets the AllowedResultReceivers field's value.
+func (s *ConfiguredTableAssociationAnalysisRuleAggregation) SetAllowedResultReceivers(v []*string) *ConfiguredTableAssociationAnalysisRuleAggregation {
+	s.AllowedResultReceivers = v
+	return s
+}
+
+// The configured table association analysis rule applied to a configured table
+// with the custom analysis rule.
+type ConfiguredTableAssociationAnalysisRuleCustom struct {
+	_ struct{} `type:"structure"`
+
+	// The list of resources or wildcards (ARNs) that are allowed to perform additional
+	// analysis on query output.
+	AllowedAdditionalAnalyses []*string `locationName:"allowedAdditionalAnalyses" type:"list"`
+
+	// The list of collaboration members who are allowed to receive results of queries
+	// run with this configured table.
+	AllowedResultReceivers []*string `locationName:"allowedResultReceivers" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConfiguredTableAssociationAnalysisRuleCustom) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConfiguredTableAssociationAnalysisRuleCustom) GoString() string {
+	return s.String()
+}
+
+// SetAllowedAdditionalAnalyses sets the AllowedAdditionalAnalyses field's value.
+func (s *ConfiguredTableAssociationAnalysisRuleCustom) SetAllowedAdditionalAnalyses(v []*string) *ConfiguredTableAssociationAnalysisRuleCustom {
+	s.AllowedAdditionalAnalyses = v
+	return s
+}
+
+// SetAllowedResultReceivers sets the AllowedResultReceivers field's value.
+func (s *ConfiguredTableAssociationAnalysisRuleCustom) SetAllowedResultReceivers(v []*string) *ConfiguredTableAssociationAnalysisRuleCustom {
+	s.AllowedResultReceivers = v
+	return s
+}
+
+// The configured table association analysis rule applied to a configured table
+// with the list analysis rule.
+type ConfiguredTableAssociationAnalysisRuleList struct {
+	_ struct{} `type:"structure"`
+
+	// The list of resources or wildcards (ARNs) that are allowed to perform additional
+	// analysis on query output.
+	AllowedAdditionalAnalyses []*string `locationName:"allowedAdditionalAnalyses" type:"list"`
+
+	// The list of collaboration members who are allowed to receive results of queries
+	// run with this configured table.
+	AllowedResultReceivers []*string `locationName:"allowedResultReceivers" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConfiguredTableAssociationAnalysisRuleList) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConfiguredTableAssociationAnalysisRuleList) GoString() string {
+	return s.String()
+}
+
+// SetAllowedAdditionalAnalyses sets the AllowedAdditionalAnalyses field's value.
+func (s *ConfiguredTableAssociationAnalysisRuleList) SetAllowedAdditionalAnalyses(v []*string) *ConfiguredTableAssociationAnalysisRuleList {
+	s.AllowedAdditionalAnalyses = v
+	return s
+}
+
+// SetAllowedResultReceivers sets the AllowedResultReceivers field's value.
+func (s *ConfiguredTableAssociationAnalysisRuleList) SetAllowedResultReceivers(v []*string) *ConfiguredTableAssociationAnalysisRuleList {
+	s.AllowedResultReceivers = v
+	return s
+}
+
+// Controls on the query specifications that can be run on an associated configured
+// table.
+type ConfiguredTableAssociationAnalysisRulePolicy struct {
+	_ struct{} `type:"structure"`
+
+	// The policy for the configured table association analysis rule.
+	V1 *ConfiguredTableAssociationAnalysisRulePolicyV1 `locationName:"v1" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConfiguredTableAssociationAnalysisRulePolicy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConfiguredTableAssociationAnalysisRulePolicy) GoString() string {
+	return s.String()
+}
+
+// SetV1 sets the V1 field's value.
+func (s *ConfiguredTableAssociationAnalysisRulePolicy) SetV1(v *ConfiguredTableAssociationAnalysisRulePolicyV1) *ConfiguredTableAssociationAnalysisRulePolicy {
+	s.V1 = v
+	return s
+}
+
+// Controls on the query specifications that can be run on an associated configured
+// table.
+type ConfiguredTableAssociationAnalysisRulePolicyV1 struct {
+	_ struct{} `type:"structure"`
+
+	// Analysis rule type that enables only aggregation queries on a configured
+	// table.
+	Aggregation *ConfiguredTableAssociationAnalysisRuleAggregation `locationName:"aggregation" type:"structure"`
+
+	// Analysis rule type that enables the table owner to approve custom SQL queries
+	// on their configured tables. It supports differential privacy.
+	Custom *ConfiguredTableAssociationAnalysisRuleCustom `locationName:"custom" type:"structure"`
+
+	// Analysis rule type that enables only list queries on a configured table.
+	List *ConfiguredTableAssociationAnalysisRuleList `locationName:"list" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConfiguredTableAssociationAnalysisRulePolicyV1) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConfiguredTableAssociationAnalysisRulePolicyV1) GoString() string {
+	return s.String()
+}
+
+// SetAggregation sets the Aggregation field's value.
+func (s *ConfiguredTableAssociationAnalysisRulePolicyV1) SetAggregation(v *ConfiguredTableAssociationAnalysisRuleAggregation) *ConfiguredTableAssociationAnalysisRulePolicyV1 {
+	s.Aggregation = v
+	return s
+}
+
+// SetCustom sets the Custom field's value.
+func (s *ConfiguredTableAssociationAnalysisRulePolicyV1) SetCustom(v *ConfiguredTableAssociationAnalysisRuleCustom) *ConfiguredTableAssociationAnalysisRulePolicyV1 {
+	s.Custom = v
+	return s
+}
+
+// SetList sets the List field's value.
+func (s *ConfiguredTableAssociationAnalysisRulePolicyV1) SetList(v *ConfiguredTableAssociationAnalysisRuleList) *ConfiguredTableAssociationAnalysisRulePolicyV1 {
+	s.List = v
 	return s
 }
 
@@ -12385,7 +13166,7 @@ func (s *CreateCollaborationInput) SetTags(v map[string]*string) *CreateCollabor
 type CreateCollaborationOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The entire created collaboration object.
+	// The collaboration.
 	//
 	// Collaboration is a required field
 	Collaboration *Collaboration `locationName:"collaboration" type:"structure" required:"true"`
@@ -12581,7 +13362,7 @@ func (s *CreateConfiguredAudienceModelAssociationOutput) SetConfiguredAudienceMo
 type CreateConfiguredTableAnalysisRuleInput struct {
 	_ struct{} `type:"structure"`
 
-	// The entire created configured table analysis rule object.
+	// The analysis rule policy that was created for the configured table.
 	//
 	// AnalysisRulePolicy is a required field
 	AnalysisRulePolicy *ConfiguredTableAnalysisRulePolicy `locationName:"analysisRulePolicy" type:"structure" required:"true"`
@@ -12664,7 +13445,7 @@ func (s *CreateConfiguredTableAnalysisRuleInput) SetConfiguredTableIdentifier(v 
 type CreateConfiguredTableAnalysisRuleOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The entire created analysis rule.
+	// The analysis rule that was created for the configured table.
 	//
 	// AnalysisRule is a required field
 	AnalysisRule *ConfiguredTableAnalysisRule `locationName:"analysisRule" type:"structure" required:"true"`
@@ -12690,6 +13471,137 @@ func (s CreateConfiguredTableAnalysisRuleOutput) GoString() string {
 
 // SetAnalysisRule sets the AnalysisRule field's value.
 func (s *CreateConfiguredTableAnalysisRuleOutput) SetAnalysisRule(v *ConfiguredTableAnalysisRule) *CreateConfiguredTableAnalysisRuleOutput {
+	s.AnalysisRule = v
+	return s
+}
+
+type CreateConfiguredTableAssociationAnalysisRuleInput struct {
+	_ struct{} `type:"structure"`
+
+	// The analysis rule policy that was created for the configured table association.
+	//
+	// AnalysisRulePolicy is a required field
+	AnalysisRulePolicy *ConfiguredTableAssociationAnalysisRulePolicy `locationName:"analysisRulePolicy" type:"structure" required:"true"`
+
+	// The type of analysis rule.
+	//
+	// AnalysisRuleType is a required field
+	AnalysisRuleType *string `locationName:"analysisRuleType" type:"string" required:"true" enum:"ConfiguredTableAssociationAnalysisRuleType"`
+
+	// The unique ID for the configured table association. Currently accepts the
+	// configured table association ID.
+	//
+	// ConfiguredTableAssociationIdentifier is a required field
+	ConfiguredTableAssociationIdentifier *string `location:"uri" locationName:"configuredTableAssociationIdentifier" min:"36" type:"string" required:"true"`
+
+	// A unique identifier for the membership that the configured table association
+	// belongs to. Currently accepts the membership ID.
+	//
+	// MembershipIdentifier is a required field
+	MembershipIdentifier *string `location:"uri" locationName:"membershipIdentifier" min:"36" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateConfiguredTableAssociationAnalysisRuleInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateConfiguredTableAssociationAnalysisRuleInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateConfiguredTableAssociationAnalysisRuleInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateConfiguredTableAssociationAnalysisRuleInput"}
+	if s.AnalysisRulePolicy == nil {
+		invalidParams.Add(request.NewErrParamRequired("AnalysisRulePolicy"))
+	}
+	if s.AnalysisRuleType == nil {
+		invalidParams.Add(request.NewErrParamRequired("AnalysisRuleType"))
+	}
+	if s.ConfiguredTableAssociationIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConfiguredTableAssociationIdentifier"))
+	}
+	if s.ConfiguredTableAssociationIdentifier != nil && len(*s.ConfiguredTableAssociationIdentifier) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("ConfiguredTableAssociationIdentifier", 36))
+	}
+	if s.MembershipIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("MembershipIdentifier"))
+	}
+	if s.MembershipIdentifier != nil && len(*s.MembershipIdentifier) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("MembershipIdentifier", 36))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAnalysisRulePolicy sets the AnalysisRulePolicy field's value.
+func (s *CreateConfiguredTableAssociationAnalysisRuleInput) SetAnalysisRulePolicy(v *ConfiguredTableAssociationAnalysisRulePolicy) *CreateConfiguredTableAssociationAnalysisRuleInput {
+	s.AnalysisRulePolicy = v
+	return s
+}
+
+// SetAnalysisRuleType sets the AnalysisRuleType field's value.
+func (s *CreateConfiguredTableAssociationAnalysisRuleInput) SetAnalysisRuleType(v string) *CreateConfiguredTableAssociationAnalysisRuleInput {
+	s.AnalysisRuleType = &v
+	return s
+}
+
+// SetConfiguredTableAssociationIdentifier sets the ConfiguredTableAssociationIdentifier field's value.
+func (s *CreateConfiguredTableAssociationAnalysisRuleInput) SetConfiguredTableAssociationIdentifier(v string) *CreateConfiguredTableAssociationAnalysisRuleInput {
+	s.ConfiguredTableAssociationIdentifier = &v
+	return s
+}
+
+// SetMembershipIdentifier sets the MembershipIdentifier field's value.
+func (s *CreateConfiguredTableAssociationAnalysisRuleInput) SetMembershipIdentifier(v string) *CreateConfiguredTableAssociationAnalysisRuleInput {
+	s.MembershipIdentifier = &v
+	return s
+}
+
+type CreateConfiguredTableAssociationAnalysisRuleOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The analysis rule for the conﬁgured table association. In the console,
+	// the ConfiguredTableAssociationAnalysisRule is referred to as the collaboration
+	// analysis rule.
+	//
+	// AnalysisRule is a required field
+	AnalysisRule *ConfiguredTableAssociationAnalysisRule `locationName:"analysisRule" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateConfiguredTableAssociationAnalysisRuleOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateConfiguredTableAssociationAnalysisRuleOutput) GoString() string {
+	return s.String()
+}
+
+// SetAnalysisRule sets the AnalysisRule field's value.
+func (s *CreateConfiguredTableAssociationAnalysisRuleOutput) SetAnalysisRule(v *ConfiguredTableAssociationAnalysisRule) *CreateConfiguredTableAssociationAnalysisRuleOutput {
 	s.AnalysisRule = v
 	return s
 }
@@ -12820,7 +13732,7 @@ func (s *CreateConfiguredTableAssociationInput) SetTags(v map[string]*string) *C
 type CreateConfiguredTableAssociationOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The entire configured table association object.
+	// The configured table association.
 	//
 	// ConfiguredTableAssociation is a required field
 	ConfiguredTableAssociation *ConfiguredTableAssociation `locationName:"configuredTableAssociation" type:"structure" required:"true"`
@@ -13879,6 +14791,113 @@ func (s DeleteConfiguredTableAnalysisRuleOutput) String() string {
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
 func (s DeleteConfiguredTableAnalysisRuleOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteConfiguredTableAssociationAnalysisRuleInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The type of the analysis rule that you want to delete.
+	//
+	// AnalysisRuleType is a required field
+	AnalysisRuleType *string `location:"uri" locationName:"analysisRuleType" type:"string" required:"true" enum:"ConfiguredTableAssociationAnalysisRuleType"`
+
+	// The identiﬁer for the conﬁgured table association that's related to the
+	// analysis rule that you want to delete.
+	//
+	// ConfiguredTableAssociationIdentifier is a required field
+	ConfiguredTableAssociationIdentifier *string `location:"uri" locationName:"configuredTableAssociationIdentifier" min:"36" type:"string" required:"true"`
+
+	// A unique identifier for the membership that the configured table association
+	// belongs to. Currently accepts the membership ID.
+	//
+	// MembershipIdentifier is a required field
+	MembershipIdentifier *string `location:"uri" locationName:"membershipIdentifier" min:"36" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteConfiguredTableAssociationAnalysisRuleInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteConfiguredTableAssociationAnalysisRuleInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteConfiguredTableAssociationAnalysisRuleInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteConfiguredTableAssociationAnalysisRuleInput"}
+	if s.AnalysisRuleType == nil {
+		invalidParams.Add(request.NewErrParamRequired("AnalysisRuleType"))
+	}
+	if s.AnalysisRuleType != nil && len(*s.AnalysisRuleType) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AnalysisRuleType", 1))
+	}
+	if s.ConfiguredTableAssociationIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConfiguredTableAssociationIdentifier"))
+	}
+	if s.ConfiguredTableAssociationIdentifier != nil && len(*s.ConfiguredTableAssociationIdentifier) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("ConfiguredTableAssociationIdentifier", 36))
+	}
+	if s.MembershipIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("MembershipIdentifier"))
+	}
+	if s.MembershipIdentifier != nil && len(*s.MembershipIdentifier) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("MembershipIdentifier", 36))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAnalysisRuleType sets the AnalysisRuleType field's value.
+func (s *DeleteConfiguredTableAssociationAnalysisRuleInput) SetAnalysisRuleType(v string) *DeleteConfiguredTableAssociationAnalysisRuleInput {
+	s.AnalysisRuleType = &v
+	return s
+}
+
+// SetConfiguredTableAssociationIdentifier sets the ConfiguredTableAssociationIdentifier field's value.
+func (s *DeleteConfiguredTableAssociationAnalysisRuleInput) SetConfiguredTableAssociationIdentifier(v string) *DeleteConfiguredTableAssociationAnalysisRuleInput {
+	s.ConfiguredTableAssociationIdentifier = &v
+	return s
+}
+
+// SetMembershipIdentifier sets the MembershipIdentifier field's value.
+func (s *DeleteConfiguredTableAssociationAnalysisRuleInput) SetMembershipIdentifier(v string) *DeleteConfiguredTableAssociationAnalysisRuleInput {
+	s.MembershipIdentifier = &v
+	return s
+}
+
+type DeleteConfiguredTableAssociationAnalysisRuleOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteConfiguredTableAssociationAnalysisRuleOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteConfiguredTableAssociationAnalysisRuleOutput) GoString() string {
 	return s.String()
 }
 
@@ -15130,6 +16149,38 @@ func (s *DifferentialPrivacyTemplateUpdateParameters) SetUsersNoisePerQuery(v in
 	return s
 }
 
+// The direct analysis configuration details.
+type DirectAnalysisConfigurationDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The account IDs for the member who received the results of a protected query.
+	ReceiverAccountIds []*string `locationName:"receiverAccountIds" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DirectAnalysisConfigurationDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DirectAnalysisConfigurationDetails) GoString() string {
+	return s.String()
+}
+
+// SetReceiverAccountIds sets the ReceiverAccountIds field's value.
+func (s *DirectAnalysisConfigurationDetails) SetReceiverAccountIds(v []*string) *DirectAnalysisConfigurationDetails {
+	s.ReceiverAccountIds = v
+	return s
+}
+
 type GetAnalysisTemplateInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -15810,6 +16861,126 @@ func (s GetConfiguredTableAnalysisRuleOutput) GoString() string {
 
 // SetAnalysisRule sets the AnalysisRule field's value.
 func (s *GetConfiguredTableAnalysisRuleOutput) SetAnalysisRule(v *ConfiguredTableAnalysisRule) *GetConfiguredTableAnalysisRuleOutput {
+	s.AnalysisRule = v
+	return s
+}
+
+type GetConfiguredTableAssociationAnalysisRuleInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The type of analysis rule that you want to retrieve.
+	//
+	// AnalysisRuleType is a required field
+	AnalysisRuleType *string `location:"uri" locationName:"analysisRuleType" type:"string" required:"true" enum:"ConfiguredTableAssociationAnalysisRuleType"`
+
+	// The identiﬁer for the conﬁgured table association that's related to the
+	// analysis rule.
+	//
+	// ConfiguredTableAssociationIdentifier is a required field
+	ConfiguredTableAssociationIdentifier *string `location:"uri" locationName:"configuredTableAssociationIdentifier" min:"36" type:"string" required:"true"`
+
+	// A unique identifier for the membership that the configured table association
+	// belongs to. Currently accepts the membership ID.
+	//
+	// MembershipIdentifier is a required field
+	MembershipIdentifier *string `location:"uri" locationName:"membershipIdentifier" min:"36" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetConfiguredTableAssociationAnalysisRuleInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetConfiguredTableAssociationAnalysisRuleInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetConfiguredTableAssociationAnalysisRuleInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetConfiguredTableAssociationAnalysisRuleInput"}
+	if s.AnalysisRuleType == nil {
+		invalidParams.Add(request.NewErrParamRequired("AnalysisRuleType"))
+	}
+	if s.AnalysisRuleType != nil && len(*s.AnalysisRuleType) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AnalysisRuleType", 1))
+	}
+	if s.ConfiguredTableAssociationIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConfiguredTableAssociationIdentifier"))
+	}
+	if s.ConfiguredTableAssociationIdentifier != nil && len(*s.ConfiguredTableAssociationIdentifier) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("ConfiguredTableAssociationIdentifier", 36))
+	}
+	if s.MembershipIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("MembershipIdentifier"))
+	}
+	if s.MembershipIdentifier != nil && len(*s.MembershipIdentifier) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("MembershipIdentifier", 36))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAnalysisRuleType sets the AnalysisRuleType field's value.
+func (s *GetConfiguredTableAssociationAnalysisRuleInput) SetAnalysisRuleType(v string) *GetConfiguredTableAssociationAnalysisRuleInput {
+	s.AnalysisRuleType = &v
+	return s
+}
+
+// SetConfiguredTableAssociationIdentifier sets the ConfiguredTableAssociationIdentifier field's value.
+func (s *GetConfiguredTableAssociationAnalysisRuleInput) SetConfiguredTableAssociationIdentifier(v string) *GetConfiguredTableAssociationAnalysisRuleInput {
+	s.ConfiguredTableAssociationIdentifier = &v
+	return s
+}
+
+// SetMembershipIdentifier sets the MembershipIdentifier field's value.
+func (s *GetConfiguredTableAssociationAnalysisRuleInput) SetMembershipIdentifier(v string) *GetConfiguredTableAssociationAnalysisRuleInput {
+	s.MembershipIdentifier = &v
+	return s
+}
+
+type GetConfiguredTableAssociationAnalysisRuleOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The analysis rule for the conﬁgured table association. In the console,
+	// the ConfiguredTableAssociationAnalysisRule is referred to as the collaboration
+	// analysis rule.
+	//
+	// AnalysisRule is a required field
+	AnalysisRule *ConfiguredTableAssociationAnalysisRule `locationName:"analysisRule" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetConfiguredTableAssociationAnalysisRuleOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetConfiguredTableAssociationAnalysisRuleOutput) GoString() string {
+	return s.String()
+}
+
+// SetAnalysisRule sets the AnalysisRule field's value.
+func (s *GetConfiguredTableAssociationAnalysisRuleOutput) SetAnalysisRule(v *ConfiguredTableAssociationAnalysisRule) *GetConfiguredTableAssociationAnalysisRuleOutput {
 	s.AnalysisRule = v
 	return s
 }
@@ -17461,9 +18632,7 @@ func (s *InternalServerException) RequestID() string {
 type ListAnalysisTemplatesInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The maximum number of results that are returned for an API request call.
-	// The service chooses a default number if you don't set one. The service might
-	// return a `nextToken` even if the `maxResults` value has not been met.
+	// The maximum size of the results that is returned per call.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
 	// The identifier for a membership resource.
@@ -17471,7 +18640,8 @@ type ListAnalysisTemplatesInput struct {
 	// MembershipIdentifier is a required field
 	MembershipIdentifier *string `location:"uri" locationName:"membershipIdentifier" min:"36" type:"string" required:"true"`
 
-	// The pagination token that's used to fetch the next set of results.
+	// The token value retrieved from a previous call to access the next page of
+	// results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
@@ -17538,7 +18708,8 @@ type ListAnalysisTemplatesOutput struct {
 	// AnalysisTemplateSummaries is a required field
 	AnalysisTemplateSummaries []*AnalysisTemplateSummary `locationName:"analysisTemplateSummaries" type:"list" required:"true"`
 
-	// The pagination token that's used to fetch the next set of results.
+	// The token value retrieved from a previous call to access the next page of
+	// results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -17581,12 +18752,11 @@ type ListCollaborationAnalysisTemplatesInput struct {
 	// CollaborationIdentifier is a required field
 	CollaborationIdentifier *string `location:"uri" locationName:"collaborationIdentifier" min:"36" type:"string" required:"true"`
 
-	// The maximum number of results that are returned for an API request call.
-	// The service chooses a default number if you don't set one. The service might
-	// return a `nextToken` even if the `maxResults` value has not been met.
+	// The maximum size of the results that is returned per call.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
-	// The pagination token that's used to fetch the next set of results.
+	// The token value retrieved from a previous call to access the next page of
+	// results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
@@ -17653,7 +18823,8 @@ type ListCollaborationAnalysisTemplatesOutput struct {
 	// CollaborationAnalysisTemplateSummaries is a required field
 	CollaborationAnalysisTemplateSummaries []*CollaborationAnalysisTemplateSummary `locationName:"collaborationAnalysisTemplateSummaries" type:"list" required:"true"`
 
-	// The pagination token that's used to fetch the next set of results.
+	// The token value retrieved from a previous call to access the next page of
+	// results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -17696,12 +18867,11 @@ type ListCollaborationConfiguredAudienceModelAssociationsInput struct {
 	// CollaborationIdentifier is a required field
 	CollaborationIdentifier *string `location:"uri" locationName:"collaborationIdentifier" min:"36" type:"string" required:"true"`
 
-	// The maximum number of results that are returned for an API request call.
-	// The service chooses a default number if you don't set one. The service might
-	// return a `nextToken` even if the `maxResults` value has not been met.
+	// The maximum size of the results that is returned per call.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
-	// The pagination token that's used to fetch the next set of results.
+	// The token value retrieved from a previous call to access the next page of
+	// results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
@@ -17768,7 +18938,8 @@ type ListCollaborationConfiguredAudienceModelAssociationsOutput struct {
 	// CollaborationConfiguredAudienceModelAssociationSummaries is a required field
 	CollaborationConfiguredAudienceModelAssociationSummaries []*CollaborationConfiguredAudienceModelAssociationSummary `locationName:"collaborationConfiguredAudienceModelAssociationSummaries" type:"list" required:"true"`
 
-	// The pagination token that's used to fetch the next set of results.
+	// The token value retrieved from a previous call to access the next page of
+	// results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -17926,12 +19097,13 @@ type ListCollaborationPrivacyBudgetTemplatesInput struct {
 	// CollaborationIdentifier is a required field
 	CollaborationIdentifier *string `location:"uri" locationName:"collaborationIdentifier" min:"36" type:"string" required:"true"`
 
-	// The maximum number of results that are returned for an API request call.
-	// The service chooses a default number if you don't set one. The service might
-	// return a `nextToken` even if the `maxResults` value has not been met.
+	// The maximum size of the results that is returned per call. Service chooses
+	// a default if it has not been set. Service may return a nextToken even if
+	// the maximum results has not been met.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
-	// The pagination token that's used to fetch the next set of results.
+	// The token value retrieved from a previous call to access the next page of
+	// results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
@@ -18000,7 +19172,8 @@ type ListCollaborationPrivacyBudgetTemplatesOutput struct {
 	// CollaborationPrivacyBudgetTemplateSummaries is a required field
 	CollaborationPrivacyBudgetTemplateSummaries []*CollaborationPrivacyBudgetTemplateSummary `locationName:"collaborationPrivacyBudgetTemplateSummaries" type:"list" required:"true"`
 
-	// The pagination token that's used to fetch the next set of results.
+	// The token value retrieved from a previous call to access the next page of
+	// results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -18042,12 +19215,13 @@ type ListCollaborationPrivacyBudgetsInput struct {
 	// CollaborationIdentifier is a required field
 	CollaborationIdentifier *string `location:"uri" locationName:"collaborationIdentifier" min:"36" type:"string" required:"true"`
 
-	// The maximum number of results that are returned for an API request call.
-	// The service chooses a default number if you don't set one. The service might
-	// return a `nextToken` even if the `maxResults` value has not been met.
+	// The maximum size of the results that is returned per call. Service chooses
+	// a default if it has not been set. Service may return a nextToken even if
+	// the maximum results has not been met.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
-	// The pagination token that's used to fetch the next set of results.
+	// The token value retrieved from a previous call to access the next page of
+	// results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 
 	// Specifies the type of the privacy budget.
@@ -18128,7 +19302,8 @@ type ListCollaborationPrivacyBudgetsOutput struct {
 	// CollaborationPrivacyBudgetSummaries is a required field
 	CollaborationPrivacyBudgetSummaries []*CollaborationPrivacyBudgetSummary `locationName:"collaborationPrivacyBudgetSummaries" type:"list" required:"true"`
 
-	// The pagination token that's used to fetch the next set of results.
+	// The token value retrieved from a previous call to access the next page of
+	// results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -18165,15 +19340,16 @@ func (s *ListCollaborationPrivacyBudgetsOutput) SetNextToken(v string) *ListColl
 type ListCollaborationsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The maximum number of results that are returned for an API request call.
-	// The service chooses a default number if you don't set one. The service might
-	// return a `nextToken` even if the `maxResults` value has not been met.
+	// The maximum size of the results that is returned per call. Service chooses
+	// a default if it has not been set. Service may return a nextToken even if
+	// the maximum results has not been met.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
 	// The caller's status in a collaboration.
 	MemberStatus *string `location:"querystring" locationName:"memberStatus" type:"string" enum:"FilterableMemberStatus"`
 
-	// The pagination token that's used to fetch the next set of results.
+	// The token value retrieved from a previous call to access the next page of
+	// results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
@@ -18234,7 +19410,8 @@ type ListCollaborationsOutput struct {
 	// CollaborationList is a required field
 	CollaborationList []*CollaborationSummary `locationName:"collaborationList" type:"list" required:"true"`
 
-	// The pagination token that's used to fetch the next set of results.
+	// The token value retrieved from a previous call to access the next page of
+	// results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -18271,9 +19448,9 @@ func (s *ListCollaborationsOutput) SetNextToken(v string) *ListCollaborationsOut
 type ListConfiguredAudienceModelAssociationsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The maximum number of results that are returned for an API request call.
-	// The service chooses a default number if you don't set one. The service might
-	// return a `nextToken` even if the `maxResults` value has not been met.
+	// The maximum size of the results that is returned per call. Service chooses
+	// a default if it has not been set. Service may return a nextToken even if
+	// the maximum results has not been met.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
 	// A unique identifier for a membership that contains the configured audience
@@ -18282,7 +19459,8 @@ type ListConfiguredAudienceModelAssociationsInput struct {
 	// MembershipIdentifier is a required field
 	MembershipIdentifier *string `location:"uri" locationName:"membershipIdentifier" min:"36" type:"string" required:"true"`
 
-	// The pagination token that's used to fetch the next set of results.
+	// The token value retrieved from a previous call to access the next page of
+	// results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
@@ -18386,9 +19564,7 @@ func (s *ListConfiguredAudienceModelAssociationsOutput) SetNextToken(v string) *
 type ListConfiguredTableAssociationsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The maximum number of results that are returned for an API request call.
-	// The service chooses a default number if you don't set one. The service might
-	// return a `nextToken` even if the `maxResults` value has not been met.
+	// The maximum size of the results that is returned per call.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
 	// A unique identifier for the membership to list configured table associations
@@ -18397,7 +19573,8 @@ type ListConfiguredTableAssociationsInput struct {
 	// MembershipIdentifier is a required field
 	MembershipIdentifier *string `location:"uri" locationName:"membershipIdentifier" min:"36" type:"string" required:"true"`
 
-	// The pagination token that's used to fetch the next set of results.
+	// The token value retrieved from a previous call to access the next page of
+	// results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
@@ -18464,7 +19641,8 @@ type ListConfiguredTableAssociationsOutput struct {
 	// ConfiguredTableAssociationSummaries is a required field
 	ConfiguredTableAssociationSummaries []*ConfiguredTableAssociationSummary `locationName:"configuredTableAssociationSummaries" type:"list" required:"true"`
 
-	// The pagination token that's used to fetch the next set of results.
+	// The token value retrieved from a previous call to access the next page of
+	// results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -18501,12 +19679,11 @@ func (s *ListConfiguredTableAssociationsOutput) SetNextToken(v string) *ListConf
 type ListConfiguredTablesInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The maximum number of results that are returned for an API request call.
-	// The service chooses a default number if you don't set one. The service might
-	// return a `nextToken` even if the `maxResults` value has not been met.
+	// The maximum size of the results that is returned per call.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
-	// The pagination token that's used to fetch the next set of results.
+	// The token value retrieved from a previous call to access the next page of
+	// results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
@@ -18561,7 +19738,8 @@ type ListConfiguredTablesOutput struct {
 	// ConfiguredTableSummaries is a required field
 	ConfiguredTableSummaries []*ConfiguredTableSummary `locationName:"configuredTableSummaries" type:"list" required:"true"`
 
-	// The pagination token that's used to fetch the next set of results.
+	// The token value retrieved from a previous call to access the next page of
+	// results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -18833,12 +20011,11 @@ type ListMembersInput struct {
 	// CollaborationIdentifier is a required field
 	CollaborationIdentifier *string `location:"uri" locationName:"collaborationIdentifier" min:"36" type:"string" required:"true"`
 
-	// The maximum number of results that are returned for an API request call.
-	// The service chooses a default number if you don't set one. The service might
-	// return a `nextToken` even if the `maxResults` value has not been met.
+	// The maximum size of the results that is returned per call.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
-	// The pagination token that's used to fetch the next set of results.
+	// The token value retrieved from a previous call to access the next page of
+	// results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
@@ -18905,7 +20082,8 @@ type ListMembersOutput struct {
 	// MemberSummaries is a required field
 	MemberSummaries []*MemberSummary `locationName:"memberSummaries" type:"list" required:"true"`
 
-	// The pagination token that's used to fetch the next set of results.
+	// The token value retrieved from a previous call to access the next page of
+	// results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -18942,12 +20120,11 @@ func (s *ListMembersOutput) SetNextToken(v string) *ListMembersOutput {
 type ListMembershipsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The maximum number of results that are returned for an API request call.
-	// The service chooses a default number if you don't set one. The service might
-	// return a `nextToken` even if the `maxResults` value has not been met.
+	// The maximum size of the results that is returned per call.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
-	// The pagination token that's used to fetch the next set of results.
+	// The token value retrieved from a previous call to access the next page of
+	// results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 
 	// A filter which will return only memberships in the specified status.
@@ -19011,7 +20188,8 @@ type ListMembershipsOutput struct {
 	// MembershipSummaries is a required field
 	MembershipSummaries []*MembershipSummary `locationName:"membershipSummaries" type:"list" required:"true"`
 
-	// The pagination token that's used to fetch the next set of results.
+	// The token value retrieved from a previous call to access the next page of
+	// results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -19048,9 +20226,9 @@ func (s *ListMembershipsOutput) SetNextToken(v string) *ListMembershipsOutput {
 type ListPrivacyBudgetTemplatesInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The maximum number of results that are returned for an API request call.
-	// The service chooses a default number if you don't set one. The service might
-	// return a `nextToken` even if the `maxResults` value has not been met.
+	// The maximum size of the results that is returned per call. Service chooses
+	// a default if it has not been set. Service may return a nextToken even if
+	// the maximum results has not been met.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
 	// A unique identifier for one of your memberships for a collaboration. The
@@ -19060,7 +20238,8 @@ type ListPrivacyBudgetTemplatesInput struct {
 	// MembershipIdentifier is a required field
 	MembershipIdentifier *string `location:"uri" locationName:"membershipIdentifier" min:"36" type:"string" required:"true"`
 
-	// The pagination token that's used to fetch the next set of results.
+	// The token value retrieved from a previous call to access the next page of
+	// results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
@@ -19122,7 +20301,8 @@ func (s *ListPrivacyBudgetTemplatesInput) SetNextToken(v string) *ListPrivacyBud
 type ListPrivacyBudgetTemplatesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The pagination token that's used to fetch the next set of results.
+	// The token value retrieved from a previous call to access the next page of
+	// results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// An array that summarizes the privacy budget templates. The summary includes
@@ -19165,9 +20345,9 @@ func (s *ListPrivacyBudgetTemplatesOutput) SetPrivacyBudgetTemplateSummaries(v [
 type ListPrivacyBudgetsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The maximum number of results that are returned for an API request call.
-	// The service chooses a default number if you don't set one. The service might
-	// return a `nextToken` even if the `maxResults` value has not been met.
+	// The maximum size of the results that is returned per call. Service chooses
+	// a default if it has not been set. Service may return a nextToken even if
+	// the maximum results has not been met.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
 	// A unique identifier for one of your memberships for a collaboration. The
@@ -19177,7 +20357,8 @@ type ListPrivacyBudgetsInput struct {
 	// MembershipIdentifier is a required field
 	MembershipIdentifier *string `location:"uri" locationName:"membershipIdentifier" min:"36" type:"string" required:"true"`
 
-	// The pagination token that's used to fetch the next set of results.
+	// The token value retrieved from a previous call to access the next page of
+	// results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 
 	// The privacy budget type.
@@ -19253,7 +20434,8 @@ func (s *ListPrivacyBudgetsInput) SetPrivacyBudgetType(v string) *ListPrivacyBud
 type ListPrivacyBudgetsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The pagination token that's used to fetch the next set of results.
+	// The token value retrieved from a previous call to access the next page of
+	// results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// An array that summarizes the privacy budgets. The summary includes collaboration
@@ -19297,9 +20479,9 @@ func (s *ListPrivacyBudgetsOutput) SetPrivacyBudgetSummaries(v []*PrivacyBudgetS
 type ListProtectedQueriesInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The maximum number of results that are returned for an API request call.
-	// The service chooses a default number if you don't set one. The service might
-	// return a `nextToken` even if the `maxResults` value has not been met.
+	// The maximum size of the results that is returned per call. Service chooses
+	// a default if it has not been set. Service can return a nextToken even if
+	// the maximum results has not been met.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
 	// The identifier for the membership in the collaboration.
@@ -19307,7 +20489,8 @@ type ListProtectedQueriesInput struct {
 	// MembershipIdentifier is a required field
 	MembershipIdentifier *string `location:"uri" locationName:"membershipIdentifier" min:"36" type:"string" required:"true"`
 
-	// The pagination token that's used to fetch the next set of results.
+	// The token value retrieved from a previous call to access the next page of
+	// results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 
 	// A filter on the status of the protected query.
@@ -19378,7 +20561,8 @@ func (s *ListProtectedQueriesInput) SetStatus(v string) *ListProtectedQueriesInp
 type ListProtectedQueriesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The pagination token that's used to fetch the next set of results.
+	// The token value retrieved from a previous call to access the next page of
+	// results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// A list of protected queries.
@@ -19426,15 +20610,15 @@ type ListSchemasInput struct {
 	// CollaborationIdentifier is a required field
 	CollaborationIdentifier *string `location:"uri" locationName:"collaborationIdentifier" min:"36" type:"string" required:"true"`
 
-	// The maximum number of results that are returned for an API request call.
-	// The service chooses a default number if you don't set one. The service might
-	// return a `nextToken` even if the `maxResults` value has not been met.
+	// The maximum size of the results that is returned per call.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
-	// The pagination token that's used to fetch the next set of results.
+	// The token value retrieved from a previous call to access the next page of
+	// results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 
-	// If present, filter schemas by schema type.
+	// If present, filter schemas by schema type. The only valid schema type is
+	// currently `TABLE`.
 	SchemaType *string `location:"querystring" locationName:"schemaType" type:"string" enum:"SchemaType"`
 }
 
@@ -19502,7 +20686,8 @@ func (s *ListSchemasInput) SetSchemaType(v string) *ListSchemasInput {
 type ListSchemasOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The pagination token that's used to fetch the next set of results.
+	// The token value retrieved from a previous call to access the next page of
+	// results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// The retrieved list of schemas.
@@ -21514,11 +22699,64 @@ func (s *ProtectedQueryError) SetMessage(v string) *ProtectedQueryError {
 	return s
 }
 
+// Contains configuration details for the protected query member output.
+type ProtectedQueryMemberOutputConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier for the account.
+	//
+	// AccountId is a required field
+	AccountId *string `locationName:"accountId" min:"12" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ProtectedQueryMemberOutputConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ProtectedQueryMemberOutputConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ProtectedQueryMemberOutputConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ProtectedQueryMemberOutputConfiguration"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 12))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *ProtectedQueryMemberOutputConfiguration) SetAccountId(v string) *ProtectedQueryMemberOutputConfiguration {
+	s.AccountId = &v
+	return s
+}
+
 // Contains configuration details for protected query output.
 type ProtectedQueryOutputConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// Required configuration for a protected query with an `S3` output type.
+	// Required configuration for a protected query with a member output type.
+	Member *ProtectedQueryMemberOutputConfiguration `locationName:"member" type:"structure"`
+
+	// Required configuration for a protected query with an s3 output type.
 	S3 *ProtectedQueryS3OutputConfiguration `locationName:"s3" type:"structure"`
 }
 
@@ -21543,6 +22781,11 @@ func (s ProtectedQueryOutputConfiguration) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ProtectedQueryOutputConfiguration) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ProtectedQueryOutputConfiguration"}
+	if s.Member != nil {
+		if err := s.Member.Validate(); err != nil {
+			invalidParams.AddNested("Member", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.S3 != nil {
 		if err := s.S3.Validate(); err != nil {
 			invalidParams.AddNested("S3", err.(request.ErrInvalidParams))
@@ -21553,6 +22796,12 @@ func (s *ProtectedQueryOutputConfiguration) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetMember sets the Member field's value.
+func (s *ProtectedQueryOutputConfiguration) SetMember(v *ProtectedQueryMemberOutputConfiguration) *ProtectedQueryOutputConfiguration {
+	s.Member = v
+	return s
 }
 
 // SetS3 sets the S3 field's value.
@@ -21886,7 +23135,7 @@ func (s *ProtectedQuerySingleMemberOutput_) SetAccountId(v string) *ProtectedQue
 type ProtectedQueryStatistics struct {
 	_ struct{} `type:"structure"`
 
-	// The duration of the Protected Query, from creation until query completion.
+	// The duration of the protected query, from creation until query completion.
 	TotalDurationInMillis *int64 `locationName:"totalDurationInMillis" type:"long"`
 }
 
@@ -21938,6 +23187,11 @@ type ProtectedQuerySummary struct {
 	// MembershipId is a required field
 	MembershipId *string `locationName:"membershipId" min:"36" type:"string" required:"true"`
 
+	// The receiver configuration.
+	//
+	// ReceiverConfigurations is a required field
+	ReceiverConfigurations []*ReceiverConfiguration `locationName:"receiverConfigurations" type:"list" required:"true"`
+
 	// The status of the protected query. Value values are `SUBMITTED`, `STARTED`,
 	// `CANCELLED`, `CANCELLING`, `FAILED`, `SUCCESS`, `TIMED_OUT`.
 	//
@@ -21984,6 +23238,12 @@ func (s *ProtectedQuerySummary) SetMembershipArn(v string) *ProtectedQuerySummar
 // SetMembershipId sets the MembershipId field's value.
 func (s *ProtectedQuerySummary) SetMembershipId(v string) *ProtectedQuerySummary {
 	s.MembershipId = &v
+	return s
+}
+
+// SetReceiverConfigurations sets the ReceiverConfigurations field's value.
+func (s *ProtectedQuerySummary) SetReceiverConfigurations(v []*ReceiverConfiguration) *ProtectedQuerySummary {
+	s.ReceiverConfigurations = v
 	return s
 }
 
@@ -22117,6 +23377,52 @@ func (s *QueryConstraintRequireOverlap) SetColumns(v []*string) *QueryConstraint
 	return s
 }
 
+// The receiver configuration for a protected query.
+type ReceiverConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The type of analysis for the protected query. The results of the query can
+	// be analyzed directly (DIRECT_ANALYSIS) or used as input into additional analyses
+	// (ADDITIONAL_ANALYSIS), such as a query that is a seed for a lookalike ML
+	// model.
+	//
+	// AnalysisType is a required field
+	AnalysisType *string `locationName:"analysisType" type:"string" required:"true" enum:"AnalysisType"`
+
+	// The configuration details of the receiver configuration.
+	ConfigurationDetails *ConfigurationDetails `locationName:"configurationDetails" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReceiverConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReceiverConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetAnalysisType sets the AnalysisType field's value.
+func (s *ReceiverConfiguration) SetAnalysisType(v string) *ReceiverConfiguration {
+	s.AnalysisType = &v
+	return s
+}
+
+// SetConfigurationDetails sets the ConfigurationDetails field's value.
+func (s *ReceiverConfiguration) SetConfigurationDetails(v *ConfigurationDetails) *ReceiverConfiguration {
+	s.ConfigurationDetails = v
+	return s
+}
+
 // Request references a resource which does not exist.
 type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
@@ -22198,14 +23504,13 @@ type Schema struct {
 	// The analysis method for the schema. The only valid value is currently DIRECT_QUERY.
 	AnalysisMethod *string `locationName:"analysisMethod" type:"string" enum:"AnalysisMethod"`
 
-	// The analysis rule types that are associated with the schema. Currently, only
-	// one entry is present.
+	// The analysis rule types associated with the schema. Currently, only one entry
+	// is present.
 	//
 	// AnalysisRuleTypes is a required field
 	AnalysisRuleTypes []*string `locationName:"analysisRuleTypes" type:"list" required:"true" enum:"AnalysisRuleType"`
 
-	// The unique Amazon Resource Name (ARN) for the collaboration that the schema
-	// belongs to.
+	// The unique ARN for the collaboration that the schema belongs to.
 	//
 	// CollaborationArn is a required field
 	CollaborationArn *string `locationName:"collaborationArn" type:"string" required:"true"`
@@ -22215,12 +23520,12 @@ type Schema struct {
 	// CollaborationId is a required field
 	CollaborationId *string `locationName:"collaborationId" min:"36" type:"string" required:"true"`
 
-	// The columns for the relation that this schema represents.
+	// The columns for the relation this schema represents.
 	//
 	// Columns is a required field
 	Columns []*Column `locationName:"columns" type:"list" required:"true"`
 
-	// The time at which the schema was created.
+	// The time the schema was created.
 	//
 	// CreateTime is a required field
 	CreateTime *time.Time `locationName:"createTime" type:"timestamp" required:"true"`
@@ -22254,12 +23559,12 @@ type Schema struct {
 	// The schema type properties.
 	SchemaTypeProperties *SchemaTypeProperties `locationName:"schemaTypeProperties" type:"structure"`
 
-	// The type of schema.
+	// The type of schema. The only valid value is currently `TABLE`.
 	//
 	// Type is a required field
 	Type *string `locationName:"type" type:"string" required:"true" enum:"SchemaType"`
 
-	// The most recent time at which the schema was updated.
+	// The time the schema was last updated.
 	//
 	// UpdateTime is a required field
 	UpdateTime *time.Time `locationName:"updateTime" type:"timestamp" required:"true"`
@@ -22441,13 +23746,21 @@ type SchemaStatusDetail struct {
 	// The analysis rule type for which the schema status has been evaluated.
 	AnalysisRuleType *string `locationName:"analysisRuleType" type:"string" enum:"AnalysisRuleType"`
 
+	// The type of analysis that can be performed on the schema.
+	//
+	// A schema can have an analysisType of DIRECT_ANALYSIS, ADDITIONAL_ANALYSIS_FOR_AUDIENCE_GENERATION,
+	// or both.
+	//
+	// AnalysisType is a required field
+	AnalysisType *string `locationName:"analysisType" type:"string" required:"true" enum:"AnalysisType"`
+
 	// The configuration details of the schema analysis rule for the given type.
 	Configurations []*string `locationName:"configurations" type:"list" enum:"SchemaConfiguration"`
 
 	// The reasons why the schema status is set to its current state.
 	Reasons []*SchemaStatusReason `locationName:"reasons" type:"list"`
 
-	// The status of the schema.
+	// The status of the schema, indicating if it is ready to query.
 	//
 	// Status is a required field
 	Status *string `locationName:"status" type:"string" required:"true" enum:"SchemaStatus"`
@@ -22474,6 +23787,12 @@ func (s SchemaStatusDetail) GoString() string {
 // SetAnalysisRuleType sets the AnalysisRuleType field's value.
 func (s *SchemaStatusDetail) SetAnalysisRuleType(v string) *SchemaStatusDetail {
 	s.AnalysisRuleType = &v
+	return s
+}
+
+// SetAnalysisType sets the AnalysisType field's value.
+func (s *SchemaStatusDetail) SetAnalysisType(v string) *SchemaStatusDetail {
+	s.AnalysisType = &v
 	return s
 }
 
@@ -22578,7 +23897,7 @@ type SchemaSummary struct {
 	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true"`
 
-	// The type of schema object.
+	// The type of schema object. The only valid schema type is currently `TABLE`.
 	//
 	// Type is a required field
 	Type *string `locationName:"type" type:"string" required:"true" enum:"SchemaType"`
@@ -23637,6 +24956,139 @@ func (s *UpdateConfiguredTableAnalysisRuleOutput) SetAnalysisRule(v *ConfiguredT
 	return s
 }
 
+type UpdateConfiguredTableAssociationAnalysisRuleInput struct {
+	_ struct{} `type:"structure"`
+
+	// The updated analysis rule policy for the conﬁgured table association.
+	//
+	// AnalysisRulePolicy is a required field
+	AnalysisRulePolicy *ConfiguredTableAssociationAnalysisRulePolicy `locationName:"analysisRulePolicy" type:"structure" required:"true"`
+
+	// The analysis rule type that you want to update.
+	//
+	// AnalysisRuleType is a required field
+	AnalysisRuleType *string `location:"uri" locationName:"analysisRuleType" type:"string" required:"true" enum:"ConfiguredTableAssociationAnalysisRuleType"`
+
+	// The identifier for the configured table association to update.
+	//
+	// ConfiguredTableAssociationIdentifier is a required field
+	ConfiguredTableAssociationIdentifier *string `location:"uri" locationName:"configuredTableAssociationIdentifier" min:"36" type:"string" required:"true"`
+
+	// A unique identifier for the membership that the configured table association
+	// belongs to. Currently accepts the membership ID.
+	//
+	// MembershipIdentifier is a required field
+	MembershipIdentifier *string `location:"uri" locationName:"membershipIdentifier" min:"36" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateConfiguredTableAssociationAnalysisRuleInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateConfiguredTableAssociationAnalysisRuleInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateConfiguredTableAssociationAnalysisRuleInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateConfiguredTableAssociationAnalysisRuleInput"}
+	if s.AnalysisRulePolicy == nil {
+		invalidParams.Add(request.NewErrParamRequired("AnalysisRulePolicy"))
+	}
+	if s.AnalysisRuleType == nil {
+		invalidParams.Add(request.NewErrParamRequired("AnalysisRuleType"))
+	}
+	if s.AnalysisRuleType != nil && len(*s.AnalysisRuleType) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AnalysisRuleType", 1))
+	}
+	if s.ConfiguredTableAssociationIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConfiguredTableAssociationIdentifier"))
+	}
+	if s.ConfiguredTableAssociationIdentifier != nil && len(*s.ConfiguredTableAssociationIdentifier) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("ConfiguredTableAssociationIdentifier", 36))
+	}
+	if s.MembershipIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("MembershipIdentifier"))
+	}
+	if s.MembershipIdentifier != nil && len(*s.MembershipIdentifier) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("MembershipIdentifier", 36))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAnalysisRulePolicy sets the AnalysisRulePolicy field's value.
+func (s *UpdateConfiguredTableAssociationAnalysisRuleInput) SetAnalysisRulePolicy(v *ConfiguredTableAssociationAnalysisRulePolicy) *UpdateConfiguredTableAssociationAnalysisRuleInput {
+	s.AnalysisRulePolicy = v
+	return s
+}
+
+// SetAnalysisRuleType sets the AnalysisRuleType field's value.
+func (s *UpdateConfiguredTableAssociationAnalysisRuleInput) SetAnalysisRuleType(v string) *UpdateConfiguredTableAssociationAnalysisRuleInput {
+	s.AnalysisRuleType = &v
+	return s
+}
+
+// SetConfiguredTableAssociationIdentifier sets the ConfiguredTableAssociationIdentifier field's value.
+func (s *UpdateConfiguredTableAssociationAnalysisRuleInput) SetConfiguredTableAssociationIdentifier(v string) *UpdateConfiguredTableAssociationAnalysisRuleInput {
+	s.ConfiguredTableAssociationIdentifier = &v
+	return s
+}
+
+// SetMembershipIdentifier sets the MembershipIdentifier field's value.
+func (s *UpdateConfiguredTableAssociationAnalysisRuleInput) SetMembershipIdentifier(v string) *UpdateConfiguredTableAssociationAnalysisRuleInput {
+	s.MembershipIdentifier = &v
+	return s
+}
+
+type UpdateConfiguredTableAssociationAnalysisRuleOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The updated analysis rule for the conﬁgured table association. In the console,
+	// the ConfiguredTableAssociationAnalysisRule is referred to as the collaboration
+	// analysis rule.
+	//
+	// AnalysisRule is a required field
+	AnalysisRule *ConfiguredTableAssociationAnalysisRule `locationName:"analysisRule" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateConfiguredTableAssociationAnalysisRuleOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateConfiguredTableAssociationAnalysisRuleOutput) GoString() string {
+	return s.String()
+}
+
+// SetAnalysisRule sets the AnalysisRule field's value.
+func (s *UpdateConfiguredTableAssociationAnalysisRuleOutput) SetAnalysisRule(v *ConfiguredTableAssociationAnalysisRule) *UpdateConfiguredTableAssociationAnalysisRuleOutput {
+	s.AnalysisRule = v
+	return s
+}
+
 type UpdateConfiguredTableAssociationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -24463,6 +25915,26 @@ func AccessDeniedExceptionReason_Values() []string {
 }
 
 const (
+	// AdditionalAnalysesAllowed is a AdditionalAnalyses enum value
+	AdditionalAnalysesAllowed = "ALLOWED"
+
+	// AdditionalAnalysesRequired is a AdditionalAnalyses enum value
+	AdditionalAnalysesRequired = "REQUIRED"
+
+	// AdditionalAnalysesNotAllowed is a AdditionalAnalyses enum value
+	AdditionalAnalysesNotAllowed = "NOT_ALLOWED"
+)
+
+// AdditionalAnalyses_Values returns all elements of the AdditionalAnalyses enum
+func AdditionalAnalyses_Values() []string {
+	return []string{
+		AdditionalAnalysesAllowed,
+		AdditionalAnalysesRequired,
+		AdditionalAnalysesNotAllowed,
+	}
+}
+
+const (
 	// AggregateFunctionNameSum is a AggregateFunctionName enum value
 	AggregateFunctionNameSum = "SUM"
 
@@ -24583,6 +26055,22 @@ func AnalysisTemplateValidationType_Values() []string {
 }
 
 const (
+	// AnalysisTypeDirectAnalysis is a AnalysisType enum value
+	AnalysisTypeDirectAnalysis = "DIRECT_ANALYSIS"
+
+	// AnalysisTypeAdditionalAnalysis is a AnalysisType enum value
+	AnalysisTypeAdditionalAnalysis = "ADDITIONAL_ANALYSIS"
+)
+
+// AnalysisType_Values returns all elements of the AnalysisType enum
+func AnalysisType_Values() []string {
+	return []string{
+		AnalysisTypeDirectAnalysis,
+		AnalysisTypeAdditionalAnalysis,
+	}
+}
+
+const (
 	// CollaborationQueryLogStatusEnabled is a CollaborationQueryLogStatus enum value
 	CollaborationQueryLogStatusEnabled = "ENABLED"
 
@@ -24615,6 +26103,26 @@ func ConfiguredTableAnalysisRuleType_Values() []string {
 		ConfiguredTableAnalysisRuleTypeAggregation,
 		ConfiguredTableAnalysisRuleTypeList,
 		ConfiguredTableAnalysisRuleTypeCustom,
+	}
+}
+
+const (
+	// ConfiguredTableAssociationAnalysisRuleTypeAggregation is a ConfiguredTableAssociationAnalysisRuleType enum value
+	ConfiguredTableAssociationAnalysisRuleTypeAggregation = "AGGREGATION"
+
+	// ConfiguredTableAssociationAnalysisRuleTypeList is a ConfiguredTableAssociationAnalysisRuleType enum value
+	ConfiguredTableAssociationAnalysisRuleTypeList = "LIST"
+
+	// ConfiguredTableAssociationAnalysisRuleTypeCustom is a ConfiguredTableAssociationAnalysisRuleType enum value
+	ConfiguredTableAssociationAnalysisRuleTypeCustom = "CUSTOM"
+)
+
+// ConfiguredTableAssociationAnalysisRuleType_Values returns all elements of the ConfiguredTableAssociationAnalysisRuleType enum
+func ConfiguredTableAssociationAnalysisRuleType_Values() []string {
+	return []string{
+		ConfiguredTableAssociationAnalysisRuleTypeAggregation,
+		ConfiguredTableAssociationAnalysisRuleTypeList,
+		ConfiguredTableAssociationAnalysisRuleTypeCustom,
 	}
 }
 
@@ -25093,28 +26601,12 @@ func ScalarFunctions_Values() []string {
 const (
 	// SchemaConfigurationDifferentialPrivacy is a SchemaConfiguration enum value
 	SchemaConfigurationDifferentialPrivacy = "DIFFERENTIAL_PRIVACY"
-
-	// SchemaConfigurationCustomAnalysisNotAllowed is a SchemaConfiguration enum value
-	SchemaConfigurationCustomAnalysisNotAllowed = "CUSTOM_ANALYSIS_NOT_ALLOWED"
-
-	// SchemaConfigurationNoMemberAccountAllowedToProvideAnalysis is a SchemaConfiguration enum value
-	SchemaConfigurationNoMemberAccountAllowedToProvideAnalysis = "NO_MEMBER_ACCOUNT_ALLOWED_TO_PROVIDE_ANALYSIS"
-
-	// SchemaConfigurationDifferentialPrivacyBudgetNotConfigured is a SchemaConfiguration enum value
-	SchemaConfigurationDifferentialPrivacyBudgetNotConfigured = "DIFFERENTIAL_PRIVACY_BUDGET_NOT_CONFIGURED"
-
-	// SchemaConfigurationIdMappingTableNotPopulated is a SchemaConfiguration enum value
-	SchemaConfigurationIdMappingTableNotPopulated = "ID_MAPPING_TABLE_NOT_POPULATED"
 )
 
 // SchemaConfiguration_Values returns all elements of the SchemaConfiguration enum
 func SchemaConfiguration_Values() []string {
 	return []string{
 		SchemaConfigurationDifferentialPrivacy,
-		SchemaConfigurationCustomAnalysisNotAllowed,
-		SchemaConfigurationNoMemberAccountAllowedToProvideAnalysis,
-		SchemaConfigurationDifferentialPrivacyBudgetNotConfigured,
-		SchemaConfigurationIdMappingTableNotPopulated,
 	}
 }
 
@@ -25149,6 +26641,24 @@ const (
 
 	// SchemaStatusReasonCodeIdMappingTableNotPopulated is a SchemaStatusReasonCode enum value
 	SchemaStatusReasonCodeIdMappingTableNotPopulated = "ID_MAPPING_TABLE_NOT_POPULATED"
+
+	// SchemaStatusReasonCodeCollaborationAnalysisRuleNotConfigured is a SchemaStatusReasonCode enum value
+	SchemaStatusReasonCodeCollaborationAnalysisRuleNotConfigured = "COLLABORATION_ANALYSIS_RULE_NOT_CONFIGURED"
+
+	// SchemaStatusReasonCodeAdditionalAnalysesNotConfigured is a SchemaStatusReasonCode enum value
+	SchemaStatusReasonCodeAdditionalAnalysesNotConfigured = "ADDITIONAL_ANALYSES_NOT_CONFIGURED"
+
+	// SchemaStatusReasonCodeResultReceiversNotConfigured is a SchemaStatusReasonCode enum value
+	SchemaStatusReasonCodeResultReceiversNotConfigured = "RESULT_RECEIVERS_NOT_CONFIGURED"
+
+	// SchemaStatusReasonCodeAdditionalAnalysesNotAllowed is a SchemaStatusReasonCode enum value
+	SchemaStatusReasonCodeAdditionalAnalysesNotAllowed = "ADDITIONAL_ANALYSES_NOT_ALLOWED"
+
+	// SchemaStatusReasonCodeResultReceiversNotAllowed is a SchemaStatusReasonCode enum value
+	SchemaStatusReasonCodeResultReceiversNotAllowed = "RESULT_RECEIVERS_NOT_ALLOWED"
+
+	// SchemaStatusReasonCodeAnalysisRuleTypesNotCompatible is a SchemaStatusReasonCode enum value
+	SchemaStatusReasonCodeAnalysisRuleTypesNotCompatible = "ANALYSIS_RULE_TYPES_NOT_COMPATIBLE"
 )
 
 // SchemaStatusReasonCode_Values returns all elements of the SchemaStatusReasonCode enum
@@ -25159,6 +26669,12 @@ func SchemaStatusReasonCode_Values() []string {
 		SchemaStatusReasonCodeAnalysisProvidersNotConfigured,
 		SchemaStatusReasonCodeDifferentialPrivacyPolicyNotConfigured,
 		SchemaStatusReasonCodeIdMappingTableNotPopulated,
+		SchemaStatusReasonCodeCollaborationAnalysisRuleNotConfigured,
+		SchemaStatusReasonCodeAdditionalAnalysesNotConfigured,
+		SchemaStatusReasonCodeResultReceiversNotConfigured,
+		SchemaStatusReasonCodeAdditionalAnalysesNotAllowed,
+		SchemaStatusReasonCodeResultReceiversNotAllowed,
+		SchemaStatusReasonCodeAnalysisRuleTypesNotCompatible,
 	}
 }
 

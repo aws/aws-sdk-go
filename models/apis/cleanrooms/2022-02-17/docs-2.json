@@ -11,6 +11,7 @@
     "CreateConfiguredTable": "<p>Creates a new configured table resource.</p>",
     "CreateConfiguredTableAnalysisRule": "<p>Creates a new analysis rule for a configured table. Currently, only one analysis rule can be created for a given configured table.</p>",
     "CreateConfiguredTableAssociation": "<p>Creates a configured table association. A configured table association links a configured table with a collaboration.</p>",
+    "CreateConfiguredTableAssociationAnalysisRule": "<p> Creates a new analysis rule for an associated configured table.</p>",
     "CreateIdMappingTable": "<p>Creates an ID mapping table.</p>",
     "CreateIdNamespaceAssociation": "<p>Creates an ID namespace association.</p>",
     "CreateMembership": "<p>Creates a membership for a specific collaboration identifier and joins the collaboration.</p>",
@@ -21,6 +22,7 @@
     "DeleteConfiguredTable": "<p>Deletes a configured table.</p>",
     "DeleteConfiguredTableAnalysisRule": "<p>Deletes a configured table analysis rule.</p>",
     "DeleteConfiguredTableAssociation": "<p>Deletes a configured table association.</p>",
+    "DeleteConfiguredTableAssociationAnalysisRule": "<p>Deletes an analysis rule for a configured table association.</p>",
     "DeleteIdMappingTable": "<p>Deletes an ID mapping table.</p>",
     "DeleteIdNamespaceAssociation": "<p>Deletes an ID namespace association.</p>",
     "DeleteMember": "<p>Removes the specified member from a collaboration. The removed member is placed in the Removed status and can't interact with the collaboration. The removed member's data is inaccessible to active members of the collaboration.</p>",
@@ -36,6 +38,7 @@
     "GetConfiguredTable": "<p>Retrieves a configured table.</p>",
     "GetConfiguredTableAnalysisRule": "<p>Retrieves a configured table analysis rule.</p>",
     "GetConfiguredTableAssociation": "<p>Retrieves a configured table association.</p>",
+    "GetConfiguredTableAssociationAnalysisRule": "<p> Retrieves the analysis rule for a configured table association.</p>",
     "GetIdMappingTable": "<p>Retrieves an ID mapping table.</p>",
     "GetIdNamespaceAssociation": "<p>Retrieves an ID namespace association.</p>",
     "GetMembership": "<p>Retrieves a specified membership for an identifier.</p>",
@@ -73,6 +76,7 @@
     "UpdateConfiguredTable": "<p>Updates a configured table.</p>",
     "UpdateConfiguredTableAnalysisRule": "<p>Updates a configured table analysis rule.</p>",
     "UpdateConfiguredTableAssociation": "<p>Updates a configured table association.</p>",
+    "UpdateConfiguredTableAssociationAnalysisRule": "<p> Updates the analysis rule for a configured table association.</p>",
     "UpdateIdMappingTable": "<p>Provides the details that are necessary to update an ID mapping table.</p>",
     "UpdateIdNamespaceAssociation": "<p>Provides the details that are necessary to update an ID namespace association.</p>",
     "UpdateMembership": "<p>Updates a membership.</p>",
@@ -94,12 +98,13 @@
     "AccountId": {
       "base": null,
       "refs": {
+        "AllowedResultReceivers$member": null,
         "AnalysisRuleCustomAllowedAnalysisProvidersList$member": null,
         "Collaboration$creatorAccountId": "<p>The identifier used to reference members of the collaboration. Currently only supports Amazon Web Services account ID.</p>",
         "CollaborationAnalysisTemplate$creatorAccountId": "<p>The identifier used to reference members of the collaboration. Currently only supports Amazon Web Services account ID.</p>",
         "CollaborationAnalysisTemplateSummary$creatorAccountId": "<p>The identifier used to reference members of the collaboration. Currently only supports Amazon Web Services account ID.</p>",
-        "CollaborationConfiguredAudienceModelAssociation$creatorAccountId": "<p>The identifier used to reference members of the collaboration. Only supports Amazon Web Services account ID.</p>",
-        "CollaborationConfiguredAudienceModelAssociationSummary$creatorAccountId": "<p>The identifier used to reference members of the collaboration. Only supports Amazon Web Services account ID.</p>",
+        "CollaborationConfiguredAudienceModelAssociation$creatorAccountId": "<p>The identifier used to reference members of the collaboration. Only supports AWS account ID.</p>",
+        "CollaborationConfiguredAudienceModelAssociationSummary$creatorAccountId": "<p>The identifier used to reference members of the collaboration. Only supports AWS account ID.</p>",
         "CollaborationIdNamespaceAssociation$creatorAccountId": "<p>The unique identifier of the Amazon Web Services account that created the collaboration ID namespace association.</p>",
         "CollaborationIdNamespaceAssociationSummary$creatorAccountId": "<p>The Amazon Web Services account that created this collaboration ID namespace association.</p>",
         "CollaborationPrivacyBudgetSummary$creatorAccountId": "<p>The unique identifier of the account that created this privacy budget.</p>",
@@ -111,9 +116,25 @@
         "MemberSummary$accountId": "<p>The identifier used to reference members of the collaboration. Currently only supports Amazon Web Services account ID.</p>",
         "Membership$collaborationCreatorAccountId": "<p>The identifier used to reference members of the collaboration. Currently only supports Amazon Web Services account ID.</p>",
         "MembershipSummary$collaborationCreatorAccountId": "<p>The identifier of the Amazon Web Services principal that created the collaboration. Currently only supports Amazon Web Services account ID.</p>",
+        "ProtectedQueryMemberOutputConfiguration$accountId": "<p>The unique identifier for the account.</p>",
         "ProtectedQuerySingleMemberOutput$accountId": "<p>The Amazon Web Services account ID of the member in the collaboration who can receive results for the query.</p>",
+        "ReceiverAccountIds$member": null,
         "Schema$creatorAccountId": "<p>The unique account ID for the Amazon Web Services account that owns the schema.</p>",
         "SchemaSummary$creatorAccountId": "<p>The unique account ID for the Amazon Web Services account that owns the schema.</p>"
+      }
+    },
+    "AdditionalAnalyses": {
+      "base": null,
+      "refs": {
+        "AnalysisRuleAggregation$additionalAnalyses": "<p> An indicator as to whether additional analyses (such as Clean Rooms ML) can be applied to the output of the direct query. </p> <p>The <code>additionalAnalyses</code> parameter is currently supported for the list analysis rule (<code>AnalysisRuleList</code>) and the custom analysis rule (<code>AnalysisRuleCustom</code>).</p>",
+        "AnalysisRuleCustom$additionalAnalyses": "<p> An indicator as to whether additional analyses (such as Clean Rooms ML) can be applied to the output of the direct query.</p>",
+        "AnalysisRuleList$additionalAnalyses": "<p> An indicator as to whether additional analyses (such as Clean Rooms ML) can be applied to the output of the direct query.</p>"
+      }
+    },
+    "AdditionalAnalysesResourceArn": {
+      "base": null,
+      "refs": {
+        "AllowedAdditionalAnalyses$member": null
       }
     },
     "AggregateColumn": {
@@ -158,11 +179,27 @@
         "AggregationConstraint$type": "<p>The type of aggregation the constraint allows. The only valid value is currently `COUNT_DISTINCT`.</p>"
       }
     },
+    "AllowedAdditionalAnalyses": {
+      "base": null,
+      "refs": {
+        "ConfiguredTableAssociationAnalysisRuleAggregation$allowedAdditionalAnalyses": "<p> The list of resources or wildcards (ARNs) that are allowed to perform additional analysis on query output.</p> <p>The <code>allowedAdditionalAnalyses</code> parameter is currently supported for the list analysis rule (<code>AnalysisRuleList</code>) and the custom analysis rule (<code>AnalysisRuleCustom</code>).</p>",
+        "ConfiguredTableAssociationAnalysisRuleCustom$allowedAdditionalAnalyses": "<p> The list of resources or wildcards (ARNs) that are allowed to perform additional analysis on query output.</p>",
+        "ConfiguredTableAssociationAnalysisRuleList$allowedAdditionalAnalyses": "<p> The list of resources or wildcards (ARNs) that are allowed to perform additional analysis on query output.</p>"
+      }
+    },
     "AllowedColumnList": {
       "base": null,
       "refs": {
         "ConfiguredTable$allowedColumns": "<p>The columns within the underlying Glue table that can be utilized within collaborations.</p>",
         "CreateConfiguredTableInput$allowedColumns": "<p>The columns of the underlying table that can be used by collaborations or analysis rules.</p>"
+      }
+    },
+    "AllowedResultReceivers": {
+      "base": null,
+      "refs": {
+        "ConfiguredTableAssociationAnalysisRuleAggregation$allowedResultReceivers": "<p> The list of collaboration members who are allowed to receive results of queries run with this configured table.</p>",
+        "ConfiguredTableAssociationAnalysisRuleCustom$allowedResultReceivers": "<p> The list of collaboration members who are allowed to receive results of queries run with this configured table.</p>",
+        "ConfiguredTableAssociationAnalysisRuleList$allowedResultReceivers": "<p> The list of collaboration members who are allowed to receive results of queries run with this configured table.</p>"
       }
     },
     "AnalysisFormat": {
@@ -179,7 +216,7 @@
         "ConfiguredTable$analysisMethod": "<p>The analysis method for the configured table. The only valid value is currently `DIRECT_QUERY`.</p>",
         "ConfiguredTableSummary$analysisMethod": "<p>The analysis method for the configured tables. The only valid value is currently `DIRECT_QUERY`.</p>",
         "CreateConfiguredTableInput$analysisMethod": "<p>The analysis method for the configured tables. The only valid value is currently `DIRECT_QUERY`.</p>",
-        "Schema$analysisMethod": "<p>The analysis method for the schema. The only valid value is currently <code>DIRECT_QUERY</code>.</p>",
+        "Schema$analysisMethod": "<p>The analysis method for the schema. The only valid value is currently DIRECT_QUERY.</p>",
         "SchemaSummary$analysisMethod": "<p>The analysis method for the associated schema. The only valid value is currently `DIRECT_QUERY`.</p>"
       }
     },
@@ -222,6 +259,7 @@
       "refs": {
         "AnalysisRuleAggregation$joinColumns": "<p>Columns in configured table that can be used in join statements and/or as aggregate columns. They can never be outputted directly.</p>",
         "AnalysisRuleAggregation$dimensionColumns": "<p>The columns that query runners are allowed to select, group by, or filter by.</p>",
+        "AnalysisRuleCustom$disallowedOutputColumns": "<p> A list of columns that aren't allowed to be shown in the query output.</p>",
         "AnalysisRuleIdMappingTable$dimensionColumns": "<p>The columns that query runners are allowed to select, group by, or filter by.</p>",
         "AnalysisRuleList$listColumns": "<p>Columns that can be listed in the output.</p>",
         "QueryConstraintRequireOverlap$columns": "<p>The columns that are required to overlap.</p>"
@@ -307,7 +345,7 @@
     "AnalysisRuleTypeList": {
       "base": null,
       "refs": {
-        "Schema$analysisRuleTypes": "<p>The analysis rule types that are associated with the schema. Currently, only one entry is present.</p>",
+        "Schema$analysisRuleTypes": "<p>The analysis rule types associated with the schema. Currently, only one entry is present.</p>",
         "SchemaSummary$analysisRuleTypes": "<p>The types of analysis rules that are associated with this schema object.</p>"
       }
     },
@@ -426,6 +464,13 @@
         "AnalysisTemplateValidationStatusDetail$type": "<p>The type of validation that was performed.</p>"
       }
     },
+    "AnalysisType": {
+      "base": null,
+      "refs": {
+        "ReceiverConfiguration$analysisType": "<p> The type of analysis for the protected query. The results of the query can be analyzed directly (<code>DIRECT_ANALYSIS</code>) or used as input into additional analyses (<code>ADDITIONAL_ANALYSIS</code>), such as a query that is a seed for a lookalike ML model.</p>",
+        "SchemaStatusDetail$analysisType": "<p>The type of analysis that can be performed on the schema.</p> <p>A schema can have an <code>analysisType</code> of <code>DIRECT_ANALYSIS</code>, <code>ADDITIONAL_ANALYSIS_FOR_AUDIENCE_GENERATION</code>, or both.</p>"
+      }
+    },
     "BatchGetCollaborationAnalysisTemplateError": {
       "base": "<p>Details of errors thrown by the call to retrieve multiple analysis templates within a collaboration by their identifiers.</p>",
       "refs": {
@@ -519,7 +564,7 @@
     "Collaboration": {
       "base": "<p>The multi-party data share environment. The collaboration contains metadata about its purpose and participants.</p>",
       "refs": {
-        "CreateCollaborationOutput$collaboration": "<p>The entire created collaboration object.</p>",
+        "CreateCollaborationOutput$collaboration": "<p>The collaboration.</p>",
         "GetCollaborationOutput$collaboration": "<p>The entire collaboration for this identifier.</p>",
         "UpdateCollaborationOutput$collaboration": "<p>The entire collaboration that has been updated.</p>"
       }
@@ -576,7 +621,7 @@
         "PrivacyBudgetSummary$collaborationArn": "<p>The ARN of the collaboration that contains this privacy budget.</p>",
         "PrivacyBudgetTemplate$collaborationArn": "<p>The ARN of the collaboration that contains this privacy budget template.</p>",
         "PrivacyBudgetTemplateSummary$collaborationArn": "<p>The ARN of the collaboration that contains this privacy budget template.</p>",
-        "Schema$collaborationArn": "<p>The unique Amazon Resource Name (ARN) for the collaboration that the schema belongs to.</p>",
+        "Schema$collaborationArn": "<p>The unique ARN for the collaboration that the schema belongs to.</p>",
         "SchemaSummary$collaborationArn": "<p>The unique ARN for the collaboration that the schema belongs to.</p>"
       }
     },
@@ -721,7 +766,7 @@
     "ColumnList": {
       "base": null,
       "refs": {
-        "Schema$columns": "<p>The columns for the relation that this schema represents.</p>",
+        "Schema$columns": "<p>The columns for the relation this schema represents.</p>",
         "Schema$partitionKeys": "<p>The partition keys for the dataset underlying this schema.</p>"
       }
     },
@@ -736,6 +781,12 @@
       "base": null,
       "refs": {
         "Column$type": "<p>The type of the column.</p>"
+      }
+    },
+    "ConfigurationDetails": {
+      "base": "<p> The configuration details.</p>",
+      "refs": {
+        "ReceiverConfiguration$configurationDetails": "<p> The configuration details of the receiver configuration.</p>"
       }
     },
     "ConfiguredAudienceModelArn": {
@@ -810,7 +861,7 @@
     "ConfiguredTableAnalysisRule": {
       "base": "<p>A configured table analysis rule, which limits how data for this table can be used.</p>",
       "refs": {
-        "CreateConfiguredTableAnalysisRuleOutput$analysisRule": "<p>The entire created analysis rule.</p>",
+        "CreateConfiguredTableAnalysisRuleOutput$analysisRule": "<p>The analysis rule that was created for the configured table.</p>",
         "GetConfiguredTableAnalysisRuleOutput$analysisRule": "<p>The entire analysis rule output.</p>",
         "UpdateConfiguredTableAnalysisRuleOutput$analysisRule": "<p>The entire updated analysis rule.</p>"
       }
@@ -819,7 +870,7 @@
       "base": "<p>Controls on the query specifications that can be run on a configured table.</p>",
       "refs": {
         "ConfiguredTableAnalysisRule$policy": "<p>The policy that controls SQL query rules.</p>",
-        "CreateConfiguredTableAnalysisRuleInput$analysisRulePolicy": "<p>The entire created configured table analysis rule object.</p>",
+        "CreateConfiguredTableAnalysisRuleInput$analysisRulePolicy": "<p>The analysis rule policy that was created for the configured table.</p>",
         "UpdateConfiguredTableAnalysisRuleInput$analysisRulePolicy": "<p>The new analysis rule policy for the configured table analysis rule.</p>"
       }
     },
@@ -859,23 +910,86 @@
     "ConfiguredTableAssociation": {
       "base": "<p>A configured table association links a configured table to a collaboration.</p>",
       "refs": {
-        "CreateConfiguredTableAssociationOutput$configuredTableAssociation": "<p>The entire configured table association object.</p>",
+        "CreateConfiguredTableAssociationOutput$configuredTableAssociation": "<p>The configured table association.</p>",
         "GetConfiguredTableAssociationOutput$configuredTableAssociation": "<p>The entire configured table association object.</p>",
         "UpdateConfiguredTableAssociationOutput$configuredTableAssociation": "<p>The entire updated configured table association.</p>"
+      }
+    },
+    "ConfiguredTableAssociationAnalysisRule": {
+      "base": "<p>An analysis rule for a configured table association. This analysis rule specifies how data from the table can be used within its associated collaboration. In the console, the <code>ConfiguredTableAssociationAnalysisRule</code> is referred to as the <i>collaboration analysis rule</i>.</p>",
+      "refs": {
+        "CreateConfiguredTableAssociationAnalysisRuleOutput$analysisRule": "<p>The analysis rule for the conﬁgured table association. In the console, the <code>ConfiguredTableAssociationAnalysisRule</code> is referred to as the <i>collaboration analysis rule</i>.</p>",
+        "GetConfiguredTableAssociationAnalysisRuleOutput$analysisRule": "<p>The analysis rule for the conﬁgured table association. In the console, the <code>ConfiguredTableAssociationAnalysisRule</code> is referred to as the <i>collaboration analysis rule</i>.</p>",
+        "UpdateConfiguredTableAssociationAnalysisRuleOutput$analysisRule": "<p> The updated analysis rule for the conﬁgured table association. In the console, the <code>ConfiguredTableAssociationAnalysisRule</code> is referred to as the <i>collaboration analysis rule</i>.</p>"
+      }
+    },
+    "ConfiguredTableAssociationAnalysisRuleAggregation": {
+      "base": "<p> The configured table association analysis rule applied to a configured table with the aggregation analysis rule.</p>",
+      "refs": {
+        "ConfiguredTableAssociationAnalysisRulePolicyV1$aggregation": "<p> Analysis rule type that enables only aggregation queries on a configured table.</p>"
+      }
+    },
+    "ConfiguredTableAssociationAnalysisRuleCustom": {
+      "base": "<p> The configured table association analysis rule applied to a configured table with the custom analysis rule.</p>",
+      "refs": {
+        "ConfiguredTableAssociationAnalysisRulePolicyV1$custom": "<p> Analysis rule type that enables the table owner to approve custom SQL queries on their configured tables. It supports differential privacy.</p>"
+      }
+    },
+    "ConfiguredTableAssociationAnalysisRuleList": {
+      "base": "<p> The configured table association analysis rule applied to a configured table with the list analysis rule.</p>",
+      "refs": {
+        "ConfiguredTableAssociationAnalysisRulePolicyV1$list": "<p> Analysis rule type that enables only list queries on a configured table.</p>"
+      }
+    },
+    "ConfiguredTableAssociationAnalysisRulePolicy": {
+      "base": "<p> Controls on the query specifications that can be run on an associated configured table.</p>",
+      "refs": {
+        "ConfiguredTableAssociationAnalysisRule$policy": "<p> The policy of the configured table association analysis rule.</p>",
+        "CreateConfiguredTableAssociationAnalysisRuleInput$analysisRulePolicy": "<p>The analysis rule policy that was created for the configured table association.</p>",
+        "UpdateConfiguredTableAssociationAnalysisRuleInput$analysisRulePolicy": "<p> The updated analysis rule policy for the conﬁgured table association.</p>"
+      }
+    },
+    "ConfiguredTableAssociationAnalysisRulePolicyV1": {
+      "base": "<p> Controls on the query specifications that can be run on an associated configured table.</p>",
+      "refs": {
+        "ConfiguredTableAssociationAnalysisRulePolicy$v1": "<p> The policy for the configured table association analysis rule.</p>"
+      }
+    },
+    "ConfiguredTableAssociationAnalysisRuleType": {
+      "base": null,
+      "refs": {
+        "ConfiguredTableAssociationAnalysisRule$type": "<p> The type of the configured table association analysis rule.</p>",
+        "ConfiguredTableAssociationAnalysisRuleTypeList$member": null,
+        "CreateConfiguredTableAssociationAnalysisRuleInput$analysisRuleType": "<p> The type of analysis rule.</p>",
+        "DeleteConfiguredTableAssociationAnalysisRuleInput$analysisRuleType": "<p>The type of the analysis rule that you want to delete.</p>",
+        "GetConfiguredTableAssociationAnalysisRuleInput$analysisRuleType": "<p> The type of analysis rule that you want to retrieve.</p>",
+        "UpdateConfiguredTableAssociationAnalysisRuleInput$analysisRuleType": "<p> The analysis rule type that you want to update.</p>"
+      }
+    },
+    "ConfiguredTableAssociationAnalysisRuleTypeList": {
+      "base": null,
+      "refs": {
+        "ConfiguredTableAssociation$analysisRuleTypes": "<p> The analysis rule types for the configured table association.</p>"
       }
     },
     "ConfiguredTableAssociationArn": {
       "base": null,
       "refs": {
         "ConfiguredTableAssociation$arn": "<p>The unique ARN for the configured table association.</p>",
+        "ConfiguredTableAssociationAnalysisRule$configuredTableAssociationArn": "<p> The Amazon Resource Name (ARN) of the configured table association.</p>",
         "ConfiguredTableAssociationSummary$arn": "<p>The unique ARN for the configured table association.</p>"
       }
     },
     "ConfiguredTableAssociationIdentifier": {
       "base": null,
       "refs": {
+        "ConfiguredTableAssociationAnalysisRule$configuredTableAssociationId": "<p> The unique identifier for the configured table association.</p>",
+        "CreateConfiguredTableAssociationAnalysisRuleInput$configuredTableAssociationIdentifier": "<p> The unique ID for the configured table association. Currently accepts the configured table association ID.</p>",
+        "DeleteConfiguredTableAssociationAnalysisRuleInput$configuredTableAssociationIdentifier": "<p>The identiﬁer for the conﬁgured table association that's related to the analysis rule that you want to delete.</p>",
         "DeleteConfiguredTableAssociationInput$configuredTableAssociationIdentifier": "<p>The unique ID for the configured table association to be deleted. Currently accepts the configured table ID.</p>",
+        "GetConfiguredTableAssociationAnalysisRuleInput$configuredTableAssociationIdentifier": "<p> The identiﬁer for the conﬁgured table association that's related to the analysis rule.</p>",
         "GetConfiguredTableAssociationInput$configuredTableAssociationIdentifier": "<p>The unique ID for the configured table association to retrieve. Currently accepts the configured table ID.</p>",
+        "UpdateConfiguredTableAssociationAnalysisRuleInput$configuredTableAssociationIdentifier": "<p> The identifier for the configured table association to update.</p>",
         "UpdateConfiguredTableAssociationInput$configuredTableAssociationIdentifier": "<p>The unique identifier for the configured table association to update. Currently accepts the configured table association ID.</p>"
       }
     },
@@ -964,6 +1078,16 @@
       }
     },
     "CreateConfiguredTableAnalysisRuleOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateConfiguredTableAssociationAnalysisRuleInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateConfiguredTableAssociationAnalysisRuleOutput": {
       "base": null,
       "refs": {
       }
@@ -1072,6 +1196,16 @@
     },
     "DeleteConfiguredTableAnalysisRuleOutput": {
       "base": "<p>An empty response that indicates a successful delete.</p>",
+      "refs": {
+      }
+    },
+    "DeleteConfiguredTableAssociationAnalysisRuleInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteConfiguredTableAssociationAnalysisRuleOutput": {
+      "base": null,
       "refs": {
       }
     },
@@ -1279,6 +1413,12 @@
         "PrivacyBudgetTemplateUpdateParameters$differentialPrivacy": "<p>An object that specifies the new values for the epsilon and noise parameters.</p>"
       }
     },
+    "DirectAnalysisConfigurationDetails": {
+      "base": "<p> The direct analysis configuration details.</p>",
+      "refs": {
+        "ConfigurationDetails$directAnalysisConfigurationDetails": "<p> The direct analysis configuration details.</p>"
+      }
+    },
     "DisplayName": {
       "base": null,
       "refs": {
@@ -1417,6 +1557,16 @@
       }
     },
     "GetConfiguredTableAnalysisRuleOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetConfiguredTableAssociationAnalysisRuleInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetConfiguredTableAssociationAnalysisRuleOutput": {
       "base": null,
       "refs": {
       }
@@ -1920,30 +2070,30 @@
     "Long": {
       "base": null,
       "refs": {
-        "ProtectedQueryStatistics$totalDurationInMillis": "<p>The duration of the Protected Query, from creation until query completion.</p>"
+        "ProtectedQueryStatistics$totalDurationInMillis": "<p>The duration of the protected query, from creation until query completion.</p>"
       }
     },
     "MaxResults": {
       "base": null,
       "refs": {
-        "ListAnalysisTemplatesInput$maxResults": "<p>The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a `nextToken` even if the `maxResults` value has not been met.</p>",
-        "ListCollaborationAnalysisTemplatesInput$maxResults": "<p>The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a `nextToken` even if the `maxResults` value has not been met.</p>",
-        "ListCollaborationConfiguredAudienceModelAssociationsInput$maxResults": "<p>The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a `nextToken` even if the `maxResults` value has not been met.</p>",
+        "ListAnalysisTemplatesInput$maxResults": "<p>The maximum size of the results that is returned per call.</p>",
+        "ListCollaborationAnalysisTemplatesInput$maxResults": "<p>The maximum size of the results that is returned per call.</p>",
+        "ListCollaborationConfiguredAudienceModelAssociationsInput$maxResults": "<p>The maximum size of the results that is returned per call.</p>",
         "ListCollaborationIdNamespaceAssociationsInput$maxResults": "<p>The maximum size of the results that is returned per call. Service chooses a default if it has not been set. Service may return a nextToken even if the maximum results has not been met.&gt;</p>",
-        "ListCollaborationPrivacyBudgetTemplatesInput$maxResults": "<p>The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a `nextToken` even if the `maxResults` value has not been met.</p>",
-        "ListCollaborationPrivacyBudgetsInput$maxResults": "<p>The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a `nextToken` even if the `maxResults` value has not been met.</p>",
-        "ListCollaborationsInput$maxResults": "<p>The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a `nextToken` even if the `maxResults` value has not been met.</p>",
-        "ListConfiguredAudienceModelAssociationsInput$maxResults": "<p>The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a `nextToken` even if the `maxResults` value has not been met.</p>",
-        "ListConfiguredTableAssociationsInput$maxResults": "<p>The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a `nextToken` even if the `maxResults` value has not been met.</p>",
-        "ListConfiguredTablesInput$maxResults": "<p>The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a `nextToken` even if the `maxResults` value has not been met.</p>",
+        "ListCollaborationPrivacyBudgetTemplatesInput$maxResults": "<p>The maximum size of the results that is returned per call. Service chooses a default if it has not been set. Service may return a nextToken even if the maximum results has not been met.</p>",
+        "ListCollaborationPrivacyBudgetsInput$maxResults": "<p>The maximum size of the results that is returned per call. Service chooses a default if it has not been set. Service may return a nextToken even if the maximum results has not been met.</p>",
+        "ListCollaborationsInput$maxResults": "<p>The maximum size of the results that is returned per call. Service chooses a default if it has not been set. Service may return a nextToken even if the maximum results has not been met.</p>",
+        "ListConfiguredAudienceModelAssociationsInput$maxResults": "<p>The maximum size of the results that is returned per call. Service chooses a default if it has not been set. Service may return a nextToken even if the maximum results has not been met.</p>",
+        "ListConfiguredTableAssociationsInput$maxResults": "<p>The maximum size of the results that is returned per call.</p>",
+        "ListConfiguredTablesInput$maxResults": "<p>The maximum size of the results that is returned per call.</p>",
         "ListIdMappingTablesInput$maxResults": "<p>The maximum size of the results that is returned per call. Service chooses a default if it has not been set. Service may return a nextToken even if the maximum results has not been met.</p>",
         "ListIdNamespaceAssociationsInput$maxResults": "<p>The maximum size of the results that is returned per call. Service chooses a default if it has not been set. Service may return a nextToken even if the maximum results has not been met.</p>",
-        "ListMembersInput$maxResults": "<p>The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a `nextToken` even if the `maxResults` value has not been met.</p>",
-        "ListMembershipsInput$maxResults": "<p>The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a `nextToken` even if the `maxResults` value has not been met.</p>",
-        "ListPrivacyBudgetTemplatesInput$maxResults": "<p>The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a `nextToken` even if the `maxResults` value has not been met.</p>",
-        "ListPrivacyBudgetsInput$maxResults": "<p>The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a `nextToken` even if the `maxResults` value has not been met.</p>",
-        "ListProtectedQueriesInput$maxResults": "<p>The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a `nextToken` even if the `maxResults` value has not been met. </p>",
-        "ListSchemasInput$maxResults": "<p>The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a `nextToken` even if the `maxResults` value has not been met.</p>"
+        "ListMembersInput$maxResults": "<p>The maximum size of the results that is returned per call.</p>",
+        "ListMembershipsInput$maxResults": "<p>The maximum size of the results that is returned per call.</p>",
+        "ListPrivacyBudgetTemplatesInput$maxResults": "<p>The maximum size of the results that is returned per call. Service chooses a default if it has not been set. Service may return a nextToken even if the maximum results has not been met.</p>",
+        "ListPrivacyBudgetsInput$maxResults": "<p>The maximum size of the results that is returned per call. Service chooses a default if it has not been set. Service may return a nextToken even if the maximum results has not been met.</p>",
+        "ListProtectedQueriesInput$maxResults": "<p>The maximum size of the results that is returned per call. Service chooses a default if it has not been set. Service can return a nextToken even if the maximum results has not been met. </p>",
+        "ListSchemasInput$maxResults": "<p>The maximum size of the results that is returned per call.</p>"
       }
     },
     "MemberAbilities": {
@@ -2031,15 +2181,18 @@
       "base": null,
       "refs": {
         "ConfiguredAudienceModelAssociationSummary$membershipId": "<p>A unique identifier of the membership that contains the configured audience model association.</p>",
+        "ConfiguredTableAssociationAnalysisRule$membershipIdentifier": "<p> The membership identifier for the configured table association analysis rule.</p>",
         "ConfiguredTableAssociationSummary$membershipId": "<p>The unique ID for the membership that the configured table association belongs to.</p>",
         "CreateAnalysisTemplateInput$membershipIdentifier": "<p>The identifier for a membership resource.</p>",
         "CreateConfiguredAudienceModelAssociationInput$membershipIdentifier": "<p>A unique identifier for one of your memberships for a collaboration. The configured audience model is associated to the collaboration that this membership belongs to. Accepts a membership ID.</p>",
+        "CreateConfiguredTableAssociationAnalysisRuleInput$membershipIdentifier": "<p> A unique identifier for the membership that the configured table association belongs to. Currently accepts the membership ID.</p>",
         "CreateConfiguredTableAssociationInput$membershipIdentifier": "<p>A unique identifier for one of your memberships for a collaboration. The configured table is associated to the collaboration that this membership belongs to. Currently accepts a membership ID.</p>",
         "CreateIdMappingTableInput$membershipIdentifier": "<p>The unique identifier of the membership that contains the ID mapping table.</p>",
         "CreateIdNamespaceAssociationInput$membershipIdentifier": "<p>The unique identifier of the membership that contains the ID namespace association.</p>",
         "CreatePrivacyBudgetTemplateInput$membershipIdentifier": "<p>A unique identifier for one of your memberships for a collaboration. The privacy budget template is created in the collaboration that this membership belongs to. Accepts a membership ID.</p>",
         "DeleteAnalysisTemplateInput$membershipIdentifier": "<p>The identifier for a membership resource.</p>",
         "DeleteConfiguredAudienceModelAssociationInput$membershipIdentifier": "<p>A unique identifier of the membership that contains the audience model association that you want to delete.</p>",
+        "DeleteConfiguredTableAssociationAnalysisRuleInput$membershipIdentifier": "<p> A unique identifier for the membership that the configured table association belongs to. Currently accepts the membership ID.</p>",
         "DeleteConfiguredTableAssociationInput$membershipIdentifier": "<p>A unique identifier for the membership that the configured table association belongs to. Currently accepts the membership ID.</p>",
         "DeleteIdMappingTableInput$membershipIdentifier": "<p>The unique identifier of the membership that contains the ID mapping table that you want to delete.</p>",
         "DeleteIdNamespaceAssociationInput$membershipIdentifier": "<p>The unique identifier of the membership that contains the ID namespace association that you want to delete.</p>",
@@ -2047,6 +2200,7 @@
         "DeletePrivacyBudgetTemplateInput$membershipIdentifier": "<p>A unique identifier for one of your memberships for a collaboration. The privacy budget template is deleted from the collaboration that this membership belongs to. Accepts a membership ID.</p>",
         "GetAnalysisTemplateInput$membershipIdentifier": "<p>The identifier for a membership resource.</p>",
         "GetConfiguredAudienceModelAssociationInput$membershipIdentifier": "<p>A unique identifier for the membership that contains the configured audience model association that you want to retrieve.</p>",
+        "GetConfiguredTableAssociationAnalysisRuleInput$membershipIdentifier": "<p> A unique identifier for the membership that the configured table association belongs to. Currently accepts the membership ID.</p>",
         "GetConfiguredTableAssociationInput$membershipIdentifier": "<p>A unique identifier for the membership that the configured table association belongs to. Currently accepts the membership ID.</p>",
         "GetIdMappingTableInput$membershipIdentifier": "<p>The unique identifier of the membership that contains the ID mapping table that you want to retrieve.</p>",
         "GetIdNamespaceAssociationInput$membershipIdentifier": "<p>The unique identifier of the membership that contains the ID namespace association that you want to retrieve.</p>",
@@ -2069,6 +2223,7 @@
         "StartProtectedQueryInput$membershipIdentifier": "<p>A unique identifier for the membership to run this query against. Currently accepts a membership ID.</p>",
         "UpdateAnalysisTemplateInput$membershipIdentifier": "<p>The identifier for a membership resource.</p>",
         "UpdateConfiguredAudienceModelAssociationInput$membershipIdentifier": "<p>A unique identifier of the membership that contains the configured audience model association that you want to update.</p>",
+        "UpdateConfiguredTableAssociationAnalysisRuleInput$membershipIdentifier": "<p> A unique identifier for the membership that the configured table association belongs to. Currently accepts the membership ID.</p>",
         "UpdateConfiguredTableAssociationInput$membershipIdentifier": "<p>The unique ID for the membership that the configured table association belongs to.</p>",
         "UpdateIdMappingTableInput$membershipIdentifier": "<p>The unique identifier of the membership that contains the ID mapping table that you want to update.</p>",
         "UpdateIdNamespaceAssociationInput$membershipIdentifier": "<p>The unique identifier of the membership that contains the ID namespace association that you want to update.</p>",
@@ -2136,42 +2291,42 @@
     "PaginationToken": {
       "base": null,
       "refs": {
-        "ListAnalysisTemplatesInput$nextToken": "<p>The pagination token that's used to fetch the next set of results.</p>",
-        "ListAnalysisTemplatesOutput$nextToken": "<p>The pagination token that's used to fetch the next set of results.</p>",
-        "ListCollaborationAnalysisTemplatesInput$nextToken": "<p>The pagination token that's used to fetch the next set of results.</p>",
-        "ListCollaborationAnalysisTemplatesOutput$nextToken": "<p>The pagination token that's used to fetch the next set of results.</p>",
-        "ListCollaborationConfiguredAudienceModelAssociationsInput$nextToken": "<p>The pagination token that's used to fetch the next set of results.</p>",
-        "ListCollaborationConfiguredAudienceModelAssociationsOutput$nextToken": "<p>The pagination token that's used to fetch the next set of results.</p>",
+        "ListAnalysisTemplatesInput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
+        "ListAnalysisTemplatesOutput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
+        "ListCollaborationAnalysisTemplatesInput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
+        "ListCollaborationAnalysisTemplatesOutput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
+        "ListCollaborationConfiguredAudienceModelAssociationsInput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
+        "ListCollaborationConfiguredAudienceModelAssociationsOutput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
         "ListCollaborationIdNamespaceAssociationsInput$nextToken": "<p>The pagination token that's used to fetch the next set of results.</p>",
         "ListCollaborationIdNamespaceAssociationsOutput$nextToken": "<p>The token value provided to access the next page of results.</p>",
-        "ListCollaborationPrivacyBudgetTemplatesInput$nextToken": "<p>The pagination token that's used to fetch the next set of results.</p>",
-        "ListCollaborationPrivacyBudgetTemplatesOutput$nextToken": "<p>The pagination token that's used to fetch the next set of results.</p>",
-        "ListCollaborationPrivacyBudgetsInput$nextToken": "<p>The pagination token that's used to fetch the next set of results.</p>",
-        "ListCollaborationPrivacyBudgetsOutput$nextToken": "<p>The pagination token that's used to fetch the next set of results.</p>",
-        "ListCollaborationsInput$nextToken": "<p>The pagination token that's used to fetch the next set of results.</p>",
-        "ListCollaborationsOutput$nextToken": "<p>The pagination token that's used to fetch the next set of results.</p>",
-        "ListConfiguredAudienceModelAssociationsInput$nextToken": "<p>The pagination token that's used to fetch the next set of results.</p>",
+        "ListCollaborationPrivacyBudgetTemplatesInput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
+        "ListCollaborationPrivacyBudgetTemplatesOutput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
+        "ListCollaborationPrivacyBudgetsInput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
+        "ListCollaborationPrivacyBudgetsOutput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
+        "ListCollaborationsInput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
+        "ListCollaborationsOutput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
+        "ListConfiguredAudienceModelAssociationsInput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
         "ListConfiguredAudienceModelAssociationsOutput$nextToken": "<p>The token value provided to access the next page of results.</p>",
-        "ListConfiguredTableAssociationsInput$nextToken": "<p>The pagination token that's used to fetch the next set of results.</p>",
-        "ListConfiguredTableAssociationsOutput$nextToken": "<p>The pagination token that's used to fetch the next set of results.</p>",
-        "ListConfiguredTablesInput$nextToken": "<p>The pagination token that's used to fetch the next set of results.</p>",
-        "ListConfiguredTablesOutput$nextToken": "<p>The pagination token that's used to fetch the next set of results.</p>",
+        "ListConfiguredTableAssociationsInput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
+        "ListConfiguredTableAssociationsOutput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
+        "ListConfiguredTablesInput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
+        "ListConfiguredTablesOutput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
         "ListIdMappingTablesInput$nextToken": "<p>The pagination token that's used to fetch the next set of results.</p>",
         "ListIdMappingTablesOutput$nextToken": "<p>The token value provided to access the next page of results.</p>",
         "ListIdNamespaceAssociationsInput$nextToken": "<p>The pagination token that's used to fetch the next set of results.</p>",
         "ListIdNamespaceAssociationsOutput$nextToken": "<p>The token value provided to access the next page of results.</p>",
-        "ListMembersInput$nextToken": "<p>The pagination token that's used to fetch the next set of results.</p>",
-        "ListMembersOutput$nextToken": "<p>The pagination token that's used to fetch the next set of results.</p>",
-        "ListMembershipsInput$nextToken": "<p>The pagination token that's used to fetch the next set of results.</p>",
-        "ListMembershipsOutput$nextToken": "<p>The pagination token that's used to fetch the next set of results.</p>",
-        "ListPrivacyBudgetTemplatesInput$nextToken": "<p>The pagination token that's used to fetch the next set of results.</p>",
-        "ListPrivacyBudgetTemplatesOutput$nextToken": "<p>The pagination token that's used to fetch the next set of results.</p>",
-        "ListPrivacyBudgetsInput$nextToken": "<p>The pagination token that's used to fetch the next set of results.</p>",
-        "ListPrivacyBudgetsOutput$nextToken": "<p>The pagination token that's used to fetch the next set of results.</p>",
-        "ListProtectedQueriesInput$nextToken": "<p>The pagination token that's used to fetch the next set of results.</p>",
-        "ListProtectedQueriesOutput$nextToken": "<p>The pagination token that's used to fetch the next set of results.</p>",
-        "ListSchemasInput$nextToken": "<p>The pagination token that's used to fetch the next set of results.</p>",
-        "ListSchemasOutput$nextToken": "<p>The pagination token that's used to fetch the next set of results.</p>"
+        "ListMembersInput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
+        "ListMembersOutput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
+        "ListMembershipsInput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
+        "ListMembershipsOutput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
+        "ListPrivacyBudgetTemplatesInput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
+        "ListPrivacyBudgetTemplatesOutput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
+        "ListPrivacyBudgetsInput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
+        "ListPrivacyBudgetsOutput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
+        "ListProtectedQueriesInput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
+        "ListProtectedQueriesOutput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
+        "ListSchemasInput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
+        "ListSchemasOutput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>"
       }
     },
     "ParameterMap": {
@@ -2368,6 +2523,12 @@
         "UpdateProtectedQueryInput$protectedQueryIdentifier": "<p>The identifier for a protected query instance.</p>"
       }
     },
+    "ProtectedQueryMemberOutputConfiguration": {
+      "base": "<p> Contains configuration details for the protected query member output.</p>",
+      "refs": {
+        "ProtectedQueryOutputConfiguration$member": "<p> Required configuration for a protected query with a <code>member</code> output type.</p>"
+      }
+    },
     "ProtectedQueryMemberOutputList": {
       "base": null,
       "refs": {
@@ -2409,7 +2570,7 @@
       "base": "<p>Contains the configuration to write the query results to S3.</p>",
       "refs": {
         "MembershipProtectedQueryOutputConfiguration$s3": null,
-        "ProtectedQueryOutputConfiguration$s3": "<p>Required configuration for a protected query with an `S3` output type.</p>"
+        "ProtectedQueryOutputConfiguration$s3": "<p>Required configuration for a protected query with an <code>s3</code> output type.</p>"
       }
     },
     "ProtectedQueryS3OutputConfigurationBucketString": {
@@ -2497,6 +2658,24 @@
       "base": null,
       "refs": {
         "AnalysisSchema$referencedTables": "<p>The tables referenced in the analysis schema.</p>"
+      }
+    },
+    "ReceiverAccountIds": {
+      "base": null,
+      "refs": {
+        "DirectAnalysisConfigurationDetails$receiverAccountIds": "<p> The account IDs for the member who received the results of a protected query.</p>"
+      }
+    },
+    "ReceiverConfiguration": {
+      "base": "<p> The receiver configuration for a protected query.</p>",
+      "refs": {
+        "ReceiverConfigurationsList$member": null
+      }
+    },
+    "ReceiverConfigurationsList": {
+      "base": null,
+      "refs": {
+        "ProtectedQuerySummary$receiverConfigurations": "<p> The receiver configuration.</p>"
       }
     },
     "ResourceAlias": {
@@ -2623,7 +2802,7 @@
     "SchemaStatus": {
       "base": null,
       "refs": {
-        "SchemaStatusDetail$status": "<p>The status of the schema.</p>"
+        "SchemaStatusDetail$status": "<p>The status of the schema, indicating if it is ready to query.</p>"
       }
     },
     "SchemaStatusDetail": {
@@ -2671,9 +2850,9 @@
     "SchemaType": {
       "base": null,
       "refs": {
-        "ListSchemasInput$schemaType": "<p>If present, filter schemas by schema type.</p>",
-        "Schema$type": "<p>The type of schema.</p>",
-        "SchemaSummary$type": "<p>The type of schema object.</p>"
+        "ListSchemasInput$schemaType": "<p>If present, filter schemas by schema type. The only valid schema type is currently `TABLE`.</p>",
+        "Schema$type": "<p>The type of schema. The only valid value is currently `TABLE`.</p>",
+        "SchemaSummary$type": "<p>The type of schema object. The only valid schema type is currently `TABLE`.</p>"
       }
     },
     "SchemaTypeProperties": {
@@ -2868,6 +3047,8 @@
         "ConfiguredTableAnalysisRule$updateTime": "<p>The time the configured table analysis rule was last updated.</p>",
         "ConfiguredTableAssociation$createTime": "<p>The time the configured table association was created.</p>",
         "ConfiguredTableAssociation$updateTime": "<p>The time the configured table association was last updated.</p>",
+        "ConfiguredTableAssociationAnalysisRule$createTime": "<p> The creation time of the configured table association analysis rule.</p>",
+        "ConfiguredTableAssociationAnalysisRule$updateTime": "<p> The update time of the configured table association analysis rule.</p>",
         "ConfiguredTableAssociationSummary$createTime": "<p>The time the configured table association was created.</p>",
         "ConfiguredTableAssociationSummary$updateTime": "<p>The time the configured table association was last updated.</p>",
         "ConfiguredTableSummary$createTime": "<p>The time the configured table was created.</p>",
@@ -2894,8 +3075,8 @@
         "PrivacyBudgetTemplateSummary$updateTime": "<p>The most recent time at which the privacy budget template was updated.</p>",
         "ProtectedQuery$createTime": "<p>The time at which the protected query was created.</p>",
         "ProtectedQuerySummary$createTime": "<p>The time the protected query was created.</p>",
-        "Schema$createTime": "<p>The time at which the schema was created.</p>",
-        "Schema$updateTime": "<p>The most recent time at which the schema was updated.</p>",
+        "Schema$createTime": "<p>The time the schema was created.</p>",
+        "Schema$updateTime": "<p>The time the schema was last updated.</p>",
         "SchemaSummary$createTime": "<p>The time the schema object was created.</p>",
         "SchemaSummary$updateTime": "<p>The time the schema object was last updated.</p>"
       }
@@ -3010,6 +3191,16 @@
       }
     },
     "UpdateConfiguredTableAnalysisRuleOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateConfiguredTableAssociationAnalysisRuleInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateConfiguredTableAssociationAnalysisRuleOutput": {
       "base": null,
       "refs": {
       }

@@ -2320,6 +2320,11 @@ type CopyImageSetInput struct {
 	// DatastoreId is a required field
 	DatastoreId *string `location:"uri" locationName:"datastoreId" type:"string" required:"true"`
 
+	// Setting this flag will force the CopyImageSet operation, even if Patient,
+	// Study, or Series level metadata are mismatched across the sourceImageSet
+	// and destinationImageSet.
+	Force *bool `location:"querystring" locationName:"force" type:"boolean"`
+
 	// The source image set identifier.
 	//
 	// SourceImageSetId is a required field
@@ -2383,6 +2388,12 @@ func (s *CopyImageSetInput) SetCopyImageSetInformation(v *CopyImageSetInformatio
 // SetDatastoreId sets the DatastoreId field's value.
 func (s *CopyImageSetInput) SetDatastoreId(v string) *CopyImageSetInput {
 	s.DatastoreId = &v
+	return s
+}
+
+// SetForce sets the Force field's value.
+func (s *CopyImageSetInput) SetForce(v bool) *CopyImageSetInput {
+	s.Force = &v
 	return s
 }
 
@@ -2451,6 +2462,10 @@ func (s *CopyImageSetOutput) SetSourceImageSetProperties(v *CopySourceImageSetPr
 type CopySourceImageSetInformation struct {
 	_ struct{} `type:"structure"`
 
+	// Contains MetadataCopies structure and wraps information related to specific
+	// copy use cases. For example, when copying subsets.
+	DICOMCopies *MetadataCopies `type:"structure"`
+
 	// The latest version identifier for the source image set.
 	//
 	// LatestVersionId is a required field
@@ -2481,11 +2496,22 @@ func (s *CopySourceImageSetInformation) Validate() error {
 	if s.LatestVersionId == nil {
 		invalidParams.Add(request.NewErrParamRequired("LatestVersionId"))
 	}
+	if s.DICOMCopies != nil {
+		if err := s.DICOMCopies.Validate(); err != nil {
+			invalidParams.AddNested("DICOMCopies", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDICOMCopies sets the DICOMCopies field's value.
+func (s *CopySourceImageSetInformation) SetDICOMCopies(v *MetadataCopies) *CopySourceImageSetInformation {
+	s.DICOMCopies = v
+	return s
 }
 
 // SetLatestVersionId sets the LatestVersionId field's value.
@@ -4243,6 +4269,11 @@ type GetImageSetOutput struct {
 	// The error message thrown if an image set action fails.
 	Message *string `locationName:"message" min:"1" type:"string"`
 
+	// This object contains the details of any overrides used while creating a specific
+	// image set version. If an image set was copied or updated using the force
+	// flag, this object will contain the forced flag.
+	Overrides *Overrides `locationName:"overrides" type:"structure"`
+
 	// The timestamp when image set properties were updated.
 	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp"`
 
@@ -4315,6 +4346,12 @@ func (s *GetImageSetOutput) SetImageSetWorkflowStatus(v string) *GetImageSetOutp
 // SetMessage sets the Message field's value.
 func (s *GetImageSetOutput) SetMessage(v string) *GetImageSetOutput {
 	s.Message = &v
+	return s
+}
+
+// SetOverrides sets the Overrides field's value.
+func (s *GetImageSetOutput) SetOverrides(v *Overrides) *GetImageSetOutput {
+	s.Overrides = v
 	return s
 }
 
@@ -4403,6 +4440,11 @@ type ImageSetProperties struct {
 	// The error message thrown if an image set action fails.
 	Message *string `locationName:"message" min:"1" type:"string"`
 
+	// Contains details on overrides used when creating the returned version of
+	// an image set. For example, if forced exists, the forced flag was used when
+	// creating the image set.
+	Overrides *Overrides `locationName:"overrides" type:"structure"`
+
 	// The timestamp when the image set properties were updated.
 	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp"`
 
@@ -4463,6 +4505,12 @@ func (s *ImageSetProperties) SetImageSetWorkflowStatus(v string) *ImageSetProper
 // SetMessage sets the Message field's value.
 func (s *ImageSetProperties) SetMessage(v string) *ImageSetProperties {
 	s.Message = &v
+	return s
+}
+
+// SetOverrides sets the Overrides field's value.
+func (s *ImageSetProperties) SetOverrides(v *Overrides) *ImageSetProperties {
+	s.Overrides = v
 	return s
 }
 
@@ -5063,12 +5111,76 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 	return s
 }
 
+// Contains copiable Attributes structure and wraps information related to specific
+// copy use cases. For example, when copying subsets.
+type MetadataCopies struct {
+	_ struct{} `type:"structure"`
+
+	// The JSON string used to specify a subset of SOP Instances to copy from source
+	// to destination image set.
+	//
+	// CopiableAttributes is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by MetadataCopies's
+	// String and GoString methods.
+	//
+	// CopiableAttributes is a required field
+	CopiableAttributes *string `locationName:"copiableAttributes" min:"1" type:"string" required:"true" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MetadataCopies) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MetadataCopies) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MetadataCopies) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MetadataCopies"}
+	if s.CopiableAttributes == nil {
+		invalidParams.Add(request.NewErrParamRequired("CopiableAttributes"))
+	}
+	if s.CopiableAttributes != nil && len(*s.CopiableAttributes) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CopiableAttributes", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCopiableAttributes sets the CopiableAttributes field's value.
+func (s *MetadataCopies) SetCopiableAttributes(v string) *MetadataCopies {
+	s.CopiableAttributes = &v
+	return s
+}
+
 // Contains DICOMUpdates.
 type MetadataUpdates struct {
 	_ struct{} `type:"structure"`
 
 	// The object containing removableAttributes and updatableAttributes.
 	DICOMUpdates *DICOMUpdates `type:"structure"`
+
+	// Specifies the previous image set version ID to revert the current image set
+	// back to.
+	//
+	// You must provide either revertToVersionId or DICOMUpdates in your request.
+	// A ValidationException error is thrown if both parameters are provided at
+	// the same time.
+	RevertToVersionId *string `locationName:"revertToVersionId" type:"string"`
 }
 
 // String returns the string representation.
@@ -5107,6 +5219,46 @@ func (s *MetadataUpdates) Validate() error {
 // SetDICOMUpdates sets the DICOMUpdates field's value.
 func (s *MetadataUpdates) SetDICOMUpdates(v *DICOMUpdates) *MetadataUpdates {
 	s.DICOMUpdates = v
+	return s
+}
+
+// SetRevertToVersionId sets the RevertToVersionId field's value.
+func (s *MetadataUpdates) SetRevertToVersionId(v string) *MetadataUpdates {
+	s.RevertToVersionId = &v
+	return s
+}
+
+// Specifies the overrides used in image set modification calls to CopyImageSet
+// and UpdateImageSetMetadata.
+type Overrides struct {
+	_ struct{} `type:"structure"`
+
+	// Setting this flag will force the CopyImageSet and UpdateImageSetMetadata
+	// operations, even if Patient, Study, or Series level metadata are mismatched.
+	Forced *bool `locationName:"forced" type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Overrides) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Overrides) GoString() string {
+	return s.String()
+}
+
+// SetForced sets the Forced field's value.
+func (s *Overrides) SetForced(v bool) *Overrides {
+	s.Forced = &v
 	return s
 }
 
@@ -6165,6 +6317,15 @@ type UpdateImageSetMetadataInput struct {
 	// DatastoreId is a required field
 	DatastoreId *string `location:"uri" locationName:"datastoreId" type:"string" required:"true"`
 
+	// Setting this flag will force the UpdateImageSetMetadata operation for the
+	// following attributes:
+	//
+	//    * Tag.StudyInstanceUID, Tag.SeriesInstanceUID, Tag.SOPInstanceUID, and
+	//    Tag.StudyID
+	//
+	//    * Adding, removing, or updating private tags for an individual SOP Instance
+	Force *bool `location:"querystring" locationName:"force" type:"boolean"`
+
 	// The image set identifier.
 	//
 	// ImageSetId is a required field
@@ -6235,6 +6396,12 @@ func (s *UpdateImageSetMetadataInput) Validate() error {
 // SetDatastoreId sets the DatastoreId field's value.
 func (s *UpdateImageSetMetadataInput) SetDatastoreId(v string) *UpdateImageSetMetadataInput {
 	s.DatastoreId = &v
+	return s
+}
+
+// SetForce sets the Force field's value.
+func (s *UpdateImageSetMetadataInput) SetForce(v bool) *UpdateImageSetMetadataInput {
+	s.Force = &v
 	return s
 }
 
