@@ -1591,6 +1591,9 @@ func (c *CodeCommit) CreateRepositoryRequest(input *CreateRepositoryInput) (req 
 //   - RepositoryLimitExceededException
 //     A repository resource limit was exceeded.
 //
+//   - OperationNotAllowedException
+//     The requested action is not allowed.
+//
 //   - EncryptionIntegrityChecksFailedException
 //     An encryption integrity check failed.
 //
@@ -16210,7 +16213,7 @@ type CreateRepositoryInput struct {
 
 	// The ID of the encryption key. You can view the ID of an encryption key in
 	// the KMS console, or use the KMS APIs to programmatically retrieve a key ID.
-	// For more information about acceptable values for kmsKeyID, see KeyId (https://docs.aws.amazon.com/APIReference/API_Decrypt.html#KMS-Decrypt-request-KeyId)
+	// For more information about acceptable values for kmsKeyID, see KeyId (https://docs.aws.amazon.com/kms/latest/APIReference/API_Decrypt.html#KMS-Decrypt-request-KeyId)
 	// in the Decrypt API description in the Key Management Service API Reference.
 	//
 	// If no key is specified, the default aws/codecommit Amazon Web Services managed
@@ -29546,6 +29549,70 @@ func (s *ObjectTypes) SetSource(v string) *ObjectTypes {
 	return s
 }
 
+// The requested action is not allowed.
+type OperationNotAllowedException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OperationNotAllowedException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OperationNotAllowedException) GoString() string {
+	return s.String()
+}
+
+func newErrorOperationNotAllowedException(v protocol.ResponseMetadata) error {
+	return &OperationNotAllowedException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *OperationNotAllowedException) Code() string {
+	return "OperationNotAllowedException"
+}
+
+// Message returns the exception's message.
+func (s *OperationNotAllowedException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *OperationNotAllowedException) OrigErr() error {
+	return nil
+}
+
+func (s *OperationNotAllowedException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *OperationNotAllowedException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *OperationNotAllowedException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // Returns information about the template that created the approval rule for
 // a pull request.
 type OriginApprovalRuleTemplate struct {
@@ -36606,7 +36673,7 @@ type UpdateRepositoryEncryptionKeyInput struct {
 
 	// The ID of the encryption key. You can view the ID of an encryption key in
 	// the KMS console, or use the KMS APIs to programmatically retrieve a key ID.
-	// For more information about acceptable values for keyID, see KeyId (https://docs.aws.amazon.com/APIReference/API_Decrypt.html#KMS-Decrypt-request-KeyId)
+	// For more information about acceptable values for keyID, see KeyId (https://docs.aws.amazon.com/kms/latest/APIReference/API_Decrypt.html#KMS-Decrypt-request-KeyId)
 	// in the Decrypt API description in the Key Management Service API Reference.
 	//
 	// KmsKeyId is a required field

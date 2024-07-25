@@ -104,6 +104,10 @@ type ELBV2API interface {
 	DeleteRuleWithContext(aws.Context, *elbv2.DeleteRuleInput, ...request.Option) (*elbv2.DeleteRuleOutput, error)
 	DeleteRuleRequest(*elbv2.DeleteRuleInput) (*request.Request, *elbv2.DeleteRuleOutput)
 
+	DeleteSharedTrustStoreAssociation(*elbv2.DeleteSharedTrustStoreAssociationInput) (*elbv2.DeleteSharedTrustStoreAssociationOutput, error)
+	DeleteSharedTrustStoreAssociationWithContext(aws.Context, *elbv2.DeleteSharedTrustStoreAssociationInput, ...request.Option) (*elbv2.DeleteSharedTrustStoreAssociationOutput, error)
+	DeleteSharedTrustStoreAssociationRequest(*elbv2.DeleteSharedTrustStoreAssociationInput) (*request.Request, *elbv2.DeleteSharedTrustStoreAssociationOutput)
+
 	DeleteTargetGroup(*elbv2.DeleteTargetGroupInput) (*elbv2.DeleteTargetGroupOutput, error)
 	DeleteTargetGroupWithContext(aws.Context, *elbv2.DeleteTargetGroupInput, ...request.Option) (*elbv2.DeleteTargetGroupOutput, error)
 	DeleteTargetGroupRequest(*elbv2.DeleteTargetGroupInput) (*request.Request, *elbv2.DeleteTargetGroupOutput)
@@ -189,6 +193,10 @@ type ELBV2API interface {
 
 	DescribeTrustStoresPages(*elbv2.DescribeTrustStoresInput, func(*elbv2.DescribeTrustStoresOutput, bool) bool) error
 	DescribeTrustStoresPagesWithContext(aws.Context, *elbv2.DescribeTrustStoresInput, func(*elbv2.DescribeTrustStoresOutput, bool) bool, ...request.Option) error
+
+	GetResourcePolicy(*elbv2.GetResourcePolicyInput) (*elbv2.GetResourcePolicyOutput, error)
+	GetResourcePolicyWithContext(aws.Context, *elbv2.GetResourcePolicyInput, ...request.Option) (*elbv2.GetResourcePolicyOutput, error)
+	GetResourcePolicyRequest(*elbv2.GetResourcePolicyInput) (*request.Request, *elbv2.GetResourcePolicyOutput)
 
 	GetTrustStoreCaCertificatesBundle(*elbv2.GetTrustStoreCaCertificatesBundleInput) (*elbv2.GetTrustStoreCaCertificatesBundleOutput, error)
 	GetTrustStoreCaCertificatesBundleWithContext(aws.Context, *elbv2.GetTrustStoreCaCertificatesBundleInput, ...request.Option) (*elbv2.GetTrustStoreCaCertificatesBundleOutput, error)

@@ -280,6 +280,10 @@ type DataZoneAPI interface {
 	GetEnvironmentBlueprintConfigurationWithContext(aws.Context, *datazone.GetEnvironmentBlueprintConfigurationInput, ...request.Option) (*datazone.GetEnvironmentBlueprintConfigurationOutput, error)
 	GetEnvironmentBlueprintConfigurationRequest(*datazone.GetEnvironmentBlueprintConfigurationInput) (*request.Request, *datazone.GetEnvironmentBlueprintConfigurationOutput)
 
+	GetEnvironmentCredentials(*datazone.GetEnvironmentCredentialsInput) (*datazone.GetEnvironmentCredentialsOutput, error)
+	GetEnvironmentCredentialsWithContext(aws.Context, *datazone.GetEnvironmentCredentialsInput, ...request.Option) (*datazone.GetEnvironmentCredentialsOutput, error)
+	GetEnvironmentCredentialsRequest(*datazone.GetEnvironmentCredentialsInput) (*request.Request, *datazone.GetEnvironmentCredentialsOutput)
+
 	GetEnvironmentProfile(*datazone.GetEnvironmentProfileInput) (*datazone.GetEnvironmentProfileOutput, error)
 	GetEnvironmentProfileWithContext(aws.Context, *datazone.GetEnvironmentProfileInput, ...request.Option) (*datazone.GetEnvironmentProfileOutput, error)
 	GetEnvironmentProfileRequest(*datazone.GetEnvironmentProfileInput) (*request.Request, *datazone.GetEnvironmentProfileOutput)

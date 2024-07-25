@@ -83,7 +83,10 @@ func (c *BedrockRuntime) ApplyGuardrailRequest(input *ApplyGuardrailInput) (req 
 //     again.
 //
 //   - ThrottlingException
-//     The number of requests exceeds the limit. Resubmit your request later.
+//     Your request was throttled because of service-wide limitations. Resubmit
+//     your request later or in a different region. You can also purchase Provisioned
+//     Throughput (https://docs.aws.amazon.com/bedrock/latest/userguide/prov-throughput.html)
+//     to increase the rate or number of tokens you can process.
 //
 //   - InternalServerException
 //     An internal server error occurred. Retry your request.
@@ -92,7 +95,9 @@ func (c *BedrockRuntime) ApplyGuardrailRequest(input *ApplyGuardrailInput) (req 
 //     Input validation failed. Check your request parameters and retry the request.
 //
 //   - ServiceQuotaExceededException
-//     The number of requests exceeds the service quota. Resubmit your request later.
+//     Your request exceeds the service quota for your account. You can view your
+//     quotas at Viewing service quotas (https://docs.aws.amazon.com/servicequotas/latest/userguide/gs-request-quota.html).
+//     You can resubmit your request later.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-runtime-2023-09-30/ApplyGuardrail
 func (c *BedrockRuntime) ApplyGuardrail(input *ApplyGuardrailInput) (*ApplyGuardrailOutput, error) {
@@ -161,9 +166,12 @@ func (c *BedrockRuntime) ConverseRequest(input *ConverseInput) (req *request.Req
 //
 // Sends messages to the specified Amazon Bedrock model. Converse provides a
 // consistent interface that works with all models that support messages. This
-// allows you to write code once and use it with different models. Should a
-// model have unique inference parameters, you can also pass those unique parameters
+// allows you to write code once and use it with different models. If a model
+// has unique inference parameters, you can also pass those unique parameters
 // to the model.
+//
+// Amazon Bedrock doesn't store any text, images, or documents that you provide
+// as content. The data is only used to generate the response.
 //
 // For information about the Converse API, see Use the Converse API in the Amazon
 // Bedrock User Guide. To use a guardrail, see Use a guardrail with the Converse
@@ -191,7 +199,10 @@ func (c *BedrockRuntime) ConverseRequest(input *ConverseInput) (req *request.Req
 //     again.
 //
 //   - ThrottlingException
-//     The number of requests exceeds the limit. Resubmit your request later.
+//     Your request was throttled because of service-wide limitations. Resubmit
+//     your request later or in a different region. You can also purchase Provisioned
+//     Throughput (https://docs.aws.amazon.com/bedrock/latest/userguide/prov-throughput.html)
+//     to increase the rate or number of tokens you can process.
 //
 //   - ModelTimeoutException
 //     The request took too long to process. Processing time exceeded the model
@@ -199,6 +210,9 @@ func (c *BedrockRuntime) ConverseRequest(input *ConverseInput) (req *request.Req
 //
 //   - InternalServerException
 //     An internal server error occurred. Retry your request.
+//
+//   - ServiceUnavailableException
+//     The service isn't currently available. Try again later.
 //
 //   - ValidationException
 //     Input validation failed. Check your request parameters and retry the request.
@@ -291,6 +305,12 @@ func (c *BedrockRuntime) ConverseStreamRequest(input *ConverseStreamInput) (req 
 // To find out if a model supports streaming, call GetFoundationModel (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_GetFoundationModel.html)
 // and check the responseStreamingSupported field in the response.
 //
+// The CLI doesn't support streaming operations in Amazon Bedrock, including
+// ConverseStream.
+//
+// Amazon Bedrock doesn't store any text, images, or documents that you provide
+// as content. The data is only used to generate the response.
+//
 // For information about the Converse API, see Use the Converse API in the Amazon
 // Bedrock User Guide. To use a guardrail, see Use a guardrail with the Converse
 // API in the Amazon Bedrock User Guide. To use a tool with a model, see Tool
@@ -319,7 +339,10 @@ func (c *BedrockRuntime) ConverseStreamRequest(input *ConverseStreamInput) (req 
 //     again.
 //
 //   - ThrottlingException
-//     The number of requests exceeds the limit. Resubmit your request later.
+//     Your request was throttled because of service-wide limitations. Resubmit
+//     your request later or in a different region. You can also purchase Provisioned
+//     Throughput (https://docs.aws.amazon.com/bedrock/latest/userguide/prov-throughput.html)
+//     to increase the rate or number of tokens you can process.
 //
 //   - ModelTimeoutException
 //     The request took too long to process. Processing time exceeded the model
@@ -327,6 +350,9 @@ func (c *BedrockRuntime) ConverseStreamRequest(input *ConverseStreamInput) (req 
 //
 //   - InternalServerException
 //     An internal server error occurred. Retry your request.
+//
+//   - ServiceUnavailableException
+//     The service isn't currently available. Try again later.
 //
 //   - ValidationException
 //     Input validation failed. Check your request parameters and retry the request.
@@ -581,7 +607,10 @@ func (c *BedrockRuntime) InvokeModelRequest(input *InvokeModelInput) (req *reque
 //     again.
 //
 //   - ThrottlingException
-//     The number of requests exceeds the limit. Resubmit your request later.
+//     Your request was throttled because of service-wide limitations. Resubmit
+//     your request later or in a different region. You can also purchase Provisioned
+//     Throughput (https://docs.aws.amazon.com/bedrock/latest/userguide/prov-throughput.html)
+//     to increase the rate or number of tokens you can process.
 //
 //   - ModelTimeoutException
 //     The request took too long to process. Processing time exceeded the model
@@ -590,6 +619,9 @@ func (c *BedrockRuntime) InvokeModelRequest(input *InvokeModelInput) (req *reque
 //   - InternalServerException
 //     An internal server error occurred. Retry your request.
 //
+//   - ServiceUnavailableException
+//     The service isn't currently available. Try again later.
+//
 //   - ValidationException
 //     Input validation failed. Check your request parameters and retry the request.
 //
@@ -597,7 +629,9 @@ func (c *BedrockRuntime) InvokeModelRequest(input *InvokeModelInput) (req *reque
 //     The model specified in the request is not ready to serve inference requests.
 //
 //   - ServiceQuotaExceededException
-//     The number of requests exceeds the service quota. Resubmit your request later.
+//     Your request exceeds the service quota for your account. You can view your
+//     quotas at Viewing service quotas (https://docs.aws.amazon.com/servicequotas/latest/userguide/gs-request-quota.html).
+//     You can resubmit your request later.
 //
 //   - ModelErrorException
 //     The request failed due to an error while processing the model.
@@ -682,7 +716,8 @@ func (c *BedrockRuntime) InvokeModelWithResponseStreamRequest(input *InvokeModel
 // To see if a model supports streaming, call GetFoundationModel (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_GetFoundationModel.html)
 // and check the responseStreamingSupported field in the response.
 //
-// The CLI doesn't support InvokeModelWithResponseStream.
+// The CLI doesn't support streaming operations in Amazon Bedrock, including
+// InvokeModelWithResponseStream.
 //
 // For example code, see Invoke model with streaming code example in the Amazon
 // Bedrock User Guide.
@@ -707,7 +742,10 @@ func (c *BedrockRuntime) InvokeModelWithResponseStreamRequest(input *InvokeModel
 //     again.
 //
 //   - ThrottlingException
-//     The number of requests exceeds the limit. Resubmit your request later.
+//     Your request was throttled because of service-wide limitations. Resubmit
+//     your request later or in a different region. You can also purchase Provisioned
+//     Throughput (https://docs.aws.amazon.com/bedrock/latest/userguide/prov-throughput.html)
+//     to increase the rate or number of tokens you can process.
 //
 //   - ModelTimeoutException
 //     The request took too long to process. Processing time exceeded the model
@@ -715,6 +753,9 @@ func (c *BedrockRuntime) InvokeModelWithResponseStreamRequest(input *InvokeModel
 //
 //   - InternalServerException
 //     An internal server error occurred. Retry your request.
+//
+//   - ServiceUnavailableException
+//     The service isn't currently available. Try again later.
 //
 //   - ModelStreamErrorException
 //     An error occurred while streaming the response. Retry your request.
@@ -726,7 +767,9 @@ func (c *BedrockRuntime) InvokeModelWithResponseStreamRequest(input *InvokeModel
 //     The model specified in the request is not ready to serve inference requests.
 //
 //   - ServiceQuotaExceededException
-//     The number of requests exceeds the service quota. Resubmit your request later.
+//     Your request exceeds the service quota for your account. You can view your
+//     quotas at Viewing service quotas (https://docs.aws.amazon.com/servicequotas/latest/userguide/gs-request-quota.html).
+//     You can resubmit your request later.
 //
 //   - ModelErrorException
 //     The request failed due to an error while processing the model.
@@ -2356,6 +2399,8 @@ func (u unmarshalerForConverseStreamOutput_Event) UnmarshalerForEventName(eventT
 		return newErrorInternalServerException(u.metadata).(eventstreamapi.Unmarshaler), nil
 	case "modelStreamErrorException":
 		return newErrorModelStreamErrorException(u.metadata).(eventstreamapi.Unmarshaler), nil
+	case "serviceUnavailableException":
+		return newErrorServiceUnavailableException(u.metadata).(eventstreamapi.Unmarshaler), nil
 	case "throttlingException":
 		return newErrorThrottlingException(u.metadata).(eventstreamapi.Unmarshaler), nil
 	case "validationException":
@@ -5276,6 +5321,8 @@ func (u unmarshalerForResponseStreamEvent) UnmarshalerForEventName(eventType str
 		return newErrorModelStreamErrorException(u.metadata).(eventstreamapi.Unmarshaler), nil
 	case "modelTimeoutException":
 		return newErrorModelTimeoutException(u.metadata).(eventstreamapi.Unmarshaler), nil
+	case "serviceUnavailableException":
+		return newErrorServiceUnavailableException(u.metadata).(eventstreamapi.Unmarshaler), nil
 	case "throttlingException":
 		return newErrorThrottlingException(u.metadata).(eventstreamapi.Unmarshaler), nil
 	case "validationException":
@@ -5314,7 +5361,9 @@ func (e *ResponseStreamUnknownEvent) UnmarshalEvent(
 	return nil
 }
 
-// The number of requests exceeds the service quota. Resubmit your request later.
+// Your request exceeds the service quota for your account. You can view your
+// quotas at Viewing service quotas (https://docs.aws.amazon.com/servicequotas/latest/userguide/gs-request-quota.html).
+// You can resubmit your request later.
 type ServiceQuotaExceededException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -5375,6 +5424,102 @@ func (s *ServiceQuotaExceededException) StatusCode() int {
 
 // RequestID returns the service's response RequestID for request.
 func (s *ServiceQuotaExceededException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// The service isn't currently available. Try again later.
+type ServiceUnavailableException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServiceUnavailableException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServiceUnavailableException) GoString() string {
+	return s.String()
+}
+
+// The ServiceUnavailableException is and event in the ConverseStreamOutput_ group of events.
+func (s *ServiceUnavailableException) eventConverseStreamOutput_() {}
+
+// The ServiceUnavailableException is and event in the ResponseStream group of events.
+func (s *ServiceUnavailableException) eventResponseStream() {}
+
+// UnmarshalEvent unmarshals the EventStream Message into the ServiceUnavailableException value.
+// This method is only used internally within the SDK's EventStream handling.
+func (s *ServiceUnavailableException) UnmarshalEvent(
+	payloadUnmarshaler protocol.PayloadUnmarshaler,
+	msg eventstream.Message,
+) error {
+	if err := payloadUnmarshaler.UnmarshalPayload(
+		bytes.NewReader(msg.Payload), s,
+	); err != nil {
+		return err
+	}
+	return nil
+}
+
+// MarshalEvent marshals the type into an stream event value. This method
+// should only used internally within the SDK's EventStream handling.
+func (s *ServiceUnavailableException) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
+	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.ExceptionMessageType))
+	var buf bytes.Buffer
+	if err = pm.MarshalPayload(&buf, s); err != nil {
+		return eventstream.Message{}, err
+	}
+	msg.Payload = buf.Bytes()
+	return msg, err
+}
+
+func newErrorServiceUnavailableException(v protocol.ResponseMetadata) error {
+	return &ServiceUnavailableException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ServiceUnavailableException) Code() string {
+	return "ServiceUnavailableException"
+}
+
+// Message returns the exception's message.
+func (s *ServiceUnavailableException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ServiceUnavailableException) OrigErr() error {
+	return nil
+}
+
+func (s *ServiceUnavailableException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ServiceUnavailableException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ServiceUnavailableException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -5495,7 +5640,10 @@ func (s *SystemContentBlock) SetText(v string) *SystemContentBlock {
 	return s
 }
 
-// The number of requests exceeds the limit. Resubmit your request later.
+// Your request was throttled because of service-wide limitations. Resubmit
+// your request later or in a different region. You can also purchase Provisioned
+// Throughput (https://docs.aws.amazon.com/bedrock/latest/userguide/prov-throughput.html)
+// to increase the rate or number of tokens you can process.
 type ThrottlingException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`

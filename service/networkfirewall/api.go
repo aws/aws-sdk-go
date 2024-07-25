@@ -612,13 +612,15 @@ func (c *NetworkFirewall) CreateTLSInspectionConfigurationRequest(input *CreateT
 
 // CreateTLSInspectionConfiguration API operation for AWS Network Firewall.
 //
-// Creates an Network Firewall TLS inspection configuration. A TLS inspection
-// configuration contains Certificate Manager certificate associations between
-// and the scope configurations that Network Firewall uses to decrypt and re-encrypt
-// traffic traveling through your firewall.
-//
-// After you create a TLS inspection configuration, you can associate it with
-// a new firewall policy.
+// Creates an Network Firewall TLS inspection configuration. Network Firewall
+// uses TLS inspection configurations to decrypt your firewall's inbound and
+// outbound SSL/TLS traffic. After decryption, Network Firewall inspects the
+// traffic according to your firewall policy's stateful rules, and then re-encrypts
+// it before sending it to its destination. You can enable inspection of your
+// firewall's inbound traffic, outbound traffic, or both. To use TLS inspection
+// with your firewall, you must first import or provision certificates using
+// ACM, create a TLS inspection configuration, add that configuration to a new
+// firewall policy, and then associate that policy with your firewall.
 //
 // To update the settings for a TLS inspection configuration, use UpdateTLSInspectionConfiguration.
 //
@@ -9639,13 +9641,10 @@ func (s *ListTagsForResourceOutput) SetTags(v []*Tag) *ListTagsForResourceOutput
 
 // Defines where Network Firewall sends logs for the firewall for one log type.
 // This is used in LoggingConfiguration. You can send each type of log to an
-// Amazon S3 bucket, a CloudWatch log group, or a Kinesis Data Firehose delivery
-// stream.
+// Amazon S3 bucket, a CloudWatch log group, or a Firehose delivery stream.
 //
-// Network Firewall generates logs for stateful rule groups. You can save alert
-// and flow log types. The stateful rules engine records flow logs for all network
-// traffic that it receives. It records alert logs for traffic that matches
-// stateful rules that have the rule action set to DROP or ALERT.
+// Network Firewall generates logs for stateful rule groups. You can save alert,
+// flow, and TLS log types.
 type LogDestinationConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -9662,24 +9661,35 @@ type LogDestinationConfig struct {
 	//    with key logGroup. The following example specifies a log group named alert-log-group:
 	//    "LogDestination": { "logGroup": "alert-log-group" }
 	//
-	//    * For a Kinesis Data Firehose delivery stream, provide the name of the
-	//    delivery stream, with key deliveryStream. The following example specifies
-	//    a delivery stream named alert-delivery-stream: "LogDestination": { "deliveryStream":
-	//    "alert-delivery-stream" }
+	//    * For a Firehose delivery stream, provide the name of the delivery stream,
+	//    with key deliveryStream. The following example specifies a delivery stream
+	//    named alert-delivery-stream: "LogDestination": { "deliveryStream": "alert-delivery-stream"
+	//    }
 	//
 	// LogDestination is a required field
 	LogDestination map[string]*string `type:"map" required:"true"`
 
 	// The type of storage destination to send these logs to. You can send logs
-	// to an Amazon S3 bucket, a CloudWatch log group, or a Kinesis Data Firehose
-	// delivery stream.
+	// to an Amazon S3 bucket, a CloudWatch log group, or a Firehose delivery stream.
 	//
 	// LogDestinationType is a required field
 	LogDestinationType *string `min:"2" type:"string" required:"true" enum:"LogDestinationType"`
 
-	// The type of log to send. Alert logs report traffic that matches a StatefulRule
-	// with an action setting that sends an alert log message. Flow logs are standard
-	// network traffic flow logs.
+	// The type of log to record. You can record the following types of logs from
+	// your Network Firewall stateful engine.
+	//
+	//    * ALERT - Logs for traffic that matches your stateful rules and that have
+	//    an action that sends an alert. A stateful rule sends alerts for the rule
+	//    actions DROP, ALERT, and REJECT. For more information, see StatefulRule.
+	//
+	//    * FLOW - Standard network traffic flow logs. The stateful rules engine
+	//    records flow logs for all network traffic that it receives. Each flow
+	//    log record captures the network flow for a specific standard stateless
+	//    rule group.
+	//
+	//    * TLS - Logs for events that are related to TLS inspection. For more information,
+	//    see Inspecting SSL/TLS traffic with TLS inspection configurations (https://docs.aws.amazon.com/network-firewall/latest/developerguide/tls-inspection-configurations.html)
+	//    in the Network Firewall Developer Guide.
 	//
 	// LogType is a required field
 	LogType *string `type:"string" required:"true" enum:"LogType"`
@@ -11804,6 +11814,12 @@ type StatefulRule struct {
 	//    that you intend to use to drop traffic. You can enable the rule with ALERT
 	//    action, verify in the logs that the rule is filtering as you want, then
 	//    change the action to DROP.
+	//
+	//    * REJECT - Drops traffic that matches the conditions of the stateful rule,
+	//    and sends a TCP reset packet back to sender of the packet. A TCP reset
+	//    packet is a packet with no payload and an RST bit contained in the TCP
+	//    header flags. REJECT is available only for TCP traffic. This option doesn't
+	//    support FTP or IMAP protocols.
 	//
 	// Action is a required field
 	Action *string `type:"string" required:"true" enum:"StatefulAction"`
@@ -15004,6 +15020,9 @@ const (
 
 	// LogTypeFlow is a LogType enum value
 	LogTypeFlow = "FLOW"
+
+	// LogTypeTls is a LogType enum value
+	LogTypeTls = "TLS"
 )
 
 // LogType_Values returns all elements of the LogType enum
@@ -15011,6 +15030,7 @@ func LogType_Values() []string {
 	return []string{
 		LogTypeAlert,
 		LogTypeFlow,
+		LogTypeTls,
 	}
 }
 

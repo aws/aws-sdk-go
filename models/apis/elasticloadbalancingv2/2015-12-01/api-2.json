@@ -10,7 +10,8 @@
     "serviceId":"Elastic Load Balancing v2",
     "signatureVersion":"v4",
     "uid":"elasticloadbalancingv2-2015-12-01",
-    "xmlNamespace":"http://elasticloadbalancing.amazonaws.com/doc/2015-12-01/"
+    "xmlNamespace":"http://elasticloadbalancing.amazonaws.com/doc/2015-12-01/",
+    "auth":["aws.auth#sigv4"]
   },
   "operations":{
     "AddListenerCertificates":{
@@ -244,6 +245,23 @@
       "errors":[
         {"shape":"RuleNotFoundException"},
         {"shape":"OperationNotPermittedException"}
+      ]
+    },
+    "DeleteSharedTrustStoreAssociation":{
+      "name":"DeleteSharedTrustStoreAssociation",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteSharedTrustStoreAssociationInput"},
+      "output":{
+        "shape":"DeleteSharedTrustStoreAssociationOutput",
+        "resultWrapper":"DeleteSharedTrustStoreAssociationResult"
+      },
+      "errors":[
+        {"shape":"TrustStoreNotFoundException"},
+        {"shape":"DeleteAssociationSameAccountException"},
+        {"shape":"TrustStoreAssociationNotFoundException"}
       ]
     },
     "DeleteTargetGroup":{
@@ -510,6 +528,21 @@
       },
       "errors":[
         {"shape":"TrustStoreNotFoundException"}
+      ]
+    },
+    "GetResourcePolicy":{
+      "name":"GetResourcePolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetResourcePolicyInput"},
+      "output":{
+        "shape":"GetResourcePolicyOutput",
+        "resultWrapper":"GetResourcePolicyResult"
+      },
+      "errors":[
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "GetTrustStoreCaCertificatesBundle":{
@@ -1220,6 +1253,17 @@
     },
     "DNSName":{"type":"string"},
     "Default":{"type":"boolean"},
+    "DeleteAssociationSameAccountException":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"DeleteAssociationSameAccount",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
     "DeleteListenerInput":{
       "type":"structure",
       "required":["ListenerArn"],
@@ -1252,6 +1296,22 @@
       }
     },
     "DeleteRuleOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DeleteSharedTrustStoreAssociationInput":{
+      "type":"structure",
+      "required":[
+        "TrustStoreArn",
+        "ResourceArn"
+      ],
+      "members":{
+        "TrustStoreArn":{"shape":"TrustStoreArn"},
+        "ResourceArn":{"shape":"ResourceArn"}
+      }
+    },
+    "DeleteSharedTrustStoreAssociationOutput":{
       "type":"structure",
       "members":{
       }
@@ -1622,6 +1682,19 @@
       "members":{
         "TargetGroups":{"shape":"TargetGroupList"},
         "TargetGroupStickinessConfig":{"shape":"TargetGroupStickinessConfig"}
+      }
+    },
+    "GetResourcePolicyInput":{
+      "type":"structure",
+      "required":["ResourceArn"],
+      "members":{
+        "ResourceArn":{"shape":"ResourceArn"}
+      }
+    },
+    "GetResourcePolicyOutput":{
+      "type":"structure",
+      "members":{
+        "Policy":{"shape":"Policy"}
       }
     },
     "GetTrustStoreCaCertificatesBundleInput":{
@@ -2110,7 +2183,8 @@
       "members":{
         "Mode":{"shape":"Mode"},
         "TrustStoreArn":{"shape":"TrustStoreArn"},
-        "IgnoreClientCertificateExpiry":{"shape":"IgnoreClientCertificateExpiry"}
+        "IgnoreClientCertificateExpiry":{"shape":"IgnoreClientCertificateExpiry"},
+        "TrustStoreAssociationStatus":{"shape":"TrustStoreAssociationStatusEnum"}
       }
     },
     "Name":{"type":"string"},
@@ -2143,6 +2217,10 @@
       "members":{
         "Values":{"shape":"ListOfString"}
       }
+    },
+    "Policy":{
+      "type":"string",
+      "min":1
     },
     "Port":{
       "type":"integer",
@@ -2305,6 +2383,17 @@
       },
       "error":{
         "code":"ResourceInUse",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "ResourceNotFoundException":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"ResourceNotFound",
         "httpStatusCode":400,
         "senderFault":true
       },
@@ -2934,7 +3023,25 @@
         "ResourceArn":{"shape":"TrustStoreAssociationResourceArn"}
       }
     },
+    "TrustStoreAssociationNotFoundException":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"AssociationNotFound",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
     "TrustStoreAssociationResourceArn":{"type":"string"},
+    "TrustStoreAssociationStatusEnum":{
+      "type":"string",
+      "enum":[
+        "active",
+        "removed"
+      ]
+    },
     "TrustStoreAssociations":{
       "type":"list",
       "member":{"shape":"TrustStoreAssociation"}

@@ -57,6 +57,7 @@
     "GetEnvironmentAction": "<p>Gets the specified environment action.</p>",
     "GetEnvironmentBlueprint": "<p>Gets an Amazon DataZone blueprint.</p>",
     "GetEnvironmentBlueprintConfiguration": "<p>Gets the blueprint configuration in Amazon DataZone.</p>",
+    "GetEnvironmentCredentials": "<p>Gets the credentials of an environment in Amazon DataZone.</p>",
     "GetEnvironmentProfile": "<p>Gets an evinronment profile in Amazon DataZone.</p>",
     "GetFormType": "<p>Gets a metadata form type in Amazon DataZone.</p>",
     "GetGlossary": "<p>Gets a business glossary in Amazon DataZone.</p>",
@@ -1544,6 +1545,7 @@
         "GetEnvironmentBlueprintConfigurationInput$domainIdentifier": "<p>The ID of the Amazon DataZone domain where this blueprint exists.</p>",
         "GetEnvironmentBlueprintConfigurationOutput$domainId": "<p>The ID of the Amazon DataZone domain where this blueprint exists.</p>",
         "GetEnvironmentBlueprintInput$domainIdentifier": "<p>The identifier of the domain in which this blueprint exists.</p>",
+        "GetEnvironmentCredentialsInput$domainIdentifier": "<p>The ID of the Amazon DataZone domain in which this environment and its credentials exist.</p>",
         "GetEnvironmentInput$domainIdentifier": "<p>The ID of the Amazon DataZone domain where the environment exists.</p>",
         "GetEnvironmentOutput$domainId": "<p>The ID of the Amazon DataZone domain where the environment exists.</p>",
         "GetEnvironmentProfileInput$domainIdentifier": "<p>The ID of the Amazon DataZone domain in which this environment profile exists.</p>",
@@ -1852,6 +1854,7 @@
         "GetDataSourceOutput$environmentId": "<p>The ID of the environment where this data source creates and publishes assets,</p>",
         "GetEnvironmentActionInput$environmentIdentifier": "<p>The environment ID of the environment action.</p>",
         "GetEnvironmentActionOutput$environmentId": "<p>The environment ID of the environment action.</p>",
+        "GetEnvironmentCredentialsInput$environmentIdentifier": "<p>The ID of the environment whose credentials this operation gets.</p>",
         "GetEnvironmentInput$identifier": "<p>The ID of the Amazon DataZone environment.</p>",
         "GetEnvironmentOutput$id": "<p>The ID of the environment.</p>",
         "GetSubscriptionTargetInput$environmentIdentifier": "<p>The ID of the environment associated with the subscription target.</p>",
@@ -2312,6 +2315,16 @@
       }
     },
     "GetEnvironmentBlueprintOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetEnvironmentCredentialsInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetEnvironmentCredentialsOutput": {
       "base": null,
       "refs": {
       }
@@ -4371,6 +4384,9 @@
         "GetEnvironmentActionOutput$description": "<p>The description of the environment action.</p>",
         "GetEnvironmentActionOutput$name": "<p>The name of the environment action.</p>",
         "GetEnvironmentBlueprintOutput$provider": "<p>The provider of this Amazon DataZone blueprint.</p>",
+        "GetEnvironmentCredentialsOutput$accessKeyId": "<p>The access key ID of the environment.</p>",
+        "GetEnvironmentCredentialsOutput$secretAccessKey": "<p>The secret access key of the environment credentials.</p>",
+        "GetEnvironmentCredentialsOutput$sessionToken": "<p>The session token of the environment credentials.</p>",
         "GetEnvironmentOutput$createdBy": "<p>The Amazon DataZone user who created the environment.</p>",
         "GetEnvironmentOutput$provider": "<p>The provider of this Amazon DataZone environment.</p>",
         "GetEnvironmentProfileOutput$createdBy": "<p>The Amazon DataZone user who created this environment profile.</p>",
@@ -4799,6 +4815,7 @@
         "GetEnvironmentBlueprintConfigurationOutput$updatedAt": "<p>The timestamp of when this blueprint was upated.</p>",
         "GetEnvironmentBlueprintOutput$createdAt": "<p>A timestamp of when this blueprint was created.</p>",
         "GetEnvironmentBlueprintOutput$updatedAt": "<p>The timestamp of when this blueprint was updated.</p>",
+        "GetEnvironmentCredentialsOutput$expiration": "<p>The expiration timestamp of the environment credentials.</p>",
         "GetEnvironmentOutput$createdAt": "<p>The timestamp of when the environment was created.</p>",
         "GetEnvironmentOutput$updatedAt": "<p>The timestamp of when this environment was updated.</p>",
         "GetEnvironmentProfileOutput$createdAt": "<p>The timestamp of when this environment profile was created.</p>",

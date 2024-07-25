@@ -2041,6 +2041,7 @@ func TestConverseStream_ReadException(t *testing.T) {
 
 var _ awserr.Error = (*InternalServerException)(nil)
 var _ awserr.Error = (*ModelStreamErrorException)(nil)
+var _ awserr.Error = (*ServiceUnavailableException)(nil)
 var _ awserr.Error = (*ThrottlingException)(nil)
 var _ awserr.Error = (*ValidationException)(nil)
 
@@ -2341,6 +2342,7 @@ func TestInvokeModelWithResponseStream_ReadException(t *testing.T) {
 var _ awserr.Error = (*InternalServerException)(nil)
 var _ awserr.Error = (*ModelStreamErrorException)(nil)
 var _ awserr.Error = (*ModelTimeoutException)(nil)
+var _ awserr.Error = (*ServiceUnavailableException)(nil)
 var _ awserr.Error = (*ThrottlingException)(nil)
 var _ awserr.Error = (*ValidationException)(nil)
 

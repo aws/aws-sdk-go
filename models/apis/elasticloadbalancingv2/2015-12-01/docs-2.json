@@ -13,6 +13,7 @@
     "DeleteListener": "<p>Deletes the specified listener.</p> <p>Alternatively, your listener is deleted when you delete the load balancer to which it is attached.</p>",
     "DeleteLoadBalancer": "<p>Deletes the specified Application Load Balancer, Network Load Balancer, or Gateway Load Balancer. Deleting a load balancer also deletes its listeners.</p> <p>You can't delete a load balancer if deletion protection is enabled. If the load balancer does not exist or has already been deleted, the call succeeds.</p> <p>Deleting a load balancer does not affect its registered targets. For example, your EC2 instances continue to run and are still registered to their target groups. If you no longer need these EC2 instances, you can stop or terminate them.</p>",
     "DeleteRule": "<p>Deletes the specified rule.</p> <p>You can't delete the default rule.</p>",
+    "DeleteSharedTrustStoreAssociation": "<p>Deletes a shared trust store association.</p>",
     "DeleteTargetGroup": "<p>Deletes the specified target group.</p> <p>You can delete a target group if it is not referenced by any actions. Deleting a target group also deletes any associated health checks. Deleting a target group does not affect its registered targets. For example, any EC2 instances continue to run until you stop or terminate them.</p>",
     "DeleteTrustStore": "<p>Deletes a trust store.</p>",
     "DeregisterTargets": "<p>Deregisters the specified targets from the specified target group. After the targets are deregistered, they no longer receive traffic from the load balancer.</p> <p>The load balancer stops sending requests to targets that are deregistering, but uses connection draining to ensure that in-flight traffic completes on the existing connections. This deregistration delay is configured by default but can be updated for each target group.</p> <p>For more information, see the following:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-target-groups.html#deregistration-delay\"> Deregistration delay</a> in the <i>Application Load Balancers User Guide</i> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/elasticloadbalancing/latest/network/load-balancer-target-groups.html#deregistration-delay\"> Deregistration delay</a> in the <i>Network Load Balancers User Guide</i> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/elasticloadbalancing/latest/gateway/target-groups.html#deregistration-delay\"> Deregistration delay</a> in the <i>Gateway Load Balancers User Guide</i> </p> </li> </ul> <p>Note: If the specified target does not exist, the action returns successfully.</p>",
@@ -28,8 +29,9 @@
     "DescribeTargetGroups": "<p>Describes the specified target groups or all of your target groups. By default, all target groups are described. Alternatively, you can specify one of the following to filter the results: the ARN of the load balancer, the names of one or more target groups, or the ARNs of one or more target groups.</p>",
     "DescribeTargetHealth": "<p>Describes the health of the specified targets or all of your targets.</p>",
     "DescribeTrustStoreAssociations": "<p>Describes all resources associated with the specified trust store.</p>",
-    "DescribeTrustStoreRevocations": "<p>Describes the revocation files in use by the specified trust store arn, or revocation ID.</p>",
-    "DescribeTrustStores": "<p>Describes all trust stores for a given account by trust store arn’s or name.</p>",
+    "DescribeTrustStoreRevocations": "<p>Describes the revocation files in use by the specified trust store or revocation files.</p>",
+    "DescribeTrustStores": "<p>Describes all trust stores for the specified account.</p>",
+    "GetResourcePolicy": "<p>Retrieves the resource policy for a specified resource.</p>",
     "GetTrustStoreCaCertificatesBundle": "<p>Retrieves the ca certificate bundle.</p> <p>This action returns a pre-signed S3 URI which is active for ten minutes.</p>",
     "GetTrustStoreRevocationContent": "<p>Retrieves the specified revocation file.</p> <p>This action returns a pre-signed S3 URI which is active for ten minutes.</p>",
     "ModifyListener": "<p>Replaces the specified properties of the specified listener. Any properties that you do not specify remain unchanged.</p> <p>Changing the protocol from HTTPS to HTTP, or from TLS to TCP, removes the security policy and default certificate properties. If you change the protocol from HTTP to HTTPS, or from TCP to TLS, you must add the security policy and default certificate properties.</p> <p>To add an item to a list, remove an item from a list, or update an item in a list, you must provide the entire list. For example, to add an action, specify a list with the current actions plus the new action.</p>",
@@ -37,7 +39,7 @@
     "ModifyRule": "<p>Replaces the specified properties of the specified rule. Any properties that you do not specify are unchanged.</p> <p>To add an item to a list, remove an item from a list, or update an item in a list, you must provide the entire list. For example, to add an action, specify a list with the current actions plus the new action.</p>",
     "ModifyTargetGroup": "<p>Modifies the health checks used when evaluating the health state of the targets in the specified target group.</p>",
     "ModifyTargetGroupAttributes": "<p>Modifies the specified attributes of the specified target group.</p>",
-    "ModifyTrustStore": "<p>Update the ca certificate bundle for a given trust store.</p>",
+    "ModifyTrustStore": "<p>Update the ca certificate bundle for the specified trust store.</p>",
     "RegisterTargets": "<p>Registers the specified targets with the specified target group.</p> <p>If the target is an EC2 instance, it must be in the <code>running</code> state when you register it.</p> <p>By default, the load balancer routes requests to registered targets using the protocol and port for the target group. Alternatively, you can override the port for a target when you register it. You can register each EC2 instance or IP address with the same target group multiple times using different ports.</p> <p>With a Network Load Balancer, you cannot register instances by instance ID if they have the following instance types: C1, CC1, CC2, CG1, CG2, CR1, CS1, G1, G2, HI1, HS1, M1, M2, M3, and T1. You can register instances of these types by IP address.</p>",
     "RemoveListenerCertificates": "<p>Removes the specified certificate from the certificate list for the specified HTTPS or TLS listener.</p>",
     "RemoveTags": "<p>Removes the specified tags from the specified Elastic Load Balancing resources. You can remove the tags for one or more Application Load Balancers, Network Load Balancers, Gateway Load Balancers, target groups, listeners, or rules.</p>",
@@ -469,6 +471,11 @@
         "Certificate$IsDefault": "<p>Indicates whether the certificate is the default certificate. Do not set this value when specifying a certificate as an input. This value is not included in the output when describing a listener, but is included when describing listener certificates.</p>"
       }
     },
+    "DeleteAssociationSameAccountException": {
+      "base": "<p>The specified association cannot be within the same account.</p>",
+      "refs": {
+      }
+    },
     "DeleteListenerInput": {
       "base": null,
       "refs": {
@@ -495,6 +502,16 @@
       }
     },
     "DeleteRuleOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteSharedTrustStoreAssociationInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteSharedTrustStoreAssociationOutput": {
       "base": null,
       "refs": {
       }
@@ -761,6 +778,16 @@
         "Action$ForwardConfig": "<p>Information for creating an action that distributes requests among one or more target groups. For Network Load Balancers, you can specify a single target group. Specify only when <code>Type</code> is <code>forward</code>. If you specify both <code>ForwardConfig</code> and <code>TargetGroupArn</code>, you can specify only one target group using <code>ForwardConfig</code> and it must be the same target group specified in <code>TargetGroupArn</code>.</p>"
       }
     },
+    "GetResourcePolicyInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetResourcePolicyOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetTrustStoreCaCertificatesBundleInput": {
       "base": null,
       "refs": {
@@ -935,7 +962,7 @@
       "refs": {
         "CreateLoadBalancerInput$IpAddressType": "<p>Note: Internal load balancers must use the <code>ipv4</code> IP address type.</p> <p>[Application Load Balancers] The IP address type. The possible values are <code>ipv4</code> (for only IPv4 addresses), <code>dualstack</code> (for IPv4 and IPv6 addresses), and <code>dualstack-without-public-ipv4</code> (for IPv6 only public addresses, with private IPv4 and IPv6 addresses).</p> <p>[Network Load Balancers] The IP address type. The possible values are <code>ipv4</code> (for only IPv4 addresses) and <code>dualstack</code> (for IPv4 and IPv6 addresses). You can’t specify <code>dualstack</code> for a load balancer with a UDP or TCP_UDP listener.</p> <p>[Gateway Load Balancers] The IP address type. The possible values are <code>ipv4</code> (for only IPv4 addresses) and <code>dualstack</code> (for IPv4 and IPv6 addresses).</p>",
         "LoadBalancer$IpAddressType": "<p>[Application Load Balancers] The type of IP addresses used for public or private connections by the subnets attached to your load balancer. The possible values are <code>ipv4</code> (for only IPv4 addresses), <code>dualstack</code> (for IPv4 and IPv6 addresses), and <code>dualstack-without-public-ipv4</code> (for IPv6 only public addresses, with private IPv4 and IPv6 addresses).</p> <p>[Network Load Balancers and Gateway Load Balancers] The type of IP addresses used for public or private connections by the subnets attached to your load balancer. The possible values are <code>ipv4</code> (for only IPv4 addresses) and <code>dualstack</code> (for IPv4 and IPv6 addresses).</p>",
-        "SetIpAddressTypeInput$IpAddressType": "<p>Note: Internal load balancers must use the <code>ipv4</code> IP address type.</p> <p>[Application Load Balancers] The IP address type. The possible values are <code>ipv4</code> (for only IPv4 addresses), <code>dualstack</code> (for IPv4 and IPv6 addresses), and <code>dualstack-without-public-ipv4</code> (for IPv6 only public addresses, with private IPv4 and IPv6 addresses).</p> <p>[Network Load Balancers] The IP address type. The possible values are <code>ipv4</code> (for only IPv4 addresses) and <code>dualstack</code> (for IPv4 and IPv6 addresses). You can’t specify <code>dualstack</code> for a load balancer with a UDP or TCP_UDP listener.</p> <p>[Gateway Load Balancers] The IP address type. The possible values are <code>ipv4</code> (for only IPv4 addresses) and <code>dualstack</code> (for IPv4 and IPv6 addresses).</p>",
+        "SetIpAddressTypeInput$IpAddressType": "<p>Note: Internal load balancers must use the <code>ipv4</code> IP address type.</p> <p>[Application Load Balancers] The IP address type. The possible values are <code>ipv4</code> (for only IPv4 addresses), <code>dualstack</code> (for IPv4 and IPv6 addresses), and <code>dualstack-without-public-ipv4</code> (for IPv6 only public addresses, with private IPv4 and IPv6 addresses).</p> <p>Note: Application Load Balancer authentication only supports IPv4 addresses when connecting to an Identity Provider (IdP) or Amazon Cognito endpoint. Without a public IPv4 address the load balancer cannot complete the authentication process, resulting in HTTP 500 errors.</p> <p>[Network Load Balancers] The IP address type. The possible values are <code>ipv4</code> (for only IPv4 addresses) and <code>dualstack</code> (for IPv4 and IPv6 addresses). You can’t specify <code>dualstack</code> for a load balancer with a UDP or TCP_UDP listener.</p> <p>[Gateway Load Balancers] The IP address type. The possible values are <code>ipv4</code> (for only IPv4 addresses) and <code>dualstack</code> (for IPv4 and IPv6 addresses).</p>",
         "SetIpAddressTypeOutput$IpAddressType": "<p>The IP address type.</p>",
         "SetSubnetsInput$IpAddressType": "<p>[Application Load Balancers] The IP address type. The possible values are <code>ipv4</code> (for only IPv4 addresses), <code>dualstack</code> (for IPv4 and IPv6 addresses), and <code>dualstack-without-public-ipv4</code> (for IPv6 only public addresses, with private IPv4 and IPv6 addresses).</p> <p>[Network Load Balancers] The type of IP addresses used by the subnets for your load balancer. The possible values are <code>ipv4</code> (for IPv4 addresses) and <code>dualstack</code> (for IPv4 and IPv6 addresses). You can’t specify <code>dualstack</code> for a load balancer with a UDP or TCP_UDP listener.</p> <p>[Gateway Load Balancers] The type of IP addresses used by the subnets for your load balancer. The possible values are <code>ipv4</code> (for IPv4 addresses) and <code>dualstack</code> (for IPv4 and IPv6 addresses).</p>",
         "SetSubnetsOutput$IpAddressType": "<p>[Application Load Balancers] The IP address type.</p> <p>[Network Load Balancers] The IP address type.</p> <p>[Gateway Load Balancers] The IP address type.</p>"
@@ -962,7 +989,7 @@
     "ListOfDescribeTargetHealthIncludeOptions": {
       "base": null,
       "refs": {
-        "DescribeTargetHealthInput$Include": "<p>Used to inclue anomaly detection information.</p>"
+        "DescribeTargetHealthInput$Include": "<p>Used to include anomaly detection information.</p>"
       }
     },
     "ListOfString": {
@@ -1322,6 +1349,12 @@
         "RuleCondition$PathPatternConfig": "<p>Information for a path pattern condition. Specify only when <code>Field</code> is <code>path-pattern</code>.</p>"
       }
     },
+    "Policy": {
+      "base": null,
+      "refs": {
+        "GetResourcePolicyOutput$Policy": "<p>The content of the resource policy.</p>"
+      }
+    },
     "Port": {
       "base": null,
       "refs": {
@@ -1468,6 +1501,8 @@
     "ResourceArn": {
       "base": null,
       "refs": {
+        "DeleteSharedTrustStoreAssociationInput$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
+        "GetResourcePolicyInput$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
         "ResourceArns$member": null,
         "TagDescription$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource.</p>"
       }
@@ -1482,6 +1517,11 @@
     },
     "ResourceInUseException": {
       "base": "<p>A specified resource is in use.</p>",
+      "refs": {
+      }
+    },
+    "ResourceNotFoundException": {
+      "base": "<p>The specified resource does not exist.</p>",
       "refs": {
       }
     },
@@ -2095,6 +2135,7 @@
       "base": null,
       "refs": {
         "AddTrustStoreRevocationsInput$TrustStoreArn": "<p>The Amazon Resource Name (ARN) of the trust store.</p>",
+        "DeleteSharedTrustStoreAssociationInput$TrustStoreArn": "<p>The Amazon Resource Name (ARN) of the trust store.</p>",
         "DeleteTrustStoreInput$TrustStoreArn": "<p>The Amazon Resource Name (ARN) of the trust store.</p>",
         "DescribeTrustStoreAssociationsInput$TrustStoreArn": "<p>The Amazon Resource Name (ARN) of the trust store.</p>",
         "DescribeTrustStoreRevocation$TrustStoreArn": "<p>The Amazon Resource Name (ARN) of the trust store.</p>",
@@ -2121,10 +2162,21 @@
         "TrustStoreAssociations$member": null
       }
     },
+    "TrustStoreAssociationNotFoundException": {
+      "base": "<p>The specified association does not exist.</p>",
+      "refs": {
+      }
+    },
     "TrustStoreAssociationResourceArn": {
       "base": null,
       "refs": {
         "TrustStoreAssociation$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource.</p>"
+      }
+    },
+    "TrustStoreAssociationStatusEnum": {
+      "base": null,
+      "refs": {
+        "MutualAuthenticationAttributes$TrustStoreAssociationStatus": "<p>Indicates a shared trust stores association status.</p>"
       }
     },
     "TrustStoreAssociations": {

@@ -1,9 +1,14 @@
 {
   "metadata": {
     "apiVersion": "2023-09-30",
+    "auth": [
+      "aws.auth#sigv4"
+    ],
     "endpointPrefix": "bedrock-runtime",
-    "jsonVersion": "1.1",
     "protocol": "rest-json",
+    "protocols": [
+      "rest-json"
+    ],
     "serviceFullName": "Amazon Bedrock Runtime",
     "serviceId": "Bedrock Runtime",
     "signatureVersion": "v4",
@@ -63,6 +68,9 @@
           "shape": "InternalServerException"
         },
         {
+          "shape": "ServiceUnavailableException"
+        },
+        {
           "shape": "ValidationException"
         },
         {
@@ -103,6 +111,9 @@
           "shape": "InternalServerException"
         },
         {
+          "shape": "ServiceUnavailableException"
+        },
+        {
           "shape": "ValidationException"
         },
         {
@@ -141,6 +152,9 @@
         },
         {
           "shape": "InternalServerException"
+        },
+        {
+          "shape": "ServiceUnavailableException"
         },
         {
           "shape": "ValidationException"
@@ -184,6 +198,9 @@
         },
         {
           "shape": "InternalServerException"
+        },
+        {
+          "shape": "ServiceUnavailableException"
         },
         {
           "shape": "ModelStreamErrorException"
@@ -545,6 +562,9 @@
         },
         "modelStreamErrorException": {
           "shape": "ModelStreamErrorException"
+        },
+        "serviceUnavailableException": {
+          "shape": "ServiceUnavailableException"
         },
         "throttlingException": {
           "shape": "ThrottlingException"
@@ -1717,6 +1737,9 @@
         "modelTimeoutException": {
           "shape": "ModelTimeoutException"
         },
+        "serviceUnavailableException": {
+          "shape": "ServiceUnavailableException"
+        },
         "throttlingException": {
           "shape": "ThrottlingException"
         },
@@ -1732,6 +1755,19 @@
         "senderFault": true
       },
       "exception": true,
+      "members": {
+        "message": {
+          "shape": "NonBlankString"
+        }
+      },
+      "type": "structure"
+    },
+    "ServiceUnavailableException": {
+      "error": {
+        "httpStatusCode": 503
+      },
+      "exception": true,
+      "fault": true,
       "members": {
         "message": {
           "shape": "NonBlankString"

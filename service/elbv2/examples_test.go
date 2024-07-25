@@ -554,6 +554,40 @@ func ExampleELBV2_DeleteRule_shared00() {
 	fmt.Println(result)
 }
 
+// Delete a shared trust store association
+// This example deletes the association between the specified trust store and the specified
+// load balancer.
+func ExampleELBV2_DeleteSharedTrustStoreAssociation_shared00() {
+	svc := elbv2.New(session.New())
+	input := &elbv2.DeleteSharedTrustStoreAssociationInput{
+		ResourceArn:   aws.String("arn:aws:elasticloadbalancing:us-east-1:123456789012:loadbalancer/app/my-load-balancer/80233fa81d678c2c"),
+		TrustStoreArn: aws.String("arn:aws:elasticloadbalancing:us-east-1:123456789012:truststore/my-trust-store/73e2d6bc24d8a063"),
+	}
+
+	result, err := svc.DeleteSharedTrustStoreAssociation(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case elbv2.ErrCodeTrustStoreNotFoundException:
+				fmt.Println(elbv2.ErrCodeTrustStoreNotFoundException, aerr.Error())
+			case elbv2.ErrCodeDeleteAssociationSameAccountException:
+				fmt.Println(elbv2.ErrCodeDeleteAssociationSameAccountException, aerr.Error())
+			case elbv2.ErrCodeTrustStoreAssociationNotFoundException:
+				fmt.Println(elbv2.ErrCodeTrustStoreAssociationNotFoundException, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
 // To delete a target group
 // This example deletes the specified target group.
 func ExampleELBV2_DeleteTargetGroup_shared00() {
@@ -929,6 +963,34 @@ func ExampleELBV2_DescribeTargetHealth_shared01() {
 				fmt.Println(elbv2.ErrCodeTargetGroupNotFoundException, aerr.Error())
 			case elbv2.ErrCodeHealthUnavailableException:
 				fmt.Println(elbv2.ErrCodeHealthUnavailableException, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
+// Retrieve a resource policy
+// This example retrieves the resource policy for the specified trust store.
+func ExampleELBV2_GetResourcePolicy_shared00() {
+	svc := elbv2.New(session.New())
+	input := &elbv2.GetResourcePolicyInput{
+		ResourceArn: aws.String("arn:aws:elasticloadbalancing:us-east-1:123456789012:truststore/my-trust-store/73e2d6bc24d8a067"),
+	}
+
+	result, err := svc.GetResourcePolicy(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case elbv2.ErrCodeResourceNotFoundException:
+				fmt.Println(elbv2.ErrCodeResourceNotFoundException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}

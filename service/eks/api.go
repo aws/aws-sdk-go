@@ -8007,6 +8007,11 @@ type Cluster struct {
 	// any other cluster or Amazon Web Services resources.
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
 
+	// This value indicates if extended support is enabled or disabled for the cluster.
+	//
+	// Learn more about EKS Extended Support in the EKS User Guide. (https://docs.aws.amazon.com/eks/latest/userguide/extended-support-control.html)
+	UpgradePolicy *UpgradePolicyResponse `locationName:"upgradePolicy" type:"structure"`
+
 	// The Kubernetes server version for the cluster.
 	Version *string `locationName:"version" type:"string"`
 }
@@ -8146,6 +8151,12 @@ func (s *Cluster) SetStatus(v string) *Cluster {
 // SetTags sets the Tags field's value.
 func (s *Cluster) SetTags(v map[string]*string) *Cluster {
 	s.Tags = v
+	return s
+}
+
+// SetUpgradePolicy sets the UpgradePolicy field's value.
+func (s *Cluster) SetUpgradePolicy(v *UpgradePolicyResponse) *Cluster {
+	s.UpgradePolicy = v
 	return s
 }
 
@@ -9019,6 +9030,10 @@ type CreateClusterInput struct {
 	// any other cluster or Amazon Web Services resources.
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
 
+	// New clusters, by default, have extended support enabled. You can disable
+	// extended support when creating a cluster by setting this value to STANDARD.
+	UpgradePolicy *UpgradePolicyRequest `locationName:"upgradePolicy" type:"structure"`
+
 	// The desired Kubernetes version for your cluster. If you don't specify a value
 	// here, the default version available in Amazon EKS is used.
 	//
@@ -9137,6 +9152,12 @@ func (s *CreateClusterInput) SetRoleArn(v string) *CreateClusterInput {
 // SetTags sets the Tags field's value.
 func (s *CreateClusterInput) SetTags(v map[string]*string) *CreateClusterInput {
 	s.Tags = v
+	return s
+}
+
+// SetUpgradePolicy sets the UpgradePolicy field's value.
+func (s *CreateClusterInput) SetUpgradePolicy(v *UpgradePolicyRequest) *CreateClusterInput {
+	s.UpgradePolicy = v
 	return s
 }
 
@@ -18329,6 +18350,11 @@ type UpdateClusterConfigInput struct {
 
 	// An object representing the VPC configuration to use for an Amazon EKS cluster.
 	ResourcesVpcConfig *VpcConfigRequest `locationName:"resourcesVpcConfig" type:"structure"`
+
+	// You can enable or disable extended support for clusters currently on standard
+	// support. You cannot disable extended support once it starts. You must enable
+	// extended support before your cluster exits standard support.
+	UpgradePolicy *UpgradePolicyRequest `locationName:"upgradePolicy" type:"structure"`
 }
 
 // String returns the string representation.
@@ -18392,6 +18418,12 @@ func (s *UpdateClusterConfigInput) SetName(v string) *UpdateClusterConfigInput {
 // SetResourcesVpcConfig sets the ResourcesVpcConfig field's value.
 func (s *UpdateClusterConfigInput) SetResourcesVpcConfig(v *VpcConfigRequest) *UpdateClusterConfigInput {
 	s.ResourcesVpcConfig = v
+	return s
+}
+
+// SetUpgradePolicy sets the UpgradePolicy field's value.
+func (s *UpdateClusterConfigInput) SetUpgradePolicy(v *UpgradePolicyRequest) *UpdateClusterConfigInput {
+	s.UpgradePolicy = v
 	return s
 }
 
@@ -19230,6 +19262,85 @@ func (s *UpdateTaintsPayload) SetAddOrUpdateTaints(v []*Taint) *UpdateTaintsPayl
 // SetRemoveTaints sets the RemoveTaints field's value.
 func (s *UpdateTaintsPayload) SetRemoveTaints(v []*Taint) *UpdateTaintsPayload {
 	s.RemoveTaints = v
+	return s
+}
+
+// The support policy to use for the cluster. Extended support allows you to
+// remain on specific Kubernetes versions for longer. Clusters in extended support
+// have higher costs. The default value is EXTENDED. Use STANDARD to disable
+// extended support.
+//
+// Learn more about EKS Extended Support in the EKS User Guide. (https://docs.aws.amazon.com/eks/latest/userguide/extended-support-control.html)
+type UpgradePolicyRequest struct {
+	_ struct{} `type:"structure"`
+
+	// If the cluster is set to EXTENDED, it will enter extended support at the
+	// end of standard support. If the cluster is set to STANDARD, it will be automatically
+	// upgraded at the end of standard support.
+	//
+	// Learn more about EKS Extended Support in the EKS User Guide. (https://docs.aws.amazon.com/eks/latest/userguide/extended-support-control.html)
+	SupportType *string `locationName:"supportType" type:"string" enum:"SupportType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpgradePolicyRequest) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpgradePolicyRequest) GoString() string {
+	return s.String()
+}
+
+// SetSupportType sets the SupportType field's value.
+func (s *UpgradePolicyRequest) SetSupportType(v string) *UpgradePolicyRequest {
+	s.SupportType = &v
+	return s
+}
+
+// This value indicates if extended support is enabled or disabled for the cluster.
+//
+// Learn more about EKS Extended Support in the EKS User Guide. (https://docs.aws.amazon.com/eks/latest/userguide/extended-support-control.html)
+type UpgradePolicyResponse struct {
+	_ struct{} `type:"structure"`
+
+	// If the cluster is set to EXTENDED, it will enter extended support at the
+	// end of standard support. If the cluster is set to STANDARD, it will be automatically
+	// upgraded at the end of standard support.
+	//
+	// Learn more about EKS Extended Support in the EKS User Guide. (https://docs.aws.amazon.com/eks/latest/userguide/extended-support-control.html)
+	SupportType *string `locationName:"supportType" type:"string" enum:"SupportType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpgradePolicyResponse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpgradePolicyResponse) GoString() string {
+	return s.String()
+}
+
+// SetSupportType sets the SupportType field's value.
+func (s *UpgradePolicyResponse) SetSupportType(v string) *UpgradePolicyResponse {
+	s.SupportType = &v
 	return s
 }
 
@@ -20285,6 +20396,22 @@ func ResolveConflicts_Values() []string {
 }
 
 const (
+	// SupportTypeStandard is a SupportType enum value
+	SupportTypeStandard = "STANDARD"
+
+	// SupportTypeExtended is a SupportType enum value
+	SupportTypeExtended = "EXTENDED"
+)
+
+// SupportType_Values returns all elements of the SupportType enum
+func SupportType_Values() []string {
+	return []string{
+		SupportTypeStandard,
+		SupportTypeExtended,
+	}
+}
+
+const (
 	// TaintEffectNoSchedule is a TaintEffect enum value
 	TaintEffectNoSchedule = "NO_SCHEDULE"
 
@@ -20388,6 +20515,9 @@ const (
 
 	// UpdateParamTypePodIdentityAssociations is a UpdateParamType enum value
 	UpdateParamTypePodIdentityAssociations = "PodIdentityAssociations"
+
+	// UpdateParamTypeUpgradePolicy is a UpdateParamType enum value
+	UpdateParamTypeUpgradePolicy = "UpgradePolicy"
 )
 
 // UpdateParamType_Values returns all elements of the UpdateParamType enum
@@ -20421,6 +20551,7 @@ func UpdateParamType_Values() []string {
 		UpdateParamTypeSubnets,
 		UpdateParamTypeAuthenticationMode,
 		UpdateParamTypePodIdentityAssociations,
+		UpdateParamTypeUpgradePolicy,
 	}
 }
 
@@ -20478,6 +20609,9 @@ const (
 
 	// UpdateTypeAccessConfigUpdate is a UpdateType enum value
 	UpdateTypeAccessConfigUpdate = "AccessConfigUpdate"
+
+	// UpdateTypeUpgradePolicyUpdate is a UpdateType enum value
+	UpdateTypeUpgradePolicyUpdate = "UpgradePolicyUpdate"
 )
 
 // UpdateType_Values returns all elements of the UpdateType enum
@@ -20493,5 +20627,6 @@ func UpdateType_Values() []string {
 		UpdateTypeAddonUpdate,
 		UpdateTypeVpcConfigUpdate,
 		UpdateTypeAccessConfigUpdate,
+		UpdateTypeUpgradePolicyUpdate,
 	}
 }

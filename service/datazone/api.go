@@ -5409,6 +5409,101 @@ func (c *DataZone) GetEnvironmentBlueprintConfigurationWithContext(ctx aws.Conte
 	return out, req.Send()
 }
 
+const opGetEnvironmentCredentials = "GetEnvironmentCredentials"
+
+// GetEnvironmentCredentialsRequest generates a "aws/request.Request" representing the
+// client's request for the GetEnvironmentCredentials operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetEnvironmentCredentials for more information on using the GetEnvironmentCredentials
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetEnvironmentCredentialsRequest method.
+//	req, resp := client.GetEnvironmentCredentialsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/GetEnvironmentCredentials
+func (c *DataZone) GetEnvironmentCredentialsRequest(input *GetEnvironmentCredentialsInput) (req *request.Request, output *GetEnvironmentCredentialsOutput) {
+	op := &request.Operation{
+		Name:       opGetEnvironmentCredentials,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v2/domains/{domainIdentifier}/environments/{environmentIdentifier}/credentials",
+	}
+
+	if input == nil {
+		input = &GetEnvironmentCredentialsInput{}
+	}
+
+	output = &GetEnvironmentCredentialsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetEnvironmentCredentials API operation for Amazon DataZone.
+//
+// Gets the credentials of an environment in Amazon DataZone.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon DataZone's
+// API operation GetEnvironmentCredentials for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     The request has failed because of an unknown error, exception or failure.
+//
+//   - ResourceNotFoundException
+//     The specified resource cannot be found.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by the Amazon Web Services
+//     service.
+//
+//   - UnauthorizedException
+//     You do not have permission to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/GetEnvironmentCredentials
+func (c *DataZone) GetEnvironmentCredentials(input *GetEnvironmentCredentialsInput) (*GetEnvironmentCredentialsOutput, error) {
+	req, out := c.GetEnvironmentCredentialsRequest(input)
+	return out, req.Send()
+}
+
+// GetEnvironmentCredentialsWithContext is the same as GetEnvironmentCredentials with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetEnvironmentCredentials for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataZone) GetEnvironmentCredentialsWithContext(ctx aws.Context, input *GetEnvironmentCredentialsInput, opts ...request.Option) (*GetEnvironmentCredentialsOutput, error) {
+	req, out := c.GetEnvironmentCredentialsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetEnvironmentProfile = "GetEnvironmentProfile"
 
 // GetEnvironmentProfileRequest generates a "aws/request.Request" representing the
@@ -27680,6 +27775,131 @@ func (s *GetEnvironmentBlueprintOutput) SetUpdatedAt(v time.Time) *GetEnvironmen
 // SetUserParameters sets the UserParameters field's value.
 func (s *GetEnvironmentBlueprintOutput) SetUserParameters(v []*CustomParameter) *GetEnvironmentBlueprintOutput {
 	s.UserParameters = v
+	return s
+}
+
+type GetEnvironmentCredentialsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID of the Amazon DataZone domain in which this environment and its credentials
+	// exist.
+	//
+	// DomainIdentifier is a required field
+	DomainIdentifier *string `location:"uri" locationName:"domainIdentifier" type:"string" required:"true"`
+
+	// The ID of the environment whose credentials this operation gets.
+	//
+	// EnvironmentIdentifier is a required field
+	EnvironmentIdentifier *string `location:"uri" locationName:"environmentIdentifier" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetEnvironmentCredentialsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetEnvironmentCredentialsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetEnvironmentCredentialsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetEnvironmentCredentialsInput"}
+	if s.DomainIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainIdentifier"))
+	}
+	if s.DomainIdentifier != nil && len(*s.DomainIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainIdentifier", 1))
+	}
+	if s.EnvironmentIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("EnvironmentIdentifier"))
+	}
+	if s.EnvironmentIdentifier != nil && len(*s.EnvironmentIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EnvironmentIdentifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDomainIdentifier sets the DomainIdentifier field's value.
+func (s *GetEnvironmentCredentialsInput) SetDomainIdentifier(v string) *GetEnvironmentCredentialsInput {
+	s.DomainIdentifier = &v
+	return s
+}
+
+// SetEnvironmentIdentifier sets the EnvironmentIdentifier field's value.
+func (s *GetEnvironmentCredentialsInput) SetEnvironmentIdentifier(v string) *GetEnvironmentCredentialsInput {
+	s.EnvironmentIdentifier = &v
+	return s
+}
+
+type GetEnvironmentCredentialsOutput struct {
+	_ struct{} `type:"structure" sensitive:"true"`
+
+	// The access key ID of the environment.
+	AccessKeyId *string `locationName:"accessKeyId" type:"string"`
+
+	// The expiration timestamp of the environment credentials.
+	Expiration *time.Time `locationName:"expiration" type:"timestamp" timestampFormat:"iso8601"`
+
+	// The secret access key of the environment credentials.
+	SecretAccessKey *string `locationName:"secretAccessKey" type:"string"`
+
+	// The session token of the environment credentials.
+	SessionToken *string `locationName:"sessionToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetEnvironmentCredentialsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetEnvironmentCredentialsOutput) GoString() string {
+	return s.String()
+}
+
+// SetAccessKeyId sets the AccessKeyId field's value.
+func (s *GetEnvironmentCredentialsOutput) SetAccessKeyId(v string) *GetEnvironmentCredentialsOutput {
+	s.AccessKeyId = &v
+	return s
+}
+
+// SetExpiration sets the Expiration field's value.
+func (s *GetEnvironmentCredentialsOutput) SetExpiration(v time.Time) *GetEnvironmentCredentialsOutput {
+	s.Expiration = &v
+	return s
+}
+
+// SetSecretAccessKey sets the SecretAccessKey field's value.
+func (s *GetEnvironmentCredentialsOutput) SetSecretAccessKey(v string) *GetEnvironmentCredentialsOutput {
+	s.SecretAccessKey = &v
+	return s
+}
+
+// SetSessionToken sets the SessionToken field's value.
+func (s *GetEnvironmentCredentialsOutput) SetSessionToken(v string) *GetEnvironmentCredentialsOutput {
+	s.SessionToken = &v
 	return s
 }
 

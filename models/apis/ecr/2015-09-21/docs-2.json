@@ -9,10 +9,12 @@
     "CompleteLayerUpload": "<p>Informs Amazon ECR that the image layer upload has completed for a specified registry, repository name, and upload ID. You can optionally provide a <code>sha256</code> digest of the image layer for data validation purposes.</p> <p>When an image is pushed, the CompleteLayerUpload API is called once per each new image layer to verify that the upload has completed.</p> <note> <p>This operation is used by the Amazon ECR proxy and is not generally used by customers for pulling and pushing images. In most cases, you should use the <code>docker</code> CLI to pull, tag, and push images.</p> </note>",
     "CreatePullThroughCacheRule": "<p>Creates a pull through cache rule. A pull through cache rule provides a way to cache images from an upstream registry source in your Amazon ECR private registry. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/pull-through-cache.html\">Using pull through cache rules</a> in the <i>Amazon Elastic Container Registry User Guide</i>.</p>",
     "CreateRepository": "<p>Creates a repository. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/Repositories.html\">Amazon ECR repositories</a> in the <i>Amazon Elastic Container Registry User Guide</i>.</p>",
+    "CreateRepositoryCreationTemplate": "<p>Creates a repository creation template. This template is used to define the settings for repositories created by Amazon ECR on your behalf. For example, repositories created through pull through cache actions. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/repository-creation-templates.html\">Private repository creation templates</a> in the <i>Amazon Elastic Container Registry User Guide</i>.</p>",
     "DeleteLifecyclePolicy": "<p>Deletes the lifecycle policy associated with the specified repository.</p>",
     "DeletePullThroughCacheRule": "<p>Deletes a pull through cache rule.</p>",
     "DeleteRegistryPolicy": "<p>Deletes the registry permissions policy.</p>",
     "DeleteRepository": "<p>Deletes a repository. If the repository isn't empty, you must either delete the contents of the repository or use the <code>force</code> option to delete the repository and have Amazon ECR delete all of its contents on your behalf.</p>",
+    "DeleteRepositoryCreationTemplate": "<p>Deletes a repository creation template.</p>",
     "DeleteRepositoryPolicy": "<p>Deletes the repository policy associated with the specified repository.</p>",
     "DescribeImageReplicationStatus": "<p>Returns the replication status for a specified image.</p>",
     "DescribeImageScanFindings": "<p>Returns the scan findings for the specified image.</p>",
@@ -20,6 +22,7 @@
     "DescribePullThroughCacheRules": "<p>Returns the pull through cache rules for a registry.</p>",
     "DescribeRegistry": "<p>Describes the settings for a registry. The replication configuration for a repository can be created or updated with the <a>PutReplicationConfiguration</a> API action.</p>",
     "DescribeRepositories": "<p>Describes image repositories in a registry.</p>",
+    "DescribeRepositoryCreationTemplates": "<p>Returns details about the repository creation templates in a registry. The <code>prefixes</code> request parameter can be used to return the details for a specific repository creation template.</p>",
     "GetAuthorizationToken": "<p>Retrieves an authorization token. An authorization token represents your IAM authentication credentials and can be used to access any Amazon ECR registry that your IAM principal has access to. The authorization token is valid for 12 hours.</p> <p>The <code>authorizationToken</code> returned is a base64 encoded string that can be decoded and used in a <code>docker login</code> command to authenticate to a registry. The CLI offers an <code>get-login-password</code> command that simplifies the login process. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/Registries.html#registry_auth\">Registry authentication</a> in the <i>Amazon Elastic Container Registry User Guide</i>.</p>",
     "GetDownloadUrlForLayer": "<p>Retrieves the pre-signed Amazon S3 download URL corresponding to an image layer. You can only get URLs for image layers that are referenced in an image.</p> <p>When an image is pulled, the GetDownloadUrlForLayer API is called once per image layer that is not already cached.</p> <note> <p>This operation is used by the Amazon ECR proxy and is not generally used by customers for pulling and pushing images. In most cases, you should use the <code>docker</code> CLI to pull, tag, and push images.</p> </note>",
     "GetLifecyclePolicy": "<p>Retrieves the lifecycle policy for the specified repository.</p>",
@@ -36,13 +39,14 @@
     "PutLifecyclePolicy": "<p>Creates or updates the lifecycle policy for the specified repository. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/LifecyclePolicies.html\">Lifecycle policy template</a>.</p>",
     "PutRegistryPolicy": "<p>Creates or updates the permissions policy for your registry.</p> <p>A registry policy is used to specify permissions for another Amazon Web Services account and is used when configuring cross-account replication. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/registry-permissions.html\">Registry permissions</a> in the <i>Amazon Elastic Container Registry User Guide</i>.</p>",
     "PutRegistryScanningConfiguration": "<p>Creates or updates the scanning configuration for your private registry.</p>",
-    "PutReplicationConfiguration": "<p>Creates or updates the replication configuration for a registry. The existing replication configuration for a repository can be retrieved with the <a>DescribeRegistry</a> API action. The first time the PutReplicationConfiguration API is called, a service-linked IAM role is created in your account for the replication process. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/using-service-linked-roles.html\">Using service-linked roles for Amazon ECR</a> in the <i>Amazon Elastic Container Registry User Guide</i>.</p> <note> <p>When configuring cross-account replication, the destination account must grant the source account permission to replicate. This permission is controlled using a registry permissions policy. For more information, see <a>PutRegistryPolicy</a>.</p> </note>",
+    "PutReplicationConfiguration": "<p>Creates or updates the replication configuration for a registry. The existing replication configuration for a repository can be retrieved with the <a>DescribeRegistry</a> API action. The first time the PutReplicationConfiguration API is called, a service-linked IAM role is created in your account for the replication process. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/using-service-linked-roles.html\">Using service-linked roles for Amazon ECR</a> in the <i>Amazon Elastic Container Registry User Guide</i>. For more information on the custom role for replication, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/replication-creation-templates.html#roles-creatingrole-user-console\">Creating an IAM role for replication</a>.</p> <note> <p>When configuring cross-account replication, the destination account must grant the source account permission to replicate. This permission is controlled using a registry permissions policy. For more information, see <a>PutRegistryPolicy</a>.</p> </note>",
     "SetRepositoryPolicy": "<p>Applies a repository policy to the specified repository to control access permissions. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/repository-policies.html\">Amazon ECR Repository policies</a> in the <i>Amazon Elastic Container Registry User Guide</i>.</p>",
     "StartImageScan": "<p>Starts an image vulnerability scan. An image scan can only be started once per 24 hours on an individual image. This limit includes if an image was scanned on initial push. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/image-scanning.html\">Image scanning</a> in the <i>Amazon Elastic Container Registry User Guide</i>.</p>",
     "StartLifecyclePolicyPreview": "<p>Starts a preview of a lifecycle policy for the specified repository. This allows you to see the results before associating the lifecycle policy with the repository.</p>",
     "TagResource": "<p>Adds specified tags to a resource with the specified ARN. Existing tags on a resource are not changed if they are not specified in the request parameters.</p>",
     "UntagResource": "<p>Deletes specified tags from a resource.</p>",
     "UpdatePullThroughCacheRule": "<p>Updates an existing pull through cache rule.</p>",
+    "UpdateRepositoryCreationTemplate": "<p>Updates an existing repository creation template.</p>",
     "UploadLayerPart": "<p>Uploads an image layer part to Amazon ECR.</p> <p>When an image is pushed, each new image layer is uploaded in parts. The maximum size of each image layer part can be 20971520 bytes (or about 20MB). The UploadLayerPart API is called once per each new image layer part.</p> <note> <p>This operation is used by the Amazon ECR proxy and is not generally used by customers for pulling and pushing images. In most cases, you should use the <code>docker</code> CLI to pull, tag, and push images.</p> </note>",
     "ValidatePullThroughCacheRule": "<p>Validates an existing pull through cache rule for an upstream registry that requires authentication. This will retrieve the contents of the Amazon Web Services Secrets Manager secret, verify the syntax, and then validate that authentication to the upstream registry is successful.</p>"
   },
@@ -197,6 +201,16 @@
       "refs": {
       }
     },
+    "CreateRepositoryCreationTemplateRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateRepositoryCreationTemplateResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreateRepositoryRequest": {
       "base": null,
       "refs": {
@@ -226,6 +240,14 @@
         "UpdatePullThroughCacheRuleRequest$credentialArn": "<p>The Amazon Resource Name (ARN) of the Amazon Web Services Secrets Manager secret that identifies the credentials to authenticate to the upstream registry.</p>",
         "UpdatePullThroughCacheRuleResponse$credentialArn": "<p>The Amazon Resource Name (ARN) of the Amazon Web Services Secrets Manager secret associated with the pull through cache rule.</p>",
         "ValidatePullThroughCacheRuleResponse$credentialArn": "<p>The Amazon Resource Name (ARN) of the Amazon Web Services Secrets Manager secret associated with the pull through cache rule.</p>"
+      }
+    },
+    "CustomRoleArn": {
+      "base": null,
+      "refs": {
+        "CreateRepositoryCreationTemplateRequest$customRoleArn": "<p>The ARN of the role to be assumed by Amazon ECR. This role must be in the same account as the registry that you are configuring.</p>",
+        "RepositoryCreationTemplate$customRoleArn": "<p>The ARN of the role to be assumed by Amazon ECR.</p>",
+        "UpdateRepositoryCreationTemplateRequest$customRoleArn": "<p>The ARN of the role to be assumed by Amazon ECR. This role must be in the same account as the registry that you are configuring.</p>"
       }
     },
     "CvssScore": {
@@ -266,7 +288,9 @@
         "EnhancedImageScanFinding$lastObservedAt": "<p>The date and time that the finding was last observed.</p>",
         "EnhancedImageScanFinding$updatedAt": "<p>The date and time the finding was last updated at.</p>",
         "PackageVulnerabilityDetails$vendorCreatedAt": "<p>The date and time that this vulnerability was first added to the vendor's database.</p>",
-        "PackageVulnerabilityDetails$vendorUpdatedAt": "<p>The date and time the vendor last updated this vulnerability in their database.</p>"
+        "PackageVulnerabilityDetails$vendorUpdatedAt": "<p>The date and time the vendor last updated this vulnerability in their database.</p>",
+        "RepositoryCreationTemplate$createdAt": "<p>The date and time, in JavaScript date format, when the repository creation template was created.</p>",
+        "RepositoryCreationTemplate$updatedAt": "<p>The date and time, in JavaScript date format, when the repository creation template was last updated.</p>"
       }
     },
     "DeleteLifecyclePolicyRequest": {
@@ -295,6 +319,16 @@
       }
     },
     "DeleteRegistryPolicyResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteRepositoryCreationTemplateRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteRepositoryCreationTemplateResponse": {
       "base": null,
       "refs": {
       }
@@ -385,22 +419,41 @@
       "refs": {
       }
     },
+    "DescribeRepositoryCreationTemplatesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeRepositoryCreationTemplatesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "EmptyUploadException": {
       "base": "<p>The specified layer upload does not contain any layer parts.</p>",
       "refs": {
       }
     },
     "EncryptionConfiguration": {
-      "base": "<p>The encryption configuration for the repository. This determines how the contents of your repository are encrypted at rest.</p> <p>By default, when no encryption configuration is set or the <code>AES256</code> encryption type is used, Amazon ECR uses server-side encryption with Amazon S3-managed encryption keys which encrypts your data at rest using an AES-256 encryption algorithm. This does not require any action on your part.</p> <p>For more control over the encryption of the contents of your repository, you can use server-side encryption with Key Management Service key stored in Key Management Service (KMS) to encrypt your images. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/encryption-at-rest.html\">Amazon ECR encryption at rest</a> in the <i>Amazon Elastic Container Registry User Guide</i>.</p>",
+      "base": "<p>The encryption configuration for the repository. This determines how the contents of your repository are encrypted at rest.</p> <p>By default, when no encryption configuration is set or the <code>AES256</code> encryption type is used, Amazon ECR uses server-side encryption with Amazon S3-managed encryption keys which encrypts your data at rest using an AES256 encryption algorithm. This does not require any action on your part.</p> <p>For more control over the encryption of the contents of your repository, you can use server-side encryption with Key Management Service key stored in Key Management Service (KMS) to encrypt your images. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/encryption-at-rest.html\">Amazon ECR encryption at rest</a> in the <i>Amazon Elastic Container Registry User Guide</i>.</p>",
       "refs": {
         "CreateRepositoryRequest$encryptionConfiguration": "<p>The encryption configuration for the repository. This determines how the contents of your repository are encrypted at rest.</p>",
         "Repository$encryptionConfiguration": "<p>The encryption configuration for the repository. This determines how the contents of your repository are encrypted at rest.</p>"
       }
     },
+    "EncryptionConfigurationForRepositoryCreationTemplate": {
+      "base": "<p>The encryption configuration to associate with the repository creation template.</p>",
+      "refs": {
+        "CreateRepositoryCreationTemplateRequest$encryptionConfiguration": "<p>The encryption configuration to use for repositories created using the template.</p>",
+        "RepositoryCreationTemplate$encryptionConfiguration": "<p>The encryption configuration associated with the repository creation template.</p>",
+        "UpdateRepositoryCreationTemplateRequest$encryptionConfiguration": null
+      }
+    },
     "EncryptionType": {
       "base": null,
       "refs": {
-        "EncryptionConfiguration$encryptionType": "<p>The encryption type to use.</p> <p>If you use the <code>KMS</code> encryption type, the contents of the repository will be encrypted using server-side encryption with Key Management Service key stored in KMS. When you use KMS to encrypt your data, you can either use the default Amazon Web Services managed KMS key for Amazon ECR, or specify your own KMS key, which you already created. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingKMSEncryption.html\">Protecting data using server-side encryption with an KMS key stored in Key Management Service (SSE-KMS)</a> in the <i>Amazon Simple Storage Service Console Developer Guide</i>.</p> <p>If you use the <code>AES256</code> encryption type, Amazon ECR uses server-side encryption with Amazon S3-managed encryption keys which encrypts the images in the repository using an AES-256 encryption algorithm. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingServerSideEncryption.html\">Protecting data using server-side encryption with Amazon S3-managed encryption keys (SSE-S3)</a> in the <i>Amazon Simple Storage Service Console Developer Guide</i>.</p>"
+        "EncryptionConfiguration$encryptionType": "<p>The encryption type to use.</p> <p>If you use the <code>KMS</code> encryption type, the contents of the repository will be encrypted using server-side encryption with Key Management Service key stored in KMS. When you use KMS to encrypt your data, you can either use the default Amazon Web Services managed KMS key for Amazon ECR, or specify your own KMS key, which you already created. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingKMSEncryption.html\">Protecting data using server-side encryption with an KMS key stored in Key Management Service (SSE-KMS)</a> in the <i>Amazon Simple Storage Service Console Developer Guide</i>.</p> <p>If you use the <code>AES256</code> encryption type, Amazon ECR uses server-side encryption with Amazon S3-managed encryption keys which encrypts the images in the repository using an AES256 encryption algorithm. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingServerSideEncryption.html\">Protecting data using server-side encryption with Amazon S3-managed encryption keys (SSE-S3)</a> in the <i>Amazon Simple Storage Service Console Developer Guide</i>.</p>",
+        "EncryptionConfigurationForRepositoryCreationTemplate$encryptionType": "<p>The encryption type to use.</p> <p>If you use the <code>KMS</code> encryption type, the contents of the repository will be encrypted using server-side encryption with Key Management Service key stored in KMS. When you use KMS to encrypt your data, you can either use the default Amazon Web Services managed KMS key for Amazon ECR, or specify your own KMS key, which you already created. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingKMSEncryption.html\">Protecting data using server-side encryption with an KMS key stored in Key Management Service (SSE-KMS)</a> in the <i>Amazon Simple Storage Service Console Developer Guide</i>.</p> <p>If you use the <code>AES256</code> encryption type, Amazon ECR uses server-side encryption with Amazon S3-managed encryption keys which encrypts the images in the repository using an AES256 encryption algorithm. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingServerSideEncryption.html\">Protecting data using server-side encryption with Amazon S3-managed encryption keys (SSE-S3)</a> in the <i>Amazon Simple Storage Service Console Developer Guide</i>.</p>"
       }
     },
     "EnhancedImageScanFinding": {
@@ -460,6 +513,8 @@
         "ScanNotFoundException$message": null,
         "SecretNotFoundException$message": null,
         "ServerException$message": "<p>The error message associated with the exception.</p>",
+        "TemplateAlreadyExistsException$message": null,
+        "TemplateNotFoundException$message": null,
         "TooManyTagsException$message": null,
         "UnableToAccessSecretException$message": null,
         "UnableToDecryptSecretValueException$message": null,
@@ -801,10 +856,13 @@
     "ImageTagMutability": {
       "base": null,
       "refs": {
+        "CreateRepositoryCreationTemplateRequest$imageTagMutability": "<p>The tag mutability setting for the repository. If this parameter is omitted, the default setting of <code>MUTABLE</code> will be used which will allow image tags to be overwritten. If <code>IMMUTABLE</code> is specified, all image tags within the repository will be immutable which will prevent them from being overwritten.</p>",
         "CreateRepositoryRequest$imageTagMutability": "<p>The tag mutability setting for the repository. If this parameter is omitted, the default setting of <code>MUTABLE</code> will be used which will allow image tags to be overwritten. If <code>IMMUTABLE</code> is specified, all image tags within the repository will be immutable which will prevent them from being overwritten.</p>",
         "PutImageTagMutabilityRequest$imageTagMutability": "<p>The tag mutability setting for the repository. If <code>MUTABLE</code> is specified, image tags can be overwritten. If <code>IMMUTABLE</code> is specified, all image tags within the repository will be immutable which will prevent them from being overwritten.</p>",
         "PutImageTagMutabilityResponse$imageTagMutability": "<p>The image tag mutability setting for the repository.</p>",
-        "Repository$imageTagMutability": "<p>The tag mutability setting for the repository.</p>"
+        "Repository$imageTagMutability": "<p>The tag mutability setting for the repository.</p>",
+        "RepositoryCreationTemplate$imageTagMutability": "<p>The tag mutability setting for the repository. If this parameter is omitted, the default setting of MUTABLE will be used which will allow image tags to be overwritten. If IMMUTABLE is specified, all image tags within the repository will be immutable which will prevent them from being overwritten.</p>",
+        "UpdateRepositoryCreationTemplateRequest$imageTagMutability": "<p>Updates the tag mutability setting for the repository. If this parameter is omitted, the default setting of <code>MUTABLE</code> will be used which will allow image tags to be overwritten. If <code>IMMUTABLE</code> is specified, all image tags within the repository will be immutable which will prevent them from being overwritten.</p>"
       }
     },
     "ImageTagsList": {
@@ -864,6 +922,12 @@
       "base": null,
       "refs": {
         "EncryptionConfiguration$kmsKey": "<p>If you use the <code>KMS</code> encryption type, specify the KMS key to use for encryption. The alias, key ID, or full ARN of the KMS key can be specified. The key must exist in the same Region as the repository. If no key is specified, the default Amazon Web Services managed KMS key for Amazon ECR will be used.</p>"
+      }
+    },
+    "KmsKeyForRepositoryCreationTemplate": {
+      "base": null,
+      "refs": {
+        "EncryptionConfigurationForRepositoryCreationTemplate$kmsKey": "<p>If you use the <code>KMS</code> encryption type, specify the KMS key to use for encryption. The full ARN of the KMS key must be specified. The key must exist in the same Region as the repository. If no key is specified, the default Amazon Web Services managed KMS key for Amazon ECR will be used.</p>"
       }
     },
     "Layer": {
@@ -1026,6 +1090,14 @@
         "StartLifecyclePolicyPreviewResponse$lifecyclePolicyText": "<p>The JSON repository policy text.</p>"
       }
     },
+    "LifecyclePolicyTextForRepositoryCreationTemplate": {
+      "base": null,
+      "refs": {
+        "CreateRepositoryCreationTemplateRequest$lifecyclePolicy": "<p>The lifecycle policy to use for repositories created using the template.</p>",
+        "RepositoryCreationTemplate$lifecyclePolicy": "<p>The lifecycle policy to use for repositories created using the template.</p>",
+        "UpdateRepositoryCreationTemplateRequest$lifecyclePolicy": "<p>Updates the lifecycle policy associated with the specified repository creation template.</p>"
+      }
+    },
     "LifecyclePreviewMaxResults": {
       "base": null,
       "refs": {
@@ -1070,6 +1142,7 @@
         "DescribeImagesRequest$maxResults": "<p>The maximum number of repository results returned by <code>DescribeImages</code> in paginated output. When this parameter is used, <code>DescribeImages</code> only returns <code>maxResults</code> results in a single page along with a <code>nextToken</code> response element. The remaining results of the initial request can be seen by sending another <code>DescribeImages</code> request with the returned <code>nextToken</code> value. This value can be between 1 and 1000. If this parameter is not used, then <code>DescribeImages</code> returns up to 100 results and a <code>nextToken</code> value, if applicable. This option cannot be used when you specify images with <code>imageIds</code>.</p>",
         "DescribePullThroughCacheRulesRequest$maxResults": "<p>The maximum number of pull through cache rules returned by <code>DescribePullThroughCacheRulesRequest</code> in paginated output. When this parameter is used, <code>DescribePullThroughCacheRulesRequest</code> only returns <code>maxResults</code> results in a single page along with a <code>nextToken</code> response element. The remaining results of the initial request can be seen by sending another <code>DescribePullThroughCacheRulesRequest</code> request with the returned <code>nextToken</code> value. This value can be between 1 and 1000. If this parameter is not used, then <code>DescribePullThroughCacheRulesRequest</code> returns up to 100 results and a <code>nextToken</code> value, if applicable.</p>",
         "DescribeRepositoriesRequest$maxResults": "<p>The maximum number of repository results returned by <code>DescribeRepositories</code> in paginated output. When this parameter is used, <code>DescribeRepositories</code> only returns <code>maxResults</code> results in a single page along with a <code>nextToken</code> response element. The remaining results of the initial request can be seen by sending another <code>DescribeRepositories</code> request with the returned <code>nextToken</code> value. This value can be between 1 and 1000. If this parameter is not used, then <code>DescribeRepositories</code> returns up to 100 results and a <code>nextToken</code> value, if applicable. This option cannot be used when you specify repositories with <code>repositoryNames</code>.</p>",
+        "DescribeRepositoryCreationTemplatesRequest$maxResults": "<p>The maximum number of repository results returned by <code>DescribeRepositoryCreationTemplatesRequest</code> in paginated output. When this parameter is used, <code>DescribeRepositoryCreationTemplatesRequest</code> only returns <code>maxResults</code> results in a single page along with a <code>nextToken</code> response element. The remaining results of the initial request can be seen by sending another <code>DescribeRepositoryCreationTemplatesRequest</code> request with the returned <code>nextToken</code> value. This value can be between 1 and 1000. If this parameter is not used, then <code>DescribeRepositoryCreationTemplatesRequest</code> returns up to 100 results and a <code>nextToken</code> value, if applicable.</p>",
         "ListImagesRequest$maxResults": "<p>The maximum number of image results returned by <code>ListImages</code> in paginated output. When this parameter is used, <code>ListImages</code> only returns <code>maxResults</code> results in a single page along with a <code>nextToken</code> response element. The remaining results of the initial request can be seen by sending another <code>ListImages</code> request with the returned <code>nextToken</code> value. This value can be between 1 and 1000. If this parameter is not used, then <code>ListImages</code> returns up to 100 results and a <code>nextToken</code> value, if applicable.</p>"
       }
     },
@@ -1107,6 +1180,8 @@
         "DescribePullThroughCacheRulesResponse$nextToken": "<p>The <code>nextToken</code> value to include in a future <code>DescribePullThroughCacheRulesRequest</code> request. When the results of a <code>DescribePullThroughCacheRulesRequest</code> request exceed <code>maxResults</code>, this value can be used to retrieve the next page of results. This value is null when there are no more results to return.</p>",
         "DescribeRepositoriesRequest$nextToken": "<p>The <code>nextToken</code> value returned from a previous paginated <code>DescribeRepositories</code> request where <code>maxResults</code> was used and the results exceeded the value of that parameter. Pagination continues from the end of the previous results that returned the <code>nextToken</code> value. This value is <code>null</code> when there are no more results to return. This option cannot be used when you specify repositories with <code>repositoryNames</code>.</p> <note> <p>This token should be treated as an opaque identifier that is only used to retrieve the next items in a list and not for other programmatic purposes.</p> </note>",
         "DescribeRepositoriesResponse$nextToken": "<p>The <code>nextToken</code> value to include in a future <code>DescribeRepositories</code> request. When the results of a <code>DescribeRepositories</code> request exceed <code>maxResults</code>, this value can be used to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
+        "DescribeRepositoryCreationTemplatesRequest$nextToken": "<p>The <code>nextToken</code> value returned from a previous paginated <code>DescribeRepositoryCreationTemplates</code> request where <code>maxResults</code> was used and the results exceeded the value of that parameter. Pagination continues from the end of the previous results that returned the <code>nextToken</code> value. This value is <code>null</code> when there are no more results to return.</p> <note> <p>This token should be treated as an opaque identifier that is only used to retrieve the next items in a list and not for other programmatic purposes.</p> </note>",
+        "DescribeRepositoryCreationTemplatesResponse$nextToken": "<p>The <code>nextToken</code> value to include in a future <code>DescribeRepositoryCreationTemplates</code> request. When the results of a <code>DescribeRepositoryCreationTemplates</code> request exceed <code>maxResults</code>, this value can be used to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "GetLifecyclePolicyPreviewRequest$nextToken": "<p>The <code>nextToken</code> value returned from a previous paginated&#x2028; <code>GetLifecyclePolicyPreviewRequest</code> request where <code>maxResults</code> was used and the&#x2028; results exceeded the value of that parameter. Pagination continues from the end of the&#x2028; previous results that returned the <code>nextToken</code> value. This value is&#x2028; <code>null</code> when there are no more results to return. This option cannot be used when you specify images with <code>imageIds</code>.</p>",
         "GetLifecyclePolicyPreviewResponse$nextToken": "<p>The <code>nextToken</code> value to include in a future <code>GetLifecyclePolicyPreview</code> request. When the results of a <code>GetLifecyclePolicyPreview</code> request exceed <code>maxResults</code>, this value can be used to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "ListImagesRequest$nextToken": "<p>The <code>nextToken</code> value returned from a previous paginated <code>ListImages</code> request where <code>maxResults</code> was used and the results exceeded the value of that parameter. Pagination continues from the end of the previous results that returned the <code>nextToken</code> value. This value is <code>null</code> when there are no more results to return.</p> <note> <p>This token should be treated as an opaque identifier that is only used to retrieve the next items in a list and not for other programmatic purposes.</p> </note>",
@@ -1145,6 +1220,22 @@
       "base": null,
       "refs": {
         "AwsEcrContainerImageDetails$platform": "<p>The platform of the Amazon ECR container image.</p>"
+      }
+    },
+    "Prefix": {
+      "base": null,
+      "refs": {
+        "CreateRepositoryCreationTemplateRequest$prefix": "<p>The repository namespace prefix to associate with the template. All repositories created using this namespace prefix will have the settings defined in this template applied. For example, a prefix of <code>prod</code> would apply to all repositories beginning with <code>prod/</code>. Similarly, a prefix of <code>prod/team</code> would apply to all repositories beginning with <code>prod/team/</code>.</p> <p>To apply a template to all repositories in your registry that don't have an associated creation template, you can use <code>ROOT</code> as the prefix.</p> <important> <p>There is always an assumed <code>/</code> applied to the end of the prefix. If you specify <code>ecr-public</code> as the prefix, Amazon ECR treats that as <code>ecr-public/</code>. When using a pull through cache rule, the repository prefix you specify during rule creation is what you should specify as your repository creation template prefix as well.</p> </important>",
+        "DeleteRepositoryCreationTemplateRequest$prefix": "<p>The repository namespace prefix associated with the repository creation template.</p>",
+        "PrefixList$member": null,
+        "RepositoryCreationTemplate$prefix": "<p>The repository namespace prefix associated with the repository creation template.</p>",
+        "UpdateRepositoryCreationTemplateRequest$prefix": "<p>The repository namespace prefix that matches an existing repository creation template in the registry. All repositories created using this namespace prefix will have the settings defined in this template applied. For example, a prefix of <code>prod</code> would apply to all repositories beginning with <code>prod/</code>. This includes a repository named <code>prod/team1</code> as well as a repository named <code>prod/repository1</code>.</p> <p>To apply a template to all repositories in your registry that don't have an associated creation template, you can use <code>ROOT</code> as the prefix.</p>"
+      }
+    },
+    "PrefixList": {
+      "base": null,
+      "refs": {
+        "DescribeRepositoryCreationTemplatesRequest$prefixes": "<p>The repository namespace prefixes associated with the repository creation templates to describe. If this value is not specified, all repository creation templates are returned.</p>"
       }
     },
     "ProxyEndpoint": {
@@ -1273,6 +1364,20 @@
       "refs": {
       }
     },
+    "RCTAppliedFor": {
+      "base": null,
+      "refs": {
+        "RCTAppliedForList$member": null
+      }
+    },
+    "RCTAppliedForList": {
+      "base": null,
+      "refs": {
+        "CreateRepositoryCreationTemplateRequest$appliedFor": "<p>A list of enumerable strings representing the Amazon ECR repository creation scenarios that this template will apply towards. The two supported scenarios are <code>PULL_THROUGH_CACHE</code> and <code>REPLICATION</code> </p>",
+        "RepositoryCreationTemplate$appliedFor": "<p>A list of enumerable Strings representing the repository creation scenarios that this template will apply towards. The two supported scenarios are PULL_THROUGH_CACHE and REPLICATION</p>",
+        "UpdateRepositoryCreationTemplateRequest$appliedFor": "<p>Updates the list of enumerable strings representing the Amazon ECR repository creation scenarios that this template will apply towards. The two supported scenarios are <code>PULL_THROUGH_CACHE</code> and <code>REPLICATION</code> </p>"
+      }
+    },
     "Reason": {
       "base": null,
       "refs": {
@@ -1326,12 +1431,14 @@
         "CompleteLayerUploadResponse$registryId": "<p>The registry ID associated with the request.</p>",
         "CreatePullThroughCacheRuleRequest$registryId": "<p>The Amazon Web Services account ID associated with the registry to create the pull through cache rule for. If you do not specify a registry, the default registry is assumed.</p>",
         "CreatePullThroughCacheRuleResponse$registryId": "<p>The registry ID associated with the request.</p>",
+        "CreateRepositoryCreationTemplateResponse$registryId": "<p>The registry ID associated with the request.</p>",
         "CreateRepositoryRequest$registryId": "<p>The Amazon Web Services account ID associated with the registry to create the repository. If you do not specify a registry, the default registry is assumed.</p>",
         "DeleteLifecyclePolicyRequest$registryId": "<p>The Amazon Web Services account ID associated with the registry that contains the repository. If you do not specify a registry, the default registry is assumed.</p>",
         "DeleteLifecyclePolicyResponse$registryId": "<p>The registry ID associated with the request.</p>",
         "DeletePullThroughCacheRuleRequest$registryId": "<p>The Amazon Web Services account ID associated with the registry that contains the pull through cache rule. If you do not specify a registry, the default registry is assumed.</p>",
         "DeletePullThroughCacheRuleResponse$registryId": "<p>The registry ID associated with the request.</p>",
         "DeleteRegistryPolicyResponse$registryId": "<p>The registry ID associated with the request.</p>",
+        "DeleteRepositoryCreationTemplateResponse$registryId": "<p>The registry ID associated with the request.</p>",
         "DeleteRepositoryPolicyRequest$registryId": "<p>The Amazon Web Services account ID associated with the registry that contains the repository policy to delete. If you do not specify a registry, the default registry is assumed.</p>",
         "DeleteRepositoryPolicyResponse$registryId": "<p>The registry ID associated with the request.</p>",
         "DeleteRepositoryRequest$registryId": "<p>The Amazon Web Services account ID associated with the registry that contains the repository to delete. If you do not specify a registry, the default registry is assumed.</p>",
@@ -1340,8 +1447,9 @@
         "DescribeImageScanFindingsResponse$registryId": "<p>The registry ID associated with the request.</p>",
         "DescribeImagesRequest$registryId": "<p>The Amazon Web Services account ID associated with the registry that contains the repository in which to describe images. If you do not specify a registry, the default registry is assumed.</p>",
         "DescribePullThroughCacheRulesRequest$registryId": "<p>The Amazon Web Services account ID associated with the registry to return the pull through cache rules for. If you do not specify a registry, the default registry is assumed.</p>",
-        "DescribeRegistryResponse$registryId": "<p>The ID of the registry.</p>",
+        "DescribeRegistryResponse$registryId": "<p>The registry ID associated with the request.</p>",
         "DescribeRepositoriesRequest$registryId": "<p>The Amazon Web Services account ID associated with the registry that contains the repositories to be described. If you do not specify a registry, the default registry is assumed.</p>",
+        "DescribeRepositoryCreationTemplatesResponse$registryId": "<p>The registry ID associated with the request.</p>",
         "EnhancedImageScanFinding$awsAccountId": "<p>The Amazon Web Services account ID associated with the image.</p>",
         "GetAuthorizationTokenRegistryIdList$member": null,
         "GetDownloadUrlForLayerRequest$registryId": "<p>The Amazon Web Services account ID associated with the registry that contains the image layer to download. If you do not specify a registry, the default registry is assumed.</p>",
@@ -1349,8 +1457,8 @@
         "GetLifecyclePolicyPreviewResponse$registryId": "<p>The registry ID associated with the request.</p>",
         "GetLifecyclePolicyRequest$registryId": "<p>The Amazon Web Services account ID associated with the registry that contains the repository. If you do not specify a registry, the default registry is assumed.</p>",
         "GetLifecyclePolicyResponse$registryId": "<p>The registry ID associated with the request.</p>",
-        "GetRegistryPolicyResponse$registryId": "<p>The ID of the registry.</p>",
-        "GetRegistryScanningConfigurationResponse$registryId": "<p>The ID of the registry.</p>",
+        "GetRegistryPolicyResponse$registryId": "<p>The registry ID associated with the request.</p>",
+        "GetRegistryScanningConfigurationResponse$registryId": "<p>The registry ID associated with the request.</p>",
         "GetRepositoryPolicyRequest$registryId": "<p>The Amazon Web Services account ID associated with the registry that contains the repository. If you do not specify a registry, the default registry is assumed.</p>",
         "GetRepositoryPolicyResponse$registryId": "<p>The registry ID associated with the request.</p>",
         "Image$registryId": "<p>The Amazon Web Services account ID associated with the registry containing the image.</p>",
@@ -1367,7 +1475,7 @@
         "PutImageTagMutabilityResponse$registryId": "<p>The registry ID associated with the request.</p>",
         "PutLifecyclePolicyRequest$registryId": "<p>The Amazon Web Services account ID associated with the registry that contains the repository. If you do&#x2028; not specify a registry, the default registry is assumed.</p>",
         "PutLifecyclePolicyResponse$registryId": "<p>The registry ID associated with the request.</p>",
-        "PutRegistryPolicyResponse$registryId": "<p>The registry ID.</p>",
+        "PutRegistryPolicyResponse$registryId": "<p>The registry ID associated with the request.</p>",
         "ReplicationDestination$registryId": "<p>The Amazon Web Services account ID of the Amazon ECR private registry to replicate to. When configuring cross-Region replication within your own registry, specify your own account ID.</p>",
         "Repository$registryId": "<p>The Amazon Web Services account ID associated with the registry that contains the repository.</p>",
         "SetRepositoryPolicyRequest$registryId": "<p>The Amazon Web Services account ID associated with the registry that contains the repository. If you do not specify a registry, the default registry is assumed.</p>",
@@ -1378,6 +1486,7 @@
         "StartLifecyclePolicyPreviewResponse$registryId": "<p>The registry ID associated with the request.</p>",
         "UpdatePullThroughCacheRuleRequest$registryId": "<p>The Amazon Web Services account ID associated with the registry associated with the pull through cache rule. If you do not specify a registry, the default registry is assumed.</p>",
         "UpdatePullThroughCacheRuleResponse$registryId": "<p>The registry ID associated with the request.</p>",
+        "UpdateRepositoryCreationTemplateResponse$registryId": "<p>The registry ID associated with the request.</p>",
         "UploadLayerPartRequest$registryId": "<p>The Amazon Web Services account ID associated with the registry to which you are uploading layer parts. If you do not specify a registry, the default registry is assumed.</p>",
         "UploadLayerPartResponse$registryId": "<p>The registry ID associated with the request.</p>",
         "ValidatePullThroughCacheRuleRequest$registryId": "<p>The registry ID associated with the pull through cache rule. If you do not specify a registry, the default registry is assumed.</p>",
@@ -1499,6 +1608,21 @@
       "refs": {
       }
     },
+    "RepositoryCreationTemplate": {
+      "base": "<p>The details of the repository creation template associated with the request.</p>",
+      "refs": {
+        "CreateRepositoryCreationTemplateResponse$repositoryCreationTemplate": "<p>The details of the repository creation template associated with the request.</p>",
+        "DeleteRepositoryCreationTemplateResponse$repositoryCreationTemplate": "<p>The details of the repository creation template that was deleted.</p>",
+        "RepositoryCreationTemplateList$member": null,
+        "UpdateRepositoryCreationTemplateResponse$repositoryCreationTemplate": "<p>The details of the repository creation template associated with the request.</p>"
+      }
+    },
+    "RepositoryCreationTemplateList": {
+      "base": null,
+      "refs": {
+        "DescribeRepositoryCreationTemplatesResponse$repositoryCreationTemplates": "<p>The details of the repository creation templates.</p>"
+      }
+    },
     "RepositoryFilter": {
       "base": "<p>The filter settings used with image replication. Specifying a repository filter to a replication rule provides a method for controlling which repositories in a private registry are replicated. If no filters are added, the contents of all repositories are replicated.</p>",
       "refs": {
@@ -1607,10 +1731,13 @@
     "RepositoryPolicyText": {
       "base": null,
       "refs": {
+        "CreateRepositoryCreationTemplateRequest$repositoryPolicy": "<p>The repository policy to apply to repositories created using the template. A repository policy is a permissions policy associated with a repository to control access permissions. </p>",
         "DeleteRepositoryPolicyResponse$policyText": "<p>The JSON repository policy that was deleted from the repository.</p>",
         "GetRepositoryPolicyResponse$policyText": "<p>The JSON repository policy text associated with the repository.</p>",
+        "RepositoryCreationTemplate$repositoryPolicy": "<p>he repository policy to apply to repositories created using the template. A repository policy is a permissions policy associated with a repository to control access permissions. </p>",
         "SetRepositoryPolicyRequest$policyText": "<p>The JSON repository policy text to apply to the repository. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/repository-policy-examples.html\">Amazon ECR repository policies</a> in the <i>Amazon Elastic Container Registry User Guide</i>.</p>",
-        "SetRepositoryPolicyResponse$policyText": "<p>The JSON repository policy text applied to the repository.</p>"
+        "SetRepositoryPolicyResponse$policyText": "<p>The JSON repository policy text applied to the repository.</p>",
+        "UpdateRepositoryCreationTemplateRequest$repositoryPolicy": "<p>Updates the repository policy created using the template. A repository policy is a permissions policy associated with a repository to control access permissions. </p>"
       }
     },
     "RepositoryScanningConfiguration": {
@@ -1635,6 +1762,14 @@
       "base": null,
       "refs": {
         "BatchGetRepositoryScanningConfigurationResponse$scanningConfigurations": "<p>The scanning configuration for the requested repositories.</p>"
+      }
+    },
+    "RepositoryTemplateDescription": {
+      "base": null,
+      "refs": {
+        "CreateRepositoryCreationTemplateRequest$description": "<p>A description for the repository creation template.</p>",
+        "RepositoryCreationTemplate$description": "<p>The description associated with the repository creation template.</p>",
+        "UpdateRepositoryCreationTemplateRequest$description": "<p>A description for the repository creation template.</p>"
       }
     },
     "Resource": {
@@ -1865,9 +2000,12 @@
     "TagList": {
       "base": null,
       "refs": {
+        "CreateRepositoryCreationTemplateRequest$resourceTags": "<p>The metadata to apply to the repository to help you categorize and organize. Each tag consists of a key and an optional value, both of which you define. Tag keys can have a maximum character length of 128 characters, and tag values can have a maximum length of 256 characters.</p>",
         "CreateRepositoryRequest$tags": "<p>The metadata that you apply to the repository to help you categorize and organize them. Each tag consists of a key and an optional value, both of which you define. Tag keys can have a maximum character length of 128 characters, and tag values can have a maximum length of 256 characters.</p>",
         "ListTagsForResourceResponse$tags": "<p>The tags for the resource.</p>",
-        "TagResourceRequest$tags": "<p>The tags to add to the resource. A tag is an array of key-value pairs. Tag keys can have a maximum character length of 128 characters, and tag values can have a maximum length of 256 characters.</p>"
+        "RepositoryCreationTemplate$resourceTags": "<p>The metadata to apply to the repository to help you categorize and organize. Each tag consists of a key and an optional value, both of which you define. Tag keys can have a maximum character length of 128 characters, and tag values can have a maximum length of 256 characters.</p>",
+        "TagResourceRequest$tags": "<p>The tags to add to the resource. A tag is an array of key-value pairs. Tag keys can have a maximum character length of 128 characters, and tag values can have a maximum length of 256 characters.</p>",
+        "UpdateRepositoryCreationTemplateRequest$resourceTags": "<p>The metadata to apply to the repository to help you categorize and organize. Each tag consists of a key and an optional value, both of which you define. Tag keys can have a maximum character length of 128 characters, and tag values can have a maximum length of 256 characters.</p>"
       }
     },
     "TagResourceRequest": {
@@ -1899,6 +2037,16 @@
       "base": null,
       "refs": {
         "Resource$tags": "<p>The tags attached to the resource.</p>"
+      }
+    },
+    "TemplateAlreadyExistsException": {
+      "base": "<p>The repository creation template already exists. Specify a unique prefix and try again.</p>",
+      "refs": {
+      }
+    },
+    "TemplateNotFoundException": {
+      "base": "<p>The specified repository creation template can't be found. Verify the registry ID and prefix and try again.</p>",
+      "refs": {
       }
     },
     "Title": {
@@ -1969,6 +2117,16 @@
       "refs": {
       }
     },
+    "UpdateRepositoryCreationTemplateRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateRepositoryCreationTemplateResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "UpdatedTimestamp": {
       "base": null,
       "refs": {
@@ -2013,7 +2171,7 @@
     "Url": {
       "base": null,
       "refs": {
-        "CreatePullThroughCacheRuleRequest$upstreamRegistryUrl": "<p>The registry URL of the upstream public registry to use as the source for the pull through cache rule. The following is the syntax to use for each supported upstream registry.</p> <ul> <li> <p>Amazon ECR Public (<code>ecr-public</code>) - <code>public.ecr.aws</code> </p> </li> <li> <p>Docker Hub (<code>docker-hub</code>) - <code>registry-1.docker.io</code> </p> </li> <li> <p>Quay (<code>quay</code>) - <code>quay.io</code> </p> </li> <li> <p>Kubernetes (<code>k8s</code>) - <code>registry.k8s.io</code> </p> </li> <li> <p>GitHub Container Registry (<code>github-container-registry</code>) - <code>ghcr.io</code> </p> </li> <li> <p>Microsoft Azure Container Registry (<code>azure-container-registry</code>) - <code>&lt;custom&gt;.azurecr.io</code> </p> </li> <li> <p>GitLab Container Registry (<code>gitlab-container-registry</code>) - <code>registry.gitlab.com</code> </p> </li> </ul>",
+        "CreatePullThroughCacheRuleRequest$upstreamRegistryUrl": "<p>The registry URL of the upstream public registry to use as the source for the pull through cache rule. The following is the syntax to use for each supported upstream registry.</p> <ul> <li> <p>Amazon ECR Public (<code>ecr-public</code>) - <code>public.ecr.aws</code> </p> </li> <li> <p>Docker Hub (<code>docker-hub</code>) - <code>registry-1.docker.io</code> </p> </li> <li> <p>Quay (<code>quay</code>) - <code>quay.io</code> </p> </li> <li> <p>Kubernetes (<code>k8s</code>) - <code>registry.k8s.io</code> </p> </li> <li> <p>GitHub Container Registry (<code>github-container-registry</code>) - <code>ghcr.io</code> </p> </li> <li> <p>Microsoft Azure Container Registry (<code>azure-container-registry</code>) - <code>&lt;custom&gt;.azurecr.io</code> </p> </li> </ul>",
         "CreatePullThroughCacheRuleResponse$upstreamRegistryUrl": "<p>The upstream registry URL associated with the pull through cache rule.</p>",
         "DeletePullThroughCacheRuleResponse$upstreamRegistryUrl": "<p>The upstream registry URL associated with the pull through cache rule.</p>",
         "GetDownloadUrlForLayerResponse$downloadUrl": "<p>The pre-signed Amazon S3 download URL for the requested layer.</p>",

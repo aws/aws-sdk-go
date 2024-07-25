@@ -55,13 +55,24 @@ const (
 	// ErrCodeServiceQuotaExceededException for service response error code
 	// "ServiceQuotaExceededException".
 	//
-	// The number of requests exceeds the service quota. Resubmit your request later.
+	// Your request exceeds the service quota for your account. You can view your
+	// quotas at Viewing service quotas (https://docs.aws.amazon.com/servicequotas/latest/userguide/gs-request-quota.html).
+	// You can resubmit your request later.
 	ErrCodeServiceQuotaExceededException = "ServiceQuotaExceededException"
+
+	// ErrCodeServiceUnavailableException for service response error code
+	// "ServiceUnavailableException".
+	//
+	// The service isn't currently available. Try again later.
+	ErrCodeServiceUnavailableException = "ServiceUnavailableException"
 
 	// ErrCodeThrottlingException for service response error code
 	// "ThrottlingException".
 	//
-	// The number of requests exceeds the limit. Resubmit your request later.
+	// Your request was throttled because of service-wide limitations. Resubmit
+	// your request later or in a different region. You can also purchase Provisioned
+	// Throughput (https://docs.aws.amazon.com/bedrock/latest/userguide/prov-throughput.html)
+	// to increase the rate or number of tokens you can process.
 	ErrCodeThrottlingException = "ThrottlingException"
 
 	// ErrCodeValidationException for service response error code
@@ -80,6 +91,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"ModelTimeoutException":         newErrorModelTimeoutException,
 	"ResourceNotFoundException":     newErrorResourceNotFoundException,
 	"ServiceQuotaExceededException": newErrorServiceQuotaExceededException,
+	"ServiceUnavailableException":   newErrorServiceUnavailableException,
 	"ThrottlingException":           newErrorThrottlingException,
 	"ValidationException":           newErrorValidationException,
 }

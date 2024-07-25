@@ -5,13 +5,15 @@
     "endpointPrefix":"network-firewall",
     "jsonVersion":"1.0",
     "protocol":"json",
+    "protocols":["json"],
     "serviceAbbreviation":"Network Firewall",
     "serviceFullName":"AWS Network Firewall",
     "serviceId":"Network Firewall",
     "signatureVersion":"v4",
     "signingName":"network-firewall",
     "targetPrefix":"NetworkFirewall_20201112",
-    "uid":"network-firewall-2020-11-12"
+    "uid":"network-firewall-2020-11-12",
+    "auth":["aws.auth#sigv4"]
   },
   "operations":{
     "AssociateFirewallPolicy":{
@@ -1510,7 +1512,8 @@
       "type":"string",
       "enum":[
         "ALERT",
-        "FLOW"
+        "FLOW",
+        "TLS"
       ]
     },
     "LoggingConfiguration":{

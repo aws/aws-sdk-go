@@ -2311,6 +2311,8 @@ type GetServiceInput struct {
 	// raw HTTP Query API, it is formatted as be epoch time in seconds. For example:
 	// 1698778057
 	//
+	// Your requested start time will be rounded to the nearest hour.
+	//
 	// EndTime is a required field
 	EndTime *time.Time `location:"querystring" locationName:"EndTime" type:"timestamp" required:"true"`
 
@@ -2339,6 +2341,8 @@ type GetServiceInput struct {
 	// The start of the time period to retrieve information about. When used in
 	// a raw HTTP Query API, it is formatted as be epoch time in seconds. For example:
 	// 1698778057
+	//
+	// Your requested start time will be rounded to the nearest hour.
 	//
 	// StartTime is a required field
 	StartTime *time.Time `location:"querystring" locationName:"StartTime" type:"timestamp" required:"true"`
@@ -2492,8 +2496,23 @@ type GetServiceOutput struct {
 	// The end time of the data included in the response. In a raw HTTP Query API,
 	// it is formatted as be epoch time in seconds. For example: 1698778057.
 	//
+	// This displays the time that Application Signals used for the request. It
+	// might not match your request exactly, because it was rounded to the nearest
+	// hour.
+	//
 	// EndTime is a required field
 	EndTime *time.Time `type:"timestamp" required:"true"`
+
+	// An array of string-to-string maps that each contain information about one
+	// log group associated with this service. Each string-to-string map includes
+	// the following fields:
+	//
+	//    * "Type": "AWS::Resource"
+	//
+	//    * "ResourceType": "AWS::Logs::LogGroup"
+	//
+	//    * "Identifier": "name-of-log-group"
+	LogGroupReferences []map[string]*string `type:"list"`
 
 	// A structure containing information about the service.
 	//
@@ -2502,6 +2521,10 @@ type GetServiceOutput struct {
 
 	// The start time of the data included in the response. In a raw HTTP Query
 	// API, it is formatted as be epoch time in seconds. For example: 1698778057.
+	//
+	// This displays the time that Application Signals used for the request. It
+	// might not match your request exactly, because it was rounded to the nearest
+	// hour.
 	//
 	// StartTime is a required field
 	StartTime *time.Time `type:"timestamp" required:"true"`
@@ -2528,6 +2551,12 @@ func (s GetServiceOutput) GoString() string {
 // SetEndTime sets the EndTime field's value.
 func (s *GetServiceOutput) SetEndTime(v time.Time) *GetServiceOutput {
 	s.EndTime = &v
+	return s
+}
+
+// SetLogGroupReferences sets the LogGroupReferences field's value.
+func (s *GetServiceOutput) SetLogGroupReferences(v []map[string]*string) *GetServiceOutput {
+	s.LogGroupReferences = v
 	return s
 }
 
@@ -2691,6 +2720,8 @@ type ListServiceDependenciesInput struct {
 	// raw HTTP Query API, it is formatted as be epoch time in seconds. For example:
 	// 1698778057
 	//
+	// Your requested end time will be rounded to the nearest hour.
+	//
 	// EndTime is a required field
 	EndTime *time.Time `location:"querystring" locationName:"EndTime" type:"timestamp" required:"true"`
 
@@ -2727,6 +2758,8 @@ type ListServiceDependenciesInput struct {
 	// The start of the time period to retrieve information about. When used in
 	// a raw HTTP Query API, it is formatted as be epoch time in seconds. For example:
 	// 1698778057
+	//
+	// Your requested start time will be rounded to the nearest hour.
 	//
 	// StartTime is a required field
 	StartTime *time.Time `location:"querystring" locationName:"StartTime" type:"timestamp" required:"true"`
@@ -2812,6 +2845,10 @@ type ListServiceDependenciesOutput struct {
 	// used in a raw HTTP Query API, it is formatted as be epoch time in seconds.
 	// For example: 1698778057
 	//
+	// This displays the time that Application Signals used for the request. It
+	// might not match your request exactly, because it was rounded to the nearest
+	// hour.
+	//
 	// EndTime is a required field
 	EndTime *time.Time `type:"timestamp" required:"true"`
 
@@ -2828,6 +2865,10 @@ type ListServiceDependenciesOutput struct {
 	// The start of the time period that the returned information applies to. When
 	// used in a raw HTTP Query API, it is formatted as be epoch time in seconds.
 	// For example: 1698778057
+	//
+	// This displays the time that Application Signals used for the request. It
+	// might not match your request exactly, because it was rounded to the nearest
+	// hour.
 	//
 	// StartTime is a required field
 	StartTime *time.Time `type:"timestamp" required:"true"`
@@ -2882,6 +2923,8 @@ type ListServiceDependentsInput struct {
 	// raw HTTP Query API, it is formatted as be epoch time in seconds. For example:
 	// 1698778057
 	//
+	// Your requested start time will be rounded to the nearest hour.
+	//
 	// EndTime is a required field
 	EndTime *time.Time `location:"querystring" locationName:"EndTime" type:"timestamp" required:"true"`
 
@@ -2918,6 +2961,8 @@ type ListServiceDependentsInput struct {
 	// The start of the time period to retrieve information about. When used in
 	// a raw HTTP Query API, it is formatted as be epoch time in seconds. For example:
 	// 1698778057
+	//
+	// Your requested start time will be rounded to the nearest hour.
 	//
 	// StartTime is a required field
 	StartTime *time.Time `location:"querystring" locationName:"StartTime" type:"timestamp" required:"true"`
@@ -3003,6 +3048,10 @@ type ListServiceDependentsOutput struct {
 	// used in a raw HTTP Query API, it is formatted as be epoch time in seconds.
 	// For example: 1698778057
 	//
+	// This displays the time that Application Signals used for the request. It
+	// might not match your request exactly, because it was rounded to the nearest
+	// hour.
+	//
 	// EndTime is a required field
 	EndTime *time.Time `type:"timestamp" required:"true"`
 
@@ -3019,6 +3068,10 @@ type ListServiceDependentsOutput struct {
 	// The start of the time period that the returned information applies to. When
 	// used in a raw HTTP Query API, it is formatted as be epoch time in seconds.
 	// For example: 1698778057
+	//
+	// This displays the time that Application Signals used for the request. It
+	// might not match your request exactly, because it was rounded to the nearest
+	// hour.
 	//
 	// StartTime is a required field
 	StartTime *time.Time `type:"timestamp" required:"true"`
@@ -3211,6 +3264,8 @@ type ListServiceOperationsInput struct {
 	// raw HTTP Query API, it is formatted as be epoch time in seconds. For example:
 	// 1698778057
 	//
+	// Your requested end time will be rounded to the nearest hour.
+	//
 	// EndTime is a required field
 	EndTime *time.Time `location:"querystring" locationName:"EndTime" type:"timestamp" required:"true"`
 
@@ -3247,6 +3302,8 @@ type ListServiceOperationsInput struct {
 	// The start of the time period to retrieve information about. When used in
 	// a raw HTTP Query API, it is formatted as be epoch time in seconds. For example:
 	// 1698778057
+	//
+	// Your requested start time will be rounded to the nearest hour.
 	//
 	// StartTime is a required field
 	StartTime *time.Time `location:"querystring" locationName:"StartTime" type:"timestamp" required:"true"`
@@ -3332,6 +3389,10 @@ type ListServiceOperationsOutput struct {
 	// used in a raw HTTP Query API, it is formatted as be epoch time in seconds.
 	// For example: 1698778057
 	//
+	// This displays the time that Application Signals used for the request. It
+	// might not match your request exactly, because it was rounded to the nearest
+	// hour.
+	//
 	// EndTime is a required field
 	EndTime *time.Time `type:"timestamp" required:"true"`
 
@@ -3348,6 +3409,10 @@ type ListServiceOperationsOutput struct {
 	// The start of the time period that the returned information applies to. When
 	// used in a raw HTTP Query API, it is formatted as be epoch time in seconds.
 	// For example: 1698778057
+	//
+	// This displays the time that Application Signals used for the request. It
+	// might not match your request exactly, because it was rounded to the nearest
+	// hour.
 	//
 	// StartTime is a required field
 	StartTime *time.Time `type:"timestamp" required:"true"`
@@ -3402,6 +3467,8 @@ type ListServicesInput struct {
 	// raw HTTP Query API, it is formatted as be epoch time in seconds. For example:
 	// 1698778057
 	//
+	// Your requested start time will be rounded to the nearest hour.
+	//
 	// EndTime is a required field
 	EndTime *time.Time `location:"querystring" locationName:"EndTime" type:"timestamp" required:"true"`
 
@@ -3416,6 +3483,8 @@ type ListServicesInput struct {
 	// The start of the time period to retrieve information about. When used in
 	// a raw HTTP Query API, it is formatted as be epoch time in seconds. For example:
 	// 1698778057
+	//
+	// Your requested start time will be rounded to the nearest hour.
 	//
 	// StartTime is a required field
 	StartTime *time.Time `location:"querystring" locationName:"StartTime" type:"timestamp" required:"true"`
@@ -3489,6 +3558,10 @@ type ListServicesOutput struct {
 	// used in a raw HTTP Query API, it is formatted as be epoch time in seconds.
 	// For example: 1698778057
 	//
+	// This displays the time that Application Signals used for the request. It
+	// might not match your request exactly, because it was rounded to the nearest
+	// hour.
+	//
 	// EndTime is a required field
 	EndTime *time.Time `type:"timestamp" required:"true"`
 
@@ -3504,6 +3577,10 @@ type ListServicesOutput struct {
 	// The start of the time period that the returned information applies to. When
 	// used in a raw HTTP Query API, it is formatted as be epoch time in seconds.
 	// For example: 1698778057
+	//
+	// This displays the time that Application Signals used for the request. It
+	// might not match your request exactly, because it was rounded to the nearest
+	// hour.
 	//
 	// StartTime is a required field
 	StartTime *time.Time `type:"timestamp" required:"true"`
@@ -4079,7 +4156,7 @@ type ResourceNotFoundException struct {
 
 	Message_ *string `locationName:"Message" type:"string"`
 
-	// Cannot find the resource id.
+	// Can't find the resource id.
 	//
 	// ResourceId is a required field
 	ResourceId *string `type:"string" required:"true"`
@@ -4286,6 +4363,17 @@ type Service struct {
 	// KeyAttributes is a required field
 	KeyAttributes map[string]*string `min:"1" type:"map" required:"true"`
 
+	// An array of string-to-string maps that each contain information about one
+	// log group associated with this service. Each string-to-string map includes
+	// the following fields:
+	//
+	//    * "Type": "AWS::Resource"
+	//
+	//    * "ResourceType": "AWS::Logs::LogGroup"
+	//
+	//    * "Identifier": "name-of-log-group"
+	LogGroupReferences []map[string]*string `type:"list"`
+
 	// An array of structures that each contain information about one metric associated
 	// with this service.
 	//
@@ -4320,6 +4408,12 @@ func (s *Service) SetAttributeMaps(v []map[string]*string) *Service {
 // SetKeyAttributes sets the KeyAttributes field's value.
 func (s *Service) SetKeyAttributes(v map[string]*string) *Service {
 	s.KeyAttributes = v
+	return s
+}
+
+// SetLogGroupReferences sets the LogGroupReferences field's value.
+func (s *Service) SetLogGroupReferences(v []map[string]*string) *Service {
+	s.LogGroupReferences = v
 	return s
 }
 

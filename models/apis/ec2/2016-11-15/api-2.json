@@ -39384,7 +39384,6 @@
         "verified-access-trust-provider",
         "vpn-connection-device-type",
         "vpc-block-public-access-exclusion",
-        "vpc-encryption-control",
         "ipam-resource-discovery",
         "ipam-resource-discovery-association",
         "instance-connect-endpoint",

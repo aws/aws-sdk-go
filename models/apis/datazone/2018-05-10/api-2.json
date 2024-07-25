@@ -1071,6 +1071,24 @@
         {"shape":"UnauthorizedException"}
       ]
     },
+    "GetEnvironmentCredentials":{
+      "name":"GetEnvironmentCredentials",
+      "http":{
+        "method":"GET",
+        "requestUri":"/v2/domains/{domainIdentifier}/environments/{environmentIdentifier}/credentials",
+        "responseCode":200
+      },
+      "input":{"shape":"GetEnvironmentCredentialsInput"},
+      "output":{"shape":"GetEnvironmentCredentialsOutput"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"UnauthorizedException"}
+      ]
+    },
     "GetEnvironmentProfile":{
       "name":"GetEnvironmentProfile",
       "http":{
@@ -5607,6 +5625,35 @@
         "updatedAt":{"shape":"SyntheticTimestamp_date_time"},
         "userParameters":{"shape":"CustomParameterList"}
       }
+    },
+    "GetEnvironmentCredentialsInput":{
+      "type":"structure",
+      "required":[
+        "domainIdentifier",
+        "environmentIdentifier"
+      ],
+      "members":{
+        "domainIdentifier":{
+          "shape":"DomainId",
+          "location":"uri",
+          "locationName":"domainIdentifier"
+        },
+        "environmentIdentifier":{
+          "shape":"EnvironmentId",
+          "location":"uri",
+          "locationName":"environmentIdentifier"
+        }
+      }
+    },
+    "GetEnvironmentCredentialsOutput":{
+      "type":"structure",
+      "members":{
+        "accessKeyId":{"shape":"String"},
+        "expiration":{"shape":"SyntheticTimestamp_date_time"},
+        "secretAccessKey":{"shape":"String"},
+        "sessionToken":{"shape":"String"}
+      },
+      "sensitive":true
     },
     "GetEnvironmentInput":{
       "type":"structure",

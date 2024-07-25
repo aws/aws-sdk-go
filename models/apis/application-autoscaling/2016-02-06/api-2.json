@@ -514,7 +514,9 @@
         "SageMakerVariantProvisionedConcurrencyUtilization",
         "ElastiCacheDatabaseCapacityUsageCountedForEvictPercentage",
         "SageMakerInferenceComponentInvocationsPerCopy",
-        "WorkSpacesAverageUserSessionsCapacityUtilization"
+        "WorkSpacesAverageUserSessionsCapacityUtilization",
+        "SageMakerInferenceComponentConcurrentRequestsPerCopyHighResolution",
+        "SageMakerVariantConcurrentRequestsPerModelHighResolution"
       ]
     },
     "MetricUnit":{"type":"string"},

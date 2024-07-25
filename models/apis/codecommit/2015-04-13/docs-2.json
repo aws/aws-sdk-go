@@ -1925,9 +1925,9 @@
     "KmsKeyId": {
       "base": null,
       "refs": {
-        "CreateRepositoryInput$kmsKeyId": "<p>The ID of the encryption key. You can view the ID of an encryption key in the KMS console, or use the KMS APIs to programmatically retrieve a key ID. For more information about acceptable values for kmsKeyID, see <a href=\"https://docs.aws.amazon.com/APIReference/API_Decrypt.html#KMS-Decrypt-request-KeyId\">KeyId</a> in the Decrypt API description in the <i>Key Management Service API Reference</i>.</p> <p>If no key is specified, the default <code>aws/codecommit</code> Amazon Web Services managed key is used.</p>",
+        "CreateRepositoryInput$kmsKeyId": "<p>The ID of the encryption key. You can view the ID of an encryption key in the KMS console, or use the KMS APIs to programmatically retrieve a key ID. For more information about acceptable values for kmsKeyID, see <a href=\"https://docs.aws.amazon.com/kms/latest/APIReference/API_Decrypt.html#KMS-Decrypt-request-KeyId\">KeyId</a> in the Decrypt API description in the <i>Key Management Service API Reference</i>.</p> <p>If no key is specified, the default <code>aws/codecommit</code> Amazon Web Services managed key is used.</p>",
         "RepositoryMetadata$kmsKeyId": "<p>The ID of the Key Management Service encryption key used to encrypt and decrypt the repository.</p>",
-        "UpdateRepositoryEncryptionKeyInput$kmsKeyId": "<p>The ID of the encryption key. You can view the ID of an encryption key in the KMS console, or use the KMS APIs to programmatically retrieve a key ID. For more information about acceptable values for keyID, see <a href=\"https://docs.aws.amazon.com/APIReference/API_Decrypt.html#KMS-Decrypt-request-KeyId\">KeyId</a> in the Decrypt API description in the <i>Key Management Service API Reference</i>.</p>",
+        "UpdateRepositoryEncryptionKeyInput$kmsKeyId": "<p>The ID of the encryption key. You can view the ID of an encryption key in the KMS console, or use the KMS APIs to programmatically retrieve a key ID. For more information about acceptable values for keyID, see <a href=\"https://docs.aws.amazon.com/kms/latest/APIReference/API_Decrypt.html#KMS-Decrypt-request-KeyId\">KeyId</a> in the Decrypt API description in the <i>Key Management Service API Reference</i>.</p>",
         "UpdateRepositoryEncryptionKeyOutput$kmsKeyId": "<p>The ID of the encryption key.</p>",
         "UpdateRepositoryEncryptionKeyOutput$originalKmsKeyId": "<p>The ID of the encryption key formerly used to encrypt and decrypt the repository.</p>"
       }
@@ -2427,6 +2427,11 @@
       "base": "<p>Information about the type of an object in a merge operation.</p>",
       "refs": {
         "ConflictMetadata$objectTypes": "<p>Information about any object type conflicts in a merge operation.</p>"
+      }
+    },
+    "OperationNotAllowedException": {
+      "base": "<p>The requested action is not allowed.</p>",
+      "refs": {
       }
     },
     "OrderEnum": {

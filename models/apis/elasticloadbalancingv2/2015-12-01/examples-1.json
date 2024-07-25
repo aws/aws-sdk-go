@@ -363,6 +363,23 @@
         "title": "To delete a rule"
       }
     ],
+    "DeleteSharedTrustStoreAssociation": [
+      {
+        "input": {
+          "ResourceArn": "arn:aws:elasticloadbalancing:us-east-1:123456789012:loadbalancer/app/my-load-balancer/80233fa81d678c2c",
+          "TrustStoreArn": "arn:aws:elasticloadbalancing:us-east-1:123456789012:truststore/my-trust-store/73e2d6bc24d8a063"
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "This example deletes the association between the specified trust store and the specified load balancer.",
+        "id": "delete-a-shared-trust-store-association-1721684063527",
+        "title": "Delete a shared trust store association"
+      }
+    ],
     "DeleteTargetGroup": [
       {
         "input": {
@@ -857,6 +874,22 @@
         "description": "This example describes the health of the specified target. This target is healthy.",
         "id": "elbv2-describe-target-health-2",
         "title": "To describe the health of a target"
+      }
+    ],
+    "GetResourcePolicy": [
+      {
+        "input": {
+          "ResourceArn": "arn:aws:elasticloadbalancing:us-east-1:123456789012:truststore/my-trust-store/73e2d6bc24d8a067"
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "This example retrieves the resource policy for the specified trust store.",
+        "id": "retrieve-a-resource-policy-1721684356628",
+        "title": "Retrieve a resource policy"
       }
     ],
     "ModifyListener": [

@@ -8,6 +8,12 @@ import (
 
 const (
 
+	// ErrCodeActivityAlreadyExists for service response error code
+	// "ActivityAlreadyExists".
+	//
+	// Activity already exists. EncryptionConfiguration may not be updated.
+	ErrCodeActivityAlreadyExists = "ActivityAlreadyExists"
+
 	// ErrCodeActivityDoesNotExist for service response error code
 	// "ActivityDoesNotExist".
 	//
@@ -78,6 +84,15 @@ const (
 	// The provided Amazon States Language definition is not valid.
 	ErrCodeInvalidDefinition = "InvalidDefinition"
 
+	// ErrCodeInvalidEncryptionConfiguration for service response error code
+	// "InvalidEncryptionConfiguration".
+	//
+	// Received when encryptionConfiguration is specified but various conditions
+	// exist which make the configuration invalid. For example, if type is set to
+	// CUSTOMER_MANAGED_KMS_KEY, but kmsKeyId is null, or kmsDataKeyReusePeriodSeconds
+	// is not between 60 and 900, or the KMS key is not symmetric or inactive.
+	ErrCodeInvalidEncryptionConfiguration = "InvalidEncryptionConfiguration"
+
 	// ErrCodeInvalidExecutionInput for service response error code
 	// "InvalidExecutionInput".
 	//
@@ -86,6 +101,8 @@ const (
 
 	// ErrCodeInvalidLoggingConfiguration for service response error code
 	// "InvalidLoggingConfiguration".
+	//
+	// Configuration is not valid.
 	ErrCodeInvalidLoggingConfiguration = "InvalidLoggingConfiguration"
 
 	// ErrCodeInvalidName for service response error code
@@ -112,6 +129,25 @@ const (
 	// Your tracingConfiguration key does not match, or enabled has not been set
 	// to true or false.
 	ErrCodeInvalidTracingConfiguration = "InvalidTracingConfiguration"
+
+	// ErrCodeKmsAccessDeniedException for service response error code
+	// "KmsAccessDeniedException".
+	//
+	// Either your KMS key policy or API caller does not have the required permissions.
+	ErrCodeKmsAccessDeniedException = "KmsAccessDeniedException"
+
+	// ErrCodeKmsInvalidStateException for service response error code
+	// "KmsInvalidStateException".
+	//
+	// The KMS key is not in valid state, for example: Disabled or Deleted.
+	ErrCodeKmsInvalidStateException = "KmsInvalidStateException"
+
+	// ErrCodeKmsThrottlingException for service response error code
+	// "KmsThrottlingException".
+	//
+	// Received when KMS returns ThrottlingException for a KMS call that Step Functions
+	// makes on behalf of the caller.
+	ErrCodeKmsThrottlingException = "KmsThrottlingException"
 
 	// ErrCodeMissingRequiredParameter for service response error code
 	// "MissingRequiredParameter".
@@ -162,6 +198,8 @@ const (
 
 	// ErrCodeStateMachineTypeNotSupported for service response error code
 	// "StateMachineTypeNotSupported".
+	//
+	// State machine type is not supported.
 	ErrCodeStateMachineTypeNotSupported = "StateMachineTypeNotSupported"
 
 	// ErrCodeTaskDoesNotExist for service response error code
@@ -194,32 +232,37 @@ const (
 )
 
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
-	"ActivityDoesNotExist":          newErrorActivityDoesNotExist,
-	"ActivityLimitExceeded":         newErrorActivityLimitExceeded,
-	"ActivityWorkerLimitExceeded":   newErrorActivityWorkerLimitExceeded,
-	"ConflictException":             newErrorConflictException,
-	"ExecutionAlreadyExists":        newErrorExecutionAlreadyExists,
-	"ExecutionDoesNotExist":         newErrorExecutionDoesNotExist,
-	"ExecutionLimitExceeded":        newErrorExecutionLimitExceeded,
-	"ExecutionNotRedrivable":        newErrorExecutionNotRedrivable,
-	"InvalidArn":                    newErrorInvalidArn,
-	"InvalidDefinition":             newErrorInvalidDefinition,
-	"InvalidExecutionInput":         newErrorInvalidExecutionInput,
-	"InvalidLoggingConfiguration":   newErrorInvalidLoggingConfiguration,
-	"InvalidName":                   newErrorInvalidName,
-	"InvalidOutput":                 newErrorInvalidOutput,
-	"InvalidToken":                  newErrorInvalidToken,
-	"InvalidTracingConfiguration":   newErrorInvalidTracingConfiguration,
-	"MissingRequiredParameter":      newErrorMissingRequiredParameter,
-	"ResourceNotFound":              newErrorResourceNotFound,
-	"ServiceQuotaExceededException": newErrorServiceQuotaExceededException,
-	"StateMachineAlreadyExists":     newErrorStateMachineAlreadyExists,
-	"StateMachineDeleting":          newErrorStateMachineDeleting,
-	"StateMachineDoesNotExist":      newErrorStateMachineDoesNotExist,
-	"StateMachineLimitExceeded":     newErrorStateMachineLimitExceeded,
-	"StateMachineTypeNotSupported":  newErrorStateMachineTypeNotSupported,
-	"TaskDoesNotExist":              newErrorTaskDoesNotExist,
-	"TaskTimedOut":                  newErrorTaskTimedOut,
-	"TooManyTags":                   newErrorTooManyTags,
-	"ValidationException":           newErrorValidationException,
+	"ActivityAlreadyExists":          newErrorActivityAlreadyExists,
+	"ActivityDoesNotExist":           newErrorActivityDoesNotExist,
+	"ActivityLimitExceeded":          newErrorActivityLimitExceeded,
+	"ActivityWorkerLimitExceeded":    newErrorActivityWorkerLimitExceeded,
+	"ConflictException":              newErrorConflictException,
+	"ExecutionAlreadyExists":         newErrorExecutionAlreadyExists,
+	"ExecutionDoesNotExist":          newErrorExecutionDoesNotExist,
+	"ExecutionLimitExceeded":         newErrorExecutionLimitExceeded,
+	"ExecutionNotRedrivable":         newErrorExecutionNotRedrivable,
+	"InvalidArn":                     newErrorInvalidArn,
+	"InvalidDefinition":              newErrorInvalidDefinition,
+	"InvalidEncryptionConfiguration": newErrorInvalidEncryptionConfiguration,
+	"InvalidExecutionInput":          newErrorInvalidExecutionInput,
+	"InvalidLoggingConfiguration":    newErrorInvalidLoggingConfiguration,
+	"InvalidName":                    newErrorInvalidName,
+	"InvalidOutput":                  newErrorInvalidOutput,
+	"InvalidToken":                   newErrorInvalidToken,
+	"InvalidTracingConfiguration":    newErrorInvalidTracingConfiguration,
+	"KmsAccessDeniedException":       newErrorKmsAccessDeniedException,
+	"KmsInvalidStateException":       newErrorKmsInvalidStateException,
+	"KmsThrottlingException":         newErrorKmsThrottlingException,
+	"MissingRequiredParameter":       newErrorMissingRequiredParameter,
+	"ResourceNotFound":               newErrorResourceNotFound,
+	"ServiceQuotaExceededException":  newErrorServiceQuotaExceededException,
+	"StateMachineAlreadyExists":      newErrorStateMachineAlreadyExists,
+	"StateMachineDeleting":           newErrorStateMachineDeleting,
+	"StateMachineDoesNotExist":       newErrorStateMachineDoesNotExist,
+	"StateMachineLimitExceeded":      newErrorStateMachineLimitExceeded,
+	"StateMachineTypeNotSupported":   newErrorStateMachineTypeNotSupported,
+	"TaskDoesNotExist":               newErrorTaskDoesNotExist,
+	"TaskTimedOut":                   newErrorTaskTimedOut,
+	"TooManyTags":                    newErrorTooManyTags,
+	"ValidationException":            newErrorValidationException,
 }
