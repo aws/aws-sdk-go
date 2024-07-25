@@ -32,6 +32,7 @@ var smokeTestsCustomizations = map[string]func(*SmokeTestSuite) error{
 	"wafregional":  wafRegionalSmokeTestCustomization,
 	"iotdataplane": iotDataPlaneSmokeTestCustomization,
 	"opsworks":     removeSmokeTests,
+	"cloudsearch":  removeSmokeTests,
 }
 
 func iotDataPlaneSmokeTestCustomization(suite *SmokeTestSuite) error {
