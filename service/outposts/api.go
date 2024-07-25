@@ -5888,6 +5888,9 @@ type InstanceTypeItem struct {
 
 	// The instance type.
 	InstanceType *string `type:"string"`
+
+	// The number of default VCPUs in an instance type.
+	VCPUs *int64 `type:"integer"`
 }
 
 // String returns the string representation.
@@ -5911,6 +5914,12 @@ func (s InstanceTypeItem) GoString() string {
 // SetInstanceType sets the InstanceType field's value.
 func (s *InstanceTypeItem) SetInstanceType(v string) *InstanceTypeItem {
 	s.InstanceType = &v
+	return s
+}
+
+// SetVCPUs sets the VCPUs field's value.
+func (s *InstanceTypeItem) SetVCPUs(v int64) *InstanceTypeItem {
+	s.VCPUs = &v
 	return s
 }
 

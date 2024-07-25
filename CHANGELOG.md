@@ -1,3 +1,28 @@
+Release v1.55.3 (2024-07-25)
+===
+
+### Service Client Updates
+* `service/application-autoscaling`: Updates service API
+* `service/application-signals`: Updates service API and documentation
+* `service/bedrock-runtime`: Updates service API and documentation
+* `service/codecommit`: Updates service API and documentation
+  * CreateRepository API now throws OperationNotAllowedException when the account has been restricted from creating a repository.
+* `service/datazone`: Updates service API and documentation
+* `service/ec2`: Updates service API and documentation
+  * EC2 Fleet now supports using custom identifiers to reference Amazon Machine Images (AMI) in launch requests that are configured to choose from a diversified list of instance types.
+* `service/ecr`: Updates service API, documentation, paginators, and examples
+  * API and documentation updates for Amazon ECR, adding support for creating, updating, describing and deleting ECR Repository Creation Template.
+* `service/eks`: Updates service API and documentation
+* `service/elasticloadbalancingv2`: Updates service API, documentation, and examples
+* `service/network-firewall`: Updates service API and documentation
+* `service/outposts`: Updates service API and documentation
+* `service/states`: Updates service API and documentation
+  * This release adds support to customer managed KMS key encryption in AWS Step Functions.
+
+### SDK Bugs
+* Remove broken integration test.
+  * Remove integration test broken by cloudsearch service.
+
 Release v1.55.2 (2024-07-24)
 ===
 

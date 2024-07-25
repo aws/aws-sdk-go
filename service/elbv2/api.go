@@ -1173,6 +1173,92 @@ func (c *ELBV2) DeleteRuleWithContext(ctx aws.Context, input *DeleteRuleInput, o
 	return out, req.Send()
 }
 
+const opDeleteSharedTrustStoreAssociation = "DeleteSharedTrustStoreAssociation"
+
+// DeleteSharedTrustStoreAssociationRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteSharedTrustStoreAssociation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteSharedTrustStoreAssociation for more information on using the DeleteSharedTrustStoreAssociation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteSharedTrustStoreAssociationRequest method.
+//	req, resp := client.DeleteSharedTrustStoreAssociationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancingv2-2015-12-01/DeleteSharedTrustStoreAssociation
+func (c *ELBV2) DeleteSharedTrustStoreAssociationRequest(input *DeleteSharedTrustStoreAssociationInput) (req *request.Request, output *DeleteSharedTrustStoreAssociationOutput) {
+	op := &request.Operation{
+		Name:       opDeleteSharedTrustStoreAssociation,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteSharedTrustStoreAssociationInput{}
+	}
+
+	output = &DeleteSharedTrustStoreAssociationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(query.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteSharedTrustStoreAssociation API operation for Elastic Load Balancing.
+//
+// Deletes a shared trust store association.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Elastic Load Balancing's
+// API operation DeleteSharedTrustStoreAssociation for usage and error information.
+//
+// Returned Error Codes:
+//
+//   - ErrCodeTrustStoreNotFoundException "TrustStoreNotFound"
+//     The specified trust store does not exist.
+//
+//   - ErrCodeDeleteAssociationSameAccountException "DeleteAssociationSameAccount"
+//     The specified association cannot be within the same account.
+//
+//   - ErrCodeTrustStoreAssociationNotFoundException "AssociationNotFound"
+//     The specified association does not exist.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancingv2-2015-12-01/DeleteSharedTrustStoreAssociation
+func (c *ELBV2) DeleteSharedTrustStoreAssociation(input *DeleteSharedTrustStoreAssociationInput) (*DeleteSharedTrustStoreAssociationOutput, error) {
+	req, out := c.DeleteSharedTrustStoreAssociationRequest(input)
+	return out, req.Send()
+}
+
+// DeleteSharedTrustStoreAssociationWithContext is the same as DeleteSharedTrustStoreAssociation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteSharedTrustStoreAssociation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ELBV2) DeleteSharedTrustStoreAssociationWithContext(ctx aws.Context, input *DeleteSharedTrustStoreAssociationInput, opts ...request.Option) (*DeleteSharedTrustStoreAssociationOutput, error) {
+	req, out := c.DeleteSharedTrustStoreAssociationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteTargetGroup = "DeleteTargetGroup"
 
 // DeleteTargetGroupRequest generates a "aws/request.Request" representing the
@@ -2745,8 +2831,8 @@ func (c *ELBV2) DescribeTrustStoreRevocationsRequest(input *DescribeTrustStoreRe
 
 // DescribeTrustStoreRevocations API operation for Elastic Load Balancing.
 //
-// Describes the revocation files in use by the specified trust store arn, or
-// revocation ID.
+// Describes the revocation files in use by the specified trust store or revocation
+// files.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2885,8 +2971,7 @@ func (c *ELBV2) DescribeTrustStoresRequest(input *DescribeTrustStoresInput) (req
 
 // DescribeTrustStores API operation for Elastic Load Balancing.
 //
-// Describes all trust stores for a given account by trust store arn’s or
-// name.
+// Describes all trust stores for the specified account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2970,6 +3055,84 @@ func (c *ELBV2) DescribeTrustStoresPagesWithContext(ctx aws.Context, input *Desc
 	}
 
 	return p.Err()
+}
+
+const opGetResourcePolicy = "GetResourcePolicy"
+
+// GetResourcePolicyRequest generates a "aws/request.Request" representing the
+// client's request for the GetResourcePolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetResourcePolicy for more information on using the GetResourcePolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetResourcePolicyRequest method.
+//	req, resp := client.GetResourcePolicyRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancingv2-2015-12-01/GetResourcePolicy
+func (c *ELBV2) GetResourcePolicyRequest(input *GetResourcePolicyInput) (req *request.Request, output *GetResourcePolicyOutput) {
+	op := &request.Operation{
+		Name:       opGetResourcePolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetResourcePolicyInput{}
+	}
+
+	output = &GetResourcePolicyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetResourcePolicy API operation for Elastic Load Balancing.
+//
+// Retrieves the resource policy for a specified resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Elastic Load Balancing's
+// API operation GetResourcePolicy for usage and error information.
+//
+// Returned Error Codes:
+//   - ErrCodeResourceNotFoundException "ResourceNotFound"
+//     The specified resource does not exist.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancingv2-2015-12-01/GetResourcePolicy
+func (c *ELBV2) GetResourcePolicy(input *GetResourcePolicyInput) (*GetResourcePolicyOutput, error) {
+	req, out := c.GetResourcePolicyRequest(input)
+	return out, req.Send()
+}
+
+// GetResourcePolicyWithContext is the same as GetResourcePolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetResourcePolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ELBV2) GetResourcePolicyWithContext(ctx aws.Context, input *GetResourcePolicyInput, opts ...request.Option) (*GetResourcePolicyOutput, error) {
+	req, out := c.GetResourcePolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opGetTrustStoreCaCertificatesBundle = "GetTrustStoreCaCertificatesBundle"
@@ -3694,7 +3857,7 @@ func (c *ELBV2) ModifyTrustStoreRequest(input *ModifyTrustStoreInput) (req *requ
 
 // ModifyTrustStore API operation for Elastic Load Balancing.
 //
-// Update the ca certificate bundle for a given trust store.
+// Update the ca certificate bundle for the specified trust store.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6653,6 +6816,88 @@ func (s DeleteRuleOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteSharedTrustStoreAssociationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the resource.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the trust store.
+	//
+	// TrustStoreArn is a required field
+	TrustStoreArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteSharedTrustStoreAssociationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteSharedTrustStoreAssociationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteSharedTrustStoreAssociationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteSharedTrustStoreAssociationInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.TrustStoreArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("TrustStoreArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *DeleteSharedTrustStoreAssociationInput) SetResourceArn(v string) *DeleteSharedTrustStoreAssociationInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetTrustStoreArn sets the TrustStoreArn field's value.
+func (s *DeleteSharedTrustStoreAssociationInput) SetTrustStoreArn(v string) *DeleteSharedTrustStoreAssociationInput {
+	s.TrustStoreArn = &v
+	return s
+}
+
+type DeleteSharedTrustStoreAssociationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteSharedTrustStoreAssociationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteSharedTrustStoreAssociationOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteTargetGroupInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7897,7 +8142,7 @@ func (s *DescribeTargetGroupsOutput) SetTargetGroups(v []*TargetGroup) *Describe
 type DescribeTargetHealthInput struct {
 	_ struct{} `type:"structure"`
 
-	// Used to inclue anomaly detection information.
+	// Used to include anomaly detection information.
 	Include []*string `type:"list" enum:"DescribeTargetHealthInputIncludeEnum"`
 
 	// The Amazon Resource Name (ARN) of the target group.
@@ -8505,6 +8750,83 @@ func (s *ForwardActionConfig) SetTargetGroupStickinessConfig(v *TargetGroupStick
 // SetTargetGroups sets the TargetGroups field's value.
 func (s *ForwardActionConfig) SetTargetGroups(v []*TargetGroupTuple) *ForwardActionConfig {
 	s.TargetGroups = v
+	return s
+}
+
+type GetResourcePolicyInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the resource.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetResourcePolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetResourcePolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetResourcePolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetResourcePolicyInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *GetResourcePolicyInput) SetResourceArn(v string) *GetResourcePolicyInput {
+	s.ResourceArn = &v
+	return s
+}
+
+type GetResourcePolicyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The content of the resource policy.
+	Policy *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetResourcePolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetResourcePolicyOutput) GoString() string {
+	return s.String()
+}
+
+// SetPolicy sets the Policy field's value.
+func (s *GetResourcePolicyOutput) SetPolicy(v string) *GetResourcePolicyOutput {
+	s.Policy = &v
 	return s
 }
 
@@ -10271,6 +10593,9 @@ type MutualAuthenticationAttributes struct {
 
 	// The Amazon Resource Name (ARN) of the trust store.
 	TrustStoreArn *string `type:"string"`
+
+	// Indicates a shared trust stores association status.
+	TrustStoreAssociationStatus *string `type:"string" enum:"TrustStoreAssociationStatusEnum"`
 }
 
 // String returns the string representation.
@@ -10306,6 +10631,12 @@ func (s *MutualAuthenticationAttributes) SetMode(v string) *MutualAuthentication
 // SetTrustStoreArn sets the TrustStoreArn field's value.
 func (s *MutualAuthenticationAttributes) SetTrustStoreArn(v string) *MutualAuthenticationAttributes {
 	s.TrustStoreArn = &v
+	return s
+}
+
+// SetTrustStoreAssociationStatus sets the TrustStoreAssociationStatus field's value.
+func (s *MutualAuthenticationAttributes) SetTrustStoreAssociationStatus(v string) *MutualAuthenticationAttributes {
+	s.TrustStoreAssociationStatus = &v
 	return s
 }
 
@@ -11238,6 +11569,11 @@ type SetIpAddressTypeInput struct {
 	// ipv4 (for only IPv4 addresses), dualstack (for IPv4 and IPv6 addresses),
 	// and dualstack-without-public-ipv4 (for IPv6 only public addresses, with private
 	// IPv4 and IPv6 addresses).
+	//
+	// Note: Application Load Balancer authentication only supports IPv4 addresses
+	// when connecting to an Identity Provider (IdP) or Amazon Cognito endpoint.
+	// Without a public IPv4 address the load balancer cannot complete the authentication
+	// process, resulting in HTTP 500 errors.
 	//
 	// [Network Load Balancers] The IP address type. The possible values are ipv4
 	// (for only IPv4 addresses) and dualstack (for IPv4 and IPv6 addresses). You
@@ -13249,6 +13585,22 @@ func TargetTypeEnum_Values() []string {
 		TargetTypeEnumIp,
 		TargetTypeEnumLambda,
 		TargetTypeEnumAlb,
+	}
+}
+
+const (
+	// TrustStoreAssociationStatusEnumActive is a TrustStoreAssociationStatusEnum enum value
+	TrustStoreAssociationStatusEnumActive = "active"
+
+	// TrustStoreAssociationStatusEnumRemoved is a TrustStoreAssociationStatusEnum enum value
+	TrustStoreAssociationStatusEnumRemoved = "removed"
+)
+
+// TrustStoreAssociationStatusEnum_Values returns all elements of the TrustStoreAssociationStatusEnum enum
+func TrustStoreAssociationStatusEnum_Values() []string {
+	return []string{
+		TrustStoreAssociationStatusEnumActive,
+		TrustStoreAssociationStatusEnumRemoved,
 	}
 }
 

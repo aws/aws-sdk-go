@@ -3,8 +3,8 @@
 // Package sfn provides the client and types for making API
 // requests to AWS Step Functions.
 //
-// Step Functions is a service that lets you coordinate the components of distributed
-// applications and microservices using visual workflows.
+// Step Functions coordinates the components of distributed applications and
+// microservices using visual workflows.
 //
 // You can use Step Functions to build applications from individual components,
 // each of which performs a discrete function, or task, allowing you to scale

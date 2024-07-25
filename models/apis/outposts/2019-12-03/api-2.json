@@ -5,12 +5,14 @@
     "endpointPrefix":"outposts",
     "jsonVersion":"1.1",
     "protocol":"rest-json",
+    "protocols":["rest-json"],
     "serviceAbbreviation":"Outposts",
     "serviceFullName":"AWS Outposts",
     "serviceId":"Outposts",
     "signatureVersion":"v4",
     "signingName":"outposts",
-    "uid":"outposts-2019-12-03"
+    "uid":"outposts-2019-12-03",
+    "auth":["aws.auth#sigv4"]
   },
   "operations":{
     "CancelCapacityTask":{
@@ -1229,7 +1231,8 @@
     "InstanceTypeItem":{
       "type":"structure",
       "members":{
-        "InstanceType":{"shape":"InstanceType"}
+        "InstanceType":{"shape":"InstanceType"},
+        "VCPUs":{"shape":"VCPUCount"}
       }
     },
     "InstanceTypeListDefinition":{
@@ -2208,6 +2211,10 @@
         "UPLINK_40G",
         "UPLINK_100G"
       ]
+    },
+    "VCPUCount":{
+      "type":"integer",
+      "box":true
     },
     "ValidationException":{
       "type":"structure",

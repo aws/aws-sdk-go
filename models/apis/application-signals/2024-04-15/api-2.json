@@ -2,6 +2,7 @@
   "version":"2.0",
   "metadata":{
     "apiVersion":"2024-04-15",
+    "auth":["aws.auth#sigv4"],
     "endpointPrefix":"application-signals",
     "protocol":"rest-json",
     "protocols":["rest-json"],
@@ -457,7 +458,8 @@
       "members":{
         "Service":{"shape":"Service"},
         "StartTime":{"shape":"Timestamp"},
-        "EndTime":{"shape":"Timestamp"}
+        "EndTime":{"shape":"Timestamp"},
+        "LogGroupReferences":{"shape":"LogGroupReferences"}
       }
     },
     "Goal":{
@@ -739,6 +741,10 @@
         "Tags":{"shape":"TagList"}
       }
     },
+    "LogGroupReferences":{
+      "type":"list",
+      "member":{"shape":"Attributes"}
+    },
     "Metric":{
       "type":"structure",
       "members":{
@@ -888,7 +894,8 @@
       "members":{
         "KeyAttributes":{"shape":"Attributes"},
         "AttributeMaps":{"shape":"AttributeMaps"},
-        "MetricReferences":{"shape":"MetricReferences"}
+        "MetricReferences":{"shape":"MetricReferences"},
+        "LogGroupReferences":{"shape":"LogGroupReferences"}
       }
     },
     "ServiceDependencies":{

@@ -966,6 +966,12 @@ const (
 	// of approval rules associated with it.
 	ErrCodeNumberOfRulesExceededException = "NumberOfRulesExceededException"
 
+	// ErrCodeOperationNotAllowedException for service response error code
+	// "OperationNotAllowedException".
+	//
+	// The requested action is not allowed.
+	ErrCodeOperationNotAllowedException = "OperationNotAllowedException"
+
 	// ErrCodeOverrideAlreadySetException for service response error code
 	// "OverrideAlreadySetException".
 	//
@@ -1435,6 +1441,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"NoChangeException":                                     newErrorNoChangeException,
 	"NumberOfRuleTemplatesExceededException":                newErrorNumberOfRuleTemplatesExceededException,
 	"NumberOfRulesExceededException":                        newErrorNumberOfRulesExceededException,
+	"OperationNotAllowedException":                          newErrorOperationNotAllowedException,
 	"OverrideAlreadySetException":                           newErrorOverrideAlreadySetException,
 	"OverrideStatusRequiredException":                       newErrorOverrideStatusRequiredException,
 	"ParentCommitDoesNotExistException":                     newErrorParentCommitDoesNotExistException,

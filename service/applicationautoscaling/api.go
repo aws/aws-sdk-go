@@ -7804,6 +7804,12 @@ const (
 
 	// MetricTypeWorkSpacesAverageUserSessionsCapacityUtilization is a MetricType enum value
 	MetricTypeWorkSpacesAverageUserSessionsCapacityUtilization = "WorkSpacesAverageUserSessionsCapacityUtilization"
+
+	// MetricTypeSageMakerInferenceComponentConcurrentRequestsPerCopyHighResolution is a MetricType enum value
+	MetricTypeSageMakerInferenceComponentConcurrentRequestsPerCopyHighResolution = "SageMakerInferenceComponentConcurrentRequestsPerCopyHighResolution"
+
+	// MetricTypeSageMakerVariantConcurrentRequestsPerModelHighResolution is a MetricType enum value
+	MetricTypeSageMakerVariantConcurrentRequestsPerModelHighResolution = "SageMakerVariantConcurrentRequestsPerModelHighResolution"
 )
 
 // MetricType_Values returns all elements of the MetricType enum
@@ -7834,6 +7840,8 @@ func MetricType_Values() []string {
 		MetricTypeElastiCacheDatabaseCapacityUsageCountedForEvictPercentage,
 		MetricTypeSageMakerInferenceComponentInvocationsPerCopy,
 		MetricTypeWorkSpacesAverageUserSessionsCapacityUtilization,
+		MetricTypeSageMakerInferenceComponentConcurrentRequestsPerCopyHighResolution,
+		MetricTypeSageMakerVariantConcurrentRequestsPerModelHighResolution,
 	}
 }
 

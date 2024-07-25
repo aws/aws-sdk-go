@@ -88,6 +88,10 @@ type ECRAPI interface {
 	CreateRepositoryWithContext(aws.Context, *ecr.CreateRepositoryInput, ...request.Option) (*ecr.CreateRepositoryOutput, error)
 	CreateRepositoryRequest(*ecr.CreateRepositoryInput) (*request.Request, *ecr.CreateRepositoryOutput)
 
+	CreateRepositoryCreationTemplate(*ecr.CreateRepositoryCreationTemplateInput) (*ecr.CreateRepositoryCreationTemplateOutput, error)
+	CreateRepositoryCreationTemplateWithContext(aws.Context, *ecr.CreateRepositoryCreationTemplateInput, ...request.Option) (*ecr.CreateRepositoryCreationTemplateOutput, error)
+	CreateRepositoryCreationTemplateRequest(*ecr.CreateRepositoryCreationTemplateInput) (*request.Request, *ecr.CreateRepositoryCreationTemplateOutput)
+
 	DeleteLifecyclePolicy(*ecr.DeleteLifecyclePolicyInput) (*ecr.DeleteLifecyclePolicyOutput, error)
 	DeleteLifecyclePolicyWithContext(aws.Context, *ecr.DeleteLifecyclePolicyInput, ...request.Option) (*ecr.DeleteLifecyclePolicyOutput, error)
 	DeleteLifecyclePolicyRequest(*ecr.DeleteLifecyclePolicyInput) (*request.Request, *ecr.DeleteLifecyclePolicyOutput)
@@ -103,6 +107,10 @@ type ECRAPI interface {
 	DeleteRepository(*ecr.DeleteRepositoryInput) (*ecr.DeleteRepositoryOutput, error)
 	DeleteRepositoryWithContext(aws.Context, *ecr.DeleteRepositoryInput, ...request.Option) (*ecr.DeleteRepositoryOutput, error)
 	DeleteRepositoryRequest(*ecr.DeleteRepositoryInput) (*request.Request, *ecr.DeleteRepositoryOutput)
+
+	DeleteRepositoryCreationTemplate(*ecr.DeleteRepositoryCreationTemplateInput) (*ecr.DeleteRepositoryCreationTemplateOutput, error)
+	DeleteRepositoryCreationTemplateWithContext(aws.Context, *ecr.DeleteRepositoryCreationTemplateInput, ...request.Option) (*ecr.DeleteRepositoryCreationTemplateOutput, error)
+	DeleteRepositoryCreationTemplateRequest(*ecr.DeleteRepositoryCreationTemplateInput) (*request.Request, *ecr.DeleteRepositoryCreationTemplateOutput)
 
 	DeleteRepositoryPolicy(*ecr.DeleteRepositoryPolicyInput) (*ecr.DeleteRepositoryPolicyOutput, error)
 	DeleteRepositoryPolicyWithContext(aws.Context, *ecr.DeleteRepositoryPolicyInput, ...request.Option) (*ecr.DeleteRepositoryPolicyOutput, error)
@@ -143,6 +151,13 @@ type ECRAPI interface {
 
 	DescribeRepositoriesPages(*ecr.DescribeRepositoriesInput, func(*ecr.DescribeRepositoriesOutput, bool) bool) error
 	DescribeRepositoriesPagesWithContext(aws.Context, *ecr.DescribeRepositoriesInput, func(*ecr.DescribeRepositoriesOutput, bool) bool, ...request.Option) error
+
+	DescribeRepositoryCreationTemplates(*ecr.DescribeRepositoryCreationTemplatesInput) (*ecr.DescribeRepositoryCreationTemplatesOutput, error)
+	DescribeRepositoryCreationTemplatesWithContext(aws.Context, *ecr.DescribeRepositoryCreationTemplatesInput, ...request.Option) (*ecr.DescribeRepositoryCreationTemplatesOutput, error)
+	DescribeRepositoryCreationTemplatesRequest(*ecr.DescribeRepositoryCreationTemplatesInput) (*request.Request, *ecr.DescribeRepositoryCreationTemplatesOutput)
+
+	DescribeRepositoryCreationTemplatesPages(*ecr.DescribeRepositoryCreationTemplatesInput, func(*ecr.DescribeRepositoryCreationTemplatesOutput, bool) bool) error
+	DescribeRepositoryCreationTemplatesPagesWithContext(aws.Context, *ecr.DescribeRepositoryCreationTemplatesInput, func(*ecr.DescribeRepositoryCreationTemplatesOutput, bool) bool, ...request.Option) error
 
 	GetAuthorizationToken(*ecr.GetAuthorizationTokenInput) (*ecr.GetAuthorizationTokenOutput, error)
 	GetAuthorizationTokenWithContext(aws.Context, *ecr.GetAuthorizationTokenInput, ...request.Option) (*ecr.GetAuthorizationTokenOutput, error)
@@ -241,6 +256,10 @@ type ECRAPI interface {
 	UpdatePullThroughCacheRule(*ecr.UpdatePullThroughCacheRuleInput) (*ecr.UpdatePullThroughCacheRuleOutput, error)
 	UpdatePullThroughCacheRuleWithContext(aws.Context, *ecr.UpdatePullThroughCacheRuleInput, ...request.Option) (*ecr.UpdatePullThroughCacheRuleOutput, error)
 	UpdatePullThroughCacheRuleRequest(*ecr.UpdatePullThroughCacheRuleInput) (*request.Request, *ecr.UpdatePullThroughCacheRuleOutput)
+
+	UpdateRepositoryCreationTemplate(*ecr.UpdateRepositoryCreationTemplateInput) (*ecr.UpdateRepositoryCreationTemplateOutput, error)
+	UpdateRepositoryCreationTemplateWithContext(aws.Context, *ecr.UpdateRepositoryCreationTemplateInput, ...request.Option) (*ecr.UpdateRepositoryCreationTemplateOutput, error)
+	UpdateRepositoryCreationTemplateRequest(*ecr.UpdateRepositoryCreationTemplateInput) (*request.Request, *ecr.UpdateRepositoryCreationTemplateOutput)
 
 	UploadLayerPart(*ecr.UploadLayerPartInput) (*ecr.UploadLayerPartOutput, error)
 	UploadLayerPartWithContext(aws.Context, *ecr.UploadLayerPartInput, ...request.Option) (*ecr.UploadLayerPartOutput, error)

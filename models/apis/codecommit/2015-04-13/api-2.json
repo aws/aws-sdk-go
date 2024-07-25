@@ -5,12 +5,14 @@
     "endpointPrefix":"codecommit",
     "jsonVersion":"1.1",
     "protocol":"json",
+    "protocols":["json"],
     "serviceAbbreviation":"CodeCommit",
     "serviceFullName":"AWS CodeCommit",
     "serviceId":"CodeCommit",
     "signatureVersion":"v4",
     "targetPrefix":"CodeCommit_20150413",
-    "uid":"codecommit-2015-04-13"
+    "uid":"codecommit-2015-04-13",
+    "auth":["aws.auth#sigv4"]
   },
   "operations":{
     "AssociateApprovalRuleTemplateWithRepository":{
@@ -316,6 +318,7 @@
         {"shape":"InvalidRepositoryNameException"},
         {"shape":"InvalidRepositoryDescriptionException"},
         {"shape":"RepositoryLimitExceededException"},
+        {"shape":"OperationNotAllowedException"},
         {"shape":"EncryptionIntegrityChecksFailedException"},
         {"shape":"EncryptionKeyAccessDeniedException"},
         {"shape":"EncryptionKeyDisabledException"},
@@ -4530,6 +4533,12 @@
         "destination":{"shape":"ObjectTypeEnum"},
         "base":{"shape":"ObjectTypeEnum"}
       }
+    },
+    "OperationNotAllowedException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
     },
     "OrderEnum":{
       "type":"string",

@@ -146,6 +146,59 @@ func ExampleECR_CreateRepository_shared00() {
 	fmt.Println(result)
 }
 
+// Create a new repository creation template
+// This example creates a repository creation template.
+func ExampleECR_CreateRepositoryCreationTemplate_shared00() {
+	svc := ecr.New(session.New())
+	input := &ecr.CreateRepositoryCreationTemplateInput{
+		AppliedFor: []*string{
+			aws.String("REPLICATION"),
+			aws.String("PULL_THROUGH_CACHE"),
+		},
+		Description: aws.String("Repos for testing images"),
+		EncryptionConfiguration: &ecr.EncryptionConfigurationForRepositoryCreationTemplate{
+			EncryptionType: aws.String("AES256"),
+		},
+		ImageTagMutability: aws.String("MUTABLE"),
+		LifecyclePolicy:    aws.String("{\r\n    \"rules\": [\r\n        {\r\n            \"rulePriority\": 1,\r\n            \"description\": \"Expire images older than 14 days\",\r\n            \"selection\": {\r\n                \"tagStatus\": \"untagged\",\r\n                \"countType\": \"sinceImagePushed\",\r\n                \"countUnit\": \"days\",\r\n                \"countNumber\": 14\r\n            },\r\n            \"action\": {\r\n                \"type\": \"expire\"\r\n            }\r\n        }\r\n    ]\r\n}"),
+		Prefix:             aws.String("eng/test"),
+		RepositoryPolicy:   aws.String("{\r\n  \"Version\": \"2012-10-17\",\r\n  \"Statement\": [\r\n    {\r\n      \"Sid\": \"LambdaECRPullPolicy\",\r\n      \"Effect\": \"Allow\",\r\n      \"Principal\": {\r\n        \"Service\": \"lambda.amazonaws.com\"\r\n      },\r\n      \"Action\": \"ecr:BatchGetImage\"\r\n    }\r\n  ]\r\n}"),
+		ResourceTags: []*ecr.Tag{
+			{
+				Key:   aws.String("environment"),
+				Value: aws.String("test"),
+			},
+		},
+	}
+
+	result, err := svc.CreateRepositoryCreationTemplate(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case ecr.ErrCodeServerException:
+				fmt.Println(ecr.ErrCodeServerException, aerr.Error())
+			case ecr.ErrCodeValidationException:
+				fmt.Println(ecr.ErrCodeValidationException, aerr.Error())
+			case ecr.ErrCodeInvalidParameterException:
+				fmt.Println(ecr.ErrCodeInvalidParameterException, aerr.Error())
+			case ecr.ErrCodeLimitExceededException:
+				fmt.Println(ecr.ErrCodeLimitExceededException, aerr.Error())
+			case ecr.ErrCodeTemplateAlreadyExistsException:
+				fmt.Println(ecr.ErrCodeTemplateAlreadyExistsException, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
 // To force delete a repository
 // This example force deletes a repository named ubuntu in the default registry for
 // an account. The force parameter is required if the repository contains images.
@@ -170,6 +223,40 @@ func ExampleECR_DeleteRepository_shared00() {
 				fmt.Println(ecr.ErrCodeRepositoryNotEmptyException, aerr.Error())
 			case ecr.ErrCodeKmsException:
 				fmt.Println(ecr.ErrCodeKmsException, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
+// Delete a repository creation template
+// This example deletes a repository creation template.
+func ExampleECR_DeleteRepositoryCreationTemplate_shared00() {
+	svc := ecr.New(session.New())
+	input := &ecr.DeleteRepositoryCreationTemplateInput{
+		Prefix: aws.String("eng"),
+	}
+
+	result, err := svc.DeleteRepositoryCreationTemplate(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case ecr.ErrCodeServerException:
+				fmt.Println(ecr.ErrCodeServerException, aerr.Error())
+			case ecr.ErrCodeValidationException:
+				fmt.Println(ecr.ErrCodeValidationException, aerr.Error())
+			case ecr.ErrCodeInvalidParameterException:
+				fmt.Println(ecr.ErrCodeInvalidParameterException, aerr.Error())
+			case ecr.ErrCodeTemplateNotFoundException:
+				fmt.Println(ecr.ErrCodeTemplateNotFoundException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -236,6 +323,42 @@ func ExampleECR_DescribeRepositories_shared00() {
 				fmt.Println(ecr.ErrCodeInvalidParameterException, aerr.Error())
 			case ecr.ErrCodeRepositoryNotFoundException:
 				fmt.Println(ecr.ErrCodeRepositoryNotFoundException, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
+// Describe a repository creation template
+// This example describes the contents of a repository creation template.
+func ExampleECR_DescribeRepositoryCreationTemplates_shared00() {
+	svc := ecr.New(session.New())
+	input := &ecr.DescribeRepositoryCreationTemplatesInput{
+		MaxResults: aws.Int64(123),
+		NextToken:  aws.String(""),
+		Prefixes: []*string{
+			aws.String("eng"),
+		},
+	}
+
+	result, err := svc.DescribeRepositoryCreationTemplates(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case ecr.ErrCodeServerException:
+				fmt.Println(ecr.ErrCodeServerException, aerr.Error())
+			case ecr.ErrCodeValidationException:
+				fmt.Println(ecr.ErrCodeValidationException, aerr.Error())
+			case ecr.ErrCodeInvalidParameterException:
+				fmt.Println(ecr.ErrCodeInvalidParameterException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -331,6 +454,49 @@ func ExampleECR_ListImages_shared00() {
 				fmt.Println(ecr.ErrCodeInvalidParameterException, aerr.Error())
 			case ecr.ErrCodeRepositoryNotFoundException:
 				fmt.Println(ecr.ErrCodeRepositoryNotFoundException, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
+// Update a repository creation template
+// This example updates a repository creation template.
+func ExampleECR_UpdateRepositoryCreationTemplate_shared00() {
+	svc := ecr.New(session.New())
+	input := &ecr.UpdateRepositoryCreationTemplateInput{
+		AppliedFor: []*string{
+			aws.String("REPLICATION"),
+		},
+		Prefix: aws.String("eng/test"),
+		ResourceTags: []*ecr.Tag{
+			{
+				Key:   aws.String("environment"),
+				Value: aws.String("test"),
+			},
+		},
+	}
+
+	result, err := svc.UpdateRepositoryCreationTemplate(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case ecr.ErrCodeServerException:
+				fmt.Println(ecr.ErrCodeServerException, aerr.Error())
+			case ecr.ErrCodeValidationException:
+				fmt.Println(ecr.ErrCodeValidationException, aerr.Error())
+			case ecr.ErrCodeInvalidParameterException:
+				fmt.Println(ecr.ErrCodeInvalidParameterException, aerr.Error())
+			case ecr.ErrCodeTemplateNotFoundException:
+				fmt.Println(ecr.ErrCodeTemplateNotFoundException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}

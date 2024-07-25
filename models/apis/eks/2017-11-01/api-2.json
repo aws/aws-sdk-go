@@ -1294,7 +1294,8 @@
         "id":{"shape":"String"},
         "health":{"shape":"ClusterHealth"},
         "outpostConfig":{"shape":"OutpostConfigResponse"},
-        "accessConfig":{"shape":"AccessConfigResponse"}
+        "accessConfig":{"shape":"AccessConfigResponse"},
+        "upgradePolicy":{"shape":"UpgradePolicyResponse"}
       }
     },
     "ClusterHealth":{
@@ -1504,7 +1505,8 @@
         "encryptionConfig":{"shape":"EncryptionConfigList"},
         "outpostConfig":{"shape":"OutpostConfigRequest"},
         "accessConfig":{"shape":"CreateAccessConfigRequest"},
-        "bootstrapSelfManagedAddons":{"shape":"BoxedBoolean"}
+        "bootstrapSelfManagedAddons":{"shape":"BoxedBoolean"},
+        "upgradePolicy":{"shape":"UpgradePolicyRequest"}
       }
     },
     "CreateClusterResponse":{
@@ -3383,6 +3385,13 @@
       "type":"list",
       "member":{"shape":"String"}
     },
+    "SupportType":{
+      "type":"string",
+      "enum":[
+        "STANDARD",
+        "EXTENDED"
+      ]
+    },
     "TagKey":{
       "type":"string",
       "max":128,
@@ -3574,7 +3583,8 @@
           "shape":"String",
           "idempotencyToken":true
         },
-        "accessConfig":{"shape":"UpdateAccessConfigRequest"}
+        "accessConfig":{"shape":"UpdateAccessConfigRequest"},
+        "upgradePolicy":{"shape":"UpgradePolicyRequest"}
       }
     },
     "UpdateClusterConfigResponse":{
@@ -3743,7 +3753,8 @@
         "SecurityGroups",
         "Subnets",
         "AuthenticationMode",
-        "PodIdentityAssociations"
+        "PodIdentityAssociations",
+        "UpgradePolicy"
       ]
     },
     "UpdateParams":{
@@ -3808,8 +3819,21 @@
         "AssociateEncryptionConfig",
         "AddonUpdate",
         "VpcConfigUpdate",
-        "AccessConfigUpdate"
+        "AccessConfigUpdate",
+        "UpgradePolicyUpdate"
       ]
+    },
+    "UpgradePolicyRequest":{
+      "type":"structure",
+      "members":{
+        "supportType":{"shape":"SupportType"}
+      }
+    },
+    "UpgradePolicyResponse":{
+      "type":"structure",
+      "members":{
+        "supportType":{"shape":"SupportType"}
+      }
     },
     "VpcConfigRequest":{
       "type":"structure",

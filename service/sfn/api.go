@@ -86,6 +86,9 @@ func (c *SFN) CreateActivityRequest(input *CreateActivityInput) (req *request.Re
 //     The maximum number of activities has been reached. Existing activities must
 //     be deleted before a new activity can be created.
 //
+//   - ActivityAlreadyExists
+//     Activity already exists. EncryptionConfiguration may not be updated.
+//
 //   - InvalidName
 //     The provided name is not valid.
 //
@@ -93,6 +96,19 @@ func (c *SFN) CreateActivityRequest(input *CreateActivityInput) (req *request.Re
 //     You've exceeded the number of tags allowed for a resource. See the Limits
 //     Topic (https://docs.aws.amazon.com/step-functions/latest/dg/limits.html)
 //     in the Step Functions Developer Guide.
+//
+//   - InvalidEncryptionConfiguration
+//     Received when encryptionConfiguration is specified but various conditions
+//     exist which make the configuration invalid. For example, if type is set to
+//     CUSTOMER_MANAGED_KMS_KEY, but kmsKeyId is null, or kmsDataKeyReusePeriodSeconds
+//     is not between 60 and 900, or the KMS key is not symmetric or inactive.
+//
+//   - KmsAccessDeniedException
+//     Either your KMS key policy or API caller does not have the required permissions.
+//
+//   - KmsThrottlingException
+//     Received when KMS returns ThrottlingException for a KMS call that Step Functions
+//     makes on behalf of the caller.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/CreateActivity
 func (c *SFN) CreateActivity(input *CreateActivityInput) (*CreateActivityOutput, error) {
@@ -169,17 +185,23 @@ func (c *SFN) CreateStateMachineRequest(input *CreateStateMachineInput) (req *re
 // If you set the publish parameter of this API action to true, it publishes
 // version 1 as the first revision of the state machine.
 //
+// For additional control over security, you can encrypt your data using a customer-managed
+// key for Step Functions state machines. You can configure a symmetric KMS
+// key and data key reuse period when creating or updating a State Machine.
+// The execution history and state machine definition will be encrypted with
+// the key applied to the State Machine.
+//
 // This operation is eventually consistent. The results are best effort and
 // may not reflect very recent updates and changes.
 //
 // CreateStateMachine is an idempotent API. Subsequent requests won’t create
 // a duplicate resource if it was already created. CreateStateMachine's idempotency
 // check is based on the state machine name, definition, type, LoggingConfiguration,
-// and TracingConfiguration. The check is also based on the publish and versionDescription
-// parameters. If a following request has a different roleArn or tags, Step
-// Functions will ignore these differences and treat it as an idempotent request
-// of the previous. In this case, roleArn and tags will not be updated, even
-// if they are different.
+// TracingConfiguration, and EncryptionConfiguration The check is also based
+// on the publish and versionDescription parameters. If a following request
+// has a different roleArn or tags, Step Functions will ignore these differences
+// and treat it as an idempotent request of the previous. In this case, roleArn
+// and tags will not be updated, even if they are different.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -200,6 +222,7 @@ func (c *SFN) CreateStateMachineRequest(input *CreateStateMachineInput) (req *re
 //     The provided name is not valid.
 //
 //   - InvalidLoggingConfiguration
+//     Configuration is not valid.
 //
 //   - InvalidTracingConfiguration
 //     Your tracingConfiguration key does not match, or enabled has not been set
@@ -217,6 +240,7 @@ func (c *SFN) CreateStateMachineRequest(input *CreateStateMachineInput) (req *re
 //     must be deleted before a new state machine can be created.
 //
 //   - StateMachineTypeNotSupported
+//     State machine type is not supported.
 //
 //   - TooManyTags
 //     You've exceeded the number of tags allowed for a resource. See the Limits
@@ -233,6 +257,19 @@ func (c *SFN) CreateStateMachineRequest(input *CreateStateMachineInput) (req *re
 //     or UpdateStateMachine with the publish parameter set to true.
 //
 //     HTTP Status Code: 409
+//
+//   - InvalidEncryptionConfiguration
+//     Received when encryptionConfiguration is specified but various conditions
+//     exist which make the configuration invalid. For example, if type is set to
+//     CUSTOMER_MANAGED_KMS_KEY, but kmsKeyId is null, or kmsDataKeyReusePeriodSeconds
+//     is not between 60 and 900, or the KMS key is not symmetric or inactive.
+//
+//   - KmsAccessDeniedException
+//     Either your KMS key policy or API caller does not have the required permissions.
+//
+//   - KmsThrottlingException
+//     Received when KMS returns ThrottlingException for a KMS call that Step Functions
+//     makes on behalf of the caller.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/CreateStateMachine
 func (c *SFN) CreateStateMachine(input *CreateStateMachineInput) (*CreateStateMachineOutput, error) {
@@ -954,6 +991,16 @@ func (c *SFN) DescribeExecutionRequest(input *DescribeExecutionInput) (req *requ
 //   - InvalidArn
 //     The provided Amazon Resource Name (ARN) is not valid.
 //
+//   - KmsAccessDeniedException
+//     Either your KMS key policy or API caller does not have the required permissions.
+//
+//   - KmsInvalidStateException
+//     The KMS key is not in valid state, for example: Disabled or Deleted.
+//
+//   - KmsThrottlingException
+//     Received when KMS returns ThrottlingException for a KMS call that Step Functions
+//     makes on behalf of the caller.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/DescribeExecution
 func (c *SFN) DescribeExecution(input *DescribeExecutionInput) (*DescribeExecutionOutput, error) {
 	req, out := c.DescribeExecutionRequest(input)
@@ -1150,6 +1197,16 @@ func (c *SFN) DescribeStateMachineRequest(input *DescribeStateMachineInput) (req
 //   - StateMachineDoesNotExist
 //     The specified state machine does not exist.
 //
+//   - KmsAccessDeniedException
+//     Either your KMS key policy or API caller does not have the required permissions.
+//
+//   - KmsInvalidStateException
+//     The KMS key is not in valid state, for example: Disabled or Deleted.
+//
+//   - KmsThrottlingException
+//     Received when KMS returns ThrottlingException for a KMS call that Step Functions
+//     makes on behalf of the caller.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/DescribeStateMachine
 func (c *SFN) DescribeStateMachine(input *DescribeStateMachineInput) (*DescribeStateMachineOutput, error) {
 	req, out := c.DescribeStateMachineRequest(input)
@@ -1336,6 +1393,16 @@ func (c *SFN) DescribeStateMachineForExecutionRequest(input *DescribeStateMachin
 //   - InvalidArn
 //     The provided Amazon Resource Name (ARN) is not valid.
 //
+//   - KmsAccessDeniedException
+//     Either your KMS key policy or API caller does not have the required permissions.
+//
+//   - KmsInvalidStateException
+//     The KMS key is not in valid state, for example: Disabled or Deleted.
+//
+//   - KmsThrottlingException
+//     Received when KMS returns ThrottlingException for a KMS call that Step Functions
+//     makes on behalf of the caller.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/DescribeStateMachineForExecution
 func (c *SFN) DescribeStateMachineForExecution(input *DescribeStateMachineForExecutionInput) (*DescribeStateMachineForExecutionOutput, error) {
 	req, out := c.DescribeStateMachineForExecutionRequest(input)
@@ -1437,6 +1504,16 @@ func (c *SFN) GetActivityTaskRequest(input *GetActivityTaskInput) (req *request.
 //   - InvalidArn
 //     The provided Amazon Resource Name (ARN) is not valid.
 //
+//   - KmsAccessDeniedException
+//     Either your KMS key policy or API caller does not have the required permissions.
+//
+//   - KmsInvalidStateException
+//     The KMS key is not in valid state, for example: Disabled or Deleted.
+//
+//   - KmsThrottlingException
+//     Received when KMS returns ThrottlingException for a KMS call that Step Functions
+//     makes on behalf of the caller.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/GetActivityTask
 func (c *SFN) GetActivityTask(input *GetActivityTaskInput) (*GetActivityTaskOutput, error) {
 	req, out := c.GetActivityTaskRequest(input)
@@ -1537,6 +1614,16 @@ func (c *SFN) GetExecutionHistoryRequest(input *GetExecutionHistoryInput) (req *
 //
 //   - InvalidToken
 //     The provided token is not valid.
+//
+//   - KmsAccessDeniedException
+//     Either your KMS key policy or API caller does not have the required permissions.
+//
+//   - KmsInvalidStateException
+//     The KMS key is not in valid state, for example: Disabled or Deleted.
+//
+//   - KmsThrottlingException
+//     Received when KMS returns ThrottlingException for a KMS call that Step Functions
+//     makes on behalf of the caller.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/GetExecutionHistory
 func (c *SFN) GetExecutionHistory(input *GetExecutionHistoryInput) (*GetExecutionHistoryOutput, error) {
@@ -1846,6 +1933,7 @@ func (c *SFN) ListExecutionsRequest(input *ListExecutionsInput) (req *request.Re
 //     The specified state machine does not exist.
 //
 //   - StateMachineTypeNotSupported
+//     State machine type is not supported.
 //
 //   - ValidationException
 //     The input does not satisfy the constraints specified by an Amazon Web Services
@@ -2820,6 +2908,13 @@ func (c *SFN) SendTaskFailureRequest(input *SendTaskFailureInput) (req *request.
 // pattern, and optionally Task states using the job run (https://docs.aws.amazon.com/step-functions/latest/dg/connect-to-resource.html#connect-sync)
 // pattern to report that the task identified by the taskToken failed.
 //
+// For an execution with encryption enabled, Step Functions will encrypt the
+// error and cause fields using the KMS key for the execution role.
+//
+// A caller can mark a task as fail without using any KMS permissions in the
+// execution role if the caller provides a null value for both error and cause
+// fields because no data needs to be encrypted.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2838,6 +2933,16 @@ func (c *SFN) SendTaskFailureRequest(input *SendTaskFailureInput) (req *request.
 //   - TaskTimedOut
 //     The task token has either expired or the task associated with the token has
 //     already been closed.
+//
+//   - KmsAccessDeniedException
+//     Either your KMS key policy or API caller does not have the required permissions.
+//
+//   - KmsInvalidStateException
+//     The KMS key is not in valid state, for example: Disabled or Deleted.
+//
+//   - KmsThrottlingException
+//     Received when KMS returns ThrottlingException for a KMS call that Step Functions
+//     makes on behalf of the caller.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/SendTaskFailure
 func (c *SFN) SendTaskFailure(input *SendTaskFailureInput) (*SendTaskFailureOutput, error) {
@@ -3033,6 +3138,16 @@ func (c *SFN) SendTaskSuccessRequest(input *SendTaskSuccessInput) (req *request.
 //     The task token has either expired or the task associated with the token has
 //     already been closed.
 //
+//   - KmsAccessDeniedException
+//     Either your KMS key policy or API caller does not have the required permissions.
+//
+//   - KmsInvalidStateException
+//     The KMS key is not in valid state, for example: Disabled or Deleted.
+//
+//   - KmsThrottlingException
+//     Received when KMS returns ThrottlingException for a KMS call that Step Functions
+//     makes on behalf of the caller.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/SendTaskSuccess
 func (c *SFN) SendTaskSuccess(input *SendTaskSuccessInput) (*SendTaskSuccessOutput, error) {
 	req, out := c.SendTaskSuccessRequest(input)
@@ -3173,6 +3288,16 @@ func (c *SFN) StartExecutionRequest(input *StartExecutionInput) (req *request.Re
 //     The input does not satisfy the constraints specified by an Amazon Web Services
 //     service.
 //
+//   - KmsAccessDeniedException
+//     Either your KMS key policy or API caller does not have the required permissions.
+//
+//   - KmsInvalidStateException
+//     The KMS key is not in valid state, for example: Disabled or Deleted.
+//
+//   - KmsThrottlingException
+//     Received when KMS returns ThrottlingException for a KMS call that Step Functions
+//     makes on behalf of the caller.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/StartExecution
 func (c *SFN) StartExecution(input *StartExecutionInput) (*StartExecutionOutput, error) {
 	req, out := c.StartExecutionRequest(input)
@@ -3276,6 +3401,17 @@ func (c *SFN) StartSyncExecutionRequest(input *StartSyncExecutionInput) (req *re
 //     The specified state machine is being deleted.
 //
 //   - StateMachineTypeNotSupported
+//     State machine type is not supported.
+//
+//   - KmsAccessDeniedException
+//     Either your KMS key policy or API caller does not have the required permissions.
+//
+//   - KmsInvalidStateException
+//     The KMS key is not in valid state, for example: Disabled or Deleted.
+//
+//   - KmsThrottlingException
+//     Received when KMS returns ThrottlingException for a KMS call that Step Functions
+//     makes on behalf of the caller.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/StartSyncExecution
 func (c *SFN) StartSyncExecution(input *StartSyncExecutionInput) (*StartSyncExecutionOutput, error) {
@@ -3346,6 +3482,13 @@ func (c *SFN) StopExecutionRequest(input *StopExecutionInput) (req *request.Requ
 //
 // This API action is not supported by EXPRESS state machines.
 //
+// For an execution with encryption enabled, Step Functions will encrypt the
+// error and cause fields using the KMS key for the execution role.
+//
+// A caller can stop an execution without using any KMS permissions in the execution
+// role if the caller provides a null value for both error and cause fields
+// because no data needs to be encrypted.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -3364,6 +3507,16 @@ func (c *SFN) StopExecutionRequest(input *StopExecutionInput) (req *request.Requ
 //   - ValidationException
 //     The input does not satisfy the constraints specified by an Amazon Web Services
 //     service.
+//
+//   - KmsAccessDeniedException
+//     Either your KMS key policy or API caller does not have the required permissions.
+//
+//   - KmsInvalidStateException
+//     The KMS key is not in valid state, for example: Disabled or Deleted.
+//
+//   - KmsThrottlingException
+//     Received when KMS returns ThrottlingException for a KMS call that Step Functions
+//     makes on behalf of the caller.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/StopExecution
 func (c *SFN) StopExecution(input *StopExecutionInput) (*StopExecutionOutput, error) {
@@ -3828,8 +3981,8 @@ func (c *SFN) UpdateStateMachineRequest(input *UpdateStateMachineInput) (req *re
 
 // UpdateStateMachine API operation for AWS Step Functions.
 //
-// Updates an existing state machine by modifying its definition, roleArn, or
-// loggingConfiguration. Running executions will continue to use the previous
+// Updates an existing state machine by modifying its definition, roleArn, loggingConfiguration,
+// or EncryptionConfiguration. Running executions will continue to use the previous
 // definition and roleArn. You must include at least one of definition or roleArn
 // or you will receive a MissingRequiredParameter error.
 //
@@ -3886,6 +4039,7 @@ func (c *SFN) UpdateStateMachineRequest(input *UpdateStateMachineInput) (req *re
 //     The provided Amazon States Language definition is not valid.
 //
 //   - InvalidLoggingConfiguration
+//     Configuration is not valid.
 //
 //   - InvalidTracingConfiguration
 //     Your tracingConfiguration key does not match, or enabled has not been set
@@ -3916,6 +4070,19 @@ func (c *SFN) UpdateStateMachineRequest(input *UpdateStateMachineInput) (req *re
 //   - ValidationException
 //     The input does not satisfy the constraints specified by an Amazon Web Services
 //     service.
+//
+//   - InvalidEncryptionConfiguration
+//     Received when encryptionConfiguration is specified but various conditions
+//     exist which make the configuration invalid. For example, if type is set to
+//     CUSTOMER_MANAGED_KMS_KEY, but kmsKeyId is null, or kmsDataKeyReusePeriodSeconds
+//     is not between 60 and 900, or the KMS key is not symmetric or inactive.
+//
+//   - KmsAccessDeniedException
+//     Either your KMS key policy or API caller does not have the required permissions.
+//
+//   - KmsThrottlingException
+//     Received when KMS returns ThrottlingException for a KMS call that Step Functions
+//     makes on behalf of the caller.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/UpdateStateMachine
 func (c *SFN) UpdateStateMachine(input *UpdateStateMachineInput) (*UpdateStateMachineOutput, error) {
@@ -4154,6 +4321,70 @@ func (c *SFN) ValidateStateMachineDefinitionWithContext(ctx aws.Context, input *
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// Activity already exists. EncryptionConfiguration may not be updated.
+type ActivityAlreadyExists struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ActivityAlreadyExists) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ActivityAlreadyExists) GoString() string {
+	return s.String()
+}
+
+func newErrorActivityAlreadyExists(v protocol.ResponseMetadata) error {
+	return &ActivityAlreadyExists{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ActivityAlreadyExists) Code() string {
+	return "ActivityAlreadyExists"
+}
+
+// Message returns the exception's message.
+func (s *ActivityAlreadyExists) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ActivityAlreadyExists) OrigErr() error {
+	return nil
+}
+
+func (s *ActivityAlreadyExists) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ActivityAlreadyExists) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ActivityAlreadyExists) RequestID() string {
+	return s.RespMetadata.RequestID
 }
 
 // The specified activity does not exist.
@@ -4914,6 +5145,9 @@ func (s *ConflictException) RequestID() string {
 type CreateActivityInput struct {
 	_ struct{} `type:"structure"`
 
+	// Settings to configure server-side encryption.
+	EncryptionConfiguration *EncryptionConfiguration `locationName:"encryptionConfiguration" type:"structure"`
+
 	// The name of the activity to create. This name must be unique for your Amazon
 	// Web Services account and region for 90 days. For more information, see Limits
 	// Related to State Machine Executions (https://docs.aws.amazon.com/step-functions/latest/dg/limits.html#service-limits-state-machine-executions)
@@ -4976,6 +5210,11 @@ func (s *CreateActivityInput) Validate() error {
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
 	}
+	if s.EncryptionConfiguration != nil {
+		if err := s.EncryptionConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("EncryptionConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.Tags != nil {
 		for i, v := range s.Tags {
 			if v == nil {
@@ -4991,6 +5230,12 @@ func (s *CreateActivityInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetEncryptionConfiguration sets the EncryptionConfiguration field's value.
+func (s *CreateActivityInput) SetEncryptionConfiguration(v *EncryptionConfiguration) *CreateActivityInput {
+	s.EncryptionConfiguration = v
+	return s
 }
 
 // SetName sets the Name field's value.
@@ -5203,6 +5448,9 @@ type CreateStateMachineInput struct {
 	// Definition is a required field
 	Definition *string `locationName:"definition" min:"1" type:"string" required:"true" sensitive:"true"`
 
+	// Settings to configure server-side encryption.
+	EncryptionConfiguration *EncryptionConfiguration `locationName:"encryptionConfiguration" type:"structure"`
+
 	// Defines what execution history events are logged and where they are logged.
 	//
 	// By default, the level is set to OFF. For more information see Log Levels
@@ -5307,6 +5555,11 @@ func (s *CreateStateMachineInput) Validate() error {
 	if s.RoleArn != nil && len(*s.RoleArn) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 1))
 	}
+	if s.EncryptionConfiguration != nil {
+		if err := s.EncryptionConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("EncryptionConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.LoggingConfiguration != nil {
 		if err := s.LoggingConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("LoggingConfiguration", err.(request.ErrInvalidParams))
@@ -5332,6 +5585,12 @@ func (s *CreateStateMachineInput) Validate() error {
 // SetDefinition sets the Definition field's value.
 func (s *CreateStateMachineInput) SetDefinition(v string) *CreateStateMachineInput {
 	s.Definition = &v
+	return s
+}
+
+// SetEncryptionConfiguration sets the EncryptionConfiguration field's value.
+func (s *CreateStateMachineInput) SetEncryptionConfiguration(v *EncryptionConfiguration) *CreateStateMachineInput {
+	s.EncryptionConfiguration = v
 	return s
 }
 
@@ -5784,6 +6043,9 @@ type DescribeActivityOutput struct {
 	// CreationDate is a required field
 	CreationDate *time.Time `locationName:"creationDate" type:"timestamp" required:"true"`
 
+	// Settings for configured server-side encryption.
+	EncryptionConfiguration *EncryptionConfiguration `locationName:"encryptionConfiguration" type:"structure"`
+
 	// The name of the activity.
 	//
 	// A name must not contain:
@@ -5835,6 +6097,12 @@ func (s *DescribeActivityOutput) SetCreationDate(v time.Time) *DescribeActivityO
 	return s
 }
 
+// SetEncryptionConfiguration sets the EncryptionConfiguration field's value.
+func (s *DescribeActivityOutput) SetEncryptionConfiguration(v *EncryptionConfiguration) *DescribeActivityOutput {
+	s.EncryptionConfiguration = v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *DescribeActivityOutput) SetName(v string) *DescribeActivityOutput {
 	s.Name = &v
@@ -5848,6 +6116,12 @@ type DescribeExecutionInput struct {
 	//
 	// ExecutionArn is a required field
 	ExecutionArn *string `locationName:"executionArn" min:"1" type:"string" required:"true"`
+
+	// If your state machine definition is encrypted with a KMS key, callers must
+	// have kms:Decrypt permission to decrypt the definition. Alternatively, you
+	// can call DescribeStateMachine API with includedData = METADATA_ONLY to get
+	// a successful response without the encrypted definition.
+	IncludedData *string `locationName:"includedData" type:"string" enum:"IncludedData"`
 }
 
 // String returns the string representation.
@@ -5887,6 +6161,12 @@ func (s *DescribeExecutionInput) Validate() error {
 // SetExecutionArn sets the ExecutionArn field's value.
 func (s *DescribeExecutionInput) SetExecutionArn(v string) *DescribeExecutionInput {
 	s.ExecutionArn = &v
+	return s
+}
+
+// SetIncludedData sets the IncludedData field's value.
+func (s *DescribeExecutionInput) SetIncludedData(v string) *DescribeExecutionInput {
+	s.IncludedData = &v
 	return s
 }
 
@@ -6532,6 +6812,12 @@ type DescribeStateMachineForExecutionInput struct {
 	//
 	// ExecutionArn is a required field
 	ExecutionArn *string `locationName:"executionArn" min:"1" type:"string" required:"true"`
+
+	// If your state machine definition is encrypted with a KMS key, callers must
+	// have kms:Decrypt permission to decrypt the definition. Alternatively, you
+	// can call the API with includedData = METADATA_ONLY to get a successful response
+	// without the encrypted definition.
+	IncludedData *string `locationName:"includedData" type:"string" enum:"IncludedData"`
 }
 
 // String returns the string representation.
@@ -6574,6 +6860,12 @@ func (s *DescribeStateMachineForExecutionInput) SetExecutionArn(v string) *Descr
 	return s
 }
 
+// SetIncludedData sets the IncludedData field's value.
+func (s *DescribeStateMachineForExecutionInput) SetIncludedData(v string) *DescribeStateMachineForExecutionInput {
+	s.IncludedData = &v
+	return s
+}
+
 type DescribeStateMachineForExecutionOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -6586,6 +6878,9 @@ type DescribeStateMachineForExecutionOutput struct {
 	//
 	// Definition is a required field
 	Definition *string `locationName:"definition" min:"1" type:"string" required:"true" sensitive:"true"`
+
+	// Settings to configure server-side encryption.
+	EncryptionConfiguration *EncryptionConfiguration `locationName:"encryptionConfiguration" type:"structure"`
 
 	// A user-defined or an auto-generated string that identifies a Map state. This
 	// ﬁeld is returned only if the executionArn is a child workflow execution
@@ -6658,6 +6953,12 @@ func (s *DescribeStateMachineForExecutionOutput) SetDefinition(v string) *Descri
 	return s
 }
 
+// SetEncryptionConfiguration sets the EncryptionConfiguration field's value.
+func (s *DescribeStateMachineForExecutionOutput) SetEncryptionConfiguration(v *EncryptionConfiguration) *DescribeStateMachineForExecutionOutput {
+	s.EncryptionConfiguration = v
+	return s
+}
+
 // SetLabel sets the Label field's value.
 func (s *DescribeStateMachineForExecutionOutput) SetLabel(v string) *DescribeStateMachineForExecutionOutput {
 	s.Label = &v
@@ -6715,6 +7016,17 @@ func (s *DescribeStateMachineForExecutionOutput) SetUpdateDate(v time.Time) *Des
 type DescribeStateMachineInput struct {
 	_ struct{} `type:"structure"`
 
+	// If your state machine definition is encrypted with a KMS key, callers must
+	// have kms:Decrypt permission to decrypt the definition. Alternatively, you
+	// can call the API with includedData = METADATA_ONLY to get a successful response
+	// without the encrypted definition.
+	//
+	// When calling a labelled ARN for an encrypted state machine, the includedData
+	// = METADATA_ONLY parameter will not apply because Step Functions needs to
+	// decrypt the entire state machine definition to get the Distributed Map state’s
+	// definition. In this case, the API caller needs to have kms:Decrypt permission.
+	IncludedData *string `locationName:"includedData" type:"string" enum:"IncludedData"`
+
 	// The Amazon Resource Name (ARN) of the state machine for which you want the
 	// information.
 	//
@@ -6760,6 +7072,12 @@ func (s *DescribeStateMachineInput) Validate() error {
 	return nil
 }
 
+// SetIncludedData sets the IncludedData field's value.
+func (s *DescribeStateMachineInput) SetIncludedData(v string) *DescribeStateMachineInput {
+	s.IncludedData = &v
+	return s
+}
+
 // SetStateMachineArn sets the StateMachineArn field's value.
 func (s *DescribeStateMachineInput) SetStateMachineArn(v string) *DescribeStateMachineInput {
 	s.StateMachineArn = &v
@@ -6779,6 +7097,9 @@ type DescribeStateMachineOutput struct {
 	// The Amazon States Language definition of the state machine. See Amazon States
 	// Language (https://docs.aws.amazon.com/step-functions/latest/dg/concepts-amazon-states-language.html).
 	//
+	// If called with includedData = METADATA_ONLY, the returned definition will
+	// be {}.
+	//
 	// Definition is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by DescribeStateMachineOutput's
 	// String and GoString methods.
@@ -6792,6 +7113,9 @@ type DescribeStateMachineOutput struct {
 	// replaced with "sensitive" in string returned by DescribeStateMachineOutput's
 	// String and GoString methods.
 	Description *string `locationName:"description" type:"string" sensitive:"true"`
+
+	// Settings to configure server-side encryption.
+	EncryptionConfiguration *EncryptionConfiguration `locationName:"encryptionConfiguration" type:"structure"`
 
 	// A user-defined or an auto-generated string that identifies a Map state. This
 	// parameter is present only if the stateMachineArn specified in input is a
@@ -6892,6 +7216,12 @@ func (s *DescribeStateMachineOutput) SetDescription(v string) *DescribeStateMach
 	return s
 }
 
+// SetEncryptionConfiguration sets the EncryptionConfiguration field's value.
+func (s *DescribeStateMachineOutput) SetEncryptionConfiguration(v *EncryptionConfiguration) *DescribeStateMachineOutput {
+	s.EncryptionConfiguration = v
+	return s
+}
+
 // SetLabel sets the Label field's value.
 func (s *DescribeStateMachineOutput) SetLabel(v string) *DescribeStateMachineOutput {
 	s.Label = &v
@@ -6942,6 +7272,95 @@ func (s *DescribeStateMachineOutput) SetTracingConfiguration(v *TracingConfigura
 
 // SetType sets the Type field's value.
 func (s *DescribeStateMachineOutput) SetType(v string) *DescribeStateMachineOutput {
+	s.Type = &v
+	return s
+}
+
+// Settings to configure server-side encryption.
+//
+// For additional control over security, you can encrypt your data using a customer-managed
+// key for Step Functions state machines and activities. You can configure a
+// symmetric KMS key and data key reuse period when creating or updating a State
+// Machine, and when creating an Activity. The execution history and state machine
+// definition will be encrypted with the key applied to the State Machine. Activity
+// inputs will be encrypted with the key applied to the Activity.
+//
+// Step Functions automatically enables encryption at rest using Amazon Web
+// Services owned keys at no charge. However, KMS charges apply when using a
+// customer managed key. For more information about pricing, see Key Management
+// Service pricing (https://aws.amazon.com/kms/pricing/).
+//
+// For more information on KMS, see What is Key Management Service? (https://docs.aws.amazon.com/kms/latest/developerguide/overview.html)
+type EncryptionConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Maximum duration that Step Functions will reuse data keys. When the period
+	// expires, Step Functions will call GenerateDataKey. Only applies to customer
+	// managed keys.
+	KmsDataKeyReusePeriodSeconds *int64 `locationName:"kmsDataKeyReusePeriodSeconds" min:"60" type:"integer"`
+
+	// An alias, alias ARN, key ID, or key ARN of a symmetric encryption KMS key
+	// to encrypt data. To specify a KMS key in a different Amazon Web Services
+	// account, you must use the key ARN or alias ARN.
+	KmsKeyId *string `locationName:"kmsKeyId" min:"1" type:"string"`
+
+	// Encryption type
+	//
+	// Type is a required field
+	Type *string `locationName:"type" type:"string" required:"true" enum:"EncryptionType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EncryptionConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EncryptionConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EncryptionConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EncryptionConfiguration"}
+	if s.KmsDataKeyReusePeriodSeconds != nil && *s.KmsDataKeyReusePeriodSeconds < 60 {
+		invalidParams.Add(request.NewErrParamMinValue("KmsDataKeyReusePeriodSeconds", 60))
+	}
+	if s.KmsKeyId != nil && len(*s.KmsKeyId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KmsKeyId", 1))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKmsDataKeyReusePeriodSeconds sets the KmsDataKeyReusePeriodSeconds field's value.
+func (s *EncryptionConfiguration) SetKmsDataKeyReusePeriodSeconds(v int64) *EncryptionConfiguration {
+	s.KmsDataKeyReusePeriodSeconds = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *EncryptionConfiguration) SetKmsKeyId(v string) *EncryptionConfiguration {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *EncryptionConfiguration) SetType(v string) *EncryptionConfiguration {
 	s.Type = &v
 	return s
 }
@@ -8758,6 +9177,73 @@ func (s *InvalidDefinition) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Received when encryptionConfiguration is specified but various conditions
+// exist which make the configuration invalid. For example, if type is set to
+// CUSTOMER_MANAGED_KMS_KEY, but kmsKeyId is null, or kmsDataKeyReusePeriodSeconds
+// is not between 60 and 900, or the KMS key is not symmetric or inactive.
+type InvalidEncryptionConfiguration struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvalidEncryptionConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvalidEncryptionConfiguration) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidEncryptionConfiguration(v protocol.ResponseMetadata) error {
+	return &InvalidEncryptionConfiguration{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *InvalidEncryptionConfiguration) Code() string {
+	return "InvalidEncryptionConfiguration"
+}
+
+// Message returns the exception's message.
+func (s *InvalidEncryptionConfiguration) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *InvalidEncryptionConfiguration) OrigErr() error {
+	return nil
+}
+
+func (s *InvalidEncryptionConfiguration) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *InvalidEncryptionConfiguration) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *InvalidEncryptionConfiguration) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // The provided JSON input data is not valid.
 type InvalidExecutionInput struct {
 	_            struct{}                  `type:"structure"`
@@ -8822,6 +9308,7 @@ func (s *InvalidExecutionInput) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Configuration is not valid.
 type InvalidLoggingConfiguration struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -9139,6 +9626,203 @@ func (s *InvalidTracingConfiguration) StatusCode() int {
 
 // RequestID returns the service's response RequestID for request.
 func (s *InvalidTracingConfiguration) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// Either your KMS key policy or API caller does not have the required permissions.
+type KmsAccessDeniedException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KmsAccessDeniedException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KmsAccessDeniedException) GoString() string {
+	return s.String()
+}
+
+func newErrorKmsAccessDeniedException(v protocol.ResponseMetadata) error {
+	return &KmsAccessDeniedException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *KmsAccessDeniedException) Code() string {
+	return "KmsAccessDeniedException"
+}
+
+// Message returns the exception's message.
+func (s *KmsAccessDeniedException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *KmsAccessDeniedException) OrigErr() error {
+	return nil
+}
+
+func (s *KmsAccessDeniedException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *KmsAccessDeniedException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *KmsAccessDeniedException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// The KMS key is not in valid state, for example: Disabled or Deleted.
+type KmsInvalidStateException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// Current status of the KMS; key. For example: DISABLED, PENDING_DELETION,
+	// PENDING_IMPORT, UNAVAILABLE, CREATING.
+	KmsKeyState *string `locationName:"kmsKeyState" type:"string" enum:"KmsKeyState"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KmsInvalidStateException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KmsInvalidStateException) GoString() string {
+	return s.String()
+}
+
+func newErrorKmsInvalidStateException(v protocol.ResponseMetadata) error {
+	return &KmsInvalidStateException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *KmsInvalidStateException) Code() string {
+	return "KmsInvalidStateException"
+}
+
+// Message returns the exception's message.
+func (s *KmsInvalidStateException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *KmsInvalidStateException) OrigErr() error {
+	return nil
+}
+
+func (s *KmsInvalidStateException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *KmsInvalidStateException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *KmsInvalidStateException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// Received when KMS returns ThrottlingException for a KMS call that Step Functions
+// makes on behalf of the caller.
+type KmsThrottlingException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KmsThrottlingException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KmsThrottlingException) GoString() string {
+	return s.String()
+}
+
+func newErrorKmsThrottlingException(v protocol.ResponseMetadata) error {
+	return &KmsThrottlingException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *KmsThrottlingException) Code() string {
+	return "KmsThrottlingException"
+}
+
+// Message returns the exception's message.
+func (s *KmsThrottlingException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *KmsThrottlingException) OrigErr() error {
+	return nil
+}
+
+func (s *KmsThrottlingException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *KmsThrottlingException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *KmsThrottlingException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -11933,6 +12617,12 @@ func (s *StartExecutionOutput) SetStartDate(v time.Time) *StartExecutionOutput {
 type StartSyncExecutionInput struct {
 	_ struct{} `type:"structure"`
 
+	// If your state machine definition is encrypted with a KMS key, callers must
+	// have kms:Decrypt permission to decrypt the definition. Alternatively, you
+	// can call the API with includedData = METADATA_ONLY to get a successful response
+	// without the encrypted definition.
+	IncludedData *string `locationName:"includedData" type:"string" enum:"IncludedData"`
+
 	// The string that contains the JSON input data for the execution, for example:
 	//
 	// "input": "{\"first_name\" : \"test\"}"
@@ -11996,6 +12686,12 @@ func (s *StartSyncExecutionInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetIncludedData sets the IncludedData field's value.
+func (s *StartSyncExecutionInput) SetIncludedData(v string) *StartSyncExecutionInput {
+	s.IncludedData = &v
+	return s
 }
 
 // SetInput sets the Input field's value.
@@ -12714,6 +13410,7 @@ func (s *StateMachineListItem) SetType(v string) *StateMachineListItem {
 	return s
 }
 
+// State machine type is not supported.
 type StateMachineTypeNotSupported struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -14463,6 +15160,9 @@ type UpdateStateMachineInput struct {
 	// String and GoString methods.
 	Definition *string `locationName:"definition" min:"1" type:"string" sensitive:"true"`
 
+	// Settings to configure server-side encryption.
+	EncryptionConfiguration *EncryptionConfiguration `locationName:"encryptionConfiguration" type:"structure"`
+
 	// Use the LoggingConfiguration data type to set CloudWatch Logs options.
 	LoggingConfiguration *LoggingConfiguration `locationName:"loggingConfiguration" type:"structure"`
 
@@ -14526,6 +15226,11 @@ func (s *UpdateStateMachineInput) Validate() error {
 	if s.StateMachineArn != nil && len(*s.StateMachineArn) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("StateMachineArn", 1))
 	}
+	if s.EncryptionConfiguration != nil {
+		if err := s.EncryptionConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("EncryptionConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.LoggingConfiguration != nil {
 		if err := s.LoggingConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("LoggingConfiguration", err.(request.ErrInvalidParams))
@@ -14541,6 +15246,12 @@ func (s *UpdateStateMachineInput) Validate() error {
 // SetDefinition sets the Definition field's value.
 func (s *UpdateStateMachineInput) SetDefinition(v string) *UpdateStateMachineInput {
 	s.Definition = &v
+	return s
+}
+
+// SetEncryptionConfiguration sets the EncryptionConfiguration field's value.
+func (s *UpdateStateMachineInput) SetEncryptionConfiguration(v *EncryptionConfiguration) *UpdateStateMachineInput {
+	s.EncryptionConfiguration = v
 	return s
 }
 
@@ -14884,6 +15595,22 @@ func (s *ValidationException) RequestID() string {
 }
 
 const (
+	// EncryptionTypeAwsOwnedKey is a EncryptionType enum value
+	EncryptionTypeAwsOwnedKey = "AWS_OWNED_KEY"
+
+	// EncryptionTypeCustomerManagedKmsKey is a EncryptionType enum value
+	EncryptionTypeCustomerManagedKmsKey = "CUSTOMER_MANAGED_KMS_KEY"
+)
+
+// EncryptionType_Values returns all elements of the EncryptionType enum
+func EncryptionType_Values() []string {
+	return []string{
+		EncryptionTypeAwsOwnedKey,
+		EncryptionTypeCustomerManagedKmsKey,
+	}
+}
+
+const (
 	// ExecutionRedriveFilterRedriven is a ExecutionRedriveFilter enum value
 	ExecutionRedriveFilterRedriven = "REDRIVEN"
 
@@ -15204,6 +15931,22 @@ func HistoryEventType_Values() []string {
 }
 
 const (
+	// IncludedDataAllData is a IncludedData enum value
+	IncludedDataAllData = "ALL_DATA"
+
+	// IncludedDataMetadataOnly is a IncludedData enum value
+	IncludedDataMetadataOnly = "METADATA_ONLY"
+)
+
+// IncludedData_Values returns all elements of the IncludedData enum
+func IncludedData_Values() []string {
+	return []string{
+		IncludedDataAllData,
+		IncludedDataMetadataOnly,
+	}
+}
+
+const (
 	// InspectionLevelInfo is a InspectionLevel enum value
 	InspectionLevelInfo = "INFO"
 
@@ -15220,6 +15963,34 @@ func InspectionLevel_Values() []string {
 		InspectionLevelInfo,
 		InspectionLevelDebug,
 		InspectionLevelTrace,
+	}
+}
+
+const (
+	// KmsKeyStateDisabled is a KmsKeyState enum value
+	KmsKeyStateDisabled = "DISABLED"
+
+	// KmsKeyStatePendingDeletion is a KmsKeyState enum value
+	KmsKeyStatePendingDeletion = "PENDING_DELETION"
+
+	// KmsKeyStatePendingImport is a KmsKeyState enum value
+	KmsKeyStatePendingImport = "PENDING_IMPORT"
+
+	// KmsKeyStateUnavailable is a KmsKeyState enum value
+	KmsKeyStateUnavailable = "UNAVAILABLE"
+
+	// KmsKeyStateCreating is a KmsKeyState enum value
+	KmsKeyStateCreating = "CREATING"
+)
+
+// KmsKeyState_Values returns all elements of the KmsKeyState enum
+func KmsKeyState_Values() []string {
+	return []string{
+		KmsKeyStateDisabled,
+		KmsKeyStatePendingDeletion,
+		KmsKeyStatePendingImport,
+		KmsKeyStateUnavailable,
+		KmsKeyStateCreating,
 	}
 }
 

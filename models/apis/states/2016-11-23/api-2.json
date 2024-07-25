@@ -25,8 +25,12 @@
       "output":{"shape":"CreateActivityOutput"},
       "errors":[
         {"shape":"ActivityLimitExceeded"},
+        {"shape":"ActivityAlreadyExists"},
         {"shape":"InvalidName"},
-        {"shape":"TooManyTags"}
+        {"shape":"TooManyTags"},
+        {"shape":"InvalidEncryptionConfiguration"},
+        {"shape":"KmsAccessDeniedException"},
+        {"shape":"KmsThrottlingException"}
       ],
       "idempotent":true
     },
@@ -50,7 +54,10 @@
         {"shape":"StateMachineTypeNotSupported"},
         {"shape":"TooManyTags"},
         {"shape":"ValidationException"},
-        {"shape":"ConflictException"}
+        {"shape":"ConflictException"},
+        {"shape":"InvalidEncryptionConfiguration"},
+        {"shape":"KmsAccessDeniedException"},
+        {"shape":"KmsThrottlingException"}
       ],
       "idempotent":true
     },
@@ -149,7 +156,10 @@
       "output":{"shape":"DescribeExecutionOutput"},
       "errors":[
         {"shape":"ExecutionDoesNotExist"},
-        {"shape":"InvalidArn"}
+        {"shape":"InvalidArn"},
+        {"shape":"KmsAccessDeniedException"},
+        {"shape":"KmsInvalidStateException"},
+        {"shape":"KmsThrottlingException"}
       ]
     },
     "DescribeMapRun":{
@@ -175,7 +185,10 @@
       "output":{"shape":"DescribeStateMachineOutput"},
       "errors":[
         {"shape":"InvalidArn"},
-        {"shape":"StateMachineDoesNotExist"}
+        {"shape":"StateMachineDoesNotExist"},
+        {"shape":"KmsAccessDeniedException"},
+        {"shape":"KmsInvalidStateException"},
+        {"shape":"KmsThrottlingException"}
       ]
     },
     "DescribeStateMachineAlias":{
@@ -202,7 +215,10 @@
       "output":{"shape":"DescribeStateMachineForExecutionOutput"},
       "errors":[
         {"shape":"ExecutionDoesNotExist"},
-        {"shape":"InvalidArn"}
+        {"shape":"InvalidArn"},
+        {"shape":"KmsAccessDeniedException"},
+        {"shape":"KmsInvalidStateException"},
+        {"shape":"KmsThrottlingException"}
       ]
     },
     "GetActivityTask":{
@@ -216,7 +232,10 @@
       "errors":[
         {"shape":"ActivityDoesNotExist"},
         {"shape":"ActivityWorkerLimitExceeded"},
-        {"shape":"InvalidArn"}
+        {"shape":"InvalidArn"},
+        {"shape":"KmsAccessDeniedException"},
+        {"shape":"KmsInvalidStateException"},
+        {"shape":"KmsThrottlingException"}
       ]
     },
     "GetExecutionHistory":{
@@ -230,7 +249,10 @@
       "errors":[
         {"shape":"ExecutionDoesNotExist"},
         {"shape":"InvalidArn"},
-        {"shape":"InvalidToken"}
+        {"shape":"InvalidToken"},
+        {"shape":"KmsAccessDeniedException"},
+        {"shape":"KmsInvalidStateException"},
+        {"shape":"KmsThrottlingException"}
       ]
     },
     "ListActivities":{
@@ -377,7 +399,10 @@
       "errors":[
         {"shape":"TaskDoesNotExist"},
         {"shape":"InvalidToken"},
-        {"shape":"TaskTimedOut"}
+        {"shape":"TaskTimedOut"},
+        {"shape":"KmsAccessDeniedException"},
+        {"shape":"KmsInvalidStateException"},
+        {"shape":"KmsThrottlingException"}
       ]
     },
     "SendTaskHeartbeat":{
@@ -406,7 +431,10 @@
         {"shape":"TaskDoesNotExist"},
         {"shape":"InvalidOutput"},
         {"shape":"InvalidToken"},
-        {"shape":"TaskTimedOut"}
+        {"shape":"TaskTimedOut"},
+        {"shape":"KmsAccessDeniedException"},
+        {"shape":"KmsInvalidStateException"},
+        {"shape":"KmsThrottlingException"}
       ]
     },
     "StartExecution":{
@@ -425,7 +453,10 @@
         {"shape":"InvalidName"},
         {"shape":"StateMachineDoesNotExist"},
         {"shape":"StateMachineDeleting"},
-        {"shape":"ValidationException"}
+        {"shape":"ValidationException"},
+        {"shape":"KmsAccessDeniedException"},
+        {"shape":"KmsInvalidStateException"},
+        {"shape":"KmsThrottlingException"}
       ],
       "idempotent":true
     },
@@ -443,7 +474,10 @@
         {"shape":"InvalidName"},
         {"shape":"StateMachineDoesNotExist"},
         {"shape":"StateMachineDeleting"},
-        {"shape":"StateMachineTypeNotSupported"}
+        {"shape":"StateMachineTypeNotSupported"},
+        {"shape":"KmsAccessDeniedException"},
+        {"shape":"KmsInvalidStateException"},
+        {"shape":"KmsThrottlingException"}
       ],
       "endpoint":{"hostPrefix":"sync-"}
     },
@@ -458,7 +492,10 @@
       "errors":[
         {"shape":"ExecutionDoesNotExist"},
         {"shape":"InvalidArn"},
-        {"shape":"ValidationException"}
+        {"shape":"ValidationException"},
+        {"shape":"KmsAccessDeniedException"},
+        {"shape":"KmsInvalidStateException"},
+        {"shape":"KmsThrottlingException"}
       ]
     },
     "TagResource":{
@@ -536,7 +573,10 @@
         {"shape":"StateMachineDoesNotExist"},
         {"shape":"ServiceQuotaExceededException"},
         {"shape":"ConflictException"},
-        {"shape":"ValidationException"}
+        {"shape":"ValidationException"},
+        {"shape":"InvalidEncryptionConfiguration"},
+        {"shape":"KmsAccessDeniedException"},
+        {"shape":"KmsThrottlingException"}
       ],
       "idempotent":true
     },
@@ -570,6 +610,13 @@
     }
   },
   "shapes":{
+    "ActivityAlreadyExists":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
+    },
     "ActivityDoesNotExist":{
       "type":"structure",
       "members":{
@@ -726,7 +773,8 @@
       "required":["name"],
       "members":{
         "name":{"shape":"Name"},
-        "tags":{"shape":"TagList"}
+        "tags":{"shape":"TagList"},
+        "encryptionConfiguration":{"shape":"EncryptionConfiguration"}
       }
     },
     "CreateActivityOutput":{
@@ -779,7 +827,8 @@
         "tags":{"shape":"TagList"},
         "tracingConfiguration":{"shape":"TracingConfiguration"},
         "publish":{"shape":"Publish"},
-        "versionDescription":{"shape":"VersionDescription"}
+        "versionDescription":{"shape":"VersionDescription"},
+        "encryptionConfiguration":{"shape":"EncryptionConfiguration"}
       }
     },
     "CreateStateMachineOutput":{
@@ -865,14 +914,16 @@
       "members":{
         "activityArn":{"shape":"Arn"},
         "name":{"shape":"Name"},
-        "creationDate":{"shape":"Timestamp"}
+        "creationDate":{"shape":"Timestamp"},
+        "encryptionConfiguration":{"shape":"EncryptionConfiguration"}
       }
     },
     "DescribeExecutionInput":{
       "type":"structure",
       "required":["executionArn"],
       "members":{
-        "executionArn":{"shape":"Arn"}
+        "executionArn":{"shape":"Arn"},
+        "includedData":{"shape":"IncludedData"}
       }
     },
     "DescribeExecutionOutput":{
@@ -963,7 +1014,8 @@
       "type":"structure",
       "required":["executionArn"],
       "members":{
-        "executionArn":{"shape":"Arn"}
+        "executionArn":{"shape":"Arn"},
+        "includedData":{"shape":"IncludedData"}
       }
     },
     "DescribeStateMachineForExecutionOutput":{
@@ -985,14 +1037,16 @@
         "tracingConfiguration":{"shape":"TracingConfiguration"},
         "mapRunArn":{"shape":"LongArn"},
         "label":{"shape":"MapRunLabel"},
-        "revisionId":{"shape":"RevisionId"}
+        "revisionId":{"shape":"RevisionId"},
+        "encryptionConfiguration":{"shape":"EncryptionConfiguration"}
       }
     },
     "DescribeStateMachineInput":{
       "type":"structure",
       "required":["stateMachineArn"],
       "members":{
-        "stateMachineArn":{"shape":"Arn"}
+        "stateMachineArn":{"shape":"Arn"},
+        "includedData":{"shape":"IncludedData"}
       }
     },
     "DescribeStateMachineOutput":{
@@ -1017,10 +1071,30 @@
         "tracingConfiguration":{"shape":"TracingConfiguration"},
         "label":{"shape":"MapRunLabel"},
         "revisionId":{"shape":"RevisionId"},
-        "description":{"shape":"VersionDescription"}
+        "description":{"shape":"VersionDescription"},
+        "encryptionConfiguration":{"shape":"EncryptionConfiguration"}
       }
     },
     "Enabled":{"type":"boolean"},
+    "EncryptionConfiguration":{
+      "type":"structure",
+      "required":["type"],
+      "members":{
+        "kmsKeyId":{"shape":"KmsKeyId"},
+        "kmsDataKeyReusePeriodSeconds":{
+          "shape":"KmsDataKeyReusePeriodSeconds",
+          "box":true
+        },
+        "type":{"shape":"EncryptionType"}
+      }
+    },
+    "EncryptionType":{
+      "type":"string",
+      "enum":[
+        "AWS_OWNED_KEY",
+        "CUSTOMER_MANAGED_KMS_KEY"
+      ]
+    },
     "ErrorMessage":{"type":"string"},
     "EventId":{"type":"long"},
     "ExecutionAbortedEventDetails":{
@@ -1330,6 +1404,13 @@
       "type":"boolean",
       "box":true
     },
+    "IncludedData":{
+      "type":"string",
+      "enum":[
+        "ALL_DATA",
+        "METADATA_ONLY"
+      ]
+    },
     "InspectionData":{
       "type":"structure",
       "members":{
@@ -1386,6 +1467,13 @@
       },
       "exception":true
     },
+    "InvalidEncryptionConfiguration":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
+    },
     "InvalidExecutionInput":{
       "type":"structure",
       "members":{
@@ -1422,6 +1510,49 @@
       "exception":true
     },
     "InvalidTracingConfiguration":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
+    },
+    "KmsAccessDeniedException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
+    },
+    "KmsDataKeyReusePeriodSeconds":{
+      "type":"integer",
+      "box":true,
+      "max":900,
+      "min":60
+    },
+    "KmsInvalidStateException":{
+      "type":"structure",
+      "members":{
+        "kmsKeyState":{"shape":"KmsKeyState"},
+        "message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
+    },
+    "KmsKeyId":{
+      "type":"string",
+      "max":2048,
+      "min":1
+    },
+    "KmsKeyState":{
+      "type":"string",
+      "enum":[
+        "DISABLED",
+        "PENDING_DELETION",
+        "PENDING_IMPORT",
+        "UNAVAILABLE",
+        "CREATING"
+      ]
+    },
+    "KmsThrottlingException":{
       "type":"structure",
       "members":{
         "message":{"shape":"ErrorMessage"}
@@ -1937,7 +2068,8 @@
         "stateMachineArn":{"shape":"Arn"},
         "name":{"shape":"Name"},
         "input":{"shape":"SensitiveData"},
-        "traceHeader":{"shape":"TraceHeader"}
+        "traceHeader":{"shape":"TraceHeader"},
+        "includedData":{"shape":"IncludedData"}
       }
     },
     "StartSyncExecutionOutput":{
@@ -2286,7 +2418,7 @@
     },
     "TaskToken":{
       "type":"string",
-      "max":1024,
+      "max":2048,
       "min":1
     },
     "TestExecutionStatus":{
@@ -2429,7 +2561,8 @@
         "loggingConfiguration":{"shape":"LoggingConfiguration"},
         "tracingConfiguration":{"shape":"TracingConfiguration"},
         "publish":{"shape":"Publish"},
-        "versionDescription":{"shape":"VersionDescription"}
+        "versionDescription":{"shape":"VersionDescription"},
+        "encryptionConfiguration":{"shape":"EncryptionConfiguration"}
       }
     },
     "UpdateStateMachineOutput":{
