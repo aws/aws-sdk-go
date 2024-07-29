@@ -220,7 +220,7 @@ const (
 	// "InvalidServerlessCacheSnapshotStateFault".
 	//
 	// The state of the serverless cache snapshot was not received. Available for
-	// Redis only.
+	// Redis OSS and Serverless Memcached only.
 	ErrCodeInvalidServerlessCacheSnapshotStateFault = "InvalidServerlessCacheSnapshotStateFault"
 
 	// ErrCodeInvalidServerlessCacheStateFault for service response error code
@@ -367,21 +367,21 @@ const (
 	// "ServerlessCacheSnapshotAlreadyExistsFault".
 	//
 	// A serverless cache snapshot with this name already exists. Available for
-	// Redis only.
+	// Redis OSS and Serverless Memcached only.
 	ErrCodeServerlessCacheSnapshotAlreadyExistsFault = "ServerlessCacheSnapshotAlreadyExistsFault"
 
 	// ErrCodeServerlessCacheSnapshotNotFoundFault for service response error code
 	// "ServerlessCacheSnapshotNotFoundFault".
 	//
 	// This serverless cache snapshot could not be found or does not exist. Available
-	// for Redis only.
+	// for Redis OSS and Serverless Memcached only.
 	ErrCodeServerlessCacheSnapshotNotFoundFault = "ServerlessCacheSnapshotNotFoundFault"
 
 	// ErrCodeServerlessCacheSnapshotQuotaExceededFault for service response error code
 	// "ServerlessCacheSnapshotQuotaExceededFault".
 	//
 	// The number of serverless cache snapshots exceeds the customer snapshot quota.
-	// Available for Redis only.
+	// Available for Redis OSS and Serverless Memcached only.
 	ErrCodeServerlessCacheSnapshotQuotaExceededFault = "ServerlessCacheSnapshotQuotaExceededFault"
 
 	// ErrCodeServiceLinkedRoleNotFoundFault for service response error code
@@ -407,11 +407,11 @@ const (
 	//
 	// You attempted one of the following operations:
 	//
-	//    * Creating a snapshot of a Redis cluster running on a cache.t1.micro cache
-	//    node.
+	//    * Creating a snapshot of a Redis OSS cluster running on a cache.t1.micro
+	//    cache node.
 	//
 	//    * Creating a snapshot of a cluster that is running Memcached rather than
-	//    Redis.
+	//    Redis OSS.
 	//
 	// Neither of these are supported by ElastiCache.
 	ErrCodeSnapshotFeatureNotSupportedFault = "SnapshotFeatureNotSupportedFault"

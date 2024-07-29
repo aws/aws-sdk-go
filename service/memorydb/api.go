@@ -1596,7 +1596,7 @@ func (c *MemoryDB) DescribeEngineVersionsRequest(input *DescribeEngineVersionsIn
 
 // DescribeEngineVersions API operation for Amazon MemoryDB.
 //
-// Returns a list of the available Redis engine versions.
+// Returns a list of the available Redis OSS engine versions.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4743,10 +4743,10 @@ type Cluster struct {
 	// A description of the cluster
 	Description *string `type:"string"`
 
-	// The Redis engine patch version used by the cluster
+	// The Redis OSS engine patch version used by the cluster
 	EnginePatchVersion *string `type:"string"`
 
-	// The Redis engine version used by the cluster
+	// The Redis OSS engine version used by the cluster
 	EngineVersion *string `type:"string"`
 
 	// The ID of the KMS key used to encrypt the cluster
@@ -5053,7 +5053,7 @@ type ClusterConfiguration struct {
 	// The description of the cluster configuration
 	Description *string `type:"string"`
 
-	// The Redis engine version used by the cluster
+	// The Redis OSS engine version used by the cluster
 	EngineVersion *string `type:"string"`
 
 	// The specified maintenance window for the cluster
@@ -5622,7 +5622,7 @@ type CreateClusterInput struct {
 	// An optional description of the cluster.
 	Description *string `type:"string"`
 
-	// The version number of the Redis engine to be used for the cluster.
+	// The version number of the Redis OSS engine to be used for the cluster.
 	EngineVersion *string `type:"string"`
 
 	// The ID of the KMS key used to encrypt the cluster.
@@ -7123,7 +7123,7 @@ type DescribeEngineVersionsInput struct {
 	// or engine and major version combination is to be returned.
 	DefaultOnly *bool `type:"boolean"`
 
-	// The Redis engine version
+	// The Redis OSS engine version
 	EngineVersion *string `type:"string"`
 
 	// The maximum number of records to include in the response. If more records
@@ -8442,7 +8442,7 @@ func (s *Endpoint) SetPort(v int64) *Endpoint {
 	return s
 }
 
-// Provides details of the Redis engine version
+// Provides details of the Redis OSS engine version
 type EngineVersionInfo struct {
 	_ struct{} `type:"structure"`
 
