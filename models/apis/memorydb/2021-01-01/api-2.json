@@ -5,13 +5,15 @@
     "endpointPrefix":"memory-db",
     "jsonVersion":"1.1",
     "protocol":"json",
+    "protocols":["json"],
     "serviceAbbreviation":"Amazon MemoryDB",
     "serviceFullName":"Amazon MemoryDB",
     "serviceId":"MemoryDB",
     "signatureVersion":"v4",
     "signingName":"memorydb",
     "targetPrefix":"AmazonMemoryDB",
-    "uid":"memorydb-2021-01-01"
+    "uid":"memorydb-2021-01-01",
+    "auth":["aws.auth#sigv4"]
   },
   "operations":{
     "BatchUpdateCluster":{

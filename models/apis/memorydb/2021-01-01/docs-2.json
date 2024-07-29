@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "service": "<p>MemoryDB for Redis is a fully managed, Redis-compatible, in-memory database that delivers ultra-fast performance and Multi-AZ durability for modern applications built using microservices architectures. MemoryDB stores the entire database in-memory, enabling low latency and high throughput data access. It is compatible with Redis, a popular open source data store, enabling you to leverage Redis’ flexible and friendly data structures, APIs, and commands.</p>",
+  "service": "<p>MemoryDB is a fully managed, Redis OSS-compatible, in-memory database that delivers ultra-fast performance and Multi-AZ durability for modern applications built using microservices architectures. MemoryDB stores the entire database in-memory, enabling low latency and high throughput data access. It is compatible with Redis OSS, a popular open source data store, enabling you to leverage Redis OSS’ flexible and friendly data structures, APIs, and commands.</p>",
   "operations": {
     "BatchUpdateCluster": "<p>Apply the service update to a list of clusters supplied. For more information on service updates and applying them, see <a href=\"https://docs.aws.amazon.com/MemoryDB/latest/devguide/managing-updates.html#applying-updates\">Applying the service updates</a>.</p>",
     "CopySnapshot": "<p>Makes a copy of an existing snapshot.</p>",
@@ -18,7 +18,7 @@
     "DeleteUser": "<p>Deletes a user. The user will be removed from all ACLs and in turn removed from all clusters.</p>",
     "DescribeACLs": "<p>Returns a list of ACLs</p>",
     "DescribeClusters": "<p>Returns information about all provisioned clusters if no cluster identifier is specified, or about a specific cluster if a cluster name is supplied.</p>",
-    "DescribeEngineVersions": "<p>Returns a list of the available Redis engine versions.</p>",
+    "DescribeEngineVersions": "<p>Returns a list of the available Redis OSS engine versions.</p>",
     "DescribeEvents": "<p>Returns events related to clusters, security groups, and parameter groups. You can obtain events specific to a particular cluster, security group, or parameter group by providing the name as a parameter. By default, only the events occurring within the last hour are returned; however, you can retrieve up to 14 days' worth of events if necessary.</p>",
     "DescribeParameterGroups": "<p>Returns a list of parameter group descriptions. If a parameter group name is specified, the list contains only the descriptions for that group.</p>",
     "DescribeParameters": "<p>Returns the detailed parameter list for a particular parameter group.</p>",
@@ -520,7 +520,7 @@
       }
     },
     "EngineVersionInfo": {
-      "base": "<p>Provides details of the Redis engine version</p>",
+      "base": "<p>Provides details of the Redis OSS engine version</p>",
       "refs": {
         "EngineVersionInfoList$member": null
       }
@@ -1112,8 +1112,8 @@
         "Cluster$Description": "<p>A description of the cluster</p>",
         "Cluster$Status": "<p>The status of the cluster. For example, Available, Updating, Creating.</p>",
         "Cluster$NodeType": "<p>The cluster's node type</p>",
-        "Cluster$EngineVersion": "<p>The Redis engine version used by the cluster</p>",
-        "Cluster$EnginePatchVersion": "<p>The Redis engine patch version used by the cluster</p>",
+        "Cluster$EngineVersion": "<p>The Redis OSS engine version used by the cluster</p>",
+        "Cluster$EnginePatchVersion": "<p>The Redis OSS engine patch version used by the cluster</p>",
         "Cluster$ParameterGroupName": "<p>The name of the parameter group used by the cluster</p>",
         "Cluster$ParameterGroupStatus": "<p>The status of the parameter group used by the cluster, for example 'active' or 'applying'.</p>",
         "Cluster$SubnetGroupName": "<p>The name of the subnet group used by the cluster</p>",
@@ -1126,7 +1126,7 @@
         "ClusterConfiguration$Name": "<p>The name of the cluster</p>",
         "ClusterConfiguration$Description": "<p>The description of the cluster configuration</p>",
         "ClusterConfiguration$NodeType": "<p>The node type used for the cluster</p>",
-        "ClusterConfiguration$EngineVersion": "<p>The Redis engine version used by the cluster</p>",
+        "ClusterConfiguration$EngineVersion": "<p>The Redis OSS engine version used by the cluster</p>",
         "ClusterConfiguration$MaintenanceWindow": "<p>The specified maintenance window for the cluster</p>",
         "ClusterConfiguration$TopicArn": "<p>The Amazon Resource Name (ARN) of the SNS notification topic for the cluster</p>",
         "ClusterConfiguration$ParameterGroupName": "<p>The name of parameter group used by the cluster</p>",
@@ -1147,7 +1147,7 @@
         "CreateClusterRequest$KmsKeyId": "<p>The ID of the KMS key used to encrypt the cluster.</p>",
         "CreateClusterRequest$SnapshotName": "<p>The name of a snapshot from which to restore data into the new cluster. The snapshot status changes to restoring while the new cluster is being created.</p>",
         "CreateClusterRequest$SnapshotWindow": "<p>The daily time range (in UTC) during which MemoryDB begins taking a daily snapshot of your shard.</p> <p> Example: 05:00-09:00</p> <p> If you do not specify this parameter, MemoryDB automatically chooses an appropriate time range.</p>",
-        "CreateClusterRequest$EngineVersion": "<p>The version number of the Redis engine to be used for the cluster.</p>",
+        "CreateClusterRequest$EngineVersion": "<p>The version number of the Redis OSS engine to be used for the cluster.</p>",
         "CreateParameterGroupRequest$ParameterGroupName": "<p>The name of the parameter group.</p>",
         "CreateParameterGroupRequest$Family": "<p>The name of the parameter group family that the parameter group can be used with.</p>",
         "CreateParameterGroupRequest$Description": "<p>An optional description of the parameter group.</p>",
@@ -1168,7 +1168,7 @@
         "DescribeClustersRequest$ClusterName": "<p>The name of the cluster</p>",
         "DescribeClustersRequest$NextToken": "<p>An optional argument to pass in case the total number of records exceeds the value of MaxResults. If nextToken is returned, there are more results available. The value of nextToken is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page. Keep all other arguments unchanged. </p>",
         "DescribeClustersResponse$NextToken": "<p>An optional argument to pass in case the total number of records exceeds the value of MaxResults. If nextToken is returned, there are more results available. The value of nextToken is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page. Keep all other arguments unchanged. </p>",
-        "DescribeEngineVersionsRequest$EngineVersion": "<p>The Redis engine version</p>",
+        "DescribeEngineVersionsRequest$EngineVersion": "<p>The Redis OSS engine version</p>",
         "DescribeEngineVersionsRequest$ParameterGroupFamily": "<p>The name of a specific parameter group family to return details for.</p>",
         "DescribeEngineVersionsRequest$NextToken": "<p>An optional argument to pass in case the total number of records exceeds the value of MaxResults. If nextToken is returned, there are more results available. The value of nextToken is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page. Keep all other arguments unchanged. </p>",
         "DescribeEngineVersionsResponse$NextToken": "<p>An optional argument to pass in case the total number of records exceeds the value of MaxResults. If nextToken is returned, there are more results available. The value of nextToken is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page. Keep all other arguments unchanged. </p>",

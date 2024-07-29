@@ -1,3 +1,11 @@
+Release v1.55.4 (2024-07-29)
+===
+
+### Service Client Updates
+* `service/elasticache`: Updates service documentation
+  * Renaming full service name as it appears in developer documentation.
+* `service/memorydb`: Updates service API and documentation
+
 Release v1.55.3 (2024-07-25)
 ===
 
