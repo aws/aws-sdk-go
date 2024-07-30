@@ -1,0 +1,30 @@
+{
+    "version": 2,
+    "testCases": [
+        {
+            "id": "DescribeLogGroupsSuccess",
+            "operationName": "DescribeLogGroups",
+            "input": {},
+            "expectation": {
+                "success": {}
+            },
+            "config": {
+                "region": "us-west-2"
+            }
+        },
+        {
+            "id": "GetLogEventsFailure",
+            "operationName": "GetLogEvents",
+            "input": {
+                "logGroupName": "fakegroup",
+                "logStreamName": "fakestream"
+            },
+            "expectation": {
+                "failure": {}
+            },
+            "config": {
+                "region": "us-west-2"
+            }
+        }
+    ]
+}

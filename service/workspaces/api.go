@@ -1533,6 +1533,10 @@ func (c *WorkSpaces) CreateWorkspacesRequest(input *CreateWorkspacesInput) (req 
 //
 //   - User-decoupled WorkSpaces are only supported by Amazon WorkSpaces Core.
 //
+//   - Review your running mode to ensure you are using one that is optimal
+//     for your needs and budget. For more information on switching running modes,
+//     see Can I switch between hourly and monthly billing? (http://aws.amazon.com/workspaces-family/workspaces/faqs/#:~:text=Can%20I%20switch%20between%20hourly%20and%20monthly%20billing%20on%20WorkSpaces%20Personal%3F)
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -9559,8 +9563,7 @@ func (s *BundleResourceAssociation) SetStateReason(v *AssociationStateReason) *B
 type Capacity struct {
 	_ struct{} `type:"structure"`
 
-	// The desired number of user sessions for a multi-session pool. This is not
-	// allowed for single-session pools.
+	// The desired number of user sessions for the WorkSpaces in the pool.
 	//
 	// DesiredUserSessions is a required field
 	DesiredUserSessions *int64 `type:"integer" required:"true"`
@@ -9607,19 +9610,22 @@ func (s *Capacity) SetDesiredUserSessions(v int64) *Capacity {
 type CapacityStatus struct {
 	_ struct{} `type:"structure"`
 
-	// The number of user sessions currently being used for pool sessions. This
-	// only applies to multi-session pools.
+	// The number of user sessions currently being used for your pool.
 	//
 	// ActiveUserSessions is a required field
 	ActiveUserSessions *int64 `type:"integer" required:"true"`
 
-	// The total number of session slots that are available for a pool of WorkSpaces.
+	// The total number of user sessions that are available for streaming or are
+	// currently streaming in your pool.
+	//
+	// ActualUserSessions = AvailableUserSessions + ActiveUserSessions
 	//
 	// ActualUserSessions is a required field
 	ActualUserSessions *int64 `type:"integer" required:"true"`
 
-	// The number of user sessions currently being used for pool sessions. This
-	// only applies to multi-session pools.
+	// The number of user sessions currently available for streaming from your pool.
+	//
+	// AvailableUserSessions = ActualUserSessions - ActiveUserSessions
 	//
 	// AvailableUserSessions is a required field
 	AvailableUserSessions *int64 `type:"integer" required:"true"`
@@ -23506,6 +23512,10 @@ type WorkspaceProperties struct {
 	// The MANUAL value is only supported by Amazon WorkSpaces Core. Contact your
 	// account team to be allow-listed to use this value. For more information,
 	// see Amazon WorkSpaces Core (http://aws.amazon.com/workspaces/core/).
+	//
+	// Review your running mode to ensure you are using one that is optimal for
+	// your needs and budget. For more information on switching running modes, see
+	// Can I switch between hourly and monthly billing? (http://aws.amazon.com/workspaces-family/workspaces/faqs/#:~:text=Can%20I%20switch%20between%20hourly%20and%20monthly%20billing%20on%20WorkSpaces%20Personal%3F)
 	RunningMode *string `type:"string" enum:"RunningMode"`
 
 	// The time after a user logs off when WorkSpaces are automatically stopped.

@@ -1,0 +1,31 @@
+{
+    "version": 2,
+    "testCases": [
+        {
+            "id": "DescribeLoadBalancersSuccess",
+            "operationName": "DescribeLoadBalancers",
+            "input": {},
+            "expectation": {
+                "success": {}
+            },
+            "config": {
+                "region": "us-west-2"
+            }
+        },
+        {
+            "id": "DescribeLoadBalancersFailure",
+            "operationName": "DescribeLoadBalancers",
+            "input": {
+                "LoadBalancerNames": [
+                    "fake_load_balancer"
+                ]
+            },
+            "expectation": {
+                "failure": {}
+            },
+            "config": {
+                "region": "us-west-2"
+            }
+        }
+    ]
+}

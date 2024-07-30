@@ -2797,7 +2797,10 @@ func (c *ElastiCache) DeleteReplicationGroupRequest(input *DeleteReplicationGrou
 // immediately begins deleting the selected resources; you cannot cancel or
 // revert this operation.
 //
-// This operation is valid for Redis OSS only.
+//   - CreateSnapshot permission is required to create a final snapshot. Without
+//     this permission, the API call will fail with an Access Denied exception.
+//
+//   - This operation is valid for Redis OSS only.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2904,6 +2907,9 @@ func (c *ElastiCache) DeleteServerlessCacheRequest(input *DeleteServerlessCacheI
 // DeleteServerlessCache API operation for Amazon ElastiCache.
 //
 // Deletes a specified existing serverless cache.
+//
+// CreateServerlessCacheSnapshot permission is required to create a final snapshot.
+// Without this permission, the API call will fail with an Access Denied exception.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about

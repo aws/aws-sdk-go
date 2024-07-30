@@ -9,7 +9,7 @@
     "DeleteSolFunctionPackage": "<p>Deletes a function package.</p> <p>A function package is a .zip file in CSAR (Cloud Service Archive) format that contains a network function (an ETSI standard telecommunication application) and function package descriptor that uses the TOSCA standard to describe how the network functions should run on your network.</p> <p>To delete a function package, the package must be in a disabled state. To disable a function package, see <a href=\"https://docs.aws.amazon.com/tnb/latest/APIReference/API_UpdateSolFunctionPackage.html\">UpdateSolFunctionPackage</a>. </p>",
     "DeleteSolNetworkInstance": "<p>Deletes a network instance.</p> <p>A network instance is a single network created in Amazon Web Services TNB that can be deployed and on which life-cycle operations (like terminate, update, and delete) can be performed.</p> <p>To delete a network instance, the instance must be in a stopped or terminated state. To terminate a network instance, see <a href=\"https://docs.aws.amazon.com/tnb/latest/APIReference/API_TerminateSolNetworkInstance.html\">TerminateSolNetworkInstance</a>.</p>",
     "DeleteSolNetworkPackage": "<p>Deletes network package.</p> <p>A network package is a .zip file in CSAR (Cloud Service Archive) format defines the function packages you want to deploy and the Amazon Web Services infrastructure you want to deploy them on.</p> <p>To delete a network package, the package must be in a disable state. To disable a network package, see <a href=\"https://docs.aws.amazon.com/tnb/latest/APIReference/API_UpdateSolNetworkPackage.html\">UpdateSolNetworkPackage</a>.</p>",
-    "GetSolFunctionInstance": "<p>Gets the details of a network function instance, including the instantation state and metadata from the function package descriptor in the network function package.</p> <p>A network function instance is a function in a function package .</p>",
+    "GetSolFunctionInstance": "<p>Gets the details of a network function instance, including the instantiation state and metadata from the function package descriptor in the network function package.</p> <p>A network function instance is a function in a function package .</p>",
     "GetSolFunctionPackage": "<p>Gets the details of an individual function package, such as the operational state and whether the package is in use.</p> <p>A function package is a .zip file in CSAR (Cloud Service Archive) format that contains a network function (an ETSI standard telecommunication application) and function package descriptor that uses the TOSCA standard to describe how the network functions should run on your network..</p>",
     "GetSolFunctionPackageContent": "<p>Gets the contents of a function package.</p> <p>A function package is a .zip file in CSAR (Cloud Service Archive) format that contains a network function (an ETSI standard telecommunication application) and function package descriptor that uses the TOSCA standard to describe how the network functions should run on your network.</p>",
     "GetSolFunctionPackageDescriptor": "<p>Gets a function package descriptor in a function package.</p> <p>A function package descriptor is a .yaml file in a function package that uses the TOSCA standard to describe how the network function in the function package should run on your network.</p> <p>A function package is a .zip file in CSAR (Cloud Service Archive) format that contains a network function (an ETSI standard telecommunication application) and function package descriptor that uses the TOSCA standard to describe how the network functions should run on your network.</p>",
@@ -31,7 +31,7 @@
     "TerminateSolNetworkInstance": "<p>Terminates a network instance.</p> <p>A network instance is a single network created in Amazon Web Services TNB that can be deployed and on which life-cycle operations (like terminate, update, and delete) can be performed.</p> <p>You must terminate a network instance before you can delete it.</p>",
     "UntagResource": "<p>Untags an AWS TNB resource.</p> <p>A tag is a label that you assign to an Amazon Web Services resource. Each tag consists of a key and an optional value. You can use tags to search and filter your resources or track your Amazon Web Services costs.</p>",
     "UpdateSolFunctionPackage": "<p>Updates the operational state of function package.</p> <p>A function package is a .zip file in CSAR (Cloud Service Archive) format that contains a network function (an ETSI standard telecommunication application) and function package descriptor that uses the TOSCA standard to describe how the network functions should run on your network.</p>",
-    "UpdateSolNetworkInstance": "<p>Update a network instance.</p> <p>A network instance is a single network created in Amazon Web Services TNB that can be deployed and on which life-cycle operations (like terminate, update, and delete) can be performed.</p>",
+    "UpdateSolNetworkInstance": "<p>Update a network instance.</p> <p>A network instance is a single network created in Amazon Web Services TNB that can be deployed and on which life-cycle operations (like terminate, update, and delete) can be performed.</p> <p>Choose the <i>updateType</i> parameter to target the necessary update of the network instance.</p>",
     "UpdateSolNetworkPackage": "<p>Updates the operational state of a network package.</p> <p>A network package is a .zip file in CSAR (Cloud Service Archive) format defines the function packages you want to deploy and the Amazon Web Services infrastructure you want to deploy them on.</p> <p>A network service descriptor is a .yaml file in a network package that uses the TOSCA standard to describe the network functions you want to deploy and the Amazon Web Services infrastructure you want to deploy the network functions on.</p>",
     "ValidateSolFunctionPackageContent": "<p>Validates function package content. This can be used as a dry run before uploading function package content with <a href=\"https://docs.aws.amazon.com/tnb/latest/APIReference/API_PutSolFunctionPackageContent.html\">PutSolFunctionPackageContent</a>.</p> <p>A function package is a .zip file in CSAR (Cloud Service Archive) format that contains a network function (an ETSI standard telecommunication application) and function package descriptor that uses the TOSCA standard to describe how the network functions should run on your network.</p>",
     "ValidateSolNetworkPackageContent": "<p>Validates network package content. This can be used as a dry run before uploading network package content with <a href=\"https://docs.aws.amazon.com/tnb/latest/APIReference/API_PutSolNetworkPackageContent.html\">PutSolNetworkPackageContent</a>.</p> <p>A network package is a .zip file in CSAR (Cloud Service Archive) format defines the function packages you want to deploy and the Amazon Web Services infrastructure you want to deploy them on.</p>"
@@ -48,11 +48,7 @@
         "GetSolFunctionPackageContentOutput$packageContent": "<p>Contents of the function package.</p>",
         "GetSolFunctionPackageDescriptorOutput$vnfd": "<p>Contents of the function package descriptor.</p>",
         "GetSolNetworkPackageContentOutput$nsdContent": "<p>Content of the network service descriptor in the network package.</p>",
-        "GetSolNetworkPackageDescriptorOutput$nsd": "<p>Contents of the network service descriptor in the network package.</p>",
-        "PutSolFunctionPackageContentInput$file": "<p>Function package file.</p>",
-        "PutSolNetworkPackageContentInput$file": "<p>Network package file.</p>",
-        "ValidateSolFunctionPackageContentInput$file": "<p>Function package file.</p>",
-        "ValidateSolNetworkPackageContentInput$file": "<p>Network package file.</p>"
+        "GetSolNetworkPackageDescriptorOutput$nsd": "<p>Contents of the network service descriptor in the network package.</p>"
       }
     },
     "Boolean": {
@@ -134,8 +130,12 @@
     "Document": {
       "base": null,
       "refs": {
+        "InstantiateMetadata$additionalParamsForNs": "<p>The configurable properties used during instantiation.</p>",
         "InstantiateSolNetworkInstanceInput$additionalParamsForNs": "<p>Provides values for the configurable properties.</p>",
-        "UpdateSolNetworkModify$vnfConfigurableProperties": "<p>Provides values for the configurable properties declared in the function package descriptor.</p>"
+        "ModifyVnfInfoMetadata$vnfConfigurableProperties": "<p>The configurable properties used during update of the network function instance.</p>",
+        "UpdateNsMetadata$additionalParamsForNs": "<p>The configurable properties used during update.</p>",
+        "UpdateSolNetworkModify$vnfConfigurableProperties": "<p>Provides values for the configurable properties declared in the function package descriptor.</p>",
+        "UpdateSolNetworkServiceData$additionalParamsForNs": "<p>Values for the configurable properties declared in the network service descriptor.</p>"
       }
     },
     "ErrorCause": {
@@ -324,6 +324,12 @@
       "base": "<p>The metadata of a network function.</p> <p>A network instance is a single network created in Amazon Web Services TNB that can be deployed and on which life-cycle operations (like terminate, update, and delete) can be performed.</p>",
       "refs": {
         "GetSolVnfcResourceInfo$metadata": "<p>The metadata of the network function compute.</p>"
+      }
+    },
+    "InstantiateMetadata": {
+      "base": "<p>Metadata related to the configuration properties used during instantiation of the network instance.</p>",
+      "refs": {
+        "GetSolNetworkOperationMetadata$instantiateMetadata": "<p>Metadata related to the network operation occurrence for network instantiation. This is populated only if the lcmOperationType is <code>INSTANTIATE</code>.</p>"
       }
     },
     "InstantiateSolNetworkInstanceInput": {
@@ -534,6 +540,12 @@
       "refs": {
       }
     },
+    "ModifyVnfInfoMetadata": {
+      "base": "<p>Metadata related to the configuration properties used during update of a specific network function in a network instance.</p>",
+      "refs": {
+        "GetSolNetworkOperationMetadata$modifyVnfInfoMetadata": "<p>Metadata related to the network operation occurrence for network function updates in a network instance. This is populated only if the lcmOperationType is <code>UPDATE</code> and the updateType is <code>MODIFY_VNF_INFORMATION</code>.</p>"
+      }
+    },
     "NetworkArtifactMeta": {
       "base": "<p>Metadata for network package artifacts.</p> <p>Artifacts are the contents of the package descriptor file and the state of the package.</p>",
       "refs": {
@@ -563,6 +575,7 @@
         "ListSolFunctionInstanceInfo$nsInstanceId": "<p>Network instance ID.</p>",
         "ListSolNetworkInstanceInfo$id": "<p>ID of the network instance.</p>",
         "ListSolNetworkOperationsInfo$nsInstanceId": "<p>ID of the network instance related to this operation.</p>",
+        "ListSolNetworkOperationsInput$nsInstanceId": "<p>Network instance id filter, to retrieve network operations associated to a network instance.</p>",
         "TerminateSolNetworkInstanceInput$nsInstanceId": "<p>ID of the network instance.</p>",
         "UpdateSolNetworkInstanceInput$nsInstanceId": "<p>ID of the network instance.</p>"
       }
@@ -633,11 +646,15 @@
         "GetSolNetworkPackageDescriptorInput$nsdInfoId": "<p>ID of the network service descriptor in the network package.</p>",
         "GetSolNetworkPackageInput$nsdInfoId": "<p>ID of the network service descriptor in the network package.</p>",
         "GetSolNetworkPackageOutput$id": "<p>Network package ID.</p>",
+        "InstantiateMetadata$nsdInfoId": "<p>The network service descriptor used for instantiating the network instance.</p>",
         "ListSolNetworkInstanceInfo$nsdInfoId": "<p>ID of the network service descriptor in the network package.</p>",
+        "ListSolNetworkOperationsMetadata$nsdInfoId": "<p>The network service descriptor id used for the operation.</p> <p>Only present if the updateType is <code>UPDATE_NS</code>.</p>",
         "ListSolNetworkPackageInfo$id": "<p>ID of the individual network package.</p>",
         "PutSolNetworkPackageContentInput$nsdInfoId": "<p>Network service descriptor info ID.</p>",
         "PutSolNetworkPackageContentOutput$id": "<p>Network package ID.</p>",
+        "UpdateNsMetadata$nsdInfoId": "<p>The network service descriptor used for updating the network instance.</p>",
         "UpdateSolNetworkPackageInput$nsdInfoId": "<p>ID of the network service descriptor in the network package.</p>",
+        "UpdateSolNetworkServiceData$nsdInfoId": "<p>ID of the network service descriptor.</p>",
         "ValidateSolNetworkPackageContentInput$nsdInfoId": "<p>Network service descriptor file.</p>",
         "ValidateSolNetworkPackageContentOutput$id": "<p>Network package ID.</p>"
       }
@@ -763,6 +780,15 @@
     "ResourceNotFoundException": {
       "base": "<p>Request references a resource that doesn't exist.</p>",
       "refs": {
+      }
+    },
+    "SensitiveBlob": {
+      "base": null,
+      "refs": {
+        "PutSolFunctionPackageContentInput$file": "<p>Function package file.</p>",
+        "PutSolNetworkPackageContentInput$file": "<p>Network package file.</p>",
+        "ValidateSolFunctionPackageContentInput$file": "<p>Function package file.</p>",
+        "ValidateSolNetworkPackageContentInput$file": "<p>Network package file.</p>"
       }
     },
     "ServiceQuotaExceededException": {
@@ -893,14 +919,14 @@
         "GetSolNetworkInstanceOutput$tags": "<p>A tag is a label that you assign to an Amazon Web Services resource. Each tag consists of a key and an optional value. You can use tags to search and filter your resources or track your Amazon Web Services costs.</p>",
         "GetSolNetworkOperationOutput$tags": "<p>A tag is a label that you assign to an Amazon Web Services resource. Each tag consists of a key and an optional value. You can use tags to search and filter your resources or track your Amazon Web Services costs.</p>",
         "GetSolNetworkPackageOutput$tags": "<p>A tag is a label that you assign to an Amazon Web Services resource. Each tag consists of a key and an optional value. You can use tags to search and filter your resources or track your Amazon Web Services costs.</p>",
-        "InstantiateSolNetworkInstanceInput$tags": "<p>A tag is a label that you assign to an Amazon Web Services resource. Each tag consists of a key and an optional value. When you use this API, the tags are transferred to the network operation that is created. Use tags to search and filter your resources or track your Amazon Web Services costs.</p>",
-        "InstantiateSolNetworkInstanceOutput$tags": "<p>A tag is a label that you assign to an Amazon Web Services resource. Each tag consists of a key and an optional value. When you use this API, the tags are transferred to the network operation that is created. Use tags to search and filter your resources or track your Amazon Web Services costs.</p>",
+        "InstantiateSolNetworkInstanceInput$tags": "<p>A tag is a label that you assign to an Amazon Web Services resource. Each tag consists of a key and an optional value. When you use this API, the tags are only applied to the network operation that is created. These tags are not applied to the network instance. Use tags to search and filter your resources or track your Amazon Web Services costs.</p>",
+        "InstantiateSolNetworkInstanceOutput$tags": "<p>A tag is a label that you assign to an Amazon Web Services resource. Each tag consists of a key and an optional value. When you use this API, the tags are only applied to the network operation that is created. These tags are not applied to the network instance. Use tags to search and filter your resources or track your Amazon Web Services costs.</p>",
         "ListTagsForResourceOutput$tags": "<p>A tag is a label that you assign to an Amazon Web Services resource. Each tag consists of a key and an optional value. You can use tags to search and filter your resources or track your Amazon Web Services costs.</p>",
         "TagResourceInput$tags": "<p>A tag is a label that you assign to an Amazon Web Services resource. Each tag consists of a key and an optional value. You can use tags to search and filter your resources or track your Amazon Web Services costs.</p>",
-        "TerminateSolNetworkInstanceInput$tags": "<p>A tag is a label that you assign to an Amazon Web Services resource. Each tag consists of a key and an optional value. When you use this API, the tags are transferred to the network operation that is created. Use tags to search and filter your resources or track your Amazon Web Services costs.</p>",
-        "TerminateSolNetworkInstanceOutput$tags": "<p>A tag is a label that you assign to an Amazon Web Services resource. Each tag consists of a key and an optional value. When you use this API, the tags are transferred to the network operation that is created. Use tags to search and filter your resources or track your Amazon Web Services costs.</p>",
-        "UpdateSolNetworkInstanceInput$tags": "<p>A tag is a label that you assign to an Amazon Web Services resource. Each tag consists of a key and an optional value. When you use this API, the tags are transferred to the network operation that is created. Use tags to search and filter your resources or track your Amazon Web Services costs.</p>",
-        "UpdateSolNetworkInstanceOutput$tags": "<p>A tag is a label that you assign to an Amazon Web Services resource. Each tag consists of a key and an optional value. When you use this API, the tags are transferred to the network operation that is created. Use tags to search and filter your resources or track your Amazon Web Services costs.</p>"
+        "TerminateSolNetworkInstanceInput$tags": "<p>A tag is a label that you assign to an Amazon Web Services resource. Each tag consists of a key and an optional value. When you use this API, the tags are only applied to the network operation that is created. These tags are not applied to the network instance. Use tags to search and filter your resources or track your Amazon Web Services costs.</p>",
+        "TerminateSolNetworkInstanceOutput$tags": "<p>A tag is a label that you assign to an Amazon Web Services resource. Each tag consists of a key and an optional value. When you use this API, the tags are only applied to the network operation that is created. These tags are not applied to the network instance. Use tags to search and filter your resources or track your Amazon Web Services costs.</p>",
+        "UpdateSolNetworkInstanceInput$tags": "<p>A tag is a label that you assign to an Amazon Web Services resource. Each tag consists of a key and an optional value. When you use this API, the tags are only applied to the network operation that is created. These tags are not applied to the network instance. Use tags to search and filter your resources or track your Amazon Web Services costs.</p>",
+        "UpdateSolNetworkInstanceOutput$tags": "<p>A tag is a label that you assign to an Amazon Web Services resource. Each tag consists of a key and an optional value. When you use this API, the tags are only applied to the network operation that is created. These tags are not applied to the network instance. Use tags to search and filter your resources or track your Amazon Web Services costs.</p>"
       }
     },
     "TagResourceInput": {
@@ -956,6 +982,12 @@
       "refs": {
       }
     },
+    "UpdateNsMetadata": {
+      "base": "<p>Metadata related to the configuration properties used during update of a network instance.</p>",
+      "refs": {
+        "GetSolNetworkOperationMetadata$updateNsMetadata": "<p>Metadata related to the network operation occurrence for network instance updates. This is populated only if the lcmOperationType is <code>UPDATE</code> and the updateType is <code>UPDATE_NS</code>.</p>"
+      }
+    },
     "UpdateSolFunctionPackageInput": {
       "base": null,
       "refs": {
@@ -979,7 +1011,7 @@
     "UpdateSolNetworkModify": {
       "base": "<p>Information parameters and/or the configurable properties for a network function.</p> <p>A network function instance is a function in a function package .</p>",
       "refs": {
-        "UpdateSolNetworkInstanceInput$modifyVnfInfoData": "<p>Identifies the network function information parameters and/or the configurable properties of the network function to be modified.</p>"
+        "UpdateSolNetworkInstanceInput$modifyVnfInfoData": "<p>Identifies the network function information parameters and/or the configurable properties of the network function to be modified.</p> <p>Include this property only if the update type is <code>MODIFY_VNF_INFORMATION</code>.</p>"
       }
     },
     "UpdateSolNetworkPackageInput": {
@@ -992,10 +1024,18 @@
       "refs": {
       }
     },
+    "UpdateSolNetworkServiceData": {
+      "base": "<p>Information parameters and/or the configurable properties for a network descriptor used for update.</p>",
+      "refs": {
+        "UpdateSolNetworkInstanceInput$updateNs": "<p>Identifies the network service descriptor and the configurable properties of the descriptor, to be used for the update.</p> <p>Include this property only if the update type is <code>UPDATE_NS</code>.</p>"
+      }
+    },
     "UpdateSolNetworkType": {
       "base": null,
       "refs": {
-        "UpdateSolNetworkInstanceInput$updateType": "<p>The type of update.</p>"
+        "GetSolNetworkOperationOutput$updateType": "<p>Type of the update. Only present if the network operation lcmOperationType is <code>UPDATE</code>.</p>",
+        "ListSolNetworkOperationsInfo$updateType": "<p>Type of the update. Only present if the network operation lcmOperationType is <code>UPDATE</code>.</p>",
+        "UpdateSolNetworkInstanceInput$updateType": "<p>The type of update.</p> <ul> <li> <p>Use the <code>MODIFY_VNF_INFORMATION</code> update type, to update a specific network function configuration, in the network instance.</p> </li> <li> <p>Use the <code>UPDATE_NS</code> update type, to update the network instance to a new network service descriptor.</p> </li> </ul>"
       }
     },
     "UsageState": {
@@ -1056,6 +1096,8 @@
         "GetSolFunctionInstanceInput$vnfInstanceId": "<p>ID of the network function.</p>",
         "GetSolFunctionInstanceOutput$id": "<p>Network function instance ID.</p>",
         "ListSolFunctionInstanceInfo$id": "<p>Network function instance ID.</p>",
+        "ListSolNetworkOperationsMetadata$vnfInstanceId": "<p>The network function id used for the operation.</p> <p>Only present if the updateType is <code>MODIFY_VNF_INFO</code>.</p>",
+        "ModifyVnfInfoMetadata$vnfInstanceId": "<p>The network function instance that was updated in the network instance.</p>",
         "UpdateSolNetworkModify$vnfInstanceId": "<p>ID of the network function instance.</p> <p>A network function instance is a function in a function package .</p>"
       }
     },

@@ -17,7 +17,7 @@
     "CreateUpdatedWorkspaceImage": "<p>Creates a new updated WorkSpace image based on the specified source image. The new updated WorkSpace image has the latest drivers and other updates required by the Amazon WorkSpaces components.</p> <p>To determine which WorkSpace images need to be updated with the latest Amazon WorkSpaces requirements, use <a href=\"https://docs.aws.amazon.com/workspaces/latest/api/API_DescribeWorkspaceImages.html\"> DescribeWorkspaceImages</a>.</p> <note> <ul> <li> <p>Only Windows 10, Windows Server 2016, and Windows Server 2019 WorkSpace images can be programmatically updated at this time.</p> </li> <li> <p>Microsoft Windows updates and other application updates are not included in the update process.</p> </li> <li> <p>The source WorkSpace image is not deleted. You can delete the source image after you've verified your new updated image and created a new bundle. </p> </li> </ul> </note>",
     "CreateWorkspaceBundle": "<p>Creates the specified WorkSpace bundle. For more information about creating WorkSpace bundles, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/create-custom-bundle.html\"> Create a Custom WorkSpaces Image and Bundle</a>.</p>",
     "CreateWorkspaceImage": "<p>Creates a new WorkSpace image from an existing WorkSpace.</p>",
-    "CreateWorkspaces": "<p>Creates one or more WorkSpaces.</p> <p>This operation is asynchronous and returns before the WorkSpaces are created.</p> <note> <ul> <li> <p>The <code>MANUAL</code> running mode value is only supported by Amazon WorkSpaces Core. Contact your account team to be allow-listed to use this value. For more information, see <a href=\"http://aws.amazon.com/workspaces/core/\">Amazon WorkSpaces Core</a>.</p> </li> <li> <p>You don't need to specify the <code>PCOIP</code> protocol for Linux bundles because <code>WSP</code> is the default protocol for those bundles.</p> </li> <li> <p>User-decoupled WorkSpaces are only supported by Amazon WorkSpaces Core.</p> </li> </ul> </note>",
+    "CreateWorkspaces": "<p>Creates one or more WorkSpaces.</p> <p>This operation is asynchronous and returns before the WorkSpaces are created.</p> <note> <ul> <li> <p>The <code>MANUAL</code> running mode value is only supported by Amazon WorkSpaces Core. Contact your account team to be allow-listed to use this value. For more information, see <a href=\"http://aws.amazon.com/workspaces/core/\">Amazon WorkSpaces Core</a>.</p> </li> <li> <p>You don't need to specify the <code>PCOIP</code> protocol for Linux bundles because <code>WSP</code> is the default protocol for those bundles.</p> </li> <li> <p>User-decoupled WorkSpaces are only supported by Amazon WorkSpaces Core.</p> </li> <li> <p>Review your running mode to ensure you are using one that is optimal for your needs and budget. For more information on switching running modes, see <a href=\"http://aws.amazon.com/workspaces-family/workspaces/faqs/#:~:text=Can%20I%20switch%20between%20hourly%20and%20monthly%20billing%20on%20WorkSpaces%20Personal%3F\"> Can I switch between hourly and monthly billing?</a> </p> </li> </ul> </note>",
     "CreateWorkspacesPool": "<p>Creates a pool of WorkSpaces.</p>",
     "DeleteAccountLinkInvitation": "<p>Deletes the account link invitation.</p>",
     "DeleteClientBranding": "<p>Deletes customized client branding. Client branding allows you to customize your WorkSpace's client login portal. You can tailor your login portal company logo, the support email address, support link, link to reset password, and a custom message for users trying to sign in.</p> <p>After you delete your customized client branding, your login portal reverts to the default client branding.</p>",
@@ -175,13 +175,13 @@
     "ActiveUserSessions": {
       "base": null,
       "refs": {
-        "CapacityStatus$ActiveUserSessions": "<p>The number of user sessions currently being used for pool sessions. This only applies to multi-session pools.</p>"
+        "CapacityStatus$ActiveUserSessions": "<p>The number of user sessions currently being used for your pool.</p>"
       }
     },
     "ActualUserSessions": {
       "base": null,
       "refs": {
-        "CapacityStatus$ActualUserSessions": "<p>The total number of session slots that are available for a pool of WorkSpaces.</p>"
+        "CapacityStatus$ActualUserSessions": "<p>The total number of user sessions that are available for streaming or are currently streaming in your pool.</p> <p>ActualUserSessions = AvailableUserSessions + ActiveUserSessions</p>"
       }
     },
     "AddInName": {
@@ -358,7 +358,7 @@
     "AvailableUserSessions": {
       "base": null,
       "refs": {
-        "CapacityStatus$AvailableUserSessions": "<p>The number of user sessions currently being used for pool sessions. This only applies to multi-session pools.</p>"
+        "CapacityStatus$AvailableUserSessions": "<p>The number of user sessions currently available for streaming from your pool.</p> <p>AvailableUserSessions = ActualUserSessions - ActiveUserSessions</p>"
       }
     },
     "AwsAccount": {
@@ -1337,7 +1337,7 @@
     "DesiredUserSessions": {
       "base": null,
       "refs": {
-        "Capacity$DesiredUserSessions": "<p>The desired number of user sessions for a multi-session pool. This is not allowed for single-session pools.</p>",
+        "Capacity$DesiredUserSessions": "<p>The desired number of user sessions for the WorkSpaces in the pool.</p>",
         "CapacityStatus$DesiredUserSessions": "<p>The total number of sessions slots that are either running or pending. This represents the total number of concurrent streaming sessions your pool can support in a steady state.</p>"
       }
     },
@@ -2321,7 +2321,7 @@
     "RunningMode": {
       "base": null,
       "refs": {
-        "WorkspaceProperties$RunningMode": "<p>The running mode. For more information, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/running-mode.html\">Manage the WorkSpace Running Mode</a>.</p> <note> <p>The <code>MANUAL</code> value is only supported by Amazon WorkSpaces Core. Contact your account team to be allow-listed to use this value. For more information, see <a href=\"http://aws.amazon.com/workspaces/core/\">Amazon WorkSpaces Core</a>.</p> </note>"
+        "WorkspaceProperties$RunningMode": "<p>The running mode. For more information, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/running-mode.html\">Manage the WorkSpace Running Mode</a>.</p> <note> <p>The <code>MANUAL</code> value is only supported by Amazon WorkSpaces Core. Contact your account team to be allow-listed to use this value. For more information, see <a href=\"http://aws.amazon.com/workspaces/core/\">Amazon WorkSpaces Core</a>.</p> </note> <p>Review your running mode to ensure you are using one that is optimal for your needs and budget. For more information on switching running modes, see <a href=\"http://aws.amazon.com/workspaces-family/workspaces/faqs/#:~:text=Can%20I%20switch%20between%20hourly%20and%20monthly%20billing%20on%20WorkSpaces%20Personal%3F\"> Can I switch between hourly and monthly billing?</a> </p>"
       }
     },
     "RunningModeAutoStopTimeoutInMinutes": {
