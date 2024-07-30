@@ -4,7 +4,20 @@
 
 aws-sdk-go is the v1 AWS SDK for the Go programming language.
 
-We [announced](https://aws.amazon.com/blogs/developer/announcing-end-of-support-for-aws-sdk-for-go-v1-on-july-31-2025) the upcoming **end-of-support for AWS SDK for Go (v1)**. We recommend that you migrate to [AWS SDK for Go v2](https://aws.github.io/aws-sdk-go-v2/docs/). For dates, additional details, and information on how to migrate, please refer to the linked announcement.
+## :warning: This SDK is in maintenance mode
+
+We previously [announced](https://aws.amazon.com/blogs/developer/announcing-end-of-support-for-aws-sdk-for-go-v1-on-july-31-2025)
+the upcoming **end-of-support for AWS SDK for Go (v1)**.
+
+Per that announcement, as of 7/31/2024, **the SDK has entered maintenance mode**.
+Going forward, we will limit releases to address critical bug fixes and security
+issues only. The SDK will not receive API updates for new or existing services,
+or be updated to support new regions.
+
+Maintenance mode will last for 1 year. After 7/31/2025, the SDK will enter end-of-support, and no updates at all will be made.
+We recommend that you migrate to [AWS SDK for Go v2](https://aws.github.io/aws-sdk-go-v2/docs/).
+For additional details as well as information on how to migrate, please refer
+to the linked announcement.
 
 Jump To:
 * [Getting Started](#Getting-Started)
