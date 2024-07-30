@@ -152,6 +152,17 @@ type CodePipelineAPI interface {
 	ListPipelinesPages(*codepipeline.ListPipelinesInput, func(*codepipeline.ListPipelinesOutput, bool) bool) error
 	ListPipelinesPagesWithContext(aws.Context, *codepipeline.ListPipelinesInput, func(*codepipeline.ListPipelinesOutput, bool) bool, ...request.Option) error
 
+	ListRuleExecutions(*codepipeline.ListRuleExecutionsInput) (*codepipeline.ListRuleExecutionsOutput, error)
+	ListRuleExecutionsWithContext(aws.Context, *codepipeline.ListRuleExecutionsInput, ...request.Option) (*codepipeline.ListRuleExecutionsOutput, error)
+	ListRuleExecutionsRequest(*codepipeline.ListRuleExecutionsInput) (*request.Request, *codepipeline.ListRuleExecutionsOutput)
+
+	ListRuleExecutionsPages(*codepipeline.ListRuleExecutionsInput, func(*codepipeline.ListRuleExecutionsOutput, bool) bool) error
+	ListRuleExecutionsPagesWithContext(aws.Context, *codepipeline.ListRuleExecutionsInput, func(*codepipeline.ListRuleExecutionsOutput, bool) bool, ...request.Option) error
+
+	ListRuleTypes(*codepipeline.ListRuleTypesInput) (*codepipeline.ListRuleTypesOutput, error)
+	ListRuleTypesWithContext(aws.Context, *codepipeline.ListRuleTypesInput, ...request.Option) (*codepipeline.ListRuleTypesOutput, error)
+	ListRuleTypesRequest(*codepipeline.ListRuleTypesInput) (*request.Request, *codepipeline.ListRuleTypesOutput)
+
 	ListTagsForResource(*codepipeline.ListTagsForResourceInput) (*codepipeline.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *codepipeline.ListTagsForResourceInput, ...request.Option) (*codepipeline.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*codepipeline.ListTagsForResourceInput) (*request.Request, *codepipeline.ListTagsForResourceOutput)
@@ -165,6 +176,10 @@ type CodePipelineAPI interface {
 
 	ListWebhooksPages(*codepipeline.ListWebhooksInput, func(*codepipeline.ListWebhooksOutput, bool) bool) error
 	ListWebhooksPagesWithContext(aws.Context, *codepipeline.ListWebhooksInput, func(*codepipeline.ListWebhooksOutput, bool) bool, ...request.Option) error
+
+	OverrideStageCondition(*codepipeline.OverrideStageConditionInput) (*codepipeline.OverrideStageConditionOutput, error)
+	OverrideStageConditionWithContext(aws.Context, *codepipeline.OverrideStageConditionInput, ...request.Option) (*codepipeline.OverrideStageConditionOutput, error)
+	OverrideStageConditionRequest(*codepipeline.OverrideStageConditionInput) (*request.Request, *codepipeline.OverrideStageConditionOutput)
 
 	PollForJobs(*codepipeline.PollForJobsInput) (*codepipeline.PollForJobsOutput, error)
 	PollForJobsWithContext(aws.Context, *codepipeline.PollForJobsInput, ...request.Option) (*codepipeline.PollForJobsOutput, error)

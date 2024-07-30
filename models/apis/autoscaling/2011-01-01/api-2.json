@@ -1232,7 +1232,7 @@
         "CreatedTime":{"shape":"TimestampType"},
         "SuspendedProcesses":{"shape":"SuspendedProcesses"},
         "PlacementGroup":{"shape":"XmlStringMaxLen255"},
-        "VPCZoneIdentifier":{"shape":"XmlStringMaxLen2047"},
+        "VPCZoneIdentifier":{"shape":"XmlStringMaxLen5000"},
         "EnabledMetrics":{"shape":"EnabledMetrics"},
         "Status":{"shape":"XmlStringMaxLen255"},
         "Tags":{"shape":"TagDescriptionList"},
@@ -1514,7 +1514,7 @@
         "HealthCheckType":{"shape":"XmlStringMaxLen32"},
         "HealthCheckGracePeriod":{"shape":"HealthCheckGracePeriod"},
         "PlacementGroup":{"shape":"XmlStringMaxLen255"},
-        "VPCZoneIdentifier":{"shape":"XmlStringMaxLen2047"},
+        "VPCZoneIdentifier":{"shape":"XmlStringMaxLen5000"},
         "TerminationPolicies":{"shape":"TerminationPolicies"},
         "NewInstancesProtectedFromScaleIn":{"shape":"InstanceProtected"},
         "CapacityRebalance":{"shape":"CapacityRebalanceEnabled"},
@@ -3540,7 +3540,7 @@
         "HealthCheckType":{"shape":"XmlStringMaxLen32"},
         "HealthCheckGracePeriod":{"shape":"HealthCheckGracePeriod"},
         "PlacementGroup":{"shape":"XmlStringMaxLen255"},
-        "VPCZoneIdentifier":{"shape":"XmlStringMaxLen2047"},
+        "VPCZoneIdentifier":{"shape":"XmlStringMaxLen5000"},
         "TerminationPolicies":{"shape":"TerminationPolicies"},
         "NewInstancesProtectedFromScaleIn":{"shape":"InstanceProtected"},
         "ServiceLinkedRoleARN":{"shape":"ResourceName"},
@@ -3628,6 +3628,12 @@
     "XmlStringMaxLen32":{
       "type":"string",
       "max":32,
+      "min":1,
+      "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\r\\n\\t]*"
+    },
+    "XmlStringMaxLen5000":{
+      "type":"string",
+      "max":5000,
       "min":1,
       "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\r\\n\\t]*"
     },

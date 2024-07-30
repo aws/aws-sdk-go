@@ -5,12 +5,14 @@
     "endpointPrefix":"appstream2",
     "jsonVersion":"1.1",
     "protocol":"json",
+    "protocols":["json"],
     "serviceFullName":"Amazon AppStream",
     "serviceId":"AppStream",
     "signatureVersion":"v4",
     "signingName":"appstream",
     "targetPrefix":"PhotonAdminProxyService",
-    "uid":"appstream-2016-12-01"
+    "uid":"appstream-2016-12-01",
+    "auth":["aws.auth#sigv4"]
   },
   "operations":{
     "AssociateAppBlockBuilderAppBlock":{
@@ -2929,7 +2931,8 @@
         "WINDOWS_SERVER_2016",
         "WINDOWS_SERVER_2019",
         "WINDOWS_SERVER_2022",
-        "AMAZON_LINUX2"
+        "AMAZON_LINUX2",
+        "RHEL8"
       ]
     },
     "Platforms":{

@@ -2931,6 +2931,10 @@ func (s *AttributeMapping) SetMappingRules(v []*MappingRule) *AttributeMapping {
 type CreateProfileInput struct {
 	_ struct{} `type:"structure"`
 
+	// Used to determine if a custom role session name will be accepted in a temporary
+	// credential request.
+	AcceptRoleSessionName *bool `locationName:"acceptRoleSessionName" type:"boolean"`
+
 	// Used to determine how long sessions vended using this profile are valid for.
 	// See the Expiration section of the CreateSession API documentation (https://docs.aws.amazon.com/rolesanywhere/latest/userguide/authentication-create-session.html#credentials-object)
 	// page for more details. In requests, if this value is not provided, the default
@@ -3014,6 +3018,12 @@ func (s *CreateProfileInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAcceptRoleSessionName sets the AcceptRoleSessionName field's value.
+func (s *CreateProfileInput) SetAcceptRoleSessionName(v bool) *CreateProfileInput {
+	s.AcceptRoleSessionName = &v
+	return s
 }
 
 // SetDurationSeconds sets the DurationSeconds field's value.
@@ -5534,6 +5544,10 @@ func (s *NotificationSettingKey) SetEvent(v string) *NotificationSettingKey {
 type ProfileDetail struct {
 	_ struct{} `type:"structure"`
 
+	// Used to determine if a custom role session name will be accepted in a temporary
+	// credential request.
+	AcceptRoleSessionName *bool `locationName:"acceptRoleSessionName" type:"boolean"`
+
 	// A mapping applied to the authenticating end-entity certificate.
 	AttributeMappings []*AttributeMapping `locationName:"attributeMappings" type:"list"`
 
@@ -5596,6 +5610,12 @@ func (s ProfileDetail) String() string {
 // value will be replaced with "sensitive".
 func (s ProfileDetail) GoString() string {
 	return s.String()
+}
+
+// SetAcceptRoleSessionName sets the AcceptRoleSessionName field's value.
+func (s *ProfileDetail) SetAcceptRoleSessionName(v bool) *ProfileDetail {
+	s.AcceptRoleSessionName = &v
+	return s
 }
 
 // SetAttributeMappings sets the AttributeMappings field's value.
@@ -6902,6 +6922,10 @@ func (s *UpdateCrlOutput) SetCrl(v *CrlDetail) *UpdateCrlOutput {
 type UpdateProfileInput struct {
 	_ struct{} `type:"structure"`
 
+	// Used to determine if a custom role session name will be accepted in a temporary
+	// credential request.
+	AcceptRoleSessionName *bool `locationName:"acceptRoleSessionName" type:"boolean"`
+
 	// Used to determine how long sessions vended using this profile are valid for.
 	// See the Expiration section of the CreateSession API documentation (https://docs.aws.amazon.com/rolesanywhere/latest/userguide/authentication-create-session.html#credentials-object)
 	// page for more details. In requests, if this value is not provided, the default
@@ -6969,6 +6993,12 @@ func (s *UpdateProfileInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAcceptRoleSessionName sets the AcceptRoleSessionName field's value.
+func (s *UpdateProfileInput) SetAcceptRoleSessionName(v bool) *UpdateProfileInput {
+	s.AcceptRoleSessionName = &v
+	return s
 }
 
 // SetDurationSeconds sets the DurationSeconds field's value.

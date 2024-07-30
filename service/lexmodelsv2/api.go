@@ -1276,6 +1276,9 @@ func (c *LexModelsV2) CreateResourcePolicyStatementRequest(input *CreateResource
 //
 // You can't create a resource policy statement that allows cross-account access.
 //
+// You need to add the CreateResourcePolicy or UpdateResourcePolicy action to
+// the bot role in order to call the API.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2757,6 +2760,9 @@ func (c *LexModelsV2) DeleteResourcePolicyStatementRequest(input *DeleteResource
 // statement from a policy, the policy is deleted. If you specify a statement
 // ID that doesn't exist in the policy, or if the bot or bot alias doesn't have
 // a policy attached, Amazon Lex returns an exception.
+//
+// You need to add the DeleteResourcePolicy or UpdateResourcePolicy action to
+// the bot role in order to call the API.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -15171,14 +15177,85 @@ func (s *BatchUpdateCustomVocabularyItemOutput) SetResources(v []*CustomVocabula
 	return s
 }
 
+// The details on the Bedrock guardrail configuration.
+type BedrockGuardrailConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The unique guardrail id for the Bedrock guardrail configuration.
+	//
+	// Identifier is a required field
+	Identifier *string `locationName:"identifier" min:"1" type:"string" required:"true"`
+
+	// The guardrail version for the Bedrock guardrail configuration.
+	//
+	// Version is a required field
+	Version *string `locationName:"version" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BedrockGuardrailConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BedrockGuardrailConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BedrockGuardrailConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BedrockGuardrailConfiguration"}
+	if s.Identifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("Identifier"))
+	}
+	if s.Identifier != nil && len(*s.Identifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Identifier", 1))
+	}
+	if s.Version == nil {
+		invalidParams.Add(request.NewErrParamRequired("Version"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIdentifier sets the Identifier field's value.
+func (s *BedrockGuardrailConfiguration) SetIdentifier(v string) *BedrockGuardrailConfiguration {
+	s.Identifier = &v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *BedrockGuardrailConfiguration) SetVersion(v string) *BedrockGuardrailConfiguration {
+	s.Version = &v
+	return s
+}
+
 // Contains details about the configuration of a Amazon Bedrock knowledge base.
 type BedrockKnowledgeStoreConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the knowledge base used.
+	// The base ARN of the knowledge base used.
 	//
 	// BedrockKnowledgeBaseArn is a required field
 	BedrockKnowledgeBaseArn *string `locationName:"bedrockKnowledgeBaseArn" min:"1" type:"string" required:"true"`
+
+	// Specifies whether to return an exact response, or to return an answer generated
+	// by the model, using the fields you specify from the database.
+	ExactResponse *bool `locationName:"exactResponse" type:"boolean"`
+
+	// Contains the names of the fields used for an exact response to the user.
+	ExactResponseFields *BedrockKnowledgeStoreExactResponseFields `locationName:"exactResponseFields" type:"structure"`
 }
 
 // String returns the string representation.
@@ -15221,15 +15298,68 @@ func (s *BedrockKnowledgeStoreConfiguration) SetBedrockKnowledgeBaseArn(v string
 	return s
 }
 
+// SetExactResponse sets the ExactResponse field's value.
+func (s *BedrockKnowledgeStoreConfiguration) SetExactResponse(v bool) *BedrockKnowledgeStoreConfiguration {
+	s.ExactResponse = &v
+	return s
+}
+
+// SetExactResponseFields sets the ExactResponseFields field's value.
+func (s *BedrockKnowledgeStoreConfiguration) SetExactResponseFields(v *BedrockKnowledgeStoreExactResponseFields) *BedrockKnowledgeStoreConfiguration {
+	s.ExactResponseFields = v
+	return s
+}
+
+// The exact response fields given by the Bedrock knowledge store.
+type BedrockKnowledgeStoreExactResponseFields struct {
+	_ struct{} `type:"structure"`
+
+	// The answer field used for an exact response from Bedrock Knowledge Store.
+	AnswerField *string `locationName:"answerField" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BedrockKnowledgeStoreExactResponseFields) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BedrockKnowledgeStoreExactResponseFields) GoString() string {
+	return s.String()
+}
+
+// SetAnswerField sets the AnswerField field's value.
+func (s *BedrockKnowledgeStoreExactResponseFields) SetAnswerField(v string) *BedrockKnowledgeStoreExactResponseFields {
+	s.AnswerField = &v
+	return s
+}
+
 // Contains information about the Amazon Bedrock model used to interpret the
 // prompt used in descriptive bot building.
 type BedrockModelSpecification struct {
 	_ struct{} `type:"structure"`
 
+	// The custom prompt used in the Bedrock model specification details.
+	CustomPrompt *string `locationName:"customPrompt" min:"1" type:"string"`
+
+	// The guardrail configuration in the Bedrock model specification details.
+	Guardrail *BedrockGuardrailConfiguration `locationName:"guardrail" type:"structure"`
+
 	// The ARN of the foundation model used in descriptive bot building.
 	//
 	// ModelArn is a required field
 	ModelArn *string `locationName:"modelArn" type:"string" required:"true"`
+
+	// The Bedrock trace status in the Bedrock model specification details.
+	TraceStatus *string `locationName:"traceStatus" type:"string" enum:"BedrockTraceStatus"`
 }
 
 // String returns the string representation.
@@ -15253,8 +15383,16 @@ func (s BedrockModelSpecification) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *BedrockModelSpecification) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "BedrockModelSpecification"}
+	if s.CustomPrompt != nil && len(*s.CustomPrompt) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CustomPrompt", 1))
+	}
 	if s.ModelArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("ModelArn"))
+	}
+	if s.Guardrail != nil {
+		if err := s.Guardrail.Validate(); err != nil {
+			invalidParams.AddNested("Guardrail", err.(request.ErrInvalidParams))
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -15263,9 +15401,27 @@ func (s *BedrockModelSpecification) Validate() error {
 	return nil
 }
 
+// SetCustomPrompt sets the CustomPrompt field's value.
+func (s *BedrockModelSpecification) SetCustomPrompt(v string) *BedrockModelSpecification {
+	s.CustomPrompt = &v
+	return s
+}
+
+// SetGuardrail sets the Guardrail field's value.
+func (s *BedrockModelSpecification) SetGuardrail(v *BedrockGuardrailConfiguration) *BedrockModelSpecification {
+	s.Guardrail = v
+	return s
+}
+
 // SetModelArn sets the ModelArn field's value.
 func (s *BedrockModelSpecification) SetModelArn(v string) *BedrockModelSpecification {
 	s.ModelArn = &v
+	return s
+}
+
+// SetTraceStatus sets the TraceStatus field's value.
+func (s *BedrockModelSpecification) SetTraceStatus(v string) *BedrockModelSpecification {
+	s.TraceStatus = &v
 	return s
 }
 
@@ -49823,6 +49979,22 @@ const (
 func AudioRecognitionStrategy_Values() []string {
 	return []string{
 		AudioRecognitionStrategyUseSlotValuesAsCustomVocabulary,
+	}
+}
+
+const (
+	// BedrockTraceStatusEnabled is a BedrockTraceStatus enum value
+	BedrockTraceStatusEnabled = "ENABLED"
+
+	// BedrockTraceStatusDisabled is a BedrockTraceStatus enum value
+	BedrockTraceStatusDisabled = "DISABLED"
+)
+
+// BedrockTraceStatus_Values returns all elements of the BedrockTraceStatus enum
+func BedrockTraceStatus_Values() []string {
+	return []string{
+		BedrockTraceStatusEnabled,
+		BedrockTraceStatusDisabled,
 	}
 }
 

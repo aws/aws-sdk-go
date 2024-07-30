@@ -1,3 +1,25 @@
+Release v1.55.5 (2024-07-30)
+===
+
+### Service Client Updates
+* `service/appstream`: Updates service API and documentation
+  * Added support for Red Hat Enterprise Linux 8 on Amazon AppStream 2.0
+* `service/autoscaling`: Updates service API and documentation
+  * Increase the length limit for VPCZoneIdentifier from 2047 to 5000
+* `service/codepipeline`: Updates service API, documentation, and paginators
+  * AWS CodePipeline V2 type pipelines now support stage level conditions to enable development teams to safely release changes that meet quality and compliance requirements.
+* `service/elasticache`: Updates service documentation
+  * Doc only update for changes to deletion API.
+* `service/elasticloadbalancing`: Updates service API
+* `service/eventbridge`: Updates service API
+* `service/logs`: Updates service API
+  * Add v2 smoke tests and smithy smokeTests trait for SDK testing.
+* `service/models.lex.v2`: Updates service API and documentation
+* `service/rolesanywhere`: Updates service API and documentation
+* `service/tnb`: Updates service API and documentation
+* `service/workspaces`: Updates service documentation
+  * Removing multi-session as it isn't supported for pools
+
 Release v1.55.4 (2024-07-29)
 ===
 

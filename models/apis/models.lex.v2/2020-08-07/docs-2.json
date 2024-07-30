@@ -14,7 +14,7 @@
     "CreateExport": "<p>Creates a zip archive containing the contents of a bot or a bot locale. The archive contains a directory structure that contains JSON files that define the bot.</p> <p>You can create an archive that contains the complete definition of a bot, or you can specify that the archive contain only the definition of a single bot locale.</p> <p>For more information about exporting bots, and about the structure of the export archive, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/importing-exporting.html\"> Importing and exporting bots </a> </p>",
     "CreateIntent": "<p>Creates an intent.</p> <p>To define the interaction between the user and your bot, you define one or more intents. For example, for a pizza ordering bot you would create an <code>OrderPizza</code> intent.</p> <p>When you create an intent, you must provide a name. You can optionally provide the following:</p> <ul> <li> <p>Sample utterances. For example, \"I want to order a pizza\" and \"Can I order a pizza.\" You can't provide utterances for built-in intents.</p> </li> <li> <p>Information to be gathered. You specify slots for the information that you bot requests from the user. You can specify standard slot types, such as date and time, or custom slot types for your application.</p> </li> <li> <p>How the intent is fulfilled. You can provide a Lambda function or configure the intent to return the intent information to your client application. If you use a Lambda function, Amazon Lex invokes the function when all of the intent information is available.</p> </li> <li> <p>A confirmation prompt to send to the user to confirm an intent. For example, \"Shall I order your pizza?\"</p> </li> <li> <p>A conclusion statement to send to the user after the intent is fulfilled. For example, \"I ordered your pizza.\"</p> </li> <li> <p>A follow-up prompt that asks the user for additional activity. For example, \"Do you want a drink with your pizza?\"</p> </li> </ul>",
     "CreateResourcePolicy": "<p>Creates a new resource policy with the specified policy statements.</p>",
-    "CreateResourcePolicyStatement": "<p>Adds a new resource policy statement to a bot or bot alias. If a resource policy exists, the statement is added to the current resource policy. If a policy doesn't exist, a new policy is created.</p> <p>You can't create a resource policy statement that allows cross-account access.</p>",
+    "CreateResourcePolicyStatement": "<p>Adds a new resource policy statement to a bot or bot alias. If a resource policy exists, the statement is added to the current resource policy. If a policy doesn't exist, a new policy is created.</p> <p>You can't create a resource policy statement that allows cross-account access.</p> <p>You need to add the <code>CreateResourcePolicy</code> or <code>UpdateResourcePolicy</code> action to the bot role in order to call the API.</p>",
     "CreateSlot": "<p>Creates a slot in an intent. A slot is a variable needed to fulfill an intent. For example, an <code>OrderPizza</code> intent might need slots for size, crust, and number of pizzas. For each slot, you define one or more utterances that Amazon Lex uses to elicit a response from the user. </p>",
     "CreateSlotType": "<p>Creates a custom slot type</p> <p> To create a custom slot type, specify a name for the slot type and a set of enumeration values, the values that a slot of this type can assume. </p>",
     "CreateTestSetDiscrepancyReport": "<p>Create a report that describes the differences between the bot and the test set.</p>",
@@ -29,7 +29,7 @@
     "DeleteImport": "<p>Removes a previous import and the associated file stored in an S3 bucket.</p>",
     "DeleteIntent": "<p>Removes the specified intent.</p> <p>Deleting an intent also deletes the slots associated with the intent.</p>",
     "DeleteResourcePolicy": "<p>Removes an existing policy from a bot or bot alias. If the resource doesn't have a policy attached, Amazon Lex returns an exception.</p>",
-    "DeleteResourcePolicyStatement": "<p>Deletes a policy statement from a resource policy. If you delete the last statement from a policy, the policy is deleted. If you specify a statement ID that doesn't exist in the policy, or if the bot or bot alias doesn't have a policy attached, Amazon Lex returns an exception.</p>",
+    "DeleteResourcePolicyStatement": "<p>Deletes a policy statement from a resource policy. If you delete the last statement from a policy, the policy is deleted. If you specify a statement ID that doesn't exist in the policy, or if the bot or bot alias doesn't have a policy attached, Amazon Lex returns an exception.</p> <p>You need to add the <code>DeleteResourcePolicy</code> or <code>UpdateResourcePolicy</code> action to the bot role in order to call the API.</p>",
     "DeleteSlot": "<p>Deletes the specified slot from an intent.</p>",
     "DeleteSlotType": "<p>Deletes a slot type from a bot locale.</p> <p>If a slot is using the slot type, Amazon Lex throws a <code>ResourceInUseException</code> exception. To avoid the exception, set the <code>skipResourceInUseCheck</code> parameter to <code>true</code>.</p>",
     "DeleteTestSet": "<p>The action to delete the selected test set.</p>",
@@ -840,6 +840,7 @@
     "AnswerField": {
       "base": null,
       "refs": {
+        "BedrockKnowledgeStoreExactResponseFields$answerField": "<p>The answer field used for an exact response from Bedrock Knowledge Store.</p>",
         "ExactResponseFields$answerField": "<p>The name of the field that contains the answer to the query made to the OpenSearch Service database.</p>"
       }
     },
@@ -958,10 +959,28 @@
       "refs": {
       }
     },
+    "BedrockGuardrailConfiguration": {
+      "base": "<p>The details on the Bedrock guardrail configuration.</p>",
+      "refs": {
+        "BedrockModelSpecification$guardrail": "<p>The guardrail configuration in the Bedrock model specification details.</p>"
+      }
+    },
+    "BedrockGuardrailIdentifier": {
+      "base": null,
+      "refs": {
+        "BedrockGuardrailConfiguration$identifier": "<p>The unique guardrail id for the Bedrock guardrail configuration.</p>"
+      }
+    },
+    "BedrockGuardrailVersion": {
+      "base": null,
+      "refs": {
+        "BedrockGuardrailConfiguration$version": "<p>The guardrail version for the Bedrock guardrail configuration.</p>"
+      }
+    },
     "BedrockKnowledgeBaseArn": {
       "base": null,
       "refs": {
-        "BedrockKnowledgeStoreConfiguration$bedrockKnowledgeBaseArn": "<p>The ARN of the knowledge base used.</p>"
+        "BedrockKnowledgeStoreConfiguration$bedrockKnowledgeBaseArn": "<p>The base ARN of the knowledge base used.</p>"
       }
     },
     "BedrockKnowledgeStoreConfiguration": {
@@ -970,11 +989,23 @@
         "DataSourceConfiguration$bedrockKnowledgeStoreConfiguration": "<p>Contains details about the configuration of the Amazon Bedrock knowledge base used for the <code>AMAZON.QnAIntent</code>. To set up a knowledge base, follow the steps at <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html\">Building a knowledge base</a>.</p>"
       }
     },
+    "BedrockKnowledgeStoreExactResponseFields": {
+      "base": "<p>The exact response fields given by the Bedrock knowledge store.</p>",
+      "refs": {
+        "BedrockKnowledgeStoreConfiguration$exactResponseFields": "<p>Contains the names of the fields used for an exact response to the user.</p>"
+      }
+    },
     "BedrockModelArn": {
       "base": null,
       "refs": {
         "BedrockModelSpecification$modelArn": "<p>The ARN of the foundation model used in descriptive bot building.</p>",
         "DescribeBotResourceGenerationResponse$modelArn": "<p>The ARN of the model used to generate the bot resources.</p>"
+      }
+    },
+    "BedrockModelCustomPrompt": {
+      "base": null,
+      "refs": {
+        "BedrockModelSpecification$customPrompt": "<p>The custom prompt used in the Bedrock model specification details.</p>"
       }
     },
     "BedrockModelSpecification": {
@@ -986,10 +1017,17 @@
         "SlotResolutionImprovementSpecification$bedrockModelSpecification": "<p>An object containing information about the Amazon Bedrock model used to assist slot resolution.</p>"
       }
     },
+    "BedrockTraceStatus": {
+      "base": null,
+      "refs": {
+        "BedrockModelSpecification$traceStatus": "<p>The Bedrock trace status in the Bedrock model specification details.</p>"
+      }
+    },
     "Boolean": {
       "base": null,
       "refs": {
         "AudioLogSetting$enabled": "<p>Determines whether audio logging in enabled for the bot.</p>",
+        "BedrockKnowledgeStoreConfiguration$exactResponse": "<p>Specifies whether to return an exact response, or to return an answer generated by the model, using the fields you specify from the database.</p>",
         "BotAliasLocaleSettings$enabled": "<p>Determines whether the locale is enabled for the bot. If the value is <code>false</code>, the locale isn't available for use.</p>",
         "DescriptiveBotBuilderSpecification$enabled": "<p>Specifies whether the descriptive bot building feature is activated or not.</p>",
         "DialogCodeHookSettings$enabled": "<p>Enables the dialog code hook so that it processes user requests.</p>",

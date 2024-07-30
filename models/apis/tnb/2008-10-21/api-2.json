@@ -1,9 +1,15 @@
 {
   "metadata": {
     "apiVersion": "2008-10-21",
+    "auth": [
+      "aws.auth#sigv4"
+    ],
     "endpointPrefix": "tnb",
     "jsonVersion": "1.1",
     "protocol": "rest-json",
+    "protocols": [
+      "rest-json"
+    ],
     "serviceFullName": "AWS Telco Network Builder",
     "serviceId": "tnb",
     "signatureVersion": "v4",
@@ -1591,8 +1597,14 @@
         "createdAt": {
           "shape": "SyntheticTimestamp_date_time"
         },
+        "instantiateMetadata": {
+          "shape": "InstantiateMetadata"
+        },
         "lastModified": {
           "shape": "SyntheticTimestamp_date_time"
+        },
+        "updateNsMetadata": {
+          "shape": "UpdateNsMetadata"
         }
       },
       "required": [
@@ -1629,6 +1641,9 @@
         },
         "tasks": {
           "shape": "GetSolNetworkOperationTasksList"
+        },
+        "updateType": {
+          "shape": "UpdateSolNetworkType"
         }
       },
       "required": [
@@ -1843,6 +1858,17 @@
           "shape": "String"
         }
       },
+      "type": "structure"
+    },
+    "InstantiateMetadata": {
+      "members": {
+        "nsdInfoId": {
+          "shape": "NsdInfoId"
+        }
+      },
+      "required": [
+        "nsdInfoId"
+      ],
       "type": "structure"
     },
     "InstantiateSolNetworkInstanceInput": {
@@ -2217,6 +2243,9 @@
         },
         "operationState": {
           "shape": "NsLcmOperationState"
+        },
+        "updateType": {
+          "shape": "UpdateSolNetworkType"
         }
       },
       "required": [
@@ -2239,6 +2268,11 @@
           "location": "querystring",
           "locationName": "nextpage_opaque_marker",
           "shape": "PaginationToken"
+        },
+        "nsInstanceId": {
+          "location": "querystring",
+          "locationName": "nsInstanceId",
+          "shape": "NsInstanceId"
         }
       },
       "type": "structure"
@@ -2256,6 +2290,12 @@
         },
         "lastModified": {
           "shape": "SyntheticTimestamp_date_time"
+        },
+        "nsdInfoId": {
+          "shape": "NsdInfoId"
+        },
+        "vnfInstanceId": {
+          "shape": "VnfInstanceId"
         }
       },
       "required": [
@@ -2448,10 +2488,13 @@
       "enum": [
         "INSTANTIATED",
         "NOT_INSTANTIATED",
+        "UPDATED",
         "IMPAIRED",
+        "UPDATE_FAILED",
         "STOPPED",
         "DELETED",
         "INSTANTIATE_IN_PROGRESS",
+        "INTENT_TO_UPDATE_IN_PROGRESS",
         "UPDATE_IN_PROGRESS",
         "TERMINATE_IN_PROGRESS"
       ],
@@ -2543,7 +2586,7 @@
           "shape": "PackageContentType"
         },
         "file": {
-          "shape": "Blob"
+          "shape": "SensitiveBlob"
         },
         "vnfPkgId": {
           "location": "uri",
@@ -2605,7 +2648,7 @@
           "shape": "PackageContentType"
         },
         "file": {
-          "shape": "Blob"
+          "shape": "SensitiveBlob"
         },
         "nsdInfoId": {
           "location": "uri",
@@ -2678,6 +2721,10 @@
         "message"
       ],
       "type": "structure"
+    },
+    "SensitiveBlob": {
+      "sensitive": true,
+      "type": "blob"
     },
     "ServiceQuotaExceededException": {
       "error": {
@@ -2854,6 +2901,17 @@
       "members": {},
       "type": "structure"
     },
+    "UpdateNsMetadata": {
+      "members": {
+        "nsdInfoId": {
+          "shape": "NsdInfoId"
+        }
+      },
+      "required": [
+        "nsdInfoId"
+      ],
+      "type": "structure"
+    },
     "UpdateSolFunctionPackageInput": {
       "members": {
         "operationalState": {
@@ -2891,6 +2949,9 @@
         },
         "tags": {
           "shape": "TagMap"
+        },
+        "updateNs": {
+          "shape": "UpdateSolNetworkServiceData"
         },
         "updateType": {
           "shape": "UpdateSolNetworkType"
@@ -2941,9 +3002,21 @@
       ],
       "type": "structure"
     },
+    "UpdateSolNetworkServiceData": {
+      "members": {
+        "nsdInfoId": {
+          "shape": "NsdInfoId"
+        }
+      },
+      "required": [
+        "nsdInfoId"
+      ],
+      "type": "structure"
+    },
     "UpdateSolNetworkType": {
       "enum": [
-        "MODIFY_VNF_INFORMATION"
+        "MODIFY_VNF_INFORMATION",
+        "UPDATE_NS"
       ],
       "type": "string"
     },
@@ -2962,7 +3035,7 @@
           "shape": "PackageContentType"
         },
         "file": {
-          "shape": "Blob"
+          "shape": "SensitiveBlob"
         },
         "vnfPkgId": {
           "location": "uri",
@@ -3024,7 +3097,7 @@
           "shape": "PackageContentType"
         },
         "file": {
-          "shape": "Blob"
+          "shape": "SensitiveBlob"
         },
         "nsdInfoId": {
           "location": "uri",

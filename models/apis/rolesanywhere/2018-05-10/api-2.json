@@ -5,11 +5,13 @@
     "endpointPrefix":"rolesanywhere",
     "jsonVersion":"1.1",
     "protocol":"rest-json",
+    "protocols":["rest-json"],
     "serviceFullName":"IAM Roles Anywhere",
     "serviceId":"RolesAnywhere",
     "signatureVersion":"v4",
     "signingName":"rolesanywhere",
-    "uid":"rolesanywhere-2018-05-10"
+    "uid":"rolesanywhere-2018-05-10",
+    "auth":["aws.auth#sigv4"]
   },
   "operations":{
     "CreateProfile":{
@@ -499,6 +501,7 @@
         "roleArns"
       ],
       "members":{
+        "acceptRoleSessionName":{"shape":"Boolean"},
         "durationSeconds":{"shape":"CreateProfileRequestDurationSecondsInteger"},
         "enabled":{"shape":"Boolean"},
         "managedPolicyArns":{"shape":"ManagedPolicyList"},
@@ -834,6 +837,7 @@
     "ProfileDetail":{
       "type":"structure",
       "members":{
+        "acceptRoleSessionName":{"shape":"Boolean"},
         "attributeMappings":{"shape":"AttributeMappings"},
         "createdAt":{"shape":"SyntheticTimestamp_date_time"},
         "createdBy":{"shape":"String"},
@@ -1197,6 +1201,7 @@
       "type":"structure",
       "required":["profileId"],
       "members":{
+        "acceptRoleSessionName":{"shape":"Boolean"},
         "durationSeconds":{"shape":"UpdateProfileRequestDurationSecondsInteger"},
         "managedPolicyArns":{"shape":"ManagedPolicyList"},
         "name":{"shape":"ResourceName"},

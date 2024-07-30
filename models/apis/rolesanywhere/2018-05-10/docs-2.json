@@ -68,6 +68,7 @@
     "Boolean": {
       "base": null,
       "refs": {
+        "CreateProfileRequest$acceptRoleSessionName": "<p>Used to determine if a custom role session name will be accepted in a temporary credential request.</p>",
         "CreateProfileRequest$enabled": "<p>Specifies whether the profile is enabled.</p>",
         "CreateProfileRequest$requireInstanceProperties": "<p>Specifies whether instance properties are required in temporary credential requests with this profile. </p>",
         "CreateTrustAnchorRequest$enabled": "<p>Specifies whether the trust anchor is enabled.</p>",
@@ -78,11 +79,13 @@
         "InstanceProperty$failed": "<p>Indicates whether the temporary credential request was successful. </p>",
         "NotificationSetting$enabled": "<p>Indicates whether the notification setting is enabled.</p>",
         "NotificationSettingDetail$enabled": "<p>Indicates whether the notification setting is enabled.</p>",
+        "ProfileDetail$acceptRoleSessionName": "<p>Used to determine if a custom role session name will be accepted in a temporary credential request.</p>",
         "ProfileDetail$enabled": "<p>Indicates whether the profile is enabled.</p>",
         "ProfileDetail$requireInstanceProperties": "<p>Specifies whether instance properties are required in temporary credential requests with this profile. </p>",
         "SubjectDetail$enabled": "<p>The enabled status of the subject.</p>",
         "SubjectSummary$enabled": "<p>The enabled status of the subject. </p>",
-        "TrustAnchorDetail$enabled": "<p>Indicates whether the trust anchor is enabled.</p>"
+        "TrustAnchorDetail$enabled": "<p>Indicates whether the trust anchor is enabled.</p>",
+        "UpdateProfileRequest$acceptRoleSessionName": "<p>Used to determine if a custom role session name will be accepted in a temporary credential request.</p>"
       }
     },
     "CertificateField": {

@@ -38,6 +38,12 @@ const (
 	// The pipeline has reached the limit for concurrent pipeline executions.
 	ErrCodeConcurrentPipelineExecutionsLimitExceededException = "ConcurrentPipelineExecutionsLimitExceededException"
 
+	// ErrCodeConditionNotOverridableException for service response error code
+	// "ConditionNotOverridableException".
+	//
+	// Unable to override because the condition does not allow overrides.
+	ErrCodeConditionNotOverridableException = "ConditionNotOverridableException"
+
 	// ErrCodeConflictException for service response error code
 	// "ConflictException".
 	//
@@ -263,6 +269,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"ApprovalAlreadyCompletedException":                  newErrorApprovalAlreadyCompletedException,
 	"ConcurrentModificationException":                    newErrorConcurrentModificationException,
 	"ConcurrentPipelineExecutionsLimitExceededException": newErrorConcurrentPipelineExecutionsLimitExceededException,
+	"ConditionNotOverridableException":                   newErrorConditionNotOverridableException,
 	"ConflictException":                                  newErrorConflictException,
 	"DuplicatedStopRequestException":                     newErrorDuplicatedStopRequestException,
 	"InvalidActionDeclarationException":                  newErrorInvalidActionDeclarationException,

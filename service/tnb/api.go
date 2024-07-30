@@ -769,7 +769,7 @@ func (c *Tnb) GetSolFunctionInstanceRequest(input *GetSolFunctionInstanceInput) 
 
 // GetSolFunctionInstance API operation for AWS Telco Network Builder.
 //
-// Gets the details of a network function instance, including the instantation
+// Gets the details of a network function instance, including the instantiation
 // state and metadata from the function package descriptor in the network function
 // package.
 //
@@ -3176,6 +3176,9 @@ func (c *Tnb) UpdateSolNetworkInstanceRequest(input *UpdateSolNetworkInstanceInp
 // that can be deployed and on which life-cycle operations (like terminate,
 // update, and delete) can be performed.
 //
+// Choose the updateType parameter to target the necessary update of the network
+// instance.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -5412,10 +5415,19 @@ type GetSolNetworkOperationMetadata struct {
 	// CreatedAt is a required field
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
+	// Metadata related to the network operation occurrence for network instantiation.
+	// This is populated only if the lcmOperationType is INSTANTIATE.
+	InstantiateMetadata *InstantiateMetadata `locationName:"instantiateMetadata" type:"structure"`
+
 	// The date that the resource was last modified.
 	//
 	// LastModified is a required field
 	LastModified *time.Time `locationName:"lastModified" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// Metadata related to the network operation occurrence for network instance
+	// updates. This is populated only if the lcmOperationType is UPDATE and the
+	// updateType is UPDATE_NS.
+	UpdateNsMetadata *UpdateNsMetadata `locationName:"updateNsMetadata" type:"structure"`
 }
 
 // String returns the string representation.
@@ -5442,9 +5454,21 @@ func (s *GetSolNetworkOperationMetadata) SetCreatedAt(v time.Time) *GetSolNetwor
 	return s
 }
 
+// SetInstantiateMetadata sets the InstantiateMetadata field's value.
+func (s *GetSolNetworkOperationMetadata) SetInstantiateMetadata(v *InstantiateMetadata) *GetSolNetworkOperationMetadata {
+	s.InstantiateMetadata = v
+	return s
+}
+
 // SetLastModified sets the LastModified field's value.
 func (s *GetSolNetworkOperationMetadata) SetLastModified(v time.Time) *GetSolNetworkOperationMetadata {
 	s.LastModified = &v
+	return s
+}
+
+// SetUpdateNsMetadata sets the UpdateNsMetadata field's value.
+func (s *GetSolNetworkOperationMetadata) SetUpdateNsMetadata(v *UpdateNsMetadata) *GetSolNetworkOperationMetadata {
+	s.UpdateNsMetadata = v
 	return s
 }
 
@@ -5485,6 +5509,10 @@ type GetSolNetworkOperationOutput struct {
 
 	// All tasks associated with this operation occurrence.
 	Tasks []*GetSolNetworkOperationTaskDetails `locationName:"tasks" type:"list"`
+
+	// Type of the update. Only present if the network operation lcmOperationType
+	// is UPDATE.
+	UpdateType *string `locationName:"updateType" type:"string" enum:"UpdateSolNetworkType"`
 }
 
 // String returns the string representation.
@@ -5556,6 +5584,12 @@ func (s *GetSolNetworkOperationOutput) SetTags(v map[string]*string) *GetSolNetw
 // SetTasks sets the Tasks field's value.
 func (s *GetSolNetworkOperationOutput) SetTasks(v []*GetSolNetworkOperationTaskDetails) *GetSolNetworkOperationOutput {
 	s.Tasks = v
+	return s
+}
+
+// SetUpdateType sets the UpdateType field's value.
+func (s *GetSolNetworkOperationOutput) SetUpdateType(v string) *GetSolNetworkOperationOutput {
+	s.UpdateType = &v
 	return s
 }
 
@@ -6224,6 +6258,41 @@ func (s *GetSolVnfcResourceInfoMetadata) SetNodeGroup(v string) *GetSolVnfcResou
 	return s
 }
 
+// Metadata related to the configuration properties used during instantiation
+// of the network instance.
+type InstantiateMetadata struct {
+	_ struct{} `type:"structure"`
+
+	// The network service descriptor used for instantiating the network instance.
+	//
+	// NsdInfoId is a required field
+	NsdInfoId *string `locationName:"nsdInfoId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InstantiateMetadata) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InstantiateMetadata) GoString() string {
+	return s.String()
+}
+
+// SetNsdInfoId sets the NsdInfoId field's value.
+func (s *InstantiateMetadata) SetNsdInfoId(v string) *InstantiateMetadata {
+	s.NsdInfoId = &v
+	return s
+}
+
 type InstantiateSolNetworkInstanceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6240,8 +6309,9 @@ type InstantiateSolNetworkInstanceInput struct {
 
 	// A tag is a label that you assign to an Amazon Web Services resource. Each
 	// tag consists of a key and an optional value. When you use this API, the tags
-	// are transferred to the network operation that is created. Use tags to search
-	// and filter your resources or track your Amazon Web Services costs.
+	// are only applied to the network operation that is created. These tags are
+	// not applied to the network instance. Use tags to search and filter your resources
+	// or track your Amazon Web Services costs.
 	//
 	// Tags is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by InstantiateSolNetworkInstanceInput's
@@ -6311,8 +6381,9 @@ type InstantiateSolNetworkInstanceOutput struct {
 
 	// A tag is a label that you assign to an Amazon Web Services resource. Each
 	// tag consists of a key and an optional value. When you use this API, the tags
-	// are transferred to the network operation that is created. Use tags to search
-	// and filter your resources or track your Amazon Web Services costs.
+	// are only applied to the network operation that is created. These tags are
+	// not applied to the network instance. Use tags to search and filter your resources
+	// or track your Amazon Web Services costs.
 	//
 	// Tags is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by InstantiateSolNetworkInstanceOutput's
@@ -7273,6 +7344,10 @@ type ListSolNetworkOperationsInfo struct {
 	//
 	// OperationState is a required field
 	OperationState *string `locationName:"operationState" type:"string" required:"true" enum:"NsLcmOperationState"`
+
+	// Type of the update. Only present if the network operation lcmOperationType
+	// is UPDATE.
+	UpdateType *string `locationName:"updateType" type:"string" enum:"UpdateSolNetworkType"`
 }
 
 // String returns the string representation.
@@ -7335,6 +7410,12 @@ func (s *ListSolNetworkOperationsInfo) SetOperationState(v string) *ListSolNetwo
 	return s
 }
 
+// SetUpdateType sets the UpdateType field's value.
+func (s *ListSolNetworkOperationsInfo) SetUpdateType(v string) *ListSolNetworkOperationsInfo {
+	s.UpdateType = &v
+	return s
+}
+
 type ListSolNetworkOperationsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -7343,6 +7424,10 @@ type ListSolNetworkOperationsInput struct {
 
 	// The token for the next page of results.
 	NextToken *string `location:"querystring" locationName:"nextpage_opaque_marker" type:"string"`
+
+	// Network instance id filter, to retrieve network operations associated to
+	// a network instance.
+	NsInstanceId *string `location:"querystring" locationName:"nsInstanceId" type:"string"`
 }
 
 // String returns the string representation.
@@ -7388,6 +7473,12 @@ func (s *ListSolNetworkOperationsInput) SetNextToken(v string) *ListSolNetworkOp
 	return s
 }
 
+// SetNsInstanceId sets the NsInstanceId field's value.
+func (s *ListSolNetworkOperationsInput) SetNsInstanceId(v string) *ListSolNetworkOperationsInput {
+	s.NsInstanceId = &v
+	return s
+}
+
 // Metadata related to a network operation.
 //
 // A network operation is any operation that is done to your network, such as
@@ -7404,6 +7495,16 @@ type ListSolNetworkOperationsMetadata struct {
 	//
 	// LastModified is a required field
 	LastModified *time.Time `locationName:"lastModified" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// The network service descriptor id used for the operation.
+	//
+	// Only present if the updateType is UPDATE_NS.
+	NsdInfoId *string `locationName:"nsdInfoId" type:"string"`
+
+	// The network function id used for the operation.
+	//
+	// Only present if the updateType is MODIFY_VNF_INFO.
+	VnfInstanceId *string `locationName:"vnfInstanceId" type:"string"`
 }
 
 // String returns the string representation.
@@ -7433,6 +7534,18 @@ func (s *ListSolNetworkOperationsMetadata) SetCreatedAt(v time.Time) *ListSolNet
 // SetLastModified sets the LastModified field's value.
 func (s *ListSolNetworkOperationsMetadata) SetLastModified(v time.Time) *ListSolNetworkOperationsMetadata {
 	s.LastModified = &v
+	return s
+}
+
+// SetNsdInfoId sets the NsdInfoId field's value.
+func (s *ListSolNetworkOperationsMetadata) SetNsdInfoId(v string) *ListSolNetworkOperationsMetadata {
+	s.NsdInfoId = &v
+	return s
+}
+
+// SetVnfInstanceId sets the VnfInstanceId field's value.
+func (s *ListSolNetworkOperationsMetadata) SetVnfInstanceId(v string) *ListSolNetworkOperationsMetadata {
+	s.VnfInstanceId = &v
 	return s
 }
 
@@ -7947,8 +8060,12 @@ type PutSolFunctionPackageContentInput struct {
 
 	// Function package file.
 	//
+	// File is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by PutSolFunctionPackageContentInput's
+	// String and GoString methods.
+	//
 	// File is a required field
-	File []byte `locationName:"file" type:"blob" required:"true"`
+	File []byte `locationName:"file" type:"blob" required:"true" sensitive:"true"`
 
 	// Function package ID.
 	//
@@ -8147,8 +8264,12 @@ type PutSolNetworkPackageContentInput struct {
 
 	// Network package file.
 	//
+	// File is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by PutSolNetworkPackageContentInput's
+	// String and GoString methods.
+	//
 	// File is a required field
-	File []byte `locationName:"file" type:"blob" required:"true"`
+	File []byte `locationName:"file" type:"blob" required:"true" sensitive:"true"`
 
 	// Network service descriptor info ID.
 	//
@@ -8578,8 +8699,9 @@ type TerminateSolNetworkInstanceInput struct {
 
 	// A tag is a label that you assign to an Amazon Web Services resource. Each
 	// tag consists of a key and an optional value. When you use this API, the tags
-	// are transferred to the network operation that is created. Use tags to search
-	// and filter your resources or track your Amazon Web Services costs.
+	// are only applied to the network operation that is created. These tags are
+	// not applied to the network instance. Use tags to search and filter your resources
+	// or track your Amazon Web Services costs.
 	//
 	// Tags is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by TerminateSolNetworkInstanceInput's
@@ -8641,8 +8763,9 @@ type TerminateSolNetworkInstanceOutput struct {
 
 	// A tag is a label that you assign to an Amazon Web Services resource. Each
 	// tag consists of a key and an optional value. When you use this API, the tags
-	// are transferred to the network operation that is created. Use tags to search
-	// and filter your resources or track your Amazon Web Services costs.
+	// are only applied to the network operation that is created. These tags are
+	// not applied to the network instance. Use tags to search and filter your resources
+	// or track your Amazon Web Services costs.
 	//
 	// Tags is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by TerminateSolNetworkInstanceOutput's
@@ -8870,6 +8993,41 @@ func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
 
+// Metadata related to the configuration properties used during update of a
+// network instance.
+type UpdateNsMetadata struct {
+	_ struct{} `type:"structure"`
+
+	// The network service descriptor used for updating the network instance.
+	//
+	// NsdInfoId is a required field
+	NsdInfoId *string `locationName:"nsdInfoId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateNsMetadata) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateNsMetadata) GoString() string {
+	return s.String()
+}
+
+// SetNsdInfoId sets the NsdInfoId field's value.
+func (s *UpdateNsMetadata) SetNsdInfoId(v string) *UpdateNsMetadata {
+	s.NsdInfoId = &v
+	return s
+}
+
 type UpdateSolFunctionPackageInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8976,15 +9134,28 @@ type UpdateSolNetworkInstanceInput struct {
 
 	// A tag is a label that you assign to an Amazon Web Services resource. Each
 	// tag consists of a key and an optional value. When you use this API, the tags
-	// are transferred to the network operation that is created. Use tags to search
-	// and filter your resources or track your Amazon Web Services costs.
+	// are only applied to the network operation that is created. These tags are
+	// not applied to the network instance. Use tags to search and filter your resources
+	// or track your Amazon Web Services costs.
 	//
 	// Tags is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by UpdateSolNetworkInstanceInput's
 	// String and GoString methods.
 	Tags map[string]*string `locationName:"tags" type:"map" sensitive:"true"`
 
+	// Identifies the network service descriptor and the configurable properties
+	// of the descriptor, to be used for the update.
+	//
+	// Include this property only if the update type is UPDATE_NS.
+	UpdateNs *UpdateSolNetworkServiceData `locationName:"updateNs" type:"structure"`
+
 	// The type of update.
+	//
+	//    * Use the MODIFY_VNF_INFORMATION update type, to update a specific network
+	//    function configuration, in the network instance.
+	//
+	//    * Use the UPDATE_NS update type, to update the network instance to a new
+	//    network service descriptor.
 	//
 	// UpdateType is a required field
 	UpdateType *string `locationName:"updateType" type:"string" required:"true" enum:"UpdateSolNetworkType"`
@@ -9020,6 +9191,11 @@ func (s *UpdateSolNetworkInstanceInput) Validate() error {
 	if s.UpdateType == nil {
 		invalidParams.Add(request.NewErrParamRequired("UpdateType"))
 	}
+	if s.UpdateNs != nil {
+		if err := s.UpdateNs.Validate(); err != nil {
+			invalidParams.AddNested("UpdateNs", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -9039,6 +9215,12 @@ func (s *UpdateSolNetworkInstanceInput) SetTags(v map[string]*string) *UpdateSol
 	return s
 }
 
+// SetUpdateNs sets the UpdateNs field's value.
+func (s *UpdateSolNetworkInstanceInput) SetUpdateNs(v *UpdateSolNetworkServiceData) *UpdateSolNetworkInstanceInput {
+	s.UpdateNs = v
+	return s
+}
+
 // SetUpdateType sets the UpdateType field's value.
 func (s *UpdateSolNetworkInstanceInput) SetUpdateType(v string) *UpdateSolNetworkInstanceInput {
 	s.UpdateType = &v
@@ -9053,8 +9235,9 @@ type UpdateSolNetworkInstanceOutput struct {
 
 	// A tag is a label that you assign to an Amazon Web Services resource. Each
 	// tag consists of a key and an optional value. When you use this API, the tags
-	// are transferred to the network operation that is created. Use tags to search
-	// and filter your resources or track your Amazon Web Services costs.
+	// are only applied to the network operation that is created. These tags are
+	// not applied to the network instance. Use tags to search and filter your resources
+	// or track your Amazon Web Services costs.
 	//
 	// Tags is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by UpdateSolNetworkInstanceOutput's
@@ -9188,6 +9371,54 @@ func (s *UpdateSolNetworkPackageOutput) SetNsdOperationalState(v string) *Update
 	return s
 }
 
+// Information parameters and/or the configurable properties for a network descriptor
+// used for update.
+type UpdateSolNetworkServiceData struct {
+	_ struct{} `type:"structure"`
+
+	// ID of the network service descriptor.
+	//
+	// NsdInfoId is a required field
+	NsdInfoId *string `locationName:"nsdInfoId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSolNetworkServiceData) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSolNetworkServiceData) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateSolNetworkServiceData) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateSolNetworkServiceData"}
+	if s.NsdInfoId == nil {
+		invalidParams.Add(request.NewErrParamRequired("NsdInfoId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetNsdInfoId sets the NsdInfoId field's value.
+func (s *UpdateSolNetworkServiceData) SetNsdInfoId(v string) *UpdateSolNetworkServiceData {
+	s.NsdInfoId = &v
+	return s
+}
+
 type ValidateSolFunctionPackageContentInput struct {
 	_ struct{} `type:"structure" payload:"File"`
 
@@ -9196,8 +9427,12 @@ type ValidateSolFunctionPackageContentInput struct {
 
 	// Function package file.
 	//
+	// File is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ValidateSolFunctionPackageContentInput's
+	// String and GoString methods.
+	//
 	// File is a required field
-	File []byte `locationName:"file" type:"blob" required:"true"`
+	File []byte `locationName:"file" type:"blob" required:"true" sensitive:"true"`
 
 	// Function package ID.
 	//
@@ -9396,8 +9631,12 @@ type ValidateSolNetworkPackageContentInput struct {
 
 	// Network package file.
 	//
+	// File is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ValidateSolNetworkPackageContentInput's
+	// String and GoString methods.
+	//
 	// File is a required field
-	File []byte `locationName:"file" type:"blob" required:"true"`
+	File []byte `locationName:"file" type:"blob" required:"true" sensitive:"true"`
 
 	// Network service descriptor file.
 	//
@@ -9730,8 +9969,14 @@ const (
 	// NsStateNotInstantiated is a NsState enum value
 	NsStateNotInstantiated = "NOT_INSTANTIATED"
 
+	// NsStateUpdated is a NsState enum value
+	NsStateUpdated = "UPDATED"
+
 	// NsStateImpaired is a NsState enum value
 	NsStateImpaired = "IMPAIRED"
+
+	// NsStateUpdateFailed is a NsState enum value
+	NsStateUpdateFailed = "UPDATE_FAILED"
 
 	// NsStateStopped is a NsState enum value
 	NsStateStopped = "STOPPED"
@@ -9741,6 +9986,9 @@ const (
 
 	// NsStateInstantiateInProgress is a NsState enum value
 	NsStateInstantiateInProgress = "INSTANTIATE_IN_PROGRESS"
+
+	// NsStateIntentToUpdateInProgress is a NsState enum value
+	NsStateIntentToUpdateInProgress = "INTENT_TO_UPDATE_IN_PROGRESS"
 
 	// NsStateUpdateInProgress is a NsState enum value
 	NsStateUpdateInProgress = "UPDATE_IN_PROGRESS"
@@ -9754,10 +10002,13 @@ func NsState_Values() []string {
 	return []string{
 		NsStateInstantiated,
 		NsStateNotInstantiated,
+		NsStateUpdated,
 		NsStateImpaired,
+		NsStateUpdateFailed,
 		NsStateStopped,
 		NsStateDeleted,
 		NsStateInstantiateInProgress,
+		NsStateIntentToUpdateInProgress,
 		NsStateUpdateInProgress,
 		NsStateTerminateInProgress,
 	}
@@ -9902,12 +10153,16 @@ func TaskStatus_Values() []string {
 const (
 	// UpdateSolNetworkTypeModifyVnfInformation is a UpdateSolNetworkType enum value
 	UpdateSolNetworkTypeModifyVnfInformation = "MODIFY_VNF_INFORMATION"
+
+	// UpdateSolNetworkTypeUpdateNs is a UpdateSolNetworkType enum value
+	UpdateSolNetworkTypeUpdateNs = "UPDATE_NS"
 )
 
 // UpdateSolNetworkType_Values returns all elements of the UpdateSolNetworkType enum
 func UpdateSolNetworkType_Values() []string {
 	return []string{
 		UpdateSolNetworkTypeModifyVnfInformation,
+		UpdateSolNetworkTypeUpdateNs,
 	}
 }
 

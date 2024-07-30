@@ -2010,6 +2010,237 @@ func (c *CodePipeline) ListPipelinesPagesWithContext(ctx aws.Context, input *Lis
 	return p.Err()
 }
 
+const opListRuleExecutions = "ListRuleExecutions"
+
+// ListRuleExecutionsRequest generates a "aws/request.Request" representing the
+// client's request for the ListRuleExecutions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListRuleExecutions for more information on using the ListRuleExecutions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListRuleExecutionsRequest method.
+//	req, resp := client.ListRuleExecutionsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/ListRuleExecutions
+func (c *CodePipeline) ListRuleExecutionsRequest(input *ListRuleExecutionsInput) (req *request.Request, output *ListRuleExecutionsOutput) {
+	op := &request.Operation{
+		Name:       opListRuleExecutions,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListRuleExecutionsInput{}
+	}
+
+	output = &ListRuleExecutionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListRuleExecutions API operation for AWS CodePipeline.
+//
+// Lists the rule executions that have occurred in a pipeline configured for
+// conditions with rules.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CodePipeline's
+// API operation ListRuleExecutions for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The validation was specified in an invalid format.
+//
+//   - PipelineNotFoundException
+//     The pipeline was specified in an invalid format or cannot be found.
+//
+//   - InvalidNextTokenException
+//     The next token was specified in an invalid format. Make sure that the next
+//     token you provide is the token returned by a previous call.
+//
+//   - PipelineExecutionNotFoundException
+//     The pipeline execution was specified in an invalid format or cannot be found,
+//     or an execution ID does not belong to the specified pipeline.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/ListRuleExecutions
+func (c *CodePipeline) ListRuleExecutions(input *ListRuleExecutionsInput) (*ListRuleExecutionsOutput, error) {
+	req, out := c.ListRuleExecutionsRequest(input)
+	return out, req.Send()
+}
+
+// ListRuleExecutionsWithContext is the same as ListRuleExecutions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListRuleExecutions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CodePipeline) ListRuleExecutionsWithContext(ctx aws.Context, input *ListRuleExecutionsInput, opts ...request.Option) (*ListRuleExecutionsOutput, error) {
+	req, out := c.ListRuleExecutionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListRuleExecutionsPages iterates over the pages of a ListRuleExecutions operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListRuleExecutions method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListRuleExecutions operation.
+//	pageNum := 0
+//	err := client.ListRuleExecutionsPages(params,
+//	    func(page *codepipeline.ListRuleExecutionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *CodePipeline) ListRuleExecutionsPages(input *ListRuleExecutionsInput, fn func(*ListRuleExecutionsOutput, bool) bool) error {
+	return c.ListRuleExecutionsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListRuleExecutionsPagesWithContext same as ListRuleExecutionsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CodePipeline) ListRuleExecutionsPagesWithContext(ctx aws.Context, input *ListRuleExecutionsInput, fn func(*ListRuleExecutionsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListRuleExecutionsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListRuleExecutionsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListRuleExecutionsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListRuleTypes = "ListRuleTypes"
+
+// ListRuleTypesRequest generates a "aws/request.Request" representing the
+// client's request for the ListRuleTypes operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListRuleTypes for more information on using the ListRuleTypes
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListRuleTypesRequest method.
+//	req, resp := client.ListRuleTypesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/ListRuleTypes
+func (c *CodePipeline) ListRuleTypesRequest(input *ListRuleTypesInput) (req *request.Request, output *ListRuleTypesOutput) {
+	op := &request.Operation{
+		Name:       opListRuleTypes,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListRuleTypesInput{}
+	}
+
+	output = &ListRuleTypesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListRuleTypes API operation for AWS CodePipeline.
+//
+// Lists the rules for the condition.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CodePipeline's
+// API operation ListRuleTypes for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The validation was specified in an invalid format.
+//
+//   - InvalidNextTokenException
+//     The next token was specified in an invalid format. Make sure that the next
+//     token you provide is the token returned by a previous call.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/ListRuleTypes
+func (c *CodePipeline) ListRuleTypes(input *ListRuleTypesInput) (*ListRuleTypesOutput, error) {
+	req, out := c.ListRuleTypesRequest(input)
+	return out, req.Send()
+}
+
+// ListRuleTypesWithContext is the same as ListRuleTypes with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListRuleTypes for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CodePipeline) ListRuleTypesWithContext(ctx aws.Context, input *ListRuleTypesInput, opts ...request.Option) (*ListRuleTypesOutput, error) {
+	req, out := c.ListRuleTypesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListTagsForResource = "ListTagsForResource"
 
 // ListTagsForResourceRequest generates a "aws/request.Request" representing the
@@ -2298,6 +2529,106 @@ func (c *CodePipeline) ListWebhooksPagesWithContext(ctx aws.Context, input *List
 	return p.Err()
 }
 
+const opOverrideStageCondition = "OverrideStageCondition"
+
+// OverrideStageConditionRequest generates a "aws/request.Request" representing the
+// client's request for the OverrideStageCondition operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See OverrideStageCondition for more information on using the OverrideStageCondition
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the OverrideStageConditionRequest method.
+//	req, resp := client.OverrideStageConditionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/OverrideStageCondition
+func (c *CodePipeline) OverrideStageConditionRequest(input *OverrideStageConditionInput) (req *request.Request, output *OverrideStageConditionOutput) {
+	op := &request.Operation{
+		Name:       opOverrideStageCondition,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &OverrideStageConditionInput{}
+	}
+
+	output = &OverrideStageConditionOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// OverrideStageCondition API operation for AWS CodePipeline.
+//
+// Used to override a stage condition.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CodePipeline's
+// API operation OverrideStageCondition for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The validation was specified in an invalid format.
+//
+//   - ConflictException
+//     Your request cannot be handled because the pipeline is busy handling ongoing
+//     activities. Try again later.
+//
+//   - PipelineNotFoundException
+//     The pipeline was specified in an invalid format or cannot be found.
+//
+//   - StageNotFoundException
+//     The stage was specified in an invalid format or cannot be found.
+//
+//   - ConditionNotOverridableException
+//     Unable to override because the condition does not allow overrides.
+//
+//   - NotLatestPipelineExecutionException
+//     The stage has failed in a later run of the pipeline and the pipelineExecutionId
+//     associated with the request is out of date.
+//
+//   - ConcurrentPipelineExecutionsLimitExceededException
+//     The pipeline has reached the limit for concurrent pipeline executions.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/OverrideStageCondition
+func (c *CodePipeline) OverrideStageCondition(input *OverrideStageConditionInput) (*OverrideStageConditionOutput, error) {
+	req, out := c.OverrideStageConditionRequest(input)
+	return out, req.Send()
+}
+
+// OverrideStageConditionWithContext is the same as OverrideStageCondition with the addition of
+// the ability to pass a context and additional request options.
+//
+// See OverrideStageCondition for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CodePipeline) OverrideStageConditionWithContext(ctx aws.Context, input *OverrideStageConditionInput, opts ...request.Option) (*OverrideStageConditionOutput, error) {
+	req, out := c.OverrideStageConditionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opPollForJobs = "PollForJobs"
 
 // PollForJobsRequest generates a "aws/request.Request" representing the
@@ -2540,6 +2871,9 @@ func (c *CodePipeline) PutActionRevisionRequest(input *PutActionRevisionInput) (
 //
 //   - ValidationException
 //     The validation was specified in an invalid format.
+//
+//   - ConcurrentPipelineExecutionsLimitExceededException
+//     The pipeline has reached the limit for concurrent pipeline executions.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/PutActionRevision
 func (c *CodePipeline) PutActionRevision(input *PutActionRevisionInput) (*PutActionRevisionOutput, error) {
@@ -3288,6 +3622,9 @@ func (c *CodePipeline) RetryStageExecutionRequest(input *RetryStageExecutionInpu
 //   - NotLatestPipelineExecutionException
 //     The stage has failed in a later run of the pipeline and the pipelineExecutionId
 //     associated with the request is out of date.
+//
+//   - ConcurrentPipelineExecutionsLimitExceededException
+//     The pipeline has reached the limit for concurrent pipeline executions.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/RetryStageExecution
 func (c *CodePipeline) RetryStageExecution(input *RetryStageExecutionInput) (*RetryStageExecutionOutput, error) {
@@ -6944,6 +7281,66 @@ func (s *ArtifactStore) SetType(v string) *ArtifactStore {
 	return s
 }
 
+// The conditions for making checks for entry to a stage.
+type BeforeEntryConditions struct {
+	_ struct{} `type:"structure"`
+
+	// The conditions that are configured as entry conditions.
+	//
+	// Conditions is a required field
+	Conditions []*Condition `locationName:"conditions" min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BeforeEntryConditions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BeforeEntryConditions) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BeforeEntryConditions) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BeforeEntryConditions"}
+	if s.Conditions == nil {
+		invalidParams.Add(request.NewErrParamRequired("Conditions"))
+	}
+	if s.Conditions != nil && len(s.Conditions) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Conditions", 1))
+	}
+	if s.Conditions != nil {
+		for i, v := range s.Conditions {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Conditions", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConditions sets the Conditions field's value.
+func (s *BeforeEntryConditions) SetConditions(v []*Condition) *BeforeEntryConditions {
+	s.Conditions = v
+	return s
+}
+
 // Reserved for future use.
 type BlockerDeclaration struct {
 	_ struct{} `type:"structure"`
@@ -7134,6 +7531,227 @@ func (s *ConcurrentPipelineExecutionsLimitExceededException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ConcurrentPipelineExecutionsLimitExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// The condition for the stage. A condition is made up of the rules and the
+// result for the condition.
+type Condition struct {
+	_ struct{} `type:"structure"`
+
+	// The action to be done when the condition is met. For example, rolling back
+	// an execution for a failure condition.
+	Result *string `locationName:"result" type:"string" enum:"Result"`
+
+	// The rules that make up the condition.
+	Rules []*RuleDeclaration `locationName:"rules" min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Condition) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Condition) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Condition) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Condition"}
+	if s.Rules != nil && len(s.Rules) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Rules", 1))
+	}
+	if s.Rules != nil {
+		for i, v := range s.Rules {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Rules", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResult sets the Result field's value.
+func (s *Condition) SetResult(v string) *Condition {
+	s.Result = &v
+	return s
+}
+
+// SetRules sets the Rules field's value.
+func (s *Condition) SetRules(v []*RuleDeclaration) *Condition {
+	s.Rules = v
+	return s
+}
+
+// The run of a condition.
+type ConditionExecution struct {
+	_ struct{} `type:"structure"`
+
+	// The last status change of the condition.
+	LastStatusChange *time.Time `locationName:"lastStatusChange" type:"timestamp"`
+
+	// The status of the run for a condition.
+	Status *string `locationName:"status" type:"string" enum:"ConditionExecutionStatus"`
+
+	// The summary of information about a run for a condition.
+	Summary *string `locationName:"summary" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConditionExecution) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConditionExecution) GoString() string {
+	return s.String()
+}
+
+// SetLastStatusChange sets the LastStatusChange field's value.
+func (s *ConditionExecution) SetLastStatusChange(v time.Time) *ConditionExecution {
+	s.LastStatusChange = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ConditionExecution) SetStatus(v string) *ConditionExecution {
+	s.Status = &v
+	return s
+}
+
+// SetSummary sets the Summary field's value.
+func (s *ConditionExecution) SetSummary(v string) *ConditionExecution {
+	s.Summary = &v
+	return s
+}
+
+// Unable to override because the condition does not allow overrides.
+type ConditionNotOverridableException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConditionNotOverridableException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConditionNotOverridableException) GoString() string {
+	return s.String()
+}
+
+func newErrorConditionNotOverridableException(v protocol.ResponseMetadata) error {
+	return &ConditionNotOverridableException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ConditionNotOverridableException) Code() string {
+	return "ConditionNotOverridableException"
+}
+
+// Message returns the exception's message.
+func (s *ConditionNotOverridableException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ConditionNotOverridableException) OrigErr() error {
+	return nil
+}
+
+func (s *ConditionNotOverridableException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ConditionNotOverridableException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ConditionNotOverridableException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// Information about the state of the condition.
+type ConditionState struct {
+	_ struct{} `type:"structure"`
+
+	// The state of the latest run of the rule.
+	LatestExecution *ConditionExecution `locationName:"latestExecution" type:"structure"`
+
+	// The state of the rules for the condition.
+	RuleStates []*RuleState `locationName:"ruleStates" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConditionState) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConditionState) GoString() string {
+	return s.String()
+}
+
+// SetLatestExecution sets the LatestExecution field's value.
+func (s *ConditionState) SetLatestExecution(v *ConditionExecution) *ConditionState {
+	s.LatestExecution = v
+	return s
+}
+
+// SetRuleStates sets the RuleStates field's value.
+func (s *ConditionState) SetRuleStates(v []*RuleState) *ConditionState {
+	s.RuleStates = v
+	return s
 }
 
 // Your request cannot be handled because the pipeline is busy handling ongoing
@@ -8533,6 +9151,9 @@ func (s *ExecutorConfiguration) SetLambdaExecutorConfiguration(v *LambdaExecutor
 type FailureConditions struct {
 	_ struct{} `type:"structure"`
 
+	// The conditions that are configured as failure conditions.
+	Conditions []*Condition `locationName:"conditions" min:"1" type:"list"`
+
 	// The specified result for when the failure conditions are met, such as rolling
 	// back the stage.
 	Result *string `locationName:"result" type:"string" enum:"Result"`
@@ -8554,6 +9175,35 @@ func (s FailureConditions) String() string {
 // value will be replaced with "sensitive".
 func (s FailureConditions) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *FailureConditions) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "FailureConditions"}
+	if s.Conditions != nil && len(s.Conditions) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Conditions", 1))
+	}
+	if s.Conditions != nil {
+		for i, v := range s.Conditions {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Conditions", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConditions sets the Conditions field's value.
+func (s *FailureConditions) SetConditions(v []*Condition) *FailureConditions {
+	s.Conditions = v
+	return s
 }
 
 // SetResult sets the Result field's value.
@@ -11690,6 +12340,225 @@ func (s *ListPipelinesOutput) SetPipelines(v []*PipelineSummary) *ListPipelinesO
 	return s
 }
 
+type ListRuleExecutionsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Input information used to filter rule execution history.
+	Filter *RuleExecutionFilter `locationName:"filter" type:"structure"`
+
+	// The maximum number of results to return in a single call. To retrieve the
+	// remaining results, make another call with the returned nextToken value. Pipeline
+	// history is limited to the most recent 12 months, based on pipeline execution
+	// start times. Default value is 100.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token that was returned from the previous ListRuleExecutions call, which
+	// can be used to return the next set of rule executions in the list.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+
+	// The name of the pipeline for which you want to get execution summary information.
+	//
+	// PipelineName is a required field
+	PipelineName *string `locationName:"pipelineName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListRuleExecutionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListRuleExecutionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListRuleExecutionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListRuleExecutionsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.PipelineName == nil {
+		invalidParams.Add(request.NewErrParamRequired("PipelineName"))
+	}
+	if s.PipelineName != nil && len(*s.PipelineName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PipelineName", 1))
+	}
+	if s.Filter != nil {
+		if err := s.Filter.Validate(); err != nil {
+			invalidParams.AddNested("Filter", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilter sets the Filter field's value.
+func (s *ListRuleExecutionsInput) SetFilter(v *RuleExecutionFilter) *ListRuleExecutionsInput {
+	s.Filter = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListRuleExecutionsInput) SetMaxResults(v int64) *ListRuleExecutionsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListRuleExecutionsInput) SetNextToken(v string) *ListRuleExecutionsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetPipelineName sets the PipelineName field's value.
+func (s *ListRuleExecutionsInput) SetPipelineName(v string) *ListRuleExecutionsInput {
+	s.PipelineName = &v
+	return s
+}
+
+type ListRuleExecutionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A token that can be used in the next ListRuleExecutions call. To view all
+	// items in the list, continue to call this operation with each subsequent token
+	// until no more nextToken values are returned.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+
+	// Details about the output for listing rule executions.
+	RuleExecutionDetails []*RuleExecutionDetail `locationName:"ruleExecutionDetails" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListRuleExecutionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListRuleExecutionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListRuleExecutionsOutput) SetNextToken(v string) *ListRuleExecutionsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRuleExecutionDetails sets the RuleExecutionDetails field's value.
+func (s *ListRuleExecutionsOutput) SetRuleExecutionDetails(v []*RuleExecutionDetail) *ListRuleExecutionsOutput {
+	s.RuleExecutionDetails = v
+	return s
+}
+
+type ListRuleTypesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The rule Region to filter on.
+	RegionFilter *string `locationName:"regionFilter" min:"4" type:"string"`
+
+	// The rule owner to filter on.
+	RuleOwnerFilter *string `locationName:"ruleOwnerFilter" type:"string" enum:"RuleOwner"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListRuleTypesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListRuleTypesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListRuleTypesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListRuleTypesInput"}
+	if s.RegionFilter != nil && len(*s.RegionFilter) < 4 {
+		invalidParams.Add(request.NewErrParamMinLen("RegionFilter", 4))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRegionFilter sets the RegionFilter field's value.
+func (s *ListRuleTypesInput) SetRegionFilter(v string) *ListRuleTypesInput {
+	s.RegionFilter = &v
+	return s
+}
+
+// SetRuleOwnerFilter sets the RuleOwnerFilter field's value.
+func (s *ListRuleTypesInput) SetRuleOwnerFilter(v string) *ListRuleTypesInput {
+	s.RuleOwnerFilter = &v
+	return s
+}
+
+type ListRuleTypesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Lists the rules that are configured for the condition.
+	//
+	// RuleTypes is a required field
+	RuleTypes []*RuleType `locationName:"ruleTypes" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListRuleTypesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListRuleTypesOutput) GoString() string {
+	return s.String()
+}
+
+// SetRuleTypes sets the RuleTypes field's value.
+func (s *ListRuleTypesOutput) SetRuleTypes(v []*RuleType) *ListRuleTypesOutput {
+	s.RuleTypes = v
+	return s
+}
+
 type ListTagsForResourceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12187,6 +13056,123 @@ func (s *OutputVariablesSizeExceededException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *OutputVariablesSizeExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type OverrideStageConditionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The type of condition to override for the stage, such as entry conditions,
+	// failure conditions, or success conditions.
+	//
+	// ConditionType is a required field
+	ConditionType *string `locationName:"conditionType" type:"string" required:"true" enum:"ConditionType"`
+
+	// The ID of the pipeline execution for the override.
+	//
+	// PipelineExecutionId is a required field
+	PipelineExecutionId *string `locationName:"pipelineExecutionId" type:"string" required:"true"`
+
+	// The name of the pipeline with the stage that will override the condition.
+	//
+	// PipelineName is a required field
+	PipelineName *string `locationName:"pipelineName" min:"1" type:"string" required:"true"`
+
+	// The name of the stage for the override.
+	//
+	// StageName is a required field
+	StageName *string `locationName:"stageName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OverrideStageConditionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OverrideStageConditionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *OverrideStageConditionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "OverrideStageConditionInput"}
+	if s.ConditionType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConditionType"))
+	}
+	if s.PipelineExecutionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("PipelineExecutionId"))
+	}
+	if s.PipelineName == nil {
+		invalidParams.Add(request.NewErrParamRequired("PipelineName"))
+	}
+	if s.PipelineName != nil && len(*s.PipelineName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PipelineName", 1))
+	}
+	if s.StageName == nil {
+		invalidParams.Add(request.NewErrParamRequired("StageName"))
+	}
+	if s.StageName != nil && len(*s.StageName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StageName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConditionType sets the ConditionType field's value.
+func (s *OverrideStageConditionInput) SetConditionType(v string) *OverrideStageConditionInput {
+	s.ConditionType = &v
+	return s
+}
+
+// SetPipelineExecutionId sets the PipelineExecutionId field's value.
+func (s *OverrideStageConditionInput) SetPipelineExecutionId(v string) *OverrideStageConditionInput {
+	s.PipelineExecutionId = &v
+	return s
+}
+
+// SetPipelineName sets the PipelineName field's value.
+func (s *OverrideStageConditionInput) SetPipelineName(v string) *OverrideStageConditionInput {
+	s.PipelineName = &v
+	return s
+}
+
+// SetStageName sets the StageName field's value.
+func (s *OverrideStageConditionInput) SetStageName(v string) *OverrideStageConditionInput {
+	s.StageName = &v
+	return s
+}
+
+type OverrideStageConditionOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OverrideStageConditionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OverrideStageConditionOutput) GoString() string {
+	return s.String()
 }
 
 // Represents information about a pipeline to a job worker.
@@ -15166,6 +16152,1073 @@ func (s *RollbackStageOutput) SetPipelineExecutionId(v string) *RollbackStageOut
 	return s
 }
 
+// Represents information about a rule configuration property.
+type RuleConfigurationProperty struct {
+	_ struct{} `type:"structure"`
+
+	// The description of the action configuration property that is displayed to
+	// users.
+	Description *string `locationName:"description" min:"1" type:"string"`
+
+	// Whether the configuration property is a key.
+	//
+	// Key is a required field
+	Key *bool `locationName:"key" type:"boolean" required:"true"`
+
+	// The name of the rule configuration property.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// Indicates whether the property can be queried.
+	//
+	// If you create a pipeline with a condition and rule, and that rule contains
+	// a queryable property, the value for that configuration property is subject
+	// to other restrictions. The value must be less than or equal to twenty (20)
+	// characters. The value can contain only alphanumeric characters, underscores,
+	// and hyphens.
+	Queryable *bool `locationName:"queryable" type:"boolean"`
+
+	// Whether the configuration property is a required value.
+	//
+	// Required is a required field
+	Required *bool `locationName:"required" type:"boolean" required:"true"`
+
+	// Whether the configuration property is secret.
+	//
+	// When updating a pipeline, passing * * * * * without changing any other values
+	// of the action preserves the previous value of the secret.
+	//
+	// Secret is a required field
+	Secret *bool `locationName:"secret" type:"boolean" required:"true"`
+
+	// The type of the configuration property.
+	Type *string `locationName:"type" type:"string" enum:"RuleConfigurationPropertyType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RuleConfigurationProperty) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RuleConfigurationProperty) GoString() string {
+	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *RuleConfigurationProperty) SetDescription(v string) *RuleConfigurationProperty {
+	s.Description = &v
+	return s
+}
+
+// SetKey sets the Key field's value.
+func (s *RuleConfigurationProperty) SetKey(v bool) *RuleConfigurationProperty {
+	s.Key = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *RuleConfigurationProperty) SetName(v string) *RuleConfigurationProperty {
+	s.Name = &v
+	return s
+}
+
+// SetQueryable sets the Queryable field's value.
+func (s *RuleConfigurationProperty) SetQueryable(v bool) *RuleConfigurationProperty {
+	s.Queryable = &v
+	return s
+}
+
+// SetRequired sets the Required field's value.
+func (s *RuleConfigurationProperty) SetRequired(v bool) *RuleConfigurationProperty {
+	s.Required = &v
+	return s
+}
+
+// SetSecret sets the Secret field's value.
+func (s *RuleConfigurationProperty) SetSecret(v bool) *RuleConfigurationProperty {
+	s.Secret = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *RuleConfigurationProperty) SetType(v string) *RuleConfigurationProperty {
+	s.Type = &v
+	return s
+}
+
+// Represents information about the rule to be created for an associated condition.
+// An example would be creating a new rule for an entry condition, such as a
+// rule that checks for a test result before allowing the run to enter the deployment
+// stage.
+type RuleDeclaration struct {
+	_ struct{} `type:"structure"`
+
+	// The action configuration fields for the rule.
+	Configuration map[string]*string `locationName:"configuration" type:"map"`
+
+	// The input artifacts fields for the rule, such as specifying an input file
+	// for the rule.
+	InputArtifacts []*InputArtifact `locationName:"inputArtifacts" type:"list"`
+
+	// The name of the rule that is created for the condition, such as CheckAllResults.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// The Region for the condition associated with the rule.
+	Region *string `locationName:"region" min:"4" type:"string"`
+
+	// The pipeline role ARN associated with the rule.
+	RoleArn *string `locationName:"roleArn" type:"string"`
+
+	// The ID for the rule type, which is made up of the combined values for category,
+	// owner, provider, and version.
+	//
+	// RuleTypeId is a required field
+	RuleTypeId *RuleTypeId `locationName:"ruleTypeId" type:"structure" required:"true"`
+
+	// The action timeout for the rule.
+	TimeoutInMinutes *int64 `locationName:"timeoutInMinutes" min:"5" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RuleDeclaration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RuleDeclaration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RuleDeclaration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RuleDeclaration"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Region != nil && len(*s.Region) < 4 {
+		invalidParams.Add(request.NewErrParamMinLen("Region", 4))
+	}
+	if s.RuleTypeId == nil {
+		invalidParams.Add(request.NewErrParamRequired("RuleTypeId"))
+	}
+	if s.TimeoutInMinutes != nil && *s.TimeoutInMinutes < 5 {
+		invalidParams.Add(request.NewErrParamMinValue("TimeoutInMinutes", 5))
+	}
+	if s.InputArtifacts != nil {
+		for i, v := range s.InputArtifacts {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "InputArtifacts", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.RuleTypeId != nil {
+		if err := s.RuleTypeId.Validate(); err != nil {
+			invalidParams.AddNested("RuleTypeId", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConfiguration sets the Configuration field's value.
+func (s *RuleDeclaration) SetConfiguration(v map[string]*string) *RuleDeclaration {
+	s.Configuration = v
+	return s
+}
+
+// SetInputArtifacts sets the InputArtifacts field's value.
+func (s *RuleDeclaration) SetInputArtifacts(v []*InputArtifact) *RuleDeclaration {
+	s.InputArtifacts = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *RuleDeclaration) SetName(v string) *RuleDeclaration {
+	s.Name = &v
+	return s
+}
+
+// SetRegion sets the Region field's value.
+func (s *RuleDeclaration) SetRegion(v string) *RuleDeclaration {
+	s.Region = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *RuleDeclaration) SetRoleArn(v string) *RuleDeclaration {
+	s.RoleArn = &v
+	return s
+}
+
+// SetRuleTypeId sets the RuleTypeId field's value.
+func (s *RuleDeclaration) SetRuleTypeId(v *RuleTypeId) *RuleDeclaration {
+	s.RuleTypeId = v
+	return s
+}
+
+// SetTimeoutInMinutes sets the TimeoutInMinutes field's value.
+func (s *RuleDeclaration) SetTimeoutInMinutes(v int64) *RuleDeclaration {
+	s.TimeoutInMinutes = &v
+	return s
+}
+
+// Represents information about each time a rule is run as part of the pipeline
+// execution for a pipeline configured with conditions.
+type RuleExecution struct {
+	_ struct{} `type:"structure"`
+
+	// Represents information about an error in CodePipeline.
+	ErrorDetails *ErrorDetails `locationName:"errorDetails" type:"structure"`
+
+	// The external ID of the run of the rule.
+	ExternalExecutionId *string `locationName:"externalExecutionId" min:"1" type:"string"`
+
+	// The URL of a resource external to Amazon Web Services that is used when running
+	// the rule (for example, an external repository URL).
+	ExternalExecutionUrl *string `locationName:"externalExecutionUrl" min:"1" type:"string"`
+
+	// The last status change of the rule.
+	LastStatusChange *time.Time `locationName:"lastStatusChange" type:"timestamp"`
+
+	// The ARN of the user who last changed the rule.
+	LastUpdatedBy *string `locationName:"lastUpdatedBy" type:"string"`
+
+	// The execution ID for the run of the rule.
+	RuleExecutionId *string `locationName:"ruleExecutionId" min:"1" type:"string"`
+
+	// The status of the run of the rule, such as FAILED.
+	Status *string `locationName:"status" type:"string" enum:"RuleExecutionStatus"`
+
+	// A summary of the run of the rule.
+	Summary *string `locationName:"summary" min:"1" type:"string"`
+
+	// The system-generated token used to identify a unique request.
+	Token *string `locationName:"token" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RuleExecution) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RuleExecution) GoString() string {
+	return s.String()
+}
+
+// SetErrorDetails sets the ErrorDetails field's value.
+func (s *RuleExecution) SetErrorDetails(v *ErrorDetails) *RuleExecution {
+	s.ErrorDetails = v
+	return s
+}
+
+// SetExternalExecutionId sets the ExternalExecutionId field's value.
+func (s *RuleExecution) SetExternalExecutionId(v string) *RuleExecution {
+	s.ExternalExecutionId = &v
+	return s
+}
+
+// SetExternalExecutionUrl sets the ExternalExecutionUrl field's value.
+func (s *RuleExecution) SetExternalExecutionUrl(v string) *RuleExecution {
+	s.ExternalExecutionUrl = &v
+	return s
+}
+
+// SetLastStatusChange sets the LastStatusChange field's value.
+func (s *RuleExecution) SetLastStatusChange(v time.Time) *RuleExecution {
+	s.LastStatusChange = &v
+	return s
+}
+
+// SetLastUpdatedBy sets the LastUpdatedBy field's value.
+func (s *RuleExecution) SetLastUpdatedBy(v string) *RuleExecution {
+	s.LastUpdatedBy = &v
+	return s
+}
+
+// SetRuleExecutionId sets the RuleExecutionId field's value.
+func (s *RuleExecution) SetRuleExecutionId(v string) *RuleExecution {
+	s.RuleExecutionId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *RuleExecution) SetStatus(v string) *RuleExecution {
+	s.Status = &v
+	return s
+}
+
+// SetSummary sets the Summary field's value.
+func (s *RuleExecution) SetSummary(v string) *RuleExecution {
+	s.Summary = &v
+	return s
+}
+
+// SetToken sets the Token field's value.
+func (s *RuleExecution) SetToken(v string) *RuleExecution {
+	s.Token = &v
+	return s
+}
+
+// The details of the runs for a rule and the results produced on an artifact
+// as it passes through stages in the pipeline.
+type RuleExecutionDetail struct {
+	_ struct{} `type:"structure"`
+
+	// Input details for the rule execution, such as role ARN, Region, and input
+	// artifacts.
+	Input *RuleExecutionInput_ `locationName:"input" type:"structure"`
+
+	// The date and time of the last change to the rule execution, in timestamp
+	// format.
+	LastUpdateTime *time.Time `locationName:"lastUpdateTime" type:"timestamp"`
+
+	// Output details for the rule execution, such as the rule execution result.
+	Output *RuleExecutionOutput_ `locationName:"output" type:"structure"`
+
+	// The ID of the pipeline execution in the stage where the rule was run. Use
+	// the GetPipelineState action to retrieve the current pipelineExecutionId of
+	// the stage.
+	PipelineExecutionId *string `locationName:"pipelineExecutionId" type:"string"`
+
+	// The version number of the pipeline with the stage where the rule was run.
+	PipelineVersion *int64 `locationName:"pipelineVersion" min:"1" type:"integer"`
+
+	// The ID of the run for the rule.
+	RuleExecutionId *string `locationName:"ruleExecutionId" min:"1" type:"string"`
+
+	// The name of the rule that was run in the stage.
+	RuleName *string `locationName:"ruleName" min:"1" type:"string"`
+
+	// The name of the stage where the rule was run.
+	StageName *string `locationName:"stageName" min:"1" type:"string"`
+
+	// The start time of the rule execution.
+	StartTime *time.Time `locationName:"startTime" type:"timestamp"`
+
+	// The status of the rule execution. Status categories are InProgress, Succeeded,
+	// and Failed.
+	Status *string `locationName:"status" type:"string" enum:"RuleExecutionStatus"`
+
+	// The ARN of the user who changed the rule execution details.
+	UpdatedBy *string `locationName:"updatedBy" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RuleExecutionDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RuleExecutionDetail) GoString() string {
+	return s.String()
+}
+
+// SetInput sets the Input field's value.
+func (s *RuleExecutionDetail) SetInput(v *RuleExecutionInput_) *RuleExecutionDetail {
+	s.Input = v
+	return s
+}
+
+// SetLastUpdateTime sets the LastUpdateTime field's value.
+func (s *RuleExecutionDetail) SetLastUpdateTime(v time.Time) *RuleExecutionDetail {
+	s.LastUpdateTime = &v
+	return s
+}
+
+// SetOutput sets the Output field's value.
+func (s *RuleExecutionDetail) SetOutput(v *RuleExecutionOutput_) *RuleExecutionDetail {
+	s.Output = v
+	return s
+}
+
+// SetPipelineExecutionId sets the PipelineExecutionId field's value.
+func (s *RuleExecutionDetail) SetPipelineExecutionId(v string) *RuleExecutionDetail {
+	s.PipelineExecutionId = &v
+	return s
+}
+
+// SetPipelineVersion sets the PipelineVersion field's value.
+func (s *RuleExecutionDetail) SetPipelineVersion(v int64) *RuleExecutionDetail {
+	s.PipelineVersion = &v
+	return s
+}
+
+// SetRuleExecutionId sets the RuleExecutionId field's value.
+func (s *RuleExecutionDetail) SetRuleExecutionId(v string) *RuleExecutionDetail {
+	s.RuleExecutionId = &v
+	return s
+}
+
+// SetRuleName sets the RuleName field's value.
+func (s *RuleExecutionDetail) SetRuleName(v string) *RuleExecutionDetail {
+	s.RuleName = &v
+	return s
+}
+
+// SetStageName sets the StageName field's value.
+func (s *RuleExecutionDetail) SetStageName(v string) *RuleExecutionDetail {
+	s.StageName = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *RuleExecutionDetail) SetStartTime(v time.Time) *RuleExecutionDetail {
+	s.StartTime = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *RuleExecutionDetail) SetStatus(v string) *RuleExecutionDetail {
+	s.Status = &v
+	return s
+}
+
+// SetUpdatedBy sets the UpdatedBy field's value.
+func (s *RuleExecutionDetail) SetUpdatedBy(v string) *RuleExecutionDetail {
+	s.UpdatedBy = &v
+	return s
+}
+
+// Filter values for the rule execution.
+type RuleExecutionFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The field that specifies to filter on the latest execution in the pipeline.
+	//
+	// Filtering on the latest execution is available for executions run on or after
+	// February 08, 2024.
+	LatestInPipelineExecution *LatestInPipelineExecutionFilter `locationName:"latestInPipelineExecution" type:"structure"`
+
+	// The pipeline execution ID used to filter rule execution history.
+	PipelineExecutionId *string `locationName:"pipelineExecutionId" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RuleExecutionFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RuleExecutionFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RuleExecutionFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RuleExecutionFilter"}
+	if s.LatestInPipelineExecution != nil {
+		if err := s.LatestInPipelineExecution.Validate(); err != nil {
+			invalidParams.AddNested("LatestInPipelineExecution", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLatestInPipelineExecution sets the LatestInPipelineExecution field's value.
+func (s *RuleExecutionFilter) SetLatestInPipelineExecution(v *LatestInPipelineExecutionFilter) *RuleExecutionFilter {
+	s.LatestInPipelineExecution = v
+	return s
+}
+
+// SetPipelineExecutionId sets the PipelineExecutionId field's value.
+func (s *RuleExecutionFilter) SetPipelineExecutionId(v string) *RuleExecutionFilter {
+	s.PipelineExecutionId = &v
+	return s
+}
+
+// Input information used for a rule execution.
+type RuleExecutionInput_ struct {
+	_ struct{} `type:"structure"`
+
+	// Configuration data for a rule execution, such as the resolved values for
+	// that run.
+	Configuration map[string]*string `locationName:"configuration" type:"map"`
+
+	// Details of input artifacts of the rule that correspond to the rule execution.
+	InputArtifacts []*ArtifactDetail `locationName:"inputArtifacts" type:"list"`
+
+	// The Amazon Web Services Region for the rule, such as us-east-1.
+	Region *string `locationName:"region" min:"4" type:"string"`
+
+	// Configuration data for a rule execution with all variable references replaced
+	// with their real values for the execution.
+	ResolvedConfiguration map[string]*string `locationName:"resolvedConfiguration" type:"map"`
+
+	// The ARN of the IAM service role that performs the declared rule. This is
+	// assumed through the roleArn for the pipeline.
+	RoleArn *string `locationName:"roleArn" type:"string"`
+
+	// The ID for the rule type, which is made up of the combined values for category,
+	// owner, provider, and version.
+	RuleTypeId *RuleTypeId `locationName:"ruleTypeId" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RuleExecutionInput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RuleExecutionInput_) GoString() string {
+	return s.String()
+}
+
+// SetConfiguration sets the Configuration field's value.
+func (s *RuleExecutionInput_) SetConfiguration(v map[string]*string) *RuleExecutionInput_ {
+	s.Configuration = v
+	return s
+}
+
+// SetInputArtifacts sets the InputArtifacts field's value.
+func (s *RuleExecutionInput_) SetInputArtifacts(v []*ArtifactDetail) *RuleExecutionInput_ {
+	s.InputArtifacts = v
+	return s
+}
+
+// SetRegion sets the Region field's value.
+func (s *RuleExecutionInput_) SetRegion(v string) *RuleExecutionInput_ {
+	s.Region = &v
+	return s
+}
+
+// SetResolvedConfiguration sets the ResolvedConfiguration field's value.
+func (s *RuleExecutionInput_) SetResolvedConfiguration(v map[string]*string) *RuleExecutionInput_ {
+	s.ResolvedConfiguration = v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *RuleExecutionInput_) SetRoleArn(v string) *RuleExecutionInput_ {
+	s.RoleArn = &v
+	return s
+}
+
+// SetRuleTypeId sets the RuleTypeId field's value.
+func (s *RuleExecutionInput_) SetRuleTypeId(v *RuleTypeId) *RuleExecutionInput_ {
+	s.RuleTypeId = v
+	return s
+}
+
+// Output details listed for a rule execution, such as the rule execution result.
+type RuleExecutionOutput_ struct {
+	_ struct{} `type:"structure"`
+
+	// Execution result information listed in the output details for a rule execution.
+	ExecutionResult *RuleExecutionResult `locationName:"executionResult" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RuleExecutionOutput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RuleExecutionOutput_) GoString() string {
+	return s.String()
+}
+
+// SetExecutionResult sets the ExecutionResult field's value.
+func (s *RuleExecutionOutput_) SetExecutionResult(v *RuleExecutionResult) *RuleExecutionOutput_ {
+	s.ExecutionResult = v
+	return s
+}
+
+// Execution result information, such as the external execution ID.
+type RuleExecutionResult struct {
+	_ struct{} `type:"structure"`
+
+	// Represents information about an error in CodePipeline.
+	ErrorDetails *ErrorDetails `locationName:"errorDetails" type:"structure"`
+
+	// The external ID for the rule execution.
+	ExternalExecutionId *string `locationName:"externalExecutionId" type:"string"`
+
+	// The external provider summary for the rule execution.
+	ExternalExecutionSummary *string `locationName:"externalExecutionSummary" type:"string"`
+
+	// The deepest external link to the external resource (for example, a repository
+	// URL or deployment endpoint) that is used when running the rule.
+	ExternalExecutionUrl *string `locationName:"externalExecutionUrl" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RuleExecutionResult) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RuleExecutionResult) GoString() string {
+	return s.String()
+}
+
+// SetErrorDetails sets the ErrorDetails field's value.
+func (s *RuleExecutionResult) SetErrorDetails(v *ErrorDetails) *RuleExecutionResult {
+	s.ErrorDetails = v
+	return s
+}
+
+// SetExternalExecutionId sets the ExternalExecutionId field's value.
+func (s *RuleExecutionResult) SetExternalExecutionId(v string) *RuleExecutionResult {
+	s.ExternalExecutionId = &v
+	return s
+}
+
+// SetExternalExecutionSummary sets the ExternalExecutionSummary field's value.
+func (s *RuleExecutionResult) SetExternalExecutionSummary(v string) *RuleExecutionResult {
+	s.ExternalExecutionSummary = &v
+	return s
+}
+
+// SetExternalExecutionUrl sets the ExternalExecutionUrl field's value.
+func (s *RuleExecutionResult) SetExternalExecutionUrl(v string) *RuleExecutionResult {
+	s.ExternalExecutionUrl = &v
+	return s
+}
+
+// The change to a rule that creates a revision of the rule.
+type RuleRevision struct {
+	_ struct{} `type:"structure"`
+
+	// The date and time when the most recent version of the rule was created, in
+	// timestamp format.
+	//
+	// Created is a required field
+	Created *time.Time `locationName:"created" type:"timestamp" required:"true"`
+
+	// The unique identifier of the change that set the state to this revision (for
+	// example, a deployment ID or timestamp).
+	//
+	// RevisionChangeId is a required field
+	RevisionChangeId *string `locationName:"revisionChangeId" min:"1" type:"string" required:"true"`
+
+	// The system-generated unique ID that identifies the revision number of the
+	// rule.
+	//
+	// RevisionId is a required field
+	RevisionId *string `locationName:"revisionId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RuleRevision) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RuleRevision) GoString() string {
+	return s.String()
+}
+
+// SetCreated sets the Created field's value.
+func (s *RuleRevision) SetCreated(v time.Time) *RuleRevision {
+	s.Created = &v
+	return s
+}
+
+// SetRevisionChangeId sets the RevisionChangeId field's value.
+func (s *RuleRevision) SetRevisionChangeId(v string) *RuleRevision {
+	s.RevisionChangeId = &v
+	return s
+}
+
+// SetRevisionId sets the RevisionId field's value.
+func (s *RuleRevision) SetRevisionId(v string) *RuleRevision {
+	s.RevisionId = &v
+	return s
+}
+
+// Returns information about the state of a rule.
+//
+// Values returned in the revisionId field indicate the rule revision information,
+// such as the commit ID, for the current state.
+type RuleState struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the current revision of the artifact successfully worked on by
+	// the job.
+	CurrentRevision *RuleRevision `locationName:"currentRevision" type:"structure"`
+
+	// A URL link for more information about the state of the action, such as a
+	// details page.
+	EntityUrl *string `locationName:"entityUrl" min:"1" type:"string"`
+
+	// Represents information about the latest run of an rule.
+	LatestExecution *RuleExecution `locationName:"latestExecution" type:"structure"`
+
+	// A URL link for more information about the revision, such as a commit details
+	// page.
+	RevisionUrl *string `locationName:"revisionUrl" min:"1" type:"string"`
+
+	// The name of the rule.
+	RuleName *string `locationName:"ruleName" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RuleState) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RuleState) GoString() string {
+	return s.String()
+}
+
+// SetCurrentRevision sets the CurrentRevision field's value.
+func (s *RuleState) SetCurrentRevision(v *RuleRevision) *RuleState {
+	s.CurrentRevision = v
+	return s
+}
+
+// SetEntityUrl sets the EntityUrl field's value.
+func (s *RuleState) SetEntityUrl(v string) *RuleState {
+	s.EntityUrl = &v
+	return s
+}
+
+// SetLatestExecution sets the LatestExecution field's value.
+func (s *RuleState) SetLatestExecution(v *RuleExecution) *RuleState {
+	s.LatestExecution = v
+	return s
+}
+
+// SetRevisionUrl sets the RevisionUrl field's value.
+func (s *RuleState) SetRevisionUrl(v string) *RuleState {
+	s.RevisionUrl = &v
+	return s
+}
+
+// SetRuleName sets the RuleName field's value.
+func (s *RuleState) SetRuleName(v string) *RuleState {
+	s.RuleName = &v
+	return s
+}
+
+// The rule type, which is made up of the combined values for category, owner,
+// provider, and version.
+type RuleType struct {
+	_ struct{} `type:"structure"`
+
+	// Represents information about a rule type.
+	//
+	// Id is a required field
+	Id *RuleTypeId `locationName:"id" type:"structure" required:"true"`
+
+	// Returns information about the details of an artifact.
+	//
+	// InputArtifactDetails is a required field
+	InputArtifactDetails *ArtifactDetails `locationName:"inputArtifactDetails" type:"structure" required:"true"`
+
+	// The configuration properties for the rule type.
+	RuleConfigurationProperties []*RuleConfigurationProperty `locationName:"ruleConfigurationProperties" type:"list"`
+
+	// Returns information about the settings for a rule type.
+	Settings *RuleTypeSettings `locationName:"settings" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RuleType) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RuleType) GoString() string {
+	return s.String()
+}
+
+// SetId sets the Id field's value.
+func (s *RuleType) SetId(v *RuleTypeId) *RuleType {
+	s.Id = v
+	return s
+}
+
+// SetInputArtifactDetails sets the InputArtifactDetails field's value.
+func (s *RuleType) SetInputArtifactDetails(v *ArtifactDetails) *RuleType {
+	s.InputArtifactDetails = v
+	return s
+}
+
+// SetRuleConfigurationProperties sets the RuleConfigurationProperties field's value.
+func (s *RuleType) SetRuleConfigurationProperties(v []*RuleConfigurationProperty) *RuleType {
+	s.RuleConfigurationProperties = v
+	return s
+}
+
+// SetSettings sets the Settings field's value.
+func (s *RuleType) SetSettings(v *RuleTypeSettings) *RuleType {
+	s.Settings = v
+	return s
+}
+
+// The ID for the rule type, which is made up of the combined values for category,
+// owner, provider, and version.
+type RuleTypeId struct {
+	_ struct{} `type:"structure"`
+
+	// A category defines what kind of rule can be run in the stage, and constrains
+	// the provider type for the rule. Valid categories are limited to one of the
+	// following values.
+	//
+	//    * INVOKE
+	//
+	//    * Approval
+	//
+	//    * Rule
+	//
+	// Category is a required field
+	Category *string `locationName:"category" type:"string" required:"true" enum:"RuleCategory"`
+
+	// The creator of the rule being called. The valid value for the Owner field
+	// in the rule category is AWS.
+	Owner *string `locationName:"owner" type:"string" enum:"RuleOwner"`
+
+	// The provider of the service being called by the rule. Valid providers are
+	// determined by the rulecategory. For example, a managed rule in the Rule category
+	// type has an owner of AWS, which would be specified as AWS.
+	//
+	// Provider is a required field
+	Provider *string `locationName:"provider" min:"1" type:"string" required:"true"`
+
+	// A string that describes the rule version.
+	Version *string `locationName:"version" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RuleTypeId) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RuleTypeId) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RuleTypeId) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RuleTypeId"}
+	if s.Category == nil {
+		invalidParams.Add(request.NewErrParamRequired("Category"))
+	}
+	if s.Provider == nil {
+		invalidParams.Add(request.NewErrParamRequired("Provider"))
+	}
+	if s.Provider != nil && len(*s.Provider) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Provider", 1))
+	}
+	if s.Version != nil && len(*s.Version) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Version", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCategory sets the Category field's value.
+func (s *RuleTypeId) SetCategory(v string) *RuleTypeId {
+	s.Category = &v
+	return s
+}
+
+// SetOwner sets the Owner field's value.
+func (s *RuleTypeId) SetOwner(v string) *RuleTypeId {
+	s.Owner = &v
+	return s
+}
+
+// SetProvider sets the Provider field's value.
+func (s *RuleTypeId) SetProvider(v string) *RuleTypeId {
+	s.Provider = &v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *RuleTypeId) SetVersion(v string) *RuleTypeId {
+	s.Version = &v
+	return s
+}
+
+// Returns information about the settings for a rule type.
+type RuleTypeSettings struct {
+	_ struct{} `type:"structure"`
+
+	// The URL returned to the CodePipeline console that provides a deep link to
+	// the resources of the external system, such as the configuration page for
+	// a CodeDeploy deployment group. This link is provided as part of the action
+	// display in the pipeline.
+	EntityUrlTemplate *string `locationName:"entityUrlTemplate" min:"1" type:"string"`
+
+	// The URL returned to the CodePipeline console that contains a link to the
+	// top-level landing page for the external system, such as the console page
+	// for CodeDeploy. This link is shown on the pipeline view page in the CodePipeline
+	// console and provides a link to the execution entity of the external action.
+	ExecutionUrlTemplate *string `locationName:"executionUrlTemplate" min:"1" type:"string"`
+
+	// The URL returned to the CodePipeline console that contains a link to the
+	// page where customers can update or change the configuration of the external
+	// action.
+	RevisionUrlTemplate *string `locationName:"revisionUrlTemplate" min:"1" type:"string"`
+
+	// The URL of a sign-up page where users can sign up for an external service
+	// and perform initial configuration of the action provided by that service.
+	ThirdPartyConfigurationUrl *string `locationName:"thirdPartyConfigurationUrl" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RuleTypeSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RuleTypeSettings) GoString() string {
+	return s.String()
+}
+
+// SetEntityUrlTemplate sets the EntityUrlTemplate field's value.
+func (s *RuleTypeSettings) SetEntityUrlTemplate(v string) *RuleTypeSettings {
+	s.EntityUrlTemplate = &v
+	return s
+}
+
+// SetExecutionUrlTemplate sets the ExecutionUrlTemplate field's value.
+func (s *RuleTypeSettings) SetExecutionUrlTemplate(v string) *RuleTypeSettings {
+	s.ExecutionUrlTemplate = &v
+	return s
+}
+
+// SetRevisionUrlTemplate sets the RevisionUrlTemplate field's value.
+func (s *RuleTypeSettings) SetRevisionUrlTemplate(v string) *RuleTypeSettings {
+	s.RevisionUrlTemplate = &v
+	return s
+}
+
+// SetThirdPartyConfigurationUrl sets the ThirdPartyConfigurationUrl field's value.
+func (s *RuleTypeSettings) SetThirdPartyConfigurationUrl(v string) *RuleTypeSettings {
+	s.ThirdPartyConfigurationUrl = &v
+	return s
+}
+
 // The location of the S3 bucket that contains a revision.
 type S3ArtifactLocation struct {
 	_ struct{} `type:"structure"`
@@ -15410,6 +17463,88 @@ func (s *SourceRevisionOverride) SetRevisionValue(v string) *SourceRevisionOverr
 	return s
 }
 
+// The state of a run of a condition for a stage.
+type StageConditionState struct {
+	_ struct{} `type:"structure"`
+
+	// The states of the conditions for a run of a condition for a stage.
+	ConditionStates []*ConditionState `locationName:"conditionStates" type:"list"`
+
+	// Represents information about the latest run of a condition for a stage.
+	LatestExecution *StageConditionsExecution `locationName:"latestExecution" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StageConditionState) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StageConditionState) GoString() string {
+	return s.String()
+}
+
+// SetConditionStates sets the ConditionStates field's value.
+func (s *StageConditionState) SetConditionStates(v []*ConditionState) *StageConditionState {
+	s.ConditionStates = v
+	return s
+}
+
+// SetLatestExecution sets the LatestExecution field's value.
+func (s *StageConditionState) SetLatestExecution(v *StageConditionsExecution) *StageConditionState {
+	s.LatestExecution = v
+	return s
+}
+
+// Represents information about the run of a condition for a stage.
+type StageConditionsExecution struct {
+	_ struct{} `type:"structure"`
+
+	// The status of a run of a condition for a stage.
+	Status *string `locationName:"status" type:"string" enum:"ConditionExecutionStatus"`
+
+	// A summary of the run of the condition for a stage.
+	Summary *string `locationName:"summary" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StageConditionsExecution) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StageConditionsExecution) GoString() string {
+	return s.String()
+}
+
+// SetStatus sets the Status field's value.
+func (s *StageConditionsExecution) SetStatus(v string) *StageConditionsExecution {
+	s.Status = &v
+	return s
+}
+
+// SetSummary sets the Summary field's value.
+func (s *StageConditionsExecution) SetSummary(v string) *StageConditionsExecution {
+	s.Summary = &v
+	return s
+}
+
 // Represents information about a stage to a job worker.
 type StageContext struct {
 	_ struct{} `type:"structure"`
@@ -15451,6 +17586,11 @@ type StageDeclaration struct {
 	// Actions is a required field
 	Actions []*ActionDeclaration `locationName:"actions" type:"list" required:"true"`
 
+	// The method to use when a stage allows entry. For example, configuring this
+	// field for conditions will allow entry to the stage when the conditions are
+	// met.
+	BeforeEntry *BeforeEntryConditions `locationName:"beforeEntry" type:"structure"`
+
 	// Reserved for future use.
 	Blockers []*BlockerDeclaration `locationName:"blockers" type:"list"`
 
@@ -15463,6 +17603,11 @@ type StageDeclaration struct {
 	// configuring this field for rollback will roll back a failed stage automatically
 	// to the last successful pipeline execution in the stage.
 	OnFailure *FailureConditions `locationName:"onFailure" type:"structure"`
+
+	// The method to use when a stage has succeeded. For example, configuring this
+	// field for conditions will allow the stage to succeed when the conditions
+	// are met.
+	OnSuccess *SuccessConditions `locationName:"onSuccess" type:"structure"`
 }
 
 // String returns the string representation.
@@ -15505,6 +17650,11 @@ func (s *StageDeclaration) Validate() error {
 			}
 		}
 	}
+	if s.BeforeEntry != nil {
+		if err := s.BeforeEntry.Validate(); err != nil {
+			invalidParams.AddNested("BeforeEntry", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.Blockers != nil {
 		for i, v := range s.Blockers {
 			if v == nil {
@@ -15513,6 +17663,16 @@ func (s *StageDeclaration) Validate() error {
 			if err := v.Validate(); err != nil {
 				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Blockers", i), err.(request.ErrInvalidParams))
 			}
+		}
+	}
+	if s.OnFailure != nil {
+		if err := s.OnFailure.Validate(); err != nil {
+			invalidParams.AddNested("OnFailure", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.OnSuccess != nil {
+		if err := s.OnSuccess.Validate(); err != nil {
+			invalidParams.AddNested("OnSuccess", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -15525,6 +17685,12 @@ func (s *StageDeclaration) Validate() error {
 // SetActions sets the Actions field's value.
 func (s *StageDeclaration) SetActions(v []*ActionDeclaration) *StageDeclaration {
 	s.Actions = v
+	return s
+}
+
+// SetBeforeEntry sets the BeforeEntry field's value.
+func (s *StageDeclaration) SetBeforeEntry(v *BeforeEntryConditions) *StageDeclaration {
+	s.BeforeEntry = v
 	return s
 }
 
@@ -15543,6 +17709,12 @@ func (s *StageDeclaration) SetName(v string) *StageDeclaration {
 // SetOnFailure sets the OnFailure field's value.
 func (s *StageDeclaration) SetOnFailure(v *FailureConditions) *StageDeclaration {
 	s.OnFailure = v
+	return s
+}
+
+// SetOnSuccess sets the OnSuccess field's value.
+func (s *StageDeclaration) SetOnSuccess(v *SuccessConditions) *StageDeclaration {
+	s.OnSuccess = v
 	return s
 }
 
@@ -15741,6 +17913,9 @@ type StageState struct {
 	// The state of the stage.
 	ActionStates []*ActionState `locationName:"actionStates" type:"list"`
 
+	// The state of the entry conditions for a stage.
+	BeforeEntryConditionState *StageConditionState `locationName:"beforeEntryConditionState" type:"structure"`
+
 	// Represents information about the run of a stage.
 	InboundExecution *StageExecution `locationName:"inboundExecution" type:"structure"`
 
@@ -15753,6 +17928,12 @@ type StageState struct {
 	// Information about the latest execution in the stage, including its ID and
 	// status.
 	LatestExecution *StageExecution `locationName:"latestExecution" type:"structure"`
+
+	// The state of the failure conditions for a stage.
+	OnFailureConditionState *StageConditionState `locationName:"onFailureConditionState" type:"structure"`
+
+	// The state of the success conditions for a stage.
+	OnSuccessConditionState *StageConditionState `locationName:"onSuccessConditionState" type:"structure"`
 
 	// The name of the stage.
 	StageName *string `locationName:"stageName" min:"1" type:"string"`
@@ -15782,6 +17963,12 @@ func (s *StageState) SetActionStates(v []*ActionState) *StageState {
 	return s
 }
 
+// SetBeforeEntryConditionState sets the BeforeEntryConditionState field's value.
+func (s *StageState) SetBeforeEntryConditionState(v *StageConditionState) *StageState {
+	s.BeforeEntryConditionState = v
+	return s
+}
+
 // SetInboundExecution sets the InboundExecution field's value.
 func (s *StageState) SetInboundExecution(v *StageExecution) *StageState {
 	s.InboundExecution = v
@@ -15803,6 +17990,18 @@ func (s *StageState) SetInboundTransitionState(v *TransitionState) *StageState {
 // SetLatestExecution sets the LatestExecution field's value.
 func (s *StageState) SetLatestExecution(v *StageExecution) *StageState {
 	s.LatestExecution = v
+	return s
+}
+
+// SetOnFailureConditionState sets the OnFailureConditionState field's value.
+func (s *StageState) SetOnFailureConditionState(v *StageConditionState) *StageState {
+	s.OnFailureConditionState = v
+	return s
+}
+
+// SetOnSuccessConditionState sets the OnSuccessConditionState field's value.
+func (s *StageState) SetOnSuccessConditionState(v *StageConditionState) *StageState {
+	s.OnSuccessConditionState = v
 	return s
 }
 
@@ -16144,6 +18343,66 @@ func (s *SucceededInStageFilter) Validate() error {
 // SetStageName sets the StageName field's value.
 func (s *SucceededInStageFilter) SetStageName(v string) *SucceededInStageFilter {
 	s.StageName = &v
+	return s
+}
+
+// The conditions for making checks that, if met, succeed a stage.
+type SuccessConditions struct {
+	_ struct{} `type:"structure"`
+
+	// The conditions that are success conditions.
+	//
+	// Conditions is a required field
+	Conditions []*Condition `locationName:"conditions" min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SuccessConditions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SuccessConditions) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SuccessConditions) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SuccessConditions"}
+	if s.Conditions == nil {
+		invalidParams.Add(request.NewErrParamRequired("Conditions"))
+	}
+	if s.Conditions != nil && len(s.Conditions) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Conditions", 1))
+	}
+	if s.Conditions != nil {
+		for i, v := range s.Conditions {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Conditions", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConditions sets the Conditions field's value.
+func (s *SuccessConditions) SetConditions(v []*Condition) *SuccessConditions {
+	s.Conditions = v
 	return s
 }
 
@@ -17510,6 +19769,58 @@ func BlockerType_Values() []string {
 }
 
 const (
+	// ConditionExecutionStatusInProgress is a ConditionExecutionStatus enum value
+	ConditionExecutionStatusInProgress = "InProgress"
+
+	// ConditionExecutionStatusFailed is a ConditionExecutionStatus enum value
+	ConditionExecutionStatusFailed = "Failed"
+
+	// ConditionExecutionStatusErrored is a ConditionExecutionStatus enum value
+	ConditionExecutionStatusErrored = "Errored"
+
+	// ConditionExecutionStatusSucceeded is a ConditionExecutionStatus enum value
+	ConditionExecutionStatusSucceeded = "Succeeded"
+
+	// ConditionExecutionStatusCancelled is a ConditionExecutionStatus enum value
+	ConditionExecutionStatusCancelled = "Cancelled"
+
+	// ConditionExecutionStatusAbandoned is a ConditionExecutionStatus enum value
+	ConditionExecutionStatusAbandoned = "Abandoned"
+
+	// ConditionExecutionStatusOverridden is a ConditionExecutionStatus enum value
+	ConditionExecutionStatusOverridden = "Overridden"
+)
+
+// ConditionExecutionStatus_Values returns all elements of the ConditionExecutionStatus enum
+func ConditionExecutionStatus_Values() []string {
+	return []string{
+		ConditionExecutionStatusInProgress,
+		ConditionExecutionStatusFailed,
+		ConditionExecutionStatusErrored,
+		ConditionExecutionStatusSucceeded,
+		ConditionExecutionStatusCancelled,
+		ConditionExecutionStatusAbandoned,
+		ConditionExecutionStatusOverridden,
+	}
+}
+
+const (
+	// ConditionTypeBeforeEntry is a ConditionType enum value
+	ConditionTypeBeforeEntry = "BEFORE_ENTRY"
+
+	// ConditionTypeOnSuccess is a ConditionType enum value
+	ConditionTypeOnSuccess = "ON_SUCCESS"
+)
+
+// ConditionType_Values returns all elements of the ConditionType enum
+func ConditionType_Values() []string {
+	return []string{
+		ConditionTypeBeforeEntry,
+		ConditionTypeOnSuccess,
+	}
+}
+
+const (
 	// EncryptionKeyTypeKms is a EncryptionKeyType enum value
 	EncryptionKeyTypeKms = "KMS"
 )
@@ -17728,12 +20039,84 @@ func PipelineType_Values() []string {
 const (
 	// ResultRollback is a Result enum value
 	ResultRollback = "ROLLBACK"
+
+	// ResultFail is a Result enum value
+	ResultFail = "FAIL"
 )
 
 // Result_Values returns all elements of the Result enum
 func Result_Values() []string {
 	return []string{
 		ResultRollback,
+		ResultFail,
+	}
+}
+
+const (
+	// RuleCategoryRule is a RuleCategory enum value
+	RuleCategoryRule = "Rule"
+)
+
+// RuleCategory_Values returns all elements of the RuleCategory enum
+func RuleCategory_Values() []string {
+	return []string{
+		RuleCategoryRule,
+	}
+}
+
+const (
+	// RuleConfigurationPropertyTypeString is a RuleConfigurationPropertyType enum value
+	RuleConfigurationPropertyTypeString = "String"
+
+	// RuleConfigurationPropertyTypeNumber is a RuleConfigurationPropertyType enum value
+	RuleConfigurationPropertyTypeNumber = "Number"
+
+	// RuleConfigurationPropertyTypeBoolean is a RuleConfigurationPropertyType enum value
+	RuleConfigurationPropertyTypeBoolean = "Boolean"
+)
+
+// RuleConfigurationPropertyType_Values returns all elements of the RuleConfigurationPropertyType enum
+func RuleConfigurationPropertyType_Values() []string {
+	return []string{
+		RuleConfigurationPropertyTypeString,
+		RuleConfigurationPropertyTypeNumber,
+		RuleConfigurationPropertyTypeBoolean,
+	}
+}
+
+const (
+	// RuleExecutionStatusInProgress is a RuleExecutionStatus enum value
+	RuleExecutionStatusInProgress = "InProgress"
+
+	// RuleExecutionStatusAbandoned is a RuleExecutionStatus enum value
+	RuleExecutionStatusAbandoned = "Abandoned"
+
+	// RuleExecutionStatusSucceeded is a RuleExecutionStatus enum value
+	RuleExecutionStatusSucceeded = "Succeeded"
+
+	// RuleExecutionStatusFailed is a RuleExecutionStatus enum value
+	RuleExecutionStatusFailed = "Failed"
+)
+
+// RuleExecutionStatus_Values returns all elements of the RuleExecutionStatus enum
+func RuleExecutionStatus_Values() []string {
+	return []string{
+		RuleExecutionStatusInProgress,
+		RuleExecutionStatusAbandoned,
+		RuleExecutionStatusSucceeded,
+		RuleExecutionStatusFailed,
+	}
+}
+
+const (
+	// RuleOwnerAws is a RuleOwner enum value
+	RuleOwnerAws = "AWS"
+)
+
+// RuleOwner_Values returns all elements of the RuleOwner enum
+func RuleOwner_Values() []string {
+	return []string{
+		RuleOwnerAws,
 	}
 }
 

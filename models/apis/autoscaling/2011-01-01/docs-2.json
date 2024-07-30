@@ -2469,10 +2469,7 @@
     "XmlStringMaxLen2047": {
       "base": null,
       "refs": {
-        "AutoScalingGroup$VPCZoneIdentifier": "<p>One or more subnet IDs, if applicable, separated by commas.</p>",
-        "CreateAutoScalingGroupType$VPCZoneIdentifier": "<p>A comma-separated list of subnet IDs for a virtual private cloud (VPC) where instances in the Auto Scaling group can be created. If you specify <code>VPCZoneIdentifier</code> with <code>AvailabilityZones</code>, the subnets that you specify must reside in those Availability Zones.</p>",
-        "TargetTrackingMetricDataQuery$Expression": "<p>The math expression to perform on the returned data, if this object is performing a math expression. This expression can use the <code>Id</code> of the other metrics to refer to those metrics, and can also use the <code>Id</code> of other expressions to use the result of those expressions. </p> <p>Conditional: Within each <code>TargetTrackingMetricDataQuery</code> object, you must specify either <code>Expression</code> or <code>MetricStat</code>, but not both.</p>",
-        "UpdateAutoScalingGroupType$VPCZoneIdentifier": "<p>A comma-separated list of subnet IDs for a virtual private cloud (VPC). If you specify <code>VPCZoneIdentifier</code> with <code>AvailabilityZones</code>, the subnets that you specify must reside in those Availability Zones.</p>"
+        "TargetTrackingMetricDataQuery$Expression": "<p>The math expression to perform on the returned data, if this object is performing a math expression. This expression can use the <code>Id</code> of the other metrics to refer to those metrics, and can also use the <code>Id</code> of other expressions to use the result of those expressions. </p> <p>Conditional: Within each <code>TargetTrackingMetricDataQuery</code> object, you must specify either <code>Expression</code> or <code>MetricStat</code>, but not both.</p>"
       }
     },
     "XmlStringMaxLen255": {
@@ -2649,6 +2646,14 @@
         "ScalingPolicy$MetricAggregationType": "<p>The aggregation type for the CloudWatch metrics. The valid values are <code>Minimum</code>, <code>Maximum</code>, and <code>Average</code>.</p>",
         "SetInstanceHealthQuery$HealthStatus": "<p>The health status of the instance. Set to <code>Healthy</code> to have the instance remain in service. Set to <code>Unhealthy</code> to have the instance be out of service. Amazon EC2 Auto Scaling terminates and replaces the unhealthy instance.</p>",
         "UpdateAutoScalingGroupType$HealthCheckType": "<p>A comma-separated value string of one or more health check types.</p> <p>The valid values are <code>EC2</code>, <code>ELB</code>, and <code>VPC_LATTICE</code>. <code>EC2</code> is the default health check and cannot be disabled. For more information, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-health-checks.html\">Health checks for instances in an Auto Scaling group</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.</p> <p>Only specify <code>EC2</code> if you must clear a value that was previously set.</p>"
+      }
+    },
+    "XmlStringMaxLen5000": {
+      "base": null,
+      "refs": {
+        "AutoScalingGroup$VPCZoneIdentifier": "<p>One or more subnet IDs, if applicable, separated by commas.</p>",
+        "CreateAutoScalingGroupType$VPCZoneIdentifier": "<p>A comma-separated list of subnet IDs for a virtual private cloud (VPC) where instances in the Auto Scaling group can be created. If you specify <code>VPCZoneIdentifier</code> with <code>AvailabilityZones</code>, the subnets that you specify must reside in those Availability Zones.</p>",
+        "UpdateAutoScalingGroupType$VPCZoneIdentifier": "<p>A comma-separated list of subnet IDs for a virtual private cloud (VPC). If you specify <code>VPCZoneIdentifier</code> with <code>AvailabilityZones</code>, the subnets that you specify must reside in those Availability Zones.</p>"
       }
     },
     "XmlStringMaxLen511": {
