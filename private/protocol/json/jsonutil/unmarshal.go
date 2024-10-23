@@ -187,9 +187,12 @@ func (u unmarshaler) unmarshalList(value reflect.Value, data interface{}, tag re
 		return fmt.Errorf("JSON value is not a list (%#v)", data)
 	}
 
-	if value.IsNil() {
-		l := len(listData)
+	if l := len(listData); value.IsNil() {
 		value.Set(reflect.MakeSlice(value.Type(), l, l))
+	} else {
+		if value.Kind() != reflect.Slice || value.Len() < len(listData) {
+			return fmt.Errorf("existing slice not big enough to hold list data (%#v)", data)
+		}
 	}
 
 	for i, c := range listData {

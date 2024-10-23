@@ -149,3 +149,17 @@ func TestUnmarshalJSON_JSONNumber(t *testing.T) {
 		})
 	}
 }
+
+func TestUnmarshalJSON_SliceNotBigEnough(t *testing.T) {
+	type input struct {
+		ListField []*int64 `locationName:"listField" type:"list"`
+	}
+	JSON := `{"listField": [1]}`
+	value := input{
+		ListField: make([]*int64, 0),
+	}
+	err := jsonutil.UnmarshalJSON(&value, bytes.NewReader([]byte(JSON)))
+	if err == nil {
+		t.Error("expect error, got nil")
+	}
+}
