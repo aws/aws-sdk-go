@@ -1,3 +1,9 @@
+Release v1.55.6 (2025-01-15)
+===
+
+### SDK Bugs
+* Fix broken printf for go1.24
+
 Release v1.55.5 (2024-07-30)
 ===
 
