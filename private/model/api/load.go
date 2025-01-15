@@ -225,7 +225,7 @@ func (a *API) Setup() error {
 
 	a.fixStutterNames()
 	if err := a.validateShapeNames(); err != nil {
-		log.Fatalf(err.Error())
+		log.Fatal(err.Error())
 	}
 	a.renameExportable()
 	a.applyShapeNameAliases()
