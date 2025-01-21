@@ -1,10 +1,18 @@
 ---
-name: "🐛 Bug Report"
-description: Report a bug
+name: "🐛 Critical Bug Report"
+description: This SDK is in maintenance mode. We are only accepting bug reports for critical defects at this time.
 title: "(short issue description)"
 labels: [bug, needs-triage]
 assignees: []
 body:
+  - type: checkboxes
+    id: critical
+    attributes:
+      label: Critical SDK bug
+      description: This SDK is in maintenance mode. We are only accepting bug reports for critical defects at this time. A critical defect is one that severely negatively impacts or outright prevents usage of the SDK. A bug is NOT a critical defect if there is a workaround of any kind.
+      options:
+        - label: I confirm that this issue is to report a critical defect in the SDK, one that severely or completely inhibits my usage of the v1 AWS SDK for Go, for which there is no workaround.
+          required: true
   - type: textarea
     id: description
     attributes:
