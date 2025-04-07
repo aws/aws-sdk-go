@@ -30,6 +30,8 @@ import (
 	"github.com/aws/aws-sdk-go/service/s3/s3manager"
 )
 
+var etag string = "myetag"
+
 func dlLoggingSvc(data []byte) (*s3.S3, *[]string, *[]string) {
 	var m sync.Mutex
 	names := []string{}
@@ -201,6 +203,93 @@ func dlLoggingSvcWithErrReader(cases []testErrReader) (*s3.S3, *[]string) {
 	})
 
 	return svc, &names
+}
+
+func dlLoggingSvcWithVersions(data []byte) (*s3.S3, *[]string, *[]string, *[]string) {
+	var m sync.Mutex
+	versions := []string{}
+	etags := []string{}
+	names := []string{}
+
+	svc := s3.New(unit.Session)
+	svc.Handlers.Send.Clear()
+	svc.Handlers.Send.PushBack(func(r *request.Request) {
+		m.Lock()
+		defer m.Unlock()
+
+		names = append(names, r.Operation.Name)
+		versions = append(versions, aws.StringValue(r.Params.(*s3.GetObjectInput).VersionId))
+		etags = append(etags, aws.StringValue(r.Params.(*s3.GetObjectInput).IfMatch))
+
+		rerng := regexp.MustCompile(`bytes=(\d+)-(\d+)`)
+		rng := rerng.FindStringSubmatch(r.HTTPRequest.Header.Get("Range"))
+		start, _ := strconv.ParseInt(rng[1], 10, 64)
+		fin, _ := strconv.ParseInt(rng[2], 10, 64)
+		fin++
+
+		if fin > int64(len(data)) {
+			fin = int64(len(data))
+		}
+
+		bodyBytes := data[start:fin]
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Body:       ioutil.NopCloser(bytes.NewReader(bodyBytes)),
+			Header:     http.Header{},
+		}
+		r.HTTPResponse.Header.Set("Content-Range", fmt.Sprintf("bytes %d-%d/%d",
+			start, fin-1, len(data)))
+		r.HTTPResponse.Header.Set("Content-Length", fmt.Sprintf("%d", len(bodyBytes)))
+		r.HTTPResponse.Header.Set("Etag", etag)
+	})
+
+	return svc, &names, &versions, &etags
+}
+
+func dlLoggingSvcWithVersionMismatch(t *testing.T) *s3.S3 {
+	var m sync.Mutex
+	reqCount := int64(0)
+	body := bytes.NewReader(make([]byte, s3manager.DefaultDownloadPartSize))
+	svc := s3.New(unit.Session)
+	svc.Handlers.Send.Clear()
+	svc.Handlers.Send.PushBack(func(r *request.Request) {
+		m.Lock()
+		defer m.Unlock()
+
+		statusCode := http.StatusOK
+		var eTag *string
+		switch atomic.LoadInt64(&reqCount) {
+		case 0:
+			if a := r.Params.(*s3.GetObjectInput).IfMatch; a != nil {
+				t.Errorf("expect no Etag in first request, got %s", aws.StringValue(a))
+				statusCode = http.StatusBadRequest
+			} else {
+				eTag = aws.String(etag)
+			}
+		case 1:
+			// Give a chance for the multipart chunks to be queued up
+			time.Sleep(1 * time.Second)
+			// mock the precondition error when object is synchronously updated
+			statusCode = http.StatusPreconditionFailed
+		default:
+			if a := aws.StringValue(r.Params.(*s3.GetObjectInput).IfMatch); a != etag {
+				t.Errorf("expect subrequests' IfMatch header to be %s, got %s", etag, a)
+				statusCode = http.StatusBadRequest
+			}
+		}
+		r.HTTPResponse = &http.Response{
+			StatusCode: statusCode,
+			Body:       ioutil.NopCloser(body),
+			Header:     http.Header{},
+		}
+		r.HTTPResponse.Header.Set("Content-Range", fmt.Sprintf("bytes 0-%d/%d",
+			body.Len()-1, body.Len()*10))
+		r.HTTPResponse.Header.Set("Content-Length", fmt.Sprintf("%d", body.Len()))
+		r.HTTPResponse.Header.Set("Etag", aws.StringValue(eTag))
+		atomic.AddInt64(&reqCount, 1)
+	})
+
+	return svc
 }
 
 func TestDownloadOrder(t *testing.T) {
@@ -523,6 +612,92 @@ func TestDownloadPartBodyRetry_FailRetry(t *testing.T) {
 	}
 	if e, a := "ab", string(w.Bytes()); e != a {
 		t.Errorf("expect %q response, got %q", e, a)
+	}
+}
+
+func TestDownloadWithVersionID(t *testing.T) {
+	s, names, versions, etags := dlLoggingSvcWithVersions(buf12MB)
+	d := s3manager.NewDownloaderWithClient(s)
+
+	w := &aws.WriteAtBuffer{}
+	n, err := d.Download(w, &s3.GetObjectInput{
+		Bucket:    aws.String("bucket"),
+		Key:       aws.String("key"),
+		VersionId: aws.String("vid"),
+	})
+
+	if err != nil {
+		t.Fatalf("expect no error, got %v", err)
+	}
+
+	if e, a := int64(len(buf12MB)), n; e != a {
+		t.Errorf("expect %d buffer length, got %d", e, a)
+	}
+
+	expectCalls := []string{"GetObject", "GetObject", "GetObject"}
+	if e, a := expectCalls, *names; !reflect.DeepEqual(e, a) {
+		t.Errorf("expect %v API calls, got %v", e, a)
+	}
+
+	expectVersions := []string{"vid", "vid", "vid"}
+	if e, a := expectVersions, *versions; !reflect.DeepEqual(e, a) {
+		t.Errorf("expect %v version ids, got %v", e, a)
+	}
+
+	expectETags := []string{"", "", ""}
+	if e, a := expectETags, *etags; !reflect.DeepEqual(e, a) {
+		t.Errorf("expect %v etags, got %v", e, a)
+	}
+}
+
+func TestDownloadWithETags(t *testing.T) {
+	s, names, versions, etags := dlLoggingSvcWithVersions(buf12MB)
+	d := s3manager.NewDownloaderWithClient(s)
+
+	w := &aws.WriteAtBuffer{}
+	n, err := d.Download(w, &s3.GetObjectInput{
+		Bucket: aws.String("bucket"),
+		Key:    aws.String("key"),
+	})
+
+	if err != nil {
+		t.Fatalf("expect no error, got %v", err)
+	}
+
+	if e, a := int64(len(buf12MB)), n; e != a {
+		t.Errorf("expect %d buffer length, got %d", e, a)
+	}
+
+	expectCalls := []string{"GetObject", "GetObject", "GetObject"}
+	if e, a := expectCalls, *names; !reflect.DeepEqual(e, a) {
+		t.Errorf("expect %v API calls, got %v", e, a)
+	}
+
+	expectVersions := []string{"", "", ""}
+	if e, a := expectVersions, *versions; !reflect.DeepEqual(e, a) {
+		t.Errorf("expect %v version ids, got %v", e, a)
+	}
+
+	expectETags := []string{"", etag, etag}
+	if e, a := expectETags, *etags; !reflect.DeepEqual(e, a) {
+		t.Errorf("expect %v etags, got %v", e, a)
+	}
+}
+
+func TestDownloadWithVersionMismatch(t *testing.T) {
+	s := dlLoggingSvcWithVersionMismatch(t)
+	d := s3manager.NewDownloaderWithClient(s)
+
+	w := &aws.WriteAtBuffer{}
+	_, err := d.Download(w, &s3.GetObjectInput{
+		Bucket: aws.String("bucket"),
+		Key:    aws.String("key"),
+	})
+
+	if err == nil {
+		t.Fatalf("expect error, got none")
+	} else if e, a := "PreconditionFailed", err.Error(); !strings.Contains(a, e) {
+		t.Fatalf("expect error message to contain %s, but did not %s", e, a)
 	}
 }
 
